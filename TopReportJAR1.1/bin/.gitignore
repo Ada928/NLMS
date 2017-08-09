@@ -1,8 +1,7 @@
-/com/
-/commonResources.properties
-/.svn/
 /META-INF/
+/com/
 /topbpm_variable.properties
+/.svn/
 /resource/
 /test/
 /ehcache.xml
