@@ -2,14 +2,14 @@
 <%@page import="com.huateng.report.common.service.ReportCommonService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html;charset=GBK" pageEncoding="GBK"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/templets/easyui/themes/blue/easyui.css">
-<title>主管确认信息</title>
+<title>涓荤纭淇℃伅</title>
 <%
 List taskBeans = ReportCommonService.getInstance().getUndoConfirmTask(session);
 %>
@@ -20,9 +20,9 @@ List taskBeans = ReportCommonService.getInstance().getUndoConfirmTask(session);
 <table width="100%" class="grouptable" cellpadding="0" cellspacing="0" border="0">
 	<thead>
 		<tr>
-			<td class="labeltd" valign=center align="left">待办业务类型</td>
-			<td class="labeltd" valign=center align="left">数量</td>
-			<td class="labeltd" valign=center align="left">操作</td>
+			<td class="labeltd" valign=center align="left">寰呭姙涓氬姟绫诲瀷</td>
+			<td class="labeltd" valign=center align="left">鏁伴噺</td>
+			<td class="labeltd" valign=center align="left">鎿嶄綔</td>
 		</tr>
 	</thead>
 	<%
@@ -44,11 +44,11 @@ List taskBeans = ReportCommonService.getInstance().getUndoConfirmTask(session);
 		 			<%=bean.getCount()%>
 		</td>
 		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<a href="javascript:doIndexWork('/fpages/system/ftl/DirectorConfirm.ftl?intInsId=<%=bean.getIntInsId() %>')">办理</a>
+		 			<a href="javascript:doIndexWork('/fpages/system/ftl/DirectorConfirm.ftl?intInsId=<%=bean.getIntInsId() %>')">鍔炵悊</a>
 		</td>
 		</tr>
 	<%}}else{ %>
-		<tr bgcolor="#ffffff"><td colspan="3" align="center" class="datatd">没有需要确认信息</td></tr>
+		<tr bgcolor="#ffffff"><td colspan="3" align="center" class="datatd">娌℃湁闇�瑕佺‘璁や俊鎭�</td></tr>
 	<%} %>
 </table></center>
 </div>
@@ -56,7 +56,7 @@ List taskBeans = ReportCommonService.getInstance().getUndoConfirmTask(session);
 
 <script type="text/javascript">
 	function doIndexWork(url){
-		window.parent.parent.doWork('1008',"主管确认",url);
+		window.parent.parent.doWork('1008',"涓荤纭",url);
 	}
 </script>
 </html>

@@ -7,14 +7,11 @@
 <script language="javascript" src="<%=request.getContextPath()%>/js/scrollbutton.js"></script>
 <script language="javascript" src="<%=request.getContextPath()%>/js/poslib.js"></script>
 
-<!-- 
-<link href="<%=request.getContextPath()%>/css/gz-menu.css" rel="stylesheet" type="text/css">
- -->
- <link href="<%=request.getContextPath()%>/css/menu.css" rel="stylesheet" type="text/css">
- 
+<!-- <link href="<%=request.getContextPath()%>/css/gz-menu.css" rel="stylesheet" type="text/css"> -->
+<link href="<%=request.getContextPath()%>/css/menu.css" rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/css/public.css" rel="stylesheet" type="text/css">
-<style type="text/css">
 <!--
+<style type="text/css">
 .menumsg {
 	PADDING-TOP: 0px;
 	MARGIN-TOP: 0px;
@@ -24,50 +21,39 @@
 	font-size: 14px;
 	margin: 0px;
 }
--->
 </style>
+-->
 </head>
 <!--  gz 
 <body style="margin: 0; overflow: hidden ;background-color: #F8D0B7;" >
 -->
 <body style="margin: 0; overflow: hidden ;">
-
-<table width="100%" border="0" cellpadding="0" cellspacing="0" >
-<tr>
-<!-- 
-	<td width="13%" height="28px" background="<%=request.getContextPath()%>/images/gz_bg_menu_left.jpg" >
- -->
-	 <!--
-	<td width="13px" height="28px" background="<%=request.getContextPath()%>/images/mu01.jpg"  > </td>
-	-->
-	<td>
-		<nobr>
-		<script language="javascript" >
-
-		Menu.prototype.mouseHoverDisabled = false;
-		//Menu.prototype.cssFile = "<%=request.getContextPath()%>/css/gz-menu.css";
-		Menu.prototype.cssFile = "<%=request.getContextPath()%>/css/menu.css";
-		var menuMain = new MenuBar();
-		<%
-		StringBuffer m = (StringBuffer)request.getSession().getAttribute("menu");
-		%>
-		Menu_buildMenu(new  Array(<%=m.toString()%>),menuMain);
-
-		//menuMain.add( tmp = new MenuButtonUrl( "退出",function Exit(){sExit()} ));
-		//menuMain.add( tmp = new MenuButtonUrl( "我的首页",function Exit(){backToWelcome()} ));
-
-		menuMain.write();
-
-		function sExit()
-		{
-			window.open("<%=request.getContextPath()%>/logout.do", "_top");
-		}
-
-
-		</script>
-		</nobr>
-	</td>
-</tr>
-</table>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<!-- <td width="13%" height="28px" background="<%=request.getContextPath()%>/images/gz_bg_menu_left.jpg" >-->
+			<!-- <td width="13px" height="28px" background="<%=request.getContextPath()%>/images/mu01.jpg"  > </td> -->
+			<td>
+					<script language="javascript">
+						Menu.prototype.mouseHoverDisabled = false;
+						//Menu.prototype.cssFile = "<%=request.getContextPath()%>/css/gz-menu.css";
+						Menu.prototype.cssFile = "<%=request.getContextPath()%>/css/menu.css";
+						
+						var menuMain = new MenuBar();
+						<%StringBuffer m = (StringBuffer) request.getSession().getAttribute("menu");%>
+						Menu_buildMenu(new Array(<%=m.toString()%>),menuMain);
+				
+						//menuMain.add( tmp = new MenuButtonUrl( "退出",function Exit(){sExit()} ));
+						//menuMain.add( tmp = new MenuButtonUrl( "我的首页",function Exit(){backToWelcome()} ));
+				
+						menuMain.write();
+				
+						function sExit()
+						{
+							window.open("<%=request.getContextPath()%>/logout.do", "_top");
+						}
+					</script>
+				</td>
+		</tr>
+	</table>
 </body>
 </html>
