@@ -147,7 +147,6 @@
     <Query id="BlacklistByGABQuery" path="/fpages/blacklistManage/xml/BlacklistByGABQuery.xml" />
     <Query id="BlacklistBySHMngEntry" path="/fpages/blacklistManage/xml/BlacklistBySHMngEntry.xml" />
     
-
     <Query id="TlrLoginLogCountQuery" path="/fpages/dataquery/xml/TlrLoginLogCountQuery.xml" />
     <Query id="tlrLoginLogQueryTabs" path="/fpages/dataquery/xml/tlrLoginLogQueryTabs.xml" />
 

@@ -8,11 +8,11 @@
 /sources.properties
 /resource/
 /test/
-/reportLockPageConfig.properties
 /reportDataClean_oracle.xml
+/reportLockPageConfig.properties
 /reportTableBak_oracle.xml
-/BOP数据字典.xlsx
 /ApproveFlow/
+/BOP数据字典.xlsx
 /JSH数据字典.xlsx
 /oracel测试存储过程.sql
 /代码表.xlsx
