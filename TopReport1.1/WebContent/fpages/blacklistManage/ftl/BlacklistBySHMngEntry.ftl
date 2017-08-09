@@ -29,11 +29,10 @@
 			 </div>
 		</td>
 	</tr>
-	
 </table>
+
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript">
-	/*
 	var currentTlrno = "${statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstanceWithoutException().getTlrno()}";
 	//定位一条记录
 	function locate(id) {
@@ -165,6 +164,6 @@
 
 	function showDetail(tlrno,sta){
 		showWin("用户详细信息","${contextPath}/fpages/regonization/ftl/OperMngRoleCompare.ftl?id=" + tlrno + "&st=" + sta + "&flag=0","","",window);
-	}*/
+	}
 </script>
 </@CommonQueryMacro.page>
