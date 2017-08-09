@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
 <wb-module deploy-name="TopReport1.1">
 <wb-resource deploy-path="/" source-path="/WebContent"/>
-<wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
 <wb-resource deploy-path="/WEB-INF/classes" source-path="/business.admin"/>
 <wb-resource deploy-path="/WEB-INF/classes" source-path="/business.custadmin"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/business.custtxn"/>
@@ -36,7 +35,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/report.common"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/report.dataaudit"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/report.datacollection"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/report.import"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/report.commonloadpage"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/report.send"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/Test"/>
