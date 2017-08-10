@@ -1,5 +1,6 @@
-package com.huateng.report.basis.getter;
+package com.cibfintech.report.blacklist.getter;
 
+import com.cibfintech.report.blacklist.service.BankBlackListService;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -8,19 +9,18 @@ import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
-import com.huateng.report.basis.service.BiMonthExchangeRateService;
 
 @SuppressWarnings("unchecked")
-public class BiMonthExchangeRateGetter extends BaseGetter {
+public class BankBlackListGetter extends BaseGetter {
 	/*
-	 * 获取月牌价列表
+	 * 获取商行黑名单
 	 * 
 	 * @author huangcheng
 	 */
 	@Override
 	public Result call() throws AppException {
 		try {
-			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外汇月牌价维护查询");
+			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "商行黑名单管理查询");
 			PageQueryResult pageResult = getData();
 			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
@@ -35,14 +35,14 @@ public class BiMonthExchangeRateGetter extends BaseGetter {
 		}
 	}
 
-	private PageQueryResult getData() {
-		String ratecut = getCommQueryServletRequest().getParameter("ratecut");
-		String yearMonth = getCommQueryServletRequest().getParameter("yearMonth");
-		String qst = getCommQueryServletRequest().getParameter("st");
+	protected PageQueryResult getData() throws Exception {
+		String partyId = getCommQueryServletRequest().getParameter("qPartyId");
+		String zjzl = getCommQueryServletRequest().getParameter("qZjzl");
+		String zjhm = getCommQueryServletRequest().getParameter("qZjhm");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
-		PageQueryResult pqr = BiMonthExchangeRateService.getInstance().pageQueryByHql(pageIndex, pageSize, ratecut,
-				yearMonth, qst);
+		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageIndex, pageSize, partyId, zjzl,
+				zjhm);
 		return pqr;
 	}
 }
