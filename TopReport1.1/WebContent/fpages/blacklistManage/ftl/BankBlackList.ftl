@@ -1,7 +1,7 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
 <@CommonQueryMacro.page title="商行黑名单管理">
-<@CommonQueryMacro.CommonQuery id="BankBlacklist" init="false" submitMode="current">
+<@CommonQueryMacro.CommonQuery id="BankBlackList" init="false" submitMode="current">
 <table width="90%">
 	<tr valign="center">
 		<td valign="top" colspan="2">

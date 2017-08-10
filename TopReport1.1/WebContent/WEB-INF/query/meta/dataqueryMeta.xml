@@ -142,7 +142,8 @@
 
     <Query id="TlrLoginLogQuery" path="/fpages/dataquery/xml/TlrLoginLogQuery.xml" />
 
-    <!-- 黑名单管理 <Query id="BankBlacklist" path="/fpages/blacklistManage/xml/BankBlacklist.xml" /> -->
+    <!-- 黑名单管理 -->
+    <Query id="BankBlackList" path="/fpages/blacklistManage/xml/BankBlackList.xml" /> 
     <Query id="BlacklistByInternationalQuery" path="/fpages/blacklistManage/xml/BlacklistByInternationalQuery.xml" />
     <Query id="BlacklistByGABQuery" path="/fpages/blacklistManage/xml/BlacklistByGABQuery.xml" />
 

@@ -3,7 +3,8 @@
 	<display-name>TOP</display-name>
 	<description>TOP</description>
 
-	<context-param>
+<!--             
+ -->	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
      	 	classpath:resources/SQLContext.xml,

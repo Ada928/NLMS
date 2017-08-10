@@ -57,7 +57,7 @@ public class ApplicationContextUtils {
 	public static Object getBean(String beanName) {
 		// ApplicationContext ac = getApplicationContext();
 		if (null == context)
-			throw new IllegalStateException("ApplicationContext没有被初始化.");
+			throw new IllegalStateException("ApplicationContext 没有被初始化.");
 		return context.getBean(beanName);
 	}
 
