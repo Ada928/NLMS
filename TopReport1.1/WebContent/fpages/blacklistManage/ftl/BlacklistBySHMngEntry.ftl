@@ -17,7 +17,7 @@
 	 <tr>
 		 <td colspan="2">
 			<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="-,btAdd,-,btStatus" 
-			fieldStr="partId,yhdm" 
+			fieldStr="dqdh,jgdh" 
 			readonly="true" width="100%" hasFrame="true" height="580" />
 		 </td>
 	 </tr>

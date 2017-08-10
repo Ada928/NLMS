@@ -50,8 +50,7 @@ public class ReportBackErrBean {
 		this.errMsg = errMsg;
 	}
 
-	public ReportBackErrBean(String errType, List<String> errMsg,
-			Map<String, String> errFiledMap,
+	public ReportBackErrBean(String errType, List<String> errMsg, Map<String, String> errFiledMap,
 			Map<String, String> errFiledContentMap) {
 		super();
 		this.errType = errType;

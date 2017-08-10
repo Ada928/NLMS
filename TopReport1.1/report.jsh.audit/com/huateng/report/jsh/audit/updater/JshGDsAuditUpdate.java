@@ -17,28 +17,28 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
 import com.huateng.report.jsh.audit.operation.JshEgDsAuditOperation;
+
 public class JshGDsAuditUpdate extends BaseUpdate {
-	
-	private static final String DATASET_ID="JshGDsAudit";
+
+	private static final String DATASET_ID = "JshGDsAudit";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
-		
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
+
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			List<MtsJshDefgDs> mtsJshDefgDsList = new ArrayList<MtsJshDefgDs>();
-			while (updateResultBean.hasNext())
-			{
+			while (updateResultBean.hasNext()) {
 				MtsJshDefgDs mtsJshDefgDs = new MtsJshDefgDs();
 				Map map = updateResultBean.next();
-				mapToObject(mtsJshDefgDs,map);
+				mapToObject(mtsJshDefgDs, map);
 				mtsJshDefgDsList.add(mtsJshDefgDs);
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
 			String approveResultChoose = updateResultBean.getParameter("approveResultChoose");
-			
+
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(JshEgDsAuditOperation.CMD, JshEgDsAuditOperation.OP_LOAN_AUDIT);
 			oc.setAttribute(JshEgDsAuditOperation.IN_AUDIT_LIST, mtsJshDefgDsList);
@@ -46,13 +46,12 @@ public class JshGDsAuditUpdate extends BaseUpdate {
 			oc.setAttribute(JshEgDsAuditOperation.IN_AUDIT_RESULT, approveResultChoose);
 			oc.setAttribute(JshEgDsAuditOperation.CHOOSE, JshEgDsAuditOperation.JI_CHU);
 			OPCaller.call(JshEgDsAuditOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

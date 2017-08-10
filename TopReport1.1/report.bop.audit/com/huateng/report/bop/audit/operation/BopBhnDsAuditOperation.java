@@ -13,9 +13,9 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.report.bop.audit.service.BopBhnDsAuditService;
 
 public class BopBhnDsAuditOperation extends BaseOperation {
-	
+
 	private static final HtLog htlog = HtLogFactory.getLogger(BopBhnDsAuditOperation.class);
-	
+
 	public static final String ID = "BopBhnDsAuditOperation";
 	public static final String BASIC_AUDIT_LIST_IN_PARAM = "BASIC_AUDIT_LIST_IN_PARAM";
 	public static final String REPORT_AUDIT_LIST_IN_PARAM = "REPORT_AUDIT_LIST_IN_PARAM";
@@ -27,11 +27,10 @@ public class BopBhnDsAuditOperation extends BaseOperation {
 	public static final String CMD_REPORT_AUDIT = "CMD_REPORT_AUDIT";
 	public static final String CMD_MANAGE_AUDIT = "CMD_MANAGE_AUDIT";
 
-
 	@Override
 	public void beforeProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -42,31 +41,34 @@ public class BopBhnDsAuditOperation extends BaseOperation {
 		String approveResultChoose = (String) context.getAttribute(AUDIT_RESULT);
 		BopBhnDsAuditService service = BopBhnDsAuditService.getInstance();
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
-		if(CMD_BAIS_AUDIT.equals(cmd)) {
-			//基础信息审核
+		if (CMD_BAIS_AUDIT.equals(cmd)) {
+			// 基础信息审核
 			List<MtsBopBhnDs> mtsBopBhnDsList = (List<MtsBopBhnDs>) context.getAttribute(BASIC_AUDIT_LIST_IN_PARAM);
-			service.basic_audit(mtsBopBhnDsList,approveStatusChoose,approveResultChoose);
-			globalInfo.addBizLog("Updater.log", new String[]{globalInfo.getTlrno(),globalInfo.getBrcode(),"境外汇款申请书基础信息审核"});
-			htlog.info("Updater.log",new String[]{globalInfo.getTlrno(),globalInfo.getBrno(),"境外汇款申请书基础信息审核"});
-		} else if(CMD_REPORT_AUDIT.equals(cmd)) {
-			//申报信息审核
+			service.basic_audit(mtsBopBhnDsList, approveStatusChoose, approveResultChoose);
+			globalInfo.addBizLog("Updater.log",
+					new String[] { globalInfo.getTlrno(), globalInfo.getBrcode(), "境外汇款申请书基础信息审核" });
+			htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "境外汇款申请书基础信息审核" });
+		} else if (CMD_REPORT_AUDIT.equals(cmd)) {
+			// 申报信息审核
 			List<MtsBopBhnDs> mtsBopBhnDsList = (List<MtsBopBhnDs>) context.getAttribute(REPORT_AUDIT_LIST_IN_PARAM);
-			service.report_audit(mtsBopBhnDsList,approveStatusChoose,approveResultChoose);
-			globalInfo.addBizLog("Updater.log", new String[]{globalInfo.getTlrno(),globalInfo.getBrcode(),"境外汇款申请书申报信息审核"});
-			htlog.info("Updater.log",new String[]{globalInfo.getTlrno(),globalInfo.getBrno(),"境外汇款申请书申报信息审核"});
-		} else if(CMD_MANAGE_AUDIT.equals(cmd)) {
-			//管理信息审核
+			service.report_audit(mtsBopBhnDsList, approveStatusChoose, approveResultChoose);
+			globalInfo.addBizLog("Updater.log",
+					new String[] { globalInfo.getTlrno(), globalInfo.getBrcode(), "境外汇款申请书申报信息审核" });
+			htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "境外汇款申请书申报信息审核" });
+		} else if (CMD_MANAGE_AUDIT.equals(cmd)) {
+			// 管理信息审核
 			List<MtsBopBhnDs> mtsBopBhnDsList = (List<MtsBopBhnDs>) context.getAttribute(MANAGE_AUDIT_LIST_IN_PARAM);
-			service.manage_audit(mtsBopBhnDsList,approveStatusChoose,approveResultChoose);
-			globalInfo.addBizLog("Updater.log", new String[]{globalInfo.getTlrno(),globalInfo.getBrcode(),"境外汇款申请书管理信息审核"});
-			htlog.info("Updater.log",new String[]{globalInfo.getTlrno(),globalInfo.getBrno(),"境外汇款申请书管理信息审核"});
+			service.manage_audit(mtsBopBhnDsList, approveStatusChoose, approveResultChoose);
+			globalInfo.addBizLog("Updater.log",
+					new String[] { globalInfo.getTlrno(), globalInfo.getBrcode(), "境外汇款申请书管理信息审核" });
+			htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "境外汇款申请书管理信息审核" });
 		}
 	}
 
 	@Override
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -28,53 +28,58 @@ import com.huateng.ebank.framework.operation.BaseVoObject;
 public class UserSessionInfo extends BaseVoObject {
 
 	private Date txDate;
-	private String tlrNo = "" ; //柜员号
-	private String tlrName = "" ; //柜员名称
-	private String brCode = "" ; //机构号
-	private String brNo="";//外部机构号
-	private String organCode = "" ; //企业组织机构号
-	private String custNo = "" ; //企业客户号
-	private int custId = 0; //企业信息id
-	private int branchId = 0 ; //机构号
-	private String roleName= ""; //用户角色信息
-	private int roleid = 0; //用户角色信息
-	private Hashtable userFunctions=null;//用户权限
-	private Hashtable allFunctions=null;//用户权限
-	private Vector userRoles=null;
-	private String lastLoginTime = "" ;//最近登陆时间
-	private String lastLogoutTime = "" ;//最近退出时间
-	private String ip = "" ;//IP
-	private String brName = ""; //机构名称
-	private String acctBrhName = "";//入账机构名
-	private int acctBranchId = 0 ; //入账机构ID
+	private String tlrNo = ""; // 柜员号
+	private String tlrName = ""; // 柜员名称
+	private String brCode = ""; // 机构号
+	private String brNo = "";// 外部机构号
+	private String organCode = ""; // 企业组织机构号
+	private String custNo = ""; // 企业客户号
+	private int custId = 0; // 企业信息id
+	private int branchId = 0; // 机构号
+	private String roleName = ""; // 用户角色信息
+	private int roleid = 0; // 用户角色信息
+	private Hashtable userFunctions = null;// 用户权限
+	private Hashtable allFunctions = null;// 用户权限
+	private Vector userRoles = null;
+	private String lastLoginTime = "";// 最近登陆时间
+	private String lastLogoutTime = "";// 最近退出时间
+	private String ip = "";// IP
+	private String brName = ""; // 机构名称
+	private String acctBrhName = "";// 入账机构名
+	private int acctBranchId = 0; // 入账机构ID
 	private String bankNo = "";
 	private String custName = "";
 	private String custAdress = "";
 	private int userid;
-	    String userName="";
+	String userName = "";
 
-    private String upBrCode = ""; //上级机构号
-    private Vector workflowRoles; //工作流角色信息
+	private String upBrCode = ""; // 上级机构号
+	private Vector workflowRoles; // 工作流角色信息
 
-    private String lastLoginFailTime = "";
+	private String lastLoginFailTime = "";
 
-    public String getLastLoginFailTime() {
+	public String getLastLoginFailTime() {
 		return lastLoginFailTime;
 	}
+
 	public void setLastLoginFailTime(String lastLoginFailTime) {
 		this.lastLoginFailTime = lastLoginFailTime;
 	}
+
 	public String getBrNo() {
 		return brNo;
 	}
+
 	public void setBrNo(String brNo) {
 		this.brNo = brNo;
 	}
+
 	public UserSessionInfo() {
 		userRoles = new Vector();
 		workflowRoles = new Vector();
 		userFunctions = new Hashtable();
 	}
+
 	public Vector getWorkflowRoles() {
 		return workflowRoles;
 	}
@@ -82,6 +87,7 @@ public class UserSessionInfo extends BaseVoObject {
 	public void setWorkflowRoles(Vector workflowRoles) {
 		this.workflowRoles = workflowRoles;
 	}
+
 	public void addWorkflowRolesItem(Object obj) {
 		workflowRoles.add(obj);
 	}
@@ -97,21 +103,22 @@ public class UserSessionInfo extends BaseVoObject {
 	public boolean isExistWorkflowRolesItems(Object obj) {
 		return workflowRoles.contains(obj);
 	}
-	public String getUpBrCode() {
-			return upBrCode;
-		}
 
-		public void setUpBrCode(String upBrCode) {
-			this.upBrCode = upBrCode;
-		}
+	public String getUpBrCode() {
+		return upBrCode;
+	}
+
+	public void setUpBrCode(String upBrCode) {
+		this.upBrCode = upBrCode;
+	}
 
 	public String getUserName() {
-			return userName;
-		}
+		return userName;
+	}
 
-		public void setUserName(String userName) {
-			this.userName = userName;
-		}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	public int getUserid() {
 		return userid;
@@ -120,7 +127,6 @@ public class UserSessionInfo extends BaseVoObject {
 	public void setUserid(int userid) {
 		this.userid = userid;
 	}
-
 
 	public Hashtable getUserFunctions() {
 		return userFunctions;
@@ -131,7 +137,7 @@ public class UserSessionInfo extends BaseVoObject {
 	}
 
 	public void addUserFunctionsItem(Object obj) {
-		userFunctions.put(obj,obj);
+		userFunctions.put(obj, obj);
 	}
 
 	public void removeUserFunctionsItem(Object obj) {
@@ -139,12 +145,12 @@ public class UserSessionInfo extends BaseVoObject {
 	}
 
 	public void clearFunctionsItems() {
-		userFunctions.clear() ;
+		userFunctions.clear();
 	}
 
 	public boolean isExistUserFunctionsItems(Object obj) {
 		Object lobj = userFunctions.get(obj);
-		return null!=lobj ;
+		return null != lobj;
 	}
 
 	public Vector getUserRoles() {
@@ -186,8 +192,6 @@ public class UserSessionInfo extends BaseVoObject {
 	public void setRoleid(int roleid) {
 		this.roleid = roleid;
 	}
-
-
 
 	public String getBrCode() {
 		return brCode;
@@ -237,7 +241,6 @@ public class UserSessionInfo extends BaseVoObject {
 		tlrNo = string;
 	}
 
-
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
@@ -270,7 +273,6 @@ public class UserSessionInfo extends BaseVoObject {
 		sb.append("]");
 		return sb.toString();
 	}
-
 
 	/**
 	 * @return
@@ -320,8 +322,6 @@ public class UserSessionInfo extends BaseVoObject {
 	public String getBrName() {
 		return brName;
 	}
-
-
 
 	public void setBrName(String brName) {
 		this.brName = brName;
@@ -391,17 +391,15 @@ public class UserSessionInfo extends BaseVoObject {
 	}
 
 	/**
-	 * @param custAdress the custAdress to set
+	 * @param custAdress
+	 *            the custAdress to set
 	 */
 	public void setCustAdress(String custAdress) {
 		this.custAdress = custAdress;
 	}
 
-
-
 	/**
 	 * @param string
 	 */
-
 
 }

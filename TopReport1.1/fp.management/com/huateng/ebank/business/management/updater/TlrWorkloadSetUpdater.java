@@ -50,21 +50,24 @@ public class TlrWorkloadSetUpdater extends BaseUpdate {
 		}
 	}
 
-	/**只有支行级别的机构可以增加客户经理和支行行长的操作员
+	/**
+	 * 只有支行级别的机构可以增加客户经理和支行行长的操作员
+	 * 
 	 * @param brcode
 	 * @param roleId
-	 * return boolean
+	 *            return boolean
 	 */
-//	public boolean isProBranchRoleAddCustManageAndSubBranch(String brcode,
-//				String roleId) throws CommonException {
-//		int roleIdInt = Integer.valueOf(roleId).intValue();
-//		if ( SystemConstant.ROLE_CUST_MANAGER == roleIdInt || roleIdInt==SystemConstant.SUB_BRANCH_MANAGER) {
-//			if (BctlService.getInstance().isSubBrcode(brcode)) {
-//				return true;
-//			} else
-//				return false;
-//		}
-//		return true;
-//	}
+	// public boolean isProBranchRoleAddCustManageAndSubBranch(String brcode,
+	// String roleId) throws CommonException {
+	// int roleIdInt = Integer.valueOf(roleId).intValue();
+	// if ( SystemConstant.ROLE_CUST_MANAGER == roleIdInt ||
+	// roleIdInt==SystemConstant.SUB_BRANCH_MANAGER) {
+	// if (BctlService.getInstance().isSubBrcode(brcode)) {
+	// return true;
+	// } else
+	// return false;
+	// }
+	// return true;
+	// }
 
 }

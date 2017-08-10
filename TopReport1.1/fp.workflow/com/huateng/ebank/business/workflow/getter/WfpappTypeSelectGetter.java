@@ -22,7 +22,9 @@ import com.huateng.exception.AppException;
  */
 public class WfpappTypeSelectGetter extends BaseGetter {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.huateng.commquery.process.call._CallGetter#call()
 	 */
 	@Override
@@ -33,28 +35,25 @@ public class WfpappTypeSelectGetter extends BaseGetter {
 
 			List resultlist = new ArrayList();
 
-			String selectappTypeValue = this.getCommQueryServletRequest()
-					.getParameter("selectTemplate");
-
+			String selectappTypeValue = this.getCommQueryServletRequest().getParameter("selectTemplate");
 
 			if (!StringUtils.isEmpty(selectappTypeValue)) {
-				String selectappTypeValueAT = selectappTypeValue+"_APP_TYPE";
-//				将工作流模板名 与 申请类型进行匹配
+				String selectappTypeValueAT = selectappTypeValue + "_APP_TYPE";
+				// 将工作流模板名 与 申请类型进行匹配
 
 				List appTypeValueAT = new ArrayList();
 				appTypeValueAT = DataFormat.stringToList(WorkFlowConfig.getValue(selectappTypeValueAT));
-				Object obj[]=appTypeValueAT.toArray();
+				Object obj[] = appTypeValueAT.toArray();
 				for (int i = 0; i < obj.length; i++) {
-						WorkFlowParamSelectBean wfpSelectBean = new WorkFlowParamSelectBean();
-                        String value[]=obj[i].toString().split("-");
-						wfpSelectBean.setAppType(value[0]);
-						wfpSelectBean.setAppTypeName(obj[i].toString());
-						resultlist.add(wfpSelectBean);
+					WorkFlowParamSelectBean wfpSelectBean = new WorkFlowParamSelectBean();
+					String value[] = obj[i].toString().split("-");
+					wfpSelectBean.setAppType(value[0]);
+					wfpSelectBean.setAppTypeName(obj[i].toString());
+					resultlist.add(wfpSelectBean);
 				}
 			}
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), resultlist, getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), resultlist, getResult());
 			result.setContent(resultlist);
 			result.getPage().setTotalPage(1);
 			result.init();
@@ -62,11 +61,9 @@ public class WfpappTypeSelectGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
-
 
 }

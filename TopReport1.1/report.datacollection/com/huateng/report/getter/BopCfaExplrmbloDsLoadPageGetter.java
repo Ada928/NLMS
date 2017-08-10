@@ -12,29 +12,25 @@ import com.huateng.report.constants.TopReportConstants;
 import com.huateng.report.service.BopCfaExplrmbloDsService;
 
 @SuppressWarnings("unchecked")
-public class BopCfaExplrmbloDsLoadPageGetter  extends BaseGetter{
-
+public class BopCfaExplrmbloDsLoadPageGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -49,15 +45,14 @@ public class BopCfaExplrmbloDsLoadPageGetter  extends BaseGetter{
 		String recStatus = getCommQueryServletRequest().getParameter("recStatus");
 		String approveStatus = getCommQueryServletRequest().getParameter("approveStatus");
 		String repStatus = getCommQueryServletRequest().getParameter("repStatus");
-//		String dofoexlocode = getCommQueryServletRequest().getParameter("dofoexlocode");
+		// String dofoexlocode =
+		// getCommQueryServletRequest().getParameter("dofoexlocode");
 		String filler2 = getCommQueryServletRequest().getParameter("filler2");
 
 		BopCfaExplrmbloDsService service = BopCfaExplrmbloDsService.getInstance();
-		return service.pageQueryByHql(pageIndex, pageSize,
-				TopReportConstants.REPORT_FILE_TYPE_CFA_EA, workDate,
+		return service.pageQueryByHql(pageIndex, pageSize, TopReportConstants.REPORT_FILE_TYPE_CFA_EA, workDate,
 				actiontype, recStatus, approveStatus, repStatus, filler2, null);
 
 	}
-
 
 }

@@ -71,7 +71,7 @@ public class ReportParser {
 				fi.setFileDate(bean.getFileDate());
 				fi.setBusiType(bean.getBusiType());
 				int len = fi.getId().indexOf(".");
-				fi.setSubFileSeq(fi.getId().substring(len-2,len));
+				fi.setSubFileSeq(fi.getId().substring(len - 2, len));
 				size -= maxRecordLen;
 				fi.setTotalrecords(size);
 				fileInfo.add(fi);
@@ -96,7 +96,7 @@ public class ReportParser {
 		fi.setTotalrecords(size);
 		fi.setBusiType(bean.getBusiType());
 		int len = fi.getId().indexOf(".");
-		fi.setSubFileSeq(fi.getId().substring(len-2,len));
+		fi.setSubFileSeq(fi.getId().substring(len - 2, len));
 		fileInfo.add(fi);
 		return fileInfo;
 	}

@@ -61,8 +61,7 @@ public class DwrCreateSubFileService {
 		setGlobalInfo(request);
 		GlobalInfo info = GlobalInfo.getCurrentInstance();
 		String fileDate = info.getFileDate();
-		int count = ReportCreateSubFileService.getInstance().getSubFileCountAndSaveSubFile(
-				busiType, appType, fileDate);
+		int count = ReportCreateSubFileService.getInstance().getSubFileCountAndSaveSubFile(busiType, appType, fileDate);
 		return count;
 	}
 
@@ -73,7 +72,8 @@ public class DwrCreateSubFileService {
 	 * @return
 	 * @throws CommonException
 	 */
-	public List<String> createSubFile(HttpServletRequest request,String busiType,String appType) throws CommonException {
+	public List<String> createSubFile(HttpServletRequest request, String busiType, String appType)
+			throws CommonException {
 
 		List<String> packList = null;
 		setGlobalInfo(request);
@@ -124,8 +124,8 @@ public class DwrCreateSubFileService {
 		return showList;
 	}
 
-	public List<ReportShowCreateFileBean> sendSubFileList(HttpServletRequest request, List<String> packList, String appType)
-			throws CommonException {
+	public List<ReportShowCreateFileBean> sendSubFileList(HttpServletRequest request, List<String> packList,
+			String appType) throws CommonException {
 		List<ReportShowCreateFileBean> showList = new ArrayList<ReportShowCreateFileBean>();
 		setGlobalInfo(request);
 		GlobalInfo info = GlobalInfo.getCurrentInstance();
@@ -140,7 +140,7 @@ public class DwrCreateSubFileService {
 			if (initbl) {
 				for (int i = 0; i < packList.size(); i++) {
 					String packName = packList.get(i);
-					if (packName==null||packName.trim().length()==0) {
+					if (packName == null || packName.trim().length() == 0) {
 						continue;
 					}
 					ReportShowCreateFileBean bean = new ReportShowCreateFileBean();
@@ -173,8 +173,8 @@ public class DwrCreateSubFileService {
 			}
 		}
 		Date endTm = new Date();
-		ReportCommonService.getInstance().saveBiProcessLog(DateUtil.dateToNumber(info.getTxdate()), busiType, appType, brNo,
-				TopReportConstants.REPORT_PROCESS_EXECTYPE_SEND, startTm, endTm,
+		ReportCommonService.getInstance().saveBiProcessLog(DateUtil.dateToNumber(info.getTxdate()), busiType, appType,
+				brNo, TopReportConstants.REPORT_PROCESS_EXECTYPE_SEND, startTm, endTm,
 				TopReportConstants.REPORT_PROCESS_OPERTYPE_TIME);
 
 		info.addBizLog("Updater.log", new String[] { info.getTlrno(), brNo, "上报文件上传，业务类型【" + busiType + "】" });
@@ -183,16 +183,17 @@ public class DwrCreateSubFileService {
 		return showList;
 	}
 
-	public String isAnalyExecute(String workDate) throws CommonException{
+	public String isAnalyExecute(String workDate) throws CommonException {
 		return FileImportService.getInstance().queryImportIsSuccessByWorkDate(workDate);
 	}
 
 	/**
 	 * 校验是否所有机构都已锁定完成
+	 * 
 	 * @return
-	 * @throws CommonException 
+	 * @throws CommonException
 	 */
-	public boolean getIsAllOrgFinished() throws CommonException{
+	public boolean getIsAllOrgFinished() throws CommonException {
 		return ReportCommonService.getInstance().isAllOrgFinished();
 	}
 

@@ -25,8 +25,7 @@ public class CommonQueryResultAction extends BaseAction {
 	private ICommQueryDAO commQueryDAO;
 
 	@Override
-	public ActionForward execute(ActionMapping actionMapping,
-			ActionForm actionForm, HttpServletRequest request,
+	public ActionForward execute(ActionMapping actionMapping, ActionForm actionForm, HttpServletRequest request,
 			HttpServletResponse response) throws DomainException, IOException {
 		// TODO Auto-generated method stub
 		try {
@@ -35,20 +34,17 @@ public class CommonQueryResultAction extends BaseAction {
 			ICommonQueryBean commonQueryBean = CommonQueryUtil.getCommonQueryBean(id);
 
 			Class resultProcessClass = Class.forName(commonQueryBean.getResultProcess());
-			//New Element resultProcess Class
-			IViewProcess process = (IViewProcess)resultProcessClass.newInstance();
+			// New Element resultProcess Class
+			IViewProcess process = (IViewProcess) resultProcessClass.newInstance();
 			process.process(id, request, response);
 			return null;
 		} catch (DomainException dEx) {
-			BaseErrorUtils.handleError(request, this, dEx,
-					BaseErrorUtils.RT_HISTORY);
+			BaseErrorUtils.handleError(request, this, dEx, BaseErrorUtils.RT_HISTORY);
 			throw dEx;
 		} catch (Exception ex) {
-			DomainException dex = new DomainException(
-					Module.DEFAULT_MODULE, Rescode.DEFAULT_RESCODE, ex
-							.getMessage(), Constants.COMMON_PAGE, ex);
-			BaseErrorUtils.handleError(request, this, dex,
-					BaseErrorUtils.RT_HISTORY);
+			DomainException dex = new DomainException(Module.DEFAULT_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(),
+					Constants.COMMON_PAGE, ex);
+			BaseErrorUtils.handleError(request, this, dex, BaseErrorUtils.RT_HISTORY);
 			throw dex;
 		}
 	}

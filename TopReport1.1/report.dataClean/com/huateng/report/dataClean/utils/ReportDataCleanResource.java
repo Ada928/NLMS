@@ -44,9 +44,9 @@ public class ReportDataCleanResource {
 				bean.setDateFormate(df);
 				bean.setDelSql(element.element("DEL_SQL").getTextTrim());
 				Element detsElement = element.element("DETS");
-				if (detsElement!=null) {
+				if (detsElement != null) {
 					List detEmlist = detsElement.elements("DET");
-					if (detEmlist!=null && detEmlist.size()>0) {
+					if (detEmlist != null && detEmlist.size() > 0) {
 						for (int i = 0; i < detEmlist.size(); i++) {
 							ReportDataCleanBean detBean = new ReportDataCleanBean();
 							Element det = (Element) detEmlist.get(i);

@@ -16,7 +16,6 @@ import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.service.pub.TlrLoginLogService;
 
-
 /**
  * @Description: 日志查询
  * @Package: com.huateng.ebank.business.custadmin.getter
@@ -27,28 +26,23 @@ public class TlrLoginLogQueryGetter extends BaseGetter {
 	@Override
 	public Result call() throws AppException {
 		try {
-			
+
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "用户登录日志查询");
-			
-			CommonFunctions comm =CommonFunctions.getInstance();
+
+			CommonFunctions comm = CommonFunctions.getInstance();
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -56,16 +50,14 @@ public class TlrLoginLogQueryGetter extends BaseGetter {
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
 
-
 		String qtlrNo = (String) getCommQueryServletRequest().getParameterMap().get("qtlrNo");
 		String qbrNo = (String) getCommQueryServletRequest().getParameterMap().get("qbrNo");
 		String qloginAddr = (String) getCommQueryServletRequest().getParameterMap().get("qloginAddr");
 		String startDate = (String) getCommQueryServletRequest().getParameterMap().get("startDate");
 		String endDate = (String) getCommQueryServletRequest().getParameterMap().get("endDate");
-		if(startDate!=null&&endDate!=null){
-			if(DateUtil.comparaDate(endDate,startDate)){
-			ExceptionUtil.throwCommonException("开始日期大于结束日期！",
-					ErrorCode.ERROR_CODE_OVER_HEAD);
+		if (startDate != null && endDate != null) {
+			if (DateUtil.comparaDate(endDate, startDate)) {
+				ExceptionUtil.throwCommonException("开始日期大于结束日期！", ErrorCode.ERROR_CODE_OVER_HEAD);
 			}
 
 		}

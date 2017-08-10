@@ -30,7 +30,7 @@ public class TlrWorkloadSetOperation extends BaseOperation {
 	}
 
 	public void execute(OperationContext context) throws CommonException {
-		List updateList = (List)context.getAttribute(UPDATE_LIST);
+		List updateList = (List) context.getAttribute(UPDATE_LIST);
 		TlrInfoExService service = TlrInfoExService.getInstance();
 		service.updateMaxWl(updateList);
 	}

@@ -70,20 +70,20 @@ public class TlrInfoExOperation extends BaseOperation {
 				tlrView.setBrno(bctl.getBrno());
 				tlrView.setBrname(bctl.getBrname());
 				tlrView.setTlrno(String.valueOf(tlrInfo.getTlrno()));
-//				tlrView.setExtTlrno(tlrInfo.getExtTlrno());
+				// tlrView.setExtTlrno(tlrInfo.getExtTlrno());
 				tlrView.setTlrName(tlrInfo.getTlrName());
 				tlrView.setFlag(tlrInfo.getFlag());
 				tlrView.setPasswd(tlrInfo.getPassword());
 				tlrView.setDefRoleid(DAOUtils.getRoleInfoDAO().query(tlrInfo.getRoleid().intValue()).getRoleName());
 				tlrView.setStatus(tlrInfo.getStatus());
 				tlrView.setCreatDate(tlrInfo.getCreateDate());
-//				tlrView.setEffectDate(tlrInfo.getEffectDate());
-//				tlrView.setExpireDate(tlrInfo.getExpireDate());
+				// tlrView.setEffectDate(tlrInfo.getEffectDate());
+				// tlrView.setExpireDate(tlrInfo.getExpireDate());
 				tlrView.setLatelyLoginTime(new Timestamp(tlrInfo.getLastaccesstm().getTime()));
 				tlrView.setLatelyLogoutTime(new Timestamp(tlrInfo.getLastlogouttm().getTime()));
 				tlrView.setLoginIp(tlrInfo.getLoginIp());
-//				tlrView.setDepartmentCode(tlrInfo.getDepartmentCode());
-//				tlrView.setDepartmentName(DAOUtils.getDepartmentInfoDAO().query(tlrInfo.getDepartmentCode()).getDepartmentName());
+				// tlrView.setDepartmentCode(tlrInfo.getDepartmentCode());
+				// tlrView.setDepartmentName(DAOUtils.getDepartmentInfoDAO().query(tlrInfo.getDepartmentCode()).getDepartmentName());
 
 				// 将tlrView插入List返回给TlrInfoExGetter
 				tlrViewList.add(tlrView);
@@ -97,8 +97,8 @@ public class TlrInfoExOperation extends BaseOperation {
 		}
 		// 操作员更新操作
 		else if (cmd.equals("UPDATE_TLR_INFO")) {
-			context.setAttribute("resultList", ties.updateTlrInfo((List) context.getAttribute("insertRoleList"), (List) context
-					.getAttribute("deleteRoleList"), (TlrInfo) context.getAttribute("tlrInfo")));
+			context.setAttribute("resultList", ties.updateTlrInfo((List) context.getAttribute("insertRoleList"),
+					(List) context.getAttribute("deleteRoleList"), (TlrInfo) context.getAttribute("tlrInfo")));
 		}
 		// 删除操作员操作
 		else if (cmd.equals("DELETE_TLR")) {
@@ -118,116 +118,139 @@ public class TlrInfoExOperation extends BaseOperation {
 			tiv.setTlrno(tlrInfo.getTlrno());
 			tiv.setStatus("1");
 			tiv.setDepartmentCode(Long.valueOf(departmentCode));
-			//tiv.setDepartmentName(DAOUtils.getDepartmentInfoDAO().query(departmentCode).getDepartmentName());
+			// tiv.setDepartmentName(DAOUtils.getDepartmentInfoDAO().query(departmentCode).getDepartmentName());
 			tlrAddInfoList.clear();
 			tlrAddInfoList.add(tiv);
 			context.setAttribute(TlrInfoExOperation.OUT_TLR_JUDGE_LIST, tlrAddInfoList);
 		}
 		// 在操作员增加页面中显示所有岗位信息
 		else if (cmd.equals("SELECT_All_ROLES")) {
-			context.setAttribute(TlrInfoExOperation.ALL_ROLE_LIST, RoleInfoService.getInstance().selectAllRoleInfoService());
+			context.setAttribute(TlrInfoExOperation.ALL_ROLE_LIST,
+					RoleInfoService.getInstance().selectAllRoleInfoService());
 		}
 		// 操作员新增操作
 		else if (cmd.equals("INSERT_TLR_INFO")) {
-			ties.insertTlrInfo((List) context.getAttribute("insertRoleList"), (TlrInfo) context.getAttribute("tlrInfo"));
+			ties.insertTlrInfo((List) context.getAttribute("insertRoleList"),
+					(TlrInfo) context.getAttribute("tlrInfo"));
 		}
 		// 操作员岗位切换获得操作员信息操作
-//		else if (cmd.equals("TLR_ROLE_CHANGE")) {
-////			context.setAttribute(TlrInfoExOperation.OUT_TLR_ROLE_CHANGE_LIST, ties.getTlrRoleChange());
-			// 操作员岗位切换获得操作员兼任岗位操作
-//		} else if (cmd.equals("TLR_PLURALISM_ROLE")) {
-//			context.setAttribute(TlrInfoExOperation.OUT_TLR_PLURALISM_ROLE_LIST, ties.getPluRole());
-//		}
+		// else if (cmd.equals("TLR_ROLE_CHANGE")) {
+		//// context.setAttribute(TlrInfoExOperation.OUT_TLR_ROLE_CHANGE_LIST,
+		// ties.getTlrRoleChange());
+		// 操作员岗位切换获得操作员兼任岗位操作
+		// } else if (cmd.equals("TLR_PLURALISM_ROLE")) {
+		// context.setAttribute(TlrInfoExOperation.OUT_TLR_PLURALISM_ROLE_LIST,
+		// ties.getPluRole());
+		// }
 		// 报表客户经理下拉列表查询，通过外部机构号(查询省分行下属分行所有客户经理)
-//		else if (StringUtils.equals(cmd, CMD_DROP_DOWN_CUSTMANAGER_BRNO)) {
-//			String value = (String) context.getAttribute("value");
-//			String branchBrno = context.getAttribute("branchBrno").toString();
-//			String brno = context.getAttribute("brno").toString();
-//			if (StringUtils.isEmpty(value)) {
-//				if (StringUtils.isEmpty(brno)) {
-//					brcode = bctlService.getBctlByBrno(branchBrno).getBrcode();
-////					context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO, ties.getProbranchCustManager(brcode, value));
-//				} else if (StringUtils.isEmpty(branchBrno)) {
-//					brcode = bctlService.getBctlByBrno(brno).getBrcode();
-//					List subBranchList = bctlService.getSubBrcodeList(brcode);
-//					String where = "po.brcode = ? order by po.extTlrno";
-//					List returnList = new ArrayList();
-//					for (int i = 0; i < subBranchList.size(); i++) {
-//						Object[] b = new Object[] { ((Bctl) subBranchList.get(i)).getBrcode() };
-////						returnList.addAll(ties.getBranchCustManager(where, b));
-//					}
-//					context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO, returnList);
-//				} else {
-//					context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO, null);
-//				}
-//			} else {
-//				if (StringUtils.isEmpty(brno)) {
-//					brcode = bctlService.getBctlByBrno(branchBrno).getBrcode();
-////					context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO, ties.getProbranchCustManager(brcode, value));
-//				} else if (StringUtils.isEmpty(branchBrno)) {
-//					brcode = bctlService.getBctlByBrno(brno).getBrcode();
-//					List subBranchList = bctlService.getSubBrcodeList(brcode);
-//					String where = "po.brcode = ? and po.extTlrno like ? order by po.extTlrno";
-//					List returnList = new ArrayList();
-//					for (int i = 0; i < subBranchList.size(); i++) {
-//						Object[] b = new Object[] { ((Bctl) subBranchList.get(i)).getBrcode(), value };
-////						returnList.addAll(ties.getBranchCustManager(where, b));
-//					}
-//					context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO, returnList);
-//				} else {
-//					context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO, null);
-//				}
-//			}
-//		}
+		// else if (StringUtils.equals(cmd, CMD_DROP_DOWN_CUSTMANAGER_BRNO)) {
+		// String value = (String) context.getAttribute("value");
+		// String branchBrno = context.getAttribute("branchBrno").toString();
+		// String brno = context.getAttribute("brno").toString();
+		// if (StringUtils.isEmpty(value)) {
+		// if (StringUtils.isEmpty(brno)) {
+		// brcode = bctlService.getBctlByBrno(branchBrno).getBrcode();
+		//// context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO,
+		// ties.getProbranchCustManager(brcode, value));
+		// } else if (StringUtils.isEmpty(branchBrno)) {
+		// brcode = bctlService.getBctlByBrno(brno).getBrcode();
+		// List subBranchList = bctlService.getSubBrcodeList(brcode);
+		// String where = "po.brcode = ? order by po.extTlrno";
+		// List returnList = new ArrayList();
+		// for (int i = 0; i < subBranchList.size(); i++) {
+		// Object[] b = new Object[] { ((Bctl) subBranchList.get(i)).getBrcode()
+		// };
+		//// returnList.addAll(ties.getBranchCustManager(where, b));
+		// }
+		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO, returnList);
+		// } else {
+		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO, null);
+		// }
+		// } else {
+		// if (StringUtils.isEmpty(brno)) {
+		// brcode = bctlService.getBctlByBrno(branchBrno).getBrcode();
+		//// context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO,
+		// ties.getProbranchCustManager(brcode, value));
+		// } else if (StringUtils.isEmpty(branchBrno)) {
+		// brcode = bctlService.getBctlByBrno(brno).getBrcode();
+		// List subBranchList = bctlService.getSubBrcodeList(brcode);
+		// String where = "po.brcode = ? and po.extTlrno like ? order by
+		// po.extTlrno";
+		// List returnList = new ArrayList();
+		// for (int i = 0; i < subBranchList.size(); i++) {
+		// Object[] b = new Object[] { ((Bctl)
+		// subBranchList.get(i)).getBrcode(), value };
+		//// returnList.addAll(ties.getBranchCustManager(where, b));
+		// }
+		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO, returnList);
+		// } else {
+		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO, null);
+		// }
+		// }
+		// }
 		// 统计分析查询客户经理下拉列表查询，通过内部机构号(查询分行下属所有支行客户经理)
-//		else if (StringUtils.equals(cmd, CMD_DROP_DOWN_CUSTMANAGER_BRCODE)) {
-//			String value = context.getAttribute("value").toString();
-//			brcode = context.getAttribute("brcode").toString();
-//			String branchBrcode = context.getAttribute("branchBrcode").toString();
-//			// 如果筛选为空
-//			if (StringUtils.isBlank(value)) {
-//				// 如果分行号为空,机构号不为空
-//				if (StringUtils.isBlank(branchBrcode) && StringUtils.isNotBlank(brcode)) {
-//					context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE, ties.getSubBranchCustManager(brcode, value));
-//				}
-//				// 如果分行号不为空,机构号为空
-//				else if (StringUtils.isNotBlank(branchBrcode) && StringUtils.isBlank(brcode)) {
-//					List subBranchList = bctlService.getSubBrcodeList(branchBrcode);
-//					String where = "po.brcode=? order by po.extTlrno";
-//					List returnList = new ArrayList();
-//					for (int i = 0; i < subBranchList.size(); i++) {
-//						Object[] b = new Object[] { ((Bctl) subBranchList.get(i)).getBrcode() };
-////						returnList.addAll(ties.getBranchCustManager(where, b));
-//					}
-//					context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE, returnList);
-//				}
-//				// 如果分行号机构号都不为空
-//				else if (StringUtils.isNotBlank(branchBrcode) && StringUtils.isNotBlank(brcode)) {
-//					context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE, ties.getSubBranchCustManager(brcode, value));
-//				}
-//			}
-//			// 如果筛选不为空
-//			else {
-//				// 如果分行号为空,机构号不为空
-//				if (StringUtils.isBlank(branchBrcode) && StringUtils.isNotBlank(brcode)) {
-//					context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE, ties.getSubBranchCustManager(brcode, value));
-//				}
-//				// 如果分行号不为空,机构号为空
-//				else if (StringUtils.isNotBlank(branchBrcode) && StringUtils.isBlank(brcode)) {
-//					List subBranchList = bctlService.getSubBrcodeList(branchBrcode);
-//					String where = "po.brcode=? and po.extTlrno like ? order by po.extTlrno";
-//					List returnList = new ArrayList();
-//					for (int i = 0; i < subBranchList.size(); i++) {
-//						Object[] b = new Object[] { ((Bctl) subBranchList.get(i)).getBrcode(), value };
-////						returnList.addAll(ties.getBranchCustManager(where, b));
-//					}
-//					context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE, returnList);
-//				}
-//				// 如果分行号机构号都不为空
-//				else if (StringUtils.isNotBlank(branchBrcode) && StringUtils.isNotBlank(brcode)) {
-//					context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE, ties.getSubBranchCustManager(brcode, value));
-//				}
-//			}
-//		}
+		// else if (StringUtils.equals(cmd, CMD_DROP_DOWN_CUSTMANAGER_BRCODE)) {
+		// String value = context.getAttribute("value").toString();
+		// brcode = context.getAttribute("brcode").toString();
+		// String branchBrcode =
+		// context.getAttribute("branchBrcode").toString();
+		// // 如果筛选为空
+		// if (StringUtils.isBlank(value)) {
+		// // 如果分行号为空,机构号不为空
+		// if (StringUtils.isBlank(branchBrcode) &&
+		// StringUtils.isNotBlank(brcode)) {
+		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE,
+		// ties.getSubBranchCustManager(brcode, value));
+		// }
+		// // 如果分行号不为空,机构号为空
+		// else if (StringUtils.isNotBlank(branchBrcode) &&
+		// StringUtils.isBlank(brcode)) {
+		// List subBranchList = bctlService.getSubBrcodeList(branchBrcode);
+		// String where = "po.brcode=? order by po.extTlrno";
+		// List returnList = new ArrayList();
+		// for (int i = 0; i < subBranchList.size(); i++) {
+		// Object[] b = new Object[] { ((Bctl) subBranchList.get(i)).getBrcode()
+		// };
+		//// returnList.addAll(ties.getBranchCustManager(where, b));
+		// }
+		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE, returnList);
+		// }
+		// // 如果分行号机构号都不为空
+		// else if (StringUtils.isNotBlank(branchBrcode) &&
+		// StringUtils.isNotBlank(brcode)) {
+		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE,
+		// ties.getSubBranchCustManager(brcode, value));
+		// }
+		// }
+		// // 如果筛选不为空
+		// else {
+		// // 如果分行号为空,机构号不为空
+		// if (StringUtils.isBlank(branchBrcode) &&
+		// StringUtils.isNotBlank(brcode)) {
+		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE,
+		// ties.getSubBranchCustManager(brcode, value));
+		// }
+		// // 如果分行号不为空,机构号为空
+		// else if (StringUtils.isNotBlank(branchBrcode) &&
+		// StringUtils.isBlank(brcode)) {
+		// List subBranchList = bctlService.getSubBrcodeList(branchBrcode);
+		// String where = "po.brcode=? and po.extTlrno like ? order by
+		// po.extTlrno";
+		// List returnList = new ArrayList();
+		// for (int i = 0; i < subBranchList.size(); i++) {
+		// Object[] b = new Object[] { ((Bctl)
+		// subBranchList.get(i)).getBrcode(), value };
+		//// returnList.addAll(ties.getBranchCustManager(where, b));
+		// }
+		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE, returnList);
+		// }
+		// // 如果分行号机构号都不为空
+		// else if (StringUtils.isNotBlank(branchBrcode) &&
+		// StringUtils.isNotBlank(brcode)) {
+		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE,
+		// ties.getSubBranchCustManager(brcode, value));
+		// }
+		// }
+		// }
 	}
 }

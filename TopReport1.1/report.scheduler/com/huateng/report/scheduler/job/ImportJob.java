@@ -19,7 +19,6 @@ import com.huateng.report.imports.batch.ImportJobTask;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportUtils;
 
-
 /**
  * 生成定时任务
  */
@@ -56,11 +55,11 @@ public class ImportJob implements Job {
 					endTm = new Date();
 					result = ReportEnum.REPORT_RESULT.SUCCESS.value;
 					serContext.setAttribute(BOP_IMPORT_ISFIN, true);
-					
-					//切换globalinfo系统日期
-					GlobalInfoService globalService=GlobalInfoService.getInstance();
+
+					// 切换globalinfo系统日期
+					GlobalInfoService globalService = GlobalInfoService.getInstance();
 					boolean retFlag = globalService.changeSysDate();
-					if(!retFlag){
+					if (!retFlag) {
 						log.error("切换系统时间失败!");
 					}
 				}
@@ -69,7 +68,7 @@ public class ImportJob implements Job {
 				log.error("定时导入文件异常" + e.getMessage());
 				serContext.setAttribute(BOP_IMPORT_ISFIN, true);
 				result = ReportEnum.REPORT_RESULT.FAILD.value;
-				remark+= ":定时导入文件异常,"+e.getMessage();
+				remark += ":定时导入文件异常," + e.getMessage();
 			}
 			ReportCommonService.getInstance().saveJobLog(startTm, endTm, jobId, result, jobName, remark);
 		}

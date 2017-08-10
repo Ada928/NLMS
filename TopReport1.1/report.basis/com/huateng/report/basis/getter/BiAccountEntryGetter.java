@@ -15,9 +15,7 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 
-
-
-public class BiAccountEntryGetter extends BaseGetter{
+public class BiAccountEntryGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
@@ -25,8 +23,7 @@ public class BiAccountEntryGetter extends BaseGetter{
 
 		try {
 			PageQueryResult queryResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -37,53 +34,47 @@ public class BiAccountEntryGetter extends BaseGetter{
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-	private PageQueryResult getData() throws CommonException
-		{
 
-		   ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		   //
-		   int pageSize = getResult().getPage().getEveryPage();
-		   //页码
-		   int pageIndex = getResult().getPage().getCurrentPage();
+	private PageQueryResult getData() throws CommonException {
 
-		   PageQueryCondition queryCondition = new PageQueryCondition();
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		//
+		int pageSize = getResult().getPage().getEveryPage();
+		// 页码
+		int pageIndex = getResult().getPage().getCurrentPage();
 
-		   StringBuffer hql = new StringBuffer("select ba from BiAccount ba where 1=1 ");
+		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		   String qCurrencyCode = getCommQueryServletRequest().getParameter("qAccountId");
-		   String qAccountCur = getCommQueryServletRequest().getParameter("qAccountCur");
-		   String qCustomerId = getCommQueryServletRequest().getParameter("qCustomerId");
-		   String qAccountType = getCommQueryServletRequest().getParameter("qAccountType");
+		StringBuffer hql = new StringBuffer("select ba from BiAccount ba where 1=1 ");
 
-		   if(StringUtils.isNotBlank(qCurrencyCode))
-		   {
-			   hql.append(" and ba.Id ='").append(qCurrencyCode).append("'");
-		   }
-		   if(StringUtils.isNotBlank(qAccountCur))
-		   {
-			   hql.append(" and ba.accountCur like '%").append(qAccountCur).append("%'");
-		   }
-		   if(StringUtils.isNotBlank(qCustomerId))
-		   {
-			   hql.append(" and ba.customerId like '%").append(qCustomerId).append("%'");
-		   }
-		   if(StringUtils.isNotBlank(qAccountType))
-		   {
-			   hql.append(" and ba.accountType like '%").append(qAccountType).append("%'");
-		   }
+		String qCurrencyCode = getCommQueryServletRequest().getParameter("qAccountId");
+		String qAccountCur = getCommQueryServletRequest().getParameter("qAccountCur");
+		String qCustomerId = getCommQueryServletRequest().getParameter("qCustomerId");
+		String qAccountType = getCommQueryServletRequest().getParameter("qAccountType");
 
-
-		   hql.append(" order by ba.id,ba.accountCur");
-
-		   queryCondition.setPageIndex(pageIndex);
-		   queryCondition.setPageSize(pageSize);
-		   queryCondition.setQueryString(hql.toString());
-
-		   return (PageQueryResult) rootdao.pageQueryByQL(queryCondition);
-
+		if (StringUtils.isNotBlank(qCurrencyCode)) {
+			hql.append(" and ba.Id ='").append(qCurrencyCode).append("'");
 		}
+		if (StringUtils.isNotBlank(qAccountCur)) {
+			hql.append(" and ba.accountCur like '%").append(qAccountCur).append("%'");
+		}
+		if (StringUtils.isNotBlank(qCustomerId)) {
+			hql.append(" and ba.customerId like '%").append(qCustomerId).append("%'");
+		}
+		if (StringUtils.isNotBlank(qAccountType)) {
+			hql.append(" and ba.accountType like '%").append(qAccountType).append("%'");
+		}
+
+		hql.append(" order by ba.id,ba.accountCur");
+
+		queryCondition.setPageIndex(pageIndex);
+		queryCondition.setPageSize(pageSize);
+		queryCondition.setQueryString(hql.toString());
+
+		return (PageQueryResult) rootdao.pageQueryByQL(queryCondition);
+
+	}
 }

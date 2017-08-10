@@ -11,7 +11,8 @@ import com.huateng.report.common.service.ReportCommonService;
 
 public class ExecuteGenBopBusiNo {
 
-	public static void execute(String workDate, String busiType, String appType, String fileType, String paramValue,Object obj) throws CommonException {
+	public static void execute(String workDate, String busiType, String appType, String fileType, String paramValue,
+			Object obj) throws CommonException {
 
 		ReportCommonService commservice = ReportCommonService.getInstance();
 		BiBusiNoConf conf = commservice.getBiBusiNoConfByPk(busiType, appType, fileType);

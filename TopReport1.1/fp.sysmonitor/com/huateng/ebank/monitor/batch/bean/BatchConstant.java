@@ -104,7 +104,7 @@ public class BatchConstant {
 	 */
 	public static final String BATCH_PROPERTY_REPORT_GEN_PATH = "batchReportGenPath";
 	/**
-	 * #　批量报表模版　*.jasper文件路径
+	 * # 批量报表模版 *.jasper文件路径
 	 */
 	public static final String BATCH_PROPERTY_JASPER_FILE_PATH = "batchReportJasperFilePath";
 

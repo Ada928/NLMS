@@ -6,9 +6,9 @@ import java.util.Map;
 
 public class LogInfo {
 
-	private List logDtl=new ArrayList();
-	
-	private Map logMan=null;
+	private List logDtl = new ArrayList();
+
+	private Map logMan = null;
 
 	public List getLogDtl() {
 		return logDtl;

@@ -23,35 +23,33 @@ import com.huateng.exception.AppException;
  */
 public class WarningLogGetter extends BaseGetter {
 
-/**
- * @return Result
- */
+	/**
+	 * @return Result
+	 */
 	public Result call() throws AppException {
 		// TODO Auto-generated method stub
 		try {
 			PageQueryResult pageResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-/**
- * 获取分页显示的信息
- * @return PageQueryResult
- * @throws Exception
- */
+
+	/**
+	 * 获取分页显示的信息
+	 * 
+	 * @return PageQueryResult
+	 * @throws Exception
+	 */
 	protected PageQueryResult getData() throws Exception {
 
 		PageQueryResult pageQueryResult = new PageQueryResult();
@@ -62,26 +60,23 @@ public class WarningLogGetter extends BaseGetter {
 		PageQueryCondition condition = new PageQueryCondition();
 		condition.setPageIndex(pageIndex);
 		condition.setPageSize(pageSize);
-		StringBuffer sql = new StringBuffer(
-				"select po from BhWarningLog po where 1=1");
+		StringBuffer sql = new StringBuffer("select po from BhWarningLog po where 1=1");
 		List typeList = new ArrayList();
 		List objList = new ArrayList();
 
-        //获取查询条件的字段名和相应的数据类型
+		// 获取查询条件的字段名和相应的数据类型
 		Type[] types = (Type[]) typeList.toArray(new Type[0]);
 		Object[] objs = objList.toArray();
 
 		condition.setQueryString(sql.toString());
 		condition.setObjArray(objs);
 		condition.setTypeArray(types);
-        //执行分页查询操作
+		// 执行分页查询操作
 		PageQueryResult result = DAOUtils.getHQLDAO().pageQueryByQL(condition);
 		int pageCount = result.getPageCount(pageSize);
 
-		if (result.getQueryResult() == null
-				|| result.getQueryResult().isEmpty()) {
-			ExceptionUtil.throwCommonException("没有符合条件的信息",
-					ErrorCode.ERROR_CODE_RECORD_NOTFOUND);
+		if (result.getQueryResult() == null || result.getQueryResult().isEmpty()) {
+			ExceptionUtil.throwCommonException("没有符合条件的信息", ErrorCode.ERROR_CODE_RECORD_NOTFOUND);
 		}
 		return result;
 	}

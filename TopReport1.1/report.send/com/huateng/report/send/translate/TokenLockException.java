@@ -1,6 +1,6 @@
 package com.huateng.report.send.translate;
 
-public class TokenLockException extends Exception{
+public class TokenLockException extends Exception {
 
 	public TokenLockException() {
 		super();
@@ -22,6 +22,4 @@ public class TokenLockException extends Exception{
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 }

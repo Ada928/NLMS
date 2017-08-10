@@ -33,7 +33,7 @@ public class ReportDataCleanService {
 			dt = ReportDataCleanUtil.getCleanDate(cleanbean.getDateFormate(), cleanbean.getReservesDay());
 			htlog.info("clean table " + cleanbean.getTableName() + ",date:" + dt);
 		}
-		if (dt!=null) {
+		if (dt != null) {
 			delSql = delSql.replace("{0}", "'" + dt + "'");
 		}
 		if (cleanbean.getDetList().size() > 0) {
@@ -43,7 +43,7 @@ public class ReportDataCleanService {
 			}
 		}
 		int count = rootDao.executeSql(delSql);
-		htlog.info(cleanbean.getTableName()+" clean data row count:"+count);
+		htlog.info(cleanbean.getTableName() + " clean data row count:" + count);
 		htlog.info("clean table " + cleanbean.getTableName() + "===end====");
 	}
 }

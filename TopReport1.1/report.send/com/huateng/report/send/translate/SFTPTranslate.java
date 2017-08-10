@@ -56,9 +56,8 @@ public class SFTPTranslate extends AbstractTranslate {
 			Channel channel = session.openChannel("sftp");
 			logger.info("sftp channel opened!");
 			channel.connect();
-			logger.info("Connected successfully to ftpHost = " + host
-					+ ",as ftpUserName = " + username + ", returning: "
-					+ channel);
+			logger.info("Connected successfully to ftpHost = " + host + ",as ftpUserName = " + username
+					+ ", returning: " + channel);
 			sftp = (ChannelSftp) channel;
 			ROOT = sftp.pwd();
 			if (ROOT != null) {
@@ -69,8 +68,7 @@ public class SFTPTranslate extends AbstractTranslate {
 				ROOT = "/";
 			}
 			this.destPath = ROOT + destPath;
-			logger.info("sftp connected, current work deirctory is "
-					+ sftp.pwd());
+			logger.info("sftp connected, current work deirctory is " + sftp.pwd());
 		} catch (Exception e) {
 			logger.error("create sftp failed", e);
 			return false;
@@ -113,8 +111,7 @@ public class SFTPTranslate extends AbstractTranslate {
 		}
 	}
 
-	public boolean send(String sourcePath, String destPath, String filePack,
-			String fileName) {
+	public boolean send(String sourcePath, String destPath, String filePack, String fileName) {
 		String src = this.sourcePath;
 		String dest = this.destPath;
 		this.sourcePath = sourcePath;
@@ -148,8 +145,7 @@ public class SFTPTranslate extends AbstractTranslate {
 			return false;
 		}
 		FileInputStream input = null;
-		String sourceFilepath = sourcePath + getSourceSend() + filePack
-				+ File.separator + fileName;
+		String sourceFilepath = sourcePath + getSourceSend() + filePack + File.separator + fileName;
 		File sourceFile = new File(sourceFilepath);
 		if (sourceFile.exists()) {
 			try {
@@ -192,8 +188,7 @@ public class SFTPTranslate extends AbstractTranslate {
 			sftp.cd(destPath);
 			sftp.cd(getDestFeedback());
 		} catch (Exception e) {
-			logger.error("CWD " + destPath + getDestFeedback()
-					+ " No such directory", e);
+			logger.error("CWD " + destPath + getDestFeedback() + " No such directory", e);
 			return "No such directory " + destPath + getDestFeedback();
 		}
 		try {
@@ -239,8 +234,7 @@ public class SFTPTranslate extends AbstractTranslate {
 					continue;
 				}
 
-				srcfilepath = sourcePath + getSourceFeedback() + packname
-						+ File.separator + fileName;
+				srcfilepath = sourcePath + getSourceFeedback() + packname + File.separator + fileName;
 				output = new FileOutputStream(srcfilepath);
 				sftp.get(fileName, output);
 				output.close();

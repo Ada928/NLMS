@@ -25,9 +25,8 @@ import com.huateng.ebank.framework.util.DataFormat;
 public class GetLnidGenerator extends BaseGenerator {
 	@Override
 	public String gen(Object arg0) throws CommonException {
-		return arg0.toString() + DataFormat.intToString(CommonService.getInstance().getSeqno(
-				SystemConstant.VALUE_NO_LNID,SystemConstant.VALUE_INDEX), 3);
+		return arg0.toString() + DataFormat.intToString(
+				CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_LNID, SystemConstant.VALUE_INDEX), 3);
 	}
 
 }
-

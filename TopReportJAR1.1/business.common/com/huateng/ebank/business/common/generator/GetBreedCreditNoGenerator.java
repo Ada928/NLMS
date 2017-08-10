@@ -34,25 +34,25 @@ public class GetBreedCreditNoGenerator extends BaseGenerator {
 		String productCreditNo = (String) paramMap.get("productCreditNo");// 产品额度编号
 		String useType = (String) paramMap.get("useType");// 使用方式
 		String breedType = (String) paramMap.get("breedType");// 品种类型=产品类型+授信品种大类
-		String index = "CB" + DataFormat.getYear(GlobalInfo.getCurrentInstance()
-				.getTxdate());
-//		if (breedType != null && breedType.length() == 3) {
-//			creditType = breedType.substring(2, 3);// 授信品种大类（1位）
-//			String breedSmallType = "0";
-//			// 获取实际品种大类(misc)
-//			CreditTypeDicDAO dao = DAOUtils.getCreditTypeDicDAO();
-//			List list = dao
-//					.queryByCondition("po.code='"
-//							+ (productCreditNo.substring(productCreditNo
-//									.length() - 2) + creditType) + "'");
-//			if (list != null && list.size() > 0) {
-//				breedSmallType = ((CreditTypeDic) list.get(0)).getMisc();
-//			}
-//			creditType += BREED_SMALL_CLASS + breedSmallType;
-//		}
-//		if (breedType != null && breedType.length() == 5) {
-//			creditType = breedType.substring(2);// 授信品种大类（1位）
-//		}
-		return productCreditNo.substring(0, 9) + breedType + DataFormat.intToString(CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_CREDITNO, index), 5);
+		String index = "CB" + DataFormat.getYear(GlobalInfo.getCurrentInstance().getTxdate());
+		// if (breedType != null && breedType.length() == 3) {
+		// creditType = breedType.substring(2, 3);// 授信品种大类（1位）
+		// String breedSmallType = "0";
+		// // 获取实际品种大类(misc)
+		// CreditTypeDicDAO dao = DAOUtils.getCreditTypeDicDAO();
+		// List list = dao
+		// .queryByCondition("po.code='"
+		// + (productCreditNo.substring(productCreditNo
+		// .length() - 2) + creditType) + "'");
+		// if (list != null && list.size() > 0) {
+		// breedSmallType = ((CreditTypeDic) list.get(0)).getMisc();
+		// }
+		// creditType += BREED_SMALL_CLASS + breedSmallType;
+		// }
+		// if (breedType != null && breedType.length() == 5) {
+		// creditType = breedType.substring(2);// 授信品种大类（1位）
+		// }
+		return productCreditNo.substring(0, 9) + breedType + DataFormat
+				.intToString(CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_CREDITNO, index), 5);
 	}
 }

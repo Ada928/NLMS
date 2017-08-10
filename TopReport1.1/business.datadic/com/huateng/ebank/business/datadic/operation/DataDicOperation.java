@@ -21,20 +21,20 @@ public class DataDicOperation extends BaseOperation {
 	public static final String CMD_UPDATE = "CMD_UPDATE";
 	public static final String CMD_DELETE = "CMD_DELETE";
 	public static final String IN_PARAM = "IN_PARAM";
-	
-
 
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.ebank.framework.operation.OperationContext)
+	 * @see
+	 * com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.
+	 * ebank.framework.operation.OperationContext)
 	 */
 	public void execute(OperationContext context) throws CommonException {
 		String cmd = (String) context.getAttribute(CMD);
 		DataDic dd = (DataDic) context.getAttribute(IN_PARAM);
 		DataDicService service = new DataDicService();
 		if (CMD_QUERY.equals(cmd)) {
-			
+
 		} else if (CMD_INSERT.equals(cmd)) {
 			service.save(dd);
 		} else if (CMD_UPDATE.equals(cmd)) {
@@ -47,16 +47,21 @@ public class DataDicOperation extends BaseOperation {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.ebank.framework.operation.OperationContext)
+	 * @see
+	 * com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.
+	 * ebank.framework.operation.OperationContext)
 	 */
 	public void beforeProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
 
 	}
+
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng.ebank.framework.operation.OperationContext)
+	 * @see
+	 * com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng.
+	 * ebank.framework.operation.OperationContext)
 	 */
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub

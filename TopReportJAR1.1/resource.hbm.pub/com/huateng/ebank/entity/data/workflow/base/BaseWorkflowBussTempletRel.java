@@ -1,21 +1,18 @@
 package com.huateng.ebank.entity.data.workflow.base;
 
-
 import java.io.Serializable;
 
 import com.huateng.ebank.entity.data.workflow.WorkflowBussTempletRel;
 
-
 /**
- * This is an object that contains data related to the WORKFLOW_ROUTE_PARAM table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * This is an object that contains data related to the WORKFLOW_ROUTE_PARAM
+ * table. Do not modify this class because it will be overwritten if the
+ * configuration file related to this class is modified.
  *
- * @hibernate.class
- *  table="WORKFLOW_ROUTE_PARAM"
+ * @hibernate.class table="WORKFLOW_ROUTE_PARAM"
  */
 
-public abstract class BaseWorkflowBussTempletRel  implements Serializable {
+public abstract class BaseWorkflowBussTempletRel implements Serializable {
 
 	public static String REF = "WorkflowBussTempletRel";
 	public static String PROP_BUSS_PROC = "bussProc";
@@ -27,16 +24,15 @@ public abstract class BaseWorkflowBussTempletRel  implements Serializable {
 	public static String PROP_DESCRIPTION = "description";
 	public static String PROP_TEMPLET_DESC = "templetDesc";
 
-
 	// constructors
-	public BaseWorkflowBussTempletRel () {
+	public BaseWorkflowBussTempletRel() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseWorkflowBussTempletRel (java.lang.Integer id) {
+	public BaseWorkflowBussTempletRel(java.lang.Integer id) {
 		this.setId(id);
 		initialize();
 	}
@@ -44,15 +40,9 @@ public abstract class BaseWorkflowBussTempletRel  implements Serializable {
 	/**
 	 * Constructor for required fields
 	 */
-	public BaseWorkflowBussTempletRel (
-		java.lang.Integer id,
-		java.lang.Integer templetId,
-		java.lang.String templetName,
-		java.lang.String templetType,
-		java.lang.String bussProc,
-		java.lang.String status,
-		java.lang.String description,
-		java.lang.String templetDesc) {
+	public BaseWorkflowBussTempletRel(java.lang.Integer id, java.lang.Integer templetId, java.lang.String templetName,
+			java.lang.String templetType, java.lang.String bussProc, java.lang.String status,
+			java.lang.String description, java.lang.String templetDesc) {
 
 		this.setId(id);
 		this.setBussProc(bussProc);
@@ -65,9 +55,8 @@ public abstract class BaseWorkflowBussTempletRel  implements Serializable {
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -83,28 +72,25 @@ public abstract class BaseWorkflowBussTempletRel  implements Serializable {
 	private java.lang.String description;
 	private java.lang.String templetDesc;
 
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="sequence"
-     *  column="ID"
-     */
-	public java.lang.Integer getId () {
+	 * 
+	 * @hibernate.id generator-class="sequence" column="ID"
+	 */
+	public java.lang.Integer getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.Integer id) {
+	public void setId(java.lang.Integer id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
-
-
-
 
 	public java.lang.String getTempletDesc() {
 		return templetDesc;
@@ -163,20 +149,25 @@ public abstract class BaseWorkflowBussTempletRel  implements Serializable {
 	}
 
 	@Override
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof WorkflowBussTempletRel)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof WorkflowBussTempletRel))
+			return false;
 		else {
 			WorkflowBussTempletRel workflowBussTempletRel = (WorkflowBussTempletRel) obj;
-			if (null == this.getId() || null == workflowBussTempletRel.getId()) return false;
-			else return (this.getId().equals(workflowBussTempletRel.getId()));
+			if (null == this.getId() || null == workflowBussTempletRel.getId())
+				return false;
+			else
+				return (this.getId().equals(workflowBussTempletRel.getId()));
 		}
 	}
 
 	@Override
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -185,11 +176,9 @@ public abstract class BaseWorkflowBussTempletRel  implements Serializable {
 		return this.hashCode;
 	}
 
-
 	@Override
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

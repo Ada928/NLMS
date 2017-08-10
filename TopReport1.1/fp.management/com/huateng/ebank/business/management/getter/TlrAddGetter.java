@@ -2,8 +2,6 @@ package com.huateng.ebank.business.management.getter;
 
 import java.util.List;
 
-
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -26,8 +24,7 @@ public class TlrAddGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult().size() == 0) {
@@ -40,15 +37,16 @@ public class TlrAddGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	protected PageQueryResult getData() throws Exception {
 		String brcode = getValueFromDataBus("brcode");
-		String extTlrno = getValueFromDataBus("extTlrno");;
-		String departmentCode = getValueFromDataBus("departmentCode");;
+		String extTlrno = getValueFromDataBus("extTlrno");
+		;
+		String departmentCode = getValueFromDataBus("departmentCode");
+		;
 		OperationContext oc = new OperationContext();
 		oc.setAttribute(TlrInfoExOperation.CMD, "SELECT_TLR_ADD");
 		oc.setAttribute("brcode", brcode);

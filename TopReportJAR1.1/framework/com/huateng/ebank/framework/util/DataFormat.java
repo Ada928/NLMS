@@ -9,7 +9,6 @@
 
 package com.huateng.ebank.framework.util;
 
-
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -45,9 +44,9 @@ public class DataFormat {
 
 	private static final String DAY_PATTERN = "00";
 
-	public static final String YEAR_OF_TERM = "1"; //获取期限中的年数
-	public static final String MONTH_OF_TERM = "2";//获取期限中的月数
-	public static final String DAY_OF_TERM = "3";//获取期限中的天数
+	public static final String YEAR_OF_TERM = "1"; // 获取期限中的年数
+	public static final String MONTH_OF_TERM = "2";// 获取期限中的月数
+	public static final String DAY_OF_TERM = "3";// 获取期限中的天数
 
 	/**
 	 *
@@ -55,8 +54,6 @@ public class DataFormat {
 	public DataFormat() {
 		super();
 	}
-
-
 
 	private static String core_flag;
 
@@ -80,8 +77,7 @@ public class DataFormat {
 		if (date == null)
 			return null;
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				DataFormat.DATE_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DataFormat.DATE_PATTERN);
 		return simpleDateFormat.format(date);
 	}
 
@@ -95,8 +91,7 @@ public class DataFormat {
 		if (date == null)
 			return null;
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				DataFormat.DATE_NUMBER_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DataFormat.DATE_NUMBER_PATTERN);
 		return simpleDateFormat.format(date);
 	}
 
@@ -158,21 +153,20 @@ public class DataFormat {
 		if (time == null)
 			return null;
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				DataFormat.TIME_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DataFormat.TIME_PATTERN);
 		return simpleDateFormat.format(time);
 	}
 
 	/**
 	 * 返回HHmmss格式字符串
+	 * 
 	 * @param time
 	 * @return
 	 */
-	public static String onlyTimeToString(Date time){
+	public static String onlyTimeToString(Date time) {
 		if (time == null)
 			return null;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				DataFormat.TIME_ONLY_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DataFormat.TIME_ONLY_PATTERN);
 		return simpleDateFormat.format(time);
 	}
 
@@ -186,8 +180,7 @@ public class DataFormat {
 		if (time == null)
 			return null;
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				"yyyyMMddHHmmss");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 		return simpleDateFormat.format(time);
 	}
 
@@ -202,8 +195,7 @@ public class DataFormat {
 		if (date == null)
 			return null;
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				"yyyy-MM-dd-HH.mm.ss.SSSSSS");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH.mm.ss.SSSSSS");
 		return simpleDateFormat.format(date);
 	}
 
@@ -218,17 +210,14 @@ public class DataFormat {
 		if (string == null)
 			return null;
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				DataFormat.TIME_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DataFormat.TIME_PATTERN);
 		try {
 			return simpleDateFormat.parse(string);
 		} catch (ParseException e) {
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_DATE_FORMAT_ERR);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_DATE_FORMAT_ERR);
 		}
 		return null;
 	}
-
 
 	/**
 	 * 字符串转整型类
@@ -244,8 +233,7 @@ public class DataFormat {
 		try {
 			return new Integer(string);
 		} catch (Exception e) {
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_CHANNEL_NUMBER_ERROR,string,e);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_CHANNEL_NUMBER_ERROR, string, e);
 		}
 		return null;
 	}
@@ -262,40 +250,39 @@ public class DataFormat {
 
 		if (string.trim().length() == 0)
 			return null;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				DataFormat.DATE_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DataFormat.DATE_PATTERN);
 		try {
 			return simpleDateFormat.parse(string);
 		} catch (ParseException e) {
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_DATE_FORMAT_ERR);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_DATE_FORMAT_ERR);
 		}
 		return null;
 	}
 
 	/**
-	* 判断是否闰年
-	* @param  year
-	* @return boolean
-	*/
+	 * 判断是否闰年
+	 * 
+	 * @param year
+	 * @return boolean
+	 */
 	public static boolean isLeapYear(int year) {
-	    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+		return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 	}
 
 	/**
-	* 取指定年、月的最大天数
-	* @param  year, month
-	* @return number
-	*/
-	public static int getMonthDay(int year, int month)
-	{
-	    int[] numDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	    int n = numDays[month - 1];
-	    if(month == 2)
-	    {
-	        n = isLeapYear(year) ? 29 : 28;
-	    }
-	    return n;
+	 * 取指定年、月的最大天数
+	 * 
+	 * @param year,
+	 *            month
+	 * @return number
+	 */
+	public static int getMonthDay(int year, int month) {
+		int[] numDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+		int n = numDays[month - 1];
+		if (month == 2) {
+			n = isLeapYear(year) ? 29 : 28;
+		}
+		return n;
 	}
 
 	/**
@@ -308,19 +295,18 @@ public class DataFormat {
 		if (DataFormat.isEmpty(DataFormat.trim(string)))
 			return null;
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				DataFormat.DATE_NUMBER_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DataFormat.DATE_NUMBER_PATTERN);
 		try {
 			int year = Integer.parseInt(string.substring(0, 4));
 			int month = Integer.parseInt(string.substring(4, 6));
 			int day = Integer.parseInt(string.substring(6, 8));
-			if(month < 1 || month > 12) throw new ParseException("ERROR", 1);
-			if(day < 1 || day > getMonthDay(year, month))
+			if (month < 1 || month > 12)
+				throw new ParseException("ERROR", 1);
+			if (day < 1 || day > getMonthDay(year, month))
 				throw new ParseException("ERROR", 1);
 			return simpleDateFormat.parse(string);
 		} catch (ParseException e) {
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_DATE_FORMAT_ERR);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_DATE_FORMAT_ERR);
 		}
 		return null;
 	}
@@ -367,8 +353,7 @@ public class DataFormat {
 	 * @return
 	 */
 	public static String intToString(long n, int l) {
-		DecimalFormat decimalFormat = new DecimalFormat(DataFormat.initString(
-				'0', l));
+		DecimalFormat decimalFormat = new DecimalFormat(DataFormat.initString('0', l));
 		return decimalFormat.format(n);
 	}
 
@@ -379,8 +364,7 @@ public class DataFormat {
 	 * @return
 	 */
 	public static String doubleToCurrencyRA(double money) {
-		DecimalFormat decimalFormat = new DecimalFormat(
-				DataFormat.CURRENCY_PATTERN);
+		DecimalFormat decimalFormat = new DecimalFormat(DataFormat.CURRENCY_PATTERN);
 		String rtnValue = decimalFormat.format(money);
 		return initString(' ', 12 - rtnValue.length()) + rtnValue;
 	}
@@ -392,8 +376,7 @@ public class DataFormat {
 	 * @return
 	 */
 	public static String doubleToCurrencyLA(double money) {
-		DecimalFormat decimalFormat = new DecimalFormat(
-				DataFormat.CURRENCY_PATTERN);
+		DecimalFormat decimalFormat = new DecimalFormat(DataFormat.CURRENCY_PATTERN);
 		return decimalFormat.format(money);
 	}
 
@@ -404,8 +387,7 @@ public class DataFormat {
 	 * @return
 	 */
 	public static String doubleToMoneyRA(double money) {
-		DecimalFormat decimalFormat = new DecimalFormat(
-				DataFormat.MONEY_PATTERN);
+		DecimalFormat decimalFormat = new DecimalFormat(DataFormat.MONEY_PATTERN);
 		String rtnValue = decimalFormat.format(money);
 		return initString(' ', 10 - rtnValue.length()) + rtnValue;
 	}
@@ -417,8 +399,7 @@ public class DataFormat {
 	 * @return
 	 */
 	public static String doubleToMoneyLA(double money) {
-		DecimalFormat decimalFormat = new DecimalFormat(
-				DataFormat.MONEY_PATTERN);
+		DecimalFormat decimalFormat = new DecimalFormat(DataFormat.MONEY_PATTERN);
 		return decimalFormat.format(money);
 	}
 
@@ -474,13 +455,11 @@ public class DataFormat {
 		for (int i = 1; i <= iLen; i++) {
 			int iNum = Integer.parseInt(szNum.substring(i - 1, i));
 			if (iNum == 0) {
-				if ((iLen - i - 2) % 4 == 0 && iLen - i - 3 > 0
-						&& (iLen - i >= 8 || iAddZero < 3))
+				if ((iLen - i - 2) % 4 == 0 && iLen - i - 3 > 0 && (iLen - i >= 8 || iAddZero < 3))
 					szChMoney += hzUnit[(iLen - i - 3) % 8];
 				iAddZero++;
 			} else {
-				if ((iAddZero != 0 && iLen - i >= 2) && (iLen - i - 1) % 4 != 0
-						|| iAddZero >= 4)
+				if ((iAddZero != 0 && iLen - i >= 2) && (iLen - i - 1) % 4 != 0 || iAddZero >= 4)
 					szChMoney += hzNum[0];
 				szChMoney += hzNum[iNum];
 				iAddZero = 0;
@@ -556,7 +535,7 @@ public class DataFormat {
 	 * @return 如果为空则返回true，否则返回true
 	 */
 	public static boolean isNull(Object object) {
-		if (object == null )
+		if (object == null)
 			return true;
 		else
 			return false;
@@ -590,16 +569,15 @@ public class DataFormat {
 
 	public static String trim(Object o) {
 		if (o == null)
-			//return "0";
+			// return "0";
 			return "";
 		else if (o.toString().trim().equals("")) {
-			//return "0";
+			// return "0";
 			return "";
 		} else {
 			return o.toString().trim();
 		}
 	}
-
 
 	/**
 	 * 字符串加后缀
@@ -633,11 +611,9 @@ public class DataFormat {
 	 * @return
 	 * @throws CommonException
 	 */
-	public static String dblRightAlign(double dbl, int length, int precision)
-			throws CommonException {
+	public static String dblRightAlign(double dbl, int length, int precision) throws CommonException {
 		if (length <= 0 || precision < 0)
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_DATA_FORMAT_ERR);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_DATA_FORMAT_ERR);
 
 		String format = initString('0', length);
 		if (precision > 0)
@@ -656,11 +632,9 @@ public class DataFormat {
 	 * @return
 	 * @throws CommonException
 	 */
-	public static String dblRightAlign(double dbl, int length)
-			throws CommonException {
+	public static String dblRightAlign(double dbl, int length) throws CommonException {
 		if (length <= 0)
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_DATA_FORMAT_ERR);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_DATA_FORMAT_ERR);
 
 		String format = initString('0', length);
 		DecimalFormat decimalFormat = new DecimalFormat(format);
@@ -734,9 +708,7 @@ public class DataFormat {
 	 * @return
 	 */
 	public static String termToString(int year, int month, int day) {
-		return DataFormat.intToString(year, 3)
-			+ DataFormat.intToString(month, 3)
-			+ DataFormat.intToString(day, 4);
+		return DataFormat.intToString(year, 3) + DataFormat.intToString(month, 3) + DataFormat.intToString(day, 4);
 	}
 
 	/**
@@ -786,10 +758,8 @@ public class DataFormat {
 	 * @return
 	 */
 	public static String adjToString(int month, int day) {
-		return DataFormat.intToString(month, 2)
-				+ DataFormat.intToString(day, 2);
+		return DataFormat.intToString(month, 2) + DataFormat.intToString(day, 2);
 	}
-
 
 	/**
 	 * 将布尔值的选项转换为字符串类型
@@ -797,8 +767,8 @@ public class DataFormat {
 	 * @param
 	 * @return 5位的字符串
 	 */
-	public static String getGuatType(boolean credit, boolean grarantee,
-			boolean pledge, boolean impawn, boolean perform) {
+	public static String getGuatType(boolean credit, boolean grarantee, boolean pledge, boolean impawn,
+			boolean perform) {
 		String str1 = credit ? "1" : "0";
 		String str2 = grarantee ? "1" : "0";
 		String str3 = pledge ? "1" : "0";
@@ -810,8 +780,8 @@ public class DataFormat {
 	/**
 	 * 将10位TERM的字符串转换为整形
 	 *
-	 * @param index -
-	 *            如果为1则返回年(前3位)，2返回月(中间3位)，3返回天(后4位)
+	 * @param index
+	 *            - 如果为1则返回年(前3位)，2返回月(中间3位)，3返回天(后4位)
 	 * @return
 	 */
 	public static int termToInt(String term, int index) {
@@ -831,7 +801,6 @@ public class DataFormat {
 		return value;
 	}
 
-
 	/**
 	 * 计算费率
 	 */
@@ -848,8 +817,7 @@ public class DataFormat {
 	/**
 	 * 计算费率
 	 */
-	public static float calIntrate(float basicIntrate, float percent,
-			float value) {
+	public static float calIntrate(float basicIntrate, float percent, float value) {
 		long lb = (Math.round(basicIntrate * 1E7));
 		long lv = (Math.round(value * 1E7));
 		long lp = (Math.round(percent * 1E4));
@@ -934,8 +902,7 @@ public class DataFormat {
 	 * @param date
 	 * @return
 	 */
-	public static java.sql.Date trsUtilDateToSqlDate(java.util.Date date)
-			throws CommonException {
+	public static java.sql.Date trsUtilDateToSqlDate(java.util.Date date) throws CommonException {
 		if (date == null)
 			return null;
 
@@ -952,8 +919,7 @@ public class DataFormat {
 		if (time == null)
 			return "";
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				DataFormat.TIME_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DataFormat.TIME_PATTERN);
 		return simpleDateFormat.format(time);
 	}
 
@@ -974,8 +940,7 @@ public class DataFormat {
 		System.out.println(money);
 
 		String number[] = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
-		String monetary_unit[] = { "万", "仟", "佰", "拾", "亿", "仟", "佰", "拾", "万",
-				"仟", "佰", "拾", "元", "角", "分" };
+		String monetary_unit[] = { "万", "仟", "佰", "拾", "亿", "仟", "佰", "拾", "万", "仟", "佰", "拾", "元", "角", "分" };
 		// 初始化数组
 		String returnMoney = "";
 		int length;
@@ -999,8 +964,7 @@ public class DataFormat {
 			String sdecimal = p.substring(0, p.indexOf('E')); // E值前的小数值
 			String pre = sdecimal.substring(0, 1); // 小数点前的
 			String post = sdecimal.substring(2, 2 + postfix); // 小数点后的
-			int last = Integer
-					.parseInt(p.substring(p.indexOf('E') + 1, length));// 科学计数法的位数E9的9
+			int last = Integer.parseInt(p.substring(p.indexOf('E') + 1, length));// 科学计数法的位数E9的9
 			p = pre.concat(post);
 
 			// 不齐后面补零
@@ -1011,8 +975,7 @@ public class DataFormat {
 			}
 			if (last < postfix) {
 				// endPoint:小数点后一位的值
-				int endPoint = (new Integer(post.substring(last, last + 1)))
-						.intValue();
+				int endPoint = (new Integer(post.substring(last, last + 1))).intValue();
 				// 取p的整数部分
 				p = p.substring(0, 1 + last);
 				// 比五大进位
@@ -1040,14 +1003,11 @@ public class DataFormat {
 						for (int j = p.length(); j > 0; j--) {
 							// 有进位
 							if (addFlag == 1) {
-								if ((new Integer(p.substring(j - 1, j)))
-										.intValue() == 9) {
+								if ((new Integer(p.substring(j - 1, j))).intValue() == 9) {
 									_p = "0" + _p;
 									addFlag = 1;
 								} else {
-									_p = (new Integer(p.substring(j - 1, j))
-											.intValue() + 1)
-											+ _p;
+									_p = (new Integer(p.substring(j - 1, j)).intValue() + 1) + _p;
 									addFlag = 0;
 								}
 
@@ -1076,29 +1036,26 @@ public class DataFormat {
 
 		for (i = 15 - length; i < 15; i++) {
 			if (p.charAt(i - 15 + length) != '0') {
-				returnMoney = returnMoney.concat(number[Integer.parseInt(p
-						.substring(i - 15 + length, i - 15 + length + 1))]);
+				returnMoney = returnMoney
+						.concat(number[Integer.parseInt(p.substring(i - 15 + length, i - 15 + length + 1))]);
 
 				returnMoney = returnMoney.concat(monetary_unit[i]);
 
 			} else {
 				if ((i != 4) && (i != 8) && (i != 12))
-					if ((p.charAt(i - 15 + length + 1) != '0')
-							&& (p.charAt(i - 15 + length + 1) != '/'))
+					if ((p.charAt(i - 15 + length + 1) != '0') && (p.charAt(i - 15 + length + 1) != '/'))
 						returnMoney = returnMoney.concat(number[0]);
 				if (i == 5) {
-					if ((p.charAt(i - 15 + length + 1) == '0')
-							&& (p.charAt(i - 15 + length + 2) == '0')
+					if ((p.charAt(i - 15 + length + 1) == '0') && (p.charAt(i - 15 + length + 2) == '0')
 							&& (p.charAt(i - 15 + length + 3) == '0'))
 						flag = 0;
 				} else {
 					if (i == 12 || (i == 8 && flag == 1) || i == 4)
 						returnMoney = returnMoney.concat(monetary_unit[i]);
 				}
-				if ((p.charAt(i - 15 + length) != '0')
-						&& (p.charAt(i - 15 + length + 1) != '0'))
-					returnMoney = returnMoney.concat(number[Integer.parseInt(p
-							.substring(i - 15 + length, i - 15 + length + 1))]);
+				if ((p.charAt(i - 15 + length) != '0') && (p.charAt(i - 15 + length + 1) != '0'))
+					returnMoney = returnMoney
+							.concat(number[Integer.parseInt(p.substring(i - 15 + length, i - 15 + length + 1))]);
 			}
 		}
 		if ((p.charAt(length - 1) == '0') && (p.charAt(length - 2) == '0'))
@@ -1118,12 +1075,11 @@ public class DataFormat {
 		if (money.equals("0")) {
 			money = "0.0";
 		}
-		money = money.substring(0, money.length() - 3).concat(
-				money.substring(money.length() - 2));
+		money = money.substring(0, money.length() - 3).concat(money.substring(money.length() - 2));
 		return currencyToChineseCurrency(Double.parseDouble(money));
 	}
 
-//BMS-2472 南京银行版本合并 jiang@2010-02-09 begin
+	// BMS-2472 南京银行版本合并 jiang@2010-02-09 begin
 	/**
 	 * 带分节符的字符串类型的以元为单位的小写金额转换为大写金额
 	 *
@@ -1135,12 +1091,11 @@ public class DataFormat {
 		if (money.equals("0")) {
 			money = "0.0";
 		}
-		money = money.substring(0, money.length() - 3).concat(
-				money.substring(money.length() - 2));
+		money = money.substring(0, money.length() - 3).concat(money.substring(money.length() - 2));
 		return currencyToChineseCurrency(Double.parseDouble(money));
 	}
 
-//BMS-2472 南京银行版本合并 jiang@2010-02-09 end
+	// BMS-2472 南京银行版本合并 jiang@2010-02-09 end
 	/**
 	 *
 	 * @param string
@@ -1154,19 +1109,20 @@ public class DataFormat {
 
 	/**
 	 * 根据页面传入的利率获取实际利率（不带单位）
+	 * 
 	 * @param rateType
 	 * @param rate
 	 * @return
 	 */
-	public static BigDecimal getRealRate(String rateType,BigDecimal rate){
-		if (rate==null||rateType==null)
+	public static BigDecimal getRealRate(String rateType, BigDecimal rate) {
+		if (rate == null || rateType == null)
 			return null;
 		BigDecimal realRate = rate;
-		if (SystemConstant.RATE_TYPE_YEAR.equals(rateType)){
+		if (SystemConstant.RATE_TYPE_YEAR.equals(rateType)) {
 			realRate = realRate.divide(new BigDecimal(100));
-		}else if (SystemConstant.RATE_TYPE_MONTH.equals(rateType)){
+		} else if (SystemConstant.RATE_TYPE_MONTH.equals(rateType)) {
 			realRate = realRate.divide(new BigDecimal(1000));
-		}else if (SystemConstant.RATE_TYPE_DAY.equals(rateType)){
+		} else if (SystemConstant.RATE_TYPE_DAY.equals(rateType)) {
 			realRate = realRate.divide(new BigDecimal(10000));
 		}
 		return realRate;
@@ -1174,20 +1130,21 @@ public class DataFormat {
 
 	/**
 	 * 根据数据库查询的利率获取页面展示利率（带单位）
+	 * 
 	 * @param rateType
 	 * @param rate
 	 * @return
 	 */
-	public static BigDecimal getRevealRate(String rateType,BigDecimal rate){
-		if (rate==null||rateType==null)
+	public static BigDecimal getRevealRate(String rateType, BigDecimal rate) {
+		if (rate == null || rateType == null)
 			return null;
 
 		BigDecimal revealRate = rate;
-		if (SystemConstant.RATE_TYPE_YEAR.equals(rateType)){
+		if (SystemConstant.RATE_TYPE_YEAR.equals(rateType)) {
 			revealRate = rate.multiply(new BigDecimal(100));
-		}else if (SystemConstant.RATE_TYPE_MONTH.equals(rateType)){
+		} else if (SystemConstant.RATE_TYPE_MONTH.equals(rateType)) {
 			revealRate = rate.multiply(new BigDecimal(1000));
-		}else if (SystemConstant.RATE_TYPE_DAY.equals(rateType)){
+		} else if (SystemConstant.RATE_TYPE_DAY.equals(rateType)) {
 			revealRate = rate.multiply(new BigDecimal(10000));
 		}
 		return revealRate;
@@ -1195,363 +1152,368 @@ public class DataFormat {
 
 	/**
 	 * 根据数据库保存的利率和利率类型转化成数据库保存的年利率格式
+	 * 
 	 * @param rateType
 	 * @param rate
 	 * @return
 	 */
-	public static BigDecimal getYearRate(String rateType,BigDecimal rate){
+	public static BigDecimal getYearRate(String rateType, BigDecimal rate) {
 		BigDecimal yearRate = rate;
-		if (SystemConstant.RATE_TYPE_YEAR.equals(rateType)){
+		if (SystemConstant.RATE_TYPE_YEAR.equals(rateType)) {
 			return yearRate;
-		}else if (SystemConstant.RATE_TYPE_MONTH.equals(rateType)){
+		} else if (SystemConstant.RATE_TYPE_MONTH.equals(rateType)) {
 			yearRate = rate.multiply(BigDecimal.valueOf(12));
-		}else if (SystemConstant.RATE_TYPE_DAY.equals(rateType)){
+		} else if (SystemConstant.RATE_TYPE_DAY.equals(rateType)) {
 			yearRate = rate.multiply(BigDecimal.valueOf(360));
 		}
 		return yearRate;
 	}
 
-//BMS-2472 南京银行版本合并 jiang@2010-02-09 begin
+	// BMS-2472 南京银行版本合并 jiang@2010-02-09 begin
 	/**
 	 * 根据数据库保存的利率和利率类型转化成数据库保存的月利率格式
+	 * 
 	 * @param rateType
 	 * @param rate
 	 * @return
 	 */
-	public static BigDecimal getMonthRate(String rateType,BigDecimal rate){
+	public static BigDecimal getMonthRate(String rateType, BigDecimal rate) {
 		BigDecimal monthRate = rate;
-		if (SystemConstant.RATE_TYPE_YEAR.equals(rateType)){
-			monthRate = rate.divide(BigDecimal.valueOf(12));;
-		}else if (SystemConstant.RATE_TYPE_MONTH.equals(rateType)){
-			return monthRate ;
-		}else if (SystemConstant.RATE_TYPE_DAY.equals(rateType)){
+		if (SystemConstant.RATE_TYPE_YEAR.equals(rateType)) {
+			monthRate = rate.divide(BigDecimal.valueOf(12));
+			;
+		} else if (SystemConstant.RATE_TYPE_MONTH.equals(rateType)) {
+			return monthRate;
+		} else if (SystemConstant.RATE_TYPE_DAY.equals(rateType)) {
 			monthRate = rate.multiply(BigDecimal.valueOf(30));
 		}
 		return monthRate;
 	}
-//BMS-2472 南京银行版本合并 jiang@2010-02-09 end
+
+	// BMS-2472 南京银行版本合并 jiang@2010-02-09 end
 	/**
 	 * 根据数据库保存的利率和利率类型转化成数据库保存的日利率格式
+	 * 
 	 * @param rateType
 	 * @param rate
-	 * @return
-	 * add by kangbyron 20100106
+	 * @return add by kangbyron 20100106
 	 */
-	public static BigDecimal getDayRate(String rateType,BigDecimal rate){
+	public static BigDecimal getDayRate(String rateType, BigDecimal rate) {
 		BigDecimal dayRate = rate;
-		if (SystemConstant.RATE_TYPE_YEAR.equals(rateType)){
-			dayRate = rate.divide(BigDecimal.valueOf(360),10,BigDecimal.ROUND_HALF_UP);
-		}else if (SystemConstant.RATE_TYPE_MONTH.equals(rateType)){
-			dayRate = rate.divide(BigDecimal.valueOf(30),10,BigDecimal.ROUND_HALF_UP);
-		}else if (SystemConstant.RATE_TYPE_DAY.equals(rateType)){
-			return dayRate ;
+		if (SystemConstant.RATE_TYPE_YEAR.equals(rateType)) {
+			dayRate = rate.divide(BigDecimal.valueOf(360), 10, BigDecimal.ROUND_HALF_UP);
+		} else if (SystemConstant.RATE_TYPE_MONTH.equals(rateType)) {
+			dayRate = rate.divide(BigDecimal.valueOf(30), 10, BigDecimal.ROUND_HALF_UP);
+		} else if (SystemConstant.RATE_TYPE_DAY.equals(rateType)) {
+			return dayRate;
 		}
-		return dayRate ;
+		return dayRate;
 	}
 
 	/**
 	 * 根据页面传入的比率获取实际比率（不带单位）
+	 * 
 	 * @param ratioType
 	 * @param ratio
 	 * @return
 	 */
-	public static BigDecimal getRealRatio(String ratioType,BigDecimal ratio){
-		if (ratio==null||ratioType==null)
+	public static BigDecimal getRealRatio(String ratioType, BigDecimal ratio) {
+		if (ratio == null || ratioType == null)
 			return null;
 		BigDecimal realRate = ratio;
-		if (SystemConstant.RATIO_TYPE_PERCENT.equals(ratioType)){
+		if (SystemConstant.RATIO_TYPE_PERCENT.equals(ratioType)) {
 			realRate = realRate.divide(new BigDecimal(100));
-		}else if (SystemConstant.RATIO_TYPE_PER_THOUSAND.equals(ratioType)){
+		} else if (SystemConstant.RATIO_TYPE_PER_THOUSAND.equals(ratioType)) {
 			realRate = realRate.divide(new BigDecimal(1000));
-		}else if (SystemConstant.RATIO_TYPE_PER_TEN_THOUSAND.equals(ratioType)){
+		} else if (SystemConstant.RATIO_TYPE_PER_TEN_THOUSAND.equals(ratioType)) {
 			realRate = realRate.divide(new BigDecimal(10000));
 		}
 		return realRate;
 	}
+
 	/**
 	 * 根据数据库查询的比率获取页面展示比率（带单位）
+	 * 
 	 * @param ratioType
 	 * @param ratio
 	 * @return
 	 */
-	public static BigDecimal getRevealRatio(String ratioType,BigDecimal ratio){
-		if (ratio==null||ratioType==null)
+	public static BigDecimal getRevealRatio(String ratioType, BigDecimal ratio) {
+		if (ratio == null || ratioType == null)
 			return null;
 
 		BigDecimal revealRate = ratio;
-		if (SystemConstant.RATIO_TYPE_PERCENT.equals(ratioType)){
+		if (SystemConstant.RATIO_TYPE_PERCENT.equals(ratioType)) {
 			revealRate = revealRate.multiply(new BigDecimal(100));
-		}else if (SystemConstant.RATIO_TYPE_PER_THOUSAND.equals(ratioType)){
+		} else if (SystemConstant.RATIO_TYPE_PER_THOUSAND.equals(ratioType)) {
 			revealRate = revealRate.multiply(new BigDecimal(1000));
-		}else if (SystemConstant.RATIO_TYPE_PER_TEN_THOUSAND.equals(ratioType)){
+		} else if (SystemConstant.RATIO_TYPE_PER_TEN_THOUSAND.equals(ratioType)) {
 			revealRate = revealRate.multiply(new BigDecimal(10000));
 		}
 		return revealRate;
 	}
-//BMS-2472 南京银行版本合并 jiang@2010-02-09 begin
-	public static Map getParam(String data,Map parameters,String Rmp){
+
+	// BMS-2472 南京银行版本合并 jiang@2010-02-09 begin
+	public static Map getParam(String data, Map parameters, String Rmp) {
 		String dataTmp = "";
 		int m = 0;
-		if(data.length()>0){
-			for(int i=0;i<data.length();i++){
-				if(!".".equals(String.valueOf(data.charAt(i)))){
-					//System.out.println(data.charAt(i));
-					dataTmp = data.charAt(i) + dataTmp ;
+		if (data.length() > 0) {
+			for (int i = 0; i < data.length(); i++) {
+				if (!".".equals(String.valueOf(data.charAt(i)))) {
+					// System.out.println(data.charAt(i));
+					dataTmp = data.charAt(i) + dataTmp;
 				}
 			}
-			for(int k=0;k<dataTmp.length();k++){
-				//System.out.println(Rmp+String.valueOf(10-k) +"||"+dataTmp.charAt(k));
-				parameters.put(Rmp+String.valueOf(10-k), String.valueOf(dataTmp.charAt(k)));
-				m=k;
+			for (int k = 0; k < dataTmp.length(); k++) {
+				// System.out.println(Rmp+String.valueOf(10-k)
+				// +"||"+dataTmp.charAt(k));
+				parameters.put(Rmp + String.valueOf(10 - k), String.valueOf(dataTmp.charAt(k)));
+				m = k;
 			}
-			parameters.put(Rmp+String.valueOf(9-m), "￥");
+			parameters.put(Rmp + String.valueOf(9 - m), "￥");
 		}
 		return parameters;
 	}
 
-	public static BigDecimal getZreo(BigDecimal data){
-		if(data==null)
+	public static BigDecimal getZreo(BigDecimal data) {
+		if (data == null)
 			return new BigDecimal(0.00);
 		else
 			return data;
 
-
 	}
 
-	public static Map getPostParam(String data,Map parameters,String Rmp){
+	public static Map getPostParam(String data, Map parameters, String Rmp) {
 		String dataTmp = "";
-		if(data.length()>0){
-			for(int i=0;i<data.length();i++){
-				dataTmp = data.charAt(i) + dataTmp ;
+		if (data.length() > 0) {
+			for (int i = 0; i < data.length(); i++) {
+				dataTmp = data.charAt(i) + dataTmp;
 			}
-			for(int k=0;k<dataTmp.length();k++){
-				parameters.put(Rmp+String.valueOf(6-k), String.valueOf(dataTmp.charAt(k)));
+			for (int k = 0; k < dataTmp.length(); k++) {
+				parameters.put(Rmp + String.valueOf(6 - k), String.valueOf(dataTmp.charAt(k)));
 			}
 		}
 		return parameters;
 	}
 
-	private final static String[] CN_Digits = { "零", "壹", "贰", "叁", "肆", "伍",
-        "陆", "柒", "捌", "玖", };
+	private final static String[] CN_Digits = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖", };
 
-/**
- * 将数字型货币转换为中文型货币
- * @param moneyValue
- *            　字符串形式的金额，小数部分，将多于3位部分舍去，不做四舍五入
- * @return
- */
-public static String CNValueOf(String moneyValue) {
-    //使用正则表达式，去除前面的零及数字中的逗号
-    String value = moneyValue.replaceFirst("^0+", "");
-    value = value.replaceAll(",", "");
-    //分割小数部分与整数部分
-    int dot_pos = value.indexOf('.');
-    String int_value;
-    String fraction_value;
-    if (dot_pos == -1) {
-        int_value = value;
-        fraction_value = "00";
-    } else {
-        int_value = value.substring(0, dot_pos);
-        fraction_value = value.substring(dot_pos + 1, value.length())
-                + "00".substring(0, 2);//也加两个0，便于后面统一处理
-    }
+	/**
+	 * 将数字型货币转换为中文型货币
+	 * 
+	 * @param moneyValue
+	 *            字符串形式的金额，小数部分，将多于3位部分舍去，不做四舍五入
+	 * @return
+	 */
+	public static String CNValueOf(String moneyValue) {
+		// 使用正则表达式，去除前面的零及数字中的逗号
+		String value = moneyValue.replaceFirst("^0+", "");
+		value = value.replaceAll(",", "");
+		// 分割小数部分与整数部分
+		int dot_pos = value.indexOf('.');
+		String int_value;
+		String fraction_value;
+		if (dot_pos == -1) {
+			int_value = value;
+			fraction_value = "00";
+		} else {
+			int_value = value.substring(0, dot_pos);
+			fraction_value = value.substring(dot_pos + 1, value.length()) + "00".substring(0, 2);// 也加两个0，便于后面统一处理
+		}
 
-    int len = int_value.length();
-    if (len>16) return "值过大";
-    StringBuffer cn_currency = new StringBuffer();
-    String[] CN_Carry = new String[] { "", "万", "亿", "万" };
-    //数字分组处理，计数组数
-    int cnt = len/4+(len%4==0?0:1);
-    //左边第一组的长度
-    int partLen = len-(cnt-1)*4;
-    String partValue=null;
-    boolean bZero=false;//有过零
-    String curCN=null;
-    for(int i =0; i<cnt; i++){
-        partValue = int_value.substring(0,partLen);
-        int_value=int_value.substring(partLen);
-        curCN = Part2CN(partValue,i!=0&&!"零".equals(curCN));
-        //System.out.println(partValue+":"+curCN);
-        //若上次为零，这次不为零，则加入零
-        if(bZero && !"零".equals(curCN)){
-            cn_currency.append("零");
-            bZero=false;
-        }
-        if("零".equals(curCN))bZero=true;
-        //若数字不是零，加入中文数字及单位
-        if(!"零".equals(curCN)){
-            cn_currency.append(curCN);
-            cn_currency.append(CN_Carry[cnt-1-i]);
-        }
-        //除最左边一组长度不定外，其它长度都为4
-        partLen=4;
-        partValue=null;
-    }
-    cn_currency.append("元");
-    //处理小数部分
-    int fv1 = Integer.parseInt(fraction_value.substring(0,1));
-    int fv2 = Integer.parseInt(fraction_value.substring(1,2));
-    if(fv1+fv2==0){
-        cn_currency.append("整");
-    }
-    else{
-        cn_currency.append(CN_Digits[fv1]).append("角");
-        cn_currency.append(CN_Digits[fv2]).append("分");
-    }
-    return cn_currency.toString();
-}
+		int len = int_value.length();
+		if (len > 16)
+			return "值过大";
+		StringBuffer cn_currency = new StringBuffer();
+		String[] CN_Carry = new String[] { "", "万", "亿", "万" };
+		// 数字分组处理，计数组数
+		int cnt = len / 4 + (len % 4 == 0 ? 0 : 1);
+		// 左边第一组的长度
+		int partLen = len - (cnt - 1) * 4;
+		String partValue = null;
+		boolean bZero = false;// 有过零
+		String curCN = null;
+		for (int i = 0; i < cnt; i++) {
+			partValue = int_value.substring(0, partLen);
+			int_value = int_value.substring(partLen);
+			curCN = Part2CN(partValue, i != 0 && !"零".equals(curCN));
+			// System.out.println(partValue+":"+curCN);
+			// 若上次为零，这次不为零，则加入零
+			if (bZero && !"零".equals(curCN)) {
+				cn_currency.append("零");
+				bZero = false;
+			}
+			if ("零".equals(curCN))
+				bZero = true;
+			// 若数字不是零，加入中文数字及单位
+			if (!"零".equals(curCN)) {
+				cn_currency.append(curCN);
+				cn_currency.append(CN_Carry[cnt - 1 - i]);
+			}
+			// 除最左边一组长度不定外，其它长度都为4
+			partLen = 4;
+			partValue = null;
+		}
+		cn_currency.append("元");
+		// 处理小数部分
+		int fv1 = Integer.parseInt(fraction_value.substring(0, 1));
+		int fv2 = Integer.parseInt(fraction_value.substring(1, 2));
+		if (fv1 + fv2 == 0) {
+			cn_currency.append("整");
+		} else {
+			cn_currency.append(CN_Digits[fv1]).append("角");
+			cn_currency.append(CN_Digits[fv2]).append("分");
+		}
+		return cn_currency.toString();
+	}
 
+	/**
+	 * 将一组数字（不多于四个）转化成中文表示 <br/>
+	 * 作者：wallimn 时间：2009-4-11 下午07:41:25<br/>
+	 * 博客：http://wallimn.javaeye.com<br/>
+	 * 参数：<br/>
+	 *
+	 * @param partValue
+	 *            字符串形式的数字
+	 * @param bInsertZero
+	 *            是否在前面添加零
+	 * @return
+	 */
+	private static String Part2CN(String partValue, boolean bInsertZero) {
+		// 使用正则表达式，去除前面的0
+		partValue = partValue.replaceFirst("^0+", "");
+		int len = partValue.length();
+		if (len == 0)
+			return "零";
+		StringBuffer sbResult = new StringBuffer();
+		int digit;
+		String[] CN_Carry = new String[] { "", "拾", "佰", "仟" };
+		for (int i = 0; i < len; i++) {
+			digit = Integer.parseInt(partValue.substring(i, i + 1));
+			if (digit != 0) {
+				sbResult.append(CN_Digits[digit]);
+				sbResult.append(CN_Carry[len - 1 - i]);
+			} else {
+				// 若不是最后一位，且下不位不为零，追加零
+				if (i != len - 1 && Integer.parseInt(partValue.substring(i + 1, i + 2)) != 0)
+					sbResult.append("零");
+			}
+		}
+		if (bInsertZero && len != 4)
+			sbResult.insert(0, "零");
+		return sbResult.toString();
+	}
 
-/**
- * 将一组数字（不多于四个）转化成中文表示 <br/>
- * 作者：wallimn　时间：2009-4-11　下午07:41:25<br/>
- * 博客：http://wallimn.javaeye.com<br/>
- * 参数：<br/>
- *
- * @param partValue 字符串形式的数字
- * @param bInsertZero 是否在前面添加零
- * @return
- */
-private static String Part2CN(String partValue,boolean bInsertZero) {
-    //使用正则表达式，去除前面的0
-    partValue = partValue.replaceFirst("^0+", "");
-    int len = partValue.length();
-    if (len == 0)
-        return "零";
-    StringBuffer sbResult = new StringBuffer();
-    int digit;
-    String[] CN_Carry = new String[] { "", "拾", "佰", "仟" };
-    for (int i = 0; i < len; i++) {
-        digit = Integer.parseInt(partValue.substring(i, i + 1));
-        if (digit != 0) {
-            sbResult.append(CN_Digits[digit]);
-            sbResult.append(CN_Carry[len - 1 - i]);
-        } else {
-            // 若不是最后一位，且下不位不为零，追加零
-            if (i != len - 1
-                    && Integer.parseInt(partValue.substring(i + 1, i + 2)) != 0)
-                sbResult.append("零");
-        }
-    }
-    if(bInsertZero && len!=4)sbResult.insert(0, "零");
-    return sbResult.toString();
-}
-
-
-
-	public static String getSmallAmount(BigDecimal money){
-		String Smoney = money.setScale(2,BigDecimal.ROUND_HALF_UP).toString();
+	public static String getSmallAmount(BigDecimal money) {
+		String Smoney = money.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
 		Smoney = Smoney.replaceAll("[.]", "");
-		String smallMoney="￥";
-		for(int i=0;i<Smoney.length();i++){
-			smallMoney = smallMoney+Smoney.charAt(i);
+		String smallMoney = "￥";
+		for (int i = 0; i < Smoney.length(); i++) {
+			smallMoney = smallMoney + Smoney.charAt(i);
 		}
 		return smallMoney;
 	}
 
-
 	/**
 	 * 获得打印页面利率（月） 单位千分号
+	 * 
 	 * @param rate
 	 * @return
 	 */
-	public static String getPrintRate(String rateType, BigDecimal rate){
+	public static String getPrintRate(String rateType, BigDecimal rate) {
 
-		if (rateType==null||rate==null)
+		if (rateType == null || rate == null)
 			return null;
-		if (SystemConstant.RATE_TYPE_YEAR.equals(rateType)){
-			rate = rate.divide(new BigDecimal(12),6,BigDecimal.ROUND_HALF_UP);
-		}else if (SystemConstant.RATE_TYPE_MONTH.equals(rateType)){
+		if (SystemConstant.RATE_TYPE_YEAR.equals(rateType)) {
+			rate = rate.divide(new BigDecimal(12), 6, BigDecimal.ROUND_HALF_UP);
+		} else if (SystemConstant.RATE_TYPE_MONTH.equals(rateType)) {
 			rate = rate;
-		}else if (SystemConstant.RATE_TYPE_DAY.equals(rateType)){
+		} else if (SystemConstant.RATE_TYPE_DAY.equals(rateType)) {
 			rate = rate.multiply(new BigDecimal(30));
 		}
 
 		return rate.multiply(new BigDecimal(1000)).toString();
 	}
 
-	public static String getPrintDate(String date8){
-		String year = date8.substring(0,4);
-		String mobth = date8.substring(4,6);
+	public static String getPrintDate(String date8) {
+		String year = date8.substring(0, 4);
+		String mobth = date8.substring(4, 6);
 		String day = date8.substring(6);
-		return year+"    "+mobth+"    "+day;
+		return year + "    " + mobth + "    " + day;
 	}
 
-	public static Map getSmallAmount(Map map,String smallAmount, String keyWord){
+	public static Map getSmallAmount(Map map, String smallAmount, String keyWord) {
 		int m = 0;
-		for(int i=0;i<smallAmount.length();i++){
-			map.put(keyWord+String.valueOf(i), String.valueOf(smallAmount.charAt(smallAmount.length()-1-i)));
+		for (int i = 0; i < smallAmount.length(); i++) {
+			map.put(keyWord + String.valueOf(i), String.valueOf(smallAmount.charAt(smallAmount.length() - 1 - i)));
 		}
 		return map;
 	}
 
-	public static String getPostcalCode(String postcalCode){
+	public static String getPostcalCode(String postcalCode) {
 		String returnString = "";
-		for(int i=0;i<postcalCode.length();i++){
-			returnString += String.valueOf(postcalCode.charAt(i))+" ";
+		for (int i = 0; i < postcalCode.length(); i++) {
+			returnString += String.valueOf(postcalCode.charAt(i)) + " ";
 		}
 		return returnString;
 	}
 
-	public static Map getDraftNumber(Map map,String draftNumber){
-		map.put("D1", String.valueOf(draftNumber.substring(0,1)));
-		map.put("D2", String.valueOf(draftNumber.substring(1,2)));
-		map.put("D3", String.valueOf(draftNumber.substring(2,3)));
-		map.put("D4", String.valueOf(draftNumber.substring(3,4)));
+	public static Map getDraftNumber(Map map, String draftNumber) {
+		map.put("D1", String.valueOf(draftNumber.substring(0, 1)));
+		map.put("D2", String.valueOf(draftNumber.substring(1, 2)));
+		map.put("D3", String.valueOf(draftNumber.substring(2, 3)));
+		map.put("D4", String.valueOf(draftNumber.substring(3, 4)));
 		map.put("DRAFT_NUMBER", String.valueOf(draftNumber.substring(4)));
 		return map;
 	}
 
-	private static final String[] NUMBERS = { "零", "壹", "贰", "叁", "肆", "伍",
-        "陆", "柒", "捌", "玖" };
+	private static final String[] NUMBERS = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
 
 	/** 通过 yyyyMMdd 得到中文大写格式 yyyy MM dd 日期 */
 	public static synchronized String date8ToChinese(String str) {
-	    StringBuffer sb = new StringBuffer();
-	    sb.append(getSplitDateStr(str, 0)).append(",").append(
-	            getSplitDateStr(str, 1)).append(",").append(
-	            getSplitDateStr(str, 2));
-	    return sb.toString();
+		StringBuffer sb = new StringBuffer();
+		sb.append(getSplitDateStr(str, 0)).append(",").append(getSplitDateStr(str, 1)).append(",")
+				.append(getSplitDateStr(str, 2));
+		return sb.toString();
 	}
 
 	/** 通过 yyyyMMdd 得到中文大写格式 yyyy年MM月dd日 日期 */
 	public static synchronized String date8ToChinese2(String str) {
-	    StringBuffer sb = new StringBuffer();
-	    sb.append(getSplitDateStr(str, 0)).append("年").append(
-	            getSplitDateStr(str, 1)).append("月").append(
-	            getSplitDateStr(str, 2)).append("日");
-	    return sb.toString();
+		StringBuffer sb = new StringBuffer();
+		sb.append(getSplitDateStr(str, 0)).append("年").append(getSplitDateStr(str, 1)).append("月")
+				.append(getSplitDateStr(str, 2)).append("日");
+		return sb.toString();
 	}
 
 	/** 分别得到年月日的大写 默认分割符 "-" */
 	public static String getSplitDateStr(String str, int unit) {
-	    // unit是单位 0=年 1=月 2日
-	   // String[] DateStr = str.split("-");
-	    String[] DateStr = new String[]{str.substring(0,4),str.substring(4,6),str.substring(6,8)};
-	    if (unit > DateStr.length)
-	        unit = 0;
-	    String sb = "";
-	    for (int i = 0; i < DateStr[unit].length(); i++) {
+		// unit是单位 0=年 1=月 2日
+		// String[] DateStr = str.split("-");
+		String[] DateStr = new String[] { str.substring(0, 4), str.substring(4, 6), str.substring(6, 8) };
+		if (unit > DateStr.length)
+			unit = 0;
+		String sb = "";
+		for (int i = 0; i < DateStr[unit].length(); i++) {
 
-	        if ((unit == 1 || unit == 2) && Integer.valueOf(DateStr[unit]) > 9) {
-	            sb+=convertNum(DateStr[unit].substring(0, 1))+
-	                    "拾"+convertNum(DateStr[unit].substring(1, 2));
-	            break;
-	        } else {
-	            sb+=convertNum(DateStr[unit].substring(i, i + 1));
-	        }
-	    }
-	    if (unit == 1 || unit == 2) {
-	        //sb = sb.toString().replaceAll("^壹", "").replace("零", "");
-	        sb = sb.toString().replaceAll("零", "");
-	    }
-	    if ((unit == 1 || unit == 2) && (Integer.valueOf(DateStr[unit]) <10 || Integer.valueOf(DateStr[unit])%10==0)) {
-	        sb = "零"+sb;
-	    }
-	    return sb;
+			if ((unit == 1 || unit == 2) && Integer.valueOf(DateStr[unit]) > 9) {
+				sb += convertNum(DateStr[unit].substring(0, 1)) + "拾" + convertNum(DateStr[unit].substring(1, 2));
+				break;
+			} else {
+				sb += convertNum(DateStr[unit].substring(i, i + 1));
+			}
+		}
+		if (unit == 1 || unit == 2) {
+			// sb = sb.toString().replaceAll("^壹", "").replace("零", "");
+			sb = sb.toString().replaceAll("零", "");
+		}
+		if ((unit == 1 || unit == 2)
+				&& (Integer.valueOf(DateStr[unit]) < 10 || Integer.valueOf(DateStr[unit]) % 10 == 0)) {
+			sb = "零" + sb;
+		}
+		return sb;
 
 	}
+
 	/**
 	 * 将字符日期格式 yyyy-MM-dd 转为 Date格式 YYYY-MM-DD
 	 *
@@ -1588,16 +1550,17 @@ private static String Part2CN(String partValue,boolean bInsertZero) {
 		if (param == null || param.toString().trim().length() < 1) {
 			return null;
 		}
-		//由于各系统版本时区格式不兼容，采用以下形式转换
+		// 由于各系统版本时区格式不兼容，采用以下形式转换
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // 规定日期格式
 		return formatter.format(param);
 	}
 
 	/** 转换数字为大写 */
-    private static String convertNum(String str) {
-        return NUMBERS[Integer.valueOf(str)];
-    }
-//BMS-2472 南京银行版本合并 jiang@2010-02-09 end
+	private static String convertNum(String str) {
+		return NUMBERS[Integer.valueOf(str)];
+	}
+
+	// BMS-2472 南京银行版本合并 jiang@2010-02-09 end
 	// for test
 	public static void main(String[] a) {
 		System.out.println(float2String(12.10f));
@@ -1621,7 +1584,7 @@ private static String Part2CN(String partValue,boolean bInsertZero) {
 	/**
 	 * 暂时解决编译错误加的方法
 	 */
-	static public String getOnlineTmpFilePath(){
+	static public String getOnlineTmpFilePath() {
 		return "";
 	}
 
@@ -1635,20 +1598,20 @@ private static String Part2CN(String partValue,boolean bInsertZero) {
 	 * @Author: farly.yu
 	 */
 	public static String getYoMoDOfTerm(String term, String flag) {
-		String ymd="";
+		String ymd = "";
 		String tmpT = DataFormat.trim(term);
 		String tmpF = DataFormat.trim(flag);
-		if (tmpT.length() < 10 || tmpF.length()<=0) {
+		if (tmpT.length() < 10 || tmpF.length() <= 0) {
 			ymd = "0";
 		} else {
 			if (tmpF.equals(DataFormat.YEAR_OF_TERM)) {
-				ymd = term.substring(0,3);
+				ymd = term.substring(0, 3);
 			} else if (tmpF.equals(DataFormat.MONTH_OF_TERM)) {
-				ymd = term.substring(3,6);
+				ymd = term.substring(3, 6);
 			} else if (tmpF.equals(DataFormat.DAY_OF_TERM)) {
-				ymd = term.substring(6,10);
+				ymd = term.substring(6, 10);
 			} else {
-				ymd="000";
+				ymd = "000";
 			}
 
 		}
@@ -1686,28 +1649,30 @@ private static String Part2CN(String partValue,boolean bInsertZero) {
 			return null;
 		if (string.trim().length() == 0)
 			return null;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				DataFormat.DATE_NUMBER_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DataFormat.DATE_NUMBER_PATTERN);
 		try {
 			return simpleDateFormat.parse(string);
 		} catch (ParseException e) {
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_DATE_FORMAT_ERR);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_DATE_FORMAT_ERR);
 		}
 		return null;
 	}
+
 	/**
 	 * 根据15/18位身份证计算出生年月
+	 * 
 	 * @author
-	 * @param idtype 证件类型
-	 * @param idno 证件号码
+	 * @param idtype
+	 *            证件类型
+	 * @param idno
+	 *            证件号码
 	 * @return java.util.Date 出生日期
 	 */
-	public static java.util.Date calcBirthdayByIdno (String idtype, String idno) {
+	public static java.util.Date calcBirthdayByIdno(String idtype, String idno) {
 		java.util.Date date = null;
-		if(!DataFormat.trim(idtype).equals(SystemConstant.IDTYPE_ID_CARD))
+		if (!DataFormat.trim(idtype).equals(SystemConstant.IDTYPE_ID_CARD))
 			return date;
-		if(DataFormat.trim(idno).length() == 15) {
+		if (DataFormat.trim(idno).length() == 15) {
 			String dt = "19" + idno.substring(6, 12);
 			try {
 				date = stringToDate2(dt);
@@ -1755,66 +1720,79 @@ private static String Part2CN(String partValue,boolean bInsertZero) {
 	 * @return boolean
 	 * @author Huang_Wisdom
 	 */
-	public static boolean checkDate(String date)
-	{   boolean flag = false;
-	    if (DataFormat.trim(date).equals("")||date.length()!=8){
-	    	return false;
-	    }
+	public static boolean checkDate(String date) {
+		boolean flag = false;
+		if (DataFormat.trim(date).equals("") || date.length() != 8) {
+			return false;
+		}
 
-	    if (date.length() == 8){
-	    	int year = Integer.valueOf(date.substring(0,4));
-	    	int month = Integer.valueOf(date.substring(4,6));
-	    	int day = Integer.valueOf(date.substring(6,8));
+		if (date.length() == 8) {
+			int year = Integer.valueOf(date.substring(0, 4));
+			int month = Integer.valueOf(date.substring(4, 6));
+			int day = Integer.valueOf(date.substring(6, 8));
 
-	    	if (year<1900)
-	    		flag = false;
-	    	else if(month >= 13 || month <= 0)
-	    		flag = false;
-	    	else if (day >= (getLastDay(year,month) + 1) || day <= 0)
-	    		flag = false;
-	    	else
-	    		flag =true;
-	    }else{
-	    	flag =true;
-	    }
+			if (year < 1900)
+				flag = false;
+			else if (month >= 13 || month <= 0)
+				flag = false;
+			else if (day >= (getLastDay(year, month) + 1) || day <= 0)
+				flag = false;
+			else
+				flag = true;
+		} else {
+			flag = true;
+		}
 		return flag;
 	}
 
-	public static int getLastDay(int y, int m)  //取得每个月的最后一天
-	{  int lastday = 0;
-	   switch(m){
-	   case 1 : lastday = 31;
-	   			break;
-	   case 2 : if (((y%4==0)&&(y%100!=0))||(y%400==0))
-		           lastday = 29;
-	            else
-	               lastday = 28;
-	            break;
-	   case 3 : lastday = 31;
-	   			break;
-	   case 4 : lastday = 30;
-	            break;
-	   case 5 : lastday = 31;
-	            break;
-	   case 6 : lastday = 30;
-	            break;
-	   case 7 : lastday = 31;
-	            break;
-	   case 8 : lastday = 31;
-	            break;
-	   case 9 : lastday =30;
-	            break;
-	   case 10 : lastday = 31;
-	             break;
-	   case 11 : lastday = 30;
-	             break;
-	   case 12 : lastday = 31;
-	             break;
-	   default : lastday = 0;
-	   }
+	public static int getLastDay(int y, int m) // 取得每个月的最后一天
+	{
+		int lastday = 0;
+		switch (m) {
+		case 1:
+			lastday = 31;
+			break;
+		case 2:
+			if (((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0))
+				lastday = 29;
+			else
+				lastday = 28;
+			break;
+		case 3:
+			lastday = 31;
+			break;
+		case 4:
+			lastday = 30;
+			break;
+		case 5:
+			lastday = 31;
+			break;
+		case 6:
+			lastday = 30;
+			break;
+		case 7:
+			lastday = 31;
+			break;
+		case 8:
+			lastday = 31;
+			break;
+		case 9:
+			lastday = 30;
+			break;
+		case 10:
+			lastday = 31;
+			break;
+		case 11:
+			lastday = 30;
+			break;
+		case 12:
+			lastday = 31;
+			break;
+		default:
+			lastday = 0;
+		}
 		return lastday;
 	}
-
 
 	/**
 	 * @title 用于是否与核心交互参数标准控制配置,可参考commonResources.properties
@@ -1833,7 +1811,7 @@ private static String Part2CN(String partValue,boolean bInsertZero) {
 	/**
 	 * 计算利率,包括利率浮动值
 	 */
-	public static float calIntrateWithFloatValue(float basicIntrate,float percent,float floatValue){
+	public static float calIntrateWithFloatValue(float basicIntrate, float percent, float floatValue) {
 		long lf = (Math.round(floatValue * 1E6));
 		long lb = (Math.round(basicIntrate * 1E6));
 		long lp = (Math.round(percent * 1E4));
@@ -1844,22 +1822,17 @@ private static String Part2CN(String partValue,boolean bInsertZero) {
 		return fIntrate;
 	}
 
-
-
-
 	/**
-     * 传入Date，返回yyyy年mm月dd日 by zhouc
-     *
-     * @param date
-     * @return
-     * lilinfeng add
-     */
-    public static String dateToStringZh(Date date) {
-            if (date == null)
-                    return "";
-            return DataFormat.getYear(date) + "年" + DataFormat.getMonth(date) + "月"
-                            + DataFormat.getDay(date) + "日";
-    }
+	 * 传入Date，返回yyyy年mm月dd日 by zhouc
+	 *
+	 * @param date
+	 * @return lilinfeng add
+	 */
+	public static String dateToStringZh(Date date) {
+		if (date == null)
+			return "";
+		return DataFormat.getYear(date) + "年" + DataFormat.getMonth(date) + "月" + DataFormat.getDay(date) + "日";
+	}
 
 	/**
 	 * 字符串加后缀 中文算2个长度
@@ -1872,8 +1845,7 @@ private static String Part2CN(String partValue,boolean bInsertZero) {
 	public static String suffixString4CN(String string, char ch, int length) {
 		int tmplen = 0;
 		try {
-			tmplen = length
-					- (new String(string.getBytes(), "8859_1")).length();
+			tmplen = length - (new String(string.getBytes(), "8859_1")).length();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

@@ -57,8 +57,7 @@ public class NavigationShowUtil {
 							if (src.indexOf(contextPath) < 0) {
 								src = contextPath + src;
 							}
-							subItem
-									.addAttribute("menucode", src + "?type="+subInfo.getId().trim());
+							subItem.addAttribute("menucode", src + "?type=" + subInfo.getId().trim());
 						} else {
 							subItem.addAttribute("imgUrl", blkIconcls);
 							subItem.addAttribute("addDesc", "没有操作该功能的权限!");

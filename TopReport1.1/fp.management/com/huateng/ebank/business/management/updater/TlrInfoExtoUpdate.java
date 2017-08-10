@@ -23,25 +23,22 @@ import com.huateng.exception.AppException;
  */
 public class TlrInfoExtoUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			UpdateResultBean tlrInfoBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_TlrInfoEx");
 			TlrInfo tlrInfo = new TlrInfo();
 			Map map = tlrInfoBean.next();
 
-			setValue2DataBus("extTlrno", (String)map.get("tlrno"));
-			setValue2DataBus("departmentCode", (String)map.get("departmentCode"));
-			setValue2DataBus("brcode", (String)map.get("brcode"));
+			setValue2DataBus("extTlrno", (String) map.get("tlrno"));
+			setValue2DataBus("departmentCode", (String) map.get("departmentCode"));
+			setValue2DataBus("brcode", (String) map.get("brcode"));
 
 			return new UpdateReturnBean();
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

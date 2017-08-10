@@ -22,36 +22,35 @@ import com.huateng.exception.AppException;
  */
 public class WorkFlowParamSelectGetter extends BaseGetter {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.huateng.commquery.process.call._CallGetter#call()
 	 */
 	@Override
 	public Result call() throws AppException {
 		try {
 
-	        List resultlist = new ArrayList();
+			List resultlist = new ArrayList();
 
-            String[] template=DataFormat.trim(WorkFlowConfig.getValue("PROCESS.TEMPLATGE.LIST")).split(",");
-            for(int i=0;i<template.length;i++){
-            	WorkFlowParamSelectBean wfpSelectBean=new WorkFlowParamSelectBean();
-            	wfpSelectBean.setProcessTemplate(template[i]);
-            	String templateName=DataFormat.trim(WorkFlowConfig.getValue(template[i]+"_NAME"));
-            	wfpSelectBean.setProcessTemplateName(templateName);
-            	resultlist.add(wfpSelectBean);
-            }
+			String[] template = DataFormat.trim(WorkFlowConfig.getValue("PROCESS.TEMPLATGE.LIST")).split(",");
+			for (int i = 0; i < template.length; i++) {
+				WorkFlowParamSelectBean wfpSelectBean = new WorkFlowParamSelectBean();
+				wfpSelectBean.setProcessTemplate(template[i]);
+				String templateName = DataFormat.trim(WorkFlowConfig.getValue(template[i] + "_NAME"));
+				wfpSelectBean.setProcessTemplateName(templateName);
+				resultlist.add(wfpSelectBean);
+			}
 
-	        ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), resultlist,
-					getResult());
-	        result.setContent(resultlist);
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), resultlist, getResult());
+			result.setContent(resultlist);
 			result.getPage().setTotalPage(1);
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

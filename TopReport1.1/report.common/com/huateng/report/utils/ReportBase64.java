@@ -16,6 +16,7 @@ public class ReportBase64 {
 
 	/**
 	 * Base64对字符串进行解码
+	 * 
 	 * @param s
 	 * @return
 	 */

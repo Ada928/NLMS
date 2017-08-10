@@ -32,14 +32,11 @@ public class GetWarningIDGenerator extends BaseGenerator {
 	 */
 
 	public String gen(Object paramMap) throws CommonException {
-		String brcode = (String) ((Map)paramMap).get("brcode");
+		String brcode = (String) ((Map) paramMap).get("brcode");
 		String extBrno = BctlService.getInstance().getExtBrno(brcode);
-		String valueIndex = brcode
-				+ DataFormat.dateToNumber(GlobalInfo.getCurrentInstance()
-						.getTxdate());
-		return valueIndex
-				+ DataFormat.intToString(CommonService.getInstance().getSeqno(
-						SystemConstant.VALUE_NO_WARNING_ID, valueIndex), 4);
+		String valueIndex = brcode + DataFormat.dateToNumber(GlobalInfo.getCurrentInstance().getTxdate());
+		return valueIndex + DataFormat
+				.intToString(CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_WARNING_ID, valueIndex), 4);
 	}
 
 }

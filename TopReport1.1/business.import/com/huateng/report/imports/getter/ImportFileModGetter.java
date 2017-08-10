@@ -28,16 +28,15 @@ public class ImportFileModGetter extends BaseGetter {
 			ImportFileModBean bean = new ImportFileModBean();
 			BiImportLog log = ROOTDAOUtils.getROOTDAO().query(BiImportLog.class, logid);
 			if (StringUtils.isNotBlank(log.getErrFilePath()) && StringUtils.isNotBlank(log.getErrFile())) {
-				ReadWriteFile readWriteFile=new ReadWriteFile(log.getErrFilePath(),log.getErrFile());
-				String str=readWriteFile.readTxtFile();
+				ReadWriteFile readWriteFile = new ReadWriteFile(log.getErrFilePath(), log.getErrFile());
+				String str = readWriteFile.readTxtFile();
 				bean.setId(logid);
 				bean.setDescription(str);
 				bean.setErrFile(log.getErrFile());
 				bean.setErrFilePath(log.getErrFilePath());
 			}
 			list.add(bean);
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list, getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);
 			result.getPage().setTotalPage(1);
 			result.init();
@@ -45,8 +44,7 @@ public class ImportFileModGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

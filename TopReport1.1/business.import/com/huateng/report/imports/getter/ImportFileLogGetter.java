@@ -25,17 +25,12 @@ public class ImportFileLogGetter extends BaseGetter {
 			// 页码
 			int pageIndex = getResult().getPage().getCurrentPage();
 
-			StringBuffer hql = new StringBuffer(
-					"from BiImportLog where 1=1 ");
+			StringBuffer hql = new StringBuffer("from BiImportLog where 1=1 ");
 
-			String qWorkDateStart = getCommQueryServletRequest().getParameter(
-					"qWorkDateStart");
-			String qWorkDateEnd = getCommQueryServletRequest().getParameter(
-					"qWorkDateEnd");
-			String qFileName = getCommQueryServletRequest().getParameter(
-					"qFileName");
-			String qImpStatus = getCommQueryServletRequest().getParameter(
-					"qImpStatus");
+			String qWorkDateStart = getCommQueryServletRequest().getParameter("qWorkDateStart");
+			String qWorkDateEnd = getCommQueryServletRequest().getParameter("qWorkDateEnd");
+			String qFileName = getCommQueryServletRequest().getParameter("qFileName");
+			String qImpStatus = getCommQueryServletRequest().getParameter("qImpStatus");
 			if (StringUtils.isNotBlank(qWorkDateStart)) {
 				hql.append("and workDate >= '" + qWorkDateStart + "' ");
 			}
@@ -54,26 +49,21 @@ public class ImportFileLogGetter extends BaseGetter {
 			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setPageSize(pageSize);
 
-			PageQueryResult pageResult = ROOTDAOUtils.getROOTDAO()
-					.pageQueryByQL(queryCondition);
+			PageQueryResult pageResult = ROOTDAOUtils.getROOTDAO().pageQueryByQL(queryCondition);
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
-			
+
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "文件导入日志查询");
-			
+
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

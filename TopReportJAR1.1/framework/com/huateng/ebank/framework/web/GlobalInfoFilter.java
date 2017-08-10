@@ -29,7 +29,7 @@ import com.huateng.ebank.business.common.GlobalInfo;
  * @version $Revision: 1.9 $
  * @date 2005-7-14
  *
- * 用来捕获Extra没有捕获的异常. 
+ *       用来捕获Extra没有捕获的异常.
  */
 public class GlobalInfoFilter implements Filter {
 	/**
@@ -38,8 +38,8 @@ public class GlobalInfoFilter implements Filter {
 	private static final Logger logger = Logger.getLogger(GlobalInfoFilter.class);
 
 	private FilterConfig filterConfig;
-	private String loginPageName = null ;
-	private String expiredPageName = null ;
+	private String loginPageName = null;
+	private String expiredPageName = null;
 
 	/*
 	 * (non-Javadoc)
@@ -56,17 +56,17 @@ public class GlobalInfoFilter implements Filter {
 	 * (non-Javadoc)
 	 *
 	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
-	 *      javax.servlet.ServletResponse, javax.servlet.FilterChain)
+	 * javax.servlet.ServletResponse, javax.servlet.FilterChain)
 	 */
-	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException,
-			ServletException {
+	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain)
+			throws IOException, ServletException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("doFilter(ServletRequest, ServletResponse, FilterChain) - start"); //$NON-NLS-1$
 		}
-		//需要从配置文件中获得
-		String STRING_LOGIN = "login" ;
-		String STRING_LOGOUT = "logout" ;
-		String STRING_CHGPWD = "changePwd" ;
+		// 需要从配置文件中获得
+		String STRING_LOGIN = "login";
+		String STRING_LOGOUT = "logout";
+		String STRING_CHGPWD = "changePwd";
 
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpSession httpSession = request.getSession();
@@ -81,38 +81,36 @@ public class GlobalInfoFilter implements Filter {
 			globalInfo.setSessionId(sessionId);
 		}
 
-		//获取请求URL
+		// 获取请求URL
 		String uri = request.getRequestURI();
 		if (logger.isDebugEnabled()) {
 			logger.debug("doFilter(ServletRequest, ServletResponse, FilterChain) - String uri=" + uri); //$NON-NLS-1$
 		}
 
-		//add by NT
-		System.setProperty("app.web.path",request.getContextPath()+"/");//LoginBkgroundTag.java中要引用这个变量，参考交行个贷
+		// add by NT
+		System.setProperty("app.web.path", request.getContextPath() + "/");// LoginBkgroundTag.java中要引用这个变量，参考交行个贷
 
-		String actionString = "" ;
-		try{
-			actionString = uri.substring(uri.lastIndexOf("/") + 1,uri.lastIndexOf("."));
+		String actionString = "";
+		try {
+			actionString = uri.substring(uri.lastIndexOf("/") + 1, uri.lastIndexOf("."));
 			logger.debug("right - String actionString=" + actionString); //$NON-NLS-1$
-		}
-		catch(Exception e){
-			actionString = STRING_LOGIN ;
+		} catch (Exception e) {
+			actionString = STRING_LOGIN;
 			logger.debug("Exception - String actionString=" + actionString); //$NON-NLS-1$
 		}
 
-		//如果是登陆页（或非extra页面）
-		if( (STRING_LOGIN.equalsIgnoreCase(actionString)) ||
-			//(STRING_INDEX.equalsIgnoreCase(actionString)) ||
-			(STRING_LOGOUT.equalsIgnoreCase(actionString)) ||
-			(STRING_CHGPWD.equalsIgnoreCase(actionString))){
-			filterChain.doFilter(req,resp);
+		// 如果是登陆页（或非extra页面）
+		if ((STRING_LOGIN.equalsIgnoreCase(actionString)) ||
+				// (STRING_INDEX.equalsIgnoreCase(actionString)) ||
+				(STRING_LOGOUT.equalsIgnoreCase(actionString)) || (STRING_CHGPWD.equalsIgnoreCase(actionString))) {
+			filterChain.doFilter(req, resp);
 			if (logger.isDebugEnabled()) {
 				logger.debug("doFilter(ServletRequest, ServletResponse, FilterChain) - end return"); //$NON-NLS-1$
 			}
 			return;
 		}
 
-		//extra页面
+		// extra页面
 		filterChain.doFilter(req, resp);
 
 		try {

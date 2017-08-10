@@ -19,27 +19,26 @@ import com.huateng.exception.AppException;
 import com.huateng.report.bop.audit.operation.BopDRDsAuditOperation;
 
 public class BopDDsAuditUpdate extends BaseUpdate {
-	
-	private static final String DATASET_ID="BopDDsAudit";
+
+	private static final String DATASET_ID = "BopDDsAudit";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
-		
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
+
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			List<MtsBopDrDs> MtsBopDrDsList = new ArrayList<MtsBopDrDs>();
-			while (updateResultBean.hasNext())
-			{
+			while (updateResultBean.hasNext()) {
 				MtsBopDrDs mtsBopDrDs = new MtsBopDrDs();
 				Map map = updateResultBean.next();
-				mapToObject(mtsBopDrDs,map);
+				mapToObject(mtsBopDrDs, map);
 				MtsBopDrDsList.add(mtsBopDrDs);
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
 			String approveResultChoose = updateResultBean.getParameter("approveResultChoose");
-			
+
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(BopDRDsAuditOperation.CMD, BopDRDsAuditOperation.OP_LOAN_AUDIT);
 			oc.setAttribute(BopDRDsAuditOperation.IN_AUDIT_LIST, MtsBopDrDsList);
@@ -47,13 +46,12 @@ public class BopDDsAuditUpdate extends BaseUpdate {
 			oc.setAttribute(BopDRDsAuditOperation.IN_AUDIT_RESULT, approveResultChoose);
 			oc.setAttribute(BopDRDsAuditOperation.CHOOSE, BopDRDsAuditOperation.JI_CHU);
 			OPCaller.call(BopDRDsAuditOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

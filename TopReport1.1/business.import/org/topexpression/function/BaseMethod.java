@@ -6,19 +6,16 @@ package org.topexpression.function;
  * @version 1.0
  *
  */
-public abstract class BaseMethod implements IMethod{
+public abstract class BaseMethod implements IMethod {
 
 	private String methodName;
-	
-	public BaseMethod(String methodName)
-	{
+
+	public BaseMethod(String methodName) {
 		this.methodName = methodName;
 	}
-	
-	public String getMethodName()
-	{
+
+	public String getMethodName() {
 		return methodName;
 	}
-
 
 }

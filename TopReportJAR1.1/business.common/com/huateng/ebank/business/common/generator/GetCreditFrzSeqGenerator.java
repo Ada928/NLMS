@@ -19,8 +19,8 @@ public class GetCreditFrzSeqGenerator extends BaseGenerator {
 	 * @throws CommonException
 	 */
 	public String gen(Object obj) throws CommonException {
-		return String.valueOf(CommonService.getInstance().getSeqno(
-				SystemConstant.VALUE_NO_FRZNO, SystemConstant.VALUE_INDEX));
+		return String.valueOf(
+				CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_FRZNO, SystemConstant.VALUE_INDEX));
 	}
 
 }

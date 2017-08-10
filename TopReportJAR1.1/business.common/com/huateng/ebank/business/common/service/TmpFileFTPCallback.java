@@ -18,26 +18,30 @@ import com.huateng.ebank.framework.util.ftp.FTPClientCallback;
  * @author <a href="mailto:liu_wen@huateng.com">Liu Wen</a>
  * @version $Revision: 1.3 $
  * @date 2005-8-5
- *  
- * 在本地生成临时文件用于存储ftp数据.
+ * 
+ *       在本地生成临时文件用于存储ftp数据.
  */
 public class TmpFileFTPCallback implements FTPClientCallback {
 	File file = null;
 
 	public TmpFileFTPCallback() {
 	}
-	
-	/* (non-Javadoc)
-	 * @see com.huateng.ebank.framework.util.ftp.FTPClientCallback#doFtp(java.io.InputStream)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.huateng.ebank.framework.util.ftp.FTPClientCallback#doFtp(java.io.
+	 * InputStream)
 	 */
-	public void doFtp(InputStream inputStream) throws Exception {	
+	public void doFtp(InputStream inputStream) throws Exception {
 		int length = 0;
-		FileOutputStream fos = null; 
+		FileOutputStream fos = null;
 		try {
 			file = File.createTempFile("ftp", ".tmp");
 			fos = new FileOutputStream(file);
 			while (true) {
-				
+
 				int in = inputStream.read();
 				if (-1 == in) {
 					break;
@@ -45,24 +49,25 @@ public class TmpFileFTPCallback implements FTPClientCallback {
 				fos.write(in);
 				length++;
 			}
-			
+
 			System.out.println("length is " + length);
-			//Util.copyStream(inputStream, fos);
+			// Util.copyStream(inputStream, fos);
 			fos.flush();
 		} finally {
-			try{
-				if ( null != fos ){
+			try {
+				if (null != fos) {
 					fos.close();
 				}
-			}catch(Exception ex){}
+			} catch (Exception ex) {
+			}
 		}
 	}
-	
-	public File getFile(){
+
+	public File getFile() {
 		return file;
 	}
-	
-	public boolean close(){
+
+	public boolean close() {
 		return file.delete();
 	}
 

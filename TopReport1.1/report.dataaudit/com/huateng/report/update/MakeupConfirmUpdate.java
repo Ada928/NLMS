@@ -41,19 +41,19 @@ public class MakeupConfirmUpdate extends BaseUpdate {
 				Map map = updateResultBean.next();
 				int hashNum = Integer.parseInt(map.get("hashNum").toString());
 				int noNum = Integer.parseInt(map.get("noNum").toString());
-				noNumTotal+=noNum;
-				hashNumTotal+=hashNum;
+				noNumTotal += noNum;
+				hashNumTotal += hashNum;
 
 				busiType = (String) map.get("busiType");
 				workDate = (String) map.get("workDate");
 				apptype = (String) map.get("apptype");
 			}
-			if (hashNumTotal==0) {
+			if (hashNumTotal == 0) {
 				ExceptionUtil.throwCommonException("没有需要确认的数据！");
 			}
 
 			String parValue = ReportUtils.getSysParamsValue("100", "0002");
-			if (parValue.equals("0") && noNumTotal>0) {
+			if (parValue.equals("0") && noNumTotal > 0) {
 				ExceptionUtil.throwCommonException("补录尚未完成，不能进行完成确认操作！");
 			}
 			context.setAttribute(MakeupConfirmOperation.BUSI_TYPE, busiType);

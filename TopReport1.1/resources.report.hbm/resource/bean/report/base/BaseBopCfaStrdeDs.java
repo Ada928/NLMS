@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
  * This is an object that contains data related to the BOP_CFA_STRDE_DS table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * Do not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="BOP_CFA_STRDE_DS"
+ * @hibernate.class table="BOP_CFA_STRDE_DS"
  */
 
-public abstract class BaseBopCfaStrdeDs  implements Serializable {
+public abstract class BaseBopCfaStrdeDs implements Serializable {
 
 	public static String REF = "BopCfaStrdeDs";
 	public static String PROP_TERPAYAMTORMB = "terpayamtormb";
@@ -66,16 +64,15 @@ public abstract class BaseBopCfaStrdeDs  implements Serializable {
 	public static String PROP_CRT_TM = "crtTm";
 	public static String PROP_INPAYMONTH = "inpaymonth";
 
-
 	// constructors
-	public BaseBopCfaStrdeDs () {
+	public BaseBopCfaStrdeDs() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseBopCfaStrdeDs (java.lang.String id) {
+	public BaseBopCfaStrdeDs(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -83,10 +80,7 @@ public abstract class BaseBopCfaStrdeDs  implements Serializable {
 	/**
 	 * Constructor for required fields
 	 */
-	public BaseBopCfaStrdeDs (
-		java.lang.String id,
-		java.lang.String apptype,
-		java.lang.String currentfile) {
+	public BaseBopCfaStrdeDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile) {
 
 		this.setId(id);
 		this.setApptype(apptype);
@@ -94,9 +88,8 @@ public abstract class BaseBopCfaStrdeDs  implements Serializable {
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -154,626 +147,620 @@ public abstract class BaseBopCfaStrdeDs  implements Serializable {
 	private java.lang.String workDate;
 	private java.lang.String subSuccess;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  column="REC_ID"
-     */
-	public java.lang.String getId () {
+	 * 
+	 * @hibernate.id column="REC_ID"
+	 */
+	public java.lang.String getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.String id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: APPTYPE
 	 */
-	public java.lang.String getApptype () {
+	public java.lang.String getApptype() {
 		return apptype;
 	}
 
 	/**
 	 * Set the value related to the column: APPTYPE
-	 * @param apptype the APPTYPE value
+	 * 
+	 * @param apptype
+	 *            the APPTYPE value
 	 */
-	public void setApptype (java.lang.String apptype) {
+	public void setApptype(java.lang.String apptype) {
 		this.apptype = apptype;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CURRENTFILE
 	 */
-	public java.lang.String getCurrentfile () {
+	public java.lang.String getCurrentfile() {
 		return currentfile;
 	}
 
 	/**
 	 * Set the value related to the column: CURRENTFILE
-	 * @param currentfile the CURRENTFILE value
+	 * 
+	 * @param currentfile
+	 *            the CURRENTFILE value
 	 */
-	public void setCurrentfile (java.lang.String currentfile) {
+	public void setCurrentfile(java.lang.String currentfile) {
 		this.currentfile = currentfile;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: STRDECODE
 	 */
-	public java.lang.String getStrdecode () {
+	public java.lang.String getStrdecode() {
 		return strdecode;
 	}
 
 	/**
 	 * Set the value related to the column: STRDECODE
-	 * @param strdecode the STRDECODE value
+	 * 
+	 * @param strdecode
+	 *            the STRDECODE value
 	 */
-	public void setStrdecode (java.lang.String strdecode) {
+	public void setStrdecode(java.lang.String strdecode) {
 		this.strdecode = strdecode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BRANCHCODE
 	 */
-	public java.lang.String getBranchcode () {
+	public java.lang.String getBranchcode() {
 		return branchcode;
 	}
 
 	/**
 	 * Set the value related to the column: BRANCHCODE
-	 * @param branchcode the BRANCHCODE value
+	 * 
+	 * @param branchcode
+	 *            the BRANCHCODE value
 	 */
-	public void setBranchcode (java.lang.String branchcode) {
+	public void setBranchcode(java.lang.String branchcode) {
 		this.branchcode = branchcode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CLIENTCODE
 	 */
-	public java.lang.String getClientcode () {
+	public java.lang.String getClientcode() {
 		return clientcode;
 	}
 
 	/**
 	 * Set the value related to the column: CLIENTCODE
-	 * @param clientcode the CLIENTCODE value
+	 * 
+	 * @param clientcode
+	 *            the CLIENTCODE value
 	 */
-	public void setClientcode (java.lang.String clientcode) {
+	public void setClientcode(java.lang.String clientcode) {
 		this.clientcode = clientcode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CLIENTNAME
 	 */
-	public java.lang.String getClientname () {
+	public java.lang.String getClientname() {
 		return clientname;
 	}
 
 	/**
 	 * Set the value related to the column: CLIENTNAME
-	 * @param clientname the CLIENTNAME value
+	 * 
+	 * @param clientname
+	 *            the CLIENTNAME value
 	 */
-	public void setClientname (java.lang.String clientname) {
+	public void setClientname(java.lang.String clientname) {
 		this.clientname = clientname;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CONTRACTDATE
 	 */
-	public java.lang.String getContractdate () {
+	public java.lang.String getContractdate() {
 		return contractdate;
 	}
 
 	/**
 	 * Set the value related to the column: CONTRACTDATE
-	 * @param contractdate the CONTRACTDATE value
+	 * 
+	 * @param contractdate
+	 *            the CONTRACTDATE value
 	 */
-	public void setContractdate (java.lang.String contractdate) {
+	public void setContractdate(java.lang.String contractdate) {
 		this.contractdate = contractdate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CONTRACT
 	 */
-	public java.lang.String getContract () {
+	public java.lang.String getContract() {
 		return contract;
 	}
 
 	/**
 	 * Set the value related to the column: CONTRACT
-	 * @param contract the CONTRACT value
+	 * 
+	 * @param contract
+	 *            the CONTRACT value
 	 */
-	public void setContract (java.lang.String contract) {
+	public void setContract(java.lang.String contract) {
 		this.contract = contract;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CONTRACTAMOUNT
 	 */
-	public java.math.BigDecimal getContractamount () {
+	public java.math.BigDecimal getContractamount() {
 		return contractamount;
 	}
 
 	/**
 	 * Set the value related to the column: CONTRACTAMOUNT
-	 * @param contractamount the CONTRACTAMOUNT value
+	 * 
+	 * @param contractamount
+	 *            the CONTRACTAMOUNT value
 	 */
-	public void setContractamount (java.math.BigDecimal contractamount) {
+	public void setContractamount(java.math.BigDecimal contractamount) {
 		this.contractamount = contractamount;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MATURITY
 	 */
-	public java.lang.String getMaturity () {
+	public java.lang.String getMaturity() {
 		return maturity;
 	}
 
 	/**
 	 * Set the value related to the column: MATURITY
-	 * @param maturity the MATURITY value
+	 * 
+	 * @param maturity
+	 *            the MATURITY value
 	 */
-	public void setMaturity (java.lang.String maturity) {
+	public void setMaturity(java.lang.String maturity) {
 		this.maturity = maturity;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LINCAME
 	 */
-	public java.lang.String getLincame () {
+	public java.lang.String getLincame() {
 		return lincame;
 	}
 
 	/**
 	 * Set the value related to the column: LINCAME
-	 * @param lincame the LINCAME value
+	 * 
+	 * @param lincame
+	 *            the LINCAME value
 	 */
-	public void setLincame (java.lang.String lincame) {
+	public void setLincame(java.lang.String lincame) {
 		this.lincame = lincame;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LINCAMETHOD
 	 */
-	public java.lang.String getLincamethod () {
+	public java.lang.String getLincamethod() {
 		return lincamethod;
 	}
 
 	/**
 	 * Set the value related to the column: LINCAMETHOD
-	 * @param lincamethod the LINCAMETHOD value
+	 * 
+	 * @param lincamethod
+	 *            the LINCAMETHOD value
 	 */
-	public void setLincamethod (java.lang.String lincamethod) {
+	public void setLincamethod(java.lang.String lincamethod) {
 		this.lincamethod = lincamethod;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: AGINRAUP
 	 */
-	public java.math.BigDecimal getAginraup () {
+	public java.math.BigDecimal getAginraup() {
 		return aginraup;
 	}
 
 	/**
 	 * Set the value related to the column: AGINRAUP
-	 * @param aginraup the AGINRAUP value
+	 * 
+	 * @param aginraup
+	 *            the AGINRAUP value
 	 */
-	public void setAginraup (java.math.BigDecimal aginraup) {
+	public void setAginraup(java.math.BigDecimal aginraup) {
 		this.aginraup = aginraup;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: AGINRALO
 	 */
-	public java.math.BigDecimal getAginralo () {
+	public java.math.BigDecimal getAginralo() {
 		return aginralo;
 	}
 
 	/**
 	 * Set the value related to the column: AGINRALO
-	 * @param aginralo the AGINRALO value
+	 * 
+	 * @param aginralo
+	 *            the AGINRALO value
 	 */
-	public void setAginralo (java.math.BigDecimal aginralo) {
+	public void setAginralo(java.math.BigDecimal aginralo) {
 		this.aginralo = aginralo;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: AGINRALOINPAY
 	 */
-	public java.lang.String getAginraloinpay () {
+	public java.lang.String getAginraloinpay() {
 		return aginraloinpay;
 	}
 
 	/**
 	 * Set the value related to the column: AGINRALOINPAY
-	 * @param aginraloinpay the AGINRALOINPAY value
+	 * 
+	 * @param aginraloinpay
+	 *            the AGINRALOINPAY value
 	 */
-	public void setAginraloinpay (java.lang.String aginraloinpay) {
+	public void setAginraloinpay(java.lang.String aginraloinpay) {
 		this.aginraloinpay = aginraloinpay;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TERDATE
 	 */
-	public java.lang.String getTerdate () {
+	public java.lang.String getTerdate() {
 		return terdate;
 	}
 
 	/**
 	 * Set the value related to the column: TERDATE
-	 * @param terdate the TERDATE value
+	 * 
+	 * @param terdate
+	 *            the TERDATE value
 	 */
-	public void setTerdate (java.lang.String terdate) {
+	public void setTerdate(java.lang.String terdate) {
 		this.terdate = terdate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TERTYPE
 	 */
-	public java.lang.String getTertype () {
+	public java.lang.String getTertype() {
 		return tertype;
 	}
 
 	/**
 	 * Set the value related to the column: TERTYPE
-	 * @param tertype the TERTYPE value
+	 * 
+	 * @param tertype
+	 *            the TERTYPE value
 	 */
-	public void setTertype (java.lang.String tertype) {
+	public void setTertype(java.lang.String tertype) {
 		this.tertype = tertype;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: REMARK
 	 */
-	public java.lang.String getRemark () {
+	public java.lang.String getRemark() {
 		return remark;
 	}
 
 	/**
 	 * Set the value related to the column: REMARK
-	 * @param remark the REMARK value
+	 * 
+	 * @param remark
+	 *            the REMARK value
 	 */
-	public void setRemark (java.lang.String remark) {
+	public void setRemark(java.lang.String remark) {
 		this.remark = remark;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TERPAYCODE
 	 */
-	public java.lang.String getTerpaycode () {
+	public java.lang.String getTerpaycode() {
 		return terpaycode;
 	}
 
 	/**
 	 * Set the value related to the column: TERPAYCODE
-	 * @param terpaycode the TERPAYCODE value
+	 * 
+	 * @param terpaycode
+	 *            the TERPAYCODE value
 	 */
-	public void setTerpaycode (java.lang.String terpaycode) {
+	public void setTerpaycode(java.lang.String terpaycode) {
 		this.terpaycode = terpaycode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TERPAYAMTORMB
 	 */
-	public java.math.BigDecimal getTerpayamtormb () {
+	public java.math.BigDecimal getTerpayamtormb() {
 		return terpayamtormb;
 	}
 
 	/**
 	 * Set the value related to the column: TERPAYAMTORMB
-	 * @param terpayamtormb the TERPAYAMTORMB value
+	 * 
+	 * @param terpayamtormb
+	 *            the TERPAYAMTORMB value
 	 */
-	public void setTerpayamtormb (java.math.BigDecimal terpayamtormb) {
+	public void setTerpayamtormb(java.math.BigDecimal terpayamtormb) {
 		this.terpayamtormb = terpayamtormb;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TERRMBPAYAM
 	 */
-	public java.math.BigDecimal getTerrmbpayam () {
+	public java.math.BigDecimal getTerrmbpayam() {
 		return terrmbpayam;
 	}
 
 	/**
 	 * Set the value related to the column: TERRMBPAYAM
-	 * @param terrmbpayam the TERRMBPAYAM value
+	 * 
+	 * @param terrmbpayam
+	 *            the TERRMBPAYAM value
 	 */
-	public void setTerrmbpayam (java.math.BigDecimal terrmbpayam) {
+	public void setTerrmbpayam(java.math.BigDecimal terrmbpayam) {
 		this.terrmbpayam = terrmbpayam;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TERPAYCURR
 	 */
-	public java.lang.String getTerpaycurr () {
+	public java.lang.String getTerpaycurr() {
 		return terpaycurr;
 	}
 
 	/**
 	 * Set the value related to the column: TERPAYCURR
-	 * @param terpaycurr the TERPAYCURR value
+	 * 
+	 * @param terpaycurr
+	 *            the TERPAYCURR value
 	 */
-	public void setTerpaycurr (java.lang.String terpaycurr) {
+	public void setTerpaycurr(java.lang.String terpaycurr) {
 		this.terpaycurr = terpaycurr;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TERPAYCURRAM
 	 */
-	public java.math.BigDecimal getTerpaycurram () {
+	public java.math.BigDecimal getTerpaycurram() {
 		return terpaycurram;
 	}
 
 	/**
 	 * Set the value related to the column: TERPAYCURRAM
-	 * @param terpaycurram the TERPAYCURRAM value
+	 * 
+	 * @param terpaycurram
+	 *            the TERPAYCURRAM value
 	 */
-	public void setTerpaycurram (java.math.BigDecimal terpaycurram) {
+	public void setTerpaycurram(java.math.BigDecimal terpaycurram) {
 		this.terpaycurram = terpaycurram;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: INPAYCODE
 	 */
-	public java.lang.String getInpaycode () {
+	public java.lang.String getInpaycode() {
 		return inpaycode;
 	}
 
 	/**
 	 * Set the value related to the column: INPAYCODE
-	 * @param inpaycode the INPAYCODE value
+	 * 
+	 * @param inpaycode
+	 *            the INPAYCODE value
 	 */
-	public void setInpaycode (java.lang.String inpaycode) {
+	public void setInpaycode(java.lang.String inpaycode) {
 		this.inpaycode = inpaycode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: INPAYMONTH
 	 */
-	public java.lang.String getInpaymonth () {
+	public java.lang.String getInpaymonth() {
 		return inpaymonth;
 	}
 
 	/**
 	 * Set the value related to the column: INPAYMONTH
-	 * @param inpaymonth the INPAYMONTH value
+	 * 
+	 * @param inpaymonth
+	 *            the INPAYMONTH value
 	 */
-	public void setInpaymonth (java.lang.String inpaymonth) {
+	public void setInpaymonth(java.lang.String inpaymonth) {
 		this.inpaymonth = inpaymonth;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: INPAYRMBAM
 	 */
-	public java.math.BigDecimal getInpayrmbam () {
+	public java.math.BigDecimal getInpayrmbam() {
 		return inpayrmbam;
 	}
 
 	/**
 	 * Set the value related to the column: INPAYRMBAM
-	 * @param inpayrmbam the INPAYRMBAM value
+	 * 
+	 * @param inpayrmbam
+	 *            the INPAYRMBAM value
 	 */
-	public void setInpayrmbam (java.math.BigDecimal inpayrmbam) {
+	public void setInpayrmbam(java.math.BigDecimal inpayrmbam) {
 		this.inpayrmbam = inpayrmbam;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: INPAYCURR
 	 */
-	public java.lang.String getInpaycurr () {
+	public java.lang.String getInpaycurr() {
 		return inpaycurr;
 	}
 
 	/**
 	 * Set the value related to the column: INPAYCURR
-	 * @param inpaycurr the INPAYCURR value
+	 * 
+	 * @param inpaycurr
+	 *            the INPAYCURR value
 	 */
-	public void setInpaycurr (java.lang.String inpaycurr) {
+	public void setInpaycurr(java.lang.String inpaycurr) {
 		this.inpaycurr = inpaycurr;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: INPAYCURRAM
 	 */
-	public java.math.BigDecimal getInpaycurram () {
+	public java.math.BigDecimal getInpaycurram() {
 		return inpaycurram;
 	}
 
 	/**
 	 * Set the value related to the column: INPAYCURRAM
-	 * @param inpaycurram the INPAYCURRAM value
+	 * 
+	 * @param inpaycurram
+	 *            the INPAYCURRAM value
 	 */
-	public void setInpaycurram (java.math.BigDecimal inpaycurram) {
+	public void setInpaycurram(java.math.BigDecimal inpaycurram) {
 		this.inpaycurram = inpaycurram;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BUOCMONTH
 	 */
-	public java.lang.String getBuocmonth () {
+	public java.lang.String getBuocmonth() {
 		return buocmonth;
 	}
 
 	/**
 	 * Set the value related to the column: BUOCMONTH
-	 * @param buocmonth the BUOCMONTH value
+	 * 
+	 * @param buocmonth
+	 *            the BUOCMONTH value
 	 */
-	public void setBuocmonth (java.lang.String buocmonth) {
+	public void setBuocmonth(java.lang.String buocmonth) {
 		this.buocmonth = buocmonth;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CURRENCY
 	 */
-	public java.lang.String getCurrency () {
+	public java.lang.String getCurrency() {
 		return currency;
 	}
 
 	/**
 	 * Set the value related to the column: CURRENCY
-	 * @param currency the CURRENCY value
+	 * 
+	 * @param currency
+	 *            the CURRENCY value
 	 */
-	public void setCurrency (java.lang.String currency) {
+	public void setCurrency(java.lang.String currency) {
 		this.currency = currency;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MOEXAMUSD
 	 */
-	public java.math.BigDecimal getMoexamusd () {
+	public java.math.BigDecimal getMoexamusd() {
 		return moexamusd;
 	}
 
 	/**
 	 * Set the value related to the column: MOEXAMUSD
-	 * @param moexamusd the MOEXAMUSD value
+	 * 
+	 * @param moexamusd
+	 *            the MOEXAMUSD value
 	 */
-	public void setMoexamusd (java.math.BigDecimal moexamusd) {
+	public void setMoexamusd(java.math.BigDecimal moexamusd) {
 		this.moexamusd = moexamusd;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MOAMREUSD
 	 */
-	public java.math.BigDecimal getMoamreusd () {
+	public java.math.BigDecimal getMoamreusd() {
 		return moamreusd;
 	}
 
 	/**
 	 * Set the value related to the column: MOAMREUSD
-	 * @param moamreusd the MOAMREUSD value
+	 * 
+	 * @param moamreusd
+	 *            the MOAMREUSD value
 	 */
-	public void setMoamreusd (java.math.BigDecimal moamreusd) {
+	public void setMoamreusd(java.math.BigDecimal moamreusd) {
 		this.moamreusd = moamreusd;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MOSETTAMUSD
 	 */
-	public java.math.BigDecimal getMosettamusd () {
+	public java.math.BigDecimal getMosettamusd() {
 		return mosettamusd;
 	}
 
 	/**
 	 * Set the value related to the column: MOSETTAMUSD
-	 * @param mosettamusd the MOSETTAMUSD value
+	 * 
+	 * @param mosettamusd
+	 *            the MOSETTAMUSD value
 	 */
-	public void setMosettamusd (java.math.BigDecimal mosettamusd) {
+	public void setMosettamusd(java.math.BigDecimal mosettamusd) {
 		this.mosettamusd = mosettamusd;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MOPFEXAMUSD
 	 */
-	public java.math.BigDecimal getMopfexamusd () {
+	public java.math.BigDecimal getMopfexamusd() {
 		return mopfexamusd;
 	}
 
 	/**
 	 * Set the value related to the column: MOPFEXAMUSD
-	 * @param mopfexamusd the MOPFEXAMUSD value
+	 * 
+	 * @param mopfexamusd
+	 *            the MOPFEXAMUSD value
 	 */
-	public void setMopfexamusd (java.math.BigDecimal mopfexamusd) {
+	public void setMopfexamusd(java.math.BigDecimal mopfexamusd) {
 		this.mopfexamusd = mopfexamusd;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LST_UPD_TLR
 	 */
-	public java.lang.String getLstUpdTlr () {
+	public java.lang.String getLstUpdTlr() {
 		return lstUpdTlr;
 	}
 
 	/**
 	 * Set the value related to the column: LST_UPD_TLR
-	 * @param lstUpdTlr the LST_UPD_TLR value
+	 * 
+	 * @param lstUpdTlr
+	 *            the LST_UPD_TLR value
 	 */
-	public void setLstUpdTlr (java.lang.String lstUpdTlr) {
+	public void setLstUpdTlr(java.lang.String lstUpdTlr) {
 		this.lstUpdTlr = lstUpdTlr;
 	}
-
-
-
-	
-
 
 	public java.util.Date getLstUpdTm() {
 		return lstUpdTm;
@@ -794,221 +781,225 @@ public abstract class BaseBopCfaStrdeDs  implements Serializable {
 	/**
 	 * Return the value associated with the column: FILLER1
 	 */
-	public java.lang.String getFiller1 () {
+	public java.lang.String getFiller1() {
 		return filler1;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER1
-	 * @param filler1 the FILLER1 value
+	 * 
+	 * @param filler1
+	 *            the FILLER1 value
 	 */
-	public void setFiller1 (java.lang.String filler1) {
+	public void setFiller1(java.lang.String filler1) {
 		this.filler1 = filler1;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER2
 	 */
-	public java.lang.String getFiller2 () {
+	public java.lang.String getFiller2() {
 		return filler2;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER2
-	 * @param filler2 the FILLER2 value
+	 * 
+	 * @param filler2
+	 *            the FILLER2 value
 	 */
-	public void setFiller2 (java.lang.String filler2) {
+	public void setFiller2(java.lang.String filler2) {
 		this.filler2 = filler2;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER3
 	 */
-	public java.lang.String getFiller3 () {
+	public java.lang.String getFiller3() {
 		return filler3;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER3
-	 * @param filler3 the FILLER3 value
+	 * 
+	 * @param filler3
+	 *            the FILLER3 value
 	 */
-	public void setFiller3 (java.lang.String filler3) {
+	public void setFiller3(java.lang.String filler3) {
 		this.filler3 = filler3;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BR_NO
 	 */
-	public java.lang.String getBrNo () {
+	public java.lang.String getBrNo() {
 		return brNo;
 	}
 
 	/**
 	 * Set the value related to the column: BR_NO
-	 * @param brNo the BR_NO value
+	 * 
+	 * @param brNo
+	 *            the BR_NO value
 	 */
-	public void setBrNo (java.lang.String brNo) {
+	public void setBrNo(java.lang.String brNo) {
 		this.brNo = brNo;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ACTIONTYPE
 	 */
-	public java.lang.String getActiontype () {
+	public java.lang.String getActiontype() {
 		return actiontype;
 	}
 
 	/**
 	 * Set the value related to the column: ACTIONTYPE
-	 * @param actiontype the ACTIONTYPE value
+	 * 
+	 * @param actiontype
+	 *            the ACTIONTYPE value
 	 */
-	public void setActiontype (java.lang.String actiontype) {
+	public void setActiontype(java.lang.String actiontype) {
 		this.actiontype = actiontype;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ACTIONDESC
 	 */
-	public java.lang.String getActiondesc () {
+	public java.lang.String getActiondesc() {
 		return actiondesc;
 	}
 
 	/**
 	 * Set the value related to the column: ACTIONDESC
-	 * @param actiondesc the ACTIONDESC value
+	 * 
+	 * @param actiondesc
+	 *            the ACTIONDESC value
 	 */
-	public void setActiondesc (java.lang.String actiondesc) {
+	public void setActiondesc(java.lang.String actiondesc) {
 		this.actiondesc = actiondesc;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: REC_STATUS
 	 */
-	public java.lang.String getRecStatus () {
+	public java.lang.String getRecStatus() {
 		return recStatus;
 	}
 
 	/**
 	 * Set the value related to the column: REC_STATUS
-	 * @param recStatus the REC_STATUS value
+	 * 
+	 * @param recStatus
+	 *            the REC_STATUS value
 	 */
-	public void setRecStatus (java.lang.String recStatus) {
+	public void setRecStatus(java.lang.String recStatus) {
 		this.recStatus = recStatus;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: REP_STATUS
 	 */
-	public java.lang.String getRepStatus () {
+	public java.lang.String getRepStatus() {
 		return repStatus;
 	}
 
 	/**
 	 * Set the value related to the column: REP_STATUS
-	 * @param repStatus the REP_STATUS value
+	 * 
+	 * @param repStatus
+	 *            the REP_STATUS value
 	 */
-	public void setRepStatus (java.lang.String repStatus) {
+	public void setRepStatus(java.lang.String repStatus) {
 		this.repStatus = repStatus;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: APPROVE_STATUS
 	 */
-	public java.lang.String getApproveStatus () {
+	public java.lang.String getApproveStatus() {
 		return approveStatus;
 	}
 
 	/**
 	 * Set the value related to the column: APPROVE_STATUS
-	 * @param approveStatus the APPROVE_STATUS value
+	 * 
+	 * @param approveStatus
+	 *            the APPROVE_STATUS value
 	 */
-	public void setApproveStatus (java.lang.String approveStatus) {
+	public void setApproveStatus(java.lang.String approveStatus) {
 		this.approveStatus = approveStatus;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: APPROVE_RESULT
 	 */
-	public java.lang.String getApproveResult () {
+	public java.lang.String getApproveResult() {
 		return approveResult;
 	}
 
 	/**
 	 * Set the value related to the column: APPROVE_RESULT
-	 * @param approveResult the APPROVE_RESULT value
+	 * 
+	 * @param approveResult
+	 *            the APPROVE_RESULT value
 	 */
-	public void setApproveResult (java.lang.String approveResult) {
+	public void setApproveResult(java.lang.String approveResult) {
 		this.approveResult = approveResult;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: WORK_DATE
 	 */
-	public java.lang.String getWorkDate () {
+	public java.lang.String getWorkDate() {
 		return workDate;
 	}
 
 	/**
 	 * Set the value related to the column: WORK_DATE
-	 * @param workDate the WORK_DATE value
+	 * 
+	 * @param workDate
+	 *            the WORK_DATE value
 	 */
-	public void setWorkDate (java.lang.String workDate) {
+	public void setWorkDate(java.lang.String workDate) {
 		this.workDate = workDate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: IS_SUB_SUCCESS
 	 */
-	public String getSubSuccess () {
+	public String getSubSuccess() {
 		return subSuccess;
 	}
 
 	/**
 	 * Set the value related to the column: IS_SUB_SUCCESS
-	 * @param subSuccess the IS_SUB_SUCCESS value
+	 * 
+	 * @param subSuccess
+	 *            the IS_SUB_SUCCESS value
 	 */
-	public void setSubSuccess (String subSuccess) {
+	public void setSubSuccess(String subSuccess) {
 		this.subSuccess = subSuccess;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.BopCfaStrdeDs)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.BopCfaStrdeDs))
+			return false;
 		else {
 			resource.bean.report.BopCfaStrdeDs bopCfaStrdeDs = (resource.bean.report.BopCfaStrdeDs) obj;
-			if (null == this.getId() || null == bopCfaStrdeDs.getId()) return false;
-			else return (this.getId().equals(bopCfaStrdeDs.getId()));
+			if (null == this.getId() || null == bopCfaStrdeDs.getId())
+				return false;
+			else
+				return (this.getId().equals(bopCfaStrdeDs.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -1017,10 +1008,8 @@ public abstract class BaseBopCfaStrdeDs  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

@@ -21,7 +21,7 @@ public class BiAnalyConfService {
 	/*
 	 * 分页服务
 	 */
-	public PageQueryResult pageQueryByHql(int pageIndex,int maxRows,String hql) throws CommonException {
+	public PageQueryResult pageQueryByHql(int pageIndex, int maxRows, String hql) throws CommonException {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
@@ -35,7 +35,7 @@ public class BiAnalyConfService {
 	 * 更改数据库有效/无效状态
 	 */
 
-	public void updateBiAnalyConfByConfVaild( BiAnalyConf biAnalyConf) throws CommonException {
+	public void updateBiAnalyConfByConfVaild(BiAnalyConf biAnalyConf) throws CommonException {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		rootDAO.update(biAnalyConf);
 	}

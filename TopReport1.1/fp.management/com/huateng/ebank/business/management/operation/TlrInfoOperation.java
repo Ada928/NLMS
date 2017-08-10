@@ -40,7 +40,9 @@ public class TlrInfoOperation extends BaseOperation {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.ebank.framework.operation.OperationContext)
+	 * @see
+	 * com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.
+	 * ebank.framework.operation.OperationContext)
 	 */
 	public void beforeProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
@@ -50,7 +52,9 @@ public class TlrInfoOperation extends BaseOperation {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.ebank.framework.operation.OperationContext)
+	 * @see
+	 * com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.
+	 * ebank.framework.operation.OperationContext)
 	 */
 	public void execute(OperationContext context) throws CommonException {
 		TlrInfoService service = TlrInfoService.getInstance();
@@ -67,57 +71,48 @@ public class TlrInfoOperation extends BaseOperation {
 				tlrInfoView.setTlrno(String.valueOf(tlrInfo.getTlrno()));
 				tlrInfoView.setTlrnoName(tlrInfo.getTlrName());
 				tlrInfoView.setInnerbrcode(tlrInfo.getBrcode());
-				tlrInfoView.setBrcode(BaseDAOUtils.getBctlDAO().query(
-						tlrInfo.getBrcode()).getBrno());
+				tlrInfoView.setBrcode(BaseDAOUtils.getBctlDAO().query(tlrInfo.getBrcode()).getBrno());
 				tlrInfoView.setPasswd(tlrInfo.getPassword());
 				tlrInfoView.setStatus(tlrInfo.getStatus());
-//				tlrInfoView.setCreatDate(tlrInfo.getCreatDate());
-//				tlrInfoView.setEffectDate(tlrInfo.getEffectDate());
-//				tlrInfoView.setExpireDate(tlrInfo.getExpireDate());
+				// tlrInfoView.setCreatDate(tlrInfo.getCreatDate());
+				// tlrInfoView.setEffectDate(tlrInfo.getEffectDate());
+				// tlrInfoView.setExpireDate(tlrInfo.getExpireDate());
 				tlrInfoView.setLatelyLoginTime(tlrInfo.getLastaccesstm());
-				tlrInfoView.setLatelyLogoutTime( tlrInfo.getLastlogouttm());
-				
-				
+				tlrInfoView.setLatelyLogoutTime(tlrInfo.getLastlogouttm());
+
 				tlrInfoView.setIp(tlrInfo.getLoginIp());
 				tlrInfoViewList.add(tlrInfoView);
 			}
 			context.setAttribute(OUT_TLR_LIST, tlrInfoViewList);
 		} else if (cmd.equals("SELECT_ROLES")) {
-			context
-					.setAttribute(OUT_ROLE_LIST, service
-							.selectRolesByTlr(tlrno));
-			context.setAttribute(ALL_ROLE_LIST, service
-					.selectRolesWithoutNullification());
+			context.setAttribute(OUT_ROLE_LIST, service.selectRolesByTlr(tlrno));
+			context.setAttribute(ALL_ROLE_LIST, service.selectRolesWithoutNullification());
 		} else if (cmd.equals("SELECT_TLRROLEINFO")) {
 			if (!brcode.equals(innerbrcode))
 				brcode = innerbrcode;
-			context.setAttribute(OUT_TLR_LIST, service.selectTlrRolesInfo(
-					brcode, tlrno));
+			context.setAttribute(OUT_TLR_LIST, service.selectTlrRolesInfo(brcode, tlrno));
 		} else if (cmd.equals("SELECT_ADD")) {
-			context.setAttribute(OUT_TLR_LIST, service.selectTlrInfoAdd(brcode,
-					tlrno));
+			context.setAttribute(OUT_TLR_LIST, service.selectTlrInfoAdd(brcode, tlrno));
 		} else if (cmd.equals("UPDATE")) {
-			context.setAttribute("resultList", service.updateTlrInfo(
-					(List) context.getAttribute("insertRoleList"),
-					(List) context.getAttribute("deleteRoleList"),
-					(TlrInfo) context.getAttribute("tlrInfo")));
+			context.setAttribute("resultList", service.updateTlrInfo((List) context.getAttribute("insertRoleList"),
+					(List) context.getAttribute("deleteRoleList"), (TlrInfo) context.getAttribute("tlrInfo")));
 		} else if (cmd.equals("DELETE")) {
 			service.deleteTlr((TlrInfo) context.getAttribute("tlrInfo"));
 		} else if (cmd.equals("ACTIVATION")) {
 			service.TlrActivation((TlrInfo) context.getAttribute("tlrInfo"));
 		} else if (cmd.equals("TLR_ROLE_CHANGE")) {
-			context.setAttribute(this.OUT_TLRROLECHANGE_LIST, service
-					.getTlrRoleChange());
+			context.setAttribute(this.OUT_TLRROLECHANGE_LIST, service.getTlrRoleChange());
 		} else if (cmd.equals("TLR_PLURALISM_ROLE")) {
-			context.setAttribute(this.OUT_TLRPLURALISMROLE_LIST, service
-					.getPluRole());
+			context.setAttribute(this.OUT_TLRPLURALISMROLE_LIST, service.getPluRole());
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng.ebank.framework.operation.OperationContext)
+	 * @see
+	 * com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng.
+	 * ebank.framework.operation.OperationContext)
 	 */
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub

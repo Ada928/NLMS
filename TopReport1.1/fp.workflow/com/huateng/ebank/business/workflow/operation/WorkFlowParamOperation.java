@@ -26,160 +26,163 @@ import com.huateng.ebank.framework.util.DataFormat;
  *
  */
 public class WorkFlowParamOperation extends BaseOperation {
-	
-	 public static final String ID = "WorkFlow.WorkFlowParamOP";
-	 public static final String CMD = "CMD";
-	 public static final String OUT_WORKFLOWPARAM_LIST = "OUT_WORKFLOWPARAM_LIST";
-	 //add by GuanLin
-	 public static final String IN_PARAM_PROCESSTEMPLATE = "IN_PARAM_PROCESSTEMPLATE";
-	 public static final String IN_PARAM_TASKNAME = "IN_PARAM_TASKNAME";
-	 public static final String IN_PARAM_APPTYPE = "IN_PARAM_APPTYPE";
-	 public static final String DELETE_LIST = "DELETE_LIST";
-	 public static final String UPDATE_LIST = "UPDATE_LIST";
-	 public static final String INSERT_LIST = "INSERT_LIST";
-	 public static final String NONE_LIST = "NONE_LIST";
+
+	public static final String ID = "WorkFlow.WorkFlowParamOP";
+	public static final String CMD = "CMD";
+	public static final String OUT_WORKFLOWPARAM_LIST = "OUT_WORKFLOWPARAM_LIST";
+	// add by GuanLin
+	public static final String IN_PARAM_PROCESSTEMPLATE = "IN_PARAM_PROCESSTEMPLATE";
+	public static final String IN_PARAM_TASKNAME = "IN_PARAM_TASKNAME";
+	public static final String IN_PARAM_APPTYPE = "IN_PARAM_APPTYPE";
+	public static final String DELETE_LIST = "DELETE_LIST";
+	public static final String UPDATE_LIST = "UPDATE_LIST";
+	public static final String INSERT_LIST = "INSERT_LIST";
+	public static final String NONE_LIST = "NONE_LIST";
 
 	private static final Logger logger = Logger.getLogger(WorkFlowParamOperation.class);
-	 
-	public void afterProc(OperationContext context) throws CommonException {}
-	
-	public void beforeProc(OperationContext context) throws CommonException {}
+
+	public void afterProc(OperationContext context) throws CommonException {
+	}
+
+	public void beforeProc(OperationContext context) throws CommonException {
+	}
 
 	public void execute(OperationContext context) throws CommonException {
 		WorkflowParamDAO workFlowParamDAO = DAOUtils.getWorkflowParamDAO();
 		String cmd = (String) context.getAttribute(WorkFlowParamOperation.CMD);
 		if (logger.isDebugEnabled()) {
-			logger.debug("WorkFlowParamOperation.CMD = "+CMD); 
+			logger.debug("WorkFlowParamOperation.CMD = " + CMD);
 		}
-		//查询工作流参数配置表信息－－WORKFLOW_PARAM
-		 if (cmd.equals("SELECT")) {
+		// 查询工作流参数配置表信息－－WORKFLOW_PARAM
+		if (cmd.equals("SELECT")) {
 
-	            List resultList = new ArrayList();
-	            List typeList = new ArrayList();
-	            List objList = new ArrayList();
-	            String processTemplate = (String) context.getAttribute(WorkFlowParamOperation.IN_PARAM_PROCESSTEMPLATE);
-	            String taskName = (String) context.getAttribute(WorkFlowParamOperation.IN_PARAM_TASKNAME);
-	            String appType = (String) context.getAttribute(WorkFlowParamOperation.IN_PARAM_APPTYPE);
+			List resultList = new ArrayList();
+			List typeList = new ArrayList();
+			List objList = new ArrayList();
+			String processTemplate = (String) context.getAttribute(WorkFlowParamOperation.IN_PARAM_PROCESSTEMPLATE);
+			String taskName = (String) context.getAttribute(WorkFlowParamOperation.IN_PARAM_TASKNAME);
+			String appType = (String) context.getAttribute(WorkFlowParamOperation.IN_PARAM_APPTYPE);
 
-	            StringBuffer hqlstr = new StringBuffer(512);
-	            hqlstr.append(" 1=1 ");
+			StringBuffer hqlstr = new StringBuffer(512);
+			hqlstr.append(" 1=1 ");
 
-	            if (!DataFormat.isEmpty(processTemplate)) {
-	                hqlstr.append(" and po.processTemplate = '").append(processTemplate.trim()).append("' ");
-	            }
-	            if (!DataFormat.isEmpty(taskName)) {
-	                hqlstr.append(" and po.taskName = '").append(taskName.trim()).append("' ");
-	            }
-	            if (!DataFormat.isEmpty(appType)) {
-	                hqlstr.append(" and po.apptype = '").append(appType.trim()).append("' ");
-	            }
-//	            hqlstr.append(" and po.bizSubclass<>'000' order by po.processTemplate, po.taskName, po.appType ");
+			if (!DataFormat.isEmpty(processTemplate)) {
+				hqlstr.append(" and po.processTemplate = '").append(processTemplate.trim()).append("' ");
+			}
+			if (!DataFormat.isEmpty(taskName)) {
+				hqlstr.append(" and po.taskName = '").append(taskName.trim()).append("' ");
+			}
+			if (!DataFormat.isEmpty(appType)) {
+				hqlstr.append(" and po.apptype = '").append(appType.trim()).append("' ");
+			}
+			// hqlstr.append(" and po.bizSubclass<>'000' order by
+			// po.processTemplate, po.taskName, po.appType ");
 
-	            hqlstr.append("  order by po.processTemplate, po.taskName, po.apptype ");
+			hqlstr.append("  order by po.processTemplate, po.taskName, po.apptype ");
 
-	            List list = DAOUtils.getWorkflowParamDAO().queryByCondition(hqlstr.toString());
+			List list = DAOUtils.getWorkflowParamDAO().queryByCondition(hqlstr.toString());
 
-	            context.setAttribute(WorkFlowParamOperation.OUT_WORKFLOWPARAM_LIST, list);
-	            
-	        }else if(cmd.equals("UPDATE")){//工作流参数配置表的增删改查
+			context.setAttribute(WorkFlowParamOperation.OUT_WORKFLOWPARAM_LIST, list);
 
-	    		WorkflowParamDAO workflowParamDao = DAOUtils.getWorkflowParamDAO();
-	    		List delList = (List) context.getAttribute(DELETE_LIST);
-	    		List insertList = (List) context.getAttribute(INSERT_LIST);
-	    		List updateList = (List) context.getAttribute(UPDATE_LIST);
-	    		HQLDAO hqldao = DAOUtils.getHQLDAO();
-	    		for (Iterator it = delList.iterator(); it.hasNext();) {
-	    			//直接删除-----------------------
-	    			WorkflowParam workflowParam = (WorkflowParam) it.next();
-	    			workflowParamDao.delete(workflowParam.getId());
-	    		}
-	    		hqldao.flush();
-	    		if (logger.isDebugEnabled()) {
-	    			logger.debug("WorkFlowParamOperation delete OK"); 
-	    		}
-	    		//--插入--------------------
-	    		for (Iterator it = insertList.iterator(); it.hasNext();) {
-	    			WorkflowParam workflowparam = (WorkflowParam) it.next();
-	    			WorkflowParam wfp = new WorkflowParam();
+		} else if (cmd.equals("UPDATE")) {// 工作流参数配置表的增删改查
 
-	    			wfp.setProcessTemplate(workflowparam.getProcessTemplate());
-	    			wfp.setTaskName(workflowparam.getTaskName());
-	    			wfp.setApptype(workflowparam.getApptype());
-	    			wfp.setBrclass(workflowparam.getBrclass());
-	    			wfp.setBizClass(workflowparam.getBizClass());
-	    			if("0".equals(workflowparam.getBizSubclass())){
-	    				wfp.setBizSubclass("000");
-	    			}else{
-	    				wfp.setBizSubclass(workflowparam.getBizSubclass());
-	    			}
-	    			wfp.setBrcodeType(workflowparam.getBrcodeType());
-	    			wfp.setBrcodeList(inBrcodeList(workflowparam.getBrcodeList()));
-	    			wfp.setAssignType(workflowparam.getAssignType());
-	    			wfp.setAmtType(workflowparam.getAmtType());
-	    			wfp.setTlrnoList(workflowparam.getTlrnoList());
-	    			wfp.setWorkflowRole(workflowparam.getWorkflowRole());
-	    			wfp.setAssignMode(workflowparam.getAssignMode( ));
-	    			wfp.setPass(workflowparam.getPass() );
-	    			wfp.setMiscflgs( workflowparam.getMiscflgs());
-	        	    wfp.setMisc( workflowparam.getMisc());
-	        	    wfp.setCreateTlr( workflowparam.getCreateTlr());
-	        		wfp.setCreateDate(new java.util.Date());
-	        	    wfp.setLastUpdFunc( workflowparam.getLastUpdFunc());
+			WorkflowParamDAO workflowParamDao = DAOUtils.getWorkflowParamDAO();
+			List delList = (List) context.getAttribute(DELETE_LIST);
+			List insertList = (List) context.getAttribute(INSERT_LIST);
+			List updateList = (List) context.getAttribute(UPDATE_LIST);
+			HQLDAO hqldao = DAOUtils.getHQLDAO();
+			for (Iterator it = delList.iterator(); it.hasNext();) {
+				// 直接删除-----------------------
+				WorkflowParam workflowParam = (WorkflowParam) it.next();
+				workflowParamDao.delete(workflowParam.getId());
+			}
+			hqldao.flush();
+			if (logger.isDebugEnabled()) {
+				logger.debug("WorkFlowParamOperation delete OK");
+			}
+			// --插入--------------------
+			for (Iterator it = insertList.iterator(); it.hasNext();) {
+				WorkflowParam workflowparam = (WorkflowParam) it.next();
+				WorkflowParam wfp = new WorkflowParam();
 
-	    			workflowParamDao.insert(wfp);
+				wfp.setProcessTemplate(workflowparam.getProcessTemplate());
+				wfp.setTaskName(workflowparam.getTaskName());
+				wfp.setApptype(workflowparam.getApptype());
+				wfp.setBrclass(workflowparam.getBrclass());
+				wfp.setBizClass(workflowparam.getBizClass());
+				if ("0".equals(workflowparam.getBizSubclass())) {
+					wfp.setBizSubclass("000");
+				} else {
+					wfp.setBizSubclass(workflowparam.getBizSubclass());
+				}
+				wfp.setBrcodeType(workflowparam.getBrcodeType());
+				wfp.setBrcodeList(inBrcodeList(workflowparam.getBrcodeList()));
+				wfp.setAssignType(workflowparam.getAssignType());
+				wfp.setAmtType(workflowparam.getAmtType());
+				wfp.setTlrnoList(workflowparam.getTlrnoList());
+				wfp.setWorkflowRole(workflowparam.getWorkflowRole());
+				wfp.setAssignMode(workflowparam.getAssignMode());
+				wfp.setPass(workflowparam.getPass());
+				wfp.setMiscflgs(workflowparam.getMiscflgs());
+				wfp.setMisc(workflowparam.getMisc());
+				wfp.setCreateTlr(workflowparam.getCreateTlr());
+				wfp.setCreateDate(new java.util.Date());
+				wfp.setLastUpdFunc(workflowparam.getLastUpdFunc());
 
-	    		}
-	    		hqldao.flush();
-	    		if (logger.isDebugEnabled()) {
-	    			logger.debug("WorkFlowParamOperation add OK"); 
-	    		}
-	    		//----更新-------
-	    		for (Iterator it = updateList.iterator(); it.hasNext();) {
-	    			WorkflowParam workflowparam = (WorkflowParam) it.next();
-	    			WorkflowParam wfp = null;
-	    			try {
-	    				wfp = workflowParamDao.queryById(workflowparam.getId());
-	    			} catch(Exception e) {
-	    	    		if (logger.isDebugEnabled()) {
-	    	    			logger.debug("WorkFlowParamOperation update failde,id="+workflowparam.getId()+"]"); 
-	    	    		}
-	    	    		continue;
-	    			}
+				workflowParamDao.insert(wfp);
 
-	    			wfp.setId(workflowparam.getId());
-	    			wfp.setProcessTemplate(workflowparam.getProcessTemplate()) ;
-	    			wfp.setTaskName(workflowparam.getTaskName());
-	    			wfp.setApptype(workflowparam.getApptype());
-	    			wfp.setBrclass(workflowparam.getBrclass());
-	    			wfp.setBizClass(workflowparam.getBizClass( ));
-	    			if("0".equals(workflowparam.getBizSubclass( ))){
-	    				wfp.setBizSubclass("000");
-	    			}else
-	    			   wfp.setBizSubclass(workflowparam.getBizSubclass());
-	    			wfp.setBrcodeType(workflowparam.getBrcodeType());
-//	    			wfp.setBrcodeList(inBrcodeList(workflowparam.getBrcodeList()));
-	    			wfp.setBrcodeList(workflowparam.getBrcodeList());
-	    			wfp.setAssignType(workflowparam.getAssignType());
-	    			wfp.setAmtType(workflowparam.getAmtType());
-	    			wfp.setTlrnoList(workflowparam.getTlrnoList());
-	    			wfp.setWorkflowRole(workflowparam.getWorkflowRole());
-	    			wfp.setAssignMode(workflowparam.getAssignMode());
-	    			wfp.setPass(workflowparam.getPass());
-	    			wfp.setMiscflgs( workflowparam.getMiscflgs());
-	        	    wfp.setMisc( workflowparam.getMisc());
-	        	    wfp.setLastUpdDate(new java.util.Date());
-	        	    wfp.setLastUpdFunc(workflowparam.getLastUpdFunc());
-	        	    wfp.setLastUpdTlr(workflowparam.getLastUpdTlr());
-	    			workflowParamDao.update(wfp);
+			}
+			hqldao.flush();
+			if (logger.isDebugEnabled()) {
+				logger.debug("WorkFlowParamOperation add OK");
+			}
+			// ----更新-------
+			for (Iterator it = updateList.iterator(); it.hasNext();) {
+				WorkflowParam workflowparam = (WorkflowParam) it.next();
+				WorkflowParam wfp = null;
+				try {
+					wfp = workflowParamDao.queryById(workflowparam.getId());
+				} catch (Exception e) {
+					if (logger.isDebugEnabled()) {
+						logger.debug("WorkFlowParamOperation update failde,id=" + workflowparam.getId() + "]");
+					}
+					continue;
+				}
 
-	    		}
-	    		hqldao.flush();
-	    		if (logger.isDebugEnabled()) {
-	    			logger.debug("WorkFlowParamOperation update OK"); 
-	    		}
-	        }
+				wfp.setId(workflowparam.getId());
+				wfp.setProcessTemplate(workflowparam.getProcessTemplate());
+				wfp.setTaskName(workflowparam.getTaskName());
+				wfp.setApptype(workflowparam.getApptype());
+				wfp.setBrclass(workflowparam.getBrclass());
+				wfp.setBizClass(workflowparam.getBizClass());
+				if ("0".equals(workflowparam.getBizSubclass())) {
+					wfp.setBizSubclass("000");
+				} else
+					wfp.setBizSubclass(workflowparam.getBizSubclass());
+				wfp.setBrcodeType(workflowparam.getBrcodeType());
+				// wfp.setBrcodeList(inBrcodeList(workflowparam.getBrcodeList()));
+				wfp.setBrcodeList(workflowparam.getBrcodeList());
+				wfp.setAssignType(workflowparam.getAssignType());
+				wfp.setAmtType(workflowparam.getAmtType());
+				wfp.setTlrnoList(workflowparam.getTlrnoList());
+				wfp.setWorkflowRole(workflowparam.getWorkflowRole());
+				wfp.setAssignMode(workflowparam.getAssignMode());
+				wfp.setPass(workflowparam.getPass());
+				wfp.setMiscflgs(workflowparam.getMiscflgs());
+				wfp.setMisc(workflowparam.getMisc());
+				wfp.setLastUpdDate(new java.util.Date());
+				wfp.setLastUpdFunc(workflowparam.getLastUpdFunc());
+				wfp.setLastUpdTlr(workflowparam.getLastUpdTlr());
+				workflowParamDao.update(wfp);
+
+			}
+			hqldao.flush();
+			if (logger.isDebugEnabled()) {
+				logger.debug("WorkFlowParamOperation update OK");
+			}
+		}
 	}
-	
+
 	/**
 	 *
 	 * @param outBrcodeList
@@ -197,7 +200,7 @@ public class WorkFlowParamOperation extends BaseOperation {
 		for (int i = 0; i < tmpBrcodeArray.length; i++) {
 			List bctlList = new ArrayList();
 			BctlDAO bctldao = DAOUtils.getBctlDAO();
-			bctlList = bctldao.queryByCondition("po.brno='" + tmpBrcodeArray[i]+ "'");
+			bctlList = bctldao.queryByCondition("po.brno='" + tmpBrcodeArray[i] + "'");
 			if (bctlList.size() > 0) {
 				Bctl bctl = (Bctl) bctlList.get(0);
 				if (i == 0) {

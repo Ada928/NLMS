@@ -24,35 +24,35 @@ public class RoleMgrService {
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(RoleMgrService.class);
+
 	/**
 	 * get instance.
 	 *
 	 * @return
 	 */
 	public synchronized static RoleMgrService getInstance() {
-		return (RoleMgrService)ApplicationContextUtils.getBean(RoleMgrService.class.getName());
+		return (RoleMgrService) ApplicationContextUtils.getBean(RoleMgrService.class.getName());
 	}
 
 	public RoleMgrService() {
 	}
 
-    /**
-     * 获得角色管理表
-     * @author guolitao
-     * @param none
-     * @return List
-     * @throws CommonException
-     */
-	public List getRoleInfo()throws CommonException
-	{
+	/**
+	 * 获得角色管理表
+	 * 
+	 * @author guolitao
+	 * @param none
+	 * @return List
+	 * @throws CommonException
+	 */
+	public List getRoleInfo() throws CommonException {
 		List resultList = new ArrayList();
 		RoleInfoDAO roleDao = BaseDAOUtils.getRoleInfoDAO();
 		resultList = roleDao.findAll();
 		List results = new ArrayList();
-		for(int i = 0; i < resultList.size();i++)
-		{
+		for (int i = 0; i < resultList.size(); i++) {
 			RoleBean rb = new RoleBean();
-			RoleInfo  r = (RoleInfo) resultList.get(i);
+			RoleInfo r = (RoleInfo) resultList.get(i);
 			rb.setRoleid(r.getId());
 			rb.setRolename(r.getRoleName());
 			rb.setStatus(r.getStatus());
@@ -66,19 +66,21 @@ public class RoleMgrService {
 	 * @return
 	 * @throws CommonException
 	 */
-	public RoleInfo getRoleById(Integer roleId)throws CommonException{
+	public RoleInfo getRoleById(Integer roleId) throws CommonException {
 		RoleInfoDAO roleDao = BaseDAOUtils.getRoleInfoDAO();
 		return roleDao.findById(roleId);
 	}
-    /**
-     * 获得角色管理表
-     * @author guolitao
-     * @param pageSize, pageIndex
-     * @return PageQueryResult
-     * @throws CommonException
-     */
-	public PageQueryResult getRoleInfo(int pageSize, int pageIndex)throws CommonException
-	{
+
+	/**
+	 * 获得角色管理表
+	 * 
+	 * @author guolitao
+	 * @param pageSize,
+	 *            pageIndex
+	 * @return PageQueryResult
+	 * @throws CommonException
+	 */
+	public PageQueryResult getRoleInfo(int pageSize, int pageIndex) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("getRoleInfo() - start"); //$NON-NLS-1$
 		}
@@ -101,13 +103,12 @@ public class RoleMgrService {
 		}
 
 		List list = queryResult.getQueryResult();
-		for(int i = 0; i < list.size(); i++)
-		{
-			Object[] result = (Object[])list.get(i);
+		for (int i = 0; i < list.size(); i++) {
+			Object[] result = (Object[]) list.get(i);
 			RoleBean role = new RoleBean();
-			role.setRoleid((Integer)result[0]);
-			role.setRolename((String)result[1]);
-			role.setStatus((String)result[2]);
+			role.setRoleid((Integer) result[0]);
+			role.setRolename((String) result[1]);
+			role.setStatus((String) result[2]);
 			resultList.add(role);
 			pageQueryResult.setQueryResult(resultList);
 			pageQueryResult.setTotalCount(resultList.size());
@@ -115,44 +116,43 @@ public class RoleMgrService {
 		pageQueryResult.setTotalCount(queryResult.getTotalCount());
 		return pageQueryResult;
 	}
+
 	/**
 	 * 保存角色管理信息
+	 * 
 	 * @author guolitao
 	 * @return void
 	 * @param delList,insertList,updateList,context
 	 * @throws CommonException
 	 */
-	public void updateRoleInfo(List delList,List insertList, List updateList, OperationContext context)
-	throws CommonException
-	{
+	public void updateRoleInfo(List delList, List insertList, List updateList, OperationContext context)
+			throws CommonException {
 		if (logger.isDebugEnabled()) {
-			logger.debug("updateRoleInfo(List delList,List insertList, List updateList, OperationContext context) - start"); //$NON-NLS-1$
+			logger.debug(
+					"updateRoleInfo(List delList,List insertList, List updateList, OperationContext context) - start"); //$NON-NLS-1$
 		}
 		RoleInfoDAO roleDao = BaseDAOUtils.getRoleInfoDAO();
 		GlobalInfo globalData = GlobalInfo.getCurrentInstance();
-		//新增list
-		for(Iterator it = insertList.iterator();it.hasNext();)
-		{
-			RoleBean rb = (RoleBean)it.next();
+		// 新增list
+		for (Iterator it = insertList.iterator(); it.hasNext();) {
+			RoleBean rb = (RoleBean) it.next();
 			RoleInfo role = new RoleInfo();
 			role.setId(rb.getRoleid());
 			role.setRoleName(rb.getRolename());
 			role.setStatus(rb.getStatus());
 			roleDao.save(role);
 		}
-		//更新list
-		for(Iterator it = updateList.iterator();it.hasNext();)
-		{
-			RoleBean rb = (RoleBean)it.next();
+		// 更新list
+		for (Iterator it = updateList.iterator(); it.hasNext();) {
+			RoleBean rb = (RoleBean) it.next();
 			RoleInfo role = roleDao.findById(rb.getRoleid());
 			role.setRoleName(rb.getRolename());
 			role.setStatus(rb.getStatus());
 			roleDao.getHibernateTemplate().update(role);
 		}
-		//删除list
-		for(Iterator it = delList.iterator();it.hasNext();)
-		{
-			RoleBean rb = (RoleBean)it.next();
+		// 删除list
+		for (Iterator it = delList.iterator(); it.hasNext();) {
+			RoleBean rb = (RoleBean) it.next();
 			Integer ID = rb.getRoleid();
 			RoleInfo role = roleDao.findById(ID);
 			roleDao.delete(role);
@@ -172,19 +172,19 @@ public class RoleMgrService {
 		String roleName = role.getRoleName();
 		return roleName;
 	}
+
 	/**
 	 * 查询登陆柜员是否有某岗位（暂）
 	 *
 	 * @param userId
 	 * @param roleId
 	 */
-	public boolean hasRole(int userId,int roleId)throws CommonException
-	{
+	public boolean hasRole(int userId, int roleId) throws CommonException {
 
 		TlrRoleRelDAO userRoleRelDAO = BaseDAOUtils.getTlrRoleRelDAO();
-		String sql = "po.userid="+userId+" and po.roleid="+roleId;
-		List results   = userRoleRelDAO.queryByCondition(sql);
-		if(results!=null && results.size()>0){
+		String sql = "po.userid=" + userId + " and po.roleid=" + roleId;
+		List results = userRoleRelDAO.queryByCondition(sql);
+		if (results != null && results.size() > 0) {
 			return true;
 		}
 		return false;

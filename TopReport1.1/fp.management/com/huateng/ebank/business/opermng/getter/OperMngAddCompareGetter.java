@@ -1,4 +1,5 @@
 package com.huateng.ebank.business.opermng.getter;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +21,11 @@ public class OperMngAddCompareGetter extends BaseGetter {
 	public Result call() throws AppException {
 
 		String adtRcdPk = getCommQueryServletRequest().getParameter("adtRcdPk");
-		SysTaskInfo sysTaskInfo = (SysTaskInfo)getSysTaskInfo(adtRcdPk).get(0);//获取SysTaskInfo
+		SysTaskInfo sysTaskInfo = (SysTaskInfo) getSysTaskInfo(adtRcdPk).get(0);// 获取SysTaskInfo
 		ReportTaskUtil reportTaskUtil = new ReportTaskUtil();
-		TlrInfoBean tlrInfoBean =new TlrInfoBean();
+		TlrInfoBean tlrInfoBean = new TlrInfoBean();
 		try {
-			tlrInfoBean = (TlrInfoBean) reportTaskUtil.getObjctBySysTaskInfo(sysTaskInfo);//获取修改的bean
+			tlrInfoBean = (TlrInfoBean) reportTaskUtil.getObjctBySysTaskInfo(sysTaskInfo);// 获取修改的bean
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,11 +34,11 @@ public class OperMngAddCompareGetter extends BaseGetter {
 			e.printStackTrace();
 		}
 		TlrInfo tlrInfo = null;
-		if(ReportEnum.REPORT_TASK_TRANS_CD.NEW.value.equals(sysTaskInfo.getUpdTransCd())){
+		if (ReportEnum.REPORT_TASK_TRANS_CD.NEW.value.equals(sysTaskInfo.getUpdTransCd())) {
 			tlrInfo = new TlrInfo();
-		}else{
+		} else {
 			TlrInfoDAO tlrInfoDao = DAOUtils.getTlrInfoDAO();
-		    tlrInfo = tlrInfoDao.queryById(tlrInfoBean.getTlrno());//获取旧bean
+			tlrInfo = tlrInfoDao.queryById(tlrInfoBean.getTlrno());// 获取旧bean
 		}
 
 		List<TlrInfoBean> resultList = new ArrayList();
@@ -46,7 +47,7 @@ public class OperMngAddCompareGetter extends BaseGetter {
 		tlrInfoBean.setTlrNameOld(tlrInfo.getTlrName());
 		tlrInfoBean.setTlrnoOld(tlrInfo.getTlrno());
 		resultList.add(tlrInfoBean);
-		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), resultList,getResult());
+		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), resultList, getResult());
 
 		result.setContent(resultList);
 		result.getPage().setTotalPage(1);
@@ -55,7 +56,8 @@ public class OperMngAddCompareGetter extends BaseGetter {
 	}
 
 	public List getSysTaskInfo(String adtRcdPk) throws CommonException {
-		String str = "select sti from SysTaskInfo sti where sti.adtRcdPk = '" + adtRcdPk +"' and sti.intInsId = '" + ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value+"'" ;
+		String str = "select sti from SysTaskInfo sti where sti.adtRcdPk = '" + adtRcdPk + "' and sti.intInsId = '"
+				+ ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value + "'";
 		List fl = DAOUtils.getHQLDAO().queryByQL2List(str);
 		return fl;
 	}

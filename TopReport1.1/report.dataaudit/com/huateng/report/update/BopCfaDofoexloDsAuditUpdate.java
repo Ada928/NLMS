@@ -26,16 +26,15 @@ public class BopCfaDofoexloDsAuditUpdate extends BaseUpdate {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 
 		try {
-			//返回对象
+			// 返回对象
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			//结果集对象
+			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-			List<BopCfaDofoexloDs>approveList = new ArrayList<BopCfaDofoexloDs>();
+			List<BopCfaDofoexloDs> approveList = new ArrayList<BopCfaDofoexloDs>();
 			BopCfaDofoexloDs bopcfa = null;
 			while (updateResultBean.hasNext()) {
 				// 属性拷贝
@@ -51,22 +50,22 @@ public class BopCfaDofoexloDsAuditUpdate extends BaseUpdate {
 			}
 			String approveStatus = updateResultBean.getParameter("approveStatusChoose");
 			String approveResult = updateResultBean.getParameter("approveResultChoose");
-			for(BopCfaDofoexloDs dofoexlods : approveList){
+			for (BopCfaDofoexloDs dofoexlods : approveList) {
 				dofoexlods.setApproveStatus(approveStatus);
 				dofoexlods.setApproveResult(approveResult);
 			}
 
-			//Operation参数
+			// Operation参数
 			OperationContext context = new OperationContext();
 			context.setAttribute(BopCfaDofoexloDsOperation.CMD, BopCfaDofoexloDsOperation.CMD_APPROVED);
 			context.setAttribute(BopCfaDofoexloDsOperation.IN_PARAM, approveList);
-			//call方式开启operation事务
+			// call方式开启operation事务
 			OPCaller.call(BopCfaDofoexloDsOperation.ID, context);
 			return updateReturnBean;
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
-			throw new AppException(Module.SYSTEM_MODULE,Rescode.DEFAULT_RESCODE,e.getMessage(),e);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
 	}
 

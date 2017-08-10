@@ -21,14 +21,12 @@ import com.huateng.exception.AppException;
 public class OperMngUnlockUpdate extends BaseUpdate {
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
 		try {
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("operMngEntry");
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("operMngEntry");
 			String tlrno = updateResultBean.getParameter("tlrno");
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(OperMngOperation.CMD, "unlock");
@@ -39,8 +37,7 @@ public class OperMngUnlockUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

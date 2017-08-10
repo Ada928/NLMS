@@ -26,7 +26,7 @@ import com.huateng.report.service.BopAccDsService;
  *
  * @author shishu.zhang
  *
- * 2012-8-15上午10:54:59
+ *         2012-8-15上午10:54:59
  */
 @SuppressWarnings("unchecked")
 public class BopAccDsRecordInOutGetter extends BaseGetter {
@@ -35,31 +35,28 @@ public class BopAccDsRecordInOutGetter extends BaseGetter {
 		try {
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	@SuppressWarnings("rawtypes")
-	public PageQueryResult getData() throws AppException{
+	public PageQueryResult getData() throws AppException {
 		int pageSize = getResult().getPage().getEveryPage();
 		int pageIndex = getResult().getPage().getCurrentPage();
 		Map map = getCommQueryServletRequest().getParameterMap();
 		String op = (String) map.get("op");
-		if(!DataFormat.isEmpty(op)){
+		if (!DataFormat.isEmpty(op)) {
 			PageQueryResult queryResult = new PageQueryResult();
 			String id = (String) map.get("id");
 			ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
@@ -75,7 +72,7 @@ public class BopAccDsRecordInOutGetter extends BaseGetter {
 			bopAccDs.setLimitType(accountBopAccDs.getLimitType());
 			bopAccDs.setAccountLimit(accountBopAccDs.getAccountLimit());
 			bopAccDs.setAccountType(accountBopAccDs.getAccountType());
-			if(StringUtils.equals("modify", op)){
+			if (StringUtils.equals("modify", op)) {
 				bopAccDs.setActiondesc(null);
 			}
 			List<BopAccDs> list = new ArrayList<BopAccDs>();
@@ -99,7 +96,8 @@ public class BopAccDsRecordInOutGetter extends BaseGetter {
 			String qaccountno = (String) map.get("qaccountno");
 
 			BopAccDsService bopAccDsService = BopAccDsService.getInstance();
-			return bopAccDsService.queryRecordInOut(pageIndex, pageSize, qstartDate, qendDate, qactiontype, qapproveStatus, qrepStatus, qaccountno, qrecStatus);
+			return bopAccDsService.queryRecordInOut(pageIndex, pageSize, qstartDate, qendDate, qactiontype,
+					qapproveStatus, qrepStatus, qaccountno, qrecStatus);
 		}
 	}
 }

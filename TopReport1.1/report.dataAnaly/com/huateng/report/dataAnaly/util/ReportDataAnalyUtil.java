@@ -15,14 +15,13 @@ import com.huateng.report.utils.ReportUtils;
 public class ReportDataAnalyUtil {
 
 	public static final String PARAM_ANALY_ID = "PARAM_ANALY_ID";
-	public static final String PARAM_BUSI_TYPE="PARAM_BUSI_TYPE";
+	public static final String PARAM_BUSI_TYPE = "PARAM_BUSI_TYPE";
 	public static final String PARAM_APP_TYPE = "PARAM_APP_TYPE";
 	public static final String PARAM_WORK_DATE = "PARAM_WORK_DATE";
 	public static final String PARAM_BR_NO = "PARAM_BR_NO";
 	public static final String PARAM_TLR_NO = "PARAM_TLR_NO";
 
-
-	public static Map<String, String> getAnalyParamMap(){
+	public static Map<String, String> getAnalyParamMap() {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put(PARAM_ANALY_ID, "分析记录ID");
 		map.put(PARAM_BUSI_TYPE, "业务类型");
@@ -33,11 +32,11 @@ public class ReportDataAnalyUtil {
 		return map;
 	}
 
-	public static String getConfAnalyParamIds(){
+	public static String getConfAnalyParamIds() {
 		Map<String, String> paramMap = getAnalyParamMap();
 		StringBuffer result = new StringBuffer();
 		for (Iterator<String> it = paramMap.keySet().iterator(); it.hasNext();) {
-			String key =  it.next();
+			String key = it.next();
 			result.append(key);
 			result.append(",");
 			result.append(paramMap.get(key));
@@ -46,7 +45,8 @@ public class ReportDataAnalyUtil {
 		return result.toString();
 	}
 
-	public static BiAnalyDetail analyConfToDetail(BiAnalyProcess process,BiAnalyConf conf,Map<String, String> paramMap){
+	public static BiAnalyDetail analyConfToDetail(BiAnalyProcess process, BiAnalyConf conf,
+			Map<String, String> paramMap) {
 		BiAnalyDetail det = new BiAnalyDetail();
 		String detId = ReportUtils.getUUID();
 		det.setId(detId);
@@ -54,15 +54,15 @@ public class ReportDataAnalyUtil {
 		det.setConfType(conf.getConfType());
 		det.setConfClassPath(conf.getConfClassPath());
 		det.setConfIsRet(conf.getConfIsRet());
-		//对参数进行转换
+		// 对参数进行转换
 		String confstr = conf.getConfParamIds();
-		if (confstr!=null && confstr.trim().length()>0) {
+		if (confstr != null && confstr.trim().length() > 0) {
 			String[] pars = confstr.split(",");
 			for (int i = 0; i < pars.length; i++) {
 				String par = pars[i];
-				if(par!=null && par.trim().length()>0){
+				if (par != null && par.trim().length() > 0) {
 					String[] values = par.trim().split("=");
-					if(values!=null){
+					if (values != null) {
 						BiAnalyDetailPars detparBean = new BiAnalyDetailPars();
 						detparBean.setId(ReportUtils.getUUID());
 						detparBean.setDetId(detId);

@@ -22,8 +22,8 @@ public class ChangePwdGetter extends BaseGetter {
 		try {
 
 			ChangePwdForm changePwdForm = new ChangePwdForm();
-			ResultMng.fillResultByObject(getCommonQueryBean(),
-					getCommQueryServletRequest(), changePwdForm, getResult());
+			ResultMng.fillResultByObject(getCommonQueryBean(), getCommQueryServletRequest(), changePwdForm,
+					getResult());
 			List content = new ArrayList();
 			content.add(changePwdForm);
 			result.setContent(content);
@@ -33,8 +33,7 @@ public class ChangePwdGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

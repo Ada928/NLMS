@@ -3,30 +3,27 @@
 <beans>
 
 
-	<bean id="parammng.LimitParamOP" class="com.huateng.ebank.business.parammng.operation.LimitParamOperation">
-	</bean>
-	
-	<bean id="parammng.ForwardTaskOperation" class="com.huateng.ebank.business.parammng.operation.ForwardTaskOperation">
-	</bean>
-	
-	<bean id="parammng.TlrInfoOperation" class="com.huateng.ebank.business.parammng.operation.TlrInfoOperation">
-	</bean>
-	
-	<bean id="parammng.TlrInfoUpdaterOperation" class="com.huateng.ebank.business.parammng.operation.TlrInfoUpdaterOperation">
-	</bean>
-	
-		<!-- 批量步骤 -->
-	<bean id="parammng.bhProcStepOP"
-		class="com.huateng.ebank.business.parammng.operation.BhProcStepOperation">
-	</bean>
+    <bean id="parammng.LimitParamOP" class="com.huateng.ebank.business.parammng.operation.LimitParamOperation">
+    </bean>
 
-	<!-- 批量步骤新增 -->
-	<bean id="parammng.BhProcStepAddOperationNew"
-		class="com.huateng.ebank.business.parammng.operation.BhProcStepAddOperationNew">
-	</bean>
-	
-	<!-- 数据字典 -->
-	<bean id="DataDicOperation"
-		class="com.huateng.ebank.business.datadic.operation.DataDicOperation">
-	</bean>
+    <bean id="parammng.ForwardTaskOperation" class="com.huateng.ebank.business.parammng.operation.ForwardTaskOperation">
+    </bean>
+
+    <bean id="parammng.TlrInfoOperation" class="com.huateng.ebank.business.parammng.operation.TlrInfoOperation">
+    </bean>
+
+    <bean id="parammng.TlrInfoUpdaterOperation" class="com.huateng.ebank.business.parammng.operation.TlrInfoUpdaterOperation">
+    </bean>
+
+    <!-- 批量步骤 -->
+    <bean id="parammng.bhProcStepOP" class="com.huateng.ebank.business.parammng.operation.BhProcStepOperation">
+    </bean>
+
+    <!-- 批量步骤新增 -->
+    <bean id="parammng.BhProcStepAddOperationNew" class="com.huateng.ebank.business.parammng.operation.BhProcStepAddOperationNew">
+    </bean>
+
+    <!-- 数据字典 -->
+    <bean id="DataDicOperation" class="com.huateng.ebank.business.datadic.operation.DataDicOperation">
+    </bean>
 </beans>	

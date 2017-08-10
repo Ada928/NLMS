@@ -11,6 +11,7 @@ import com.huateng.exception.AppException;
 
 /**
  * holiday query
+ * 
  * @author shen_antonio
  */
 public class HolidayGetter extends BaseGetter {
@@ -24,11 +25,8 @@ public class HolidayGetter extends BaseGetter {
 		oc.setAttribute(HolidayAllQueryOperation.INPUT_PAGEINDEX, new Integer(pageIndex));
 		oc.setAttribute(HolidayAllQueryOperation.INPUT_PAGESIZE, new Integer(pageSize));
 		OPCaller.call(HolidayAllQueryOperation.ID, oc);
-		PageQueryResult pageQueryResult = (PageQueryResult)oc.getAttribute(HolidayAllQueryOperation.OUTPUT_PAGERESULT);
-		ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageQueryResult.getQueryResult(),
+		PageQueryResult pageQueryResult = (PageQueryResult) oc.getAttribute(HolidayAllQueryOperation.OUTPUT_PAGERESULT);
+		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
 				getResult());
 		result.setContent(pageQueryResult.getQueryResult());
 		result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));

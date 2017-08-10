@@ -2,41 +2,30 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBopCfaLounexguDs;
 
-
-
 public class BopCfaLounexguDs extends BaseBopCfaLounexguDs {
 	private static final long serialVersionUID = 1L;
-	
-	
-	
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public BopCfaLounexguDs () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public BopCfaLounexguDs() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BopCfaLounexguDs (java.lang.String id) {
+	public BopCfaLounexguDs(java.lang.String id) {
 		super(id);
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public BopCfaLounexguDs (
-		java.lang.String id,
-		java.lang.String apptype,
-		java.lang.String currentfile) {
+	public BopCfaLounexguDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile) {
 
-		super (
-			id,
-			apptype,
-			currentfile);
+		super(id, apptype, currentfile);
 	}
 
-	private java.util.List<BopCfaFogucodeinfo>  fogucodeinfos;
+	private java.util.List<BopCfaFogucodeinfo> fogucodeinfos;
 
 	public java.util.List<BopCfaFogucodeinfo> getFogucodeinfos() {
 		return fogucodeinfos;
@@ -50,17 +39,9 @@ public class BopCfaLounexguDs extends BaseBopCfaLounexguDs {
 		return serialVersionUID;
 	}
 
-	
-	
-	
-	
-/*[CONSTRUCTOR MARKER END]*/
-
+	/* [CONSTRUCTOR MARKER END] */
 
 	private String fogucodeinfosStr;
-
-
-
 
 	public String getFogucodeinfosStr() {
 		return fogucodeinfosStr;
@@ -69,7 +50,5 @@ public class BopCfaLounexguDs extends BaseBopCfaLounexguDs {
 	public void setFogucodeinfosStr(String fogucodeinfosStr) {
 		this.fogucodeinfosStr = fogucodeinfosStr;
 	}
-	
-	
-	
+
 }

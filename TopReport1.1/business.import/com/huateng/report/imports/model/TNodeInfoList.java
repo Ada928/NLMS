@@ -15,13 +15,13 @@ import java.util.ArrayList;
 @SuppressWarnings("unchecked")
 public class TNodeInfoList {
 
-	public  Hashtable nl = new Hashtable(); // 节点列表，快查
+	public Hashtable nl = new Hashtable(); // 节点列表，快查
 
 	/**
 	 * @author chl_seu 初始化列表，清空列表，初始化根节点
 	 * 
 	 */
-	public  void init() {
+	public void init() {
 		nl.clear();
 		// 创建一个默认根节点
 		TNodeKeyInfo nki = new TNodeKeyInfo();
@@ -37,7 +37,7 @@ public class TNodeInfoList {
 	 * @author chl_seu 节点信息入列表
 	 * 
 	 */
-	public  boolean addNodeInfo(TNodeInfo ni) {
+	public boolean addNodeInfo(TNodeInfo ni) {
 		if (ni != null) {
 			nl.put(ni.keyinfo, ni);
 			TNodeKeyInfo nki = new TNodeKeyInfo();
@@ -61,7 +61,7 @@ public class TNodeInfoList {
 	 *            键信息
 	 * @return 节点信息
 	 */
-	public  TNodeInfo getNodeInfo(TNodeKeyInfo nki) {
+	public TNodeInfo getNodeInfo(TNodeKeyInfo nki) {
 		if (nki != null) {
 			return (TNodeInfo) nl.get(nki);
 		} else {
@@ -88,7 +88,7 @@ public class TNodeInfoList {
 	 * @author chl_seu 返回HashTable
 	 * 
 	 */
-	public  Hashtable rtnl() {
+	public Hashtable rtnl() {
 		return nl;
 	}
 

@@ -40,12 +40,12 @@ public class RoleMngOperation extends BaseOperation {
 		if ("status".equals(context.getAttribute(CMD))) {
 			String roleid = (String) context.getAttribute(IN_ROLEID);
 			String status = (String) context.getAttribute(IN_PARAM);
-			
+
 			RoleInfo role = roleDao.query(Integer.valueOf(roleid));
 			role.setStatus(status);
-			
+
 			roleDao.getHibernateTemplate().saveOrUpdate(role);
-		} 
+		}
 	}
 
 	/*

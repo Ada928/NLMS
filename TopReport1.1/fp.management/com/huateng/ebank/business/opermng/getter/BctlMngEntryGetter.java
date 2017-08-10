@@ -34,20 +34,16 @@ public class BctlMngEntryGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -61,21 +57,21 @@ public class BctlMngEntryGetter extends BaseGetter {
 		}
 		hql += " order by bctl.brno";
 		List<Bctl> list = rootdao.queryByQL2List(hql);
-		
+
 		List<String> tlrnoBctlRel = new ArrayList<String>();
-		if (!DataFormat.isEmpty(tlrno) && !tlrno.equals("0")){
+		if (!DataFormat.isEmpty(tlrno) && !tlrno.equals("0")) {
 			String tempHql = "select tlrBctl from TlrBctlRel tlrBctl where tlrBctl.tlrNo = '" + tlrno + "'";
 			List<TlrBctlRel> tempList = rootdao.queryByQL2List(tempHql);
-			for(TlrBctlRel temp : tempList){
+			for (TlrBctlRel temp : tempList) {
 				tlrnoBctlRel.add(temp.getBrcode());
 			}
 		}
 		if (tlrnoBctlRel.size() > 0) {
-			for(Bctl bc : list){
+			for (Bctl bc : list) {
 				bc.setSelected(tlrnoBctlRel.contains(bc.getBrcode()));
 			}
 		}
-		
+
 		PageQueryResult pageQueryResult = new PageQueryResult();
 		pageQueryResult.setTotalCount(list.size());
 		pageQueryResult.setQueryResult(list);

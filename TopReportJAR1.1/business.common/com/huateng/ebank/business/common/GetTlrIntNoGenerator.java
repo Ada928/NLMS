@@ -22,13 +22,15 @@ import com.huateng.ebank.framework.util.DataFormat;
 * <p>@Auther: farly.yu</p>
 * <p>@Version: 1.0 </p>
 */
-public class GetTlrIntNoGenerator{
+public class GetTlrIntNoGenerator {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.huateng.commquery.cfieldmodel.BaseGenerator#gen(java.util.Map)
 	 */
-	public String gen(Map<String,Object> paramMap) throws CommonException{
-		return DataFormat.intToString(CommonService.getInstance().getSeqno(
-						SystemConstant.VALUE_NO_TLRINTNO,SystemConstant.VALUE_INDEX), 8);
+	public String gen(Map<String, Object> paramMap) throws CommonException {
+		return DataFormat.intToString(
+				CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_TLRINTNO, SystemConstant.VALUE_INDEX), 8);
 	}
 }

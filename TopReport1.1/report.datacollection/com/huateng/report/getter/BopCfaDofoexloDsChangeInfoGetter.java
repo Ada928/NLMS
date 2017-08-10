@@ -31,13 +31,10 @@ public class BopCfaDofoexloDsChangeInfoGetter extends BaseGetter {
 		try {
 			PageQueryResult queryResult = getData();
 			if (!queryResult.getQueryResult().isEmpty()) {
-				ResultMng.fillResultByList(getCommonQueryBean(),
-						getCommQueryServletRequest(), queryResult
-								.getQueryResult(), getResult());
+				ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+						queryResult.getQueryResult(), getResult());
 				result.setContent(queryResult.getQueryResult());
-				result.getPage().setTotalPage(
-						queryResult.getPageCount(getResult().getPage()
-								.getEveryPage()));
+				result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 				result.init();
 			} else {
 				result.setContent(Collections.emptyList());
@@ -46,8 +43,7 @@ public class BopCfaDofoexloDsChangeInfoGetter extends BaseGetter {
 			}
 			return result;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -60,8 +56,7 @@ public class BopCfaDofoexloDsChangeInfoGetter extends BaseGetter {
 	private PageQueryResult getData() throws AppException {
 
 		String op = getCommQueryServletRequest().getParameter("op");
-		if (StringUtils.equals(op,
-				BopCfaDofoexloDsChangeInfoUpdate.OPERATION_INSERT)) {
+		if (StringUtils.equals(op, BopCfaDofoexloDsChangeInfoUpdate.OPERATION_INSERT)) {
 			BopCfaDofoexloDs bopcfa = new BopCfaDofoexloDs();
 			bopcfa.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_A);
 			bopcfa.setRecStatus(TopReportConstants.REPORT_RECSTATUS_02);
@@ -70,7 +65,7 @@ public class BopCfaDofoexloDsChangeInfoGetter extends BaseGetter {
 			bopcfa.setSubSuccess(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO);
 			bopcfa.setApptype(TopReportConstants.REPORT_APP_TYPE_CFA);
 			bopcfa.setCurrentfile(TopReportConstants.REPORT_FILE_TYPE_CFA_CB);
-			bopcfa.setChangeno(ReportUtils.getTempStr(null, 4));//生成变动编号
+			bopcfa.setChangeno(ReportUtils.getTempStr(null, 4));// 生成变动编号
 			List<BopCfaDofoexloDs> list = new ArrayList<BopCfaDofoexloDs>(1);
 			list.add(bopcfa);
 			PageQueryResult queryResult = new PageQueryResult();
@@ -85,7 +80,7 @@ public class BopCfaDofoexloDsChangeInfoGetter extends BaseGetter {
 			BopCfaDofoexloDs bopcfa = service.loadChangeInfo(id);
 			List<BopCfaDofoexloDs> list = new ArrayList<BopCfaDofoexloDs>(1);
 			if (null != bopcfa) {
-				if (StringUtils.equals(op, BopCfaDofoexloDsChangeInfoUpdate.OPERATION_MODIFY)){
+				if (StringUtils.equals(op, BopCfaDofoexloDsChangeInfoUpdate.OPERATION_MODIFY)) {
 					if (StringUtils.equals(bopcfa.getSubSuccess(), TopReportConstants.REPORT_IS_SUB_SUCCESS_NO)) {
 						bopcfa.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_A);
 					} else {
@@ -108,7 +103,7 @@ public class BopCfaDofoexloDsChangeInfoGetter extends BaseGetter {
 			queryResult.setQueryResult(list);
 			queryResult.setTotalCount(list.size());
 			return queryResult;
-		}  else {
+		} else {
 
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "国内外汇贷款信息补录-变动信息查询");
 
@@ -126,11 +121,9 @@ public class BopCfaDofoexloDsChangeInfoGetter extends BaseGetter {
 			String filler2 = getCommQueryServletRequest().getParameter("filler2");
 
 			String brno = GlobalInfo.getCurrentInstance().getBrno();
-				BopCfaDofoexloDsService service = BopCfaDofoexloDsService.getInstance();
-			return service.pageQueryByEdit(pageIndex, pageSize,
-					TopReportConstants.REPORT_FILE_TYPE_CFA_CB, qstartDate,qendDate,
-					actiontype, recStatus, approveStatus, repStatus,
-					filler2, brno);
+			BopCfaDofoexloDsService service = BopCfaDofoexloDsService.getInstance();
+			return service.pageQueryByEdit(pageIndex, pageSize, TopReportConstants.REPORT_FILE_TYPE_CFA_CB, qstartDate,
+					qendDate, actiontype, recStatus, approveStatus, repStatus, filler2, brno);
 		}
 	}
 }

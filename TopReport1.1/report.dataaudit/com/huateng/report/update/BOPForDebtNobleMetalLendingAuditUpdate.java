@@ -21,40 +21,39 @@ import com.huateng.exception.AppException;
 import com.huateng.report.operation.BOPForDebtNobleMetalLendingOperation;
 
 public class BOPForDebtNobleMetalLendingAuditUpdate extends BaseUpdate {
-	
-	private static final String DATASET_ID="BOPForDebtNobleMetalLendingAD";
+
+	private static final String DATASET_ID = "BOPForDebtNobleMetalLendingAD";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
-		
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
+
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			List<BopCfaExdebtDs> BopCfaExdebtDsList = new ArrayList<BopCfaExdebtDs>();
-			while (updateResultBean.hasNext())
-			{
+			while (updateResultBean.hasNext()) {
 				BopCfaExdebtDs bopAccDs = new BopCfaExdebtDs();
 				Map map = updateResultBean.next();
-				mapToObject(bopAccDs,map);
+				mapToObject(bopAccDs, map);
 				BopCfaExdebtDsList.add(bopAccDs);
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
 			String approveResultChoose = updateResultBean.getParameter("approveResultChoose");
-			
+
 			OperationContext oc = new OperationContext();
-			oc.setAttribute(BOPForDebtNobleMetalLendingOperation.CMD, BOPForDebtNobleMetalLendingOperation.OP_LOAN_AUDIT);
+			oc.setAttribute(BOPForDebtNobleMetalLendingOperation.CMD,
+					BOPForDebtNobleMetalLendingOperation.OP_LOAN_AUDIT);
 			oc.setAttribute(BOPForDebtNobleMetalLendingOperation.IN_AUDIT_LIST, BopCfaExdebtDsList);
 			oc.setAttribute(BOPForDebtNobleMetalLendingOperation.IN_AUDIT_STATUS, approveStatusChoose);
 			oc.setAttribute(BOPForDebtNobleMetalLendingOperation.IN_AUDIT_RESULT, approveResultChoose);
 			OPCaller.call(BOPForDebtNobleMetalLendingOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

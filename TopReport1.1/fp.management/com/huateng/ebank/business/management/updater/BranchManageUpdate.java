@@ -21,19 +21,17 @@ import com.huateng.exception.AppException;
 
 public class BranchManageUpdate extends BaseUpdate {
 
-	
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_branchManage");
-			
+			UpdateResultBean updateResultBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("Management_branchManage");
+
 			List updateList = new ArrayList();
 			List insertList = new ArrayList();
 			List delList = new ArrayList();
-			
+
 			Bctl bean = new Bctl();
 			while (updateResultBean.hasNext()) {
 				bean = new Bctl();
@@ -61,8 +59,7 @@ public class BranchManageUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

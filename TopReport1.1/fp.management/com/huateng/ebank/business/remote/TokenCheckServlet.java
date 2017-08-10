@@ -15,36 +15,38 @@ import org.apache.commons.logging.LogFactory;
  */
 public class TokenCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static Log log = LogFactory.getLog(TokenCheckServlet.class);   
-    
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TokenCheckServlet() {
-        super();
-    }
+	private static Log log = LogFactory.getLog(TokenCheckServlet.class);
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try{
+	public TokenCheckServlet() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
 			String tokenId = request.getParameter("tokenId");
 			String sessionId = request.getParameter("sessionId");
-			
+
 			String result = new TokenCheckUtil().check(sessionId, tokenId);
-				
-			writeResult(response,result);
+
+			writeResult(response, result);
 			return;
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			log.info(e);
-			writeResult(response,"222");
+			writeResult(response, "222");
 			return;
 		}
 	}
 
-	private  static void writeResult(HttpServletResponse response,String result) throws IOException{
+	private static void writeResult(HttpServletResponse response, String result) throws IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		try {
@@ -54,11 +56,14 @@ public class TokenCheckServlet extends HttpServlet {
 			throw e;
 		}
 	}
+
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request,response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }

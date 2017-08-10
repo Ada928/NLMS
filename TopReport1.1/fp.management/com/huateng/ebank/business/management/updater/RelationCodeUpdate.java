@@ -21,13 +21,12 @@ import com.huateng.exception.AppException;
 
 public class RelationCodeUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_RelationCode");
+			UpdateResultBean updateResultBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("Management_RelationCode");
 			List updateList = new ArrayList();
 			List insertList = new ArrayList();
 			List delList = new ArrayList();
@@ -55,11 +54,10 @@ public class RelationCodeUpdate extends BaseUpdate {
 			context.setAttribute(RelationCodeOperation.DELETE_LIST, delList);
 			OPCaller.call(RelationCodeOperation.ID, context);
 			return updateReturnBean;
-		}catch (CommonException ex){
+		} catch (CommonException ex) {
 			throw ex;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

@@ -9,7 +9,8 @@ import com.huateng.ebank.framework.util.DataFormat;
 public class GetCustomerInfractIdGenerator extends BaseGenerator {
 
 	public String gen(Object obj) throws CommonException {
-		return DataFormat.intToString(CommonService.getInstance().getSeqno(SystemConstant.CUST_INFRACT_NO, "ciri072008"),0);
+		return DataFormat
+				.intToString(CommonService.getInstance().getSeqno(SystemConstant.CUST_INFRACT_NO, "ciri072008"), 0);
 	}
 
 }

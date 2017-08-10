@@ -36,7 +36,7 @@ public class ProcessVar {
 		if (subject.length == 0) {
 			Publish.push(Constants.IMPORT_SUBJECT, this);
 		}
-		for(String sub : subject) {
+		for (String sub : subject) {
 			Publish.push(sub, this);
 		}
 	}

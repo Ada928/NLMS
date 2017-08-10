@@ -29,7 +29,7 @@ import com.huateng.report.utils.ReportUtils;
  *
  * @author shishu.zhang
  *
- * 2012-8-15上午10:54:59
+ *         2012-8-15上午10:54:59
  */
 @SuppressWarnings("unchecked")
 public class BopForDebtYinTuanSignedGetter extends BaseGetter {
@@ -39,34 +39,31 @@ public class BopForDebtYinTuanSignedGetter extends BaseGetter {
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外债信息银团贷款签约信息查询");
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	@SuppressWarnings("rawtypes")
-	public PageQueryResult getData() throws CommonException{
+	public PageQueryResult getData() throws CommonException {
 		int pageSize = getResult().getPage().getEveryPage();
 		int pageIndex = getResult().getPage().getCurrentPage();
-		Map	 map = getCommQueryServletRequest().getParameterMap();
+		Map map = getCommQueryServletRequest().getParameterMap();
 		String op = (String) map.get("op");
-		if(!DataFormat.isEmpty(op)){
+		if (!DataFormat.isEmpty(op)) {
 			List<BopCfaExdebtDs> list = new ArrayList<BopCfaExdebtDs>();
 			PageQueryResult queryResult = new PageQueryResult();
-			if(op.equals("new")) {
+			if (op.equals("new")) {
 				BopCfaExdebtDs bopCfaExdebtDs = new BopCfaExdebtDs();
 				ReportUtils.setObjectPro(bopCfaExdebtDs, TopReportConstants.REPORT_FILE_TYPE_CFA_AG);
 				GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
@@ -83,7 +80,7 @@ public class BopForDebtYinTuanSignedGetter extends BaseGetter {
 				list.add(bopCfaExdebtDs);
 			}
 			queryResult.setQueryResult(list);
-			//页面接收判断
+			// 页面接收判断
 			getCommQueryServletRequest().setParameter("op", op);
 			return queryResult;
 		} else {
@@ -93,10 +90,11 @@ public class BopForDebtYinTuanSignedGetter extends BaseGetter {
 			String qapproveStatus = (String) map.get("qapproveStatus");
 			String qrepStatus = (String) map.get("qrepStatus");
 			String qfiller2 = (String) map.get("qfiller2");
-			String qRecStatus = (String) map.get("qRecStatus");//记录状态查询条件
+			String qRecStatus = (String) map.get("qRecStatus");// 记录状态查询条件
 
 			BopForDebtYinTuanService debtYinTuanService = BopForDebtYinTuanService.getInstance();
-			return debtYinTuanService.queryRecordYinTuan("signed", pageIndex, pageSize, qworkDateStart,qworkDateEnd, qfiller2, qactiontype, qapproveStatus, qrepStatus, qRecStatus);
+			return debtYinTuanService.queryRecordYinTuan("signed", pageIndex, pageSize, qworkDateStart, qworkDateEnd,
+					qfiller2, qactiontype, qapproveStatus, qrepStatus, qRecStatus);
 		}
 	}
 }

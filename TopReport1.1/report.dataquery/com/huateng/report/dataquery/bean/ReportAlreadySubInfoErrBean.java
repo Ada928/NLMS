@@ -9,7 +9,7 @@ import java.io.Serializable;
  * 
  *         2012-8-28上午11:01:10
  */
-public class ReportAlreadySubInfoErrBean implements Serializable{
+public class ReportAlreadySubInfoErrBean implements Serializable {
 	private String errType;
 	private String errfield;
 	private String errfieldcn;
@@ -51,8 +51,7 @@ public class ReportAlreadySubInfoErrBean implements Serializable{
 		super();
 	}
 
-	public ReportAlreadySubInfoErrBean(String errType, String errfield,
-			String errfieldcn, String errMsg) {
+	public ReportAlreadySubInfoErrBean(String errType, String errfield, String errfieldcn, String errMsg) {
 		super();
 		this.errType = errType;
 		this.errfield = errfield;

@@ -35,88 +35,82 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
  * @desc 全局信息
  */
 
-
 public class GlobalInfo extends BaseGlobalData implements Serializable {
 
-
 	public GlobalInfo() {
-    }
+	}
 
-
-    /**
+	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private static ThreadLocal session = new ThreadLocal();
-    private static final Log log = LogFactory.getLog(GlobalInfo.class);
+	private static final Log log = LogFactory.getLog(GlobalInfo.class);
 
-    public static String KEY_GLOBAL_INFO = "GLOBAL_INFO";
+	public static String KEY_GLOBAL_INFO = "GLOBAL_INFO";
 
-    /***
-     * 应用间post传递属性
-     */
-    private Date txdate = null; //会计日期
-    private String tlrno = null; //操作员号
-    private String brno = null; //外部机构号
-    private String brcode = null; //机构号
-    private String branchBrcode = null; //分行机构号
-    private String brClass = null; //机构级别
-    private String workflowRoleId = "";//工作流当前岗位号
-    private String funcCode; //交易代码
-    private String sessionId = "";//用于session校验
-    private String language = null;//语言,用于支持多国语言
-    private String tokenId= null;
+	/***
+	 * 应用间post传递属性
+	 */
+	private Date txdate = null; // 会计日期
+	private String tlrno = null; // 操作员号
+	private String brno = null; // 外部机构号
+	private String brcode = null; // 机构号
+	private String branchBrcode = null; // 分行机构号
+	private String brClass = null; // 机构级别
+	private String workflowRoleId = "";// 工作流当前岗位号
+	private String funcCode; // 交易代码
+	private String sessionId = "";// 用于session校验
+	private String language = null;// 语言,用于支持多国语言
+	private String tokenId = null;
 
-    /**
-     * 交易公共属性,由基类负责更新
-     */
-    private String ip = null; //IP
-    private Time txtime = null; //时间
-    private int tlsrnoPr = 0; //主流水号
-    private int tlsrnoEx = 0; //次流水号
+	/**
+	 * 交易公共属性,由基类负责更新
+	 */
+	private String ip = null; // IP
+	private Time txtime = null; // 时间
+	private int tlsrnoPr = 0; // 主流水号
+	private int tlsrnoEx = 0; // 次流水号
 
-    /**
-     * 交易属性,由交易更新,用于记录流水
-     */
-    private String contractno = null; //合同号
-    private String cino = null; //借据号
-    private String custcd = null; //客户号
-    private String appno = null; //申请编号
-    private double txamt = 0; //金额
+	/**
+	 * 交易属性,由交易更新,用于记录流水
+	 */
+	private String contractno = null; // 合同号
+	private String cino = null; // 借据号
+	private String custcd = null; // 客户号
+	private String appno = null; // 申请编号
+	private double txamt = 0; // 金额
 
-    /**
-     * 特殊用途
-     */
-    private Map allFunctions = Collections.synchronizedMap(new LinkedHashMap());//在登录时得到所有菜单展现\
-    private String workflowTlrno;//工作流提交时显示下一岗位操作员列表用
+	/**
+	 * 特殊用途
+	 */
+	private Map allFunctions = Collections.synchronizedMap(new LinkedHashMap());// 在登录时得到所有菜单展现\
+	private String workflowTlrno;// 工作流提交时显示下一岗位操作员列表用
 
+	private String contractnoFlag = "0";
+	private String custcdFlag = "0";
+	private String appnoFlag = "0";
+	private String txamtFlag = "0";
 
-    private String contractnoFlag = "0";
-    private String custcdFlag = "0";
-    private String appnoFlag = "0";
-    private String txamtFlag = "0";
-
-    //add by learncy.zou 2011-02-15 begin
-    private String taskId = "";// 任务号
+	// add by learncy.zou 2011-02-15 begin
+	private String taskId = "";// 任务号
 	private String procInsId = "";// 流程号
 	private int roleId = 0;
-	//add by learncy.zou 2011-02-15 end
+	// add by learncy.zou 2011-02-15 end
 
-	/* add by shishu.zhang for TopReport 2012-8-15 begin.*/
-	private Date lastDate; //上一个工作日
+	/* add by shishu.zhang for TopReport 2012-8-15 begin. */
+	private Date lastDate; // 上一个工作日
 	private String brName;
-	//============================================report============
-	private String fileDate;//存储生成上报文件临时日期
+	// ============================================report============
+	private String fileDate;// 存储生成上报文件临时日期
 
-	private String saveQueryLog;//是否记录查询日志
+	private String saveQueryLog;// 是否记录查询日志
 
-	private List confrimCodeList = new ArrayList();//可执行主管确认编码
+	private List confrimCodeList = new ArrayList();// 可执行主管确认编码
 
-	private String menuCode;//当前系统编号
+	private String menuCode;// 当前系统编号
 
-	//==============================================================
-
-
+	// ==============================================================
 
 	public String getFileDate() {
 		return fileDate;
@@ -141,12 +135,12 @@ public class GlobalInfo extends BaseGlobalData implements Serializable {
 	public void setLastDate(Date lastDate) {
 		this.lastDate = lastDate;
 	}
-	/* add by shishu.zhang for TopReport 2012-8-15 end.*/
+	/* add by shishu.zhang for TopReport 2012-8-15 end. */
 
-	private String sContextPath ="";
+	private String sContextPath = "";
 
-	/* modify by shen_anotnio JIRA:FPP-4 2011-12-18 begin.*/
-    private String assignedOprid = null;
+	/* modify by shen_anotnio JIRA:FPP-4 2011-12-18 begin. */
+	private String assignedOprid = null;
 
 	public String getAssignedOprid() {
 		return assignedOprid;
@@ -155,7 +149,7 @@ public class GlobalInfo extends BaseGlobalData implements Serializable {
 	public void setAssignedOprid(String assignedOprid) {
 		this.assignedOprid = assignedOprid;
 	}
-	/* modify by shen_anotnio JIRA:FPP-4 2011-12-18 end.*/
+	/* modify by shen_anotnio JIRA:FPP-4 2011-12-18 end. */
 
 	public String getTaskId() {
 		return taskId;
@@ -214,102 +208,96 @@ public class GlobalInfo extends BaseGlobalData implements Serializable {
 		this.txamtFlag = txamtFlag;
 	}
 
-	public static GlobalInfo getFromRequest(HttpServletRequest request) throws CommonException{
-        HttpSession httpSession = request.getSession();
-        GlobalInfo globalInfo = (GlobalInfo) httpSession
-                .getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
+	public static GlobalInfo getFromRequest(HttpServletRequest request) throws CommonException {
+		HttpSession httpSession = request.getSession();
+		GlobalInfo globalInfo = (GlobalInfo) httpSession.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
 
-        if ( log.isDebugEnabled() ){
-    			log.debug("session id = " + httpSession.getId());
-    		}
+		if (log.isDebugEnabled()) {
+			log.debug("session id = " + httpSession.getId());
+		}
 
-        if (null != globalInfo) {
-            setCurrentInstance(globalInfo);
-            String oldSessionId = globalInfo.getSessionId();
-            String sessionId = httpSession.getId();
-            if ( !sessionId.equals(oldSessionId)){
-            	ExceptionUtil.throwCommonException("全局信息不符合, 请重新登录.",ErrorCode.ERROR_CODE_TLRNO_SESSION_BINDED);
-            }
-            globalInfo.setSessionId(sessionId);
-        }
-        return globalInfo;
-    }
+		if (null != globalInfo) {
+			setCurrentInstance(globalInfo);
+			String oldSessionId = globalInfo.getSessionId();
+			String sessionId = httpSession.getId();
+			if (!sessionId.equals(oldSessionId)) {
+				ExceptionUtil.throwCommonException("全局信息不符合, 请重新登录.", ErrorCode.ERROR_CODE_TLRNO_SESSION_BINDED);
+			}
+			globalInfo.setSessionId(sessionId);
+		}
+		return globalInfo;
+	}
 
-    /* shen_antonio .*/
-    public static GlobalInfo getFromRequest2(HttpServletRequest request) throws CommonException{
-        HttpSession httpSession = request.getSession();
-        GlobalInfo globalInfo = (GlobalInfo) httpSession
-                .getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
+	/* shen_antonio . */
+	public static GlobalInfo getFromRequest2(HttpServletRequest request) throws CommonException {
+		HttpSession httpSession = request.getSession();
+		GlobalInfo globalInfo = (GlobalInfo) httpSession.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
 
-        if ( log.isDebugEnabled() ){
-    			log.debug("session id = " + httpSession.getId());
-    		}
+		if (log.isDebugEnabled()) {
+			log.debug("session id = " + httpSession.getId());
+		}
 
-        if (null != globalInfo) {
-            setCurrentInstance(globalInfo);
-            String sessionId =  httpSession.getId();
-            globalInfo.setSessionId(sessionId);
-        }
-        return globalInfo;
-    }
+		if (null != globalInfo) {
+			setCurrentInstance(globalInfo);
+			String sessionId = httpSession.getId();
+			globalInfo.setSessionId(sessionId);
+		}
+		return globalInfo;
+	}
 
-    public static void setGlobalInfo2HttpSession(HttpSession httpSession, GlobalInfo globalInfo){
-    	httpSession.setAttribute(GlobalInfo.KEY_GLOBAL_INFO, globalInfo);
-    	globalInfo.setSessionId(httpSession.getId());
-    }
+	public static void setGlobalInfo2HttpSession(HttpSession httpSession, GlobalInfo globalInfo) {
+		httpSession.setAttribute(GlobalInfo.KEY_GLOBAL_INFO, globalInfo);
+		globalInfo.setSessionId(httpSession.getId());
+	}
 
-    public static  GlobalInfo getCurrentInstance() throws CommonException {
-        GlobalInfo gi = (GlobalInfo) session.get();
+	public static GlobalInfo getCurrentInstance() throws CommonException {
+		GlobalInfo gi = (GlobalInfo) session.get();
 
-        if (null == gi) {
-            ExceptionUtil.throwCommonException("没有找到GlobalInfo",
-                    ErrorCode.ERROR_CODE_NO_GLOBALINFO_INSTANCE);
-        }
+		if (null == gi) {
+			ExceptionUtil.throwCommonException("没有找到GlobalInfo", ErrorCode.ERROR_CODE_NO_GLOBALINFO_INSTANCE);
+		}
 
-        return gi;
-    }
+		return gi;
+	}
 
-    public static  GlobalInfo getCurrentInstanceWithoutException() {
-        GlobalInfo gi = (GlobalInfo) session.get();
-        return gi;
-    }
+	public static GlobalInfo getCurrentInstanceWithoutException() {
+		GlobalInfo gi = (GlobalInfo) session.get();
+		return gi;
+	}
 
-    public static  void setCurrentInstance(GlobalInfo gi) {
-        session.set(gi);
-    }
+	public static void setCurrentInstance(GlobalInfo gi) {
+		session.set(gi);
+	}
 
+	/**
+	 * 初始化流水号
+	 * 
+	 * @param tlsrnoPr
+	 * @param tlsrnoEx
+	 */
+	public void initTlsrno(int tlsrnoPr, int tlsrnoEx) {
+		this.tlsrnoPr = tlsrnoPr;
+		this.tlsrnoEx = tlsrnoEx;
+	}
 
+	/**
+	 * 取得流水号
+	 * 
+	 * @return
+	 */
+	public String getTlsrno() {
+		return DataFormat.intToString(tlsrnoPr, 5) + DataFormat.intToString(tlsrnoEx, 4);
+	}
 
-
-
-    /**
-     * 初始化流水号
-     * @param tlsrnoPr
-     * @param tlsrnoEx
-     */
-    public void initTlsrno(int tlsrnoPr, int tlsrnoEx) {
-        this.tlsrnoPr = tlsrnoPr;
-        this.tlsrnoEx = tlsrnoEx;
-    }
-
-    /**
-     * 取得流水号
-     * @return
-     */
-    public String getTlsrno() {
-        return DataFormat.intToString(tlsrnoPr, 5)
-                + DataFormat.intToString(tlsrnoEx, 4);
-    }
-
-    /**
-     * 取得下一个流水号
-     * @return
-     */
-    public String getNextTlsrno() {
-        tlsrnoEx++;
-        return DataFormat.intToString(tlsrnoPr, 5)
-                + DataFormat.intToString(tlsrnoEx, 4);
-    }
+	/**
+	 * 取得下一个流水号
+	 * 
+	 * @return
+	 */
+	public String getNextTlsrno() {
+		tlsrnoEx++;
+		return DataFormat.intToString(tlsrnoPr, 5) + DataFormat.intToString(tlsrnoEx, 4);
+	}
 
 	public Date getTxdate() {
 		return txdate;
@@ -489,22 +477,23 @@ public class GlobalInfo extends BaseGlobalData implements Serializable {
 
 	/**
 	 * set关键业务信息
+	 * 
 	 * @param contractno
 	 * @param custcd
 	 * @param appno
 	 * @param txamt
 	 */
 	public void setTransData(String contractno, String custcd, String appno, String txamt) {
-		if(!DataFormat.isEmpty(contractno)){
+		if (!DataFormat.isEmpty(contractno)) {
 			this.contractno = contractno;
 		}
-		if(!DataFormat.isEmpty(custcd)){
+		if (!DataFormat.isEmpty(custcd)) {
 			this.custcd = custcd;
 		}
-		if(!DataFormat.isEmpty(appno)){
+		if (!DataFormat.isEmpty(appno)) {
 			this.appno = appno;
 		}
-		if(!DataFormat.isEmpty(txamt)&&!txamt.equals("null")){
+		if (!DataFormat.isEmpty(txamt) && !txamt.equals("null")) {
 			this.txamt = Double.valueOf(txamt);
 		}
 	}
@@ -513,8 +502,8 @@ public class GlobalInfo extends BaseGlobalData implements Serializable {
 
 		return DataFormat.dateToString(txdate);
 	}
-	private boolean isHeadBrcode = false; // 当前机构是否为总行
 
+	private boolean isHeadBrcode = false; // 当前机构是否为总行
 
 	public boolean isHeadBrcode() {
 		return isHeadBrcode;
@@ -569,9 +558,10 @@ public class GlobalInfo extends BaseGlobalData implements Serializable {
 	public static void setPswdStrength(String pswdStrength) {
 		GlobalInfo.pswdStrength = pswdStrength;
 	}
+
 	/** add by zhaozhiguo 密码修改提醒 BMS-3153 end */
 
-	/* modify by zhiguo.zhao JIRA: FPP-3 2011-12-16 begin .*/
+	/* modify by zhiguo.zhao JIRA: FPP-3 2011-12-16 begin . */
 	private Locale locale;
 
 	public Locale getLocale() {
@@ -586,7 +576,7 @@ public class GlobalInfo extends BaseGlobalData implements Serializable {
 	public void setLocale(Locale locale) {
 		this.locale = locale;
 	}
-	/* modify by zhiguo.zhao JIRA: FPP-3 2011-12-16 end .*/
+	/* modify by zhiguo.zhao JIRA: FPP-3 2011-12-16 end . */
 
 	public String getSaveQueryLog() {
 		return saveQueryLog;
@@ -611,6 +601,5 @@ public class GlobalInfo extends BaseGlobalData implements Serializable {
 	public void setMenuCode(String menuCode) {
 		this.menuCode = menuCode;
 	}
-
 
 }

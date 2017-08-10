@@ -19,21 +19,22 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.operation.BopCfaStrdeDsAuditOperation;
+
 /*
  * 签约信息审核
  */
 public class BopCfaStrdeDsContractAuditUpdate extends BaseUpdate {
 	private static final String DATASET_ID = "bopCfaStrdeDsContractEntryAudit";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			OperationContext context = new OperationContext();
 			List<BopCfaStrdeDs> bopCfaStrdeDsList = new ArrayList<BopCfaStrdeDs>();
-			while(updateResultBean.hasNext()) {
+			while (updateResultBean.hasNext()) {
 				Map map = updateResultBean.next();
 				BopCfaStrdeDs bopCfaStrdeDs = new BopCfaStrdeDs();
 				mapToObject(bopCfaStrdeDs, map);
@@ -41,7 +42,7 @@ public class BopCfaStrdeDsContractAuditUpdate extends BaseUpdate {
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
 			String approveResultChoose = updateResultBean.getParameter("approveResultChoose");
-			context.setAttribute(BopCfaStrdeDsAuditOperation.CONTRACT_AUDIT_LIST_IN_PARAM,bopCfaStrdeDsList);
+			context.setAttribute(BopCfaStrdeDsAuditOperation.CONTRACT_AUDIT_LIST_IN_PARAM, bopCfaStrdeDsList);
 			context.setAttribute(BopCfaStrdeDsAuditOperation.AUDIT_STATUS, approveStatusChoose);
 			context.setAttribute(BopCfaStrdeDsAuditOperation.AUDIT_RESULT, approveResultChoose);
 			context.setAttribute(BopCfaStrdeDsAuditOperation.CMD, BopCfaStrdeDsAuditOperation.CONTRACT_AUDIT_CMD);
@@ -50,9 +51,9 @@ public class BopCfaStrdeDsContractAuditUpdate extends BaseUpdate {
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
-			throw new AppException(Module.SYSTEM_MODULE,Rescode.DEFAULT_RESCODE,e.getMessage(),e);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
-		
+
 	}
 
 }

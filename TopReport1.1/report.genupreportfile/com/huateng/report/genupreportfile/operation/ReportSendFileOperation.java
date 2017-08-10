@@ -41,7 +41,7 @@ public class ReportSendFileOperation extends BaseOperation {
 			ITranslate tran = (ITranslate) context.getAttribute(IN_FILE_OBJ);
 			boolean bl = service.subFileUpLoad(tran, packname);
 			context.setAttribute(RET_FILE_RESULT, bl);
-		}else if(cmd.equalsIgnoreCase(TopReportConstants.REPORT_SUB_FILE_TYPE_02)){
+		} else if (cmd.equalsIgnoreCase(TopReportConstants.REPORT_SUB_FILE_TYPE_02)) {
 			String packname = (String) context.getAttribute(IN_FILE_PACK);
 			List<SubFileInfo> subFileInfoList = service.getSubFileInfoListByPack(packname.trim());
 			service.updateSubFileInfoBySend(subFileInfoList);

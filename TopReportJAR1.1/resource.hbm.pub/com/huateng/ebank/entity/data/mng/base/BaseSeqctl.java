@@ -2,17 +2,15 @@ package com.huateng.ebank.entity.data.mng.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the SEQCTL table.
- * Do not modify this class because it will be overwritten if the configuration file
+ * This is an object that contains data related to the SEQCTL table. Do not
+ * modify this class because it will be overwritten if the configuration file
  * related to this class is modified.
  *
- * @hibernate.class
- *  table="SEQCTL"
+ * @hibernate.class table="SEQCTL"
  */
 
-public abstract class BaseSeqctl  implements  Serializable {
+public abstract class BaseSeqctl implements Serializable {
 
 	public static String REF = "Seqctl";
 	public static String PROP_MIN_VALUE = "minValue";
@@ -22,23 +20,21 @@ public abstract class BaseSeqctl  implements  Serializable {
 	public static String PROP_VALUE_CURR = "valueCurr";
 	public static String PROP_ID = "id";
 
-
 	// constructors
-	public BaseSeqctl () {
+	public BaseSeqctl() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseSeqctl (long id) {
+	public BaseSeqctl(long id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -52,142 +48,140 @@ public abstract class BaseSeqctl  implements  Serializable {
 	private java.lang.Integer maxValue;
 	private java.lang.Integer minValue;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="native"
-     *  column="ID"
-     */
-	public long getId () {
+	 * 
+	 * @hibernate.id generator-class="native" column="ID"
+	 */
+	public long getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (long id) {
+	public void setId(long id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: VALUE_NO
 	 */
-	public java.lang.Integer getValueNo () {
+	public java.lang.Integer getValueNo() {
 		return valueNo;
 	}
 
 	/**
 	 * Set the value related to the column: VALUE_NO
-	 * @param valueNo the VALUE_NO value
+	 * 
+	 * @param valueNo
+	 *            the VALUE_NO value
 	 */
-	public void setValueNo (java.lang.Integer valueNo) {
+	public void setValueNo(java.lang.Integer valueNo) {
 		this.valueNo = valueNo;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: VALUE_INDEX
 	 */
-	public java.lang.String getValueIndex () {
+	public java.lang.String getValueIndex() {
 		return valueIndex;
 	}
 
 	/**
 	 * Set the value related to the column: VALUE_INDEX
-	 * @param valueIndex the VALUE_INDEX value
+	 * 
+	 * @param valueIndex
+	 *            the VALUE_INDEX value
 	 */
-	public void setValueIndex (java.lang.String valueIndex) {
+	public void setValueIndex(java.lang.String valueIndex) {
 		this.valueIndex = valueIndex;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: VALUE_CURR
 	 */
-	public java.lang.Integer getValueCurr () {
+	public java.lang.Integer getValueCurr() {
 		return valueCurr;
 	}
 
 	/**
 	 * Set the value related to the column: VALUE_CURR
-	 * @param valueCurr the VALUE_CURR value
+	 * 
+	 * @param valueCurr
+	 *            the VALUE_CURR value
 	 */
-	public void setValueCurr (java.lang.Integer valueCurr) {
+	public void setValueCurr(java.lang.Integer valueCurr) {
 		this.valueCurr = valueCurr;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MAX_VALUE
 	 */
-	public java.lang.Integer getMaxValue () {
+	public java.lang.Integer getMaxValue() {
 		return maxValue;
 	}
 
 	/**
 	 * Set the value related to the column: MAX_VALUE
-	 * @param maxValue the MAX_VALUE value
+	 * 
+	 * @param maxValue
+	 *            the MAX_VALUE value
 	 */
-	public void setMaxValue (java.lang.Integer maxValue) {
+	public void setMaxValue(java.lang.Integer maxValue) {
 		this.maxValue = maxValue;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MIN_VALUE
 	 */
-	public java.lang.Integer getMinValue () {
+	public java.lang.Integer getMinValue() {
 		return minValue;
 	}
 
 	/**
 	 * Set the value related to the column: MIN_VALUE
-	 * @param minValue the MIN_VALUE value
+	 * 
+	 * @param minValue
+	 *            the MIN_VALUE value
 	 */
-	public void setMinValue (java.lang.Integer minValue) {
+	public void setMinValue(java.lang.Integer minValue) {
 		this.minValue = minValue;
 	}
 
-
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof com.huateng.ebank.entity.data.mng.Seqctl)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof com.huateng.ebank.entity.data.mng.Seqctl))
+			return false;
 		else {
 			com.huateng.ebank.entity.data.mng.Seqctl seqctl = (com.huateng.ebank.entity.data.mng.Seqctl) obj;
 			return (this.getId() == seqctl.getId());
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
 			return (int) this.getId();
 		}
 		return this.hashCode;
 	}
 
-	public int compareTo (Object obj) {
-		if (obj.hashCode() > hashCode()) return 1;
-		else if (obj.hashCode() < hashCode()) return -1;
-		else return 0;
+	public int compareTo(Object obj) {
+		if (obj.hashCode() > hashCode())
+			return 1;
+		else if (obj.hashCode() < hashCode())
+			return -1;
+		else
+			return 0;
 	}
 
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

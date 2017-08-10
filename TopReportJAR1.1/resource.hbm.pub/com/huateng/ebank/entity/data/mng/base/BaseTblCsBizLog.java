@@ -2,17 +2,15 @@ package com.huateng.ebank.entity.data.mng.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the BIZ_LOG table.
- * Do not modify this class because it will be overwritten if the configuration file
+ * This is an object that contains data related to the BIZ_LOG table. Do not
+ * modify this class because it will be overwritten if the configuration file
  * related to this class is modified.
  *
- * @hibernate.class
- *  table="BIZ_LOG"
+ * @hibernate.class table="BIZ_LOG"
  */
 
-public abstract class BaseTblCsBizLog  implements Serializable {
+public abstract class BaseTblCsBizLog implements Serializable {
 
 	public static String REF = "TblBizLog";
 	public static String PROP_ID = "id";
@@ -32,20 +30,20 @@ public abstract class BaseTblCsBizLog  implements Serializable {
 	public static String PROP_TXNFAILLOG = "txnFailLog";
 
 	// constructors
-	public BaseTblCsBizLog () {
+	public BaseTblCsBizLog() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseTblCsBizLog (java.lang.String id) {
+	public BaseTblCsBizLog(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
+	protected void initialize() {
+	}
 
 	// primary key
 	private java.lang.String id;
@@ -183,15 +181,5 @@ public abstract class BaseTblCsBizLog  implements Serializable {
 	public void setBrCode(java.lang.String brCode) {
 		this.brCode = brCode;
 	}
-
-
-
-
-
-
-
-
-
-
 
 }

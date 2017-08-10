@@ -22,5 +22,4 @@ public class BranchManageView {
 		this.brhName = brhName;
 	}
 
-
 }

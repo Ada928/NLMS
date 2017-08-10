@@ -2,24 +2,21 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBiTlrFavt;
 
-
-
 public class BiTlrFavt extends BaseBiTlrFavt {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public BiTlrFavt () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public BiTlrFavt() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BiTlrFavt (java.lang.String id) {
+	public BiTlrFavt(java.lang.String id) {
 		super(id);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
-
+	/* [CONSTRUCTOR MARKER END] */
 
 }

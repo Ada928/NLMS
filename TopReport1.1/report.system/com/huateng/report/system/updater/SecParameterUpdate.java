@@ -20,22 +20,20 @@ public class SecParameterUpdate extends BaseUpdate {
 	private final static String DATASET_ID = "SysParamsSec";
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-		UpdateResultBean updateResultBean = multiUpdateResultBean
-				.getUpdateResultBeanByID(DATASET_ID);
+		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 		PfSysParam param = null;
 
-		if(updateResultBean.hasNext()) {
+		if (updateResultBean.hasNext()) {
 			param = new PfSysParam();
 			Map map = updateResultBean.next();
 			mapToObject(param, map);
 
 			String magicId = (String) map.get("magicId");
 			String paramId = (String) map.get("paramId");
-			PfSysParamPK pk = new PfSysParamPK(magicId,paramId);
+			PfSysParamPK pk = new PfSysParamPK(magicId, paramId);
 			param.setId(pk);
 		}
 		OperationContext oc = new OperationContext();

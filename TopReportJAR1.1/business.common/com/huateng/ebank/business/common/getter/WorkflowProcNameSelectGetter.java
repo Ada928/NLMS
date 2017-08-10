@@ -15,7 +15,6 @@ import com.huateng.exception.AppException;
 import com.huateng.topbpm.TopBPMConfiguration;
 import com.huateng.topbpm.TopBPMContext;
 
-
 /**
  * @author fubo
  * @company huateng
@@ -38,25 +37,23 @@ public class WorkflowProcNameSelectGetter extends BaseGetter {
 
 		Session session = dao.getHibernateTemplate().getSessionFactory().openSession();
 
-
 		try {
 			TopBPMConfiguration topbpmConfiguration = TopBPMConfiguration.getInstance();
 
-			TopBPMContext topBPMContext= topbpmConfiguration.createTopBPMContext();
+			TopBPMContext topBPMContext = topbpmConfiguration.createTopBPMContext();
 			topBPMContext.setSession(session);
 
 			List proclist = topBPMContext.getGraphSession().findLatestProcessDefinitions();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), proclist, getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), proclist, getResult());
 			getResult().setContent(list);
 			getResult().getPage().setTotalPage(1);
 			getResult().init();
 		} catch (RuntimeException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
-			if(session!=null && session.isOpen()){
+		} finally {
+			if (session != null && session.isOpen()) {
 				session.close();
 			}
 		}

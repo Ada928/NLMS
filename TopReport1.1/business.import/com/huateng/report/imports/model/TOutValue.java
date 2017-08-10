@@ -11,7 +11,7 @@ package com.huateng.report.imports.model;
  */
 public class TOutValue {
 	public String outvalue = "";
-	public int opStation=-1;
-	public String errorNumber="";
+	public int opStation = -1;
+	public String errorNumber = "";
 	public int intval;
 }

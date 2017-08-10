@@ -22,13 +22,13 @@ import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.report.bean.BopForSameInduDepositBean;
 
-public class BOPForDebtBalanceLoadPageGetter  extends BaseGetter{
-
+public class BOPForDebtBalanceLoadPageGetter extends BaseGetter {
 
 	public Result call() throws AppException {
 		try {
 			PageQueryResult list = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list.getQueryResult(), getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list.getQueryResult(),
+					getResult());
 			result.setContent(list.getQueryResult());
 			result.getPage().setTotalPage(list.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
@@ -36,12 +36,12 @@ public class BOPForDebtBalanceLoadPageGetter  extends BaseGetter{
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
-	private PageQueryResult getData() throws CommonException{
+
+	private PageQueryResult getData() throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		//
 		int pageSize = getResult().getPage().getEveryPage();
@@ -54,8 +54,9 @@ public class BOPForDebtBalanceLoadPageGetter  extends BaseGetter{
 		StringBuffer hql = new StringBuffer("");
 
 		// 获取外债信息表、债权人信息表记录 以外债id left join on
-		// hql.append(" SELECT bds  FROM BopCfaExdebtDs bds  WHERE 1 = 1 ");
-		// hql.append("    FROM BopCfaExdebtDs bds LEFT JOIN BopCfaCreditorDs bcd ON bds.id = bcd.recId WHERE 1 = 1 ");
+		// hql.append(" SELECT bds FROM BopCfaExdebtDs bds WHERE 1 = 1 ");
+		// hql.append(" FROM BopCfaExdebtDs bds LEFT JOIN BopCfaCreditorDs bcd
+		// ON bds.id = bcd.recId WHERE 1 = 1 ");
 
 		hql.append(" SELECT bds.REC_ID, bds.exdebtcode,bds.limit_Type,bds.debtorcode,bds.debtype,bds.valuedate,");
 		hql.append("        bds.contractcurr,bds.floatrate,bds.anninrate,bds.spapfeboindex,bds.remark, bds.work_Date,");
@@ -63,7 +64,8 @@ public class BOPForDebtBalanceLoadPageGetter  extends BaseGetter{
 		hql.append("        bds.rec_Status,bds.approve_Status,bds.rep_Status,bds.is_sub_Success,");
 		hql.append("        bcd.creditor_id,bcd.creditorcode, bcd.creditorname, bcd.creditornamen,bcd.creditortype,");
 		hql.append("        bcd.crehqcode,bcd.opercode,bcd.REC_ID,bds.filler2");
-		hql.append("   FROM BOP_CFA_EXDEBT_DS bds LEFT JOIN BOP_CFA_CREDITOR_DS bcd ON bds.REC_ID = bcd.REC_ID WHERE 1 = 1 ");
+		hql.append(
+				"   FROM BOP_CFA_EXDEBT_DS bds LEFT JOIN BOP_CFA_CREDITOR_DS bcd ON bds.REC_ID = bcd.REC_ID WHERE 1 = 1 ");
 
 		String qworkDate = getCommQueryServletRequest().getParameter("qworkDate");
 		String qactiontype = getCommQueryServletRequest().getParameter("qactiontype");
@@ -76,7 +78,7 @@ public class BOPForDebtBalanceLoadPageGetter  extends BaseGetter{
 
 		String currentFile = getCommQueryServletRequest().getParameter("currentFile");
 
-		List<Object>paramentList = new ArrayList<Object>();
+		List<Object> paramentList = new ArrayList<Object>();
 		if (StringUtils.isNotBlank(qworkDate)) {
 			hql.append(" and bds.work_Date = ? ");
 			paramentList.add(qworkDate);
@@ -102,14 +104,14 @@ public class BOPForDebtBalanceLoadPageGetter  extends BaseGetter{
 			paramentList.add("%" + qfiller2 + "%");
 		}
 
-//		hql.append(" and (bds.rec_Status = ? or  bds.rec_Status = ? ) ");
-//		paramentList.add(TopReportConstants.REPORT_RECSTATUS_01);
-//		paramentList.add(TopReportConstants.REPORT_RECSTATUS_02);
-		// hql.append(" and bds.currentfile ='"+TopReportConstants.REPORT_FILE_TYPE_CFA_AL+"'" );
+		// hql.append(" and (bds.rec_Status = ? or bds.rec_Status = ? ) ");
+		// paramentList.add(TopReportConstants.REPORT_RECSTATUS_01);
+		// paramentList.add(TopReportConstants.REPORT_RECSTATUS_02);
+		// hql.append(" and bds.currentfile
+		// ='"+TopReportConstants.REPORT_FILE_TYPE_CFA_AL+"'" );
 
 		hql.append(" AND bds.currentfile = ? ");
 		paramentList.add(currentFile);
-
 
 		pc.setPageIndex(pageIndex);
 		pc.setPageSize(pageSize);
@@ -117,8 +119,9 @@ public class BOPForDebtBalanceLoadPageGetter  extends BaseGetter{
 		pc.setObjArray(paramentList.toArray());
 		PageQueryResult result = rootdao.pageQueryBySQL(pc);
 
-//		for (Iterator it = rootdao.queryBySQL(hql.toString()); it.hasNext();) {
-		for (Iterator<Object[]>it = result.getQueryResult().iterator(); it.hasNext();) {
+		// for (Iterator it = rootdao.queryBySQL(hql.toString()); it.hasNext();)
+		// {
+		for (Iterator<Object[]> it = result.getQueryResult().iterator(); it.hasNext();) {
 			BopForSameInduDepositBean bop = new BopForSameInduDepositBean();
 			Object[] queryArray = (Object[]) it.next();
 			bop.setId((String) queryArray[0]);
@@ -158,9 +161,10 @@ public class BOPForDebtBalanceLoadPageGetter  extends BaseGetter{
 		}
 
 		result.setQueryResult(list);
-//		PageQueryResult pageResult = new PageQueryResult();
-//		pageResult.setQueryResult(list);
-		// hql.append(" order by bds.workDate,bds.approveStatus,bds.actiontype desc");
+		// PageQueryResult pageResult = new PageQueryResult();
+		// pageResult.setQueryResult(list);
+		// hql.append(" order by bds.workDate,bds.approveStatus,bds.actiontype
+		// desc");
 		return result;
 	}
 }

@@ -34,8 +34,8 @@ public class UndoConfirmGetter extends BaseGetter {
 				result.getPage().setTotalPage(1);
 			} else {
 				PageQueryResult pageResult = getData(codeslist);
-				ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult
-						.getQueryResult(), getResult());
+				ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+						pageResult.getQueryResult(), getResult());
 				result.setContent(pageResult.getQueryResult());
 				result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			}

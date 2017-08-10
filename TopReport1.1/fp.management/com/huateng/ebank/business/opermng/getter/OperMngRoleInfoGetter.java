@@ -28,20 +28,16 @@ public class OperMngRoleInfoGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
@@ -58,9 +54,8 @@ public class OperMngRoleInfoGetter extends BaseGetter {
 		} else {
 			roleList = DAOUtils.getRoleInfoDAO().queryByCondition(" po.st ='4'");
 		}
-		
-		List urrlist = DAOUtils.getTlrRoleRelDAO().queryByCondition(
-				" po.tlrno = '" + tlrno + "' and status <> 0");
+
+		List urrlist = DAOUtils.getTlrRoleRelDAO().queryByCondition(" po.tlrno = '" + tlrno + "' and status <> 0");
 		String roleStr = "|";
 		for (Iterator it = urrlist.iterator(); it.hasNext();) {
 			TlrRoleRel rr = (TlrRoleRel) it.next();

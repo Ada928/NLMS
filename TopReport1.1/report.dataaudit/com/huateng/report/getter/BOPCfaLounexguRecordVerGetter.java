@@ -54,9 +54,10 @@ public class BOPCfaLounexguRecordVerGetter extends BaseGetter {
 		String qrepStatus = getCommQueryServletRequest().getParameter("qrepStatus");
 		String qfiller2 = getCommQueryServletRequest().getParameter("qfiller2");
 
-		StringBuilder hqlString = new StringBuilder(" SELECT bd FROM BopCfaLounexguDs bd WHERE bd.currentfile = ? AND (bd.recStatus = ? OR bd.recStatus = ? ) ");
+		StringBuilder hqlString = new StringBuilder(
+				" SELECT bd FROM BopCfaLounexguDs bd WHERE bd.currentfile = ? AND (bd.recStatus = ? OR bd.recStatus = ? ) ");
 
-		List<Object>paramentList = new ArrayList<Object>();
+		List<Object> paramentList = new ArrayList<Object>();
 		paramentList.add(TopReportConstants.REPORT_FILE_TYPE_CFA_DA);
 		paramentList.add(TopReportConstants.REPORT_RECSTATUS_03);
 		paramentList.add(TopReportConstants.REPORT_RECSTATUS_04);

@@ -5,15 +5,15 @@ import java.util.Date;
 public class RecoverBakFileBean {
 
 	private String filePath;
-	
+
 	private String fileSize;
-	
+
 	private Date lastModifyTime;
 
 	private String exits;
-	
+
 	private String recoverReason;
-	
+
 	public String getExits() {
 		return exits;
 	}
@@ -54,5 +54,4 @@ public class RecoverBakFileBean {
 		this.lastModifyTime = lastModifyTime;
 	}
 
-	
 }

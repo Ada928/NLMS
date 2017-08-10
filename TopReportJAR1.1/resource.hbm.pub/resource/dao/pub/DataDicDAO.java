@@ -73,8 +73,7 @@ public class DataDicDAO extends HibernateDaoSupport {
 	public DataDic findById(java.lang.Integer id) {
 		log.debug("getting DataDic instance with id: " + id);
 		try {
-			DataDic instance = (DataDic) getHibernateTemplate().get(
-					DataDic.class.getName(), id);
+			DataDic instance = (DataDic) getHibernateTemplate().get(DataDic.class.getName(), id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -86,8 +85,7 @@ public class DataDicDAO extends HibernateDaoSupport {
 		log.debug("finding DataDic instance by example");
 		try {
 			List results = getHibernateTemplate().findByExample(instance);
-			log.debug("find by example successful, result size: "
-					+ results.size());
+			log.debug("find by example successful, result size: " + results.size());
 			return results;
 		} catch (RuntimeException re) {
 			log.error("find by example failed", re);
@@ -96,11 +94,9 @@ public class DataDicDAO extends HibernateDaoSupport {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding DataDic instance with property: " + propertyName
-				+ ", value: " + value);
+		log.debug("finding DataDic instance with property: " + propertyName + ", value: " + value);
 		try {
-			String queryString = "from DataDic model where model."
-					+ propertyName + "= ?";
+			String queryString = "from DataDic model where model." + propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
@@ -170,8 +166,7 @@ public class DataDicDAO extends HibernateDaoSupport {
 	public DataDic merge(DataDic detachedInstance) {
 		log.debug("merging DataDic instance");
 		try {
-			DataDic result = (DataDic) getHibernateTemplate().merge(
-					detachedInstance);
+			DataDic result = (DataDic) getHibernateTemplate().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -212,12 +207,10 @@ public class DataDicDAO extends HibernateDaoSupport {
 	public List queryByCondition(String whereString) throws CommonException {
 		this.getHibernateTemplate().setCacheQueries(true);
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from DataDic po where " + whereString);
+			List list = this.getHibernateTemplate().find("from DataDic po where " + whereString);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DATA_DIC_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DATA_DIC_SELECT, e);
 		}
 		return null;
 	}
@@ -232,11 +225,9 @@ public class DataDicDAO extends HibernateDaoSupport {
 	public DataDic query(long id) throws CommonException {
 		try {
 			this.getHibernateTemplate().setCacheQueries(true);
-			return (DataDic) this.getHibernateTemplate().load(DataDic.class,
-					new Long(id));
+			return (DataDic) this.getHibernateTemplate().load(DataDic.class, new Long(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DATA_DIC_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DATA_DIC_SELECT, e);
 		}
 		return null;
 	}
@@ -251,43 +242,40 @@ public class DataDicDAO extends HibernateDaoSupport {
 	public List getDataByTypeNo(int dataTypeNo) throws CommonException {
 		this.getHibernateTemplate().setCacheQueries(true);
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from DataDic po where po.dataTypeNo = ? order by po.dataNo",
+			List list = this.getHibernateTemplate().find("from DataDic po where po.dataTypeNo = ? order by po.dataNo",
 					new Integer(dataTypeNo));
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DATA_DIC_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DATA_DIC_SELECT, e);
 		}
 		return null;
 	}
 
 	/**
-	 * 导出　DataDic　数据表数据
+	 * 导出 DataDic 数据表数据
+	 * 
 	 * @return
 	 * @throws CommonException
 	 * @author shen_antonio
 	 */
-	public List loadAll()throws CommonException{
+	public List loadAll() throws CommonException {
 		try {
-			//getHibernateTemplate().setEntityInterceptor(new HibernateInterceptor());
-			return  this.getHibernateTemplate().loadAll(DataDic.class);
+			// getHibernateTemplate().setEntityInterceptor(new
+			// HibernateInterceptor());
+			return this.getHibernateTemplate().loadAll(DataDic.class);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DATA_DIC_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DATA_DIC_SELECT, e);
 		}
 		return null;
 	}
 
-	public List loadAllSort()throws CommonException{
+	public List loadAllSort() throws CommonException {
 		this.getHibernateTemplate().setCacheQueries(true);
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from DataDic po order by po.dataTypeNo,po.dataNo");
+			List list = this.getHibernateTemplate().find("from DataDic po order by po.dataTypeNo,po.dataNo");
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DATA_DIC_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DATA_DIC_SELECT, e);
 		}
 		return null;
 	}
@@ -306,27 +294,26 @@ public class DataDicDAO extends HibernateDaoSupport {
 		try {
 			StringBuffer whereString = new StringBuffer();
 			String[] str = null;
-			if(dataNo != null && !"".equals(dataNo)) {
+			if (dataNo != null && !"".equals(dataNo)) {
 				str = dataNo.split(",");
-			} 
-			if(str == null) {
+			}
+			if (str == null) {
 				whereString.append("po.dataTypeNo = ").append(dataTypeNo);
-			} else if(str.length == 0){
-				whereString.append("po.dataTypeNo = ").append(dataTypeNo).append(
-				" and po.dataNo = '").append(dataNo).append("'");
+			} else if (str.length == 0) {
+				whereString.append("po.dataTypeNo = ").append(dataTypeNo).append(" and po.dataNo = '").append(dataNo)
+						.append("'");
 			} else {
 				whereString.append("po.dataTypeNo = ").append(dataTypeNo).append(" and po.dataNo in (");
-				for(int i = 0; i < str.length; i++) {
-					whereString.append("'" + str[i] +"',");
+				for (int i = 0; i < str.length; i++) {
+					whereString.append("'" + str[i] + "',");
 				}
 				whereString.deleteCharAt(whereString.toString().length() - 1);
 				whereString.append(")");
-			
+
 			}
 			list = queryByCondition(whereString.toString());
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DATA_DIC_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DATA_DIC_SELECT, e);
 		}
 
 		if (list.size() != 1) {
@@ -352,8 +339,7 @@ public class DataDicDAO extends HibernateDaoSupport {
 			this.getHibernateTemplate().getSessionFactory().evictQueries("DataDic");
 			this.getHibernateTemplate().update(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DATA_DIC_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DATA_DIC_UPDATE, e);
 		}
 	}
 
@@ -369,8 +355,7 @@ public class DataDicDAO extends HibernateDaoSupport {
 			this.getHibernateTemplate().getSessionFactory().evictQueries("DataDic");
 			this.getHibernateTemplate().save(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DATA_DIC_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DATA_DIC_INSERT, e);
 		}
 	}
 }

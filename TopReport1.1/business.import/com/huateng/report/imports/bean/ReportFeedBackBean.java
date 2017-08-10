@@ -10,10 +10,10 @@ public class ReportFeedBackBean {
 	private Date feedBackDate;// 上报时间
 	private String feedBackMsg;// 回执信息
 	private int fileCount;// 上报文件数
-	private String isSub;//是否已上报
-	private Date crtDate;//生成时间
-	private String subType;//上报方式
-	private String workDate;//工作日期
+	private String isSub;// 是否已上报
+	private Date crtDate;// 生成时间
+	private String subType;// 上报方式
+	private String workDate;// 工作日期
 
 	public String getWorkDate() {
 		return workDate;

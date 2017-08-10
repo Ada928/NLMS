@@ -24,11 +24,9 @@ public class ReportInfoDAO extends HibernateDaoSupport {
 	 */
 	public ReportInfo query(String id) throws CommonException {
 		try {
-			return (ReportInfo) this.getHibernateTemplate().load(
-					ReportInfo.class, id);
+			return (ReportInfo) this.getHibernateTemplate().load(ReportInfo.class, id);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_REPORT_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_REPORT_INFO_SELECT, e);
 		}
 		return null;
 	}
@@ -49,8 +47,8 @@ public class ReportInfoDAO extends HibernateDaoSupport {
 	 *             e) { ExceptionUtil.throwCommonException(e.getMessage(),
 	 *             ErrorCode.ERROR_CODE_REPORT_INFO_SELECT, e); }
 	 *
-	 * if (list.size() != 1) { return null; } else { return (ReportInfo)
-	 * list.get(0); } }
+	 *             if (list.size() != 1) { return null; } else { return
+	 *             (ReportInfo) list.get(0); } }
 	 */
 
 	/**
@@ -62,15 +60,12 @@ public class ReportInfoDAO extends HibernateDaoSupport {
 	 * @return 包含ReportInfo对象的List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString, Object[] objArray,
-			Type[] typeArray) throws CommonException {
+	public List queryByCondition(String whereString, Object[] objArray, Type[] typeArray) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from ReportInfo po where " + whereString, objArray);
+			List list = this.getHibernateTemplate().find("from ReportInfo po where " + whereString, objArray);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_REPORT_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_REPORT_INFO_SELECT, e);
 		}
 		return null;
 	}
@@ -84,12 +79,10 @@ public class ReportInfoDAO extends HibernateDaoSupport {
 	 */
 	public List queryByCondition(String whereString) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from ReportInfo po where " + whereString);
+			List list = this.getHibernateTemplate().find("from ReportInfo po where " + whereString);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_REPORT_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_REPORT_INFO_SELECT, e);
 		}
 		return null;
 	}
@@ -104,8 +97,7 @@ public class ReportInfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().update(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_REPORT_INFO_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_REPORT_INFO_UPDATE, e);
 		}
 	}
 
@@ -119,8 +111,7 @@ public class ReportInfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().save(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_REPORT_INFO_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_REPORT_INFO_INSERT, e);
 		}
 	}
 
@@ -134,8 +125,7 @@ public class ReportInfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_REPORT_INFO_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_REPORT_INFO_DELETE, e);
 		}
 	}
 
@@ -149,8 +139,7 @@ public class ReportInfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(query(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_REPORT_INFO_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_REPORT_INFO_DELETE, e);
 		}
 	}
 }

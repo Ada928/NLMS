@@ -1,6 +1,5 @@
 package com.huateng.report.getter;
 
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,8 +30,7 @@ public class BopForSameInduDepositInfoGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult queryResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -41,18 +39,17 @@ public class BopForSameInduDepositInfoGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
+
 	@SuppressWarnings("rawtypes")
-	private PageQueryResult getData() throws AppException
-	{
+	private PageQueryResult getData() throws AppException {
 		setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境外同业存放补录信息签约信息查询");
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		//
 		int pageSize = getResult().getPage().getEveryPage();
-		//页码
+		// 页码
 		int pageIndex = getResult().getPage().getCurrentPage();
 
 		List<BopForSameInduDepositBean> list = new ArrayList<BopForSameInduDepositBean>();
@@ -65,7 +62,8 @@ public class BopForSameInduDepositInfoGetter extends BaseGetter {
 		hql.append("        bds.rec_Status,bds.approve_Status,bds.rep_Status,bds.is_sub_Success,");
 		hql.append("        bcd.creditor_id,bcd.creditorcode, bcd.creditorname, bcd.creditornamen,bcd.creditortype,");
 		hql.append("        bcd.crehqcode,bcd.opercode,bcd.REC_ID,bds.filler2,bds.actiondesc");
-		hql.append("   FROM BOP_CFA_EXDEBT_DS bds LEFT JOIN BOP_CFA_CREDITOR_DS bcd ON bds.REC_ID = bcd.REC_ID WHERE 1 = 1 " );
+		hql.append(
+				"   FROM BOP_CFA_EXDEBT_DS bds LEFT JOIN BOP_CFA_CREDITOR_DS bcd ON bds.REC_ID = bcd.REC_ID WHERE 1 = 1 ");
 
 		String qworkDateStart = getCommQueryServletRequest().getParameter("qworkDateStart");
 		String qworkDateEnd = getCommQueryServletRequest().getParameter("qworkDateEnd");
@@ -77,39 +75,34 @@ public class BopForSameInduDepositInfoGetter extends BaseGetter {
 		String qrepStatus = getCommQueryServletRequest().getParameter("qrepStatus");
 		String qfiller2 = getCommQueryServletRequest().getParameter("qfiller2");
 
-		List<Object>paramentList = new ArrayList<Object>();
-		if(StringUtils.isNotBlank(qworkDateStart) ){
+		List<Object> paramentList = new ArrayList<Object>();
+		if (StringUtils.isNotBlank(qworkDateStart)) {
 			hql.append(" and bds.work_Date >= ? ");
 			paramentList.add(qworkDateStart);
 		}
-		if(StringUtils.isNotBlank(qworkDateEnd)){
+		if (StringUtils.isNotBlank(qworkDateEnd)) {
 			hql.append("and  bds.work_Date <= ? ");
 			paramentList.add(qworkDateEnd);
 		}
-		if(StringUtils.isNotBlank(qactiontype))
-		{
+		if (StringUtils.isNotBlank(qactiontype)) {
 			hql.append(" AND bds.actiontype = ? ");
 			paramentList.add(qactiontype);
 		}
-		if(StringUtils.isNotBlank(qrecStatus))
-		{
+		if (StringUtils.isNotBlank(qrecStatus)) {
 			hql.append(" AND bds.rec_Status = ? ");
 			paramentList.add(qrecStatus);
 		}
-		if(StringUtils.isNotBlank(qapproveStatus))
-		{
+		if (StringUtils.isNotBlank(qapproveStatus)) {
 			hql.append(" AND bds.approve_Status = ? ");
 			paramentList.add(qapproveStatus);
 		}
-		if(StringUtils.isNotBlank(qrepStatus))
-		{
+		if (StringUtils.isNotBlank(qrepStatus)) {
 			hql.append(" AND bds.rep_Status = ? ");
 			paramentList.add(qrepStatus);
 		}
-		if(StringUtils.isNotBlank(qfiller2))
-		{
+		if (StringUtils.isNotBlank(qfiller2)) {
 			hql.append(" AND bds.filler2 LIKE ? ");
-			paramentList.add("%"+qfiller2+"%");
+			paramentList.add("%" + qfiller2 + "%");
 		}
 
 		hql.append(" AND (bds.rec_Status = ? OR  bds.rec_Status = ? )");
@@ -133,45 +126,44 @@ public class BopForSameInduDepositInfoGetter extends BaseGetter {
 		PageQueryResult pageResult = rootdao.pageQueryBySQL(pc);
 
 		BopForSameInduDepositBean bop = null;
-		for(Iterator it = pageResult.getQueryResult().iterator(); it.hasNext();)
-		{
+		for (Iterator it = pageResult.getQueryResult().iterator(); it.hasNext();) {
 			bop = new BopForSameInduDepositBean();
 			Object[] queryArray = (Object[]) it.next();
-			bop.setId((String)queryArray[0]);
-			bop.setExdebtcode((String)queryArray[1]);
-			bop.setLimitType((String)queryArray[2]);
-			bop.setDebtorcode((String)queryArray[3]);
-			bop.setDebtype((String)queryArray[4]);
-			bop.setValuedate((String)queryArray[5]);
-			bop.setContractcurr((String)queryArray[6]);
-			bop.setFloatrate((String)queryArray[7]);
+			bop.setId((String) queryArray[0]);
+			bop.setExdebtcode((String) queryArray[1]);
+			bop.setLimitType((String) queryArray[2]);
+			bop.setDebtorcode((String) queryArray[3]);
+			bop.setDebtype((String) queryArray[4]);
+			bop.setValuedate((String) queryArray[5]);
+			bop.setContractcurr((String) queryArray[6]);
+			bop.setFloatrate((String) queryArray[7]);
 			bop.setAnninrate((BigDecimal) queryArray[8]);
-			bop.setSpapfeboindex((String)queryArray[9]);
-			bop.setRemark((String)queryArray[10]);
-			bop.setWorkDate((String)queryArray[11]);
-			bop.setCrtTm((Date)queryArray[12]);
-			bop.setLstUpdTm((Date)queryArray[13]);
-			bop.setLstUpdTlr((String)queryArray[14]);
-			bop.setApptype((String)queryArray[15]);
-			bop.setCurrentfile((String)queryArray[16]);
-			bop.setActiontype((String)queryArray[17]);
-			bop.setRecStatus((String)queryArray[18]);
-			bop.setApproveStatus((String)queryArray[19]);
-			bop.setRepStatus((String)queryArray[20]);
-			bop.setSubSuccess((String)queryArray[21]);
-			bop.setCreditorid((String)queryArray[22]);
-			bop.setCreditorcode((String)queryArray[23]);
-			bop.setCreditorname((String)queryArray[24]);
-			bop.setCreditornamen((String)queryArray[25]);
-			bop.setCreditortype((String)queryArray[26]);
-			bop.setCrehqcode((String)queryArray[27]);
-			bop.setOpercode((String)queryArray[28]);
-			bop.setRecId((String)queryArray[29]);
-			bop.setFiller2((String)queryArray[30]);
-			bop.setActiondesc((String)queryArray[31]);
+			bop.setSpapfeboindex((String) queryArray[9]);
+			bop.setRemark((String) queryArray[10]);
+			bop.setWorkDate((String) queryArray[11]);
+			bop.setCrtTm((Date) queryArray[12]);
+			bop.setLstUpdTm((Date) queryArray[13]);
+			bop.setLstUpdTlr((String) queryArray[14]);
+			bop.setApptype((String) queryArray[15]);
+			bop.setCurrentfile((String) queryArray[16]);
+			bop.setActiontype((String) queryArray[17]);
+			bop.setRecStatus((String) queryArray[18]);
+			bop.setApproveStatus((String) queryArray[19]);
+			bop.setRepStatus((String) queryArray[20]);
+			bop.setSubSuccess((String) queryArray[21]);
+			bop.setCreditorid((String) queryArray[22]);
+			bop.setCreditorcode((String) queryArray[23]);
+			bop.setCreditorname((String) queryArray[24]);
+			bop.setCreditornamen((String) queryArray[25]);
+			bop.setCreditortype((String) queryArray[26]);
+			bop.setCrehqcode((String) queryArray[27]);
+			bop.setOpercode((String) queryArray[28]);
+			bop.setRecId((String) queryArray[29]);
+			bop.setFiller2((String) queryArray[30]);
+			bop.setActiondesc((String) queryArray[31]);
 			list.add(bop);
 		}
 		pageResult.setQueryResult(list);
-		return  pageResult;
+		return pageResult;
 	}
 }

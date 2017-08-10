@@ -22,8 +22,8 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
  * @author <a href="mailto:liu_wen@huateng.com">Liu Wen</a>
  * @version $Revision: 1.12 $
  * @date 2005-7-28
- *  
- * Helper class of ftp client.
+ * 
+ *       Helper class of ftp client.
  */
 public class FTPClientHelper {
 	public final static Log log = LogFactory.getLog(FTPClientHelper.class);
@@ -65,120 +65,81 @@ public class FTPClientHelper {
 
 	/**
 	 * 从服务器获取文件.
+	 * 
 	 * @param fileName
 	 * @param callback
 	 * @throws CommonException
 	 */
-	public void getFile(String fileName, FTPClientCallback callback)
-			throws CommonException {
+	public void getFile(String fileName, FTPClientCallback callback) throws CommonException {
 		/*
-		FTPClient ftpClient = new FTPClient();
-		FTPClientConfig clientConfig = new FTPClientConfig(FTPClientConfig.SYST_UNIX);
-		ftpClient.configure(clientConfig);
-		boolean login = false;
+		 * FTPClient ftpClient = new FTPClient(); FTPClientConfig clientConfig =
+		 * new FTPClientConfig(FTPClientConfig.SYST_UNIX);
+		 * ftpClient.configure(clientConfig); boolean login = false;
+		 * 
+		 * try { if (log.isDebugEnabled()) { log.debug("连接服务器:" + hostname); }
+		 * 
+		 * ftpClient.setDefaultTimeout(timeout);
+		 * ftpClient.setDataTimeout(timeout);
+		 * 
+		 * ftpClient.connect(hostname); int reply = ftpClient.getReplyCode(); if
+		 * (!FTPReply.isPositiveCompletion(reply)) {
+		 * ExceptionUtil.throwCommonException("FTP服务器拒绝连接, 返回代码:" + reply,
+		 * ErrorCode.ERROR_CODE_FTP); }
+		 * 
+		 * if (log.isDebugEnabled()) { log.debug("登录服务器:" + hostname); } login =
+		 * ftpClient.login(userName, password); if (!login) {
+		 * ExceptionUtil.throwCommonException("FTP服务器拒绝用户登录.",
+		 * ErrorCode.ERROR_CODE_FTP); }
+		 * 
+		 * if (fileType.equalsIgnoreCase("binary")) { if (log.isDebugEnabled())
+		 * { log.debug("设置传输类型binary"); } ftpClient.type(FTP.BINARY_FILE_TYPE);
+		 * } else { if (log.isDebugEnabled()) { log.debug("设置传输类型ascii"); }
+		 * ftpClient.type(FTP.ASCII_FILE_TYPE); }
+		 * 
+		 * if (log.isDebugEnabled()) { log.debug("获取文件" + fileName); }
+		 * InputStream inputStream = ftpClient.retrieveFileStream(fileName); if
+		 * (null == inputStream) { reply = ftpClient.getReplyCode();
+		 * ExceptionUtil.throwCommonException("从FTP服务器获取文件" + fileName +
+		 * "失败,错误代码:" + reply, ErrorCode.ERROR_CODE_FTP); } try {
+		 * callback.doFtp(inputStream);
+		 * 
+		 * if (false == ftpClient.completePendingCommand()) {
+		 * ExceptionUtil.throwCommonException("关闭FTP连接失败,错误代码:" +
+		 * ftpClient.getReplyCode(), ErrorCode.ERROR_CODE_FTP); } } finally {
+		 * try { if (null != inputStream) { inputStream.close(); } } catch
+		 * (Throwable t) { }; }
+		 * 
+		 * 
+		 * } catch (CommonException ce) { throw ce; } catch (Exception ex) {
+		 * ExceptionUtil.throwCommonException(ex.getMessage(),
+		 * ErrorCode.ERROR_CODE_FTP, ex); } finally { try { if (login) {
+		 * ftpClient.logout(); } if (ftpClient.isConnected()) {
+		 * ftpClient.disconnect(); } } catch (Throwable t) { }; }
+		 */
 
-		try {
-			if (log.isDebugEnabled()) {
-				log.debug("连接服务器:" + hostname);
-			}
-
-			ftpClient.setDefaultTimeout(timeout);
-			ftpClient.setDataTimeout(timeout);
-
-			ftpClient.connect(hostname);
-			int reply = ftpClient.getReplyCode();
-			if (!FTPReply.isPositiveCompletion(reply)) {
-				ExceptionUtil.throwCommonException("FTP服务器拒绝连接, 返回代码:" + reply,
-						ErrorCode.ERROR_CODE_FTP);
-			}
-
-			if (log.isDebugEnabled()) {
-				log.debug("登录服务器:" + hostname);
-			}
-			login = ftpClient.login(userName, password);
-			if (!login) {
-				ExceptionUtil.throwCommonException("FTP服务器拒绝用户登录.",
-						ErrorCode.ERROR_CODE_FTP);
-			}
-
-			if (fileType.equalsIgnoreCase("binary")) {
-				if (log.isDebugEnabled()) {
-					log.debug("设置传输类型binary");
-				}
-				ftpClient.type(FTP.BINARY_FILE_TYPE);
-			} else {
-				if (log.isDebugEnabled()) {
-					log.debug("设置传输类型ascii");
-				}
-				ftpClient.type(FTP.ASCII_FILE_TYPE);
-			}
-
-			if (log.isDebugEnabled()) {
-				log.debug("获取文件" + fileName);
-			}
-			InputStream inputStream = ftpClient.retrieveFileStream(fileName);
-			if (null == inputStream) {
-				reply = ftpClient.getReplyCode();
-				ExceptionUtil.throwCommonException("从FTP服务器获取文件" + fileName
-						+ "失败,错误代码:" + reply, ErrorCode.ERROR_CODE_FTP);
-			}
-			try {
-				callback.doFtp(inputStream);
-
-				if (false == ftpClient.completePendingCommand()) {
-					ExceptionUtil.throwCommonException("关闭FTP连接失败,错误代码:"
-							+ ftpClient.getReplyCode(),
-							ErrorCode.ERROR_CODE_FTP);
-				}
-			} finally {
-				try {
-					if (null != inputStream) {
-						inputStream.close();
-					}
-				} catch (Throwable t) {
-				};
-			}
-		
-
-		} catch (CommonException ce) {
-			throw ce;
-		} catch (Exception ex) {
-			ExceptionUtil.throwCommonException(ex.getMessage(),
-					ErrorCode.ERROR_CODE_FTP, ex);
-		} finally {
-			try {
-				if (login) {
-					ftpClient.logout();
-				}
-				if (ftpClient.isConnected()) {
-					ftpClient.disconnect();
-				}
-			} catch (Throwable t) {
-			};
-		}
-		*/
-		
 		InputStream is = null;
-		try{
-//为演示需要改FTP方式为打开本地文件2007-11-21
-//			String urlString = "ftp://" + userName + ":" + password + "@" + hostname + fileName;
-//			if ( log.isDebugEnabled() ){
-//				log.debug("url is " + urlString);
-//			}
-//			URL url = new URL(urlString);
-//			URLConnection urlc = url.openConnection();
-//			is = urlc.getInputStream(); 
+		try {
+			// 为演示需要改FTP方式为打开本地文件2007-11-21
+			// String urlString = "ftp://" + userName + ":" + password + "@" +
+			// hostname + fileName;
+			// if ( log.isDebugEnabled() ){
+			// log.debug("url is " + urlString);
+			// }
+			// URL url = new URL(urlString);
+			// URLConnection urlc = url.openConnection();
+			// is = urlc.getInputStream();
 			is = new FileInputStream(fileName);
-			
+
 			callback.doFtp(is);
-		}catch (Exception ex) {
-			ExceptionUtil.throwCommonException("指定的报表不存在，报表所属机构错误或者该日没有产生此报表",
-					ErrorCode.ERROR_CODE_FTP, ex);
-		}finally{
-			if ( null != is ){
-				try{
+		} catch (Exception ex) {
+			ExceptionUtil.throwCommonException("指定的报表不存在，报表所属机构错误或者该日没有产生此报表", ErrorCode.ERROR_CODE_FTP, ex);
+		} finally {
+			if (null != is) {
+				try {
 					is.close();
-				}catch(Exception ex){};
+				} catch (Exception ex) {
+				}
+				;
 			}
 		}
 	}
@@ -191,7 +152,8 @@ public class FTPClientHelper {
 	}
 
 	/**
-	 * @param fileType The fileType to set.
+	 * @param fileType
+	 *            The fileType to set.
 	 */
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
@@ -205,7 +167,8 @@ public class FTPClientHelper {
 	}
 
 	/**
-	 * @param hostname The hostname to set.
+	 * @param hostname
+	 *            The hostname to set.
 	 */
 	public void setHostname(String hostname) {
 		this.hostname = hostname;
@@ -219,7 +182,8 @@ public class FTPClientHelper {
 	}
 
 	/**
-	 * @param password The password to set.
+	 * @param password
+	 *            The password to set.
 	 */
 	public void setPassword(String password) {
 		this.password = password;
@@ -233,7 +197,8 @@ public class FTPClientHelper {
 	}
 
 	/**
-	 * @param userName The userName to set.
+	 * @param userName
+	 *            The userName to set.
 	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
@@ -247,7 +212,8 @@ public class FTPClientHelper {
 	}
 
 	/**
-	 * @param fileDir The fileDir to set.
+	 * @param fileDir
+	 *            The fileDir to set.
 	 */
 	public void setFileDir(String fileDir) {
 		this.fileDir = fileDir;
@@ -261,7 +227,8 @@ public class FTPClientHelper {
 	}
 
 	/**
-	 * @param timeout The timeout to set.
+	 * @param timeout
+	 *            The timeout to set.
 	 */
 	public void setTimeout(int timeout) {
 		this.timeout = timeout;
@@ -275,7 +242,8 @@ public class FTPClientHelper {
 	}
 
 	/**
-	 * @param inqDir The inqDir to set.
+	 * @param inqDir
+	 *            The inqDir to set.
 	 */
 	public void setInqDir(String inqDir) {
 		this.inqDir = inqDir;

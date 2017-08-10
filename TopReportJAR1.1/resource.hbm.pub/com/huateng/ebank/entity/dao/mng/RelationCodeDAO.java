@@ -34,8 +34,7 @@ public class RelationCodeDAO extends HibernateDaoSupport {
 		}
 
 		try {
-			RelationCode relationCode = (RelationCode) this
-					.getHibernateTemplate().load(RelationCode.class, id);
+			RelationCode relationCode = (RelationCode) this.getHibernateTemplate().load(RelationCode.class, id);
 			if (logger.isDebugEnabled()) {
 				logger.debug("query(String) - end"); //$NON-NLS-1$
 			}
@@ -43,8 +42,7 @@ public class RelationCodeDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("query(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_RELATION_CODE_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_RELATION_CODE_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -66,8 +64,7 @@ public class RelationCodeDAO extends HibernateDaoSupport {
 		}
 
 		try {
-			RelationCode relationCode = (RelationCode) this
-					.getHibernateTemplate().get(RelationCode.class, id);
+			RelationCode relationCode = (RelationCode) this.getHibernateTemplate().get(RelationCode.class, id);
 			if (logger.isDebugEnabled()) {
 				logger.debug("query(String) - end"); //$NON-NLS-1$
 			}
@@ -75,8 +72,7 @@ public class RelationCodeDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("query(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_RELATION_CODE_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_RELATION_CODE_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -84,7 +80,7 @@ public class RelationCodeDAO extends HibernateDaoSupport {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 查询所有RelationCode信息
 	 *
@@ -97,8 +93,7 @@ public class RelationCodeDAO extends HibernateDaoSupport {
 			allList = this.getHibernateTemplate().find("FROM RelationCode");
 			return allList;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_RELATION_CODE_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_RELATION_CODE_SELECT, e);
 		}
 		return allList;
 	}
@@ -120,8 +115,7 @@ public class RelationCodeDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("insert(RelationCode)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_RELATION_CODE_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_RELATION_CODE_INSERT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -145,8 +139,7 @@ public class RelationCodeDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("update(RelationCode)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_RELATION_CODE_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_RELATION_CODE_UPDATE, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -170,8 +163,7 @@ public class RelationCodeDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("delete(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_RELATION_CODE_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_RELATION_CODE_DELETE, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -195,8 +187,7 @@ public class RelationCodeDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("delete(RelationCode)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_RELATION_CODE_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_RELATION_CODE_DELETE, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -210,8 +201,7 @@ public class RelationCodeDAO extends HibernateDaoSupport {
 		}
 
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from RelationCode po where " + whereString);
+			List list = this.getHibernateTemplate().find("from RelationCode po where " + whereString);
 
 			if (logger.isDebugEnabled()) {
 				logger.debug("queryByCondition(String) - end"); //$NON-NLS-1$
@@ -220,8 +210,7 @@ public class RelationCodeDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("queryByCondition(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_RELATION_CODE_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_RELATION_CODE_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {

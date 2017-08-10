@@ -1,6 +1,5 @@
 package com.huateng.report.genupreportfile.getter;
 
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +23,11 @@ import com.huateng.report.constants.TopReportConstants;
 /**
  *
  * 境外联行及附属机构往来
+ * 
  * @author wenhao.chen
- * @version 1.0
- * 2012-8-30
+ * @version 1.0 2012-8-30
  *
- * */
+ */
 
 public class BOPForDebtNobleMetalGenChangeGetter extends BaseGetter {
 
@@ -39,11 +38,10 @@ public class BOPForDebtNobleMetalGenChangeGetter extends BaseGetter {
 
 			PageQueryResult queryResult = getData();
 
-		//	HtLog logger = HtLogFactory.getLog(BOPForDebtBilLoanGetter.class);
+			// HtLog logger =
+			// HtLogFactory.getLog(BOPForDebtBilLoanGetter.class);
 
-
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -53,12 +51,11 @@ public class BOPForDebtNobleMetalGenChangeGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-	private PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException
-	{
+
+	private PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException {
 
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
@@ -73,11 +70,11 @@ public class BOPForDebtNobleMetalGenChangeGetter extends BaseGetter {
 
 		hql.append(" model.apptype=? and model.currentfile=? and model.changeFileType= ? and model.recStatus=?");
 		objs.add(TopReportConstants.REPORT_APP_TYPE_CFA);
-//		objs.add(TopReportConstants.REPORT_FILE_TYPE_CFA_AS);//文件类型
+		// objs.add(TopReportConstants.REPORT_FILE_TYPE_CFA_AS);//文件类型
 		objs.add(TopReportConstants.REPORT_FILE_TYPE_CFA_AR);
-		objs.add(TopReportConstants.REPORT_FILE_TYPE_CFA_AH);//变动对于的签约的文件类型
+		objs.add(TopReportConstants.REPORT_FILE_TYPE_CFA_AH);// 变动对于的签约的文件类型
 		objs.add(TopReportConstants.REPORT_RECSTATUS_05);
-		if(!DataFormat.isEmpty(qbrNo)){
+		if (!DataFormat.isEmpty(qbrNo)) {
 			hql.append(" AND model.brNo = ? ");
 			objs.add(qbrNo);
 		}
@@ -100,20 +97,20 @@ public class BOPForDebtNobleMetalGenChangeGetter extends BaseGetter {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		return rootdao.pageQueryByQL(queryCondition);
 
-
-
-//		   ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-//		   GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
-//		   //
-//		   int pageSize = getResult().getPage().getEveryPage();
-//		   //页码
-//		   int pageIndex = getResult().getPage().getCurrentPage();
-//		   Map map = getCommQueryServletRequest().getParameterMap();
-//		   String qbrNo = (String) map.get("qbrNo");
-//			String qactiontype = (String) map.get("qactiontype");
-//			String qFiller2 = (String) map.get("qFiller2");
-//			BopForDebtYinTuanService debtYinTuanService = BopForDebtYinTuanService.getInstance();
-//			return debtYinTuanService.queryFeiOrgSaveGen("oversQuery", pageIndex, pageSize, qbrNo, qactiontype, qFiller2);
+		// ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		// GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
+		// //
+		// int pageSize = getResult().getPage().getEveryPage();
+		// //页码
+		// int pageIndex = getResult().getPage().getCurrentPage();
+		// Map map = getCommQueryServletRequest().getParameterMap();
+		// String qbrNo = (String) map.get("qbrNo");
+		// String qactiontype = (String) map.get("qactiontype");
+		// String qFiller2 = (String) map.get("qFiller2");
+		// BopForDebtYinTuanService debtYinTuanService =
+		// BopForDebtYinTuanService.getInstance();
+		// return debtYinTuanService.queryFeiOrgSaveGen("oversQuery", pageIndex,
+		// pageSize, qbrNo, qactiontype, qFiller2);
 	}
 
 }

@@ -1,7 +1,5 @@
 package com.huateng.report.genupreportfile.getter;
 
-
-
 import org.apache.commons.lang.StringUtils;
 
 import resource.report.dao.ROOTDAO;
@@ -22,11 +20,11 @@ import com.huateng.report.constants.TopReportConstants;
 /**
  *
  * 外债信息表Getter
+ * 
  * @author wenhao.chen
- * @version 1.0
- * 2012-8-30
+ * @version 1.0 2012-8-30
  *
- * */
+ */
 
 public class BOPForDebtCurrMarketSignedGenGetter extends BaseGetter {
 
@@ -38,11 +36,10 @@ public class BOPForDebtCurrMarketSignedGenGetter extends BaseGetter {
 
 			PageQueryResult queryResult = getData();
 
-		//	HtLog logger = HtLogFactory.getLog(BOPForDebtBilLoanGetter.class);
+			// HtLog logger =
+			// HtLogFactory.getLog(BOPForDebtBilLoanGetter.class);
 
-
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -52,54 +49,48 @@ public class BOPForDebtCurrMarketSignedGenGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-	private PageQueryResult getData() throws CommonException
-		{
 
-		   ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		   GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
-		   //
-		   int pageSize = getResult().getPage().getEveryPage();
-		   //页码
-		   int pageIndex = getResult().getPage().getCurrentPage();
+	private PageQueryResult getData() throws CommonException {
 
-		   PageQueryCondition queryCondition = new PageQueryCondition();
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
+		//
+		int pageSize = getResult().getPage().getEveryPage();
+		// 页码
+		int pageIndex = getResult().getPage().getCurrentPage();
 
-		   StringBuffer hql = new StringBuffer("select bds from BopCfaExdebtDs bds where 1=1 ");
+		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		   String qbrNo = getCommQueryServletRequest().getParameter("qbrNo");
-		   String qActiontype = getCommQueryServletRequest().getParameter("qActiontype");
+		StringBuffer hql = new StringBuffer("select bds from BopCfaExdebtDs bds where 1=1 ");
 
-		   String qfiller2 = getCommQueryServletRequest().getParameter("qfiller2");
+		String qbrNo = getCommQueryServletRequest().getParameter("qbrNo");
+		String qActiontype = getCommQueryServletRequest().getParameter("qActiontype");
 
+		String qfiller2 = getCommQueryServletRequest().getParameter("qfiller2");
 
-
-		   if(StringUtils.isNotBlank(qbrNo))
-		   {
-			   hql.append(" and bds.brNo ='").append(qbrNo).append("'");
-		   }
-		   if(StringUtils.isNotBlank(qActiontype))
-		   {
-			   hql.append(" and bds.actiontype ='").append(qActiontype).append("'");
-		   }
-		   if(StringUtils.isNotBlank(qfiller2))
-		   {
-			   hql.append(" and bds.filler2 like '%").append(qfiller2).append("%'");
-		   }
-		   hql.append(" and bds.workDate='" + gInfo.getFileDate() + "'");
-		   hql.append(" and bds.apptype='"+TopReportConstants.REPORT_APP_TYPE_CFA+"'");
-		   hql.append(" and bds.currentfile='"+TopReportConstants.REPORT_FILE_TYPE_CFA_AJ+"'");
-		   hql.append(" and bds.recStatus ='"+TopReportConstants.REPORT_RECSTATUS_05+"'");
-		   hql.append(" order by bds.lstUpdTm desc");
-
-		   queryCondition.setPageIndex(pageIndex);
-		   queryCondition.setPageSize(pageSize);
-		   queryCondition.setQueryString(hql.toString());
-
-		   return  rootdao.pageQueryByQL(queryCondition);
+		if (StringUtils.isNotBlank(qbrNo)) {
+			hql.append(" and bds.brNo ='").append(qbrNo).append("'");
 		}
+		if (StringUtils.isNotBlank(qActiontype)) {
+			hql.append(" and bds.actiontype ='").append(qActiontype).append("'");
+		}
+		if (StringUtils.isNotBlank(qfiller2)) {
+			hql.append(" and bds.filler2 like '%").append(qfiller2).append("%'");
+		}
+		hql.append(" and bds.workDate='" + gInfo.getFileDate() + "'");
+		hql.append(" and bds.apptype='" + TopReportConstants.REPORT_APP_TYPE_CFA + "'");
+		hql.append(" and bds.currentfile='" + TopReportConstants.REPORT_FILE_TYPE_CFA_AJ + "'");
+		hql.append(" and bds.recStatus ='" + TopReportConstants.REPORT_RECSTATUS_05 + "'");
+		hql.append(" order by bds.lstUpdTm desc");
+
+		queryCondition.setPageIndex(pageIndex);
+		queryCondition.setPageSize(pageSize);
+		queryCondition.setQueryString(hql.toString());
+
+		return rootdao.pageQueryByQL(queryCondition);
+	}
 
 }

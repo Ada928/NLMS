@@ -7,50 +7,50 @@ package resource.bean.report;
  */
 public class BiImportMapConfig implements java.io.Serializable {
 
-    private String id;
-    private String mapType;
-    private String typeFlag;
-    private String inputValue;
-    private String outValue;
+	private String id;
+	private String mapType;
+	private String typeFlag;
+	private String inputValue;
+	private String outValue;
 
-    public String getId() {
-        return this.id;
-    }
+	public String getId() {
+		return this.id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getMapType() {
-        return this.mapType;
-    }
+	public String getMapType() {
+		return this.mapType;
+	}
 
-    public void setMapType(String mapType) {
-        this.mapType = mapType;
-    }
+	public void setMapType(String mapType) {
+		this.mapType = mapType;
+	}
 
-    public String getTypeFlag() {
-        return this.typeFlag;
-    }
+	public String getTypeFlag() {
+		return this.typeFlag;
+	}
 
-    public void setTypeFlag(String typeFlag) {
-        this.typeFlag = typeFlag;
-    }
+	public void setTypeFlag(String typeFlag) {
+		this.typeFlag = typeFlag;
+	}
 
-    public String getInputValue() {
-        return this.inputValue;
-    }
+	public String getInputValue() {
+		return this.inputValue;
+	}
 
-    public void setInputValue(String inputValue) {
-        this.inputValue = inputValue;
-    }
+	public void setInputValue(String inputValue) {
+		this.inputValue = inputValue;
+	}
 
-    public String getOutValue() {
-        return this.outValue;
-    }
+	public String getOutValue() {
+		return this.outValue;
+	}
 
-    public void setOutValue(String outValue) {
-        this.outValue = outValue;
-    }
+	public void setOutValue(String outValue) {
+		this.outValue = outValue;
+	}
 
 }

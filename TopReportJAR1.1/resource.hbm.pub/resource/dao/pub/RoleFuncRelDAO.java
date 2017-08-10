@@ -67,8 +67,7 @@ public class RoleFuncRelDAO extends HibernateDaoSupport {
 	public RoleFuncRel findById(java.lang.Integer id) {
 		log.debug("getting RoleFuncRel instance with id: " + id);
 		try {
-			RoleFuncRel instance = (RoleFuncRel) getHibernateTemplate().get(
-					RoleFuncRel.class.getName(), id);
+			RoleFuncRel instance = (RoleFuncRel) getHibernateTemplate().get(RoleFuncRel.class.getName(), id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -80,8 +79,7 @@ public class RoleFuncRelDAO extends HibernateDaoSupport {
 		log.debug("finding RoleFuncRel instance by example");
 		try {
 			List results = getHibernateTemplate().findByExample(instance);
-			log.debug("find by example successful, result size: "
-					+ results.size());
+			log.debug("find by example successful, result size: " + results.size());
 			return results;
 		} catch (RuntimeException re) {
 			log.error("find by example failed", re);
@@ -90,11 +88,9 @@ public class RoleFuncRelDAO extends HibernateDaoSupport {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding RoleFuncRel instance with property: " + propertyName
-				+ ", value: " + value);
+		log.debug("finding RoleFuncRel instance with property: " + propertyName + ", value: " + value);
 		try {
-			String queryString = "from RoleFuncRel model where model."
-					+ propertyName + "= ?";
+			String queryString = "from RoleFuncRel model where model." + propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
@@ -124,8 +120,7 @@ public class RoleFuncRelDAO extends HibernateDaoSupport {
 	public RoleFuncRel merge(RoleFuncRel detachedInstance) {
 		log.debug("merging RoleFuncRel instance");
 		try {
-			RoleFuncRel result = (RoleFuncRel) getHibernateTemplate().merge(
-					detachedInstance);
+			RoleFuncRel result = (RoleFuncRel) getHibernateTemplate().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -156,10 +151,10 @@ public class RoleFuncRelDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public static RoleFuncRelDAO getFromApplicationContext(
-			ApplicationContext ctx) {
+	public static RoleFuncRelDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (RoleFuncRelDAO) ctx.getBean("RoleFuncRelDAO");
 	}
+
 	/**
 	 * 根据输入的条件查询所有符合条件的记录
 	 *
@@ -169,15 +164,12 @@ public class RoleFuncRelDAO extends HibernateDaoSupport {
 	 * @return 包含RoleFuncRelation对象的List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString, Object[] objArray,
-			Type[] typeArray) throws CommonException {
+	public List queryByCondition(String whereString, Object[] objArray, Type[] typeArray) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from RoleFuncRel po where " + whereString, objArray );
+			List list = this.getHibernateTemplate().find("from RoleFuncRel po where " + whereString, objArray);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_FUNC_RELATION_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_FUNC_RELATION_SELECT, e);
 		}
 		return null;
 	}
@@ -191,15 +183,14 @@ public class RoleFuncRelDAO extends HibernateDaoSupport {
 	 */
 	public List queryByCondition(String whereString) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from RoleFuncRel po where " + whereString);
+			List list = this.getHibernateTemplate().find("from RoleFuncRel po where " + whereString);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_FUNC_RELATION_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_FUNC_RELATION_SELECT, e);
 		}
 		return null;
 	}
+
 	/**
 	 * 插入记录
 	 *
@@ -210,30 +201,24 @@ public class RoleFuncRelDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().save(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_FUNC_RELATION_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_FUNC_RELATION_INSERT, e);
 		}
 	}
-
 
 	/**
 	 * 根据输入的条件字串查询对象集合
 	 *
-	 * @param String whereString 条件集合
-	 * 例如 "po.name = 'user1' and po.level = '1' or ...."
-	 * @param int startPage 展现层的开始页数
-	 * @param int maxRows 展现层的每页记录数
-		-1  :全部;
-		0   :默认值;
-		其他:实际值
+	 * @param String
+	 *            whereString 条件集合 例如
+	 *            "po.name = 'user1' and po.level = '1' or ...."
+	 * @param int
+	 *            startPage 展现层的开始页数
+	 * @param int
+	 *            maxRows 展现层的每页记录数 -1 :全部; 0 :默认值; 其他:实际值
 	 * @return List 对象集合
 	 * @throws DAOException
 	 */
-	public List queryByCondition(
-		String whereString,
-		int startPage,
-		int maxRows)
-		throws CommonException {
+	public List queryByCondition(String whereString, int startPage, int maxRows) throws CommonException {
 		List returnValue = new ArrayList();
 		startPage = startPage >= 1 ? startPage : 1;
 		int firstResult = (startPage - 1) * (maxRows > 0 ? maxRows : SystemConstant.MAX_ROWS);
@@ -252,8 +237,7 @@ public class RoleFuncRelDAO extends HibernateDaoSupport {
 			returnValue = query.list();
 
 		} catch (HibernateException e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_FUNC_RELATION_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_FUNC_RELATION_SELECT, e);
 		}
 		return returnValue;
 	}

@@ -22,8 +22,7 @@ import com.huateng.exception.AppException;
  */
 public class TlrInfoExDelete extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean updateResultBean, HttpServletRequest request,
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean updateResultBean, HttpServletRequest request,
 			HttpServletResponse response) throws AppException {
 		UpdateResultBean bean = updateResultBean.getUpdateResultBeanByID("Management_TlrInfoEx");
 		Map map = bean.next();

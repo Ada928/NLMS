@@ -43,26 +43,26 @@ public class BlacklistBySHMngEntryGetter extends BaseGetter {
 		ROOTDAO dao = ROOTDAOUtils.getROOTDAO();
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		String partyId = getCommQueryServletRequest().getParameter("qPartyId");
-		String zjzl = getCommQueryServletRequest().getParameter("qZjzl");
-		String zjhm = getCommQueryServletRequest().getParameter("qZjhm");
+		String partyId = getCommQueryServletRequest().getParameter("qdqdh");
+		// String zjzl = getCommQueryServletRequest().getParameter("qZjzl");
+		// String zjhm = getCommQueryServletRequest().getParameter("qZjhm");
 
 		int pageSize = getResult().getPage().getEveryPage();
 		int pageIndex = getResult().getPage().getCurrentPage();
 
-		StringBuffer hql = new StringBuffer(" from TShhmd t where t.mdxz='1'");
+		StringBuffer hql = new StringBuffer(" from bjgb t ");
 
 		if (StringUtils.isNotBlank(partyId)) {
-			hql.append(" and t.partyId like '%").append(partyId).append("%'");
+			hql.append(" and t.qdqdh like '%").append(partyId).append("%'");
 		}
-		if (StringUtils.isNotBlank(zjzl)) {
-			hql.append(" and t.zjzl like '%").append(zjzl).append("%'");
-		}
-		if (StringUtils.isNotBlank(zjhm)) {
-			hql.append(" and t.zjhm like '%").append(zjhm).append("%'");
-		}
+		// if (StringUtils.isNotBlank(zjzl)) {
+		// hql.append(" and t.zjzl like '%").append(zjzl).append("%'");
+		// }
+		// if (StringUtils.isNotBlank(zjhm)) {
+		// hql.append(" and t.zjhm like '%").append(zjhm).append("%'");
+		// }
 
-		hql.append(" order by t.partyId");
+		hql.append(" order by t.jgdh");
 
 		queryCondition.setPageIndex(pageIndex);
 		queryCondition.setPageSize(pageSize);

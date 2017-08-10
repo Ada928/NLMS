@@ -15,16 +15,13 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 
-
-
-public class GenReportFileGetter extends BaseGetter{
+public class GenReportFileGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		try {
 			PageQueryResult queryResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(1);
@@ -35,20 +32,19 @@ public class GenReportFileGetter extends BaseGetter{
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-	private PageQueryResult getData() throws CommonException
-	{
+
+	private PageQueryResult getData() throws CommonException {
 		PageQueryResult queryResult = new PageQueryResult();
 		String workDate = this.getCommQueryServletRequest().getParameter("workDate");
 		String busiType = this.getCommQueryServletRequest().getParameter("busiType");
 		String appType = this.getCommQueryServletRequest().getParameter("qappType");
-		
-		String hql = " from BiExecConfirm model where model.id.busiType = '" + busiType + "' and model.id.workDate='" + workDate
-				+ "' and model.id.apptype = '" + appType + "' order by model.id.brNo";
-		
+
+		String hql = " from BiExecConfirm model where model.id.busiType = '" + busiType + "' and model.id.workDate='"
+				+ workDate + "' and model.id.apptype = '" + appType + "' order by model.id.brNo";
+
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<BiExecConfirm> biExecs = rootdao.queryByQL2List(hql);
 		queryResult.setQueryResult(biExecs);

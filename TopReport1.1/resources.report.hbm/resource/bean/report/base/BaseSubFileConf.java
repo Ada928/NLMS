@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the SUB_FILE_CONF table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * This is an object that contains data related to the SUB_FILE_CONF table. Do
+ * not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="SUB_FILE_CONF"
+ * @hibernate.class table="SUB_FILE_CONF"
  */
 
-public abstract class BaseSubFileConf  implements Serializable {
+public abstract class BaseSubFileConf implements Serializable {
 
 	public static String REF = "SubFileConf";
 	public static String PROP_XML_FILE_ID = "xmlFileId";
@@ -23,22 +21,22 @@ public abstract class BaseSubFileConf  implements Serializable {
 	public static String PROP_PK_SPLIT = "pkSplit";
 	public static String PROP_DATA_VALID_PATH = "dataValidPath";
 	public static String PROP_CONF_IS_CONTROL = "confIsControl";
+
 	// constructors
-	public BaseSubFileConf () {
+	public BaseSubFileConf() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseSubFileConf (resource.bean.report.SubFileConfPK id) {
+	public BaseSubFileConf(resource.bean.report.SubFileConfPK id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -53,7 +51,6 @@ public abstract class BaseSubFileConf  implements Serializable {
 	private java.lang.String pkSplit;
 	private java.lang.String dataValidPath;
 	private java.lang.String confIsControl;
-	
 
 	public java.lang.String getConfIsControl() {
 		return confIsControl;
@@ -89,89 +86,93 @@ public abstract class BaseSubFileConf  implements Serializable {
 
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     */
-	public resource.bean.report.SubFileConfPK getId () {
+	 * 
+	 * @hibernate.id
+	 */
+	public resource.bean.report.SubFileConfPK getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (resource.bean.report.SubFileConfPK id) {
+	public void setId(resource.bean.report.SubFileConfPK id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: XML_FILE_ID
 	 */
-	public java.lang.String getXmlFileId () {
+	public java.lang.String getXmlFileId() {
 		return xmlFileId;
 	}
 
 	/**
 	 * Set the value related to the column: XML_FILE_ID
-	 * @param xmlFileId the XML_FILE_ID value
+	 * 
+	 * @param xmlFileId
+	 *            the XML_FILE_ID value
 	 */
-	public void setXmlFileId (java.lang.String xmlFileId) {
+	public void setXmlFileId(java.lang.String xmlFileId) {
 		this.xmlFileId = xmlFileId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILE_RESULT_PATH
 	 */
-	public java.lang.String getFileResultPath () {
+	public java.lang.String getFileResultPath() {
 		return fileResultPath;
 	}
 
 	/**
 	 * Set the value related to the column: FILE_RESULT_PATH
-	 * @param fileResultPath the FILE_RESULT_PATH value
+	 * 
+	 * @param fileResultPath
+	 *            the FILE_RESULT_PATH value
 	 */
-	public void setFileResultPath (java.lang.String fileResultPath) {
+	public void setFileResultPath(java.lang.String fileResultPath) {
 		this.fileResultPath = fileResultPath;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EXEC_SEQ
 	 */
-	public java.lang.Integer getExecSeq () {
+	public java.lang.Integer getExecSeq() {
 		return execSeq;
 	}
 
 	/**
 	 * Set the value related to the column: EXEC_SEQ
-	 * @param execSeq the EXEC_SEQ value
+	 * 
+	 * @param execSeq
+	 *            the EXEC_SEQ value
 	 */
-	public void setExecSeq (java.lang.Integer execSeq) {
+	public void setExecSeq(java.lang.Integer execSeq) {
 		this.execSeq = execSeq;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.SubFileConf)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.SubFileConf))
+			return false;
 		else {
 			resource.bean.report.SubFileConf subFileConf = (resource.bean.report.SubFileConf) obj;
-			if (null == this.getId() || null == subFileConf.getId()) return false;
-			else return (this.getId().equals(subFileConf.getId()));
+			if (null == this.getId() || null == subFileConf.getId())
+				return false;
+			else
+				return (this.getId().equals(subFileConf.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -180,10 +181,8 @@ public abstract class BaseSubFileConf  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

@@ -40,20 +40,18 @@ public class SessionMonitor implements HttpSessionListener {
 
 		try {
 			HttpSession session = se.getSession();
-			GlobalInfo globalInfo = (GlobalInfo) session
-					.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
+			GlobalInfo globalInfo = (GlobalInfo) session.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
 			/** 如果操作员仍然处于登录状态的情况下，自定进行签退. */
-//			if (globalInfo != null
-//					&& globalInfo.getTlrStatus().equals(
-//							SystemConstant.TLR_NO_STATE_LOGIN)) {
-//				GlobalInfo.setCurrentInstance(globalInfo);
-//				OperationContext operContext = new OperationContext();
-//				OPCaller.call(LogoutManagerOP.ID, operContext);
-//			}
+			// if (globalInfo != null
+			// && globalInfo.getTlrStatus().equals(
+			// SystemConstant.TLR_NO_STATE_LOGIN)) {
+			// GlobalInfo.setCurrentInstance(globalInfo);
+			// OperationContext operContext = new OperationContext();
+			// OPCaller.call(LogoutManagerOP.ID, operContext);
+			// }
 			/** . */
 			/** destory common query databus. */
-			CommonQueryDataBusMng.destory(se.getSession().getId(), se
-					.getSession());
+			CommonQueryDataBusMng.destory(se.getSession().getId(), se.getSession());
 			// 使session无效，释放资源
 			String strAttrName = null;
 			Enumeration names = session.getAttributeNames();

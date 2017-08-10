@@ -29,18 +29,13 @@ import com.huateng.exception.AppException;
  */
 public class TlrInfoUpdate extends BaseUpdate {
 
-
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("parammng_TlrInfo2");
-			//UpdateReturnBean updateReturnBean1 = new UpdateReturnBean();
-			UpdateResultBean updateResultBean1 = multiUpdateResultBean
-					.getUpdateResultBeanByID("parammng_TlrInfo3");
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("parammng_TlrInfo2");
+			// UpdateReturnBean updateReturnBean1 = new UpdateReturnBean();
+			UpdateResultBean updateResultBean1 = multiUpdateResultBean.getUpdateResultBeanByID("parammng_TlrInfo3");
 			List<TlrRoleInfoView> updateList = new ArrayList<TlrRoleInfoView>();
 			TlrInfo tlrInfo = new TlrInfo();
 			while (updateResultBean.hasNext()) {
@@ -69,8 +64,7 @@ public class TlrInfoUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

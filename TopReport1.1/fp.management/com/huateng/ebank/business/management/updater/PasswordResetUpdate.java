@@ -22,11 +22,8 @@ import com.huateng.exception.AppException;
 
 public class PasswordResetUpdate extends BaseUpdate {
 
-	
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		// TODO Auto-generated method stub
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
@@ -35,18 +32,18 @@ public class PasswordResetUpdate extends BaseUpdate {
 			while (updateResultBean.hasNext()) {
 				mapToObject(cpf, updateResultBean.next());
 			}
-			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
+			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD",
+					SystemConstant.DEFAULT_PASSWORD);
 			cpf.setNewPassWord(sysDefaultPwd);
 			OperationContext oc = new OperationContext();
-			oc.setAttribute(PasswordResetOP.IN_TLRNO,cpf.getTlrno());
-			oc.setAttribute(PasswordResetOP.IN_NEW_PWD,cpf.getNewPassWord());
+			oc.setAttribute(PasswordResetOP.IN_TLRNO, cpf.getTlrno());
+			oc.setAttribute(PasswordResetOP.IN_NEW_PWD, cpf.getNewPassWord());
 			OPCaller.call(PasswordResetOP.ID, oc);
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

@@ -29,21 +29,18 @@ public class BopEDsLoadPageGetter extends BaseGetter {
 		try {
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -56,7 +53,7 @@ public class BopEDsLoadPageGetter extends BaseGetter {
 		String qworkDateEnd = map.get("qworkDateEnd");
 		String qrptno = map.get("qrptno");
 		String qfiller2 = map.get("qfiller2");
-		//只能查当前机构号
+		// 只能查当前机构号
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
 		String qbrNo = globalInfo.getBrno();
 		BopEqDsCollectionService bopEqDsService = BopEqDsCollectionService.getInstance();

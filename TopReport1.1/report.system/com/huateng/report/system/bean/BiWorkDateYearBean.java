@@ -5,10 +5,10 @@ import java.io.Serializable;
 /**
  * 
  * @author shishu.zhang
- *	
- * 2012-8-15上午10:39:19
+ * 
+ *         2012-8-15上午10:39:19
  */
-public class BiWorkDateYearBean implements Serializable{
+public class BiWorkDateYearBean implements Serializable {
 	private java.lang.String yr;
 
 	public java.lang.String getYr() {

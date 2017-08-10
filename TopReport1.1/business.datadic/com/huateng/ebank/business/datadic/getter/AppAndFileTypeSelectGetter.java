@@ -22,29 +22,25 @@ public class AppAndFileTypeSelectGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
 
 	private PageQueryResult getData() throws CommonException {
 
-		//分页大小
+		// 分页大小
 		int pageSize = getResult().getPage().getEveryPage();
-		//页码
+		// 页码
 		int pageIndex = getResult().getPage().getCurrentPage();
 		ReportCommonService service = ReportCommonService.getInstance();
 
@@ -54,29 +50,29 @@ public class AppAndFileTypeSelectGetter extends BaseGetter {
 		String appType = getCommQueryServletRequest().getParameter("appType");
 
 		PageQueryResult queryresult = null;
-		if (type==null|| type.trim().length()==0) {
+		if (type == null || type.trim().length() == 0) {
 			type = TopReportConstants.REPORT_BUSITYPE_BOP;
 		}
 		DataDic dic = service.getDataDic(ReportConstant.DATA_DIC_BUSI_TYPE_NO, type.trim());
-		if (dic!=null && dic.getMiscflgs()!=null && dic.getMiscflgs().trim().length()>0) {
+		if (dic != null && dic.getMiscflgs() != null && dic.getMiscflgs().trim().length() > 0) {
 			String dataTypeNo = dic.getMiscflgs().trim();
-			if (show!=null && show.equalsIgnoreCase("file")) {
-				if (appType!=null && appType.trim().length()>0) {
+			if (show != null && show.equalsIgnoreCase("file")) {
+				if (appType != null && appType.trim().length() > 0) {
 					DataDic appDic = service.getDataDic(Integer.parseInt(dataTypeNo), appType.trim());
-					if (appDic!=null && appDic.getMiscflgs()!=null && appDic.getMiscflgs().trim().length()>0) {
+					if (appDic != null && appDic.getMiscflgs() != null && appDic.getMiscflgs().trim().length() > 0) {
 						dataTypeNo = appDic.getMiscflgs();
-					}else{
-						dataTypeNo="-1";
+					} else {
+						dataTypeNo = "-1";
 					}
-				}else{
-					dataTypeNo="-1";
+				} else {
+					dataTypeNo = "-1";
 				}
 			}
 
-			hql.append(" and dd.dataTypeNo="+dataTypeNo +" order by dd.dataNo");
+			hql.append(" and dd.dataTypeNo=" + dataTypeNo + " order by dd.dataNo");
 			queryresult = ROOTDAOUtils.getROOTDAO().pageQueryByHql(pageIndex, pageSize, hql.toString());
 		}
-		if (queryresult==null) {
+		if (queryresult == null) {
 			queryresult = new PageQueryResult();
 			queryresult.setQueryResult(new ArrayList());
 			queryresult.setTotalCount(0);

@@ -36,21 +36,17 @@ public class OperMngModComGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -61,7 +57,7 @@ public class OperMngModComGetter extends BaseGetter {
 		String flag = (String) getCommQueryServletRequest().getParameterMap().get("flag");
 		String tskId = (String) getCommQueryServletRequest().getParameter("tskId");
 		List list = new ArrayList();
-		if(flag.equals("0")){
+		if (flag.equals("0")) {
 			TlrInfoDAO tlrInfoDao = DAOUtils.getTlrInfoDAO();
 			TlrInfo tlrInfo = tlrInfoDao.query(tlrno);
 			list.add(tlrInfo);
@@ -69,14 +65,14 @@ public class OperMngModComGetter extends BaseGetter {
 			result.setTotalCount(1);
 			return result;
 		}
-		if(flag.equals("1")){
-			ReportTaskUtil rt=new ReportTaskUtil();
-			SysTaskLog  systasklog=ReportShowDetailService.getInstance().selectTaskLog(tskId);
+		if (flag.equals("1")) {
+			ReportTaskUtil rt = new ReportTaskUtil();
+			SysTaskLog systasklog = ReportShowDetailService.getInstance().selectTaskLog(tskId);
 			TlrInfoAuditBean oldValue = null;
-			if(systasklog.getOldVal1()!=null){
-				oldValue=(TlrInfoAuditBean)rt.getOldObjectByTaskLog(systasklog);	  
+			if (systasklog.getOldVal1() != null) {
+				oldValue = (TlrInfoAuditBean) rt.getOldObjectByTaskLog(systasklog);
 			}
-			if(oldValue != null){
+			if (oldValue != null) {
 				TlrInfo tlrInfo = oldValue.getTlrInfo();
 				list.add(tlrInfo);
 				result.setQueryResult(list);

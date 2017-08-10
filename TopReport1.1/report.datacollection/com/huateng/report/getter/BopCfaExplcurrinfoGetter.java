@@ -23,13 +23,10 @@ public class BopCfaExplcurrinfoGetter extends BaseGetter {
 		try {
 			PageQueryResult queryResult = getData();
 			if (!queryResult.getQueryResult().isEmpty()) {
-				ResultMng.fillResultByList(getCommonQueryBean(),
-						getCommQueryServletRequest(), queryResult
-								.getQueryResult(), getResult());
+				ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+						queryResult.getQueryResult(), getResult());
 				result.setContent(queryResult.getQueryResult());
-				result.getPage().setTotalPage(
-						queryResult.getPageCount(getResult().getPage()
-								.getEveryPage()));
+				result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 				result.init();
 			} else {
 				result.setContent(Collections.emptyList());
@@ -38,8 +35,7 @@ public class BopCfaExplcurrinfoGetter extends BaseGetter {
 			}
 			return result;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

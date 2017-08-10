@@ -1,6 +1,5 @@
 package com.huateng.report.getter;
 
-
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -17,26 +16,21 @@ import com.huateng.report.service.BiAnalyConfService;
 
 public class AnalyConfRecordGetter extends BaseGetter {
 
-
 	@Override
 	public Result call() throws AppException {
 		// TODO Auto-generated method stub
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -53,23 +47,22 @@ public class AnalyConfRecordGetter extends BaseGetter {
 		StringBuffer hql = new StringBuffer();
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
-		//拼装hql(qbusiType数据库按DATA_DIC.35的DATA_NO字段,qconfDate按格式“yyyyMMdd”查，qconfVaild是0,1)
+		// 拼装hql(qbusiType数据库按DATA_DIC.35的DATA_NO字段,qconfDate按格式“yyyyMMdd”查，qconfVaild是0,1)
 		hql.append("from BiAnalyConf biAnalyConf where 1 = 1 ");
-		if(StringUtils.isNotBlank(qbusiType)) {
-			hql.append(" and biAnalyConf.busiType = '"+qbusiType.trim()+"' ");
+		if (StringUtils.isNotBlank(qbusiType)) {
+			hql.append(" and biAnalyConf.busiType = '" + qbusiType.trim() + "' ");
 		}
-		if(StringUtils.isNotBlank(qappType)) {
-			hql.append(" and biAnalyConf.appType = '"+qappType.trim()+"' ");
+		if (StringUtils.isNotBlank(qappType)) {
+			hql.append(" and biAnalyConf.appType = '" + qappType.trim() + "' ");
 		}
-		if(StringUtils.isNotBlank(qconfType)) {
-			hql.append(" and biAnalyConf.confType = '"+qconfType.trim()+"' ");
+		if (StringUtils.isNotBlank(qconfType)) {
+			hql.append(" and biAnalyConf.confType = '" + qconfType.trim() + "' ");
 		}
-		if(StringUtils.isNotBlank(qconfVaild)) {
-			hql.append(" and biAnalyConf.confVaild = '"+qconfVaild.trim()+"' ");
+		if (StringUtils.isNotBlank(qconfVaild)) {
+			hql.append(" and biAnalyConf.confVaild = '" + qconfVaild.trim() + "' ");
 		}
 
 		return BiAnalyConfService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString());
 	}
-
 
 }
