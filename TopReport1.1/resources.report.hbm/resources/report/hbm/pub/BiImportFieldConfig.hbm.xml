@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012-8-14 9:50:56 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="resource.bean.report.BiImportFieldConfig" table="BI_IMPORT_FIELD_CONFIG"  >
+    <class name="resource.bean.report.BiImportFieldConfig" table="BI_IMPORT_FIELD_CONFIG">
         <id name="id" type="string">
             <column name="ID" length="32" />
             <generator class="uuid" />

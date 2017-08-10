@@ -13,19 +13,19 @@
 <title>定时任务执行信息</title>
 </head>
 <body bgcolor="white" style="margin: 0px;">
-<center>
-<div style="padding: 3px;">
-<table width="100%" class="grouptable" cellpadding="0" cellspacing="0" border="0">
-	<thead>
-		<tr>
-			<td class="labeltd" valign=center nowrap="nowrap">定时任务名称</td>
-			<td class="labeltd" valign=center nowrap="nowrap">定时任务执行时间</td>
-			<td class="labeltd" valign=center nowrap="nowrap">结束时间</td>
-			<td class="labeltd" valign=center nowrap="nowrap">定时任务执行结果</td>
-			<td class="labeltd" valign=center nowrap="nowrap">备注</td>
-		</tr>
-	</thead>
-	<%
+	<center>
+		<div style="padding: 3px;">
+			<table width="100%" class="grouptable" cellpadding="0" cellspacing="0" border="0">
+				<thead>
+					<tr>
+						<td class="labeltd" valign=center nowrap="nowrap">定时任务名称</td>
+						<td class="labeltd" valign=center nowrap="nowrap">定时任务执行时间</td>
+						<td class="labeltd" valign=center nowrap="nowrap">结束时间</td>
+						<td class="labeltd" valign=center nowrap="nowrap">定时任务执行结果</td>
+						<td class="labeltd" valign=center nowrap="nowrap">备注</td>
+					</tr>
+				</thead>
+				<%
 		List quartzJobLogBeans = ReportCommonService.getInstance().getQuartzJobLog();
 		String bgcolor = "#ffffff";
 		for(int i = 0; i < quartzJobLogBeans.size(); i++){
@@ -36,26 +36,23 @@
 				bgcolor = "#f7f7fe";
 			}
 	%>
-		<tr style="line-height: 22px;">
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<%=bean.getQuartzName() %>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<%=DateUtil.Time14ToString2(bean.getExecTm())%>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<%=bean.getEndTm()==null?"":DateUtil.Time14ToString2(bean.getEndTm())%>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<%if (bean.getQuartzResult().equals("01")){%>成功
-		 			<%} else {%>失败<%} %>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<% if (bean.getRemark()==null){%>&nbsp;
-		 			<% }else { %><%=bean.getRemark() %><%} %>
-		</td>
-	<%} %>
-</table></center>
-</div>
+				<tr style="line-height: 22px;">
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getQuartzName() %></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=DateUtil.Time14ToString2(bean.getExecTm())%>
+					</td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getEndTm()==null?"":DateUtil.Time14ToString2(bean.getEndTm())%>
+					</td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
+						<%if (bean.getQuartzResult().equals("01")){%>成功 <%} else {%>失败<%} %>
+					</td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
+						<% if (bean.getRemark()==null){%>&nbsp; <% }else { %><%=bean.getRemark() %>
+						<%} %>
+					</td>
+					<%} %>
+				
+			</table>
+	</center>
+	</div>
 </body>
 </html>

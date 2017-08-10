@@ -15,9 +15,11 @@
 	font-size: 12px;
 	font-family: Arial, Helvetica, sans-serif;
 }
+
 .tabletop {
 	border: 1px solid #aed0ea;
 }
+
 .tabletoptd1 {
 	border-bottom: 1px solid #aed0ea;
 	background: #e8f3fb
@@ -25,6 +27,7 @@
 		repeat-x;
 	padding-left: 2px;
 }
+
 .tabletoptd1div {
 	margin-right: 1px;
 	margin-top: 1px;
@@ -42,6 +45,7 @@
 	font-weight: 600;
 	float: left;
 }
+
 .tabletoptd2div {
 	margin-right: 1px;
 	font-size: 12px;
@@ -59,6 +63,7 @@
 	height: 25px;
 	line-height: 25px;
 }
+
 .tabletoptd2 {
 	width: 100%;
 	height: 100%;

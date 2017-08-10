@@ -13,17 +13,17 @@
 <title>回执结果</title>
 </head>
 <body bgcolor="white" style="margin: 0px;">
-<center>
-<div style="padding: 3px;">
-<table width="100%" class="grouptable" cellpadding="0" cellspacing="0" border="0">
-	<thead>
-		<tr>
-			<td class="labeltd" valign=center  align="left">机构号</td>
-			<td class="labeltd" valign=center  align="left">机构名称</td>
-			<td class="labeltd" valign=center  align="left">完成状态</td>
-		</tr>
-	</thead>
-	<%
+	<center>
+		<div style="padding: 3px;">
+			<table width="100%" class="grouptable" cellpadding="0" cellspacing="0" border="0">
+				<thead>
+					<tr>
+						<td class="labeltd" valign=center align="left">机构号</td>
+						<td class="labeltd" valign=center align="left">机构名称</td>
+						<td class="labeltd" valign=center align="left">完成状态</td>
+					</tr>
+				</thead>
+				<%
 		List<BiExecConfirm> biExecs = ReportCommonService.getInstance().getAllBrNoBiExecConfirm();
 		String bgcolor = "#ffffff";
 		for(int i = 0; i < biExecs.size(); i++){
@@ -34,21 +34,19 @@
 				bgcolor = "#f7f7fe";
 			}
 	%>
-		<tr style="line-height: 22px;">
-		<td class="datatd" valign=center align="left" nowrap width="25%" bgcolor="<%=bgcolor %>">
-		 			<%=biExec.getId().getBrNo() %>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap width="25%" bgcolor="<%=bgcolor %>">
-		 			<%=biExec.getBrNoName() %>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap width="25%" bgcolor="<%=bgcolor %>">
-					<%if(biExec.getFinishStatus().equals("02")){ %>未完成
-					<%} else { %>完成<%} %>
-		</td>
-		</tr>
-		<%}%>
-</table></center>
-</div>
+				<tr style="line-height: 22px;">
+					<td class="datatd" valign=center align="left" nowrap width="25%" bgcolor="<%=bgcolor %>"><%=biExec.getId().getBrNo() %>
+					</td>
+					<td class="datatd" valign=center align="left" nowrap width="25%" bgcolor="<%=bgcolor %>"><%=biExec.getBrNoName() %>
+					</td>
+					<td class="datatd" valign=center align="left" nowrap width="25%" bgcolor="<%=bgcolor %>">
+						<%if(biExec.getFinishStatus().equals("02")){ %>未完成 <%} else { %>完成<%} %>
+					</td>
+				</tr>
+				<%}%>
+			</table>
+	</center>
+	</div>
 </body>
 
 <script type="text/javascript">

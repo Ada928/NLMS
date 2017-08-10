@@ -32,8 +32,7 @@
 		<tr>
 			<!-- <td width="13%" height="28px" background="<%=request.getContextPath()%>/images/gz_bg_menu_left.jpg" >-->
 			<!-- <td width="13px" height="28px" background="<%=request.getContextPath()%>/images/mu01.jpg"  > </td> -->
-			<td>
-					<script language="javascript">
+			<td><script language="javascript">
 						Menu.prototype.mouseHoverDisabled = false;
 						//Menu.prototype.cssFile = "<%=request.getContextPath()%>/css/gz-menu.css";
 						Menu.prototype.cssFile = "<%=request.getContextPath()%>/css/menu.css";
@@ -51,8 +50,7 @@
 						{
 							window.open("<%=request.getContextPath()%>/logout.do", "_top");
 						}
-					</script>
-				</td>
+					</script></td>
 		</tr>
 	</table>
 </body>

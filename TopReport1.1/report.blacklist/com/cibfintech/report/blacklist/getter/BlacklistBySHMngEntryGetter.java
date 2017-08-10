@@ -1,4 +1,4 @@
-package com.cibfintech.ebank.business.management.getter;
+package com.cibfintech.report.blacklist.getter;
 
 import org.apache.commons.lang.StringUtils;
 

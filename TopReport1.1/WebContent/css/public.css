@@ -87,7 +87,7 @@ form {
 }
 
 .title {
-	font-family: ËÎÌå;
+	font-family: ï¿½ï¿½ï¿½ï¿½;
 	font-size: 14px;
 	color: #0066CC;
 }
@@ -131,7 +131,7 @@ form {
 }
 
 .tableList th {
-	font-family: "ËÎÌå", "Times New Roman", Times, serif;
+	font-family: "ï¿½ï¿½ï¿½ï¿½", "Times New Roman", Times, serif;
 	/*background-color: #2B71B8;*/
 	background-image: url('..\images\table_header.gif');
 	color: #000000;
@@ -276,7 +276,7 @@ form {
 }
 
 .divmsg {
-	font-family: ËÎÌå;
+	font-family: ï¿½ï¿½ï¿½ï¿½;
 	font-size: 14px;
 }
 
@@ -290,7 +290,7 @@ form {
 	border-bottom-style: inset;
 	border-bottom-color: #51B2DF;
 	margin: 0px;
-	background-color:#289FD9;
+	background-color: #289FD9;
 }
 
 .leftmenu2 {
@@ -303,44 +303,44 @@ form {
 	border-bottom-style: inset;
 	border-bottom-color: #51B2DF;
 	margin: 0px;
-	background-color:#78C2E7;
+	background-color: #78C2E7;
 }
 
-.rowsplit{ 
-	PADDING-RIGHT: 0px; 
-	MARGIN-RIGHT: 0px; 
-	background:#EDF2F6; 
-	cursor:n-resize; 
-	WIDTH: 100%; 
-	height:10px; 
-	FONT-FAMILY:   Webdings; 
-	FONT-SIZE:   5pt;
+.rowsplit {
+	PADDING-RIGHT: 0px;
+	MARGIN-RIGHT: 0px;
+	background: #EDF2F6;
+	cursor: n-resize;
+	WIDTH: 100%;
+	height: 10px;
+	FONT-FAMILY: Webdings;
+	FONT-SIZE: 5pt;
 }
 
-.colsplit{ 
-	PADDING-RIGHT: 0px; 
-	MARGIN-RIGHT: 0px; 
-	background:#EDF2F6; 
-	cursor:e-resize; 
-	HEIGHT: 100%; 
-	width:3px; 
-	FONT-FAMILY:   Webdings; 
-	FONT-SIZE:   5pt;
-}  
+.colsplit {
+	PADDING-RIGHT: 0px;
+	MARGIN-RIGHT: 0px;
+	background: #EDF2F6;
+	cursor: e-resize;
+	HEIGHT: 100%;
+	width: 3px;
+	FONT-FAMILY: Webdings;
+	FONT-SIZE: 5pt;
+}
 
 .divloca {
-	font-family: ËÎÌå;
+	font-family: ï¿½ï¿½ï¿½ï¿½;
 	font-size: 12px;
 	background-color: white;
 	margin: 10px;
 }
 
 .divmsg {
-	PADDING-TOP: 0px; 
-	MARGIN-TOP: 0px; 
-	PADDING-LEFT: 0px; 
-	MARGIN-LEFT: 0px; 
-	font-family: ËÎÌå;
+	PADDING-TOP: 0px;
+	MARGIN-TOP: 0px;
+	PADDING-LEFT: 0px;
+	MARGIN-LEFT: 0px;
+	font-family: ï¿½ï¿½ï¿½ï¿½;
 	font-size: 12px;
 	margin: 0px;
 }
@@ -355,6 +355,7 @@ form {
 	font-size: 12px;
 	color: #FFFFFF;
 }
+
 .xiaoxi a {
 	color: #0051A3;
 	text-decoration: none;

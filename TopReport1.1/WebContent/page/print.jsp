@@ -1,5 +1,4 @@
-<%@ page contentType="text/html;charset=gb2312" language="java"%><%@ taglib
-	uri="/tags/application-tags" prefix="app"%>
+<%@ page contentType="text/html;charset=gb2312" language="java"%><%@ taglib uri="/tags/application-tags" prefix="app"%>
 <%@ taglib uri="/tags/struts-html" prefix="html"%>
 <html>
 <style type="text/css">
@@ -13,7 +12,7 @@ body {
 	background-image: url(../images/back.jpg);
 }
 
-body,td,th {
+body, td, th {
 	color: 020714;
 }
 
@@ -34,12 +33,13 @@ body,td,th {
 	font-weight: bold;
 	color: black;
 }
-.noBorder{
-	BORDER-RIGHT: rgb(0,0,0)   1px   solid;
-	BORDER-TOP:   rgb(0,0,0)   1px   solid;
-	FONT-SIZE:   9pt;
-	BORDER-LEFT:   rgb(0,0,0)   1px   solid;
-	BORDER-BOTTOM:   rgb(0,0,0)   1px   solid
+
+.noBorder {
+	BORDER-RIGHT: rgb(0, 0, 0) 1px solid;
+	BORDER-TOP: rgb(0, 0, 0) 1px solid;
+	FONT-SIZE: 9pt;
+	BORDER-LEFT: rgb(0, 0, 0) 1px solid;
+	BORDER-BOTTOM: rgb(0, 0, 0) 1px solid
 }
 -->
 </style>
@@ -63,13 +63,10 @@ body,td,th {
 -->
 </style>
 </HEAD>
-<BODY BGCOLOR=#FFFFFF LEFTMARGIN=0 TOPMARGIN=0 MARGINWIDTH=0
-	MARGINHEIGHT=0>
+<BODY BGCOLOR=#FFFFFF LEFTMARGIN=0 TOPMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0>
 	<table>
 		<tr>
-			<td>
-				<label id="banner" class="STYLE5">正在打印，请稍候，请不要关闭此窗口，打印完成时它将自动关闭</label>
-			</td>
+			<td><label id="banner" class="STYLE5">正在打印，请稍候，请不要关闭此窗口，打印完成时它将自动关闭</label></td>
 		</tr>
 	</table>
 

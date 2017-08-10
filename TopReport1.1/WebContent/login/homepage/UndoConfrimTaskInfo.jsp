@@ -15,17 +15,17 @@ List taskBeans = ReportCommonService.getInstance().getUndoConfirmTask(session);
 %>
 </head>
 <body bgcolor="white" style="margin: 0px;">
-<center>
-<div style="padding: 3px;">
-<table width="100%" class="grouptable" cellpadding="0" cellspacing="0" border="0">
-	<thead>
-		<tr>
-			<td class="labeltd" valign=center align="left">待办业务类型</td>
-			<td class="labeltd" valign=center align="left">数量</td>
-			<td class="labeltd" valign=center align="left">操作</td>
-		</tr>
-	</thead>
-	<%
+	<center>
+		<div style="padding: 3px;">
+			<table width="100%" class="grouptable" cellpadding="0" cellspacing="0" border="0">
+				<thead>
+					<tr>
+						<td class="labeltd" valign=center align="left">待办业务类型</td>
+						<td class="labeltd" valign=center align="left">数量</td>
+						<td class="labeltd" valign=center align="left">操作</td>
+					</tr>
+				</thead>
+				<%
 		if(taskBeans!=null && taskBeans.size()>0){
 		String bgcolor = "#ffffff";
 		for(int i = 0; i < taskBeans.size(); i++){
@@ -36,22 +36,21 @@ List taskBeans = ReportCommonService.getInstance().getUndoConfirmTask(session);
 				bgcolor = "#f7f7fe";
 			}
 	%>
-		<tr style="line-height: 22px;">
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<%=bean.getIntInsIdName() %>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<%=bean.getCount()%>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<a href="javascript:doIndexWork('/fpages/system/ftl/DirectorConfirm.ftl?intInsId=<%=bean.getIntInsId() %>')">办理</a>
-		</td>
-		</tr>
-	<%}}else{ %>
-		<tr bgcolor="#ffffff"><td colspan="3" align="center" class="datatd">没有需要确认信息</td></tr>
-	<%} %>
-</table></center>
-</div>
+				<tr style="line-height: 22px;">
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getIntInsIdName() %></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getCount()%></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><a
+							href="javascript:doIndexWork('/fpages/system/ftl/DirectorConfirm.ftl?intInsId=<%=bean.getIntInsId() %>')">办理</a>
+					</td>
+				</tr>
+				<%}}else{ %>
+				<tr bgcolor="#ffffff">
+					<td colspan="3" align="center" class="datatd">没有需要确认信息</td>
+				</tr>
+				<%} %>
+			</table>
+	</center>
+	</div>
 </body>
 
 <script type="text/javascript">

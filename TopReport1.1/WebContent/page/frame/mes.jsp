@@ -1,13 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-<%@taglib prefix="bill"
-	uri="http://www.huateng.com/BillSysTag"%>
-<%@ page import ="java.util.*"  %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="bill" uri="http://www.huateng.com/BillSysTag"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<%=request.getContextPath()%>/css/public.css" rel="stylesheet" type="text/css">
-<bill:CommInclude/>
+<bill:CommInclude />
 <title>mes</title>
 <script type="text/javascript">
 <%
@@ -16,23 +15,32 @@ System.out.println("*************************"+result==null);
 %>
 </script>
 </head>
-<body  onload="" style="margin: 0;">
-<div id="marquees"> <!-- 这些是字幕的内容，你可以任意定义 -->
-<%
+<body onload="" style="margin: 0;">
+	<div id="marquees">
+		<!-- 这些是字幕的内容，你可以任意定义 -->
+		<%
   if(result!=null&&result.size()>0){
    for(int i=0;i<result.size();i++){
 %>
-	<div class='divmsg'><%=((Object[])(result.get(i)))[0]%><%=((Object[])(result.get(i)))[1] %>:</div>
-     <a class='divmsg'>共<%=((Object[])(result.get(i)))[2] %>张;总金额<%=((Object[])(result.get(i)))[3] %></a>
-     <hr/>
-     <%   }}else{ %>
+		<div class='divmsg'><%=((Object[])(result.get(i)))[0]%><%=((Object[])(result.get(i)))[1] %>:
+		</div>
+		<a class='divmsg'>
+			共<%=((Object[])(result.get(i)))[2] %>张;总金额<%=((Object[])(result.get(i)))[3] %></a>
+		<hr />
+		<%   }}else{ %>
 
-  <div class='divmsg' style="font-size: small;text-align:center">无工作提醒     <br><br><br><br><br></div>
+		<div class='divmsg' style="font-size: small;text-align:center">
+			无工作提醒 <br>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
 
 
-    <% }%>
-</div>
-<script language="javascript">
+		<% }%>
+	</div>
+	<script language="javascript">
 marqueesHeight=1000; //内容区高度
 stopscroll=false; //这个变量控制是否停止滚动
 with(marquees){
@@ -68,6 +76,6 @@ marquees.scrollTop=templayer.offsetHeight-marqueesHeight+1;
 }
 
 </script>
-<bill:InitElements />
+	<bill:InitElements />
 </body>
 </html>
