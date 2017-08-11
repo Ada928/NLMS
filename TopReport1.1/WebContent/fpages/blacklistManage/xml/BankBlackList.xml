@@ -4,91 +4,67 @@
     async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
 
 <CommQry title="商行黑名单管理" navigate="主页 &gt; 黑名单管理&gt; 商行黑名单管理" type="call" interface="true" pagesize="10" async="true"
-    btnNm="aaa" databusid="DEMO" transdataactionurl="/trans/TransDataAction.do"
-    getterclassname="ccom.cibfintech.report.blacklist.getter.BankBlackListGetter">
+    btnNm="aaa" databusid="DEMO" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.report.blacklist.getter.BankBlackListGetter">
 
     <Include id="BankParam" />
     <PageQryExp type="XLS" limit="true" encoding="GBK" url="/trans/qryExp.do" desc="数据导出-用户信息" />
 
     <Fields>
-        <!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
-        <!-- primary : true-作为表单项记录上传 false-不作为表单项上传 -->
-        <!-- <Field id="dqhd" desc="黑名单编号" status="F" method="None" readonly="" primary="true" type="String" size="20" default="" 
-            xpath="/dqhd" /> <Field id="jgdh" desc="黑名单编号" status="F" method="None" readonly="" primary="true" type="String" size="20" 
-            default="" xpath="/jgdh" /> <Field id="nbjgh" desc="黑名单编号" status="N" method="None" readonly="" primary="true" type="String" 
-            size="20" default="" xpath="/nbjgh" /> <Field id="jgmc" desc="黑名单编号" status="N" method="None" readonly="" primary="true" 
-            type="String" size="20" default="" xpath="/jgmc" /> <Field id="jrxkzh" desc="黑名单编号" status="N" method="None" readonly="" 
-            primary="true" type="String" size="20" default="" xpath="/jrxkzh" /> <Field id="yzbm" desc="黑名单编号" status="N" method="None" 
-            readonly="" primary="true" type="String" size="20" default="" xpath="/yzbm" /> <Field id="gszch" desc="黑名单编号" status="N" 
-            method="None" readonly="" primary="true" type="String" size="20" default="" xpath="/gszch" /> <Field id="clsj" desc="黑名单编号" 
-            status="N" method="None" readonly="" primary="true" type="String" size="20" default="" xpath="/clsj" /> <Field id="zxjgdm" 
-            desc="黑名单编号" status="N" method="None" readonly="" primary="true" type="String" size="20" default="" xpath="/zxjgdm" /> <Field 
-            id="zfhhh" desc="黑名单编号" status="N" method="None" readonly="" primary="true" type="String" size="20" default="" xpath="/zfhhh" 
-            /> <Field id="dqhd" desc="黑名单编号" status="N" method="None" readonly="" primary="true" type="String" size="20" default="" xpath="/dqhd" 
-            /> <Field id="dz" desc="黑名单编号" status="N" method="None" readonly="" primary="true" type="String" size="20" default="" xpath="/dz" 
-            /> <Field id="dqdm" desc="黑名单编号" status="N" method="None" readonly="" primary="true" type="String" size="20" default="" xpath="/dqdm" 
-            /> <Field id="sjjgdh" desc="黑名单编号" status="N" method="None" readonly="" primary="true" type="String" size="20" default="" 
-            xpath="/sjjgdh" /> <Field id="sjjgzfhh" desc="黑名单编号" status="N" method="None" readonly="" primary="true" type="String" size="20" 
-            default="" xpath="/sjjgzfhh" /> <Field id="sjjgmc" desc="黑名单编号" status="N" method="None" readonly="" primary="true" type="String" 
-            size="20" default="" xpath="/sjjgmc" /> <Field id="dflag" desc="黑名单编号" status="N" method="None" readonly="" primary="true" 
-            type="String" size="20" default="" xpath="/dflag" /> <Field id="qyxz" desc="黑名单编号" status="N" method="None" readonly="" primary="true" 
-            type="String" size="20" default="" xpath="/qyxz" /> <Field id="fzrxm" desc="黑名单编号" status="N" method="None" readonly="" primary="true" 
-            type="String" size="20" default="" xpath="/fzrxm" /> <Field id="fzrzm" desc="黑名单编号" status="N" method="None" readonly="" 
-            primary="true" type="String" size="20" default="" xpath="/fzrxm" /> <Field id="fzrlxdh" desc="黑名单编号" status="N" method="None" 
-            readonly="" primary="true" type="String" size="20" default="" xpath="/fzrlxdh" /> <Field id="dqmc" desc="黑名单编号" status="N" 
-            method="None" readonly="" primary="true" type="String" size="20" default="" xpath="/dqmc" /> -->
-        <Field id="partyId" desc="黑名单编号" status="F" method="None" readonly="" primary="true" type="String" size="20"
-            default="" xpath="/partyId" />
-        <Field id="yhdm" desc="银行代码" status="F" method="None" readonly="" primary="true" type="String" size="20"
-            default="" xpath="/yhdm" />
-        <Field id="partyClassCd" desc="客户类型" status="N" readonly="true" translated="LIST:C,对公;I,对私" require="true"
-            edittype="select" width="90" method="None" primary="true" type="String" size="30" xpath="/partyClassCd"
-            default="" />
-        <Field id="zhdh" desc="账户代号" status="N" method="None" width="50" readonly="" primary="true" type="String"
-            size="20" xpath="/zhdh" default="" />
-        <Field id="zjzl" desc="证件种类" status="N" method="None" width="50" readonly="" primary="true" type="String"
-            size="20" xpath="/zjzl" default="" />
-        <Field id="zjhm" desc="证件号码" status="N" method="None" width="50" readonly="" primary="true" type="String"
-            size="20" xpath="/zjhm" default="" />
-        <Field id="khmc" desc="khmc" status="N" method="None" width="50" readonly="" primary="true" type="String"
-            size="20" xpath="/khmc" default="" />
-        <Field id="ywmc" desc="英文名称" status="N" method="None" width="50" readonly="" primary="true" type="String"
-            size="20" xpath="/ywmc" default="" />
-        <Field id="mdxz" desc="名单性质" status="N" readonly="true" translated="LIST:1,灰名单;2,黑名单" require="true"
-            edittype="select" width="90" method="None" primary="true" type="String" size="20" xpath="/mdxz" default="" />
-        <Field id="sfgx" desc="是否共享" status="N" readonly="true" translated="LIST:1,共享;2,不共享" require="true"
-            edittype="select" width="90" method="None" primary="true" type="String" size="20" xpath="/sfgx" default="" />
-        <Field id="yxzt" desc="有效状态" status="N" readonly="true" translated="LIST:1,有效;2,无效" require="true"
-            edittype="select" width="90" method="None" primary="true" type="String" size="20" xpath="/yxzt" default="" />
-        <Field id="yxq" desc="有效期" status="N" require="false" method="None" width="90" primary="false" xpath="/yxq"
-            type="String" size="20" />
-        <Field id="lhsj" desc="拉黑时间" status="N" require="false" method="None" width="90" primary="false" xpath="/lhsj"
-            type="String" size="20" />
-        <Field id="lhczy" desc="拉黑操作员" status="N" method="None" width="50" readonly="" primary="true" type="String"
-            size="20" xpath="/lhczy" default="" />
-        <Field id="lhyy" desc="拉黑原因" status="N" method="None" width="50" readonly="" primary="true" type="String"
-            size="20" xpath="/lhyy" default="" />
-        <Field id="jcsj" desc="解除时间" status="N" require="false" method="None" width="90" primary="false" xpath="/jcsj"
-            type="String" size="20" />
-        <Field id="jcczy" desc="解除操作员" status="N" method="None" width="50" readonly="" primary="true" type="String"
-            size="20" xpath="/jcczy" default="" />
-        <Field id="byzd" desc="备用字段" status="N" method="None" width="50" readonly="" primary="true" type="String"
-            size="20" xpath="/byzd" default="" />
-        <Field id="remarks" desc="备注" status="N" method="None" width="50" readonly="" primary="true" type="String"
-            size="20" xpath="/remarks" default="" />
-        <Field id="createDt" desc="建立日期" status="N" require="false" method="None" width="90" primary="false"
-            xpath="/createDt" type="String" size="20" />
-        <Field id="modifyDt" desc="最后修改时间" status="N" require="" edittype="text" datatype="timestamp" method="None"
-            width="180" primary="false" type="String" size="20" xpath="/modifyDt" default="" />
-        <Field id="modifyUser" desc="最后修改用户" status="N" method="None" width="50" readonly="" primary="true" type="String"
-            size="20" xpath="/modifyUser" default="" />
+        <Field id="partyId" desc="黑名单编号" edittype="text" datatype="string" status="F" size="32" xpath="/partyId" />
+        <Field id="bankCode" desc="银行代码" edittype="text" datatype="string" status="N" size="32" xpath="/yhdm" />
+        <Field id="accountType" desc="客户类型" edittype="text" datatype="string" status="N" size="2" xpath="/partyClassCd" />
+        <Field id="accountCode" desc="账户代号" edittype="text" datatype="string" status="N" size="32" xpath="/zhdh" />
+        <Field id="certificateType" desc="证件种类" edittype="text" datatype="string" status="N" size="8" xpath="/zjzl" />
+        <Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" status="N" size="64" xpath="/zjhm" />
+        <Field id="clientName" desc="客户名称" edittype="text" datatype="string" status="N" size="100" xpath="/clientName" />
+        <Field id="clientEnglishName" desc="英文名称" edittype="text" datatype="string" status="N" size="30"
+            xpath="/clientEnglishName" />
 
+        <Field id="blacklistType" desc="名单性质" status="N" readonly="true" translated="LIST:0,白名单;1,灰名单;2,黑名单"
+            require="false" edittype="select" width="90" method="None" primary="true" type="String" size="1"
+            xpath="/blacklistType" />
+        <Field id="isShare" desc="是否共享" status="N" readonly="true" translated="LIST:1,共享;2,不共享" require="false"
+            edittype="select" width="90" method="None" primary="true" type="String" size="30" xpath="/isShare" />
+        <Field id="isValid" desc="有效状态" status="N" readonly="true" translated="LIST:1,有效;2,无效" require="false"
+            edittype="select" width="90" method="None" primary="true" type="String" size="30" xpath="/isValid" />
+        <Field id="isDelate" desc="是否删除" status="N" readonly="true" translated="LIST:1,不删除;2,删除" require="false"
+            edittype="select" width="90" method="None" primary="true" type="String" size="30" xpath="/isDelate" />
+
+        <Field id="operateState" desc="操作状态" status="N" require="false" edittype="select" datatype="string"
+            method="None" readonly="true" primary="true" type="st" translated="DATA_DIC.3001" size="30" default=""
+            xpath="/operateState" tip="" />
+
+        <Field id="validDate" desc="有效期" edittype="text" datatype="string" status="N" size="8" xpath="/validDate"
+            type="String" size="20" />
+        <Field id="blacklistedDate" desc="拉黑时间" edittype="text" datatype="string" status="N" size="8"
+            xpath="/blacklistedDate" />
+        <Field id="blacklistedOperator" desc="拉黑操作员" edittype="text" datatype="string" status="N" size="8"
+            xpath="/blacklistedOperator" />
+        <Field id="blacklistedReason" desc="拉黑原因" edittype="text" datatype="string" status="N" size="8"
+            xpath="/blacklistedReason" />
+        <Field id="unblacklistedDate" desc="解除时间" edittype="text" datatype="string" status="N" size="8"
+            xpath="/unblacklistedDate" />
+        <Field id="unblacklistedOperator" desc="解除操作员" edittype="text" datatype="string" status="N" size="8"
+            xpath="/unblacklistedOperator" />
+        <Field id="unblacklistedReason" desc="拉黑原因" edittype="text" datatype="string" status="N" size="8"
+            xpath="/unblacklistedReason" />
+        <Field id="filler1" desc="备用字段1" edittype="text" datatype="string" status="N" size="8" xpath="/filler1" />
+        <Field id="filler2" desc="备用字段2" edittype="text" datatype="string" status="N" size="8" xpath="/filler2" />
+        <Field id="filler3" desc="备用字段3" edittype="text" datatype="string" status="N" size="8" xpath="/filler3" />
+        <Field id="createDate" desc="建立日期" edittype="text" datatype="string" status="N" size="8" xpath="/createDate" />
+        <Field id="lastModifyDate" desc="最后修改时间" edittype="text" datatype="string" status="N" size="8"
+            xpath="/lastModifyDate" />
+        <Field id="lastModifyOperator" desc="最后修改用户" edittype="text" datatype="string" status="N" size="8"
+            xpath="/lastModifyOperator" />
+        <Field id="remarks" desc="备注" status="N" edittype="text" datatype="string" status="N" size="8" xpath="/remarks" />
     </Fields>
 
     <Where>
-        <TextBox id="qPartyId" desc="黑名单标识号" datatype="string" index="0" />
-        <TextBox id="qZjzl" desc="证件种类" datatype="string" index="1" />
-        <TextBox id="qZjhm" desc="证件号码" datatype="string" index="2" />
+        <TextBox id="qPartyId" desc="黑名单标识号" edittype="text" datatype="string" require="" index="0" />
+        <TextBox id="qAccountCode" desc="证件种类" edittype="text" status="F" datatype="string" index="1" />
+        <TextBox id="qCertificateNumber" desc="证件号码" edittype="text" datatype="string" index="2" />
+        <Option id="qOperateState" default="" desc="操作状态" type="operateState" tip="" method="None" index="3"
+            translated="DATA_DIC.3001" />
     </Where>
 
     <Operations>

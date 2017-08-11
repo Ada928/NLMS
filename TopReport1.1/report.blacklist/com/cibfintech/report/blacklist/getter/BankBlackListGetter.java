@@ -36,13 +36,14 @@ public class BankBlackListGetter extends BaseGetter {
 	}
 
 	protected PageQueryResult getData() throws Exception {
-		String partyId = getCommQueryServletRequest().getParameter("qPartyId");
-		String zjzl = getCommQueryServletRequest().getParameter("qZjzl");
-		String zjhm = getCommQueryServletRequest().getParameter("qZjhm");
+		String qPartyId = getCommQueryServletRequest().getParameter("qPartyId");
+		String qAccountCode = getCommQueryServletRequest().getParameter("qAccountCode");
+		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
+		String qOperateState = getCommQueryServletRequest().getParameter("qOperateState");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
-		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageIndex, pageSize, partyId, zjzl,
-				zjhm);
+		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageIndex, pageSize, qPartyId,
+				qAccountCode, qCertificateNumber, qOperateState);
 		return pqr;
 	}
 }

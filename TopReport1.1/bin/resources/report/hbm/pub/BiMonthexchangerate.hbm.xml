@@ -9,7 +9,12 @@
         <id name="id" type="string" column="RATE_CUR">
         </id>
 
-        <property name="rateUnit" column="RATE_UNIT" type="big_decimal" not-null="false" length="9" />
+        <property 
+        name="rateUnit" 
+        column="RATE_UNIT" 
+        type="big_decimal" 
+        not-null="false" 
+        length="9" />
         <property name="yearMonth" column="YEAR_MONTH" type="string" not-null="false" length="6" />
         <property name="rateMidprice" column="RATE_MIDPRICE" type="big_decimal" not-null="false" length="16" />
         <property name="filler1" column="FILLER1" type="string" not-null="false" length="64" />
