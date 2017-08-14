@@ -3,81 +3,72 @@
 <!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
     async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
 
-<CommQry title="商行黑名单管理" navigate="主页 &gt; 黑名单管理&gt; 商行黑名单管理" type="call" interface="true" pagesize="10" async="true"
-    btnNm="aaa" databusid="DEMO" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.report.blacklist.getter.BankBlackListGetter">
+<CommQry title="商行黑名单管理" navigate="商行黑名单管理" type="call" interface="true" pagesize="10" async="true" databusid=""
+    transdataactionurl="/trans/TransDataAction.do" txnlogflag="true"
+    getterclassname="com.cibfintech.report.blacklist.getter.BankBlackListGetter">
 
     <Include id="BankParam" />
-    <PageQryExp type="XLS" limit="true" encoding="GBK" url="/trans/qryExp.do" desc="数据导出-用户信息" />
 
     <Fields>
         <Field id="partyId" desc="黑名单编号" edittype="text" datatype="string" status="F" size="32" xpath="/partyId" />
-        <Field id="bankCode" desc="银行代码" edittype="text" datatype="string" status="N" size="32" xpath="/yhdm" />
-        <Field id="accountType" desc="客户类型" edittype="text" datatype="string" status="N" size="2" xpath="/partyClassCd" />
-        <Field id="accountCode" desc="账户代号" edittype="text" datatype="string" status="N" size="32" xpath="/zhdh" />
-        <Field id="certificateType" desc="证件种类" edittype="text" datatype="string" status="N" size="8" xpath="/zjzl" />
+        <Field id="bankCode" desc="银行代码" edittype="text" datatype="string" status="F" size="32" xpath="/yhdm" />
+        <Field id="accountCode" desc="账户代号" edittype="text" datatype="string" status="N" size="1" xpath="/zhdh" />
+        <Field id="certificateType" desc="证件种类" edittype="text" datatype="string" status="N" size="2" xpath="/zjzl" />
         <Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" status="N" size="64" xpath="/zjhm" />
         <Field id="clientName" desc="客户名称" edittype="text" datatype="string" status="N" size="100" xpath="/clientName" />
-        <Field id="clientEnglishName" desc="英文名称" edittype="text" datatype="string" status="N" size="30"
+        <Field id="clientEnglishName" desc="英文名称" edittype="text" datatype="string" status="N" size="100"
             xpath="/clientEnglishName" />
-
         <Field id="blacklistType" desc="名单性质" status="N" readonly="true" translated="LIST:0,白名单;1,灰名单;2,黑名单"
             require="false" edittype="select" width="90" method="None" primary="true" type="String" size="1"
             xpath="/blacklistType" />
         <Field id="isShare" desc="是否共享" status="N" readonly="true" translated="LIST:1,共享;2,不共享" require="false"
-            edittype="select" width="90" method="None" primary="true" type="String" size="30" xpath="/isShare" />
+            edittype="select" width="90" method="None" primary="true" type="String" size="1" xpath="/isShare" />
         <Field id="isValid" desc="有效状态" status="N" readonly="true" translated="LIST:1,有效;2,无效" require="false"
-            edittype="select" width="90" method="None" primary="true" type="String" size="30" xpath="/isValid" />
+            edittype="select" width="90" method="None" primary="true" type="String" size="1" xpath="/isValid" />
         <Field id="isDelate" desc="是否删除" status="N" readonly="true" translated="LIST:1,不删除;2,删除" require="false"
-            edittype="select" width="90" method="None" primary="true" type="String" size="30" xpath="/isDelate" />
-
+            edittype="select" width="90" method="None" primary="true" type="String" size="1" xpath="/isDelate" />
         <Field id="operateState" desc="操作状态" status="N" require="false" edittype="select" datatype="string"
-            method="None" readonly="true" primary="true" type="st" translated="DATA_DIC.3001" size="30" default=""
+            method="None" readonly="true" primary="true" type="st" translated="DATA_DIC.3001" size="2" default=""
             xpath="/operateState" tip="" />
-
         <Field id="validDate" desc="有效期" edittype="text" datatype="string" status="N" size="8" xpath="/validDate"
-            type="String" size="20" />
+            type="String" />
         <Field id="blacklistedDate" desc="拉黑时间" edittype="text" datatype="string" status="N" size="8"
             xpath="/blacklistedDate" />
-        <Field id="blacklistedOperator" desc="拉黑操作员" edittype="text" datatype="string" status="N" size="8"
+        <Field id="blacklistedOperator" desc="拉黑操作员" edittype="text" datatype="string" status="N" size="20"
             xpath="/blacklistedOperator" />
-        <Field id="blacklistedReason" desc="拉黑原因" edittype="text" datatype="string" status="N" size="8"
+        <Field id="blacklistedReason" desc="拉黑原因" edittype="text" datatype="string" status="N" size="500"
             xpath="/blacklistedReason" />
         <Field id="unblacklistedDate" desc="解除时间" edittype="text" datatype="string" status="N" size="8"
             xpath="/unblacklistedDate" />
-        <Field id="unblacklistedOperator" desc="解除操作员" edittype="text" datatype="string" status="N" size="8"
+        <Field id="unblacklistedOperator" desc="解除操作员" edittype="text" datatype="string" status="N" size="20"
             xpath="/unblacklistedOperator" />
-        <Field id="unblacklistedReason" desc="拉黑原因" edittype="text" datatype="string" status="N" size="8"
+        <Field id="unblacklistedReason" desc="解除原因" edittype="text" datatype="string" status="N" size="500"
             xpath="/unblacklistedReason" />
-        <Field id="filler1" desc="备用字段1" edittype="text" datatype="string" status="N" size="8" xpath="/filler1" />
-        <Field id="filler2" desc="备用字段2" edittype="text" datatype="string" status="N" size="8" xpath="/filler2" />
-        <Field id="filler3" desc="备用字段3" edittype="text" datatype="string" status="N" size="8" xpath="/filler3" />
+        <Field id="filler1" desc="备用字段1" edittype="text" datatype="string" status="N" size="32" xpath="/filler1" />
+        <Field id="filler2" desc="备用字段2" edittype="text" datatype="string" status="N" size="32" xpath="/filler2" />
+        <Field id="filler3" desc="备用字段3" edittype="text" datatype="string" status="N" size="32" xpath="/filler3" />
         <Field id="createDate" desc="建立日期" edittype="text" datatype="string" status="N" size="8" xpath="/createDate" />
         <Field id="lastModifyDate" desc="最后修改时间" edittype="text" datatype="string" status="N" size="8"
             xpath="/lastModifyDate" />
-        <Field id="lastModifyOperator" desc="最后修改用户" edittype="text" datatype="string" status="N" size="8"
+        <Field id="lastModifyOperator" desc="最后修改用户" edittype="text" datatype="string" status="N" size="32"
             xpath="/lastModifyOperator" />
-        <Field id="remarks" desc="备注" status="N" edittype="text" datatype="string" status="N" size="8" xpath="/remarks" />
+        <Field id="remarks" desc="备注" edittype="text" datatype="string" status="N" size="2000" xpath="/remarks" />
+        <Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" size="20" default=""
+            tip="操作" require="" />
     </Fields>
 
     <Where>
         <TextBox id="qPartyId" desc="黑名单标识号" edittype="text" datatype="string" require="" index="0" />
-        <TextBox id="qAccountCode" desc="证件种类" edittype="text" status="F" datatype="string" index="1" />
+        <TextBox id="qAccountCode" desc="证件种类" edittype="text" datatype="string" index="1" />
         <TextBox id="qCertificateNumber" desc="证件号码" edittype="text" datatype="string" index="2" />
         <Option id="qOperateState" default="" desc="操作状态" type="operateState" tip="" method="None" index="3"
             translated="DATA_DIC.3001" />
     </Where>
 
     <Operations>
-        <Button id="btAdd" name="btAdd" desc="新增" operation="" url="#" show="" group="" txn="" icon="icon-add" />
-
-        <!-- <Button id="btDel" name="btDel" desc="删除" operation="asysubmit" updateClass="com.huateng.ebank.business.opermng.update.OperMngDelUpdate" 
-            url="#" txn="" /> -->
-
-        <Button id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" />
-        <!-- <Button id="btSave" name="btSave" desc="保存" operation="asysubmit" updateClass="com.huateng.ebank.business.opermng.update.TlrInfoUpdate" 
-            url="#" txn="" /> <Button id="btStatus" name="btStatus" desc="有效/无效" operation="asysubmit" updateClass="com.huateng.ebank.business.opermng.update.OperStatusChgUpdate" 
-            url="#" txn="" icon="icon-set" /> -->
-
+        <!-- <Button id="btAdd" name="btAdd" desc="新增" operation="" url="#" show="" group="" txn="" icon="icon-add" /> <Button 
+            id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" /> <Button id="btDel" name="btDel" desc="删除" 
+            operation="asysubmit" updateClass="com.cibfintech.report.blacklist.updater.BankBackListDEL" url="" /> -->
     </Operations>
     <Sql>
     </Sql>

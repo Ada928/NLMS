@@ -16,7 +16,7 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
-import resource.bean.report.BiMonthexchangerate;
+import resource.bean.report.NlmsBankBlackList;
 
 /*
 
@@ -35,16 +35,16 @@ public class BankBlackListDEL extends BaseUpdate {
 			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			// 更新对象
-			BiMonthexchangerate biMonthexchangerate = new BiMonthexchangerate();
+			NlmsBankBlackList nlmsBankblacklist = new NlmsBankBlackList();
 			// Operation参数
 			OperationContext context = new OperationContext();
 			if (updateResultBean.hasNext()) {
 				// 属性拷贝
 				Map map = updateResultBean.next();
 				context.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_DEL);
-				BaseUpdate.mapToObject(biMonthexchangerate, map);
+				BaseUpdate.mapToObject(nlmsBankblacklist, map);
 				// call方式开启operation事务
-				context.setAttribute(BankBlackListOperation.IN_PARAM, biMonthexchangerate);
+				context.setAttribute(BankBlackListOperation.IN_PARAM, nlmsBankblacklist);
 				OPCaller.call(BankBlackListOperation.ID, context);
 				return updateReturnBean;
 			}

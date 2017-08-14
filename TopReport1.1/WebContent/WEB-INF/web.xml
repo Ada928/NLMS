@@ -235,6 +235,7 @@
 		<init-param>
 			<param-name>CommonQueryConfigLocation</param-name>
 			<param-value>
+                /WEB-INF/query/meta/blackListMeta.xml,
 				/WEB-INF/query/meta/CommQryMeta.xml,
 				/WEB-INF/query/meta/managementMeta.xml,
 				/WEB-INF/query/meta/batchMonitorMeta.xml,

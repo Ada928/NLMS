@@ -13,7 +13,7 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
 
-import resource.bean.report.NlmsBankblacklist;
+import resource.bean.report.NlmsBankBlackList;
 import resource.bean.report.SysTaskInfo;
 
 public class BankBlackListOperation extends BaseOperation {
@@ -33,13 +33,13 @@ public class BankBlackListOperation extends BaseOperation {
 	@Override
 	public void execute(OperationContext context) throws CommonException {
 		String cmd = (String) context.getAttribute(CMD);
-		NlmsBankblacklist bankBlackList = (NlmsBankblacklist) context.getAttribute(IN_PARAM);
+		NlmsBankBlackList bankBlackList = (NlmsBankBlackList) context.getAttribute(IN_PARAM);
 		// 调用服务类
 		BankBlackListService service = BankBlackListService.getInstance();
 		if (CMD_DEL.equals(cmd)) {
 			// 删除
 			// service.removeEntity(bankBlackList);
-			NlmsBankblacklist sys1 = service.selectById(bankBlackList.getId());
+			NlmsBankBlackList sys1 = service.selectById(bankBlackList.getId());
 			// sysCurService.update(sysCurrency);
 			sys1.setCreateDate(DateUtil.getDate());
 			sys1.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
@@ -83,7 +83,7 @@ public class BankBlackListOperation extends BaseOperation {
 		} else if (CMD_MOD.equals(cmd)) {
 			// service.modEntity(bankBlackList);
 			// Iterator it=service.selectByid(bankBlackList.getId());
-			NlmsBankblacklist sys1 = service.selectById(bankBlackList.getId());
+			NlmsBankBlackList sys1 = service.selectById(bankBlackList.getId());
 			// sysCurService.update(sysCurrency);
 			sys1.setCreateDate(DateUtil.getDate());
 			sys1.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());

@@ -14,7 +14,7 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
-import resource.bean.report.BiMonthexchangerate;
+import resource.bean.report.NlmsBankBlackList;
 
 /**
  * @author huangcheng
@@ -36,20 +36,20 @@ public class BankBlackListUpdate extends BaseUpdate {
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 
 		// 返回日牌价对象
-		BiMonthexchangerate biMonthexchangerate = new BiMonthexchangerate();
+		NlmsBankBlackList nlmsBankblacklist = new NlmsBankBlackList();
 
 		OperationContext oc = new OperationContext();
 		if (updateResultBean.hasNext()) {
 			// 属性拷贝
 			Map map = updateResultBean.next();
-			BaseUpdate.mapToObject(biMonthexchangerate, map);
+			BaseUpdate.mapToObject(nlmsBankblacklist, map);
 			if (UpdateResultBean.MODIFY == updateResultBean.getRecodeState()) {
 				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_MOD);
 			}
 			if (UpdateResultBean.INSERT == updateResultBean.getRecodeState()) {
 				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_ADD);
 			}
-			oc.setAttribute(BankBlackListOperation.IN_PARAM, biMonthexchangerate);
+			oc.setAttribute(BankBlackListOperation.IN_PARAM, nlmsBankblacklist);
 			// call方式开启operation事务
 			OPCaller.call(BankBlackListOperation.ID, oc);
 			return updateReturnBean;
