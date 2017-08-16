@@ -18,11 +18,150 @@
 			width="100%" hasFrame="true"/>
 		</td>
 	 </tr>
+	<tr style="display:none">
+		<td><@CommonQueryMacro.Button id="btDel" /></td>
+	</tr>
 	
 </table>
 
 </@CommonQueryMacro.CommonQuery>
-<script language="javascript">
+
+<script language="JavaScript">
+	//定位一行记录
+	function locate(id) {
+		var record = BankBlackList_dataset.find(["id"],[id]);
+		if(record) {
+			BankBlackList_dataset.setRecord(record);
+		}
+	}
 	
+	//系统刷新单元格
+	function datatable1_opr_onRefresh(cell,value,record) {
+		if(record) {
+			//var lock = record.getValue("lock");
+			var id = record.getValue("id");
+			//if(false){
+			//	cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key="删除" /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key="删除" /></a></center>";
+			//} else {
+				cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('"+id+"')\"><@bean.message key='修改'/></a> &nbsp; <a href=\"JavaScript:doDel('"+id+"')\"><@bean.message key='删除'/></a>";
+			//}
+		}else{
+			cell.innerHTML = "";
+		}
+	}
+	
+	function btAdd_onClick(button) {
+			btNewClick();
+	}
+	
+	//取消功能
+	function btCancel_onClickCheck(button) {
+		//关闭浮动窗口
+		subwindow_signWindow.close();
+	}
+	
+	//关浮动窗口,释放dataset
+	function signWindow_floatWindow_beforeClose(subwindow) {
+		BankBlackList_dataset.cancelRecord();
+		return true;
+	}
+	
+	function signWindow_floatWindow_beforeHide(subwindow) {
+		return signWindow_floatWindow_beforeClose(subwindow);
+	}
+	
+	//展示对比功能的js
+	function datatable1_sid_onRefresh(cell, value, record){
+		if(record!=null){
+			var osta = record.getValue("operateState");
+			var id = record.getValue("id");
+			cell.innerHTML = "<a href=\"Javascript:showDetail('"+id+"','"+osta+"')\">"+value+"</a>";
+		} else {
+			cell.innerHTML = ""
+		}
+	}
+	
+	function btModOrAdd_onClickCheck(button){
+		var id = BankBlackList_dataset.getValue("id");
+		if(id == null || "" == id ) {
+				alert("黑名单不能为空");
+				return false;
+			}
+		return true;
+	}
+	
+	function showDetail(id,osta){
+		var paramMap = new Map();
+		paramMap.put("id",id);
+		paramMap.put("operateState",osta);
+		paramMap.put("action","detail");
+		paramMap.put("flag","0");
+		//loadPageWindows("partWin", "商行黑名单详细信息","/fpages/basis/ftl/BiMonthExchangeRateDetail.ftl", paramMap, "winZone");
+	}
+
+
+	//新增功能
+	function btNewClick() {
+	    BankBlackList_dataset.insertRecord("end"); 
+			
+		BankBlackList_dataset.setValue("id","");
+		BankBlackList_dataset.setValue("accountCode","");
+		BankBlackList_dataset.setValue("certificateType","");
+		BankBlackList_dataset.setValue("certificateNumber","");
+		BankBlackList_dataset.setValue("clientName","");
+		BankBlackList_dataset.setValue("blacklistedDate","");
+		BankBlackList_dataset.setValue("blacklistedOperator","");
+		BankBlackList_dataset.setValue("blacklistedReason","");
+		BankBlackList_dataset.setValue("unblacklistedDate","");
+		BankBlackList_dataset.setValue("unblacklistedOperator","");
+		BankBlackList_dataset.setValue("unblacklistedReason","");
+		BankBlackList_dataset.setValue("lastModifyOperator","");
+		subwindow_signWindow.show();
+	}
+	
+	//修改功能
+	function openModifyWindow(id) {
+		locate(id);
+		BankBlackList_dataset.setFieldReadOnly("id","true");
+		BankBlackList_dataset.setFieldReadOnly("accountCode","false");
+		BankBlackList_dataset.setFieldReadOnly("certificateType","false");
+		BankBlackList_dataset.setFieldReadOnly("certificateNumber","false");
+		BankBlackList_dataset.setFieldReadOnly("clientName","false");
+		BankBlackList_dataset.setFieldReadOnly("blacklistedDate","false");
+		BankBlackList_dataset.setFieldReadOnly("blacklistedOperator","false");
+		BankBlackList_dataset.setFieldReadOnly("blacklistedReason","false");
+		BankBlackList_dataset.setFieldReadOnly("unblacklistedDate","false");
+		BankBlackList_dataset.setFieldReadOnly("unblacklistedOperator","false");
+		BankBlackList_dataset.setFieldReadOnly("unblacklistedReason","false");
+		BankBlackList_dataset.setFieldReadOnly("lastModifyOperator","false");
+		subwindow_signWindow.show();
+	}
+
+	function doDel(id) {
+		locate(id);
+		btDel.click();
+	}
+	
+	function btDel_onClickCheck(button) {
+		return confirm("确认删除该条记录？");
+	}
+	function btDel_postSubmit(button) {
+		alert("删除记录成功");
+		button.url="#";
+		//刷新当前页
+		flushCurrentPage();
+	}
+	
+	//保存后刷新当前页
+	function btModOrAdd_postSubmit(button) {
+		button.url="#";
+		subwindow_signWindow.close();
+		flushCurrentPage();
+	}
+	
+	//刷新当前页
+	function flushCurrentPage() {
+		BankBlackList_dataset.flushData(BankBlackList_dataset.pageIndex);
+	}
 </script>
 </@CommonQueryMacro.page>

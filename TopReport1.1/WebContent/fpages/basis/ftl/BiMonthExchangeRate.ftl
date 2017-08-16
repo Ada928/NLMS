@@ -13,10 +13,22 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd" 
-			fieldStr="sid,rateUnit,yearMonth,rateMidprice,st,opr"  width="100%" hasFrame="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd" fieldStr="sid,rateUnit,yearMonth,rateMidprice,st,opr"  width="100%" hasFrame="true"/>
 		</td>
 	</tr>
+	<tr>
+      	<td colspan="2">
+      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
+      			<div align="center">
+      				<@CommonQueryMacro.Group id="group1" label="ÔÂÅÆ¼ÛÎ¬»¤"
+        			  fieldStr="id,rateUnit,yearMonth,rateMidprice" colNm=4/>
+        			<br/>
+        			<@CommonQueryMacro.Button id="btModOrAdd" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      			</div>
+     		</@CommonQueryMacro.FloatWindow>
+  		</td>
+  	</tr>
 	<tr style="display:none">
 		<td><@CommonQueryMacro.Button id="btDel" /></td>
 	</tr>

@@ -1,8 +1,10 @@
 package resource.bean.report;
 
+import java.io.Serializable;
+
 import resource.bean.report.base.BaseNlmsBankBlackList;
 
-public class NlmsBankBlackList extends BaseNlmsBankBlackList {
+public class NlmsBankBlackList extends BaseNlmsBankBlackList implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
