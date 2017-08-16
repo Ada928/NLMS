@@ -10,11 +10,11 @@
     <Include id="BankParam" />
 
     <Fields>
-   <!--      <Field id="partyId" desc="黑名单编号" edittype="text" datatype="string" status="F" size="32" xpath="/partyId" />
-        <Field id="bankCode" desc="银行代码" edittype="text" datatype="string" status="F" size="32" xpath="/yhdm" />
-        <Field id="accountCode" desc="账户代号" edittype="text" datatype="string" status="N" size="1" xpath="/zhdh" />
-        <Field id="certificateType" desc="证件种类" edittype="text" datatype="string" status="N" size="2" xpath="/zjzl" />
-        <Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" status="N" size="64" xpath="/zjhm" />
+        <Field id="id" desc="黑名单编号" edittype="text" datatype="string" status="F" size="50" xpath="/id" />
+        <Field id="bankCode" desc="银行代码" edittype="text" datatype="string" status="F" size="32" xpath="/bankCode" />
+        <Field id="accountCode" desc="账户代号" edittype="text" datatype="string" status="N" size="1" xpath="/accountCode" />
+        <Field id="certificateType" desc="证件种类" edittype="text" datatype="string" status="N" size="2" xpath="/certificateType" />
+        <Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" status="N" size="64" xpath="/certificateNumber" />
         <Field id="clientName" desc="客户名称" edittype="text" datatype="string" status="N" size="100" xpath="/clientName" />
         <Field id="clientEnglishName" desc="英文名称" edittype="text" datatype="string" status="N" size="100"
             xpath="/clientEnglishName" />
@@ -53,12 +53,12 @@
         <Field id="lastModifyOperator" desc="最后修改用户" edittype="text" datatype="string" status="N" size="32"
             xpath="/lastModifyOperator" />
         <Field id="remarks" desc="备注" edittype="text" datatype="string" status="N" size="2000" xpath="/remarks" />
-        <Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" size="20" default=""
-            tip="操作" require="" /> -->
+        <Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" size="200" default=""
+            tip="操作" require="" />
     </Fields>
 
     <Where>
-        <TextBox id="qPartyId" desc="黑名单标识号" edittype="text" datatype="string" require="" index="0" />
+        <TextBox id="qPartyId" desc="黑名单编号" edittype="text" datatype="string" require="" index="0" />
         <TextBox id="qAccountCode" desc="证件种类" edittype="text" datatype="string" index="1" />
         <TextBox id="qCertificateNumber" desc="证件号码" edittype="text" datatype="string" index="2" />
         <Option id="qOperateState" default="" desc="操作状态" type="operateState" tip="" method="None" index="3"
@@ -66,9 +66,10 @@
     </Where>
 
     <Operations>
-        <!-- <Button id="btAdd" name="btAdd" desc="新增" operation="" url="#" show="" group="" txn="" icon="icon-add" /> <Button 
-            id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" /> <Button id="btDel" name="btDel" desc="删除" 
-            operation="asysubmit" updateClass="com.cibfintech.report.blacklist.updater.BankBackListDEL" url="" /> -->
+        <Button id="btAdd" name="btAdd" desc="新增" operation="" url="#" show="" group="" txn="" icon="icon-add" />
+        <Button id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" />
+        <Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
+            updateClass="com.cibfintech.report.blacklist.updater.BankBackListDEL" url="" />
     </Operations>
     <Sql>
     </Sql>

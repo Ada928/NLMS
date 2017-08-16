@@ -2,7 +2,6 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "/WEB-INF/dtd/spring-beans-2.0.dtd">
 <beans>
     <!-- 商户黑名单服务类 -->
-    <bean id="BankBlackListService" class="com.cibfintech.report.blacklist.service.BankBlackListService">
-    </bean>
+    <bean id="BankBlackListService" class="com.cibfintech.report.blacklist.service.BankBlackListService" />
     
 </beans>

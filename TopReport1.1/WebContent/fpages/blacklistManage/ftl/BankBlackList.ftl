@@ -14,16 +14,11 @@
 	 <tr>
 		 <td colspan="2">
 			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd" 
-			fieldStr="partyId,bankCode"  width="100%" hasFrame="true"/>
+			fieldStr="id[200],accountCode,certificateType,certificateNumber[200],clientName[260],blacklistedDate,blacklistedOperator,blacklistedReason,unblacklistedDate,unblacklistedOperator,unblacklistedReason,lastModifyOperator,opr"  
+			width="100%" hasFrame="true"/>
 		</td>
 	 </tr>
-	 <tr>
-		<td>
-			<div style="display:none">
-				<@CommonQueryMacro.Button id= "btDel" />
-			 </div>
-		</td>
-	</tr>
+	
 </table>
 
 </@CommonQueryMacro.CommonQuery>

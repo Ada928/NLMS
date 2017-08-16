@@ -10,7 +10,6 @@ import com.huateng.ebank.business.management.common.DAOUtils;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
 import com.huateng.ebank.framework.util.ExceptionUtil;
-import com.huateng.report.utils.ReportEnum;
 
 import resource.bean.report.NlmsBankBlackList;
 import resource.bean.report.SysTaskInfo;
@@ -45,24 +44,25 @@ public class BankBlackListService {
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from NlmsBankBlackList bblt where 1=1 ");
+		StringBuffer hql = new StringBuffer(" from NlmsBankBlackList bblt where 1=1");
 
 		if (StringUtils.isNotBlank(partyId)) {
-			hql.append(" and bblt.party_id like '%").append(partyId).append("%'");
+			hql.append(" and bblt.id like '%").append(partyId.trim()).append("%'");
 		}
 		if (StringUtils.isNotBlank(qAccountCode)) {
-			hql.append(" and bblt.account_code like '%").append(qAccountCode).append("%'");
+			hql.append(" and account_code like '%").append(qAccountCode.trim()).append("%'");
 		}
 		if (StringUtils.isNotBlank(qCertificateNumber)) {
-			hql.append(" and bblt.certificate_number like '%").append(qCertificateNumber).append("%'");
+			hql.append(" and certificate_number like '%").append(qCertificateNumber.trim()).append("%'");
 		}
-		if (StringUtils.isNotBlank(qOperateState)) {
-			hql.append(" and  bblt.operate_state ='").append(qOperateState).append("'");
-		} else {
-			hql.append(" and  bblt.operate_state<>'").append(ReportEnum.REPORT_ST1.N.value).append("'");
-		}
+		// if (StringUtils.isNotBlank(qOperateState)) {
+		// hql.append(" and bblt.operate_state
+		// ='").append(qOperateState).append("'");
+		// } else {
+		// hql.append(" and
+		// bblt.operate_state<>'").append(ReportEnum.REPORT_ST1.N.value).append("'");
+		// }
 
-		hql.append(" order by bblt.party_id");
 
 		try {
 			queryCondition.setPageIndex(pageIndex);
