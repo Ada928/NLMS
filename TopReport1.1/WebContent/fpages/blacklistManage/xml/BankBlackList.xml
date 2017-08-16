@@ -10,7 +10,7 @@
     <Include id="BankParam" />
 
     <Fields>
-        <Field id="partyId" desc="黑名单编号" edittype="text" datatype="string" status="F" size="32" xpath="/partyId" />
+   <!--      <Field id="partyId" desc="黑名单编号" edittype="text" datatype="string" status="F" size="32" xpath="/partyId" />
         <Field id="bankCode" desc="银行代码" edittype="text" datatype="string" status="F" size="32" xpath="/yhdm" />
         <Field id="accountCode" desc="账户代号" edittype="text" datatype="string" status="N" size="1" xpath="/zhdh" />
         <Field id="certificateType" desc="证件种类" edittype="text" datatype="string" status="N" size="2" xpath="/zjzl" />
@@ -54,7 +54,7 @@
             xpath="/lastModifyOperator" />
         <Field id="remarks" desc="备注" edittype="text" datatype="string" status="N" size="2000" xpath="/remarks" />
         <Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" size="20" default=""
-            tip="操作" require="" />
+            tip="操作" require="" /> -->
     </Fields>
 
     <Where>
