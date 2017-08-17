@@ -21,7 +21,7 @@
       		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
       			<div align="center">
       				<@CommonQueryMacro.Group id="group1" label="月牌价维护"
-        			  fieldStr="id,rateUnit,yearMonth,rateMidprice" colNm=4/>
+        			  	fieldStr="id,rateUnit,yearMonth,rateMidprice" colNm=4/>
         			<br/>
         			<@CommonQueryMacro.Button id="btModOrAdd" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -79,36 +79,35 @@
 	}
 	//展示对比功能的js
 	function datatable1_sid_onRefresh(cell, value, record){
-	if(record!=null){
-		var sta = record.getValue("st");
-		var id=record.getValue("id");
-
-
-		cell.innerHTML = "<a href=\"Javascript:showDetail('"+id+"','"+sta+"')\">"+value+"</a>";
-
-	} else {
-		cell.innerHTML = ""
-	}
-}
-
-function btModOrAdd_onClickCheck(button){
-	var id = BiMonthExchangeRate_dataset.getValue("id");
-	if(id == null || "" == id ) {
-			alert("币种不能为空");
-			return false;
+		if(record!=null){
+			var sta = record.getValue("st");
+			var id=record.getValue("id");
+	
+	
+			cell.innerHTML = "<a href=\"Javascript:showDetail('"+id+"','"+sta+"')\">"+value+"</a>";
+	
+		} else {
+			cell.innerHTML = ""
 		}
-	return true;
-}
-
-function showDetail(id,sta){
-
-	var paramMap = new Map();
-	paramMap.put("id",id);
-	paramMap.put("st",sta);
-	paramMap.put("action","detail");
-	paramMap.put("flag","0");
-	loadPageWindows("partWin", "外汇月牌价详细信息","/fpages/basis/ftl/BiMonthExchangeRateDetail.ftl", paramMap, "winZone");
-}
+	}
+	
+	function btModOrAdd_onClickCheck(button){
+		var id = BiMonthExchangeRate_dataset.getValue("id");
+		if(id == null || "" == id ) {
+				alert("币种不能为空");
+				return false;
+			}
+		return true;
+	}
+	
+	function showDetail(id,sta){
+		var paramMap = new Map();
+		paramMap.put("id",id);
+		paramMap.put("st",sta);
+		paramMap.put("action","detail");
+		paramMap.put("flag","0");
+		loadPageWindows("partWin", "外汇月牌价详细信息","/fpages/basis/ftl/BiMonthExchangeRateDetail.ftl", paramMap, "winZone");
+	}
 
 
 
@@ -123,6 +122,7 @@ function showDetail(id,sta){
 		BiMonthExchangeRate_dataset.setValue("rateMidprice","");
 		subwindow_signWindow.show();
 	}
+	
 	//修改功能
 	function openModifyWindow(id) {
 		locate(id);

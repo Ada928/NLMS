@@ -51,7 +51,6 @@
 
     <Parameters></Parameters>
     <Where>
-
         <Option id="ratecut" fieldname="ratecut" datatype="string" edittype="select" desc="币种" tip="币种" type="string"
             translated="CQ:CurrencySelect" fieldmap="ratecut=currencyNo;ratecutName=currencyNoName" viewField="currencyNoName"
             dropdowntype="dynamic" init="false" require="false" readOnly="" xpath="/id" />

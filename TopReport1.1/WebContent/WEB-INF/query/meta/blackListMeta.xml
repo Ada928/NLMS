@@ -3,6 +3,8 @@
     <!-- 黑名单管理 -->
     <!-- -->
     <Query id="BankBlackList" path="/fpages/blacklistManage/xml/BankBlackList.xml" />
+    <Query id="BankBlackListDetail" path="/fpages/blacklistManage/xml/BankBlackListDetail.xml" />
+    
     <Query id="BlacklistByInternationalQuery" path="/fpages/blacklistManage/xml/BlacklistByInternationalQuery.xml" />
     <Query id="BlacklistByGABQuery" path="/fpages/blacklistManage/xml/BlacklistByGABQuery.xml" />
 </META>

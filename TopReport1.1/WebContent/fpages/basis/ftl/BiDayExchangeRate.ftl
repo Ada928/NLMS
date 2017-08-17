@@ -49,77 +49,64 @@
 			var id = record.getValue("id");
 			var lock = record.getValue("lock");
 			if(isTrue(lock)){
-			
-			cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key="BiDayExchangeRate.button.btMod" /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key="BiDayExchangeRate.button.btDel" /></a></center>";
-			
+				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key="BiDayExchangeRate.button.btMod" /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key="BiDayExchangeRate.button.btDel" /></a></center>";
+			} else {
+				cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('"+id+"')\"><@bean.message key='BiDayExchangeRate.button.btMod' /></a> &nbsp; <a href=\"JavaScript:doDel('"+id+"')\"><@bean.message key='BiDayExchangeRate.button.btDel'/></a></center>";
 			}
-			else{
-			cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('"+id+"')\"><@bean.message key='BiDayExchangeRate.button.btMod' /></a> &nbsp; <a href=\"JavaScript:doDel('"+id+"')\"><@bean.message key='BiDayExchangeRate.button.btDel'/></a></center>";
-			}
-			
-			
 		}else{
 			cell.innerHTML = "";
 		}
-			
-		
-		
 	}
 	
 	function btAdd_onClick(button) {
 			btNewClick();
 	}
+	
 	//取消功能
 	function btCancel_onClickCheck(button) {
 		//关闭浮动窗口
 		subwindow_signWindow.close();
 	}
+	
 	//关浮动窗口,释放dataset
 	function signWindow_floatWindow_beforeClose(subwindow) {
 		BiDayExchangeRate_dataset.cancelRecord();
 		return true;
 	}
+	
 	function signWindow_floatWindow_beforeHide(subwindow) {
 		return signWindow_floatWindow_beforeClose(subwindow);
 	}
-//保存确认
-function btModOrAdd_onClickCheck(button){
-	var id = BiDayExchangeRate_dataset.getValue("id");
-	if(id == null || "" == id ) {
-			alert("币种不能为空");
-			return false;
-		}
-	return true;
-}
 	
-
-	
+	//保存确认
+	function btModOrAdd_onClickCheck(button){
+		var id = BiDayExchangeRate_dataset.getValue("id");
+		if(id == null || "" == id ) {
+				alert("币种不能为空");
+				return false;
+			}
+		return true;
+	}
 	
 	//展示对比功能的js
 	function datatable1_id_onRefresh(cell, value, record){
-	if(record!=null){
-		var sta = record.getValue("st");
-		var id=record.getValue("id");
-	
-	     
-		cell.innerHTML = "<a href=\"Javascript:showDetail('"+id+"','"+sta+"')\">"+id+"</a>";
-	
-	} else {
-		cell.innerHTML = ""
+		if(record!=null){
+			var sta = record.getValue("st");
+			var id=record.getValue("id");
+			cell.innerHTML = "<a href=\"Javascript:showDetail('"+id+"','"+sta+"')\">"+id+"</a>";
+		} else {
+			cell.innerHTML = ""
+		}
 	}
-}
-
-
-function showDetail(id,sta){
-
-	var paramMap = new Map();
-	paramMap.put("id",id);
-	paramMap.put("st",sta);
-	paramMap.put("action","detail");
-	paramMap.put("flag","0");
-	loadPageWindows("partWin", "外汇日牌价详细信息","/fpages/basis/ftl/BiDayExchangeRateDetail.ftl", paramMap, "winZone");
-}
-
+	
+	function showDetail(id,sta){
+		var paramMap = new Map();
+		paramMap.put("id",id);
+		paramMap.put("st",sta);
+		paramMap.put("action","detail");
+		paramMap.put("flag","0");
+		loadPageWindows("partWin", "外汇日牌价详细信息","/fpages/basis/ftl/BiDayExchangeRateDetail.ftl", paramMap, "winZone");
+	}
 
 	//新增功能
 	function btNewClick() {
@@ -130,6 +117,7 @@ function showDetail(id,sta){
 		BiDayExchangeRate_dataset.setValue("rateMidprice","");
 		subwindow_signWindow.show();
 	}
+	
 	//修改功能
 	function openModifyWindow(id) {
 		locate(id);
@@ -161,6 +149,7 @@ function showDetail(id,sta){
 		subwindow_signWindow.close();
 		flushCurrentPage();
 	}
+	
 	//刷新当前页
 	function flushCurrentPage() {
 		BiDayExchangeRate_dataset.flushData(BiDayExchangeRate_dataset.pageIndex);

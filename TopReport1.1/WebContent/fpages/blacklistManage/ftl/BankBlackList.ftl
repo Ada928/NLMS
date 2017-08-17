@@ -3,25 +3,40 @@
 <@CommonQueryMacro.page title="商行黑名单管理">
 <@CommonQueryMacro.CommonQuery id="BankBlackList" init="false" submitMode="current"  navigate="false">
 <table align="left" width="800px">
-   <tr>
+   	<tr>
       	<td colspan="2">
 			<@CommonQueryMacro.Interface id="intface" label="请输入查询条件"  />
 		</td>
 	</tr>
   	<tr>
   		<td><@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9" showArrow="true"  pageCache="false"/></td>
-	 </tr>
-	 <tr>
-		 <td colspan="2">
+	</tr>
+	<tr>
+		<td colspan="2">
 			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd" 
-			fieldStr="id[200],accountCode,certificateType,certificateNumber[200],clientName[260],blacklistedDate,blacklistedOperator,blacklistedReason,unblacklistedDate,unblacklistedOperator,unblacklistedReason,lastModifyOperator,opr"  
-			width="100%" hasFrame="true"/>
+				fieldStr="id[200],accountCode,certificateType,certificateNumber[200],clientName[260],clientEnglishName,blacklistedDate,blacklistedOperator,blacklistedReason,unblacklistedDate,unblacklistedOperator,unblacklistedReason,lastModifyOperator,operateState,opr"  
+				width="100%" hasFrame="true"/>
 		</td>
-	 </tr>
+	</tr>
+	<tr>
+      	<td colspan="2">
+      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" 
+      			defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" 
+      			exclusive="true" position="center" show="false" >
+      			<div align="center">
+      				<@CommonQueryMacro.Group id="group1" label="商行黑名单维护"
+        			  fieldStr="id,accountCode,certificateType,certificateNumber,clientName,clientEnglishName,blacklistType,isShare,isValid,validDate,unblacklistedReason" colNm=4/>
+        			<br/>
+      			</div>
+      			<div align="center">
+      				<@CommonQueryMacro.Button id="btModOrAdd" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      			</div>
+     		</@CommonQueryMacro.FloatWindow>
+  		</td>
+  	</tr>
 	<tr style="display:none">
 		<td><@CommonQueryMacro.Button id="btDel" /></td>
 	</tr>
-	
 </table>
 
 </@CommonQueryMacro.CommonQuery>
@@ -96,7 +111,7 @@
 		paramMap.put("operateState",osta);
 		paramMap.put("action","detail");
 		paramMap.put("flag","0");
-		//loadPageWindows("partWin", "商行黑名单详细信息","/fpages/basis/ftl/BiMonthExchangeRateDetail.ftl", paramMap, "winZone");
+		loadPageWindows("partWin", "商行黑名单详细信息","/fpages/blacklistManage/ftl/BankBlackListDetail.ftl", paramMap, "winZone");
 	}
 
 
@@ -109,31 +124,29 @@
 		BankBlackList_dataset.setValue("certificateType","");
 		BankBlackList_dataset.setValue("certificateNumber","");
 		BankBlackList_dataset.setValue("clientName","");
-		BankBlackList_dataset.setValue("blacklistedDate","");
-		BankBlackList_dataset.setValue("blacklistedOperator","");
+		BankBlackList_dataset.setValue("clientEnglishName","");
+		BankBlackList_dataset.setValue("blacklistType","");
+		BankBlackList_dataset.setValue("isShare","");
+		BankBlackList_dataset.setValue("isValid","");
+		BankBlackList_dataset.setValue("validDate","");
 		BankBlackList_dataset.setValue("blacklistedReason","");
-		BankBlackList_dataset.setValue("unblacklistedDate","");
-		BankBlackList_dataset.setValue("unblacklistedOperator","");
-		BankBlackList_dataset.setValue("unblacklistedReason","");
-		BankBlackList_dataset.setValue("lastModifyOperator","");
 		subwindow_signWindow.show();
 	}
 	
 	//修改功能
 	function openModifyWindow(id) {
 		locate(id);
-		BankBlackList_dataset.setFieldReadOnly("id","true");
-		BankBlackList_dataset.setFieldReadOnly("accountCode","false");
-		BankBlackList_dataset.setFieldReadOnly("certificateType","false");
-		BankBlackList_dataset.setFieldReadOnly("certificateNumber","false");
-		BankBlackList_dataset.setFieldReadOnly("clientName","false");
-		BankBlackList_dataset.setFieldReadOnly("blacklistedDate","false");
-		BankBlackList_dataset.setFieldReadOnly("blacklistedOperator","false");
-		BankBlackList_dataset.setFieldReadOnly("blacklistedReason","false");
-		BankBlackList_dataset.setFieldReadOnly("unblacklistedDate","false");
-		BankBlackList_dataset.setFieldReadOnly("unblacklistedOperator","false");
-		BankBlackList_dataset.setFieldReadOnly("unblacklistedReason","false");
-		BankBlackList_dataset.setFieldReadOnly("lastModifyOperator","false");
+		BankBlackList_dataset.setFieldReadOnly("id",true);
+		BankBlackList_dataset.setFieldReadOnly("accountCode",false);
+		BankBlackList_dataset.setFieldReadOnly("certificateType",false);
+		BankBlackList_dataset.setFieldReadOnly("certificateNumber",false);
+		BankBlackList_dataset.setFieldReadOnly("clientName",false);
+		BankBlackList_dataset.setFieldReadOnly("clientEnglishName",false);
+		BankBlackList_dataset.setFieldReadOnly("blacklistType",false);
+		BankBlackList_dataset.setFieldReadOnly("isShare",false);
+		BankBlackList_dataset.setFieldReadOnly("isValid",false);
+		BankBlackList_dataset.setFieldReadOnly("validDate",false);
+		BankBlackList_dataset.setFieldReadOnly("unblacklistedReason",false);
 		subwindow_signWindow.show();
 	}
 

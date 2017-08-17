@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 用于直接生成SQL语句，支持同步和异步提交 -->
+<!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
+    txnlogflag:true记录日志 async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
+<CommQry title="商行黑名单管理" navigate="商行黑名单管理" type="call" interface="false" pagesize="10" async="true"
+    databusid="" transdataactionurl="/trans/TransDataAction.do" txnlogflag="true"
+    getterclassname="com.huateng.report.basis.getter.BankBlackListDetailGetter">
+    <Include id="BankParam" />
+
+
+    <Fields>
+        <!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
+        <!-- primary : true-作为表单项记录上传 false-不作为表单项上传 -->
+
+        
+        id,accountCode,certificateType,certificateNumber,clientName,
+        blacklistedDate,blacklistedOperator,blacklistedReason,unblacklistedDate,
+        unblacklistedOperator,unblacklistedReason,lastModifyOperator
+        
+        <Field id="old_id" desc="币种" edittype="text" datatype="string" size="20" readonly="true"
+            xpath="/old_bankBlackList/id"></Field>
+        <Field id="id" desc="币种" edittype="text" datatype="string" size="20" readonly="true" xpath="/bankBlackList/id"></Field>
+        
+        <Field id="accountCode" desc="单位" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/old_bankBlackList/accountCode" />
+        <Field id="accountCode" desc="单位" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/bankBlackList/accountCode" />
+            
+        <Field id="old_yearMonth" desc="年月" status="N" primary="false" method="None" readonly="true" type="String"
+            size="20" default="" edittype="select" fieldmap="yearMonth=yyyyMM;yearMonthName=yyyyMM" viewField="yyyyMM"
+            url="/templets/lib/yyyyMM.ftl" init="false" require="false" tip="" xpath="/old_bankBlackList/yearMonth" />
+        <Field id="yearMonth" desc="年月" status="F" primary="false" method="None" readonly="true" type="String"
+            size="20" default="" edittype="select" fieldmap="yearMonth=yyyyMM;yearMonthName=yyyyMM" viewField="yyyyMM"
+            url="/templets/lib/yyyyMM.ftl" init="true" require="false" tip="" xpath="/bankBlackList/yearMonth" />
+
+        <Field id="old_rateMidprice" desc="中间价" edittype="text" datatype="double" readonly="true"
+            xpath="/old_bankBlackList/rateMidprice" />
+        <Field id="rateMidprice" desc="中间价" edittype="text" datatype="double" readonly="true"
+            xpath="/bankBlackList/rateMidprice" />
+    </Fields>
+    <Operations>
+        <Button id="btClose" name="btClose" desc="返回" operation="syncsubmit" url="#" txn="" />
+    </Operations>
+</CommQry>
