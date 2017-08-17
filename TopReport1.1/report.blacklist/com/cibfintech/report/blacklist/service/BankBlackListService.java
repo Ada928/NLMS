@@ -11,7 +11,7 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 
-import resource.bean.report.NlmsBankBlackList;
+import resource.bean.report.BankBlackList;
 import resource.bean.report.SysTaskInfo;
 import resource.dao.base.HQLDAO;
 import resource.report.dao.ROOTDAO;
@@ -44,16 +44,16 @@ public class BankBlackListService {
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from NlmsBankBlackList bblt where 1=1");
+		StringBuffer hql = new StringBuffer(" from BankBlackList bblt where bblt.isDelate='1'");
 
 		if (StringUtils.isNotBlank(partyId)) {
 			hql.append(" and bblt.id like '%").append(partyId.trim()).append("%'");
 		}
 		if (StringUtils.isNotBlank(qAccountCode)) {
-			hql.append(" and account_code like '%").append(qAccountCode.trim()).append("%'");
+			hql.append(" and bblt.account_code like '%").append(qAccountCode.trim()).append("%'");
 		}
 		if (StringUtils.isNotBlank(qCertificateNumber)) {
-			hql.append(" and certificate_number like '%").append(qCertificateNumber.trim()).append("%'");
+			hql.append(" and bblt.certificate_number like '%").append(qCertificateNumber.trim()).append("%'");
 		}
 		// if (StringUtils.isNotBlank(qOperateState)) {
 		// hql.append(" and bblt.operate_state
@@ -84,7 +84,7 @@ public class BankBlackListService {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		List list = rootDAO.queryByQL2List("1=1");
 		for (int i = 0; i < list.size(); i++) {
-			NlmsBankBlackList bblt = (NlmsBankBlackList) list.get(i);
+			BankBlackList bblt = (BankBlackList) list.get(i);
 			list.set(i, bblt);
 		}
 		return list;
@@ -95,7 +95,7 @@ public class BankBlackListService {
 	 * 
 	 * @param biNationregion
 	 */
-	public void removeEntity(NlmsBankBlackList bankBlacklist) {
+	public void removeEntity(BankBlackList bankBlacklist) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
 			rootDAO.delete(bankBlacklist);
@@ -111,7 +111,7 @@ public class BankBlackListService {
 	 * 
 	 * @param biNationregion
 	 */
-	public void modOrAddEntity(NlmsBankBlackList bankBlacklist) {
+	public void modOrAddEntity(BankBlackList bankBlacklist) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
 			rootDAO.saveOrUpdate(bankBlacklist);
@@ -122,7 +122,7 @@ public class BankBlackListService {
 		}
 	}
 
-	public void addEntity(NlmsBankBlackList bankBlacklist) throws CommonException {
+	public void addEntity(BankBlackList bankBlacklist) throws CommonException {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		if (isExists(bankBlacklist.getId())) {
 			ExceptionUtil.throwCommonException(" 名单重复");
@@ -138,7 +138,7 @@ public class BankBlackListService {
 	public boolean isExists(String id) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
-			NlmsBankBlackList bankBlacklist = (NlmsBankBlackList) rootDAO.query(NlmsBankBlackList.class, id);
+			BankBlackList bankBlacklist = (BankBlackList) rootDAO.query(BankBlackList.class, id);
 			if (bankBlacklist == null) {
 				return false;
 			}
@@ -148,7 +148,7 @@ public class BankBlackListService {
 		return true;
 	}
 
-	public void modEntity(NlmsBankBlackList bankBlacklist) {
+	public void modEntity(BankBlackList bankBlacklist) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
 			rootDAO.update(bankBlacklist);
@@ -168,13 +168,12 @@ public class BankBlackListService {
 		}
 	}
 
-	// author by 计翔 2012.9.5 通过id来获取实体类
-	public NlmsBankBlackList selectById(String id) {
+	// 通过id来获取实体类
+	public BankBlackList selectById(String id) {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		NlmsBankBlackList bankBlacklist = null;
+		BankBlackList bankBlacklist = null;
 		try {
-
-			bankBlacklist = (NlmsBankBlackList) rootdao.query(NlmsBankBlackList.class, id);
+			bankBlacklist = (BankBlackList) rootdao.query(BankBlackList.class, id);
 		} catch (CommonException e) {
 			e.printStackTrace();
 		}

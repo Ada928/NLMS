@@ -2,20 +2,20 @@ package resource.bean.report;
 
 import java.io.Serializable;
 
-import resource.bean.report.base.BaseNlmsBankBlackList;
+import resource.bean.report.base.BaseBankBlackList;
 
-public class NlmsBankBlackList extends BaseNlmsBankBlackList implements Serializable {
+public class BankBlackList extends BaseBankBlackList implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
-	public NlmsBankBlackList() {
+	public BankBlackList() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public NlmsBankBlackList(String id) {
+	public BankBlackList(String id) {
 		super(id);
 	}
 

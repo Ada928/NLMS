@@ -3,41 +3,94 @@
 <!-- 用于直接生成SQL语句，支持同步和异步提交 -->
 <!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
     txnlogflag:true记录日志 async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
-<CommQry title="商行黑名单管理" navigate="商行黑名单管理" type="call" interface="false" pagesize="10" async="true"
-    databusid="" transdataactionurl="/trans/TransDataAction.do" txnlogflag="true"
-    getterclassname="com.huateng.report.basis.getter.BankBlackListDetailGetter">
+<CommQry title="商行黑名单管理" navigate="商行黑名单管理" type="call" interface="false" pagesize="10" async="true" databusid=""
+    transdataactionurl="/trans/TransDataAction.do" txnlogflag="true"
+    getterclassname="com.cibfintech.report.blacklist.getter.BankBlackListDetailGetter">
     <Include id="BankParam" />
-
 
     <Fields>
         <!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
         <!-- primary : true-作为表单项记录上传 false-不作为表单项上传 -->
 
-        
-        id,accountCode,certificateType,certificateNumber,clientName,
-        blacklistedDate,blacklistedOperator,blacklistedReason,unblacklistedDate,
-        unblacklistedOperator,unblacklistedReason,lastModifyOperator
-        
-        <Field id="old_id" desc="币种" edittype="text" datatype="string" size="20" readonly="true"
+        <Field id="old_id" desc="黑名单编号" edittype="text" datatype="string" size="20" readonly="true"
             xpath="/old_bankBlackList/id"></Field>
-        <Field id="id" desc="币种" edittype="text" datatype="string" size="20" readonly="true" xpath="/bankBlackList/id"></Field>
-        
-        <Field id="accountCode" desc="单位" edittype="text" datatype="string" size="10" readonly="true"
-            xpath="/old_bankBlackList/accountCode" />
-        <Field id="accountCode" desc="单位" edittype="text" datatype="string" size="10" readonly="true"
-            xpath="/bankBlackList/accountCode" />
-            
-        <Field id="old_yearMonth" desc="年月" status="N" primary="false" method="None" readonly="true" type="String"
-            size="20" default="" edittype="select" fieldmap="yearMonth=yyyyMM;yearMonthName=yyyyMM" viewField="yyyyMM"
-            url="/templets/lib/yyyyMM.ftl" init="false" require="false" tip="" xpath="/old_bankBlackList/yearMonth" />
-        <Field id="yearMonth" desc="年月" status="F" primary="false" method="None" readonly="true" type="String"
-            size="20" default="" edittype="select" fieldmap="yearMonth=yyyyMM;yearMonthName=yyyyMM" viewField="yyyyMM"
-            url="/templets/lib/yyyyMM.ftl" init="true" require="false" tip="" xpath="/bankBlackList/yearMonth" />
+        <Field id="id" desc="黑名单编号" edittype="text" datatype="string" size="20" readonly="true" xpath="/bankBlackList/id"></Field>
 
-        <Field id="old_rateMidprice" desc="中间价" edittype="text" datatype="double" readonly="true"
-            xpath="/old_bankBlackList/rateMidprice" />
-        <Field id="rateMidprice" desc="中间价" edittype="text" datatype="double" readonly="true"
-            xpath="/bankBlackList/rateMidprice" />
+        <Field id="old_accountCode" desc="账户代号" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/old_bankBlackList/accountCode" />
+        <Field id="accountCode" desc="账户代号" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/bankBlackList/accountCode" />
+
+        <Field id="old_certificateType" desc="证件种类" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/old_bankBlackList/certificateType" />
+        <Field id="certificateType" desc="证件种类" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/bankBlackList/certificateType" />
+
+        <Field id="old_certificateNumber" desc="证件号码" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/old_bankBlackList/certificateNumber" />
+        <Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/bankBlackList/certificateNumber" />
+
+        <Field id="old_clientName" desc="客户名字" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/old_bankBlackList/clientName" />
+        <Field id="clientName" desc="客户名字" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/bankBlackList/clientName" />
+
+        <Field id="old_blacklistType" desc="名单性质" status="N" readonly="true" translated="LIST:0,白名单;1,灰名单;2,黑名单"
+            require="false" edittype="select" width="90" method="None" primary="false" type="String"
+            xpath="/old_bankBlackList/blacklistType" />
+        <Field id="blacklistType" desc="名单性质" status="N" readonly="true" translated="LIST:0,白名单;1,灰名单;2,黑名单"
+            require="false" edittype="select" width="90" method="None" primary="false" type="String"
+            xpath="/bankBlackList/blacklistType" />
+
+        <Field id="old_isShare" desc="是否共享" status="N" readonly="true" translated="LIST:1,共享;2,不共享" require="false"
+            edittype="select" width="90" method="None" primary="false" type="String" xpath="/old_bankBlackList/isShare" />
+        <Field id="isShare" desc="是否共享" status="N" readonly="true" translated="LIST:1,共享;2,不共享" require="false"
+            edittype="select" width="90" method="None" primary="false" type="String" xpath="/bankBlackList/isShare" />
+
+        <Field id="old_isValid" desc="有效状态" status="N" readonly="true" translated="LIST:1,有效;2,无效" require="false"
+            edittype="select" width="90" method="None" primary="false" type="String" xpath="/old_bankBlackList/isValid" />
+        <Field id="isValid" desc="有效状态" status="N" readonly="true" translated="LIST:1,有效;2,无效" require="false"
+            edittype="select" width="90" method="None" primary="false" type="String" xpath="/bankBlackList/isValid" />
+
+        <Field id="old_validDate" desc="有效期" edittype="text" datatype="date" readonly="true"
+            xpath="/old_bankBlackList/validDate" />
+        <Field id="validDate" desc="有效期" edittype="text" datatype="date" readonly="true" xpath="/bankBlackList/validDate" />
+
+        <Field id="old_blacklistedDate" desc="拉黑时间" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/old_bankBlackList/blacklistedDate" />
+        <Field id="blacklistedDate" desc="拉黑时间" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/bankBlackList/blacklistedDate" />
+
+        <Field id="old_blacklistedOperator" desc="拉黑操作员" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/old_bankBlackList/blacklistedOperator" />
+        <Field id="blacklistedOperator" desc="拉黑操作员" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/bankBlackList/blacklistedOperator" />
+
+        <Field id="old_blacklistedReason" desc="拉黑原因" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/old_bankBlackList/blacklistedReason" />
+        <Field id="blacklistedReason" desc="拉黑原因" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/bankBlackList/blacklistedReason" />
+
+        <Field id="old_unblacklistedDate" desc="解除时间" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/old_bankBlackList/unblacklistedDate" />
+        <Field id="unblacklistedDate" desc="解除时间" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/bankBlackList/unblacklistedDate" />
+
+        <Field id="old_unblacklistedOperator" desc="解除操作员" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/old_bankBlackList/unblacklistedOperator" />
+        <Field id="unblacklistedOperator" desc="解除操作员" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/bankBlackList/unblacklistedOperator" />
+
+        <Field id="old_unblacklistedReason" desc="解除原因" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/old_bankBlackList/unblacklistedReason" />
+        <Field id="unblacklistedReason" desc="解除原因" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/bankBlackList/unblacklistedReason" />
+
+        <Field id="old_lastModifyOperator" desc="最后修改用户" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/old_bankBlackList/lastModifyOperator" />
+        <Field id="lastModifyOperator" desc="最后修改用户" edittype="text" datatype="string" size="10" readonly="true"
+            xpath="/bankBlackList/lastModifyOperator" />
     </Fields>
     <Operations>
         <Button id="btClose" name="btClose" desc="返回" operation="syncsubmit" url="#" txn="" />

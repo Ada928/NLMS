@@ -7,7 +7,7 @@ import java.util.Date;
  * NlmsBankblacklist entity. @author MyEclipse Persistence Tools
  */
 
-public class BaseNlmsBankBlackList implements Serializable {
+public class BaseBankBlackList implements Serializable {
 
 	/**
 	 * 
@@ -75,10 +75,10 @@ public class BaseNlmsBankBlackList implements Serializable {
 	// Constructors
 
 	/** default constructor */
-	public BaseNlmsBankBlackList() {
+	public BaseBankBlackList() {
 	}
 
-	public BaseNlmsBankBlackList(String id) {
+	public BaseBankBlackList(String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -308,10 +308,10 @@ public class BaseNlmsBankBlackList implements Serializable {
 	public boolean equals(Object obj) {
 		if (null == obj)
 			return false;
-		if (!(obj instanceof resource.bean.report.NlmsBankBlackList))
+		if (!(obj instanceof resource.bean.report.BankBlackList))
 			return false;
 		else {
-			resource.bean.report.NlmsBankBlackList nlmsBankblacklist = (resource.bean.report.NlmsBankBlackList) obj;
+			resource.bean.report.BankBlackList nlmsBankblacklist = (resource.bean.report.BankBlackList) obj;
 			if (null == this.getId() || null == nlmsBankblacklist.getId())
 				return false;
 			else

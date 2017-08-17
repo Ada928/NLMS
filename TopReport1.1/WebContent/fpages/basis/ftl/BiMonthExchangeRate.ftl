@@ -87,7 +87,7 @@
 			cell.innerHTML = "<a href=\"Javascript:showDetail('"+id+"','"+sta+"')\">"+value+"</a>";
 	
 		} else {
-			cell.innerHTML = ""
+			cell.innerHTML = "";
 		}
 	}
 	
@@ -108,10 +108,6 @@
 		paramMap.put("flag","0");
 		loadPageWindows("partWin", "外汇月牌价详细信息","/fpages/basis/ftl/BiMonthExchangeRateDetail.ftl", paramMap, "winZone");
 	}
-
-
-
-
 
 	//新增功能
 	function btNewClick() {

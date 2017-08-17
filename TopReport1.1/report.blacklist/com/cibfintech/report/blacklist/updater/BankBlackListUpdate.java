@@ -14,7 +14,7 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
-import resource.bean.report.NlmsBankBlackList;
+import resource.bean.report.BankBlackList;
 
 /**
  * @author huangcheng
@@ -27,7 +27,6 @@ public class BankBlackListUpdate extends BaseUpdate {
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
-		// TODO Auto-generated method stub
 
 		// 返回对象
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
@@ -36,20 +35,20 @@ public class BankBlackListUpdate extends BaseUpdate {
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 
 		// 返回日牌价对象
-		NlmsBankBlackList nlmsBankblacklist = new NlmsBankBlackList();
+		BankBlackList bankblacklist = new BankBlackList();
 
 		OperationContext oc = new OperationContext();
 		if (updateResultBean.hasNext()) {
 			// 属性拷贝
 			Map map = updateResultBean.next();
-			BaseUpdate.mapToObject(nlmsBankblacklist, map);
+			BaseUpdate.mapToObject(bankblacklist, map);
 			if (UpdateResultBean.MODIFY == updateResultBean.getRecodeState()) {
 				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_MOD);
 			}
 			if (UpdateResultBean.INSERT == updateResultBean.getRecodeState()) {
 				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_ADD);
 			}
-			oc.setAttribute(BankBlackListOperation.IN_PARAM, nlmsBankblacklist);
+			oc.setAttribute(BankBlackListOperation.IN_PARAM, bankblacklist);
 			// call方式开启operation事务
 			OPCaller.call(BankBlackListOperation.ID, oc);
 			return updateReturnBean;

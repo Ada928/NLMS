@@ -16,7 +16,7 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
-import resource.bean.report.NlmsBankBlackList;
+import resource.bean.report.BankBlackList;
 
 /*
 
@@ -35,7 +35,7 @@ public class BankBlackListDEL extends BaseUpdate {
 			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			// 更新对象
-			NlmsBankBlackList nlmsBankblacklist = new NlmsBankBlackList();
+			BankBlackList nlmsBankblacklist = new BankBlackList();
 			// Operation参数
 			OperationContext context = new OperationContext();
 			if (updateResultBean.hasNext()) {

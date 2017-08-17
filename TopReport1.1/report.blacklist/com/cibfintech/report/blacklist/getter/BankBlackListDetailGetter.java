@@ -16,7 +16,7 @@ import com.huateng.exception.AppException;
 import com.huateng.report.common.service.ReportShowDetailService;
 import com.huateng.report.utils.ReportTaskUtil;
 
-import resource.bean.report.NlmsBankBlackList;
+import resource.bean.report.BankBlackList;
 import resource.bean.report.SysTaskInfo;
 import resource.bean.report.SysTaskLog;
 
@@ -27,47 +27,45 @@ import resource.bean.report.SysTaskLog;
 public class BankBlackListDetailGetter extends BaseGetter {
 	public Result call() throws AppException {
 		String action = this.getCommQueryServletRequest().getParameter("action");
-		String ost = this.getCommQueryServletRequest().getParameter("ost");
+		String ost = this.getCommQueryServletRequest().getParameter("osta");
 		String id = this.getCommQueryServletRequest().getParameter("id");
 		String flag = this.getCommQueryServletRequest().getParameter("flag");
 		String tskId = this.getCommQueryServletRequest().getParameter("tskId");
 		List list = new ArrayList();
 
-		// ReportTaskUtil rt=null;
 		try {
-
 			if ("detail".equals(action)) {
 				// 新bean从审计任务中获取
 				ReportTaskUtil rt = new ReportTaskUtil();
 				if ("0".equals(flag)) {
 					Iterator it = ReportShowDetailService.getInstance().selectByKey(id);
 					BankBlackListDetail ber = new BankBlackListDetail();
-					NlmsBankBlackList oldbean = BankBlackListService.getInstance().selectById(id);
+					BankBlackList oldbean = (BankBlackList) BankBlackListService.getInstance().selectById(id);
 					ber.setOld_bankBlackList(oldbean);
-					NlmsBankBlackList newBean = null;
+					BankBlackList newBean = null;
 					Class cls = null;
 					while (it.hasNext()) {
 						SysTaskInfo tem = (SysTaskInfo) it.next();
 						Object temp = rt.getObjctBySysTaskInfo(tem);
 						cls = temp.getClass();
-						if (cls.equals(NlmsBankBlackList.class)) {
-							newBean = (NlmsBankBlackList) temp;
+						if (cls.equals(BankBlackList.class)) {
+							newBean = (BankBlackList) temp;
 							ber.setBankBlackList(newBean);
 						}
 					}
 					list.add(ber);
 				} else if ("1".equals(flag)) {
 					SysTaskLog systasklog = ReportShowDetailService.getInstance().selectTaskLog(tskId);
-					NlmsBankBlackList oldValue = null;
-					NlmsBankBlackList newValue = null;
+					BankBlackList oldValue = null;
+					BankBlackList newValue = null;
 					BankBlackListDetail bimonth = new BankBlackListDetail();
 
 					if (systasklog.getOldVal1() != null) {
-						oldValue = (NlmsBankBlackList) rt.getOldObjectByTaskLog(systasklog);
+						oldValue = (BankBlackList) rt.getOldObjectByTaskLog(systasklog);
 						// bimonth.setOld_bimonthexchangerate(oldValue);
 					}
 					if (systasklog.getNewVal1() != null) {
-						newValue = (NlmsBankBlackList) rt.getNewObjectByTaskLog(systasklog);
+						newValue = (BankBlackList) rt.getNewObjectByTaskLog(systasklog);
 						// bimonth.setBimonthexchangerate(newValue);
 					}
 					// 新增的时候

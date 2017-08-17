@@ -3,7 +3,7 @@
 	"-//Hibernate/Hibernate Mapping DTD//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping package="resource.bean.report">
-    <class name="NlmsBankBlackList" table="nlms_bankblacklist">
+    <class name="BankBlackList" table="nlms_bankblacklist">
         <meta attribute="sync-DAO">false</meta>
 
         <id name="id" type="string" column="party_id" />

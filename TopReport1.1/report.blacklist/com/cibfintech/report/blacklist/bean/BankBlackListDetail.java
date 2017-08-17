@@ -1,28 +1,28 @@
 package com.cibfintech.report.blacklist.bean;
 
-import resource.bean.report.NlmsBankBlackList;
+import resource.bean.report.BankBlackList;
 
 /**
  * 
  * 商行黑名单新旧信息的对比的bean
  */
 public class BankBlackListDetail {
-	private NlmsBankBlackList old_bankBlackList;
-	private NlmsBankBlackList bankBlackList;
+	private BankBlackList old_bankBlackList;
+	private BankBlackList bankBlackList;
 
-	public NlmsBankBlackList getOld_bankBlackList() {
+	public BankBlackList getOld_bankBlackList() {
 		return old_bankBlackList;
 	}
 
-	public void setOld_bankBlackList(NlmsBankBlackList oldbankBlackList) {
+	public void setOld_bankBlackList(BankBlackList oldbankBlackList) {
 		old_bankBlackList = oldbankBlackList;
 	}
 
-	public NlmsBankBlackList getBankBlackList() {
+	public BankBlackList getBankBlackList() {
 		return bankBlackList;
 	}
 
-	public void setBankBlackList(NlmsBankBlackList bankBlackList) {
+	public void setBankBlackList(BankBlackList bankBlackList) {
 		this.bankBlackList = bankBlackList;
 	}
 
