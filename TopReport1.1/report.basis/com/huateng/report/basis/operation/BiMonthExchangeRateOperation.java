@@ -2,9 +2,6 @@ package com.huateng.report.basis.operation;
 
 import java.io.IOException;
 
-import resource.bean.report.BiMonthexchangerate;
-import resource.bean.report.SysTaskInfo;
-
 import com.huateng.common.DateUtil;
 import com.huateng.common.log.HtLog;
 import com.huateng.common.log.HtLogFactory;
@@ -15,6 +12,9 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.report.basis.service.BiMonthExchangeRateService;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
+
+import resource.bean.report.BiMonthexchangerate;
+import resource.bean.report.SysTaskInfo;
 
 public class BiMonthExchangeRateOperation extends BaseOperation {
 	public static final String ID = "BiMonthExchangeRateOperation";
@@ -32,9 +32,8 @@ public class BiMonthExchangeRateOperation extends BaseOperation {
 	}
 
 	@Override
-	// author by 计翔 2012.9.5
+	//
 	public void execute(OperationContext context) throws CommonException {
-		// TODO Auto-generated method stub
 		String cmd = (String) context.getAttribute(CMD);
 		BiMonthexchangerate biMonthexchangerate = (BiMonthexchangerate) context.getAttribute(IN_PARAM);
 		// 调用服务类

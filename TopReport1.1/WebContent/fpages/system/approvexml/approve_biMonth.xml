@@ -10,7 +10,7 @@
         <Field id="id" desc="任务编号" status="F" size="14" require="false" readonly="false" edittype="text" datatype="string"
             tip="任务编号" xpath="/id" />
         <Field id="updTransCd" desc="操作说明" status="F" size="2" require="false" readonly="false" edittype="select"
-            datatype="string" tip="操作说明" xpath="/sysTaskInfo/updTransCd" translated="DATA_DIC.311" />
+            datatype="string" tip="操作说明" xpath="/sysTaskInfo/updTransCd" translated="DATA_DIC.3001" />
         <Field id="crtDt" desc="创建日期" status="F" size="8" require="false" readonly="false" edittype="text"
             datatype="date" tip="创建日期" xpath="/sysTaskInfo/crtDt" />
         <Field id="adtRcdPk" desc="原纪录主键" status="F" size="32" require="false" readonly="false" edittype="text"

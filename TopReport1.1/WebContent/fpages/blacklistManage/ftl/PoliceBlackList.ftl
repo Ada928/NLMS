@@ -1,7 +1,7 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="商行黑名单管理">
-<@CommonQueryMacro.CommonQuery id="BankBlackList" init="false" submitMode="current"  navigate="false">
+<@CommonQueryMacro.page title="公安部黑名单管理">
+<@CommonQueryMacro.CommonQuery id="PoliceBlackList" init="false" submitMode="current"  navigate="false">
 <table align="center" width="100%">
    	<tr>
       	<td colspan="2" >
@@ -14,7 +14,7 @@
 	<tr>
 		<td colspan="2">
 			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd" 
-				fieldStr="id[160],accountCode,certificateType,certificateNumber[160],clientName[280],clientEnglishName[280],blacklistedOperator,blacklistedReason,unblacklistedDate,unblacklistedOperator,unblacklistedReason,lastModifyOperator,opr"  
+				fieldStr="id[160],accountCode,certificateType,certificateNumber[160],clientName[280],clientEnglishName[280],lastModifyOperator,opr"  
 				width="100%" hasFrame="true"/>
 		</td>
 	</tr>
@@ -24,8 +24,8 @@
       			defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" 
       			exclusive="true" position="center" show="false" >
       			<div align="center">
-      				<@CommonQueryMacro.Group id="group1" label="商行黑名单维护"
-        			  fieldStr="id,accountCode,certificateType,certificateNumber,clientName,clientEnglishName,blacklistType,isShare,isValid,validDate,blacklistedReason,unblacklistedReason" colNm=4/>
+      				<@CommonQueryMacro.Group id="group1" label="公安部黑名单维护"
+        			  fieldStr="id,accountCode,certificateType,certificateNumber,clientName,clientEnglishName,blacklistType,isValid,validDate" colNm=4/>
         			<br/>
       				<@CommonQueryMacro.Button id="btModOrAdd" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       			</div>
@@ -73,11 +73,8 @@
         BankBlackList_dataset.setFieldReadOnly("clientName", false);
         BankBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
         BankBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        BankBlackList_dataset.setFieldReadOnly("isShare", false);
         BankBlackList_dataset.setFieldReadOnly("isValid", false);
         BankBlackList_dataset.setFieldReadOnly("validDate", false);
-        BankBlackList_dataset.setFieldReadOnly("blacklistedReason", false);
-        BankBlackList_dataset.setFieldReadOnly("unblacklistedReason", false);
         subwindow_signWindow.show();
     }
 
@@ -98,7 +95,7 @@
         paramMap.put("osta", osta);
         paramMap.put("action", "detail");
         paramMap.put("flag", "0");
-        loadPageWindows("partWin", "商行黑名单详细信息", "/fpages/blacklistManage/ftl/BankBlackListDetail.ftl", paramMap, "winZone");
+        loadPageWindows("partWin", "公安部黑名单详细信息", "/fpages/blacklistManage/ftl/BankBlackListDetail.ftl", paramMap, "winZone");
     }
 
     function btModOrAdd_onClickCheck(button) {
@@ -142,10 +139,8 @@
         BankBlackList_dataset.setValue("clientName", "");
         BankBlackList_dataset.setValue("clientEnglishName", "");
         BankBlackList_dataset.setValue("blacklistType", "");
-        BankBlackList_dataset.setValue("isShare", "");
         BankBlackList_dataset.setValue("isValid", "");
         BankBlackList_dataset.setValue("validDate", "");
-        BankBlackList_dataset.setValue("blacklistedReason", "");
         BankBlackList_dataset.setFieldReadOnly("id", false);
         BankBlackList_dataset.setFieldReadOnly("accountCode", false);
         BankBlackList_dataset.setFieldReadOnly("certificateType", false);
@@ -153,11 +148,8 @@
         BankBlackList_dataset.setFieldReadOnly("clientName", false);
         BankBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
         BankBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        BankBlackList_dataset.setFieldReadOnly("isShare", false);
         BankBlackList_dataset.setFieldReadOnly("isValid", false);
         BankBlackList_dataset.setFieldReadOnly("validDate", false);
-        BankBlackList_dataset.setFieldReadOnly("blacklistedReason", false);
-        BankBlackList_dataset.setFieldReadOnly("unblacklistedReason", true);
         subwindow_signWindow.show();
     }
     

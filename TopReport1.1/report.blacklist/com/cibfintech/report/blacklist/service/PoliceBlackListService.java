@@ -12,13 +12,13 @@ import com.huateng.ebank.framework.util.ApplicationContextUtils;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.report.utils.ReportEnum;
 
-import resource.bean.report.BankBlackList;
+import resource.bean.report.PoliceBlackList;
 import resource.bean.report.SysTaskInfo;
 import resource.dao.base.HQLDAO;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
 
-public class BankBlackListService {
+public class PoliceBlackListService {
 
 	public PageQueryResult list(int pageIndex, int pageSize, String hql) throws CommonException {
 		PageQueryCondition queryCondition = new PageQueryCondition();
@@ -35,8 +35,8 @@ public class BankBlackListService {
 	 * @param paramgroupId 参数段编号
 	 */
 
-	public static BankBlackListService getInstance() {
-		return (BankBlackListService) ApplicationContextUtils.getBean("BankBlackListService");
+	public static PoliceBlackListService getInstance() {
+		return (PoliceBlackListService) ApplicationContextUtils.getBean("PoliceBlackListService");
 	}
 
 	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String partyId, String qCertificateType,
@@ -45,21 +45,21 @@ public class BankBlackListService {
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from BankBlackList bblt where bblt.isDelete='1'");
+		StringBuffer hql = new StringBuffer(" from PoliceBlackList pblt where pblt.isDelete='1'");
 
 		if (StringUtils.isNotBlank(partyId)) {
-			hql.append(" and bblt.id = '").append(partyId.trim()).append("'");
+			hql.append(" and pblt.id = '").append(partyId.trim()).append("'");
 		}
 		if (StringUtils.isNotBlank(qCertificateType)) {
-			hql.append(" and bblt.certificateType = '").append(qCertificateType.trim()).append("'");
+			hql.append(" and pblt.certificateType = '").append(qCertificateType.trim()).append("'");
 		}
 		if (StringUtils.isNotBlank(qCertificateNumber)) {
-			hql.append(" and bblt.certificateNumber like '%").append(qCertificateNumber.trim()).append("%'");
+			hql.append(" and pblt.certificateNumber like '%").append(qCertificateNumber.trim()).append("%'");
 		}
 		if (StringUtils.isNotBlank(qOperateState)) {
-			hql.append(" and bblt.operateState='").append(qOperateState.trim()).append("'");
+			hql.append(" and pblt.operateState='").append(qOperateState.trim()).append("'");
 		} else {
-			hql.append(" and bblt.operateState<>'").append(ReportEnum.REPORT_ST1.N.value).append("'");
+			hql.append(" and pblt.operateState<>'").append(ReportEnum.REPORT_ST1.N.value).append("'");
 		}
 		try {
 			queryCondition.setPageIndex(pageIndex);
@@ -81,7 +81,7 @@ public class BankBlackListService {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		List list = rootDAO.queryByQL2List("1=1");
 		for (int i = 0; i < list.size(); i++) {
-			BankBlackList bblt = (BankBlackList) list.get(i);
+			PoliceBlackList bblt = (PoliceBlackList) list.get(i);
 			list.set(i, bblt);
 		}
 		return list;
@@ -92,10 +92,10 @@ public class BankBlackListService {
 	 * 
 	 * @param biNationregion
 	 */
-	public void removeEntity(BankBlackList bankBlacklist) {
+	public void removeEntity(PoliceBlackList policeBlackList) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
-			rootDAO.delete(bankBlacklist);
+			rootDAO.delete(policeBlackList);
 			System.out.println("已删除");
 		} catch (CommonException e) {
 			System.out.println("删除实体出错！ ");
@@ -108,10 +108,10 @@ public class BankBlackListService {
 	 * 
 	 * @param biNationregion
 	 */
-	public void modOrAddEntity(BankBlackList bankBlacklist) {
+	public void modOrAddEntity(PoliceBlackList policeBlackList) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
-			rootDAO.saveOrUpdate(bankBlacklist);
+			rootDAO.saveOrUpdate(policeBlackList);
 			System.out.println(this.getClass().getName() + " 已插入或更新");
 		} catch (CommonException e) {
 			System.out.println(this.getClass().getName() + " 插入或更新出错！ ");
@@ -119,13 +119,13 @@ public class BankBlackListService {
 		}
 	}
 
-	public void addEntity(BankBlackList bankBlacklist) throws CommonException {
+	public void addEntity(PoliceBlackList policeBlackList) throws CommonException {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
-		if (isExists(bankBlacklist.getId())) {
+		if (isExists(policeBlackList.getId())) {
 			ExceptionUtil.throwCommonException(" 名单重复");
 		}
 		try {
-			rootDAO.save(bankBlacklist);
+			rootDAO.save(policeBlackList);
 			System.out.println(this.getClass().getName() + " 已插入或更新实体");
 		} catch (CommonException e) {
 			System.out.println(this.getClass().getName() + " 插入或更新实体！ ");
@@ -135,8 +135,8 @@ public class BankBlackListService {
 	public boolean isExists(String id) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
-			BankBlackList bankBlacklist = (BankBlackList) rootDAO.query(BankBlackList.class, id);
-			if (bankBlacklist == null) {
+			PoliceBlackList policeBlackList = (PoliceBlackList) rootDAO.query(PoliceBlackList.class, id);
+			if (policeBlackList == null) {
 				return false;
 			}
 		} catch (CommonException e) {
@@ -145,10 +145,10 @@ public class BankBlackListService {
 		return true;
 	}
 
-	public void modEntity(BankBlackList bankBlacklist) {
+	public void modEntity(PoliceBlackList policeBlackList) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
-			rootDAO.update(bankBlacklist);
+			rootDAO.update(policeBlackList);
 			System.out.println(this.getClass().getName() + " 已插入或更新实体");
 		} catch (CommonException e) {
 			System.out.println(this.getClass().getName() + " 插入或更新实体出错！ ");
@@ -166,15 +166,15 @@ public class BankBlackListService {
 	}
 
 	// 通过id来获取实体类
-	public BankBlackList selectById(String id) {
+	public PoliceBlackList selectById(String id) {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		BankBlackList bankBlacklist = null;
+		PoliceBlackList policeBlackList = null;
 		try {
-			bankBlacklist = (BankBlackList) rootdao.query(BankBlackList.class, id);
+			policeBlackList = (PoliceBlackList) rootdao.query(PoliceBlackList.class, id);
 		} catch (CommonException e) {
 			e.printStackTrace();
 		}
-		return bankBlacklist;
+		return policeBlackList;
 	}
 
 }

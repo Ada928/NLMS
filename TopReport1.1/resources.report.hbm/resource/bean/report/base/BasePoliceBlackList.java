@@ -7,36 +7,31 @@ import java.util.Date;
  * NlmsBankblacklist entity. @author MyEclipse Persistence Tools
  */
 
-public class BaseBankBlackList implements Serializable {
+public class BasePoliceBlackList implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static String REF = "BankBlackList";
+	public static String REF = "PoliceBlackList";
 	public static String PROP_ID = "id";
-	public static String PROP_BANK_CODE = "bankCode";
+	public static String PROP_BLACKLIST_TYPE = "blacklistType";
 	public static String PROP_ACCOUNT_TYPE = "accountType";
 	public static String PROP_ACCOUNT_CODE = "accountCode";
 	public static String PROP_CERTIFICATE_TYPE = "certificateType";
 	public static String PROP_CERTIFICATE_NUMBER = "certificateNumber";
 	public static String PROP_CLIENT_NAME = "clientName";
 	public static String PROP_CLIENT_ENGLISH_NAME = "clientEnglishName";
-	public static String PROP_BLACKLIST_TYPE = "blacklistType";
-	public static String PROP_IS_SHARE = "isShare";
+	public static String PROP_BANK_CODE = "bankCode";
+	public static String PROP_BLACKLISTED_ORGANIZATION = "blacklistedOrganization";
 	public static String PROP_IS_VALID = "isValid";
 	public static String PROP_IS_DELETE = "isDelete";
-	public static String PROP_OPERATE_STATE = "operateState";
 	public static String PROP_VALID_DATE = "validDate";
-	public static String PROP_BLACKLISTED_DATE = "blacklistedDate";
-	public static String PROP_BLACKLISTED_OPERATOR = "blacklistedOperator";
-	public static String PROP_BLACKLISTED_REASON = "blacklistedReason";
-	public static String PROP_UNBLACKLISTED_DATE = "unblacklistedDate";
-	public static String PROP_UNBLACKLISTED_OPERATOR = "unblacklistedOperator";
-	public static String PROP_UNBLACKLISTED_REASON = "unblacklistedReason";
+	public static String PROP_OPERATE_STATE = "operateState";
 	public static String PROP_FILLER1 = "filler1";
 	public static String PROP_FILLER2 = "filler2";
 	public static String PROP_FILLER3 = "filler3";
+	public static String PROP_FILLER4 = "filler4";
 	public static String PROP_CREATE_DATE = "createDate";
 	public static String PROP_LAST_MODIFY_DATE = "lastModifyDate";
 	public static String PROP_LAST_MODIFY_OPERATOR = "lastModifyOperator";
@@ -45,28 +40,25 @@ public class BaseBankBlackList implements Serializable {
 	// Fields
 	private int hashCode = Integer.MIN_VALUE;
 	private String id;
-	private String bankCode;
+	private String blacklistType;
 	private String accountType;
 	private String accountCode;
 	private String certificateType;
 	private String certificateNumber;
 	private String clientName;
 	private String clientEnglishName;
-	private String blacklistType;
-	private String isShare;
+	private String bankCode;
+	private String blackListedOrganization;
+	private String contact;
+	private String contactPhone;
 	private String isValid;
 	private String isDelete;
-	private String operateState;
 	private Date validDate;
-	private Date blacklistedDate;
-	private String blacklistedOperator;
-	private String blacklistedReason;
-	private Date unblacklistedDate;
-	private String unblacklistedOperator;
-	private String unblacklistedReason;
+	private String operateState;
 	private String filler1;
 	private String filler2;
 	private String filler3;
+	private String filler4;
 	private Date createDate;
 	private Date lastModifyDate;
 	private String lastModifyOperator;
@@ -75,10 +67,10 @@ public class BaseBankBlackList implements Serializable {
 	// Constructors
 
 	/** default constructor */
-	public BaseBankBlackList() {
+	public BasePoliceBlackList() {
 	}
 
-	public BaseBankBlackList(String id) {
+	public BasePoliceBlackList(String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -161,13 +153,6 @@ public class BaseBankBlackList implements Serializable {
 		this.blacklistType = blacklistType;
 	}
 
-	public String getIsShare() {
-		return this.isShare;
-	}
-
-	public void setIsShare(String isShare) {
-		this.isShare = isShare;
-	}
 
 	public String getIsValid() {
 		return this.isValid;
@@ -201,52 +186,36 @@ public class BaseBankBlackList implements Serializable {
 		this.validDate = validDate;
 	}
 
-	public Date getBlacklistedDate() {
-		return this.blacklistedDate;
+	public String getBlackListedOrganization() {
+		return blackListedOrganization;
 	}
 
-	public void setBlacklistedDate(Date blacklistedDate) {
-		this.blacklistedDate = blacklistedDate;
+	public void setBlackListedOrganization(String blackListedOrganization) {
+		this.blackListedOrganization = blackListedOrganization;
 	}
 
-	public String getBlacklistedOperator() {
-		return this.blacklistedOperator;
+	public String getContact() {
+		return contact;
 	}
 
-	public void setBlacklistedOperator(String blacklistedOperator) {
-		this.blacklistedOperator = blacklistedOperator;
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
 
-	public String getBlacklistedReason() {
-		return this.blacklistedReason;
+	public String getContactPhone() {
+		return contactPhone;
 	}
 
-	public void setBlacklistedReason(String blacklistedReason) {
-		this.blacklistedReason = blacklistedReason;
+	public void setContactPhone(String contactPhone) {
+		this.contactPhone = contactPhone;
 	}
 
-	public Date getUnblacklistedDate() {
-		return this.unblacklistedDate;
+	public String getFiller4() {
+		return filler4;
 	}
 
-	public void setUnblacklistedDate(Date unblacklistedDate) {
-		this.unblacklistedDate = unblacklistedDate;
-	}
-
-	public String getUnblacklistedOperator() {
-		return this.unblacklistedOperator;
-	}
-
-	public void setUnblacklistedOperator(String unblacklistedOperator) {
-		this.unblacklistedOperator = unblacklistedOperator;
-	}
-
-	public String getUnblacklistedReason() {
-		return this.unblacklistedReason;
-	}
-
-	public void setUnblacklistedReason(String unblacklistedReason) {
-		this.unblacklistedReason = unblacklistedReason;
+	public void setFiller4(String filler4) {
+		this.filler4 = filler4;
 	}
 
 	public String getFiller1() {

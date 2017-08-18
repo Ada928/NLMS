@@ -1,6 +1,6 @@
 package com.cibfintech.report.blacklist.getter;
 
-import com.cibfintech.report.blacklist.service.BankBlackListService;
+import com.cibfintech.report.blacklist.service.PoliceBlackListService;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -11,16 +11,16 @@ import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 
 @SuppressWarnings("unchecked")
-public class BankBlackListGetter extends BaseGetter {
+public class PoliceBlackListGetter extends BaseGetter {
 	/*
-	 * 获取商行黑名单
+	 * 获取公安部黑名单
 	 * 
 	 * @author huangcheng
 	 */
 	@Override
 	public Result call() throws AppException {
 		try {
-			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "商行黑名单管理查询");
+			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "公安部黑名单管理查询");
 			PageQueryResult pageResult = getData();
 			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
@@ -42,7 +42,7 @@ public class BankBlackListGetter extends BaseGetter {
 		String qOperateState = getCommQueryServletRequest().getParameter("qOperateState");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
-		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageIndex, pageSize, qPartyId,
+		PageQueryResult pqr = PoliceBlackListService.getInstance().pageQueryByHql(pageIndex, pageSize, qPartyId,
 				qCertificateType, qCertificateNumber, qOperateState);
 		return pqr;
 	}

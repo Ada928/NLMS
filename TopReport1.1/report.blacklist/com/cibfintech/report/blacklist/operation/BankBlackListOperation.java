@@ -42,7 +42,7 @@ public class BankBlackListOperation extends BaseOperation {
 			BankBlackList sys1 = service.selectById(bankBlackList.getId());
 			// sysCurService.update(sysCurrency);
 			sys1.setOperateState(ReportEnum.REPORT_ST1.DE.value);
-			sys1.setIsDelate("2");
+			sys1.setIsDelete("2");
 			sys1.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			sys1.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(sys1);
@@ -53,7 +53,6 @@ public class BankBlackListOperation extends BaseOperation {
 						bankBlackList.getOperateState());
 				service.addTosystaskinfo(taskInfo);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			GlobalInfo gi = GlobalInfo.getCurrentInstance();
@@ -64,7 +63,7 @@ public class BankBlackListOperation extends BaseOperation {
 			// service.addEntity(bankBlackList);
 			bankBlackList.setOperateState(ReportEnum.REPORT_ST1.CR.value);
 			bankBlackList.setCreateDate(DateUtil.getCurrentDate());
-			bankBlackList.setIsDelate("1");
+			bankBlackList.setIsDelete("1");
 			bankBlackList.setBankCode(GlobalInfo.getCurrentInstance().getBrcode());
 			bankBlackList.setBlacklistedDate(DateUtil.getCurrentDate());
 			bankBlackList.setBlacklistedOperator(GlobalInfo.getCurrentInstance().getTlrno());
@@ -79,7 +78,6 @@ public class BankBlackListOperation extends BaseOperation {
 						bankBlackList.getOperateState());
 				service.addTosystaskinfo(taskInfo);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			GlobalInfo gi = GlobalInfo.getCurrentInstance();
@@ -122,7 +120,6 @@ public class BankBlackListOperation extends BaseOperation {
 						bankBlackList.getOperateState());
 				service.addTosystaskinfo(taskInfo);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -134,7 +131,5 @@ public class BankBlackListOperation extends BaseOperation {
 	@Override
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
-
 	}
-
 }

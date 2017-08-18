@@ -5,7 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cibfintech.report.blacklist.operation.BankBlackListOperation;
+import com.cibfintech.report.blacklist.operation.PoliceBlackListOperation;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -16,15 +16,15 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
-import resource.bean.report.BankBlackList;
+import resource.bean.report.PoliceBlackList;
 
 /*
 
  * 
  */
-public class BankBlackListDEL extends BaseUpdate {
+public class PoliceBlackListDEL extends BaseUpdate {
 
-	private static final String DATASET_ID = "BankBlackList";
+	private static final String DATASET_ID = "PoliceBlackList";
 
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
@@ -35,17 +35,17 @@ public class BankBlackListDEL extends BaseUpdate {
 			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			// 更新对象
-			BankBlackList bankBlackList = new BankBlackList();
+			PoliceBlackList policeBlackList = new PoliceBlackList();
 			// Operation参数
 			OperationContext context = new OperationContext();
 			if (updateResultBean.hasNext()) {
 				// 属性拷贝
 				Map map = updateResultBean.next();
-				context.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_DEL);
-				BaseUpdate.mapToObject(bankBlackList, map);
+				context.setAttribute(PoliceBlackListOperation.CMD, PoliceBlackListOperation.CMD_DEL);
+				BaseUpdate.mapToObject(policeBlackList, map);
 				// call方式开启operation事务
-				context.setAttribute(BankBlackListOperation.IN_PARAM, bankBlackList);
-				OPCaller.call(BankBlackListOperation.ID, context);
+				context.setAttribute(PoliceBlackListOperation.IN_PARAM, policeBlackList);
+				OPCaller.call(PoliceBlackListOperation.ID, context);
 				return updateReturnBean;
 			}
 		} catch (AppException appe) {
