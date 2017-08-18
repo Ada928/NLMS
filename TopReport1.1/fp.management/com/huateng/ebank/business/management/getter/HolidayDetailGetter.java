@@ -12,6 +12,7 @@ import com.huateng.exception.AppException;
 
 /**
  * holiday query
+ * 
  * @author shen_antonio
  */
 public class HolidayDetailGetter extends BaseGetter {
@@ -20,9 +21,9 @@ public class HolidayDetailGetter extends BaseGetter {
 	public Result call() throws AppException {
 		String year = this.getCommQueryServletRequest().getParameter("year");
 		OperationContext oc = new OperationContext();
-		oc.setAttribute(HolidayDetailQueryOperation.INPUT_YEAR,year);
+		oc.setAttribute(HolidayDetailQueryOperation.INPUT_YEAR, year);
 		OPCaller.call(HolidayDetailQueryOperation.ID, oc);
-		Map map = (Map)oc.getAttribute(HolidayDetailQueryOperation.OUTPUT_RESULT);
+		Map map = (Map) oc.getAttribute(HolidayDetailQueryOperation.OUTPUT_RESULT);
 		ResultMng.fillResultByObject(this.getCommonQueryBean(), this.getCommQueryServletRequest(), map, result);
 		result.init();
 		return result;

@@ -17,8 +17,7 @@ import org.apache.struts.validator.ValidatorForm;
 import com.huateng.ebank.framework.operation.OperContext;
 
 /**
- * 电子银行Validation BaseForm基类；
- * 所有Struts ActionForm都应该从这个基类中继承。
+ * 电子银行Validation BaseForm基类； 所有Struts ActionForm都应该从这个基类中继承。
  *
  * @author Huang Liang
  */
@@ -28,14 +27,13 @@ public class HTBaseForm extends ValidatorForm {
 	private String jsessionid;
 	private String JSESSIONID;
 	private boolean success;
-		
+
 	public HTBaseForm() {
 		super();
 	}
 
 	@Override
-	public void reset(ActionMapping mapping, HttpServletRequest request)
-	{
+	public void reset(ActionMapping mapping, HttpServletRequest request) {
 		super.reset(mapping, request);
 		success = false;
 		jsessionid = null;
@@ -47,7 +45,7 @@ public class HTBaseForm extends ValidatorForm {
 		jsessionid = null;
 		JSESSIONID = null;
 	}
-	
+
 	/**
 	 * @return
 	 */

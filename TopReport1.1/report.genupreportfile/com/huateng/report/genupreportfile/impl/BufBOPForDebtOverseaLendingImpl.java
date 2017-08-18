@@ -19,54 +19,48 @@ import edu.emory.mathcs.backport.java.util.Collections;
 
 public class BufBOPForDebtOverseaLendingImpl implements IGetSubFileList {
 
-
 	private static final String SEARCH_REPORT_DATA_FOR_BOP_CFAEXDEBT_DS = " FROM BopCfaExdebtDs WHERE workDate = ? AND recStatus = ? AND apptype = ? AND currentfile = ? ";
 
 	private static final String SEARCH_REPORT_FOR_REC_STATUS = " FROM BopCfaExdebtDs WHERE recStatus = ? AND apptype = ? AND currentfile = ? ";
 
-	private static final String SEARCH_CREDITOR_INFO =" FROM BopCfaCreditorDs WHERE recId IN ";
+	private static final String SEARCH_CREDITOR_INFO = " FROM BopCfaCreditorDs WHERE recId IN ";
 	/**
 	 * 分页查询的最大行数
 	 */
 	private static final int PAGESIZE = 500;
 
 	@SuppressWarnings("unchecked")
-	public List getSubFileResultList(Map<String, Object> paramMap)
-			throws CommonException {
+	public List getSubFileResultList(Map<String, Object> paramMap) throws CommonException {
 
 		String workdate = (String) paramMap.get(IN_FILE_DATE);
-		String apptype  = (String) paramMap.get(IN_APP_TYPE);
+		String apptype = (String) paramMap.get(IN_APP_TYPE);
 		String filetype = (String) paramMap.get(IN_FILE_TYPE);
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<BopCfaExdebtDs> exdebtdsList = Collections.emptyList();
-		if (workdate!=null && workdate.trim().length()>0) {
-			Object[] para = new Object[] { workdate,
-				TopReportConstants.REPORT_RECSTATUS_05, apptype, filetype };
+		if (workdate != null && workdate.trim().length() > 0) {
+			Object[] para = new Object[] { workdate, TopReportConstants.REPORT_RECSTATUS_05, apptype, filetype };
 
-			exdebtdsList = rootdao.queryByQL2List(
-				SEARCH_REPORT_DATA_FOR_BOP_CFAEXDEBT_DS, para, null);
+			exdebtdsList = rootdao.queryByQL2List(SEARCH_REPORT_DATA_FOR_BOP_CFAEXDEBT_DS, para, null);
 		} else {
-			Object[] para = new Object[] {
-					TopReportConstants.REPORT_RECSTATUS_05, apptype, filetype };
+			Object[] para = new Object[] { TopReportConstants.REPORT_RECSTATUS_05, apptype, filetype };
 
-			exdebtdsList = rootdao.queryByQL2List(
-					SEARCH_REPORT_FOR_REC_STATUS, para, null);
+			exdebtdsList = rootdao.queryByQL2List(SEARCH_REPORT_FOR_REC_STATUS, para, null);
 		}
 		Map<String, BopCfaExdebtDs> exdebtdsMap = new HashMap<String, BopCfaExdebtDs>(exdebtdsList.size());
-		for(BopCfaExdebtDs cfa : exdebtdsList) {
+		for (BopCfaExdebtDs cfa : exdebtdsList) {
 			exdebtdsMap.put(cfa.getId(), cfa);
 		}
 
-		List<String>uuidList = new LinkedList<String>();
-		for(BopCfaExdebtDs cfa : exdebtdsList) {
+		List<String> uuidList = new LinkedList<String>();
+		for (BopCfaExdebtDs cfa : exdebtdsList) {
 			uuidList.add(cfa.getId());
-			if(PAGESIZE == uuidList.size()){
+			if (PAGESIZE == uuidList.size()) {
 				assemblyExdebtds(uuidList, exdebtdsMap);
 				uuidList.clear();
 			}
 		}
-		if(!uuidList.isEmpty()){
+		if (!uuidList.isEmpty()) {
 			assemblyExdebtds(uuidList, exdebtdsMap);
 			uuidList.clear();
 		}
@@ -75,14 +69,14 @@ public class BufBOPForDebtOverseaLendingImpl implements IGetSubFileList {
 	}
 
 	@SuppressWarnings("unchecked")
-	private void assemblyExdebtds(List<String> uuidList,
-			Map<String, BopCfaExdebtDs> exdebtdsMap) throws CommonException {
+	private void assemblyExdebtds(List<String> uuidList, Map<String, BopCfaExdebtDs> exdebtdsMap)
+			throws CommonException {
 		String hql = SEARCH_CREDITOR_INFO + ReportUtils.toInString(uuidList);
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		List<BopCfaCreditorDs>list = rootdao.queryByQL2List(hql);
-		for(BopCfaCreditorDs creditor : list) {
+		List<BopCfaCreditorDs> list = rootdao.queryByQL2List(hql);
+		for (BopCfaCreditorDs creditor : list) {
 			BopCfaExdebtDs bopcfaexdebtds = exdebtdsMap.get(creditor.getRecId());
-			if(null != bopcfaexdebtds) {
+			if (null != bopcfaexdebtds) {
 				bopcfaexdebtds.setCreditorcode(creditor.getCreditorcode());
 				bopcfaexdebtds.setCreditorname(creditor.getCreditorname());
 				bopcfaexdebtds.setCreditornamen(creditor.getCreditornamen());

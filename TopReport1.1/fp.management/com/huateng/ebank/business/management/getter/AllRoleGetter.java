@@ -30,8 +30,7 @@ public class AllRoleGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult().size() == 0) {
@@ -44,8 +43,7 @@ public class AllRoleGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
@@ -61,7 +59,7 @@ public class AllRoleGetter extends BaseGetter {
 		for (int i = 0; i < allList.size(); i++) {
 			RoleInfo roleInfo = (RoleInfo) allList.get(i);
 			// 过滤无效的岗位信息
-			if ( roleInfo.getStatus().equals(SystemConstant.FLAG_OFF) == true ){
+			if (roleInfo.getStatus().equals(SystemConstant.FLAG_OFF) == true) {
 				continue;
 			}
 			TlrRoleRelationView tlrRoleView = new TlrRoleRelationView();

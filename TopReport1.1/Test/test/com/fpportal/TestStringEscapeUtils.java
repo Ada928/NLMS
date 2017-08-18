@@ -18,24 +18,22 @@ import org.apache.commons.lang.StringEscapeUtils;
 import junit.framework.TestCase;
 
 /**
- * ClassName:TestStringEscapeUtils
- * Function: TODO ADD FUNCTION
- * Reason:	 TODO ADD REASON
+ * ClassName:TestStringEscapeUtils Function: TODO ADD FUNCTION Reason: TODO ADD
+ * REASON
  *
- * @author   shen_antonio
- * @version  
- * @since    Ver 1.1
- * @Date	 2012-1-17		上午11:01:51
+ * @author shen_antonio
+ * @version
+ * @since Ver 1.1
+ * @Date 2012-1-17 上午11:01:51
  *
- * @see 	 
+ * @see
  */
 public class TestStringEscapeUtils extends TestCase {
-	
-	public void testXml(){
+
+	public void testXml() {
 		String str = "est&nbsp;";
 		String tt = StringEscapeUtils.unescapeHtml(str);
 		System.out.print("tt = " + tt);
 	}
 
 }
-

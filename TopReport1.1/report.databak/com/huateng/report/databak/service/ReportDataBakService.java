@@ -155,7 +155,7 @@ public class ReportDataBakService {
 			int colCount = rsmd.getColumnCount();// 去除rownum列
 			String[] handstr = null;
 			if (startnum == 1) {// 只写入一次头数据
-				handstr = new String[colCount-1];
+				handstr = new String[colCount - 1];
 				for (int i = 2; i <= colCount; i++) {
 					String colNm = rsmd.getColumnName(i);
 					int colType = rsmd.getColumnType(i);
@@ -163,17 +163,17 @@ public class ReportDataBakService {
 				}
 			}
 			while (rs.next()) {
-				String[] datastr = new String[colCount-1];
+				String[] datastr = new String[colCount - 1];
 				for (int i = 2; i <= colCount; i++) {
 					Object elem = null;
-					if (rsmd.getColumnType(i)==Types.TIMESTAMP) {
+					if (rsmd.getColumnType(i) == Types.TIMESTAMP) {
 						elem = rs.getTimestamp(i);
-					}else{
+					} else {
 						elem = rs.getObject(i);
 					}
-					if (elem==null) {
+					if (elem == null) {
 						datastr[i - 2] = "";
-					}else{
+					} else {
 						datastr[i - 2] = elem.toString();
 					}
 				}
@@ -219,7 +219,7 @@ public class ReportDataBakService {
 				filePath = path + saveFileNm + ReportConstant.BAK_FILE_EXT;
 				File file = new File(filePath);
 				if (handStr != null && handStr.length > 0) {
-					if(file.exists()){
+					if (file.exists()) {
 						file.delete();
 					}
 				}
@@ -270,8 +270,10 @@ public class ReportDataBakService {
 		}
 		return filePath;
 	}
+
 	/**
 	 * 恢复数据
+	 * 
 	 * @param zipFileName
 	 * @throws Exception
 	 */
@@ -280,7 +282,7 @@ public class ReportDataBakService {
 		String bakFilePath = filePath + zipFileName;
 		File bakFile = new File(bakFilePath);
 		if (!bakFile.exists()) {
-			ExceptionUtil.throwCommonException(bakFilePath+"备份文件不存在!");
+			ExceptionUtil.throwCommonException(bakFilePath + "备份文件不存在!");
 		}
 		// 解压文件
 		PackZipUtil zipUtil = new PackZipUtil();
@@ -309,13 +311,13 @@ public class ReportDataBakService {
 					conn.commit();
 					// 读取文件执行写入
 					int rows = readCsvFileAndSave(conn, bean, fileMap.get(tableName));
-					htlog.info("insert into row "+rows);
+					htlog.info("insert into row " + rows);
 				} else {
 					htlog.info(tableName + " no exists");
 				}
 			}
 		} catch (Exception e) {
-			if (conn!=null) {
+			if (conn != null) {
 				conn.rollback();
 			}
 			throw e;
@@ -331,7 +333,7 @@ public class ReportDataBakService {
 					// ignore
 				}
 			}
-			//删除解压文件
+			// 删除解压文件
 			for (Iterator<String> it = fileMap.keySet().iterator(); it.hasNext();) {
 				String name = it.next();
 				String path = fileMap.get(name);
@@ -352,8 +354,7 @@ public class ReportDataBakService {
 	 * @return
 	 * @throws Exception
 	 */
-	private int readCsvFileAndSave(Connection conn, ReportTableBakBean bean, String filePath)
-			throws Exception {
+	private int readCsvFileAndSave(Connection conn, ReportTableBakBean bean, String filePath) throws Exception {
 		CSVReader csvReader = null;
 		FileInputStream in = null;
 		InputStreamReader inRead = null;
@@ -369,7 +370,7 @@ public class ReportDataBakService {
 
 				List<String> handList = new ArrayList<String>();
 				for (int i = 0; i < readhand.length; i++) {
-					if (readhand[i]!=null && readhand[i].trim().length()>0) {
+					if (readhand[i] != null && readhand[i].trim().length() > 0) {
 						handList.add(readhand[i]);
 					}
 				}
@@ -378,11 +379,11 @@ public class ReportDataBakService {
 				Integer[] handTypes = new Integer[handLen];
 				for (int i = 0; i < handList.size(); i++) {
 					String[] readhands = handList.get(i).split("@@");
-					hands[i]= readhands[0].trim();
+					hands[i] = readhands[0].trim();
 					handTypes[i] = Integer.parseInt(readhands[1].trim());
 				}
 				String sql = getInsertSql(bean.getTableName(), hands);
-				ps=conn.prepareStatement(sql);
+				ps = conn.prepareStatement(sql);
 				String[] csvRow = null;
 				int row = 0;
 				while ((csvRow = csvReader.readNext()) != null) {
@@ -390,40 +391,40 @@ public class ReportDataBakService {
 						String content = csvRow[i];
 						if (content != null && content.trim().length() > 0) {
 							content = content.trim();
-						}else{
+						} else {
 							content = null;
 						}
-						if(content!=null &&(handTypes[i]==Types.NUMERIC || handTypes[i]==Types.DECIMAL)){
-							ps.setBigDecimal(i+1, new BigDecimal(content));
-						}else{
-							ps.setObject(i+1, content,handTypes[i]);
+						if (content != null && (handTypes[i] == Types.NUMERIC || handTypes[i] == Types.DECIMAL)) {
+							ps.setBigDecimal(i + 1, new BigDecimal(content));
+						} else {
+							ps.setObject(i + 1, content, handTypes[i]);
 						}
 					}
 					ps.addBatch();
 					row++;
-					if (row==bean.getBatchCount()) {
-						//执行提交
+					if (row == bean.getBatchCount()) {
+						// 执行提交
 						int[] updrow = ps.executeBatch();
-						if (updrow.length!=row) {
-							htlog.error(" update row:"+updrow.length+"<> read row:"+row);
+						if (updrow.length != row) {
+							htlog.error(" update row:" + updrow.length + "<> read row:" + row);
 						}
-						totalRow+=updrow.length;
+						totalRow += updrow.length;
 						ps.clearBatch();
 						conn.commit();
-						row=0;
+						row = 0;
 					}
 				}
-				//提交剩余数量
-				if (row>0) {
-					//执行提交
+				// 提交剩余数量
+				if (row > 0) {
+					// 执行提交
 					int[] updrow = ps.executeBatch();
-					if (updrow.length!=row) {
-						htlog.error(" update row:"+updrow.length+"<> read row:"+row);
+					if (updrow.length != row) {
+						htlog.error(" update row:" + updrow.length + "<> read row:" + row);
 					}
-					totalRow+=updrow.length;
+					totalRow += updrow.length;
 					ps.clearBatch();
 					conn.commit();
-					row=0;
+					row = 0;
 				}
 			}
 		} catch (Exception e) {
@@ -439,17 +440,14 @@ public class ReportDataBakService {
 			if (in != null) {
 				in.close();
 			}
-			if (ps!=null) {
+			if (ps != null) {
 				ps.close();
 			}
 		}
 		return totalRow;
 	}
 
-
-
-
-	private String getInsertSql(String tableName,String[] hands){
+	private String getInsertSql(String tableName, String[] hands) {
 		StringBuffer sql = new StringBuffer();
 		StringBuffer vals = new StringBuffer();
 		sql.append("INSERT INTO ");
@@ -458,10 +456,10 @@ public class ReportDataBakService {
 		vals.append(" VALUES (");
 		int len = hands.length;
 		for (int i = 0; i < len; i++) {
-			if (hands[i]!=null) {
+			if (hands[i] != null) {
 				sql.append(hands[i]);
 				vals.append("?");
-				if (i<len-1) {
+				if (i < len - 1) {
 					sql.append(",");
 					vals.append(",");
 				}
@@ -471,7 +469,7 @@ public class ReportDataBakService {
 		sql.append(")");
 		vals.append(")");
 		sql.append(vals.toString());
-//		System.out.println(sql.toString());
+		// System.out.println(sql.toString());
 		return sql.toString();
 	}
 

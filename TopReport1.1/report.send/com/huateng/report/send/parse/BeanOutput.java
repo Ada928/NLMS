@@ -3,7 +3,7 @@ package com.huateng.report.send.parse;
 import java.io.IOException;
 
 public interface BeanOutput {
-	
+
 	String REPORTBEAN = "REPORTBEAN";
 
 	void setValue(String key, Object value);

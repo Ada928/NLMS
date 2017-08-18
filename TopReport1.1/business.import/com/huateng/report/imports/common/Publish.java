@@ -14,6 +14,7 @@ public class Publish {
 		Event event = Event.createDataEvent(subject, map);
 		Dispatcher.getInstance().multicast(event);
 	}
+
 	public static void push(String subject, ProcessVar var) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("currentFile", var.currentFile);

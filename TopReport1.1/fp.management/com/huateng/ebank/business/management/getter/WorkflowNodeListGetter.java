@@ -16,54 +16,48 @@ import com.huateng.exception.AppException;
 public class WorkflowNodeListGetter extends BaseGetter {
 
 	@Override
-	public Result call() throws AppException{
-		try
-		{
+	public Result call() throws AppException {
+		try {
 
-		PageQueryResult pageResult = getData();
-		ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
-		result.setContent(pageResult.getQueryResult());
-		result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
-		result.init();
-		return result;
-		}catch(AppException appEx){
+			PageQueryResult pageResult = getData();
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
+			result.setContent(pageResult.getQueryResult());
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
+			result.init();
+			return result;
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
 
-	protected PageQueryResult getData() throws AppException
-    {
+	protected PageQueryResult getData() throws AppException {
 		PageQueryResult pageResult = new PageQueryResult();
 
-			OperationContext oc = new OperationContext();
+		OperationContext oc = new OperationContext();
 
-//		PageQueryResult pageQueryResult = new PageQueryResult();
-			String procName = this.getCommQueryServletRequest().getParameter("templetName");
-//		String procName = (String)getCommQueryServletRequest().getParameterMap().get("procNameQuery");
+		// PageQueryResult pageQueryResult = new PageQueryResult();
+		String procName = this.getCommQueryServletRequest().getParameter("templetName");
+		// String procName =
+		// (String)getCommQueryServletRequest().getParameterMap().get("procNameQuery");
 
-			WorkflowParamBean workflowParamBean = new WorkflowParamBean();
-			workflowParamBean.setProcName(procName);
+		WorkflowParamBean workflowParamBean = new WorkflowParamBean();
+		workflowParamBean.setProcName(procName);
 
-			int PageIndex = getResult().getPage().getCurrentPage();
-			int PageSize = getResult().getPage().getEveryPage();
+		int PageIndex = getResult().getPage().getCurrentPage();
+		int PageSize = getResult().getPage().getEveryPage();
 
-			oc.setAttribute(WorkflowParamEntryQueryOperation.IN_PARAM, workflowParamBean);
-			oc.setAttribute(WorkflowParamEntryQueryOperation.IN_PARAM_PAGESIZE, PageSize);
-			oc.setAttribute(WorkflowParamEntryQueryOperation.IN_PARAM_PAGEINDEX, PageIndex);
-			OPCaller.call("Management.WorkflowParamEntryQueryOperation", oc);
+		oc.setAttribute(WorkflowParamEntryQueryOperation.IN_PARAM, workflowParamBean);
+		oc.setAttribute(WorkflowParamEntryQueryOperation.IN_PARAM_PAGESIZE, PageSize);
+		oc.setAttribute(WorkflowParamEntryQueryOperation.IN_PARAM_PAGEINDEX, PageIndex);
+		OPCaller.call("Management.WorkflowParamEntryQueryOperation", oc);
 
-			pageResult = (PageQueryResult) oc
-				.getAttribute(RouteBindingEntryQueryOperation.OUT_PARAM);
+		pageResult = (PageQueryResult) oc.getAttribute(RouteBindingEntryQueryOperation.OUT_PARAM);
 
 		return pageResult;
 
-    }
+	}
 }

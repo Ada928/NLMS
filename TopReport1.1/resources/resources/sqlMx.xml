@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DOCUMENT>
-	<SQLDATA>
-		<ID>00205</ID>
-		<TABLE>GRHQCKFHZMXJL</TABLE>
-		<SQL><![CDATA[
+    <SQLDATA>
+        <ID>00205</ID>
+        <TABLE>GRHQCKFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select  distinct cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as HQCKZH,  
  dsxx.zjhm  as KHTYBH, b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 b.jgmc as YXJGMC ,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ, 
@@ -33,12 +33,12 @@ left join b_jgb b on  cp.jyjgdh=b.jgdh left join kmdhb k on cp.kmdh=k.kmdh
 left join hbb h on h.hbzl=cp.hbzl   left join jylb j on  cp.jydm=j.jydm  left join zyb z on z.zydh=cp.zydh 
 where  cp.kmdh in ('211110' ,'211130')   and  ds.khdh=' ' and  cp.bczbz='0' and  cp.cbbz ='0' 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00207</ID>
-		<TABLE>GRDQCKFHZMXJL</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00207</ID>
+        <TABLE>GRDQCKFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select distinct cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as DQCKZH,  
  dsxx.zjhm  as KHTYBH,b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 b.jgmc as YXJGMC ,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ, 
@@ -78,12 +78,12 @@ left join hbb h on h.hbzl=cp.hbzl   left join jylb j on  cp.jydm=j.jydm
 left join zyb z on z.zydh=cp.zydh 
 where substr(cp.kmdh,1,4)='2112' and  cp.bczbz='0' and cp.cbbz ='0'  and dq.khdh=' '  
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00209</ID>
-		<TABLE>DGHQCKFHZMXJL</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00209</ID>
+        <TABLE>DGHQCKFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select  cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as HQCKZH,  
 hq.KHDH  as KHTYBH,b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 b.jgmc as YXJGMC ,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ, 
@@ -106,12 +106,12 @@ left join jylb j on  cp.jydm=j.jydm
 left join zyb z on cp.zydh = z.zydh 
 where  k.kmcc='0' and  cp.BCZBZ='0' and  cp.cbbz='0'
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00211</ID>
-		<TABLE>DGDQCKFHZMXJL</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00211</ID>
+        <TABLE>DGDQCKFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select distinct  cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as DQCKZH,  
 dq.khdh  as KHTYBH,b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 b.jgmc as YXJGMC ,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ, 
@@ -132,12 +132,12 @@ left join jylb j on  cp.jydm=j.jydm
 left join zyb z on z.zydh = cp.zydh 
 where  k.kmcc='2'  and substr(cp.zhdh,8,3) ='002'  and  cp.BCZBZ='0' and cp.cbbz='0' 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00213</ID>
-		<TABLE>NBFHZMXJL</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00213</ID>
+        <TABLE>NBFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select  cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as NBFHZZH,  
 b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 b.jgmc as YXJGMC ,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ, 
@@ -160,12 +160,12 @@ left join zyb z on z.zydh=cp.zydh
 where  k.kmcc='4' 
 and  cp.BCZBZ='0' and  cp.cbbz='0'  and substr(k.kmdh,1,1) in ('1','2')
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00215</ID>
-		<TABLE>GRXDFHZMXJL</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00215</ID>
+        <TABLE>GRXDFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select  cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as DKFHZH,  
  dsxx.zjhm  as KHTYBH,b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 d.jjh as XDJJH ,b.jgmc as YXJGMC,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ, 
@@ -184,12 +184,12 @@ left join hbb h on h.hbzl=cp.hbzl   left join jylb j on  cp.jydm=j.jydm   left j
 dkhzwj d on d.zhdh=cp.zhdh 
 where  k.kmcc='3' and ( cp.kmdh like '114%' or  cp.kmdh='113110')    
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00217</ID>
-		<TABLE>DGXDFHZMXJL</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00217</ID>
+        <TABLE>DGXDFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select  cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as DKZH,  
 dg.khdh  as KHTYBH,b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 d.jjh as XDJJH ,b.jgmc as YXJGMC,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ,
@@ -207,12 +207,12 @@ left join hbb h on h.hbzl=cp.hbzl   left join jylb j on  cp.jydm=j.jydm   left j
 dkhzwj d on d.zhdh=cp.zhdh 
 where  k.kmcc='3' and  cp.kmdh like '113%'  and  cp.kmdh<>'113110'   
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00701</ID>
-		<TABLE>JYLS</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00701</ID>
+        <TABLE>JYLS</TABLE>
+        <SQL><![CDATA[
 select  cp.gylsh  as  HXJYLSH ,cp.cpzxh  as  ZJYLSH 
 ,cp.cpznxh  as  BCXH ,cp.jyrq  as  JYRQ ,
 b.zfhhh  as YXJGDM, b.nbjgh as NBJGH,b.jrxkzh as JRXKZH,
@@ -242,6 +242,6 @@ left join zypzzlb zy on zy.pzzl=substr(cp.pzdh,1,2)
 left join jylb j on  cp.jydm=j.jydm     
 where cp.bczbz='0' and cp.cbbz='0' and k.kmcc in ('0','1','2')		
 			]]>
-		</SQL>
-	</SQLDATA>
+        </SQL>
+    </SQLDATA>
 </DOCUMENT>

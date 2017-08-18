@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationEvent;
 
 /**
  * 触发事件实体类
+ * 
  * @author NING-PENG
  *
  */

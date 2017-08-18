@@ -78,14 +78,14 @@ public class XLSExport extends QueryExport {
 			for (int i = 0; i < titles.size(); i++) {
 				String[] strings = titles.get(i);
 				if ("TITLE".equals(strings[0])) {
-					WritableCellFormat wcf = new WritableCellFormat(new WritableFont(
-							WritableFont.ARIAL, 12, WritableFont.BOLD));
+					WritableCellFormat wcf = new WritableCellFormat(
+							new WritableFont(WritableFont.ARIAL, 12, WritableFont.BOLD));
 					wcf.setAlignment(Alignment.CENTRE);
 					sheet.addCell(new Label(0, row, strings[2], wcf));
 					sheet.mergeCells(0, row, Integer.valueOf(strings[1]), row);
 				} else {
-					WritableCellFormat wcf = new WritableCellFormat(new WritableFont(
-							WritableFont.ARIAL, 10, WritableFont.BOLD));
+					WritableCellFormat wcf = new WritableCellFormat(
+							new WritableFont(WritableFont.ARIAL, 10, WritableFont.BOLD));
 					for (int j = 0; j < strings.length; j++) {
 						sheet.addCell(new Label(j, row, strings[j], wcf));
 					}

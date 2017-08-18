@@ -59,7 +59,7 @@ public class UserAuthorityGetter extends BaseGetter {
 				String tlrName = (String) object[1];
 				String roleName = (String) object[3];
 
-				String key = tlrNo.trim()+"-"+tlrName.trim();
+				String key = tlrNo.trim() + "-" + tlrName.trim();
 
 				if (oMap.containsKey(key)) {
 					Set<String> set = oMap.get(key);
@@ -79,14 +79,14 @@ public class UserAuthorityGetter extends BaseGetter {
 				ua.setTrlName(keys[1]);
 				Set<String> roleNameSet = oMap.get(key);
 				StringBuffer rolename = new StringBuffer();
-				int i=0;
+				int i = 0;
 				for (Iterator iterator2 = roleNameSet.iterator(); iterator2.hasNext();) {
 					String name = (String) iterator2.next();
 					i++;
-					if(i==roleNameSet.size()){
+					if (i == roleNameSet.size()) {
 						rolename.append(name);
-					}else{
-						rolename.append(name+"，");
+					} else {
+						rolename.append(name + "，");
 					}
 				}
 				ua.setRoleIdName(rolename.toString());

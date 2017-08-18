@@ -13,10 +13,11 @@ import com.huateng.report.utils.ReportUtils;
 
 /**
  * 更新涉外收入申报单申报号码（基础、申报、管理信息);
+ * 
  * @author NING-PENG
  *
  */
-public class MtsBusiNoGenBOPAGRptNo implements IGenBopBusinessNo{
+public class MtsBusiNoGenBOPAGRptNo implements IGenBopBusinessNo {
 
 	public void updateBopBusiNo(Map<String, Object> paramMap) throws CommonException {
 		String appType = paramMap.get(IGenBopBusinessNo.APP_TYPE).toString();
@@ -29,19 +30,21 @@ public class MtsBusiNoGenBOPAGRptNo implements IGenBopBusinessNo{
 		MtsBopAgDs mtsBopAgds = (MtsBopAgDs) obj;
 		String rptNo = mtsBopAgds.getRptno();
 		String cusType = mtsBopAgds.getCustype();
-		if (rptNo.indexOf(paramValue)>=0) {
+		if (rptNo.indexOf(paramValue) >= 0) {
 			// 更新涉外收入申报单申报号码
-			String newRptNo = ReportUtils.getBopRptNoByCusType(paramValue, busiType, appType, fileType, workDate, cusType, rptNo);
+			String newRptNo = ReportUtils.getBopRptNoByCusType(paramValue, busiType, appType, fileType, workDate,
+					cusType, rptNo);
 			mtsBopAgds.setRptno(newRptNo);
 			mtsBopAgds = (MtsBopAgDs) rootdao.saveOrUpdate(mtsBopAgds);
 		}
 
-		//更新申报、管理信息
+		// 更新申报、管理信息
 		String recId = mtsBopAgds.getId();
-		List list = rootdao.queryByQL2List(" from MtsBopAgDs where filler1='" + recId + "' and rptno<>'"+mtsBopAgds.getRptno()+"'");
+		List list = rootdao.queryByQL2List(
+				" from MtsBopAgDs where filler1='" + recId + "' and rptno<>'" + mtsBopAgds.getRptno() + "'");
 		for (int i = 0; i < list.size(); i++) {
 			MtsBopAgDs bopag = (MtsBopAgDs) list.get(i);
-			if (bopag.getRptno().indexOf(paramValue)<0) {
+			if (bopag.getRptno().indexOf(paramValue) < 0) {
 				continue;
 			}
 			bopag.setRptno(mtsBopAgds.getRptno());

@@ -21,13 +21,13 @@ import com.huateng.exception.AppException;
 import com.huateng.report.bop.audit.operation.BopEqDsAuditOperation;
 
 public class BopEDsAuditUpdate extends BaseUpdate {
-	
-	private static final String DATASET_ID="BopEDsAudit";
+
+	private static final String DATASET_ID = "BopEDsAudit";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
-		
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
+
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
@@ -35,25 +35,24 @@ public class BopEDsAuditUpdate extends BaseUpdate {
 			while (updateResultBean.hasNext()) {
 				MtsBopEqDs bopEqDs = new MtsBopEqDs();
 				Map map = updateResultBean.next();
-				mapToObject(bopEqDs,map);
+				mapToObject(bopEqDs, map);
 				bopEqDsList.add(bopEqDs);
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
 			String approveResultChoose = updateResultBean.getParameter("approveResultChoose");
-			
+
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(BopEqDsAuditOperation.CMD, BopEqDsAuditOperation.OP_E_AUDIT);
 			oc.setAttribute(BopEqDsAuditOperation.IN_AUDIT_LIST, bopEqDsList);
 			oc.setAttribute(BopEqDsAuditOperation.IN_AUDIT_STATUS, approveStatusChoose);
 			oc.setAttribute(BopEqDsAuditOperation.IN_AUDIT_RESULT, approveResultChoose);
 			OPCaller.call(BopEqDsAuditOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

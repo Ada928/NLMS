@@ -28,11 +28,11 @@ public class BOPCfaLounexguRecordService {
 	private static final String DATASET_ID = "BOPCfaLounexguRecordService";
 	private static final HtLog htlog = HtLogFactory.getLogger(BOPCfaLounexguRecordService.class);
 
-	public synchronized static BOPCfaLounexguRecordService getInstance(){
-		return (BOPCfaLounexguRecordService)ApplicationContextUtils.getBean(DATASET_ID);
+	public synchronized static BOPCfaLounexguRecordService getInstance() {
+		return (BOPCfaLounexguRecordService) ApplicationContextUtils.getBean(DATASET_ID);
 	}
 
-	public PageQueryResult getPageList(int pageIndex,int pageSize,String hqlString) throws CommonException{
+	public PageQueryResult getPageList(int pageIndex, int pageSize, String hqlString) throws CommonException {
 		htlog.info("-- begin  BOPCfaLounexguRecordService getPageList--");
 		PageQueryCondition pc = new PageQueryCondition();
 		pc.setPageIndex(pageIndex);
@@ -43,67 +43,77 @@ public class BOPCfaLounexguRecordService {
 		return hqlDao.pageQueryByQL(pc);
 	}
 
-	//保存
-	public void updateOrSaveBean(BopCfaLounexguDs  bopCfaLounexguDs,List<BopCfaFogucodeinfo> insertList,List<BopCfaFogucodeinfo> updateList,List<BopCfaFogucodeinfo> delList,String type) throws CommonException{
+	// 保存
+	public void updateOrSaveBean(BopCfaLounexguDs bopCfaLounexguDs, List<BopCfaFogucodeinfo> insertList,
+			List<BopCfaFogucodeinfo> updateList, List<BopCfaFogucodeinfo> delList, String type) throws CommonException {
 		htlog.info("-- begin  BOPCfaLounexguRecordService saveBean--");
 		ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
 		ReportCommonService commonService = ReportCommonService.getInstance();
-		if(BOPCfaLounexguRecordOperation.CMD_INSERT_CH.equals(type)){
+		if (BOPCfaLounexguRecordOperation.CMD_INSERT_CH.equals(type)) {
 			rootDao = ROOTDAOUtils.getROOTDAO();
-			//保存前数据验证  add by 黄成
-			ReportDataVaildUtil.executeVaild(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(), bopCfaLounexguDs);
+			// 保存前数据验证 add by 黄成
+			ReportDataVaildUtil.executeVaild(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(),
+					bopCfaLounexguDs);
 
 			rootDao.save(bopCfaLounexguDs);
-			//数据处理记录表保存
-			commonService.saveBiDataProcessLog(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(), bopCfaLounexguDs.getId(),
-					bopCfaLounexguDs.getLounexgucode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "新增", "境外担保下境内贷款变动信息新增");
-		}else if(BOPCfaLounexguRecordOperation.CMD_UPDATE_CH .equals(type)){
+			// 数据处理记录表保存
+			commonService.saveBiDataProcessLog(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(),
+					bopCfaLounexguDs.getId(), bopCfaLounexguDs.getLounexgucode(),
+					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "新增", "境外担保下境内贷款变动信息新增");
+		} else if (BOPCfaLounexguRecordOperation.CMD_UPDATE_CH.equals(type)) {
 			htlog.info("-- begin  BOPCfaLounexguRecordService updateBean--");
 			rootDao = ROOTDAOUtils.getROOTDAO();
-			   //修改前数据验证  add by 黄成
-			ReportDataVaildUtil.executeVaild(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(), bopCfaLounexguDs);
+			// 修改前数据验证 add by 黄成
+			ReportDataVaildUtil.executeVaild(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(),
+					bopCfaLounexguDs);
 
 			rootDao.update(bopCfaLounexguDs);
-			commonService.saveBiDataProcessLog(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(), bopCfaLounexguDs.getId(),
-					bopCfaLounexguDs.getLounexgucode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "修改", "境外担保下境内贷款变动信息修改");
-		}else if(BOPCfaLounexguRecordOperation.CMD_DELETE_CH .equals(type) ){
+			commonService.saveBiDataProcessLog(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(),
+					bopCfaLounexguDs.getId(), bopCfaLounexguDs.getLounexgucode(),
+					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "修改", "境外担保下境内贷款变动信息修改");
+		} else if (BOPCfaLounexguRecordOperation.CMD_DELETE_CH.equals(type)) {
 			htlog.info("-- begin  BOPCfaLounexguRecordService updateBean--");
 			rootDao = ROOTDAOUtils.getROOTDAO();
 
-
 			rootDao.update(bopCfaLounexguDs);
-			commonService.saveBiDataProcessLog(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(), bopCfaLounexguDs.getId(),
-					bopCfaLounexguDs.getLounexgucode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_DEL, "删除", "境外担保下境内贷款变动信息删除");
-		}else {
-			if(BOPCfaLounexguRecordOperation.CMD_INSERT.equals(type)){
-				//保存前数据验证  add by 黄成
-				ReportDataVaildUtil.executeVaild(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(), bopCfaLounexguDs);
+			commonService.saveBiDataProcessLog(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(),
+					bopCfaLounexguDs.getId(), bopCfaLounexguDs.getLounexgucode(),
+					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_DEL, "删除", "境外担保下境内贷款变动信息删除");
+		} else {
+			if (BOPCfaLounexguRecordOperation.CMD_INSERT.equals(type)) {
+				// 保存前数据验证 add by 黄成
+				ReportDataVaildUtil.executeVaild(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(),
+						bopCfaLounexguDs);
 				rootDao.save(bopCfaLounexguDs);
-				commonService.saveBiDataProcessLog(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(), bopCfaLounexguDs.getId(),
-						bopCfaLounexguDs.getLounexgucode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "新增", "境外担保下境内贷款签约信息新增");
-			}else if(BOPCfaLounexguRecordOperation.CMD_UPDATE.equals(type)){
-				//修改前数据验证  add by 黄成
-				ReportDataVaildUtil.executeVaild(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(), bopCfaLounexguDs);
+				commonService.saveBiDataProcessLog(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(),
+						bopCfaLounexguDs.getId(), bopCfaLounexguDs.getLounexgucode(),
+						TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "新增", "境外担保下境内贷款签约信息新增");
+			} else if (BOPCfaLounexguRecordOperation.CMD_UPDATE.equals(type)) {
+				// 修改前数据验证 add by 黄成
+				ReportDataVaildUtil.executeVaild(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(),
+						bopCfaLounexguDs);
 
 				rootDao.update(bopCfaLounexguDs);
-				commonService.saveBiDataProcessLog(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(), bopCfaLounexguDs.getId(),
-						bopCfaLounexguDs.getLounexgucode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "修改", "境外担保下境内贷款签约信息修改");
-			}else if(BOPCfaLounexguRecordOperation.CMD_DELETE.equals(type)){
+				commonService.saveBiDataProcessLog(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(),
+						bopCfaLounexguDs.getId(), bopCfaLounexguDs.getLounexgucode(),
+						TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "修改", "境外担保下境内贷款签约信息修改");
+			} else if (BOPCfaLounexguRecordOperation.CMD_DELETE.equals(type)) {
 				rootDao.update(bopCfaLounexguDs);
-				commonService.saveBiDataProcessLog(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(), bopCfaLounexguDs.getId(),
-						bopCfaLounexguDs.getLounexgucode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_DEL, "删除", "境外担保下境内贷款签约信息删除");
+				commonService.saveBiDataProcessLog(bopCfaLounexguDs.getApptype(), bopCfaLounexguDs.getCurrentfile(),
+						bopCfaLounexguDs.getId(), bopCfaLounexguDs.getLounexgucode(),
+						TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_DEL, "删除", "境外担保下境内贷款签约信息删除");
 			}
 
-			for(BopCfaFogucodeinfo bopInsert : insertList){
+			for (BopCfaFogucodeinfo bopInsert : insertList) {
 				bopInsert.setCrtTm(new Date());
 				bopInsert.setFogucodeinfoId(ReportUtils.getUUID());
 				bopInsert.setRecId(bopCfaLounexguDs.getId());
 				rootDao.save(bopInsert);
 			}
-			for(BopCfaFogucodeinfo bopUpdate : updateList){
+			for (BopCfaFogucodeinfo bopUpdate : updateList) {
 				rootDao.update(bopUpdate);
 			}
-			for(BopCfaFogucodeinfo bopDel : delList){
+			for (BopCfaFogucodeinfo bopDel : delList) {
 				rootDao.delete(BopCfaFogucodeinfo.class, bopDel.getFogucodeinfoId());
 			}
 		}
@@ -111,17 +121,21 @@ public class BOPCfaLounexguRecordService {
 
 	/**
 	 * 境外担保境内贷款签约信息审核
+	 * 
 	 * @param list
-	 * @param approveStatusChoose 回执状态
-	 * @param approveResultChoose 回执结果
+	 * @param approveStatusChoose
+	 *            回执状态
+	 * @param approveResultChoose
+	 *            回执结果
 	 * @throws CommonException
 	 */
-	public void auditBean(List<BopCfaLounexguDs> list,String approveStatusChoose, String approveResultChoose,String type) throws CommonException{
+	public void auditBean(List<BopCfaLounexguDs> list, String approveStatusChoose, String approveResultChoose,
+			String type) throws CommonException {
 		ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		ReportCommonService commonService = ReportCommonService.getInstance();
-		if(BOPCfaLounexguRecordVerOperation.CMD_AUDIT.equals(type)){
-			for(BopCfaLounexguDs bopCfaLounexguDs : list){
+		if (BOPCfaLounexguRecordVerOperation.CMD_AUDIT.equals(type)) {
+			for (BopCfaLounexguDs bopCfaLounexguDs : list) {
 				BopCfaLounexguDs dbBopCfaLounexguDs = rootDao.query(BopCfaLounexguDs.class, bopCfaLounexguDs.getId());
 				dbBopCfaLounexguDs.setApproveStatus(approveStatusChoose);
 				dbBopCfaLounexguDs.setApproveResult(approveResultChoose);
@@ -130,17 +144,23 @@ public class BOPCfaLounexguRecordService {
 				dbBopCfaLounexguDs.setLstUpdTm(new Date());
 				dbBopCfaLounexguDs.setLstUpdTlr(gi.getTlrno());
 				rootDao.update(dbBopCfaLounexguDs);
-				if(TopReportConstants.REPORT_APPROVESTATUS_01.equals(approveStatusChoose)){
-					commonService.saveBiDataProcessLog(dbBopCfaLounexguDs.getApptype(), dbBopCfaLounexguDs.getCurrentfile(), dbBopCfaLounexguDs.getId(),
-							TopReportConstants.REPORT_BUSITYPE_BOP, TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, "通过", "审核境外担保下境内贷款—签约信息     外债信息ID ："+bopCfaLounexguDs.getId());
-				}else{
-					commonService.saveBiDataProcessLog(dbBopCfaLounexguDs.getApptype(), dbBopCfaLounexguDs.getCurrentfile(), dbBopCfaLounexguDs.getId(),
-							TopReportConstants.REPORT_BUSITYPE_BOP, TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, "不通过", "审核境外担保下境内贷款—签约信息     外债信息ID ："+bopCfaLounexguDs.getId());
+				if (TopReportConstants.REPORT_APPROVESTATUS_01.equals(approveStatusChoose)) {
+					commonService.saveBiDataProcessLog(dbBopCfaLounexguDs.getApptype(),
+							dbBopCfaLounexguDs.getCurrentfile(), dbBopCfaLounexguDs.getId(),
+							TopReportConstants.REPORT_BUSITYPE_BOP,
+							TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, "通过",
+							"审核境外担保下境内贷款—签约信息     外债信息ID ：" + bopCfaLounexguDs.getId());
+				} else {
+					commonService.saveBiDataProcessLog(dbBopCfaLounexguDs.getApptype(),
+							dbBopCfaLounexguDs.getCurrentfile(), dbBopCfaLounexguDs.getId(),
+							TopReportConstants.REPORT_BUSITYPE_BOP,
+							TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, "不通过",
+							"审核境外担保下境内贷款—签约信息     外债信息ID ：" + bopCfaLounexguDs.getId());
 				}
 
 			}
-		}else{
-			for(BopCfaLounexguDs bopCfaLounexguDs : list){
+		} else {
+			for (BopCfaLounexguDs bopCfaLounexguDs : list) {
 				BopCfaLounexguDs dbBopCfaLounexguDs = rootDao.query(BopCfaLounexguDs.class, bopCfaLounexguDs.getId());
 				dbBopCfaLounexguDs.setApproveStatus(approveStatusChoose);
 				dbBopCfaLounexguDs.setApproveResult(approveResultChoose);
@@ -149,20 +169,26 @@ public class BOPCfaLounexguRecordService {
 				dbBopCfaLounexguDs.setLstUpdTm(new Date());
 				dbBopCfaLounexguDs.setLstUpdTlr(gi.getTlrno());
 				rootDao.update(dbBopCfaLounexguDs);
-				if(TopReportConstants.REPORT_APPROVESTATUS_01.equals(approveStatusChoose)){
-					commonService.saveBiDataProcessLog(dbBopCfaLounexguDs.getApptype(), dbBopCfaLounexguDs.getCurrentfile(), dbBopCfaLounexguDs.getId(),
-							TopReportConstants.REPORT_BUSITYPE_BOP, TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, "通过", "审核境外担保下境内贷款—变动信息     外债信息ID ："+bopCfaLounexguDs.getId());
-				}else{
-					commonService.saveBiDataProcessLog(dbBopCfaLounexguDs.getApptype(), dbBopCfaLounexguDs.getCurrentfile(), dbBopCfaLounexguDs.getId(),
-							TopReportConstants.REPORT_BUSITYPE_BOP, TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, "不通过", "审核境外担保下境内贷款—变动信息    外债信息ID ："+bopCfaLounexguDs.getId());
+				if (TopReportConstants.REPORT_APPROVESTATUS_01.equals(approveStatusChoose)) {
+					commonService.saveBiDataProcessLog(dbBopCfaLounexguDs.getApptype(),
+							dbBopCfaLounexguDs.getCurrentfile(), dbBopCfaLounexguDs.getId(),
+							TopReportConstants.REPORT_BUSITYPE_BOP,
+							TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, "通过",
+							"审核境外担保下境内贷款—变动信息     外债信息ID ：" + bopCfaLounexguDs.getId());
+				} else {
+					commonService.saveBiDataProcessLog(dbBopCfaLounexguDs.getApptype(),
+							dbBopCfaLounexguDs.getCurrentfile(), dbBopCfaLounexguDs.getId(),
+							TopReportConstants.REPORT_BUSITYPE_BOP,
+							TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, "不通过",
+							"审核境外担保下境内贷款—变动信息    外债信息ID ：" + bopCfaLounexguDs.getId());
 				}
 
 			}
 		}
 	}
 
-	//更新
-	public void updateBean(BopCfaLounexguDs bopCfaLounexguDs) throws CommonException{
+	// 更新
+	public void updateBean(BopCfaLounexguDs bopCfaLounexguDs) throws CommonException {
 		htlog.info("-- begin  BOPCfaLounexguRecordService updateBean--");
 		ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
 		rootDao.update(bopCfaLounexguDs);

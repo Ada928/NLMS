@@ -13,10 +13,10 @@ import java.math.BigDecimal;
 
 public class Arith {
 
-	//默认除法运算精度
+	// 默认除法运算精度
 	private static final int DEF_DIV_SCALE = 32;
 
-	//这个类不能实例化
+	// 这个类不能实例化
 	private Arith() {
 
 	}
@@ -32,7 +32,7 @@ public class Arith {
 	 *            加数
 	 * 
 	 * @return 两个参数的和
-	 *  
+	 * 
 	 */
 
 	public static double add(double v1, double v2) {
@@ -56,7 +56,7 @@ public class Arith {
 	 *            减数
 	 * 
 	 * @return 两个参数的差
-	 *  
+	 * 
 	 */
 
 	public static double subtract(double v1, double v2) {
@@ -80,7 +80,7 @@ public class Arith {
 	 *            乘数
 	 * 
 	 * @return 两个参数的积
-	 *  
+	 * 
 	 */
 
 	public static double multiply(double v1, double v2) {
@@ -92,7 +92,7 @@ public class Arith {
 		return b1.multiply(b2).doubleValue();
 
 	}
-	
+
 	public static float floatMultiply(float v1, float v2) {
 
 		BigDecimal b1 = new BigDecimal(Float.toString(v1));
@@ -117,7 +117,7 @@ public class Arith {
 	 *            乘数
 	 * 
 	 * @return 两个参数的积
-	 *  
+	 * 
 	 */
 
 	public static double multiply(double v1, double v2, double v3) {
@@ -142,7 +142,7 @@ public class Arith {
 	 *            除数
 	 * 
 	 * @return 两个参数的商
-	 *  
+	 * 
 	 */
 
 	public static double divide(double v1, double v2) {
@@ -153,8 +153,7 @@ public class Arith {
 
 	/**
 	 * 
-	 * 提供（相对）精确的除法运算。当发生除不尽的情况时，由scale参数指定精度,
-	 * 被截去部位直接舍去,不四舍五入
+	 * 提供（相对）精确的除法运算。当发生除不尽的情况时，由scale参数指定精度, 被截去部位直接舍去,不四舍五入
 	 * 
 	 * @param v1
 	 *            被除数
@@ -166,7 +165,7 @@ public class Arith {
 	 *            表示表示需要精确到小数点以后几位。
 	 * 
 	 * @return 两个参数的商
-	 *  
+	 * 
 	 */
 
 	public static double divide(double v1, double v2, int scale) {
@@ -196,7 +195,7 @@ public class Arith {
 	 *            幂数
 	 * 
 	 * @return 幂的结果
-	 *  
+	 * 
 	 */
 
 	public static double power(double v1, int v2) {
@@ -222,7 +221,7 @@ public class Arith {
 	 *            小数点后保留位数
 	 * 
 	 * @return 被截去后的结果
-	 *  
+	 * 
 	 */
 
 	public static double setScale(double v, int scale) {
@@ -249,7 +248,7 @@ public class Arith {
 	 *            小数点后保留位数
 	 * 
 	 * @return 被截去后的结果
-	 *  
+	 * 
 	 */
 
 	public static double floor(double v, int scale) {

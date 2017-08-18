@@ -19,7 +19,8 @@
   		</tr>
   		<tr>
       		<td colspan="2">
-          		<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="btDo,-,btSee" fieldStr="select,id,intInsId,updTransCd,intOperId,insCd,crtDt" width="100%"  readonly="true"/></br>
+          		<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="btDo,-,btSee" fieldStr="select,id,intInsId,updTransCd,intOperId,insCd,crtDt" width="100%"  readonly="true"/>
+				</br>
         	</td>
         </tr>
 

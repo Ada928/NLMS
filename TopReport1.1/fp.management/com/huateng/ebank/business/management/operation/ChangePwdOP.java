@@ -37,7 +37,8 @@ public class ChangePwdOP extends BaseOperation {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.huateng.ebank.framework.operation.BaseOperation#beforeProc(com.huateng.ebank.framework.operation.OperationContext)
+	 * @see com.huateng.ebank.framework.operation.BaseOperation#beforeProc(com.
+	 * huateng.ebank.framework.operation.OperationContext)
 	 */
 	public void beforeProc(OperationContext context) throws CommonException {
 
@@ -59,7 +60,9 @@ public class ChangePwdOP extends BaseOperation {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.huateng.ebank.framework.operation.BaseOperation#afterProc(com.huateng.ebank.framework.operation.OperationContext)
+	 * @see
+	 * com.huateng.ebank.framework.operation.BaseOperation#afterProc(com.huateng
+	 * .ebank.framework.operation.OperationContext)
 	 */
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub

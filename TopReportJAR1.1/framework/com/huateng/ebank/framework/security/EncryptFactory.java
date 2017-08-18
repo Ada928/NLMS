@@ -41,9 +41,8 @@ public class EncryptFactory {
 
 	public static void main(String[] args) {
 		IEncryption enc = EncryptFactory.getEncryption(Algorithm.AES128);
-		System.out.println(enc.encrypt("111111",
-				SystemConstant.DEFAULT_PASSWORD_KEY));// AES128:16BD94B8D12468390D89E444196E311B
-														// AES256:16BD94B8D12468390D89E444196E311B
-														// MD5:409E0927261A0353238F07FA9B31FA1C
+		System.out.println(enc.encrypt("111111", SystemConstant.DEFAULT_PASSWORD_KEY));// AES128:16BD94B8D12468390D89E444196E311B
+																						// AES256:16BD94B8D12468390D89E444196E311B
+																						// MD5:409E0927261A0353238F07FA9B31FA1C
 	}
 }

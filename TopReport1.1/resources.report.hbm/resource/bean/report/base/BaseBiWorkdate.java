@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the BI_WORKDATE table.
- * Do not modify this class because it will be overwritten if the configuration file
+ * This is an object that contains data related to the BI_WORKDATE table. Do not
+ * modify this class because it will be overwritten if the configuration file
  * related to this class is modified.
  *
- * @hibernate.class
- *  table="BI_WORKDATE"
+ * @hibernate.class table="BI_WORKDATE"
  */
 
-public abstract class BaseBiWorkdate  implements Serializable {
+public abstract class BaseBiWorkdate implements Serializable {
 
 	public static String REF = "BiWorkdate";
 	public static String PROP_OPERATOR_ID = "operatorId";
@@ -22,23 +20,21 @@ public abstract class BaseBiWorkdate  implements Serializable {
 	public static String PROP_FILLER3 = "filler3";
 	public static String PROP_FILLER2 = "filler2";
 
-
 	// constructors
-	public BaseBiWorkdate () {
+	public BaseBiWorkdate() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseBiWorkdate (java.lang.String id) {
+	public BaseBiWorkdate(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -52,128 +48,129 @@ public abstract class BaseBiWorkdate  implements Serializable {
 	private java.lang.String filler2;
 	private java.lang.String filler3;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  column="WORK_DATE"
-     */
-	public java.lang.String getId () {
+	 * 
+	 * @hibernate.id column="WORK_DATE"
+	 */
+	public java.lang.String getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.String id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: WORK_FLAG
 	 */
-	public java.lang.Integer getWorkFlag () {
+	public java.lang.Integer getWorkFlag() {
 		return workFlag;
 	}
 
 	/**
 	 * Set the value related to the column: WORK_FLAG
-	 * @param workFlag the WORK_FLAG value
+	 * 
+	 * @param workFlag
+	 *            the WORK_FLAG value
 	 */
-	public void setWorkFlag (java.lang.Integer workFlag) {
+	public void setWorkFlag(java.lang.Integer workFlag) {
 		this.workFlag = workFlag;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: OPERATOR_ID
 	 */
-	public java.lang.String getOperatorId () {
+	public java.lang.String getOperatorId() {
 		return operatorId;
 	}
 
 	/**
 	 * Set the value related to the column: OPERATOR_ID
-	 * @param operatorId the OPERATOR_ID value
+	 * 
+	 * @param operatorId
+	 *            the OPERATOR_ID value
 	 */
-	public void setOperatorId (java.lang.String operatorId) {
+	public void setOperatorId(java.lang.String operatorId) {
 		this.operatorId = operatorId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER1
 	 */
-	public java.lang.String getFiller1 () {
+	public java.lang.String getFiller1() {
 		return filler1;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER1
-	 * @param filler1 the FILLER1 value
+	 * 
+	 * @param filler1
+	 *            the FILLER1 value
 	 */
-	public void setFiller1 (java.lang.String filler1) {
+	public void setFiller1(java.lang.String filler1) {
 		this.filler1 = filler1;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER2
 	 */
-	public java.lang.String getFiller2 () {
+	public java.lang.String getFiller2() {
 		return filler2;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER2
-	 * @param filler2 the FILLER2 value
+	 * 
+	 * @param filler2
+	 *            the FILLER2 value
 	 */
-	public void setFiller2 (java.lang.String filler2) {
+	public void setFiller2(java.lang.String filler2) {
 		this.filler2 = filler2;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER3
 	 */
-	public java.lang.String getFiller3 () {
+	public java.lang.String getFiller3() {
 		return filler3;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER3
-	 * @param filler3 the FILLER3 value
+	 * 
+	 * @param filler3
+	 *            the FILLER3 value
 	 */
-	public void setFiller3 (java.lang.String filler3) {
+	public void setFiller3(java.lang.String filler3) {
 		this.filler3 = filler3;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.BiWorkdate)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.BiWorkdate))
+			return false;
 		else {
 			resource.bean.report.BiWorkdate biWorkdate = (resource.bean.report.BiWorkdate) obj;
-			if (null == this.getId() || null == biWorkdate.getId()) return false;
-			else return (this.getId().equals(biWorkdate.getId()));
+			if (null == this.getId() || null == biWorkdate.getId())
+				return false;
+			else
+				return (this.getId().equals(biWorkdate.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -182,10 +179,8 @@ public abstract class BaseBiWorkdate  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

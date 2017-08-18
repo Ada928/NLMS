@@ -27,38 +27,31 @@ public class ImportFileCheckGetter extends BaseGetter {
 		try {
 			String isImporting = (String) getSessionObject(Constants.IS_IMPORTING);
 
-			List rs = ROOTDAOUtils.getROOTDAO().queryByQL2List(
-					"from BiImportFileConfig where status = '" + Constants.YES
-							+ "'");
+			List rs = ROOTDAOUtils.getROOTDAO()
+					.queryByQL2List("from BiImportFileConfig where status = '" + Constants.YES + "'");
 			List list = new ArrayList();
 
 			ImportFileBean bean = null;
-			String workdate = FileImportUtil
-					.getWorkDate(getCommQueryServletRequest().getParameter(
-							"qWorkDate"));
+			String workdate = FileImportUtil.getWorkDate(getCommQueryServletRequest().getParameter("qWorkDate"));
 			for (int i = 0; i < rs.size(); i++) {
 				BiImportFileConfig bfc = (BiImportFileConfig) rs.get(i);
 				bean = new ImportFileBean();
 				BeanUtils.copyProperties(bean, bfc);
 
-				bean.setFileNameFull(FileImportUtil.getFileNameFull(workdate,
-						bean.getFileName()));
+				bean.setFileNameFull(FileImportUtil.getFileNameFull(workdate, bean.getFileName()));
 				if (bean.getFileName() == null) {
 					bean.setExist(false);
 				} else {
-					bean.setExist(FileImportUtil.isExist(workdate,
-							bean.getFileNameFull()));
+					bean.setExist(FileImportUtil.isExist(workdate, bean.getFileNameFull()));
 				}
 				bean.setWorkDate(workdate);
-				bean.setImpStatus(FileImportService.getInstance()
-						.getImportLogStatus(bean.getFileNameFull(),
-								bean.getTableName(), workdate));
+				bean.setImpStatus(FileImportService.getInstance().getImportLogStatus(bean.getFileNameFull(),
+						bean.getTableName(), workdate));
 				bean.setImporting(Constants.YES.equals(isImporting));
 				list.add(bean);
 			}
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list, getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);
 			result.getPage().setTotalPage(1);
 			result.init();
@@ -66,8 +59,7 @@ public class ImportFileCheckGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

@@ -30,47 +30,38 @@ public class BopCfaExplrmbloDsService {
 	 * 获得自身实例
 	 */
 	public synchronized static BopCfaExplrmbloDsService getInstance() {
-		return (BopCfaExplrmbloDsService) ApplicationContextUtils
-				.getBean(BopCfaExplrmbloDsService.class.getName());
+		return (BopCfaExplrmbloDsService) ApplicationContextUtils.getBean(BopCfaExplrmbloDsService.class.getName());
 	}
 
-	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize,
-			String currentfile, String workDate, String actiontype,
-			String recStatus, String approveStatus, String repStatus,
-			String filler2, String brno) throws CommonException {
+	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String currentfile, String workDate,
+			String actiontype, String recStatus, String approveStatus, String repStatus, String filler2, String brno)
+					throws CommonException {
 
-		StringBuilder queryhql = new StringBuilder(
-				" FROM BopCfaExplrmbloDs WHERE currentfile = ? ");
+		StringBuilder queryhql = new StringBuilder(" FROM BopCfaExplrmbloDs WHERE currentfile = ? ");
 		List<Object> paralist = new ArrayList<Object>();
 		paralist.add(currentfile);
-		return pageQueryByHql(pageIndex, pageSize, workDate, actiontype,
-				recStatus, approveStatus, repStatus, filler2, brno, queryhql,
-				paralist);
+		return pageQueryByHql(pageIndex, pageSize, workDate, actiontype, recStatus, approveStatus, repStatus, filler2,
+				brno, queryhql, paralist);
 	}
 
-	public PageQueryResult pageQueryByAlreadyAudit(int pageIndex, int pageSize,
-			String currentfile, String workDate, String actiontype,
-			String recStatus, String approveStatus, String repStatus,
-			String filler2, String brno) throws CommonException {
+	public PageQueryResult pageQueryByAlreadyAudit(int pageIndex, int pageSize, String currentfile, String workDate,
+			String actiontype, String recStatus, String approveStatus, String repStatus, String filler2, String brno)
+					throws CommonException {
 
-		StringBuilder queryhql = new StringBuilder(
-				" FROM BopCfaExplrmbloDs WHERE currentfile = ? AND recStatus = ? ");
+		StringBuilder queryhql = new StringBuilder(" FROM BopCfaExplrmbloDs WHERE currentfile = ? AND recStatus = ? ");
 
 		List<Object> paraList = new ArrayList<Object>();
 		paraList.add(currentfile);
 		paraList.add(TopReportConstants.REPORT_RECSTATUS_05);
 
-		PageQueryResult result = pageQueryByHql(pageIndex, pageSize, workDate,
-				actiontype, recStatus, approveStatus, repStatus, filler2, brno,
-				queryhql, paraList);
+		PageQueryResult result = pageQueryByHql(pageIndex, pageSize, workDate, actiontype, recStatus, approveStatus,
+				repStatus, filler2, brno, queryhql, paraList);
 		return result;
 	}
 
-	public PageQueryResult pageQueryByAudit(int pageIndex, int pageSize,
-			String currentfile, String qworkDate, String eworkDate,
-			String actiontype, String recStatus, String approveStatus,
-			String repStatus, String filler2, String brno)
-			throws CommonException {
+	public PageQueryResult pageQueryByAudit(int pageIndex, int pageSize, String currentfile, String qworkDate,
+			String eworkDate, String actiontype, String recStatus, String approveStatus, String repStatus,
+			String filler2, String brno) throws CommonException {
 
 		StringBuilder queryhql = new StringBuilder(
 				" FROM BopCfaExplrmbloDs WHERE currentfile = ? AND recStatus IN (? , ?) ");
@@ -78,16 +69,13 @@ public class BopCfaExplrmbloDsService {
 		paralist.add(currentfile);
 		paralist.add(TopReportConstants.REPORT_RECSTATUS_03);
 		paralist.add(TopReportConstants.REPORT_RECSTATUS_04);
-		return pageQueryByHql(pageIndex, pageSize, qworkDate, eworkDate,
-				actiontype, recStatus, approveStatus, repStatus, filler2, brno,
-				queryhql, paralist);
+		return pageQueryByHql(pageIndex, pageSize, qworkDate, eworkDate, actiontype, recStatus, approveStatus,
+				repStatus, filler2, brno, queryhql, paralist);
 	}
 
-	public PageQueryResult pageQueryByEdit(int pageIndex, int pageSize,
-			String currentfile, String workDateStart, String workDateEnd,
-			String actiontype, String recStatus, String approveStatus,
-			String repStatus, String filler2, String brno)
-			throws CommonException {
+	public PageQueryResult pageQueryByEdit(int pageIndex, int pageSize, String currentfile, String workDateStart,
+			String workDateEnd, String actiontype, String recStatus, String approveStatus, String repStatus,
+			String filler2, String brno) throws CommonException {
 
 		StringBuilder queryhql = new StringBuilder(
 				" FROM BopCfaExplrmbloDs WHERE currentfile = ? AND recStatus IN (? , ?)  ");
@@ -95,20 +83,17 @@ public class BopCfaExplrmbloDsService {
 		paralist.add(currentfile);
 		paralist.add(TopReportConstants.REPORT_RECSTATUS_01);
 		paralist.add(TopReportConstants.REPORT_RECSTATUS_02);
-		return pageQueryByHql(pageIndex, pageSize, workDateStart, workDateEnd,
-				actiontype, recStatus, approveStatus, repStatus, filler2, brno,
-				queryhql, paralist);
+		return pageQueryByHql(pageIndex, pageSize, workDateStart, workDateEnd, actiontype, recStatus, approveStatus,
+				repStatus, filler2, brno, queryhql, paralist);
 	}
 
 	/*
 	 * add by zhuhongyong 外汇质押补录信息查询,加入两个时间之间的模糊查询
 	 */
 	@SuppressWarnings("rawtypes")
-	public PageQueryResult pageQueryByHqlForExplrmblo(String type,
-			int pageIndex, int pageSize, String workDateStart,
-			String workDateEnd, String qbrNo, String actiontype,
-			String recStatus, String approveStatus, String repStatus,
-			String filler2) throws CommonException {
+	public PageQueryResult pageQueryByHqlForExplrmblo(String type, int pageIndex, int pageSize, String workDateStart,
+			String workDateEnd, String qbrNo, String actiontype, String recStatus, String approveStatus,
+			String repStatus, String filler2) throws CommonException {
 		ROOTDAO dao = ROOTDAOUtils.getROOTDAO();
 		StringBuilder queryHql = new StringBuilder();
 		List<Object> objs = new ArrayList<Object>();
@@ -119,8 +104,7 @@ public class BopCfaExplrmbloDsService {
 			if (type.equalsIgnoreCase(TopReportConstants.REPORT_FILE_TYPE_CFA_EA)) {
 				queryHql.append(" AND currentfile = ?");
 				objs.add(TopReportConstants.REPORT_FILE_TYPE_CFA_EA);
-			} else if (type
-					.equalsIgnoreCase(TopReportConstants.REPORT_FILE_TYPE_CFA_EB)) {
+			} else if (type.equalsIgnoreCase(TopReportConstants.REPORT_FILE_TYPE_CFA_EB)) {
 				queryHql.append(" AND currentfile = ?");
 				objs.add(TopReportConstants.REPORT_FILE_TYPE_CFA_EB);
 			}
@@ -171,25 +155,20 @@ public class BopCfaExplrmbloDsService {
 			if (StringUtils.isNotBlank(type)) {
 				if (type.equalsIgnoreCase(TopReportConstants.REPORT_FILE_TYPE_CFA_EA)) {
 					// 签约信息
-					bopCfaExplrmbloDs.setExplcurrinfo(ReportCommonService
-							.getInstance().getConExplbalainfoToStr(
-									bopCfaExplrmbloDs.getId()));
-				} else if (type
-						.equalsIgnoreCase(TopReportConstants.REPORT_FILE_TYPE_CFA_EB)) {
-					bopCfaExplrmbloDs.setExplbalainfo(ReportCommonService
-							.getInstance().getChangExplbalainfoToStr(
-									bopCfaExplrmbloDs.getId()));
+					bopCfaExplrmbloDs.setExplcurrinfo(
+							ReportCommonService.getInstance().getConExplbalainfoToStr(bopCfaExplrmbloDs.getId()));
+				} else if (type.equalsIgnoreCase(TopReportConstants.REPORT_FILE_TYPE_CFA_EB)) {
+					bopCfaExplrmbloDs.setExplbalainfo(
+							ReportCommonService.getInstance().getChangExplbalainfoToStr(bopCfaExplrmbloDs.getId()));
 				}
 			}
 		}
 		return pageQueryResult;
 	}
 
-	private PageQueryResult pageQueryByHql(int pageIndex, int pageSize,
-			String workDate, String actiontype, String recStatus,
-			String approveStatus, String repStatus, String filler2,
-			String brno, StringBuilder queryhql, List<Object> paralist)
-			throws CommonException {
+	private PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String workDate, String actiontype,
+			String recStatus, String approveStatus, String repStatus, String filler2, String brno,
+			StringBuilder queryhql, List<Object> paralist) throws CommonException {
 		if (StringUtils.isNotBlank(workDate)) {
 			queryhql.append(" AND workDate = ? ");
 			paralist.add(workDate);
@@ -231,11 +210,9 @@ public class BopCfaExplrmbloDsService {
 	}
 
 	// add by huangcheng 补录查询中workDate 变成时间段查询
-	private PageQueryResult pageQueryByHql(int pageIndex, int pageSize,
-			String workDateStart, String workDateEnd, String actiontype,
-			String recStatus, String approveStatus, String repStatus,
-			String filler2, String brno, StringBuilder queryhql,
-			List<Object> paralist) throws CommonException {
+	private PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String workDateStart, String workDateEnd,
+			String actiontype, String recStatus, String approveStatus, String repStatus, String filler2, String brno,
+			StringBuilder queryhql, List<Object> paralist) throws CommonException {
 		if (StringUtils.isNotBlank(workDateStart)) {
 			queryhql.append(" AND workDate >= ? ");
 			paralist.add(workDateStart);
@@ -283,9 +260,7 @@ public class BopCfaExplrmbloDsService {
 	@SuppressWarnings("rawtypes")
 	public BopCfaExplrmbloDs load(String uuid) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		List list = rootdao.queryByQL2List(
-				" FROM BopCfaExplrmbloDs WHERE id = ? ", new Object[] { uuid },
-				null);
+		List list = rootdao.queryByQL2List(" FROM BopCfaExplrmbloDs WHERE id = ? ", new Object[] { uuid }, null);
 		if (!list.isEmpty()) {
 			return (BopCfaExplrmbloDs) list.get(0);
 		}
@@ -303,8 +278,7 @@ public class BopCfaExplrmbloDsService {
 		return changeinfo;
 	}
 
-	public void setChildByParent(BopCfaExplrmbloDs child,
-			BopCfaExplrmbloDs parent) {
+	public void setChildByParent(BopCfaExplrmbloDs child, BopCfaExplrmbloDs parent) {
 		child.setDebtorcode(parent.getDebtorcode());
 		child.setCreditorcode(parent.getCreditorcode());
 		child.setDebtorname(parent.getDebtorname());
@@ -330,8 +304,7 @@ public class BopCfaExplrmbloDsService {
 
 	public void update(BopCfaExplrmbloDs bopcfa) throws CommonException {
 		bopcfa.setActiondesc(null);
-		ReportDataVaildUtil.executeVaild(bopcfa.getApptype(),
-				bopcfa.getCurrentfile(), bopcfa);
+		ReportDataVaildUtil.executeVaild(bopcfa.getApptype(), bopcfa.getCurrentfile(), bopcfa);
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 
@@ -344,8 +317,7 @@ public class BopCfaExplrmbloDsService {
 		rootdao.update(bopcfa);
 	}
 
-	public void deleteChangeInfo(BopCfaExplrmbloDs bopcfa)
-			throws CommonException {
+	public void deleteChangeInfo(BopCfaExplrmbloDs bopcfa) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 
 		GlobalInfo ginfo = GlobalInfo.getCurrentInstance();
@@ -354,8 +326,7 @@ public class BopCfaExplrmbloDsService {
 		bopcfa.setBrNo(ginfo.getBrno());
 		bopcfa.setWorkDate(DateUtil.dateToNumber(ginfo.getTxdate()));
 		// add by huangcheng 2012-10-26 数据验证
-		ReportDataVaildUtil.executeVaild(bopcfa.getApptype(),
-				bopcfa.getCurrentfile(), bopcfa);
+		ReportDataVaildUtil.executeVaild(bopcfa.getApptype(), bopcfa.getCurrentfile(), bopcfa);
 
 		rootdao.update(bopcfa);
 	}
@@ -364,10 +335,10 @@ public class BopCfaExplrmbloDsService {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 
 		// 查询 BopCfaExplrmbloDs 文件类型为 外汇质押人民币贷款—变动信息 并且没有被删除的 变动信息
-		StringBuilder hql = new StringBuilder(
-				" SELECT COUNT(*) FROM BopCfaExplrmbloDs WHERE filler1 = '").append(bopcfa.getId())
-				.append("' AND currentfile = '").append(TopReportConstants.REPORT_FILE_TYPE_CFA_EB)
-				.append("' AND recStatus <> '").append(TopReportConstants.REPORT_RECSTATUS_07).append("' ");
+		StringBuilder hql = new StringBuilder(" SELECT COUNT(*) FROM BopCfaExplrmbloDs WHERE filler1 = '")
+				.append(bopcfa.getId()).append("' AND currentfile = '")
+				.append(TopReportConstants.REPORT_FILE_TYPE_CFA_EB).append("' AND recStatus <> '")
+				.append(TopReportConstants.REPORT_RECSTATUS_07).append("' ");
 
 		int count = rootdao.queryByHqlToCount(hql.toString());
 		if (0 < count) {
@@ -393,8 +364,7 @@ public class BopCfaExplrmbloDsService {
 		bopcfa.setCrtTm(new Date());
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		// add by huangcheng 2012-10-26 数据验证
-		ReportDataVaildUtil.executeVaild(bopcfa.getApptype(),
-				bopcfa.getCurrentfile(), bopcfa);
+		ReportDataVaildUtil.executeVaild(bopcfa.getApptype(), bopcfa.getCurrentfile(), bopcfa);
 
 		rootdao.save(bopcfa);
 	}
@@ -410,11 +380,9 @@ public class BopCfaExplrmbloDsService {
 
 		bopcfa.setCrtTm(new Date());
 
-		StringBuilder hql = new StringBuilder(
-				" SELECT COUNT(*) FROM BopCfaExplrmbloDs WHERE currentfile = '")
-				.append(bopcfa.getCurrentfile()).append("' AND buscode = '")
-				.append(bopcfa.getBuscode()).append("' AND actiontype <> '")
-				.append(TopReportConstants.REPORT_ACTIONTYPE_D).append("' ");
+		StringBuilder hql = new StringBuilder(" SELECT COUNT(*) FROM BopCfaExplrmbloDs WHERE currentfile = '")
+				.append(bopcfa.getCurrentfile()).append("' AND buscode = '").append(bopcfa.getBuscode())
+				.append("' AND actiontype <> '").append(TopReportConstants.REPORT_ACTIONTYPE_D).append("' ");
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		int count = rootdao.queryByHqlToCount(hql.toString());
@@ -423,22 +391,18 @@ public class BopCfaExplrmbloDsService {
 		}
 		setFiledNull(bopcfa);
 		// add by huangcheng 2012-10-26 数据验证
-		ReportDataVaildUtil.executeVaild(bopcfa.getApptype(),
-				bopcfa.getCurrentfile(), bopcfa);
+		ReportDataVaildUtil.executeVaild(bopcfa.getApptype(), bopcfa.getCurrentfile(), bopcfa);
 
 		rootdao.save(bopcfa);
 	}
 
-	public void updateChangeInfo(BopCfaExplrmbloDs bopcfa)
-			throws CommonException {
+	public void updateChangeInfo(BopCfaExplrmbloDs bopcfa) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 
-		StringBuilder hql = new StringBuilder(
-				" SELECT COUNT(*) FROM BopCfaExplrmbloDs WHERE currentfile = '")
-				.append(bopcfa.getCurrentfile()).append("' AND buscode = '")
-				.append(bopcfa.getBuscode()).append("' AND actiontype <> '")
-				.append(TopReportConstants.REPORT_ACTIONTYPE_D)
-				.append("' AND id <> '").append(bopcfa.getId()).append("' ");
+		StringBuilder hql = new StringBuilder(" SELECT COUNT(*) FROM BopCfaExplrmbloDs WHERE currentfile = '")
+				.append(bopcfa.getCurrentfile()).append("' AND buscode = '").append(bopcfa.getBuscode())
+				.append("' AND actiontype <> '").append(TopReportConstants.REPORT_ACTIONTYPE_D).append("' AND id <> '")
+				.append(bopcfa.getId()).append("' ");
 		int count = rootdao.queryByHqlToCount(hql.toString());
 		if (0 < count) {
 			ExceptionUtil.throwCommonException("已有相同银行业务参号的记录");
@@ -453,14 +417,12 @@ public class BopCfaExplrmbloDsService {
 		bopcfa.setBrNo(ginfo.getBrno());
 		bopcfa.setWorkDate(DateUtil.dateToNumber(ginfo.getTxdate()));
 		// add by huangcheng 2012-10-26 数据验证
-		ReportDataVaildUtil.executeVaild(bopcfa.getApptype(),
-				bopcfa.getCurrentfile(), bopcfa);
+		ReportDataVaildUtil.executeVaild(bopcfa.getApptype(), bopcfa.getCurrentfile(), bopcfa);
 
 		rootdao.update(bopcfa);
 	}
 
-	public void approved(List<BopCfaExplrmbloDs> bopcfaList)
-			throws CommonException {
+	public void approved(List<BopCfaExplrmbloDs> bopcfaList) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		for (BopCfaExplrmbloDs bopcfa : bopcfaList) {
 			bopcfa.setRecStatus(TopReportConstants.REPORT_RECSTATUS_04);

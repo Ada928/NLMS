@@ -17,7 +17,7 @@ import com.huateng.exception.AppException;
 import com.huateng.report.utils.ReportEnum;
 
 @SuppressWarnings("unchecked")
-public class NotCnyCurrencySelectGetter  extends BaseGetter {
+public class NotCnyCurrencySelectGetter extends BaseGetter {
 
 	private static final String RMB_CODE = "%CNY%";
 
@@ -27,16 +27,16 @@ public class NotCnyCurrencySelectGetter  extends BaseGetter {
 
 	public Result call() throws AppException {
 		try {
-			String value=getCommQueryServletRequest().getParameter("value1");
+			String value = getCommQueryServletRequest().getParameter("value1");
 			PageQueryResult pageResult = null;
-			if(!StringUtils.equalsIgnoreCase(value, RMB_CODE)) {
+			if (!StringUtils.equalsIgnoreCase(value, RMB_CODE)) {
 				Page page = result.getPage();
 				boolean lock = false;
-				if (StringUtils.equals(ReportEnum.REPORT_REC_LOCK_DEL.F.value, IS_LOCK_TRUE)){
+				if (StringUtils.equals(ReportEnum.REPORT_REC_LOCK_DEL.F.value, IS_LOCK_TRUE)) {
 					lock = true;
 				}
 				value = StringUtils.upperCase(value);
-				Object[] args = new Object[]{lock, lock, value};
+				Object[] args = new Object[] { lock, lock, value };
 				PageQueryCondition queryCondition = new PageQueryCondition();
 				queryCondition.setQueryString(SEARCH_CURRENCY);
 				queryCondition.setPageSize(page.getEveryPage());
@@ -47,8 +47,8 @@ public class NotCnyCurrencySelectGetter  extends BaseGetter {
 				pageResult = new PageQueryResult();
 				pageResult.setQueryResult(Collections.emptyList());
 			}
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult().size() == 0) {
 				result.getPage().setTotalPage(0);
@@ -60,8 +60,7 @@ public class NotCnyCurrencySelectGetter  extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

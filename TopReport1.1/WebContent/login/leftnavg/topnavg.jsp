@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@page import="java.util.List"%>
 <%@page import="com.huateng.report.utils.ReportUtils"%>
@@ -44,39 +44,44 @@ document.write("未传入业务编码或编码不存在！");
 <%return;} %>
 </head>
 <body scroll="no" class="bodycls">
-<input type="hidden" id="curretnTab" value="">
-<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
-<tr>
-<td width="100%" class="menucontainer" valign="middle">
-<ul id="navigationMenu">
-<%
+	<input type="hidden" id="curretnTab" value="">
+	<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+		<tr>
+			<td width="100%" class="menucontainer" valign="middle">
+				<ul id="navigationMenu">
+					<%
 for(int i=0;i<leftList.size();i++){
 	SysBusinavConf conf = (SysBusinavConf)leftList.get(i);
 	String url = conf.getMakefileUrl()==null?"":request.getContextPath()+conf.getMakefileUrl().trim();
 %>
-<li><a href="#"  onclick="changSelect('<%=conf.getId() %>')" class="normalMenu" id="topNavg_Link_<%=conf.getId() %>"><%=conf.getBusiNm() %></a>
-<input type="hidden" name="topNavg" value="<%=conf.getId() %>"/>
-<input type="hidden" id="topNavg_url_<%=conf.getId() %>" value="<%= url %>"/>
-</li>
-<%} %>
-</ul>
-</td>
-<td style="background-color: #deedf7;border-bottom: 1px solid #aed0ea;padding-right: 5px;"  valign="middle" nowrap="nowrap">
-<input type="hidden" id="fileDate" value="<%=dt %>"/>
-<button class="divbutton" style="background-image: url(images/button.gif);" onmouseover="buttonMouseOver(this)" onmouseout="buttonMouseOut(this);" onclick="changeFileDate()"  title="选择工作日期" id="changeFileDateDiv"><%=dt %></button>
-</td>
-<td style="background-color: #deedf7;border-bottom: 1px solid #aed0ea;padding-right: 5px;"  valign="middle" nowrap="nowrap">
-<button class="divbutton" style="background-image: url(images/button.gif);" onmouseover="buttonMouseOver(this)" onmouseout="buttonMouseOut(this);" onclick="toFile()"  title="生产上报文件">生成文件</button>
-</td>
-</tr>
-<tr height="100%">
-<td colspan="3">
-<div id="msgDiv" style="display: none;width: 90%;line-height:30px;padding-top: 20px;padding-left: 20px;font-size: 16px;"></div>
-<iframe id="TopNavgframe" height="100%" width="100%"  scrolling="auto" frameborder="0"></iframe>
-</td>
-</tr>
-</table>
-<script type="text/javascript">
+					<li>
+						<a href="#" onclick="changSelect('<%=conf.getId() %>')" class="normalMenu" id="topNavg_Link_<%=conf.getId() %>"><%=conf.getBusiNm() %></a>
+						<input type="hidden" name="topNavg" value="<%=conf.getId() %>" />
+						<input type="hidden" id="topNavg_url_<%=conf.getId() %>" value="<%= url %>" />
+					</li>
+					<%} %>
+				</ul>
+			</td>
+			<td style="background-color: #deedf7;border-bottom: 1px solid #aed0ea;padding-right: 5px;" valign="middle"
+				nowrap="nowrap"><input type="hidden" id="fileDate" value="<%=dt %>" />
+				<button class="divbutton" style="background-image: url(images/button.gif);" onmouseover="buttonMouseOver(this)"
+					onmouseout="buttonMouseOut(this);" onclick="changeFileDate()" title="选择工作日期" id="changeFileDateDiv"><%=dt %></button>
+			</td>
+			<td style="background-color: #deedf7;border-bottom: 1px solid #aed0ea;padding-right: 5px;" valign="middle"
+				nowrap="nowrap">
+				<button class="divbutton" style="background-image: url(images/button.gif);" onmouseover="buttonMouseOver(this)"
+					onmouseout="buttonMouseOut(this);" onclick="toFile()" title="生产上报文件">生成文件</button>
+			</td>
+		</tr>
+		<tr height="100%">
+			<td colspan="3">
+				<div id="msgDiv"
+					style="display: none;width: 90%;line-height:30px;padding-top: 20px;padding-left: 20px;font-size: 16px;"></div> <iframe
+					id="TopNavgframe" height="100%" width="100%" scrolling="auto" frameborder="0"></iframe>
+			</td>
+		</tr>
+	</table>
+	<script type="text/javascript">
 	window.onload= function(){
 		initTopNavg(0);
 	}

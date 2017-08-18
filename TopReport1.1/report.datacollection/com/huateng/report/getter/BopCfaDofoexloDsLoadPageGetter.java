@@ -13,34 +13,29 @@ import com.huateng.report.constants.TopReportConstants;
 import com.huateng.report.service.BopCfaDofoexloDsService;
 
 @SuppressWarnings("unchecked")
-public class BopCfaDofoexloDsLoadPageGetter  extends BaseGetter{
-
+public class BopCfaDofoexloDsLoadPageGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	public PageQueryResult getData() throws AppException {
-
 
 		this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "国内外汇贷款信息补录-签约信息拾取查询");
 
@@ -56,8 +51,7 @@ public class BopCfaDofoexloDsLoadPageGetter  extends BaseGetter{
 		String repStatus = getCommQueryServletRequest().getParameter("repStatus");
 		String filler2 = getCommQueryServletRequest().getParameter("filler2");
 		BopCfaDofoexloDsService service = BopCfaDofoexloDsService.getInstance();
-		return service.pageQueryByHql(pageIndex, pageSize,
-				TopReportConstants.REPORT_FILE_TYPE_CFA_CA, workDate,
+		return service.pageQueryByHql(pageIndex, pageSize, TopReportConstants.REPORT_FILE_TYPE_CFA_CA, workDate,
 				actiontype, recStatus, approveStatus, repStatus, filler2, null, null, null);
 
 	}

@@ -9,8 +9,7 @@ import com.huateng.report.system.common.IGetSubFileList;
 public class BufBOPForDebtRefinacingImpl implements IGetSubFileList {
 
 	@SuppressWarnings("unchecked")
-	public List getSubFileResultList(Map<String, Object> paramMap)
-			throws CommonException {
+	public List getSubFileResultList(Map<String, Object> paramMap) throws CommonException {
 		BufBOPForDebtOverseaLendingImpl impl = new BufBOPForDebtOverseaLendingImpl();
 		return impl.getSubFileResultList(paramMap);
 	}

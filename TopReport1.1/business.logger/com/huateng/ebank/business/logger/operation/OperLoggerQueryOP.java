@@ -9,6 +9,7 @@ import com.huateng.ebank.framework.operation.OperationContext;
 
 /**
  * 操作日志查询
+ * 
  * @author kevin_qin
  *
  */
@@ -34,17 +35,18 @@ public class OperLoggerQueryOP extends BaseOperation {
 
 	@Override
 	public void execute(OperationContext context) throws CommonException {
-		try{
+		try {
 			int pageIndex = (Integer) context.getAttribute(IN_PAGEINDEX);
 			int pageSize = (Integer) context.getAttribute(IN_PAGESIZE);
 
 			OperLoggerBean operLoggerBean = (OperLoggerBean) context.getAttribute(IN_PARAMER);
-			PageQueryResult pageQueryResult = OperLoggerService.getInstance().getOperLoggerList(pageIndex,pageSize, operLoggerBean);
+			PageQueryResult pageQueryResult = OperLoggerService.getInstance().getOperLoggerList(pageIndex, pageSize,
+					operLoggerBean);
 			context.setAttribute(OUTLIST, pageQueryResult);
 
-			}catch (Exception e) {
-				e.printStackTrace();
-				throw new CommonException("操作日志信息查询失败...");
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new CommonException("操作日志信息查询失败...");
+		}
 	}
 }

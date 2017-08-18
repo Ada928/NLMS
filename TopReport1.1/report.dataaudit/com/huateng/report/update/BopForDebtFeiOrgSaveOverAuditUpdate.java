@@ -20,40 +20,38 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.operation.BopForDebtFeiOrgSaveOperation;
 
-public class BopForDebtFeiOrgSaveOverAuditUpdate extends BaseUpdate{
-	
+public class BopForDebtFeiOrgSaveOverAuditUpdate extends BaseUpdate {
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
-		
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
+
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("bopForDebtFeiOrgSaveOverAudit");
+			UpdateResultBean updateResultBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("bopForDebtFeiOrgSaveOverAudit");
 			List<BopCfaExdebtDs> bopAccDsList = new ArrayList<BopCfaExdebtDs>();
-			while (updateResultBean.hasNext())
-			{
+			while (updateResultBean.hasNext()) {
 				BopCfaExdebtDs bopCfaExdebtDs = new BopCfaExdebtDs();
 				Map map = updateResultBean.next();
-				mapToObject(bopCfaExdebtDs,map);
+				mapToObject(bopCfaExdebtDs, map);
 				bopAccDsList.add(bopCfaExdebtDs);
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
 			String approveResultChoose = updateResultBean.getParameter("approveResultChoose");
-			
+
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(BopForDebtFeiOrgSaveOperation.CMD, BopForDebtFeiOrgSaveOperation.OP_OVER_AUDIT);
 			oc.setAttribute(BopForDebtFeiOrgSaveOperation.IN_AUDIT_LIST, bopAccDsList);
 			oc.setAttribute(BopForDebtFeiOrgSaveOperation.IN_AUDIT_STATUS, approveStatusChoose);
 			oc.setAttribute(BopForDebtFeiOrgSaveOperation.IN_AUDIT_RESULT, approveResultChoose);
 			OPCaller.call(BopForDebtFeiOrgSaveOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

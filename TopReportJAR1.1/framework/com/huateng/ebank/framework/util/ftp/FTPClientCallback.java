@@ -14,12 +14,13 @@ import java.io.InputStream;
  * @author <a href="mailto:liu_wen@huateng.com">Liu Wen</a>
  * @version $Revision: 1.1 $
  * @date 2005-7-28
- *  
- * call back interface of the ftp client.
+ * 
+ *       call back interface of the ftp client.
  */
 public interface FTPClientCallback {
 	/**
 	 * 执行ftp过程.
+	 * 
 	 * @param inputStream
 	 * @throws Exception
 	 */

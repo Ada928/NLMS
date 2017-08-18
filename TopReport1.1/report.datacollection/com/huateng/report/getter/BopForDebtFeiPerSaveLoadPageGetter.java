@@ -18,7 +18,7 @@ import com.huateng.report.service.BopForDebtYinTuanService;
  *
  * @author shishu.zhang
  *
- * 2012-8-15上午10:54:59
+ *         2012-8-15上午10:54:59
  */
 public class BopForDebtFeiPerSaveLoadPageGetter extends BaseGetter {
 
@@ -27,26 +27,23 @@ public class BopForDebtFeiPerSaveLoadPageGetter extends BaseGetter {
 		try {
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public PageQueryResult getData() throws IllegalAccessException, InvocationTargetException, AppException{
+	public PageQueryResult getData() throws IllegalAccessException, InvocationTargetException, AppException {
 
 		this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外债-非居民个人存款补录-签约信息拾取查询");
 
@@ -64,6 +61,7 @@ public class BopForDebtFeiPerSaveLoadPageGetter extends BaseGetter {
 		String qdebtorcode = (String) map.get("qdebtorcode");
 
 		BopForDebtYinTuanService debtYinTuanService = BopForDebtYinTuanService.getInstance();
-		return debtYinTuanService.queryFeiPerSaveLoadPage(pageIndex, pageSize,workdate,qactiontype,qrecStatus,qapproveStatus,qrepStatus, qFiller2, qdebtorcode);
+		return debtYinTuanService.queryFeiPerSaveLoadPage(pageIndex, pageSize, workdate, qactiontype, qrecStatus,
+				qapproveStatus, qrepStatus, qFiller2, qdebtorcode);
 	}
 }

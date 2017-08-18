@@ -26,58 +26,53 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
-
 public class ForwardTaskUpdate extends BaseUpdate {
-	
+
 	/**
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(RelationCodeOperation.class);
 
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 
 		List taskList = new ArrayList();
 		UpdateResultBean updateResultBean1 = multiUpdateResultBean.getUpdateResultBeanByID("ForwardTask");
-	    UpdateResultBean updateResultBean2 = multiUpdateResultBean.getUpdateResultBeanByID("ForwardTaskSubmit");
-	    String forwardTlrno = (String)((Map)updateResultBean2.getTotalList().get(0)).get("forwardTlrno");
+		UpdateResultBean updateResultBean2 = multiUpdateResultBean.getUpdateResultBeanByID("ForwardTaskSubmit");
+		String forwardTlrno = (String) ((Map) updateResultBean2.getTotalList().get(0)).get("forwardTlrno");
 
-		//检查操作员是否存在
-	    List list = DAOUtils.getTlrInfoDAO().queryByCondition("po.tlrno = '" + forwardTlrno + "'");
-		if(list == null || list.isEmpty()) {
-			ExceptionUtil.throwCommonException("操作员" + forwardTlrno + "不存在",
-					ErrorCode.ERROR_CODE_TLR_INFO_SELECT);
+		// 检查操作员是否存在
+		List list = DAOUtils.getTlrInfoDAO().queryByCondition("po.tlrno = '" + forwardTlrno + "'");
+		if (list == null || list.isEmpty()) {
+			ExceptionUtil.throwCommonException("操作员" + forwardTlrno + "不存在", ErrorCode.ERROR_CODE_TLR_INFO_SELECT);
 		}
-		
-		if(logger.isDebugEnabled()){
-			logger.debug("移交的操作员号 =["+forwardTlrno+"]");
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("移交的操作员号 =[" + forwardTlrno + "]");
 		}
-		
+
 		while (updateResultBean1.hasNext()) {
 			TaskBean taskBean = new TaskBean();
 			Map tmpMap = updateResultBean1.next();
-			String select = (String)tmpMap.get("select");
-			if( select == null || select.equals("false")){
+			String select = (String) tmpMap.get("select");
+			if (select == null || select.equals("false")) {
 				continue;
 			}
 			mapToObject(taskBean, tmpMap);
 			taskList.add(taskBean);
 		}
-	    if(taskList.size()==0){
-	       ExceptionUtil.throwCommonException("未选择需要移交的任务",
-	                    ErrorCode.ERROR_CODE_TASK_FORWARD_ERROR);
-	    }
-	    
+		if (taskList.size() == 0) {
+			ExceptionUtil.throwCommonException("未选择需要移交的任务", ErrorCode.ERROR_CODE_TASK_FORWARD_ERROR);
+		}
+
 		OperationContext oc = new OperationContext();
-	    oc.setAttribute(ForwardTaskOperation.TASK_LIST,taskList);
-	    oc.setAttribute(ForwardTaskOperation.FORWARDTLRNO,forwardTlrno);
-	    OPCaller.call(ForwardTaskOperation.ID, oc);
-		if(logger.isDebugEnabled()){
+		oc.setAttribute(ForwardTaskOperation.TASK_LIST, taskList);
+		oc.setAttribute(ForwardTaskOperation.FORWARDTLRNO, forwardTlrno);
+		OPCaller.call(ForwardTaskOperation.ID, oc);
+		if (logger.isDebugEnabled()) {
 			logger.debug("移交成功");
 		}
-	    UpdateReturnBean updReturnBean = new UpdateReturnBean();
+		UpdateReturnBean updReturnBean = new UpdateReturnBean();
 		return updReturnBean;
 	}
 

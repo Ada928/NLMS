@@ -32,20 +32,16 @@ public class BopCfaStrdeEntryTerminateGetter extends BaseGetter {
 		try {
 			PageQueryResult pageResult = getData();
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "商业银行人民币结构性存款补录终止信息查询");
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -62,37 +58,37 @@ public class BopCfaStrdeEntryTerminateGetter extends BaseGetter {
 		String qapproveStatus = (String) paramsMap.get("qapproveStatus");
 		String qrepStatus = (String) paramsMap.get("qrepStatus");
 		String qfiller2 = (String) paramsMap.get("qfiller2");
-		//加上机构号
+		// 加上机构号
 		String brNo = GlobalInfo.getCurrentInstance().getBrno();
 
-		List<Object>paramentList = new ArrayList<Object>();
+		List<Object> paramentList = new ArrayList<Object>();
 		StringBuffer buff = new StringBuffer();
 		buff.append(" FROM BopCfaStrdeDs strde WHERE 1 = 1 ");
-		if(StringUtils.isNotBlank(qworkDateStart)) {
+		if (StringUtils.isNotBlank(qworkDateStart)) {
 			buff.append(" AND strde.workDate >= ? ");
 			paramentList.add(qworkDateStart);
 		}
-		if(StringUtils.isNotBlank(qworkDateEnd)) {
+		if (StringUtils.isNotBlank(qworkDateEnd)) {
 			buff.append(" AND strde.workDate <= ? ");
 			paramentList.add(qworkDateEnd);
 		}
-		if(StringUtils.isNotBlank(qactiontype)) {
+		if (StringUtils.isNotBlank(qactiontype)) {
 			buff.append(" AND strde.actiontype = ? ");
 			paramentList.add(qactiontype);
 		}
-		if(StringUtils.isNotBlank(qrecStatus)) {
+		if (StringUtils.isNotBlank(qrecStatus)) {
 			buff.append(" AND strde.recStatus = ? ");
 			paramentList.add(qrecStatus);
 		}
-		if(StringUtils.isNotBlank(qapproveStatus)) {
+		if (StringUtils.isNotBlank(qapproveStatus)) {
 			buff.append(" AND strde.approveStatus = ? ");
 			paramentList.add(qapproveStatus);
 		}
-		if(StringUtils.isNotBlank(qrepStatus)) {
+		if (StringUtils.isNotBlank(qrepStatus)) {
 			buff.append(" AND strde.repStatus = ? ");
 			paramentList.add(qrepStatus);
 		}
-		if(StringUtils.isNotBlank(qfiller2)) {
+		if (StringUtils.isNotBlank(qfiller2)) {
 			buff.append(" AND strde.filler2 LIKE ? ");
 			paramentList.add("%" + qfiller2 + "%");
 		}
@@ -110,7 +106,7 @@ public class BopCfaStrdeEntryTerminateGetter extends BaseGetter {
 		buff.append(" AND strde.branchcode = ? ");
 		paramentList.add(brNo);
 		buff.append(" ORDER BY strde.lstUpdTm DESC");
-		//查询,返回结果
+		// 查询,返回结果
 
 		PageQueryCondition queryCondition = new PageQueryCondition();
 		queryCondition.setQueryString(buff.toString());

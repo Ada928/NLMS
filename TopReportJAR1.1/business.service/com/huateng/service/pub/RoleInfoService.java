@@ -52,8 +52,7 @@ public class RoleInfoService {
 	 * @return
 	 */
 	public synchronized static RoleInfoService getInstance() {
-		return (RoleInfoService) ApplicationContextUtils
-				.getBean(RoleInfoService.class.getName());
+		return (RoleInfoService) ApplicationContextUtils.getBean(RoleInfoService.class.getName());
 	}
 
 	/**
@@ -64,12 +63,9 @@ public class RoleInfoService {
 		String brclass = BctlService.getInstance().getBrclass(brcode);
 		if (!brclass.equals(SystemConstant.BRCODE_CLASS_HEAD)) {
 
-			ExceptionUtil.throwCommonException("您不是总行，无权进行岗位权限设置",
-					ErrorCode.ERROR_CODE_NO_PERMISSION);
+			ExceptionUtil.throwCommonException("您不是总行，无权进行岗位权限设置", ErrorCode.ERROR_CODE_NO_PERMISSION);
 		}
 	}
-
-
 
 	/**
 	 * 修改岗位权限
@@ -84,8 +80,7 @@ public class RoleInfoService {
 			FunctionInfoView finfoview = (FunctionInfoView) mylist.get(i);
 			role_id = finfoview.getRoleid();
 			List list2 = BaseDAOUtils.getRoleFuncRelDAO().queryByCondition(
-					"po.funcCode='" + String.valueOf(finfoview.getFunccode())
-							+ "'  and po.roleId=" + role_id);
+					"po.funcCode='" + String.valueOf(finfoview.getFunccode()) + "'  and po.roleId=" + role_id);
 			RoleFuncRel rfinfo = null;
 			// role_id funcCode对存在 role_Func_Relation中
 			if (list2 != null && list2.size() != 0)
@@ -150,10 +145,9 @@ public class RoleInfoService {
 		RoleInfo roleInfo = BaseDAOUtils.getRoleInfoDAO().query(role_id);
 		// String roleName = riv.getRolename();
 		list2 = new ArrayList();
-		list = BaseDAOUtils.getFunctionInfoDAO().queryByCondition(
-				"po.menuFlag = '1' and po.status = '1' order by po.funcCode");
-		tlist = BaseDAOUtils.getRoleFuncRelDAO().queryByCondition(
-				" po.roleId = " + role_id);
+		list = BaseDAOUtils.getFunctionInfoDAO()
+				.queryByCondition("po.menuFlag = '1' and po.status = '1' order by po.funcCode");
+		tlist = BaseDAOUtils.getRoleFuncRelDAO().queryByCondition(" po.roleId = " + role_id);
 		for (int i = 0; i < list.size(); i++) {
 			FunctionInfo finfo = (FunctionInfo) list.get(i);
 			FunctionInfoView fview = new FunctionInfoView();
@@ -188,8 +182,8 @@ public class RoleInfoService {
 	 *
 	 * @param
 	 * @return RoleInfo
-	 * @exception
-	 * @author shen_antonio
+	 * @exception @author
+	 *                shen_antonio
 	 * @version v1.0,2008-8-25
 	 */
 	public RoleInfo getRoleInfoByRoleId(int roleId) throws CommonException {
@@ -241,17 +235,15 @@ public class RoleInfoService {
 	 *
 	 * @param
 	 * @return RoleInfo
-	 * @exception
-	 * @author hyurain_yang
+	 * @exception @author
+	 *                hyurain_yang
 	 * @version v1.0,2008-9-18
 	 */
-	public RoleInfo getRoleInfoByRoleName(String roleName)
-			throws CommonException {
+	public RoleInfo getRoleInfoByRoleName(String roleName) throws CommonException {
 		RoleInfoDAO dao = BaseDAOUtils.getRoleInfoDAO();
 		List list = null;
 		RoleInfo roleInfo = null;
-		list = dao.queryByCondition("po.roleName=?", new Object[] { roleName },
-				null);
+		list = dao.queryByCondition("po.roleName=?", new Object[] { roleName }, null);
 		if (list.size() == 0) {
 			ExceptionUtil.throwCommonException("没有符合条件的对象", "default");
 		} else {
@@ -284,8 +276,7 @@ public class RoleInfoService {
 	 * @throws InvocationTargetException
 	 */
 	public PageQueryResult queryRole(int pageIndex, int pageSize)
-			throws CommonException, IllegalAccessException,
-			InvocationTargetException {
+			throws CommonException, IllegalAccessException, InvocationTargetException {
 		StringBuffer sb = new StringBuffer("");
 		sb.append("select roleInfo from RoleInfo roleInfo where 1=1");
 		/** add by zhiyang.he 双岗复核，无效状态过滤 2012-09-07 begin */
@@ -317,21 +308,20 @@ public class RoleInfoService {
 	 * @param updateList
 	 * @throws CommonException
 	 */
-	public void saveCustRole(List<RoleInfo> insertList, List<RoleInfo> delList,
-			List<RoleInfo> updateList) throws CommonException {
+	public void saveCustRole(List<RoleInfo> insertList, List<RoleInfo> delList, List<RoleInfo> updateList)
+			throws CommonException {
 
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		Date txdate = null;
 		try {
-			txdate = new SimpleDateFormat("yyyy-MM-dd").parse(gi.getTxdate()
-					.toString());
+			txdate = new SimpleDateFormat("yyyy-MM-dd").parse(gi.getTxdate().toString());
 		} catch (ParseException e) {
 			ExceptionUtil.throwCommonException("日期转换错误");
 		}
 
 		RoleInfoDAO roleInfoDAO = BaseDAOUtils.getRoleInfoDAO();
 
-		//新增岗位
+		// 新增岗位
 		for (RoleInfo bean : insertList) {
 			RoleInfo roleInfo = null;
 
@@ -383,24 +373,21 @@ public class RoleInfoService {
 				roleInfo.setStatus(SystemConstant.FLAG_OFF);
 				roleInfoDAO.update(roleInfo);
 			} catch (Exception e) {
-				ExceptionUtil.throwCommonException("保存失败！", "岗位号为："
-						+ roleInfo.getId() + "删除失败");
+				ExceptionUtil.throwCommonException("保存失败！", "岗位号为：" + roleInfo.getId() + "删除失败");
 			}
 		}
 
-		//跟新岗位
+		// 跟新岗位
 		for (RoleInfo bean : updateList) {
 			RoleInfo roleInfo = new RoleInfo();
 			if (!DataFormat.isNull(bean.getId())) {
 				roleInfo = roleInfoDAO.findById(bean.getId());
 
 				if (bean.getEffectDate().before(txdate)) {
-					ExceptionUtil.throwCommonException("生效日期必须在会计日期之后",
-							"生效日期无效");
+					ExceptionUtil.throwCommonException("生效日期必须在会计日期之后", "生效日期无效");
 				}
 				if (bean.getExpireDate().before(bean.getEffectDate())) {
-					ExceptionUtil.throwCommonException("生效日期必须在失效日期之前",
-							"失效日期无效");
+					ExceptionUtil.throwCommonException("生效日期必须在失效日期之前", "失效日期无效");
 				}
 				roleInfo.setEffectDate(bean.getEffectDate());
 				roleInfo.setExpireDate(bean.getExpireDate());
@@ -423,59 +410,54 @@ public class RoleInfoService {
 	 * @return
 	 * @throws CommonException
 	 */
-	public List queryRoleInfo(String roleId, int pageIndex,
-			int pageSize) throws CommonException {
+	public List queryRoleInfo(String roleId, int pageIndex, int pageSize) throws CommonException {
 
 		HQLDAO dao = BaseDAOUtils.getHQLDAO();
 		Integer roleid = Integer.parseInt(roleId);
-		RoleInfo roleInfo = (RoleInfo) dao.getHibernateTemplate().get(
-				RoleInfo.class, roleid);
-		
-		StringBuffer tlrRoleRel = new StringBuffer(
-				"select tlrRole from TlrRoleRel tlrRole where tlrRole.roleId = '" + roleid+"'");
+		RoleInfo roleInfo = (RoleInfo) dao.getHibernateTemplate().get(RoleInfo.class, roleid);
 
-		
+		StringBuffer tlrRoleRel = new StringBuffer(
+				"select tlrRole from TlrRoleRel tlrRole where tlrRole.roleId = '" + roleid + "'");
+
 		List<TlrRoleRel> listRole = dao.queryByQL2List(tlrRoleRel.toString());
 		List<TlrInfo> listInfo = null;
 		CustAdminOperatorBean outCust = null;
 		List<CustAdminOperatorBean> resultList = new ArrayList<CustAdminOperatorBean>();
 		PageQueryResult pageQueryResult = new PageQueryResult();
-		
+
 		if (null == listRole || listRole.size() == 0) {
 			outCust = new CustAdminOperatorBean();
 			outCust.setId(roleid);
 			outCust.setRoleName(roleInfo.getRoleName());
 			resultList.add(outCust);
-		}
-		else
-		{
-			for(TlrRoleRel tlrRole : listRole)
-			{
+		} else {
+			for (TlrRoleRel tlrRole : listRole) {
 				StringBuffer sb = new StringBuffer(
-						"select tlr from TlrInfo tlr where tlr.tlrno = '" + tlrRole.getTlrno()+"'");
+						"select tlr from TlrInfo tlr where tlr.tlrno = '" + tlrRole.getTlrno() + "'");
 				sb.append(" order by tlr.tlrno ");
-				
+
 				listInfo = dao.queryByQL2List(sb.toString());
-				
-				for(TlrInfo tlrInfo : listInfo)
-				{
+
+				for (TlrInfo tlrInfo : listInfo) {
 					outCust = new CustAdminOperatorBean();
-			
+
 					outCust.setId(roleid);
 					outCust.setRoleName(roleInfo.getRoleName());
 					outCust.setTlrno(tlrInfo.getTlrno());
 					outCust.setTlrName(tlrInfo.getTlrName());
 					outCust.setStatus(tlrInfo.getStatus());
-					outCust.setLastaccesstm(tlrInfo.getLastaccesstm()==null?null:new Timestamp(tlrInfo.getLastaccesstm().getTime()));
+					outCust.setLastaccesstm(tlrInfo.getLastaccesstm() == null ? null
+							: new Timestamp(tlrInfo.getLastaccesstm().getTime()));
 					outCust.setFlag(tlrInfo.getFlag());
 					resultList.add(outCust);
 				}
-				
+
 			}
 		}
 
 		return resultList;
 	}
+
 	/**
 	 * 查询所有岗位信息
 	 *
@@ -483,8 +465,7 @@ public class RoleInfoService {
 	 */
 	public List selectAllRoleInfoService() throws CommonException {
 		RoleInfoDAO roleInfoDao = BaseDAOUtils.getRoleInfoDAO();
-		List info = roleInfoDao
-				.queryByCondition("1=1 order by po.status desc,po.id");
+		List info = roleInfoDao.queryByCondition("1=1 order by po.status desc,po.id");
 		return info;
 	}
 

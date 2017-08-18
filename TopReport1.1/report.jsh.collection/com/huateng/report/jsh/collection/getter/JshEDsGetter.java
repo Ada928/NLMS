@@ -28,21 +28,17 @@ public class JshEDsGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外汇账户内购汇基础信息查询页面查询");
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -55,9 +51,8 @@ public class JshEDsGetter extends BaseGetter {
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuilder hql = new StringBuilder(
-				" SELECT model FROM MtsJshDefgDs model WHERE 1 = 1 ");
-	
+		StringBuilder hql = new StringBuilder(" SELECT model FROM MtsJshDefgDs model WHERE 1 = 1 ");
+
 		String qstartDate = getCommQueryServletRequest().getParameter("qstartDate");
 		String qendDate = getCommQueryServletRequest().getParameter("qendDate");
 		String qActiontype = getCommQueryServletRequest().getParameter("qActiontype");
@@ -102,7 +97,7 @@ public class JshEDsGetter extends BaseGetter {
 		paramentList.add(TopReportConstants.REPORT_APP_TYPE_JSH);
 		hql.append(" AND model.currentfile= ? ");
 		paramentList.add(TopReportConstants.REPORT_FILE_TYPE_JSH_E);
-		
+
 		hql.append(" AND ( model.recStatus = ? OR  model.recStatus= ? ) ");
 		paramentList.add(TopReportConstants.REPORT_RECSTATUS_01);
 		paramentList.add(TopReportConstants.REPORT_RECSTATUS_02);
@@ -114,6 +109,6 @@ public class JshEDsGetter extends BaseGetter {
 		queryCondition.setObjArray(paramentList.toArray());
 		pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 
-	    return pageQueryResult;
+		return pageQueryResult;
 	}
 }

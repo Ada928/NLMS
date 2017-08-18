@@ -4,62 +4,44 @@ import java.math.BigDecimal;
 
 import resource.bean.report.base.BaseBopAccDs;
 
-
-
 public class BopAccDs extends BaseBopAccDs {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public BopAccDs () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public BopAccDs() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BopAccDs (java.lang.String id) {
+	public BopAccDs(java.lang.String id) {
 		super(id);
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public BopAccDs (
-		java.lang.String id,
-		java.lang.String apptype,
-		java.lang.String currentfile) {
+	public BopAccDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile) {
 
-		super (
-			id,
-			apptype,
-			currentfile);
+		super(id, apptype, currentfile);
 	}
 
-	public BopAccDs(String id, String accountno, String accountstat, String amtype,
-			String enCode, String enName, String accountType,
-			String accountCata, String currencyCode, String businessDate,
-			String fileNumber, String limitType, BigDecimal accountLimit,
-			String workDate) {
-		super(id, accountno, accountstat, amtype, enCode, enName, accountType, accountCata,
-				currencyCode, businessDate, fileNumber, limitType, accountLimit,
-				workDate);
+	public BopAccDs(String id, String accountno, String accountstat, String amtype, String enCode, String enName,
+			String accountType, String accountCata, String currencyCode, String businessDate, String fileNumber,
+			String limitType, BigDecimal accountLimit, String workDate) {
+		super(id, accountno, accountstat, amtype, enCode, enName, accountType, accountCata, currencyCode, businessDate,
+				fileNumber, limitType, accountLimit, workDate);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
-	
-	/*  <EN_CODE /> 
-	  <EN_NAME /> 
-	  <ACCOUNT_TYPE /> 
-	  <ACCOUNT_CATA /> 
-	  <CURRENCY_CODE /> 
-	  <BUSINESS_DATE /> 
-	  <FILE_NUMBER /> 
-	  <LIMIT_TYPE /> 
-	  <ACCOUNT_LIMIT /> 
-	   <DEAL_DATE /> 
-*/
+	/* [CONSTRUCTOR MARKER END] */
 
-	
+	/*
+	 * <EN_CODE /> <EN_NAME /> <ACCOUNT_TYPE /> <ACCOUNT_CATA /> <CURRENCY_CODE
+	 * /> <BUSINESS_DATE /> <FILE_NUMBER /> <LIMIT_TYPE /> <ACCOUNT_LIMIT />
+	 * <DEAL_DATE />
+	 */
+
 	private String branch_name;
 	private String branch_code;
 	private String en_code;
@@ -72,7 +54,7 @@ public class BopAccDs extends BaseBopAccDs {
 	private String limit_type;
 	private BigDecimal account_limit;
 	private String deal_date;
-	
+
 	private boolean select;
 
 	public boolean isSelect() {
@@ -163,8 +145,6 @@ public class BopAccDs extends BaseBopAccDs {
 		this.limit_type = limit_type;
 	}
 
-	
-
 	public BigDecimal getAccount_limit() {
 		return account_limit;
 	}
@@ -180,8 +160,5 @@ public class BopAccDs extends BaseBopAccDs {
 	public void setDeal_date(String deal_date) {
 		this.deal_date = deal_date;
 	}
-	
-	
-	
-	
+
 }

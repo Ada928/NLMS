@@ -3,7 +3,7 @@ package com.huateng.ebank.entity.data.mng;
 import java.util.Date;
 
 public class PasswordHis implements java.io.Serializable {
-	
+
 	private String id;
 	private String userid;
 	private String password;

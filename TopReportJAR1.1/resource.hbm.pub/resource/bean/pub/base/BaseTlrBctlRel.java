@@ -2,40 +2,36 @@ package resource.bean.pub.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the TLR_BCTL_REL table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * This is an object that contains data related to the TLR_BCTL_REL table. Do
+ * not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="TLR_BCTL_REL"
+ * @hibernate.class table="TLR_BCTL_REL"
  */
 
-public abstract class BaseTlrBctlRel  implements Serializable {
+public abstract class BaseTlrBctlRel implements Serializable {
 
 	public static String REF = "TlrBctlRel";
 	public static String PROP_TLR_NO = "tlrNo";
 	public static String PROP_ID = "id";
 	public static String PROP_BR_NO = "brcode";
 
-
 	// constructors
-	public BaseTlrBctlRel () {
+	public BaseTlrBctlRel() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseTlrBctlRel (java.lang.Integer id) {
+	public BaseTlrBctlRel(java.lang.Integer id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -46,78 +42,78 @@ public abstract class BaseTlrBctlRel  implements Serializable {
 	private java.lang.String tlrNo;
 	private java.lang.String brcode;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="sequence"
-     *  column="ID"
-     */
-	public java.lang.Integer getId () {
+	 * 
+	 * @hibernate.id generator-class="sequence" column="ID"
+	 */
+	public java.lang.Integer getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.Integer id) {
+	public void setId(java.lang.Integer id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: TLR_NO
 	 */
-	public java.lang.String getTlrNo () {
+	public java.lang.String getTlrNo() {
 		return tlrNo;
 	}
 
 	/**
 	 * Set the value related to the column: TLR_NO
-	 * @param tlrNo the TLR_NO value
+	 * 
+	 * @param tlrNo
+	 *            the TLR_NO value
 	 */
-	public void setTlrNo (java.lang.String tlrNo) {
+	public void setTlrNo(java.lang.String tlrNo) {
 		this.tlrNo = tlrNo;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BRCODE
 	 */
-	public java.lang.String getBrcode () {
+	public java.lang.String getBrcode() {
 		return brcode;
 	}
 
 	/**
 	 * Set the value related to the column: BRCODE
-	 * @param brNo the BR_NO value
+	 * 
+	 * @param brNo
+	 *            the BR_NO value
 	 */
-	public void setBrcode (java.lang.String brcode) {
+	public void setBrcode(java.lang.String brcode) {
 		this.brcode = brcode;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.pub.TlrBctlRel)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.pub.TlrBctlRel))
+			return false;
 		else {
 			resource.bean.pub.TlrBctlRel tlrBctlRel = (resource.bean.pub.TlrBctlRel) obj;
-			if (null == this.getId() || null == tlrBctlRel.getId()) return false;
-			else return (this.getId().equals(tlrBctlRel.getId()));
+			if (null == this.getId() || null == tlrBctlRel.getId())
+				return false;
+			else
+				return (this.getId().equals(tlrBctlRel.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -126,10 +122,8 @@ public abstract class BaseTlrBctlRel  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

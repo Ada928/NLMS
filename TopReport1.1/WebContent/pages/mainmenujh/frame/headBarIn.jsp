@@ -1,5 +1,4 @@
-<%@ page contentType="text/html;charset=gb2312" language="java"%><%@ taglib
-	uri="/tags/application-tags" prefix="app"%>
+<%@ page contentType="text/html;charset=gb2312" language="java"%><%@ taglib uri="/tags/application-tags" prefix="app"%>
 <%@ taglib uri="/tags/struts-html" prefix="html"%>
 <html:html>
 <style type="text/css">
@@ -13,7 +12,7 @@ body {
 	background-image: url(../images/back.jpg);
 }
 
-body,td,th {
+body, td, th {
 	color: 020714;
 }
 
@@ -34,12 +33,13 @@ body,td,th {
 	font-weight: bold;
 	color: #BDCDDC;
 }
-.noBorder{
-	BORDER-RIGHT: rgb(0,0,0)   1px   solid;
-	BORDER-TOP:   rgb(0,0,0)   1px   solid;
-	FONT-SIZE:   9pt;
-	BORDER-LEFT:   rgb(0,0,0)   1px   solid;
-	BORDER-BOTTOM:   rgb(0,0,0)   1px   solid
+
+.noBorder {
+	BORDER-RIGHT: rgb(0, 0, 0) 1px solid;
+	BORDER-TOP: rgb(0, 0, 0) 1px solid;
+	FONT-SIZE: 9pt;
+	BORDER-LEFT: rgb(0, 0, 0) 1px solid;
+	BORDER-BOTTOM: rgb(0, 0, 0) 1px solid
 }
 -->
 </style>
@@ -59,12 +59,10 @@ body,td,th {
 -->
 </style>
 </HEAD>
-<BODY BGCOLOR=#FFFFFF LEFTMARGIN=0 TOPMARGIN=0 MARGINWIDTH=0
-	MARGINHEIGHT=0>
-<table width="101%" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td bgcolor="#5D7DDA">
-		<script language="javascript">
+<BODY BGCOLOR=#FFFFFF LEFTMARGIN=0 TOPMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0>
+	<table width="101%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td bgcolor="#5D7DDA"><script language="javascript">
 				/*
 				if(window.screen.width==800)
 							document.writeln("<img src='../images/topbanner_800.gif'  >");
@@ -88,83 +86,58 @@ body,td,th {
 			function printPage(){
 			    printASExcelFrame(parent.window.frames[3].document);
 			}
-		</script>
-		</td>
-	</tr>
-</table>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-	<tr>
-		<td width="15%"><img src="../images/log.jpg" width="222"
-			height="61" /></td>
-		<td width="85%"><img src="../images/tile.jpg" width="557"
-			height="61" /></td>
-	</tr>
-	<tr>
-		<td colspan="2">
-		<TABLE width="100%" border=0 cellPadding=0 cellSpacing=0>
-			<TBODY>
-				<TR>
-					<TD width="15%" align=center valign="middle">
-					<!--
+		</script></td>
+		</tr>
+	</table>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="15%"><img src="../images/log.jpg" width="222" height="61" /></td>
+			<td width="85%"><img src="../images/tile.jpg" width="557" height="61" /></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<TABLE width="100%" border=0 cellPadding=0 cellSpacing=0>
+					<TBODY>
+						<TR>
+							<TD width="15%" align=center valign="middle">
+								<!--
 					<span class="style1"><img src="../images/spacer.gif"
 						width="90" height="1"> <br>
 					</span>
 					<a href="/logout.do" target="_top" class="whitelink">退 出</a>
-					-->
-					<!--
+					--> <!--
 					<a  href="#" onclick="javascript:logoutconfrim();" target="_self"
 						class="whitelink">退出系统</a>
-					-->
-					<input type="button"
-							name="ibtn_Exit"
-							id="ibtn_Exit"
-							onClick="javascript:return logoutconfrim();"
-							src=""
-							value="退出"
-							tip="退出"
-							class="noBorder"
+					--> <input type="button" name="ibtn_Exit" id="ibtn_Exit" onClick="javascript:return logoutconfrim();" src=""
+									value="退出" tip="退出" class="noBorder" alt="退出" border="0" style="height:16px;width:46px;" />
 
-							alt="退出" border="0"
-						style="height:16px;width:46px;" />
-
-					</TD>
-					<TD>
-					<TABLE cellSpacing=0 cellPadding=0 border=0>
-						<TBODY>
-							<TR>
-								<TD align=center></TD>
-								<app:authorize menulevel="0" menuid="9910100">
-									<TD class=tilemenu><A href="left1.jsp"
-										target="left">客户管理</A></TD>
-									<TD><IMG height=23 src="../images/ic01.jpg" width=6></TD>
-								</app:authorize>
-							</TR>
-						</TBODY>
-					</TABLE>
-					</TD>
-					<TD width="15%" align=center valign="middle">
-					<input type="button"
-							name="ibtn_Exit"
-							id="ibtn_Exit"
-							onClick="printPage()"
-							src=""
-							value="打印"
-							tip="打印"
-							class="noBorder"
-							alt="退出" border="0"
-						style="height:16px;width:46px;" />
-
-					</TD>
-				</TR>
-			</TBODY>
-		</TABLE>
-		</td>
-	</tr>
-</table>
-<div id="onlineBatchQueryDiv"
-	style="display: none; position: absolute; left: 900px; top: 0px; height: 15px; width: 130px; border: 0px dashed #9fd6ff; font-size: 12px; background-color: white; font-family: Verdana, Arial, Helvetica, sans-serif"
-	align="right"><br />
-<br />
-</div>
+							</TD>
+							<TD>
+								<TABLE cellSpacing=0 cellPadding=0 border=0>
+									<TBODY>
+										<TR>
+											<TD align=center></TD>
+											<app:authorize menulevel="0" menuid="9910100">
+												<TD class=tilemenu><A href="left1.jsp" target="left">客户管理</A></TD>
+												<TD><IMG height=23 src="../images/ic01.jpg" width=6></TD>
+											</app:authorize>
+										</TR>
+									</TBODY>
+								</TABLE>
+							</TD>
+							<TD width="15%" align=center valign="middle"><input type="button" name="ibtn_Exit" id="ibtn_Exit"
+									onClick="printPage()" src="" value="打印" tip="打印" class="noBorder" alt="退出" border="0"
+									style="height:16px;width:46px;" /></TD>
+						</TR>
+					</TBODY>
+				</TABLE>
+			</td>
+		</tr>
+	</table>
+	<div id="onlineBatchQueryDiv"
+		style="display: none; position: absolute; left: 900px; top: 0px; height: 15px; width: 130px; border: 0px dashed #9fd6ff; font-size: 12px; background-color: white; font-family: Verdana, Arial, Helvetica, sans-serif"
+		align="right">
+		<br /> <br />
+	</div>
 </BODY>
 </html:html>

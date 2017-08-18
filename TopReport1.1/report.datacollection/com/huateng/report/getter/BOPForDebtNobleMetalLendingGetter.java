@@ -1,7 +1,5 @@
 package com.huateng.report.getter;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,11 +24,11 @@ import com.huateng.report.constants.TopReportConstants;
 /**
  *
  * 外债信息表Getter
+ * 
  * @author wenhao.chen
- * @version 1.0
- * 2012-8-30
+ * @version 1.0 2012-8-30
  *
- * */
+ */
 @SuppressWarnings("unchecked")
 public class BOPForDebtNobleMetalLendingGetter extends BaseGetter {
 
@@ -39,8 +37,7 @@ public class BOPForDebtNobleMetalLendingGetter extends BaseGetter {
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外债信息贵金属拆借签约信息查询");
 			PageQueryResult queryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -50,8 +47,7 @@ public class BOPForDebtNobleMetalLendingGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

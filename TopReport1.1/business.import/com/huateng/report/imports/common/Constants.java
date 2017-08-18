@@ -24,9 +24,9 @@ public interface Constants {
 
 	String MOD_FLG_FINISH = "1";
 	String MOD_FLG_IMPORT = "2";
-	
+
 	String PROGRESS = "IMP_PROGRESS";
-	
+
 	String STR_SQL = "strSql";
 
 }

@@ -9,8 +9,7 @@ import resource.bean.pub.base.AbstractDepartmentInfo;
  *
  * @author MyEclipse Persistence Tools
  */
-public class DepartmentInfo extends AbstractDepartmentInfo implements
-		java.io.Serializable {
+public class DepartmentInfo extends AbstractDepartmentInfo implements java.io.Serializable {
 
 	// Constructors
 
@@ -24,11 +23,9 @@ public class DepartmentInfo extends AbstractDepartmentInfo implements
 	}
 
 	/** full constructor */
-	public DepartmentInfo(long departmentCode, String departmentName,
-			String brcode, String status, String lastUpdTlr, Date lastUpdDate,
-			String BZ, String misc, String misc2, String misc3, String misc4) {
-		super(departmentCode, departmentName, brcode, status, lastUpdTlr, lastUpdDate,
-				BZ, misc, misc2, misc3, misc4);
+	public DepartmentInfo(long departmentCode, String departmentName, String brcode, String status, String lastUpdTlr,
+			Date lastUpdDate, String BZ, String misc, String misc2, String misc3, String misc4) {
+		super(departmentCode, departmentName, brcode, status, lastUpdTlr, lastUpdDate, BZ, misc, misc2, misc3, misc4);
 	}
 
 }

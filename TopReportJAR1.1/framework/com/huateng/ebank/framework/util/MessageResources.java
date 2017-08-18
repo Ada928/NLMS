@@ -18,104 +18,104 @@ import java.util.Properties;
  * @author <a href="mailto:liu_wen@huateng.com">Liu Wen </a>
  * @version $Revision: 1.1 $
  * 
- * Message resource management.
+ *          Message resource management.
  */
 public class MessageResources {
-    /**
-     * singleton
-     */
-    private static MessageResources single = null;
+	/**
+	 * singleton
+	 */
+	private static MessageResources single = null;
 
-    private Properties properties = null;
+	private Properties properties = null;
 
-    protected HashMap formats = new HashMap();
+	protected HashMap formats = new HashMap();
 
-    public void init(String resourcePath) {
-        InputStream is = this.getClass().getClassLoader().getResourceAsStream(
-                resourcePath);
-        if (null == is) {
-            throw new RuntimeException("找不到资源文件:" + resourcePath);
-        }
-        try {
-            properties = new Properties();
-            properties.load(is);
-        } catch (IOException ioe) {
-            throw new RuntimeException("不能加载资源文件:" + resourcePath, ioe);
-        } finally {
-            try {
-                is.close();
-            } catch (Exception e) {
-            }
-            ;
-        }
-    }
+	public void init(String resourcePath) {
+		InputStream is = this.getClass().getClassLoader().getResourceAsStream(resourcePath);
+		if (null == is) {
+			throw new RuntimeException("找不到资源文件:" + resourcePath);
+		}
+		try {
+			properties = new Properties();
+			properties.load(is);
+		} catch (IOException ioe) {
+			throw new RuntimeException("不能加载资源文件:" + resourcePath, ioe);
+		} finally {
+			try {
+				is.close();
+			} catch (Exception e) {
+			}
+			;
+		}
+	}
 
-    public synchronized static MessageResources getInstance() {
-        if ( null == single ){
-            single = new MessageResources();
-        }
-        return single;
-    }
+	public synchronized static MessageResources getInstance() {
+		if (null == single) {
+			single = new MessageResources();
+		}
+		return single;
+	}
 
-    public String getMessage(String key) {
-        String message = (String) properties.get(key);        
-        return message;
-    }
+	public String getMessage(String key) {
+		String message = (String) properties.get(key);
+		return message;
+	}
 
-    public String getMessage(String key, Object[] args) {
-        if (null == args || 0 == args.length) {
-            return getMessage(key);
-        }
+	public String getMessage(String key, Object[] args) {
+		if (null == args || 0 == args.length) {
+			return getMessage(key);
+		}
 
-        MessageFormat format = null;
-        String formatKey = key;
+		MessageFormat format = null;
+		String formatKey = key;
 
-        synchronized (formats) {
-            format = (MessageFormat) formats.get(formatKey);
-            if (format == null) {
-                String formatString = getMessage(key);
+		synchronized (formats) {
+			format = (MessageFormat) formats.get(formatKey);
+			if (format == null) {
+				String formatString = getMessage(key);
 
-                if (formatString == null) {
-                    return null;
-                }
-                format = new MessageFormat(escape(formatString));
-                formats.put(formatKey, format);
-            }
-        }
-        String result = null;
-        synchronized (format) {
-            return format.format(args);
-        }
-    }
-    
-//  ------------------------------------------------------ Protected Methods
+				if (formatString == null) {
+					return null;
+				}
+				format = new MessageFormat(escape(formatString));
+				formats.put(formatKey, format);
+			}
+		}
+		String result = null;
+		synchronized (format) {
+			return format.format(args);
+		}
+	}
 
-    /**
-     * Escape any single quote characters that are included in the specified
-     * message string.
-     *
-     * @param string The string to be escaped
-     */
-    protected String escape(String string) {
+	// ------------------------------------------------------ Protected Methods
 
-        if ((string == null) || (string.indexOf('\'') < 0)) {
-            return string;
-        }
+	/**
+	 * Escape any single quote characters that are included in the specified
+	 * message string.
+	 *
+	 * @param string
+	 *            The string to be escaped
+	 */
+	protected String escape(String string) {
 
-        int n = string.length();
-        StringBuffer sb = new StringBuffer(n);
+		if ((string == null) || (string.indexOf('\'') < 0)) {
+			return string;
+		}
 
-        for (int i = 0; i < n; i++) {
-            char ch = string.charAt(i);
+		int n = string.length();
+		StringBuffer sb = new StringBuffer(n);
 
-            if (ch == '\'') {
-                sb.append('\'');
-            }
+		for (int i = 0; i < n; i++) {
+			char ch = string.charAt(i);
 
-            sb.append(ch);
-        }
+			if (ch == '\'') {
+				sb.append('\'');
+			}
 
-        return sb.toString();
+			sb.append(ch);
+		}
 
-    }
+		return sb.toString();
+
+	}
 }

@@ -31,21 +31,17 @@ public class BOPForDebtOtherDebtsAuditGetter extends BaseGetter {
 
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外债-其他外债审核-签约信息查询");
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
-			result.getPage().setTotalPage(
-					queryResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -59,7 +55,7 @@ public class BOPForDebtOtherDebtsAuditGetter extends BaseGetter {
 		String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
 		String filler2 = getCommQueryServletRequest().getParameter("filler2");
 
-		List<Object>paramentList = new ArrayList<Object>();
+		List<Object> paramentList = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer(" SELECT bds FROM BopCfaExdebtDs bds WHERE 1 = 1 ");
 		if (StringUtils.isNotBlank(startdate)) {
 			hql.append(" AND bds.workDate >= ? ");
@@ -106,9 +102,8 @@ public class BOPForDebtOtherDebtsAuditGetter extends BaseGetter {
 
 		hql.append(" ORDER BY bds.lstUpdTm DESC,bds.workDate, bds.actiontype, bds.approveStatus DESC ");
 
-
 		int pageSize = getResult().getPage().getEveryPage();
-		//页码
+		// 页码
 		int pageIndex = getResult().getPage().getCurrentPage();
 
 		PageQueryCondition queryCondition = new PageQueryCondition();

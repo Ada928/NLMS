@@ -10,7 +10,7 @@ package com.huateng.report.imports.model;
 public class TFieldSetInfo {
 
 	public String guid;
-	public String FieldName; 
+	public String FieldName;
 	public int FieldLength;
 	public String expression;
 	public String dataType;

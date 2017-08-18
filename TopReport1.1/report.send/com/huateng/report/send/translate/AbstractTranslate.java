@@ -110,5 +110,5 @@ public abstract class AbstractTranslate implements ITranslate {
 	protected void setLocked(String dir, boolean locked) {
 		lockMap.put(dir, locked);
 	}
-	
+
 }

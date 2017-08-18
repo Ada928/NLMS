@@ -26,13 +26,12 @@ public class BranchManageQueryGetter extends BaseGetter {
 
 	public Result call() throws AppException {
 		try {
-			
+
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "机构管理查询");
-			
+
 			/** 获取查询条件 */
 			Map param = this.getCommQueryServletRequest().getParameterMap();
 
-			
 			/** 获取everyPage：每页包含的记录数 */
 			int everypage = Integer.parseInt(param.get("everyPage").toString());
 
@@ -40,29 +39,30 @@ public class BranchManageQueryGetter extends BaseGetter {
 			int nextpage = Integer.parseInt(param.get("nextPage").toString());
 
 			/** 获取所有查询结果 */
-//			String brcode = GlobalInfo.getCurrentInstance().getBrcode();
+			// String brcode = GlobalInfo.getCurrentInstance().getBrcode();
 
-			//mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 begin
-			//List list = BctlService.getInstance().getAllEnableBctl();//.getAllDownBrcodeList(brcode);
+			// mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 begin
+			// List list =
+			// BctlService.getInstance().getAllEnableBctl();//.getAllDownBrcodeList(brcode);
 			String brno = (String) param.get("brhNo");
 			String brname = (String) param.get("brhName");
-			 String qst = getCommQueryServletRequest().getParameter("st");
+			String qst = getCommQueryServletRequest().getParameter("st");
 			String hql = "po.del='F'";
-			 
+
 			if (!DataFormat.isEmpty(brno)) {
 				hql = "brno like '%" + brno + "%' and " + hql;
 			}
 			if (!DataFormat.isEmpty(brname)) {
 				hql = "brname like '%" + brname + "%' and " + hql;
 			}
-			if(qst!=null && qst.length()>0){
-				   hql+=(" and po.st ='"+qst+"'");
-			   }else{
-				   hql+=(" and po.st<>'"+ReportEnum.REPORT_ST1.N.value+"'");
-			   }
-			hql +=("order by po.brclass,po.brcode");
+			if (qst != null && qst.length() > 0) {
+				hql += (" and po.st ='" + qst + "'");
+			} else {
+				hql += (" and po.st<>'" + ReportEnum.REPORT_ST1.N.value + "'");
+			}
+			hql += ("order by po.brclass,po.brcode");
 			List list = DAOUtils.getBctlDAO().queryByCondition(hql);
-			//mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 end
+			// mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 end
 			int maxIndex = nextpage * everypage;
 
 			/** 对最后一页的处理 */
@@ -70,8 +70,7 @@ public class BranchManageQueryGetter extends BaseGetter {
 				maxIndex = list.size();
 			}
 			List resultList = list.subList((nextpage - 1) * everypage, maxIndex);
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), resultList, getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), resultList, getResult());
 
 			result.setContent(resultList);
 
@@ -82,8 +81,7 @@ public class BranchManageQueryGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
@@ -95,7 +93,7 @@ public class BranchManageQueryGetter extends BaseGetter {
 
 	protected PageQueryResult getData() throws Exception {
 		PageQueryResult pageQueryResult = new PageQueryResult();
-		
+
 		String brcode = GlobalInfo.getCurrentInstance().getBrcode();
 
 		List list = BctlService.getInstance().getAllDownBrcodeList(brcode);

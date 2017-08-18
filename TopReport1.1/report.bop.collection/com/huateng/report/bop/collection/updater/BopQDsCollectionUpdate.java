@@ -22,16 +22,15 @@ import com.huateng.report.bop.collection.operation.BopEqDsOperation;
  * @author Zhusujian
  *
  */
-public class BopQDsCollectionUpdate extends BaseUpdate  {
-	
-	private static final String DATASET_ID="BopQDsCollectionInfo";
-	private static final String RECORD_DEL="del";
-	private static final String RECORD_ADD="add";
-	private static final String RECORD_MOD="mod";
-	
+public class BopQDsCollectionUpdate extends BaseUpdate {
+
+	private static final String DATASET_ID = "BopQDsCollectionInfo";
+	private static final String RECORD_DEL = "del";
+	private static final String RECORD_ADD = "add";
+	private static final String RECORD_MOD = "mod";
+
 	@SuppressWarnings("rawtypes")
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
 		// 返回对象
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();

@@ -1,6 +1,5 @@
 package com.huateng.report.service;
 
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,14 +30,14 @@ import com.huateng.report.utils.ReportUtils;
 import com.huateng.report.vaild.util.ReportDataVaildUtil;
 
 /**
- * BOP_CFA_EXDEBT_DS :外债信息表   增加、删除、查询、更新
+ * BOP_CFA_EXDEBT_DS :外债信息表 增加、删除、查询、更新
+ * 
  * @author cwenao
- * @version 1.0
- * 2012-8-28
- * */
-public class BOPForDebtBilLoanService  {
+ * @version 1.0 2012-8-28
+ */
+public class BOPForDebtBilLoanService {
 
-	private static final String DATASET_ID="com.huateng.report.service.BOPForDebtBilLoanService";
+	private static final String DATASET_ID = "com.huateng.report.service.BOPForDebtBilLoanService";
 
 	public synchronized static BOPForDebtBilLoanService getInstance() {
 		return (BOPForDebtBilLoanService) ApplicationContextUtils.getBean(DATASET_ID);
@@ -56,7 +55,7 @@ public class BOPForDebtBilLoanService  {
 	public BopCfaExdebtDs load(String id) throws CommonException {
 
 		ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
-		return (BopCfaExdebtDs)rootDao.query(BopCfaExdebtDs.class, id);
+		return (BopCfaExdebtDs) rootDao.query(BopCfaExdebtDs.class, id);
 	}
 
 	public void delete(BopCfaExdebtDs bpExdebt) throws CommonException {
@@ -67,7 +66,7 @@ public class BOPForDebtBilLoanService  {
 		if (null == bpExdebtTemp) {
 			ExceptionUtil.throwCommonException("当前记录不存在！");
 		} else {
-		    rootDao.saveOrUpdate(bpExdebt);
+			rootDao.saveOrUpdate(bpExdebt);
 		}
 	}
 
@@ -77,18 +76,19 @@ public class BOPForDebtBilLoanService  {
 		rootDao.save(bpExdebt);
 	}
 
-	public void update(BopCfaExdebtDs bpExdebt) throws CommonException  {
+	public void update(BopCfaExdebtDs bpExdebt) throws CommonException {
 		ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
 		ReportDataVaildUtil.executeVaild(bpExdebt.getApptype(), bpExdebt.getCurrentfile(), bpExdebt);
 		rootDao.saveOrUpdate(bpExdebt);
 	}
+
 	/**
 	 *
 	 * 查询上报文件生成界面
 	 *
-	 * */
-	public PageQueryResult queryGenRecordAD(int pageIndex, int pageSize, String qactiontype,
-			String brNo,String qFiller2,String apptype,String currentfile,String changFileType) throws CommonException {
+	 */
+	public PageQueryResult queryGenRecordAD(int pageIndex, int pageSize, String qactiontype, String brNo,
+			String qFiller2, String apptype, String currentfile, String changFileType) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<Object> objs = new ArrayList<Object>();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
@@ -130,34 +130,37 @@ public class BOPForDebtBilLoanService  {
 		return rootdao.pageQueryByQL(queryCondition);
 
 	}
+
 	/**
-	 * 9-20
-	 * 带有起止日期的补录查询界面
+	 * 9-20 带有起止日期的补录查询界面
+	 * 
 	 * @throws InvocationTargetException
 	 * @throws IllegalAccessException
 	 *
-	 * */
+	 */
 	@SuppressWarnings("rawtypes")
-	public PageQueryResult queryRecordADMod(int pageIndex, int pageSize, String qworkDateBegin, String qworkDateOver,String qactiontype,
-			String brNo,String qFiller2,String qapproveStatus, String qrecStatus,String qrepStatus,String apptype,String currentfile,String changFileType) throws CommonException, IllegalAccessException, InvocationTargetException {
+	public PageQueryResult queryRecordADMod(int pageIndex, int pageSize, String qworkDateBegin, String qworkDateOver,
+			String qactiontype, String brNo, String qFiller2, String qapproveStatus, String qrecStatus,
+			String qrepStatus, String apptype, String currentfile, String changFileType)
+					throws CommonException, IllegalAccessException, InvocationTargetException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<Object> objs = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer(" SELECT model FROM BopCfaExdebtDs model WHERE ");
 		hql.append(" model.apptype = ? AND model.currentfile = ? ");
 		objs.add(apptype);
 		objs.add(currentfile);
-//		GlobalInfo gi = GlobalInfo.getCurrentInstance();
+		// GlobalInfo gi = GlobalInfo.getCurrentInstance();
 
 		if (!DataFormat.isEmpty(changFileType)) {
 			hql.append(" AND model.changeFileType = ? ");
 			objs.add(changFileType);
 		}
 
-		if(!DataFormat.isEmpty(qworkDateBegin)){
+		if (!DataFormat.isEmpty(qworkDateBegin)) {
 			hql.append(" AND model.workDate >= ? ");
 			objs.add(qworkDateBegin);
 		}
-		if(!DataFormat.isEmpty(qworkDateOver)){
+		if (!DataFormat.isEmpty(qworkDateOver)) {
 			hql.append(" AND model.workDate <= ? ");
 			objs.add(qworkDateOver);
 		}
@@ -198,9 +201,9 @@ public class BOPForDebtBilLoanService  {
 		queryResult = rootdao.pageQueryByQL(queryCondition);
 		List<BopForDebtFeiOrgSave> debtFeiOrgSaves = new ArrayList<BopForDebtFeiOrgSave>();
 		List list = queryResult.getQueryResult();
-		if(list != null){
+		if (list != null) {
 			Iterator it = list.iterator();
-			while(it.hasNext()){
+			while (it.hasNext()) {
 				Object o = it.next();
 				Object[] os = (Object[]) o;
 				BopCfaExdebtDs cfaExdebtDs = (BopCfaExdebtDs) os[0];
@@ -210,77 +213,70 @@ public class BOPForDebtBilLoanService  {
 				BopCfaCreditorDs cfaCreditorDs = (BopCfaCreditorDs) rootdao.queryByQL2List(creHql).get(0);
 				debtFeiOrgSave.setRecId(cfaCreditorDs.getRecId());
 				debtFeiOrgSave.setCreditorca(cfaCreditorDs.getCreditorca());
-				debtFeiOrgSave.setCreditorcode(cfaCreditorDs.getCreditorcode()); //债权人代码
-				debtFeiOrgSave.setCreditorname(cfaCreditorDs.getCreditorname());//债权人中文名称
-				debtFeiOrgSave.setCreditornamen(cfaCreditorDs.getCreditornamen());//债权人英文名称
-				debtFeiOrgSave.setCreditortype(cfaCreditorDs.getCreditortype());//债权人类型代码
-				debtFeiOrgSave.setCrehqcode(cfaCreditorDs.getCrehqcode());//债权人总部所在国家（地区）代码
-				debtFeiOrgSave.setOpercode(cfaCreditorDs.getOpercode());//债权人经营地所在国家（地区）代码
+				debtFeiOrgSave.setCreditorcode(cfaCreditorDs.getCreditorcode()); // 债权人代码
+				debtFeiOrgSave.setCreditorname(cfaCreditorDs.getCreditorname());// 债权人中文名称
+				debtFeiOrgSave.setCreditornamen(cfaCreditorDs.getCreditornamen());// 债权人英文名称
+				debtFeiOrgSave.setCreditortype(cfaCreditorDs.getCreditortype());// 债权人类型代码
+				debtFeiOrgSave.setCrehqcode(cfaCreditorDs.getCrehqcode());// 债权人总部所在国家（地区）代码
+				debtFeiOrgSave.setOpercode(cfaCreditorDs.getOpercode());// 债权人经营地所在国家（地区）代码
 				debtFeiOrgSaves.add(debtFeiOrgSave);
 			}
 		}
 		queryResult.setQueryResult(debtFeiOrgSaves);
 		return queryResult;
 	}
+
 	/**
 	 *
 	 * 补录查询界面
 	 *
-	 * */
+	 */
 	@SuppressWarnings("rawtypes")
-	public PageQueryResult queryRecordAD(int pageIndex, int pageSize, String qWorkDateStart,String qWorkDateEnd, String qactiontype,
-			String brNo,String qFiller2,String qapproveStatus, String qrecStatus,String qrepStatus,String apptype,String currentfile,String changFileType) throws CommonException {
+	public PageQueryResult queryRecordAD(int pageIndex, int pageSize, String qWorkDateStart, String qWorkDateEnd,
+			String qactiontype, String brNo, String qFiller2, String qapproveStatus, String qrecStatus,
+			String qrepStatus, String apptype, String currentfile, String changFileType) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<Object> objs = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer(" SELECT model FROM BopCfaExdebtDs model WHERE ");
 		hql.append(" model.apptype = ? AND model.currentfile = ? ");
 		objs.add(apptype);
 		objs.add(currentfile);
-//		GlobalInfo gi = GlobalInfo.getCurrentInstance();
+		// GlobalInfo gi = GlobalInfo.getCurrentInstance();
 
-		if (!DataFormat.isEmpty(changFileType))
-		{
+		if (!DataFormat.isEmpty(changFileType)) {
 			hql.append(" AND model.changeFileType = ? ");
 			objs.add(changFileType);
 		}
 
-		if(StringUtils.isNotBlank(qWorkDateStart))
-		{
-			hql.append(" AND model.workDate >= '"+qWorkDateStart+"' ");
+		if (StringUtils.isNotBlank(qWorkDateStart)) {
+			hql.append(" AND model.workDate >= '" + qWorkDateStart + "' ");
 		}
-		if(StringUtils.isNotBlank(qWorkDateEnd))
-		{
-			hql.append(" AND model.workDate <= '"+qWorkDateEnd+"' ");
+		if (StringUtils.isNotBlank(qWorkDateEnd)) {
+			hql.append(" AND model.workDate <= '" + qWorkDateEnd + "' ");
 		}
-		if (!DataFormat.isEmpty(qactiontype))
-		{
+		if (!DataFormat.isEmpty(qactiontype)) {
 			hql.append(" AND model.actiontype = ? ");
 			objs.add(qactiontype);
 		}
-		if (!DataFormat.isEmpty(qrecStatus))
-		{
+		if (!DataFormat.isEmpty(qrecStatus)) {
 			hql.append(" AND model.recStatus = ? ");
 			objs.add(qrecStatus);
 		}
-		if (!DataFormat.isEmpty(qapproveStatus))
-		{
+		if (!DataFormat.isEmpty(qapproveStatus)) {
 			hql.append(" AND model.approveStatus = ? ");
 			objs.add(qapproveStatus);
 		}
-		if (!DataFormat.isEmpty(qrepStatus))
-		{
+		if (!DataFormat.isEmpty(qrepStatus)) {
 			hql.append(" AND model.repStatus = ? ");
 			objs.add(qrepStatus);
 		}
-		if (!DataFormat.isEmpty(brNo))
-		{
+		if (!DataFormat.isEmpty(brNo)) {
 			hql.append(" AND model.brNo = ? ");
 			objs.add(brNo);
 		}
-		if (!DataFormat.isEmpty(qFiller2))
-		{
+		if (!DataFormat.isEmpty(qFiller2)) {
 			hql.append(" AND model.filler2 LIKE ? ");
-			objs.add("%"+qFiller2+"%");
+			objs.add("%" + qFiller2 + "%");
 		}
 		hql.append(" ORDER BY model.lstUpdTm DESC");
 
@@ -293,23 +289,24 @@ public class BOPForDebtBilLoanService  {
 
 		PageQueryResult pageQueryResult = rootdao.pageQueryByQL(queryCondition);
 
-		//把excel的项目信息放到projectname字段里
+		// 把excel的项目信息放到projectname字段里
 		List list = pageQueryResult.getQueryResult();
-		for(Object o : list) {
-			Object[] objss = (Object[])o;
+		for (Object o : list) {
+			Object[] objss = (Object[]) o;
 			BopCfaExdebtDs ds = (BopCfaExdebtDs) objss[0];
 			ds.setProjectname(ReportCommonService.getInstance().getProjectNamesToStr(ds.getId()));
 		}
-		//excel债权人信息
-		for(Object o : list) {
-			Object[] objss = (Object[])o;
+		// excel债权人信息
+		for (Object o : list) {
+			Object[] objss = (Object[]) o;
 			BopCfaExdebtDs ds = (BopCfaExdebtDs) objss[0];
-			//creditorcode 债权人代码  creditorname 债权人中文名称 creditornamen 债权人英文名称
-			//creditortype 债权人类型代码 crehqcode 债权人总部所在国家（地区）代码  opercode  债权人经营地所在国家（地区）代码
-			String hqlCreditor = " FROM BopCfaCreditorDs ds WHERE ds.recId = '"+ds.getId()+"' ";
+			// creditorcode 债权人代码 creditorname 债权人中文名称 creditornamen 债权人英文名称
+			// creditortype 债权人类型代码 crehqcode 债权人总部所在国家（地区）代码 opercode
+			// 债权人经营地所在国家（地区）代码
+			String hqlCreditor = " FROM BopCfaCreditorDs ds WHERE ds.recId = '" + ds.getId() + "' ";
 			List creditors = rootdao.queryByQL2List(hqlCreditor);
-			for(Object o2 : creditors) {
-				BopCfaCreditorDs creditor = (BopCfaCreditorDs)o2;
+			for (Object o2 : creditors) {
+				BopCfaCreditorDs creditor = (BopCfaCreditorDs) o2;
 				ds.setCreditorcode(creditor.getCreditorcode());
 				ds.setCreditorname(creditor.getCreditorname());
 				ds.setCreditornamen(creditor.getCreditornamen());
@@ -325,9 +322,10 @@ public class BOPForDebtBilLoanService  {
 	 *
 	 * 补录查询界面
 	 *
-	 * */
-	public PageQueryResult queryRecordAD(int pageIndex, int pageSize, String qWorkDate, String qactiontype,
-			String brNo,String qFiller2,String qapproveStatus, String qrecStatus,String qrepStatus,String apptype,String currentfile,String changFileType) throws CommonException {
+	 */
+	public PageQueryResult queryRecordAD(int pageIndex, int pageSize, String qWorkDate, String qactiontype, String brNo,
+			String qFiller2, String qapproveStatus, String qrecStatus, String qrepStatus, String apptype,
+			String currentfile, String changFileType) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<Object> objs = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer("select model from BopCfaExdebtDs model where ");
@@ -340,11 +338,10 @@ public class BOPForDebtBilLoanService  {
 			objs.add(changFileType);
 		}
 
-		if(StringUtils.isNotBlank(qWorkDate))
-		  {
-			 hql.append(" and model.workDate ='"+qWorkDate+"'");
+		if (StringUtils.isNotBlank(qWorkDate)) {
+			hql.append(" and model.workDate ='" + qWorkDate + "'");
 
-		  }
+		}
 		if (!DataFormat.isEmpty(qactiontype)) {
 			hql.append(" and model.actiontype=?");
 			objs.add(qactiontype);
@@ -372,7 +369,6 @@ public class BOPForDebtBilLoanService  {
 		}
 		hql.append(" order by model.lstUpdTm desc");
 
-
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
 		queryCondition.setPageIndex(pageIndex);
@@ -383,8 +379,10 @@ public class BOPForDebtBilLoanService  {
 		return rootdao.pageQueryByQL(queryCondition);
 
 	}
+
 	/**
 	 * 审批双边贷款签约信息相关信息
+	 * 
 	 * @param approveStatusChoose
 	 * @param approveResultChoose
 	 * @param bopAccDsList
@@ -392,11 +390,12 @@ public class BOPForDebtBilLoanService  {
 	 * @throws CommonException
 	 */
 	@SuppressWarnings("unchecked")
-	public void auditBopCfaExdebtDs(String approveStatusChoose, String approveResultChoose, List<BopCfaExdebtDs> bopCfaExdebtDsList, String opDebtAudit) throws CommonException {
+	public void auditBopCfaExdebtDs(String approveStatusChoose, String approveResultChoose,
+			List<BopCfaExdebtDs> bopCfaExdebtDsList, String opDebtAudit) throws CommonException {
 		// opAdAudit 业务逻辑没有不同 此参数待用
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		List<String> bopCfaExdebtDsIds = new ArrayList<String>();
-		for(BopCfaExdebtDs bopCfaExdebtDs : bopCfaExdebtDsList){
+		for (BopCfaExdebtDs bopCfaExdebtDs : bopCfaExdebtDsList) {
 			bopCfaExdebtDsIds.add(bopCfaExdebtDs.getId());
 		}
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
@@ -419,14 +418,19 @@ public class BOPForDebtBilLoanService  {
 			bopCfaExdebtDs.setApproveStatus(approveStatusChoose);
 			rootdao.saveOrUpdate(bopCfaExdebtDs);
 
-			if(bopCfaExdebtDs.getActiontype().equals(TopReportConstants.REPORT_ACTIONTYPE_D) && bopCfaExdebtDs.getSubSuccess().equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_YES)){
-				//数据处理记录表保存
-				commonService.saveBiDataProcessLog(bopCfaExdebtDs.getApptype(), bopCfaExdebtDs.getCurrentfile(), bopCfaExdebtDs.getId(), bopCfaExdebtDs.getExdebtcode(),
-						TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, approveStatusChooseName, bopCfaExdebtDs.getActiondesc());
+			if (bopCfaExdebtDs.getActiontype().equals(TopReportConstants.REPORT_ACTIONTYPE_D)
+					&& bopCfaExdebtDs.getSubSuccess().equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_YES)) {
+				// 数据处理记录表保存
+				commonService.saveBiDataProcessLog(bopCfaExdebtDs.getApptype(), bopCfaExdebtDs.getCurrentfile(),
+						bopCfaExdebtDs.getId(), bopCfaExdebtDs.getExdebtcode(),
+						TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, approveStatusChooseName,
+						bopCfaExdebtDs.getActiondesc());
 			} else {
-				//数据处理记录表保存
-				commonService.saveBiDataProcessLog(bopCfaExdebtDs.getApptype(), bopCfaExdebtDs.getCurrentfile(), bopCfaExdebtDs.getId(), bopCfaExdebtDs.getExdebtcode(),
-						TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, approveStatusChooseName, approveResultChoose);
+				// 数据处理记录表保存
+				commonService.saveBiDataProcessLog(bopCfaExdebtDs.getApptype(), bopCfaExdebtDs.getCurrentfile(),
+						bopCfaExdebtDs.getId(), bopCfaExdebtDs.getExdebtcode(),
+						TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, approveStatusChooseName,
+						approveResultChoose);
 			}
 		}
 	}

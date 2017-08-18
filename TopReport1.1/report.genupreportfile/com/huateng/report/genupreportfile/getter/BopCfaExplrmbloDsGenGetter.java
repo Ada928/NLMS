@@ -24,13 +24,10 @@ public class BopCfaExplrmbloDsGenGetter extends BaseGetter {
 			PageQueryResult queryResult = getData();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外汇质押人民币贷款签约信息上报文件查询");
 			if (!queryResult.getQueryResult().isEmpty()) {
-				ResultMng.fillResultByList(getCommonQueryBean(),
-						getCommQueryServletRequest(), queryResult
-								.getQueryResult(), getResult());
+				ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+						queryResult.getQueryResult(), getResult());
 				result.setContent(queryResult.getQueryResult());
-				result.getPage().setTotalPage(
-						queryResult.getPageCount(getResult().getPage()
-								.getEveryPage()));
+				result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 				result.init();
 			} else {
 				result.setContent(Collections.emptyList());
@@ -39,11 +36,9 @@ public class BopCfaExplrmbloDsGenGetter extends BaseGetter {
 			}
 			return result;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-
 
 	/**
 	 * 根据输入的查询条件进行查询
@@ -52,7 +47,6 @@ public class BopCfaExplrmbloDsGenGetter extends BaseGetter {
 	 * @throws CommonException
 	 */
 	private PageQueryResult getData() throws CommonException {
-
 
 		// 分页大小
 		int pageSize = getResult().getPage().getEveryPage();
@@ -64,9 +58,8 @@ public class BopCfaExplrmbloDsGenGetter extends BaseGetter {
 		String filler2 = getCommQueryServletRequest().getParameter("qfiller2");
 		String brcode = getCommQueryServletRequest().getParameter("qBrNo");
 		BopCfaExplrmbloDsService service = BopCfaExplrmbloDsService.getInstance();
-		return service.pageQueryByAlreadyAudit(pageIndex, pageSize,
-				TopReportConstants.REPORT_FILE_TYPE_CFA_EA, workDate,
-				actiontype, null, null, null, filler2, brcode);
+		return service.pageQueryByAlreadyAudit(pageIndex, pageSize, TopReportConstants.REPORT_FILE_TYPE_CFA_EA,
+				workDate, actiontype, null, null, null, filler2, brcode);
 	}
 
 }

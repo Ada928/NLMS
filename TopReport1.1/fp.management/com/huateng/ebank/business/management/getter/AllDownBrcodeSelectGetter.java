@@ -17,16 +17,15 @@ import com.huateng.exception.AppException;
  */
 public class AllDownBrcodeSelectGetter extends BaseGetter {
 
-
 	public Result call() throws AppException {
 		try {
-			/* mod by kangbyron  方法实现和方法名对不上 begin*/
+			/* mod by kangbyron 方法实现和方法名对不上 begin */
 			String currentCode = GlobalInfo.getCurrentInstance().getBrcode();
-			//List list = BctlService.getInstance().getAllDownBrcodeList(currentCode);
+			// List list =
+			// BctlService.getInstance().getAllDownBrcodeList(currentCode);
 			List list = BctlService.getInstance().getAllEnableBctl();
-			/* mod by kangbyron  方法实现和方法名对不上 end*/
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list, getResult());
+			/* mod by kangbyron 方法实现和方法名对不上 end */
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);
 			result.getPage().setTotalPage(1);
 			result.init();
@@ -34,8 +33,7 @@ public class AllDownBrcodeSelectGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

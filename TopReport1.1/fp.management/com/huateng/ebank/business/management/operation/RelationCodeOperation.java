@@ -23,7 +23,7 @@ public class RelationCodeOperation extends BaseOperation {
 	public static final String UPDATE_LIST = "UPDATE_LIST";
 	public static final String DELETE_LIST = "DELETE_LIST";
 	private static final int TABLE_ID_LEN = 3;
-	
+
 	/**
 	 * Logger for this class
 	 */
@@ -44,32 +44,32 @@ public class RelationCodeOperation extends BaseOperation {
 		// 删除操作.把状态设置为无效
 		for (Iterator it = delList.iterator(); it.hasNext();) {
 			RelationCode bean = (RelationCode) it.next();
-			//oracle ： 主键位数不足时补足位数
-			String id = CommonFunction.fillString(bean.getId(),' ', TABLE_ID_LEN, true);
-			
+			// oracle ： 主键位数不足时补足位数
+			String id = CommonFunction.fillString(bean.getId(), ' ', TABLE_ID_LEN, true);
+
 			RelationCode delBean = dao.queryById(id);
-			if(delBean != null){
+			if (delBean != null) {
 				dao.delete(delBean);
-			}else{
-				logger.debug("删除失败,记录未找到!\n id=["+bean.getId()+"]");
+			} else {
+				logger.debug("删除失败,记录未找到!\n id=[" + bean.getId() + "]");
 			}
 		}
 		BaseDAOUtils.getHQLDAO().flush();
-		if(logger.isDebugEnabled()){
+		if (logger.isDebugEnabled()) {
 			logger.debug("删除完成");
 		}
 		// 修改操作.
 		for (Iterator it = updateList.iterator(); it.hasNext();) {
 			RelationCode bean = (RelationCode) it.next();
-			//oracle ： 主键位数不足时补足位数
-			String id = CommonFunction.fillString(bean.getId(),' ', TABLE_ID_LEN, true);
+			// oracle ： 主键位数不足时补足位数
+			String id = CommonFunction.fillString(bean.getId(), ' ', TABLE_ID_LEN, true);
 			bean.setId(id);
 			bean.setLastUpdDate(DateUtil.getCurrentDate());
 			bean.setLastUpdTlr(gi.getTlrno());
 			dao.update(bean);
 		}
 		BaseDAOUtils.getHQLDAO().flush();
-		if(logger.isDebugEnabled()){
+		if (logger.isDebugEnabled()) {
 			logger.debug("修改完成");
 		}
 
@@ -80,9 +80,9 @@ public class RelationCodeOperation extends BaseOperation {
 			bean.setLastUpdTlr(gi.getTlrno());
 			dao.insert(bean);
 		}
-		if(logger.isDebugEnabled()){
+		if (logger.isDebugEnabled()) {
 			logger.debug("新增完成");
 		}
 	}
-	
+
 }

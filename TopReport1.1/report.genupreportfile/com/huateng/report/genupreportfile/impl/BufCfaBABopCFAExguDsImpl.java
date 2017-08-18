@@ -17,8 +17,7 @@ import com.huateng.report.system.common.IGetSubFileList;
 
 public class BufCfaBABopCFAExguDsImpl implements IGetSubFileList {
 
-	public List getSubFileResultList(Map<String, Object> paramMap)
-			throws CommonException {
+	public List getSubFileResultList(Map<String, Object> paramMap) throws CommonException {
 		// TODO Auto-generated method stub
 
 		BopCfaExguDs bopCfaExguDs = new BopCfaExguDs();
@@ -26,9 +25,8 @@ public class BufCfaBABopCFAExguDsImpl implements IGetSubFileList {
 		String appType = (String) paramMap.get(IN_APP_TYPE);
 		String fileType = (String) paramMap.get(IN_FILE_TYPE);
 		String hql = "from BopCfaExguDs model";
-		hql += " where model.recStatus='"
-				+ TopReportConstants.REPORT_RECSTATUS_05 + "'";// 审核已确认
-		if (fileDate!=null && fileDate.trim().length()>0) {
+		hql += " where model.recStatus='" + TopReportConstants.REPORT_RECSTATUS_05 + "'";// 审核已确认
+		if (fileDate != null && fileDate.trim().length() > 0) {
 			hql += " and model.workDate='" + fileDate + "'";
 		}
 		hql += " and model.currentfile='" + fileType + "'";
@@ -37,19 +35,19 @@ public class BufCfaBABopCFAExguDsImpl implements IGetSubFileList {
 
 		List<BopCfaExguDs> ob = dao.queryByQL2List(hql);
 		for (int i = 0; i < ob.size(); i++) {
-			String torHql = "from BopExguTorDs model where model.recId = '"
-					+ ob.get(i).getId() + "'";
+			String torHql = "from BopExguTorDs model where model.recId = '" + ob.get(i).getId() + "'";
 			torHql += " and torType = '03'";
-			List<BopExguTorDs> danBaoRen = dao.queryByQL2List(torHql);//担保人查询list 与主表1对1
+			List<BopExguTorDs> danBaoRen = dao.queryByQL2List(torHql);// 担保人查询list
+																		// 与主表1对1
 			if (danBaoRen.size() > 0) {
 				ob.get(i).setGuappcode(danBaoRen.get(0).getTorCode());
 				ob.get(i).setGuappname(danBaoRen.get(0).getTorName());
 				ob.get(i).setGuappnamen(danBaoRen.get(0).getTorEnname());
 			}
-			String torBenHql = "from BopExguTorDs model where model.recId = '"
-					+ ob.get(i).getId() + "'";
+			String torBenHql = "from BopExguTorDs model where model.recId = '" + ob.get(i).getId() + "'";
 			torBenHql += " and torType = '01'";
-			List<BopExguTorDs> torBen = dao.queryByQL2List(torBenHql);//受益人list 与主表多对1
+			List<BopExguTorDs> torBen = dao.queryByQL2List(torBenHql);// 受益人list
+																		// 与主表多对1
 			List<Beneficiary> beneficiarys = new ArrayList<Beneficiary>();
 			for (int j = 0; j < torBen.size(); j++) {
 				Beneficiary beneficiary = new Beneficiary();
@@ -61,10 +59,10 @@ public class BufCfaBABopCFAExguDsImpl implements IGetSubFileList {
 				beneficiarys.add(beneficiary);
 			}
 			ob.get(i).setBeneficiarys(beneficiarys);
-			String torGuaHql = "from BopExguTorDs model where model.recId = '"
-					+ ob.get(i).getId() + "'";
+			String torGuaHql = "from BopExguTorDs model where model.recId = '" + ob.get(i).getId() + "'";
 			torGuaHql += " and torType = '02'";
-			List<BopExguTorDs> torGua = dao.queryByQL2List(torGuaHql);//被担保人list  与主表多对1
+			List<BopExguTorDs> torGua = dao.queryByQL2List(torGuaHql);// 被担保人list
+																		// 与主表多对1
 			List<Guarantor> guarantors = new ArrayList<Guarantor>();
 			for (int k = 0; k < torGua.size(); k++) {
 				Guarantor guarantor = new Guarantor();

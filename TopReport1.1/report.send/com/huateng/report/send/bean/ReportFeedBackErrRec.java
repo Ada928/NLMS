@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ReportFeedBackErrRec {
 	private String bussno;
-	/**用于读取BOP的错误反馈*/
+	/** 用于读取BOP的错误反馈 */
 	private String rptno;
 
 	private List<ReportFeedBackErrField> errFields = new ArrayList<ReportFeedBackErrField>();

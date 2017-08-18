@@ -38,22 +38,27 @@ public class ReportDataSource implements JRDataSource {
 		this.count = data.size();
 	}
 
-	/* (non-Javadoc)
-	 * @see net.sf.jasperreports.engine.JRDataSource#getFieldValue(net.sf.jasperreports.engine.JRField)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.sf.jasperreports.engine.JRDataSource#getFieldValue(net.sf.
+	 * jasperreports.engine.JRField)
 	 */
 	public Object getFieldValue(JRField field) throws JRException {
 		Map row = (Map) data.get(index);
 
 		Object o = row.get(field.getName());
-//		if (o != null && o instanceof BigDecimal) {
-//			BigDecimal d = (BigDecimal)o;
-//			o = new Double(d.doubleValue());
-//		}
+		// if (o != null && o instanceof BigDecimal) {
+		// BigDecimal d = (BigDecimal)o;
+		// o = new Double(d.doubleValue());
+		// }
 
 		return o;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see net.sf.jasperreports.engine.JRDataSource#next()
 	 */
 	public boolean next() throws JRException {

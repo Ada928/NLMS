@@ -4,8 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * ===============================================================================
- * The Huateng Software License
+ * =============================================================================
+ * == The Huateng Software License
  *
  * Copyright (c) 2008-2009 Huateng Software System Co., Ltd. All rights
  * reserved.
@@ -14,7 +14,8 @@ import java.util.regex.Pattern;
  * @Project: 银行个人贷款管理系统
  *
  * @Auther: yjw
- *          ===============================================================================
+ *          ====================================================================
+ *          ===========
  *          <p>
  * @Title: CharUtils.java类
  *         </p>
@@ -23,12 +24,13 @@ import java.util.regex.Pattern;
  *           </p>
  *           <p>
  * @Description:关于字符串处理的常用类
- *           </p>
+ * 							</p>
  */
 public class CharUtils {
 
 	/**
-	 * @description:半角转全角,保留空格,全角空格为12288，半角空格为32 其他字符半角(33-126)与全角(65281-65374)的对应关系是：均相差65248
+	 * @description:半角转全角,保留空格,全角空格为12288，半角空格为32 其他字符半角(33-126)与全角(65281-65374)
+	 *                                            的对应关系是：均相差65248
 	 * @date: 2009-9-8 下午03:58:12
 	 * @author: yjw
 	 * @param :@param
@@ -51,7 +53,8 @@ public class CharUtils {
 	}
 
 	/**
-	 * @description:半角转全角,去掉头尾和中间的空格,全角空格为12288，半角空格为32 其他字符半角(33-126)与全角(65281-65374)的对应关系是：均相差65248
+	 * @description:半角转全角,去掉头尾和中间的空格,全角空格为12288，半角空格为32 其他字符半角(33-126)与全角(65281-
+	 *                                                  65374)的对应关系是：均相差65248
 	 * @date: 2009-9-18 下午03:06:39
 	 * @author: yjw
 	 * @param :@param
@@ -79,7 +82,8 @@ public class CharUtils {
 	}
 
 	/**
-	 * @description:全角转半角,保留空格,全角空格为12288，半角空格为32 其他字符半角(33-126)与全角(65281-65374)的对应关系是：均相差65248
+	 * @description:全角转半角,保留空格,全角空格为12288，半角空格为32 其他字符半角(33-126)与全角(65281-65374)
+	 *                                            的对应关系是：均相差65248
 	 * @date: 2009-9-8 下午03:58:36
 	 * @author: yjw
 	 * @param :@param
@@ -102,7 +106,8 @@ public class CharUtils {
 	}
 
 	/**
-	 * @description:全角转半角,去掉中间和头尾的空格,全角空格为12288，半角空格为32 其他字符半角(33-126)与全角(65281-65374)的对应关系是：均相差65248
+	 * @description:全角转半角,去掉中间和头尾的空格,全角空格为12288，半角空格为32 其他字符半角(33-126)与全角(65281-
+	 *                                                  65374)的对应关系是：均相差65248
 	 * @date: 2009-9-8 下午03:59:29
 	 * @author: yjw
 	 * @param :@param
@@ -278,8 +283,25 @@ public class CharUtils {
 	}
 
 	/**
-	 * @description:根据一户通规则计算字符的长度,按照一户通(AS400)每遇到一个全角就需要额外占用两个字节的规则, 如"中国人abcd",遇到一次连续的全角字符,那么需要额外占用2个字节,则一共占用(3*2+4+2)=12个字节;
-	 *                                                                如"中国abcd人",遇到两次连续的全角字符,分别为"中国"和"人",那么需要额外占用4个字节(2+2),一共需要占用(3*2+4+4)=14个字节;
+	 * @description:根据一户通规则计算字符的长度,按照一户通(AS400)每遇到一个全角就需要额外占用两个字节的规则, 如"中国人abcd"
+	 *                                                                ,
+	 *                                                                遇到一次连续的全角字符
+	 *                                                                ,
+	 *                                                                那么需要额外占用2个字节
+	 *                                                                ,则一共占用(3*2
+	 *                                                                +4+2)=
+	 *                                                                12个字节;
+	 *                                                                如"中国abcd人"
+	 *                                                                ,
+	 *                                                                遇到两次连续的全角字符
+	 *                                                                ,
+	 *                                                                分别为"中国"和"人"
+	 *                                                                ,
+	 *                                                                那么需要额外占用4个字节
+	 *                                                                (2+2),
+	 *                                                                一共需要占用(3*2
+	 *                                                                +4+4)=
+	 *                                                                14个字节;
 	 * @date: 2009-10-21 上午10:16:05
 	 * @author: yjw
 	 * @param :@param
@@ -295,17 +317,17 @@ public class CharUtils {
 		boolean isPreCharSBC = false;// 前一个字符是否为全角
 		char[] c = input.toCharArray();
 		for (int i = 0; i < c.length; i++) {
-			if (Character.toString(c[i]).getBytes().length!=Character.toString(c[i]).length()) {//当前字符为全角字符或者中文字符
-				if(isPreCharSBC==false){//前一个字符不是全角字符，那么是新遇到连续的全角字符
-					isPreCharSBC=true;
+			if (Character.toString(c[i]).getBytes().length != Character.toString(c[i]).length()) {// 当前字符为全角字符或者中文字符
+				if (isPreCharSBC == false) {// 前一个字符不是全角字符，那么是新遇到连续的全角字符
+					isPreCharSBC = true;
 					count++;
-				}else{//前一个字符就是全角字符，说明当前全角字符和前一个全角字符是连续在一起的
-					continue;//do nothing
+				} else {// 前一个字符就是全角字符，说明当前全角字符和前一个全角字符是连续在一起的
+					continue;// do nothing
 				}
-			}else{//当前字符不为全角字符
-				isPreCharSBC = false ;//将isPreCharSBC变量置为false,以便下一次判断使用
+			} else {// 当前字符不为全角字符
+				isPreCharSBC = false;// 将isPreCharSBC变量置为false,以便下一次判断使用
 			}
 		}
-		return input.getBytes().length+count*2;
+		return input.getBytes().length + count * 2;
 	}
 }

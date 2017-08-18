@@ -33,21 +33,17 @@ public class BOPForDebtSellRepurchaseGenGetter extends BaseGetter {
 		try {
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "卖出回购签约信息查询");
 			PageQueryResult queryResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
-			result.getPage().setTotalPage(
-					queryResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
@@ -59,36 +55,30 @@ public class BOPForDebtSellRepurchaseGenGetter extends BaseGetter {
 		int pageSize = getResult().getPage().getEveryPage();
 		int pageIndex = getResult().getPage().getCurrentPage();
 		PageQueryCondition queryCondition = new PageQueryCondition();
-		StringBuffer hql = new StringBuffer(
-				"select bds from BopCfaExdebtDs bds where 1=1 ");
+		StringBuffer hql = new StringBuffer("select bds from BopCfaExdebtDs bds where 1=1 ");
 		String qBrNo = getCommQueryServletRequest().getParameter("qBrNo");
-		String qActiontype = getCommQueryServletRequest().getParameter(
-				"qActiontype");
-		String qFiller2 = getCommQueryServletRequest().getParameter(
-				"qFiller2");
-		if(StringUtils.isNotBlank(qBrNo)) {
+		String qActiontype = getCommQueryServletRequest().getParameter("qActiontype");
+		String qFiller2 = getCommQueryServletRequest().getParameter("qFiller2");
+		if (StringUtils.isNotBlank(qBrNo)) {
 			hql.append(" and bds.brNo = '").append(qBrNo).append("'");
 		}
 		if (StringUtils.isNotBlank(qActiontype)) {
-			hql.append(" and bds.actiontype ='").append(qActiontype)
-					.append("'");
+			hql.append(" and bds.actiontype ='").append(qActiontype).append("'");
 		}
-		if(StringUtils.isNotBlank(qFiller2)) {
+		if (StringUtils.isNotBlank(qFiller2)) {
 			hql.append(" and bds.filler2 like '%").append(qFiller2).append("%'");
 		}
-		hql.append(" and bds.apptype='"
-				+ TopReportConstants.REPORT_APP_TYPE_CFA + "'");
-		//区分签约信息和变动信息
+		hql.append(" and bds.apptype='" + TopReportConstants.REPORT_APP_TYPE_CFA + "'");
+		// 区分签约信息和变动信息
 		String getType = this.getCommQueryServletRequest().getParameter("getType");
-		hql.append(" and bds.apptype = '"+TopReportConstants.REPORT_APP_TYPE_CFA+"'");
-		if(CONTRACT.equalsIgnoreCase(getType)) {
-			hql.append(" and bds.currentfile='"
-				+ TopReportConstants.REPORT_FILE_TYPE_CFA_AE + "'");
-		} else if(CHANGE.equalsIgnoreCase(getType)) {
-			hql.append(" and bds.currentfile = '").append(TopReportConstants.REPORT_FILE_TYPE_CFA_AR+"'");
+		hql.append(" and bds.apptype = '" + TopReportConstants.REPORT_APP_TYPE_CFA + "'");
+		if (CONTRACT.equalsIgnoreCase(getType)) {
+			hql.append(" and bds.currentfile='" + TopReportConstants.REPORT_FILE_TYPE_CFA_AE + "'");
+		} else if (CHANGE.equalsIgnoreCase(getType)) {
+			hql.append(" and bds.currentfile = '").append(TopReportConstants.REPORT_FILE_TYPE_CFA_AR + "'");
 			hql.append(" and bds.changeFileType = '").append(TopReportConstants.REPORT_FILE_TYPE_CFA_AE).append("'");
 		}
-		hql.append(" and bds.workDate = '"+gInfo.getFileDate()+"'");
+		hql.append(" and bds.workDate = '" + gInfo.getFileDate() + "'");
 		hql.append(" order by bds.workDate,bds.approveStatus,bds.actiontype desc");
 		queryCondition.setPageIndex(pageIndex);
 		queryCondition.setPageSize(pageSize);

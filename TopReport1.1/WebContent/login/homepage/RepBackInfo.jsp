@@ -5,34 +5,34 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Map"%>
-<%@ page language="java" contentType="text/html;charset=GBK" pageEncoding="GBK"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/templets/easyui/themes/blue/easyui.css">
-<title>Òµ¼¨¿¼ºËÖ¸±ê</title>
+<title>ä¸šç»©è€ƒæ ¸æŒ‡æ ‡</title>
 <%
 List noticeBeans = ReportCommonService.getInstance().getNoticeParam();
 %>
 </head>
 <body bgcolor="white" style="margin: 0px;">
-<center>
-<div style="padding: 3px;">
-<table width="100%" class="grouptable" cellpadding="0" cellspacing="0" border="0">
-	<thead>
-		<tr>
-			<td class="labeltd" valign=center align="left">¿¼ºËÄÚÈÝÃû</td>
-			<td class="labeltd" valign=center align="left">¿¼ºËËùÕ¼±ÈÖµ</td>
-			<td class="labeltd" valign=center align="left">½ð¶îÖ¸±ê</td>
-			<td class="labeltd" valign=center align="left">ÊýÁ¿Ö¸±ê</td>
-			<td class="labeltd" valign=center align="left">´´½¨ÈÕÆÚ</td>
-			<td class="labeltd" valign=center align="left">¸üÐÂÈÕÆÚ</td>
-			<td class="labeltd" valign=center align="left">ÓÐÐ§±êÖ¾</td>
-		</tr>
-	</thead>
-	<%
+	<center>
+		<div style="padding: 3px;">
+			<table width="100%" class="grouptable" cellpadding="0" cellspacing="0" border="0">
+				<thead>
+					<tr>
+						<td class="labeltd" valign=center align="left">è€ƒæ ¸å†…å®¹å</td>
+						<td class="labeltd" valign=center align="left">è€ƒæ ¸æ‰€å æ¯”å€¼</td>
+						<td class="labeltd" valign=center align="left">é‡‘é¢æŒ‡æ ‡</td>
+						<td class="labeltd" valign=center align="left">æ•°é‡æŒ‡æ ‡</td>
+						<td class="labeltd" valign=center align="left">åˆ›å»ºæ—¥æœŸ</td>
+						<td class="labeltd" valign=center align="left">æ›´æ–°æ—¥æœŸ</td>
+						<td class="labeltd" valign=center align="left">æœ‰æ•ˆæ ‡å¿—</td>
+					</tr>
+				</thead>
+				<%
 		if(noticeBeans!=null && noticeBeans.size()>0){
 		String bgcolor = "#ffffff";
 		for(int i = 0; i < noticeBeans.size(); i++){
@@ -43,35 +43,24 @@ List noticeBeans = ReportCommonService.getInstance().getNoticeParam();
 				bgcolor = "#f7f7fe";
 			}
 	%>
-		<tr  style="line-height: 22px;">
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<%=bean.getNoticeName() %>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<%=bean.getNoticeValue() %>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<%=bean.getNoticeAmt() %>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<%=bean.getNoticeTotperi() %>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<%=bean.getCreatedt() %>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<%=bean.getUpdt()%>
-		</td>
-		<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-		 			<%=bean.getNoticeFlg()%>
-		</td>
-		
-		</tr>
-	<%}}else{ %>
-		<tr bgcolor="#ffffff"><td colspan="3" align="center" class="datatd">Ã»ÓÐÒµ¼¨¿¼ºËÐÅÏ¢</td></tr>
-	<%} %>
-</table>
-</center></div>
+				<tr style="line-height: 22px;">
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getNoticeName() %></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getNoticeValue() %></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getNoticeAmt() %></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getNoticeTotperi() %></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getCreatedt() %></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getUpdt()%></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getNoticeFlg()%></td>
+
+				</tr>
+				<%}}else{ %>
+				<tr bgcolor="#ffffff">
+					<td colspan="3" align="center" class="datatd">æ²¡æœ‰ä¸šç»©è€ƒæ ¸ä¿¡æ¯</td>
+				</tr>
+				<%} %>
+			</table>
+	</center>
+	</div>
 </body>
 
 <script type="text/javascript">

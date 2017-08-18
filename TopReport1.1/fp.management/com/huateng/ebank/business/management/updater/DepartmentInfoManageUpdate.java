@@ -21,12 +21,12 @@ import com.huateng.exception.AppException;
 
 public class DepartmentInfoManageUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
-		try{
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
+		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_departmentInfoManage");
+			UpdateResultBean updateResultBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("Management_departmentInfoManage");
 
 			List updateList = new ArrayList();
 			List insertList = new ArrayList();
@@ -34,7 +34,7 @@ public class DepartmentInfoManageUpdate extends BaseUpdate {
 
 			DepartmentInfo departmentInfo = new DepartmentInfo();
 
-			while (updateResultBean.hasNext()){
+			while (updateResultBean.hasNext()) {
 				departmentInfo = new DepartmentInfo();
 				mapToObject(departmentInfo, updateResultBean.next());
 				switch (updateResultBean.getRecodeState()) {
@@ -55,13 +55,12 @@ public class DepartmentInfoManageUpdate extends BaseUpdate {
 			context.setAttribute(DepartmentInfoManageUpdateOperation.INSERT_LIST, insertList);
 			context.setAttribute(DepartmentInfoManageUpdateOperation.UPDATE_LIST, updateList);
 			context.setAttribute(DepartmentInfoManageUpdateOperation.DEL_LIST, delList);
-			OPCaller.call("Management.DepartmentInfoManageUpdateOperation",context);
+			OPCaller.call("Management.DepartmentInfoManageUpdateOperation", context);
 			return updateReturnBean;
-		}catch (AppException appEx) {
+		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

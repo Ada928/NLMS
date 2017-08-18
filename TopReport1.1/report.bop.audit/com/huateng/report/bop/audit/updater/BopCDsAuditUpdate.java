@@ -21,39 +21,36 @@ import com.huateng.exception.AppException;
 import com.huateng.report.bop.collection.operation.BopCkpDsOperation;
 
 public class BopCDsAuditUpdate extends BaseUpdate {
-	
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
-		
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
+
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("BopCDsAudit");
 			List<MtsBopCkpDs> mtsBopCkpDsList = new ArrayList<MtsBopCkpDs>();
-			while (updateResultBean.hasNext())
-			{
+			while (updateResultBean.hasNext()) {
 				MtsBopCkpDs mtsBopCkpDs = new MtsBopCkpDs();
 				Map map = updateResultBean.next();
-				mapToObject(mtsBopCkpDs,map);
+				mapToObject(mtsBopCkpDs, map);
 				mtsBopCkpDsList.add(mtsBopCkpDs);
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
 			String approveResultChoose = updateResultBean.getParameter("approveResultChoose");
-			
+
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(BopCkpDsOperation.CMD, BopCkpDsOperation.OP_C_AUDIT);
 			oc.setAttribute(BopCkpDsOperation.IN_AUDIT_LIST, mtsBopCkpDsList);
 			oc.setAttribute(BopCkpDsOperation.IN_AUDIT_STATUS, approveStatusChoose);
 			oc.setAttribute(BopCkpDsOperation.IN_AUDIT_RESULT, approveResultChoose);
 			OPCaller.call(BopCkpDsOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

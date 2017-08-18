@@ -51,21 +51,22 @@ public class ReportShowDetailService {
 		return sys;
 	}
 
-	public SysTaskInfo getSysTaskInfo(String type,String recId) throws CommonException{
+	public SysTaskInfo getSysTaskInfo(String type, String recId) throws CommonException {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
-		List list = rootDAO.queryByQL2List(" from SysTaskInfo model where model.intInsId='"+type+"' and model.adtRcdPk='"+recId+"'");
-		if (list.size()==1) {
+		List list = rootDAO.queryByQL2List(
+				" from SysTaskInfo model where model.intInsId='" + type + "' and model.adtRcdPk='" + recId + "'");
+		if (list.size() == 1) {
 			return (SysTaskInfo) list.get(0);
 		}
 		return null;
 	}
-	public String[] getTaskToWorkDateConf(BiWorkdateConf conf){
+
+	public String[] getTaskToWorkDateConf(BiWorkdateConf conf) {
 		Object[] objs = conf.getWorkDateList().toArray();
 		String[] newstrs = new String[objs.length];
 		for (int i = 0; i < objs.length; i++) {
-			newstrs[i]=objs[i].toString().trim();
+			newstrs[i] = objs[i].toString().trim();
 		}
 		return newstrs;
 	}
 }
-

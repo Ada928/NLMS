@@ -24,23 +24,23 @@ public class SessionListener implements HttpSessionListener {
 
 	public void sessionDestroyed(HttpSessionEvent event) {
 		String sessionId = event.getSession().getId();
-		log.info("destroyed session id is :"+sessionId);
+		log.info("destroyed session id is :" + sessionId);
 		try {
 			String tlrNo = null;
 			GlobalInfo gi = GlobalInfo.getCurrentInstanceWithoutException();
-			if(gi==null){
+			if (gi == null) {
 				Object o = event.getSession().getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
-				if (null != o&& o instanceof GlobalInfo) {
+				if (null != o && o instanceof GlobalInfo) {
 					GlobalInfo globalInfo = (GlobalInfo) o;
 					tlrNo = globalInfo.getTlrno();
 				}
-			}else{
+			} else {
 				tlrNo = gi.getTlrno();
 			}
-			if(tlrNo!=null){
+			if (tlrNo != null) {
 				TlrInfoDAO tlrInfoDAO = BaseDAOUtils.getTlrInfoDAO();
 				TlrInfo tlrInfo = tlrInfoDAO.queryById(tlrNo);
-				if (tlrInfo!=null) {
+				if (tlrInfo != null) {
 					tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
 					// 最近登出时间
 					tlrInfo.setLastlogouttm(DateUtil.getTimestamp());

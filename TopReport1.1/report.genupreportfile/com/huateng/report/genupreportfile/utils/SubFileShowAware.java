@@ -16,10 +16,8 @@ public class SubFileShowAware implements ApplicationContextAware {
 		context = ctx;
 	}
 
-
-
 	public static void putEvent(String msg) {
-		String tmp = DateUtil.Time14ToString2(new Date())+" "+msg;
+		String tmp = DateUtil.Time14ToString2(new Date()) + " " + msg;
 		SubFileEventBean evt = new SubFileEventBean(tmp);
 		context.publishEvent(evt);
 	}

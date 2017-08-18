@@ -13,12 +13,16 @@ import com.huateng.ebank.framework.operation.OperationContext;
 
 public class GetNextCoreReqSeqOP extends BaseOperation {
 
-	 private static Log log = LogFactory.getLog(GetNextCoreReqSeqOP.class);
+	private static Log log = LogFactory.getLog(GetNextCoreReqSeqOP.class);
 
-	 public final static String CORESYS_REQSEQ = "CORESYS_REQSEQ";
+	public final static String CORESYS_REQSEQ = "CORESYS_REQSEQ";
 
-	/* (non-Javadoc)
-	 * @see com.huateng.ebank.framework.operation.BaseOperation#afterProc(com.huateng.ebank.framework.operation.OperationContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.huateng.ebank.framework.operation.BaseOperation#afterProc(com.huateng
+	 * .ebank.framework.operation.OperationContext)
 	 */
 
 	public void afterProc(OperationContext context) throws CommonException {
@@ -26,8 +30,11 @@ public class GetNextCoreReqSeqOP extends BaseOperation {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.huateng.ebank.framework.operation.BaseOperation#beforeProc(com.huateng.ebank.framework.operation.OperationContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.huateng.ebank.framework.operation.BaseOperation#beforeProc(com.
+	 * huateng.ebank.framework.operation.OperationContext)
 	 */
 
 	public void beforeProc(OperationContext context) throws CommonException {
@@ -35,8 +42,12 @@ public class GetNextCoreReqSeqOP extends BaseOperation {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.huateng.ebank.framework.operation.BaseOperation#execute(com.huateng.ebank.framework.operation.OperationContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.huateng.ebank.framework.operation.BaseOperation#execute(com.huateng.
+	 * ebank.framework.operation.OperationContext)
 	 */
 
 	public void execute(OperationContext context) throws CommonException {
@@ -44,9 +55,9 @@ public class GetNextCoreReqSeqOP extends BaseOperation {
 		int reqseq = CommonService.getInstance().getCoreReqSeq();
 		System.out.println("reqseq=" + reqseq);
 		/*
-		String sReqseq = String.format("%06d", reqseq);
-		System.out.println("sReqseq=" + sReqseq);
-		*/
+		 * String sReqseq = String.format("%06d", reqseq);
+		 * System.out.println("sReqseq=" + sReqseq);
+		 */
 		context.setAttribute(CORESYS_REQSEQ, new Integer(reqseq));
 	}
 }

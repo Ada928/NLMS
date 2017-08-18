@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
  * This is an object that contains data related to the RBS_DS_BI_ACCOUNT table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * Do not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="RBS_DS_BI_ACCOUNT"
+ * @hibernate.class table="RBS_DS_BI_ACCOUNT"
  */
 
-public abstract class BaseRbsDsBiMovement  implements Serializable {
+public abstract class BaseRbsDsBiMovement implements Serializable {
 
 	public static String REF = "RbsDsBiMovement";
 	public static String PROP_ID = "id";
@@ -39,18 +37,15 @@ public abstract class BaseRbsDsBiMovement  implements Serializable {
 	private java.lang.String entriedby;
 	private java.lang.String authorizedby;
 
-
-
-
 	// constructors
-	public BaseRbsDsBiMovement () {
+	public BaseRbsDsBiMovement() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseRbsDsBiMovement (java.lang.String id) {
+	public BaseRbsDsBiMovement(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -58,10 +53,7 @@ public abstract class BaseRbsDsBiMovement  implements Serializable {
 	/**
 	 * Constructor for required fields
 	 */
-	public BaseRbsDsBiMovement (
-		java.lang.String id,
-		java.lang.String changedate,
-		java.lang.String changetime) {
+	public BaseRbsDsBiMovement(java.lang.String id, java.lang.String changedate, java.lang.String changetime) {
 
 		this.setId(id);
 		this.setChangedate(changedate);
@@ -69,34 +61,30 @@ public abstract class BaseRbsDsBiMovement  implements Serializable {
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
-
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="sequence"
-     *  column="ID"
-     */
-	public java.lang.String getId () {
+	 * 
+	 * @hibernate.id generator-class="sequence" column="ID"
+	 */
+	public java.lang.String getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.String id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
-
 
 	public java.lang.String getChangedate() {
 		return changedate;
@@ -170,23 +158,24 @@ public abstract class BaseRbsDsBiMovement  implements Serializable {
 		this.authorizedby = authorizedby;
 	}
 
-
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.RbsDsBiAccount)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.RbsDsBiAccount))
+			return false;
 		else {
 			resource.bean.report.RbsDsBiAccount rbsDsBiAccount = (resource.bean.report.RbsDsBiAccount) obj;
-			if (null == this.getId() || null == rbsDsBiAccount.getId()) return false;
-			else return (this.getId().equals(rbsDsBiAccount.getId()));
+			if (null == this.getId() || null == rbsDsBiAccount.getId())
+				return false;
+			else
+				return (this.getId().equals(rbsDsBiAccount.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -195,10 +184,8 @@ public abstract class BaseRbsDsBiMovement  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

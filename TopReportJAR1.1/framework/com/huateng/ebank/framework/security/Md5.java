@@ -3,10 +3,10 @@
 /**
  * Description: 数据加密
  */
-// mod by zhaozhiguo 2012/03/12 BMSA-200 密码强度升级 begin 
+// mod by zhaozhiguo 2012/03/12 BMSA-200 密码强度升级 begin
 // public class Md5 {
 public class Md5 implements IEncryption {
-// mod by zhaozhiguo 2012/03/12 BMSA-200 密码强度升级 end 
+	// mod by zhaozhiguo 2012/03/12 BMSA-200 密码强度升级 end
 	static final int S11 = 7;
 
 	static final int S12 = 12;
@@ -278,10 +278,10 @@ public class Md5 implements IEncryption {
 	public static void main(String[] args) {
 		Md5 objMd5 = new Md5();
 		String passMd5 = objMd5.getMD5ofStr("Huateng.gd.Ocean's Fourteen.DWMNTH2CJFLCWL" + 123456);
-		System.out.println("passMd5:"+passMd5+":");
+		System.out.println("passMd5:" + passMd5 + ":");
 	}
 
-	// add by zhaozhiguo 2012/03/12 BMSA-200 密码强度升级 begin 
+	// add by zhaozhiguo 2012/03/12 BMSA-200 密码强度升级 begin
 	public String encrypt(String plaintext, String salt) {
 		return getMD5ofStr(salt + plaintext);
 	}
@@ -289,5 +289,5 @@ public class Md5 implements IEncryption {
 	public String decrypt(String ciphertext, String salt) {
 		throw new RuntimeException("MD5 not support decrypt!");
 	}
-	// add by zhaozhiguo 2012/03/12 BMSA-200 密码强度升级 end 
+	// add by zhaozhiguo 2012/03/12 BMSA-200 密码强度升级 end
 }

@@ -22,22 +22,20 @@ import com.huateng.report.operation.BOPForDebtRefinancingOperation;
 
 public class BOPForDebtRefinancingAuditUpdate extends BaseUpdate {
 
-	private static final String DATASET_ID="BOPForDebtRefinancingAD";
+	private static final String DATASET_ID = "BOPForDebtRefinancingAD";
 
 	@SuppressWarnings("rawtypes")
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
 
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			List<BopCfaExdebtDs> BopCfaExdebtDsList = new ArrayList<BopCfaExdebtDs>();
-			while (updateResultBean.hasNext())
-			{
+			while (updateResultBean.hasNext()) {
 				BopCfaExdebtDs bopAccDs = new BopCfaExdebtDs();
 				Map map = updateResultBean.next();
-				mapToObject(bopAccDs,map);
+				mapToObject(bopAccDs, map);
 				BopCfaExdebtDsList.add(bopAccDs);
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
@@ -54,8 +52,7 @@ public class BOPForDebtRefinancingAuditUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

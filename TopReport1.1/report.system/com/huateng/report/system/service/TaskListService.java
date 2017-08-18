@@ -9,6 +9,29 @@ import java.util.StringTokenizer;
 
 import org.apache.commons.beanutils.PropertyUtils;
 
+import com.huateng.common.DateUtil;
+import com.huateng.common.log.HtLog;
+import com.huateng.common.log.HtLogFactory;
+import com.huateng.ebank.business.common.GlobalInfo;
+import com.huateng.ebank.business.common.SystemConstant;
+import com.huateng.ebank.business.common.service.CommonService;
+import com.huateng.ebank.business.management.common.DAOUtils;
+import com.huateng.ebank.entity.data.mng.PfSysParam;
+import com.huateng.ebank.entity.data.mng.PfSysParamPK;
+import com.huateng.ebank.framework.exceptions.CommonException;
+import com.huateng.ebank.framework.util.ApplicationContextUtils;
+import com.huateng.ebank.framework.util.DataFormat;
+import com.huateng.ebank.framework.util.ExceptionUtil;
+import com.huateng.report.system.bean.TaskListBean;
+import com.huateng.report.system.bean.TlrInfoAuditBean;
+import com.huateng.report.utils.RepList;
+import com.huateng.report.utils.ReportEnum.REPORT_TASK_FUNCID;
+import com.huateng.report.utils.ReportEnum.REPORT_TASK_TRANS_CD;
+import com.huateng.report.utils.ReportEnum.REPORT__FH_ST;
+import com.huateng.report.utils.ReportObjectSerializerUtil;
+import com.huateng.report.utils.ReportTaskUtil;
+import com.huateng.service.pub.UserMgrService;
+
 import resource.bean.pub.Bctl;
 import resource.bean.pub.RoleFuncRel;
 import resource.bean.pub.RoleInfo;
@@ -28,29 +51,6 @@ import resource.bean.report.SysTaskLog;
 import resource.dao.pub.RoleFuncRelDAO;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
-
-import com.huateng.common.DateUtil;
-import com.huateng.common.log.HtLog;
-import com.huateng.common.log.HtLogFactory;
-import com.huateng.ebank.business.common.GlobalInfo;
-import com.huateng.ebank.business.common.SystemConstant;
-import com.huateng.ebank.business.common.service.CommonService;
-import com.huateng.ebank.business.management.common.DAOUtils;
-import com.huateng.ebank.entity.data.mng.PfSysParam;
-import com.huateng.ebank.entity.data.mng.PfSysParamPK;
-import com.huateng.ebank.framework.exceptions.CommonException;
-import com.huateng.ebank.framework.util.ApplicationContextUtils;
-import com.huateng.ebank.framework.util.DataFormat;
-import com.huateng.ebank.framework.util.ExceptionUtil;
-import com.huateng.report.system.bean.TaskListBean;
-import com.huateng.report.system.bean.TlrInfoAuditBean;
-import com.huateng.report.utils.RepList;
-import com.huateng.report.utils.ReportObjectSerializerUtil;
-import com.huateng.report.utils.ReportTaskUtil;
-import com.huateng.report.utils.ReportEnum.REPORT_TASK_FUNCID;
-import com.huateng.report.utils.ReportEnum.REPORT_TASK_TRANS_CD;
-import com.huateng.report.utils.ReportEnum.REPORT__FH_ST;
-import com.huateng.service.pub.UserMgrService;
 
 public class TaskListService {
 	/**
@@ -122,18 +122,18 @@ public class TaskListService {
 		return list;
 	}
 
-	//获取审核模块是否需要审核
-	
-	public boolean isNeedApprove(String taskNo) throws CommonException{
+	// 获取审核模块是否需要审核
+
+	public boolean isNeedApprove(String taskNo) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		SysTaskConfig sytc= rootdao.query(SysTaskConfig.class, taskNo);
-		if(sytc!=null && sytc.getFlag().equals("0")){
+		SysTaskConfig sytc = rootdao.query(SysTaskConfig.class, taskNo);
+		if (sytc != null && sytc.getFlag().equals("0")) {
 			return false;
-		}
-		else{
-		return true;
+		} else {
+			return true;
 		}
 	}
+
 	// 复核后将taskInfo写入tasklog表
 	// TODO
 	private boolean LogTask(SysTaskInfo st, String pl, String inscd, String result, String remark)
@@ -163,13 +163,13 @@ public class TaskListService {
 				stlog.setNewVal2(st.getNewVal2());
 				if (insflag.equals(REPORT_TASK_FUNCID.TASK_100299.value)) {
 					// 角色
-					List<String> rolelist = rootdao.queryByQL2List("select funcid from RoleFuncRel where roleId = '"
-							+ key + "'");
+					List<String> rolelist = rootdao
+							.queryByQL2List("select funcid from RoleFuncRel where roleId = '" + key + "'");
 					StringBuffer roleListString = new StringBuffer("");
 					for (String func : rolelist) {
 						roleListString.append(func.trim()).append(",");
 					}
-					if(roleListString.length() > 0){
+					if (roleListString.length() > 0) {
 						roleListString = roleListString.deleteCharAt(roleListString.length() - 1);
 					}
 					RoleInfo roleInfo = (RoleInfo) getObjectByOldKey(key, insflag);
@@ -356,7 +356,7 @@ public class TaskListService {
 				oldfuncs.remove(newfid);
 			} else {
 				RoleFuncRel newrfr = new RoleFuncRel();
-				//added by xuhong 2015-3-30 id赋值 begin
+				// added by xuhong 2015-3-30 id赋值 begin
 				Iterator iterator;
 				try {
 					iterator = DAOUtils.getHQLDAO().queryByQL("select max(id) from RoleFuncRel");
@@ -369,7 +369,7 @@ public class TaskListService {
 				} catch (CommonException e) {
 					e.printStackTrace();
 				}
-				//added by xuhong 2015-3-30 id赋值 end
+				// added by xuhong 2015-3-30 id赋值 end
 				newrfr.setFuncid(newfid);
 				newrfr.setRoleId(rid);
 				rfrd.save(newrfr);
@@ -474,7 +474,8 @@ public class TaskListService {
 								// 这儿重置密码//
 								UserMgrService userMgrService = new UserMgrService();
 
-								String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
+								String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD",
+										SystemConstant.DEFAULT_PASSWORD);
 
 								userMgrService.updatePassword(tlrInfo.getTlrno(), sysDefaultPwd);
 
@@ -486,20 +487,20 @@ public class TaskListService {
 								rootdao.saveOrUpdate(newinfo);
 
 							}
-						}else{
+						} else {
 							// 说明是其它修改
 							tlrInfo.setSt(REPORT__FH_ST.YES.value);
 							// 有效/无效
 							rootdao.saveOrUpdate(tlrInfo);
 							String key = tlrInfo.getTlrno();
 							// 先删除用户的角色表和机构关联
-							List<TlrBctlRel> bctlRellist = rootdao.queryByQL2List("from TlrBctlRel where tlrNo = '" + key
-									+ "'");
+							List<TlrBctlRel> bctlRellist = rootdao
+									.queryByQL2List("from TlrBctlRel where tlrNo = '" + key + "'");
 							for (TlrBctlRel trlbctreldel : bctlRellist) {
 								rootdao.delete(trlbctreldel);
 							}
-							List<TlrRoleRel> roleRellist = rootdao.queryByQL2List("from TlrRoleRel where tlrno = '" + key
-									+ "'");
+							List<TlrRoleRel> roleRellist = rootdao
+									.queryByQL2List("from TlrRoleRel where tlrno = '" + key + "'");
 							for (TlrRoleRel trlrolereldel : roleRellist) {
 								rootdao.delete(trlrolereldel);
 							}
@@ -705,8 +706,8 @@ public class TaskListService {
 					}
 				}
 			}
-			GI.addBizLog("Updater.log", new String[] { GI.getTlrno(), GI.getBrcode(),
-					"主管确认-复核通过-业务类型【" + intInsId + "】" });
+			GI.addBizLog("Updater.log",
+					new String[] { GI.getTlrno(), GI.getBrcode(), "主管确认-复核通过-业务类型【" + intInsId + "】" });
 			htlog.info("Updater.log",
 					new String[] { GI.getTlrno(), GI.getBrcode(), "主管确认-复核通过-业务类型【" + intInsId + "】" });
 		} else {
@@ -797,8 +798,8 @@ public class TaskListService {
 				}
 
 			}
-			GI.addBizLog("Updater.log", new String[] { GI.getTlrno(), GI.getBrcode(),
-					"主管确认-复核拒绝-业务类型【" + intInsId + "】" });
+			GI.addBizLog("Updater.log",
+					new String[] { GI.getTlrno(), GI.getBrcode(), "主管确认-复核拒绝-业务类型【" + intInsId + "】" });
 			htlog.info("Updater.log",
 					new String[] { GI.getTlrno(), GI.getBrcode(), "主管确认-复核拒绝-业务类型【" + intInsId + "】" });
 		}

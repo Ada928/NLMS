@@ -16,35 +16,33 @@ public class OperLoggerQueryGetter extends BaseGetter {
 	public Result call() throws AppException {
 
 		OperationContext context = new OperationContext();
-		String brcode = this.getCommQueryServletRequest().getParameter("brcode");//机构号
-		String oprcode = this.getCommQueryServletRequest().getParameter("oprcode");//操作员号
-		String txnDate = this.getCommQueryServletRequest().getParameter("txnDate");//交易日期
+		String brcode = this.getCommQueryServletRequest().getParameter("brcode");// 机构号
+		String oprcode = this.getCommQueryServletRequest().getParameter("oprcode");// 操作员号
+		String txnDate = this.getCommQueryServletRequest().getParameter("txnDate");// 交易日期
 
 		int pageSize = getResult().getPage().getEveryPage();
 		int pageIndex = getResult().getPage().getCurrentPage();
-		//起始记录
-		String stdstartnm="0";
-		//查询记录
-		String stdquerynm="999";
-		OperLoggerBean logBean  = new OperLoggerBean();
+		// 起始记录
+		String stdstartnm = "0";
+		// 查询记录
+		String stdquerynm = "999";
+		OperLoggerBean logBean = new OperLoggerBean();
 		logBean.setBrcode(brcode);
 		logBean.setOprcode(oprcode);
 		logBean.setTxnDate(txnDate);
 		logBean.setStdstartnm(stdstartnm);
 		logBean.setStdquerynm(stdquerynm);
 
-		context.setAttribute(OperLoggerQueryOP.IN_PARAMER,logBean);
+		context.setAttribute(OperLoggerQueryOP.IN_PARAMER, logBean);
 		context.setAttribute(OperLoggerQueryOP.IN_PAGESIZE, pageSize);
 		context.setAttribute(OperLoggerQueryOP.IN_PAGEINDEX, pageIndex);
 
 		OPCaller.call(OperLoggerQueryOP.ID, context);
-		PageQueryResult pageQueryResult =  (PageQueryResult)context.getAttribute(OperLoggerQueryOP.OUTLIST);
-		ResultMng.fillResultByList(getCommonQueryBean(),
-				getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
+		PageQueryResult pageQueryResult = (PageQueryResult) context.getAttribute(OperLoggerQueryOP.OUTLIST);
+		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
 				getResult());
 		result.setContent(pageQueryResult.getQueryResult());
-		result.getPage().setTotalPage(
-				pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
+		result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 
 		result.init();
 		return result;

@@ -18,6 +18,7 @@ public class SysTaskConfigService {
 	public static synchronized SysTaskConfigService getInstance() {
 		return (SysTaskConfigService) ApplicationContextUtils.getBean("SysTaskConfigService");
 	}
+
 	public PageQueryResult list(int pageIndex, int pageSize, String hql) throws CommonException {
 		PageQueryCondition queryCondition = new PageQueryCondition();
 		queryCondition.setQueryString(hql);
@@ -26,29 +27,27 @@ public class SysTaskConfigService {
 		ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
 		return rootDao.pageQueryByQL(queryCondition);
 	}
-	
-	public void saveOrUpdate(List insert,List update)throws CommonException {
+
+	public void saveOrUpdate(List insert, List update) throws CommonException {
 		ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
-		if(!insert.isEmpty()){
-			Iterator it= insert.iterator();
-			while(it.hasNext()){
-				Object ob=it.next();
-			if(rootDao.query(SysTaskConfig.class, ((SysTaskConfig)ob).getId())!=null)
-			{
-				ExceptionUtil.throwCommonException("主键冲突!");
-			}
-			else{
-				rootDao.save(ob);
-			}
+		if (!insert.isEmpty()) {
+			Iterator it = insert.iterator();
+			while (it.hasNext()) {
+				Object ob = it.next();
+				if (rootDao.query(SysTaskConfig.class, ((SysTaskConfig) ob).getId()) != null) {
+					ExceptionUtil.throwCommonException("主键冲突!");
+				} else {
+					rootDao.save(ob);
+				}
 			}
 		}
-		if(!update.isEmpty()){
-			Iterator it= update.iterator();
-			while(it.hasNext()){
+		if (!update.isEmpty()) {
+			Iterator it = update.iterator();
+			while (it.hasNext()) {
 				rootDao.update(it.next());
 			}
 		}
-		
+
 	}
 
 }

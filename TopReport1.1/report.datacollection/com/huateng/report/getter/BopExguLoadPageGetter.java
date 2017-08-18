@@ -28,18 +28,18 @@ public class BopExguLoadPageGetter extends BaseGetter {
 
 	public Result call() throws AppException {
 		try {
-			CommQueryServletRequest request= commQueryServletRequest;
+			CommQueryServletRequest request = commQueryServletRequest;
 			String currentFile = request.getParameter("currentFile");
-			if(currentFile.equalsIgnoreCase(TopReportConstants.REPORT_FILE_TYPE_CFA_BC)){
+			if (currentFile.equalsIgnoreCase(TopReportConstants.REPORT_FILE_TYPE_CFA_BC)) {
 				request.setParameter("currentFile", TopReportConstants.REPORT_FILE_TYPE_CFA_BC);
-			}else{
+			} else {
 				request.setParameter("currentFile", TopReportConstants.REPORT_FILE_TYPE_CFA_BB);
 			}
 
 			PageQueryResult queryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(), getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
+					getResult());
 
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -49,8 +49,7 @@ public class BopExguLoadPageGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -64,11 +63,11 @@ public class BopExguLoadPageGetter extends BaseGetter {
 		String qApproveStatus = getCommQueryServletRequest().getParameter("qApproveStatus");
 		String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
 		String qfiller2 = getCommQueryServletRequest().getParameter("qfiller2");
-		String qWorkDate =getCommQueryServletRequest().getParameter("qWorkDate");
+		String qWorkDate = getCommQueryServletRequest().getParameter("qWorkDate");
 
 		StringBuilder hqlexgu = new StringBuilder(" FROM BopCfaExguDs WHERE 1 = 1 ");
 
-		List<Object>paramentList = new ArrayList<Object>();
+		List<Object> paramentList = new ArrayList<Object>();
 		if (StringUtils.isNotBlank(qActiontype)) {
 			hqlexgu.append(" AND actiontype = ? ");
 			paramentList.add(qActiontype);
@@ -112,9 +111,9 @@ public class BopExguLoadPageGetter extends BaseGetter {
 		queryCondition.setPageSize(pageSize);
 		PageQueryResult presult = dao.pageQueryByQL(queryCondition);
 		List<Object[]> listExgu = presult.getQueryResult();
-		for (Object[] values: listExgu) {
+		for (Object[] values : listExgu) {
 			BopCFAExguTorInfo bopCFAExguTorInfo = new BopCFAExguTorInfo();
-			BopCfaExguDs bopCfaExguDs = (BopCfaExguDs)values[0];
+			BopCfaExguDs bopCfaExguDs = (BopCfaExguDs) values[0];
 			bopCFAExguTorInfo.setActiondesc(bopCfaExguDs.getActiondesc());
 			bopCFAExguTorInfo.setActiontype(bopCfaExguDs.getActiontype());
 			bopCFAExguTorInfo.setAppdocuno(bopCfaExguDs.getAppdocuno());

@@ -17,8 +17,8 @@ import com.huateng.report.constants.TopReportConstants;
 /**
  * 
  * @author shishu.zhang
- *	
- * 2012-11-2下午2:20:44
+ * 
+ *         2012-11-2下午2:20:44
  */
 @SuppressWarnings("unchecked")
 public class BopPDsQueryGetter extends BaseGetter {
@@ -26,21 +26,17 @@ public class BopPDsQueryGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "对外付款/承兑通知书基础信息查询页面查询");
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -58,7 +54,7 @@ public class BopPDsQueryGetter extends BaseGetter {
 		String qrepStatus = map.get("qrepStatus");
 		String qfiller2 = map.get("qfiller2");
 		BopCkpDsService bopCkpDsService = BopCkpDsService.getInstance();
-		return bopCkpDsService.queryCKPDs(TopReportConstants.REPORT_FILE_TYPE_BOP_P, pageIndex, pageSize, qbrNo, qrecStatus, 
-				qactiontype, qapproveStatus, qrepStatus, qworkDateStart, qworkDateEnd, qfiller2);
+		return bopCkpDsService.queryCKPDs(TopReportConstants.REPORT_FILE_TYPE_BOP_P, pageIndex, pageSize, qbrNo,
+				qrecStatus, qactiontype, qapproveStatus, qrepStatus, qworkDateStart, qworkDateEnd, qfiller2);
 	}
 }

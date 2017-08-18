@@ -25,15 +25,13 @@ import com.huateng.exception.AppException;
 public class OperMngResetPwdUpdate extends BaseUpdate {
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
 		try {
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("operMngEntry");
-			if(updateResultBean.hasNext()) {
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("operMngEntry");
+			if (updateResultBean.hasNext()) {
 				String tlrno = updateResultBean.next().get("tlrno");
 				OperationContext oc = new OperationContext();
 				oc.setAttribute(OperMngOperation.CMD, "resetPwd");
@@ -42,15 +40,15 @@ public class OperMngResetPwdUpdate extends BaseUpdate {
 			} else {
 				ExceptionUtil.throwAppException("请选择一条记录", ErrorCode.ERROR_CODE_NORMAL);
 			}
-			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
+			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD",
+					SystemConstant.DEFAULT_PASSWORD);
 			updateReturnBean.setParameter("DefaultPWD", sysDefaultPwd);
 
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

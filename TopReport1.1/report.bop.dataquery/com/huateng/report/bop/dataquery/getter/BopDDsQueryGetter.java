@@ -18,30 +18,27 @@ import com.huateng.report.constants.TopReportConstants;
 
 /**
  * 境内收入基础信息查询
+ * 
  * @author huangcheng
  */
 @SuppressWarnings("unchecked")
 public class BopDDsQueryGetter extends BaseGetter {
-	
+
 	@Override
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境内收入申报单基础信息查询页面查询");
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -49,11 +46,11 @@ public class BopDDsQueryGetter extends BaseGetter {
 		Map<String, String> paramMap = this.getCommQueryServletRequest().getParameterMap();
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
-		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();	
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
-		
-		String hql ="select model from MtsBopDrDs model where 1=1 ";
+
+		String hql = "select model from MtsBopDrDs model where 1=1 ";
 
 		String qbrNo = paramMap.get("qbrNo");
 		String qworkDateStart = paramMap.get("qworkDateStart");
@@ -89,10 +86,8 @@ public class BopDDsQueryGetter extends BaseGetter {
 			hql += " and model.brNo ='" + qbrNo + "'";
 		}
 
-		hql += " and model.apptype='" + TopReportConstants.REPORT_APP_TYPE_BOP
-				+ "'";
-		hql += " and model.currentfile='"
-				+ TopReportConstants.REPORT_FILE_TYPE_BOP_D + "'";
+		hql += " and model.apptype='" + TopReportConstants.REPORT_APP_TYPE_BOP + "'";
+		hql += " and model.currentfile='" + TopReportConstants.REPORT_FILE_TYPE_BOP_D + "'";
 		hql += " order by model.workDate,model.approveStatus,model.actiontype desc";
 		queryCondition.setQueryString(hql);
 		queryCondition.setPageIndex(pageIndex);

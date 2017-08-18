@@ -29,20 +29,16 @@ public class BopCfaStrdeDsEntryInoutMoGetter extends BaseGetter {
 		try {
 			PageQueryResult pageResult = getData();
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "商业银行人民币结构性存款补录资金流出入和结购汇信息查询");
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -62,38 +58,38 @@ public class BopCfaStrdeDsEntryInoutMoGetter extends BaseGetter {
 		String qfiller2 = (String) paramsMap.get("qfiller2");
 		String brNo = GlobalInfo.getCurrentInstance().getBrno();
 
-		List<Object>paramentList = new ArrayList<Object>();
+		List<Object> paramentList = new ArrayList<Object>();
 		StringBuffer buff = new StringBuffer();
 		buff.append(" FROM BopCfaStrdeDs strde WHERE 1 = 1 ");
-		if(StringUtils.isNotBlank(qworkDateStart)) {
+		if (StringUtils.isNotBlank(qworkDateStart)) {
 			buff.append(" AND strde.workDate >= ? ");
 			paramentList.add(qworkDateStart);
 		}
-		if(StringUtils.isNotBlank(qworkDateEnd)) {
+		if (StringUtils.isNotBlank(qworkDateEnd)) {
 			buff.append(" AND strde.workDate <= ? ");
 			paramentList.add(qworkDateEnd);
 		}
-		if(StringUtils.isNotBlank(qactiontype)) {
+		if (StringUtils.isNotBlank(qactiontype)) {
 			buff.append(" AND strde.actiontype = ?");
 			paramentList.add(qactiontype);
 		}
-		if(StringUtils.isNotBlank(qfiller2)) {
+		if (StringUtils.isNotBlank(qfiller2)) {
 			buff.append(" AND strde.filler2 LIKE ? ");
 			paramentList.add("%" + qfiller2 + "%");
 		}
-		if(StringUtils.isNotBlank(qrecStatus)) {
+		if (StringUtils.isNotBlank(qrecStatus)) {
 			buff.append(" AND strde.recStatus = ? ");
 			paramentList.add(qrecStatus);
 		}
-		if(StringUtils.isNotBlank(qapproveStatus)) {
+		if (StringUtils.isNotBlank(qapproveStatus)) {
 			buff.append(" AND strde.approveStatus = ? ");
 			paramentList.add(qapproveStatus);
 		}
-		if(StringUtils.isNotBlank(qrepStatus)) {
+		if (StringUtils.isNotBlank(qrepStatus)) {
 			buff.append(" AND strde.repStatus = ? ");
 			paramentList.add(qrepStatus);
 		}
-		if(StringUtils.isNotBlank(brNo)) {
+		if (StringUtils.isNotBlank(brNo)) {
 			buff.append(" AND strde.brNo = ? ");
 			paramentList.add(brNo);
 		}

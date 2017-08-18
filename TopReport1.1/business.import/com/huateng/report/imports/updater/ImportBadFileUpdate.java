@@ -26,22 +26,18 @@ import east.utils.tools.ToolUtils;
 
 public class ImportBadFileUpdate extends BaseUpdate {
 
-	private static Logger logger = Logger.getLogger(ImportFileUpdate.class
-			.getName());
+	private static Logger logger = Logger.getLogger(ImportFileUpdate.class.getName());
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		List<Constant> progress = new ArrayList<Constant>();
 		setSessionObject(Constants.PROGRESS, progress);
 		Constant pv = null;
 		try {
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("ImportBadFile");
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("ImportBadFile");
 
 			ImportFileBean bean = null;
 			String workdate = DataFormat.dateToNumber(DateUtil.getTbsDay());
@@ -51,27 +47,25 @@ public class ImportBadFileUpdate extends BaseUpdate {
 				mapToObject(bean, map);
 				bean.setSeperator((String) map.get("seperator"));
 				if (bean.isSelect()) {
-					//重新导入文件
+					// 重新导入文件
 					String fileName = bean.getFileName();
-					if(fileName.startsWith("cpwj")){
-						System.out.println("注意：传票文件["+fileName+"]出错，不允许手工导入，请联系科技人员!");
+					if (fileName.startsWith("cpwj")) {
+						System.out.println("注意：传票文件[" + fileName + "]出错，不允许手工导入，请联系科技人员!");
 						continue;
 					}
 					String command = "sh /home/jgbs/shell/badSqlLdrEast.sh " + workdate + " " + fileName;
-					System.out.println("ImportBadFileUpdate调用shell:"+command);
+					System.out.println("ImportBadFileUpdate调用shell:" + command);
 					ToolUtils.exeShell(command);
 				}
 			}
 
 			return updateReturnBean;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		} finally {
 			// 结束导入
 			setSessionObject(Constants.IS_IMPORTING, Constants.NO);
 		}
 	}
-	
-}
 
+}

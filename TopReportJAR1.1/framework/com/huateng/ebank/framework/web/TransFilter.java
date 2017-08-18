@@ -41,15 +41,14 @@ public class TransFilter implements Filter {
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(TransFilter.class);
-	/** memeber variable: String　LOGIN_PAGE. */
+	/** memeber variable: String LOGIN_PAGE. */
 	private static final String LOGIN_REF = "LOGIN_REF";
-	/** memeber variable: String　EXPIRED_PAGE. */
+	/** memeber variable: String EXPIRED_PAGE. */
 	private static final String EXPIRED_PAGE = "EXPIRED_PAGE";
 
 	private FilterConfig filterConfig;
 	private String expiredPageName = null;
 	private String loginRef = null;
-
 
 	public String getExpiredPageName() {
 		return expiredPageName;
@@ -66,7 +65,9 @@ public class TransFilter implements Filter {
 	public void setLoginRef(String loginRef) {
 		this.loginRef = loginRef;
 	}
+
 	private UserMgrService userService = UserMgrService.getInstance();
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -83,16 +84,16 @@ public class TransFilter implements Filter {
 	 * (non-Javadoc)
 	 *
 	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
-	 *      javax.servlet.ServletResponse, javax.servlet.FilterChain)
+	 * javax.servlet.ServletResponse, javax.servlet.FilterChain)
 	 */
-	public void doFilter(ServletRequest req, ServletResponse resp,
-			FilterChain filterChain) throws IOException, ServletException {
+	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain)
+			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpSession httpSession = request.getSession(false);
 		if (null != httpSession) {
 			Object o = httpSession.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
 
-			if (null != o&& o instanceof GlobalInfo) {
+			if (null != o && o instanceof GlobalInfo) {
 				GlobalInfo globalInfo = (GlobalInfo) o;
 				/**
 				 * 判断用户是否登录
@@ -101,44 +102,43 @@ public class TransFilter implements Filter {
 				String sessionId = httpSession.getId();
 				globalInfo.setSessionId(sessionId);
 
-				//set funcid
+				// set funcid
 				globalInfo.setFuncId(request.getParameter("__FuncId"));
 
 				/** add by zhaozhiguo 2011-6-20 BMS-3153 begin */
 				String path = request.getServletPath();
-				if (!path.endsWith("ChangePwd.ftl") && !path.endsWith("logout.do")
-						&& !path.endsWith("login.do")) {
+				if (!path.endsWith("ChangePwd.ftl") && !path.endsWith("logout.do") && !path.endsWith("login.do")) {
 					if (globalInfo.getLastpwdchgtm() == null) {
-						globalInfo.setPswdForcedToChange(true);//未修改过密码
+						globalInfo.setPswdForcedToChange(true);// 未修改过密码
 					} else {
 						long between = DateUtil.getDaysBetween(new Date(), globalInfo.getLastpwdchgtm());
 						if (between > globalInfo.getEffectiveDay() && globalInfo.getEffectiveDay() >= 0) {
-							globalInfo.setPswdForcedToChange(true);//超过N久没修改密码,要强制修改
+							globalInfo.setPswdForcedToChange(true);// 超过N久没修改密码,要强制修改
 						}
 					}
 					if (globalInfo.isPswdForcedToChange()) {
-						((HttpServletResponse)resp).getWriter().print("<script>top.location='" + request.getContextPath() + "/fpages/management/ftl/ChangePwd.ftl';</script>");
+						((HttpServletResponse) resp).getWriter().print("<script>top.location='"
+								+ request.getContextPath() + "/fpages/management/ftl/ChangePwd.ftl';</script>");
 						return;
 					}
-					/***add by ningpeng 2012-11-7 增加签退过滤 begin*/
+					/*** add by ningpeng 2012-11-7 增加签退过滤 begin */
 					String tlrNo = globalInfo.getTlrno();
 					String sta = userService.getUserLoginStatus(tlrNo);
-					if (sta==null || SystemConstant.TLR_NO_STATE_LOGOUT.equals(sta)) {
-						((HttpServletResponse) resp).sendRedirect(request.getContextPath() + "/common/success.jsp?type=signout");
+					if (sta == null || SystemConstant.TLR_NO_STATE_LOGOUT.equals(sta)) {
+						((HttpServletResponse) resp)
+								.sendRedirect(request.getContextPath() + "/common/success.jsp?type=signout");
 						return;
 					}
-					/***add by ningpeng 2012-11-7 增加签退过滤 end*/
+					/*** add by ningpeng 2012-11-7 增加签退过滤 end */
 				}
 				/** add by zhaozhiguo 2011-6-20 BMS-3153 end */
-			}else{
-				if(expiredSystem((HttpServletRequest) req,
-						(HttpServletResponse) resp)){
+			} else {
+				if (expiredSystem((HttpServletRequest) req, (HttpServletResponse) resp)) {
 					return;
 				}
 			}
-		}else{
-			if(expiredSystem((HttpServletRequest) req,
-					(HttpServletResponse) resp)){
+		} else {
+			if (expiredSystem((HttpServletRequest) req, (HttpServletResponse) resp)) {
 				return;
 			}
 		}
@@ -148,18 +148,16 @@ public class TransFilter implements Filter {
 	private boolean expiredSystem(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String uriStr = StringUtils.substringAfterLast(req.getServletPath(), "/");
-		if (StringUtils.indexOf(loginRef, uriStr)==-1) {
+		if (StringUtils.indexOf(loginRef, uriStr) == -1) {
 			resp.setHeader("Pragma", "No-cache");
 			resp.setHeader("Cache-Control", "no-cache,no-store,max-age=0");
 			resp.setDateHeader("Expires", 1);
-			RequestDispatcher rd = (req)
-					.getRequestDispatcher(expiredPageName);
+			RequestDispatcher rd = (req).getRequestDispatcher(expiredPageName);
 			rd.forward(req, resp);
 			return true;
 		}
 		return false;
 	}
-
 
 	/*
 	 * (non-Javadoc)

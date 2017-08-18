@@ -25,42 +25,37 @@ import com.huateng.report.utils.ReportUtils;
 
 public class BOPForDebtBalanceInfoUpdate extends BaseUpdate {
 
-
-	private static final String DATASET_ID="BOPForDebtBalanceInfoCol";
-	private static final String RECORD_DELETE="del";
-	private static final String RECORD_ADD="new";
-	private static final String RECORD_MOD="mod";
+	private static final String DATASET_ID = "BOPForDebtBalanceInfoCol";
+	private static final String RECORD_DELETE = "del";
+	private static final String RECORD_ADD = "new";
+	private static final String RECORD_MOD = "mod";
 
 	@SuppressWarnings("rawtypes")
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
-		//返回对象
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
+		// 返回对象
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-		//取得外债信息结果集对象
+		// 取得外债信息结果集对象
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-		//开始处理
-		//外债信息表
-		BopCfaExdebtDs bpExdebt =null;
+		// 开始处理
+		// 外债信息表
+		BopCfaExdebtDs bpExdebt = null;
 
 		BOPForDebtBilLoanService debtServ = null;
 
 		OperationContext oc = new OperationContext();
 		GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
 
-		if(updateResultBean.hasNext())
-		{
-			//自定义bean ： 外债信息+单债权人信息
+		if (updateResultBean.hasNext()) {
+			// 自定义bean ： 外债信息+单债权人信息
 			BopCfaExdebtDs bpExdebtTemp = new BopCfaExdebtDs();
 			String op = updateResultBean.getParameter("op");
 			String balanceFileType = updateResultBean.getParameter("balanceFileType");
 			Map map = updateResultBean.next();
-			mapToObject(bpExdebtTemp,map);
+			mapToObject(bpExdebtTemp, map);
 
-			if(!StringUtils.isEmpty(op))
-			{
-				if(RECORD_ADD.equalsIgnoreCase(op))
-				{
+			if (!StringUtils.isEmpty(op)) {
+				if (RECORD_ADD.equalsIgnoreCase(op)) {
 					bpExdebt = new BopCfaExdebtDs();
 
 					bpExdebt.setExdebtcode(bpExdebtTemp.getExdebtcode());
@@ -74,11 +69,10 @@ public class BOPForDebtBalanceInfoUpdate extends BaseUpdate {
 					bpExdebt.setFiller2(bpExdebtTemp.getFiller2());
 					bpExdebt.setAccoamount(bpExdebtTemp.getAccoamount());
 
-					/*操作状态=A-创建
-					记录状态=02-编辑待确认
-					审核状态=00-未审核
-					回执状态=00-未返回
-					是否已成功上报=0-否*/
+					/*
+					 * 操作状态=A-创建 记录状态=02-编辑待确认 审核状态=00-未审核 回执状态=00-未返回
+					 * 是否已成功上报=0-否
+					 */
 
 					bpExdebt.setId(ReportUtils.getUUID());
 					bpExdebt.setCrtTm(new Date());
@@ -101,9 +95,7 @@ public class BOPForDebtBalanceInfoUpdate extends BaseUpdate {
 
 					oc.setAttribute(BOPForDebtBalanceInfoOperation.CMD, BOPForDebtBalanceInfoOperation.CMD_INSERT);
 
-				}
-				else if(RECORD_MOD.equalsIgnoreCase(op))
-				{
+				} else if (RECORD_MOD.equalsIgnoreCase(op)) {
 
 					debtServ = BOPForDebtBilLoanService.getInstance();
 
@@ -120,12 +112,13 @@ public class BOPForDebtBalanceInfoUpdate extends BaseUpdate {
 					bpExdebt.setFiller2(bpExdebtTemp.getFiller2());
 					bpExdebt.setAccoamount(bpExdebtTemp.getAccoamount());
 
-					if(!StringUtils.isEmpty(bpExdebtTemp.getSubSuccess()) && TopReportConstants.REPORT_IS_SUB_SUCCESS_YES.equalsIgnoreCase(bpExdebtTemp.getSubSuccess()))
-					{
+					if (!StringUtils.isEmpty(bpExdebtTemp.getSubSuccess())
+							&& TopReportConstants.REPORT_IS_SUB_SUCCESS_YES
+									.equalsIgnoreCase(bpExdebtTemp.getSubSuccess())) {
 						bpExdebt.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_C);
-					}
-					else if(!StringUtils.isEmpty(bpExdebtTemp.getSubSuccess()) && TopReportConstants.REPORT_IS_SUB_SUCCESS_NO.equalsIgnoreCase(bpExdebtTemp.getSubSuccess()))
-					{
+					} else if (!StringUtils.isEmpty(bpExdebtTemp.getSubSuccess())
+							&& TopReportConstants.REPORT_IS_SUB_SUCCESS_NO
+									.equalsIgnoreCase(bpExdebtTemp.getSubSuccess())) {
 						bpExdebt.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_A);
 					}
 
@@ -139,9 +132,7 @@ public class BOPForDebtBalanceInfoUpdate extends BaseUpdate {
 
 					bpExdebt.setBalanceFileType(balanceFileType);
 					oc.setAttribute(BOPForDebtBalanceInfoOperation.CMD, BOPForDebtBalanceInfoOperation.CMD_UPDATE);
-				}
-				else if(RECORD_DELETE.equalsIgnoreCase(op))
-				{
+				} else if (RECORD_DELETE.equalsIgnoreCase(op)) {
 					debtServ = BOPForDebtBilLoanService.getInstance();
 					bpExdebt = debtServ.load(bpExdebtTemp.getId());
 

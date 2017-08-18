@@ -2,41 +2,31 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBopCfaExdebtDs;
 
-
-
 public class BopCfaExdebtDs extends BaseBopCfaExdebtDs {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public BopCfaExdebtDs () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public BopCfaExdebtDs() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BopCfaExdebtDs (java.lang.String id) {
+	public BopCfaExdebtDs(java.lang.String id) {
 		super(id);
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public BopCfaExdebtDs (
-		java.lang.String id,
-		java.lang.String apptype,
-		java.lang.String currentfile,
-		java.lang.String buscode) {
+	public BopCfaExdebtDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile,
+			java.lang.String buscode) {
 
-		super (
-			id,
-			apptype,
-			currentfile,
-			buscode);
+		super(id, apptype, currentfile, buscode);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
-
+	/* [CONSTRUCTOR MARKER END] */
 
 	private java.lang.String creditorcode;
 	private java.lang.String creditorname;
@@ -48,13 +38,12 @@ public class BopCfaExdebtDs extends BaseBopCfaExdebtDs {
 
 	private java.lang.String projectname;
 
-	private java.util.List projects ;
+	private java.util.List projects;
 	private java.util.List creditors;
 
 	private java.lang.String limit_type;
 
 	private String creditorsStr;
-
 
 	public String getCreditorsStr() {
 		return creditorsStr;
@@ -79,6 +68,7 @@ public class BopCfaExdebtDs extends BaseBopCfaExdebtDs {
 	public java.util.List getCreditors() {
 		return creditors;
 	}
+
 	public java.util.List getProjects() {
 		return projects;
 	}
@@ -142,7 +132,6 @@ public class BopCfaExdebtDs extends BaseBopCfaExdebtDs {
 	public void setOpercode(java.lang.String opercode) {
 		this.opercode = opercode;
 	}
-
 
 	public java.lang.String getProjectname() {
 		return projectname;

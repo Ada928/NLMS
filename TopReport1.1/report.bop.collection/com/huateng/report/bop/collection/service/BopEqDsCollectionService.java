@@ -20,7 +20,7 @@ public class BopEqDsCollectionService {
 	protected static final Logger logger = Logger.getLogger(BopEqDsCollectionService.class);
 
 	protected BopEqDsCollectionService() {
-		
+
 	}
 
 	public synchronized static BopEqDsCollectionService getInstance() {
@@ -29,6 +29,7 @@ public class BopEqDsCollectionService {
 
 	/**
 	 * BOP境外汇款申请书记录查询
+	 * 
 	 * @param queryType
 	 * @param pageIndex
 	 * @param pageSize
@@ -43,8 +44,9 @@ public class BopEqDsCollectionService {
 	 * @return
 	 * @throws CommonException
 	 */
-	public PageQueryResult queryBOPEqRecord(String queryType, int pageIndex, int pageSize, String qstartDate, String qendDate, String qactiontype,
-			String qapproveStatus, String qrepStatus, String qrecStatus, String qfiller2, String brNo) throws CommonException {
+	public PageQueryResult queryBOPEqRecord(String queryType, int pageIndex, int pageSize, String qstartDate,
+			String qendDate, String qactiontype, String qapproveStatus, String qrepStatus, String qrecStatus,
+			String qfiller2, String brNo) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<Object> objs = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer(" SELECT model FROM MtsBopEqDs model WHERE ");
@@ -52,16 +54,16 @@ public class BopEqDsCollectionService {
 		objs.add(TopReportConstants.REPORT_APP_TYPE_BOP);
 		if (queryType.equals("E")) {
 			objs.add(TopReportConstants.REPORT_FILE_TYPE_BOP_E);
-		} else if(queryType.equals("Q")) {
+		} else if (queryType.equals("Q")) {
 			objs.add(TopReportConstants.REPORT_FILE_TYPE_BOP_Q);
 		}
- 		objs.add(TopReportConstants.REPORT_RECSTATUS_01);
+		objs.add(TopReportConstants.REPORT_RECSTATUS_01);
 		objs.add(TopReportConstants.REPORT_RECSTATUS_02);
-		if(!DataFormat.isEmpty(qstartDate)){
+		if (!DataFormat.isEmpty(qstartDate)) {
 			hql.append(" AND model.workDate >= ? ");
 			objs.add(qstartDate);
 		}
-		if(!DataFormat.isEmpty(qendDate)){
+		if (!DataFormat.isEmpty(qendDate)) {
 			hql.append(" AND model.workDate <= ? ");
 			objs.add(qendDate);
 		}
@@ -81,7 +83,7 @@ public class BopEqDsCollectionService {
 			hql.append(" AND model.repStatus = ? ");
 			objs.add(qrepStatus);
 		}
-		if(!DataFormat.isEmpty(qfiller2)){
+		if (!DataFormat.isEmpty(qfiller2)) {
 			hql.append(" AND model.filler2 like '%" + qfiller2 + "%'");
 		}
 		hql.append(" AND model.brNo = ? ORDER BY model.lstUpdTm DESC ");
@@ -97,6 +99,7 @@ public class BopEqDsCollectionService {
 
 	/**
 	 * BOP境外汇款申请书记录拾取查询
+	 * 
 	 * @param pageIndex
 	 * @param pageSize
 	 * @param qstartDate
@@ -107,7 +110,8 @@ public class BopEqDsCollectionService {
 	 * @return
 	 * @throws CommonException
 	 */
-	public PageQueryResult queryBOPEForQ(int pageIndex, int pageSize, String qstartDate, String qendDate, String qrptno, String qfiller2, String brNo) throws CommonException {
+	public PageQueryResult queryBOPEForQ(int pageIndex, int pageSize, String qstartDate, String qendDate, String qrptno,
+			String qfiller2, String brNo) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<Object> objs = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer(" SELECT model FROM MtsBopEqDs model WHERE ");
@@ -115,18 +119,18 @@ public class BopEqDsCollectionService {
 		objs.add(TopReportConstants.REPORT_APP_TYPE_BOP);
 		objs.add(TopReportConstants.REPORT_FILE_TYPE_BOP_E);
 		objs.add(TopReportConstants.REPORT_ACTIONTYPE_D);
-		if(!DataFormat.isEmpty(qstartDate)) {
+		if (!DataFormat.isEmpty(qstartDate)) {
 			hql.append(" AND model.workDate >= ? ");
 			objs.add(qstartDate);
 		}
-		if(!DataFormat.isEmpty(qendDate)) {
+		if (!DataFormat.isEmpty(qendDate)) {
 			hql.append(" AND model.workDate <= ? ");
 			objs.add(qendDate);
 		}
-		if(!DataFormat.isEmpty(qrptno)) {
-			hql.append(" AND model.rptno like '%"+qrptno+"%'");
+		if (!DataFormat.isEmpty(qrptno)) {
+			hql.append(" AND model.rptno like '%" + qrptno + "%'");
 		}
-		if(!DataFormat.isEmpty(qfiller2)) {
+		if (!DataFormat.isEmpty(qfiller2)) {
 			hql.append(" AND model.filler2 like '%" + qfiller2 + "%'");
 		}
 		hql.append(" AND model.brNo = ? ORDER BY model.lstUpdTm DESC ");

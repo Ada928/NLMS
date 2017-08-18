@@ -32,10 +32,8 @@ import com.huateng.report.dataquery.bean.TlrMngRelBean;
  */
 public class OperMngModUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
@@ -46,7 +44,7 @@ public class OperMngModUpdate extends BaseUpdate {
 				Map map = updateResultBean.next();
 				mapToObject(operator, map);
 			}
-			
+
 			UpdateResultBean bctlUpdateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("bctlMngEntry");
 			List<Bctl> bctls = new ArrayList<Bctl>();
 			while (bctlUpdateResultBean.hasNext()) {
@@ -55,29 +53,30 @@ public class OperMngModUpdate extends BaseUpdate {
 				mapToObject(bctl, map);
 				bctls.add(bctl);
 			}
-			//jianxue.zhang
-//			UpdateResultBean tlrManUpdateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("TlrManageRelMng");
+			// jianxue.zhang
+			// UpdateResultBean tlrManUpdateResultBean =
+			// multiUpdateResultBean.getUpdateResultBeanByID("TlrManageRelMng");
 			List<TlrMngRelBean> tlrmng = new ArrayList<TlrMngRelBean>();
-//			while (tlrManUpdateResultBean.hasNext()) {
-//				TlrMngRelBean tlrbean = new TlrMngRelBean();
-//				Map map = tlrManUpdateResultBean.next();
-//				mapToObject(tlrbean, map);
-//				tlrmng.add(tlrbean);
-//			}
+			// while (tlrManUpdateResultBean.hasNext()) {
+			// TlrMngRelBean tlrbean = new TlrMngRelBean();
+			// Map map = tlrManUpdateResultBean.next();
+			// mapToObject(tlrbean, map);
+			// tlrmng.add(tlrbean);
+			// }
 			UpdateResultBean roleUpdateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("operMngRoleInfo");
 			List<RoleInfo> roles = new ArrayList<RoleInfo>();
 			while (roleUpdateResultBean.hasNext()) {
 				RoleInfo role = new RoleInfo();
 				Map map = roleUpdateResultBean.next();
-				String roleId = (String)map.get("roleId");
-				String roleName = (String)map.get("roleName");
+				String roleId = (String) map.get("roleId");
+				String roleName = (String) map.get("roleName");
 				role.setId(Integer.parseInt(roleId));
 				role.setRoleName(roleName);
 				roles.add(role);
 			}
 
 			String op = updateResultBean.getParameter("op");
-			
+
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(OperMngOperation.CMD, op);
 			oc.setAttribute(OperMngOperation.IN_ROLELIST, roles);
@@ -85,13 +84,12 @@ public class OperMngModUpdate extends BaseUpdate {
 			oc.setAttribute(OperMngOperation.IN_TLRLLIST, tlrmng);
 			oc.setAttribute(OperMngOperation.IN_TLRINFO, operator);
 			OPCaller.call(OperMngOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

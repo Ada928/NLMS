@@ -21,7 +21,7 @@ import com.huateng.report.constants.TopReportConstants;
  *
  * @author shishu.zhang
  *
- * 2012-8-15上午10:54:59
+ *         2012-8-15上午10:54:59
  */
 public class ReportApproveResultGetter extends BaseGetter {
 
@@ -29,26 +29,23 @@ public class ReportApproveResultGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageQueryResult = getData();
-			
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-	
-	public PageQueryResult getData() throws CommonException{
+
+	public PageQueryResult getData() throws CommonException {
 		Map map = getCommQueryServletRequest().getParameterMap();
 		PageQueryResult queryResult = new PageQueryResult();
 		String id = (String) map.get("id");
@@ -58,10 +55,10 @@ public class ReportApproveResultGetter extends BaseGetter {
 		String queryModelName = "";
 		if (appType.equals(TopReportConstants.REPORT_APP_TYPE_ACC) && currentfile.startsWith("C")) {
 			queryModelName = "BopAccDs";
-		} else if (appType.equals(TopReportConstants.REPORT_APP_TYPE_CFA)){
-			if(currentfile.startsWith("A")) {
+		} else if (appType.equals(TopReportConstants.REPORT_APP_TYPE_CFA)) {
+			if (currentfile.startsWith("A")) {
 				queryModelName = "BopCfaExdebtDs";
-			} else if(currentfile.startsWith("B")){
+			} else if (currentfile.startsWith("B")) {
 				queryModelName = "BopCfaExguDs";
 			} else if (currentfile.startsWith("C")) {
 				queryModelName = "BopCfaDofoexloDs";

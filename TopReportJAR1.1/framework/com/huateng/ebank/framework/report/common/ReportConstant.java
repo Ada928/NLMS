@@ -105,5 +105,5 @@ public class ReportConstant {
 
 	public static final String REPORT_PROPERTY_JASPER_FILE_PATH = "reportJasperFilePath";
 	public static final String REPORT_LOACL_DATA_PARAMGROUP = "LOCDATA";
-	public static final String REPORT_REMOTE_DATA_PARAMGROUP="REMODATA";
+	public static final String REPORT_REMOTE_DATA_PARAMGROUP = "REMODATA";
 }

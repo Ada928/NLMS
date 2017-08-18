@@ -17,7 +17,7 @@ import com.huateng.report.service.BopAccDsService;
  *
  * @author shishu.zhang
  *
- * 2012-8-15上午10:54:59
+ *         2012-8-15上午10:54:59
  */
 @SuppressWarnings("unchecked")
 public class BopAccDsADQueryGetter extends BaseGetter {
@@ -29,31 +29,28 @@ public class BopAccDsADQueryGetter extends BaseGetter {
 
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外汇账户补录信息查询-开关户信息查询");
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
-	public PageQueryResult getData() throws CommonException{
+	public PageQueryResult getData() throws CommonException {
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		Map map = getCommQueryServletRequest().getParameterMap();
 
 		String qbrNo = (String) map.get("qbrNo");
-//		String qworkDate = (String) map.get("qworkDate");
+		// String qworkDate = (String) map.get("qworkDate");
 		String qactiontype = (String) map.get("qactiontype");
 		String qrecStatus = (String) map.get("qrecStatus");
 		String qapproveStatus = (String) map.get("qapproveStatus");
@@ -64,6 +61,7 @@ public class BopAccDsADQueryGetter extends BaseGetter {
 		String qendDate = (String) map.get("qendDate");
 
 		BopAccDsService bopAccDsService = BopAccDsService.getInstance();
-		return bopAccDsService.queryBopAccDsQuery("AD", pageIndex, pageSize, qbrNo, qactiontype, qrecStatus, qapproveStatus, qrepStatus, qaccountstat, null, qstartDate, qendDate);
+		return bopAccDsService.queryBopAccDsQuery("AD", pageIndex, pageSize, qbrNo, qactiontype, qrecStatus,
+				qapproveStatus, qrepStatus, qaccountstat, null, qstartDate, qendDate);
 	}
 }

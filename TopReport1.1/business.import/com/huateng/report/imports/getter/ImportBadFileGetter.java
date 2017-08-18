@@ -17,14 +17,15 @@ import com.huateng.report.imports.common.Constants;
 import com.huateng.report.utils.ReportUtils;
 
 @SuppressWarnings("unchecked")
-public class ImportBadFileGetter extends BaseGetter{
+public class ImportBadFileGetter extends BaseGetter {
 	@Override
 	public Result call() throws AppException {
 		try {
-			//拼装错误文件路径，格式如：/home/jgbs/source_data/20150228/error
+			// 拼装错误文件路径，格式如：/home/jgbs/source_data/20150228/error
 			String filePath = ReportUtils.getSysParamsValue(Constants.PARAM_DIR, Constants.PARAM_DIR_0001, "D:/bad");
 			String workdate = DataFormat.dateToNumber(DateUtil.getTbsDay());
-			filePath = filePath.substring(0, filePath.lastIndexOf("/")) + "/source_data/" + workdate + filePath.substring( filePath.lastIndexOf("/"));
+			filePath = filePath.substring(0, filePath.lastIndexOf("/")) + "/source_data/" + workdate
+					+ filePath.substring(filePath.lastIndexOf("/"));
 			File dir = new File(filePath);
 			List list = new ArrayList();
 			if (dir.isDirectory() && dir.exists()) {
@@ -42,8 +43,7 @@ public class ImportBadFileGetter extends BaseGetter{
 					}
 				}
 			}
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list, getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);
 			result.getPage().setTotalPage(1);
 			result.init();
@@ -51,9 +51,8 @@ public class ImportBadFileGetter extends BaseGetter{
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
-	}	
+	}
 
 }

@@ -52,13 +52,13 @@ public class TlrInfoUpdaterOperation extends BaseOperation {
 		String tlrno = (String) context.getAttribute(TLRNO);
 		TlrInfo tlrinfo = DAOUtils.getTlrInfoDAO().queryById(tlrno);
 		if ("del".equals(cmd)) {
-			List tlrref = DAOUtils.getTlrRoleRelDAO().queryByCondition("tlrno="+tlrno);
+			List tlrref = DAOUtils.getTlrRoleRelDAO().queryByCondition("tlrno=" + tlrno);
 			for (Iterator it = tlrref.iterator(); it.hasNext();) {
 				TlrRoleRel ref = (TlrRoleRel) it.next();
 				DAOUtils.getTlrRoleRelDAO().delete(ref);
 			}
 			DAOUtils.getTlrInfoDAO().delete(tlrno);
-			
+
 		} else if ("unlock".equals(cmd)) {
 			tlrinfo.setIsLock("0");
 			DAOUtils.getTlrInfoDAO().update(tlrinfo);

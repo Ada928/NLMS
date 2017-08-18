@@ -38,11 +38,9 @@ public class RoleReportParamDAO extends HibernateDaoSupport {
 	 */
 	public RoleReportParam query(long id) throws CommonException {
 		try {
-			return (RoleReportParam) this.getHibernateTemplate().load(RoleReportParam.class,
-					new Long(id));
+			return (RoleReportParam) this.getHibernateTemplate().load(RoleReportParam.class, new Long(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_SELECT, e);
 		}
 		return null;
 	}
@@ -54,24 +52,17 @@ public class RoleReportParamDAO extends HibernateDaoSupport {
 	 * @param key2
 	 * @return RoleReportParam
 	 * @throws CommonException
-	public RoleReportParam query(String key1, String key2) throws CommonException {
-		List list = new ArrayList();
-		try {
-			StringBuffer whereString = new StringBuffer();
-			whereString.append("po.key1 = '").append(key1).append(
-					"' and po.key2 = '").append(key2).append("'");
-			list = queryByCondition(whereString.toString());
-		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_SELECT, e);
-		}
-
-		if (list.size() != 1) {
-			return null;
-		} else {
-			return (RoleReportParam) list.get(0);
-		}
-	}
+	 *             public RoleReportParam query(String key1, String key2) throws
+	 *             CommonException { List list = new ArrayList(); try {
+	 *             StringBuffer whereString = new StringBuffer();
+	 *             whereString.append("po.key1 = '").append(key1).append(
+	 *             "' and po.key2 = '").append(key2).append("'"); list =
+	 *             queryByCondition(whereString.toString()); } catch (Exception
+	 *             e) { ExceptionUtil.throwCommonException(e.getMessage(),
+	 *             ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_SELECT, e); }
+	 * 
+	 *             if (list.size() != 1) { return null; } else { return
+	 *             (RoleReportParam) list.get(0); } }
 	 */
 
 	/**
@@ -83,15 +74,12 @@ public class RoleReportParamDAO extends HibernateDaoSupport {
 	 * @return 包含RoleReportParam对象的List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString, Object[] objArray,
-			Type[] typeArray) throws CommonException {
+	public List queryByCondition(String whereString, Object[] objArray, Type[] typeArray) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from RoleReportParam po where " + whereString, objArray );
+			List list = this.getHibernateTemplate().find("from RoleReportParam po where " + whereString, objArray);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_SELECT, e);
 		}
 		return null;
 	}
@@ -105,12 +93,10 @@ public class RoleReportParamDAO extends HibernateDaoSupport {
 	 */
 	public List queryByCondition(String whereString) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from RoleReportParam po where " + whereString);
+			List list = this.getHibernateTemplate().find("from RoleReportParam po where " + whereString);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_SELECT, e);
 		}
 		return null;
 	}
@@ -125,8 +111,7 @@ public class RoleReportParamDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().update(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_UPDATE, e);
 		}
 	}
 
@@ -140,8 +125,7 @@ public class RoleReportParamDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().save(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_INSERT, e);
 		}
 	}
 
@@ -155,8 +139,7 @@ public class RoleReportParamDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_DELETE, e);
 		}
 	}
 
@@ -170,8 +153,7 @@ public class RoleReportParamDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(query(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_REPORT_PARAM_DELETE, e);
 		}
 	}
 }

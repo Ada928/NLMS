@@ -30,8 +30,7 @@ public class CurrencyDAO extends HibernateDaoSupport {
 			String hql = "from Currency po order by po.id ";
 			list = this.getSession().createQuery(hql).list();
 		} catch (HibernateException e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_CURRENCY_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_CURRENCY_SELECT, e);
 		}
 		return list;
 	}
@@ -49,16 +48,14 @@ public class CurrencyDAO extends HibernateDaoSupport {
 		}
 
 		try {
-			Currency returnCurrency = (Currency) this.getHibernateTemplate()
-					.load(Currency.class, id);
+			Currency returnCurrency = (Currency) this.getHibernateTemplate().load(Currency.class, id);
 			if (logger.isDebugEnabled()) {
 				logger.debug("query(String) - end"); //$NON-NLS-1$
 			}
 			return returnCurrency;
 		} catch (Exception e) {
 			logger.error("query(String)", e); //$NON-NLS-1$
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_CURRENCY_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_CURRENCY_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {

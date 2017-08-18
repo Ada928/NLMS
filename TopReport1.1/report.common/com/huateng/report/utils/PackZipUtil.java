@@ -106,7 +106,7 @@ public class PackZipUtil {
 		}
 	}
 
-	public Map<String,String> unZip(String zipFilePath, String saveFilePath,String appName) throws Exception {
+	public Map<String, String> unZip(String zipFilePath, String saveFilePath, String appName) throws Exception {
 		File zipFile = new File(zipFilePath);
 		if (!zipFile.exists()) {
 			throw new Exception("文件不存在：" + zipFilePath);
@@ -115,7 +115,7 @@ public class PackZipUtil {
 		if (!sf.isDirectory()) {
 			sf.mkdirs();
 		}
-		Map<String,String> fileMap = new HashMap<String,String>();
+		Map<String, String> fileMap = new HashMap<String, String>();
 		ZipEntry zipEntry = null;
 		ZipInputStream zipInputStream = null;
 		FileOutputStream os = null;
@@ -129,8 +129,8 @@ public class PackZipUtil {
 
 				String tableName = fileName.replaceAll(ReportConstant.BAK_FILE_EXT, "");
 
-				if (appName!=null) {
-					fileName=appName+fileName;
+				if (appName != null) {
+					fileName = appName + fileName;
 				}
 				File saveFile = new File(saveFilePath + fileName);
 				os = new FileOutputStream(saveFile);
@@ -145,7 +145,7 @@ public class PackZipUtil {
 				os.close();
 				bos = null;
 				os = null;
-				fileMap.put(tableName,saveFile.getPath());
+				fileMap.put(tableName, saveFile.getPath());
 			}
 		} catch (Exception e) {
 			throw e;

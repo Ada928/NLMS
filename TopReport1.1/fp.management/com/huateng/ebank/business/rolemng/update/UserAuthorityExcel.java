@@ -33,30 +33,27 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 public class UserAuthorityExcel extends HttpServlet {
 
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String param = request.getParameter("param");
 		String[] ids = param.split(";");
 		List userList = new ArrayList();
-		String sql = new String(
-				"SELECT FUNCID,FUNCNAME,ISDIRECTORY,LASTDIRECTORY FROM FUNCTION_INFO B"
-						+ " WHERE B.FUNCID IN ("
-						+ "SELECT FUNCID FROM ROLE_FUNC_REL A "
-						+ "WHERE A.ROLE_ID IN (select ROLE_ID from TLR_ROLE_REL WHERE TLRNO='");
+		String sql = new String("SELECT FUNCID,FUNCNAME,ISDIRECTORY,LASTDIRECTORY FROM FUNCTION_INFO B"
+				+ " WHERE B.FUNCID IN (" + "SELECT FUNCID FROM ROLE_FUNC_REL A "
+				+ "WHERE A.ROLE_ID IN (select ROLE_ID from TLR_ROLE_REL WHERE TLRNO='");
 		Map authority = new HashMap();
 		List userName = new ArrayList();
 		for (String id : ids) {
 			UserAuthority u = new UserAuthority();
-			String trlNo =id;
-			Iterator trlN=null;
+			String trlNo = id;
+			Iterator trlN = null;
 			try {
-				trlN=ROOTDAOUtils.getROOTDAO().queryBySQL("SELECT TLR_NAME FROM TLR_INFO WHERE TLRNO='"+id+"'");
+				trlN = ROOTDAOUtils.getROOTDAO().queryBySQL("SELECT TLR_NAME FROM TLR_INFO WHERE TLRNO='" + id + "'");
 			} catch (CommonException e1) {
 				e1.printStackTrace();
 			}
 
-			String trlName=(String)trlN.next();
+			String trlName = (String) trlN.next();
 			StringBuffer hql = new StringBuffer(sql);
 			hql.append(trlNo).append("'))  ORDER BY B.LASTDIRECTORY,B.SHOWSEQ");
 			Iterator funcName = null;
@@ -75,10 +72,8 @@ public class UserAuthorityExcel extends HttpServlet {
 		}
 		Iterator allFuncName = null;
 		try {
-			allFuncName = ROOTDAOUtils
-					.getROOTDAO()
-					.queryBySQL(
-							"SELECT FUNCID,FUNCNAME,ISDIRECTORY,LASTDIRECTORY FROM FUNCTION_INFO ORDER BY LASTDIRECTORY,SHOWSEQ");
+			allFuncName = ROOTDAOUtils.getROOTDAO().queryBySQL(
+					"SELECT FUNCID,FUNCNAME,ISDIRECTORY,LASTDIRECTORY FROM FUNCTION_INFO ORDER BY LASTDIRECTORY,SHOWSEQ");
 		} catch (CommonException e) {
 			e.printStackTrace();
 		}
@@ -87,7 +82,7 @@ public class UserAuthorityExcel extends HttpServlet {
 			Object[] object = (Object[]) allFuncName.next();
 			allFuncList.add(object);
 		}
-		//生成一个树形结构的list  funcList
+		// 生成一个树形结构的list funcList
 		List funcList = new ArrayList();
 		for (int j = 0; j < allFuncList.size(); j++) {
 			Object[] o = (Object[]) allFuncList.get(j);
@@ -98,7 +93,7 @@ public class UserAuthorityExcel extends HttpServlet {
 			}
 		}
 
-		 writeExcel(funcList, userName, authority,response);
+		writeExcel(funcList, userName, authority, response);
 	}
 
 	void sort(Object[] o, List allFuncList, String space, List funcList) {
@@ -121,7 +116,7 @@ public class UserAuthorityExcel extends HttpServlet {
 		}
 	}
 
-	void writeExcel(List funcList, List userList,Map authority,HttpServletResponse response) {
+	void writeExcel(List funcList, List userList, Map authority, HttpServletResponse response) {
 		WritableWorkbook wwb = null;
 		ByteArrayOutputStream ba = new ByteArrayOutputStream();
 		try {
@@ -147,8 +142,7 @@ public class UserAuthorityExcel extends HttpServlet {
 					}
 					if (i == 0 && j != 0) {
 						String userName = (String) userList.get(j - 1);
-						String nString = userName.split(":")[0] + "("
-								+ userName.split(":")[1] + ")";
+						String nString = userName.split(":")[0] + "(" + userName.split(":")[1] + ")";
 						labelC = new Label(j, i, nString);
 					}
 					if (labelC == null) {
@@ -171,7 +165,8 @@ public class UserAuthorityExcel extends HttpServlet {
 			try {
 				wwb.write();
 				wwb.close();
-//				response.setContentType( "application/x-download;charset=utf-8");
+				// response.setContentType(
+				// "application/x-download;charset=utf-8");
 				response.setContentType("application/octet-stream;charset=utf-8");
 				response.setHeader("Content-Disposition", "attachment;filename=userAuthority.xls");
 				ServletOutputStream out = response.getOutputStream();
@@ -190,7 +185,7 @@ public class UserAuthorityExcel extends HttpServlet {
 		for (int i = 0; i < list.size(); i++) {
 			Object[] ob = (Object[]) list.get(i);
 			String obName = (String) ob[1];
-			obName=obName.replace(" ", "");
+			obName = obName.replace(" ", "");
 			if (obName.equals(funcName.replace(" ", ""))) {
 				flag = true;
 				break;

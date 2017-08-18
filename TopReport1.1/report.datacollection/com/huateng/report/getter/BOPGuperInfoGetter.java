@@ -35,13 +35,10 @@ public class BOPGuperInfoGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "对外担保履约明细信息补录页面查询");
 
@@ -49,15 +46,14 @@ public class BOPGuperInfoGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	@SuppressWarnings("rawtypes")
 	private PageQueryResult getData() throws CommonException {
 
-//		Map paramMap = this.getCommQueryServletRequest().getParameterMap();
+		// Map paramMap = this.getCommQueryServletRequest().getParameterMap();
 		int pageSize = getResult().getPage().getEveryPage();
 		int pageIndex = getResult().getPage().getCurrentPage();
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
@@ -66,51 +62,46 @@ public class BOPGuperInfoGetter extends BaseGetter {
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-//		String hql ="select bds from BopCfaExguDs bds where 1=1 ";
+		// String hql ="select bds from BopCfaExguDs bds where 1=1 ";
 		StringBuilder hql = new StringBuilder(" SELECT bds FROM BopCfaExguDs bds WHERE 1 = 1 ");
 		String qstartDate = getCommQueryServletRequest().getParameter("qstartDate");
 		String qendDate = getCommQueryServletRequest().getParameter("qendDate");
 		String qActiontype = getCommQueryServletRequest().getParameter("qActiontype");
 
-	    String qRecStatus = getCommQueryServletRequest().getParameter("qRecStatus");
+		String qRecStatus = getCommQueryServletRequest().getParameter("qRecStatus");
 		String qApproveStatus = getCommQueryServletRequest().getParameter("qApproveStatus");
 
-	    String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
+		String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
 		String qfiller2 = getCommQueryServletRequest().getParameter("qfiller2");
 
-		List<Object>paramentList = new ArrayList<Object>();
-		if(!DataFormat.isEmpty(qstartDate)){
+		List<Object> paramentList = new ArrayList<Object>();
+		if (!DataFormat.isEmpty(qstartDate)) {
 			hql.append(" AND bds.workDate >= ? ");
 			paramentList.add(qstartDate);
 		}
-		if(!DataFormat.isEmpty(qendDate)){
+		if (!DataFormat.isEmpty(qendDate)) {
 			hql.append(" AND bds.workDate <= ? ");
 			paramentList.add(qendDate);
 		}
-		if(StringUtils.isNotBlank(qActiontype))
-		{
+		if (StringUtils.isNotBlank(qActiontype)) {
 			hql.append(" AND bds.actiontype = ? ");
 			paramentList.add(qActiontype);
 		}
-		if(StringUtils.isNotBlank(qRecStatus))
-		{
+		if (StringUtils.isNotBlank(qRecStatus)) {
 			hql.append(" AND bds.recStatus = ? ");
 			paramentList.add(qRecStatus);
 		}
-		if(StringUtils.isNotBlank(qApproveStatus))
-		{
+		if (StringUtils.isNotBlank(qApproveStatus)) {
 			hql.append(" AND bds.approveStatus = ? ");
 			paramentList.add(qApproveStatus);
 		}
-		if(StringUtils.isNotBlank(qRepStatus))
-		{
+		if (StringUtils.isNotBlank(qRepStatus)) {
 			hql.append(" AND bds.repStatus = ? ");
 			paramentList.add(qRepStatus);
 		}
-		if(StringUtils.isNotBlank(qfiller2))
-		{
+		if (StringUtils.isNotBlank(qfiller2)) {
 			hql.append(" AND bds.filler2 LIKE ? ");
-			paramentList.add("%"+qfiller2+"%");
+			paramentList.add("%" + qfiller2 + "%");
 		}
 
 		hql.append(" AND bds.brNo = ? ");
@@ -126,7 +117,8 @@ public class BOPGuperInfoGetter extends BaseGetter {
 		paramentList.add(TopReportConstants.REPORT_RECSTATUS_01);
 		paramentList.add(TopReportConstants.REPORT_RECSTATUS_02);
 
-//		hql+=" and bds.actiontype <>'"+TopReportConstants.REPORT_ACTIONTYPE_D+"'";
+		// hql+=" and bds.actiontype
+		// <>'"+TopReportConstants.REPORT_ACTIONTYPE_D+"'";
 		hql.append(" ORDER BY bds.lstUpdTm desc,bds.workDate, bds.actiontype, bds.approveStatus DESC");
 		queryCondition.setQueryString(hql.toString());
 		queryCondition.setObjArray(paramentList.toArray());
@@ -135,13 +127,15 @@ public class BOPGuperInfoGetter extends BaseGetter {
 		pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 
 		List resultList = pageQueryResult.getQueryResult();
-		for(int i=0; i<resultList.size(); i++){
+		for (int i = 0; i < resultList.size(); i++) {
 			Object[] obs = (Object[]) resultList.get(i);
-			BopCfaExguDs bopCfaExguDs =(BopCfaExguDs)obs[0];
-//			ReportCommonService commservice = ReportCommonService.getInstance();
+			BopCfaExguDs bopCfaExguDs = (BopCfaExguDs) obs[0];
+			// ReportCommonService commservice =
+			// ReportCommonService.getInstance();
 
 			List<BopExguTorDs> exguTorList = new ArrayList<BopExguTorDs>();
-		    exguTorList = rootdao.queryByQL2List(" FROM BopExguTorDs model WHERE model.recId = '"+bopCfaExguDs.getId().trim()+"' AND torType = '01' ");
+			exguTorList = rootdao.queryByQL2List(" FROM BopExguTorDs model WHERE model.recId = '"
+					+ bopCfaExguDs.getId().trim() + "' AND torType = '01' ");
 			bopCfaExguDs.setBename(exguTorList.get(0).getTorName());
 			bopCfaExguDs.setBencode(exguTorList.get(0).getTorCode());
 			bopCfaExguDs.setBenamen(exguTorList.get(0).getTorEnname());

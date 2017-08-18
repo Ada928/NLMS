@@ -5,17 +5,17 @@ import java.io.Serializable;
 public class DataDicTreeBean implements Serializable {
 
 	private String id;
-	
+
 	private String name;
-	
+
 	private int level;
-	
+
 	private boolean canSelected;
-	
+
 	private boolean hasChild;
 
 	private String pid;
-	
+
 	public String getId() {
 		return id;
 	}

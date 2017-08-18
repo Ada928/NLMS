@@ -16,7 +16,6 @@ import com.huateng.report.genupreportfile.service.ReportCreateSubFileService;
 @SuppressWarnings("unchecked")
 public class BopSubToFileConfrimGetter extends BaseGetter {
 
-
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
@@ -40,7 +39,7 @@ public class BopSubToFileConfrimGetter extends BaseGetter {
 		String busiType = this.getCommQueryServletRequest().getParameter("busiType");
 		String appType = this.commQueryServletRequest.getParameter("appType");
 		String workDate = info.getFileDate();
-		List list =ReportCreateSubFileService.getInstance().getSubFileConfrim(busiType, appType, workDate);
+		List list = ReportCreateSubFileService.getInstance().getSubFileConfrim(busiType, appType, workDate);
 		pageQueryResult.setQueryResult(list);
 		return pageQueryResult;
 	}

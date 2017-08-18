@@ -5,7 +5,7 @@ import com.huateng.exception.AppException;
 
 public interface IDialectSeq {
 
-	public abstract Integer getSeqNo(String sequenceName)throws AppException;
+	public abstract Integer getSeqNo(String sequenceName) throws AppException;
 
 	public abstract void setId(String id);
 

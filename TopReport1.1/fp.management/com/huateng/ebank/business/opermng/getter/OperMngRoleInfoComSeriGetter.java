@@ -35,20 +35,16 @@ public class OperMngRoleInfoComSeriGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
@@ -60,19 +56,21 @@ public class OperMngRoleInfoComSeriGetter extends BaseGetter {
 		String flag = (String) getCommQueryServletRequest().getParameterMap().get("flag");
 		String tskId = (String) getCommQueryServletRequest().getParameter("tskId");
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		
+
 		List tlrRoleViewList = new ArrayList();
 		List<Integer> roleIds = new ArrayList<Integer>();
-		if(flag.equals("0")){
-			if(st.equals("2")){
+		if (flag.equals("0")) {
+			if (st.equals("2")) {
 				ReportTaskUtil rt = new ReportTaskUtil();
-				List<SysTaskInfo> taskList = rootdao.queryByQL2List("from SysTaskInfo where intInsId='100399' and adtRcdPk='" + tlrno + "'");
+				List<SysTaskInfo> taskList = rootdao
+						.queryByQL2List("from SysTaskInfo where intInsId='100399' and adtRcdPk='" + tlrno + "'");
 				if (taskList.size() > 0) {
 					TlrInfoAuditBean auditBean = (TlrInfoAuditBean) rt.getObjctBySysTaskInfo(taskList.get(0));
 					for (TlrRoleRel rr : auditBean.getRoleRellist()) {
 						roleIds.add(rr.getRoleId());
 					}
-					List roleList = DAOUtils.getRoleInfoDAO().queryByCondition(" po.id in" + ReportUtils.toInString(roleIds));
+					List roleList = DAOUtils.getRoleInfoDAO()
+							.queryByCondition(" po.id in" + ReportUtils.toInString(roleIds));
 					// 对以有的操作员岗位在岗位列表中显示
 					for (int i = 0; i < roleList.size(); i++) {
 						RoleInfo roleInfo = (RoleInfo) roleList.get(i);
@@ -86,18 +84,19 @@ public class OperMngRoleInfoComSeriGetter extends BaseGetter {
 				}
 			}
 		}
-		if(flag.equals("1")) {
-			ReportTaskUtil rt=new ReportTaskUtil();
-			SysTaskLog  systasklog=ReportShowDetailService.getInstance().selectTaskLog(tskId);
+		if (flag.equals("1")) {
+			ReportTaskUtil rt = new ReportTaskUtil();
+			SysTaskLog systasklog = ReportShowDetailService.getInstance().selectTaskLog(tskId);
 			TlrInfoAuditBean newValue = null;
-			if(systasklog.getNewVal1()!=null){
-				newValue=(TlrInfoAuditBean)rt.getNewObjectByTaskLog(systasklog);	  
+			if (systasklog.getNewVal1() != null) {
+				newValue = (TlrInfoAuditBean) rt.getNewObjectByTaskLog(systasklog);
 			}
-			if(newValue != null){
+			if (newValue != null) {
 				for (TlrRoleRel rr : newValue.getRoleRellist()) {
 					roleIds.add(rr.getRoleId());
 				}
-				List roleList = DAOUtils.getRoleInfoDAO().queryByCondition(" po.id in" + ReportUtils.toInString(roleIds));
+				List roleList = DAOUtils.getRoleInfoDAO()
+						.queryByCondition(" po.id in" + ReportUtils.toInString(roleIds));
 				// 对以有的操作员岗位在岗位列表中显示
 				for (int i = 0; i < roleList.size(); i++) {
 					RoleInfo roleInfo = (RoleInfo) roleList.get(i);

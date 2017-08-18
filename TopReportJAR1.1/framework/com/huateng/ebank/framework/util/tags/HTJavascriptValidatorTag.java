@@ -29,9 +29,9 @@ import org.apache.struts.validator.Resources;
 import org.apache.struts.validator.ValidatorPlugIn;
 
 /**
- * Custom tag that generates JavaScript for client side validation based
- * on the validation rules loaded by the <code>ValidatorPlugIn</code>
- * defined in the struts-config.xml file.
+ * Custom tag that generates JavaScript for client side validation based on the
+ * validation rules loaded by the <code>ValidatorPlugIn</code> defined in the
+ * struts-config.xml file.
  *
  * @author Huang Liang
  * @version
@@ -61,49 +61,53 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	protected static Locale defaultLocale = Locale.getDefault();
 
 	/**
-	 * The name of the form that corresponds with the action name
-	 * in struts-config.xml. Specifying a form name places a
-	 * &lt;script&gt; &lt;/script&gt; around the javascript.
+	 * The name of the form that corresponds with the action name in
+	 * struts-config.xml. Specifying a form name places a &lt;script&gt;
+	 * &lt;/script&gt; around the javascript.
 	 */
 
 	protected String formName = null;
 
 	/**
-	 * The current page number of a multi-part form.
-	 * Only valid when the formName attribute is set.
+	 * The current page number of a multi-part form. Only valid when the
+	 * formName attribute is set.
 	 */
 
 	protected int page = 0;
 
 	/**
-	 * This will be used is for the JavaScript validation method name if it has a value.  This is
-	 * the method name of the main JavaScript method that the form calls to perform validations.
+	 * This will be used is for the JavaScript validation method name if it has
+	 * a value. This is the method name of the main JavaScript method that the
+	 * form calls to perform validations.
 	 */
 
 	protected String methodName = null;
 
 	/**
-	 * The static JavaScript methods will only be printed if this is set to "true".
+	 * The static JavaScript methods will only be printed if this is set to
+	 * "true".
 	 */
 
 	protected String staticJavascript = "true";
 
 	/**
-	 * The dynamic JavaScript objects will only be generated if this is set to "true".
+	 * The dynamic JavaScript objects will only be generated if this is set to
+	 * "true".
 	 */
 
 	protected String dynamicJavascript = "true";
 
 	/**
-	 * The src attribute for html script element (used to include an external script
-	 * resource). The src attribute is only recognized
-	 * when the formName attribute is specified.
+	 * The src attribute for html script element (used to include an external
+	 * script resource). The src attribute is only recognized when the formName
+	 * attribute is specified.
 	 */
 
 	protected String src = null;
 
 	/**
-	 * The JavaScript methods will enclosed with html comments if this is set to "true".
+	 * The JavaScript methods will enclosed with html comments if this is set to
+	 * "true".
 	 */
 
 	protected String htmlComment = "true";
@@ -113,9 +117,8 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	private String htmlEndComment = "//End --> \n";
 
 	/**
-	 * Gets the key (form name) that will be used
-	 * to retrieve a set of validation rules to be
-	 * performed on the bean passed in for validation.
+	 * Gets the key (form name) that will be used to retrieve a set of
+	 * validation rules to be performed on the bean passed in for validation.
 	 */
 
 	public String getFormName() {
@@ -125,11 +128,10 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	}
 
 	/**
-	 * Sets the key (form name) that will be used
-	 * to retrieve a set of validation rules to be
-	 * performed on the bean passed in for validation.
-	 * Specifying a form name places a
-	 * &lt;script&gt; &lt;/script&gt; tag around the javascript.
+	 * Sets the key (form name) that will be used to retrieve a set of
+	 * validation rules to be performed on the bean passed in for validation.
+	 * Specifying a form name places a &lt;script&gt; &lt;/script&gt; tag around
+	 * the javascript.
 	 */
 
 	public void setFormName(String formName) {
@@ -139,10 +141,9 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	}
 
 	/**
-	 * Gets the current page number of a multi-part form.
-	 * Only field validations with a matching page numer
-	 * will be generated that match the current page number.
-	 * Only valid when the formName attribute is set.
+	 * Gets the current page number of a multi-part form. Only field validations
+	 * with a matching page numer will be generated that match the current page
+	 * number. Only valid when the formName attribute is set.
 	 */
 
 	public int getPage() {
@@ -152,10 +153,9 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	}
 
 	/**
-	 * Sets the current page number of a multi-part form.
-	 * Only field validations with a matching page numer
-	 * will be generated that match the current page number.
-	 * Only valid when the formName attribute is set.
+	 * Sets the current page number of a multi-part form. Only field validations
+	 * with a matching page numer will be generated that match the current page
+	 * number. Only valid when the formName attribute is set.
 	 */
 
 	public void setPage(int page) {
@@ -165,10 +165,9 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	}
 
 	/**
-	 * Gets the method name that will be used for the Javascript
-	 * validation method name if it has a value.  This overrides
-	 * the auto-generated method name based on the key (form name)
-	 * passed in.
+	 * Gets the method name that will be used for the Javascript validation
+	 * method name if it has a value. This overrides the auto-generated method
+	 * name based on the key (form name) passed in.
 	 */
 
 	public String getMethod() {
@@ -178,10 +177,9 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	}
 
 	/**
-	 * Sets the method name that will be used for the Javascript
-	 * validation method name if it has a value.  This overrides
-	 * the auto-generated method name based on the key (form name)
-	 * passed in.
+	 * Sets the method name that will be used for the Javascript validation
+	 * method name if it has a value. This overrides the auto-generated method
+	 * name based on the key (form name) passed in.
 	 */
 
 	public void setMethod(String methodName) {
@@ -191,9 +189,8 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	}
 
 	/**
-	 * Gets whether or not to generate the static
-	 * JavaScript.  If this is set to 'true', which
-	 * is the default, the static JavaScript will be generated.
+	 * Gets whether or not to generate the static JavaScript. If this is set to
+	 * 'true', which is the default, the static JavaScript will be generated.
 	 */
 
 	public String getStaticJavascript() {
@@ -203,9 +200,8 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	}
 
 	/**
-	 * Sets whether or not to generate the static
-	 * JavaScript.  If this is set to 'true', which
-	 * is the default, the static JavaScript will be generated.
+	 * Sets whether or not to generate the static JavaScript. If this is set to
+	 * 'true', which is the default, the static JavaScript will be generated.
 	 */
 
 	public void setStaticJavascript(String staticJavascript) {
@@ -215,9 +211,8 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	}
 
 	/**
-	 * Gets whether or not to generate the dynamic
-	 * JavaScript.  If this is set to 'true', which
-	 * is the default, the dynamic JavaScript will be generated.
+	 * Gets whether or not to generate the dynamic JavaScript. If this is set to
+	 * 'true', which is the default, the dynamic JavaScript will be generated.
 	 */
 
 	public String getDynamicJavascript() {
@@ -227,9 +222,8 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	}
 
 	/**
-	 * Sets whether or not to generate the dynamic
-	 * JavaScript.  If this is set to 'true', which
-	 * is the default, the dynamic JavaScript will be generated.
+	 * Sets whether or not to generate the dynamic JavaScript. If this is set to
+	 * 'true', which is the default, the dynamic JavaScript will be generated.
 	 */
 
 	public void setDynamicJavascript(String dynamicJavascript) {
@@ -239,10 +233,10 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	}
 
 	/**
-	  * Gets whether or not to delimit the
-	  * JavaScript with html comments.  If this is set to 'true', which
-	  * is the default, the htmlComment will be surround the JavaScript.
-	  */
+	 * Gets whether or not to delimit the JavaScript with html comments. If this
+	 * is set to 'true', which is the default, the htmlComment will be surround
+	 * the JavaScript.
+	 */
 
 	public String getHtmlComment() {
 
@@ -251,9 +245,9 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	}
 
 	/**
-	 * Sets whether or not to delimit the
-	 * JavaScript with html comments.  If this is set to 'true', which
-	 * is the default, the htmlComment will be surround the JavaScript.
+	 * Sets whether or not to delimit the JavaScript with html comments. If this
+	 * is set to 'true', which is the default, the htmlComment will be surround
+	 * the JavaScript.
 	 */
 
 	public void setHtmlComment(String htmlComment) {
@@ -263,8 +257,7 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	}
 
 	/**
-	 * Gets the src attribute's value when defining
-	 * the html script element.
+	 * Gets the src attribute's value when defining the html script element.
 	 */
 
 	public String getSrc() {
@@ -274,9 +267,9 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	}
 
 	/**
-	 * Sets the src attribute's value when defining
-	 * the html script element. The src attribute is only recognized
-	 * when the formName attribute is specified.
+	 * Sets the src attribute's value when defining the html script element. The
+	 * src attribute is only recognized when the formName attribute is
+	 * specified.
 	 */
 
 	public void setSrc(String src) {
@@ -288,7 +281,8 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 	/**
 	 * Render the JavaScript for to perform validations based on the form name.
 	 *
-	 * @exception JspException if a JSP exception has occurred
+	 * @exception JspException
+	 *                if a JSP exception has occurred
 	 */
 
 	@Override
@@ -298,19 +292,14 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 		ModuleConfig config = TagUtils.getInstance().getModuleConfig(pageContext);
 
-		ValidatorResources resources =
-			(ValidatorResources) pageContext.getAttribute(
-				ValidatorPlugIn.VALIDATOR_KEY + config.getPrefix(),
-				PageContext.APPLICATION_SCOPE);
+		ValidatorResources resources = (ValidatorResources) pageContext
+				.getAttribute(ValidatorPlugIn.VALIDATOR_KEY + config.getPrefix(), PageContext.APPLICATION_SCOPE);
 
 		Locale locale = null;
 
 		try {
 
-			locale =
-				(Locale) pageContext.getAttribute(
-					Globals.LOCALE_KEY,
-					PageContext.SESSION_SCOPE);
+			locale = (Locale) pageContext.getAttribute(Globals.LOCALE_KEY, PageContext.SESSION_SCOPE);
 
 		} catch (IllegalStateException e) { // Invalidated session
 
@@ -332,9 +321,7 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 			if ("true".equals(dynamicJavascript)) {
 
-				MessageResources messages =
-					(MessageResources) pageContext.getAttribute(
-						bundle + config.getPrefix(),
+				MessageResources messages = (MessageResources) pageContext.getAttribute(bundle + config.getPrefix(),
 						PageContext.APPLICATION_SCOPE);
 
 				List lActions = new ArrayList();
@@ -347,9 +334,7 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 					Field field = (Field) i.next();
 
-					for (Iterator x = field.getDependencyList().iterator();
-						x.hasNext();
-						) {
+					for (Iterator x = field.getDependencyList().iterator(); x.hasNext();) {
 
 						Object o = x.next();
 
@@ -376,9 +361,7 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 					if (va == null) {
 
 						throw new NullPointerException(
-							"Depends string \""
-								+ depends
-								+ "\" was not found in validator-rules.xml.");
+								"Depends string \"" + depends + "\" was not found in validator-rules.xml.");
 
 					}
 
@@ -404,33 +387,24 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 						ValidatorAction va2 = (ValidatorAction) o2;
 
-						if ((va1.getDepends() == null
-							|| va1.getDepends().length() == 0)
-							&& (va2.getDepends() == null
-								|| va2.getDepends().length() == 0)) {
+						if ((va1.getDepends() == null || va1.getDepends().length() == 0)
+								&& (va2.getDepends() == null || va2.getDepends().length() == 0)) {
 
 							return 0;
 
-						} else if (
-							(va1.getDepends() != null
-								&& va1.getDepends().length() > 0)
-								&& (va2.getDepends() == null
-									|| va2.getDepends().length() == 0)) {
+						} else if ((va1.getDepends() != null && va1.getDepends().length() > 0)
+								&& (va2.getDepends() == null || va2.getDepends().length() == 0)) {
 
 							return 1;
 
-						} else if (
-							(va1.getDepends() == null
-								|| va1.getDepends().length() == 0)
-								&& (va2.getDepends() != null
-									&& va2.getDepends().length() > 0)) {
+						} else if ((va1.getDepends() == null || va1.getDepends().length() == 0)
+								&& (va2.getDepends() != null && va2.getDepends().length() > 0)) {
 
 							return -1;
 
 						} else {
 
-							return va1.getDependencyList().size()
-								- va2.getDependencyList().size();
+							return va1.getDependencyList().size() - va2.getDependencyList().size();
 
 						}
 
@@ -466,8 +440,7 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 					String functionName = null;
 
-					if (va.getJsFunctionName() != null
-						&& va.getJsFunctionName().length() > 0) {
+					if (va.getJsFunctionName() != null && va.getJsFunctionName().length() > 0) {
 
 						functionName = va.getJsFunctionName();
 
@@ -479,41 +452,26 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 					results.append("    function " + functionName + " () { \n");
 
-					for (Iterator x = form.getFields().iterator();
-						x.hasNext();
-						) {
+					for (Iterator x = form.getFields().iterator(); x.hasNext();) {
 
 						Field field = (Field) x.next();
 
 						// Skip indexed fields for now until there is
 
-						// a good way to handle error messages (and the length of the list (could retrieve from scope?))
+						// a good way to handle error messages (and the length
+						// of the list (could retrieve from scope?))
 
-						if (!field.isIndexed()
-							&& (("," + field.getPage() + ",")
-								.indexOf("," + page + ",")
-								>= 0)
-							&& field.isDependency(va.getName())) {
+						if (!field.isIndexed() && (("," + field.getPage() + ",").indexOf("," + page + ",") >= 0)
+								&& field.isDependency(va.getName())) {
 
-							String message =
-								Resources.getMessage(
-									messages,
-									locale,
-									va,
-									field);
+							String message = Resources.getMessage(messages, locale, va, field);
 
 							message = (message != null ? message : "");
 
 							jscriptVar = getNextVar(jscriptVar);
 
-							results.append(
-								"     this."
-									+ jscriptVar
-									+ " = new Array(\""
-									+ field.getKey()
-									+ "\", \""
-									+ message
-									+ "\", ");
+							results.append("     this." + jscriptVar + " = new Array(\"" + field.getKey() + "\", \""
+									+ message + "\", ");
 
 							results.append("new Function (\"varName\", \"");
 
@@ -521,9 +479,7 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 							// Loop through the field's variables.
 
-							for (Iterator iVars = hVars.keySet().iterator();
-								iVars.hasNext();
-								) {
+							for (Iterator iVars = hVars.keySet().iterator(); iVars.hasNext();) {
 
 								String varKey = (String) iVars.next();
 
@@ -535,69 +491,32 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 								if (Var.JSTYPE_INT.equalsIgnoreCase(jsType)) {
 
-									results.append(
-										"this."
-											+ varKey
-											+ "="
-											+ ValidatorUtils.replace(
-												varValue,
-												"\\",
-												"\\\\")
-											+ "; ");
+									results.append("this." + varKey + "="
+											+ ValidatorUtils.replace(varValue, "\\", "\\\\") + "; ");
 
-								} else if (
-									Var.JSTYPE_REGEXP.equalsIgnoreCase(
-										jsType)) {
+								} else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(jsType)) {
 
-									results.append(
-										"this."
-											+ varKey
-											+ "=/"
-											+ ValidatorUtils.replace(
-												varValue,
-												"\\",
-												"\\\\")
-											+ "/; ");
+									results.append("this." + varKey + "=/"
+											+ ValidatorUtils.replace(varValue, "\\", "\\\\") + "/; ");
 
-								} else if (
-									Var.JSTYPE_STRING.equalsIgnoreCase(
-										jsType)) {
+								} else if (Var.JSTYPE_STRING.equalsIgnoreCase(jsType)) {
 
-									results.append(
-										"this."
-											+ varKey
-											+ "='"
-											+ ValidatorUtils.replace(
-												varValue,
-												"\\",
-												"\\\\")
-											+ "'; ");
+									results.append("this." + varKey + "='"
+											+ ValidatorUtils.replace(varValue, "\\", "\\\\") + "'; ");
 
-									// So everyone using the latest format doesn't need to change their xml files immediately.
+									// So everyone using the latest format
+									// doesn't need to change their xml files
+									// immediately.
 
 								} else if ("mask".equalsIgnoreCase(varKey)) {
 
-									results.append(
-										"this."
-											+ varKey
-											+ "=/"
-											+ ValidatorUtils.replace(
-												varValue,
-												"\\",
-												"\\\\")
-											+ "/; ");
+									results.append("this." + varKey + "=/"
+											+ ValidatorUtils.replace(varValue, "\\", "\\\\") + "/; ");
 
 								} else {
 
-									results.append(
-										"this."
-											+ varKey
-											+ "='"
-											+ ValidatorUtils.replace(
-												varValue,
-												"\\",
-												"\\\\")
-											+ "'; ");
+									results.append("this." + varKey + "='"
+											+ ValidatorUtils.replace(varValue, "\\", "\\\\") + "'; ");
 
 								}
 
@@ -630,9 +549,7 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 		}
 
-		if (form != null
-			&& ("true".equals(dynamicJavascript)
-				|| "true".equals(staticJavascript))) {
+		if (form != null && ("true".equals(dynamicJavascript) || "true".equals(staticJavascript))) {
 
 			results.append(getJavascriptEnd());
 
@@ -650,7 +567,8 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 			throw new JspException(e.getMessage());
 
-			//throw new JspException(messages.getMessage("common.io", e.toString()));
+			// throw new JspException(messages.getMessage("common.io",
+			// e.toString()));
 
 		}
 
@@ -695,9 +613,7 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 		StringBuffer sb = new StringBuffer();
 
-		String name =
-			formName.substring(0, 1).toUpperCase()
-				+ formName.substring(1, formName.length());
+		String name = formName.substring(0, 1).toUpperCase() + formName.substring(1, formName.length());
 
 		sb.append(this.getStartElement());
 
@@ -713,15 +629,11 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 		sb.append("\n     var bCancel = false; \n\n");
 
 		if (methodName == null || methodName.length() == 0)
-			sb.append(
-				"    function validate"
-					+ name
+			sb.append("    function validate" + name
 					+ "(form) {                                                                   \n");
 
 		else
-			sb.append(
-				"    function "
-					+ methodName
+			sb.append("    function " + methodName
 					+ "(form) {                                                                   \n");
 
 		sb.append("        if (bCancel) \n");
@@ -754,9 +666,7 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 		sb.append("\n\n");
 
-		for (Iterator i = resources.getValidatorActions().values().iterator();
-			i.hasNext();
-			) {
+		for (Iterator i = resources.getValidatorActions().values().iterator(); i.hasNext();) {
 
 			ValidatorAction va = (ValidatorAction) i.next();
 
@@ -841,9 +751,7 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 				} else {
 
-					return input.substring(0, pos)
-						+ c
-						+ input.substring(pos, input.length() - 1);
+					return input.substring(0, pos) + c + input.substring(pos, input.length() - 1);
 
 				}
 
@@ -875,22 +783,20 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 		} else {
 
-			return input.substring(0, pos)
-				+ c
-				+ input.substring(pos, input.length() - 1);
+			return input.substring(0, pos) + c + input.substring(pos, input.length() - 1);
 
 		}
 
 	}
 
 	/**
-	 * Constructs the beginning &lt;script&gt; element depending on xhtml status.
+	 * Constructs the beginning &lt;script&gt; element depending on xhtml
+	 * status.
 	 */
 
 	private String getStartElement() {
 
-		StringBuffer start =
-			new StringBuffer("<script type=\"text/javascript\"");
+		StringBuffer start = new StringBuffer("<script type=\"text/javascript\"");
 
 		// there is no language attribute in xhtml
 
@@ -918,10 +824,7 @@ public class HTJavascriptValidatorTag extends BodyTagSupport {
 
 	private boolean isXhtml() {
 
-		String xhtml =
-			(String) this.pageContext.getAttribute(
-				Globals.XHTML_KEY,
-				PageContext.PAGE_SCOPE);
+		String xhtml = (String) this.pageContext.getAttribute(Globals.XHTML_KEY, PageContext.PAGE_SCOPE);
 
 		return ("true".equalsIgnoreCase(xhtml));
 

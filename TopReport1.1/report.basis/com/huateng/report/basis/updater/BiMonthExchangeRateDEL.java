@@ -1,7 +1,5 @@
 package com.huateng.report.basis.updater;
 
-
-
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +18,6 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.basis.operation.BiMonthExchangeRateOperation;
 
-
 /*
 
  * 
@@ -28,25 +25,25 @@ import com.huateng.report.basis.operation.BiMonthExchangeRateOperation;
 public class BiMonthExchangeRateDEL extends BaseUpdate {
 
 	private static final String DATASET_ID = "BiMonthExchangeRate";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
-			//返回对象
+			// 返回对象
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			//结果集对象
+			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-			//更新对象
+			// 更新对象
 			BiMonthexchangerate biMonthexchangerate = new BiMonthexchangerate();
-			//Operation参数
+			// Operation参数
 			OperationContext context = new OperationContext();
-			if(updateResultBean.hasNext()) {
-				//属性拷贝
+			if (updateResultBean.hasNext()) {
+				// 属性拷贝
 				Map map = updateResultBean.next();
-				context.setAttribute(BiMonthExchangeRateOperation.CMD,BiMonthExchangeRateOperation.CMD_DEL);
+				context.setAttribute(BiMonthExchangeRateOperation.CMD, BiMonthExchangeRateOperation.CMD_DEL);
 				BaseUpdate.mapToObject(biMonthexchangerate, map);
-				//call方式开启operation事务
+				// call方式开启operation事务
 				context.setAttribute(BiMonthExchangeRateOperation.IN_PARAM, biMonthexchangerate);
 				OPCaller.call(BiMonthExchangeRateOperation.ID, context);
 				return updateReturnBean;
@@ -54,10 +51,9 @@ public class BiMonthExchangeRateDEL extends BaseUpdate {
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
-			throw new AppException(Module.SYSTEM_MODULE,Rescode.DEFAULT_RESCODE,e.getMessage(),e);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
 		return null;
 	}
-	
-}
 
+}

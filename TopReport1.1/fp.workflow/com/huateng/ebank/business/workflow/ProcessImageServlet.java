@@ -45,38 +45,36 @@ public class ProcessImageServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
+			throws ServletException, IOException {
 
-
-    long processDefinitionId = Long.parseLong( request.getParameter( "definitionId" ) );
-    GetProcessInstances getProcessInstances = new GetProcessInstances();
-    ProcessDefinition processDefinition = new ProcessDefinition();
-    HQLDAO dao = DAOUtils.getHQLDAO();
-	Session session = dao.getHibernateTemplate().getSessionFactory().openSession();
-	try{
-		TopBPMConfiguration topbpmConfiguration = getProcessInstances.getTopbpmConfiguration();
-		TopBPMContext topBPMContext = topbpmConfiguration.createTopBPMContext();
-		topBPMContext.setSession(session);
-	    processDefinition =
-	    	topBPMContext.getGraphSession().loadProcessDefinition(processDefinitionId);
-	    byte[] bytes = processDefinition.getFileDefinition().getBytes("processimage.jpg");
-	    OutputStream out = response.getOutputStream();
-	    out.write(bytes);
-	    out.flush();
-	}catch (RuntimeException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}finally{
-		if(session!=null && session.isOpen()){
-			session.close();
+		long processDefinitionId = Long.parseLong(request.getParameter("definitionId"));
+		GetProcessInstances getProcessInstances = new GetProcessInstances();
+		ProcessDefinition processDefinition = new ProcessDefinition();
+		HQLDAO dao = DAOUtils.getHQLDAO();
+		Session session = dao.getHibernateTemplate().getSessionFactory().openSession();
+		try {
+			TopBPMConfiguration topbpmConfiguration = getProcessInstances.getTopbpmConfiguration();
+			TopBPMContext topBPMContext = topbpmConfiguration.createTopBPMContext();
+			topBPMContext.setSession(session);
+			processDefinition = topBPMContext.getGraphSession().loadProcessDefinition(processDefinitionId);
+			byte[] bytes = processDefinition.getFileDefinition().getBytes("processimage.jpg");
+			OutputStream out = response.getOutputStream();
+			out.write(bytes);
+			out.flush();
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
 		}
-	}
 
-
-    // leave this in.  it is in case we want to set the mime type later.
-    // get the mime type
-    // String contentType = URLConnection.getFileNameMap().getContentTypeFor( fileName );
-    // set the content type (=mime type)
-    // response.setContentType( contentType );
+		// leave this in. it is in case we want to set the mime type later.
+		// get the mime type
+		// String contentType =
+		// URLConnection.getFileNameMap().getContentTypeFor( fileName );
+		// set the content type (=mime type)
+		// response.setContentType( contentType );
 	}
 }

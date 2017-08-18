@@ -188,8 +188,7 @@ public class BatchInfoViewBean {
 		return remitterRatingMaturity;
 	}
 
-	public void setRemitterRatingMaturity(
-			java.lang.String remitterRatingMaturity) {
+	public void setRemitterRatingMaturity(java.lang.String remitterRatingMaturity) {
 		this.remitterRatingMaturity = remitterRatingMaturity;
 	}
 
@@ -293,8 +292,7 @@ public class BatchInfoViewBean {
 		return acceptorRatingMaturity;
 	}
 
-	public void setAcceptorRatingMaturity(
-			java.lang.String acceptorRatingMaturity) {
+	public void setAcceptorRatingMaturity(java.lang.String acceptorRatingMaturity) {
 		this.acceptorRatingMaturity = acceptorRatingMaturity;
 	}
 

@@ -22,7 +22,7 @@ public abstract class AbsReportDataVaild {
 
 	private static final String serialNumber = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-	private static final String[] attrcodes = new String[]{"100","140","150","170","200","300"};
+	private static final String[] attrcodes = new String[] { "100", "140", "150", "170", "200", "300" };
 
 	private static Set<String> getAccountType() {
 		String[] accounttypes = new String[] { "2101", "2102", "2103", "2104", "2106", "2107", "2108", "2109", "2110",
@@ -88,7 +88,7 @@ public abstract class AbsReportDataVaild {
 		return serialNumber.indexOf(code);
 	}
 
-	public static String checkAttrcode(String attrcode){
+	public static String checkAttrcode(String attrcode) {
 		if (StringUtils.isNotEmpty(attrcode)) {
 			for (String code : attrcodes) {
 				if (StringUtils.equals(code, attrcode)) {
@@ -101,10 +101,12 @@ public abstract class AbsReportDataVaild {
 
 	public static String checkCountrycode(String attrcode, String countrycode) {
 		if (StringUtils.isNotEmpty(attrcode) && StringUtils.isNotEmpty(countrycode)) {
-			if (StringUtils.equals(attrcode, "110") || StringUtils.equals(attrcode, "120") || StringUtils.equals(attrcode, "130")
-					|| StringUtils.equals(attrcode, "210") || StringUtils.equals(attrcode, "220") || StringUtils.equals(attrcode, "230")
-					|| StringUtils.equals(attrcode, "240") || StringUtils.equals(attrcode, "290") || StringUtils.equals(attrcode, "310")
-					|| StringUtils.equals(attrcode, "320") || StringUtils.equals(attrcode, "330") || StringUtils.equals(attrcode, "340")
+			if (StringUtils.equals(attrcode, "110") || StringUtils.equals(attrcode, "120")
+					|| StringUtils.equals(attrcode, "130") || StringUtils.equals(attrcode, "210")
+					|| StringUtils.equals(attrcode, "220") || StringUtils.equals(attrcode, "230")
+					|| StringUtils.equals(attrcode, "240") || StringUtils.equals(attrcode, "290")
+					|| StringUtils.equals(attrcode, "310") || StringUtils.equals(attrcode, "320")
+					|| StringUtils.equals(attrcode, "330") || StringUtils.equals(attrcode, "340")
 					|| StringUtils.equals(attrcode, "390")) {
 				if (!StringUtils.equals(countrycode, "CHN")) {
 					return "[经济类型代码]为[内资],[港澳台投资],[国外投资]项下[常驻国家代码]应为[中国]";
@@ -114,7 +116,7 @@ public abstract class AbsReportDataVaild {
 		return StringUtils.EMPTY;
 	}
 
-	public String checkBankinfo(List<MtsBopOpenAccount>bankinfoList){
+	public String checkBankinfo(List<MtsBopOpenAccount> bankinfoList) {
 		if (null == bankinfoList || bankinfoList.isEmpty()) {
 			return "同一笔单位基本情况表下开户信息，必须有一条";
 		}
@@ -127,7 +129,7 @@ public abstract class AbsReportDataVaild {
 			int count = 0;
 			for (MtsBopOpenAccount openaccount : bankinfoList) {
 				if (StringUtils.equals(bankinfo.getBranchcode(), openaccount.getBranchcode())) {
-					count ++;
+					count++;
 				}
 			}
 			if (1 < count) {
@@ -137,17 +139,19 @@ public abstract class AbsReportDataVaild {
 		return result.toString();
 	}
 
-	public static String checkInvcountrycode(String attrcode, List<String>invcountrycodeList){
+	public static String checkInvcountrycode(String attrcode, List<String> invcountrycodeList) {
 
-		//校验外方投资者国别
-		if (StringUtils.equals(attrcode, "210") || StringUtils.equals(attrcode, "220") || StringUtils.equals(attrcode, "230")
-				|| StringUtils.equals(attrcode, "240") || StringUtils.equals(attrcode, "290")) {
+		// 校验外方投资者国别
+		if (StringUtils.equals(attrcode, "210") || StringUtils.equals(attrcode, "220")
+				|| StringUtils.equals(attrcode, "230") || StringUtils.equals(attrcode, "240")
+				|| StringUtils.equals(attrcode, "290")) {
 			if (null == invcountrycodeList || invcountrycodeList.isEmpty()) {
 				return "[经济类型]为[港澳台投资]项下,[外方投资者国别]不能为空";
 			}
 			boolean flag = false;
 			for (String countrycode : invcountrycodeList) {
-				if (StringUtils.equals(countrycode, "HKG") || StringUtils.equals(countrycode,"MAC") || StringUtils.equals(countrycode,"TWN")) {
+				if (StringUtils.equals(countrycode, "HKG") || StringUtils.equals(countrycode, "MAC")
+						|| StringUtils.equals(countrycode, "TWN")) {
 					flag = true;
 				}
 			}
@@ -164,8 +168,7 @@ public abstract class AbsReportDataVaild {
 			boolean flag = false;
 			for (String countrycode : invcountrycodeList) {
 				if (!StringUtils.equals(countrycode, "HKG") && !StringUtils.equals(countrycode, "MAC")
-						&& !StringUtils.equals(countrycode, "TWN")
-						&& !StringUtils.equals(countrycode, "CHN")) {
+						&& !StringUtils.equals(countrycode, "TWN") && !StringUtils.equals(countrycode, "CHN")) {
 					flag = true;
 				}
 			}
@@ -186,10 +189,10 @@ public abstract class AbsReportDataVaild {
 				int count = 0;
 				for (String invcountry : invcountrycodeList) {
 					if (StringUtils.equals(countrycode, invcountry)) {
-						count ++;
+						count++;
 					}
 				}
-				if (1 < count){
+				if (1 < count) {
 					return "同一笔[单位基本情况表]下[投资国别代码]不能重复";
 				}
 			}
@@ -209,8 +212,7 @@ public abstract class AbsReportDataVaild {
 		return StringUtils.EMPTY;
 	}
 
-	public static String checkUnitCode(String UnitCode)
-	{
+	public static String checkUnitCode(String UnitCode) {
 		if (UnitCode == null || "".equals(UnitCode) || UnitCode.length() != 9 || "000000000".equals(UnitCode)) {
 			return "组织机构代码不符合规范";
 		}
@@ -236,25 +238,25 @@ public abstract class AbsReportDataVaild {
 		return StringUtils.EMPTY;
 	}
 
-	public static String isChinese(String custname, String country){
+	public static String isChinese(String custname, String country) {
 
 		if (StringUtils.isNotEmpty(custname) && StringUtils.equals(country, "CHN")) {
-			//半角
-			String badChar ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			// 半角
+			String badChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 			badChar += "abcdefghijklmnopqrstuvwxyz";
 			badChar += "0123456789";
-			badChar += "`~!@#$%^&()-_=+[]\\|:;\"\\'<,>?/";//不包含*或.的英文符号
+			badChar += "`~!@#$%^&()-_=+[]\\|:;\"\\'<,>?/";// 不包含*或.的英文符号
 			badChar += " ";
 
-			//全角
+			// 全角
 			badChar += "ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ";
 			badChar += "ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ";
 			badChar += "０１２３４５６７８９";
 			badChar += "　";
-			badChar += "｀～！＠＃＄％＾＆（）－＿＝＋［］＼｜：；＂＇＜，＞？／";//不包含*或.的英文符号
+			badChar += "｀～！＠＃＄％＾＆（）－＿＝＋［］＼｜：；＂＇＜，＞？／";// 不包含*或.的英文符号
 
 			for (int i = 0; i < custname.length(); i++) {
-				char c = custname.charAt(i);//字符串str中的字符
+				char c = custname.charAt(i);// 字符串str中的字符
 				if (badChar.indexOf(c) > -1) {
 					return "[常驻国家代码]为[中国]时[组织机构名称]必须输中文";
 				}
@@ -299,8 +301,6 @@ public abstract class AbsReportDataVaild {
 		}
 		return set;
 	}
-
-
 
 	/**
 	 * 为空NULL验证
@@ -906,7 +906,8 @@ public abstract class AbsReportDataVaild {
 	 * @return
 	 * @throws ParseException
 	 */
-	public String dateLessCheckDate(String date, String checkDate, String errField1, String errField2, String formatStr) {
+	public String dateLessCheckDate(String date, String checkDate, String errField1, String errField2,
+			String formatStr) {
 		StringBuffer result = new StringBuffer();
 		SimpleDateFormat sdf = new SimpleDateFormat(formatStr);
 		try {
@@ -1158,7 +1159,8 @@ public abstract class AbsReportDataVaild {
 	// 如果债权人为银行，应填写8位或11位的SWIFT CODE；如果债权人类型为“政府”、或“中央银行”时，
 	// 或者当债务类型为“货币市场工具”或“债券和票据”或“非居民个人存款”时，应在外汇局编制的部分债权人代码表中选择债权人代码；否则为空。
 	// 如果债权人为“非银行金融机构”或“国际金融组织”，应优先填写SWIFT CODE。
-	public String validateCreditorCodeNull(String creditorType, String creditorCode, String debtType, String countrycode) {
+	public String validateCreditorCodeNull(String creditorType, String creditorCode, String debtType,
+			String countrycode) {
 		if (StringUtils.isNotEmpty(creditorCode)) {
 			if (StringUtils.equals("20001100", creditorType)) {
 				if (!StringUtils.equals(creditorCode, "GOV" + countrycode)) {
@@ -1297,10 +1299,14 @@ public abstract class AbsReportDataVaild {
 	/**
 	 * 根据客户类型判断组织机构代码和个人身份证号码
 	 *
-	 * @param custtype 客户类型
-	 * @param custcod  组织机构代码
-	 * @param idcode	个人身份证号码
-	 * @param errField	客户类型字段说明
+	 * @param custtype
+	 *            客户类型
+	 * @param custcod
+	 *            组织机构代码
+	 * @param idcode
+	 *            个人身份证号码
+	 * @param errField
+	 *            客户类型字段说明
 	 *
 	 * @return
 	 */
@@ -1318,11 +1324,11 @@ public abstract class AbsReportDataVaild {
 					result.append("客户类型为对公时， 组织机构代码不能为空！");
 				} else if (custcod.length() != 9) {
 					result.append("客户类型为对公时， 组织机构代码长度必须为9位！");
-				}else if(custcod.length()==9){
+				} else if (custcod.length() == 9) {
 					try {
 						String sc = isValidEntpCode(custcod);
-						if(!sc.equals(String.valueOf(custcod.charAt(8)))){
-							result.append("组织机构代码错误，最后一位应为'"+sc+"'！");
+						if (!sc.equals(String.valueOf(custcod.charAt(8)))) {
+							result.append("组织机构代码错误，最后一位应为'" + sc + "'！");
 						}
 					} catch (Exception e) {
 						result.append(e.getMessage());
@@ -1348,6 +1354,7 @@ public abstract class AbsReportDataVaild {
 
 	/**
 	 * 组织机构代码校验
+	 * 
 	 * @param code
 	 * @return
 	 * @throws Exception
@@ -1385,9 +1392,9 @@ public abstract class AbsReportDataVaild {
 	 */
 	public String isModDelRemarkVaild(String subsuccess, String actionDesc) {
 		StringBuffer result = new StringBuffer();
-		if(StringUtils.isNotEmpty(subsuccess)) {
+		if (StringUtils.isNotEmpty(subsuccess)) {
 			// 如果成功上报，原因必填
-			if("1".equals(subsuccess)) {
+			if ("1".equals(subsuccess)) {
 				if (null == actionDesc || "".equals(actionDesc.trim())) {
 					result.append("修改/删除原因不能为空！");
 				} else if (actionDesc.length() > 128) {

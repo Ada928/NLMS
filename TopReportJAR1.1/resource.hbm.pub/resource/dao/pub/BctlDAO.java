@@ -54,9 +54,9 @@ public class BctlDAO extends HibernateDaoSupport {
 			logger.debug("query(String) - start"); //$NON-NLS-1$
 		}
 		try {
-//			Bctl returnBctl = (Bctl) this.getHibernateTemplate().load(
-//					Bctl.class, id);
-			 Bctl returnBctl = (Bctl)this.getHibernateTemplate().get(Bctl.class, id);
+			// Bctl returnBctl = (Bctl) this.getHibernateTemplate().load(
+			// Bctl.class, id);
+			Bctl returnBctl = (Bctl) this.getHibernateTemplate().get(Bctl.class, id);
 			if (logger.isDebugEnabled()) {
 				logger.debug("query(String) - end"); //$NON-NLS-1$
 			}
@@ -64,8 +64,7 @@ public class BctlDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("query(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BCTL_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BCTL_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -94,8 +93,7 @@ public class BctlDAO extends HibernateDaoSupport {
 			return returnBctl;
 		} catch (Exception e) {
 			logger.error("queryById(String)", e); //$NON-NLS-1$
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BCTL_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BCTL_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -113,16 +111,14 @@ public class BctlDAO extends HibernateDaoSupport {
 	 * @return 包含Bctl对象的List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString, Object[] objArray,
-			Type[] typeArray) throws CommonException {
+	public List queryByCondition(String whereString, Object[] objArray, Type[] typeArray) throws CommonException {
 		this.getHibernateTemplate().setCacheQueries(true);
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByCondition(String, Object[], Type[]) - start"); //$NON-NLS-1$
 		}
 
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from Bctl po where " + whereString, objArray);
+			List list = this.getHibernateTemplate().find("from Bctl po where " + whereString, objArray);
 
 			if (logger.isDebugEnabled()) {
 				logger.debug("queryByCondition(String, Object[], Type[]) - end"); //$NON-NLS-1$
@@ -131,8 +127,7 @@ public class BctlDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("queryByCondition(String, Object[], Type[])", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BCTL_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BCTL_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -155,8 +150,7 @@ public class BctlDAO extends HibernateDaoSupport {
 		}
 
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from Bctl po where " + whereString);
+			List list = this.getHibernateTemplate().find("from Bctl po where " + whereString);
 
 			if (logger.isDebugEnabled()) {
 				logger.debug("queryByCondition(String) - end"); //$NON-NLS-1$
@@ -165,8 +159,7 @@ public class BctlDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("queryByCondition(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BCTL_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BCTL_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -175,7 +168,6 @@ public class BctlDAO extends HibernateDaoSupport {
 		return null;
 	}
 
-
 	/**
 	 * 根据内部机构好取到外部机构号
 	 *
@@ -183,16 +175,14 @@ public class BctlDAO extends HibernateDaoSupport {
 	 * @return 包含Bctl对象的List
 	 * @throws CommonException
 	 */
-	public List queryByConditionForBranchBrode(String whereString)
-			throws CommonException {
+	public List queryByConditionForBranchBrode(String whereString) throws CommonException {
 		this.getHibernateTemplate().setCacheQueries(true);
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByConditionForBranchBrode(String) - start"); //$NON-NLS-1$
 		}
 
 		try {
-			List list = this.getHibernateTemplate().find(
-					"select brcode from Bctl po where " + whereString);
+			List list = this.getHibernateTemplate().find("select brcode from Bctl po where " + whereString);
 
 			if (logger.isDebugEnabled()) {
 				logger.debug("queryByConditionForBranchBrode(String) - end"); //$NON-NLS-1$
@@ -201,8 +191,7 @@ public class BctlDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("queryByConditionForBranchBrode(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BCTL_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BCTL_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -222,13 +211,11 @@ public class BctlDAO extends HibernateDaoSupport {
 		if (logger.isDebugEnabled()) {
 			logger.debug("getHeadBranch() - start"); //$NON-NLS-1$
 		}
-		List list = queryByCondition("po.brclass = ?",
-				new Object[] { SystemConstant.BRCODE_CLASS_HEAD },
+		List list = queryByCondition("po.brclass = ?", new Object[] { SystemConstant.BRCODE_CLASS_HEAD },
 				new Type[] { Hibernate.STRING });
 
 		if (null == list || list.size() <= 0) {
-			ExceptionUtil.throwCommonException("没有找到总行机构号",
-					ErrorCode.ERROR_CODE_NO_BRCODE);
+			ExceptionUtil.throwCommonException("没有找到总行机构号", ErrorCode.ERROR_CODE_NO_BRCODE);
 		}
 		Bctl returnBctl = (Bctl) list.get(0);
 		if (logger.isDebugEnabled()) {
@@ -238,8 +225,8 @@ public class BctlDAO extends HibernateDaoSupport {
 	}
 
 	/**
-	 * 得到所属分行记录(直属行、省分行、辖属行)
-	 * 总行返回为空
+	 * 得到所属分行记录(直属行、省分行、辖属行) 总行返回为空
+	 * 
 	 * @param brcode
 	 * @return Bctl
 	 * @throws CommonException
@@ -255,7 +242,7 @@ public class BctlDAO extends HibernateDaoSupport {
 				logger.debug("getBranchBrcode(String) - end"); //$NON-NLS-1$
 			}
 			return null;
-		}else{
+		} else {
 			String blnBranchBrcode = po.getBlnBranchBrcode();
 			Bctl bbbPo = query(blnBranchBrcode);
 			if (logger.isDebugEnabled()) {
@@ -267,13 +254,14 @@ public class BctlDAO extends HibernateDaoSupport {
 
 	/**
 	 * Description: 得到管辖分行记录（直属行、省分行)
+	 * 
 	 * @param 总行返回为空
 	 * @return Bctl
-	 * @exception
-	 * @author shen_antonio
+	 * @exception @author
+	 *                shen_antonio
 	 * @version v1.0,2008-9-3
 	 */
-	public Bctl getManageBrcode(String brcode)throws CommonException{
+	public Bctl getManageBrcode(String brcode) throws CommonException {
 		this.getHibernateTemplate().setCacheQueries(true);
 		if (logger.isDebugEnabled()) {
 			logger.debug("getManageBrcode(String) - start"); //$NON-NLS-1$
@@ -284,7 +272,7 @@ public class BctlDAO extends HibernateDaoSupport {
 				logger.debug("getManageBrcode(String) - end"); //$NON-NLS-1$
 			}
 			return null;
-		}else{
+		} else {
 			String blnManageBrcode = po.getBlnManageBrcode();
 			Bctl bbbPo = query(blnManageBrcode);
 			if (logger.isDebugEnabled()) {
@@ -311,8 +299,7 @@ public class BctlDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("update(Bctl)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BCTL_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BCTL_UPDATE, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -337,8 +324,7 @@ public class BctlDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("insert(Bctl)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BCTL_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BCTL_INSERT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -363,8 +349,7 @@ public class BctlDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("delete(Bctl)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BCTL_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BCTL_DELETE, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -389,8 +374,7 @@ public class BctlDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("delete(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BCTL_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BCTL_DELETE, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -411,8 +395,7 @@ public class BctlDAO extends HibernateDaoSupport {
 	 * @return List 对象集合
 	 * @throws DAOException
 	 */
-	public List queryByCondition(String whereString, int startPage, int maxRows)
-			throws CommonException {
+	public List queryByCondition(String whereString, int startPage, int maxRows) throws CommonException {
 		this.getHibernateTemplate().setCacheQueries(true);
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByCondition(String, int, int) - start"); //$NON-NLS-1$
@@ -420,8 +403,7 @@ public class BctlDAO extends HibernateDaoSupport {
 
 		List returnValue = new ArrayList();
 		startPage = startPage >= 1 ? startPage : 1;
-		int firstResult = (startPage - 1)
-				* (maxRows > 0 ? maxRows : SystemConstant.MAX_ROWS);
+		int firstResult = (startPage - 1) * (maxRows > 0 ? maxRows : SystemConstant.MAX_ROWS);
 		int rows = maxRows;
 		rows = (rows == 0 ? SystemConstant.MAX_ROWS : rows);
 
@@ -438,8 +420,7 @@ public class BctlDAO extends HibernateDaoSupport {
 
 		} catch (HibernateException e) {
 			logger.error("queryByCondition(String, int, int)", e); //$NON-NLS-1$
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BCTL_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BCTL_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {

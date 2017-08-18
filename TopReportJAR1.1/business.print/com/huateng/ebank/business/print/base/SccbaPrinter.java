@@ -23,14 +23,13 @@ import net.sf.jasperreports.engine.util.JRLoader;
 public class SccbaPrinter extends BasePrinter {
 
 	@Override
-	public List getPrinterList(HttpServletRequest request) throws Exception{
-		List jasperPrintList=new ArrayList();  //返回的打印列表
+	public List getPrinterList(HttpServletRequest request) throws Exception {
+		List jasperPrintList = new ArrayList(); // 返回的打印列表
 		// 打印种类
 		String flag = request.getParameter("flag");
 
-
-		if(flag.equals("test")){ //打印测试
-			for(int i=0; i< 10; i++){
+		if (flag.equals("test")) { // 打印测试
+			for (int i = 0; i < 10; i++) {
 				jasperPrintList.add(this.getTestJasper(i));
 			}
 		}
@@ -38,24 +37,23 @@ public class SccbaPrinter extends BasePrinter {
 		return jasperPrintList;
 	}
 
-
 	private JasperPrint getTestJasper(Integer count) throws Exception {
-		String filedir = ConfigReader.getProperty("reportJasperFilePath")+"Test.jasper";  //jasperPath
+		String filedir = ConfigReader.getProperty("reportJasperFilePath") + "Test.jasper"; // jasperPath
 		File reportFile = new File(filedir);
 		if (!reportFile.exists()) {
 			throw new JRRuntimeException("File .jasper not found. The report design must be compiled first.");
-			}
+		}
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportFile.getPath());
 
 		List jasperList = new ArrayList();
 		Map parameters = new HashMap();
-		parameters.put("TEST_PARAM", "Test Success "+count);
+		parameters.put("TEST_PARAM", "Test Success " + count);
 
 		List dataList = new ArrayList();
 		dataList.add("data");
-		JasperPrint jasperPrint =  JasperFillManager.fillReport(jasperReport, parameters,new ReportDataSource(dataList));
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,
+				new ReportDataSource(dataList));
 		return jasperPrint;
 	}
-
 
 }

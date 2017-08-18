@@ -19,18 +19,18 @@ public class LogoutAction extends BaseAction {
 	private static final Logger logger = Logger.getLogger(LogoutAction.class);
 
 	@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) {
 		ActionForward actionForward = null;
 		try {
-			if(request.getSession(false) != null){
-				//记录登录日志
+			if (request.getSession(false) != null) {
+				// 记录登录日志
 				TlrLoginLogService tlrLoginLogService = TlrLoginLogService.getInstance();
 				tlrLoginLogService.saveTlrLoginLog("logout", false, "退出系统");
-				/*不是重新登陆才记录退出信息*/
-//				if (StringUtils.isBlank(request.getParameter("relogin")))
-					UserMgrService.getInstance().setLoginOutInfo(GlobalInfo.getCurrentInstance().getTlrno());
-				//删除系统记录的session
+				/* 不是重新登陆才记录退出信息 */
+				// if (StringUtils.isBlank(request.getParameter("relogin")))
+				UserMgrService.getInstance().setLoginOutInfo(GlobalInfo.getCurrentInstance().getTlrno());
+				// 删除系统记录的session
 				SessionFactory.getInstance().removeSession(request.getSession(false).getId());
 			}
 			destroySession(request);

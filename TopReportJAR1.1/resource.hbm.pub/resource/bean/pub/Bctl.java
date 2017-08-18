@@ -36,7 +36,7 @@ public class Bctl extends BaseBctl {
 
 	private String billMailAddrName;
 	private String brclassName;
-	
+
 	private boolean selected;
 
 	public boolean isSelected() {

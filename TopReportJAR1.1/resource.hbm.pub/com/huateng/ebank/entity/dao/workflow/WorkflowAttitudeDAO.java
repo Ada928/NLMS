@@ -27,8 +27,7 @@ public class WorkflowAttitudeDAO extends HibernateDaoSupport {
 		super();
 	}
 
-
-    /**
+	/**
 	 * 根据输入的条件查询所有符合条件的记录
 	 *
 	 * @param whereString
@@ -37,17 +36,13 @@ public class WorkflowAttitudeDAO extends HibernateDaoSupport {
 	 */
 	public List queryByCondition(String whereString) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from WorkflowAttitude po where " + whereString);
+			List list = this.getHibernateTemplate().find("from WorkflowAttitude po where " + whereString);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_WORKFLOW_GETFLOWINS_ERROR, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_WORKFLOW_GETFLOWINS_ERROR, e);
 		}
 		return null;
 	}
-
-
 
 	/**
 	 * 更新记录
@@ -59,10 +54,10 @@ public class WorkflowAttitudeDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().update(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BHPROC_STEP_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BHPROC_STEP_UPDATE, e);
 		}
 	}
+
 	/**
 	 * 插入记录
 	 *
@@ -73,10 +68,10 @@ public class WorkflowAttitudeDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().save(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BHPROC_STEP_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BHPROC_STEP_INSERT, e);
 		}
 	}
+
 	/**
 	 * 删除记录
 	 *
@@ -87,10 +82,10 @@ public class WorkflowAttitudeDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BHPROC_STEP_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BHPROC_STEP_DELETE, e);
 		}
 	}
+
 	/**
 	 * 根据Hibernate ID删除记录
 	 *
@@ -101,8 +96,7 @@ public class WorkflowAttitudeDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(query(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BHPROC_STEP_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BHPROC_STEP_DELETE, e);
 		}
 	}
 
@@ -115,11 +109,9 @@ public class WorkflowAttitudeDAO extends HibernateDaoSupport {
 	 */
 	public WorkflowAttitude query(int id) throws CommonException {
 		try {
-			return (WorkflowAttitude) this.getHibernateTemplate().load(WorkflowAttitude.class,
-					new Integer(id));
+			return (WorkflowAttitude) this.getHibernateTemplate().load(WorkflowAttitude.class, new Integer(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BHPROC_STEP_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BHPROC_STEP_SELECT, e);
 		}
 		return null;
 	}

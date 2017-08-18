@@ -21,36 +21,37 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.operation.BopForDebtYinTuanOperation;
 
-public class BopForDebtYinTuanSignedUpdate extends BaseUpdate{
+public class BopForDebtYinTuanSignedUpdate extends BaseUpdate {
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
 
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 
-			//外债主信息
-			UpdateResultBean BcedUpdateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("bopForDebtYinTuanSigned");
-			BopCfaExdebtDs bopCfaExdebtDs = null ;
-			while (BcedUpdateResultBean.hasNext()){
+			// 外债主信息
+			UpdateResultBean BcedUpdateResultBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("bopForDebtYinTuanSigned");
+			BopCfaExdebtDs bopCfaExdebtDs = null;
+			while (BcedUpdateResultBean.hasNext()) {
 				bopCfaExdebtDs = new BopCfaExdebtDs();
-				mapToObject(bopCfaExdebtDs,BcedUpdateResultBean.next());
+				mapToObject(bopCfaExdebtDs, BcedUpdateResultBean.next());
 			}
 
-			//项目信息
-			List<BopProjectInfo> proNewList = new  ArrayList<BopProjectInfo>();
-			List<BopProjectInfo> proModList = new  ArrayList<BopProjectInfo>();
-			List<BopProjectInfo> proDelList = new  ArrayList<BopProjectInfo>();
+			// 项目信息
+			List<BopProjectInfo> proNewList = new ArrayList<BopProjectInfo>();
+			List<BopProjectInfo> proModList = new ArrayList<BopProjectInfo>();
+			List<BopProjectInfo> proDelList = new ArrayList<BopProjectInfo>();
 
 			List<BopProjectInfo> checkProjectList = new ArrayList<BopProjectInfo>();
 
-			UpdateResultBean bopProUpdateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("bopForDebtYinTuanProject");
+			UpdateResultBean bopProUpdateResultBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("bopForDebtYinTuanProject");
 			while (bopProUpdateResultBean.hasNext()) {
 				BopProjectInfo projectInfo = new BopProjectInfo();
 				mapToObject(projectInfo, bopProUpdateResultBean.next());
-				if(UpdateResultBean.DELETE != bopProUpdateResultBean.getRecodeState()) {
+				if (UpdateResultBean.DELETE != bopProUpdateResultBean.getRecodeState()) {
 					checkProjectList.add(projectInfo);
 				}
 				switch (bopProUpdateResultBean.getRecodeState()) {
@@ -68,18 +69,19 @@ public class BopForDebtYinTuanSignedUpdate extends BaseUpdate{
 				}
 			}
 
-			//债权人信息 TODO
-			List<BopCfaCreditorDs> creNewList = new  ArrayList<BopCfaCreditorDs>();
-			List<BopCfaCreditorDs> creModList = new  ArrayList<BopCfaCreditorDs>();
-			List<BopCfaCreditorDs> creDelList = new  ArrayList<BopCfaCreditorDs>();
+			// 债权人信息 TODO
+			List<BopCfaCreditorDs> creNewList = new ArrayList<BopCfaCreditorDs>();
+			List<BopCfaCreditorDs> creModList = new ArrayList<BopCfaCreditorDs>();
+			List<BopCfaCreditorDs> creDelList = new ArrayList<BopCfaCreditorDs>();
 
 			List<BopCfaCreditorDs> checkCreditorList = new ArrayList<BopCfaCreditorDs>();
 
-			UpdateResultBean bopCreUpdateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("bopForDebtYinTuanCreditor");
+			UpdateResultBean bopCreUpdateResultBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("bopForDebtYinTuanCreditor");
 			while (bopCreUpdateResultBean.hasNext()) {
 				BopCfaCreditorDs bopCfaCreditorDs = new BopCfaCreditorDs();
 				mapToObject(bopCfaCreditorDs, bopCreUpdateResultBean.next());
-				if(UpdateResultBean.DELETE != bopCreUpdateResultBean.getRecodeState()) {
+				if (UpdateResultBean.DELETE != bopCreUpdateResultBean.getRecodeState()) {
 					checkCreditorList.add(bopCfaCreditorDs);
 				}
 				switch (bopCreUpdateResultBean.getRecodeState()) {
@@ -123,8 +125,7 @@ public class BopForDebtYinTuanSignedUpdate extends BaseUpdate{
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

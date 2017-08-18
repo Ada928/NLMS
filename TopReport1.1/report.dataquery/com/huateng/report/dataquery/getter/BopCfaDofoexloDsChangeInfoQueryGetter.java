@@ -25,13 +25,10 @@ public class BopCfaDofoexloDsChangeInfoQueryGetter extends BaseGetter {
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "国内外汇贷款补录信息查询-变动信息查询");
 
 			if (!queryResult.getQueryResult().isEmpty()) {
-				ResultMng.fillResultByList(getCommonQueryBean(),
-						getCommQueryServletRequest(), queryResult
-								.getQueryResult(), getResult());
+				ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+						queryResult.getQueryResult(), getResult());
 				result.setContent(queryResult.getQueryResult());
-				result.getPage().setTotalPage(
-						queryResult.getPageCount(getResult().getPage()
-								.getEveryPage()));
+				result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 				result.init();
 			} else {
 				result.setContent(Collections.emptyList());
@@ -40,8 +37,7 @@ public class BopCfaDofoexloDsChangeInfoQueryGetter extends BaseGetter {
 			}
 			return result;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -67,10 +63,8 @@ public class BopCfaDofoexloDsChangeInfoQueryGetter extends BaseGetter {
 		String endDate = getCommQueryServletRequest().getParameter("endDate");
 
 		BopCfaDofoexloDsService service = BopCfaDofoexloDsService.getInstance();
-		return service.pageQueryByHql(pageIndex, pageSize,
-				TopReportConstants.REPORT_FILE_TYPE_CFA_CB,null,
-				actiontype, recStatus, approveStatus, repStatus, filler2,
-				brcode, startDate, endDate);
+		return service.pageQueryByHql(pageIndex, pageSize, TopReportConstants.REPORT_FILE_TYPE_CFA_CB, null, actiontype,
+				recStatus, approveStatus, repStatus, filler2, brcode, startDate, endDate);
 	}
 
 }

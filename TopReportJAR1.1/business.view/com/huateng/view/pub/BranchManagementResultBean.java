@@ -25,9 +25,10 @@ public class BranchManagementResultBean {
 	private String bopFinancOrgCode;
 	private Integer lastUpdOperId;
 	private String lastUpdTime;
-	/** add by jornezhang 20091210 BMS-2334  增加票据系统多级机构管理模式 begin*/
+	/** add by jornezhang 20091210 BMS-2334 增加票据系统多级机构管理模式 begin */
 	private Integer blnBrhRepNo;
-	/** add by jornezhang 20091210 BMS-2334  增加票据系统多级机构管理模式 end*/
+
+	/** add by jornezhang 20091210 BMS-2334 增加票据系统多级机构管理模式 end */
 
 	public Integer getId() {
 		return id;
@@ -157,8 +158,6 @@ public class BranchManagementResultBean {
 		this.brhManageType = brhManageType;
 	}
 
-
-
 	public Integer getBlnBrhNo() {
 		return blnBrhNo;
 	}
@@ -213,14 +212,15 @@ public class BranchManagementResultBean {
 
 	public void setBopFinancOrgCode(String bopFinancOrgCode) {
 		this.bopFinancOrgCode = bopFinancOrgCode;
-	}		
-	/** add by jornezhang 20091210 BMS-2334  增加票据系统多级机构管理模式 begin*/
+	}
+
+	/** add by jornezhang 20091210 BMS-2334 增加票据系统多级机构管理模式 begin */
 	public Integer getBlnBrhRepNo() {
 		return blnBrhRepNo;
 	}
+
 	public void setBlnBrhRepNo(Integer blnBrhRepNo) {
 		this.blnBrhRepNo = blnBrhRepNo;
 	}
-	/** add by jornezhang 20091210 BMS-2334  增加票据系统多级机构管理模式 end*/
+	/** add by jornezhang 20091210 BMS-2334 增加票据系统多级机构管理模式 end */
 }
-

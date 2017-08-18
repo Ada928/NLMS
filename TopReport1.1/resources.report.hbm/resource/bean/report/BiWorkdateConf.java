@@ -6,21 +6,19 @@ import resource.bean.report.base.BaseBiWorkdateConf;
 
 import com.huateng.report.utils.RepList;
 
-
-
 public class BiWorkdateConf extends BaseBiWorkdateConf {
 	private static final long serialVersionUID = 1L;
 	private List<String> workDateList = new RepList<String>();
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public BiWorkdateConf () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public BiWorkdateConf() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BiWorkdateConf (java.lang.String id) {
+	public BiWorkdateConf(java.lang.String id) {
 		super(id);
 	}
 
@@ -32,7 +30,6 @@ public class BiWorkdateConf extends BaseBiWorkdateConf {
 		this.workDateList = workDateList;
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
-
+	/* [CONSTRUCTOR MARKER END] */
 
 }

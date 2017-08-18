@@ -28,20 +28,16 @@ public class BopCfaStrdeDsTerminateEntryAuditGetter extends BaseGetter {
 		try {
 			PageQueryResult pageResult = getData();
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "商业银行人民币结构性存款终止信息审核查询");
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -63,40 +59,42 @@ public class BopCfaStrdeDsTerminateEntryAuditGetter extends BaseGetter {
 		String brNo = globalInfo.getBrno();
 		List<Object> hqlObj = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer();
-		hql.append(" FROM BopCfaStrdeDs model WHERE model.apptype = ? AND model.currentfile = ? AND model.recStatus IN (? , ?) ");
+		hql.append(
+				" FROM BopCfaStrdeDs model WHERE model.apptype = ? AND model.currentfile = ? AND model.recStatus IN (? , ?) ");
 		hqlObj.add(TopReportConstants.REPORT_APP_TYPE_CFA);
 		hqlObj.add(TopReportConstants.REPORT_FILE_TYPE_CFA_FB);
 		hqlObj.add(TopReportConstants.REPORT_RECSTATUS_03);
 		hqlObj.add(TopReportConstants.REPORT_RECSTATUS_04);
-		if(StringUtils.isNotBlank(qworkDateStart)) {
+		if (StringUtils.isNotBlank(qworkDateStart)) {
 			hql.append(" AND model.workDate >= ? ");
 			hqlObj.add(qworkDateStart);
 		}
-		if(StringUtils.isNotBlank(qworkDateEnd)) {
+		if (StringUtils.isNotBlank(qworkDateEnd)) {
 			hql.append(" AND model.workDate <= ? ");
 			hqlObj.add(qworkDateEnd);
 		}
-		if(StringUtils.isNotBlank(qactiontype)) {
+		if (StringUtils.isNotBlank(qactiontype)) {
 			hql.append(" AND model.actiontype = ? ");
 			hqlObj.add(qactiontype);
 		}
-		if(StringUtils.isNotBlank(qrecStatus)) {
+		if (StringUtils.isNotBlank(qrecStatus)) {
 			hql.append(" AND model.approveStatus = ? ");
 			hqlObj.add(qrecStatus);
 		}
-		if(StringUtils.isNotBlank(qapproveStatus)) {
+		if (StringUtils.isNotBlank(qapproveStatus)) {
 			hql.append(" AND model.approveStatus = ? ");
 			hqlObj.add(qapproveStatus);
 		}
-		if(StringUtils.isNotBlank(qrepStatus)) {
+		if (StringUtils.isNotBlank(qrepStatus)) {
 			hql.append(" AND model.repStatus = ? ");
 			hqlObj.add(qrepStatus);
 		}
-		if(StringUtils.isNotBlank(qfiller2)) {
+		if (StringUtils.isNotBlank(qfiller2)) {
 			hql.append(" AND model.filler2 LIKE ? ");
-			hqlObj.add("%"+qfiller2+"%");
+			hqlObj.add("%" + qfiller2 + "%");
 		}
-		hql.append(" AND model.brNo = ? ORDER BY model.lstUpdTm DESC,model.workDate, model.actiontype, model.approveStatus DESC ");
+		hql.append(
+				" AND model.brNo = ? ORDER BY model.lstUpdTm DESC,model.workDate, model.actiontype, model.approveStatus DESC ");
 		hqlObj.add(brNo);
 		PageQueryCondition queryCondition = new PageQueryCondition();
 		queryCondition.setQueryString(hql.toString());

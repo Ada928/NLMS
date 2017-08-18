@@ -25,10 +25,10 @@ public class DepartmentInfoManageUpdateOperation extends BaseOperation {
 
 	public void execute(OperationContext context) throws CommonException {
 		List insertList = (List) context.getAttribute(INSERT_LIST);
-        List updateList = (List) context.getAttribute(UPDATE_LIST);
-        List delList = (List) context.getAttribute(DEL_LIST);
-        DepartmentInfoService departmentInfoService = DepartmentInfoService.getInstance();
-        departmentInfoService.departmentInfo(insertList, updateList, delList);
+		List updateList = (List) context.getAttribute(UPDATE_LIST);
+		List delList = (List) context.getAttribute(DEL_LIST);
+		DepartmentInfoService departmentInfoService = DepartmentInfoService.getInstance();
+		departmentInfoService.departmentInfo(insertList, updateList, delList);
 	}
 
 }

@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
  * This is an object that contains data related to the BI_DAYEXCHANGERATE table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * Do not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="BI_DAYEXCHANGERATE"
+ * @hibernate.class table="BI_DAYEXCHANGERATE"
  */
 
-public abstract class BaseBiDayexchangerate  implements Serializable {
+public abstract class BaseBiDayexchangerate implements Serializable {
 
 	public static String REF = "BiDayexchangerate";
 	public static String PROP_RATE_DATE = "rateDate";
@@ -27,24 +25,23 @@ public abstract class BaseBiDayexchangerate  implements Serializable {
 	public static String PROP_ST = "st";
 	public static String PROP_LOCK = "lock";
 	public static String PROP_LAST_UPD_OPER = "lastUpdOper";
-	public static String PROP_DEL ="del";
+	public static String PROP_DEL = "del";
 
 	// constructors
-	public BaseBiDayexchangerate () {
+	public BaseBiDayexchangerate() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseBiDayexchangerate (java.lang.String id) {
+	public BaseBiDayexchangerate(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -64,7 +61,6 @@ public abstract class BaseBiDayexchangerate  implements Serializable {
 	private java.lang.String st;
 	private java.lang.String lastUpdOper;
 	private boolean del;
-
 
 	public java.lang.String getCrtDt() {
 		return crtDt;
@@ -116,141 +112,144 @@ public abstract class BaseBiDayexchangerate  implements Serializable {
 
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  column="RATE_CUR"
-     */
-	public java.lang.String getId () {
+	 * 
+	 * @hibernate.id column="RATE_CUR"
+	 */
+	public java.lang.String getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.String id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: RATE_UNIT
 	 */
-	public java.math.BigDecimal getRateUnit () {
+	public java.math.BigDecimal getRateUnit() {
 		return rateUnit;
 	}
 
 	/**
 	 * Set the value related to the column: RATE_UNIT
-	 * @param rateUnit the RATE_UNIT value
+	 * 
+	 * @param rateUnit
+	 *            the RATE_UNIT value
 	 */
-	public void setRateUnit (java.math.BigDecimal rateUnit) {
+	public void setRateUnit(java.math.BigDecimal rateUnit) {
 		this.rateUnit = rateUnit;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: RATE_DATE
 	 */
-	public java.lang.String getRateDate () {
+	public java.lang.String getRateDate() {
 		return rateDate;
 	}
 
 	/**
 	 * Set the value related to the column: RATE_DATE
-	 * @param rateDate the RATE_DATE value
+	 * 
+	 * @param rateDate
+	 *            the RATE_DATE value
 	 */
-	public void setRateDate (java.lang.String rateDate) {
+	public void setRateDate(java.lang.String rateDate) {
 		this.rateDate = rateDate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: RATE_MIDPRICE
 	 */
-	public java.math.BigDecimal getRateMidprice () {
+	public java.math.BigDecimal getRateMidprice() {
 		return rateMidprice;
 	}
 
 	/**
 	 * Set the value related to the column: RATE_MIDPRICE
-	 * @param rateMidprice the RATE_MIDPRICE value
+	 * 
+	 * @param rateMidprice
+	 *            the RATE_MIDPRICE value
 	 */
-	public void setRateMidprice (java.math.BigDecimal rateMidprice) {
+	public void setRateMidprice(java.math.BigDecimal rateMidprice) {
 		this.rateMidprice = rateMidprice;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER1
 	 */
-	public java.lang.String getFiller1 () {
+	public java.lang.String getFiller1() {
 		return filler1;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER1
-	 * @param filler1 the FILLER1 value
+	 * 
+	 * @param filler1
+	 *            the FILLER1 value
 	 */
-	public void setFiller1 (java.lang.String filler1) {
+	public void setFiller1(java.lang.String filler1) {
 		this.filler1 = filler1;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER2
 	 */
-	public java.lang.String getFiller2 () {
+	public java.lang.String getFiller2() {
 		return filler2;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER2
-	 * @param filler2 the FILLER2 value
+	 * 
+	 * @param filler2
+	 *            the FILLER2 value
 	 */
-	public void setFiller2 (java.lang.String filler2) {
+	public void setFiller2(java.lang.String filler2) {
 		this.filler2 = filler2;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER3
 	 */
-	public java.lang.String getFiller3 () {
+	public java.lang.String getFiller3() {
 		return filler3;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER3
-	 * @param filler3 the FILLER3 value
+	 * 
+	 * @param filler3
+	 *            the FILLER3 value
 	 */
-	public void setFiller3 (java.lang.String filler3) {
+	public void setFiller3(java.lang.String filler3) {
 		this.filler3 = filler3;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.BiDayexchangerate)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.BiDayexchangerate))
+			return false;
 		else {
 			resource.bean.report.BiDayexchangerate biDayexchangerate = (resource.bean.report.BiDayexchangerate) obj;
-			if (null == this.getId() || null == biDayexchangerate.getId()) return false;
-			else return (this.getId().equals(biDayexchangerate.getId()));
+			if (null == this.getId() || null == biDayexchangerate.getId())
+				return false;
+			else
+				return (this.getId().equals(biDayexchangerate.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -259,10 +258,8 @@ public abstract class BaseBiDayexchangerate  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

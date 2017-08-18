@@ -37,8 +37,8 @@ public class SupplyEntryVerifyStateQueryService {
 		 * 并接SQL语句，按照BRNO, APPTYPE, CURRENTFILE, RECSTATUS进行分组，然后取每组的记录数
 		 */
 		StringBuilder countHql = new StringBuilder();
-		countHql.append(" SELECT brNo, apptype, currentfile, recStatus, count(*) AS stacount,workDate FROM ").append(
-				HQL_TABLENAME).append(" WHERE repStatus <> ? ");
+		countHql.append(" SELECT brNo, apptype, currentfile, recStatus, count(*) AS stacount,workDate FROM ")
+				.append(HQL_TABLENAME).append(" WHERE repStatus <> ? ");
 		List<Object> paralist = new ArrayList<Object>();
 		paralist.add(TopReportConstants.REPORT_REPSTATUS_01);
 		if (StringUtils.isNotEmpty(workdateStart)) {
@@ -69,14 +69,14 @@ public class SupplyEntryVerifyStateQueryService {
 		Map<String, SupplyEnterVerifyStateQueryBean> resultMap = new HashMap<String, SupplyEnterVerifyStateQueryBean>();
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		for (String tablename : tablenameSet) {
-			if (tablename!=null) {
+			if (tablename != null) {
 				String hql = countHql.toString().replaceAll(HQL_TABLENAME, StringUtils.trim(tablename));
 				List<Object[]> groupList = rootdao.queryByQL2List(hql, paralist.toArray(), null);
 				getResultMap(resultMap, groupList);
 			}
 		}
 		for (Iterator<String> iterator = resultMap.keySet().iterator(); iterator.hasNext();) {
-			String key =  iterator.next();
+			String key = iterator.next();
 			list.add(resultMap.get(key));
 		}
 
@@ -109,7 +109,7 @@ public class SupplyEntryVerifyStateQueryService {
 				} else if (StringUtils.equals(recstatus, TopReportConstants.REPORT_RECSTATUS_06)) {
 					bean.setSendreport(count);
 				}
-			}else{
+			} else {
 				bean = createQueryBean(obj);
 				resultMap.put(key, bean);
 			}

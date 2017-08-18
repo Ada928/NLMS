@@ -7,14 +7,16 @@
 </head>
 
 
-<body style="margin: 0; background-color:#E6F4FB" >
-<div class="leftmenu2">
-<input type="checkbox" id="check" onclick="check()" checked>自动折叠</input>
-</div>
-<SCRIPT LANGUAGE="JavaScript" src="<%=request.getContextPath()%>/js/tree_maker.js"></SCRIPT>
-<script type='text/javascript' src='<%=request.getContextPath()%>/dwr/engine.js'> </script>
-  <script type='text/javascript' src='<%=request.getContextPath()%>/dwr/util.js'> </script>
-<SCRIPT LANGUAGE="JavaScript">
+<body style="margin: 0; background-color:#E6F4FB">
+	<div class="leftmenu2">
+		<input type="checkbox" id="check" onclick="check()" checked>
+		自动折叠
+		</input>
+	</div>
+	<SCRIPT LANGUAGE="JavaScript" src="<%=request.getContextPath()%>/js/tree_maker.js"></SCRIPT>
+	<script type='text/javascript' src='<%=request.getContextPath()%>/dwr/engine.js'> </script>
+	<script type='text/javascript' src='<%=request.getContextPath()%>/dwr/util.js'> </script>
+	<SCRIPT LANGUAGE="JavaScript">
 <%
 StringBuffer t = (StringBuffer)request.getSession().getAttribute("tree");
 %>

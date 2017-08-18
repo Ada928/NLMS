@@ -24,9 +24,6 @@ import com.huateng.report.imports.model.TNodeInfoList;
 import com.huateng.report.imports.model.TNodeKeyInfo;
 import com.huateng.report.imports.service.FileImportService;
 
-
-
-
 /**
  * @author chl_seu 操作XML文件
  * @version 1.00
@@ -38,12 +35,12 @@ public class XmlOp {
 	private InputStream xmlResource;
 	private Document doc;
 	private String separator;
-	private TNodeInfoList nodeInfoList=new TNodeInfoList();
-	
+	private TNodeInfoList nodeInfoList = new TNodeInfoList();
 
 	/**
 	 * @author chl_seu 打开XML文件/初始化静态成员
-	 * @param finfo 当前Xml文件信息
+	 * @param finfo
+	 *            当前Xml文件信息
 	 */
 	public boolean init(TFileDataInfo finfo, String sPath) {
 		if (finfo != null) {
@@ -78,9 +75,9 @@ public class XmlOp {
 		TNodeKeyInfo nki = new TNodeKeyInfo();
 		nki.fuid = "first";
 		nki.uid = "root";
-		
+
 		TNodeInfo ni = nodeInfoList.getNodeInfo(nki);
-		
+
 		SAXReader reader = new SAXReader();
 		try {
 			doc = reader.read(xmlResource);
@@ -93,7 +90,7 @@ public class XmlOp {
 		} finally {
 			xmlResource = null;
 		}
-		
+
 		return true;
 	}
 
@@ -103,10 +100,10 @@ public class XmlOp {
 			TNodeInfo rootNode = (TNodeInfo) nl.get(0); // 根节点
 			List<Node> nodes = doc.selectNodes(rootNode.node_xpath);
 
-			if (nodes.size()==0){
+			if (nodes.size() == 0) {
 				return false;
 			}
-			
+
 			for (int i = 0; i < nodes.size(); i++) {
 				List<String> listStr = new ArrayList<String>();
 				listStr.add("");
@@ -115,62 +112,60 @@ public class XmlOp {
 					if (rtnList.get(j).equals(""))
 						continue;
 					fileContentList.add(rtnList.get(j).substring(1));
-					//kycCommon.readLineCount++;
+					// kycCommon.readLineCount++;
 				}
 			}
 		} else {
 			return false;
 		}
-		
 
 		return true;
 	}
-	
-	private List<String> parseNode(TNodeInfo ni, Node node, List<String> listStr){
-		if (ni.child_exist){
-			List<String> rtnList = new ArrayList<String>();  //返回值
-			ArrayList<TNodeInfo> children = ni.getArrayList();  //当前节点子节点
-			for (int j=0; j< listStr.size(); j++){ //单记录递归子节点
-				List<String> branchList = new ArrayList<String>(); //单记录递归结果
+
+	private List<String> parseNode(TNodeInfo ni, Node node, List<String> listStr) {
+		if (ni.child_exist) {
+			List<String> rtnList = new ArrayList<String>(); // 返回值
+			ArrayList<TNodeInfo> children = ni.getArrayList(); // 当前节点子节点
+			for (int j = 0; j < listStr.size(); j++) { // 单记录递归子节点
+				List<String> branchList = new ArrayList<String>(); // 单记录递归结果
 				branchList.add(listStr.get(j));
-				
-				for (int i=0; i<children.size(); i++){ //遍历兄弟子节点
-					if (children.get(i).node_property.equals("1")) { // 重复节点 
+
+				for (int i = 0; i < children.size(); i++) { // 遍历兄弟子节点
+					if (children.get(i).node_property.equals("1")) { // 重复节点
 						List<Node> childNodes = node.selectNodes(children.get(i).node_xpath);
-						List<String> branchTmpList = new ArrayList<String>();   //分节点记录
-						for (int k=0;k<childNodes.size();k++){
+						List<String> branchTmpList = new ArrayList<String>(); // 分节点记录
+						for (int k = 0; k < childNodes.size(); k++) {
 							List<String> tmpList = parseNode(children.get(i), childNodes.get(k), branchList);
-							for (int m=0; m< tmpList.size(); m++){
-								branchTmpList.add(tmpList.get(m));					
+							for (int m = 0; m < tmpList.size(); m++) {
+								branchTmpList.add(tmpList.get(m));
 							}
 						}
-						if (branchTmpList.size()>0){
+						if (branchTmpList.size() > 0) {
 							branchList.clear();
-							for (int n=0;n<branchTmpList.size();n++){
+							for (int n = 0; n < branchTmpList.size(); n++) {
 								branchList.add(branchTmpList.get(n));
 							}
 						}
-					}else{
-						if (children.get(i).node_getval.equals("1")){//取值
-							for (int x=0; x< branchList.size(); x++){
-								branchList.set(x, branchList.get(x)+this.separator+getNodeValue(children.get(i), node));
+					} else {
+						if (children.get(i).node_getval.equals("1")) {// 取值
+							for (int x = 0; x < branchList.size(); x++) {
+								branchList.set(x,
+										branchList.get(x) + this.separator + getNodeValue(children.get(i), node));
 							}
 						}
 					}
 				}
-				
-				for (int l=0; l<branchList.size(); l++){
-					rtnList.add(branchList.get(l));//.substring(1));
+
+				for (int l = 0; l < branchList.size(); l++) {
+					rtnList.add(branchList.get(l));// .substring(1));
 				}
 			}
 			return rtnList;
-		}else{
+		} else {
 			return listStr;
 		}
 	}
-	
 
-	
 	/**
 	 * @author chl_seu 操作XML文件
 	 * 
@@ -191,8 +186,8 @@ public class XmlOp {
 				nki.uid = rst.getId();
 				ni.keyinfo = nki;
 				ni.node_name = rst.getNodeName();
-				ni.guid=rst.getGuid();
-				ni.node_order = rst.getNodeOrder()==null?0:rst.getNodeOrder();
+				ni.guid = rst.getGuid();
+				ni.node_order = rst.getNodeOrder() == null ? 0 : rst.getNodeOrder();
 				ni.node_property = rst.getNodeProperty();
 				ni.node_xpath = rst.getNodeXpath();
 				ni.node_getval = rst.getNodeGetval();
@@ -202,13 +197,13 @@ public class XmlOp {
 				}
 			}
 			if (!flg) {
-			//	kycCommon.setErrMsg("导入失败,原因:没有读到配置"); 
+				// kycCommon.setErrMsg("导入失败,原因:没有读到配置");
 				return false; // 没有读到配置
 			}
 		} catch (Exception e) {
-//			Log.error("数据库中目的表不存在.");
+			// Log.error("数据库中目的表不存在.");
 			e.printStackTrace();
-	//		kycCommon.setErrMsg("导入失败,原因:"+e.getMessage()); 
+			// kycCommon.setErrMsg("导入失败,原因:"+e.getMessage());
 			return false;
 		}
 		return true;
@@ -217,7 +212,8 @@ public class XmlOp {
 	/**
 	 * 取得导入文件内容列表
 	 * 
-	 * @param sFileFullName 文件路径名称
+	 * @param sFileFullName
+	 *            文件路径名称
 	 * @throws IOException
 	 */
 	public List getFileContentList() {
@@ -232,7 +228,7 @@ public class XmlOp {
 	public int getFileRowCount() {
 		return fileContentList.size();
 	}
-	
+
 	private String parseString(Object obj) {
 		if (obj == null) {
 			return "";
@@ -240,7 +236,7 @@ public class XmlOp {
 			return String.valueOf(obj);
 		}
 	}
-	
+
 	private String getNodeValue(TNodeInfo ni, Node node) {
 		String rtnValue = "";
 		if (ni.node_xpath.indexOf("/") != -1) {
@@ -253,22 +249,21 @@ public class XmlOp {
 						tmpEl = it.next();
 					}
 				} else {
-					if (arrPath[i].indexOf("@") != -1){
+					if (arrPath[i].indexOf("@") != -1) {
 						rtnValue = parseString(tmpEl.attributeValue(arrPath[i]).replaceAll("@", ""));
-					}else{
+					} else {
 						rtnValue = parseString(tmpEl.elementText(arrPath[i]));
 					}
 				}
 			}
 		} else {
-			if (ni.node_xpath.indexOf("@") != -1){
+			if (ni.node_xpath.indexOf("@") != -1) {
 				rtnValue = parseString(((Element) node).attributeValue(ni.node_xpath.replaceAll("@", "")));
-			}else{
+			} else {
 				rtnValue = parseString(((Element) node).elementText(ni.node_xpath));
 			}
 		}
 		return rtnValue;
 	}
 
-	
 }

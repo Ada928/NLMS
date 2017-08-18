@@ -23,21 +23,18 @@ public class BctlDownSelectGetter extends BaseGetter {
 	public Result call() throws AppException {
 		// TODO Auto-generated method stub
 		try {
-			 // 从全局取出机构号
-	        String brcode = GlobalInfo.getCurrentInstance().getBrcode();
-	        List list = BctlService.getInstance().getAllDownBrcodeList(brcode);
-	        ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list,
-					getResult());
-	        result.setContent(list);
+			// 从全局取出机构号
+			String brcode = GlobalInfo.getCurrentInstance().getBrcode();
+			List list = BctlService.getInstance().getAllDownBrcodeList(brcode);
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
+			result.setContent(list);
 			result.getPage().setTotalPage(1);
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

@@ -1,6 +1,5 @@
 package com.huateng.report.send.translate;
 
-
 public interface ITranslate {
 
 	/**
@@ -9,11 +8,12 @@ public interface ITranslate {
 	 * @param destPath
 	 *            目标根目录
 	 *
-	 * <pre>
+	 *            <pre>
 	 * 从本地 D:/send/向远程/CFADatas/Send发送文件 则
 	 * sourcePath是 D:/
 	 * destPath  是 CFADatas/
-	 * </pre>
+	 *            </pre>
+	 * 
 	 * @return
 	 */
 	boolean init(String sourcePath, String destPath);
@@ -29,7 +29,6 @@ public interface ITranslate {
 
 	boolean send(String sourcePath, String destPath, String filePack, String fileName);
 
-
 	String RESCODE_SUCCESS = "00";
 	String RESCODE_NOT_RES = "01";
 	String RESCODE_PROCESS = "02";
@@ -38,20 +37,16 @@ public interface ITranslate {
 	/**
 	 * @param packname
 	 *            包名
-	 * @return 	00 - 成功
-	 * 			01 - 未回执
-	 * 			02 - 回执处理中
-	 * 			99 - 失败
-	 * 			其它 - 错误信息
+	 * @return 00 - 成功 01 - 未回执 02 - 回执处理中 99 - 失败 其它 - 错误信息
 	 * @throws TokenLockException
 	 */
 	String feedBack(String packname);
-
 
 	String feedBack(String sourcePath, String destPath, String packname);
 
 	/**
 	 * 解锁Token.lock
+	 * 
 	 * @throws Exception
 	 */
 	void unlock(String destPath) throws Exception;

@@ -20,16 +20,14 @@ public class ArrayImpl extends Array {
 			Object subBuffObj;
 			while (it.hasNext()) {
 				subBuffObj = it.next();
-				IStrutBuffer array_element = (IStrutBuffer) ContextUtil
-						.getContext().getBean(getBuffBean());
+				IStrutBuffer array_element = (IStrutBuffer) ContextUtil.getContext().getBean(getBuffBean());
 				array_element.loadObject(subBuffObj);
 
 				addChildBuffer(array_element);
 			}
 		} else {
 			logger.error("Array.loadObject Error: Object must be Collection");
-			throw new AppException("Array[" + getId()
-					+ "]　传入Object必须是Collection类型");
+			throw new AppException("Array[" + getId() + "]　传入Object必须是Collection类型");
 
 		}
 
@@ -99,8 +97,7 @@ public class ArrayImpl extends Array {
 				for (int i = 0; i < l.size(); i++) {
 					node = (Node) l.get(i);
 					if (node.getNodeType() == Node.ELEMENT_NODE) {
-						array_element = (IStrutBuffer) ContextUtil.getContext()
-								.getBean(getBuffBean());
+						array_element = (IStrutBuffer) ContextUtil.getContext().getBean(getBuffBean());
 						if (array_element != null)
 							array_element.init(node);
 						addChildBuffer(array_element);

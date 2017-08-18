@@ -27,38 +27,36 @@ import com.huateng.report.service.BOPForDebtBilLoanService;
 import com.huateng.report.service.BopCfaCreditorDsService;
 import com.huateng.report.utils.ReportUtils;
 
-public class BOPForDebtBondBillUpdate extends BaseUpdate{
+public class BOPForDebtBondBillUpdate extends BaseUpdate {
 
-	private static final String DATASET_ID="BOPForDebtBondBillCol";
+	private static final String DATASET_ID = "BOPForDebtBondBillCol";
 
-	private static final String RECORD_DELETE="del";
-	private static final String RECORD_ADD="new";
-	private static final String RECORD_MOD="mod";
+	private static final String RECORD_DELETE = "del";
+	private static final String RECORD_ADD = "new";
+	private static final String RECORD_MOD = "mod";
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 
-
-		//返回对象
+		// 返回对象
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 
-		//取得外债信息结果集对象
+		// 取得外债信息结果集对象
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 
 		OperationContext oc = new OperationContext();
-		//债权人信息表
+		// 债权人信息表
 		BopCfaCreditorDs bcc = null;
-		//外债信息表
+		// 外债信息表
 		BopCfaExdebtDs bpExdebt = null;
-		if(updateResultBean.hasNext()) {
+		if (updateResultBean.hasNext()) {
 
 			String op = updateResultBean.getParameter("op");
-			//自定义bean ： 外债信息+单债权人信息
+			// 自定义bean ： 外债信息+单债权人信息
 			BOPForDebtBilLoanCreditor bpExdebtTemp = new BOPForDebtBilLoanCreditor();
 			mapToObject(bpExdebtTemp, updateResultBean.next());
-			if(StringUtils.isNotEmpty(op)) {
-				if(StringUtils.equals(RECORD_ADD, op)) {
+			if (StringUtils.isNotEmpty(op)) {
+				if (StringUtils.equals(RECORD_ADD, op)) {
 					bcc = new BopCfaCreditorDs();
 
 					bcc.setCrtTm(new Date());
@@ -74,12 +72,12 @@ public class BOPForDebtBondBillUpdate extends BaseUpdate{
 					bpExdebt.setCrtTm(new Date());
 
 					oc.setAttribute(BOPForDebtBondBillOperation.CMD, BOPForDebtBondBillOperation.CMD_INSERT);
-				} else if (StringUtils.equals(RECORD_MOD, op)){
+				} else if (StringUtils.equals(RECORD_MOD, op)) {
 					BopCfaCreditorDsService creditorServ = BopCfaCreditorDsService.getInstance();
 					BOPForDebtBilLoanService debtServ = BOPForDebtBilLoanService.getInstance();
 
 					bpExdebt = debtServ.load(bpExdebtTemp.getId());
-					bcc =  creditorServ.load(bpExdebtTemp.getCreditorid());
+					bcc = creditorServ.load(bpExdebtTemp.getCreditorid());
 
 					setValueByExdebtTemp(bcc, bpExdebt, bpExdebtTemp);
 
@@ -88,7 +86,7 @@ public class BOPForDebtBondBillUpdate extends BaseUpdate{
 
 					oc.setAttribute(BOPForDebtBondBillOperation.CMD, BOPForDebtBondBillOperation.CMD_UPDATE);
 
-				} else if (StringUtils.equals(RECORD_DELETE, op)){
+				} else if (StringUtils.equals(RECORD_DELETE, op)) {
 					BopCfaCreditorDsService creditorServ = BopCfaCreditorDsService.getInstance();
 					BOPForDebtBilLoanService debtServ = BOPForDebtBilLoanService.getInstance();
 
@@ -113,12 +111,11 @@ public class BOPForDebtBondBillUpdate extends BaseUpdate{
 
 		OPCaller.call(BOPForDebtBondBillOperation.ID, oc);
 
-
 		return updateReturnBean;
 	}
 
-	private void setValueByExdebtTemp(BopCfaCreditorDs bcc,
-			BopCfaExdebtDs bpExdebt, BOPForDebtBilLoanCreditor bpExdebtTemp) throws CommonException {
+	private void setValueByExdebtTemp(BopCfaCreditorDs bcc, BopCfaExdebtDs bpExdebt,
+			BOPForDebtBilLoanCreditor bpExdebtTemp) throws CommonException {
 		bpExdebt.setExdebtcode(bpExdebtTemp.getExdebtcode());
 		bpExdebt.setDebtorcode(bpExdebtTemp.getDebtorcode());
 		bpExdebt.setDebtype(bpExdebtTemp.getDebtype());
@@ -146,7 +143,7 @@ public class BOPForDebtBondBillUpdate extends BaseUpdate{
 		bpExdebt.setLstUpdTm(new Date());
 		bpExdebt.setWorkDate(DateUtil.dateToNumber(ginfo.getTxdate()));
 		bpExdebt.setBrNo(ginfo.getBrno());
-		bpExdebt.setActiondesc(null);//新增或修改时不需要填写删除原因
+		bpExdebt.setActiondesc(null);// 新增或修改时不需要填写删除原因
 
 		bpExdebt.setApptype(bpExdebtTemp.getApptype());
 		bpExdebt.setCurrentfile(bpExdebtTemp.getCurrentfile());

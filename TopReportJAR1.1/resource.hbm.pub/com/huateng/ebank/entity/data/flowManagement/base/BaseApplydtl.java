@@ -2,17 +2,15 @@ package com.huateng.ebank.entity.data.flowManagement.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the APPLYDTL table.
- * Do not modify this class because it will be overwritten if the configuration file
+ * This is an object that contains data related to the APPLYDTL table. Do not
+ * modify this class because it will be overwritten if the configuration file
  * related to this class is modified.
  *
- * @hibernate.class
- *  table="APPLYDTL"
+ * @hibernate.class table="APPLYDTL"
  */
 
-public abstract class BaseApplydtl  implements Serializable {
+public abstract class BaseApplydtl implements Serializable {
 
 	public static String REF = "Applydtl";
 	public static String PROP_LAST_UPD_FUNC = "lastUpdFunc";
@@ -38,23 +36,21 @@ public abstract class BaseApplydtl  implements Serializable {
 	public static String PROP_APPNO = "appno";
 	public static String PROP_REASON = "reason";
 
-
 	// constructors
-	public BaseApplydtl () {
+	public BaseApplydtl() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseApplydtl (long id) {
+	public BaseApplydtl(long id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -84,408 +80,403 @@ public abstract class BaseApplydtl  implements Serializable {
 	private java.util.Date txnDate;
 	private java.lang.String untread;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="sequence"
-     *  column="ID"
-     */
-	public long getId () {
+	 * 
+	 * @hibernate.id generator-class="sequence" column="ID"
+	 */
+	public long getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (long id) {
+	public void setId(long id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: APPNO
 	 */
-	public java.lang.String getAppno () {
+	public java.lang.String getAppno() {
 		return appno;
 	}
 
 	/**
 	 * Set the value related to the column: APPNO
-	 * @param appno the APPNO value
+	 * 
+	 * @param appno
+	 *            the APPNO value
 	 */
-	public void setAppno (java.lang.String appno) {
+	public void setAppno(java.lang.String appno) {
 		this.appno = appno;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: APPROVER
 	 */
-	public java.lang.String getApprover () {
+	public java.lang.String getApprover() {
 		return approver;
 	}
 
 	/**
 	 * Set the value related to the column: APPROVER
-	 * @param approver the APPROVER value
+	 * 
+	 * @param approver
+	 *            the APPROVER value
 	 */
-	public void setApprover (java.lang.String approver) {
+	public void setApprover(java.lang.String approver) {
 		this.approver = approver;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: APPTYPE
 	 */
-	public java.lang.String getApptype () {
+	public java.lang.String getApptype() {
 		return apptype;
 	}
 
 	/**
 	 * Set the value related to the column: APPTYPE
-	 * @param apptype the APPTYPE value
+	 * 
+	 * @param apptype
+	 *            the APPTYPE value
 	 */
-	public void setApptype (java.lang.String apptype) {
+	public void setApptype(java.lang.String apptype) {
 		this.apptype = apptype;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ATTITUDE
 	 */
-	public java.lang.String getAttitude () {
+	public java.lang.String getAttitude() {
 		return attitude;
 	}
 
 	/**
 	 * Set the value related to the column: ATTITUDE
-	 * @param attitude the ATTITUDE value
+	 * 
+	 * @param attitude
+	 *            the ATTITUDE value
 	 */
-	public void setAttitude (java.lang.String attitude) {
+	public void setAttitude(java.lang.String attitude) {
 		this.attitude = attitude;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: AUTO_APPROVER
 	 */
-	public java.lang.String getAutoApprover () {
+	public java.lang.String getAutoApprover() {
 		return autoApprover;
 	}
 
 	/**
 	 * Set the value related to the column: AUTO_APPROVER
-	 * @param autoApprover the AUTO_APPROVER value
+	 * 
+	 * @param autoApprover
+	 *            the AUTO_APPROVER value
 	 */
-	public void setAutoApprover (java.lang.String autoApprover) {
+	public void setAutoApprover(java.lang.String autoApprover) {
 		this.autoApprover = autoApprover;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: AUTO_FLAG
 	 */
-	public java.lang.String getAutoFlag () {
+	public java.lang.String getAutoFlag() {
 		return autoFlag;
 	}
 
 	/**
 	 * Set the value related to the column: AUTO_FLAG
-	 * @param autoFlag the AUTO_FLAG value
+	 * 
+	 * @param autoFlag
+	 *            the AUTO_FLAG value
 	 */
-	public void setAutoFlag (java.lang.String autoFlag) {
+	public void setAutoFlag(java.lang.String autoFlag) {
 		this.autoFlag = autoFlag;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BRCODE
 	 */
-	public java.lang.String getBrcode () {
+	public java.lang.String getBrcode() {
 		return brcode;
 	}
 
 	/**
 	 * Set the value related to the column: BRCODE
-	 * @param brcode the BRCODE value
+	 * 
+	 * @param brcode
+	 *            the BRCODE value
 	 */
-	public void setBrcode (java.lang.String brcode) {
+	public void setBrcode(java.lang.String brcode) {
 		this.brcode = brcode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CINO
 	 */
-	public java.lang.String getCino () {
+	public java.lang.String getCino() {
 		return cino;
 	}
 
 	/**
 	 * Set the value related to the column: CINO
-	 * @param cino the CINO value
+	 * 
+	 * @param cino
+	 *            the CINO value
 	 */
-	public void setCino (java.lang.String cino) {
+	public void setCino(java.lang.String cino) {
 		this.cino = cino;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CONTRACTNO
 	 */
-	public java.lang.String getContractno () {
+	public java.lang.String getContractno() {
 		return contractno;
 	}
 
 	/**
 	 * Set the value related to the column: CONTRACTNO
-	 * @param contractno the CONTRACTNO value
+	 * 
+	 * @param contractno
+	 *            the CONTRACTNO value
 	 */
-	public void setContractno (java.lang.String contractno) {
+	public void setContractno(java.lang.String contractno) {
 		this.contractno = contractno;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FUNC_CODE
 	 */
-	public java.lang.String getFuncCode () {
+	public java.lang.String getFuncCode() {
 		return funcCode;
 	}
 
 	/**
 	 * Set the value related to the column: FUNC_CODE
-	 * @param funcCode the FUNC_CODE value
+	 * 
+	 * @param funcCode
+	 *            the FUNC_CODE value
 	 */
-	public void setFuncCode (java.lang.String funcCode) {
+	public void setFuncCode(java.lang.String funcCode) {
 		this.funcCode = funcCode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LAST_UPD_DATE
 	 */
-	public java.util.Date getLastUpdDate () {
+	public java.util.Date getLastUpdDate() {
 		return lastUpdDate;
 	}
 
 	/**
 	 * Set the value related to the column: LAST_UPD_DATE
-	 * @param lastUpdDate the LAST_UPD_DATE value
+	 * 
+	 * @param lastUpdDate
+	 *            the LAST_UPD_DATE value
 	 */
-	public void setLastUpdDate (java.util.Date lastUpdDate) {
+	public void setLastUpdDate(java.util.Date lastUpdDate) {
 		this.lastUpdDate = lastUpdDate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LAST_UPD_FUNC
 	 */
-	public java.lang.String getLastUpdFunc () {
+	public java.lang.String getLastUpdFunc() {
 		return lastUpdFunc;
 	}
 
 	/**
 	 * Set the value related to the column: LAST_UPD_FUNC
-	 * @param lastUpdFunc the LAST_UPD_FUNC value
+	 * 
+	 * @param lastUpdFunc
+	 *            the LAST_UPD_FUNC value
 	 */
-	public void setLastUpdFunc (java.lang.String lastUpdFunc) {
+	public void setLastUpdFunc(java.lang.String lastUpdFunc) {
 		this.lastUpdFunc = lastUpdFunc;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LAST_UPD_TLR
 	 */
-	public java.lang.String getLastUpdTlr () {
+	public java.lang.String getLastUpdTlr() {
 		return lastUpdTlr;
 	}
 
 	/**
 	 * Set the value related to the column: LAST_UPD_TLR
-	 * @param lastUpdTlr the LAST_UPD_TLR value
+	 * 
+	 * @param lastUpdTlr
+	 *            the LAST_UPD_TLR value
 	 */
-	public void setLastUpdTlr (java.lang.String lastUpdTlr) {
+	public void setLastUpdTlr(java.lang.String lastUpdTlr) {
 		this.lastUpdTlr = lastUpdTlr;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MEETING_FLAG
 	 */
-	public java.lang.String getMeetingFlag () {
+	public java.lang.String getMeetingFlag() {
 		return meetingFlag;
 	}
 
 	/**
 	 * Set the value related to the column: MEETING_FLAG
-	 * @param meetingFlag the MEETING_FLAG value
+	 * 
+	 * @param meetingFlag
+	 *            the MEETING_FLAG value
 	 */
-	public void setMeetingFlag (java.lang.String meetingFlag) {
+	public void setMeetingFlag(java.lang.String meetingFlag) {
 		this.meetingFlag = meetingFlag;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MISC
 	 */
-	public java.lang.String getMisc () {
+	public java.lang.String getMisc() {
 		return misc;
 	}
 
 	/**
 	 * Set the value related to the column: MISC
-	 * @param misc the MISC value
+	 * 
+	 * @param misc
+	 *            the MISC value
 	 */
-	public void setMisc (java.lang.String misc) {
+	public void setMisc(java.lang.String misc) {
 		this.misc = misc;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: REASON
 	 */
-	public java.lang.String getReason () {
+	public java.lang.String getReason() {
 		return reason;
 	}
 
 	/**
 	 * Set the value related to the column: REASON
-	 * @param reason the REASON value
+	 * 
+	 * @param reason
+	 *            the REASON value
 	 */
-	public void setReason (java.lang.String reason) {
+	public void setReason(java.lang.String reason) {
 		this.reason = reason;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ROLE_ID
 	 */
-	public java.lang.Integer getRoleId () {
+	public java.lang.Integer getRoleId() {
 		return roleId;
 	}
 
 	/**
 	 * Set the value related to the column: ROLE_ID
-	 * @param roleId the ROLE_ID value
+	 * 
+	 * @param roleId
+	 *            the ROLE_ID value
 	 */
-	public void setRoleId (java.lang.Integer roleId) {
+	public void setRoleId(java.lang.Integer roleId) {
 		this.roleId = roleId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TIMESTAMPS
 	 */
-	public java.util.Date getTimestamps () {
+	public java.util.Date getTimestamps() {
 		return timestamps;
 	}
 
 	/**
 	 * Set the value related to the column: TIMESTAMPS
-	 * @param timestamps the TIMESTAMPS value
+	 * 
+	 * @param timestamps
+	 *            the TIMESTAMPS value
 	 */
-	public void setTimestamps (java.util.Date timestamps) {
+	public void setTimestamps(java.util.Date timestamps) {
 		this.timestamps = timestamps;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TLSRNO
 	 */
-	public java.lang.String getTlsrno () {
+	public java.lang.String getTlsrno() {
 		return tlsrno;
 	}
 
 	/**
 	 * Set the value related to the column: TLSRNO
-	 * @param tlsrno the TLSRNO value
+	 * 
+	 * @param tlsrno
+	 *            the TLSRNO value
 	 */
-	public void setTlsrno (java.lang.String tlsrno) {
+	public void setTlsrno(java.lang.String tlsrno) {
 		this.tlsrno = tlsrno;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TXN_DATE
 	 */
-	public java.util.Date getTxnDate () {
+	public java.util.Date getTxnDate() {
 		return txnDate;
 	}
 
 	/**
 	 * Set the value related to the column: TXN_DATE
-	 * @param txnDate the TXN_DATE value
+	 * 
+	 * @param txnDate
+	 *            the TXN_DATE value
 	 */
-	public void setTxnDate (java.util.Date txnDate) {
+	public void setTxnDate(java.util.Date txnDate) {
 		this.txnDate = txnDate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: UNTREAD
 	 */
-	public java.lang.String getUntread () {
+	public java.lang.String getUntread() {
 		return untread;
 	}
 
 	/**
 	 * Set the value related to the column: UNTREAD
-	 * @param untread the UNTREAD value
+	 * 
+	 * @param untread
+	 *            the UNTREAD value
 	 */
-	public void setUntread (java.lang.String untread) {
+	public void setUntread(java.lang.String untread) {
 		this.untread = untread;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof com.huateng.ebank.entity.data.flowManagement.Applydtl)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof com.huateng.ebank.entity.data.flowManagement.Applydtl))
+			return false;
 		else {
 			com.huateng.ebank.entity.data.flowManagement.Applydtl applydtl = (com.huateng.ebank.entity.data.flowManagement.Applydtl) obj;
 			return (this.getId() == applydtl.getId());
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
 			return (int) this.getId();
 		}
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

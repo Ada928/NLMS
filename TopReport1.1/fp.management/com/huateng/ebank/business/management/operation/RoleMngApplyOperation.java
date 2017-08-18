@@ -20,6 +20,7 @@ public class RoleMngApplyOperation extends BaseOperation {
 	public static final String ID = "management.RoleMngApplyOperation";
 	public static final String IN_INSERT = "IN_INSERT";
 	public static final String IN_UPDATE = "IN_UPDATE";
+
 	@Override
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub

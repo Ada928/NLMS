@@ -24,11 +24,11 @@ import com.huateng.report.constants.TopReportConstants;
 /**
  *
  * 外债信息表Getter
+ * 
  * @author wenhao.chen
- * @version 1.0
- * 2012-8-30
+ * @version 1.0 2012-8-30
  *
- * */
+ */
 @SuppressWarnings("unchecked")
 public class BOPForDebtOverseaLendingADGetter extends BaseGetter {
 
@@ -36,8 +36,7 @@ public class BOPForDebtOverseaLendingADGetter extends BaseGetter {
 		try {
 			PageQueryResult queryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -48,17 +47,17 @@ public class BOPForDebtOverseaLendingADGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
+
 	private PageQueryResult getData() throws CommonException {
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
 		//
 		int pageSize = getResult().getPage().getEveryPage();
-		//页码
+		// 页码
 		int pageIndex = getResult().getPage().getCurrentPage();
 
 		PageQueryCondition queryCondition = new PageQueryCondition();
@@ -76,14 +75,12 @@ public class BOPForDebtOverseaLendingADGetter extends BaseGetter {
 		String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
 		String qfiller2 = getCommQueryServletRequest().getParameter("qfiller2");
 
-		List<Object>paramentList = new ArrayList<Object>();
-		if (StringUtils.isNotBlank(qStartDate))
-		{
+		List<Object> paramentList = new ArrayList<Object>();
+		if (StringUtils.isNotBlank(qStartDate)) {
 			hql.append(" AND bds.workDate >= ? ");
 			paramentList.add(qStartDate);
 		}
-		if (StringUtils.isNotBlank(qEndDate))
-		{
+		if (StringUtils.isNotBlank(qEndDate)) {
 			hql.append(" AND bds.workDate <= ? ");
 			paramentList.add(qEndDate);
 		}
@@ -91,23 +88,19 @@ public class BOPForDebtOverseaLendingADGetter extends BaseGetter {
 			hql.append(" AND bds.actiontype = ? ");
 			paramentList.add(qActiontype);
 		}
-		if (StringUtils.isNotBlank(qRecStatus))
-		{
+		if (StringUtils.isNotBlank(qRecStatus)) {
 			hql.append(" AND bds.recStatus = ? ");
 			paramentList.add(qRecStatus);
 		}
-		if (StringUtils.isNotBlank(qApproveStatus))
-		{
+		if (StringUtils.isNotBlank(qApproveStatus)) {
 			hql.append(" AND bds.approveStatus = ? ");
 			paramentList.add(qApproveStatus);
 		}
-		if (StringUtils.isNotBlank(qRepStatus))
-		{
+		if (StringUtils.isNotBlank(qRepStatus)) {
 			hql.append(" AND bds.repStatus = ? ");
 			paramentList.add(qRepStatus);
 		}
-		if (StringUtils.isNotBlank(qfiller2))
-		{
+		if (StringUtils.isNotBlank(qfiller2)) {
 			hql.append(" AND bds.filler2 LIKE ? ");
 			paramentList.add("%" + qfiller2 + "%");
 		}

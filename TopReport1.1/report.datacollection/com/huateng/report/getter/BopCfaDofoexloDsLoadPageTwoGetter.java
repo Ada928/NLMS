@@ -18,8 +18,7 @@ import com.huateng.exception.AppException;
 import com.huateng.report.constants.TopReportConstants;
 
 @SuppressWarnings("unchecked")
-public class BopCfaDofoexloDsLoadPageTwoGetter  extends BaseGetter{
-
+public class BopCfaDofoexloDsLoadPageTwoGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
@@ -28,21 +27,18 @@ public class BopCfaDofoexloDsLoadPageTwoGetter  extends BaseGetter{
 
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "国内外汇贷款补录-国内外汇贷款签约信息查询");
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -51,9 +47,10 @@ public class BopCfaDofoexloDsLoadPageTwoGetter  extends BaseGetter{
 		int pageSize = getResult().getPage().getEveryPage();
 		// 页码
 		int pageIndex = getResult().getPage().getCurrentPage();
-		StringBuilder queryhql = new StringBuilder(
-				" FROM BopCfaDofoexloDs  model WHERE model.currentfile = '"+TopReportConstants.REPORT_FILE_TYPE_CFA_CA+"'");
-//		queryhql.append(" and model.recStatus ='"+TopReportConstants.REPORT_RECSTATUS_05+"'" );
+		StringBuilder queryhql = new StringBuilder(" FROM BopCfaDofoexloDs  model WHERE model.currentfile = '"
+				+ TopReportConstants.REPORT_FILE_TYPE_CFA_CA + "'");
+		// queryhql.append(" and model.recStatus
+		// ='"+TopReportConstants.REPORT_RECSTATUS_05+"'" );
 		queryhql.append(" and model.currence !='CNY'");
 		String workDate = getCommQueryServletRequest().getParameter("workDate");
 		String actiontype = getCommQueryServletRequest().getParameter("actiontype");
@@ -63,22 +60,22 @@ public class BopCfaDofoexloDsLoadPageTwoGetter  extends BaseGetter{
 		String dofoexlocode = getCommQueryServletRequest().getParameter("dofoexlocode");
 
 		if (StringUtils.isNotBlank(workDate)) {
-			queryhql.append("and model.workDate ='"+workDate+"'");
+			queryhql.append("and model.workDate ='" + workDate + "'");
 		}
 		if (StringUtils.isNotBlank(actiontype)) {
-			queryhql.append(" and model.actiontype ='"+actiontype+"'");
+			queryhql.append(" and model.actiontype ='" + actiontype + "'");
 		}
 		if (StringUtils.isNotBlank(recStatus)) {
-			queryhql.append(" and model.recStatus ='"+recStatus+"'");
+			queryhql.append(" and model.recStatus ='" + recStatus + "'");
 		}
 		if (StringUtils.isNotBlank(approveStatus)) {
-			queryhql.append(" and model.approveStatus ='"+approveStatus+"'");
+			queryhql.append(" and model.approveStatus ='" + approveStatus + "'");
 		}
 		if (StringUtils.isNotBlank(repStatus)) {
-			queryhql.append(" and model.repStatus ='"+repStatus+"'");
+			queryhql.append(" and model.repStatus ='" + repStatus + "'");
 		}
 		if (StringUtils.isNotBlank(dofoexlocode)) {
-			queryhql.append(" and model.dofoexlocode ='"+dofoexlocode+"'");
+			queryhql.append(" and model.dofoexlocode ='" + dofoexlocode + "'");
 		}
 
 		PageQueryCondition queryCondition = new PageQueryCondition();

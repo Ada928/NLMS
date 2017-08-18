@@ -13,11 +13,12 @@ import org.dom4j.io.SAXReader;
 
 public class XmlUtil {
 
-	public Map<String, String> getSqlMap(){
+	public Map<String, String> getSqlMap() {
 		Map<String, String> sqlMap = new HashMap<String, String>();
-        SAXReader saxReader = new SAXReader();  
-        try {
-			Document document = saxReader.read(this.getClass().getClassLoader().getResourceAsStream("resources/sql.xml"));
+		SAXReader saxReader = new SAXReader();
+		try {
+			Document document = saxReader
+					.read(this.getClass().getClassLoader().getResourceAsStream("resources/sql.xml"));
 			Element root = document.getRootElement();
 			List<Element> rows = root.elements("SQLDATA");
 			for (Element element : rows) {
@@ -28,24 +29,23 @@ public class XmlUtil {
 		}
 		return sqlMap;
 	}
-	
-	
-	private String getLength(String s){
-		Pattern p = Pattern.compile("\\d+[.]?\\d?"); 
-		Matcher m = p.matcher(s); 
-		while(m.find()){
+
+	private String getLength(String s) {
+		Pattern p = Pattern.compile("\\d+[.]?\\d?");
+		Matcher m = p.matcher(s);
+		while (m.find()) {
 			return m.group();
 		}
 		return null;
 	}
-	
-//	public static void main(String[] args) {
-//		XmlUtil util = new XmlUtil();
-//		List<Map<String, String>> list = util.generateFieldInfo();
-//		for (Map<String, String> map : list) {
-//			System.out.println(map.toString());
-//		}
-//		
-//	}
-	
+
+	// public static void main(String[] args) {
+	// XmlUtil util = new XmlUtil();
+	// List<Map<String, String>> list = util.generateFieldInfo();
+	// for (Map<String, String> map : list) {
+	// System.out.println(map.toString());
+	// }
+	//
+	// }
+
 }

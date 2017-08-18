@@ -15,39 +15,37 @@ import org.springframework.util.StringUtils;
 
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.util.ContextUtil;
+
 /**
  * @author liu_wen@huateng.com
  * @version $Revision: 1.2 $
  *
- * 用来方便的调用Spring的方法的类。
+ *          用来方便的调用Spring的方法的类。
  */
 public class ApplicationContextUtils {
 	private static ApplicationContext context = null;
 
 	private static Log log = LogFactory.getLog(ApplicationContextUtils.class);
 
-	public static synchronized void init(String location)
-			throws CommonException {
+	public static synchronized void init(String location) throws CommonException {
 		try {
 			if (null == context) {
-				String[] locations = StringUtils.tokenizeToStringArray(
-						location, ",");
+				String[] locations = StringUtils.tokenizeToStringArray(location, ",");
 				if (log.isInfoEnabled()) {
-					for ( int i=0; i<locations.length; i++ ){
+					for (int i = 0; i < locations.length; i++) {
 						log.info("Loading spring config from files:" + locations[i].trim());
 					}
 					log.info("Loading spring config from files:" + location);
 				}
 				context = new ClassPathXmlApplicationContext(locations);
-				/** shen_antonio.*/
+				/** shen_antonio. */
 				ContextUtil.setContext(context);
 			}
 		} catch (Exception ex) {
 			if (log.isErrorEnabled()) {
 				log.error("初始化spring配置失败。", ex);
 			}
-			ExceptionUtil.throwCommonException("获得系统配置信息(spring相关)时出现错误.",
-					"errors.system.spring", ex);
+			ExceptionUtil.throwCommonException("获得系统配置信息(spring相关)时出现错误.", "errors.system.spring", ex);
 		}
 	}
 
@@ -57,9 +55,9 @@ public class ApplicationContextUtils {
 	 */
 
 	public static Object getBean(String beanName) {
-		//ApplicationContext ac = getApplicationContext();
+		// ApplicationContext ac = getApplicationContext();
 		if (null == context)
-			throw new IllegalStateException("ApplicationContext没有被初始化.");
+			throw new IllegalStateException("ApplicationContext 没有被初始化.");
 		return context.getBean(beanName);
 	}
 
@@ -69,7 +67,7 @@ public class ApplicationContextUtils {
 
 	public static void main(String[] argv) {
 		try {
-			//ApplicationContextUtils.getApplicationContext();
+			// ApplicationContextUtils.getApplicationContext();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
