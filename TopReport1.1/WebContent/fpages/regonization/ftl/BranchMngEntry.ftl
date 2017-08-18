@@ -97,7 +97,6 @@
 	
 	function datatable1_opr_onRefresh(cell, value, record)
 	{
-	
 		if (record) {//当存在记录时
 			var lock = record.getValue("lock");
 			var id = record.getValue("brcode");
@@ -107,7 +106,7 @@
 				cell.innerHTML="<center><a href=\"JavaScript:openBranchDtl('"+id+"')\">修改</a></center>";
 			}
 		} else {//当不存在记录时
-		 cell.innerHTML="&nbsp;";
+		 	cell.innerHTML="&nbsp;";
 		}
 	}
 
@@ -124,29 +123,25 @@
 	}
 	//展示对比功能的js
 	function datatable1_brno_onRefresh(cell, value, record){
-	if(record!=null){
-		var sta = record.getValue("st");
-		var id = record.getValue("brcode");
-		var brno=record.getValue("brno");
-
-
-		cell.innerHTML = "<a href=\"Javascript:showDetail('"+id+"','"+sta+"')\">"+brno+"</a>";
-
-	} else {
-		cell.innerHTML = ""
+		if(record!=null){
+			var sta = record.getValue("st");
+			var id = record.getValue("brcode");
+			var brno = record.getValue("brno");
+			cell.innerHTML = "<a href=\"Javascript:showDetail('"+id+"','"+sta+"')\">"+brno+"</a>";
+		} else {
+			cell.innerHTML = ""
+		}
 	}
-}
-
-
-function showDetail(id,sta){
-
-	var paramMap = new Map();
-	paramMap.put("id",id);
-	paramMap.put("st",sta);
-	paramMap.put("action","detail");
-	paramMap.put("flag","0");
-	loadPageWindows("partWin", "机构管理","/fpages/regonization/ftl/branchManageDetail.ftl", paramMap, "winZone");
-}
+	
+	function showDetail(id,sta){
+		var paramMap = new Map();
+		paramMap.put("id",id);
+		paramMap.put("st",sta);
+		paramMap.put("action","detail");
+		paramMap.put("flag","0");
+		loadPageWindows("partWin", "机构管理","/fpages/regonization/ftl/branchManageDetail.ftl", paramMap, "winZone");
+	}
+	
 	function btStatus_onClickCheck(button) {
 		var status = Management_branchManage_dataset.getValue("status");
 		 var lock = Management_branchManage_dataset.getValue("lock");
@@ -160,9 +155,7 @@ function showDetail(id,sta){
 			}
 		} else {
 			if(confirm("确认将该机构设置为无效?")){
-			
 				Management_branchManage_dataset.setParameter("statu", "0");
-				
 				return true;
 			}else{
 				return false;

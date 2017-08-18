@@ -9,5 +9,5 @@ import javax.servlet.http.HttpServletRequest;
  */
 public abstract class BasePrinter {
 
-	public abstract List getPrinterList(HttpServletRequest request)throws Exception;
+	public abstract List getPrinterList(HttpServletRequest request) throws Exception;
 }

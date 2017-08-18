@@ -5,24 +5,22 @@ import java.util.List;
 
 import resource.bean.pub.base.BaseTlrInfo;
 
-
-
 public class TlrInfo extends BaseTlrInfo {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public TlrInfo () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public TlrInfo() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public TlrInfo (java.lang.String tlrno) {
+	public TlrInfo(java.lang.String tlrno) {
 		super(tlrno);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
+	/* [CONSTRUCTOR MARKER END] */
 	private String brno;
 
 	public String getBrno() {
@@ -32,8 +30,7 @@ public class TlrInfo extends BaseTlrInfo {
 	public void setBrno(String brno) {
 		this.brno = brno;
 	}
-	
-	
+
 	/** add by zhaozhiguo 2011-6-20 BMS-3153 begin */
 	private String lastPwdUpdTime;
 	private Timestamp lastfailedtm;
@@ -42,9 +39,9 @@ public class TlrInfo extends BaseTlrInfo {
 	private List roleList;
 	private String newFlag;
 	private String RestFlg;
-	
+
 	private String reset;
-	
+
 	public String getReset() {
 		return reset;
 	}
@@ -86,10 +83,8 @@ public class TlrInfo extends BaseTlrInfo {
 	}
 
 	/** add by zhaozhiguo 2011-6-20 BMS-3153 end */
-	
-	
 
-	//操作员审批阀值
+	// 操作员审批阀值
 	private long maxWl;
 
 	public long getMaxWl() {
@@ -123,5 +118,5 @@ public class TlrInfo extends BaseTlrInfo {
 	public void setRestFlg(String restFlg) {
 		RestFlg = restFlg;
 	}
-	
+
 }

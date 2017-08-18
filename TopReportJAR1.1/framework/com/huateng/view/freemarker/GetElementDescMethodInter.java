@@ -10,9 +10,8 @@ import freemarker.template.TemplateModelException;
 
 public class GetElementDescMethodInter extends GetElementDescMethod {
 
-	protected static Logger logger = Logger
-			.getLogger(GetElementDescMethodInter.class);
-	
+	protected static Logger logger = Logger.getLogger(GetElementDescMethodInter.class);
+
 	@Override
 	public Object exec(List args) throws TemplateModelException {
 		Object desc = super.exec(args);

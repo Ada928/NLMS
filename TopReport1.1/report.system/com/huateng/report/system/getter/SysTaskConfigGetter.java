@@ -16,20 +16,21 @@ import com.huateng.report.system.service.SysTaskConfigService;
 
 public class SysTaskConfigGetter extends BaseGetter {
 	/**
-	 * @author jianxue.zhang 
+	 * @author jianxue.zhang
 	 */
 	@Override
 	public Result call() throws AppException {
 		try {
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "系统维护-复核模块维护");
-			//List codeslist = GlobalInfo.getCurrentInstance().getConfrimCodeList();
-			
-				PageQueryResult pageResult = getData();
-				ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult
-						.getQueryResult(), getResult());
-				result.setContent(pageResult.getQueryResult());
-				result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
-			
+			// List codeslist =
+			// GlobalInfo.getCurrentInstance().getConfrimCodeList();
+
+			PageQueryResult pageResult = getData();
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
+			result.setContent(pageResult.getQueryResult());
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
+
 			result.init();
 			return result;
 		} catch (AppException appEx) {
@@ -45,9 +46,9 @@ public class SysTaskConfigGetter extends BaseGetter {
 		// 也可以这样 getCommQueryServletRequest().getParameter("qDataTypeNo");
 		// 获取参数id,insCd,intInsId,updTransCd
 		String id = (String) paramMap.get("id");
-		//String insCd = (String) paramMap.get("insCd");
-		//String intInsId = (String) paramMap.get("intInsId");
-		//String updTransCd = (String) paramMap.get("updTransCd");
+		// String insCd = (String) paramMap.get("insCd");
+		// String intInsId = (String) paramMap.get("intInsId");
+		// String updTransCd = (String) paramMap.get("updTransCd");
 		// 获取页面的pageSize
 		int pageSize = this.getResult().getPage().getEveryPage();
 		// 获取页面的当前页

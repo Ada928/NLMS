@@ -30,20 +30,16 @@ public class BopBhnDsAuditEntryGetter extends BaseGetter {
 		try {
 			PageQueryResult pageResult = getData();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境外汇款申请书基础信息审核查询");
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -60,38 +56,39 @@ public class BopBhnDsAuditEntryGetter extends BaseGetter {
 		String brNo = globalInfo.getBrno();
 		List<Object> hqlObj = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer();
-		hql.append(" from MtsBopBhnDs model where model.apptype = ? and model.currentfile = ? and model.recStatus in (?,?)");
+		hql.append(
+				" from MtsBopBhnDs model where model.apptype = ? and model.currentfile = ? and model.recStatus in (?,?)");
 		hqlObj.add(TopReportConstants.REPORT_APP_TYPE_BOP);
 		hqlObj.add(TopReportConstants.REPORT_FILE_TYPE_BOP_B);
 		hqlObj.add(TopReportConstants.REPORT_RECSTATUS_03);
 		hqlObj.add(TopReportConstants.REPORT_RECSTATUS_04);
-		if(StringUtils.isNotBlank(qworkDateStart)) {
+		if (StringUtils.isNotBlank(qworkDateStart)) {
 			hql.append(" and model.workDate >= ?");
 			hqlObj.add(qworkDateStart);
 		}
-		if(StringUtils.isNotBlank(qworkDateEnd)) {
+		if (StringUtils.isNotBlank(qworkDateEnd)) {
 			hql.append(" and model.workDate <= ?");
 			hqlObj.add(qworkDateEnd);
 		}
-		if(StringUtils.isNotBlank(qactiontype)) {
+		if (StringUtils.isNotBlank(qactiontype)) {
 			hql.append(" and model.actiontype = ?");
 			hqlObj.add(qactiontype);
 		}
-		if(StringUtils.isNotBlank(qrecStatus)) {
+		if (StringUtils.isNotBlank(qrecStatus)) {
 			hql.append(" and model.recStatus = ?");
 			hqlObj.add(qrecStatus);
 		}
-		if(StringUtils.isNotBlank(qapproveStatus)) {
+		if (StringUtils.isNotBlank(qapproveStatus)) {
 			hql.append(" and model.approveStatus = ?");
 			hqlObj.add(qapproveStatus);
 		}
-		if(StringUtils.isNotBlank(qrepStatus)) {
+		if (StringUtils.isNotBlank(qrepStatus)) {
 			hql.append(" and model.repStatus = ?");
 			hqlObj.add(qrepStatus);
 		}
-		if(StringUtils.isNotBlank(qfiller2)) {
+		if (StringUtils.isNotBlank(qfiller2)) {
 			hql.append(" and model.filler2 like ?");
-			hqlObj.add("%"+qfiller2+"%");
+			hqlObj.add("%" + qfiller2 + "%");
 		}
 		hql.append(" and model.brNo = ? order by model.lstUpdTm desc");
 		hqlObj.add(brNo);

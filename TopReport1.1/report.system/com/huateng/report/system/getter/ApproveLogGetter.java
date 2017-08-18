@@ -18,49 +18,44 @@ import com.huateng.report.system.service.UndoConfirmService;
 
 public class ApproveLogGetter extends BaseGetter {
 	/**
-	 * @author jianxue.zhang
-	 * 用于获取已办事项的数据
+	 * @author jianxue.zhang 用于获取已办事项的数据
 	 */
 	@Override
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	private PageQueryResult getData() throws CommonException {
 		GlobalInfo info = GlobalInfo.getCurrentInstance();
-		//获取参数集合
+		// 获取参数集合
 		Map paramMap = this.getCommQueryServletRequest().getParameterMap();
-		//也可以这样 getCommQueryServletRequest().getParameter("qDataTypeNo");
-		//获取参数id,insCd,intInsId,updTransCd
-		String id = (String)paramMap.get("id");
-		String insCd = (String)paramMap.get("insCd");
-		String intInsId = (String)paramMap.get("intInsId");
-		String updTransCd = (String)paramMap.get("updTransCd");
-		//审批时间
-		String ctdate1 = (String)paramMap.get("ctdate1");
-		String ctdate2 = (String)paramMap.get("ctdate2");
-		//获取页面的pageSize
+		// 也可以这样 getCommQueryServletRequest().getParameter("qDataTypeNo");
+		// 获取参数id,insCd,intInsId,updTransCd
+		String id = (String) paramMap.get("id");
+		String insCd = (String) paramMap.get("insCd");
+		String intInsId = (String) paramMap.get("intInsId");
+		String updTransCd = (String) paramMap.get("updTransCd");
+		// 审批时间
+		String ctdate1 = (String) paramMap.get("ctdate1");
+		String ctdate2 = (String) paramMap.get("ctdate2");
+		// 获取页面的pageSize
 		int pageSize = this.getResult().getPage().getEveryPage();
-		//获取页面的当前页
+		// 获取页面的当前页
 		int pageIndex = this.getResult().getPage().getCurrentPage();
-		//组装hql语句
-		StringBuffer hql=new StringBuffer(" from SysTaskLog dd where dd.approveOperId='"+info.getTlrno()+"'");
+		// 组装hql语句
+		StringBuffer hql = new StringBuffer(" from SysTaskLog dd where dd.approveOperId='" + info.getTlrno() + "'");
 		if (StringUtils.isNotBlank(id)) {
 			hql.append(" and dd.id=").append(id);
 		}

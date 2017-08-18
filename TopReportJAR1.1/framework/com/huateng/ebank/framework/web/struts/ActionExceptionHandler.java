@@ -39,13 +39,12 @@ import com.huateng.ebank.framework.util.MessageResources;
  * @author <a href="mailto:matt@raibledesigns.com">Matt Raible </a>
  */
 public final class ActionExceptionHandler extends ExceptionHandler {
-	//~ Instance fields
+	// ~ Instance fields
 	// ========================================================
 
-	private static final Log log = LogFactory
-			.getLog(ActionExceptionHandler.class);
+	private static final Log log = LogFactory.getLog(ActionExceptionHandler.class);
 
-	//~ Methods
+	// ~ Methods
 	// ================================================================
 
 	/**
@@ -62,17 +61,14 @@ public final class ActionExceptionHandler extends ExceptionHandler {
 	 *      javax.servlet.http.HttpServletResponse )
 	 */
 	@Override
-	public ActionForward execute(Exception ex, ExceptionConfig ae,
-			ActionMapping mapping, ActionForm formInstance,
-			HttpServletRequest request, HttpServletResponse response)
-			throws ServletException {
+	public ActionForward execute(Exception ex, ExceptionConfig ae, ActionMapping mapping, ActionForm formInstance,
+			HttpServletRequest request, HttpServletResponse response) throws ServletException {
 
-		ActionForward forward = super.execute(ex, ae, mapping, formInstance,
-				request, response);
+		ActionForward forward = super.execute(ex, ae, mapping, formInstance, request, response);
 
 		// log the exception to the default logger
-		//ex.printStackTrace();
-		//log.error("异常",ex);
+		// ex.printStackTrace();
+		// log.error("异常",ex);
 
 		String msg = convertErrorMessage(ex);
 		throw new ServletException(msg, ex);
@@ -82,20 +78,19 @@ public final class ActionExceptionHandler extends ExceptionHandler {
 	 * This method overrides the the ExceptionHandler's storeException method in
 	 * order to create more than one error message.
 	 * 
-	 * @param request -
-	 *            The request we are handling
-	 * @param property -
-	 *            The property name to use for this error
-	 * @param error -
-	 *            The error generated from the exception mapping
-	 * @param forward -
-	 *            The forward generated from the input path (from the form or
+	 * @param request
+	 *            - The request we are handling
+	 * @param property
+	 *            - The property name to use for this error
+	 * @param error
+	 *            - The error generated from the exception mapping
+	 * @param forward
+	 *            - The forward generated from the input path (from the form or
 	 *            exception mapping)
 	 */
-	protected void storeException(HttpServletRequest request, String property,
-			ActionMessage error, ActionForward forward) {
-		ActionMessages errors = (ActionMessages) request
-				.getAttribute(Globals.ERROR_KEY);
+	protected void storeException(HttpServletRequest request, String property, ActionMessage error,
+			ActionForward forward) {
+		ActionMessages errors = (ActionMessages) request.getAttribute(Globals.ERROR_KEY);
 
 		if (errors == null) {
 			errors = new ActionMessages();
@@ -113,15 +108,15 @@ public final class ActionExceptionHandler extends ExceptionHandler {
 	 */
 	@Override
 	protected void logException(Exception ex) {
-//		StringWriter sw = new StringWriter();
-//		ex.printStackTrace(new PrintWriter(sw));
-//		log.error(sw.toString());
+		// StringWriter sw = new StringWriter();
+		// ex.printStackTrace(new PrintWriter(sw));
+		// log.error(sw.toString());
 	}
 
 	public static String convertErrorMessage(Exception ex) {
-		log.error("异常",ex);
-		//Throwable t = ex.getCause();
-		
+		log.error("异常", ex);
+		// Throwable t = ex.getCause();
+
 		String errorMsg = "";
 		String detailMsg = ex.getMessage();
 
@@ -146,19 +141,15 @@ public final class ActionExceptionHandler extends ExceptionHandler {
 
 		StringBuffer sb = new StringBuffer(errorMsg);
 		if (null != detailMsg && !"".equals(detailMsg)) {
-			if ( -1 == detailMsg.indexOf("exception") ){//如果不是数据库操作掷出的异常信息,进行显示.
+			if (-1 == detailMsg.indexOf("exception")) {// 如果不是数据库操作掷出的异常信息,进行显示.
 				sb.append("\n详细信息:").append(detailMsg).append(".");
 			}
 		}
-		
+
 		/*
-		if (sb.toString().length() < 256) {
-			if (t != null) {
-				String m = t.getMessage();
-				sb.append("\n调试信息:").append(m).append(".");
-			}
-		}
-		*/
+		 * if (sb.toString().length() < 256) { if (t != null) { String m =
+		 * t.getMessage(); sb.append("\n调试信息:").append(m).append("."); } }
+		 */
 
 		String msg = sb.toString();
 		if (msg.length() > 256) {

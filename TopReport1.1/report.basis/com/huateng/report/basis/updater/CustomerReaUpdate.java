@@ -18,35 +18,34 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.basis.operation.CustomerReaOperation;
 
-public class CustomerReaUpdate  extends BaseUpdate{
-	private static final String DATASET_ID="CustomerReaInfo";
+public class CustomerReaUpdate extends BaseUpdate {
+	private static final String DATASET_ID = "CustomerReaInfo";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		// TODO Auto-generated method stub
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-		BiCustomer bi =new BiCustomer();
-		
-		
-		OperationContext oc= new OperationContext();
+		BiCustomer bi = new BiCustomer();
+
+		OperationContext oc = new OperationContext();
 		ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
-		if(updateResultBean.hasNext()){
+		if (updateResultBean.hasNext()) {
 			Map map = updateResultBean.next();
-			mapToObject(bi,map);
+			mapToObject(bi, map);
 			String op = updateResultBean.getParameter("op");
-			if("new".equalsIgnoreCase(op)){
+			if ("new".equalsIgnoreCase(op)) {
 				oc.setAttribute(CustomerReaOperation.CMD, CustomerReaOperation.CMD_INSERT);
-			}else if("mod".equalsIgnoreCase(op)){
+			} else if ("mod".equalsIgnoreCase(op)) {
 				oc.setAttribute(CustomerReaOperation.CMD, CustomerReaOperation.CMD_UPDATE);
 			}
-			
+
 		}
 		oc.setAttribute(CustomerReaOperation.IN_PARAM, bi);
 		OPCaller.call(CustomerReaOperation.ID, oc);
-		
-		return  updateReturnBean;
+
+		return updateReturnBean;
 	}
 
 }

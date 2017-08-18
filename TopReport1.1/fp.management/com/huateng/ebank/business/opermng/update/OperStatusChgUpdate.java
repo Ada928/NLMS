@@ -24,12 +24,12 @@ public class OperStatusChgUpdate extends BaseUpdate {
 	private final static String OPER_ID = "tlrno";
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest arg1, HttpServletResponse arg2)
-	        throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest arg1,
+			HttpServletResponse arg2) throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-			if(updateResultBean.hasNext()) {
+			if (updateResultBean.hasNext()) {
 				String tlrno = updateResultBean.next().get(OPER_ID);
 				String status = updateResultBean.getParameter(PARAM_ACTION);
 				OperationContext oc = new OperationContext();
@@ -40,7 +40,7 @@ public class OperStatusChgUpdate extends BaseUpdate {
 			} else {
 				ExceptionUtil.throwAppException("请选择一条记录", ErrorCode.ERROR_CODE_NORMAL);
 			}
-			
+
 			return updateReturnBean;
 		} catch (CommonException ex) {
 			throw ex;

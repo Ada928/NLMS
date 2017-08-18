@@ -24,7 +24,8 @@ public class TlrInfoExGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult().size() == 0) {
 				result.getPage().setTotalPage(0);
@@ -41,27 +42,31 @@ public class TlrInfoExGetter extends BaseGetter {
 	}
 
 	protected PageQueryResult getData() throws Exception {
-//		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		/*String brcode = this.commQueryServletRequest.getParameter("sqlBrcode");// 获取brcode
-		if (brcode == null){
-			brcode = this.commQueryServletRequest.getParameter("brcode");// 获取brcode
-		}*/
+		// GlobalInfo gi = GlobalInfo.getCurrentInstance();
+		/*
+		 * String brcode =
+		 * this.commQueryServletRequest.getParameter("sqlBrcode");// 获取brcode if
+		 * (brcode == null){ brcode =
+		 * this.commQueryServletRequest.getParameter("brcode");// 获取brcode }
+		 */
 		String brcode = getValueFromDataBus("brcode");// 获取brcode
 		String departmentCode = getValueFromDataBus("departmentCode");// 获取部门号departmentCode
 		String tlrno = getValueFromDataBus("extTlrno");// 获取操作员号tlrno
 		/**
 		 * 判断操作员是否属于管理操作员所属分行
 		 */
-		/** 当前机构为分行级别,只能操作本行或者下属行的操作员.*/
+		/** 当前机构为分行级别,只能操作本行或者下属行的操作员. */
 		/*
-		/** modify by shen_antonio 20081117.*/
-//		if(StringUtils.isNotEmpty(tlrno)){
-//			boolean flag = TlrInfoExService.getInstance().judgeTlrAttachBranch(tlrno);
-//			if (!flag) {
-//				ExceptionUtil.throwCommonException("输入的操作员不在本行管辖范围内",
-//						ErrorCode.ERROR_CODE_CHECK_AUTH_FAIL);
-//			}
-//		}
+		 * /** modify by shen_antonio 20081117.
+		 */
+		// if(StringUtils.isNotEmpty(tlrno)){
+		// boolean flag =
+		// TlrInfoExService.getInstance().judgeTlrAttachBranch(tlrno);
+		// if (!flag) {
+		// ExceptionUtil.throwCommonException("输入的操作员不在本行管辖范围内",
+		// ErrorCode.ERROR_CODE_CHECK_AUTH_FAIL);
+		// }
+		// }
 		PageQueryResult pageQueryResult = new PageQueryResult();
 		OperationContext oc = new OperationContext();
 		oc.setAttribute(TlrInfoExOperation.CMD, "SELECT_TLR_INFO");

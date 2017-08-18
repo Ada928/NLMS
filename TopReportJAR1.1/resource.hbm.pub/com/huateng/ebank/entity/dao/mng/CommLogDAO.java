@@ -14,10 +14,9 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 
 /**
- * Title: CommLogDAO
- * Description: COMM_LOG表DAO
- * Copyright: Copyright (c) 2008
+ * Title: CommLogDAO Description: COMM_LOG表DAO Copyright: Copyright (c) 2008
  * Company: Shanghai Huateng Software Systems Co., Ltd.
+ * 
  * @author shen_antonio
  * @version 1.1, 2008-5-8
  */
@@ -36,14 +35,12 @@ public class CommLogDAO extends HibernateDaoSupport {
 	 */
 	public CommLog query(String id) throws CommonException {
 		try {
-			return (CommLog) this.getHibernateTemplate().load(CommLog.class,id);
+			return (CommLog) this.getHibernateTemplate().load(CommLog.class, id);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_COMM_LOG_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_COMM_LOG_SELECT, e);
 		}
 		return null;
 	}
-
 
 	/**
 	 * 根据输入的条件查询所有符合条件的记录
@@ -54,15 +51,12 @@ public class CommLogDAO extends HibernateDaoSupport {
 	 * @return 包含CommLog对象的List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString, Object[] objArray,
-			Type[] typeArray) throws CommonException {
+	public List queryByCondition(String whereString, Object[] objArray, Type[] typeArray) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from CommLog po where " + whereString, objArray);
+			List list = this.getHibernateTemplate().find("from CommLog po where " + whereString, objArray);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_COMM_LOG_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_COMM_LOG_SELECT, e);
 		}
 		return null;
 	}
@@ -76,12 +70,10 @@ public class CommLogDAO extends HibernateDaoSupport {
 	 */
 	public List queryByCondition(String whereString) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from CommLog po where " + whereString);
+			List list = this.getHibernateTemplate().find("from CommLog po where " + whereString);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_COMM_LOG_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_COMM_LOG_SELECT, e);
 		}
 		return null;
 	}
@@ -96,8 +88,7 @@ public class CommLogDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().update(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_COMM_LOG_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_COMM_LOG_UPDATE, e);
 		}
 	}
 
@@ -111,8 +102,7 @@ public class CommLogDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().save(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_COMM_LOG_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_COMM_LOG_INSERT, e);
 		}
 	}
 
@@ -126,8 +116,7 @@ public class CommLogDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_COMM_LOG_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_COMM_LOG_DELETE, e);
 		}
 	}
 
@@ -141,8 +130,7 @@ public class CommLogDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(query(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_COMM_LOG_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_COMM_LOG_DELETE, e);
 		}
 	}
 }

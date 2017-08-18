@@ -20,38 +20,38 @@ import com.huateng.report.operation.BiAnalyConfOperation;
 import com.huateng.report.system.operation.SysParamsOperation;
 
 public class BiAnalyConfUpdate extends BaseUpdate {
-	
+
 	/*
 	 * 处理有效无效的数据库更新
 	 */
 	private static final String DATASET_ID = "analyConfEntry";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
-			//返回对象
+			// 返回对象
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			//结果集对象
+			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-			//更新对象
+			// 更新对象
 			BiAnalyConf bean = new BiAnalyConf();
-			//Operation参数
+			// Operation参数
 			OperationContext context = new OperationContext();
 			while (updateResultBean.hasNext()) {
-				//属性拷贝
+				// 属性拷贝
 				Map map = updateResultBean.next();
 				context.setAttribute(SysParamsOperation.CMD, BiAnalyConfOperation.CMD_CHANGE_STATUS);
 				BaseUpdate.mapToObject(bean, map);
 				context.setAttribute(SysParamsOperation.IN_PARAM, bean);
-				//call方式开启operation事务
+				// call方式开启operation事务
 				OPCaller.call(BiAnalyConfOperation.ID, context);
 				return updateReturnBean;
 			}
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
-			throw new AppException(Module.SYSTEM_MODULE,Rescode.DEFAULT_RESCODE,e.getMessage(),e);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
 		return null;
 	}

@@ -36,21 +36,17 @@ public class OperMngModComSeriGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -60,34 +56,36 @@ public class OperMngModComSeriGetter extends BaseGetter {
 		String st = (String) getCommQueryServletRequest().getParameterMap().get("st");
 		String flag = (String) getCommQueryServletRequest().getParameterMap().get("flag");
 		String tskId = (String) getCommQueryServletRequest().getParameter("tskId");
-		
+
 		List<TlrInfo> list = new ArrayList<TlrInfo>();
-		if(flag.equals("0")){
+		if (flag.equals("0")) {
 			if (st.equals("2")) {
 				ReportTaskUtil rt = new ReportTaskUtil();
-				List<SysTaskInfo> taskList = ROOTDAOUtils.getROOTDAO().queryByQL2List("from SysTaskInfo where intInsId='100399' and adtRcdPk='" + tlrno + "'");
+				List<SysTaskInfo> taskList = ROOTDAOUtils.getROOTDAO()
+						.queryByQL2List("from SysTaskInfo where intInsId='100399' and adtRcdPk='" + tlrno + "'");
 				if (taskList.size() > 0) {
 					TlrInfoAuditBean auditBean = (TlrInfoAuditBean) rt.getObjctBySysTaskInfo(taskList.get(0));
 					list.add(auditBean.getTlrInfo());
 					result.setQueryResult(list);
 					result.setTotalCount(1);
-					if(auditBean.getTlrInfo().getRestFlg() != null && auditBean.getTlrInfo().getRestFlg().equals("reset")){
+					if (auditBean.getTlrInfo().getRestFlg() != null
+							&& auditBean.getTlrInfo().getRestFlg().equals("reset")) {
 						list.get(0).setReset("reset");
 					}
 				}
 			}
-		} 
+		}
 		if (flag.equals("1")) {
-			ReportTaskUtil rt=new ReportTaskUtil();
-			SysTaskLog  systasklog=ReportShowDetailService.getInstance().selectTaskLog(tskId);
+			ReportTaskUtil rt = new ReportTaskUtil();
+			SysTaskLog systasklog = ReportShowDetailService.getInstance().selectTaskLog(tskId);
 			TlrInfoAuditBean newValue = null;
-			if(systasklog.getNewVal1()!=null){
-				newValue=(TlrInfoAuditBean)rt.getNewObjectByTaskLog(systasklog);	  
+			if (systasklog.getNewVal1() != null) {
+				newValue = (TlrInfoAuditBean) rt.getNewObjectByTaskLog(systasklog);
 			}
-			if(newValue != null){
+			if (newValue != null) {
 				TlrInfo tlrInfo = newValue.getTlrInfo();
 				list.add(tlrInfo);
-				if(tlrInfo.getRestFlg() != null && tlrInfo.getRestFlg().equals("reset")){
+				if (tlrInfo.getRestFlg() != null && tlrInfo.getRestFlg().equals("reset")) {
 					tlrInfo.setReset("reset");
 				}
 				result.setQueryResult(list);

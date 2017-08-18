@@ -1,7 +1,5 @@
 package com.huateng.report.dataquery.getter;
 
-
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,25 +27,22 @@ import com.huateng.exception.AppException;
 import com.huateng.report.bean.BopForDebtFeiOrgSave;
 import com.huateng.report.constants.TopReportConstants;
 
-
 /**
- * @author zhuhongyong
- * for(外债 远期信用证)
+ * @author zhuhongyong for(外债 远期信用证)
  *
  */
 @SuppressWarnings("unchecked")
 public class BOPForDebtUsanceLeOfCreditQueryGetter extends BaseGetter {
 
-	public static final String SIGNED = "sign";//判断是签约信息页面的请求
-	public static final String CHANGE = "change";//判断是变动信息页面请求
+	public static final String SIGNED = "sign";// 判断是签约信息页面的请求
+	public static final String CHANGE = "change";// 判断是变动信息页面请求
 
 	public Result call() throws AppException {
 		try {
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "远期信用证签约信息查询");
 
 			PageQueryResult queryResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -56,16 +51,14 @@ public class BOPForDebtUsanceLeOfCreditQueryGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
-	private PageQueryResult getData() throws CommonException,
-			IllegalAccessException, InvocationTargetException {
+	private PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException {
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-//		GlobalInfo glbalInfo = GlobalInfo.getCurrentInstance();
+		// GlobalInfo glbalInfo = GlobalInfo.getCurrentInstance();
 		int pageSize = getResult().getPage().getEveryPage();
 		int pageIndex = getResult().getPage().getCurrentPage();
 
@@ -81,7 +74,7 @@ public class BOPForDebtUsanceLeOfCreditQueryGetter extends BaseGetter {
 		String qapproveStatus = (String) paramsMap.get("qapproveStatus");
 		String qrepStatus = (String) paramsMap.get("qrepStatus");
 		String qfiller2 = (String) paramsMap.get("qfiller2");
-		//区分是签约签约信息还是变动信息
+		// 区分是签约签约信息还是变动信息
 		String getType = (String) paramsMap.get("getType");
 
 		List<Object> objs = new ArrayList<Object>();
@@ -90,7 +83,7 @@ public class BOPForDebtUsanceLeOfCreditQueryGetter extends BaseGetter {
 		hql.append(" FROM BopCfaExdebtDs ds WHERE ds.apptype = ?");
 		objs.add(TopReportConstants.REPORT_APP_TYPE_CFA);
 
-		//判断是签约信息还是变动信息
+		// 判断是签约信息还是变动信息
 		if (SIGNED.equalsIgnoreCase(getType)) {
 			hql.append(" AND ds.currentfile = ? ");
 			objs.add(TopReportConstants.REPORT_FILE_TYPE_CFA_AF);
@@ -155,12 +148,12 @@ public class BOPForDebtUsanceLeOfCreditQueryGetter extends BaseGetter {
 				BopCfaCreditorDs cfaCreditorDs = (BopCfaCreditorDs) rootdao.queryByQL2List(creHql).get(0);
 				debtFeiOrgSave.setRecId(cfaCreditorDs.getRecId());
 				debtFeiOrgSave.setCreditorca(cfaCreditorDs.getCreditorca());
-				debtFeiOrgSave.setCreditorcode(cfaCreditorDs.getCreditorcode()); //债权人代码
-				debtFeiOrgSave.setCreditorname(cfaCreditorDs.getCreditorname());//债权人中文名称
-				debtFeiOrgSave.setCreditornamen(cfaCreditorDs.getCreditornamen());//债权人英文名称
-				debtFeiOrgSave.setCreditortype(cfaCreditorDs.getCreditortype());//债权人类型代码
-				debtFeiOrgSave.setCrehqcode(cfaCreditorDs.getCrehqcode());//债权人总部所在国家（地区）代码
-				debtFeiOrgSave.setOpercode(cfaCreditorDs.getOpercode());//债权人经营地所在国家（地区）代码
+				debtFeiOrgSave.setCreditorcode(cfaCreditorDs.getCreditorcode()); // 债权人代码
+				debtFeiOrgSave.setCreditorname(cfaCreditorDs.getCreditorname());// 债权人中文名称
+				debtFeiOrgSave.setCreditornamen(cfaCreditorDs.getCreditornamen());// 债权人英文名称
+				debtFeiOrgSave.setCreditortype(cfaCreditorDs.getCreditortype());// 债权人类型代码
+				debtFeiOrgSave.setCrehqcode(cfaCreditorDs.getCrehqcode());// 债权人总部所在国家（地区）代码
+				debtFeiOrgSave.setOpercode(cfaCreditorDs.getOpercode());// 债权人经营地所在国家（地区）代码
 				debtFeiOrgSaves.add(debtFeiOrgSave);
 			}
 		}

@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>机构树</title>
-  <script type="text/javascript" src="<%=request.getContextPath()%>/jpages/businessquery/js/tree.js"></script>
-  <script type='text/javascript' src='<%=request.getContextPath()%>/dwr/engine.js'> </script>
-  <script type='text/javascript' src='<%=request.getContextPath()%>/dwr/util.js'> </script>
-  <script type='text/javascript' src='<%=request.getContextPath()%>/dwr/interface/PrivAction.js'> </script>
- <link href="<%=request.getContextPath()%>/css/public.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<%=request.getContextPath()%>/jpages/businessquery/js/tree.js"></script>
+<script type='text/javascript' src='<%=request.getContextPath()%>/dwr/engine.js'> </script>
+<script type='text/javascript' src='<%=request.getContextPath()%>/dwr/util.js'> </script>
+<script type='text/javascript' src='<%=request.getContextPath()%>/dwr/interface/PrivAction.js'> </script>
+<link href="<%=request.getContextPath()%>/css/public.css" rel="stylesheet" type="text/css">
 <script language="javascript">
 
 	//全选
@@ -83,35 +83,34 @@
 
 </script>
 </head>
-<body >
-  <div class="divloca">
-	主页 > 机构树
-			<hr />
-</div>
-<table>
-	<tr >
-		 <td  align="left">
-		 <input class="buttonBoxSmall" type="button" name="bt_spread" id="expand" value="展开节点树" onclick="viewtree()" />
-			<input class="buttonBoxSmall" type="button" name="bt_allselect" value="&nbsp;全选&nbsp;" onclick="funSelectAll()" />
-	  		<input class="buttonBoxSmall" type="button" name="bt_notselect" value="&nbsp;全不选&nbsp;" onclick="funSelectNo()" />
-	  		<input class="buttonBoxSmall" type="button" name="bt_reset" value="&nbsp;保存&nbsp;" onclick="save()"/>
-	  		<input class="buttonBoxSmall" type="button" name="bt_reset" value="&nbsp;关闭&nbsp;" onclick="windowClose();"/>
-	  	</td>
-	</tr>
-	<tr >
-		<td  align="left" >
-		 <div id="tree">
-			<script language="javascript">
+<body>
+	<div class="divloca">
+		主页 > 机构树
+		<hr />
+	</div>
+	<table>
+		<tr>
+			<td align="left"><input class="buttonBoxSmall" type="button" name="bt_spread" id="expand" value="展开节点树"
+					onclick="viewtree()" /> <input class="buttonBoxSmall" type="button" name="bt_allselect" value="&nbsp;全选&nbsp;"
+					onclick="funSelectAll()" /> <input class="buttonBoxSmall" type="button" name="bt_notselect"
+					value="&nbsp;全不选&nbsp;" onclick="funSelectNo()" /> <input class="buttonBoxSmall" type="button" name="bt_reset"
+					value="&nbsp;保存&nbsp;" onclick="save()" /> <input class="buttonBoxSmall" type="button" name="bt_reset"
+					value="&nbsp;关闭&nbsp;" onclick="windowClose();" /></td>
+		</tr>
+		<tr>
+			<td align="left">
+				<div id="tree">
+					<script language="javascript">
 				var branchtree = null;
 				dwr.engine.setAsync(false);
 				PrivAction.getBranchTree(function(data){branchtree = data});
 				dwr.engine.setAsync(true);
 				createTree(branchtree,-1,0);
            </script>
-           </div>
-		</td>
-	</tr>
+				</div>
+			</td>
+		</tr>
 
-</table>
+	</table>
 </body>
 </html>

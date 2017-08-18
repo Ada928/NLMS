@@ -18,12 +18,12 @@ import com.huateng.report.basis.operation.BiAccountOperation;
 
 public class BiAccountManDelUpdate extends BaseUpdate {
 
-	private static final String DATASET_ID="BiAccountEntry";
+	private static final String DATASET_ID = "BiAccountEntry";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
-		//返回对象
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
+		// 返回对象
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 
 		//
@@ -35,10 +35,9 @@ public class BiAccountManDelUpdate extends BaseUpdate {
 
 		OperationContext oc = new OperationContext();
 
-		if(updateResultBean.hasNext())
-		{
+		if (updateResultBean.hasNext()) {
 			Map map = updateResultBean.next();
-			mapToObject(biAccount,map);
+			mapToObject(biAccount, map);
 			oc.setAttribute(BiAccountOperation.CMD, BiAccountOperation.CMD_DELETE);
 		}
 

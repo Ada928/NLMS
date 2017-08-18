@@ -67,7 +67,8 @@ public class CommonFunctions {
 				sb.append(f.getFuncname());
 			else {
 				String fullpath = getFullPath(f.getId());
-				sb.append("<input type='checkbox' id='id" + f.getId() + "' name='id' height='14pt' value='" + fullpath + "'>" + f.getFuncname() + "</input>");
+				sb.append("<input type='checkbox' id='id" + f.getId() + "' name='id' height='14pt' value='" + fullpath
+						+ "'>" + f.getFuncname() + "</input>");
 			}
 			sb.append("\"");
 			sb.append(",");
@@ -97,7 +98,8 @@ public class CommonFunctions {
 				sb.append(f.getFuncname().trim());
 			else {
 				String fullpath = getFullPathByAllFuncList(f.getId().trim(), ht);
-				sb.append("<input type='checkbox' id='id" + f.getId().trim() + "' name='id' height='14pt' value='" + fullpath + "'>" + f.getFuncname().trim() + "</input>");
+				sb.append("<input type='checkbox' id='id" + f.getId().trim() + "' name='id' height='14pt' value='"
+						+ fullpath + "'>" + f.getFuncname().trim() + "</input>");
 			}
 			// sb.append("\"");
 			result.add(sb.toString());
@@ -123,7 +125,8 @@ public class CommonFunctions {
 				sb.append(f.getFuncname().trim());
 			else {
 				String fullpath = getFullPathByAllFuncList(f.getId().trim(), ht);
-				sb.append("<input type='checkbox' id='id" + f.getId().trim() + "' name='id' height='14pt' value='" + fullpath + "'>" + f.getFuncname().trim() + "</input>");
+				sb.append("<input type='checkbox' id='id" + f.getId().trim() + "' name='id' height='14pt' value='"
+						+ fullpath + "'>" + f.getFuncname().trim() + "</input>");
 			}
 			// sb.append("\"");
 			result.add(sb.toString());
@@ -218,8 +221,8 @@ public class CommonFunctions {
 	 * @param iloc
 	 * @return
 	 * @throws CommonException
-	 * @throws
-	 * @since CommonFunctions Ver1.1
+	 * @throws @since
+	 *             CommonFunctions Ver1.1
 	 */
 	public static StringBuffer getRoleFunction(int iRoot, List lst, int iloc) throws CommonException {
 		GlobalInfo global = GlobalInfo.getCurrentInstance();
@@ -236,13 +239,15 @@ public class CommonFunctions {
 				}
 				if (f.getIsdirectory() == 1) {
 					sb.append("0,'");
-					sb.append(functionName + "','" + f.getId().trim() + "','" + functionName + "','','',4,'','','',-1,");
+					sb.append(
+							functionName + "','" + f.getId().trim() + "','" + functionName + "','','',4,'','','',-1,");
 					sb.append(getRoleFunction(Integer.parseInt(f.getId().trim()), lst, iloc));
 					sb.append("1,");
 					if (iRoot == 0)
 						sb.append("5,");
 				} else {
-					sb.append("2,'" + functionName + "','" + f.getId().trim() + "','" + functionName + "','',3,'','" + sPath + f.getPagepath() + "','',");
+					sb.append("2,'" + functionName + "','" + f.getId().trim() + "','" + functionName + "','',3,'','"
+							+ sPath + f.getPagepath() + "','',");
 				}
 			}
 			/* modify by zhiguo.zhao JIRA: FPP-3 2011-12-16 end. */
@@ -264,13 +269,15 @@ public class CommonFunctions {
 			if ((f.getLastdirectory().equals(String.valueOf(iRoot))) && (f.getLocation() == iloc)) {
 				if (f.getIsdirectory() == 1) {
 					sb.append("0,'");
-					sb.append(f.getFuncname() + "','" + f.getFuncname() + "','" + f.getFuncname() + "','','',4,'','','',-1,");
+					sb.append(f.getFuncname() + "','" + f.getFuncname() + "','" + f.getFuncname()
+							+ "','','',4,'','','',-1,");
 					sb.append(getAdminRoleFunction(Integer.parseInt(f.getId()), lst, iloc));
 					sb.append("1,");
 					if (iRoot == 0)
 						sb.append("5,");
 				} else {
-					sb.append("2,'" + f.getFuncname() + "','" + f.getFuncname() + "','" + f.getFuncname() + "','',3,'','" + sPath + f.getPagepath() + "','',");
+					sb.append("2,'" + f.getFuncname() + "','" + f.getFuncname() + "','" + f.getFuncname()
+							+ "','',3,'','" + sPath + f.getPagepath() + "','',");
 				}
 			}
 		}
@@ -290,7 +297,8 @@ public class CommonFunctions {
 		Iterator it = lst.iterator();
 		while (it.hasNext()) {
 			FunctionInfo f = (FunctionInfo) it.next();
-			sb.append("2,'" + f.getFuncname() + "','" + f.getId() + "','" + f.getFuncname() + "','',3,'','" + f.getPagepath() + "','',");
+			sb.append("2,'" + f.getFuncname() + "','" + f.getId() + "','" + f.getFuncname() + "','',3,'','"
+					+ f.getPagepath() + "','',");
 		}
 		sb.append("1,5,");
 		return sb;
@@ -339,7 +347,8 @@ public class CommonFunctions {
 			if (f.getLastdirectory().equals("0"))
 				return f.getId().trim();
 			else
-				return getFullPathByAllFuncList(f.getLastdirectory().toString().trim(), ht).trim() + "," + f.getId().trim();
+				return getFullPathByAllFuncList(f.getLastdirectory().toString().trim(), ht).trim() + ","
+						+ f.getId().trim();
 		} else {
 			// System.out.println(fid + "is null");
 			return "";
@@ -357,7 +366,8 @@ public class CommonFunctions {
 			if (f.getLastdirectory().equals("0"))
 				return f.getId().trim();
 			else
-				return getFullPathByAllFuncListCompar(f.getLastdirectory().toString().trim(), ht).trim() + "," + f.getId().trim();
+				return getFullPathByAllFuncListCompar(f.getLastdirectory().toString().trim(), ht).trim() + ","
+						+ f.getId().trim();
 		} else {
 			// System.out.println(fid + "is null");
 			return "";
@@ -438,8 +448,8 @@ public class CommonFunctions {
 	}
 
 	/**
-	 * 将用BigDecimal表示的金额转换成以分为单位的String. 如：BigDecimal 为20.00，转换成 以分为单位的String a =
-	 * 2000.
+	 * 将用BigDecimal表示的金额转换成以分为单位的String. 如：BigDecimal 为20.00，转换成 以分为单位的String a
+	 * = 2000.
 	 */
 	public final static String formatBigDecimalToFen(BigDecimal bigDec) {
 		if (bigDec.compareTo(new BigDecimal(0)) == 0) {
@@ -485,16 +495,9 @@ public class CommonFunctions {
 	// BMS-2472 南京银行版本合并 jiang@2010-02-09 end
 
 	/**
-	 * @Title: 将用BigDecimal 表示的金额*100后转换成以(18,2)形式表示的金额. 符合SWT格式
-	 * @Description: TODO
-	 * @param
-	 * @param bigDec
-	 * @param
-	 * @return
-	 * @return String
-	 * @author shen_antonio
-	 * @date 2010-5-10 上午10:32:55
-	 * @throws
+	 * @Title: 将用BigDecimal 表示的金额*100后转换成以(18,2)形式表示的金额. 符合SWT格式 @Description:
+	 * TODO @param @param bigDec @param @return @return String @author
+	 * shen_antonio @date 2010-5-10 上午10:32:55 @throws
 	 */
 	public final static String formatLoaclAmt2ReqAmt100(BigDecimal bigDec) throws CommonException {
 		return formatLoaclAmt2ReqAmt(bigDec.multiply(new BigDecimal(100)));
@@ -530,7 +533,8 @@ public class CommonFunctions {
 				sb.append(f.getFuncname());
 			else {
 				String fullpath = getFullPathAdmin(f.getId());
-				sb.append("<input type='checkbox' id='id" + f.getId() + "' name='id' height='14pt' value='" + fullpath + "'>" + f.getFuncname() + "</input>");
+				sb.append("<input type='checkbox' id='id" + f.getId() + "' name='id' height='14pt' value='" + fullpath
+						+ "'>" + f.getFuncname() + "</input>");
 			}
 			// sb.append("\"");
 			result.add(sb.toString());
@@ -621,7 +625,8 @@ public class CommonFunctions {
 				throw new CommonException(ErrorCode.ERROR_CODE_CANNOT_SUBMIT, "期数类型为半年对应的期数值次必须在半年之前");
 
 			} else if (Integer.valueOf(rptYear).intValue() == Integer.valueOf(currentYear).intValue()) {
-				if ((Integer.valueOf(rpyMonth).intValue() - 1) / 6 >= (Integer.valueOf(currentMonth).intValue() - 1) / 6) {
+				if ((Integer.valueOf(rpyMonth).intValue() - 1) / 6 >= (Integer.valueOf(currentMonth).intValue() - 1)
+						/ 6) {
 					throw new CommonException(ErrorCode.ERROR_CODE_CANNOT_SUBMIT, "期数类型为半年对应的期数值必须在半年之前");
 				}
 			}
@@ -651,7 +656,8 @@ public class CommonFunctions {
 			try {
 				FileUtils.forceMkdir(dirFile);
 			} catch (IOException ioex) {
-				throw new RuntimeException((new StringBuilder("create unmatch info diractory : [")).append(path).append("] error").toString(), ioex);
+				throw new RuntimeException((new StringBuilder("create unmatch info diractory : [")).append(path)
+						.append("] error").toString(), ioex);
 			}
 	}
 
@@ -661,7 +667,7 @@ public class CommonFunctions {
 		while (it.hasNext()) {
 			FunctionInfo fi = (FunctionInfo) it.next();
 			if (fi.getLastdirectory() == null || fi.getLastdirectory().equals("0")) {// 一级菜单
-//				System.out.println(fi.getFuncname());
+				// System.out.println(fi.getFuncname());
 				MenuFunction mf = new MenuFunction();
 				mf.setMenuLevel(1);
 				mf.setFunction(fi);
@@ -677,8 +683,9 @@ public class CommonFunctions {
 		Iterator it = funcMap.values().iterator();
 		while (it.hasNext()) {
 			FunctionInfo subfun = (FunctionInfo) it.next();
-			//TODO modi by peng.ning 主管确认调整
-			if (!mf.getFunction().getId().trim().equals(ReportConstant.APPROVE_FUNC_ID) && mf.getFunction().getId().trim().equals(subfun.getLastdirectory().toString())) {
+			// TODO modi by peng.ning 主管确认调整
+			if (!mf.getFunction().getId().trim().equals(ReportConstant.APPROVE_FUNC_ID)
+					&& mf.getFunction().getId().trim().equals(subfun.getLastdirectory().toString())) {
 				MenuFunction subMf = new MenuFunction();
 				subMf.setMenuLevel(mf.getMenuLevel() + 1);
 				subMf.setFunction(subfun);
@@ -690,70 +697,75 @@ public class CommonFunctions {
 
 	public static String createMenu(HttpSession session) throws CommonException {
 		GlobalInfo globalInfo = (GlobalInfo) session.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
-	    GlobalInfo.setCurrentInstance(globalInfo);
+		GlobalInfo.setCurrentInstance(globalInfo);
 
-	   String reqtype = globalInfo.getMenuCode();
-	    //String reqtype= "0101";
-	    List funcList = new ArrayList();
-	    UserMgrService.getInstance().getUserFunctionsByMenuType(globalInfo.getTlrno(),reqtype,funcList);
-	    StringBuffer menuBar = new StringBuffer();
-	    for (int i=0;i<funcList.size();i++) {
-	    	FunctionInfo fi = (FunctionInfo)funcList.get(i);
-	        if (fi.getLastdirectory().equals(reqtype)) {//一级菜单
-	            menuBar.append("<a id='mb" + fi.getId() + "' href='javascript:void(0)' menu='#mm" + fi.getId()
-	                    + "' class='easyui-menubutton' iconCls='" + fi.getIconCls() + "' duration='0'>" + fi.getFuncname() + "</a>");
-	            if (fi.getIsdirectory() == 1) {//目录菜单
-	                try{
-	                    menuBar.append(getSubDiv(fi,reqtype));
-	                } catch(Exception e) {
-	                    e.printStackTrace();
-	                }
-	            } else {
-	                //ignore
-	            }
-	        } else {
-	            //ignore
-	        }
-	    }
-	    return menuBar.toString();
+		String reqtype = globalInfo.getMenuCode();
+		// String reqtype= "0101";
+		List funcList = new ArrayList();
+		UserMgrService.getInstance().getUserFunctionsByMenuType(globalInfo.getTlrno(), reqtype, funcList);
+		StringBuffer menuBar = new StringBuffer();
+		for (int i = 0; i < funcList.size(); i++) {
+			FunctionInfo fi = (FunctionInfo) funcList.get(i);
+			if (fi.getLastdirectory().equals(reqtype)) {// 一级菜单
+				menuBar.append("<a id='mb" + fi.getId() + "' href='javascript:void(0)' menu='#mm" + fi.getId()
+						+ "' class='easyui-menubutton' iconCls='" + fi.getIconCls() + "' duration='0'>"
+						+ fi.getFuncname() + "</a>");
+				if (fi.getIsdirectory() == 1) {// 目录菜单
+					try {
+						menuBar.append(getSubDiv(fi, reqtype));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				} else {
+					// ignore
+				}
+			} else {
+				// ignore
+			}
+		}
+		return menuBar.toString();
 	}
 
-	private static StringBuffer getSubDiv(FunctionInfo fi,String reqtype) throws CommonException {
-    	int width = 150;
-        StringBuffer menuDiv = new StringBuffer();
-        if (fi.getLastdirectory().equals(reqtype)) {
-            menuDiv.append("<div id='mm" + fi.getId() + "' MENU_ITEM style='width:"+width+"px;' iconCls='" + fi.getIconCls() + "'>");
-            List<FunctionInfo> list = DAOUtils.getHQLDAO().queryByQL2List("from FunctionInfo po where po.lastdirectory=" + fi.getId()+" order by po.showseq");
-            for (FunctionInfo fi2 : list) {
-                menuDiv.append(getSubDiv(fi2,reqtype));
-            }
-            menuDiv.append("</div>");
-            return menuDiv;
-        }
-        String clickEvent = "";
-        if(fi.getPagepath() != null) {
-            clickEvent = "onclick=\"doWork('"+ fi.getId() +"','" + fi.getFuncname() + "','" + fi.getPagepath() + "');\"";
-        }
-        menuDiv.append("<div iconCls='" + fi.getIconCls() + "' title='" + fi.getFuncname() + "' " + clickEvent + ">");
-        List<FunctionInfo> list = DAOUtils.getHQLDAO().queryByQL2List("from FunctionInfo po where po.lastdirectory=" + fi.getId()+" order by po.showseq");
-        if (fi.getIsdirectory() == 1 && !list.isEmpty()) {
-            StringBuffer subDiv = new StringBuffer();
-            for (FunctionInfo fi2 : list) {
-                subDiv.append(getSubDiv(fi2,reqtype));
-            }
-            if (subDiv.length() == 0 || ReportConstant.APPROVE_FUNC_ID.equals(fi.getId())) {//过滤数据项权限
-                menuDiv.append(fi.getFuncname());
-            } else {
-                menuDiv.append("<span>" + fi.getFuncname() + "</span>");
-                menuDiv.append("<div style='width:"+width+"px;'>");
-                menuDiv.append(subDiv);
-                menuDiv.append("</div>");
-            }
-        } else {
-            menuDiv.append(fi.getFuncname());
-        }
-        menuDiv.append("</div>");
-        return menuDiv;
-    }
+	private static StringBuffer getSubDiv(FunctionInfo fi, String reqtype) throws CommonException {
+		int width = 150;
+		StringBuffer menuDiv = new StringBuffer();
+		if (fi.getLastdirectory().equals(reqtype)) {
+			menuDiv.append("<div id='mm" + fi.getId() + "' MENU_ITEM style='width:" + width + "px;' iconCls='"
+					+ fi.getIconCls() + "'>");
+			List<FunctionInfo> list = DAOUtils.getHQLDAO().queryByQL2List(
+					"from FunctionInfo po where po.lastdirectory=" + fi.getId() + " order by po.showseq");
+			for (FunctionInfo fi2 : list) {
+				menuDiv.append(getSubDiv(fi2, reqtype));
+			}
+			menuDiv.append("</div>");
+			return menuDiv;
+		}
+		String clickEvent = "";
+		if (fi.getPagepath() != null) {
+			clickEvent = "onclick=\"doWork('" + fi.getId() + "','" + fi.getFuncname() + "','" + fi.getPagepath()
+					+ "');\"";
+		}
+		menuDiv.append("<div iconCls='" + fi.getIconCls() + "' title='" + fi.getFuncname() + "' " + clickEvent + ">");
+		List<FunctionInfo> list = DAOUtils.getHQLDAO()
+				.queryByQL2List("from FunctionInfo po where po.lastdirectory=" + fi.getId() + " order by po.showseq");
+		if (fi.getIsdirectory() == 1 && !list.isEmpty()) {
+			StringBuffer subDiv = new StringBuffer();
+			for (FunctionInfo fi2 : list) {
+				subDiv.append(getSubDiv(fi2, reqtype));
+			}
+			if (subDiv.length() == 0 || ReportConstant.APPROVE_FUNC_ID.equals(fi.getId())) {// 过滤数据项权限
+				menuDiv.append(fi.getFuncname());
+			} else {
+				menuDiv.append("<span>" + fi.getFuncname() + "</span>");
+				menuDiv.append("<div style='width:" + width + "px;'>");
+				menuDiv.append(subDiv);
+				menuDiv.append("</div>");
+			}
+		} else {
+			menuDiv.append(fi.getFuncname());
+		}
+		menuDiv.append("</div>");
+		return menuDiv;
+	}
 
 }

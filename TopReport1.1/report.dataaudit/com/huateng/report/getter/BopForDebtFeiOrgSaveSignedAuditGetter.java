@@ -18,7 +18,7 @@ import com.huateng.report.service.BopForDebtYinTuanService;
  *
  * @author shishu.zhang
  *
- * 2012-8-15上午10:54:59
+ *         2012-8-15上午10:54:59
  */
 @SuppressWarnings("unchecked")
 public class BopForDebtFeiOrgSaveSignedAuditGetter extends BaseGetter {
@@ -27,26 +27,23 @@ public class BopForDebtFeiOrgSaveSignedAuditGetter extends BaseGetter {
 		try {
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "非居民机构存款签约信息查询");
 			PageQueryResult pageQueryResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	@SuppressWarnings("rawtypes")
-	public PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException{
+	public PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException {
 		int pageSize = getResult().getPage().getEveryPage();
 		int pageIndex = getResult().getPage().getCurrentPage();
 		Map map = getCommQueryServletRequest().getParameterMap();
@@ -54,7 +51,7 @@ public class BopForDebtFeiOrgSaveSignedAuditGetter extends BaseGetter {
 		String eworkDate = (String) map.get("eworkDate");
 
 		String qactiontype = (String) map.get("qactiontype");
-		String qrecStatus = (String)map.get("qrecStatus");
+		String qrecStatus = (String) map.get("qrecStatus");
 
 		String qapproveStatus = (String) map.get("qapproveStatus");
 		String qrepStatus = (String) map.get("qrepStatus");
@@ -62,6 +59,7 @@ public class BopForDebtFeiOrgSaveSignedAuditGetter extends BaseGetter {
 		String qFiller2 = (String) map.get("qFiller2");
 
 		BopForDebtYinTuanService debtYinTuanService = BopForDebtYinTuanService.getInstance();
-		return debtYinTuanService.queryAuditFeiOrgSave("signed", pageIndex, pageSize, qworkDate, eworkDate, qactiontype, qrecStatus, qapproveStatus, qrepStatus, qFiller2);
+		return debtYinTuanService.queryAuditFeiOrgSave("signed", pageIndex, pageSize, qworkDate, eworkDate, qactiontype,
+				qrecStatus, qapproveStatus, qrepStatus, qFiller2);
 	}
 }

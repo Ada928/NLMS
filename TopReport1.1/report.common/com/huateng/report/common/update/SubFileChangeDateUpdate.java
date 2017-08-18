@@ -16,31 +16,28 @@ import com.huateng.report.common.bean.SubFileChangeDateBean;
 
 public class SubFileChangeDateUpdate extends BaseUpdate {
 
-	private final static String DATASET_ID="subfileworkdate";
+	private final static String DATASET_ID = "subfileworkdate";
 
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			GlobalInfo info = (GlobalInfo) request.getSession().getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID(DATASET_ID);
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			if (updateResultBean.hasNext()) {
 				SubFileChangeDateBean bean = new SubFileChangeDateBean();
 				mapToObject(bean, updateResultBean.next());
 				info.setFileDate(bean.getNewFileDate());
 				GlobalInfo.setCurrentInstance(info);
-				updateReturnBean.setParameter("newdt", DateUtil.dateToString(DateUtil.stringToDate2(info.getFileDate())));
+				updateReturnBean.setParameter("newdt",
+						DateUtil.dateToString(DateUtil.stringToDate2(info.getFileDate())));
 			}
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

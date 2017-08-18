@@ -26,8 +26,8 @@ import com.huateng.report.utils.ReportUtils;
 /**
  * 
  * @author shishu.zhang
- *	
- * 2012-10-31下午4:07:26
+ * 
+ *         2012-10-31下午4:07:26
  */
 @SuppressWarnings("unchecked")
 public class BopFDsCollectionGetter extends BaseGetter {
@@ -36,25 +36,22 @@ public class BopFDsCollectionGetter extends BaseGetter {
 		try {
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境内付款/承兑通知书基础查询");
 			PageQueryResult pageQueryResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
-	public PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException{
+	public PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException {
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		Map<String, String> map = getCommQueryServletRequest().getParameterMap();
@@ -62,20 +59,20 @@ public class BopFDsCollectionGetter extends BaseGetter {
 		if (!DataFormat.isEmpty(op)) {
 			List<MtsBopFsDs> list = new ArrayList<MtsBopFsDs>();
 			PageQueryResult queryResult = new PageQueryResult();
-			if(op.equals("new")) {
-				//机构号
+			if (op.equals("new")) {
+				// 机构号
 				MtsBopFsDs bopFsDs = new MtsBopFsDs();
-				//设置TODO 申报号码
+				// 设置TODO 申报号码
 				bopFsDs.setRptno(ReportUtils.getBussinessNo(TopReportConstants.REPORT_FILE_TYPE_BOP_F));
 				list.add(bopFsDs);
 			} else {
-				String id = (String)map.get("id");
+				String id = (String) map.get("id");
 				ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 				MtsBopFsDs bopFsDs = rootdao.query(MtsBopFsDs.class, id);
 				list.add(bopFsDs);
 			}
 			queryResult.setQueryResult(list);
-			//页面接收判断
+			// 页面接收判断
 			getCommQueryServletRequest().setParameter("op", op);
 			return queryResult;
 		} else {
@@ -88,7 +85,8 @@ public class BopFDsCollectionGetter extends BaseGetter {
 			String qfiller2 = map.get("qfiller2");
 
 			BopFsDsService bopFsDsService = BopFsDsService.getInstance();
-			return bopFsDsService.queryBopFsCollection(TopReportConstants.REPORT_FILE_TYPE_BOP_F, pageIndex, pageSize, qworkDateStart, qworkDateEnd, qactiontype, qapproveStatus, qrepStatus, qrecStatus, qfiller2);
+			return bopFsDsService.queryBopFsCollection(TopReportConstants.REPORT_FILE_TYPE_BOP_F, pageIndex, pageSize,
+					qworkDateStart, qworkDateEnd, qactiontype, qapproveStatus, qrepStatus, qrecStatus, qfiller2);
 		}
 	}
 }

@@ -27,8 +27,6 @@ public abstract class AbstractDepartmentInfo implements java.io.Serializable {
 
 	// Constructors
 
-
-
 	/** default constructor */
 	public AbstractDepartmentInfo() {
 	}
@@ -41,12 +39,10 @@ public abstract class AbstractDepartmentInfo implements java.io.Serializable {
 		this.status = status;
 	}
 
-
 	/** full constructor */
 
-	public AbstractDepartmentInfo(long departmentCode, String departmentName,
-			String brcode, String status, String lastUpdTlr, Date lastUpdDate,
-			String BZ, String misc, String misc2, String misc3, String misc4) {
+	public AbstractDepartmentInfo(long departmentCode, String departmentName, String brcode, String status,
+			String lastUpdTlr, Date lastUpdDate, String BZ, String misc, String misc2, String misc3, String misc4) {
 		super();
 		this.departmentCode = departmentCode;
 		this.departmentName = departmentName;
@@ -60,7 +56,6 @@ public abstract class AbstractDepartmentInfo implements java.io.Serializable {
 		this.misc3 = misc3;
 		this.misc4 = misc4;
 	}
-
 
 	// Property accessors
 

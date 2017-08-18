@@ -24,26 +24,23 @@ public class BiNationregionEntryGetter extends BaseGetter {
 	public Result call() throws AppException {
 		// TODO Auto-generated method stub
 		try {
-			
+
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "国家/地区代码维护查询");
-			
+
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
+
 	/*
 	 * 查询
 	 */
@@ -55,30 +52,31 @@ public class BiNationregionEntryGetter extends BaseGetter {
 		String qnationregionNumber = (String) paramMap.get("qnationregionNumber");
 		String qst = getCommQueryServletRequest().getParameter("st");
 		String hql = "from BiNationregion biNationregion where  biNationregion.del='F'";
-		if(StringUtils.isNotBlank(qId)) {
-			hql += "and biNationregion.id like '%" + qId.trim() +"%'";
+		if (StringUtils.isNotBlank(qId)) {
+			hql += "and biNationregion.id like '%" + qId.trim() + "%'";
 		}
-		if(StringUtils.isNotBlank(cnEnFullName)) {
-			hql += "and ( biNationregion.chinaName like '%" + cnEnFullName.trim() +"%' or biNationregion.engName like '%" + cnEnFullName.trim() +"%' )";
+		if (StringUtils.isNotBlank(cnEnFullName)) {
+			hql += "and ( biNationregion.chinaName like '%" + cnEnFullName.trim()
+					+ "%' or biNationregion.engName like '%" + cnEnFullName.trim() + "%' )";
 		}
-		
-		if(StringUtils.isNotBlank(cnEnShortName)) {
-			hql += "and ( biNationregion.chinaShortName like '%" + cnEnShortName.trim() +"%' or biNationregion.engShortName like '%" + cnEnShortName.trim() +"%' )";
+
+		if (StringUtils.isNotBlank(cnEnShortName)) {
+			hql += "and ( biNationregion.chinaShortName like '%" + cnEnShortName.trim()
+					+ "%' or biNationregion.engShortName like '%" + cnEnShortName.trim() + "%' )";
 		}
-		
-		if(StringUtils.isNotBlank(qnationregionNumber)) {
-			hql += "and biNationregion.nationregionNumber like '%" + qnationregionNumber.trim() +"%'";
+
+		if (StringUtils.isNotBlank(qnationregionNumber)) {
+			hql += "and biNationregion.nationregionNumber like '%" + qnationregionNumber.trim() + "%'";
 		}
-		if(qst!=null && qst.length()>0){
-			   hql+=" and biNationregion.st ='"+qst+"'";
-		 }else{
-			   hql+=" and biNationregion.st<>'"+ReportEnum.REPORT_ST1.N.value+"'";
-		 }
-		   
-		   
+		if (qst != null && qst.length() > 0) {
+			hql += " and biNationregion.st ='" + qst + "'";
+		} else {
+			hql += " and biNationregion.st<>'" + ReportEnum.REPORT_ST1.N.value + "'";
+		}
+
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
-		return BiNationregionService.getInstance().pageQueryByHql(pageIndex, pageSize,hql);
+		return BiNationregionService.getInstance().pageQueryByHql(pageIndex, pageSize, hql);
 	}
 
 }

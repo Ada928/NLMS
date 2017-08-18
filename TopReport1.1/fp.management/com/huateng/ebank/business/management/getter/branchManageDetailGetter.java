@@ -60,7 +60,7 @@ public class branchManageDetailGetter extends BaseGetter {
 					ber.setBctl(newBean);
 					list.add(ber);
 
-				}else if ("1".equals(flag)) {
+				} else if ("1".equals(flag)) {
 					SysTaskLog systasklog = ReportShowDetailService.getInstance().selectTaskLog(tskId);
 					Bctl oldValue = null;
 					Bctl newValue = null;
@@ -101,7 +101,6 @@ public class branchManageDetailGetter extends BaseGetter {
 			getResult().setContent(list);
 			getResult().getPage().setTotalPage(1);
 			getResult().init();
-			
 
 			return getResult();
 		} catch (CommonException e) {

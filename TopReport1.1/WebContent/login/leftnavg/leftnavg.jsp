@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@page import="java.util.List"%>
 <%@page import="com.huateng.report.utils.ReportUtils"%>
@@ -43,26 +43,31 @@ document.write("未传入业务编码或编码不存在！");
 <%return;} %>
 </head>
 <body scroll="no" class="bodycls">
-<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
-<%if(!isAnanly){ %>
-<tr >
-	<td  colspan="2"  style="background-color: #ffffee;font-size: 12px;border-bottom:1px solid #dddddd;">
-	<table cellpadding="0" cellspacing="0" border="0" width="100%" id = "ananlyMsg">
-	<tr>
-	<td nowrap="nowrap" width="100%">
-	<div style="width:100%;float:left;color:blue;font-family: 宋体;line-height:22px;">【<%=workdate %>】文件已成功导入，但【<%=dicName %>】尚未进行数据分析，系统将不能加载新导入数据，建议进行数据分析！</div>
-	</td>
-	<td>
-	<div style="padding-right: 5px;font-size: 20px;cursor: pointer;" title="关闭提醒" onclick="document.getElementById('ananlyMsg').style.display='none'"><b>×</b></div>
-	</td>
-	</tr>
-	</table>
-	</td>
-</tr>
-<%} %>
-<tr height="100%">
-<td width="140px" valign="top" nowrap="nowrap" id="leftTd">
-<%
+	<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+		<%if(!isAnanly){ %>
+		<tr>
+			<td colspan="2" style="background-color: #ffffee;font-size: 12px;border-bottom:1px solid #dddddd;">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" id="ananlyMsg">
+					<tr>
+						<td nowrap="nowrap" width="100%">
+							<div style="width:100%;float:left;color:blue;font-family: 宋体;line-height:22px;">
+								【<%=workdate %>】文件已成功导入，但【<%=dicName %>】尚未进行数据分析，系统将不能加载新导入数据，建议进行数据分析！
+							</div>
+						</td>
+						<td>
+							<div style="padding-right: 5px;font-size: 20px;cursor: pointer;" title="关闭提醒"
+								onclick="document.getElementById('ananlyMsg').style.display='none'">
+								<b>×</b>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<%} %>
+		<tr height="100%">
+			<td width="140px" valign="top" nowrap="nowrap" id="leftTd">
+				<%
 String currentTab = "";
 for(int i=0;i<leftList.size();i++){
 	SysBusinavConf conf = (SysBusinavConf)leftList.get(i);
@@ -77,23 +82,23 @@ for(int i=0;i<leftList.size();i++){
 		url = conf.getMakefileUrl()==null?"":request.getContextPath()+conf.getMakefileUrl().trim();
 	}
 %>
-<div class="DivAround_blur" id="tab_<%=conf.getId() %>" title="<%=conf.getBusiNm() %>" onClick="ChangeFocus('<%=conf.getId() %>');" onmouseover="tabMouseOver(this);" onmouseout="tabMouserOut(this);"><%=conf.getBusiNm() %>
-<input type="hidden" name="leftTab" value="<%=conf.getId() %>"/>
-<input type="hidden" id="tab_url_<%=conf.getId() %>" value="<%= url %>"/>
-</div>
-<%} %>
-<div style="width: 100%;height: 100%;cursor: default;" ondblclick="showOrHiddenLeft(2)" title="双击隐藏或显示左侧导航" id="leftDivBtn"></div>
-</td>
-<td valign="top" width="100%">
-<input type="hidden" id="curretnTab" value="<%=currentTab %>">
-<div class="DivAround_content" id="frmDiv">
-<div id="msgDiv" style="display: none;width: 90%;line-height:30px;padding-top: 20px;padding-left: 20px;font-size: 16px;"></div>
-<iframe id="leftNavgframe" height="100%" width="100%"  scrolling="auto" frameborder="0"></iframe>
-</div>
-</td>
-</tr>
-</table>
-<script type="text/javascript">
+				<div class="DivAround_blur" id="tab_<%=conf.getId() %>" title="<%=conf.getBusiNm() %>"
+					onClick="ChangeFocus('<%=conf.getId() %>');" onmouseover="tabMouseOver(this);" onmouseout="tabMouserOut(this);"><%=conf.getBusiNm() %>
+					<input type="hidden" name="leftTab" value="<%=conf.getId() %>" />
+					<input type="hidden" id="tab_url_<%=conf.getId() %>" value="<%= url %>" />
+				</div> <%} %>
+				<div style="width: 100%;height: 100%;cursor: default;" ondblclick="showOrHiddenLeft(2)" title="双击隐藏或显示左侧导航"
+					id="leftDivBtn"></div>
+			</td>
+			<td valign="top" width="100%"><input type="hidden" id="curretnTab" value="<%=currentTab %>">
+				<div class="DivAround_content" id="frmDiv">
+					<div id="msgDiv"
+						style="display: none;width: 90%;line-height:30px;padding-top: 20px;padding-left: 20px;font-size: 16px;"></div>
+					<iframe id="leftNavgframe" height="100%" width="100%" scrolling="auto" frameborder="0"></iframe>
+				</div></td>
+		</tr>
+	</table>
+	<script type="text/javascript">
 	window.onload= function(){
 		initLeft(0);
 	}

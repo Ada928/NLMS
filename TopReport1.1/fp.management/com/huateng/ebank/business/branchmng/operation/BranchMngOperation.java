@@ -45,44 +45,46 @@ public class BranchMngOperation extends BaseOperation {
 		if ("status".equals(context.getAttribute(CMD))) {
 			String brhid = (String) context.getAttribute(IN_BRHID);
 			String status = (String) context.getAttribute(IN_PARAM);
-			//往bctl表中插入数据的bean
+			// 往bctl表中插入数据的bean
 			Bctl bctl = bctlDAO.query(brhid);
-			//有效变为无效的处理
-			if("0".equals(status)){
+			// 有效变为无效的处理
+			if ("0".equals(status)) {
 
-
-				//序列华后往taskInfo中插入数据
+				// 序列华后往taskInfo中插入数据
 
 				SysTaskInfo taskInfo;
 				try {
-					Bctl bctlTaskInfo=bctlDAO.query(brhid);
+					Bctl bctlTaskInfo = bctlDAO.query(brhid);
 					bctlTaskInfo.setLock(true);
 					bctlTaskInfo.setStatus(status);
 
-					taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,bctlTaskInfo, bctlTaskInfo.getBrcode(),bctlTaskInfo.getSt() );
+					taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value,
+							ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, bctlTaskInfo, bctlTaskInfo.getBrcode(),
+							bctlTaskInfo.getSt());
 					ReportShowDetailService.getInstance().addTosystaskinfo(taskInfo);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				//bctl.setLock(true);
+				// bctl.setLock(true);
 				bctl.setSt(ReportEnum.REPORT_ST1.ET.value);
 
-                bctl.setStatus(ReportEnum.REPORT_VAILD.YES.value);
+				bctl.setStatus(ReportEnum.REPORT_VAILD.YES.value);
 				bctlDAO.getHibernateTemplate().update(bctl);
 
-
 			}
-			//无效变为 有效的处理
-			else{
+			// 无效变为 有效的处理
+			else {
 
 				SysTaskInfo taskInfo;
 				try {
-					Bctl bctlTaskInfo=bctlDAO.query(brhid);
+					Bctl bctlTaskInfo = bctlDAO.query(brhid);
 					bctlTaskInfo.setLock(true);
 					bctlTaskInfo.setStatus(status);
 
-					taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,bctlTaskInfo, bctlTaskInfo.getBrcode(),bctlTaskInfo.getSt() );
+					taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value,
+							ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, bctlTaskInfo, bctlTaskInfo.getBrcode(),
+							bctlTaskInfo.getSt());
 					ReportShowDetailService.getInstance().addTosystaskinfo(taskInfo);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -90,14 +92,10 @@ public class BranchMngOperation extends BaseOperation {
 				}
 				bctl.setSt(ReportEnum.REPORT_ST1.ET.value);
 
-                bctl.setStatus(ReportEnum.REPORT_VAILD.NO.value);
+				bctl.setStatus(ReportEnum.REPORT_VAILD.NO.value);
 				bctlDAO.getHibernateTemplate().update(bctl);
 
-
-
 			}
-
-
 
 		}
 	}

@@ -19,40 +19,38 @@ import com.huateng.exception.AppException;
 import com.huateng.report.bean.BopForDebtFeiOrgSave;
 import com.huateng.report.operation.BopForDebtFeiOrgSaveOperation;
 
-public class BopForDebtFeiOrgSaveSignedAuditUpdate extends BaseUpdate{
-	
+public class BopForDebtFeiOrgSaveSignedAuditUpdate extends BaseUpdate {
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
-		
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
+
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("bopForDebtFeiOrgSaveSignedAudit");
+			UpdateResultBean updateResultBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("bopForDebtFeiOrgSaveSignedAudit");
 			List<BopForDebtFeiOrgSave> debtFeiOrgSaves = new ArrayList<BopForDebtFeiOrgSave>();
-			while (updateResultBean.hasNext())
-			{
+			while (updateResultBean.hasNext()) {
 				BopForDebtFeiOrgSave debtFeiOrgSave = new BopForDebtFeiOrgSave();
 				Map map = updateResultBean.next();
-				mapToObject(debtFeiOrgSave,map);
+				mapToObject(debtFeiOrgSave, map);
 				debtFeiOrgSaves.add(debtFeiOrgSave);
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
 			String approveResultChoose = updateResultBean.getParameter("approveResultChoose");
-			
+
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(BopForDebtFeiOrgSaveOperation.CMD, BopForDebtFeiOrgSaveOperation.OP_SIGNED_AUDIT);
 			oc.setAttribute(BopForDebtFeiOrgSaveOperation.IN_AUDIT_LIST, debtFeiOrgSaves);
 			oc.setAttribute(BopForDebtFeiOrgSaveOperation.IN_AUDIT_STATUS, approveStatusChoose);
 			oc.setAttribute(BopForDebtFeiOrgSaveOperation.IN_AUDIT_RESULT, approveResultChoose);
 			OPCaller.call(BopForDebtFeiOrgSaveOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

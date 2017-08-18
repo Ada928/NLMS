@@ -13,10 +13,11 @@ import com.huateng.report.utils.ReportUtils;
 
 /**
  * 更新境外汇款申请书申报号码（基础、申报、管理信息);
+ * 
  * @author Zhusujian
  *
  */
-public class MtsBusiNoGenBOPBHNRptNo implements IGenBopBusinessNo{
+public class MtsBusiNoGenBOPBHNRptNo implements IGenBopBusinessNo {
 
 	public void updateBopBusiNo(Map<String, Object> paramMap) throws CommonException {
 		String appType = paramMap.get(IGenBopBusinessNo.APP_TYPE).toString();
@@ -29,19 +30,21 @@ public class MtsBusiNoGenBOPBHNRptNo implements IGenBopBusinessNo{
 		MtsBopBhnDs mtsBopBhnds = (MtsBopBhnDs) obj;
 		String rptNo = mtsBopBhnds.getRptno();
 		String cusType = mtsBopBhnds.getCustype();
-		if (rptNo.indexOf(paramValue)>=0) {
+		if (rptNo.indexOf(paramValue) >= 0) {
 			// 更新境外汇款申请书申报号码
-			String newRptNo = ReportUtils.getBopRptNoByCusType(paramValue, busiType, appType, fileType, workDate, cusType, rptNo);
+			String newRptNo = ReportUtils.getBopRptNoByCusType(paramValue, busiType, appType, fileType, workDate,
+					cusType, rptNo);
 			mtsBopBhnds.setRptno(newRptNo);
 			mtsBopBhnds = (MtsBopBhnDs) rootdao.saveOrUpdate(mtsBopBhnds);
 		}
 
-		//更新申报、管理信息
+		// 更新申报、管理信息
 		String recId = mtsBopBhnds.getId();
-		List list = rootdao.queryByQL2List(" from MtsBopBhnDs where filler1='" + recId + "' and rptno<>'"+mtsBopBhnds.getRptno()+"'");
+		List list = rootdao.queryByQL2List(
+				" from MtsBopBhnDs where filler1='" + recId + "' and rptno<>'" + mtsBopBhnds.getRptno() + "'");
 		for (int i = 0; i < list.size(); i++) {
 			MtsBopBhnDs bopbhn = (MtsBopBhnDs) list.get(i);
-			if (bopbhn.getRptno().indexOf(paramValue)<0) {
+			if (bopbhn.getRptno().indexOf(paramValue) < 0) {
 				continue;
 			}
 			bopbhn.setRptno(mtsBopBhnds.getRptno());

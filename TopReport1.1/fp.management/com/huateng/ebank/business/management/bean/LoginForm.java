@@ -88,8 +88,8 @@ public final class LoginForm extends HTBaseForm {
 	 * Validate the properties that have been set from this HTTP request, and
 	 * return an <code>ActionErrors</code> object that encapsulates any
 	 * validation errors that have been found. If no errors are found, return
-	 * <code>null</code> or an <code>ActionErrors</code> object with no
-	 * recorded error messages.
+	 * <code>null</code> or an <code>ActionErrors</code> object with no recorded
+	 * error messages.
 	 *
 	 * @param mapping
 	 *            The mapping used to select this instance

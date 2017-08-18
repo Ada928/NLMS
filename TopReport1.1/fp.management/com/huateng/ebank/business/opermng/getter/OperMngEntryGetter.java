@@ -36,33 +36,27 @@ public class OperMngEntryGetter extends BaseGetter {
 
 	public Result call() throws AppException {
 		try {
-			
+
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "用户管理查询");
-			
+
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "用户管理查询");
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	protected PageQueryResult getData() throws Exception {
-		String qtlrnoName = (String) getCommQueryServletRequest().getParameterMap()
-				.get("qtlrnoName");
-		String qtlrno = (String) getCommQueryServletRequest().getParameterMap()
-				.get("qtlrno");
+		String qtlrnoName = (String) getCommQueryServletRequest().getParameterMap().get("qtlrnoName");
+		String qtlrno = (String) getCommQueryServletRequest().getParameterMap().get("qtlrno");
 		PageQueryResult pageQueryResult = new PageQueryResult();
 		GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
 		TlrInfoDAO dao = DAOUtils.getTlrInfoDAO();
@@ -76,7 +70,7 @@ public class OperMngEntryGetter extends BaseGetter {
 		}
 		hql += " order by po.tlrno";
 		tlrInfoList = dao.queryByCondition(hql);
-		
+
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
 		int maxIndex = pageIndex * pageSize;
@@ -89,7 +83,7 @@ public class OperMngEntryGetter extends BaseGetter {
 		for (Iterator it = rs.iterator(); it.hasNext();) {
 			TlrInfo tlrInfo1 = (TlrInfo) it.next();
 			if (tlrInfo1.getBrcode() != null) {
-				tlrInfo1.setBrno(BctlService.getInstance().getExtBrno(tlrInfo1.getBrcode()));	
+				tlrInfo1.setBrno(BctlService.getInstance().getExtBrno(tlrInfo1.getBrcode()));
 			}
 		}
 		pageQueryResult.setTotalCount(tlrInfoList.size());

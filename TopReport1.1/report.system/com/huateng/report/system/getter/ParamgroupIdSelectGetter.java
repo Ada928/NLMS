@@ -19,11 +19,8 @@ public class ParamgroupIdSelectGetter extends BaseGetter {
 		SysParamsService service = SysParamsService.getInstance();
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
-		PageQueryResult pageResult = service.paramgroupIdSelect(pageIndex,pageSize,paramgroupId);
-		ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
+		PageQueryResult pageResult = service.paramgroupIdSelect(pageIndex, pageSize, paramgroupId);
+		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 				getResult());
 		result.setContent(pageResult.getQueryResult());
 		result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));

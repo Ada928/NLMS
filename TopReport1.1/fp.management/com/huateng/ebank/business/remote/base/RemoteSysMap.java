@@ -4,15 +4,14 @@ import java.util.ResourceBundle;
 
 public class RemoteSysMap {
 
-	
-	private static final String BUNDLE_NAME = "resources/remoteAppConfig"; //外系统名称-地址配置
+	private static final String BUNDLE_NAME = "resources/remoteAppConfig"; // 外系统名称-地址配置
 	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
-	public static  String getValue(String key){
+	public static String getValue(String key) {
 		return RESOURCE_BUNDLE.getString(key);
 	}
-	
-	public static void main(String arg[]){
+
+	public static void main(String arg[]) {
 		System.out.println(RemoteSysMap.getValue("111"));
 	}
 }

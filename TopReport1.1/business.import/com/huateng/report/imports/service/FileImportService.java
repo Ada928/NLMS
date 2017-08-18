@@ -25,8 +25,7 @@ import com.huateng.report.utils.ReportUtils;
 
 public class FileImportService {
 	public synchronized static FileImportService getInstance() {
-		return (FileImportService) ApplicationContextUtils
-				.getBean(FileImportService.class.getName());
+		return (FileImportService) ApplicationContextUtils.getBean(FileImportService.class.getName());
 	}
 
 	// /**
@@ -48,9 +47,8 @@ public class FileImportService {
 	 * @throws CommonException
 	 */
 	public String getDefaultImportPath() throws CommonException {
-		String path = ReportUtils.getSysParamsValue(Constants.IMPORT,
-				Constants.DEFAULT_PATH, "D:");
-		if(path.endsWith("/") || path.endsWith("\\")) {
+		String path = ReportUtils.getSysParamsValue(Constants.IMPORT, Constants.DEFAULT_PATH, "D:");
+		if (path.endsWith("/") || path.endsWith("\\")) {
 			path = path.substring(0, path.length() - 1);
 		}
 		return path;
@@ -78,12 +76,9 @@ public class FileImportService {
 	 * @return
 	 * @throws CommonException
 	 */
-	public String getImportLogStatus(String fileName, String tableName,
-			String workDate) throws CommonException {
-		List list = ROOTDAOUtils.getROOTDAO().queryByQL2List(
-				"from BiImportLog where fileName ='" + fileName
-						+ "' and tableName='" + tableName + "' and workDate='"
-						+ workDate + "' order by beginTime desc");
+	public String getImportLogStatus(String fileName, String tableName, String workDate) throws CommonException {
+		List list = ROOTDAOUtils.getROOTDAO().queryByQL2List("from BiImportLog where fileName ='" + fileName
+				+ "' and tableName='" + tableName + "' and workDate='" + workDate + "' order by beginTime desc");
 		if (list.isEmpty()) {
 			return Constants.IMPORT_STATUS_PROCESS;
 		} else {
@@ -92,14 +87,11 @@ public class FileImportService {
 		}
 	}
 
-	public void deleteOldRecords(String tableName, String workDate)
-			throws CommonException {
+	public void deleteOldRecords(String tableName, String workDate) throws CommonException {
 		if (isTableExist(tableName)) {
-			executeUpdate("delete from " + tableName + " where WORK_DATE = '"
-					+ workDate + "'");
+			executeUpdate("delete from " + tableName + " where WORK_DATE = '" + workDate + "'");
 		} else {
-			ExceptionUtil.throwCommonException("EIMP006",
-					new Object[] { tableName });
+			ExceptionUtil.throwCommonException("EIMP006", new Object[] { tableName });
 		}
 	}
 
@@ -111,9 +103,8 @@ public class FileImportService {
 	 * @throws CommonException
 	 */
 	public List getFieldConfig(String fileUUID) throws CommonException {
-		List list = ROOTDAOUtils.getROOTDAO().queryByQL2List(
-				"from BiImportFieldConfig where importFileId ='" + fileUUID
-						+ "'");
+		List list = ROOTDAOUtils.getROOTDAO()
+				.queryByQL2List("from BiImportFieldConfig where importFileId ='" + fileUUID + "'");
 
 		return list;
 	}
@@ -126,9 +117,8 @@ public class FileImportService {
 	 * @throws CommonException
 	 */
 	public List getXmlConfig(String fileUUID) throws CommonException {
-		List list = ROOTDAOUtils.getROOTDAO().queryByQL2List(
-				"from BiImportXmlConfig where guid ='" + fileUUID
-						+ "' order by nodeOrder");
+		List list = ROOTDAOUtils.getROOTDAO()
+				.queryByQL2List("from BiImportXmlConfig where guid ='" + fileUUID + "' order by nodeOrder");
 
 		return list;
 	}
@@ -138,19 +128,21 @@ public class FileImportService {
 	 * @return
 	 * @throws CommonException
 	 */
-	//modified by jianxue.zhang -2012.10.30
+	// modified by jianxue.zhang -2012.10.30
 	public List getColumnMeta(String tableName) throws CommonException {
-//		List list = executeQuery(" select tabname ,length  from SysColumns s where  s.id=Object_Id('"
-//				+ tableName.toUpperCase() + "')");
+		// List list = executeQuery(" select tabname ,length from SysColumns s
+		// where s.id=Object_Id('"
+		// + tableName.toUpperCase() + "')");
 		List list = new ArrayList();
-//		List tabList = executeQuery("select tabid from  systables where tabname='"
-//				+ tableName + "'");
-//		if(tabList!=null){
-//			String tabid = String.valueOf(tabList.get(0));
-//			list = executeQuery(" select colname ,collength  from syscolumns where  tabid='" + tabid + "'");
-//		}
-		List tabList = executeQuery("select COLUMN_NAME, DATA_LENGTH from  cols where TABLE_NAME='"
-				+ tableName + "'");
+		// List tabList = executeQuery("select tabid from systables where
+		// tabname='"
+		// + tableName + "'");
+		// if(tabList!=null){
+		// String tabid = String.valueOf(tabList.get(0));
+		// list = executeQuery(" select colname ,collength from syscolumns where
+		// tabid='" + tabid + "'");
+		// }
+		List tabList = executeQuery("select COLUMN_NAME, DATA_LENGTH from  cols where TABLE_NAME='" + tableName + "'");
 		return list;
 	}
 
@@ -160,14 +152,15 @@ public class FileImportService {
 	 * @param tableName
 	 * @return
 	 */
-	//modified by jianxue.zhang -2012.10.30
+	// modified by jianxue.zhang -2012.10.30
 	public boolean isTableExist(String tableName) {
-//		List list = executeQuery("select count(*) from  SysObjects Where XType='U' and  NAME='"
-//				+ tableName + "'");
-//		List list = executeQuery("select count(*) from  systables where tabname='"
-//				+ tableName + "'");
-		List list = executeQuery("select count(*) from  user_tables where TABLE_NAME='"
-				+ tableName + "'");
+		// List list = executeQuery("select count(*) from SysObjects Where
+		// XType='U' and NAME='"
+		// + tableName + "'");
+		// List list = executeQuery("select count(*) from systables where
+		// tabname='"
+		// + tableName + "'");
+		List list = executeQuery("select count(*) from  user_tables where TABLE_NAME='" + tableName + "'");
 		if (list.isEmpty()) {
 			return false;
 		} else {
@@ -183,13 +176,11 @@ public class FileImportService {
 	 * @return
 	 */
 	public int executeUpdate(final String sql) {
-		return (Integer) ROOTDAOUtils.getROOTDAO().getHibernateTemplate()
-				.execute(new HibernateCallback() {
-					public Integer doInHibernate(Session session)
-							throws HibernateException, SQLException {
-						return session.createSQLQuery(sql).executeUpdate();
-					}
-				});
+		return (Integer) ROOTDAOUtils.getROOTDAO().getHibernateTemplate().execute(new HibernateCallback() {
+			public Integer doInHibernate(Session session) throws HibernateException, SQLException {
+				return session.createSQLQuery(sql).executeUpdate();
+			}
+		});
 	}
 
 	/**
@@ -199,13 +190,11 @@ public class FileImportService {
 	 * @return
 	 */
 	public List executeQuery(final String sql) {
-		return (List) ROOTDAOUtils.getROOTDAO().getHibernateTemplate()
-				.execute(new HibernateCallback() {
-					public List doInHibernate(Session session)
-							throws HibernateException, SQLException {
-						return session.createSQLQuery(sql).list();
-					}
-				});
+		return (List) ROOTDAOUtils.getROOTDAO().getHibernateTemplate().execute(new HibernateCallback() {
+			public List doInHibernate(Session session) throws HibernateException, SQLException {
+				return session.createSQLQuery(sql).list();
+			}
+		});
 	}
 
 	public Integer selectCount(String sql) {
@@ -236,11 +225,9 @@ public class FileImportService {
 		}
 	}
 
-	public int getMaxSeqNoFromLog(String fileUUID, String workDate)
-			throws CommonException {
+	public int getMaxSeqNoFromLog(String fileUUID, String workDate) throws CommonException {
 		List list = ROOTDAOUtils.getROOTDAO().queryByQL2List(
-				"select max(seqNo) from BiImportLog where fuid='" + fileUUID
-						+ "' and workDate='" + workDate + "'");
+				"select max(seqNo) from BiImportLog where fuid='" + fileUUID + "' and workDate='" + workDate + "'");
 		if (list.isEmpty()) {
 			return 0;
 		} else {
@@ -253,21 +240,23 @@ public class FileImportService {
 		}
 	}
 
-	public List  getFeedbackImportByPack(String qworkDate,String qbusiType, String qappType,String isSub) throws CommonException{
+	public List getFeedbackImportByPack(String qworkDate, String qbusiType, String qappType, String isSub)
+			throws CommonException {
 		ROOTDAO dao = ROOTDAOUtils.getROOTDAO();
 		List retList = new ArrayList();
-		StringBuffer sb = new StringBuffer(" from SubFileInfo sf where sf.currentfile='"+TopReportConstants.REPORT_FILE_TYPE_ACC_TT+"'");
-		if(StringUtils.isNotBlank(qworkDate)){
-			sb.append(" and  sf.workdate = '"+qworkDate+"'");
+		StringBuffer sb = new StringBuffer(
+				" from SubFileInfo sf where sf.currentfile='" + TopReportConstants.REPORT_FILE_TYPE_ACC_TT + "'");
+		if (StringUtils.isNotBlank(qworkDate)) {
+			sb.append(" and  sf.workdate = '" + qworkDate + "'");
 		}
 		if (StringUtils.isNotBlank(qbusiType)) {
-			sb.append(" and  sf.busiType = '"+qbusiType+"'");
+			sb.append(" and  sf.busiType = '" + qbusiType + "'");
 		}
 		if (StringUtils.isNotBlank(qappType)) {
-			sb.append(" and  sf.apptype = '"+qappType+"'");
+			sb.append(" and  sf.apptype = '" + qappType + "'");
 		}
-		if (isSub!=null && isSub.length()>0) {
-			sb.append(" and sf.isSub='"+isSub+"'");
+		if (isSub != null && isSub.length() > 0) {
+			sb.append(" and sf.isSub='" + isSub + "'");
 		}
 		sb.append(" order by sf.crtTm desc");
 		String counthql = "select count(model) from SubFileInfo model where model.filePack=";
@@ -281,7 +270,7 @@ public class FileImportService {
 			bean.setPackName(info.getFilePack());
 			bean.setIsHashFeedBack(info.getIsImpRep());// 是否已导入回执
 			bean.setFeedBackDate(info.getSubTm());
-			int count = dao.queryByHqlToCount(counthql+"'"+info.getFilePack()+"'");
+			int count = dao.queryByHqlToCount(counthql + "'" + info.getFilePack() + "'");
 			bean.setFileCount(count);// 上报文件数
 			bean.setIsSub(info.getIsSub());
 			bean.setCrtDate(info.getCrtTm());
@@ -293,22 +282,25 @@ public class FileImportService {
 
 	/**
 	 * 查询导入是否全部成功
+	 * 
 	 * @param workDate
 	 * @return
 	 * @throws CommonException
 	 */
-	public String queryImportIsSuccessByWorkDate(String workDate) throws CommonException{
+	public String queryImportIsSuccessByWorkDate(String workDate) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		//判断是否导入
-		int count  = rootdao.queryByHqlToCount("select count(model) from BiImportLog model where model.workDate='"+workDate+"'");
-		if (count==0) {
-			return ReportEnum.REPORT_IMP_FILE_ERR_TYPE.NO_DATA_ERR.value;//未执行导入
+		// 判断是否导入
+		int count = rootdao.queryByHqlToCount(
+				"select count(model) from BiImportLog model where model.workDate='" + workDate + "'");
+		if (count == 0) {
+			return ReportEnum.REPORT_IMP_FILE_ERR_TYPE.NO_DATA_ERR.value;// 未执行导入
 		}
-		count = rootdao.queryByHqlToCount("select count(model) from BiImportLog model where model.workDate='"+workDate+"' and model.errorRows>0 and model.modFlg is null or model.modFlg!='2'");
-		if (count>0) {
-			return ReportEnum.REPORT_IMP_FILE_ERR_TYPE.IMP_ERR.value;//存在导入错误信息
+		count = rootdao.queryByHqlToCount("select count(model) from BiImportLog model where model.workDate='" + workDate
+				+ "' and model.errorRows>0 and model.modFlg is null or model.modFlg!='2'");
+		if (count > 0) {
+			return ReportEnum.REPORT_IMP_FILE_ERR_TYPE.IMP_ERR.value;// 存在导入错误信息
 		}
-		return ReportEnum.REPORT_IMP_FILE_ERR_TYPE.NO_ERR.value;//已导入且全部成功
+		return ReportEnum.REPORT_IMP_FILE_ERR_TYPE.NO_ERR.value;// 已导入且全部成功
 	}
 
 }

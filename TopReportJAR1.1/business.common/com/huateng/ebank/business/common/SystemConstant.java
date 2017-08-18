@@ -175,7 +175,6 @@ public class SystemConstant {
 	public static final int VALUE_NO_CREDITREALID = 67; // 额度使用明细-额度关联ID
 	public static final int VALUE_NO_RULEID = 112; // 规则引擎表ID生成器
 
-
 	public static final int VALUE_NO_NOTICENO = 113; // 审批通知书号
 
 	public static final int VALUE_NO_MODEL_TYPE = 114; // 模型代码
@@ -206,7 +205,6 @@ public class SystemConstant {
 	public static final String BRCODE_CLASS_MNGBRANCH = "3"; // 3-管理行
 	public static final String BRCODE_CLASS_PL_CENTER = "3"; // 个贷中心
 	public static final String BRCODE_CLASS_SUB_PL_CENTER = "5"; // 个贷分中心
-
 
 	/**
 	 * 分行级别-BCTL.BLN_BRANCH_CLASS
@@ -268,7 +266,7 @@ public class SystemConstant {
 	public static final String ROLE_TYPE_COUNCIL_APPROVE = "9"; // 贷审会审批岗
 
 	/* 工作流岗位定义 shen_antonio . */
-	public static final String WF_ROLE_TYPE_ROLE100 = "ROLE100";  //客户经理
+	public static final String WF_ROLE_TYPE_ROLE100 = "ROLE100"; // 客户经理
 	public static final String WF_ROLE_TYPE_ROLE101 = "ROLE101"; // 客户经理
 	public static final String WF_ROLE_TYPE_ROLE102 = "ROLE102"; // 支行行长
 	public static final String WF_ROLE_TYPE_ROLE103 = "ROLE103"; // 分行审查岗
@@ -294,7 +292,6 @@ public class SystemConstant {
 	public static final int ROLE_CUST_MANAGER = 100;// 客户经理
 	public static final int ROLE_CUST_ZONGJINGLI = 105;// 总经理岗位
 	public static final int ROLE_NPA_MANAGER = 121;// 资产保全管户岗
-
 
 	/**
 	 * 合作协议状态标志
@@ -330,12 +327,11 @@ public class SystemConstant {
 	 */
 	public static final String APP_ATTITUDE_AGREE = "1"; // 同意
 	public static final String APP_ATTITUDE_DISAGREE = "2"; // 不同意
-	public static final String APP_ATTITUDE_UNTREAD_NEXT = "3"; //退回至前一级
-	public static final String APP_ATTITUDE_UNTREAD = "4"; //退回调查岗重审
-	public static final String APP_ATTITUDE_UNTREAD_BACK = "5"; //退回调查岗并返回退回者
+	public static final String APP_ATTITUDE_UNTREAD_NEXT = "3"; // 退回至前一级
+	public static final String APP_ATTITUDE_UNTREAD = "4"; // 退回调查岗重审
+	public static final String APP_ATTITUDE_UNTREAD_BACK = "5"; // 退回调查岗并返回退回者
 	public static final String APP_ATTITUDE_CONDI_AGREE = "6"; // 有条件同意
 	public static final String APP_ATTITUDE_AGREE_REPORT = "7"; // 审批同意上报
-
 
 	/**
 	 * 权限检查结果（流程下一步走向）
@@ -439,16 +435,16 @@ public class SystemConstant {
 	 * @time 2011-01-20
 	 */
 	public static final String IDTYPE_ID_CARD = "0"; // 身份证
-	public static final String IDTYPE_ID_HKB = "1";//户口簿
-	public static final String IDTYPE_ID_HZ ="2";//护照
-	public static final String IDTYPE_ID_JGZ = "3";//军官证
-	public static final String IDTYPE_ID_SBZ = "4";//士兵证
-	public static final String IDTYPE_ID_GATXZ="5";//港澳居民来往内地通行证
-	public static final String IDTYPE_ID_TWTXZ="6";//台湾同胞来往大陆内地通行证
+	public static final String IDTYPE_ID_HKB = "1";// 户口簿
+	public static final String IDTYPE_ID_HZ = "2";// 护照
+	public static final String IDTYPE_ID_JGZ = "3";// 军官证
+	public static final String IDTYPE_ID_SBZ = "4";// 士兵证
+	public static final String IDTYPE_ID_GATXZ = "5";// 港澳居民来往内地通行证
+	public static final String IDTYPE_ID_TWTXZ = "6";// 台湾同胞来往大陆内地通行证
 	public static final String IDTYPE_ID_CARD_TEMP = "7"; // 临时身份证
-	public static final String IDTYPE_ID_WGJLZ="8";//外国人居留证
-	public static final String IDTYPE_ID_JGZH="9";//警官证
-	public static final String IDTYPE_ID_X="X";//其他
+	public static final String IDTYPE_ID_WGJLZ = "8";// 外国人居留证
+	public static final String IDTYPE_ID_JGZH = "9";// 警官证
+	public static final String IDTYPE_ID_X = "X";// 其他
 	/**
 	 * 婚姻状况
 	 */
@@ -459,7 +455,7 @@ public class SystemConstant {
 	public static final String MARRIAGE_UNKNOW = "90"; // 未说明婚姻状况
 	public static final String MARRIAGE_MARRIED_ISSUE = MARRIAGE_MARRIED; // 已婚有子女
 	public static final String MARRIAGE_MARRIED_ISSUELESS = MARRIAGE_MARRIED; // 已婚无子女
-	
+
 	/**
 	 * 婚姻状况
 	 */
@@ -467,7 +463,7 @@ public class SystemConstant {
 	public static final String MARRIAGE_DIGAMY_MARRIED = "22"; // 再婚
 	public static final String MARRIAGE_REMARRIED = "23"; // 复婚
 	public static final String MARRIAGE_UNSPECIFIED = "90"; // 未说明的
-	
+
 	// 额度申请表-额度申请状态
 	public static final int DATA_TYPE_NO_APPLYSTATUS = 1010; // 字典表中授信状态数据类型编号
 	public static final String CREDITGRANTAPPLY_STATUS_0 = "00";// 额度申请信息状态-申请
@@ -530,7 +526,7 @@ public class SystemConstant {
 	public static final String FLOW_STATUS_REJECT = "2"; // 拒绝
 	public static final String FLOW_STATUS_BACK_LAST = "3"; // 审批退回上一级
 	public static final String FLOW_STATUS_BACK = "4"; // 审批退回至流程发起者重审
-	public static final String FLOW_STATUS_BACK_BACK = "5"; //退回调查岗并返回退回者
+	public static final String FLOW_STATUS_BACK_BACK = "5"; // 退回调查岗并返回退回者
 	public static final String FLOW_STATUS_CORE_SUCCESS = "6"; // 发送核心返回成功
 	public static final String FLOW_STATUS_SIGN_CONT = "7"; // 合同已签订(只对贷款和授信申请有效)
 	public static final String FLOW_STATUS_NEVER_APPROVE = "8"; // 未审批(录入未上传)
@@ -748,7 +744,8 @@ public class SystemConstant {
 
 	public static final String SCCBA_FILE_PATH = "SCCBA_FILE_PATH";
 
-	//public static final String SCCBA_FILE_PATH = "/home/sccba/finfo_t/upload/sccba";
+	// public static final String SCCBA_FILE_PATH =
+	// "/home/sccba/finfo_t/upload/sccba";
 
 	/**
 	 * 根据新规则生成合同号和从合同号时所用的机构号
@@ -769,7 +766,7 @@ public class SystemConstant {
 	 * 工作流中用了区分个贷和信贷的。
 	 */
 	public static final String SYSTYPE_LONSYSWEB = "1";
-	public static final String SYSTYPE_PLONSYSWEB ="2";
+	public static final String SYSTYPE_PLONSYSWEB = "2";
 
 	/**
 	 * 授信涉及到的数据字典
@@ -861,34 +858,33 @@ public class SystemConstant {
 	public static final String LNTYPE_HOUSE = "001"; // 个人一手房购房贷款
 	public static final String LNTYPE_SECONDHAND_HOUSE = "002"; // 个人二手房购房贷款
 	public static final String LNTYPE_BIZ_HOUSE = "003"; // 个人商业用房抵押贷款，广州银行为：一手商业用房按揭贷款
-	public static final String LNTYPE_SECONDHAND_BIZ_HOUSE = "102";//二手商业用房按揭贷款
+	public static final String LNTYPE_SECONDHAND_BIZ_HOUSE = "102";// 二手商业用房按揭贷款
 	public static final String LNTYPE_AUTO = "004"; // 个人汽车贷款
 	public static final String LNTYPE_CONSUMABLE = "005"; // 个人消费贷款
 	public static final String LNTYPE_PAY_HOUSE = "021"; // 个人赎楼贷款
-	public static final String LNTYPE_TRIPLOAN = "103";//个人旅游贷款
-	public static final String LNTYPE_DECORATE = "104";//个人装修贷款
+	public static final String LNTYPE_TRIPLOAN = "103";// 个人旅游贷款
+	public static final String LNTYPE_DECORATE = "104";// 个人装修贷款
 	public static final String LNTYPE_WORKING = "006"; // 个人生产经营贷款
-	public static final String LNTYPE_LAIDOFF_WORKERS = "105";//下岗职工小额担保贷款
+	public static final String LNTYPE_LAIDOFF_WORKERS = "105";// 下岗职工小额担保贷款
 	public static final String LNTYPE_BANKBOOK_IMPAWN = "010"; // 个人存单质押贷款
 	public static final String LNTYPE_NATIONAL_DEBT_IMPAWN = "011"; // 个人国债质押贷款
-	public static final String LNTYPE_OFFICIAL = "106";//公务员贷款
+	public static final String LNTYPE_OFFICIAL = "106";// 公务员贷款
 	public static final String LNTYPE_ACCUM_FUND = "100"; // 公积金贷款
-	public static final String LNTYPE_ENTRUST = "101";//个人委托贷款
+	public static final String LNTYPE_ENTRUST = "101";// 个人委托贷款
 
-	//以下贷款大类，广州银行暂时未开通
+	// 以下贷款大类，广州银行暂时未开通
 	public static final String LNTYPE_EDUCATION = "007"; // 个人助学贷款
 	public static final String LNTYPE_EDUCATION_SH = "008"; // 个人助学贷款(上海教委担保)
 	public static final String LNTYPE_STUDY_ABROAD = "009"; // 个人留学贷款
-	public static final String LNTYPE_GUARANTEE_SLIP_IMPAWN = "012"; //个人保单质押贷款
+	public static final String LNTYPE_GUARANTEE_SLIP_IMPAWN = "012"; // 个人保单质押贷款
 	public static final String LNTYPE_FX_IMPAWN = "013"; // 个人外汇宝质押贷款
-	public static final String LNTYPE_SECURITIES_IMPAWN = "014"; //个人有价单证质押贷款
+	public static final String LNTYPE_SECURITIES_IMPAWN = "014"; // 个人有价单证质押贷款
 	public static final String LNTYPE_OTHER_IMPAWN = "015"; // 个人其他财产抵、质押贷款
-	public static final String LNTYPE_OCCUPATION_FUND_ASSURE = "016"; //就业基金担保贷款
-	public static final String LNTYPE_CASH_HOUSE_MORTAGAGE = "017"; //商品房抵押贷款
+	public static final String LNTYPE_OCCUPATION_FUND_ASSURE = "016"; // 就业基金担保贷款
+	public static final String LNTYPE_CASH_HOUSE_MORTAGAGE = "017"; // 商品房抵押贷款
 	public static final String LNTYPE_NATIONAL_CREDIT = "018"; // 个人信用贷款
 	public static final String LNTYPE_LOANCARD_CREDIT = "019"; // 房贷信用卡贷款
 	public static final String LNTYPE_HOUSE_ADD = "020"; // 加按贷款
-
 
 	/**
 	 * 合作项目测试标志,True时不调用工作流,False时调用工作流, 工作流开发完成后需改成False
@@ -953,7 +949,7 @@ public class SystemConstant {
 	public static final String LNID_CREDIT_3_MONTH = "110101"; // 个人信用消费信贷-3月期
 	public static final String LNID_CREDIT_6_MONTH = "110201"; // 个人信用消费信贷-6月期
 	public static final String LNID_CREDIT_1_YEAR = "110301"; // 个人信用消费信贷-1年期
-	public static final String LNID_CREDIT_LOAN = "101003";	//个人消费信贷
+	public static final String LNID_CREDIT_LOAN = "101003"; // 个人消费信贷
 
 	/**
 	 * 用于参数设置和统计分析
@@ -1035,15 +1031,14 @@ public class SystemConstant {
 	public static final String LOAN_LNPLANMR_OVERDUE = "2"; // 逾期
 	public static final String LOAN_LNPLANMR_IDLE = "3"; // 非应计
 
-
-	//广州个贷核算的还款方式常量和管理的还款方式常量统一
+	// 广州个贷核算的还款方式常量和管理的还款方式常量统一
 	// 还款方式
-	public static final String RTN_ONE_INT = "1"; //  利随本清(一次还本付息)
+	public static final String RTN_ONE_INT = "1"; // 利随本清(一次还本付息)
 	public static final String RTN_TYPE_ONE_OFF = "2"; // 一次还本多次还息
 	public static final String RTN_TYPE_BALINT_EQUAL = "3"; // 等额本息还款
 	public static final String RTN_TYPE_BAL_EQUAL = "4"; // 等额本金还款
 	public static final String RTN_TYPE_TIMES_INT = "5"; // 多次还息多次还本
-	public static final String RTN_TYPE_BALLOON = "7"; //气球贷还款
+	public static final String RTN_TYPE_BALLOON = "7"; // 气球贷还款
 
 	public static final String RTN_TYPE_INCREASE = "H"; // 等额递增还款
 	public static final String RTN_TYPE_DESCENDING = "I"; // 等额递减还款
@@ -1053,9 +1048,8 @@ public class SystemConstant {
 	public static final String RTN_PRM_TYPE_DESCENDING = "A"; // 等额本息递减
 	public static final String RTN_BAV_TYPE_INCREASE = "B"; // 等比本金递增
 	public static final String RTN_BAV_TYPE_DESCENDING = "C"; // 等比本金递减
-	public static final String RTN_TYPE_ELASTIC = "E"; //灵活还款
-	public static final String RTN_TYPE_FEE = "F"; //手续费还款
-
+	public static final String RTN_TYPE_ELASTIC = "E"; // 灵活还款
+	public static final String RTN_TYPE_FEE = "F"; // 手续费还款
 
 	/**
 	 * 消费信贷分摊方式
@@ -1063,7 +1057,6 @@ public class SystemConstant {
 	public static final String CONSUMER_CREDIT_TYPE_BUSI = "0"; // 商户全额分摊
 	public static final String CONSUMER_CREDIT_TYPE_CUST = "1"; // 客户全额分摊
 	public static final String CONSUMER_CREDIT_TYPE_PROTOCOL = "2"; // 协议分摊
-
 
 	/**
 	 * 组合还款还款方式
@@ -1126,7 +1119,6 @@ public class SystemConstant {
 	public static final String TERMTYPE_YEAR = "0";// 按年
 	public static final String TERMTYPE_MONTH = "1";// 按月
 	public static final String TERMTYPE_DATE = "2";// 按天
-
 
 	/**
 	 * 阶段还款标志
@@ -1581,7 +1573,7 @@ public class SystemConstant {
 	public static final int DATADIC_TYPE_ATTITUDE_TRANS = 6003;// 审批意见于流转对应
 
 	public static final int DATADIC_TYPE_RTN_TYPE_NEW = 8003;// 还款方式(包含组合贷款和灵活还款)
-	public static final int DATADIC_TYPE_DOG_TYPE = 8001;//宽限期方式
+	public static final int DATADIC_TYPE_DOG_TYPE = 8001;// 宽限期方式
 
 	public static final int DATADIC_TYPE_INTRATEFLOAT_MODE = 19003; // 利率浮动方式
 	public static final int DATADIC_TYPE_PINTRATE_MODE = 19000; // 罚息收取方式
@@ -1636,7 +1628,7 @@ public class SystemConstant {
 	public static final String APPLY_TYPE_CREDIT_REVOKE = "13"; // 额度收回申请
 	public static final String APPLY_TYPE_CREDIT_DECREASE = "14"; // 额度缩减申请
 	public static final String APPLY_TYPE_CREDIT_FREEZE = "15"; // 额度冻结
-	public static final String APPLY_TYPE_CREDIT_UNFREEZE = "16";//额度解冻申请
+	public static final String APPLY_TYPE_CREDIT_UNFREEZE = "16";// 额度解冻申请
 
 	public static final String APPLY_TYPE_PROJECT_APPLY = "21"; // 合作项目申请
 	public static final String APPLY_TYPE_PROJECT_ALTER = "22"; // 合作项目修改申请
@@ -1651,8 +1643,10 @@ public class SystemConstant {
 	public static final String APPLY_TYPE_LOAN_TO_BAD = "34"; // 贷款转呆滞/呆帐申请
 	public static final String APPLY_TYPE_CHG_GUARANTEE = "35"; // 变更担保信息申请
 	public static final String APPLY_TYPE_CHG_INTRATE = "36"; // 贷款利率变更申请
-	public static final String APPLY_TYPE_TERM_DEFER = "37"; // 贷款期限延长申请 --海尔统一到37
-	public static final String APPLY_TYPE_TERM_SHORTEN = "38"; // 贷款期限缩短申请 --海尔统一到37
+	public static final String APPLY_TYPE_TERM_DEFER = "37"; // 贷款期限延长申请
+																// --海尔统一到37
+	public static final String APPLY_TYPE_TERM_SHORTEN = "38"; // 贷款期限缩短申请
+																// --海尔统一到37
 	public static final String APPLY_TYPE_CHG_RTN_TYPE = "39"; // 还款方式变更申请
 	public static final String APPLY_TYPE_CHG_RTN_DATE = "40"; // 约定扣款日变更申请
 	public static final String APPLY_TYPE_CHG_PHASE_DTL = "41"; // 阶段还款信息变更申请
@@ -1682,14 +1676,14 @@ public class SystemConstant {
 	public static final String APPLY_TYPE_CHG_SLACK = "71";// 呆滞转呆账
 	public static final String APPLY_TYPE_CHG_INTRATE4C = "72"; // 贷款利率变更申请
 
-	//批量五级分类 gz
-	public static final String APPLY_TYPE_POSTLOAN_CHECK = "84"; //批量五级分类调整
+	// 批量五级分类 gz
+	public static final String APPLY_TYPE_POSTLOAN_CHECK = "84"; // 批量五级分类调整
 
-	//贷后检查gz
-	public static final String APPLY_TYPE_POSTLOAN_CHECK_ONLY = "85"; //贷后检查
+	// 贷后检查gz
+	public static final String APPLY_TYPE_POSTLOAN_CHECK_ONLY = "85"; // 贷后检查
 
-	//出账审核申请
-	public static final String APPLY_TYPE_PAY_CHECK = "80";//出账申请
+	// 出账审核申请
+	public static final String APPLY_TYPE_PAY_CHECK = "80";// 出账申请
 
 	// Add by xubin （5.9.6） 定制台账查询条件
 	public static final String APPLY_TYPE_CREATE_MACHINE_ACCOUNT_QRY = "71";// 定制台账查询条件
@@ -2034,10 +2028,10 @@ public class SystemConstant {
 	/** 贷款期限变更长流程 */
 	public static final String PROC_NAME_POST_LOAN_TERM_CHG_FLOW = "PostLoanTermChgProcess";
 
-	//担保方式变更长流程
+	// 担保方式变更长流程
 	public static final String PROC_POST_LOAN_GUATTYPE_CHG_FLOW = "PostLoanGuattypeChgProcess";
 
-	//利率变更长流程
+	// 利率变更长流程
 	public static final String PROC_POST_LOAN_RATE_CHG_FLOW = "PostLoanRateChgProcess";
 
 	// 企贷利率变更长流程
@@ -2046,10 +2040,10 @@ public class SystemConstant {
 	// 还款账号变更流程
 	public static final String PROC_POST_LOAN_RTNACTNO_CHG_FLOW = "RtnActnoChgApprove";
 
-	//个贷合同审批流程
+	// 个贷合同审批流程
 	public static final String PROC_PLOAN_APPLY_PROCESS = "PLoanApplyProcess";
 
-	//客户黑名单审批流程
+	// 客户黑名单审批流程
 	public static final String PROC_BLACKLIST = "BlackList";
 
 	/*
@@ -2115,15 +2109,14 @@ public class SystemConstant {
 	public static final String TASK_NAME_LOAN_AUDIT_TASK = "LoanAuditTask";
 	public static final String TASK_NAME_LOAN_APPROVE_TASK = "LoanApproveTask";
 
-
-	//授信申请---临时 add  by huangy
+	// 授信申请---临时 add by huangy
 	public static final String TASK_NAME_CREDIT_CHECK_TASK = "CreditCheckTask";
 	public static final String TASK_NAME_CREDIT_INSURE_TASK = "CreditInsureTask";
 	public static final String TASK_NAME_CREDIT_AUDIT_TASK = "CreditAuditTask";
 	public static final String TASK_NAME_CREDIT_APPROVE_TASK = "CreditApproveTask";
 	public static final String TASK_NAME_CREDIT_BACK_TASK = "CreditBackToModifyTask";
 
-	//授信冻结、解冻
+	// 授信冻结、解冻
 	public static final String TASK_NAME_CREDIT_FREEZE_APPROVE_TASK = "CreditFreezeApproveTask";
 	// public static final String TASK_NAME_LOAN_SUPERVISER_TASK =
 	// "LoanSuperviserTask";
@@ -2221,7 +2214,7 @@ public class SystemConstant {
 	public static final String WORK_FLOW_STATUS_CHECK = "已复核";
 	public static final String WORK_FLOW_STATUS_AUDIT_MEETING = "已贷审会审批";
 	public static final String WORK_FLOW_STATUS_BACK = "已退回";
-	//add huangy
+	// add huangy
 	public static final String WORK_FLOW_STATUS_INSURE = "已核准";
 
 	public static final String BIZ_CLASS_PROJECT = "商户管理";
@@ -2552,7 +2545,6 @@ public class SystemConstant {
 	public static final String CLR_CLASS_STATUS_YSD = "4"; // 已审定(分行复分认定岗)
 	public static final String CLR_CLASS_STATUS_NO = "5"; // 已拒绝
 
-
 	// 广发总行清分类型
 	public static final String CLR_CLASS_TYPE_DAILY = "1"; // 日常清分
 	public static final String CLR_CLASS_TYPE_MONTHLY = "2"; // 月度清分
@@ -2682,12 +2674,13 @@ public class SystemConstant {
 	public static final String VALUE_FLAG_YES = "Y";// YES
 	public static final String VALUE_FLAG_NO = "N";// NO
 
-	/**记账系统参数标志
-	 * */
+	/**
+	 * 记账系统参数标志
+	 */
 	public static final String ACE_PRARM = "SYSTEMACE";// 记账参数群
 	public static final String ACE_PRARM_IS = "0";// 是否记账
 	public static final String ACE_PRARM_NUMBER = "0";// 是否进行账户处理
-	public static final String ACE_PRARM_SINGLE = "2";//是否允许记单边账 是/否
+	public static final String ACE_PRARM_SINGLE = "2";// 是否允许记单边账 是/否
 
 	/**
 	 * 凭证品种定义
@@ -2701,11 +2694,11 @@ public class SystemConstant {
 	public static final String CREDENCETYPE_B6 = "B6";// 承兑凭证
 	public static final String CREDENCETYPE_B7 = "B7";// 委托凭证
 
+	/**
+	 * 规则引擎参数配置 Added By HuangWeijing 20100908 TLS-396 Begin
+	 */
 
-	/** 规则引擎参数配置
-	 * Added By HuangWeijing 20100908 TLS-396 Begin */
-
-	/** 规则引擎参数 PF_SYS_PARAM ID*/
+	/** 规则引擎参数 PF_SYS_PARAM ID */
 	public static final String RULE_SYSPARAM_ID = "RULE";
 
 	/** 规则引擎开关 MAGIC_ID */
@@ -2724,23 +2717,15 @@ public class SystemConstant {
 	/** 是否需要记录查询类日志 */
 	public static final String MAGIC_ID_NEEDQUERYLOG = "NEEDQUERYLOG";
 
-
-	/** 贷款审批金额分隔线，大于等于的走长流程，小于的走短流程*/
+	/** 贷款审批金额分隔线，大于等于的走长流程，小于的走短流程 */
 	public static final double LOAN_AMT_SEPARATOR = 10000;
 
-	public static final String LOAN_CREDIT_TYPE = "N10";//贷款大类-消费信贷
+	public static final String LOAN_CREDIT_TYPE = "N10";// 贷款大类-消费信贷
 
-	/** 贷后变更 交易种类
-	 * 1-提前还款
-	 * 2-担保信息变更
-	 * 3-贷款利率变更
-	 * 4-贷款期限变更
-	 * 5-还款方式变更
-	 * 6-还款账号变更
-	 * 7-账单地址变更
-	 * 8-约定扣款日变更
-	 * 9-五级分类变更
-	 * */
+	/**
+	 * 贷后变更 交易种类 1-提前还款 2-担保信息变更 3-贷款利率变更 4-贷款期限变更 5-还款方式变更 6-还款账号变更 7-账单地址变更
+	 * 8-约定扣款日变更 9-五级分类变更
+	 */
 	public static final String POST_LOAN_MNG_ADVRTN = "1";
 	public static final String POST_LOAN_MNG_GUATTYPE = "2";
 	public static final String POST_LOAN_MNG_INTCHG = "3";
@@ -2751,11 +2736,9 @@ public class SystemConstant {
 	public static final String POST_LOAN_MNG_RTNDATE = "8";
 	public static final String POST_LOAN_MNG_FIVECLASS = "9";
 
-
-
-	/**[流水日志用交易码表 交易类型
-	 * 00-查询类 01-额度类 02-放款类 03-贷后管理类 04-客户管理类 99-系统管理类
-	 * */
+	/**
+	 * [流水日志用交易码表 交易类型 00-查询类 01-额度类 02-放款类 03-贷后管理类 04-客户管理类 99-系统管理类
+	 */
 	public static final String BIZ_FUNC_TYPE_QUERY = "00";
 	public static final String BIZ_FUNC_TYPE_CREDIT = "01";
 	public static final String BIZ_FUNC_TYPE_GRANT_LOAN = "02";
@@ -2763,9 +2746,9 @@ public class SystemConstant {
 	public static final String BIZ_FUNC_TYPE_CUSTMNG = "04";
 	public static final String BIZ_FUNC_TYPE_SYSMNG = "99";
 
-	//是否查询下属机构标志
-	public static final String BRANCH_FLAG_SELF = "1";   //本机构
-	public static final String BRANCH_FLAG_DOWN = "2";   //本机构及其下属机构
+	// 是否查询下属机构标志
+	public static final String BRANCH_FLAG_SELF = "1"; // 本机构
+	public static final String BRANCH_FLAG_DOWN = "2"; // 本机构及其下属机构
 
 	/**
 	 * 顺延方式
@@ -2773,81 +2756,78 @@ public class SystemConstant {
 	public static final String DELAYTYPE_1 = "1";// 系统自动调整顺延天数
 	public static final String DELAYTYPE_2 = "2";// 用户自由指定顺延天数
 
-	public static final String BRCODE_INTER = "1302";//国际业务部
-	public static final String BUSINESSDEPARMENT="1391";    //公司业务部
+	public static final String BRCODE_INTER = "1302";// 国际业务部
+	public static final String BUSINESSDEPARMENT = "1391"; // 公司业务部
 
-	/* add by kangbyron 不良资产 begin  */
-
+	/* add by kangbyron 不良资产 begin */
 
 	/**
 	 * 不良资产移交类型
 	 */
-	public static final String NPA_TRANS_TYPE_TRANS = "1";	//1-向资产保全部移交
-	public static final String NPA_TRANS_TYPE_SEND = "2";	//2-分发
-	public static final String NPA_TRANS_TYPE_RETRANS = "3";	//3-资产保全部逆移交
-	public static final String NPA_TRANS_TYPE_DISSEND = "4";	//2-分发
-
+	public static final String NPA_TRANS_TYPE_TRANS = "1"; // 1-向资产保全部移交
+	public static final String NPA_TRANS_TYPE_SEND = "2"; // 2-分发
+	public static final String NPA_TRANS_TYPE_RETRANS = "3"; // 3-资产保全部逆移交
+	public static final String NPA_TRANS_TYPE_DISSEND = "4"; // 2-分发
 
 	/**
 	 * 资产保全岗位
 	 */
-	public static final int NPA_ROLE_SEND = 120;  // 资产保全分发岗
-	public static final int NPA_ROLE_MANAGER = 121;  // 资产保全管户岗
+	public static final int NPA_ROLE_SEND = 120; // 资产保全分发岗
+	public static final int NPA_ROLE_MANAGER = 121; // 资产保全管户岗
 
-	public static final int VALUE_NO_ASSETS = 1;  // 抵债资产编号生成valueNo
-	public static final String VALUE_INDEX_ASSETS = "ASSET_NO";  // 抵债资产编号生成valueIndex
-	public static final int VALUE_NO_EVALUATION = 1;  // 价值评估编号生成valueNo
-	public static final String VALUE_INDEX_EVALUATION = "EVALUATION_NO";  // 价值评估编号生成valueIndex
+	public static final int VALUE_NO_ASSETS = 1; // 抵债资产编号生成valueNo
+	public static final String VALUE_INDEX_ASSETS = "ASSET_NO"; // 抵债资产编号生成valueIndex
+	public static final int VALUE_NO_EVALUATION = 1; // 价值评估编号生成valueNo
+	public static final String VALUE_INDEX_EVALUATION = "EVALUATION_NO"; // 价值评估编号生成valueIndex
 
-	public static final String NPA_RELA_TYPE_LAWSUIT="01";   //01-案件信息
-	public static final String NPA_RELA_TYPE_ASSETS="02";   //02-抵债资产信息
+	public static final String NPA_RELA_TYPE_LAWSUIT = "01"; // 01-案件信息
+	public static final String NPA_RELA_TYPE_ASSETS = "02"; // 02-抵债资产信息
 
-	public static final String NPA_PRO_TYPE_01 = "01"; //01-出租
-	public static final String NPA_PRO_TYPE_02 = "02"; //02-拍卖
-	public static final String NPA_PRO_TYPE_03 = "03"; //03-协议转让
-	public static final String NPA_PRO_TYPE_04 = "04"; //04-转固定资产
+	public static final String NPA_PRO_TYPE_01 = "01"; // 01-出租
+	public static final String NPA_PRO_TYPE_02 = "02"; // 02-拍卖
+	public static final String NPA_PRO_TYPE_03 = "03"; // 03-协议转让
+	public static final String NPA_PRO_TYPE_04 = "04"; // 04-转固定资产
 
-	/* add by kangbyron 不良资产 end  */
+	/* add by kangbyron 不良资产 end */
 
-	/*********评分评级模型相关常定义***********begin:*********/
-		/**
-		 * 评分模型设置指标值类型
-		 */
-		public static final String LIMIT_FLAG_0 = "0"; //数据字典型定值
-		public static final String LIMIT_FLAG_1 = "1"; //区间型定值
-		public static final String LIMIT_FLAG_2 = "2"; //其它  可能存在没有指标业务当前值的情况
-		//public static final String LIMIT_FLAG_3 = "3"; //设置上下限
+	/********* 评分评级模型相关常定义***********begin: *********/
+	/**
+	 * 评分模型设置指标值类型
+	 */
+	public static final String LIMIT_FLAG_0 = "0"; // 数据字典型定值
+	public static final String LIMIT_FLAG_1 = "1"; // 区间型定值
+	public static final String LIMIT_FLAG_2 = "2"; // 其它 可能存在没有指标业务当前值的情况
+	// public static final String LIMIT_FLAG_3 = "3"; //设置上下限
 
+	/**
+	 * 评分指标值表达方式 1-数值定值 2-公式表示值
+	 */
+	public static final String SCORE_TYPE_1 = "1"; // 数值定值
+	public static final String SCORE_TYPE_2 = "2"; // 公式表示值
 
-		/**
-		 * 评分指标值表达方式
-		 * 1-数值定值
-		 * 2-公式表示值
-		 */
-		public static final String SCORE_TYPE_1 = "1"; //数值定值
-		public static final String SCORE_TYPE_2 = "2"; //公式表示值
+	/**
+	 * 定义指标得分公式中特殊代码
+	 */
+	/**** 指标当前值 ***/
+	public static final String MODEL_INDEX_CURRENT_VALUE = "X";
+	/**** 指标权重分 ***/
+	public static final String MODEL_INDEX_WEIGHT_SCORE = "Y";
 
-		/**
-		 * 定义指标得分公式中特殊代码
-		 */
-		        /****指标当前值***/
-		public static final String MODEL_INDEX_CURRENT_VALUE = "X";
-		       /****指标权重分***/
-		public static final String MODEL_INDEX_WEIGHT_SCORE = "Y";
+	/**** 指标计划值 ***/
+	public static final String MODEL_INDEX_PLAN_VALUE = "P";
 
-	      /****指标计划值***/
-		public static final String MODEL_INDEX_PLAN_VALUE = "P";
+	/**** 指标得分标准 ***/
+	public static final String MODEL_INDEX_STAND_SCORE = "S";
+	/**
+	 * */
+	public static final String IS_SAVAVALUE_NO_EXAM = "0"; // 0 -
+															// 保留模型指标业务具体值并不评分
+	public static final String IS_YES_SAVAVALUE_EXAM = "1"; // 1 -
+															// 同时保留模型指标业务值和评分
 
-	      /****指标得分标准***/
-		public static final String MODEL_INDEX_STAND_SCORE = "S";
-		/**
-		 * */
-		public static final String IS_SAVAVALUE_NO_EXAM = "0";  //0 - 保留模型指标业务具体值并不评分
-		public static final String IS_YES_SAVAVALUE_EXAM = "1"; //1 - 同时保留模型指标业务值和评分
+	/********* 评分评级模型相关常定义***********end *********/
 
-	/*********评分评级模型相关常定义***********end*********/
-
-	/** 合并票据工作流到信贷系统 by zhouxuejing 20101026 begin*/
+	/** 合并票据工作流到信贷系统 by zhouxuejing 20101026 begin */
 	/** 默认不限业务种类 0000 */
 	public static final String DEFAULT_BUSSTYPE = "0000"; // 默认不限业务种类
 
@@ -2855,7 +2835,6 @@ public class SystemConstant {
 
 	public static final String BRCODE_CLASS_SELF = "0"; // 发起行同级机构（工作流参数配置使用）
 	/** 合并票据工作流到信贷系统 by zhouxuejing 20101026 end */
-
 
 	/** 评分模型类型 */
 	/** 1-客户评分类 */
@@ -2869,230 +2848,254 @@ public class SystemConstant {
 	/** 5-利率定价类 */
 	public static final String GRADE_MODEL_TYPE_RATE = "5";
 
-
-	 /**
-	  * 普通贷款凭证审批状态
-	  */
-		public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_0 = "0";// - 未建立
-		public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_1 = "1";// - 已发送，但未收到IBS响应
-		public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_2 = "2";// - 资料建立
-		public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_3 = "3";// - 会计确认
-		public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_4 = "4";// - 会计确认取消
-		public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_5 = "5";// - 部分还款
-		public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_8 = "8";// -  垫款结清
-		public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_9 = "9";// -  结清
+	/**
+	 * 普通贷款凭证审批状态
+	 */
+	public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_0 = "0";// - 未建立
+	public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_1 = "1";// -
+																		// 已发送，但未收到IBS响应
+	public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_2 = "2";// -
+																		// 资料建立
+	public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_3 = "3";// -
+																		// 会计确认
+	public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_4 = "4";// -
+																		// 会计确认取消
+	public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_5 = "5";// -
+																		// 部分还款
+	public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_8 = "8";// -
+																		// 垫款结清
+	public static final String COMM_CREDENCE_INFO_PROVIDE_STATE_9 = "9";// - 结清
 
 	/**
 	 * 普通贷款凭证审批状态
 	 */
-		public static final String COMM_CREDENCE_INFO_APPROVE_STATE_X = "X"; //X- 无效
-		public static final String COMM_CREDENCE_INFO_APPROVE_STATE_0 = "0"; //0 - 新建
-		public static final String COMM_CREDENCE_INFO_APPROVE_STATE_1 = "1"; //1 - 审批中
-		public static final String COMM_CREDENCE_INFO_APPROVE_STATE_2 = "2"; //2 - 审批通过
-		public static final String COMM_CREDENCE_INFO_APPROVE_STATE_3 = "3"; //3 - 到期
-		public static final String COMM_CREDENCE_INFO_APPROVE_STATE_4 = "4"; //4 - 取消
+	public static final String COMM_CREDENCE_INFO_APPROVE_STATE_X = "X"; // X-
+																			// 无效
+	public static final String COMM_CREDENCE_INFO_APPROVE_STATE_0 = "0"; // 0 -
+																			// 新建
+	public static final String COMM_CREDENCE_INFO_APPROVE_STATE_1 = "1"; // 1 -
+																			// 审批中
+	public static final String COMM_CREDENCE_INFO_APPROVE_STATE_2 = "2"; // 2 -
+																			// 审批通过
+	public static final String COMM_CREDENCE_INFO_APPROVE_STATE_3 = "3"; // 3 -
+																			// 到期
+	public static final String COMM_CREDENCE_INFO_APPROVE_STATE_4 = "4"; // 4 -
+																			// 取消
 
-	/* add by kangbyron 20101113 城商联盟评分等级 begin  */
-		public static final String GRADE_VALUE_1 = "1"; //1-AAA
-		public static final String GRADE_VALUE_2 = "2"; //2-AA
-		public static final String GRADE_VALUE_3 = "3"; //3-A
-		public static final String GRADE_VALUE_4 = "4"; //4-BBB
-		public static final String GRADE_VALUE_5 = "5"; //5-BB
-		public static final String GRADE_VALUE_6 = "6"; //6-B
-		public static final String GRADE_VALUE_7 = "7"; //7-CCC
-		public static final String GRADE_VALUE_8 = "8"; //8-CC
-		public static final String GRADE_VALUE_9 = "9"; //9-C
-		public static final String GRADE_VALUE_10 = "10"; //10-D
-		public static final String GRADE_VALUE_11 = "11"; //11-未评级
+	/* add by kangbyron 20101113 城商联盟评分等级 begin */
+	public static final String GRADE_VALUE_1 = "1"; // 1-AAA
+	public static final String GRADE_VALUE_2 = "2"; // 2-AA
+	public static final String GRADE_VALUE_3 = "3"; // 3-A
+	public static final String GRADE_VALUE_4 = "4"; // 4-BBB
+	public static final String GRADE_VALUE_5 = "5"; // 5-BB
+	public static final String GRADE_VALUE_6 = "6"; // 6-B
+	public static final String GRADE_VALUE_7 = "7"; // 7-CCC
+	public static final String GRADE_VALUE_8 = "8"; // 8-CC
+	public static final String GRADE_VALUE_9 = "9"; // 9-C
+	public static final String GRADE_VALUE_10 = "10"; // 10-D
+	public static final String GRADE_VALUE_11 = "11"; // 11-未评级
 
-		public static final String GRADE_TERM_TYPE_MONTH="1"; //1-月
-		public static final String GRADE_TERM_TYPE_SEASON="2"; //2-季
-		public static final String GRADE_TERM_TYPE_HALF="3"; //3-半年
-		public static final String GRADE_TERM_TYPE_YEAR="4"; //4-年
+	public static final String GRADE_TERM_TYPE_MONTH = "1"; // 1-月
+	public static final String GRADE_TERM_TYPE_SEASON = "2"; // 2-季
+	public static final String GRADE_TERM_TYPE_HALF = "3"; // 3-半年
+	public static final String GRADE_TERM_TYPE_YEAR = "4"; // 4-年
 
-		public static final String GRADE_TERM_TYPE_LOAN="1"; //1-合同
-		public static final String DEBT_GRADE_TYPE_CREDIT="2"; //2-授信
+	public static final String GRADE_TERM_TYPE_LOAN = "1"; // 1-合同
+	public static final String DEBT_GRADE_TYPE_CREDIT = "2"; // 2-授信
 
-		//授信客户评级规则
-		public static final String PF_SYS_PARAM_ID_101="101";
-		public static final String PF_SYS_PARAM_MAGIC_ID_101="Special"; //专项授信
-		public static final String PF_SYS_PARAM_ID_102="102";
-		public static final String PF_SYS_PARAM_MAGIC_ID_102="Composite"; //综合授信
-		//授信评级开关
-		public static final String PF_SYS_PARAM_ID_103="103";
-		public static final String PF_SYS_PARAM_MAGIC_ID_103="RatingSwitch";
+	// 授信客户评级规则
+	public static final String PF_SYS_PARAM_ID_101 = "101";
+	public static final String PF_SYS_PARAM_MAGIC_ID_101 = "Special"; // 专项授信
+	public static final String PF_SYS_PARAM_ID_102 = "102";
+	public static final String PF_SYS_PARAM_MAGIC_ID_102 = "Composite"; // 综合授信
+	// 授信评级开关
+	public static final String PF_SYS_PARAM_ID_103 = "103";
+	public static final String PF_SYS_PARAM_MAGIC_ID_103 = "RatingSwitch";
 
-		//还款方式变更标志
-		public static final String APPLY_TYPE_CHG_RTN_ACTNO_PARARM="rtntype";
+	// 还款方式变更标志
+	public static final String APPLY_TYPE_CHG_RTN_ACTNO_PARARM = "rtntype";
 
+	/* add by kangbyron 20101113 城商联盟评分等级 end */
 
+	/* add by learncy.zou 20101230 begin */
+	// 罚息收取方式
+	public static final String PINTRATE_MODE_RATIO = "0";// 按比率收取
+	public static final String PINTRATE_MODE_AMT = "1";// 按金额收取
 
+	// 业务类型
+	public static final String BUSINESS_LOAN = "05";// 贷款业务
+	public static final String BUSINESS_CREDIT = "SX";// 授信业务
 
-	/* add by kangbyron 20101113 城商联盟评分等级 end  */
+	// 利率浮动方式
+	public static final String INTRATE_FLOATMODE_FLOAT = "0";// 0-浮动利率
+	public static final String INTRATE_FLOATMODE = "1";// 1-固定利率
 
-		/* add by learncy.zou 20101230 begin*/
-		//罚息收取方式
-		public static final String PINTRATE_MODE_RATIO = "0";// 按比率收取
-		public static final String PINTRATE_MODE_AMT = "1";// 按金额收取
+	public static final int DATADIC_TYPE_LOAN_TERM_TYPE_CTL = 459;// 贷款期限控制方式,按年,按月,按天
 
-		//业务类型
-		public static final String BUSINESS_LOAN = "05";// 贷款业务
-		public static final String BUSINESS_CREDIT = "SX";// 授信业务
+	public static final String LOAN_PAY_STATUS_NORMAL = "1";// 支付状态-正常
+	public static final String LOAN_PAY_STATUS_BACK = "2";// 支付状态-退回(用于后台系统的退回)
 
-		//利率浮动方式
-		public static final String INTRATE_FLOATMODE_FLOAT = "0";// 0-浮动利率
-		public static final String INTRATE_FLOATMODE = "1";// 1-固定利率
+	public static final String LOAN_PAY_TYPE_SELF = "1";// 支付类型-自主支付
+	public static final String LOAN_PAY_TYPE_COMPANY = "2";// 支付类型-受托支付
 
-		public static final int DATADIC_TYPE_LOAN_TERM_TYPE_CTL = 459;// 贷款期限控制方式,按年,按月,按天
+	/**
+	 * 额度循环标志
+	 */
+	public static String CYCLE_FLAG_ON = "1";// 1-循环
+	public static String CYCLE_FLAG_OFF = "2";// 2-非循环
 
-		public static final String LOAN_PAY_STATUS_NORMAL = "1";//支付状态-正常
-		public static final String LOAN_PAY_STATUS_BACK = "2";//支付状态-退回(用于后台系统的退回)
+	// 一次还本付息与一次还本分期付息，贷款期限控制 ,目前设置不能超过1年
+	public static final int TERM_OF_ONE_RTN = 1;
 
-		public static final String LOAN_PAY_TYPE_SELF = "1";//支付类型-自主支付
-		public static final String LOAN_PAY_TYPE_COMPANY = "2";//支付类型-受托支付
+	/**
+	 * 对于一次性还本分期付息和一次性还本付息的还款方式，是否适用与一年以上期限的贷款，在DATA_DIC_MAP中的key
+	 */
+	public static final int DATADIC_MAPTYPE_LNID_RTNTYPE_RELATION = 445;
 
-		/**
-		 * 额度循环标志
-		 */
-		public static String CYCLE_FLAG_ON = "1";//1-循环
-		public static String CYCLE_FLAG_OFF = "2";//2-非循环
+	// 还款间隔
+	public static final String RTN_INTERVAL_ONE_OFF = "1"; // 一次性还款
+	public static final String RTN_INTERVAL_ONE_WEEK = "2";// 单周
+	public static final String RTN_INTERVAL_TWO_WEEKS = "3";// 双周
+	public static final String RTN_INTERVAL_MONTHLY = "4"; // 按月还款
+	public static final String RTN_INTERVAL_SEASON = "5"; // 按季还款
+	public static final String RTN_INTERVAL_HALF_YEAR = "6"; // 按半年还款
+	public static final String RTN_INTERVAL_YEARLY = "7"; // 按年还款
+	public static final String RTN_INTERVAL_FIXED_PERIOD = "8";// 固定周期(广发没有用到该参数,暂保留,这样以前的程序可以不改)
+	public static final String RTN_INTERVAL_STUDY_ABROAD = "9"; // 按留学半年(广发没有用到该参数,暂保留,这样以前的程序可以不改)
 
-		//一次还本付息与一次还本分期付息，贷款期限控制 ,目前设置不能超过1年
-		public static final int TERM_OF_ONE_RTN = 1;
+	// 出账审核类型
+	public static final String PROC_FLAG_LOAN_PAY = "01";// 普通贷款申请首次出账(该种类型在出帐审核流程中暂时不涉及,做预留,普通贷款的出帐在主贷款流程中)
+	public static final String PROC_FLAG_LOAN_EXTRA_PAY = "02";// 多次出账(包括普通贷款多次出账和授信子合同的多次出帐)
+	public static final String PROC_FLAG_LOAN_CREDIT_DIRECT_PAY = "03"; // 授信直接出账
+	public static final String PROC_FLAG_LOAN_CREDIT_LOAN_PAY = "04";// 授信子合同首次出账
 
-	    /**
-	     * 对于一次性还本分期付息和一次性还本付息的还款方式，是否适用与一年以上期限的贷款，在DATA_DIC_MAP中的key
-	     */
-	    public static final int DATADIC_MAPTYPE_LNID_RTNTYPE_RELATION = 445;
+	// 出账审核类型描述
+	public static final String PROC_FLAG_LOAN_PAY_DESC = "普通贷款申请首次出账";// 普通贷款申请首次出账(该种类型在出帐审核流程中暂时不涉及,做预留,普通贷款的出帐在主贷款流程中)
+	public static final String PROC_FLAG_LOAN_EXTRA_PAY_DESC = "多次出账";// 多次出账(包括普通贷款多次出账和授信子合同的多次出帐)
+	public static final String PROC_FLAG_LOAN_CREDIT_DIRECT_PAY_DESC = "授信直接出账"; // 授信直接出账
+	public static final String PROC_FLAG_LOAN_CREDIT_LOAN_PAY_DESC = "授信子合同首次出账";// 授信子合同首次出账
 
-		//还款间隔
-		public static final String RTN_INTERVAL_ONE_OFF = "1"; // 一次性还款
-		public static final String RTN_INTERVAL_ONE_WEEK = "2";// 单周
-		public static final String RTN_INTERVAL_TWO_WEEKS = "3";// 双周
-		public static final String RTN_INTERVAL_MONTHLY = "4"; // 按月还款
-		public static final String RTN_INTERVAL_SEASON = "5"; // 按季还款
-		public static final String RTN_INTERVAL_HALF_YEAR = "6"; // 按半年还款
-		public static final String RTN_INTERVAL_YEARLY = "7"; // 按年还款
-		public static final String RTN_INTERVAL_FIXED_PERIOD = "8";// 固定周期(广发没有用到该参数,暂保留,这样以前的程序可以不改)
-		public static final String RTN_INTERVAL_STUDY_ABROAD = "9"; // 按留学半年(广发没有用到该参数,暂保留,这样以前的程序可以不改)
+	// 贷款申请节点描述
+	public static final String TASK_NAME_LOAN_CHECK_DESC = "复核";// 贷款复核
+	public static final String TASK_NAME_LOAN_PRE_AUDIT_DESC = "初审";// 贷款初审
+	public static final String TASK_NAME_SUB_LOAN_AUDIT_DESC = "支行审查"; // 支行审查
+	public static final String TASK_NAME_SUB_LOAN_APPROVE_DESC = "支行审批";// 支行审批
+	public static final String TASK_NAME_BRANCH_LOAN_AUDIT_DESC = "分行审查";// 分行审查
+	public static final String TASK_NAME_BRANCH_LOAN_APPROVE_DESC = "分行审批";// 分行审批
+	public static final String TASK_NAME_DIST_LOAN_AUDIT_DESC = "区域中心审查";// 区域中心审查
+	public static final String TASK_NAME_DIST_LOAN_APPROVE_DESC = "区域中心审批";// 区域中心审批
+	public static final String TASK_NAME_HEAD_LOAN_AUDIT_DESC = "总行审查";// 总行审查
+	public static final String TASK_NAME_HEAD_LOAN_APPROVE_DESC = "总行审批";// 总行审批
+	public static final String TASK_NAME_CVO_APPROVE_DESC = "首席风险官审批";// 首席风险官审批
+	public static final String TASK_NAME_CONT_SIGN_DESC = "合同签订";// 合同签订
+	public static final String TASK_NAME_PAY_CHECK_DESC = "出账审核";// 出账审核
+	public static final String TASK_NAME_UNTREAD_MODIFY_DESC = "贷款申请退回修改";// 资料退回修改
+	public static final String TASK_NAME_PAY_CHECK_BACK_DESC = "出账退回修改";// 出账申请退回修改
 
+	/* add by learncy.zou 20101230 end */
 
-		//出账审核类型
-		public static final String PROC_FLAG_LOAN_PAY = "01";//普通贷款申请首次出账(该种类型在出帐审核流程中暂时不涉及,做预留,普通贷款的出帐在主贷款流程中)
-		public static final String PROC_FLAG_LOAN_EXTRA_PAY = "02";//多次出账(包括普通贷款多次出账和授信子合同的多次出帐)
-		public static final String PROC_FLAG_LOAN_CREDIT_DIRECT_PAY = "03"; //授信直接出账
-		public static final String PROC_FLAG_LOAN_CREDIT_LOAN_PAY = "04";//授信子合同首次出账
+	/* zhushijie add */
+	/**
+	 * 批文件流水表业务种类
+	 */
+	public static final String TYPE_CODE_BLACK = "0001"; // 关注客户批量导入文件
+	public static final String TYPE_CODE_FUND = "0002"; // 公积金冲还贷上送文件
+	/**
+	 * 批文件流水表批处理状态
+	 */
+	public static final String BATCH_STA_CD_NO = "0"; // 未处理
+	public static final String BATCH_STA_CD_YES = "1"; // 已处理
+	public static final String BATCH_STA_CD_INVALID = "2"; // 无效批文件
+	/**
+	 * 自然人客户类型
+	 */
+	public static final String CUST_INDV_TYPE_MAIN_LOANER = "1"; // 借款人
+	public static final String CUST_INDV_TYPE_OTHER = "2"; // 其他
 
-//		出账审核类型描述
-		public static final String PROC_FLAG_LOAN_PAY_DESC = "普通贷款申请首次出账";//普通贷款申请首次出账(该种类型在出帐审核流程中暂时不涉及,做预留,普通贷款的出帐在主贷款流程中)
-		public static final String PROC_FLAG_LOAN_EXTRA_PAY_DESC = "多次出账";//多次出账(包括普通贷款多次出账和授信子合同的多次出帐)
-		public static final String PROC_FLAG_LOAN_CREDIT_DIRECT_PAY_DESC = "授信直接出账"; //授信直接出账
-		public static final String PROC_FLAG_LOAN_CREDIT_LOAN_PAY_DESC = "授信子合同首次出账";//授信子合同首次出账
+	public static final int VALUE_NO_LNID = 45; // 贷款品种代码 Add lilinfeng
 
+	// 操作员状态
 
-		// 贷款申请节点描述
-		public static final String TASK_NAME_LOAN_CHECK_DESC  = "复核";//贷款复核
-		public static final String TASK_NAME_LOAN_PRE_AUDIT_DESC   = "初审";// 贷款初审
-		public static final String TASK_NAME_SUB_LOAN_AUDIT_DESC   = "支行审查"; //支行审查
-		public static final String TASK_NAME_SUB_LOAN_APPROVE_DESC   = "支行审批";// 支行审批
-		public static final String TASK_NAME_BRANCH_LOAN_AUDIT_DESC   =  "分行审查";//分行审查
-		public static final String TASK_NAME_BRANCH_LOAN_APPROVE_DESC   = "分行审批";// 分行审批
-		public static final String TASK_NAME_DIST_LOAN_AUDIT_DESC   = "区域中心审查" ;//区域中心审查
-		public static final String TASK_NAME_DIST_LOAN_APPROVE_DESC   = "区域中心审批";// 区域中心审批
-		public static final String TASK_NAME_HEAD_LOAN_AUDIT_DESC  = "总行审查";// 总行审查
-		public static final String TASK_NAME_HEAD_LOAN_APPROVE_DESC   = "总行审批";// 总行审批
-		public static final String TASK_NAME_CVO_APPROVE_DESC   = "首席风险官审批";// 首席风险官审批
-		public static final String TASK_NAME_CONT_SIGN_DESC   = "合同签订";// 合同签订
-		public static final String TASK_NAME_PAY_CHECK_DESC   = "出账审核";// 出账审核
-		public static final String TASK_NAME_UNTREAD_MODIFY_DESC   = "贷款申请退回修改";// 资料退回修改
-		public static final String TASK_NAME_PAY_CHECK_BACK_DESC = "出账退回修改";//出账申请退回修改
+	public static final String TLR_NO_STATE_INVALID = "0"; // 请假
 
-		/* add by learncy.zou 20101230 end*/
+	public static final String TLR_NO_STATE_NORMAL = "1"; // 有效
 
-	/*  zhushijie add */
-		/**
-		 * 批文件流水表业务种类
-		 */
-		public static final String TYPE_CODE_BLACK = "0001"; // 关注客户批量导入文件
-		public static final String TYPE_CODE_FUND = "0002"; // 公积金冲还贷上送文件
-		/**
-		 * 批文件流水表批处理状态
-		 */
-		public static final String BATCH_STA_CD_NO = "0"; // 未处理
-		public static final String BATCH_STA_CD_YES = "1"; // 已处理
-		public static final String BATCH_STA_CD_INVALID = "2"; // 无效批文件
-		/**
-		 * 自然人客户类型
-		 */
-		public static final String CUST_INDV_TYPE_MAIN_LOANER = "1"; // 借款人
-		public static final String CUST_INDV_TYPE_OTHER = "2"; // 其他
+	// public static final String TLR_NO_STATE_QUIT = "2"; // 离职
 
+	// public static final String TLR_NO_STATE_LVDAY = "3";// 休假
 
-		public static final int VALUE_NO_LNID = 45; // 贷款品种代码 Add lilinfeng
+	public static final String TLR_NO_STATE_UNUSE = "4"; // 暂停使用
 
+	// add gz 诉讼
+	public static final int DATADIC_TYPE_LAWSUITRESULT = 554;// 诉讼结果
+	public static final int DATADIC_TYPE_LAWSUITTYPE = 555;// 诉讼类型
 
-		//操作员状态
+	/**
+	 * 登记催收结果状态 gz
+	 */
+	public static final String TRACEDTL_PROCESS_FLAG_OFF = "0"; // 0-任务未完成；
+	public static final String TRACEDTL_PROCESS_FLAG_ON = "1"; // 1-任务已登记；
+	public static final String TRACEDTL_PROCESS_FLAG_AUTOON = "2"; // 2-主动登记任务；
 
-		public static final String TLR_NO_STATE_INVALID = "0"; // 请假
+	// 批量贷后申请 gz
+	public static final String POSTLOAN_BATCH_STATUS_1 = "1"; // 已提交
+	public static final String POSTLOAN_BATCH_STATUS_2 = "2";// 已复核
+	public static final String POSTLOAN_BATCH_STATUS_3 = "3";// 已认定
+	public static final String POSTLOAN_BATCH_STATUS_4 = "4";// 已确认
 
-		public static final String TLR_NO_STATE_NORMAL = "1"; // 有效
+	public static final int VALUE_NO_TLRINTNO = 46; // 内部操作员号 Add lilinfeng
 
-		//public static final String TLR_NO_STATE_QUIT = "2"; // 离职
+	public static final String BRCODE_HEAD_UP_BRCODE_DEFAULT = "9999"; // 总行上级机构默认值
+																		// add
+																		// lilinfeng
 
-		//public static final String TLR_NO_STATE_LVDAY = "3";// 休假
+	public static final String COMM_TXN_CODE_QUERY_ZONEINFO = "990003"; // 查询机构信息
+																		// add
+																		// lilinfeng
+	public static final String COMM_TXN_KEY_TEMPLATECODENAME = "templateCodeName"; // 交易模板
+																					// add
+																					// lilinfengs
+	public static final String TEMPLATE_CODE_NAME_TELL = "000005"; // 柜员管理系统交易模板
+																	// add
+																	// lilinfeng
+	public static final String COMM_TXN_KEY_G_TRANSCODE = "G_TRANSCODE"; // 交易代码
+																			// add
+																			// lilinfeng
+	public static final String COMM_TXN_KEY_MAINSYSID = "mainsysId"; // 系统标识 add
+																		// lilinfeng
+	public static final String MAIN_SYS_ID_TELL = "4"; // 柜员管理系统对个贷系统的标识 add
+														// lilinfeng
+	public static final String COMM_TXN_KEY_ZONENO = "zoneno"; // 机构号 add
+																// lilinfeng
+	public static final String COMM_TXN_KEY_ORDERMODE = "orderMode"; // 查询模式 add
+																		// lilinfeng
+	public static final String COMM_TXN_KEY_DUTYMAN = "dutyMan"; // 负责人 add
+																	// lilinfeng
+	public static final String COMM_TXN_KEY_ZONETYPE = "zoneType"; // 机构级别 add
+																	// lilinfeng
+	public static final String COMM_TXN_KEY_ZONENAME = "zoneName"; // 机构简称 add
+																	// lilinfeng
+	public static final String COMM_TXN_KEY_FHH = "fhh"; // 分行号 add lilinfeng
+	public static final String COMM_TXN_KEY_ZHH = "zhh"; // 支行号 add lilinfeng
+	public static final String COMM_TXN_KEY_ZONEINFO = "zoneInfo"; // 机构全称 add
+																	// lilinfeng
+	public static final String COMM_TXN_KEY_TOPZONENO = "topZoneno"; // 管辖机构 add
+																		// lilinfeng
+	public static final String COMM_TXN_KEY_POSTNO = "postno"; // 邮政编码 add
+																// lilinfeng
+	public static final String COMM_TXN_KEY_TELEPHONE = "telephone"; // 电话号码
+																		// liinfeng
+	public static final String COMM_TXN_KEY_ZONEADDRESS = "zoneAddress"; // 机构地址
+																			// add
+																			// lilinfeng
+	public static final String COMM_TXN_KEY_NOTE = "Note"; // 备注 add lilinfeng
+	public static final String COMM_TXN_KEY_MODDATE = "modDate"; // 修改日期 add
+																	// lilinfeng
 
-		public static final String TLR_NO_STATE_UNUSE = "4"; // 暂停使用
+	// add by kangbyron 2011-02-10 操作员审批默认阀值
+	public static final String MAX_WL_DEFAULT = "10";
 
-		//add gz   诉讼
-		public static final int DATADIC_TYPE_LAWSUITRESULT = 554;// 诉讼结果
-		public static final int DATADIC_TYPE_LAWSUITTYPE = 555;// 诉讼类型
-
-
-		  /**
-	     * 登记催收结果状态 gz
-	     */
-	    public static final String TRACEDTL_PROCESS_FLAG_OFF = "0"; //0-任务未完成；
-	    public static final String TRACEDTL_PROCESS_FLAG_ON = "1"; //1-任务已登记；
-	    public static final String TRACEDTL_PROCESS_FLAG_AUTOON = "2"; //2-主动登记任务；
-
-
-	  //批量贷后申请 gz
-		public static final String POSTLOAN_BATCH_STATUS_1 = "1"; // 已提交
-		public static final String POSTLOAN_BATCH_STATUS_2 = "2";// 已复核
-		public static final String POSTLOAN_BATCH_STATUS_3 = "3";// 已认定
-		public static final String POSTLOAN_BATCH_STATUS_4 = "4";// 已确认
-
-
-		public static final int VALUE_NO_TLRINTNO = 46; // 内部操作员号 Add lilinfeng
-
-
-		public static final String BRCODE_HEAD_UP_BRCODE_DEFAULT = "9999"; // 总行上级机构默认值 add lilinfeng
-
-		public static final String COMM_TXN_CODE_QUERY_ZONEINFO = "990003"; // 查询机构信息 add lilinfeng
-		public static final String COMM_TXN_KEY_TEMPLATECODENAME = "templateCodeName"; // 交易模板 add lilinfengs
-		public static final String TEMPLATE_CODE_NAME_TELL = "000005"; // 柜员管理系统交易模板 add lilinfeng
-		public static final String COMM_TXN_KEY_G_TRANSCODE = "G_TRANSCODE"; // 交易代码 add lilinfeng
-		public static final String COMM_TXN_KEY_MAINSYSID = "mainsysId"; // 系统标识 add lilinfeng
-		public static final String MAIN_SYS_ID_TELL =  "4"; //柜员管理系统对个贷系统的标识 add lilinfeng
-		public static final String COMM_TXN_KEY_ZONENO ="zoneno";  //机构号 add lilinfeng
-		public static final String COMM_TXN_KEY_ORDERMODE ="orderMode";  //查询模式 add lilinfeng
-		public static final String COMM_TXN_KEY_DUTYMAN  = "dutyMan";   //负责人 add lilinfeng
-		public static final String COMM_TXN_KEY_ZONETYPE = "zoneType";   //机构级别 add lilinfeng
-		public static final String COMM_TXN_KEY_ZONENAME = "zoneName";   //机构简称 add lilinfeng
-		public static final String COMM_TXN_KEY_FHH = "fhh";   //分行号 add lilinfeng
-		public static final String COMM_TXN_KEY_ZHH  = "zhh";   //支行号 add lilinfeng
-		public static final String COMM_TXN_KEY_ZONEINFO = "zoneInfo";   //机构全称 add lilinfeng
-		public static final String COMM_TXN_KEY_TOPZONENO = "topZoneno";   //管辖机构 add lilinfeng
-		public static final String COMM_TXN_KEY_POSTNO  = "postno";   //邮政编码 add lilinfeng
-		public static final String COMM_TXN_KEY_TELEPHONE = "telephone";   //电话号码 liinfeng
-		public static final String COMM_TXN_KEY_ZONEADDRESS = "zoneAddress";   //机构地址 add lilinfeng
-		public static final String COMM_TXN_KEY_NOTE = "Note";   //备注 add lilinfeng
-		public static final String COMM_TXN_KEY_MODDATE = "modDate";   //修改日期 add lilinfeng
-
-		//add by kangbyron 2011-02-10 操作员审批默认阀值
-		public static final String MAX_WL_DEFAULT = "10";
-
-		public static final String TASKPOOL_UNASSIGN = "0";
-		public static final String TASKPOOL_ASSIGNED = "1";
+	public static final String TASKPOOL_UNASSIGN = "0";
+	public static final String TASKPOOL_ASSIGNED = "1";
 
 }

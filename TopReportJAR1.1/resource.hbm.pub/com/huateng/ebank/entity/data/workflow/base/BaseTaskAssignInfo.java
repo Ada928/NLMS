@@ -2,17 +2,15 @@ package com.huateng.ebank.entity.data.workflow.base;
 
 import java.io.Serializable;
 
-
 /**
  * This is an object that contains data related to the TASK_ASSIGN_INFO table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * Do not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="TASK_ASSIGN_INFO"
+ * @hibernate.class table="TASK_ASSIGN_INFO"
  */
 
-public abstract class BaseTaskAssignInfo  implements Serializable {
+public abstract class BaseTaskAssignInfo implements Serializable {
 
 	public static String REF = "TaskAssignInfo";
 	public static String PROP_TLRNO = "tlrno";
@@ -30,16 +28,15 @@ public abstract class BaseTaskAssignInfo  implements Serializable {
 	public static String PROP_START_TIME = "startTime";
 	public static String PROP_WORK_TYPE = "workType";
 
-
 	// constructors
-	public BaseTaskAssignInfo () {
+	public BaseTaskAssignInfo() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseTaskAssignInfo (long id) {
+	public BaseTaskAssignInfo(long id) {
 		this.setId(id);
 		initialize();
 	}
@@ -47,11 +44,7 @@ public abstract class BaseTaskAssignInfo  implements Serializable {
 	/**
 	 * Constructor for required fields
 	 */
-	public BaseTaskAssignInfo (
-		long id,
-		java.lang.String procInsId,
-		java.lang.String taskId,
-		java.lang.String tlrno) {
+	public BaseTaskAssignInfo(long id, java.lang.String procInsId, java.lang.String taskId, java.lang.String tlrno) {
 
 		this.setId(id);
 		this.setProcInsId(procInsId);
@@ -60,9 +53,8 @@ public abstract class BaseTaskAssignInfo  implements Serializable {
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -84,272 +76,267 @@ public abstract class BaseTaskAssignInfo  implements Serializable {
 	private java.util.Date endTime;
 	private java.util.Date timestamps;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="native"
-     *  column="ID"
-     */
-	public long getId () {
+	 * 
+	 * @hibernate.id generator-class="native" column="ID"
+	 */
+	public long getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (long id) {
+	public void setId(long id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: PROC_INS_ID
 	 */
-	public java.lang.String getProcInsId () {
+	public java.lang.String getProcInsId() {
 		return procInsId;
 	}
 
 	/**
 	 * Set the value related to the column: PROC_INS_ID
-	 * @param procInsId the PROC_INS_ID value
+	 * 
+	 * @param procInsId
+	 *            the PROC_INS_ID value
 	 */
-	public void setProcInsId (java.lang.String procInsId) {
+	public void setProcInsId(java.lang.String procInsId) {
 		this.procInsId = procInsId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TASK_ID
 	 */
-	public java.lang.String getTaskId () {
+	public java.lang.String getTaskId() {
 		return taskId;
 	}
 
 	/**
 	 * Set the value related to the column: TASK_ID
-	 * @param taskId the TASK_ID value
+	 * 
+	 * @param taskId
+	 *            the TASK_ID value
 	 */
-	public void setTaskId (java.lang.String taskId) {
+	public void setTaskId(java.lang.String taskId) {
 		this.taskId = taskId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TLRNO
 	 */
-	public java.lang.String getTlrno () {
+	public java.lang.String getTlrno() {
 		return tlrno;
 	}
 
 	/**
 	 * Set the value related to the column: TLRNO
-	 * @param tlrno the TLRNO value
+	 * 
+	 * @param tlrno
+	 *            the TLRNO value
 	 */
-	public void setTlrno (java.lang.String tlrno) {
+	public void setTlrno(java.lang.String tlrno) {
 		this.tlrno = tlrno;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BRCODE
 	 */
-	public java.lang.String getBrcode () {
+	public java.lang.String getBrcode() {
 		return brcode;
 	}
 
 	/**
 	 * Set the value related to the column: BRCODE
-	 * @param brcode the BRCODE value
+	 * 
+	 * @param brcode
+	 *            the BRCODE value
 	 */
-	public void setBrcode (java.lang.String brcode) {
+	public void setBrcode(java.lang.String brcode) {
 		this.brcode = brcode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: WORK_TYPE
 	 */
-	public java.lang.String getWorkType () {
+	public java.lang.String getWorkType() {
 		return workType;
 	}
 
 	/**
 	 * Set the value related to the column: WORK_TYPE
-	 * @param workType the WORK_TYPE value
+	 * 
+	 * @param workType
+	 *            the WORK_TYPE value
 	 */
-	public void setWorkType (java.lang.String workType) {
+	public void setWorkType(java.lang.String workType) {
 		this.workType = workType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TASK_DESC
 	 */
-	public java.lang.String getTaskDesc () {
+	public java.lang.String getTaskDesc() {
 		return taskDesc;
 	}
 
 	/**
 	 * Set the value related to the column: TASK_DESC
-	 * @param taskDesc the TASK_DESC value
+	 * 
+	 * @param taskDesc
+	 *            the TASK_DESC value
 	 */
-	public void setTaskDesc (java.lang.String taskDesc) {
+	public void setTaskDesc(java.lang.String taskDesc) {
 		this.taskDesc = taskDesc;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ASSIGN_TYPE
 	 */
-	public java.lang.String getAssignType () {
+	public java.lang.String getAssignType() {
 		return assignType;
 	}
 
 	/**
 	 * Set the value related to the column: ASSIGN_TYPE
-	 * @param assignType the ASSIGN_TYPE value
+	 * 
+	 * @param assignType
+	 *            the ASSIGN_TYPE value
 	 */
-	public void setAssignType (java.lang.String assignType) {
+	public void setAssignType(java.lang.String assignType) {
 		this.assignType = assignType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ASSIGN_MODE
 	 */
-	public java.lang.String getAssignMode () {
+	public java.lang.String getAssignMode() {
 		return assignMode;
 	}
 
 	/**
 	 * Set the value related to the column: ASSIGN_MODE
-	 * @param assignMode the ASSIGN_MODE value
+	 * 
+	 * @param assignMode
+	 *            the ASSIGN_MODE value
 	 */
-	public void setAssignMode (java.lang.String assignMode) {
+	public void setAssignMode(java.lang.String assignMode) {
 		this.assignMode = assignMode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ASSIGN
 	 */
-	public java.lang.String getAssign () {
+	public java.lang.String getAssign() {
 		return assign;
 	}
 
 	/**
 	 * Set the value related to the column: ASSIGN
-	 * @param assign the ASSIGN value
+	 * 
+	 * @param assign
+	 *            the ASSIGN value
 	 */
-	public void setAssign (java.lang.String assign) {
+	public void setAssign(java.lang.String assign) {
 		this.assign = assign;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: STATUS
 	 */
-	public java.lang.String getStatus () {
+	public java.lang.String getStatus() {
 		return status;
 	}
 
 	/**
 	 * Set the value related to the column: STATUS
-	 * @param status the STATUS value
+	 * 
+	 * @param status
+	 *            the STATUS value
 	 */
-	public void setStatus (java.lang.String status) {
+	public void setStatus(java.lang.String status) {
 		this.status = status;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: START_TIME
 	 */
-	public java.util.Date getStartTime () {
+	public java.util.Date getStartTime() {
 		return startTime;
 	}
 
 	/**
 	 * Set the value related to the column: START_TIME
-	 * @param startTime the START_TIME value
+	 * 
+	 * @param startTime
+	 *            the START_TIME value
 	 */
-	public void setStartTime (java.util.Date startTime) {
+	public void setStartTime(java.util.Date startTime) {
 		this.startTime = startTime;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: END_TIME
 	 */
-	public java.util.Date getEndTime () {
+	public java.util.Date getEndTime() {
 		return endTime;
 	}
 
 	/**
 	 * Set the value related to the column: END_TIME
-	 * @param endTime the END_TIME value
+	 * 
+	 * @param endTime
+	 *            the END_TIME value
 	 */
-	public void setEndTime (java.util.Date endTime) {
+	public void setEndTime(java.util.Date endTime) {
 		this.endTime = endTime;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TIMESTAMPS
 	 */
-	public java.util.Date getTimestamps () {
+	public java.util.Date getTimestamps() {
 		return timestamps;
 	}
 
 	/**
 	 * Set the value related to the column: TIMESTAMPS
-	 * @param timestamps the TIMESTAMPS value
+	 * 
+	 * @param timestamps
+	 *            the TIMESTAMPS value
 	 */
-	public void setTimestamps (java.util.Date timestamps) {
+	public void setTimestamps(java.util.Date timestamps) {
 		this.timestamps = timestamps;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof com.huateng.ebank.entity.data.workflow.TaskAssignInfo)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof com.huateng.ebank.entity.data.workflow.TaskAssignInfo))
+			return false;
 		else {
 			com.huateng.ebank.entity.data.workflow.TaskAssignInfo taskAssignInfo = (com.huateng.ebank.entity.data.workflow.TaskAssignInfo) obj;
 			return (this.getId() == taskAssignInfo.getId());
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
 			return (int) this.getId();
 		}
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

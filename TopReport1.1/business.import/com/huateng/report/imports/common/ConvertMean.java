@@ -1,16 +1,14 @@
 package com.huateng.report.imports.common;
 
-
 public class ConvertMean {
-	
-	public static String conertSql(String words){
-		String result="";
+
+	public static String conertSql(String words) {
+		String result = "";
 		if (words != null) {
 			result = words;
 		}
 		return result.replaceAll("'", "''");
 	}
-	
 
 	/**
 	 * 截取子字符串(按字节，区别单双字节)
@@ -29,15 +27,15 @@ public class ConvertMean {
 				j += 3;
 			} else {
 				j += 1;
-				
+
 			}
-			if(j>endIndex){
-				return str.substring(0,i-1);
+			if (j > endIndex) {
+				return str.substring(0, i - 1);
 			}
 		}
 		return str;
 	}
-	
+
 	public static String replace(String strSource, String strFrom, String strTo) {
 		if (strSource == null) {
 			return null;

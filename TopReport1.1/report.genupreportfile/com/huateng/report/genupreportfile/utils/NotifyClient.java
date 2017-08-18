@@ -28,8 +28,9 @@ public class NotifyClient implements ApplicationListener, ServletContextAware {
 	public void onApplicationEvent(ApplicationEvent event) {
 		String eventMsg = event.getSource().toString();
 		ServerContext serverCtx = ServerContextFactory.get(context);
-		if (serverCtx!=null) {
-			Collection<ScriptSession> sessions = serverCtx.getScriptSessionsByPage(context.getContextPath()+ "/fpages/genupreportfile/jsp/createSubFileInfo.jsp");
+		if (serverCtx != null) {
+			Collection<ScriptSession> sessions = serverCtx.getScriptSessionsByPage(
+					context.getContextPath() + "/fpages/genupreportfile/jsp/createSubFileInfo.jsp");
 			for (ScriptSession scs : sessions) {
 				if (scs != null && !scs.isInvalidated()) {
 					ScriptBuffer script = new ScriptBuffer();

@@ -23,23 +23,20 @@
 -->
 </style>
 </head>
-<body style="margin: 0; overflow: hidden ;background-color: #cae1f3;" >
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-<tr>
-	<td height="86" width="800">
-		<img src="<%=request.getContextPath()%>/images/title-a.jpg" align="left" height="86" />
-	</td>
-	<td background="<%=request.getContextPath()%>/images/title-b.jpg">
-	 &nbsp;
-	</td>
-</tr>
-</table>
-<!--
+<body style="margin: 0; overflow: hidden ;background-color: #cae1f3;">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td height="86" width="800"><img src="<%=request.getContextPath()%>/images/title-a.jpg" align="left" height="86" />
+			</td>
+			<td background="<%=request.getContextPath()%>/images/title-b.jpg">&nbsp;</td>
+		</tr>
+	</table>
+	<!--
 <div >
 <img src="<%=request.getContextPath()%>/images/tile.jpg" align="middle" width="984" height="83" />
 </div>
  -->
-<script language="javascript" >
+	<script language="javascript">
 Menu.prototype.mouseHoverDisabled = false;
 Menu.prototype.cssFile = "<%=request.getContextPath()%>/css/menu.css";
 var menuMain = new MenuBar();
@@ -63,7 +60,7 @@ function backToWelcome()
 }
 
 </script>
-<!--
+	<!--
 <div align="right" class="welcome" >
         <div align="right">
              操作员号：【<%=request.getSession().getAttribute("tlrno")%>】    操作号名：【<%=request.getSession().getAttribute("tlrname")+"" %>】    交易日期：【<%=request.getSession().getAttribute("busidate")%>】    最后登陆时间：【<%=request.getSession().getAttribute("lastlogintime") %>】

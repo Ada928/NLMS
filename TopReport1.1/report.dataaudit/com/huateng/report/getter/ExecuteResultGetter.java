@@ -27,20 +27,15 @@ public class ExecuteResultGetter extends BaseGetter {
 			BiAnalyProcess analyProcess = AnalyProService.getInstance().getBiAnalyProcessByPk(analyNo);
 			List returnList = new ArrayList();
 			returnList.add(analyProcess);
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				returnList,
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), returnList, getResult());
 			result.setContent(returnList);
 			result.getPage().setTotalPage(1);
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

@@ -28,6 +28,7 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 
 public class BhProcStepDAO extends HibernateDaoSupport {
 	private static final Log log = LogFactory.getLog(BhProcStepDAO.class);
+
 	// property constants
 	@Override
 	protected void initDao() {
@@ -37,8 +38,7 @@ public class BhProcStepDAO extends HibernateDaoSupport {
 	public BhProcStep findById(java.lang.Integer id) {
 		log.debug("getting BhProcStep instance with id: " + id);
 		try {
-			BhProcStep instance = (BhProcStep) getHibernateTemplate()
-					.get(BhProcStep.class.getName(), id);
+			BhProcStep instance = (BhProcStep) getHibernateTemplate().get(BhProcStep.class.getName(), id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -50,8 +50,7 @@ public class BhProcStepDAO extends HibernateDaoSupport {
 		log.debug("finding BhProcStep instance by example");
 		try {
 			List results = getHibernateTemplate().findByExample(instance);
-			log.debug("find by example successful, result size: "
-					+ results.size());
+			log.debug("find by example successful, result size: " + results.size());
 			return results;
 		} catch (RuntimeException re) {
 			log.error("find by example failed", re);
@@ -60,11 +59,9 @@ public class BhProcStepDAO extends HibernateDaoSupport {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding BhProcStep instance with property: "
-				+ propertyName + ", value: " + value);
+		log.debug("finding BhProcStep instance with property: " + propertyName + ", value: " + value);
 		try {
-			String queryString = "from BhProcStep model where model."
-					+ propertyName + "= ?";
+			String queryString = "from BhProcStep model where model." + propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
@@ -83,34 +80,36 @@ public class BhProcStepDAO extends HibernateDaoSupport {
 		}
 	}
 
-	/**join step with status*/
-	public List findByProperties(HashMap parameters){
+	/** join step with status */
+	public List findByProperties(HashMap parameters) {
 		log.debug("finding all BhProcStep instances with properties");
 		try {
-			StringBuffer queryStringBuilder =new StringBuffer("select step,status from BhProcStep step,BhProcStatus status ");
-			queryStringBuilder.append(" where step.jobno=status.jobno and step.step=status.step and step.subStep=status.subStep ");
-			//批量日期加入
-			String bhDate=(String)parameters.get("bhdate");
-			if(bhDate!=null){
+			StringBuffer queryStringBuilder = new StringBuffer(
+					"select step,status from BhProcStep step,BhProcStatus status ");
+			queryStringBuilder.append(
+					" where step.jobno=status.jobno and step.step=status.step and step.subStep=status.subStep ");
+			// 批量日期加入
+			String bhDate = (String) parameters.get("bhdate");
+			if (bhDate != null) {
 				queryStringBuilder.append(" and status.bhdate = '");
 				queryStringBuilder.append(bhDate);
 				queryStringBuilder.append("' ");
 			}
 
-			//runtime参数
-			List<String> runtimes=(List)parameters.get("runtimes");
-			if(runtimes!=null&&runtimes.size()>0){
+			// runtime参数
+			List<String> runtimes = (List) parameters.get("runtimes");
+			if (runtimes != null && runtimes.size() > 0) {
 				queryStringBuilder.append(" and step.runtime in ('999'");
-				for(String runtime:runtimes){
-					queryStringBuilder.append(","+runtime);
+				for (String runtime : runtimes) {
+					queryStringBuilder.append("," + runtime);
 				}
 				queryStringBuilder.append(")");
 			}
 
-			//status参数
-			String status=(String)parameters.get("status");
-			if(status!=null){
-				queryStringBuilder.append(" and status.status='"+status+"'");
+			// status参数
+			String status = (String) parameters.get("status");
+			if (status != null) {
+				queryStringBuilder.append(" and status.status='" + status + "'");
 			}
 			return getHibernateTemplate().find(queryStringBuilder.toString());
 		} catch (RuntimeException re) {
@@ -119,18 +118,18 @@ public class BhProcStepDAO extends HibernateDaoSupport {
 		}
 	}
 
-	/**step only*/
-	public List findStepsByRuntimes(List<String> runtimes){
+	/** step only */
+	public List findStepsByRuntimes(List<String> runtimes) {
 		log.debug("finding all BhProcStep instances with properties");
 		try {
-			StringBuffer queryStringBuilder =new StringBuffer("from BhProcStep step ");
+			StringBuffer queryStringBuilder = new StringBuffer("from BhProcStep step ");
 			queryStringBuilder.append(" where 1=1 ");
 
-			//runtime参数
-			if(runtimes!=null&&runtimes.size()>0){
+			// runtime参数
+			if (runtimes != null && runtimes.size() > 0) {
 				queryStringBuilder.append(" and step.runtime in ('99'");
-				for(String runtime:runtimes){
-					queryStringBuilder.append(",'"+runtime+"'");
+				for (String runtime : runtimes) {
+					queryStringBuilder.append(",'" + runtime + "'");
 				}
 				queryStringBuilder.append(")");
 			}
@@ -142,26 +141,27 @@ public class BhProcStepDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public BhProcStatus findStatusByStep(BhProcStep step,String bhDate){
+	public BhProcStatus findStatusByStep(BhProcStep step, String bhDate) {
 		log.debug("finding all BhProcStep instances with properties");
 		try {
-			StringBuffer queryStringBuilder =new StringBuffer("from BhProcStatus status ");
+			StringBuffer queryStringBuilder = new StringBuffer("from BhProcStatus status ");
 			queryStringBuilder.append(" where ");
-			queryStringBuilder.append(" status.jobno="+step.getJobno());
-			queryStringBuilder.append(" and status.step="+step.getStep());
-			queryStringBuilder.append(" and status.subStep="+step.getSubStep());
-			queryStringBuilder.append(" and status.bhdate ='"+bhDate+"'");
+			queryStringBuilder.append(" status.jobno=" + step.getJobno());
+			queryStringBuilder.append(" and status.step=" + step.getStep());
+			queryStringBuilder.append(" and status.subStep=" + step.getSubStep());
+			queryStringBuilder.append(" and status.bhdate ='" + bhDate + "'");
 
-			List result= getHibernateTemplate().find(queryStringBuilder.toString());
-			if(result.size()==0){
+			List result = getHibernateTemplate().find(queryStringBuilder.toString());
+			if (result.size() == 0) {
 				return null;
 			}
-			return (BhProcStatus)result.get(0);
+			return (BhProcStatus) result.get(0);
 		} catch (RuntimeException re) {
 			log.error("finding all BhProcStep instances with properties", re);
 			throw re;
 		}
 	}
+
 	/**
 	 * 插入记录
 	 *
@@ -172,10 +172,10 @@ public class BhProcStepDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().save(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BHPROC_STEP_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BHPROC_STEP_INSERT, e);
 		}
 	}
+
 	/**
 	 * 删除记录
 	 *
@@ -186,10 +186,10 @@ public class BhProcStepDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BHPROC_STEP_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BHPROC_STEP_DELETE, e);
 		}
 	}
+
 	/**
 	 * 根据Hibernate ID删除记录
 	 *
@@ -200,8 +200,7 @@ public class BhProcStepDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(query(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BHPROC_STEP_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BHPROC_STEP_DELETE, e);
 		}
 	}
 
@@ -214,14 +213,13 @@ public class BhProcStepDAO extends HibernateDaoSupport {
 	 */
 	public BhProcStep query(int id) throws CommonException {
 		try {
-			return (BhProcStep) this.getHibernateTemplate().load(BhProcStep.class,
-					new Integer(id));
+			return (BhProcStep) this.getHibernateTemplate().load(BhProcStep.class, new Integer(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BHPROC_STEP_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BHPROC_STEP_SELECT, e);
 		}
 		return null;
 	}
+
 	/**
 	 * 更新记录
 	 *
@@ -232,11 +230,10 @@ public class BhProcStepDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().update(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BHPROC_STEP_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BHPROC_STEP_UPDATE, e);
 		}
 	}
-	
+
 	/**
 	 * 根据输入的条件查询所有符合条件的记录
 	 *
@@ -246,12 +243,10 @@ public class BhProcStepDAO extends HibernateDaoSupport {
 	 */
 	public List queryByCondition(String whereString) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from BhProcStep po where " + whereString);
+			List list = this.getHibernateTemplate().find("from BhProcStep po where " + whereString);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BHPROC_STEP_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BHPROC_STEP_SELECT, e);
 		}
 		return null;
 	}

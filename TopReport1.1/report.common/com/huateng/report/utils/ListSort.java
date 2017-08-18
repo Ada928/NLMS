@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * ¶Ôlist½øÐÐÅÅÐò
+ * ï¿½ï¿½listï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @author NING-PENG
  * @date 2011-6-24
@@ -17,7 +17,6 @@ import java.util.List;
  * @param <E>
  */
 public class ListSort<E> {
-
 
 	@SuppressWarnings("unchecked")
 	public void Sort(List<E> list, final String method, final String sort) {
@@ -30,26 +29,27 @@ public class ListSort<E> {
 					Object obj1 = m1.invoke(((E) arg0), null);
 					Object obj2 = m2.invoke(((E) arg1), null);
 
-					if (obj1 instanceof BigDecimal || obj1 instanceof Double || obj1 instanceof Float || obj1 instanceof Integer) {
+					if (obj1 instanceof BigDecimal || obj1 instanceof Double || obj1 instanceof Float
+							|| obj1 instanceof Integer) {
 						double d1 = Double.valueOf(obj1.toString());
 						double d2 = Double.valueOf(obj2.toString());
-						if (sort != null && "desc".equalsIgnoreCase(sort)) {// µ¹Ðò
-							if (d1>d2) {
+						if (sort != null && "desc".equalsIgnoreCase(sort)) {// ï¿½ï¿½ï¿½ï¿½
+							if (d1 > d2) {
 								ret = -1;
-							}else if (d1<d2) {
+							} else if (d1 < d2) {
 								ret = 1;
 							}
 						} else {
-							if (d1>d2) {
+							if (d1 > d2) {
 								ret = 1;
-							}else if (d1<d2) {
+							} else if (d1 < d2) {
 								ret = -1;
 							}
 						}
-					}else{
+					} else {
 						String s1 = obj1.toString();
 						String s2 = obj2.toString();
-						if (sort != null && "desc".equalsIgnoreCase(sort)) {// µ¹Ðò
+						if (sort != null && "desc".equalsIgnoreCase(sort)) {// ï¿½ï¿½ï¿½ï¿½
 							ret = s2.compareTo(s1);
 						} else {
 							ret = s1.compareTo(s2);

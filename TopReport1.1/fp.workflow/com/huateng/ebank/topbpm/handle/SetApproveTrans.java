@@ -21,7 +21,7 @@ public class SetApproveTrans implements ActionHandler {
 		// TODO Auto-generated method stub
 		logger.info("---------------Before TaskEnd---------------");
 		Statement statement = null;
-		try{
+		try {
 			Map map = arg0.getTaskInstance().getVariables();
 			long taskId = arg0.getTaskInstance().getId();
 			String procName = arg0.getProcessDefinition().getName();
@@ -31,41 +31,41 @@ public class SetApproveTrans implements ActionHandler {
 			map.put("PROC_NAME", procName);
 			map.put("TASK_NAME", nodeName);
 			map.put("PROC_INS_ID", Long.toString(procInsId));
-			//当前岗位的roletype
+			// 当前岗位的roletype
 			String roletype = "";
 			map.put("ROLETYPE", roletype);
 			map.put("LASTTLRNO", GlobalInfo.getCurrentInstance().getTlrno());
 			map.put("MANUAL_ASSIGNED", "");
-			//审批意见
+			// 审批意见
 			String status = (String) map.get("STATUS");
 			Integer routeId = new Integer(map.get("ROUTE_ID").toString());
-			Integer stopId =  new Integer(map.get("CURR_STOPID").toString());
+			Integer stopId = new Integer(map.get("CURR_STOPID").toString());
 
 			WorkFlowParamService workFlowParamService = WorkFlowParamService.getInstance();
-			//同意则判断审批路线
-			if(status.equals(WorkFlowServiceHelper.WORKFLOW_TRANS_AGREE)){
-				//如果是手工指定下个分配人，则肯定要进行下次审批
-				if(map.get("MANUAL_ASSIGNED").equals(SystemConstant.FLAG_ON)){
+			// 同意则判断审批路线
+			if (status.equals(WorkFlowServiceHelper.WORKFLOW_TRANS_AGREE)) {
+				// 如果是手工指定下个分配人，则肯定要进行下次审批
+				if (map.get("MANUAL_ASSIGNED").equals(SystemConstant.FLAG_ON)) {
 					status = WorkFlowServiceHelper.WORKFLOW_TRANS_AGREETOSUBMIT;
 
 				}
-				//不手工指定下个分配人
-				else{
-					//如果不能终审，也要进行下次审批
-					if(map.get("CAN_FINAL_APPROVE").equals(SystemConstant.FLAG_OFF)){
+				// 不手工指定下个分配人
+				else {
+					// 如果不能终审，也要进行下次审批
+					if (map.get("CAN_FINAL_APPROVE").equals(SystemConstant.FLAG_OFF)) {
 						status = WorkFlowServiceHelper.WORKFLOW_TRANS_AGREETOSUBMIT;
 
 					}
-					//如果可以终审，判断剩余的审批路线有无必经站点
-					else{
+					// 如果可以终审，判断剩余的审批路线有无必经站点
+					else {
 						boolean flag = workFlowParamService.hasNeedStop(routeId, stopId);
-						//剩余有必经站点，则要进行下次审批
-						if(flag == true ){
+						// 剩余有必经站点，则要进行下次审批
+						if (flag == true) {
 							status = WorkFlowServiceHelper.WORKFLOW_TRANS_AGREETOSUBMIT;
 
 						}
-						//剩余无必经站点，则审批结束
-						else{
+						// 剩余无必经站点，则审批结束
+						else {
 							status = WorkFlowServiceHelper.WORKFLOW_TRANS_AGREE;
 
 						}
@@ -74,30 +74,30 @@ public class SetApproveTrans implements ActionHandler {
 				}
 
 			}
-			//拒绝则判断剩余的审批路线有无必经站点
-			else if(status.equals(WorkFlowServiceHelper.WORKFLOW_TRANS_REFUSE)){
+			// 拒绝则判断剩余的审批路线有无必经站点
+			else if (status.equals(WorkFlowServiceHelper.WORKFLOW_TRANS_REFUSE)) {
 				boolean flag = workFlowParamService.hasNeedStop(routeId, stopId);
-				//剩余有必经站点，则要进行下次审批
-				if(flag == true ){
+				// 剩余有必经站点，则要进行下次审批
+				if (flag == true) {
 					status = WorkFlowServiceHelper.WORKFLOW_TRANS_AGREETOSUBMIT;
 
 				}
-				//剩余无必经站点，则审批结束
-				else{
+				// 剩余无必经站点，则审批结束
+				else {
 					status = WorkFlowServiceHelper.WORKFLOW_TRANS_REFUSE;
 
 				}
 			}
 			map.put("STATUS", status);
 
-			//流转
+			// 流转
 			arg0.getNode().leave(arg0, status);
-//			arg0.getTaskInstance().end(status);
+			// arg0.getTaskInstance().end(status);
 
 			logger.info("---------------TaskEnd---------------");
 			logger.info("nextNode = " + arg0.getNode().getName());
 
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			throw ex;
 		}
 	}

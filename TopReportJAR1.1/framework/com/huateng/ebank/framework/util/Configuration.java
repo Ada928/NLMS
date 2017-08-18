@@ -27,8 +27,7 @@ import com.huateng.ebank.business.common.SystemConstant;
  */
 
 public class Configuration extends Properties {
-	private static Logger log =
-		Logger.getLogger(Configuration.class.getName());
+	private static Logger log = Logger.getLogger(Configuration.class.getName());
 
 	public Configuration(String fn) throws IOException {
 		super();
@@ -40,7 +39,7 @@ public class Configuration extends Properties {
 		readConfigFile(SystemConstant.CONFFILENAME);
 	}
 
-	private String fn; //Configuration file name
+	private String fn; // Configuration file name
 
 	public String get(String key, String defaultValue) {
 		return getProperty(key, defaultValue);
@@ -53,8 +52,7 @@ public class Configuration extends Properties {
 		this.fn = fn;
 		String rootDir = "/";
 		try {
-			InputStream stream =
-				this.getClass().getResourceAsStream(rootDir + fn);
+			InputStream stream = this.getClass().getResourceAsStream(rootDir + fn);
 			super.load(stream);
 			stream.close();
 		} catch (FileNotFoundException e) {
@@ -80,5 +78,5 @@ public class Configuration extends Properties {
 			System.exit(0);
 		}
 		log.debug("Config haas_Location:" + fn);
-	} //end of main
+	} // end of main
 }

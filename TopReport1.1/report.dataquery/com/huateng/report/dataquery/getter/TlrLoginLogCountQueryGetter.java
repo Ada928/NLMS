@@ -20,55 +20,40 @@ import com.huateng.exception.AppException;
 import com.huateng.report.dataquery.bean.TlrLoginLogCount;
 import com.huateng.service.pub.TlrLoginLogService;
 
-public class TlrLoginLogCountQueryGetter  extends BaseGetter{
-
-
+public class TlrLoginLogCountQueryGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		try {
-			CommonFunctions comm =CommonFunctions.getInstance();
+			CommonFunctions comm = CommonFunctions.getInstance();
 			PageQueryResult pageResult = getData();
-		    List<Object[]> list=pageResult.getQueryResult();
-		    List  list1=new ArrayList();
-		    TlrLoginLogCount  tllc=null;
-		    Iterator it=list.iterator();
-		   while(it.hasNext()){
-			     tllc=new TlrLoginLogCount();
-			     Object[] ject=(Object[]) it.next();
-			     tllc.setTlrno((String) ject[0]);
-			     tllc.setBrno((String)ject[1]);
-			     tllc.setCount( Integer.parseInt(ject[2].toString()));
-			     tllc.setEndDate(null!=ject[3]?ject[3].toString():"");
-			     tllc.setStartDate(null!=ject[4]?ject[4].toString():"");
+			List<Object[]> list = pageResult.getQueryResult();
+			List list1 = new ArrayList();
+			TlrLoginLogCount tllc = null;
+			Iterator it = list.iterator();
+			while (it.hasNext()) {
+				tllc = new TlrLoginLogCount();
+				Object[] ject = (Object[]) it.next();
+				tllc.setTlrno((String) ject[0]);
+				tllc.setBrno((String) ject[1]);
+				tllc.setCount(Integer.parseInt(ject[2].toString()));
+				tllc.setEndDate(null != ject[3] ? ject[3].toString() : "");
+				tllc.setStartDate(null != ject[4] ? ject[4].toString() : "");
 
+				list1.add(tllc);
+			}
 
-			 
-
-			     list1.add(tllc);
-		   }
-
-
-
-
-
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list1,
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list1, getResult());
 			getResult().setContent(pageResult.getQueryResult());
-			getResult().getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			getResult().getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			getResult().init();
 			return getResult();
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -80,10 +65,9 @@ public class TlrLoginLogCountQueryGetter  extends BaseGetter{
 		String qbrNo = (String) getCommQueryServletRequest().getParameterMap().get("qbrNo");
 		String startDate = (String) getCommQueryServletRequest().getParameterMap().get("startDate");
 		String endDate = (String) getCommQueryServletRequest().getParameterMap().get("endDate");
-		if(startDate!=null&&endDate!=null){
-			if(DateUtil.comparaDate(endDate,startDate)){
-			ExceptionUtil.throwCommonException("开始日期大于结束日期！",
-					ErrorCode.ERROR_CODE_OVER_HEAD);
+		if (startDate != null && endDate != null) {
+			if (DateUtil.comparaDate(endDate, startDate)) {
+				ExceptionUtil.throwCommonException("开始日期大于结束日期！", ErrorCode.ERROR_CODE_OVER_HEAD);
 			}
 
 		}
@@ -93,6 +77,4 @@ public class TlrLoginLogCountQueryGetter  extends BaseGetter{
 		return tlrLoginLogService.queryTlrLogDetail(pageIndex, pageSize, qtlrNo, qbrNo, startDate, endDate);
 	}
 
-
-	
 }

@@ -37,11 +37,9 @@ public class BOPForDebtBilLoanColVerGetter extends BaseGetter {
 
 			list.add(bopForLoan);
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list,
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);
-			result.getPage().setTotalPage(1); //queryResult.getPageCount(getResult().getPage().getEveryPage())
+			result.getPage().setTotalPage(1); // queryResult.getPageCount(getResult().getPage().getEveryPage())
 
 			result.init();
 			return result;
@@ -49,43 +47,40 @@ public class BOPForDebtBilLoanColVerGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-	private PageQueryResult getData() throws CommonException
-		{
 
-		   ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		   //
-		   int pageSize = getResult().getPage().getEveryPage();
-		   //页码
-		   int pageIndex = getResult().getPage().getCurrentPage();
+	private PageQueryResult getData() throws CommonException {
 
-		   PageQueryCondition queryCondition = new PageQueryCondition();
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		//
+		int pageSize = getResult().getPage().getEveryPage();
+		// 页码
+		int pageIndex = getResult().getPage().getCurrentPage();
 
-		   StringBuffer hql = new StringBuffer("select sc from SysCurrency sc where 1=1 ");
+		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		   String qCurrencyCode = getCommQueryServletRequest().getParameter("qCurrencyCode");
-		   String qCurrencyName = getCommQueryServletRequest().getParameter("qCurrencyName");
+		StringBuffer hql = new StringBuffer("select sc from SysCurrency sc where 1=1 ");
 
-		   if(StringUtils.isNotBlank(qCurrencyCode))
-		   {
-			   hql.append(" and sc.id ='").append(qCurrencyCode).append("'");
-		   }
-		   if(StringUtils.isNotBlank(qCurrencyName))
-		   {
-			   hql.append(" and sc.currencyName like '%").append(qCurrencyCode).append("%'");
-		   }
+		String qCurrencyCode = getCommQueryServletRequest().getParameter("qCurrencyCode");
+		String qCurrencyName = getCommQueryServletRequest().getParameter("qCurrencyName");
 
-		   hql.append(" order by sc.id,sc.currencyName");
-
-		   queryCondition.setPageIndex(pageIndex);
-		   queryCondition.setPageSize(pageSize);
-		   queryCondition.setQueryString(hql.toString());
-
-		   return (PageQueryResult) rootdao.pageQueryByQL(queryCondition);
-
+		if (StringUtils.isNotBlank(qCurrencyCode)) {
+			hql.append(" and sc.id ='").append(qCurrencyCode).append("'");
 		}
+		if (StringUtils.isNotBlank(qCurrencyName)) {
+			hql.append(" and sc.currencyName like '%").append(qCurrencyCode).append("%'");
+		}
+
+		hql.append(" order by sc.id,sc.currencyName");
+
+		queryCondition.setPageIndex(pageIndex);
+		queryCondition.setPageSize(pageSize);
+		queryCondition.setQueryString(hql.toString());
+
+		return (PageQueryResult) rootdao.pageQueryByQL(queryCondition);
+
+	}
 
 }

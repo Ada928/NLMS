@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
  * This is an object that contains data related to the RBS_DS_BI_ACCOUNT table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * Do not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="RBS_DS_BI_ACCOUNT"
+ * @hibernate.class table="RBS_DS_BI_ACCOUNT"
  */
 
-public abstract class BaseRbsDsBiAccount  implements Serializable {
+public abstract class BaseRbsDsBiAccount implements Serializable {
 
 	public static String REF = "RbsDsBiAccount";
 	public static String PROP_CURRENCYCODE = "currencycode";
@@ -38,16 +36,15 @@ public abstract class BaseRbsDsBiAccount  implements Serializable {
 	public static String PROP_CREDITCARDNUMBER = "creditcardnumber";
 	public static String PROP_WORKDATE = "workdate";
 
-
 	// constructors
-	public BaseRbsDsBiAccount () {
+	public BaseRbsDsBiAccount() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseRbsDsBiAccount (java.lang.String id) {
+	public BaseRbsDsBiAccount(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -55,11 +52,8 @@ public abstract class BaseRbsDsBiAccount  implements Serializable {
 	/**
 	 * Constructor for required fields
 	 */
-	public BaseRbsDsBiAccount (
-		java.lang.String id,
-		java.lang.String branchcode,
-		java.lang.String accountnumber,
-		java.lang.String currencycode) {
+	public BaseRbsDsBiAccount(java.lang.String id, java.lang.String branchcode, java.lang.String accountnumber,
+			java.lang.String currencycode) {
 
 		this.setId(id);
 		this.setBranchcode(branchcode);
@@ -68,9 +62,8 @@ public abstract class BaseRbsDsBiAccount  implements Serializable {
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -100,364 +93,363 @@ public abstract class BaseRbsDsBiAccount  implements Serializable {
 	private java.lang.String accountcata;
 	private java.lang.String workdate;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="sequence"
-     *  column="ID"
-     */
-	public java.lang.String getId () {
+	 * 
+	 * @hibernate.id generator-class="sequence" column="ID"
+	 */
+	public java.lang.String getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.String id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
 	/**
 	 * Return the value associated with the column: BRANCHCODE
 	 */
-	public java.lang.String getBranchcode () {
+	public java.lang.String getBranchcode() {
 		return branchcode;
 	}
 
 	/**
 	 * Set the value related to the column: BRANCHCODE
-	 * @param branchcode the BRANCHCODE value
+	 * 
+	 * @param branchcode
+	 *            the BRANCHCODE value
 	 */
-	public void setBranchcode (java.lang.String branchcode) {
+	public void setBranchcode(java.lang.String branchcode) {
 		this.branchcode = branchcode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ACCOUNTNUMBER
 	 */
-	public java.lang.String getAccountnumber () {
+	public java.lang.String getAccountnumber() {
 		return accountnumber;
 	}
 
 	/**
 	 * Set the value related to the column: ACCOUNTNUMBER
-	 * @param accountnumber the ACCOUNTNUMBER value
+	 * 
+	 * @param accountnumber
+	 *            the ACCOUNTNUMBER value
 	 */
-	public void setAccountnumber (java.lang.String accountnumber) {
+	public void setAccountnumber(java.lang.String accountnumber) {
 		this.accountnumber = accountnumber;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CURRENCYCODE
 	 */
-	public java.lang.String getCurrencycode () {
+	public java.lang.String getCurrencycode() {
 		return currencycode;
 	}
 
 	/**
 	 * Set the value related to the column: CURRENCYCODE
-	 * @param currencycode the CURRENCYCODE value
+	 * 
+	 * @param currencycode
+	 *            the CURRENCYCODE value
 	 */
-	public void setCurrencycode (java.lang.String currencycode) {
+	public void setCurrencycode(java.lang.String currencycode) {
 		this.currencycode = currencycode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ACCOUNTSTATUS
 	 */
-	public java.lang.String getAccountstatus () {
+	public java.lang.String getAccountstatus() {
 		return accountstatus;
 	}
 
 	/**
 	 * Set the value related to the column: ACCOUNTSTATUS
-	 * @param accountstatus the ACCOUNTSTATUS value
+	 * 
+	 * @param accountstatus
+	 *            the ACCOUNTSTATUS value
 	 */
-	public void setAccountstatus (java.lang.String accountstatus) {
+	public void setAccountstatus(java.lang.String accountstatus) {
 		this.accountstatus = accountstatus;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: OPENDATE
 	 */
-	public java.lang.String getOpendate () {
+	public java.lang.String getOpendate() {
 		return opendate;
 	}
 
 	/**
 	 * Set the value related to the column: OPENDATE
-	 * @param opendate the OPENDATE value
+	 * 
+	 * @param opendate
+	 *            the OPENDATE value
 	 */
-	public void setOpendate (java.lang.String opendate) {
+	public void setOpendate(java.lang.String opendate) {
 		this.opendate = opendate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CLOSEDATE
 	 */
-	public java.lang.String getClosedate () {
+	public java.lang.String getClosedate() {
 		return closedate;
 	}
 
 	/**
 	 * Set the value related to the column: CLOSEDATE
-	 * @param closedate the CLOSEDATE value
+	 * 
+	 * @param closedate
+	 *            the CLOSEDATE value
 	 */
-	public void setClosedate (java.lang.String closedate) {
+	public void setClosedate(java.lang.String closedate) {
 		this.closedate = closedate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PRODUCTCODE
 	 */
-	public java.lang.String getProductcode () {
+	public java.lang.String getProductcode() {
 		return productcode;
 	}
 
 	/**
 	 * Set the value related to the column: PRODUCTCODE
-	 * @param productcode the PRODUCTCODE value
+	 * 
+	 * @param productcode
+	 *            the PRODUCTCODE value
 	 */
-	public void setProductcode (java.lang.String productcode) {
+	public void setProductcode(java.lang.String productcode) {
 		this.productcode = productcode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ACCOUNTTYPE
 	 */
-	public java.lang.String getAccounttype () {
+	public java.lang.String getAccounttype() {
 		return accounttype;
 	}
 
 	/**
 	 * Set the value related to the column: ACCOUNTTYPE
-	 * @param accounttype the ACCOUNTTYPE value
+	 * 
+	 * @param accounttype
+	 *            the ACCOUNTTYPE value
 	 */
-	public void setAccounttype (java.lang.String accounttype) {
+	public void setAccounttype(java.lang.String accounttype) {
 		this.accounttype = accounttype;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PARTYBRANCHCODE
 	 */
-	public java.lang.String getPartybranchcode () {
+	public java.lang.String getPartybranchcode() {
 		return partybranchcode;
 	}
 
 	/**
 	 * Set the value related to the column: PARTYBRANCHCODE
-	 * @param partybranchcode the PARTYBRANCHCODE value
+	 * 
+	 * @param partybranchcode
+	 *            the PARTYBRANCHCODE value
 	 */
-	public void setPartybranchcode (java.lang.String partybranchcode) {
+	public void setPartybranchcode(java.lang.String partybranchcode) {
 		this.partybranchcode = partybranchcode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PARTYNUMBER
 	 */
-	public java.lang.String getPartynumber () {
+	public java.lang.String getPartynumber() {
 		return partynumber;
 	}
 
 	/**
 	 * Set the value related to the column: PARTYNUMBER
-	 * @param partynumber the PARTYNUMBER value
+	 * 
+	 * @param partynumber
+	 *            the PARTYNUMBER value
 	 */
-	public void setPartynumber (java.lang.String partynumber) {
+	public void setPartynumber(java.lang.String partynumber) {
 		this.partynumber = partynumber;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BOOKBLANACE
 	 */
-	public java.math.BigDecimal getBookblanace () {
+	public java.math.BigDecimal getBookblanace() {
 		return bookblanace;
 	}
 
 	/**
 	 * Set the value related to the column: BOOKBLANACE
-	 * @param bookblanace the BOOKBLANACE value
+	 * 
+	 * @param bookblanace
+	 *            the BOOKBLANACE value
 	 */
-	public void setBookblanace (java.math.BigDecimal bookblanace) {
+	public void setBookblanace(java.math.BigDecimal bookblanace) {
 		this.bookblanace = bookblanace;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: VALUEBALANCE
 	 */
-	public java.math.BigDecimal getValuebalance () {
+	public java.math.BigDecimal getValuebalance() {
 		return valuebalance;
 	}
 
 	/**
 	 * Set the value related to the column: VALUEBALANCE
-	 * @param valuebalance the VALUEBALANCE value
+	 * 
+	 * @param valuebalance
+	 *            the VALUEBALANCE value
 	 */
-	public void setValuebalance (java.math.BigDecimal valuebalance) {
+	public void setValuebalance(java.math.BigDecimal valuebalance) {
 		this.valuebalance = valuebalance;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: REFERENCENUMBER
 	 */
-	public java.lang.String getReferencenumber () {
+	public java.lang.String getReferencenumber() {
 		return referencenumber;
 	}
 
 	/**
 	 * Set the value related to the column: REFERENCENUMBER
-	 * @param referencenumber the REFERENCENUMBER value
+	 * 
+	 * @param referencenumber
+	 *            the REFERENCENUMBER value
 	 */
-	public void setReferencenumber (java.lang.String referencenumber) {
+	public void setReferencenumber(java.lang.String referencenumber) {
 		this.referencenumber = referencenumber;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: REFERENCENAME
 	 */
-	public java.lang.String getReferencename () {
+	public java.lang.String getReferencename() {
 		return referencename;
 	}
 
 	/**
 	 * Set the value related to the column: REFERENCENAME
-	 * @param referencename the REFERENCENAME value
+	 * 
+	 * @param referencename
+	 *            the REFERENCENAME value
 	 */
-	public void setReferencename (java.lang.String referencename) {
+	public void setReferencename(java.lang.String referencename) {
 		this.referencename = referencename;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CREDITCARDNUMBER
 	 */
-	public java.lang.String getCreditcardnumber () {
+	public java.lang.String getCreditcardnumber() {
 		return creditcardnumber;
 	}
 
 	/**
 	 * Set the value related to the column: CREDITCARDNUMBER
-	 * @param creditcardnumber the CREDITCARDNUMBER value
+	 * 
+	 * @param creditcardnumber
+	 *            the CREDITCARDNUMBER value
 	 */
-	public void setCreditcardnumber (java.lang.String creditcardnumber) {
+	public void setCreditcardnumber(java.lang.String creditcardnumber) {
 		this.creditcardnumber = creditcardnumber;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LOCALEXTENTION
 	 */
-	public java.math.BigDecimal getLocalextention () {
+	public java.math.BigDecimal getLocalextention() {
 		return localextention;
 	}
 
 	/**
 	 * Set the value related to the column: LOCALEXTENTION
-	 * @param localextention the LOCALEXTENTION value
+	 * 
+	 * @param localextention
+	 *            the LOCALEXTENTION value
 	 */
-	public void setLocalextention (java.math.BigDecimal localextention) {
+	public void setLocalextention(java.math.BigDecimal localextention) {
 		this.localextention = localextention;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BOPBRANCHCODE
 	 */
-	public java.lang.String getBopbranchcode () {
+	public java.lang.String getBopbranchcode() {
 		return bopbranchcode;
 	}
 
 	/**
 	 * Set the value related to the column: BOPBRANCHCODE
-	 * @param bopbranchcode the BOPBRANCHCODE value
+	 * 
+	 * @param bopbranchcode
+	 *            the BOPBRANCHCODE value
 	 */
-	public void setBopbranchcode (java.lang.String bopbranchcode) {
+	public void setBopbranchcode(java.lang.String bopbranchcode) {
 		this.bopbranchcode = bopbranchcode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LIMITTYPE
 	 */
-	public java.lang.String getLimittype () {
+	public java.lang.String getLimittype() {
 		return limittype;
 	}
 
 	/**
 	 * Set the value related to the column: LIMITTYPE
-	 * @param limittype the LIMITTYPE value
+	 * 
+	 * @param limittype
+	 *            the LIMITTYPE value
 	 */
-	public void setLimittype (java.lang.String limittype) {
+	public void setLimittype(java.lang.String limittype) {
 		this.limittype = limittype;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ACCOUNTSTAT
 	 */
-	public java.lang.String getAccountstat () {
+	public java.lang.String getAccountstat() {
 		return accountstat;
 	}
 
 	/**
 	 * Set the value related to the column: ACCOUNTSTAT
-	 * @param accountstat the ACCOUNTSTAT value
+	 * 
+	 * @param accountstat
+	 *            the ACCOUNTSTAT value
 	 */
-	public void setAccountstat (java.lang.String accountstat) {
+	public void setAccountstat(java.lang.String accountstat) {
 		this.accountstat = accountstat;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ACCOUNTCATA
 	 */
-	public java.lang.String getAccountcata () {
+	public java.lang.String getAccountcata() {
 		return accountcata;
 	}
 
 	/**
 	 * Set the value related to the column: ACCOUNTCATA
-	 * @param accountcata the ACCOUNTCATA value
+	 * 
+	 * @param accountcata
+	 *            the ACCOUNTCATA value
 	 */
-	public void setAccountcata (java.lang.String accountcata) {
+	public void setAccountcata(java.lang.String accountcata) {
 		this.accountcata = accountcata;
 	}
 
@@ -469,19 +461,24 @@ public abstract class BaseRbsDsBiAccount  implements Serializable {
 		this.workdate = workdate;
 	}
 
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.RbsDsBiAccount)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.RbsDsBiAccount))
+			return false;
 		else {
 			resource.bean.report.RbsDsBiAccount rbsDsBiAccount = (resource.bean.report.RbsDsBiAccount) obj;
-			if (null == this.getId() || null == rbsDsBiAccount.getId()) return false;
-			else return (this.getId().equals(rbsDsBiAccount.getId()));
+			if (null == this.getId() || null == rbsDsBiAccount.getId())
+				return false;
+			else
+				return (this.getId().equals(rbsDsBiAccount.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -490,10 +487,8 @@ public abstract class BaseRbsDsBiAccount  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

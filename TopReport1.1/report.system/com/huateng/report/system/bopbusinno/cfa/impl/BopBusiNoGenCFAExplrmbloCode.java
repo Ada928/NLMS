@@ -32,18 +32,19 @@ public class BopBusiNoGenCFAExplrmbloCode implements IGenBopBusinessNo {
 		BopCfaExplrmbloDs explRmbLo = (BopCfaExplrmbloDs) obj;
 		String code = explRmbLo.getExplrmblono();
 
-		if (code.indexOf(paramValue)>=0) {
+		if (code.indexOf(paramValue) >= 0) {
 			// 更新外汇质押人民币贷款编号
-			String newcode = ReportUtils.getCfaCode(paramValue, busiType, appType,fileType, workDate, code);
+			String newcode = ReportUtils.getCfaCode(paramValue, busiType, appType, fileType, workDate, code);
 			explRmbLo.setExplrmblono(newcode);
 			explRmbLo = (BopCfaExplrmbloDs) rootdao.saveOrUpdate(explRmbLo);
 		}
 		// 更新变动编号
 		String recId = explRmbLo.getId();
-		List list = rootdao.queryByQL2List(" from BopCfaExplrmbloDs where filler1='" + recId + "' and explrmblono<>'"+explRmbLo.getExplrmblono()+"'");
+		List list = rootdao.queryByQL2List(" from BopCfaExplrmbloDs where filler1='" + recId + "' and explrmblono<>'"
+				+ explRmbLo.getExplrmblono() + "'");
 		for (int i = 0; i < list.size(); i++) {
 			BopCfaExplrmbloDs exp = (BopCfaExplrmbloDs) list.get(i);
-			if (exp.getExplrmblono().indexOf(paramValue)<0) {
+			if (exp.getExplrmblono().indexOf(paramValue) < 0) {
 				continue;
 			}
 			exp.setExplrmblono(explRmbLo.getExplrmblono());
@@ -52,11 +53,13 @@ public class BopBusiNoGenCFAExplrmbloCode implements IGenBopBusinessNo {
 		// 产生变动序号
 		int seq = 1;
 		String seqTemp = ReportUtils.getTempStr(null, 4);
-		Object maxObj = rootdao.queryByHqlMax("select max(changeno) from BopCfaExplrmbloDs where  filler1='" + recId + "' and  changeno<>'" + seqTemp + "'");
+		Object maxObj = rootdao.queryByHqlMax("select max(changeno) from BopCfaExplrmbloDs where  filler1='" + recId
+				+ "' and  changeno<>'" + seqTemp + "'");
 		if (maxObj != null) {
 			seq = Integer.parseInt(maxObj.toString()) + 1;
 		}
-		List seqList = rootdao.queryByQL2List(" from BopCfaExplrmbloDs where filler1='" + recId + "' and changeno='" + seqTemp + "' order by crtTm");
+		List seqList = rootdao.queryByQL2List(
+				" from BopCfaExplrmbloDs where filler1='" + recId + "' and changeno='" + seqTemp + "' order by crtTm");
 		for (int i = 0; i < seqList.size(); i++) {
 			BopCfaExplrmbloDs ds = (BopCfaExplrmbloDs) seqList.get(i);
 			if (ds.getChangeno().indexOf(paramValue) < 0) {

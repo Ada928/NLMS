@@ -35,9 +35,8 @@ public class PreloanLoginAction extends BaseAction {
 	 */
 	private static final Log logger = LogFactory.getLog(ErrorCodeUtil.class);
 
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		if (logger.isDebugEnabled()) {
 			logger.debug("execute(ActionMapping, ActionForm, HttpServletRequest, HttpServletResponse) - start"); //$NON-NLS-1$
 		}
@@ -55,7 +54,8 @@ public class PreloanLoginAction extends BaseAction {
 			GlobalInfo.setCurrentInstance(globalInfo);
 			// 第二步：把数据放到对象内
 			operContext.setAttribute(LoginManagerOP.IN_TLR_NO, "99999999");
-			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
+			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD",
+					SystemConstant.DEFAULT_PASSWORD);
 			operContext.setAttribute(LoginManagerOP.IN_TLR_PWD, sysDefaultPwd);
 			operContext.setAttribute(LoginManagerOP.IN_GLOBALINFO, globalInfo);
 			operContext.setAttribute(LoginManagerOP.CONTEXT_PATH, request.getContextPath());
@@ -63,20 +63,19 @@ public class PreloanLoginAction extends BaseAction {
 			OPCaller.call(LoginManagerOP.ID, operContext);
 			// 第四步：从返回对象中获取返回值
 			UserSessionInfo userSessionInfo = new UserSessionInfo();
-			userSessionInfo = (UserSessionInfo) operContext
-					.getAttribute(LoginManagerOP.OUT_USER_SESSION_INFO);
+			userSessionInfo = (UserSessionInfo) operContext.getAttribute(LoginManagerOP.OUT_USER_SESSION_INFO);
 			GlobalInfo gi = new GlobalInfo();
 			gi = (GlobalInfo) operContext.getAttribute(LoginManagerOP.OUT_GLOBALINFO_INFO);
 
 			// 第五步：从返回对象中获取返回值
-			setSessionObject(request, LoginManagerOP.OUT_USER_SESSION_INFO,userSessionInfo);
+			setSessionObject(request, LoginManagerOP.OUT_USER_SESSION_INFO, userSessionInfo);
 			setSessionObject(request, GlobalInfo.KEY_GLOBAL_INFO, gi);
 			setSessionObject(request, SystemConstant.WEB_SESSION_ID, this.getSessionID(request));
-			//菜单
+			// 菜单
 			StringBuffer tree = new StringBuffer();
 			StringBuffer menu = new StringBuffer();
-			tree = (StringBuffer)operContext.getAttribute(LoginManagerOP.OUT_TREE);
-			menu = (StringBuffer)operContext.getAttribute(LoginManagerOP.OUT_MENU);
+			tree = (StringBuffer) operContext.getAttribute(LoginManagerOP.OUT_TREE);
+			menu = (StringBuffer) operContext.getAttribute(LoginManagerOP.OUT_MENU);
 
 			setSessionObject(request, "tree", tree);
 			setSessionObject(request, "menu", menu);

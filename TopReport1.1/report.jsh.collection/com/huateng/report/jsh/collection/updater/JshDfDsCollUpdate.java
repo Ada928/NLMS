@@ -22,29 +22,28 @@ import com.huateng.report.jsh.collection.operation.JshDfDsOperation;
  * 外汇账户内结汇补录
  */
 public class JshDfDsCollUpdate extends BaseUpdate {
-	
+
 	private static final String DATASET_ID = "JshDfDsCollInfo";
 	private static final String PREFIX = "BASIC_CMD_";
-	
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
 		// TODO Auto-generated method stub
-		//返回对象
+		// 返回对象
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-		//结果集对象
+		// 结果集对象
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-		//更新对象
+		// 更新对象
 		MtsJshDefgDs mtsJshDefgDs = new MtsJshDefgDs();
-		//Operation参数
+		// Operation参数
 		OperationContext context = new OperationContext();
-		if(updateResultBean.hasNext()) {
+		if (updateResultBean.hasNext()) {
 			Map map = updateResultBean.next();
 			String op = updateResultBean.getParameter("op");
 			BaseUpdate.mapToObject(mtsJshDefgDs, map);
-			if(StringUtils.isNotBlank(op))
-			context.setAttribute(JshDfDsOperation.CMD, PREFIX+op.toUpperCase());
+			if (StringUtils.isNotBlank(op))
+				context.setAttribute(JshDfDsOperation.CMD, PREFIX + op.toUpperCase());
 			context.setAttribute(JshDfDsOperation.IN_PARAM, mtsJshDefgDs);
 			OPCaller.call(JshDfDsOperation.ID, context);
 		}

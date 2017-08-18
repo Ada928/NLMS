@@ -18,12 +18,12 @@ import com.huateng.ebank.framework.util.ftp.FTPClientHelper;
  * @author <a href="mailto:liu_wen@huateng.com">Liu Wen</a>
  * @version $Revision: 1.1 $
  * @date 2005-7-28
- *  
- * Report ftp callback.
+ * 
+ *       Report ftp callback.
  */
 public class ReportFTPCallback implements FTPClientCallback {
 	private String buf;
-	
+
 	public void doFtp(InputStream inputStream) throws Exception {
 		ByteArrayOutputStream writer = new ByteArrayOutputStream();
 		while (true) {
@@ -44,30 +44,30 @@ public class ReportFTPCallback implements FTPClientCallback {
 	public String getBuf() {
 		return buf;
 	}
+
 	/**
-	 * @param buf The buf to set.
+	 * @param buf
+	 *            The buf to set.
 	 */
 	public void setBuf(String buf) {
 		this.buf = buf;
 	}
-	
-	
-	public static void main(String[] argv){
-		try{
+
+	public static void main(String[] argv) {
+		try {
 			FTPClientHelper helper = new FTPClientHelper();
 			helper.setHostname("10.102.14.75");
 			helper.setUserName("gd");
 			helper.setPassword("gd");
 			helper.setTimeout(30000);
-			
+
 			ReportFTPCallback callback = new ReportFTPCallback();
 			helper.getFile("/home/gd/temp/bctl1.txt", callback);
-			
+
 			System.out.println("result:");
 			System.out.println(callback.getBuf());
-			
-			
-		}catch(Exception ex){
+
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}

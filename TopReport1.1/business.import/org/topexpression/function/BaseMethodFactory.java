@@ -15,22 +15,18 @@ public class BaseMethodFactory {
 	 */
 	public final Map<String, IMethod> methodMap = new HashMap<String, IMethod>();
 
-	
-	public boolean add(IMethod methodImpl)
-	{
-		if(methodMap.containsKey(methodImpl.getMethodName()))
+	public boolean add(IMethod methodImpl) {
+		if (methodMap.containsKey(methodImpl.getMethodName()))
 			return false;
-		else
-		{
+		else {
 			methodMap.put(methodImpl.getMethodName(), methodImpl);
 			return true;
-		}	
+		}
 	}
-	
-	public IMethod get(String methodName)
-	{
-		if(!methodMap.containsKey(methodName))
-			throw new IllegalStateException("尚未实现的方法："+methodName);
+
+	public IMethod get(String methodName) {
+		if (!methodMap.containsKey(methodName))
+			throw new IllegalStateException("尚未实现的方法：" + methodName);
 		return methodMap.get(methodName);
 	}
 }

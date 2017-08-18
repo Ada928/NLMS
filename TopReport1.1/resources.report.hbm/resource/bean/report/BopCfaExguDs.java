@@ -4,62 +4,44 @@ import java.util.ArrayList;
 
 import resource.bean.report.base.BaseBopCfaExguDs;
 
-
-
-
-
 public class BopCfaExguDs extends BaseBopCfaExguDs {
 	private static final long serialVersionUID = 1L;
-	private java.util.List  beneficiarys = new ArrayList<Beneficiary>() ;//受益人列表
-	private java.util.List guarantores = new ArrayList<Guarantor>();//被担保人列表
-	private java.lang.String  beneficiary ;//受益人
-	private java.lang.String guarantore ;//被担保人
-//担保申请人
+	private java.util.List beneficiarys = new ArrayList<Beneficiary>();// 受益人列表
+	private java.util.List guarantores = new ArrayList<Guarantor>();// 被担保人列表
+	private java.lang.String beneficiary;// 受益人
+	private java.lang.String guarantore;// 被担保人
+	// 担保申请人
 	private java.lang.String guappnamen;
 	private java.lang.String guappcode;
 	private java.lang.String guappname;
-//受益人
+	// 受益人
 	private java.lang.String bencode;
 	private java.lang.String bename;
 	private java.lang.String benamen;
 
-	/*[CONSTRUCTOR MARKER BEGIN]*/
-	public BopCfaExguDs () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public BopCfaExguDs() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BopCfaExguDs (java.lang.String id) {
+	public BopCfaExguDs(java.lang.String id) {
 		super(id);
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public BopCfaExguDs (
-		java.lang.String id,
-		java.lang.String apptype,
-		java.lang.String currentfile) {
+	public BopCfaExguDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile) {
 
-		super (
-			id,
-			apptype,
-			currentfile);
+		super(id, apptype, currentfile);
 	}
-
-
 
 	public java.lang.String getGuappname() {
 		return guappname;
 	}
-
-
-
-
-
-
 
 	public void setGuappname(java.lang.String guappname) {
 		this.guappname = guappname;
@@ -137,10 +119,6 @@ public class BopCfaExguDs extends BaseBopCfaExguDs {
 		this.guarantore = guarantore;
 	}
 
-
-
-
-/*[CONSTRUCTOR MARKER END]*/
-
+	/* [CONSTRUCTOR MARKER END] */
 
 }

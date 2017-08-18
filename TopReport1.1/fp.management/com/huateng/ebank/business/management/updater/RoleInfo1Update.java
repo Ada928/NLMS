@@ -28,31 +28,24 @@ import com.huateng.view.pub.FunctionInfoView;
  */
 public class RoleInfo1Update extends BaseUpdate {
 
-
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		// TODO Auto-generated method stub
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("parammng_RoleInfo1");
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("parammng_RoleInfo1");
 			List<FunctionInfoView> updateList = new ArrayList<FunctionInfoView>();
-			
+
 			while (updateResultBean.hasNext()) {
 				FunctionInfoView functionInfoView = new FunctionInfoView();
 				Map map = updateResultBean.next();
-				functionInfoView.setSelect(Boolean.valueOf(String.valueOf(map
-						.get("select"))).booleanValue());
+				functionInfoView.setSelect(Boolean.valueOf(String.valueOf(map.get("select"))).booleanValue());
 				functionInfoView.setFunccode((String) map.get("funccode"));
 				functionInfoView.setFuncname((String) map.get("funcname"));
-				functionInfoView.setRoleid(Integer.parseInt((String) map
-						.get("roleid")));
+				functionInfoView.setRoleid(Integer.parseInt((String) map.get("roleid")));
 
-			
 				switch (updateResultBean.getRecodeState()) {
-				
+
 				case UpdateResultBean.MODIFY:
 					updateList.add(functionInfoView);
 					break;
@@ -61,16 +54,15 @@ public class RoleInfo1Update extends BaseUpdate {
 				}
 			}
 			OperationContext oc = new OperationContext();
-			
+
 			oc.setAttribute(RoleInfoOperationNew.IN_UPDATE, updateList);
 			oc.setAttribute(RoleInfoOperationNew.CMD, new String("UPDATE_FUNC"));
 
 			OPCaller.call("parammng.RoleInfoOperationNew", oc);
 			return updateReturnBean;
-		
+
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

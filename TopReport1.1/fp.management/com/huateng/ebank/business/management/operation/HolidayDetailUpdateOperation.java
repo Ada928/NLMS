@@ -28,24 +28,25 @@ public class HolidayDetailUpdateOperation extends BaseOperation {
 	@Override
 	public void execute(OperationContext context) throws CommonException {
 
-		//add by mengying.wang 20090819 jira:1537 begin
+		// add by mengying.wang 20090819 jira:1537 begin
 		/* 此处加入权限控制 */
-//		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-//		String brClass = gi.getBrhClass();
-//		if ( brClass.equalsIgnoreCase(SystemConstant.BRCODE_CLASS_HEAD) != true ){
-//			ExceptionUtil.throwAppException("非总行级操作员！不可修改参数", ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
-//		}
-		//add by mengying.wang 20090819 jira:1537 end
+		// GlobalInfo gi = GlobalInfo.getCurrentInstance();
+		// String brClass = gi.getBrhClass();
+		// if ( brClass.equalsIgnoreCase(SystemConstant.BRCODE_CLASS_HEAD) !=
+		// true ){
+		// ExceptionUtil.throwAppException("非总行级操作员！不可修改参数",
+		// ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
+		// }
+		// add by mengying.wang 20090819 jira:1537 end
 
-
-		String year = (String)context.getAttribute(INPUT_YEAR);
-		String holidayDef = (String)context.getAttribute(INPUT_HOLIDAYDEF);
-		String cmd = (String)context.getAttribute(INPUT_CMD);
-		if( cmd.equals(INPUT_CMD_UPDATE)){
-			HolidayService.getInstance().updateHoliday(year,holidayDef);
-		}else if(cmd.equals(INPUT_CMD_ADD)){
+		String year = (String) context.getAttribute(INPUT_YEAR);
+		String holidayDef = (String) context.getAttribute(INPUT_HOLIDAYDEF);
+		String cmd = (String) context.getAttribute(INPUT_CMD);
+		if (cmd.equals(INPUT_CMD_UPDATE)) {
+			HolidayService.getInstance().updateHoliday(year, holidayDef);
+		} else if (cmd.equals(INPUT_CMD_ADD)) {
 			holidayDef = HolidayService.getInstance().getWeekendInfo(new Integer(year).intValue());
-			HolidayService.getInstance().addHoliday(year,holidayDef);
+			HolidayService.getInstance().addHoliday(year, holidayDef);
 		}
 	}
 

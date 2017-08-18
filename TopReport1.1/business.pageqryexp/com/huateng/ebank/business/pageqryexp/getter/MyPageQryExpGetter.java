@@ -20,20 +20,16 @@ public class MyPageQryExpGetter extends BaseGetter {
 		try {
 			PageQueryResult pageResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
@@ -46,8 +42,8 @@ public class MyPageQryExpGetter extends BaseGetter {
 		int pageIndex = getResult().getPage().getCurrentPage();
 
 		MyPageQryExpService service = new MyPageQryExpService();
-		StringBuffer hql = new StringBuffer(
-				"select tsk from TblCSFileExportTskInf tsk where tskStartOp = '" + GlobalInfo.getCurrentInstance().getTlrno() + "' ");
+		StringBuffer hql = new StringBuffer("select tsk from TblCSFileExportTskInf tsk where tskStartOp = '"
+				+ GlobalInfo.getCurrentInstance().getTlrno() + "' ");
 
 		String qFileNm = getCommQueryServletRequest().getParameter("qFileNm");
 		String qTskStat = getCommQueryServletRequest().getParameter("qTskStat");

@@ -5,9 +5,9 @@ import java.util.List;
 
 public class ReportBeanIn {
 	private String beanId;
-	private String basePath;//d:/123/
-	private String filePath;//send/cfaxxxtt01/
-	private String fileName;//cfaxxxtt01.xml
+	private String basePath;// d:/123/
+	private String filePath;// send/cfaxxxtt01/
+	private String fileName;// cfaxxxtt01.xml
 	private String appType;
 	private String currentFile;
 	private String inOut;
@@ -15,8 +15,6 @@ public class ReportBeanIn {
 	private String brNo;
 	private String fileDate;
 	private String busiType;
-
-
 
 	private List records = new ArrayList();
 

@@ -17,36 +17,30 @@ import com.huateng.exception.AppException;
 public class WorkflowParamEntryQueryGetter extends BaseGetter {
 
 	@Override
-	public Result call() throws AppException{
-		try
-		{
+	public Result call() throws AppException {
+		try {
 
-		PageQueryResult pageResult = getData();
-		ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
-		result.setContent(pageResult.getQueryResult());
-		result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
-		result.init();
-		return result;
-		}catch(AppException appEx){
+			PageQueryResult pageResult = getData();
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
+			result.setContent(pageResult.getQueryResult());
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
+			result.init();
+			return result;
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
 
-	protected PageQueryResult getData() throws CommonException
-    {
+	protected PageQueryResult getData() throws CommonException {
 		OperationContext oc = new OperationContext();
 
-//		PageQueryResult pageQueryResult = new PageQueryResult();
+		// PageQueryResult pageQueryResult = new PageQueryResult();
 
-		String procName = (String)getCommQueryServletRequest().getParameterMap().get("procNameQuery");
+		String procName = (String) getCommQueryServletRequest().getParameterMap().get("procNameQuery");
 
 		WorkflowParamBean workflowParamBean = new WorkflowParamBean();
 		workflowParamBean.setProcName(procName);
@@ -59,9 +53,8 @@ public class WorkflowParamEntryQueryGetter extends BaseGetter {
 		oc.setAttribute(WorkflowParamEntryQueryOperation.IN_PARAM_PAGEINDEX, PageIndex);
 		OPCaller.call("Management.WorkflowParamEntryQueryOperation", oc);
 
-		PageQueryResult pageResult = (PageQueryResult) oc
-				.getAttribute(RouteBindingEntryQueryOperation.OUT_PARAM);
+		PageQueryResult pageResult = (PageQueryResult) oc.getAttribute(RouteBindingEntryQueryOperation.OUT_PARAM);
 		return pageResult;
 
-    }
+	}
 }

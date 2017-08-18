@@ -33,20 +33,16 @@ public class OperMngRoleInfoComGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
@@ -58,7 +54,7 @@ public class OperMngRoleInfoComGetter extends BaseGetter {
 		String flag = (String) getCommQueryServletRequest().getParameterMap().get("flag");
 		String tskId = (String) getCommQueryServletRequest().getParameter("tskId");
 		String st = (String) getCommQueryServletRequest().getParameter("st");
-		
+
 		List tlrRoleViewList = new ArrayList();
 		List<Integer> roleIds = new ArrayList<Integer>();
 		if (flag.equals("0")) {
@@ -83,19 +79,20 @@ public class OperMngRoleInfoComGetter extends BaseGetter {
 				pageQueryResult.setTotalCount(0);
 			}
 			pageQueryResult.setQueryResult(tlrRoleViewList);
-		} 
-		if(flag.equals("1")) {
-			ReportTaskUtil rt=new ReportTaskUtil();
-			SysTaskLog  systasklog=ReportShowDetailService.getInstance().selectTaskLog(tskId);
+		}
+		if (flag.equals("1")) {
+			ReportTaskUtil rt = new ReportTaskUtil();
+			SysTaskLog systasklog = ReportShowDetailService.getInstance().selectTaskLog(tskId);
 			TlrInfoAuditBean OldValue = null;
-			if(systasklog.getOldVal1()!=null){
-				OldValue=(TlrInfoAuditBean)rt.getOldObjectByTaskLog(systasklog);	  
+			if (systasklog.getOldVal1() != null) {
+				OldValue = (TlrInfoAuditBean) rt.getOldObjectByTaskLog(systasklog);
 			}
-			if(OldValue != null){
+			if (OldValue != null) {
 				for (TlrRoleRel rr : OldValue.getRoleRellist()) {
 					roleIds.add(rr.getRoleId());
 				}
-				List roleList = DAOUtils.getRoleInfoDAO().queryByCondition(" po.id in" + ReportUtils.toInString(roleIds));
+				List roleList = DAOUtils.getRoleInfoDAO()
+						.queryByCondition(" po.id in" + ReportUtils.toInString(roleIds));
 				// 对以有的操作员岗位在岗位列表中显示
 				for (int i = 0; i < roleList.size(); i++) {
 					RoleInfo roleInfo = (RoleInfo) roleList.get(i);

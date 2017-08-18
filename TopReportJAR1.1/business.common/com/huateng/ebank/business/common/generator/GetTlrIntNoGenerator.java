@@ -27,7 +27,7 @@ public class GetTlrIntNoGenerator extends BaseGenerator {
 	@Override
 	public String gen(Object arg0) throws CommonException {
 		// TODO Auto-generated method stub
-		return arg0.toString() + DataFormat.intToString(CommonService.getInstance().getSeqno(
-				SystemConstant.VALUE_NO_TLRINTNO,SystemConstant.VALUE_INDEX), 8);
+		return arg0.toString() + DataFormat.intToString(
+				CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_TLRINTNO, SystemConstant.VALUE_INDEX), 8);
 	}
 }

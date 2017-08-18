@@ -83,8 +83,8 @@ public class RepFileErrService {
 		return tempFileName.toString();
 	}
 
-
-	public String importRepFile(String repPackName,String srcpath,ReportFeedBackBean bean,String errSign,String tlrNo){
+	public String importRepFile(String repPackName, String srcpath, ReportFeedBackBean bean, String errSign,
+			String tlrNo) {
 		String ret = null;
 		// 2.读取TT文件
 		String repTtFileName = repPackName + ".xml";
@@ -110,8 +110,8 @@ public class RepFileErrService {
 		return ret;
 	}
 
-	public String repFileDownAndImportByBop(String repPackName,ITranslate translate, ReportFeedBackBean bean, String srcpath,
-			String destpath, String errSign, String tlrNo) throws CommonException {
+	public String repFileDownAndImportByBop(String repPackName, ITranslate translate, ReportFeedBackBean bean,
+			String srcpath, String destpath, String errSign, String tlrNo) throws CommonException {
 		if (translate == null) {
 			ExceptionUtil.throwCommonException("服务器连接异常！");
 		}
@@ -151,7 +151,7 @@ public class RepFileErrService {
 						det.setApptype(reportFeedBackInfo.getAppType());
 						det.setCurrentfile(reportFeedBackInfo.getCurrentFile());
 						det.setRepErrType(ReportEnum.REPORT_ERR_TYPE.REC_ERR.value);
-						det.setBussno(rec.getBussno()==null?rec.getRptno():rec.getBussno());
+						det.setBussno(rec.getBussno() == null ? rec.getRptno() : rec.getBussno());
 						det.setErrfield(errField.getErrField());
 						det.setErrfieldcn(errField.getErrFieldCn());
 						det.setErrdesc(errField.getErrDesc());
@@ -185,8 +185,8 @@ public class RepFileErrService {
 
 		String tableName = ReportUtils.getBopDsBeanName(retSubFileInfo.getApptype(), retSubFileInfo.getCurrentfile());
 		if (tableName != null) {
-			SubFileConf conf = ReportUtils.getSubFileConfByBopPk(retSubFileInfo.getApptype(), retSubFileInfo
-					.getCurrentfile());
+			SubFileConf conf = ReportUtils.getSubFileConfByBopPk(retSubFileInfo.getApptype(),
+					retSubFileInfo.getCurrentfile());
 			List list = rootDao.queryByQL2List(hql.toString().replaceAll(HQL_TABLENAME, tableName));
 			for (int i = 0; i < list.size(); i++) {
 				Object obj = list.get(i);
@@ -225,8 +225,8 @@ public class RepFileErrService {
 						} else {
 							PropertyUtils.setNestedProperty(obj, "recStatus", TopReportConstants.REPORT_RECSTATUS_01);// 可编辑
 						}
-						PropertyUtils
-								.setNestedProperty(obj, "subSuccess", TopReportConstants.REPORT_IS_SUB_SUCCESS_YES);// 已成功上报过
+						PropertyUtils.setNestedProperty(obj, "subSuccess",
+								TopReportConstants.REPORT_IS_SUB_SUCCESS_YES);// 已成功上报过
 						PropertyUtils.setNestedProperty(obj, "repStatus", TopReportConstants.REPORT_REPSTATUS_01);// 回执成功
 					}
 					remark = "总记录数：" + retSubFileInfo.getTotalrecords() + ",错误记录数:" + errRecords.size();
@@ -236,18 +236,17 @@ public class RepFileErrService {
 				rootDao.saveOrUpdate(obj);
 
 				// 写入数据处理日志
-				ReportCommonService.getInstance()
-						.saveBiDataProcessLog(retSubFileInfo.getApptype(), retSubFileInfo.getCurrentfile(), recId,
-								bussNo, TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_LOADBACK,
-								retSubFileInfo.getRepErrType(), remark);
+				ReportCommonService.getInstance().saveBiDataProcessLog(retSubFileInfo.getApptype(),
+						retSubFileInfo.getCurrentfile(), recId, bussNo,
+						TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_LOADBACK, retSubFileInfo.getRepErrType(),
+						remark);
 			}
 		}
 
 	}
 
-	public void updateSubFileInfoByFeedBack(ReportFeedBackBean bean, String errSign, String srcpath,
-			String repPackName, String repTtFileName, ReportFeedBackCtrl reportFeedBackCtrl, String tlrNo)
-			throws Exception {
+	public void updateSubFileInfoByFeedBack(ReportFeedBackBean bean, String errSign, String srcpath, String repPackName,
+			String repTtFileName, ReportFeedBackCtrl reportFeedBackCtrl, String tlrNo) throws Exception {
 		ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
 		XmlBeanParser parser = new XmlBeanParser();
 		// 1.查询包相关文件列表
@@ -263,14 +262,14 @@ public class RepFileErrService {
 			info.setIsImpRep(ReportEnum.REPORT_IS.YES.value);
 
 			// 控制文件
-			SubFileConf confControl = ReportCommonService.getInstance().getSubFileConfByAppTypeByControl(bean.getBusiType(), bean.getAppType());
+			SubFileConf confControl = ReportCommonService.getInstance()
+					.getSubFileConfByAppTypeByControl(bean.getBusiType(), bean.getAppType());
 			if (confControl == null) {
 				ExceptionUtil.throwCommonException(bean.getAppType() + "控制文件未设置!");
 			}
 			String controlFileTypeName = confControl.getId().getFileType();// 控制文件类型名称TT/T
 
-			if (info.getCurrentfile().equals(controlFileTypeName)
-					&& tmpFileName.equals(repTtFileName)) {
+			if (info.getCurrentfile().equals(controlFileTypeName) && tmpFileName.equals(repTtFileName)) {
 				info.setRepErrType(ReportEnum.REPORT_ERR_TYPE.NO_ERR.value);
 				info.setRepFileName(repTtFileName);
 				info.setFalrecords(reportFeedBackCtrl.getFiles().size());

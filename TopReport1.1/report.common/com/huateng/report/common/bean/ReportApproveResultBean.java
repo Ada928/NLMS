@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class ReportApproveResultBean implements Serializable {
 
 	private static final long serialVersionUID = 5020601688330791522L;
-	
+
 	private String approveStatus;
-	
+
 	private String approveResult;
 
 	public String getApproveStatus() {

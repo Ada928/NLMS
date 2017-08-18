@@ -1,44 +1,42 @@
 package com.huateng.report.bean;
 
-
-
 /**
  * 
- *外债信息表、债权人信息表bean
- * @author wenhao.chen
- * @version 1.0
- * 2012-8-30
+ * 外债信息表、债权人信息表bean
  * 
- * */
+ * @author wenhao.chen
+ * @version 1.0 2012-8-30
+ * 
+ */
 
 public class BopForDebtFeiOrgSave {
-	
+
 	private java.lang.String id;
 	// fields
-	private java.lang.String apptype;//应用类型
-	private java.lang.String currentfile;//文件类型
-	private java.lang.String exdebtcode; //外债编号
-	private java.lang.String debtorcode; //债务人代码
-	private java.lang.String debtype; //债务类型
+	private java.lang.String apptype;// 应用类型
+	private java.lang.String currentfile;// 文件类型
+	private java.lang.String exdebtcode; // 外债编号
+	private java.lang.String debtorcode; // 债务人代码
+	private java.lang.String debtype; // 债务类型
 	private java.lang.String debtyperema;
-	private java.lang.String contractdate;//签约日期
-	private java.lang.String valuedate; //起息日
-	private java.lang.String contractcurr; //签约币种
-	private java.math.BigDecimal contractamount; //签约金额
-	private java.lang.String maturity;   //到期日
-	private java.lang.String floatrate; //是否浮动利率
-	private java.math.BigDecimal anninrate; //年化利率值
-	private java.lang.String inprterm; //是否有利息本金化条款
-	private java.lang.String spapfeboindex; //是否经外汇局特批不需占用指标
+	private java.lang.String contractdate;// 签约日期
+	private java.lang.String valuedate; // 起息日
+	private java.lang.String contractcurr; // 签约币种
+	private java.math.BigDecimal contractamount; // 签约金额
+	private java.lang.String maturity; // 到期日
+	private java.lang.String floatrate; // 是否浮动利率
+	private java.math.BigDecimal anninrate; // 年化利率值
+	private java.lang.String inprterm; // 是否有利息本金化条款
+	private java.lang.String spapfeboindex; // 是否经外汇局特批不需占用指标
 	private java.lang.String limitType;
-	private java.lang.String remark; //备注
-	private java.lang.String isincode;// 
-	
+	private java.lang.String remark; // 备注
+	private java.lang.String isincode;//
+
 	private java.lang.String lstUpdTlr;
 	private java.util.Date lstUpdTm;
 	private java.util.Date crtTm;
 	private java.lang.String filler1;
-	
+
 	private java.lang.String brNo;
 	private java.lang.String actiontype;
 	private java.lang.String actiondesc;
@@ -49,23 +47,23 @@ public class BopForDebtFeiOrgSave {
 	private java.lang.String workDate;
 	private java.lang.String subSuccess;
 	private java.lang.String buscode;
-	
+
 	private java.lang.String inltcabuscode;
 	private java.lang.String appcode;
 	private java.lang.String appname;
-	
+
 	private java.lang.String creditorid;
 
 	private java.lang.String recId;
 	// fields
-	private java.lang.String creditorcode; //债权人代码
-	private java.lang.String creditorname;//债权人中文名称
-	private java.lang.String creditornamen;//债权人英文名称
-	private java.math.BigDecimal creditorca;//债权人签约金额
-	private java.lang.String creditortype;//债权人类型代码
-	private java.lang.String crehqcode;//债权人总部所在国家（地区）代码
-	private java.lang.String opercode;//债权人经营地所在国家（地区）代码
-	
+	private java.lang.String creditorcode; // 债权人代码
+	private java.lang.String creditorname;// 债权人中文名称
+	private java.lang.String creditornamen;// 债权人英文名称
+	private java.math.BigDecimal creditorca;// 债权人签约金额
+	private java.lang.String creditortype;// 债权人类型代码
+	private java.lang.String crehqcode;// 债权人总部所在国家（地区）代码
+	private java.lang.String opercode;// 债权人经营地所在国家（地区）代码
+
 	private java.lang.String changeno;
 	private java.lang.String changtype;
 	private java.lang.String chdate;
@@ -73,10 +71,10 @@ public class BopForDebtFeiOrgSave {
 	private java.math.BigDecimal chamount;
 	private java.math.BigDecimal fairvalue;
 	private java.math.BigDecimal accoamount;
-	
+
 	private String projectname;
-	
-	private java.lang.String filler2; //业务流水号
+
+	private java.lang.String filler2; // 业务流水号
 
 	public java.lang.String getLimitType() {
 		return limitType;
@@ -497,7 +495,7 @@ public class BopForDebtFeiOrgSave {
 	public java.lang.String getFiller2() {
 		return filler2;
 	}
-	
+
 	public void setFiller2(java.lang.String filler2) {
 		this.filler2 = filler2;
 	}
@@ -509,5 +507,5 @@ public class BopForDebtFeiOrgSave {
 	public void setProjectname(String projectname) {
 		this.projectname = projectname;
 	}
-	
+
 }

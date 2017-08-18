@@ -24,7 +24,6 @@ import org.apache.commons.lang.StringUtils;
 
 import com.huateng.ebank.business.common.SystemConstant;
 
-
 /**
  * Session管理类；
  * 
@@ -67,13 +66,10 @@ public class SessionManager {
 		HttpSession session = req.getSession(true);
 		long currentTime = System.currentTimeMillis();
 		if (true == session.isNew())
-			session.setAttribute("sessionCreationTime", String
-					.valueOf(currentTime));
+			session.setAttribute("sessionCreationTime", String.valueOf(currentTime));
 		logger.debug("Start sessionLastAccessedTime");
-		session.setAttribute("sessionLastAccessedTime", String
-				.valueOf(currentTime));
-		logger.debug("sessionLastAccessedTime = "
-				+ session.getAttribute("sessionLastAccessedTime"));
+		session.setAttribute("sessionLastAccessedTime", String.valueOf(currentTime));
+		logger.debug("sessionLastAccessedTime = " + session.getAttribute("sessionLastAccessedTime"));
 
 		// String strBetweenSessionTime =
 		// System.getProperty("sessionBetweenSessionTime") ;
@@ -108,10 +104,8 @@ public class SessionManager {
 		if (null != session) {
 			long currentTime = System.currentTimeMillis();
 			if (true == session.isNew())
-				session.setAttribute("sessionCreationTime", String
-						.valueOf(currentTime));
-			session.setAttribute("sessionLastAccessedTime", String
-					.valueOf(currentTime));
+				session.setAttribute("sessionCreationTime", String.valueOf(currentTime));
+			session.setAttribute("sessionLastAccessedTime", String.valueOf(currentTime));
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -143,8 +137,7 @@ public class SessionManager {
 		HttpSession session = req.getSession(false);
 		if (null == session)
 			return null;
-		String returnString = session.getAttribute(
-				SystemConstant.WEB_SESSION_ID).toString();
+		String returnString = session.getAttribute(SystemConstant.WEB_SESSION_ID).toString();
 		if (logger.isDebugEnabled()) {
 			logger.debug("getSessionIDFromContext(HttpServletRequest) - end"); //$NON-NLS-1$
 		}
@@ -259,8 +252,7 @@ public class SessionManager {
 	 */
 	public Object getSessionObject(HttpServletRequest req, String attrName) {
 		if (logger.isDebugEnabled()) {
-			logger
-					.debug("getSessionObject(HttpServletRequest, String) - start"); //$NON-NLS-1$
+			logger.debug("getSessionObject(HttpServletRequest, String) - start"); //$NON-NLS-1$
 		}
 
 		Object sessionObj = null;
@@ -278,11 +270,9 @@ public class SessionManager {
 	/**
 	 * Set a session object based on the request and the attribute name.
 	 */
-	public boolean setSessionObject(HttpServletRequest req, String attrName,
-			Object value) {
+	public boolean setSessionObject(HttpServletRequest req, String attrName, Object value) {
 		if (logger.isDebugEnabled()) {
-			logger
-					.debug("setSessionObject(HttpServletRequest, String, Object) - start"); //$NON-NLS-1$
+			logger.debug("setSessionObject(HttpServletRequest, String, Object) - start"); //$NON-NLS-1$
 		}
 
 		HttpSession session = req.getSession(false);
@@ -291,8 +281,7 @@ public class SessionManager {
 		session.setAttribute(attrName, value);
 
 		if (logger.isDebugEnabled()) {
-			logger
-					.debug("setSessionObject(HttpServletRequest, String, Object) - end"); //$NON-NLS-1$
+			logger.debug("setSessionObject(HttpServletRequest, String, Object) - end"); //$NON-NLS-1$
 		}
 		return true;
 	}
@@ -302,8 +291,7 @@ public class SessionManager {
 	 */
 	public boolean removeSessionObject(HttpServletRequest req, String attrName) {
 		if (logger.isDebugEnabled()) {
-			logger
-					.debug("removeSessionObject(HttpServletRequest, String) - start"); //$NON-NLS-1$
+			logger.debug("removeSessionObject(HttpServletRequest, String) - start"); //$NON-NLS-1$
 		}
 
 		HttpSession session = req.getSession(false);
@@ -312,8 +300,7 @@ public class SessionManager {
 		session.removeAttribute(attrName);
 
 		if (logger.isDebugEnabled()) {
-			logger
-					.debug("removeSessionObject(HttpServletRequest, String) - end"); //$NON-NLS-1$
+			logger.debug("removeSessionObject(HttpServletRequest, String) - end"); //$NON-NLS-1$
 		}
 		return true;
 	}
@@ -328,8 +315,7 @@ public class SessionManager {
 			logger.debug("getSessionIdHtmlField(HttpServletRequest) - start"); //$NON-NLS-1$
 		}
 
-		String returnString = "<input type=\"hidden\" name=\""
-				+ SystemConstant.WEB_SESSION_ID + "\" value=\""
+		String returnString = "<input type=\"hidden\" name=\"" + SystemConstant.WEB_SESSION_ID + "\" value=\""
 				+ this.getSessionIDFromContext(req) + "\">";
 		if (logger.isDebugEnabled()) {
 			logger.debug("getSessionIdHtmlField(HttpServletRequest) - end"); //$NON-NLS-1$
@@ -347,43 +333,36 @@ public class SessionManager {
 			logger.debug("getSessionIdParameter(HttpServletRequest) - start"); //$NON-NLS-1$
 		}
 
-		String returnString = SystemConstant.WEB_SESSION_ID + "="
-				+ this.getSessionIDFromContext(req);
+		String returnString = SystemConstant.WEB_SESSION_ID + "=" + this.getSessionIDFromContext(req);
 		if (logger.isDebugEnabled()) {
 			logger.debug("getSessionIdParameter(HttpServletRequest) - end"); //$NON-NLS-1$
 		}
 		return returnString;
 	}
-	
-	/** modify by shen_antonio 20091229 for csrf begin.*/
-	/** 
-	* @Title: check AutoCheckCode 
-	* @Description: TODO
-	* @param @param inputAuthCheckCode
-	* @param @param req
-	* @param @return     
-	* @return boolean
-	* @author shen_antonio
-	* @date 2009-12-29 下午01:06:14 
-	* @throws 
-	*/ 
-	public boolean checkAutoCheckCode(String inputAuthCheckCode,HttpServletRequest req) {
+
+	/** modify by shen_antonio 20091229 for csrf begin. */
+	/**
+	 * @Title: check AutoCheckCode @Description: TODO @param @param
+	 * inputAuthCheckCode @param @param req @param @return @return
+	 * boolean @author shen_antonio @date 2009-12-29 下午01:06:14 @throws
+	 */
+	public boolean checkAutoCheckCode(String inputAuthCheckCode, HttpServletRequest req) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("checkAutoCheckCode(HttpServletRequest) - start"); //$NON-NLS-1$
 		}
-		String authCheckCode = (String)req.getSession().getAttribute("SECTION_CI");
+		String authCheckCode = (String) req.getSession().getAttribute("SECTION_CI");
 		req.getSession().removeAttribute("SECTION_CI");
-		if(StringUtils.isEmpty(authCheckCode)){
+		if (StringUtils.isEmpty(authCheckCode)) {
 			logger.error("not found session authCheckCode"); //$NON-NLS-1$
 			return false;
-		}else{
-			if(!authCheckCode.equals(inputAuthCheckCode)){
+		} else {
+			if (!authCheckCode.equals(inputAuthCheckCode)) {
 				logger.error("error authCheckCode, reject request");//$NON-NLS-1$
 				return false;
 			}
 			return true;
 		}
 	}
-	/** modify by shen_antonio 20091229 for csrf end.*/
+	/** modify by shen_antonio 20091229 for csrf end. */
 
 }

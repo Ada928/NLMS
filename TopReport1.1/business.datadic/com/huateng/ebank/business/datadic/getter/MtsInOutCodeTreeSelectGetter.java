@@ -24,57 +24,56 @@ public class MtsInOutCodeTreeSelectGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-//			result.getPage().setTotalPage(
-//					pageResult.getPageCount(getResult().getPage()
-//							.getEveryPage()));
+			// result.getPage().setTotalPage(
+			// pageResult.getPageCount(getResult().getPage()
+			// .getEveryPage()));
 			result.getPage().setTotalPage(0);
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
-	
+
 	private PageQueryResult getData() throws CommonException {
 
-		//分页大小
+		// 分页大小
 		int pageSize = getResult().getPage().getEveryPage();
-		//页码
+		// 页码
 		int pageIndex = getResult().getPage().getCurrentPage();
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		StringBuffer hql = new StringBuffer("select dd from MtsInOutCode dd where 1=1");
-		
+
 		String headDataTypeNo = getCommQueryServletRequest().getParameter("headDataTypeNo");
 		String codeType = getCommQueryServletRequest().getParameter("codeType");
-//		String levelStr = getCommQueryServletRequest().getParameter("_level_");
+		// String levelStr =
+		// getCommQueryServletRequest().getParameter("_level_");
 		String pid = getCommQueryServletRequest().getParameter("_id");
-		
+
 		PageQueryResult queryresult = null;
 		List<TreeNode> list = new ArrayList<TreeNode>();
-		if(StringUtils.isNotEmpty(headDataTypeNo) && StringUtils.isBlank(pid)) {
+		if (StringUtils.isNotEmpty(headDataTypeNo) && StringUtils.isBlank(pid)) {
 			hql.append(" and dd.parentId='").append(headDataTypeNo).append("'");
 			hql.append(" and dd.id.codeType='").append(codeType).append("'");
 			List<MtsInOutCode> mtsInOutCodes = rootdao.queryByQL2List(hql.toString());
-			for(MtsInOutCode dd : mtsInOutCodes){
-			    TreeNode dicTreeBean = new TreeNode();
-			    dicTreeBean.setAttributes(dd);
+			for (MtsInOutCode dd : mtsInOutCodes) {
+				TreeNode dicTreeBean = new TreeNode();
+				dicTreeBean.setAttributes(dd);
 				dicTreeBean.setId(dd.getId().getId());
-//				dicTreeBean.setName(dd.getCodeName());
+				// dicTreeBean.setName(dd.getCodeName());
 				dicTreeBean.setText(dd.getCodeName());
-//				dicTreeBean.setLevel(1);
+				// dicTreeBean.setLevel(1);
 				if (!dd.getFiller1().equals("0")) {
 					dicTreeBean.setHasChild(true);
 					dicTreeBean.setCanSelected(false);
-//					dicTreeBean.setPid(dd.getParentId());
+					// dicTreeBean.setPid(dd.getParentId());
 				} else {
 					dicTreeBean.setHasChild(false);
 					dicTreeBean.setCanSelected(true);
@@ -82,22 +81,22 @@ public class MtsInOutCodeTreeSelectGetter extends BaseGetter {
 				list.add(dicTreeBean);
 			}
 		} else {
-//			String pid = getCommQueryServletRequest().getParameter("id");
-//			int level = Integer.parseInt(levelStr) + 1;
+			// String pid = getCommQueryServletRequest().getParameter("id");
+			// int level = Integer.parseInt(levelStr) + 1;
 			hql.append(" and dd.parentId='").append(pid).append("'");
 			hql.append(" and dd.id.codeType='").append(codeType).append("'");
 			List<MtsInOutCode> mtsInOutCodes = rootdao.queryByQL2List(hql.toString());
-			for(MtsInOutCode dd : mtsInOutCodes){
-			    TreeNode dicTreeBean = new TreeNode();
-                dicTreeBean.setAttributes(dd);
+			for (MtsInOutCode dd : mtsInOutCodes) {
+				TreeNode dicTreeBean = new TreeNode();
+				dicTreeBean.setAttributes(dd);
 				dicTreeBean.setId(dd.getId().getId());
-//				dicTreeBean.setName(dd.getCodeName());
-                dicTreeBean.setText(dd.getCodeName());
-//				dicTreeBean.setLevel(level);
+				// dicTreeBean.setName(dd.getCodeName());
+				dicTreeBean.setText(dd.getCodeName());
+				// dicTreeBean.setLevel(level);
 				if (!dd.getFiller1().equals("0")) {
 					dicTreeBean.setHasChild(true);
 					dicTreeBean.setCanSelected(false);
-					//dicTreeBean.setPid(dd.getParentId());
+					// dicTreeBean.setPid(dd.getParentId());
 				} else {
 					dicTreeBean.setHasChild(false);
 					dicTreeBean.setCanSelected(true);
@@ -108,7 +107,7 @@ public class MtsInOutCodeTreeSelectGetter extends BaseGetter {
 		queryresult = new PageQueryResult();
 		queryresult.setQueryResult(list);
 		queryresult.setTotalCount(list.size());
-		
+
 		return queryresult;
 	}
 }

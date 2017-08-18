@@ -26,13 +26,10 @@ public class BopCfaDofoexloDsAuditGetter extends BaseGetter {
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "国内外汇贷款审核-国内外汇贷款签约信息查询");
 
 			if (!queryResult.getQueryResult().isEmpty()) {
-				ResultMng.fillResultByList(getCommonQueryBean(),
-						getCommQueryServletRequest(), queryResult
-								.getQueryResult(), getResult());
+				ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+						queryResult.getQueryResult(), getResult());
 				result.setContent(queryResult.getQueryResult());
-				result.getPage().setTotalPage(
-						queryResult.getPageCount(getResult().getPage()
-								.getEveryPage()));
+				result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 				result.init();
 			} else {
 				result.setContent(Collections.emptyList());
@@ -41,8 +38,7 @@ public class BopCfaDofoexloDsAuditGetter extends BaseGetter {
 			}
 			return result;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -61,17 +57,17 @@ public class BopCfaDofoexloDsAuditGetter extends BaseGetter {
 		String recStatus = getCommQueryServletRequest().getParameter("recStatus");
 		String approveStatus = getCommQueryServletRequest().getParameter("approveStatus");
 		String repStatus = getCommQueryServletRequest().getParameter("repStatus");
-//		String dofoexlocode = getCommQueryServletRequest().getParameter("dofoexlocode");
+		// String dofoexlocode =
+		// getCommQueryServletRequest().getParameter("dofoexlocode");
 		String filler2 = getCommQueryServletRequest().getParameter("filler2");
-		//String workDate = getCommQueryServletRequest().getParameter("workDate");
+		// String workDate =
+		// getCommQueryServletRequest().getParameter("workDate");
 		String qstartDate = getCommQueryServletRequest().getParameter("qstartDate");
 		String qendDate = getCommQueryServletRequest().getParameter("qendDate");
 		String brno = GlobalInfo.getCurrentInstance().getBrno();
 
 		BopCfaDofoexloDsService service = BopCfaDofoexloDsService.getInstance();
-		return service.pageQueryByAudit(pageIndex, pageSize,
-				TopReportConstants.REPORT_FILE_TYPE_CFA_CA, qstartDate,qendDate,
-				actiontype, recStatus, approveStatus, repStatus,
-				filler2, brno);
+		return service.pageQueryByAudit(pageIndex, pageSize, TopReportConstants.REPORT_FILE_TYPE_CFA_CA, qstartDate,
+				qendDate, actiontype, recStatus, approveStatus, repStatus, filler2, brno);
 	}
 }

@@ -22,28 +22,35 @@ import javax.servlet.ServletResponse;
  * @version $Revision: 1.3 $
  * @date 2005-7-14
  * 
- * 用来捕获Extra没有捕获的异常.  
+ *       用来捕获Extra没有捕获的异常.
  */
 public class ExceptionFilter implements Filter {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
 	 */
 	public void init(FilterConfig arg0) throws ServletException {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
+	 * javax.servlet.ServletResponse, javax.servlet.FilterChain)
 	 */
-	public void doFilter(ServletRequest req, ServletResponse resp,
-			FilterChain filterChain) throws IOException, ServletException {
+	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain)
+			throws IOException, ServletException {
 
 		filterChain.doFilter(req, resp);
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.Filter#destroy()
 	 */
 	public void destroy() {

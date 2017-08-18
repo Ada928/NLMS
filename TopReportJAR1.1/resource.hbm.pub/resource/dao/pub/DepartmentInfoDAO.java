@@ -70,8 +70,7 @@ public class DepartmentInfoDAO extends HibernateDaoSupport {
 	public DepartmentInfo findById(java.lang.Integer id) {
 		log.debug("getting DepartmentInfo instance with id: " + id);
 		try {
-			DepartmentInfo instance = (DepartmentInfo) getHibernateTemplate()
-					.get(DepartmentInfo.class.getName(), id);
+			DepartmentInfo instance = (DepartmentInfo) getHibernateTemplate().get(DepartmentInfo.class.getName(), id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -83,8 +82,7 @@ public class DepartmentInfoDAO extends HibernateDaoSupport {
 		log.debug("finding DepartmentInfo instance by example");
 		try {
 			List results = getHibernateTemplate().findByExample(instance);
-			log.debug("find by example successful, result size: "
-					+ results.size());
+			log.debug("find by example successful, result size: " + results.size());
 			return results;
 		} catch (RuntimeException re) {
 			log.error("find by example failed", re);
@@ -93,11 +91,9 @@ public class DepartmentInfoDAO extends HibernateDaoSupport {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding DepartmentInfo instance with property: "
-				+ propertyName + ", value: " + value);
+		log.debug("finding DepartmentInfo instance with property: " + propertyName + ", value: " + value);
 		try {
-			String queryString = "from DepartmentInfo model where model."
-					+ propertyName + "= ?";
+			String queryString = "from DepartmentInfo model where model." + propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
@@ -105,37 +101,31 @@ public class DepartmentInfoDAO extends HibernateDaoSupport {
 		}
 	}
 
-	/*public List findByDepartNo(Object departNo) {
-		return findByProperty(DEPART_NO, departNo);
-	}
-
-	public List findByDepartName(Object departName) {
-		return findByProperty(DEPART_NAME, departName);
-	}
-
-	public List findByBranchId(Object branchId) {
-		return findByProperty(BRANCH_ID, branchId);
-	}
-
-	public List findByContacter(Object contacter) {
-		return findByProperty(CONTACTER, contacter);
-	}
-
-	public List findByContactTel(Object contactTel) {
-		return findByProperty(CONTACT_TEL, contactTel);
-	}
-
-	public List findByStatus(Object status) {
-		return findByProperty(STATUS, status);
-	}
-
-	public List findByLastUpdOperId(Object lastUpdOperId) {
-		return findByProperty(LAST_UPD_OPER_ID, lastUpdOperId);
-	}
-
-	public List findByLastUpdTime(Object lastUpdTime) {
-		return findByProperty(LAST_UPD_TIME, lastUpdTime);
-	}*/
+	/*
+	 * public List findByDepartNo(Object departNo) { return
+	 * findByProperty(DEPART_NO, departNo); }
+	 * 
+	 * public List findByDepartName(Object departName) { return
+	 * findByProperty(DEPART_NAME, departName); }
+	 * 
+	 * public List findByBranchId(Object branchId) { return
+	 * findByProperty(BRANCH_ID, branchId); }
+	 * 
+	 * public List findByContacter(Object contacter) { return
+	 * findByProperty(CONTACTER, contacter); }
+	 * 
+	 * public List findByContactTel(Object contactTel) { return
+	 * findByProperty(CONTACT_TEL, contactTel); }
+	 * 
+	 * public List findByStatus(Object status) { return findByProperty(STATUS,
+	 * status); }
+	 * 
+	 * public List findByLastUpdOperId(Object lastUpdOperId) { return
+	 * findByProperty(LAST_UPD_OPER_ID, lastUpdOperId); }
+	 * 
+	 * public List findByLastUpdTime(Object lastUpdTime) { return
+	 * findByProperty(LAST_UPD_TIME, lastUpdTime); }
+	 */
 
 	public List findAll() {
 		log.debug("finding all DepartmentInfo instances");
@@ -162,7 +152,8 @@ public class DepartmentInfoDAO extends HibernateDaoSupport {
 		}
 		try {
 			long departmentCode = Long.valueOf(id);
-			DepartmentInfo returnBctl = (DepartmentInfo)this.getHibernateTemplate().get(DepartmentInfo.class, departmentCode);
+			DepartmentInfo returnBctl = (DepartmentInfo) this.getHibernateTemplate().get(DepartmentInfo.class,
+					departmentCode);
 			if (logger.isDebugEnabled()) {
 				logger.debug("query(String) - end"); //$NON-NLS-1$
 			}
@@ -170,8 +161,7 @@ public class DepartmentInfoDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("query(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DEPARTMENT_MANAGEMENT_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DEPARTMENT_MANAGEMENT_SELECT, e);
 		}
 		if (logger.isDebugEnabled()) {
 			logger.debug("query(String) - end"); //$NON-NLS-1$
@@ -182,8 +172,7 @@ public class DepartmentInfoDAO extends HibernateDaoSupport {
 	public DepartmentInfo merge(DepartmentInfo detachedInstance) {
 		log.debug("merging DepartmentInfo instance");
 		try {
-			DepartmentInfo result = (DepartmentInfo) getHibernateTemplate()
-					.merge(detachedInstance);
+			DepartmentInfo result = (DepartmentInfo) getHibernateTemplate().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -214,8 +203,7 @@ public class DepartmentInfoDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public static DepartmentInfoDAO getFromApplicationContext(
-			ApplicationContext ctx) {
+	public static DepartmentInfoDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (DepartmentInfoDAO) ctx.getBean("DepartmentInfoDAO");
 	}
 
@@ -226,21 +214,20 @@ public class DepartmentInfoDAO extends HibernateDaoSupport {
 	 * @return 包含DepartmentInfo对象的List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString) throws CommonException{
+	public List queryByCondition(String whereString) throws CommonException {
 		this.getHibernateTemplate().setCacheQueries(true);
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByCondition(String) - start"); //$NON-NLS-1$
 		}
 		try {
 			List list = this.getHibernateTemplate().find("from DepartmentInfo po where " + whereString);
-			if(logger.isDebugEnabled()){
+			if (logger.isDebugEnabled()) {
 				logger.debug("queryByCondition(String) - end"); //$NON-NLS-1$
 			}
 			return list;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error("queryByCondition(String)", e); //$NON-NLS-1$
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_RECORD_NOTFOUND, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_RECORD_NOTFOUND, e);
 		}
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByCondition(String) - end"); //$NON-NLS-1$
@@ -255,22 +242,22 @@ public class DepartmentInfoDAO extends HibernateDaoSupport {
 	 * @return DepartmentInfo
 	 * @throws CommonException
 	 */
-	public DepartmentInfo query(Long departmentCode)throws CommonException{
+	public DepartmentInfo query(Long departmentCode) throws CommonException {
 		this.getHibernateTemplate().setCacheQueries(true);
-		if(logger.isDebugEnabled()){
+		if (logger.isDebugEnabled()) {
 			logger.debug("query(String) - start");
 		}
-		try{
-			DepartmentInfo returnDepartmentInfo = (DepartmentInfo)this.getHibernateTemplate().get(DepartmentInfo.class, departmentCode);
-			if(logger.isDebugEnabled()){
+		try {
+			DepartmentInfo returnDepartmentInfo = (DepartmentInfo) this.getHibernateTemplate().get(DepartmentInfo.class,
+					departmentCode);
+			if (logger.isDebugEnabled()) {
 				logger.debug("query(String) - end");
 			}
 			return returnDepartmentInfo;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error("query(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_RECORD_NOTFOUND, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_RECORD_NOTFOUND, e);
 		}
 		if (logger.isDebugEnabled()) {
 			logger.debug("query(String) - end"); //$NON-NLS-1$
@@ -285,18 +272,17 @@ public class DepartmentInfoDAO extends HibernateDaoSupport {
 	 * @throws CommonException
 	 */
 
-	public void update(DepartmentInfo po) throws CommonException{
+	public void update(DepartmentInfo po) throws CommonException {
 		this.getHibernateTemplate().setCacheQueries(false);
-		if(logger.isDebugEnabled()){
+		if (logger.isDebugEnabled()) {
 			logger.debug("update(DepartmentInfo) - start");
 		}
-		try{
+		try {
 			this.getHibernateTemplate().update(po);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error("update(DepartmentInfo)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_CANNOT_SUBMIT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_CANNOT_SUBMIT, e);
 		}
 		if (logger.isDebugEnabled()) {
 			logger.debug("update(DepartmentInfo) - end"); //$NON-NLS-1$
@@ -309,17 +295,16 @@ public class DepartmentInfoDAO extends HibernateDaoSupport {
 	 * @param po
 	 * @throws CommonException
 	 */
-	public void insert(DepartmentInfo po) throws CommonException{
+	public void insert(DepartmentInfo po) throws CommonException {
 		this.getHibernateTemplate().setCacheQueries(false);
-		if(logger.isDebugEnabled()){
+		if (logger.isDebugEnabled()) {
 			logger.debug("insert(DepartmentInfo) - start");
 		}
-		try{
+		try {
 			this.getHibernateTemplate().save(po);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error("insert(DepartmentInfo)", e); //$NON-NLS-1$
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_CANNOT_SUBMIT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_CANNOT_SUBMIT, e);
 		}
 		if (logger.isDebugEnabled()) {
 			logger.debug("insert(DepartmentInfo) - end"); //$NON-NLS-1$

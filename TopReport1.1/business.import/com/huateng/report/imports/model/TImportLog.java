@@ -23,16 +23,18 @@ public class TImportLog {
 	private int filterRows;
 	private String beginTime;
 	private String endTime;
-	//2009-01-09 001 lyg add start 导入数据库记日志时添加username到filler1
+	// 2009-01-09 001 lyg add start 导入数据库记日志时添加username到filler1
 	private String filler1;
-	
+
 	public void setfiller1(String filler1) {
 		this.filler1 = filler1;
 	}
+
 	public String getfiller1() {
 		return filler1;
 	}
-	//2009-01-09 001 lyg add end
+
+	// 2009-01-09 001 lyg add end
 	public String getWorkDate() {
 		return workDate;
 	}

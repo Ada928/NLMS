@@ -7,7 +7,6 @@ public class ReportTableBakBean {
 	private String dataSql;
 	private String delSql;
 
-
 	public String getDelSql() {
 		return delSql;
 	}

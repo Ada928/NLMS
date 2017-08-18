@@ -24,40 +24,42 @@ import com.huateng.view.freemarker.FreeMarkerConfiguration;
 public class MessageResourceUtil {
 	private static final Log log = LogFactory.getLog(MessageResourceUtil.class);
 
-	/* modify by shen_antonio 20121221 JIRA:FPP-3 begin.*/
-	private static MessageResources basicResource = MessageResources
-			.getMessageResources("resources.UIi18n");
-	/* modify by shen_antonio 20121221 JIRA:FPP-3 end.*/
-	private static MessageResources errorResource = MessageResources
-			.getMessageResources("resources.errorcode");
+	/* modify by shen_antonio 20121221 JIRA:FPP-3 begin. */
+	private static MessageResources basicResource = MessageResources.getMessageResources("resources.UIi18n");
+	/* modify by shen_antonio 20121221 JIRA:FPP-3 end. */
+	private static MessageResources errorResource = MessageResources.getMessageResources("resources.errorcode");
 
 	private static boolean ONOFF = false;
 
 	static {
 		try {
 			ONOFF = "ON".equalsIgnoreCase((String) FreeMarkerConfiguration.getConfigVal("internationalization"));
-			if(ONOFF){
-				if(log.isInfoEnabled()){
+			if (ONOFF) {
+				if (log.isInfoEnabled()) {
 					log.info("i18n is able to run");
 				}
-			}else{
-				if(log.isInfoEnabled()){
+			} else {
+				if (log.isInfoEnabled()) {
 					log.info("i18n is enable to run");
-				}	
+				}
 			}
 		} catch (AppException e) {
-			log.error("#############i18n init error, parameter[Internationalization] is error ############# ",e);
+			log.error("#############i18n init error, parameter[Internationalization] is error ############# ", e);
 		}
 	}
+
 	/**
 	 * 是否开启国际化
+	 * 
 	 * @return
 	 */
 	public static boolean isIl8n() {
 		return ONOFF;
 	}
+
 	/**
 	 * 表名加上国际化后缀，以区分不同数据字典表
+	 * 
 	 * @param tblNm
 	 * @return
 	 */
@@ -68,7 +70,7 @@ public class MessageResourceUtil {
 			tableName += gi == null ? Locale.getDefault() : gi.getLocale();
 		}
 		return tableName;
-		
+
 	}
 
 	/**
@@ -79,8 +81,7 @@ public class MessageResourceUtil {
 	 * @return
 	 * @throws CommonException
 	 */
-	public static String getBasicMessage(String msgCode, boolean nullable,
-			Object... args) {
+	public static String getBasicMessage(String msgCode, boolean nullable, Object... args) {
 		return getMessage(basicResource, msgCode, nullable, args);
 	}
 
@@ -96,8 +97,7 @@ public class MessageResourceUtil {
 	 * @return
 	 * @throws CommonException
 	 */
-	public static String getErrorMessage(String msgCode, boolean nullable,
-			Object... args) {
+	public static String getErrorMessage(String msgCode, boolean nullable, Object... args) {
 		return getMessage(errorResource, msgCode, nullable, args);
 	}
 
@@ -114,15 +114,13 @@ public class MessageResourceUtil {
 	 * @return
 	 * @throws CommonException
 	 */
-	private static synchronized String getMessage(
-			MessageResources messResource, String msgCode, boolean nullable,
+	private static synchronized String getMessage(MessageResources messResource, String msgCode, boolean nullable,
 			Object... args) {
 		if (!ONOFF) {
 			return msgCode;
 		}
 		GlobalInfo gi = GlobalInfo.getCurrentInstanceWithoutException();
-		String mess = messResource.getMessage(gi == null ? Locale.getDefault()
-				: gi.getLocale(), msgCode);
+		String mess = messResource.getMessage(gi == null ? Locale.getDefault() : gi.getLocale(), msgCode);
 		if (mess == null) {
 			return nullable ? mess : msgCode;
 		} else {

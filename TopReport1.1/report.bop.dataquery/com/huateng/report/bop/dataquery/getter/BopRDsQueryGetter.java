@@ -28,29 +28,23 @@ public class BopRDsQueryGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
-			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME,
-					"境内收入申报单管理信息查询页面查询");
+			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境内收入申报单管理信息查询页面查询");
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	private PageQueryResult getData() throws CommonException {
 
-		Map<String, String> paramMap = this.getCommQueryServletRequest()
-				.getParameterMap();
+		Map<String, String> paramMap = this.getCommQueryServletRequest().getParameterMap();
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
@@ -93,10 +87,8 @@ public class BopRDsQueryGetter extends BaseGetter {
 			hql += " and model.brNo ='" + qbrNo + "'";
 		}
 
-		hql += " and model.apptype='" + TopReportConstants.REPORT_APP_TYPE_BOP
-				+ "'";
-		hql += " and model.currentfile='"
-				+ TopReportConstants.REPORT_FILE_TYPE_BOP_R + "'";
+		hql += " and model.apptype='" + TopReportConstants.REPORT_APP_TYPE_BOP + "'";
+		hql += " and model.currentfile='" + TopReportConstants.REPORT_FILE_TYPE_BOP_R + "'";
 		hql += " order by model.workDate,model.approveStatus,model.actiontype desc";
 		queryCondition.setQueryString(hql);
 		queryCondition.setPageIndex(pageIndex);

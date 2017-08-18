@@ -42,12 +42,11 @@ public class ROOTDAO extends resource.dao.base.HQLDAO {
 			if (log.isDebugEnabled()) {
 				log.debug("query(Class,String) - end"); //$NON-NLS-1$
 			}
-			return (T)reObj;
+			return (T) reObj;
 		} catch (Exception e) {
 			log.error("query(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (log.isDebugEnabled()) {
@@ -76,8 +75,7 @@ public class ROOTDAO extends resource.dao.base.HQLDAO {
 			}
 		} catch (Exception e) {
 			log.error("save(Object)", e); //$NON-NLS-1$
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 		if (log.isDebugEnabled()) {
 			log.debug("save(Object) - end"); //$NON-NLS-1$
@@ -102,8 +100,7 @@ public class ROOTDAO extends resource.dao.base.HQLDAO {
 		} catch (Exception e) {
 			log.error("update(Object)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (log.isDebugEnabled()) {
@@ -130,8 +127,7 @@ public class ROOTDAO extends resource.dao.base.HQLDAO {
 		} catch (Exception e) {
 			log.error("saveOrUpdate(Object)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (log.isDebugEnabled()) {
@@ -158,8 +154,7 @@ public class ROOTDAO extends resource.dao.base.HQLDAO {
 			}
 		} catch (Exception e) {
 			log.error("save(Object)", e); //$NON-NLS-1$
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 		if (log.isDebugEnabled()) {
 			log.debug("save(Object) - end"); //$NON-NLS-1$
@@ -184,8 +179,7 @@ public class ROOTDAO extends resource.dao.base.HQLDAO {
 		} catch (Exception e) {
 			log.error("delete(Class,String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (log.isDebugEnabled()) {
@@ -195,14 +189,14 @@ public class ROOTDAO extends resource.dao.base.HQLDAO {
 
 	/**
 	 * ��ҳ��ѯ
+	 * 
 	 * @param hql
 	 * @param startPage
 	 * @param maxRows
 	 * @return
 	 * @throws CommonException
 	 */
-	public List pageQueryByHql(String hql, int startPage, int maxRows)
-			throws CommonException {
+	public List pageQueryByHql(String hql, int startPage, int maxRows) throws CommonException {
 		this.getHibernateTemplate().setCacheQueries(true);
 		if (log.isDebugEnabled()) {
 			log.debug("pageQueryByHql(String, int, int) - start"); //$NON-NLS-1$
@@ -210,8 +204,7 @@ public class ROOTDAO extends resource.dao.base.HQLDAO {
 
 		List returnValue = new ArrayList();
 		startPage = startPage >= 1 ? startPage : 1;
-		int firstResult = (startPage - 1)
-				* (maxRows > 0 ? maxRows : SystemConstant.MAX_ROWS);
+		int firstResult = (startPage - 1) * (maxRows > 0 ? maxRows : SystemConstant.MAX_ROWS);
 		int rows = maxRows;
 		rows = (rows == 0 ? SystemConstant.MAX_ROWS : rows);
 
@@ -225,8 +218,7 @@ public class ROOTDAO extends resource.dao.base.HQLDAO {
 
 		} catch (HibernateException e) {
 			log.error("queryByCondition(String, int, int)", e); //$NON-NLS-1$
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (log.isDebugEnabled()) {
@@ -234,7 +226,6 @@ public class ROOTDAO extends resource.dao.base.HQLDAO {
 		}
 		return returnValue;
 	}
-
 
 	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String hql) throws CommonException {
 		PageQueryCondition queryCondition = new PageQueryCondition();
@@ -246,31 +237,30 @@ public class ROOTDAO extends resource.dao.base.HQLDAO {
 
 	/**
 	 * ����hql��ѯ����
+	 * 
 	 * @param hql
 	 * @return
 	 * @throws CommonException
 	 */
-	public Integer queryByHqlToCount(String hql) throws CommonException{
-		return  Integer.parseInt(this.queryByQL(hql).next().toString());
+	public Integer queryByHqlToCount(String hql) throws CommonException {
+		return Integer.parseInt(this.queryByQL(hql).next().toString());
 	}
 
-	public Object queryByHqlMax(String hql)  throws CommonException{
+	public Object queryByHqlMax(String hql) throws CommonException {
 		return getSession().createQuery(hql).uniqueResult();
 	}
-
 
 	public List queryByCondition(String whereString) throws CommonException {
 		try {
 			List list = this.getHibernateTemplate().find(whereString);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_GLOBALINFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_GLOBALINFO_SELECT, e);
 		}
 		return null;
 	}
 
-	public int executeSql(String sql){
+	public int executeSql(String sql) {
 		org.hibernate.SQLQuery queryObject = getSession().createSQLQuery(sql);
 		return queryObject.executeUpdate();
 	}

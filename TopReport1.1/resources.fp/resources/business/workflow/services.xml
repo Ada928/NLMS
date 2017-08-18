@@ -3,14 +3,14 @@
 <beans>
 
 
-	<bean id="WorkFlow.GetTaskListOperation" class="com.huateng.ebank.business.workflow.operation.GetTaskListOperation">
-	</bean>
+    <bean id="WorkFlow.GetTaskListOperation" class="com.huateng.ebank.business.workflow.operation.GetTaskListOperation">
+    </bean>
 
 
-	<bean id="WorkFlow.WorkFlowParamOP" class="com.huateng.ebank.business.workflow.operation.WorkFlowParamOperation">
-	</bean>
-	<bean id="WorkFlow.WorkFlowParamOPNew" class="com.huateng.ebank.business.workflow.operation.WorkFlowParamOperationNew">
-	</bean>
-	<bean id="WorkFlow.TaskPoolAssignJobOperation" class="com.huateng.ebank.business.workflow.operation.TaskPoolAssignJobOperation">
-	</bean>
+    <bean id="WorkFlow.WorkFlowParamOP" class="com.huateng.ebank.business.workflow.operation.WorkFlowParamOperation">
+    </bean>
+    <bean id="WorkFlow.WorkFlowParamOPNew" class="com.huateng.ebank.business.workflow.operation.WorkFlowParamOperationNew">
+    </bean>
+    <bean id="WorkFlow.TaskPoolAssignJobOperation" class="com.huateng.ebank.business.workflow.operation.TaskPoolAssignJobOperation">
+    </bean>
 </beans>

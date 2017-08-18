@@ -13,29 +13,29 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.DataFormat;
 
 /**
- * Title: GetHousenoGenerator
- * Description: 楼盘编号生成器
- * Copyright: Copyright (c) 2008
+ * Title: GetHousenoGenerator Description: 楼盘编号生成器 Copyright: Copyright (c) 2008
  * Company: Shanghai Huateng Software Systems Co., Ltd.
+ * 
  * @author shen_antonio
  * @version 1.1, 2008-4-13
  */
 public class GetHousenoGenerator extends BaseGenerator {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.huateng.commquery.cfieldmodel.BaseGenerator#gen(java.util.Map)
 	 */
 
-	public String gen(Object paramMap) throws CommonException{
+	public String gen(Object paramMap) throws CommonException {
 		// TODO Auto-generated method stub
-		String brcode = (String)((Map)paramMap).get("brcode");
+		String brcode = (String) ((Map) paramMap).get("brcode");
 		BctlService bctlService = BctlService.getInstance();
 		String valueIndex = bctlService.getBranchBrcode(brcode);
 		if (DataFormat.isEmpty(valueIndex))
 			valueIndex = brcode;
-		return valueIndex
-				+ DataFormat.intToString(CommonService.getInstance().getSeqno(
-						SystemConstant.VALUE_NO_HOUSENO, valueIndex), 8);
+		return valueIndex + DataFormat
+				.intToString(CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_HOUSENO, valueIndex), 8);
 	}
 
 }

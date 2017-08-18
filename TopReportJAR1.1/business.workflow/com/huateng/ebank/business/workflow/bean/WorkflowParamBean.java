@@ -14,8 +14,8 @@ import com.huateng.ebank.entity.data.workflow.WorkflowParam;
 /**
  * @author Administrator
  *
- * TODO To change the template for this generated type comment go to Window -
- * Preferences - Java - Code Style - Code Templates
+ *         TODO To change the template for this generated type comment go to
+ *         Window - Preferences - Java - Code Style - Code Templates
  */
 public class WorkflowParamBean {
 	// //流程名 英文
@@ -24,22 +24,22 @@ public class WorkflowParamBean {
 	// //贷款金额
 	// private double lnamt;
 	private static Set set;
-	static {
-        set = new HashSet();
-        set.add("workflowParam");
-    }
-	private WorkflowParam workflowParam = new WorkflowParam(); //票据信息
 
+	static {
+		set = new HashSet();
+		set.add("workflowParam");
+	}
+
+	private WorkflowParam workflowParam = new WorkflowParam(); // 票据信息
 
 	/** 流程名称 */
 	private String procName;
-	/**节点名*/
+	/** 节点名 */
 	private String nodeName;
-	/**节点类型*/
+	/** 节点类型 */
 	private String nodeType1;
 
 	private boolean selected;
-
 
 	public String getProcName() {
 		return procName;
@@ -49,7 +49,6 @@ public class WorkflowParamBean {
 		this.procName = procName;
 	}
 
-
 	public String getNodeName() {
 		return nodeName;
 	}
@@ -58,10 +57,9 @@ public class WorkflowParamBean {
 		this.nodeName = nodeName;
 	}
 
-
 	public static boolean isBeanProperty(String propertyName) {
-        return set.contains(propertyName);
-    }
+		return set.contains(propertyName);
+	}
 
 	public static Set getSet() {
 		return set;
@@ -86,7 +84,7 @@ public class WorkflowParamBean {
 	public void setNodeType1(String nodeType1) {
 		this.nodeType1 = nodeType1;
 	}
-	
+
 	public boolean isSelected() {
 		return selected;
 	}

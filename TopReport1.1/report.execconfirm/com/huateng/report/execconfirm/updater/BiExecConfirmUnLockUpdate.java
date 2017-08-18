@@ -14,13 +14,12 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.execconfirm.operation.BiExecConfirmOperation;
 
-public class BiExecConfirmUnLockUpdate extends BaseUpdate{
-	
+public class BiExecConfirmUnLockUpdate extends BaseUpdate {
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
-		
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
+
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("genReportFile");
@@ -28,20 +27,19 @@ public class BiExecConfirmUnLockUpdate extends BaseUpdate{
 			String appType = updateResultBean.getParameter("appType");
 			String busiType = updateResultBean.getParameter("busiType");
 			String subfileRemark = updateResultBean.getParameter("subfileRemark");
-			
+
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(BiExecConfirmOperation.CMD, BiExecConfirmOperation.OP_UNLOCK);
 			oc.setAttribute(BiExecConfirmOperation.IN_BUSITYPE, busiType);
 			oc.setAttribute(BiExecConfirmOperation.IN_APPTYPE, appType);
 			oc.setAttribute(BiExecConfirmOperation.IN_REMARK, subfileRemark);
 			OPCaller.call(BiExecConfirmOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

@@ -3,7 +3,8 @@
 	<display-name>TOP</display-name>
 	<description>TOP</description>
 
-	<context-param>
+<!--             
+ -->	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
      	 	classpath:resources/SQLContext.xml,
@@ -16,6 +17,7 @@
 			classpath:resources/business/bizlog/services.xml,
 			classpath:resources/business/imports/services.xml,
 			classpath:com/huateng/report/basisinfo/services.xml,
+            classpath:com/cibfintech/report/blacklist/services.xml,
 			classpath:com/huateng/report/dataquery/services.xml,
 			classpath:com/huateng/report/imports/services.xml,
 			classpath:com/huateng/report/system/services.xml,
@@ -233,6 +235,7 @@
 		<init-param>
 			<param-name>CommonQueryConfigLocation</param-name>
 			<param-value>
+                /WEB-INF/query/meta/blackListMeta.xml,
 				/WEB-INF/query/meta/CommQryMeta.xml,
 				/WEB-INF/query/meta/managementMeta.xml,
 				/WEB-INF/query/meta/batchMonitorMeta.xml,

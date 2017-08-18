@@ -24,7 +24,7 @@ public class ReportFeedBackInfo {
 	}
 
 	public String getCurrentFile() {
-		if (this.currentFile!=null) {
+		if (this.currentFile != null) {
 			return currentFile.replaceAll(this.appType, "");
 		}
 		return currentFile;

@@ -13,68 +13,69 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 public class WorkflowParamDAO extends HibernateDaoSupport {
 
 	public void insert(WorkflowParam po) throws CommonException {
-		try{
+		try {
 			this.getHibernateTemplate().saveOrUpdate(po);
-		}catch(Exception e){
+		} catch (Exception e) {
 			ExceptionUtil.throwCommonException("工作流表插入错误", ErrorCode.ERROR_CODE_WORKFLOW_INSERT, e);
 		}
 	}
 
-	public void update(WorkflowParam po) throws CommonException{
-		try{
+	public void update(WorkflowParam po) throws CommonException {
+		try {
 			this.getHibernateTemplate().update(po);
-		}catch(Exception e){
+		} catch (Exception e) {
 			ExceptionUtil.throwCommonException("工作流表更新错误", ErrorCode.ERROR_CODE_WORKFLOW_UPDATE, e);
 		}
 	}
 
-	public void delete(WorkflowParam po) throws CommonException{
-		try{
+	public void delete(WorkflowParam po) throws CommonException {
+		try {
 			this.getHibernateTemplate().delete(po);
-		}catch(Exception e){
+		} catch (Exception e) {
 			ExceptionUtil.throwCommonException("工作流表删除错误", ErrorCode.ERROR_CODE_WORKFLOW_DELETE, e);
 		}
 	}
 
-	public void delete(Long id) throws CommonException{
-		try{
-			WorkflowParam po = (WorkflowParam)this.getHibernateTemplate().load(WorkflowParam.class, id);
+	public void delete(Long id) throws CommonException {
+		try {
+			WorkflowParam po = (WorkflowParam) this.getHibernateTemplate().load(WorkflowParam.class, id);
 			delete(po);
-		}catch(Exception e){
+		} catch (Exception e) {
 			ExceptionUtil.throwCommonException("工作流表删除错误", ErrorCode.ERROR_CODE_WORKFLOW_DELETE, e);
 		}
 	}
 
-	public WorkflowParam queryById(Long id) throws CommonException{
-		try{
-			WorkflowParam po = (WorkflowParam)this.getHibernateTemplate().load(WorkflowParam.class, id);
+	public WorkflowParam queryById(Long id) throws CommonException {
+		try {
+			WorkflowParam po = (WorkflowParam) this.getHibernateTemplate().load(WorkflowParam.class, id);
 			return po;
-		}catch(Exception e){
+		} catch (Exception e) {
 			ExceptionUtil.throwCommonException("工作流表修改错误", ErrorCode.ERROR_CODE_WORKFLOW_SELECT, e);
 			return null;
 		}
 	}
 
-	public List queryByCondition(String whereString, Object[] objList) throws CommonException{
-		try{
+	public List queryByCondition(String whereString, Object[] objList) throws CommonException {
+		try {
 			List list = this.getHibernateTemplate().find("from WorkflowParam po where " + whereString, objList);
 			return list;
-		}catch(Exception e){
+		} catch (Exception e) {
 			ExceptionUtil.throwCommonException("工作流表修改错误", ErrorCode.ERROR_CODE_WORKFLOW_SELECT, e);
 			return null;
 		}
 	}
 
-	public List queryAll() throws CommonException{
-		try{
+	public List queryAll() throws CommonException {
+		try {
 			List list = this.getHibernateTemplate().find("from WorkflowParam");
 			return list;
-		}catch(Exception e){
+		} catch (Exception e) {
 			ExceptionUtil.throwCommonException("工作流表修改错误", ErrorCode.ERROR_CODE_WORKFLOW_SELECT, e);
 			return null;
 		}
 	}
-    /**
+
+	/**
 	 * 根据输入的条件查询所有符合条件的记录
 	 *
 	 * @param whereString
@@ -83,36 +84,31 @@ public class WorkflowParamDAO extends HibernateDaoSupport {
 	 */
 	public List queryByCondition(String whereString) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from WorkflowParam po where " + whereString);
+			List list = this.getHibernateTemplate().find("from WorkflowParam po where " + whereString);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException("工作流表查询错误",
-					ErrorCode.ERROR_CODE_WORKFLOW_SELECT, e);
+			ExceptionUtil.throwCommonException("工作流表查询错误", ErrorCode.ERROR_CODE_WORKFLOW_SELECT, e);
 		}
 		return null;
 	}
-	
-	 /**
-     * 根据输入的条件查询所有符合条件的记录
-     *
-     * @param whereString
-     * @param objArray
-     * @param typeArray
-     * @return 包含LimitParam对象的List
-     * @throws CommonException
-     */
-    public List queryByCondition(String whereString, Object[] objArray,
-            Type[] typeArray) throws CommonException {
-        try {
-            List list = this.getHibernateTemplate().find(
-                    "from WorkflowParam po where " + whereString, objArray);
-            return list;
-        } catch (Exception e) {
-            ExceptionUtil.throwCommonException(e.getMessage(),
-                    ErrorCode.ERROR_CODE_WORKFLOW_PARAM_SELECT, e);
-        }
-        return null;
-    }
+
+	/**
+	 * 根据输入的条件查询所有符合条件的记录
+	 *
+	 * @param whereString
+	 * @param objArray
+	 * @param typeArray
+	 * @return 包含LimitParam对象的List
+	 * @throws CommonException
+	 */
+	public List queryByCondition(String whereString, Object[] objArray, Type[] typeArray) throws CommonException {
+		try {
+			List list = this.getHibernateTemplate().find("from WorkflowParam po where " + whereString, objArray);
+			return list;
+		} catch (Exception e) {
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_WORKFLOW_PARAM_SELECT, e);
+		}
+		return null;
+	}
 
 }

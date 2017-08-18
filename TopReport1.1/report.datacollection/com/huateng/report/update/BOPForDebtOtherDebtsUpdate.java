@@ -27,27 +27,25 @@ import com.huateng.report.service.BOPForDebtBilLoanService;
 import com.huateng.report.service.BopCfaCreditorDsService;
 import com.huateng.report.utils.ReportUtils;
 
-public class BOPForDebtOtherDebtsUpdate extends BaseUpdate{
+public class BOPForDebtOtherDebtsUpdate extends BaseUpdate {
 
-	private static final String DATASET_ID="BOPForDebtOtherDebtsCol";
+	private static final String DATASET_ID = "BOPForDebtOtherDebtsCol";
 
-	private static final String RECORD_DELETE="del";
-	private static final String RECORD_ADD="new";
-	private static final String RECORD_MOD="mod";
-
+	private static final String RECORD_DELETE = "del";
+	private static final String RECORD_ADD = "new";
+	private static final String RECORD_MOD = "mod";
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 
-		//返回对象
+		// 返回对象
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-		//取得外债信息结果集对象
+		// 取得外债信息结果集对象
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-		//外债信息表
-		BopCfaExdebtDs bpExdebt =null;
-		//债权人信息表
+		// 外债信息表
+		BopCfaExdebtDs bpExdebt = null;
+		// 债权人信息表
 		BopCfaCreditorDs bcc = new BopCfaCreditorDs();
 		BopCfaCreditorDsService creditorServ = null;
 		BOPForDebtBilLoanService debtServ = null;
@@ -110,7 +108,7 @@ public class BOPForDebtOtherDebtsUpdate extends BaseUpdate{
 					bpExdebt.setWorkDate(DateUtil.dateToNumber(ginfo.getTxdate()));
 					bpExdebt.setBrNo(ginfo.getBrno());
 
-					oc.setAttribute(BOPForDebtOtherDebtsOperation.CMD,BOPForDebtOtherDebtsOperation.CMD_DELETE);
+					oc.setAttribute(BOPForDebtOtherDebtsOperation.CMD, BOPForDebtOtherDebtsOperation.CMD_DELETE);
 
 				}
 			}
@@ -121,13 +119,11 @@ public class BOPForDebtOtherDebtsUpdate extends BaseUpdate{
 
 		OPCaller.call(BOPForDebtOtherDebtsOperation.ID, oc);
 
-
 		return updateReturnBean;
 	}
 
-
-	private void setValuePageParement(BopCfaExdebtDs bpExdebt,
-			BopCfaCreditorDs bcc, BOPForDebtBilLoanCreditor bpExdebtTemp) throws CommonException {
+	private void setValuePageParement(BopCfaExdebtDs bpExdebt, BopCfaCreditorDs bcc,
+			BOPForDebtBilLoanCreditor bpExdebtTemp) throws CommonException {
 
 		bcc.setCreditorcode(bpExdebtTemp.getCreditorcode());
 		bcc.setCreditorname(bpExdebtTemp.getCreditorname());
@@ -135,8 +131,6 @@ public class BOPForDebtOtherDebtsUpdate extends BaseUpdate{
 		bcc.setCreditortype(bpExdebtTemp.getCreditortype());
 		bcc.setOpercode(bpExdebtTemp.getOpercode());
 		bcc.setCrehqcode(bpExdebtTemp.getCrehqcode());
-
-
 
 		bpExdebt.setExdebtcode(bpExdebtTemp.getExdebtcode());
 		bpExdebt.setDebtorcode(bpExdebtTemp.getDebtorcode());
@@ -159,7 +153,6 @@ public class BOPForDebtOtherDebtsUpdate extends BaseUpdate{
 		bpExdebt.setLstUpdTm(new Date());
 		bpExdebt.setWorkDate(DateUtil.dateToNumber(ginfo.getTxdate()));
 		bpExdebt.setBrNo(ginfo.getBrno());
-
 
 		bpExdebt.setApptype(bpExdebtTemp.getApptype());
 		bpExdebt.setCurrentfile(bpExdebtTemp.getCurrentfile());

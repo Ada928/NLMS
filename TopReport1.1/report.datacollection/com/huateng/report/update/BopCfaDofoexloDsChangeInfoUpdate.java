@@ -31,24 +31,23 @@ public class BopCfaDofoexloDsChangeInfoUpdate extends BaseUpdate {
 	public static final String OPERATION_DETAIL = "detail";
 
 	@SuppressWarnings("rawtypes")
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 
 		try {
-			//返回对象
+			// 返回对象
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			//结果集对象
+			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-			//更新对象
+			// 更新对象
 			BopCfaDofoexloDs bean = null;
-			//Operation参数
+			// Operation参数
 			OperationContext context = new OperationContext();
 
 			while (updateResultBean.hasNext()) {
 				bean = new BopCfaDofoexloDs();
 				Map map = updateResultBean.next();
-				//属性拷贝
+				// 属性拷贝
 				mapToObject(bean, map);
 
 				if (null != map.get("crtTm") && StringUtils.isNotEmpty(String.valueOf(map.get("crtTm")))) {
@@ -57,16 +56,19 @@ public class BopCfaDofoexloDsChangeInfoUpdate extends BaseUpdate {
 				}
 
 				String op = updateResultBean.getParameter("op");
-				if(StringUtils.equals(op, OPERATION_INSERT)){
-					context.setAttribute(BopCfaDofoexloDsChangeInfoOperation.CMD, BopCfaDofoexloDsChangeInfoOperation.CMD_INSERT);
+				if (StringUtils.equals(op, OPERATION_INSERT)) {
+					context.setAttribute(BopCfaDofoexloDsChangeInfoOperation.CMD,
+							BopCfaDofoexloDsChangeInfoOperation.CMD_INSERT);
 					context.setAttribute(BopCfaDofoexloDsChangeInfoOperation.IN_PARAM, bean);
 					OPCaller.call(BopCfaDofoexloDsChangeInfoOperation.ID, context);
 				} else if (StringUtils.equals(op, OPERATION_MODIFY)) {
-					context.setAttribute(BopCfaDofoexloDsChangeInfoOperation.CMD, BopCfaDofoexloDsChangeInfoOperation.CMD_UPDATE);
+					context.setAttribute(BopCfaDofoexloDsChangeInfoOperation.CMD,
+							BopCfaDofoexloDsChangeInfoOperation.CMD_UPDATE);
 					context.setAttribute(BopCfaDofoexloDsChangeInfoOperation.IN_PARAM, bean);
 					OPCaller.call(BopCfaDofoexloDsChangeInfoOperation.ID, context);
 				} else if (StringUtils.equals(op, OPERATION_DELETE)) {
-					context.setAttribute(BopCfaDofoexloDsChangeInfoOperation.CMD, BopCfaDofoexloDsChangeInfoOperation.CMD_DELETE);
+					context.setAttribute(BopCfaDofoexloDsChangeInfoOperation.CMD,
+							BopCfaDofoexloDsChangeInfoOperation.CMD_DELETE);
 					context.setAttribute(BopCfaDofoexloDsChangeInfoOperation.IN_PARAM, bean);
 					OPCaller.call(BopCfaDofoexloDsChangeInfoOperation.ID, context);
 				}
@@ -75,7 +77,7 @@ public class BopCfaDofoexloDsChangeInfoUpdate extends BaseUpdate {
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
-			throw new AppException(Module.SYSTEM_MODULE,Rescode.DEFAULT_RESCODE,e.getMessage(),e);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
 
 		return null;

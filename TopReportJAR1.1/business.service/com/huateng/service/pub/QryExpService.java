@@ -83,94 +83,105 @@ public class QryExpService {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger
-			.getLogger(QryExpService.class);
+	private static final Logger logger = Logger.getLogger(QryExpService.class);
+
 	/**
 	 * 以分页的方式，获取数据记录集
+	 * 
 	 * @param count
 	 * @return
 	 */
-	public List getProcTsk(int count,String tskStatu){
+	public List getProcTsk(int count, String tskStatu) {
 		// 获取DAO处理对象，负责增删查改操作
 		TBLCSFileExportTskDAO expTskDAO = DAOUtils.getExportTskDAO();
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(TblCSFileExportTskInf.class);
 		detachedCriteria.addOrder(Order.asc(TblCSFileExportTskInf.PROP_TSK_START_TMS));
-		if(tskStatu !=null && tskStatu.trim().length()>0){
+		if (tskStatu != null && tskStatu.trim().length() > 0) {
 			detachedCriteria.add(Restrictions.eq(TblCSFileExportTskInf.PROP_TSK_STAT, tskStatu.trim()));
 		}
 		return expTskDAO.findByCriteria(detachedCriteria, count, 1);
 	}
+
 	/**
 	 * 获取用户相关的任务
-	 * @param userId 用户ID
-	 * @param tskStatu 任务状态
+	 * 
+	 * @param userId
+	 *            用户ID
+	 * @param tskStatu
+	 *            任务状态
 	 * @return
 	 */
-	public List getUserTsk(String owner,String tskStatu){
+	public List getUserTsk(String owner, String tskStatu) {
 		// 获取DAO处理对象，负责增删查改操作
 		TBLCSFileExportTskDAO expTskDAO = DAOUtils.getExportTskDAO();
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(TblCSFileExportTskInf.class);
-		if(owner !=null && owner.trim().length()>0){
+		if (owner != null && owner.trim().length() > 0) {
 			detachedCriteria.add(Restrictions.eq(TblCSFileExportTskInf.PROP_TSK_OWNER, owner.trim()));
 		}
-		if(tskStatu !=null && tskStatu.trim().length()>0){
+		if (tskStatu != null && tskStatu.trim().length() > 0) {
 			detachedCriteria.add(Restrictions.eq(TblCSFileExportTskInf.PROP_TSK_STAT, tskStatu.trim()));
 		}
 		return expTskDAO.findByCriteria(detachedCriteria);
 	}
+
 	/**
 	 * 删除任务信息
+	 * 
 	 * @param tskInf
 	 */
-	public void delTsk(TblCSFileExportTskInf tskInf){
+	public void delTsk(TblCSFileExportTskInf tskInf) {
 		// 获取DAO处理对象，负责增删查改操作
 		TBLCSFileExportTskDAO expTskDAO = DAOUtils.getExportTskDAO();
 		expTskDAO.delete(tskInf);
 	}
 
-	public void updTskInf(TblCSFileExportTskInf tskInf){
+	public void updTskInf(TblCSFileExportTskInf tskInf) {
 		// 获取DAO处理对象，负责增删查改操作
 		TBLCSFileExportTskDAO expTskDAO = DAOUtils.getExportTskDAO();
 		expTskDAO.update(tskInf);
 	}
+
 	/**
 	 * 批量任务处理过程 - 根据任务信息生成文件
+	 * 
 	 * @param procSize
-	 * 		每次处理的任务数量
+	 *            每次处理的任务数量
 	 */
-	public void expTskProcess(int procSize,String ownerName)throws CommonException{
+	public void expTskProcess(int procSize, String ownerName) throws CommonException {
 		Long beginTime = System.nanoTime();
 		// 获取本次需要处理的任务信息列表 - 每次处理procSize条，状态为0表示初始状态
-		//String ownerName = "server1";//暂时写死，需要从通用方法中获取
+		// String ownerName = "server1";//暂时写死，需要从通用方法中获取
 		TBLCSFileExportTskDAO expTskDAO = DAOUtils.getExportTskDAO();
-		expTskDAO.getForUpdate(procSize,ownerName);
-		//logger.info(">>批量查询打印锁定记录用时"+((float)(System.nanoTime()-beginTime)/1000000000)+"秒");
+		expTskDAO.getForUpdate(procSize, ownerName);
+		// logger.info(">>批量查询打印锁定记录用时"+((float)(System.nanoTime()-beginTime)/1000000000)+"秒");
 
 		Long beginTime1 = System.nanoTime();
-		//获取执行中的
+		// 获取执行中的
 		PageQueryResult resultFirst = null;
-		String hqlStr = "select po from TblCSFileExportTskInf po where tskOwner ='"+ ownerName +"' and tskStat = '1' order by tskStartTms ";
+		String hqlStr = "select po from TblCSFileExportTskInf po where tskOwner ='" + ownerName
+				+ "' and tskStat = '1' order by tskStartTms ";
 		PageQueryCondition pqc = new PageQueryCondition();
 		pqc.setPageIndex(1);
 		pqc.setPageSize(procSize);
 		pqc.setQueryString(hqlStr);
 		resultFirst = DAOUtils.getHQLDAO().pageQueryByQLWithCount(pqc);
-		//logger.info(">>批量查询打印查询已锁定记录用时"+((float)(System.nanoTime()-beginTime1)/1000000000)+"秒");
+		// logger.info(">>批量查询打印查询已锁定记录用时"+((float)(System.nanoTime()-beginTime1)/1000000000)+"秒");
 
 		Long beginTime2 = System.nanoTime();
 		List tskList = resultFirst.getQueryResult();
-		//需放置到线程池中执行
+		// 需放置到线程池中执行
 		if (tskList != null) {
 			Iterator iterator = tskList.iterator();
 			while (iterator.hasNext()) {
-				TblCSFileExportTskInf tskInf = (TblCSFileExportTskInf)((Object[])iterator.next())[0];
+				TblCSFileExportTskInf tskInf = (TblCSFileExportTskInf) ((Object[]) iterator.next())[0];
 				Long beginTime3 = System.nanoTime();
 				QryExpThreadPoolExecutor.addTask(tskInf);
-				//logger.info(">>批量查询打印查询线程池执行用时"+((float)(System.nanoTime()-beginTime2)/1000000000)+"秒");
+				// logger.info(">>批量查询打印查询线程池执行用时"+((float)(System.nanoTime()-beginTime2)/1000000000)+"秒");
 			}
 		}
-		//logger.info(">>批量查询打印查询put入线程池用时"+((float)(System.nanoTime()-beginTime2)/1000000000)+"秒");
+		// logger.info(">>批量查询打印查询put入线程池用时"+((float)(System.nanoTime()-beginTime2)/1000000000)+"秒");
 	}
+
 	/**
 	 * 通用查询结果-批量导出数据到文件 处理过程： 获取DAO - 检查 - 组装对象 - 插入数据库
 	 *
@@ -180,8 +191,7 @@ public class QryExpService {
 	 *            处理类：getterclassname
 	 * @return TblCSFileExportTskInf
 	 */
-	public TblCSFileExportTskInf saveExpTskInf(Map params, String proClassName)
-			throws CommonException {
+	public TblCSFileExportTskInf saveExpTskInf(Map params, String proClassName) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("saveExpTskInf( ) - start"); //$NON-NLS-1$
 		}
@@ -200,15 +210,13 @@ public class QryExpService {
 			// 任务结束时间
 			expTsk.setTskEndTms("-");
 			// 文件名
-			expTsk.setExpFileNm((String) params
-					.get(QueryExportForm.P_FILE_NAME));
+			expTsk.setExpFileNm((String) params.get(QueryExportForm.P_FILE_NAME));
 			// 文件大小
 			expTsk.setExpFileSize(0l);
 			// 任务名称 CQID
-			expTsk.setTskNm((String) params
-					.get(CommonQueryConstants.COMMON_QUERY_ID));
-			//任务描述
-			expTsk.setTaskDesc((String)params.get(QueryExportForm.P_EXP_DESC));
+			expTsk.setTskNm((String) params.get(CommonQueryConstants.COMMON_QUERY_ID));
+			// 任务描述
+			expTsk.setTaskDesc((String) params.get(QueryExportForm.P_EXP_DESC));
 
 			// 请求参数
 			Iterator iter = params.keySet().iterator();
@@ -216,25 +224,27 @@ public class QryExpService {
 			while (iter.hasNext()) {
 				String key = (String) iter.next();
 				Object val = params.get(key);
-				if(val instanceof java.lang.String){
+				if (val instanceof java.lang.String) {
 					paramStr.append(key);
 					paramStr.append(":");
-					paramStr.append((String)val);
+					paramStr.append((String) val);
 					paramStr.append(";");
-				}else{
-					System.out.println("can not process type ="+val.getClass().getName());
+				} else {
+					System.out.println("can not process type =" + val.getClass().getName());
 				}
 			}
-			//压缩-编码
+			// 压缩-编码
 			String param = compressString(paramStr.toString());
 			String[] paramList = splitStrWithLenLimit(param, 2000);
-			if(paramList.length > 2) throw new CommonException("传入参数过长");
-			if(paramList.length == 0) throw new CommonException("传入参数为空");
-
+			if (paramList.length > 2)
+				throw new CommonException("传入参数过长");
+			if (paramList.length == 0)
+				throw new CommonException("传入参数为空");
 
 			expTsk.setTskParam1(paramList[0]);
-			if(paramList.length == 2) expTsk.setTskParam2(paramList[1]);
-			//System.out.println("paramStr="+paramStr.toString());
+			if (paramList.length == 2)
+				expTsk.setTskParam2(paramList[1]);
+			// System.out.println("paramStr="+paramStr.toString());
 
 			// 记录数
 			expTsk.setExpRcdNum(0l);
@@ -253,8 +263,7 @@ public class QryExpService {
 			expTskDAO.save(expTsk);
 			return expTsk;
 		} catch (CommonException e) {
-			ExceptionUtil
-					.throwCommonException(e.getErrMessage(), e.getKey(), e);
+			ExceptionUtil.throwCommonException(e.getErrMessage(), e.getKey(), e);
 		}
 		if (logger.isDebugEnabled()) {
 			logger.debug("saveExpTskInf() - end"); //$NON-NLS-1$
@@ -267,7 +276,8 @@ public class QryExpService {
 	 *
 	 * @throws IOException
 	 */
-	public void wirtHead(String[] expClsId, LinkedHashMap<?, ?> fieldsMap, IQueryExport export, String encoding, Map userParams) throws IOException {
+	public void wirtHead(String[] expClsId, LinkedHashMap<?, ?> fieldsMap, IQueryExport export, String encoding,
+			Map userParams) throws IOException {
 		// List<String[]>
 		List colsStr = new ArrayList();
 		// 定义文件头信息
@@ -283,7 +293,8 @@ public class QryExpService {
 			}
 		}
 		if (userParams.containsKey("PageQryExp_title")) {
-			colsStr.add(new String[]{"TITLE", String.valueOf(Math.max(headDesc.length-1, 0)), (String) userParams.get("PageQryExp_title")});
+			colsStr.add(new String[] { "TITLE", String.valueOf(Math.max(headDesc.length - 1, 0)),
+					(String) userParams.get("PageQryExp_title") });
 		}
 		colsStr.add(headDesc);
 		// 将头信息写入文件
@@ -293,7 +304,8 @@ public class QryExpService {
 	/**
 	 * TODO 写文件尾信息,未实现
 	 */
-	public void wirtTail(String[] tailStr, LinkedHashMap<?, ?> fieldsMap, IQueryExport export, String encoding) throws IOException {
+	public void wirtTail(String[] tailStr, LinkedHashMap<?, ?> fieldsMap, IQueryExport export, String encoding)
+			throws IOException {
 
 	}
 
@@ -320,47 +332,47 @@ public class QryExpService {
 		}
 
 		////////////////////////////////////////////////////// zhaozhiguo begin
-		boolean hasMore = true;//是否还有数据
-		int everyPage = Integer.parseInt(form.getEveryPage());//XML中定义的pageSize
-		long maxsize = everyPage * (endPage - startPage + 1L);//最大可能下载记录数
+		boolean hasMore = true;// 是否还有数据
+		int everyPage = Integer.parseInt(form.getEveryPage());// XML中定义的pageSize
+		long maxsize = everyPage * (endPage - startPage + 1L);// 最大可能下载记录数
 		long sumsize = 0L;
-        //已导出笔数与导出的总笔数
-        otherParams.put("exp_cur_num","0");
-        otherParams.put("exp_sum_num","0");
-		if(form.isExpAll()) {//批量下载
+		// 已导出笔数与导出的总笔数
+		otherParams.put("exp_cur_num", "0");
+		otherParams.put("exp_sum_num", "0");
+		if (form.isExpAll()) {// 批量下载
 			logger.info("=========批量导出========");
-			int perfetch = Integer.parseInt((String) otherParams.get("perfetch"));//每页读取条数
-			String tmpEveryPage = String.valueOf(Math.min(maxsize, perfetch));//总记录数与每页读取数最小值
+			int perfetch = Integer.parseInt((String) otherParams.get("perfetch"));// 每页读取条数
+			String tmpEveryPage = String.valueOf(Math.min(maxsize, perfetch));// 总记录数与每页读取数最小值
 			otherParams.put(CommonQueryConstants.PAGE_EVERYPAGE, tmpEveryPage);
-            logger.debug("=========每页读取条数======"+perfetch);
-            logger.debug("=========实际读取条数======"+tmpEveryPage);
-			
+			logger.debug("=========每页读取条数======" + perfetch);
+			logger.debug("=========实际读取条数======" + tmpEveryPage);
+
 		} else {
-            logger.info("=========联机导出========");
-            int maxpage = Integer.parseInt(form.getMaxpage());//联机最大支持页
-            endPage = Math.min(startPage+maxpage-1, endPage);
-            logger.debug("=========最大支持页======"+maxpage);
-            logger.debug("=========实际导出页======"+endPage);
-            
+			logger.info("=========联机导出========");
+			int maxpage = Integer.parseInt(form.getMaxpage());// 联机最大支持页
+			endPage = Math.min(startPage + maxpage - 1, endPage);
+			logger.debug("=========最大支持页======" + maxpage);
+			logger.debug("=========实际导出页======" + endPage);
+
 		}
-		//////////////////////////////////////////////////////zhaozhiguo end
-		
+		////////////////////////////////////////////////////// zhaozhiguo end
+
 		for (int currentPage = startPage; currentPage <= endPage && hasMore; currentPage++) {
 			// 每次调用，设置不同的页码
 			otherParams.put(CommonQueryConstants.PAGE_NEXTPAGE, String.valueOf(currentPage));
 			// 调用XML中定义的getterclassname属性
-			Result result = BaseCallGetterProcess.processSync(commonQueryBean.getId(), form.getRequest(), form.getResponse(),
-					otherParams);
+			Result result = BaseCallGetterProcess.processSync(commonQueryBean.getId(), form.getRequest(),
+					form.getResponse(), otherParams);
 			List data = result.getData();
-			//zhaozhiguo
-			//如果取得的当前页数数据无空或小于分页大小,则说明已无数据
+			// zhaozhiguo
+			// 如果取得的当前页数数据无空或小于分页大小,则说明已无数据
 			if (data.isEmpty() || data.size() < everyPage) {
 				hasMore = false;
 			}
 			List qryData = new ArrayList();
 			for (int i = 0; i < data.size(); i++) {
-				//zhaozhiguo
-				//取得的数据总条数 大于 批量下载指定的总条数(结束页-起始页+1)*分页大小,刚说明数据已经取够了
+				// zhaozhiguo
+				// 取得的数据总条数 大于 批量下载指定的总条数(结束页-起始页+1)*分页大小,刚说明数据已经取够了
 				if (++sumsize > maxsize) {
 					hasMore = false;
 					break;
@@ -398,15 +410,15 @@ public class QryExpService {
 									}
 								}
 							}
-							/**mod by abudula at 2010-8-31 start**/
-							else if (translated.toUpperCase().startsWith("CQ:")){
-								//先不处理
-							}
-							else{
-								//目前DATA_DIC写死的
-								if(translated.toUpperCase().startsWith("DATA_DIC")){
-									String[]  trans= translated.split("\\.");
-									String translatedValue = SystemDictionaryUnit.getFieldDesc(trans[0],trans[1],rowData[j]);
+							/** mod by abudula at 2010-8-31 start **/
+							else if (translated.toUpperCase().startsWith("CQ:")) {
+								// 先不处理
+							} else {
+								// 目前DATA_DIC写死的
+								if (translated.toUpperCase().startsWith("DATA_DIC")) {
+									String[] trans = translated.split("\\.");
+									String translatedValue = SystemDictionaryUnit.getFieldDesc(trans[0], trans[1],
+											rowData[j]);
 									if (translatedValue != null) {
 										rowData[j] = translatedValue;
 									}
@@ -415,39 +427,46 @@ public class QryExpService {
 							}
 						}
 
-						//对method 方法起作用
-						if(paramMethod != null &&
-								paramMethod.trim().length()!=0 &&
-								!paramMethod.equalsIgnoreCase(CommonQueryConstants.ELEMENT_METHOD_NONE)){
-								rowData[j] = FieldValueProcess.process(form.getRequest(),fBean,rowData[j]);
+						// 对method 方法起作用
+						if (paramMethod != null && paramMethod.trim().length() != 0
+								&& !paramMethod.equalsIgnoreCase(CommonQueryConstants.ELEMENT_METHOD_NONE)) {
+							rowData[j] = FieldValueProcess.process(form.getRequest(), fBean, rowData[j]);
 						}
-						/**mod by abudula at 2010-8-31 end**/
+						/** mod by abudula at 2010-8-31 end **/
 					}
-					/* modify by shen_antonio 2011-8-3 JIRA: BMSA-28 begin 
-					 * for csv data format.*/
-					/* modify by shen_antonio 2011-12-28 JIRA: FPP-7 begin .*/
-					if(export instanceof CSVExport){
+					/*
+					 * modify by shen_antonio 2011-8-3 JIRA: BMSA-28 begin for
+					 * csv data format.
+					 */
+					/* modify by shen_antonio 2011-12-28 JIRA: FPP-7 begin . */
+					if (export instanceof CSVExport) {
 						ICommonQueryField fBean = commonQueryBean.getField(fileIds[j]);
 						String dataType = fBean.getAnyValue(CommonQueryConstants.FIELD_DATATYPE);
-						if(StringUtils.isEmpty(dataType) || StringUtils.equalsIgnoreCase(dataType, "string")){
-							if(NumberUtils.isNumber(rowData[j]) ){
+						if (StringUtils.isEmpty(dataType) || StringUtils.equalsIgnoreCase(dataType, "string")) {
+							if (NumberUtils.isNumber(rowData[j])) {
 								BigDecimal bd = NumberUtils.createBigDecimal(rowData[j]).abs();
-								if(bd.scale()>6 || bd.precision() > 11){
-									rowData[j] = "=\"" + rowData[j] + "\"";//String datatype Value format for csv display
-								}else{
-									//ignore;
+								if (bd.scale() > 6 || bd.precision() > 11) {
+									rowData[j] = "=\"" + rowData[j] + "\"";// String
+																			// datatype
+																			// Value
+																			// format
+																			// for
+																			// csv
+																			// display
+								} else {
+									// ignore;
 								}
-							}else{
-								//ignore;
+							} else {
+								// ignore;
 							}
-						}else{
-							//ignore
+						} else {
+							// ignore
 						}
-					}else{
-						//ignore
+					} else {
+						// ignore
 					}
-					/* modify by shen_antonio 2011-12-28 JIRA: FPP-7 end.*/
-					/* mdify by shen_antonio 2011-8-3 JIRA: BMSA-28 end .*/
+					/* modify by shen_antonio 2011-12-28 JIRA: FPP-7 end. */
+					/* mdify by shen_antonio 2011-8-3 JIRA: BMSA-28 end . */
 				}
 				// 向结果中添加转换后的行数据
 				qryData.add(rowData);
@@ -455,126 +474,128 @@ public class QryExpService {
 			// 将数据写入输出流
 			export.writeDetails(qryData);
 			String num = String.valueOf(Long.valueOf((String) otherParams.get("exp_cur_num")) + qryData.size());
-	        otherParams.put("exp_cur_num", num);
+			otherParams.put("exp_cur_num", num);
 			otherParams.put("exp_sum_num", num);
 		}
 	}
 
 	/**
 	 * 批量查询下载生成文件
-	 * @param tskList 待处理任务列表，已update 状态和owner
+	 * 
+	 * @param tskList
+	 *            待处理任务列表，已update 状态和owner
 	 */
-	public void genExportBatch(TblCSFileExportTskInf tskInf){
-			try{
-				tskInf.setTskStat("2");//先设置为正在执行
-				this.updTskInf(tskInf);
+	public void genExportBatch(TblCSFileExportTskInf tskInf) {
+		try {
+			tskInf.setTskStat("2");// 先设置为正在执行
+			this.updTskInf(tskInf);
 
-				MockHttpServletRequest request = new MockHttpServletRequest();
-				MockHttpServletResponse response = new MockHttpServletResponse();
-				
-				QueryExportForm expForm = new QueryExportForm(request, response);
-				// 恢复参数，将String分解，转换成键值对
-				Map params = new HashMap();
-				//拼接串
-				String paramStr = tskInf.getTskParam1() + (tskInf.getTskParam2()== null? "":tskInf.getTskParam2());
-				
-				//解压缩-解码
-				paramStr = decompressString(paramStr);
-				
-				String[] para = paramStr.split(";");
-				for (int i = 0; i < para.length; i++) {
-					if (para[i] != null && (para[i].indexOf(':') != -1)) {
-						String[] p = para[i].split(":");
-						if (p.length == 2) {
-							params.put(p[0].trim().trim(), p[1].trim().trim());
-						//add by zhaozhiguo
-						} else if (p.length == 1) {
-							params.put(p[0].trim().trim(), "");
-						}
+			MockHttpServletRequest request = new MockHttpServletRequest();
+			MockHttpServletResponse response = new MockHttpServletResponse();
+
+			QueryExportForm expForm = new QueryExportForm(request, response);
+			// 恢复参数，将String分解，转换成键值对
+			Map params = new HashMap();
+			// 拼接串
+			String paramStr = tskInf.getTskParam1() + (tskInf.getTskParam2() == null ? "" : tskInf.getTskParam2());
+
+			// 解压缩-解码
+			paramStr = decompressString(paramStr);
+
+			String[] para = paramStr.split(";");
+			for (int i = 0; i < para.length; i++) {
+				if (para[i] != null && (para[i].indexOf(':') != -1)) {
+					String[] p = para[i].split(":");
+					if (p.length == 2) {
+						params.put(p[0].trim().trim(), p[1].trim().trim());
+						// add by zhaozhiguo
+					} else if (p.length == 1) {
+						params.put(p[0].trim().trim(), "");
 					}
-
 				}
-				
 
-				//构造虚拟的GlobalInfo
-				GlobalInfo gd = new GlobalInfo();
-				gd.setTlrno((String)params.get("global_userid"));
-				gd.setBrcode((String)params.get("global_brcode"));
-				gd.setBrno((String)params.get("global_brhid"));
-				gd.setBrClass(((String)params.get("global_brhclass")));
-				HttpSession session = request.getSession();
-				gd.setSessionId(session.getId());
-				session.setAttribute(GlobalInfo.KEY_GLOBAL_INFO, gd);
-				
-				
-				// CQID
-				String cqId = (String) params.get(CommonQueryConstants.COMMON_QUERY_ID);
-				expForm.setCqId(cqId.trim());
-				// 文件类型
-				String fileType = (String) params.get(cqId+"_"+QueryExportForm.P_EXP_TYPE);
-				if (fileType == null) {//参数应该是expType
-					fileType = (String) params.get(QueryExportForm.P_EXP_TYPE);
-				}
-				if (fileType == null) {
-					fileType = "CSV";
-				} else {
-					fileType = fileType.toUpperCase();
-				}
-				//下载文件是否需要压缩，默认不需要压缩
-				expForm.setZipFlag(false);
-				String zip = (String)params.get(cqId+"_"+QueryExportForm.P_ZIP_FLAG);
-				if(zip != null && (!"".equals(zip))){
-					if("1".equals(zip.trim())){expForm.setZipFlag(true);}
-				}
-				// 导出字段的顺序
-				String els = (String) params.get(cqId+"_"+QueryExportForm.P_COL_SORT_NAME);
-				expForm.setColumnSort(els);
-				//批量下载
-				expForm.setExpAll(true);
-				expForm.setExportType(fileType);
-				// 开始页码
-				String startPage = (String) params.get(cqId+"_"+QueryExportForm.P_START_PAGE);
-				expForm.setStartPage(startPage);
-				// 结束页码
-				String endPage = (String) params.get(cqId+"_"+QueryExportForm.P_END_PAGE);
-				expForm.setEndPage(endPage);
-				
-				//zhaozhiguo每页大小
-				String everyPage = (String) params.get(CommonQueryConstants.PAGE_EVERYPAGE);
-				expForm.setEveryPage(everyPage);
-				
-				// 文件名，包含完整的路径
-				String fileName = tskInf.getExpFileNm();
-
-				File file = new File(fileName);
-				String folderPath = file.getParent() ;
-				CommonFunction.mkDir(folderPath);
-
-				// 文件输出流
-				FileOutputStream out;
-				out = new FileOutputStream(fileName);
-				expForm.setFileName(fileName);
-				// 查询结果导出处理
-				genExport(expForm, out, params);
-				//更改批量任务的状态为已完成 0:初始状态 1:准备执行 2:正在执行 3:任务完成 4执行失败
-				tskInf.setTskStat("3");
-				
-				//add by zhaozhiguo 设置文件大小,导出笔数
-				tskInf.setExpFileSize(file.length());
-				tskInf.setExpRcdNum(Long.valueOf((String) params.get("exp_cur_num")));
-				tskInf.setExpRcdSumNum(Long.valueOf((String) params.get("exp_sum_num")));
-				this.updTskInf(tskInf);
-			} catch (Exception e) {
-				// TODO 记录错误日志 -- 未实现
-				e.printStackTrace();
-				tskInf.setTskStat("4");
-			} finally{
-				//结束时间
-				SimpleDateFormat dataFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-				String endTime = dataFormat.format(new Date());
-				tskInf.setTskEndTms(endTime);
-				this.updTskInf(tskInf);
 			}
+
+			// 构造虚拟的GlobalInfo
+			GlobalInfo gd = new GlobalInfo();
+			gd.setTlrno((String) params.get("global_userid"));
+			gd.setBrcode((String) params.get("global_brcode"));
+			gd.setBrno((String) params.get("global_brhid"));
+			gd.setBrClass(((String) params.get("global_brhclass")));
+			HttpSession session = request.getSession();
+			gd.setSessionId(session.getId());
+			session.setAttribute(GlobalInfo.KEY_GLOBAL_INFO, gd);
+
+			// CQID
+			String cqId = (String) params.get(CommonQueryConstants.COMMON_QUERY_ID);
+			expForm.setCqId(cqId.trim());
+			// 文件类型
+			String fileType = (String) params.get(cqId + "_" + QueryExportForm.P_EXP_TYPE);
+			if (fileType == null) {// 参数应该是expType
+				fileType = (String) params.get(QueryExportForm.P_EXP_TYPE);
+			}
+			if (fileType == null) {
+				fileType = "CSV";
+			} else {
+				fileType = fileType.toUpperCase();
+			}
+			// 下载文件是否需要压缩，默认不需要压缩
+			expForm.setZipFlag(false);
+			String zip = (String) params.get(cqId + "_" + QueryExportForm.P_ZIP_FLAG);
+			if (zip != null && (!"".equals(zip))) {
+				if ("1".equals(zip.trim())) {
+					expForm.setZipFlag(true);
+				}
+			}
+			// 导出字段的顺序
+			String els = (String) params.get(cqId + "_" + QueryExportForm.P_COL_SORT_NAME);
+			expForm.setColumnSort(els);
+			// 批量下载
+			expForm.setExpAll(true);
+			expForm.setExportType(fileType);
+			// 开始页码
+			String startPage = (String) params.get(cqId + "_" + QueryExportForm.P_START_PAGE);
+			expForm.setStartPage(startPage);
+			// 结束页码
+			String endPage = (String) params.get(cqId + "_" + QueryExportForm.P_END_PAGE);
+			expForm.setEndPage(endPage);
+
+			// zhaozhiguo每页大小
+			String everyPage = (String) params.get(CommonQueryConstants.PAGE_EVERYPAGE);
+			expForm.setEveryPage(everyPage);
+
+			// 文件名，包含完整的路径
+			String fileName = tskInf.getExpFileNm();
+
+			File file = new File(fileName);
+			String folderPath = file.getParent();
+			CommonFunction.mkDir(folderPath);
+
+			// 文件输出流
+			FileOutputStream out;
+			out = new FileOutputStream(fileName);
+			expForm.setFileName(fileName);
+			// 查询结果导出处理
+			genExport(expForm, out, params);
+			// 更改批量任务的状态为已完成 0:初始状态 1:准备执行 2:正在执行 3:任务完成 4执行失败
+			tskInf.setTskStat("3");
+
+			// add by zhaozhiguo 设置文件大小,导出笔数
+			tskInf.setExpFileSize(file.length());
+			tskInf.setExpRcdNum(Long.valueOf((String) params.get("exp_cur_num")));
+			tskInf.setExpRcdSumNum(Long.valueOf((String) params.get("exp_sum_num")));
+			this.updTskInf(tskInf);
+		} catch (Exception e) {
+			// TODO 记录错误日志 -- 未实现
+			e.printStackTrace();
+			tskInf.setTskStat("4");
+		} finally {
+			// 结束时间
+			SimpleDateFormat dataFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+			String endTime = dataFormat.format(new Date());
+			tskInf.setTskEndTms(endTime);
+			this.updTskInf(tskInf);
+		}
 	}
 
 	/**
@@ -607,12 +628,10 @@ public class QryExpService {
 			LinkedHashMap<?, ?> fieldsMap = commonQueryBean.getFields();
 			// 判断生成类型文件、编码
 			String type = getAnyValueDefault(form.getExportType(), "csv").toLowerCase();
-			
 
-			//设置联机最大支持页数
+			// 设置联机最大支持页数
 			String maxpage = commonQueryBean.getPageExpConf("maxpage");
 			form.setMaxpage(getAnyValueDefault(maxpage, ConfigReader.getProperty("PageQryExp_maxpage")));
-			
 
 			// 输出流，默认取response中的输出流
 			if (out == null) {
@@ -622,34 +641,32 @@ public class QryExpService {
 			if (form.isZipFlag()) {
 				// 压缩文件response头部信息
 				response.setContentType("application/zip; " + "charset=" + form.getFileEnCode().toUpperCase());
-				//支持Https
-				response.setHeader("Pragma","public");
+				// 支持Https
+				response.setHeader("Pragma", "public");
 				String disFileName = getAnyValueDefault(form.getFileName(), "qryExpZip");
 				disFileName = new String(disFileName.getBytes("GBK"), "8859_1");
-				response.setHeader("Content-disposition", "attachment;filename=" + disFileName
-						+ ".zip");
+				response.setHeader("Content-disposition", "attachment;filename=" + disFileName + ".zip");
 				out = new ZipOutputStream(out);
 				String fileName = getAnyValueDefault(form.getFileName(), "downloadFile");
 				/*
-				if(fileName.indexOf(File.separator) != -1){fileName = fileName.substring(fileName.indexOf(File.separator)+1);}
-				if(fileName.indexOf(".")!= -1){
-					fileName = fileName.substring(0,fileName.indexOf("."));
-				}
-				*/
-				//Zip后的文件名中文乱码,写死压缩的文件名
+				 * if(fileName.indexOf(File.separator) != -1){fileName =
+				 * fileName.substring(fileName.indexOf(File.separator)+1);}
+				 * if(fileName.indexOf(".")!= -1){ fileName =
+				 * fileName.substring(0,fileName.indexOf(".")); }
+				 */
+				// Zip后的文件名中文乱码,写死压缩的文件名
 				fileName = "downloadFile";
 				((ZipOutputStream) out).putNextEntry(new ZipEntry(fileName + "." + type));
 			} else {
 				// 非压缩文件response头部信息
 				response.setContentType("application/" + type + "; " + "charset=" + form.getFileEnCode().toUpperCase());
-				//支持Https
-				response.setHeader("Pragma","public");
+				// 支持Https
+				response.setHeader("Pragma", "public");
 				String disFileName = getAnyValueDefault(form.getFileName(), "qryExpZip");
 				disFileName = new String(disFileName.getBytes("GBK"), "8859_1");
-				response.setHeader("Content-disposition", "attachment;filename="
-						+ disFileName + "." + type);
+				response.setHeader("Content-disposition", "attachment;filename=" + disFileName + "." + type);
 			}
-			/*设置IE特殊的扩展头 保证可以直接打开*/
+			/* 设置IE特殊的扩展头 保证可以直接打开 */
 			response.setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
 			// 根据文件下载类型获取连接池
 			pool = ExportPool.getExportPool(type.toUpperCase());
@@ -676,7 +693,7 @@ public class QryExpService {
 			export.clear();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new DomainException("",e);
+			throw new DomainException("", e);
 		} finally {
 			try {
 				if (null != export) {
@@ -708,23 +725,28 @@ public class QryExpService {
 
 	/**
 	 * 拆分字符串为几个子串，每个字串的字节长不能超过maxLen
-	 * @param inputStr 出入值
-	 * @param maxLen 每个拆分后的值最大长度(字节长)
+	 * 
+	 * @param inputStr
+	 *            出入值
+	 * @param maxLen
+	 *            每个拆分后的值最大长度(字节长)
 	 * @return
 	 */
-	public String[] splitStrWithLenLimit(String inputStr,int maxLen){
-		int byteLen = maxLen/2;//
-		if(byteLen == 0) byteLen = 1;//
+	public String[] splitStrWithLenLimit(String inputStr, int maxLen) {
+		int byteLen = maxLen / 2;//
+		if (byteLen == 0)
+			byteLen = 1;//
 
 		int inputLen = inputStr.length();
-		int dealNum = inputLen%byteLen == 0? inputLen/byteLen: inputLen/byteLen+1;
+		int dealNum = inputLen % byteLen == 0 ? inputLen / byteLen : inputLen / byteLen + 1;
 
-		String[] resultArray = new String[dealNum];//return array
-		for(int index = 0 ;index< dealNum-1;index++){
-			resultArray[index] = inputStr.substring(byteLen*index, byteLen*(index+1));
+		String[] resultArray = new String[dealNum];// return array
+		for (int index = 0; index < dealNum - 1; index++) {
+			resultArray[index] = inputStr.substring(byteLen * index, byteLen * (index + 1));
 		}
 
-		resultArray[dealNum-1] = inputStr.substring(byteLen*(dealNum-1),inputStr.length());//last one
+		resultArray[dealNum - 1] = inputStr.substring(byteLen * (dealNum - 1), inputStr.length());// last
+																									// one
 
 		return resultArray;
 	}
@@ -735,7 +757,7 @@ public class QryExpService {
 		try {
 			baos = new ByteArrayOutputStream();
 			gzip = new GZIPOutputStream(baos);
-			
+
 			gzip.write(input.getBytes());
 			gzip.finish();
 			byte[] bytes = baos.toByteArray();
@@ -754,7 +776,7 @@ public class QryExpService {
 		}
 	}
 
-    private String decompressString(String input) {
+	private String decompressString(String input) {
 		BASE64Decoder decoder = new BASE64Decoder();
 		ByteArrayInputStream bais = null;
 		GZIPInputStream gzip = null;
@@ -763,7 +785,7 @@ public class QryExpService {
 			bais = new ByteArrayInputStream(decoder.decodeBuffer(input));
 			gzip = new GZIPInputStream(bais);
 			baos = new ByteArrayOutputStream();
-			
+
 			byte[] buf = new byte[1024];
 			int num = -1;
 			while ((num = gzip.read(buf, 0, buf.length)) != -1) {
@@ -785,5 +807,3 @@ public class QryExpService {
 	}
 
 }
-
-

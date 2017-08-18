@@ -37,10 +37,9 @@ public class GlobalinfoDAO extends HibernateDaoSupport {
 	 */
 	public Globalinfo query(java.lang.Integer id) throws CommonException {
 		try {
-			return (Globalinfo) this.getHibernateTemplate().load(Globalinfo.class,id);
+			return (Globalinfo) this.getHibernateTemplate().load(Globalinfo.class, id);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_GLOBALINFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_GLOBALINFO_SELECT, e);
 		}
 		return null;
 	}
@@ -52,24 +51,17 @@ public class GlobalinfoDAO extends HibernateDaoSupport {
 	 * @param key2
 	 * @return Globalinfo
 	 * @throws CommonException
-	public Globalinfo query(String key1, String key2) throws CommonException {
-		List list = new ArrayList();
-		try {
-			StringBuffer whereString = new StringBuffer();
-			whereString.append("po.key1 = '").append(key1).append(
-					"' and po.key2 = '").append(key2).append("'");
-			list = queryByCondition(whereString.toString());
-		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_GLOBALINFO_SELECT, e);
-		}
-
-		if (list.size() != 1) {
-			return null;
-		} else {
-			return (Globalinfo) list.get(0);
-		}
-	}
+	 *             public Globalinfo query(String key1, String key2) throws
+	 *             CommonException { List list = new ArrayList(); try {
+	 *             StringBuffer whereString = new StringBuffer();
+	 *             whereString.append("po.key1 = '").append(key1).append(
+	 *             "' and po.key2 = '").append(key2).append("'"); list =
+	 *             queryByCondition(whereString.toString()); } catch (Exception
+	 *             e) { ExceptionUtil.throwCommonException(e.getMessage(),
+	 *             ErrorCode.ERROR_CODE_GLOBALINFO_SELECT, e); }
+	 * 
+	 *             if (list.size() != 1) { return null; } else { return
+	 *             (Globalinfo) list.get(0); } }
 	 */
 
 	/**
@@ -81,15 +73,12 @@ public class GlobalinfoDAO extends HibernateDaoSupport {
 	 * @return ??Globalinfo?????List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString, Object[] objArray,
-			Type[] typeArray) throws CommonException {
+	public List queryByCondition(String whereString, Object[] objArray, Type[] typeArray) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from Globalinfo po where " + whereString, objArray);
+			List list = this.getHibernateTemplate().find("from Globalinfo po where " + whereString, objArray);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_GLOBALINFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_GLOBALINFO_SELECT, e);
 		}
 		return null;
 	}
@@ -103,12 +92,10 @@ public class GlobalinfoDAO extends HibernateDaoSupport {
 	 */
 	public List queryByCondition(String whereString) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from Globalinfo po where " + whereString);
+			List list = this.getHibernateTemplate().find("from Globalinfo po where " + whereString);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_GLOBALINFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_GLOBALINFO_SELECT, e);
 		}
 		return null;
 	}
@@ -123,8 +110,7 @@ public class GlobalinfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().update(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_GLOBALINFO_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_GLOBALINFO_UPDATE, e);
 		}
 	}
 
@@ -138,8 +124,7 @@ public class GlobalinfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().save(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_GLOBALINFO_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_GLOBALINFO_INSERT, e);
 		}
 	}
 
@@ -153,8 +138,7 @@ public class GlobalinfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_GLOBALINFO_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_GLOBALINFO_DELETE, e);
 		}
 	}
 
@@ -168,14 +152,13 @@ public class GlobalinfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(query(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_GLOBALINFO_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_GLOBALINFO_DELETE, e);
 		}
 	}
+
 	public Globalinfo findById(java.lang.Integer id) {
 		try {
-			Globalinfo instance = (Globalinfo) getHibernateTemplate().get(
-					Globalinfo.class.getName(), id);
+			Globalinfo instance = (Globalinfo) getHibernateTemplate().get(Globalinfo.class.getName(), id);
 			return instance;
 		} catch (RuntimeException re) {
 			throw re;

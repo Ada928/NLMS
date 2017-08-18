@@ -24,39 +24,36 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.operation.BopCfaExplrmbloDsOperation;
 
-public class BopCfaExplrmbloDsUpdate  extends BaseUpdate {
+public class BopCfaExplrmbloDsUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "BopCfaExplrmbloDsAdd";
 
 	private static final String EXPLCURRINFO_ID = "BopCfaExplcurrinfo";
-
 
 	public static final String OPERATION_INSERT = "new";
 	public static final String OPERATION_MODIFY = "mod";
 	public static final String OPERATION_DELETE = "del";
 	public static final String OPERATION_DETAIL = "detail";
 
-
 	@SuppressWarnings("unchecked")
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 
 		try {
-			//返回对象
+			// 返回对象
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			//结果集对象
+			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-			//更新对象
+			// 更新对象
 			BopCfaExplrmbloDs bean = null;
-			//Operation参数
+			// Operation参数
 			OperationContext context = new OperationContext();
 
 			while (updateResultBean.hasNext()) {
 				bean = new BopCfaExplrmbloDs();
 				Map map = updateResultBean.next();
-				//属性拷贝
+				// 属性拷贝
 				mapToObject(bean, map);
 
 				if (null != map.get("crtTm") && StringUtils.isNotEmpty(String.valueOf(map.get("crtTm")))) {
@@ -66,13 +63,13 @@ public class BopCfaExplrmbloDsUpdate  extends BaseUpdate {
 			}
 
 			UpdateResultBean explcurrinfoResult = multiUpdateResultBean.getUpdateResultBeanByID(EXPLCURRINFO_ID);
-			List<BopCfaExplbalainfo>saveList = new ArrayList<BopCfaExplbalainfo>();
-			List<BopCfaExplbalainfo>updateList = new ArrayList<BopCfaExplbalainfo>();
-			List<BopCfaExplbalainfo>deleteList = new ArrayList<BopCfaExplbalainfo>();
+			List<BopCfaExplbalainfo> saveList = new ArrayList<BopCfaExplbalainfo>();
+			List<BopCfaExplbalainfo> updateList = new ArrayList<BopCfaExplbalainfo>();
+			List<BopCfaExplbalainfo> deleteList = new ArrayList<BopCfaExplbalainfo>();
 			BopCfaExplbalainfo explbalainfo = null;
 			while (explcurrinfoResult.hasNext()) {
 				explbalainfo = new BopCfaExplbalainfo();
-				//属性拷贝
+				// 属性拷贝
 				mapToObject(explbalainfo, explcurrinfoResult.next());
 				switch (explcurrinfoResult.getRecodeState()) {
 				case UpdateResultBean.INSERT:
@@ -89,9 +86,8 @@ public class BopCfaExplrmbloDsUpdate  extends BaseUpdate {
 				}
 			}
 
-
 			String op = updateResultBean.getParameter("op");
-			if(StringUtils.equals(op, OPERATION_INSERT)){
+			if (StringUtils.equals(op, OPERATION_INSERT)) {
 				context.setAttribute(BopCfaExplrmbloDsOperation.CMD, BopCfaExplrmbloDsOperation.CMD_INSERT);
 				context.setAttribute(BopCfaExplrmbloDsOperation.IN_PARAM, bean);
 
@@ -123,7 +119,7 @@ public class BopCfaExplrmbloDsUpdate  extends BaseUpdate {
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
-			throw new AppException(Module.SYSTEM_MODULE,Rescode.DEFAULT_RESCODE,e.getMessage(),e);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
 	}
 }

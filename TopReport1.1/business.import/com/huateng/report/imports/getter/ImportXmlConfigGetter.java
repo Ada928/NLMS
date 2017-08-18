@@ -1,7 +1,5 @@
 package com.huateng.report.imports.getter;
 
-
-
 import org.apache.commons.lang.StringUtils;
 import resource.dao.base.HQLDAO;
 import com.huateng.common.err.Module;
@@ -18,10 +16,9 @@ public class ImportXmlConfigGetter extends BaseGetter {
 	@Override
 	public Result call() throws AppException {
 		try {
-			
+
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(1);
@@ -30,23 +27,22 @@ public class ImportXmlConfigGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
-	
+
 	private PageQueryResult getData() throws CommonException {
 		String importFileId = getCommQueryServletRequest().getParameter("guid");
-		StringBuffer hql = new StringBuffer("select dd from BiImportXmlConfig dd where 1=1");			
+		StringBuffer hql = new StringBuffer("select dd from BiImportXmlConfig dd where 1=1");
 		if (StringUtils.isNotBlank(importFileId)) {
 			hql.append(" and dd.guid = '").append(importFileId).append("'");
 		}
 		hql.append(" order by nodeOrder");
 		HQLDAO hqlDAO = DAOUtils.getHQLDAO();
-		PageQueryResult pageResult=new PageQueryResult();
+		PageQueryResult pageResult = new PageQueryResult();
 		pageResult.setQueryResult(hqlDAO.queryByQL2List(hql.toString()));
 		return pageResult;
-	
+
 	}
 }

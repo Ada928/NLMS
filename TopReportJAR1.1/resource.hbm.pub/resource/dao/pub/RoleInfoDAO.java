@@ -17,12 +17,12 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 
 /**
- * A data access object (DAO) providing persistence and search support for RoleInfo
- * entities. Transaction control of the save(), update() and delete() operations
- * can directly support Spring container-managed transactions or they can be
- * augmented to handle user-managed Spring transactions. Each of these methods
- * provides additional information for how to configure it for the desired type
- * of transaction control.
+ * A data access object (DAO) providing persistence and search support for
+ * RoleInfo entities. Transaction control of the save(), update() and delete()
+ * operations can directly support Spring container-managed transactions or they
+ * can be augmented to handle user-managed Spring transactions. Each of these
+ * methods provides additional information for how to configure it for the
+ * desired type of transaction control.
  *
  * @see com.resource.bean.pub.entity.data.mng.RoleInfo
  * @author MyEclipse Persistence Tools
@@ -61,14 +61,15 @@ public class RoleInfoDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
+
 	public void update(RoleInfo po) throws CommonException {
 		try {
 			this.getHibernateTemplate().update(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_INFO_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_INFO_UPDATE, e);
 		}
 	}
+
 	/**
 	 * 插入记录
 	 *
@@ -79,15 +80,14 @@ public class RoleInfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().save(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_INFO_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_INFO_INSERT, e);
 		}
 	}
+
 	public RoleInfo findById(java.lang.Integer id) {
 		log.debug("getting RoleInfo instance with id: " + id);
 		try {
-			RoleInfo instance = (RoleInfo) getHibernateTemplate().get(
-					RoleInfo.class.getName(), id);
+			RoleInfo instance = (RoleInfo) getHibernateTemplate().get(RoleInfo.class.getName(), id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -99,8 +99,7 @@ public class RoleInfoDAO extends HibernateDaoSupport {
 		log.debug("finding RoleInfo instance by example");
 		try {
 			List results = getHibernateTemplate().findByExample(instance);
-			log.debug("find by example successful, result size: "
-					+ results.size());
+			log.debug("find by example successful, result size: " + results.size());
 			return results;
 		} catch (RuntimeException re) {
 			log.error("find by example failed", re);
@@ -109,11 +108,9 @@ public class RoleInfoDAO extends HibernateDaoSupport {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding RoleInfo instance with property: " + propertyName
-				+ ", value: " + value);
+		log.debug("finding RoleInfo instance with property: " + propertyName + ", value: " + value);
 		try {
-			String queryString = "from RoleInfo model where model."
-					+ propertyName + "= ?";
+			String queryString = "from RoleInfo model where model." + propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
@@ -178,47 +175,42 @@ public class RoleInfoDAO extends HibernateDaoSupport {
 		return (RoleInfoDAO) ctx.getBean("RoleInfoDAO");
 	}
 
+	/**
+	 * 根据输入的条件查询所有符合条件的记录
+	 *
+	 * @param whereString
+	 * @param objArray
+	 * @param typeArray
+	 * @return 包含LimitParam对象的List
+	 * @throws CommonException
+	 */
+	public List queryByCondition(String whereString, Object[] objArray, Type[] typeArray) throws CommonException {
+		try {
+			List list = this.getHibernateTemplate().find("from RoleInfo po where " + whereString, objArray);
+			return list;
+		} catch (Exception e) {
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_INFO_SELECT, e);
+		}
+		return null;
+	}
 
-    /**
-     * 根据输入的条件查询所有符合条件的记录
-     *
-     * @param whereString
-     * @param objArray
-     * @param typeArray
-     * @return 包含LimitParam对象的List
-     * @throws CommonException
-     */
-    public List queryByCondition(String whereString, Object[] objArray,
-            Type[] typeArray) throws CommonException {
-        try {
-            List list = this.getHibernateTemplate().find(
-                    "from RoleInfo po where " + whereString, objArray);
-            return list;
-        } catch (Exception e) {
-            ExceptionUtil.throwCommonException(e.getMessage(),
-                    ErrorCode.ERROR_CODE_ROLE_INFO_SELECT, e);
-        }
-        return null;
-    }
+	/**
+	 * 根据输入的条件查询所有符合条件的记录
+	 *
+	 * @param whereString
+	 * @return 包含LimitParam对象的List
+	 * @throws CommonException
+	 */
+	public List queryByCondition(String whereString) throws CommonException {
+		try {
+			List list = this.getHibernateTemplate().find("from RoleInfo po where " + whereString);
+			return list;
+		} catch (Exception e) {
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_INFO_SELECT, e);
+		}
+		return null;
+	}
 
-    /**
-     * 根据输入的条件查询所有符合条件的记录
-     *
-     * @param whereString
-     * @return 包含LimitParam对象的List
-     * @throws CommonException
-     */
-    public List queryByCondition(String whereString) throws CommonException {
-        try {
-            List list = this.getHibernateTemplate().find(
-                    "from RoleInfo po where " + whereString);
-            return list;
-        } catch (Exception e) {
-            ExceptionUtil.throwCommonException(e.getMessage(),
-                    ErrorCode.ERROR_CODE_ROLE_INFO_SELECT, e);
-        }
-        return null;
-    }
 	/**
 	 * 根据Hibernate ID查询记录，如果没有找到记录，则抛出异常
 	 *
@@ -228,11 +220,9 @@ public class RoleInfoDAO extends HibernateDaoSupport {
 	 */
 	public RoleInfo query(int id) throws CommonException {
 		try {
-			return (RoleInfo) this.getHibernateTemplate().load(RoleInfo.class,
-					new Integer(id));
+			return (RoleInfo) this.getHibernateTemplate().load(RoleInfo.class, new Integer(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_INFO_SELECT, e);
 		}
 		return null;
 	}
@@ -244,8 +234,7 @@ public class RoleInfoDAO extends HibernateDaoSupport {
 			list = this.getSession().createQuery(hql).list();
 
 		} catch (HibernateException e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_INFO_SELECT, e);
 		}
 		return list;
 	}
@@ -260,14 +249,13 @@ public class RoleInfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(query(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_ROLE_INFO_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_ROLE_INFO_DELETE, e);
 		}
 	}
 
-
 	/**
 	 * 根据岗位类型获得相应的岗位id
+	 * 
 	 * @Author zhushijie
 	 * @param roleType
 	 * @return
@@ -276,8 +264,8 @@ public class RoleInfoDAO extends HibernateDaoSupport {
 	public int getRoleIdByRoleType(String roleType) throws CommonException {
 		List list = this.queryByCondition("po.roleType= '" + roleType + "'");
 		if (list == null || list.size() == 0) {
-			ExceptionUtil.throwCommonException("没有找到岗位类型为[" + roleType
-					+ "]的岗位信息", ErrorCode.ERROR_CODE_ROLE_LIST_BY_ROLETYPE);
+			ExceptionUtil.throwCommonException("没有找到岗位类型为[" + roleType + "]的岗位信息",
+					ErrorCode.ERROR_CODE_ROLE_LIST_BY_ROLETYPE);
 		}
 		return ((RoleInfo) (list.get(0))).getId();
 	}

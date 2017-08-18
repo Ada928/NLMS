@@ -7,6 +7,7 @@ public interface Internationalization {
 	String ON = "ON";
 	String OFF = "OFF";
 	String RESOURCE = "resources.Message";
+
 	/**
 	 * <pre>
 	 * 不同的语言环境下,将messageKey翻译成相应的文字
@@ -15,6 +16,7 @@ public interface Internationalization {
 	 * login.user=用户
 	 * internationalized("login.user") 将返回 "用户";
 	 * </pre>
+	 * 
 	 * @param messageKey
 	 * @return
 	 */

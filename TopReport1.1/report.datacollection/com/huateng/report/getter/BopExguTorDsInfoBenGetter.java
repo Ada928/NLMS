@@ -1,6 +1,5 @@
 package com.huateng.report.getter;
 
-
 import java.util.Map;
 
 import resource.report.dao.ROOTDAO;
@@ -15,57 +14,52 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 
-
 @SuppressWarnings("unchecked")
 public class BopExguTorDsInfoBenGetter extends BaseGetter {
 	/*
 	 * 对外担保信息
+	 * 
 	 * @author huangcheng
 	 */
 	@Override
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),getCommQueryServletRequest(),
-			pageResult.getQueryResult(),getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-			}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-			}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-			Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
-			}
-			}
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+		}
+	}
 
-			private PageQueryResult getData() {
-		
-				int pageSize = this.getResult().getPage().getEveryPage();
-				int pageIndex = this.getResult().getPage().getCurrentPage();
-				Map paramMap = this.getCommQueryServletRequest().getParameterMap();
-				ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
-				String hql;
-		        PageQueryResult pageQueryResult = null;
-				PageQueryCondition queryCondition = new PageQueryCondition();
-				String recId = (String) paramMap.get("id");
-                hql = "from BopExguTorDs  where 1=1 and torType = '01' and recId ='"+recId+"'  ";
-                
-				      try {
-					      queryCondition.setQueryString(hql);
-					      queryCondition.setPageIndex(pageIndex);
-					      queryCondition.setPageSize(pageSize);
-					      pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
-				         } catch (CommonException e) {
-					     // TODO Auto-generated catch block
-				             e.printStackTrace();
-				         }
-				    
-				
-				 return pageQueryResult;
-			}
-			}
+	private PageQueryResult getData() {
 
+		int pageSize = this.getResult().getPage().getEveryPage();
+		int pageIndex = this.getResult().getPage().getCurrentPage();
+		Map paramMap = this.getCommQueryServletRequest().getParameterMap();
+		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
+		String hql;
+		PageQueryResult pageQueryResult = null;
+		PageQueryCondition queryCondition = new PageQueryCondition();
+		String recId = (String) paramMap.get("id");
+		hql = "from BopExguTorDs  where 1=1 and torType = '01' and recId ='" + recId + "'  ";
 
+		try {
+			queryCondition.setQueryString(hql);
+			queryCondition.setPageIndex(pageIndex);
+			queryCondition.setPageSize(pageSize);
+			pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
+		} catch (CommonException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+		return pageQueryResult;
+	}
+}

@@ -21,25 +21,25 @@ public class BufBopUDsImpl implements IGetSubFileList {
 	private static final int PAGE_SIZE = 500;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List getSubFileResultList(Map<String, Object> paramMap)
-			throws CommonException {
+	public List getSubFileResultList(Map<String, Object> paramMap) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		StringBuilder hql = new StringBuilder();
 
 		String fileDate = (String) paramMap.get(IN_FILE_DATE);
-		String appType = (String)paramMap.get(IN_APP_TYPE);
+		String appType = (String) paramMap.get(IN_APP_TYPE);
 		String fileType = (String) paramMap.get(IN_FILE_TYPE);
 
-		hql.append(" FROM MtsBopUDs WHERE apptype = '").append(appType).append("' ").append(" AND currentfile = '").append(fileType).append("' ");
-		if(fileDate != null && fileDate.length() > 0){
+		hql.append(" FROM MtsBopUDs WHERE apptype = '").append(appType).append("' ").append(" AND currentfile = '")
+				.append(fileType).append("' ");
+		if (fileDate != null && fileDate.length() > 0) {
 			hql.append(" AND workDate = '").append(fileDate).append("' ");
 		}
 		hql.append(" AND recStatus = '").append(TopReportConstants.REPORT_RECSTATUS_05).append("' ");
 
-		List<MtsBopUDs>bopuList = rootdao.queryByQL2List(hql.toString());
-		List<String>idList = new ArrayList<String>();
-		Map<String, List<String>>countrymap = new HashMap<String, List<String>>();
-		Map<String, List<MtsBopOpenAccount>>openaccountmap = new HashMap<String, List<MtsBopOpenAccount>>();
+		List<MtsBopUDs> bopuList = rootdao.queryByQL2List(hql.toString());
+		List<String> idList = new ArrayList<String>();
+		Map<String, List<String>> countrymap = new HashMap<String, List<String>>();
+		Map<String, List<MtsBopOpenAccount>> openaccountmap = new HashMap<String, List<MtsBopOpenAccount>>();
 		for (MtsBopUDs bopu : bopuList) {
 			idList.add(bopu.getId());
 			if (PAGE_SIZE == idList.size()) {
@@ -57,8 +57,8 @@ public class BufBopUDsImpl implements IGetSubFileList {
 
 			idList.clear();
 		}
-		List<String>countryList = null;
-		List<MtsBopOpenAccount>openaccountList = null;
+		List<String> countryList = null;
+		List<MtsBopOpenAccount> openaccountList = null;
 		for (MtsBopUDs bopu : bopuList) {
 			countryList = countrymap.get(bopu.getId());
 			if (null != countryList) {
@@ -75,21 +75,23 @@ public class BufBopUDsImpl implements IGetSubFileList {
 
 	/**
 	 * 查询投资者国别代码
+	 * 
 	 * @param idList
 	 * @return
 	 * @throws CommonException
 	 */
 	@SuppressWarnings("unchecked")
-	private Map<String,List<String>>getInvcountrycodeMap(List<String>idList) throws CommonException{
+	private Map<String, List<String>> getInvcountrycodeMap(List<String> idList) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		List<MtsBopInvcountrycode>list = rootdao.queryByQL2List(" FROM MtsBopInvcountrycode WHERE recId IN " + ReportUtils.toInString(idList));
-		Map<String, List<String>>invcountrycodeMap = new HashMap<String, List<String>>();
+		List<MtsBopInvcountrycode> list = rootdao
+				.queryByQL2List(" FROM MtsBopInvcountrycode WHERE recId IN " + ReportUtils.toInString(idList));
+		Map<String, List<String>> invcountrycodeMap = new HashMap<String, List<String>>();
 		for (MtsBopInvcountrycode invcountrycode : list) {
-			if (invcountrycodeMap.containsKey(invcountrycode.getRecId())){
-				List<String>countrycodeList = invcountrycodeMap.get(invcountrycode.getRecId());
+			if (invcountrycodeMap.containsKey(invcountrycode.getRecId())) {
+				List<String> countrycodeList = invcountrycodeMap.get(invcountrycode.getRecId());
 				countrycodeList.add(invcountrycode.getInvcountrycode());
 			} else {
-				List<String>countrycodeList = new ArrayList<String>();
+				List<String> countrycodeList = new ArrayList<String>();
 				countrycodeList.add(invcountrycode.getInvcountrycode());
 				invcountrycodeMap.put(invcountrycode.getRecId(), countrycodeList);
 			}
@@ -99,21 +101,23 @@ public class BufBopUDsImpl implements IGetSubFileList {
 
 	/**
 	 * 查询开户信息
+	 * 
 	 * @param idList
 	 * @return
 	 * @throws CommonException
 	 */
 	@SuppressWarnings("unchecked")
-	private Map<String, List<MtsBopOpenAccount>>getOpenaccountMap(List<String>idList) throws CommonException{
+	private Map<String, List<MtsBopOpenAccount>> getOpenaccountMap(List<String> idList) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		List<MtsBopOpenAccount>list = rootdao.queryByQL2List(" FROM MtsBopOpenAccount WHERE recId IN " + ReportUtils.toInString(idList));
-		Map<String, List<MtsBopOpenAccount>>openaccountMap = new HashMap<String, List<MtsBopOpenAccount>>();
+		List<MtsBopOpenAccount> list = rootdao
+				.queryByQL2List(" FROM MtsBopOpenAccount WHERE recId IN " + ReportUtils.toInString(idList));
+		Map<String, List<MtsBopOpenAccount>> openaccountMap = new HashMap<String, List<MtsBopOpenAccount>>();
 		for (MtsBopOpenAccount openaccount : list) {
-			if (openaccountMap.containsKey(openaccount.getRecId())){
-				List<MtsBopOpenAccount>openaccountList = openaccountMap.get(openaccount.getRecId());
+			if (openaccountMap.containsKey(openaccount.getRecId())) {
+				List<MtsBopOpenAccount> openaccountList = openaccountMap.get(openaccount.getRecId());
 				openaccountList.add(openaccount);
 			} else {
-				List<MtsBopOpenAccount>openaccountList = new ArrayList<MtsBopOpenAccount>();
+				List<MtsBopOpenAccount> openaccountList = new ArrayList<MtsBopOpenAccount>();
 				openaccountList.add(openaccount);
 				openaccountMap.put(openaccount.getRecId(), openaccountList);
 			}

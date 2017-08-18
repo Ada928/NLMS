@@ -23,45 +23,46 @@ public class BOPCfaLounexguRePortFileGetter extends BaseGetter {
 	public Result call() throws AppException {
 		// TODO Auto-generated method stub
 		try {
-				PageQueryResult list = getData(); 
-				ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list.getQueryResult(), getResult());
-				result.setContent(list.getQueryResult());
-				result.getPage().setTotalPage(list.getPageCount(getResult().getPage().getEveryPage()));
-				result.init();
-				return result;
-			} catch (AppException appEx) {
-					throw appEx;
-			} catch (Exception ex) {
-					throw new AppException(Module.SYSTEM_MODULE,
-							Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
-			}
+			PageQueryResult list = getData();
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list.getQueryResult(),
+					getResult());
+			result.setContent(list.getQueryResult());
+			result.getPage().setTotalPage(list.getPageCount(getResult().getPage().getEveryPage()));
+			result.init();
+			return result;
+		} catch (AppException appEx) {
+			throw appEx;
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+		}
 	}
 
-	private PageQueryResult getData() throws AppException{
+	private PageQueryResult getData() throws AppException {
 		this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境外担保项下境内贷款信息上报签约信息查询");
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		String hqlString = "select bd from BopCfaLounexguDs bd where 1=1 and bd.recStatus ='"+TopReportConstants.REPORT_RECSTATUS_05+"' and bd.workDate ='"+gi.getFileDate()
-				+"' and  bd.currentfile = '"+TopReportConstants.REPORT_FILE_TYPE_CFA_DA+"'" ;
+		String hqlString = "select bd from BopCfaLounexguDs bd where 1=1 and bd.recStatus ='"
+				+ TopReportConstants.REPORT_RECSTATUS_05 + "' and bd.workDate ='" + gi.getFileDate()
+				+ "' and  bd.currentfile = '" + TopReportConstants.REPORT_FILE_TYPE_CFA_DA + "'";
 		String qactiontype = getCommQueryServletRequest().getParameter("qactiontype");
 		String qfiller2 = getCommQueryServletRequest().getParameter("qfiller2");
 		String qbrNo = getCommQueryServletRequest().getParameter("qbrNo");
-				if(StringUtils.isNotBlank(qbrNo)){
-					hqlString += " and bd.brNo = '"+qbrNo +"'";
-				}
-				if(StringUtils.isNotBlank(qactiontype)){
-					hqlString += " and bd.actiontype = '"+qactiontype +"'";
-				}
-				if(StringUtils.isNotBlank(qfiller2)){
-					hqlString += " and bd.filler2 like'%"+qfiller2 +"%'";
-				}
-			
+		if (StringUtils.isNotBlank(qbrNo)) {
+			hqlString += " and bd.brNo = '" + qbrNo + "'";
+		}
+		if (StringUtils.isNotBlank(qactiontype)) {
+			hqlString += " and bd.actiontype = '" + qactiontype + "'";
+		}
+		if (StringUtils.isNotBlank(qfiller2)) {
+			hqlString += " and bd.filler2 like'%" + qfiller2 + "%'";
+		}
+
 		PageQueryCondition pc = new PageQueryCondition();
 		pc.setPageIndex(pageIndex);
 		pc.setPageSize(pageSize);
 		pc.setQueryString(hqlString);
-		
+
 		HQLDAO hqlDao = DAOUtils.getHQLDAO();
 		return hqlDao.pageQueryByQL(pc);
 	}

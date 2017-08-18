@@ -12,23 +12,22 @@
 */
 
 package test.com.fpportal;
+
 /**
- * ClassName:FloatBean
- * Function: TODO ADD FUNCTION
- * Reason:	 TODO ADD REASON
+ * ClassName:FloatBean Function: TODO ADD FUNCTION Reason: TODO ADD REASON
  *
- * @author   shen_antonio
- * @version  
- * @since    Ver 1.1
- * @Date	 2012-4-6		上午10:05:09
+ * @author shen_antonio
+ * @version
+ * @since Ver 1.1
+ * @Date 2012-4-6 上午10:05:09
  *
- * @see 	 
+ * @see
  */
 public class FloatBean {
-private float field;
-	
-	public FloatBean(){
-		
+	private float field;
+
+	public FloatBean() {
+
 	}
 
 	public float getField() {
@@ -39,4 +38,3 @@ private float field;
 		this.field = field;
 	}
 }
-

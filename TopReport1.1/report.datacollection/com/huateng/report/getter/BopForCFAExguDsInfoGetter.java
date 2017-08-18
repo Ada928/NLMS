@@ -36,20 +36,16 @@ public class BopForCFAExguDsInfoGetter extends BaseGetter {
 		try {
 			PageQueryResult pageResult = getData();
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "对外担保签约信息补录页面查询");
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -58,7 +54,6 @@ public class BopForCFAExguDsInfoGetter extends BaseGetter {
 
 		int pageSize = getResult().getPage().getEveryPage();
 		int pageIndex = getResult().getPage().getCurrentPage();
-
 
 		StringBuilder hql = new StringBuilder(" SELECT bds FROM BopCfaExguDs bds WHERE 1 = 1 ");
 
@@ -136,7 +131,8 @@ public class BopForCFAExguDsInfoGetter extends BaseGetter {
 			bopCfaExguDs.setBeneficiary(commservice.getBopExguTorBen(bopCfaExguDs.getId()));
 			bopCfaExguDs.setGuarantore(commservice.getBopExguTorGua(bopCfaExguDs.getId()));
 			List<BopExguTorDs> exguTorList = new ArrayList<BopExguTorDs>();
-			exguTorList = rootdao.queryByQL2List(" FROM BopExguTorDs model WHERE model.recId= '" + bopCfaExguDs.getId().trim() + "' AND torType = '03'");
+			exguTorList = rootdao.queryByQL2List(" FROM BopExguTorDs model WHERE model.recId= '"
+					+ bopCfaExguDs.getId().trim() + "' AND torType = '03'");
 			bopCfaExguDs.setGuappname(exguTorList.get(0).getTorName());
 			bopCfaExguDs.setGuappcode(exguTorList.get(0).getTorCode());
 			bopCfaExguDs.setGuappnamen(exguTorList.get(0).getTorEnname());

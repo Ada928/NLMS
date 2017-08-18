@@ -26,16 +26,15 @@ public class BopCfaExplrmbloDsAuditUpdate extends BaseUpdate {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 
 		try {
-			//返回对象
+			// 返回对象
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			//结果集对象
+			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-			List<BopCfaExplrmbloDs>approveList = new ArrayList<BopCfaExplrmbloDs>();
+			List<BopCfaExplrmbloDs> approveList = new ArrayList<BopCfaExplrmbloDs>();
 			BopCfaExplrmbloDs bopcfa = null;
 			while (updateResultBean.hasNext()) {
 				// 属性拷贝
@@ -51,22 +50,22 @@ public class BopCfaExplrmbloDsAuditUpdate extends BaseUpdate {
 			}
 			String approveStatus = updateResultBean.getParameter("approveStatusChoose");
 			String approveResult = updateResultBean.getParameter("approveResultChoose");
-			for(BopCfaExplrmbloDs explrmblods : approveList){
+			for (BopCfaExplrmbloDs explrmblods : approveList) {
 				explrmblods.setApproveStatus(approveStatus);
 				explrmblods.setApproveResult(approveResult);
 			}
 
-			//Operation参数
+			// Operation参数
 			OperationContext context = new OperationContext();
 			context.setAttribute(BopCfaExplrmbloDsOperation.CMD, BopCfaExplrmbloDsOperation.CMD_APPROVED);
 			context.setAttribute(BopCfaExplrmbloDsOperation.IN_PARAM, approveList);
-			//call方式开启operation事务
+			// call方式开启operation事务
 			OPCaller.call(BopCfaExplrmbloDsOperation.ID, context);
 			return updateReturnBean;
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
-			throw new AppException(Module.SYSTEM_MODULE,Rescode.DEFAULT_RESCODE,e.getMessage(),e);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
 	}
 }

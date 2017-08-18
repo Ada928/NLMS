@@ -20,17 +20,18 @@ public class GetProductCreditNoGenerator extends BaseGenerator {
 	/**
 	 * 生成产品额度授信编号:客户额度编号（11位）+ 授信使用币种（3位）+产品类型（2位）
 	 * 其中：客户额度编号=分行本部地区号（3位）+年份（2位）+顺序号（6位）
+	 * 
 	 * @param obj
 	 * @return
 	 * @throws CommonException
 	 */
 	public String gen(Object obj) throws CommonException {
 		Map paramMap = (Map) obj;
-		String custCreditNo = (String) paramMap.get("custCreditNo");//客户额度编号
-		//String curcd = (String) paramMap.get("curcd");// 使用币种
+		String custCreditNo = (String) paramMap.get("custCreditNo");// 客户额度编号
+		// String curcd = (String) paramMap.get("curcd");// 使用币种
 		String productType = (String) paramMap.get("productType");// 产品类型
-		String index = "CP" + DataFormat.getYear(GlobalInfo.getCurrentInstance()
-				.getTxdate());
-		return custCreditNo	 + productType + DataFormat.intToString(CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_CREDITNO, index), 5);
+		String index = "CP" + DataFormat.getYear(GlobalInfo.getCurrentInstance().getTxdate());
+		return custCreditNo + productType + DataFormat
+				.intToString(CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_CREDITNO, index), 5);
 	}
 }

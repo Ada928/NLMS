@@ -50,7 +50,8 @@ public class AuditConfirmServices {
 	 * @return
 	 * @throws CommonException
 	 */
-	public List getAuditConfirmList(String workdateStart, String workDateEnd, String busiType, String qappType, String brNo,String isShowZero) throws CommonException {
+	public List getAuditConfirmList(String workdateStart, String workDateEnd, String busiType, String qappType,
+			String brNo, String isShowZero) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		StringBuffer countHql = new StringBuffer();
 		countHql.append("select model.recStatus as recsta,model.approveStatus as appsta,count(model) as stacount from ")
@@ -63,23 +64,24 @@ public class AuditConfirmServices {
 		if (StringUtils.isNotEmpty(workDateEnd)) {
 			countHql.append(" and model.workDate <= '" + workDateEnd + "'");
 		}
-		//是否按操作人员进行确认
+		// 是否按操作人员进行确认
 		String flag = ReportUtils.getSysParamsValue("CFM", "0001");
-		if(ReportEnum.REPORT_IS_STR.YES.value.equals(flag)){
+		if (ReportEnum.REPORT_IS_STR.YES.value.equals(flag)) {
 			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			countHql.append(" and model.lstUpdTlr='"+ gi.getTlrno() +"'");
+			countHql.append(" and model.lstUpdTlr='" + gi.getTlrno() + "'");
 		}
 		countHql.append(" and model.brNo='" + brNo + "'");
 		countHql.append(" and model.apptype='" + qappType + "'");
 		countHql.append(" and model.currentfile='" + HQL_PARAM_CURRENTFILE + "'");
 		countHql.append(" group by model.recStatus,model.approveStatus");
 
-		Map<String, List<DataDic>> map = ReportCommonService.getInstance().getAppAndFileTypeByDataDic(busiType, qappType,
-				null);
+		Map<String, List<DataDic>> map = ReportCommonService.getInstance().getAppAndFileTypeByDataDic(busiType,
+				qappType, null);
 		List<AuditConfirmBean> list = new ArrayList<AuditConfirmBean>();
-//		for (Iterator<String> iterator = map.keySet().iterator(); iterator.hasNext();) {
-//			String appType = iterator.next().trim();
-		if(map.size() > 0){
+		// for (Iterator<String> iterator = map.keySet().iterator();
+		// iterator.hasNext();) {
+		// String appType = iterator.next().trim();
+		if (map.size() > 0) {
 			List<DataDic> ddList = map.get(qappType);
 			for (int i = 0; i < ddList.size(); i++) {
 				DataDic dd = ddList.get(i);
@@ -113,12 +115,14 @@ public class AuditConfirmServices {
 
 						if (recsta.equals(TopReportConstants.REPORT_RECSTATUS_03)
 								&& !appsta.equals(TopReportConstants.REPORT_APPROVESTATUS_00)) {
-							ExceptionUtil.throwCommonException(qappType+"-"+fileType,"存在未知记录状态为'确认待审核'，而审批状态不为'未审核'记录！");
+							ExceptionUtil.throwCommonException(qappType + "-" + fileType,
+									"存在未知记录状态为'确认待审核'，而审批状态不为'未审核'记录！");
 						}
 
 						if (recsta.equals(TopReportConstants.REPORT_RECSTATUS_04)
 								&& appsta.equals(TopReportConstants.REPORT_APPROVESTATUS_00)) {
-							ExceptionUtil.throwCommonException(qappType+"-"+fileType,"存在未知记录状态为'已审核待确认'，而审批状态为'未审核'记录！");
+							ExceptionUtil.throwCommonException(qappType + "-" + fileType,
+									"存在未知记录状态为'已审核待确认'，而审批状态为'未审核'记录！");
 						}
 
 						if (recsta.equals(TopReportConstants.REPORT_RECSTATUS_03)
@@ -141,8 +145,6 @@ public class AuditConfirmServices {
 		return list;
 	}
 
-
-
 	/**
 	 * 执行审核完成确认
 	 *
@@ -153,7 +155,8 @@ public class AuditConfirmServices {
 	 * @param workDate
 	 * @throws CommonException
 	 */
-	public void excue(String busiType, String appType, String tlrNo, String brNo, String workDate) throws CommonException {
+	public void excue(String busiType, String appType, String tlrNo, String brNo, String workDate)
+			throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		StringBuffer querySql = new StringBuffer();
 		querySql.append(" from ").append(HQL_TABLENAME);
@@ -162,7 +165,7 @@ public class AuditConfirmServices {
 		String workDateStart = null;
 		String workDateEnd = null;
 		String[] workDateStrs = workDate.split(",");
-		if(workDate.split(",").length == 2) {
+		if (workDate.split(",").length == 2) {
 			if (workDateStrs[0].split("=").length == 2 && workDateStrs[0].split("=")[1].length() == 8) {
 				workDateStart = workDateStrs[0].split("=")[1];
 				querySql.append(" and workDate >='" + workDateStart + "'");
@@ -174,15 +177,15 @@ public class AuditConfirmServices {
 		}
 		querySql.append(" and brNo='" + brNo + "'");
 		String flag = ReportUtils.getSysParamsValue("CFM", "0001");
-		if(ReportEnum.REPORT_IS_STR.YES.value.equals(flag)){
+		if (ReportEnum.REPORT_IS_STR.YES.value.equals(flag)) {
 			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			querySql.append(" and lstUpdTlr='"+ gi.getTlrno() +"'");
+			querySql.append(" and lstUpdTlr='" + gi.getTlrno() + "'");
 		}
 
 		Map<String, List<DataDic>> map = ReportCommonService.getInstance().getAppAndFileTypeByDataDic(busiType, appType,
 				null);
 		Set<String> tableNmSet = new HashSet<String>();
-		if(map.size() > 0){
+		if (map.size() > 0) {
 			List<DataDic> ddList = map.get(appType);
 			for (int i = 0; i < ddList.size(); i++) {
 				DataDic dd = ddList.get(i);
@@ -213,10 +216,10 @@ public class AuditConfirmServices {
 							// 1.2 根据是否成功上报过进行标记为删除状态数据进行处理
 							Object tmp = PropertyUtils.getNestedProperty(obj, "subSuccess");
 							String isSubSuccess = null;
-							if (tmp!=null) {
+							if (tmp != null) {
 								isSubSuccess = tmp.toString();
-							}else{
-								ExceptionUtil.throwCommonException(HQL_TABLENAME+"数据上报状态丢失！");
+							} else {
+								ExceptionUtil.throwCommonException(HQL_TABLENAME + "数据上报状态丢失！");
 							}
 							if (isSubSuccess.equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_YES)) {// 上报过
 								PropertyUtils.setNestedProperty(obj, "recStatus",
@@ -229,13 +232,16 @@ public class AuditConfirmServices {
 						PropertyUtils.setNestedProperty(obj, "recStatus", TopReportConstants.REPORT_RECSTATUS_01);// 可编辑
 					}
 					if (isDel) {
-						//删除相关表
+						// 删除相关表
 						String recId = (String) PropertyUtils.getNestedProperty(obj, "id");
-						//删除关联表
-						String[] tabs = new String[]{"BOP_CFA_CREDITOR_DS","BOP_CFA_EXPLBALAINFO","BOP_CFA_FOGUCODEINFO","BOP_EXGU_TOR_DS","BOP_PROJECT_INFO","MTS_BOP_INVCOUNTRYCODE","MTS_BOP_OPENACCOUNT"};
+						// 删除关联表
+						String[] tabs = new String[] { "BOP_CFA_CREDITOR_DS", "BOP_CFA_EXPLBALAINFO",
+								"BOP_CFA_FOGUCODEINFO", "BOP_EXGU_TOR_DS", "BOP_PROJECT_INFO", "MTS_BOP_INVCOUNTRYCODE",
+								"MTS_BOP_OPENACCOUNT" };
 						for (int j = 0; j < tabs.length; j++) {
-//							String sql = "delete from "+tabs[i]+" where REC_ID='"+recId+"'";
-							String sql = "delete from "+tabs[j]+" where REC_ID='"+recId+"'";
+							// String sql = "delete from "+tabs[i]+" where
+							// REC_ID='"+recId+"'";
+							String sql = "delete from " + tabs[j] + " where REC_ID='" + recId + "'";
 							rootdao.executeSql(sql);
 						}
 						rootdao.delete(obj);
@@ -250,29 +256,29 @@ public class AuditConfirmServices {
 			}
 		}
 		// 2.开始处理未生成的编号
-		genBussinessNo(tableNmSet, busiType, appType, workDateStart, workDateEnd , brNo);
+		genBussinessNo(tableNmSet, busiType, appType, workDateStart, workDateEnd, brNo);
 	}
 
-	public void genBussinessNo(Set<String> tableNmSet, String busiType, String appType, String workDateStart, String workDateEnd, String brNo)
-			throws CommonException {
+	public void genBussinessNo(Set<String> tableNmSet, String busiType, String appType, String workDateStart,
+			String workDateEnd, String brNo) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		StringBuffer updateQuerySql = new StringBuffer();
 		updateQuerySql.append(" from ").append(HQL_TABLENAME);
 		updateQuerySql.append(" where recStatus='" + TopReportConstants.REPORT_RECSTATUS_05 + "'");// 已审核确认
 		updateQuerySql.append(" and approveStatus = '" + TopReportConstants.REPORT_APPROVESTATUS_01 + "'");// 审核通过
-		if(StringUtils.isNotEmpty(workDateStart)){
-				updateQuerySql.append(" and workDate >='" + workDateStart + "'");
+		if (StringUtils.isNotEmpty(workDateStart)) {
+			updateQuerySql.append(" and workDate >='" + workDateStart + "'");
 		}
 		if (StringUtils.isNotEmpty(workDateEnd)) {
 			updateQuerySql.append(" and workDate <='" + workDateEnd + "'");
 		}
 		updateQuerySql.append(" and brNo='" + brNo + "'");
 		String flag = ReportUtils.getSysParamsValue("CFM", "0001");
-		if(ReportEnum.REPORT_IS_STR.YES.value.equals(flag)){
+		if (ReportEnum.REPORT_IS_STR.YES.value.equals(flag)) {
 			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			updateQuerySql.append(" and lstUpdTlr='"+ gi.getTlrno() +"'");
+			updateQuerySql.append(" and lstUpdTlr='" + gi.getTlrno() + "'");
 		}
-		String paramValue =ReportConstant.BUSI_NO_CODE;
+		String paramValue = ReportConstant.BUSI_NO_CODE;
 		for (Iterator<String> it = tableNmSet.iterator(); it.hasNext();) {
 			String tnm = it.next();
 			String hql = updateQuerySql.toString().replaceAll(HQL_TABLENAME, tnm);
@@ -280,10 +286,11 @@ public class AuditConfirmServices {
 			for (int i = 0; i < list.size(); i++) {
 				Object obj = list.get(i);
 				try {
-//					String appType = PropertyUtils.getNestedProperty(obj,  "apptype").toString();
+					// String appType = PropertyUtils.getNestedProperty(obj,
+					// "apptype").toString();
 					String fileType = PropertyUtils.getNestedProperty(obj, "currentfile").toString();
 					String objWorkDate = PropertyUtils.getNestedProperty(obj, "workDate").toString();
-					ExecuteGenBopBusiNo.execute(objWorkDate, busiType, appType, fileType, paramValue,obj);
+					ExecuteGenBopBusiNo.execute(objWorkDate, busiType, appType, fileType, paramValue, obj);
 				} catch (Exception e) {
 					ExceptionUtil.throwCommonException(e.getMessage());
 				}

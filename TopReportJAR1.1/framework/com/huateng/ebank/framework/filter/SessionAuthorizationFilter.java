@@ -26,8 +26,8 @@ import com.huateng.ebank.framework.session.SessionManager;
 
 public class SessionAuthorizationFilter implements Filter {
 	private FilterConfig filterConfig;
-	private String loginPageName = null ;
-	private String expiredPageName = null ;
+	private String loginPageName = null;
+	private String expiredPageName = null;
 
 	public void init(FilterConfig config) {
 		this.filterConfig = config;
@@ -41,95 +41,84 @@ public class SessionAuthorizationFilter implements Filter {
 		this.expiredPageName = null;
 	}
 
-	public void doFilter(ServletRequest request,ServletResponse response,FilterChain filterChain)throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
+			throws IOException, ServletException {
 
-		String STRING_LOGIN = "login" ;
-		//String STRING_INDEX = "index" ;
-		String STRING_LOGOUT = "logout" ;
-		String STRING_CHGPWD = "changePwd" ;
-		
-		HttpServletRequest req = (HttpServletRequest)request;
+		String STRING_LOGIN = "login";
+		// String STRING_INDEX = "index" ;
+		String STRING_LOGOUT = "logout";
+		String STRING_CHGPWD = "changePwd";
+
+		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		
-		//获取请求URL
+
+		// 获取请求URL
 		String path = req.getRequestURI();
-		String actionString = "" ;
-		try{
-			actionString = path.substring(path.lastIndexOf("/") + 1,path.lastIndexOf("."));
+		String actionString = "";
+		try {
+			actionString = path.substring(path.lastIndexOf("/") + 1, path.lastIndexOf("."));
+		} catch (Exception e) {
+			actionString = STRING_LOGIN;
 		}
-		catch(Exception e){
-			actionString = STRING_LOGIN ;
-		}
-		
-		//System.out.println("The URL path=<"+path+">");
-		
-		//如果是登陆页
-		if( (STRING_LOGIN.equalsIgnoreCase(actionString)) || 
-			//(STRING_INDEX.equalsIgnoreCase(actionString)) || 
-			(STRING_LOGOUT.equalsIgnoreCase(actionString)) || 
-			(STRING_CHGPWD.equalsIgnoreCase(actionString))){
-			filterChain.doFilter(request,response);
+
+		// System.out.println("The URL path=<"+path+">");
+
+		// 如果是登陆页
+		if ((STRING_LOGIN.equalsIgnoreCase(actionString)) ||
+				// (STRING_INDEX.equalsIgnoreCase(actionString)) ||
+				(STRING_LOGOUT.equalsIgnoreCase(actionString)) || (STRING_CHGPWD.equalsIgnoreCase(actionString))) {
+			filterChain.doFilter(request, response);
 			return;
 		}
-		
-		HttpSession session = null ;
-		try{
+
+		HttpSession session = null;
+		try {
 			session = SessionManager.getInstance().getSession(req);
+		} catch (Exception e) {
+			session = null;
 		}
-		catch(Exception e){
-			session = null ;
-		}
-		//跳转到登陆页
-		if( null == session ){
-			filterConfig.getServletContext().getRequestDispatcher(loginPageName).forward(request,response);
-			return ;
+		// 跳转到登陆页
+		if (null == session) {
+			filterConfig.getServletContext().getRequestDispatcher(loginPageName).forward(request, response);
+			return;
 		}
 
-		//SessionID为空，跳转到登陆页
-		String strSessionID = null; 
-		try{ 
+		// SessionID为空，跳转到登陆页
+		String strSessionID = null;
+		try {
 			strSessionID = session.getAttribute(SystemConstant.WEB_SESSION_ID).toString();
+		} catch (Exception e) {
+			strSessionID = null;
 		}
-		catch(Exception e){
-			strSessionID = null ;
-		}
-		if( null == strSessionID ){
-			filterConfig.getServletContext().getRequestDispatcher(loginPageName).forward(request,response);
-			return ;			
+		if (null == strSessionID) {
+			filterConfig.getServletContext().getRequestDispatcher(loginPageName).forward(request, response);
+			return;
 		}
 
-		//Session过期了，跳转到Session过期页
-		boolean bExpired = true ;
-		try{
+		// Session过期了，跳转到Session过期页
+		boolean bExpired = true;
+		try {
 			bExpired = SessionManager.getInstance().isExpired(req);
+		} catch (Exception e) {
+			bExpired = true;
 		}
-		catch(Exception e){
-			bExpired = true ;	
+		if (true == bExpired) {
+			filterConfig.getServletContext().getRequestDispatcher(expiredPageName).forward(request, response);
+			return;
 		}
-		if( true == bExpired ){
-			filterConfig.getServletContext().getRequestDispatcher(expiredPageName).forward(request,response);
-			return ;
-		}
-	
+
 		/*
-		//比较JSP中SESSIONID值是否有效
-		String jspSessionID = null ;
-		try{
-			jspSessionID = req.getParameter(SystemConstant.WEB_SESSION_ID);
-		}
-		catch(Exception e){
-			jspSessionID = null ;
-		}
-		//Jsp SESSION ID 为空或不匹配
-		if( (null==jspSessionID) || (!strSessionID.equals(jspSessionID)) ){
-			filterConfig.getServletContext().getRequestDispatcher(loginPageName).forward(request,response);
-			return ;			
-		}
-		*/
-		
-		//传递Filter链	
-		filterChain.doFilter(request,response);
-		
-		return ;
+		 * //比较JSP中SESSIONID值是否有效 String jspSessionID = null ; try{ jspSessionID
+		 * = req.getParameter(SystemConstant.WEB_SESSION_ID); } catch(Exception
+		 * e){ jspSessionID = null ; } //Jsp SESSION ID 为空或不匹配 if(
+		 * (null==jspSessionID) || (!strSessionID.equals(jspSessionID)) ){
+		 * filterConfig.getServletContext().getRequestDispatcher(loginPageName).
+		 * forward(request,response); return ; }
+		 */
+
+		// 传递Filter链
+		filterChain.doFilter(request, response);
+
+		return;
 	}
 }

@@ -33,8 +33,7 @@ public class WorkFlowParamTaskSelectGetter extends BaseGetter {
 					resultlist.add(wfpSelectBean);
 				}
 			}
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), resultlist, getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), resultlist, getResult());
 			result.setContent(resultlist);
 			result.getPage().setTotalPage(1);
 			result.init();
@@ -42,8 +41,7 @@ public class WorkFlowParamTaskSelectGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

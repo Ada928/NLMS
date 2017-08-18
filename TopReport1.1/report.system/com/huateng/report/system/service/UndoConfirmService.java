@@ -1,7 +1,5 @@
 package com.huateng.report.system.service;
 
-
-
 import resource.bean.report.SysTaskInfo;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
@@ -13,12 +11,12 @@ import com.huateng.ebank.framework.util.ApplicationContextUtils;
 
 public class UndoConfirmService {
 	/**
-	 * @author jianxue.zhang
-	 * service层for待审批和已审批数据获取
+	 * @author jianxue.zhang service层for待审批和已审批数据获取
 	 */
 	public static synchronized UndoConfirmService getInstance() {
 		return (UndoConfirmService) ApplicationContextUtils.getBean("UndoConfirmService");
 	}
+
 	public PageQueryResult list(int pageIndex, int pageSize, String hql) throws CommonException {
 		PageQueryCondition queryCondition = new PageQueryCondition();
 		queryCondition.setQueryString(hql);
@@ -27,12 +25,10 @@ public class UndoConfirmService {
 		ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
 		return rootDao.pageQueryByQL(queryCondition);
 	}
-	
+
 	public SysTaskInfo load(String id) {
-	return (SysTaskInfo)ROOTDAOUtils.getROOTDAO().getHibernateTemplate().get(SysTaskInfo.class, id);
-		
+		return (SysTaskInfo) ROOTDAOUtils.getROOTDAO().getHibernateTemplate().get(SysTaskInfo.class, id);
+
 	}
 
-	
-	
 }

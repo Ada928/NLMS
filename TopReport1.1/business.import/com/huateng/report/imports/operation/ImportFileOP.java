@@ -56,7 +56,7 @@ public class ImportFileOP extends BaseOperation {
 			Object log = context.getAttribute(PARAM);
 			if (log instanceof BiImportLog) {
 				GlobalInfo gi = GlobalInfo.getCurrentInstanceWithoutException();
-				if(gi!=null){
+				if (gi != null) {
 					((BiImportLog) log).setIp(gi.getIp());
 				}
 				ROOTDAOUtils.getROOTDAO().saveOrUpdate(log);
@@ -66,8 +66,7 @@ public class ImportFileOP extends BaseOperation {
 			Object[] obj = new Object[list.size()];
 			int i = 0;
 			for (SqlInfo sql : list) {
-				int n = FileImportService.getInstance().executeUpdate(
-						(String) sql.getParamMap().get("strSql"));
+				int n = FileImportService.getInstance().executeUpdate((String) sql.getParamMap().get("strSql"));
 				obj[i++] = n;
 			}
 			context.setAttribute(RESULT, obj);
@@ -81,8 +80,7 @@ public class ImportFileOP extends BaseOperation {
 	private void doModImport(OperationContext context) throws CommonException {
 		BiImportLog log = (BiImportLog) context.getAttribute(PARAM);
 		Constant constant = (Constant) context.getAttribute(PROGRESS);
-		BiImportFileConfig bean = ROOTDAOUtils.getROOTDAO().query(
-				BiImportFileConfig.class, log.getFuid());
+		BiImportFileConfig bean = ROOTDAOUtils.getROOTDAO().query(BiImportFileConfig.class, log.getFuid());
 		TFileDataInfo curImpFileInfo = new TFileDataInfo();
 		curImpFileInfo.setGuid(bean.getId());
 		curImpFileInfo.setFileName(log.getErrFile());
@@ -92,8 +90,7 @@ public class ImportFileOP extends BaseOperation {
 		}
 		curImpFileInfo.setFileOwner(bean.getFileOwner());
 		curImpFileInfo.setFormatType(ImportFileVar.FILEDATA_FORMATTYPE_SYMBOL);
-		curImpFileInfo.setListSeparator(bean.getSeperator() == null ? "" : bean
-				.getSeperator());
+		curImpFileInfo.setListSeparator(bean.getSeperator() == null ? "" : bean.getSeperator());
 		if (bean.getSeqNo() != null) {
 			curImpFileInfo.setSequenceNo(bean.getSeqNo());
 		}
@@ -130,14 +127,12 @@ public class ImportFileOP extends BaseOperation {
 		}
 		curImpFileInfo.setBeginTime(FileImportUtil.getCurTime());
 		try {
-			boolean flag = importFile.importFile(curImpFileInfo,
-					errFilenamepath, constant);
+			boolean flag = importFile.importFile(curImpFileInfo, errFilenamepath, constant);
 			log.setModFlg(Constants.MOD_FLG_IMPORT);
 			ROOTDAOUtils.getROOTDAO().saveOrUpdate(log);
 		} catch (Exception e) {
 			e.printStackTrace();
-			ExceptionUtil.throwCommonException("EIMP003",
-					new Object[] { log.getErrFile() });
+			ExceptionUtil.throwCommonException("EIMP003", new Object[] { log.getErrFile() });
 		}
 
 	}
@@ -150,30 +145,26 @@ public class ImportFileOP extends BaseOperation {
 
 		// 文件全称没有赋值
 		if (DataFormat.isEmpty(bean.getFileNameFull())) {
-			bean.setFileNameFull(FileImportUtil.getFileNameFull(
-					bean.getWorkDate(), bean.getFileName()));
+			bean.setFileNameFull(FileImportUtil.getFileNameFull(bean.getWorkDate(), bean.getFileName()));
 		}
 		// 文件不存在
-		if (!bean.isExist()
-				|| !FileImportUtil.isExist(bean.getWorkDate(),
-						bean.getFileNameFull())) {
-			ExceptionUtil.throwCommonException("EIMP002",
-					new Object[] { bean.getFileNameFull() });
+		if (!bean.isExist() || !FileImportUtil.isExist(bean.getWorkDate(), bean.getFileNameFull())) {
+			ExceptionUtil.throwCommonException("EIMP002", new Object[] { bean.getFileNameFull() });
 		}
 
 		if (bean.isReImport()) {// 重新导入
-//			FileImportService.getInstance().deleteOldRecords(
-//					bean.getTableName(), bean.getWorkDate());
+			// FileImportService.getInstance().deleteOldRecords(
+			// bean.getTableName(), bean.getWorkDate());
 		}
-		if((bean.getImpStatus()!=null &&  !bean.getImpStatus().equals("2")) && !bean.isReImport()){
-			ExceptionUtil.throwCommonException("文件名:["+pv.currentFile+"],导入状态:[已导入],请勿重复导入!",new Object[] { bean.getFileNameFull() });
+		if ((bean.getImpStatus() != null && !bean.getImpStatus().equals("2")) && !bean.isReImport()) {
+			ExceptionUtil.throwCommonException("文件名:[" + pv.currentFile + "],导入状态:[已导入],请勿重复导入!",
+					new Object[] { bean.getFileNameFull() });
 		}
 		importData(bean, pv);
 
 	}
 
-	private void importData(ImportFileBean bean, Constant pv)
-			throws CommonException {
+	private void importData(ImportFileBean bean, Constant pv) throws CommonException {
 		TFileDataInfo curImpFileInfo = new TFileDataInfo();
 		curImpFileInfo.setGuid(bean.getId());
 		curImpFileInfo.setFileName(bean.getFileNameFull());
@@ -232,13 +223,11 @@ public class ImportFileOP extends BaseOperation {
 		boolean fileFlag = false;
 		try {
 			// 文件导入处理
-			fileFlag = importFile.importFile(curImpFileInfo,
-					FileImportUtil.getFilePath(curImpFileInfo.getTradeDate()),
+			fileFlag = importFile.importFile(curImpFileInfo, FileImportUtil.getFilePath(curImpFileInfo.getTradeDate()),
 					pv);
 		} catch (Exception e) {
 			e.printStackTrace();
-			ExceptionUtil.throwCommonException("EIMP003",
-					new Object[] { bean.getFileNameFull() });
+			ExceptionUtil.throwCommonException("EIMP003", new Object[] { bean.getFileNameFull() });
 		}
 	}
 

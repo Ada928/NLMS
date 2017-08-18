@@ -28,28 +28,24 @@ public class GetAcontnoGenerator extends BaseGenerator {
 	 * @throws CommonException
 	 */
 	public String gen(Object obj) throws CommonException {
-		String year =  DataFormat.getYear(GlobalInfo.getCurrentInstance()
-				.getTxdate());
+		String year = DataFormat.getYear(GlobalInfo.getCurrentInstance().getTxdate());
 		Map paramMap = (Map) obj;
 		String contTypeSmall = (String) paramMap.get("contTypeSmall");
-		//contTypeSmall=contTypeSmall.length()>4?contTypeSmall.substring(1,5):contTypeSmall;
-		String valueIndex = SystemConstant.CONTRACT_NO_BRNO
-				+ contTypeSmall
-				+ year;
-		return valueIndex
-				+ DataFormat.intToString(CommonService.getInstance().getSeqno(
-						SystemConstant.VALUE_NO_LOANCENTER, "LA"+year), 8);
-//		// TODO Auto-generated method stub
-//		Map paramMap = (Map) obj;
-//		String brno = (String) paramMap.get("brno");
-//		String acontType = (String) paramMap.get("acontType");
-//		String valueIndex = brno
-//				+ acontType
-//				+ DataFormat.getYear(GlobalInfo.getCurrentInstance()
-//						.getTxdate());
-//		return valueIndex
-//				+ DataFormat.intToString(CommonService.getInstance().getSeqno(
-//						SystemConstant.VALUE_NO_LOANCENTER, "AN082008"), 8);
+		// contTypeSmall=contTypeSmall.length()>4?contTypeSmall.substring(1,5):contTypeSmall;
+		String valueIndex = SystemConstant.CONTRACT_NO_BRNO + contTypeSmall + year;
+		return valueIndex + DataFormat
+				.intToString(CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_LOANCENTER, "LA" + year), 8);
+		// // TODO Auto-generated method stub
+		// Map paramMap = (Map) obj;
+		// String brno = (String) paramMap.get("brno");
+		// String acontType = (String) paramMap.get("acontType");
+		// String valueIndex = brno
+		// + acontType
+		// + DataFormat.getYear(GlobalInfo.getCurrentInstance()
+		// .getTxdate());
+		// return valueIndex
+		// + DataFormat.intToString(CommonService.getInstance().getSeqno(
+		// SystemConstant.VALUE_NO_LOANCENTER, "AN082008"), 8);
 	}
 
 }

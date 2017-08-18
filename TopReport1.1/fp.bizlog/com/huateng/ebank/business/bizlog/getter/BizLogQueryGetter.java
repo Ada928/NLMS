@@ -1,6 +1,5 @@
 package com.huateng.ebank.business.bizlog.getter;
 
-
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.bizlog.bean.BizLogQueryBean;
@@ -12,13 +11,11 @@ import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 
-
-
-
-/**交易流水查询getter
+/**
+ * 交易流水查询getter
+ * 
  * @author JorneZhang
- * @version
- * 创建时间：2010-1-5 下午03:09:03
+ * @version 创建时间：2010-1-5 下午03:09:03
  */
 @SuppressWarnings("unchecked")
 public class BizLogQueryGetter extends BaseGetter {
@@ -42,15 +39,16 @@ public class BizLogQueryGetter extends BaseGetter {
 		bean.setTxnDateEnd(txnDateEnd);
 		bean.setBizFuncType(bizFuncType);
 
-		//设置OP命令状态为查询
+		// 设置OP命令状态为查询
 		context.setAttribute(BizLogQueryOP.CMDTYPE, BizLogQueryOP.CMD_QUERY);
 		context.setAttribute(BizLogQueryOP.IN_PAGESIZE, pageSize);
 		context.setAttribute(BizLogQueryOP.IN_PAGEINDEX, pageIndex);
 		context.setAttribute(BizLogQueryOP.IN_BEAN, bean);
 		OPCaller.call(BizLogQueryOP.ID, context);
-		//得到返回值
-		PageQueryResult list= (PageQueryResult)context.getAttribute(BizLogQueryOP.OUT_LIST);
-		ResultMng.fillResultByList(getCommonQueryBean(),getCommQueryServletRequest(),list.getQueryResult(),getResult());
+		// 得到返回值
+		PageQueryResult list = (PageQueryResult) context.getAttribute(BizLogQueryOP.OUT_LIST);
+		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list.getQueryResult(),
+				getResult());
 		result.getPage().setTotalPage(list.getPageCount(result.getPage().getEveryPage()));
 		result.init();
 		return result;

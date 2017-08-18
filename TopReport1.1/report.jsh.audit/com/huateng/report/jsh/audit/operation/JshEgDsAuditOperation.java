@@ -28,29 +28,31 @@ public class JshEgDsAuditOperation extends BaseOperation {
 	public void beforeProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
 	}
+
 	@Override
 	public void execute(OperationContext context) throws CommonException {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		String cmd = (String) context.getAttribute(CMD);
 		String choose = (String) context.getAttribute(CHOOSE);
 		JshEgDsService service = new JshEgDsService();
-		
-         if (OP_LOAN_AUDIT.equals(cmd)) {		
+
+		if (OP_LOAN_AUDIT.equals(cmd)) {
 			List<MtsJshDefgDs> mtsJshDefgDsList = (List<MtsJshDefgDs>) context.getAttribute(IN_AUDIT_LIST);
 			String approveStatusChoose = (String) context.getAttribute(IN_AUDIT_STATUS);
 			String approveResultChoose = (String) context.getAttribute(IN_AUDIT_RESULT);
-			
+
 			service.AuditMtsJshDefgDs(approveStatusChoose, approveResultChoose, mtsJshDefgDsList);
-			 if (JI_CHU.equals(choose)){
-			    gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrcode(),"执行境内收入申报单基础信息审核"});
-			    htLog.info("Updater.log", new String[]{gi.getBrcode(),gi.getTlrno(),"执行境内收入申报单基础信息审核"});
-			 }
-			 if (GUAN_LI.equals(choose)){
-				    gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrcode(),"执行境内收入申报单管理信息审核"});
-				    htLog.info("Updater.log", new String[]{gi.getBrcode(),gi.getTlrno(),"执行境内收入申报单管理信息审核"});
-				 }			 
-		}		
+			if (JI_CHU.equals(choose)) {
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行境内收入申报单基础信息审核" });
+				htLog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行境内收入申报单基础信息审核" });
+			}
+			if (GUAN_LI.equals(choose)) {
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行境内收入申报单管理信息审核" });
+				htLog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行境内收入申报单管理信息审核" });
+			}
+		}
 	}
+
 	@Override
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub

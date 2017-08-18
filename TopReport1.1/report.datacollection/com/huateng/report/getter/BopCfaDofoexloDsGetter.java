@@ -23,20 +23,17 @@ import com.huateng.report.update.BopCfaDofoexloDsUpdate;
 import com.huateng.report.utils.ReportUtils;
 
 @SuppressWarnings("unchecked")
-public class BopCfaDofoexloDsGetter extends BaseGetter{
+public class BopCfaDofoexloDsGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		try {
 			PageQueryResult queryResult = getData();
 			if (!queryResult.getQueryResult().isEmpty()) {
-				ResultMng.fillResultByList(getCommonQueryBean(),
-						getCommQueryServletRequest(), queryResult
-								.getQueryResult(), getResult());
+				ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+						queryResult.getQueryResult(), getResult());
 				result.setContent(queryResult.getQueryResult());
-				result.getPage().setTotalPage(
-						queryResult.getPageCount(getResult().getPage()
-								.getEveryPage()));
+				result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 				result.init();
 			} else {
 				result.setContent(Collections.emptyList());
@@ -45,8 +42,7 @@ public class BopCfaDofoexloDsGetter extends BaseGetter{
 			}
 			return result;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -59,19 +55,19 @@ public class BopCfaDofoexloDsGetter extends BaseGetter{
 	private PageQueryResult getData() throws AppException {
 
 		String op = getCommQueryServletRequest().getParameter("op");
-		if (StringUtils.equals(op, BopCfaDofoexloDsUpdate.OPERATION_INSERT)) {//新增记录
+		if (StringUtils.equals(op, BopCfaDofoexloDsUpdate.OPERATION_INSERT)) {// 新增记录
 			BopCfaDofoexloDs bopcfa = new BopCfaDofoexloDs();
 			bopcfa.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_A);
 			bopcfa.setRecStatus(TopReportConstants.REPORT_RECSTATUS_02);
 			bopcfa.setApproveStatus(TopReportConstants.REPORT_APPROVESTATUS_00);
 			bopcfa.setRepStatus(TopReportConstants.REPORT_APPROVESTATUS_00);
-			bopcfa.setSubSuccess(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO);//没有成功上报
+			bopcfa.setSubSuccess(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO);// 没有成功上报
 			bopcfa.setApptype(TopReportConstants.REPORT_APP_TYPE_CFA);
 			bopcfa.setCurrentfile(TopReportConstants.REPORT_FILE_TYPE_CFA_CA);
 
 			GlobalInfo ginfo = GlobalInfo.getCurrentInstance();
 			bopcfa.setDofoexlocode(ReportUtils.getBussinessNo(TopReportConstants.REPORT_FILE_TYPE_CFA_CA));
-			bopcfa.setCreditorcode(ginfo.getBrno());//设置债权人代码
+			bopcfa.setCreditorcode(ginfo.getBrno());// 设置债权人代码
 			List<BopCfaDofoexloDs> list = new ArrayList<BopCfaDofoexloDs>(1);
 			list.add(bopcfa);
 			PageQueryResult queryResult = new PageQueryResult();
@@ -86,17 +82,17 @@ public class BopCfaDofoexloDsGetter extends BaseGetter{
 			BopCfaDofoexloDs bopcfa = service.load(id);
 			List<BopCfaDofoexloDs> list = new ArrayList<BopCfaDofoexloDs>(1);
 			if (null != bopcfa) {
-				if(StringUtils.equals(op, BopCfaDofoexloDsUpdate.OPERATION_MODIFY)){
+				if (StringUtils.equals(op, BopCfaDofoexloDsUpdate.OPERATION_MODIFY)) {
 					if (StringUtils.equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO, bopcfa.getSubSuccess())) {
 						bopcfa.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_A);
 					} else {
 						bopcfa.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_C);
 					}
-				} else if(StringUtils.equals(op, BopCfaDofoexloDsUpdate.OPERATION_DELETE)){
+				} else if (StringUtils.equals(op, BopCfaDofoexloDsUpdate.OPERATION_DELETE)) {
 					bopcfa.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_D);
 				}
 				if (StringUtils.equals(op, BopCfaDofoexloDsUpdate.OPERATION_MODIFY)
-						|| StringUtils.equals(op, BopCfaDofoexloDsUpdate.OPERATION_DELETE)){
+						|| StringUtils.equals(op, BopCfaDofoexloDsUpdate.OPERATION_DELETE)) {
 					bopcfa.setRecStatus(TopReportConstants.REPORT_RECSTATUS_02);
 					bopcfa.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
 					bopcfa.setApproveStatus(TopReportConstants.REPORT_APPROVESTATUS_00);
@@ -128,10 +124,8 @@ public class BopCfaDofoexloDsGetter extends BaseGetter{
 			String brno = GlobalInfo.getCurrentInstance().getBrno();
 
 			BopCfaDofoexloDsService service = BopCfaDofoexloDsService.getInstance();
-			return service.pageQueryByEdit(pageIndex, pageSize,
-					TopReportConstants.REPORT_FILE_TYPE_CFA_CA, qstartDate,qendDate,
-					actiontype, recStatus, approveStatus, repStatus,
-					filler2, brno);
+			return service.pageQueryByEdit(pageIndex, pageSize, TopReportConstants.REPORT_FILE_TYPE_CFA_CA, qstartDate,
+					qendDate, actiontype, recStatus, approveStatus, repStatus, filler2, brno);
 		}
 	}
 }

@@ -21,37 +21,33 @@ import east.dao.BaseDao;
 
 public class AnalyseDataManualUpdate extends BaseUpdate {
 
-	private static Logger logger = Logger.getLogger(ImportFileUpdate.class
-			.getName());
+	private static Logger logger = Logger.getLogger(ImportFileUpdate.class.getName());
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 
-			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("analyseDataManual");
-			String whereString = " table_name in(";
-			while (updateResultBean.hasNext()) {
-				Map<String, String> map = updateResultBean.next();
-				ImportFileBean bean = new ImportFileBean();
-				mapToObject(bean, map);
-				if(bean.isSelect()) {
-					whereString += "'" + bean.getTableName() + "',";
-				}
+		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
+		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("analyseDataManual");
+		String whereString = " table_name in(";
+		while (updateResultBean.hasNext()) {
+			Map<String, String> map = updateResultBean.next();
+			ImportFileBean bean = new ImportFileBean();
+			mapToObject(bean, map);
+			if (bean.isSelect()) {
+				whereString += "'" + bean.getTableName() + "',";
 			}
-			whereString = whereString.substring(0, whereString.length()-1) + ")";
-			Map<String, List<String>> tableInfoMap;
-			try {
-				tableInfoMap = BaseDao.queryFieldInfo2(whereString);
-				CreatFile.creatManualJgbsFile(tableInfoMap);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			return updateReturnBean;
+		}
+		whereString = whereString.substring(0, whereString.length() - 1) + ")";
+		Map<String, List<String>> tableInfoMap;
+		try {
+			tableInfoMap = BaseDao.queryFieldInfo2(whereString);
+			CreatFile.creatManualJgbsFile(tableInfoMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return updateReturnBean;
 	}
-	
+
 }

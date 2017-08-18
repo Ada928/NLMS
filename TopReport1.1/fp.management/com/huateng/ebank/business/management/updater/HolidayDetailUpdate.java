@@ -17,18 +17,17 @@ import com.huateng.exception.AppException;
 public class HolidayDetailUpdate extends BaseUpdate {
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 		UpdateResultBean updateResultBeasn = arg0.getUpdateResultBeanByID("parammng_HolidayDetail");
 		Map map = updateResultBeasn.next();
-		String year = (String)map.get("year");
-		String holidayDef = (String)map.get("holidayDef");
+		String year = (String) map.get("year");
+		String holidayDef = (String) map.get("holidayDef");
 		OperationContext oc = new OperationContext();
-		oc.setAttribute(HolidayDetailUpdateOperation.INPUT_YEAR,year);
-		oc.setAttribute(HolidayDetailUpdateOperation.INPUT_HOLIDAYDEF,holidayDef);
-		oc.setAttribute(HolidayDetailUpdateOperation.INPUT_CMD,HolidayDetailUpdateOperation.INPUT_CMD_UPDATE);
+		oc.setAttribute(HolidayDetailUpdateOperation.INPUT_YEAR, year);
+		oc.setAttribute(HolidayDetailUpdateOperation.INPUT_HOLIDAYDEF, holidayDef);
+		oc.setAttribute(HolidayDetailUpdateOperation.INPUT_CMD, HolidayDetailUpdateOperation.INPUT_CMD_UPDATE);
 		OPCaller.call(HolidayDetailUpdateOperation.ID, oc);
 		return updateReturnBean;
 	}

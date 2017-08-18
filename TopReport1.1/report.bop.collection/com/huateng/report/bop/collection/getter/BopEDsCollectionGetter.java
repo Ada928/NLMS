@@ -27,7 +27,7 @@ import com.huateng.report.utils.ReportUtils;
  *
  * @author jiaoqiangqiang
  *
- * 2012-8-15上午10:54:59
+ *         2012-8-15上午10:54:59
  */
 @SuppressWarnings("unchecked")
 public class BopEDsCollectionGetter extends BaseGetter {
@@ -36,21 +36,18 @@ public class BopEDsCollectionGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageQueryResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -59,7 +56,7 @@ public class BopEDsCollectionGetter extends BaseGetter {
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		Map<String, String> map = getCommQueryServletRequest().getParameterMap();
 		String op = (String) map.get("op");
-		if(!DataFormat.isEmpty(op)){
+		if (!DataFormat.isEmpty(op)) {
 			PageQueryResult queryResult = new PageQueryResult();
 			String id = (String) map.get("id");
 			MtsBopEqDs bopEqDs = null;
@@ -75,7 +72,7 @@ public class BopEDsCollectionGetter extends BaseGetter {
 			List<MtsBopEqDs> list = new ArrayList<MtsBopEqDs>();
 			list.add(bopEqDs);
 			queryResult.setQueryResult(list);
-			//页面接收判断
+			// 页面接收判断
 			getCommQueryServletRequest().setParameter("op", op);
 			return queryResult;
 		} else {
@@ -89,11 +86,13 @@ public class BopEDsCollectionGetter extends BaseGetter {
 			String qapproveStatus = map.get("qapproveStatus");
 			String qrepStatus = map.get("qrepStatus");
 			String qfiller2 = map.get("qfiller2");
-			//只能查当前机构号
+			// 只能查当前机构号
 			GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
 			String qbrNo = globalInfo.getBrno();
 			BopEqDsCollectionService bopEqDsCollectionService = BopEqDsCollectionService.getInstance();
-			return bopEqDsCollectionService.queryBOPEqRecord(TopReportConstants.REPORT_FILE_TYPE_BOP_E, pageIndex, pageSize, qworkDateStart, qworkDateEnd, qactiontype, qapproveStatus, qrepStatus, qrecStatus, qfiller2, qbrNo);
+			return bopEqDsCollectionService.queryBOPEqRecord(TopReportConstants.REPORT_FILE_TYPE_BOP_E, pageIndex,
+					pageSize, qworkDateStart, qworkDateEnd, qactiontype, qapproveStatus, qrepStatus, qrecStatus,
+					qfiller2, qbrNo);
 		}
 	}
 }

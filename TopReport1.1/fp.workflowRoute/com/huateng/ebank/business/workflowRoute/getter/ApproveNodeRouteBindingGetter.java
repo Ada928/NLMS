@@ -27,86 +27,82 @@ import com.huateng.exception.AppException;
 public class ApproveNodeRouteBindingGetter extends BaseGetter {
 
 	@Override
-	public Result call() throws AppException{
-		try
-		{
+	public Result call() throws AppException {
+		try {
 
-		PageQueryResult pageResult = getData();
-		ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
-		result.setContent(pageResult.getQueryResult());
-		result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
-		result.init();
-		return result;
-		}catch(CommonException e){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
-		}catch(AppException appEx){
+			PageQueryResult pageResult = getData();
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
+			result.setContent(pageResult.getQueryResult());
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
+			result.init();
+			return result;
+		} catch (CommonException e) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
 
-	protected PageQueryResult getData() throws AppException
-    {
+	protected PageQueryResult getData() throws AppException {
 		OperationContext oc = new OperationContext();
 
-//		PageQueryResult pageQueryResult = new PageQueryResult();
+		// PageQueryResult pageQueryResult = new PageQueryResult();
 
-//		String bussType = (String)getCommQueryServletRequest().getParameterMap().get("bussType");
-//		String stringid = (String)getCommQueryServletRequest().getParameterMap().get("id");
+		// String bussType =
+		// (String)getCommQueryServletRequest().getParameterMap().get("bussType");
+		// String stringid =
+		// (String)getCommQueryServletRequest().getParameterMap().get("id");
 
-//		String procName = (String)getCommQueryServletRequest().getParameterMap().get("bussProc");
-		String bussProc = (String)getCommQueryServletRequest().getParameterMap().get("bussProc");
+		// String procName =
+		// (String)getCommQueryServletRequest().getParameterMap().get("bussProc");
+		String bussProc = (String) getCommQueryServletRequest().getParameterMap().get("bussProc");
 
 		List relList = new ArrayList();
 		List relList2 = new ArrayList();
-		WorkflowBussTempletRelDAO workflowBussTempletRelDAO= DAOUtils.getWorkflowBussTempletRelDAO();
-		relList = workflowBussTempletRelDAO.queryByCondition("po.bussProc = '"+bussProc+"'");
-		if(relList==null||relList.size()==0){
+		WorkflowBussTempletRelDAO workflowBussTempletRelDAO = DAOUtils.getWorkflowBussTempletRelDAO();
+		relList = workflowBussTempletRelDAO.queryByCondition("po.bussProc = '" + bussProc + "'");
+		if (relList == null || relList.size() == 0) {
 			PageQueryResult pageResult2 = new PageQueryResult();
 			return pageResult2;
 		}
 		WorkflowBussTempletRel relBean = new WorkflowBussTempletRel();
-		relBean = (WorkflowBussTempletRel)relList.get(0);
+		relBean = (WorkflowBussTempletRel) relList.get(0);
 		String bussType = relBean.getBussProc();
 		String procTemplet = relBean.getTempletName();
 		WorkflowParamDAO workflowParamDAO = DAOUtils.getWorkflowParamDAO();
-		relList2 = workflowParamDAO.queryByCondition("po.processTemplate = '"+procTemplet+"'");
-		if(relList2==null||relList2.size()==0){
+		relList2 = workflowParamDAO.queryByCondition("po.processTemplate = '" + procTemplet + "'");
+		if (relList2 == null || relList2.size() == 0) {
 			PageQueryResult pageResult2 = new PageQueryResult();
 			return pageResult2;
 		}
 		WorkflowParam paramBean = new WorkflowParam();
-		paramBean = (WorkflowParam)relList2.get(0);
+		paramBean = (WorkflowParam) relList2.get(0);
 		String draftType = paramBean.getApptype();
 
-		/** modify by shen_antonio 20091214 jira: BMS-2334 begin .*/
-		String startBrhId = (String)getCommQueryServletRequest().getParameterMap().get("startBrhid");
-		/** modify by shen_antonio 20091214 jira: BMS-2334 end .*/
-		String startBrhClass = (String)getCommQueryServletRequest().getParameterMap().get("startBrhClass");
-		if(!StringUtils.isEmpty(startBrhClass)){
+		/** modify by shen_antonio 20091214 jira: BMS-2334 begin . */
+		String startBrhId = (String) getCommQueryServletRequest().getParameterMap().get("startBrhid");
+		/** modify by shen_antonio 20091214 jira: BMS-2334 end . */
+		String startBrhClass = (String) getCommQueryServletRequest().getParameterMap().get("startBrhClass");
+		if (!StringUtils.isEmpty(startBrhClass)) {
 			startBrhId = startBrhClass;
 		}
 		RouteBindingView routeBindingView = new RouteBindingView();
-		/** modify by shen_antonio 20091214 jira: BMS-2334 begin .*/
-		if(NumberUtils.isNumber(startBrhId)){
+		/** modify by shen_antonio 20091214 jira: BMS-2334 begin . */
+		if (NumberUtils.isNumber(startBrhId)) {
 			routeBindingView.setStartBrhid(startBrhId);
 		}
-		/** modify by shen_antonio 20091214 jira: BMS-2334 end .*/
+		/** modify by shen_antonio 20091214 jira: BMS-2334 end . */
 		routeBindingView.setBussType(bussType);
 		routeBindingView.setBussProc(bussProc);
 		routeBindingView.setDraftType(draftType);
-//		if(!DataFormat.isEmpty(stringid)){
-//			Integer id = Integer.valueOf(stringid);
-//			routeBindingView.setId(id);
-//		}
+		// if(!DataFormat.isEmpty(stringid)){
+		// Integer id = Integer.valueOf(stringid);
+		// routeBindingView.setId(id);
+		// }
 
 		int PageIndex = getResult().getPage().getCurrentPage();
 		int PageSize = getResult().getPage().getEveryPage();
@@ -116,9 +112,8 @@ public class ApproveNodeRouteBindingGetter extends BaseGetter {
 		oc.setAttribute(ApproveNodeRouteBindingOperation.IN_PARAM_PAGEINDEX, PageIndex);
 		OPCaller.call("Management.ApproveNodeRouteBindingOperation", oc);
 
-		PageQueryResult pageResult = (PageQueryResult) oc
-				.getAttribute(ApproveNodeRouteBindingOperation.OUT_PARAM);
+		PageQueryResult pageResult = (PageQueryResult) oc.getAttribute(ApproveNodeRouteBindingOperation.OUT_PARAM);
 		return pageResult;
 
-    }
+	}
 }

@@ -14,43 +14,48 @@ import javax.servlet.http.HttpSession;
  * @author <a href="mailto:liu_wen@huateng.com">Liu Wen</a>
  * @version $Revision: 1.1.1.1 $
  * 
- * Context of pageflow.
+ *          Context of pageflow.
  */
-public class PageFlowContext extends java.util.HashMap{
-    private HttpSession session;
-    private String pageFlowId;
-    
-    /**
-     * default constructor
-     */
-    public PageFlowContext(){        
-    }
-    
-    /**
-     * 设置session.
-     * @param session
-     */
-    public void setSession(HttpSession session){
-        this.session = session;
-    }
-    
-    /**
-     * 获取和当前context相关的session.
-     * @return HttpSession
-     */
-    public HttpSession getSession(){
-        return this.session;
-    }
-    /**
-     * @return Returns the pageFlowId.
-     */
-    public String getPageFlowId() {
-        return pageFlowId;
-    }
-    /**
-     * @param pageFlowId The pageFlowId to set.
-     */
-    public void setPageFlowId(String pageFlowId) {
-        this.pageFlowId = pageFlowId;
-    }
+public class PageFlowContext extends java.util.HashMap {
+	private HttpSession session;
+	private String pageFlowId;
+
+	/**
+	 * default constructor
+	 */
+	public PageFlowContext() {
+	}
+
+	/**
+	 * 设置session.
+	 * 
+	 * @param session
+	 */
+	public void setSession(HttpSession session) {
+		this.session = session;
+	}
+
+	/**
+	 * 获取和当前context相关的session.
+	 * 
+	 * @return HttpSession
+	 */
+	public HttpSession getSession() {
+		return this.session;
+	}
+
+	/**
+	 * @return Returns the pageFlowId.
+	 */
+	public String getPageFlowId() {
+		return pageFlowId;
+	}
+
+	/**
+	 * @param pageFlowId
+	 *            The pageFlowId to set.
+	 */
+	public void setPageFlowId(String pageFlowId) {
+		this.pageFlowId = pageFlowId;
+	}
 }

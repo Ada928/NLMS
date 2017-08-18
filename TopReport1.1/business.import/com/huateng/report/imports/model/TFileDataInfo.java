@@ -341,8 +341,7 @@ public class TFileDataInfo {
 		return fileContentList.size();
 	}
 
-	public List<String> readFileContent(int StartRow, String sFileFullName,
-			String ListSeparator) throws IOException {
+	public List<String> readFileContent(int StartRow, String sFileFullName, String ListSeparator) throws IOException {
 
 		byte[] bs = new byte[3];
 		InputStream is = new FileInputStream(sFileFullName);
@@ -362,20 +361,15 @@ public class TFileDataInfo {
 		String s1 = Long.toHexString(bs[1]);
 		String s2 = Long.toHexString(bs[2]);
 		// 文本文件编码格式为UTF-8
-		if ("ffffffffffffffef".equals(s0) && "ffffffffffffffbb".equals(s1)
-				&& "ffffffffffffffbf".equals(s2)) {
+		if ("ffffffffffffffef".equals(s0) && "ffffffffffffffbb".equals(s1) && "ffffffffffffffbf".equals(s2)) {
 			encode = "UTF-8";
 			// 文本文件编码格式为Unicode
-		} else if ("ffffffffffffffc4".equals(s0)
-				&& "ffffffffffffffe3".equals(s1)
-				&& "ffffffffffffffca".equals(s2)) {
+		} else if ("ffffffffffffffc4".equals(s0) && "ffffffffffffffe3".equals(s1) && "ffffffffffffffca".equals(s2)) {
 			encode = "GB2312";
-		} else if ("ffffffffffffffff".equals(s0)
-				&& "fffffffffffffffe".equals(s1)) {
+		} else if ("ffffffffffffffff".equals(s0) && "fffffffffffffffe".equals(s1)) {
 			encode = "Unicode";
 			// 文本文件编码格式为Unicode big endian
-		} else if ("fffffffffffffffe".equals(s0)
-				&& "ffffffffffffffff".equals(s1)) {
+		} else if ("fffffffffffffffe".equals(s0) && "ffffffffffffffff".equals(s1)) {
 			encode = "Unicode";
 		} else {
 			if ("txt".equals(fileType)) {
@@ -412,8 +406,7 @@ public class TFileDataInfo {
 			while (line != null) {
 				if (",".equals(ListSeparator)) {
 					line = line.replaceAll(",", "\\|");
-					while (line.indexOf("\"") != -1
-							&& line.indexOf("\"|") > line.indexOf("\"")) {
+					while (line.indexOf("\"") != -1 && line.indexOf("\"|") > line.indexOf("\"")) {
 						bindex = line.indexOf("\"");
 						eindex = line.indexOf("\"|") + 1;
 						tmpString = line.substring(bindex, eindex);
@@ -435,8 +428,8 @@ public class TFileDataInfo {
 		}
 	}
 
-	//扩展 参数
-	private String modType; //I - insert; U - update; D - delete
+	// 扩展 参数
+	private String modType; // I - insert; U - update; D - delete
 
 	public String getModType() {
 		return modType;
@@ -445,5 +438,5 @@ public class TFileDataInfo {
 	public void setModType(String modType) {
 		this.modType = modType;
 	}
-	
+
 }

@@ -34,21 +34,17 @@ public class BOPGuperInfoAuditGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "对外担保履约明细信息审核页面查询");
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -72,43 +68,38 @@ public class BOPGuperInfoAuditGetter extends BaseGetter {
 		String qRecStatus = getCommQueryServletRequest().getParameter("qRecStatus");
 
 		String qApproveStatus = getCommQueryServletRequest().getParameter("qApproveStatus");
-	    String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
+		String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
 
-	    String qFiller2 = getCommQueryServletRequest().getParameter("qFiller2");
+		String qFiller2 = getCommQueryServletRequest().getParameter("qFiller2");
 
-	    List<Object>paramentList = new ArrayList<Object>();
-		if(!DataFormat.isEmpty(qstartDate)){
+		List<Object> paramentList = new ArrayList<Object>();
+		if (!DataFormat.isEmpty(qstartDate)) {
 			hql.append(" AND bds.workDate >= ? ");
 			paramentList.add(qstartDate);
 		}
-		if(!DataFormat.isEmpty(qendDate)){
+		if (!DataFormat.isEmpty(qendDate)) {
 			hql.append(" AND bds.workDate <= ? ");
 			paramentList.add(qendDate);
 		}
-		if(StringUtils.isNotBlank(qActiontype))
-		{
+		if (StringUtils.isNotBlank(qActiontype)) {
 			hql.append(" AND bds.actiontype = ? ");
 			paramentList.add(qActiontype);
 		}
-		if(StringUtils.isNotBlank(qRecStatus))
-		{
+		if (StringUtils.isNotBlank(qRecStatus)) {
 			hql.append(" AND bds.recStatus = ? ");
 			paramentList.add(qRecStatus);
 		}
-		if(StringUtils.isNotBlank(qApproveStatus))
-		{
+		if (StringUtils.isNotBlank(qApproveStatus)) {
 			hql.append(" AND bds.approveStatus = ? ");
 			paramentList.add(qApproveStatus);
 		}
-		if(StringUtils.isNotBlank(qRepStatus))
-		{
+		if (StringUtils.isNotBlank(qRepStatus)) {
 			hql.append(" AND bds.repStatus = ? ");
 			paramentList.add(qRepStatus);
 		}
-		if(StringUtils.isNotBlank(qFiller2))
-		{
+		if (StringUtils.isNotBlank(qFiller2)) {
 			hql.append(" AND bds.filler2 LIKE ? ");
-			paramentList.add("%"+qFiller2+"%");
+			paramentList.add("%" + qFiller2 + "%");
 		}
 
 		hql.append(" AND bds.brNo = ? ");
@@ -131,11 +122,12 @@ public class BOPGuperInfoAuditGetter extends BaseGetter {
 		queryCondition.setPageSize(pageSize);
 		pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 		List resultList = pageQueryResult.getQueryResult();
-		for(int i=0; i<resultList.size(); i++){
+		for (int i = 0; i < resultList.size(); i++) {
 			Object[] obs = (Object[]) resultList.get(i);
-			BopCfaExguDs bopCfaExguDs =(BopCfaExguDs)obs[0];
+			BopCfaExguDs bopCfaExguDs = (BopCfaExguDs) obs[0];
 			List<BopExguTorDs> exguTorList = new ArrayList<BopExguTorDs>();
-		    exguTorList = rootdao.queryByQL2List(" FROM BopExguTorDs model WHERE model.recId = '"+bopCfaExguDs.getId().trim()+"' AND torType = '01' ");
+			exguTorList = rootdao.queryByQL2List(" FROM BopExguTorDs model WHERE model.recId = '"
+					+ bopCfaExguDs.getId().trim() + "' AND torType = '01' ");
 			bopCfaExguDs.setBename(exguTorList.get(0).getTorName());
 			bopCfaExguDs.setBencode(exguTorList.get(0).getTorCode());
 			bopCfaExguDs.setBenamen(exguTorList.get(0).getTorEnname());

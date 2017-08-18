@@ -19,23 +19,21 @@ import com.huateng.report.databak.service.ReportDataBakService;
 import com.huateng.report.system.bean.CutoverWorkDateBean;
 import com.huateng.report.system.operation.BiWorkDateOperation;
 
-public class CutoverWorkDateUpdate extends BaseUpdate{
+public class CutoverWorkDateUpdate extends BaseUpdate {
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
 
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("cutoverWorkDate");
-			CutoverWorkDateBean cutoverWorkDateBean = null ;
-			while (updateResultBean.hasNext())
-			 {
+			CutoverWorkDateBean cutoverWorkDateBean = null;
+			while (updateResultBean.hasNext()) {
 				cutoverWorkDateBean = new CutoverWorkDateBean();
 				Map map = updateResultBean.next();
-				mapToObject(cutoverWorkDateBean,map);
-			  }
+				mapToObject(cutoverWorkDateBean, map);
+			}
 
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(BiWorkDateOperation.CMD, BiWorkDateOperation.OP_UPDATE_CUTOVERWORKDATE);
@@ -45,16 +43,14 @@ public class CutoverWorkDateUpdate extends BaseUpdate{
 			try {
 				String zipFilepath = ReportDataBakService.getInstance().createDataBakFile();
 			} catch (Exception e) {
-				ExceptionUtil.throwCommonException("备份业务数据异常:"+e.getMessage());
+				ExceptionUtil.throwCommonException("备份业务数据异常:" + e.getMessage());
 			}
-
 
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

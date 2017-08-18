@@ -7,7 +7,7 @@
 <link href="../../css/menu.css" rel="stylesheet" type="text/css">
 </head>
 <body style="margin: 0; overflow: hidden" bgcolor=#EDF2F6>
-<script langauge=javascript>
+	<script langauge=javascript>
 var rows="60%,40%";
 var showstatus=0;//0 都显示 1 显示tree 2 显示mess
 function hiddentop()
@@ -56,11 +56,11 @@ function hiddenbottom()
 	}
 }
 </script>
-<div id='mnuMain' style='left:10px;top:0;width:100%;height:3%' align="center">
+	<div id='mnuMain' style='left:10px;top:0;width:100%;height:3%' align="center">
 
-<img id="topdirect" src="<%=request.getContextPath()%>/images/switchtop.gif" onclick="hiddentop()"/>
-<img id="bottomdirect" src="<%=request.getContextPath()%>/images/switchbottom.gif" onclick="hiddenbottom()"/>
+		<img id="topdirect" src="<%=request.getContextPath()%>/images/switchtop.gif" onclick="hiddentop()" /> <img
+			id="bottomdirect" src="<%=request.getContextPath()%>/images/switchbottom.gif" onclick="hiddenbottom()" />
 
-</div>
+	</div>
 </body>
 </html>

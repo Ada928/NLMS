@@ -14,10 +14,9 @@ import com.huateng.ebank.entity.data.mng.Seqctl;
 import com.huateng.ebank.framework.exceptions.CommonException;
 
 /**
- * Title: GetSeqnoGenerator
- * Description:
- * Copyright: Copyright (c) 2008
- * Company: Shanghai Huateng Software Systems Co., Ltd.
+ * Title: GetSeqnoGenerator Description: Copyright: Copyright (c) 2008 Company:
+ * Shanghai Huateng Software Systems Co., Ltd.
+ * 
  * @author shen_antonio
  * @version 1.1, 2008-4-13
  */
@@ -26,6 +25,7 @@ public class GetSeqnoGenerator extends BaseGenerator {
 
 	/**
 	 * 得到序号
+	 * 
 	 * @param valueNo
 	 * @param valueIndex
 	 * @return
@@ -33,8 +33,8 @@ public class GetSeqnoGenerator extends BaseGenerator {
 	 */
 	@Override
 	public String gen(Object paramMap) throws CommonException {
-		int valueNo = ((Integer)((Map)paramMap).get("valueNo")).intValue();
-		String valueIndex = (String)((Map)paramMap).get("valueIndex");
+		int valueNo = ((Integer) ((Map) paramMap).get("valueNo")).intValue();
+		String valueIndex = (String) ((Map) paramMap).get("valueIndex");
 		// TODO Auto-generated method stub
 		int seqNo = 1; // 取出的序号
 
@@ -61,7 +61,7 @@ public class GetSeqnoGenerator extends BaseGenerator {
 			if (po != null) {
 				// 如果存在该序号记录，则取出当前序号并将序号加1
 				seqNo = po.getValueCurr().intValue();
-				po.setValueCurr( new Integer(po.getValueCurr().intValue() + 1) ); // 序号加1
+				po.setValueCurr(new Integer(po.getValueCurr().intValue() + 1)); // 序号加1
 				if (po.getValueCurr().intValue() > po.getMaxValue().intValue())
 					po.setValueCurr(po.getMinValue());
 				dao.update(po); // 修改记录到数据库
@@ -72,20 +72,20 @@ public class GetSeqnoGenerator extends BaseGenerator {
 				headPo = dao.query(valueNo, SystemConstant.VALUE_INDEX);
 				po = new Seqctl();
 
-				if(headPo == null){
-					po.setValueNo( new Integer(valueNo) );
+				if (headPo == null) {
+					po.setValueNo(new Integer(valueNo));
 					po.setValueIndex(valueIndex);
 					po.setMaxValue(999999999);
 					po.setMinValue(1);
-					po.setValueCurr(seqNo+1);
-				}else{
+					po.setValueCurr(seqNo + 1);
+				} else {
 					// 取得当前序号
 					seqNo = headPo.getMinValue().intValue();
-					po.setValueNo( new Integer(valueNo) );
+					po.setValueNo(new Integer(valueNo));
 					po.setValueIndex(valueIndex);
 					po.setMaxValue(headPo.getMaxValue());
 					po.setMinValue(headPo.getMinValue());
-					po.setValueCurr( new Integer(headPo.getMinValue().intValue() + 1) );
+					po.setValueCurr(new Integer(headPo.getMinValue().intValue() + 1));
 				}
 
 				dao.insert(po);

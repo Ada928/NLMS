@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.huateng.ebank.framework.exceptions.CommonException;
 
-public class GetSubFileListImpleByTT implements IGetSubFileList{
+public class GetSubFileListImpleByTT implements IGetSubFileList {
 
 	public List getSubFileResultList(Map<String, Object> paramMap) throws CommonException {
 		List<String> fileNameList = new ArrayList<String>();
@@ -16,7 +16,7 @@ public class GetSubFileListImpleByTT implements IGetSubFileList{
 		String controlFileTypeName = (String) paramMap.get(IGetSubFileList.IN_CONTROL_NAME);
 		if (fileType.equals(controlFileTypeName)) {
 			Object obj = paramMap.get(IN_PARAM_OTHER);
-			if (obj!=null) {
+			if (obj != null) {
 				LinkedHashSet<String> fileNameSet = (LinkedHashSet<String>) obj;
 				for (Iterator<String> iterator = fileNameSet.iterator(); iterator.hasNext();) {
 					fileNameList.add(iterator.next());

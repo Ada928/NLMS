@@ -24,11 +24,11 @@ import com.huateng.exception.AppException;
 import com.huateng.report.bean.BopForSameInduDepositBean;
 import com.huateng.report.constants.TopReportConstants;
 
-public class BOPForDebtBalanceInfoGetter extends BaseGetter{
+public class BOPForDebtBalanceInfoGetter extends BaseGetter {
 
-	private static final String ADD_RECORD="new";
-	private static final String MOD_RECORD="mod";
-	private static final String DEL_RECORD="del";
+	private static final String ADD_RECORD = "new";
+	private static final String MOD_RECORD = "mod";
+	private static final String DEL_RECORD = "del";
 	private static final String DETAIL_RECORD = "detail";
 
 	public Result call() throws AppException {
@@ -38,8 +38,7 @@ public class BOPForDebtBalanceInfoGetter extends BaseGetter{
 
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外债-变动信息补录-变动信息查询");
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -51,56 +50,66 @@ public class BOPForDebtBalanceInfoGetter extends BaseGetter{
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
+
 	@SuppressWarnings("unchecked")
-	private PageQueryResult getData() throws AppException
-	{
+	private PageQueryResult getData() throws AppException {
 		String op = getCommQueryServletRequest().getParameter("op");
 		String id = getCommQueryServletRequest().getParameter("id");
-		if(id == "") {
-			ExceptionUtil.throwCommonException("没有符合条件的记录", new Object[]{ getCommQueryServletRequest().getParameter("qCurrencyCode"),getCommQueryServletRequest().getParameter("qCurrencyName")});
+		if (id == "") {
+			ExceptionUtil.throwCommonException("没有符合条件的记录",
+					new Object[] { getCommQueryServletRequest().getParameter("qCurrencyCode"),
+							getCommQueryServletRequest().getParameter("qCurrencyName") });
 		}
 
 		BopForSameInduDepositBean bop = new BopForSameInduDepositBean();
 		List<BopForSameInduDepositBean> list = new ArrayList<BopForSameInduDepositBean>();
 
-		if(StringUtils.equals(ADD_RECORD, op)){
+		if (StringUtils.equals(ADD_RECORD, op)) {
 			list.add(bop);
 			PageQueryResult queryResult = new PageQueryResult();
 			queryResult.setQueryResult(list);
 			queryResult.setTotalCount(list.size());
 			return queryResult;
-		}else if(StringUtils.equals(MOD_RECORD, op)  || StringUtils.equals(DEL_RECORD, op) || StringUtils.equals(DETAIL_RECORD, op)){
+		} else if (StringUtils.equals(MOD_RECORD, op) || StringUtils.equals(DEL_RECORD, op)
+				|| StringUtils.equals(DETAIL_RECORD, op)) {
 
-//			StringBuffer hql = new StringBuffer();
-//			hql.append(" SELECT bds.REC_ID, bds.exdebtcode,bds.limit_Type,bds.debtorcode,bds.debtype,bds.valuedate,");
-//			hql.append("        bds.contractcurr,bds.floatrate,bds.anninrate,bds.spapfeboindex,bds.remark, bds.work_Date,");
-//			hql.append("        bds.crt_Tm,bds.lst_Upd_Tm,bds.lst_Upd_Tlr,bds.apptype,bds.currentfile,bds.actiontype,");
-//			hql.append("        bds.rec_Status,bds.approve_Status,bds.rep_Status,bds.is_sub_Success,");
-//			hql.append("        bcd.creditor_id,bcd.creditorcode, bcd.creditorname, bcd.creditornamen,bcd.creditortype,");
-//			hql.append("        bcd.crehqcode,bcd.opercode,bcd.REC_ID,");
-//			hql.append("        bds.filler1,bds.buscode,bds.changeno,bds.accoamount,bds.chdate,bds.filler2");
-//			hql.append("   FROM BOP_CFA_EXDEBT_DS bds LEFT JOIN BOP_CFA_CREDITOR_DS bcd ON bds.REC_ID = bcd.REC_ID WHERE 1 = 1 " );
+			// StringBuffer hql = new StringBuffer();
+			// hql.append(" SELECT bds.REC_ID,
+			// bds.exdebtcode,bds.limit_Type,bds.debtorcode,bds.debtype,bds.valuedate,");
+			// hql.append("
+			// bds.contractcurr,bds.floatrate,bds.anninrate,bds.spapfeboindex,bds.remark,
+			// bds.work_Date,");
+			// hql.append("
+			// bds.crt_Tm,bds.lst_Upd_Tm,bds.lst_Upd_Tlr,bds.apptype,bds.currentfile,bds.actiontype,");
+			// hql.append("
+			// bds.rec_Status,bds.approve_Status,bds.rep_Status,bds.is_sub_Success,");
+			// hql.append(" bcd.creditor_id,bcd.creditorcode, bcd.creditorname,
+			// bcd.creditornamen,bcd.creditortype,");
+			// hql.append(" bcd.crehqcode,bcd.opercode,bcd.REC_ID,");
+			// hql.append("
+			// bds.filler1,bds.buscode,bds.changeno,bds.accoamount,bds.chdate,bds.filler2");
+			// hql.append(" FROM BOP_CFA_EXDEBT_DS bds LEFT JOIN
+			// BOP_CFA_CREDITOR_DS bcd ON bds.REC_ID = bcd.REC_ID WHERE 1 = 1 "
+			// );
 
-
-			//加载变动信息并获取filler1
-			//取得filler1
-//			String filler1Id = "";
+			// 加载变动信息并获取filler1
+			// 取得filler1
+			// String filler1Id = "";
 
 			ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
 			BopCfaExdebtDs bopBalanceDs = rootDao.query(BopCfaExdebtDs.class, id);
 
-//			if(null != bopBalanceDs)
-//			{
-//				filler1Id = bopBalanceDs.getFiller1();
-//			}
+			// if(null != bopBalanceDs)
+			// {
+			// filler1Id = bopBalanceDs.getFiller1();
+			// }
 
-//			hql.append(" AND bds.REC_ID ='").append(filler1Id).append("'");
+			// hql.append(" AND bds.REC_ID ='").append(filler1Id).append("'");
 
-			//将变动信息set benan BOPForDebtBilLoanCreditor
+			// 将变动信息set benan BOPForDebtBilLoanCreditor
 			bop.setId(bopBalanceDs.getId());
 			bop.setApptype(bopBalanceDs.getApptype());
 			bop.setCurrentfile(bopBalanceDs.getCurrentfile());
@@ -109,7 +118,6 @@ public class BOPForDebtBalanceInfoGetter extends BaseGetter{
 			bop.setChangeno(bopBalanceDs.getChangeno());
 			bop.setAccoamount(bopBalanceDs.getAccoamount());
 			bop.setChdate(bopBalanceDs.getChdate());
-
 
 			bop.setFiller1(bopBalanceDs.getFiller1());
 			bop.setRemark(bopBalanceDs.getRemark());
@@ -126,7 +134,6 @@ public class BOPForDebtBalanceInfoGetter extends BaseGetter{
 			bop.setSubSuccess(bopBalanceDs.getSubSuccess());
 			bop.setFiller2(bopBalanceDs.getFiller2());
 
-
 			BopCfaExdebtDs exdebtds = rootDao.query(BopCfaExdebtDs.class, bopBalanceDs.getFiller1());
 
 			if (null != exdebtds) {
@@ -140,9 +147,10 @@ public class BOPForDebtBalanceInfoGetter extends BaseGetter{
 				bop.setSpapfeboindex(exdebtds.getSpapfeboindex());
 				bop.setFiller2Oth(exdebtds.getFiller2());
 
-				List<BopCfaCreditorDs>creditorList = rootDao.queryByQL2List(" FROM BopCfaCreditorDs WHERE recId = ? ", new Object[]{bopBalanceDs.getFiller1()}, null);
+				List<BopCfaCreditorDs> creditorList = rootDao.queryByQL2List(" FROM BopCfaCreditorDs WHERE recId = ? ",
+						new Object[] { bopBalanceDs.getFiller1() }, null);
 
-				if(!creditorList.isEmpty()){
+				if (!creditorList.isEmpty()) {
 					BopCfaCreditorDs creditor = creditorList.get(0);
 					bop.setCreditorid(creditor.getId());
 					bop.setCreditorcode(creditor.getCreditorcode());
@@ -156,34 +164,34 @@ public class BOPForDebtBalanceInfoGetter extends BaseGetter{
 
 			}
 
-
-//			for(Iterator it = rootDao.queryBySQL(hql.toString()) ;  it.hasNext(); )
-//			{
-//				Object[] queryArray = (Object[]) it.next();
-//				bop.setExdebtcode((String)queryArray[1]);
-//				bop.setDebtorcode((String)queryArray[3]);
-//				bop.setDebtype((String)queryArray[4]);
-//				bop.setValuedate((String)queryArray[5]);
-//				bop.setContractcurr((String)queryArray[6]);
-//				bop.setFloatrate((String)queryArray[7]);
-//				bop.setAnninrate((BigDecimal) queryArray[8]);
-//				bop.setSpapfeboindex((String)queryArray[9]);
-//
-//				bop.setSubSuccess((String)queryArray[21]);
-//				bop.setCreditorid((String)queryArray[22]);
-//				bop.setCreditorcode((String)queryArray[23]);
-//				bop.setCreditorname((String)queryArray[24]);
-//				bop.setCreditornamen((String)queryArray[25]);
-//				bop.setCreditortype((String)queryArray[26]);
-//				bop.setCrehqcode((String)queryArray[27]);
-//				bop.setOpercode((String)queryArray[28]);
-//				bop.setRecId((String)queryArray[29]);
-//				bop.setFiller2Oth((String)queryArray[35]);
-//
-//				list.add(bop);
-//			}
+			// for(Iterator it = rootDao.queryBySQL(hql.toString()) ;
+			// it.hasNext(); )
+			// {
+			// Object[] queryArray = (Object[]) it.next();
+			// bop.setExdebtcode((String)queryArray[1]);
+			// bop.setDebtorcode((String)queryArray[3]);
+			// bop.setDebtype((String)queryArray[4]);
+			// bop.setValuedate((String)queryArray[5]);
+			// bop.setContractcurr((String)queryArray[6]);
+			// bop.setFloatrate((String)queryArray[7]);
+			// bop.setAnninrate((BigDecimal) queryArray[8]);
+			// bop.setSpapfeboindex((String)queryArray[9]);
+			//
+			// bop.setSubSuccess((String)queryArray[21]);
+			// bop.setCreditorid((String)queryArray[22]);
+			// bop.setCreditorcode((String)queryArray[23]);
+			// bop.setCreditorname((String)queryArray[24]);
+			// bop.setCreditornamen((String)queryArray[25]);
+			// bop.setCreditortype((String)queryArray[26]);
+			// bop.setCrehqcode((String)queryArray[27]);
+			// bop.setOpercode((String)queryArray[28]);
+			// bop.setRecId((String)queryArray[29]);
+			// bop.setFiller2Oth((String)queryArray[35]);
+			//
+			// list.add(bop);
+			// }
 			list.add(bop);
-		 	PageQueryResult queryResult = new PageQueryResult();
+			PageQueryResult queryResult = new PageQueryResult();
 			queryResult.setQueryResult(list);
 			queryResult.setTotalCount(list.size());
 			return queryResult;
@@ -193,14 +201,14 @@ public class BOPForDebtBalanceInfoGetter extends BaseGetter{
 			GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
 			//
 			int pageSize = getResult().getPage().getEveryPage();
-			//页码
+			// 页码
 			int pageIndex = getResult().getPage().getCurrentPage();
 
 			PageQueryCondition queryCondition = new PageQueryCondition();
 
 			StringBuffer hql = new StringBuffer(" SELECT bds FROM BopCfaExdebtDs bds WHERE 1 = 1 ");
 
-			String balanceFileType=  getCommQueryServletRequest().getParameter("balanceFileType");
+			String balanceFileType = getCommQueryServletRequest().getParameter("balanceFileType");
 
 			String qWorkDateStart = getCommQueryServletRequest().getParameter("qWorkDateStart");
 			String qWorkDateEnd = getCommQueryServletRequest().getParameter("qWorkDateEnd");
@@ -212,8 +220,7 @@ public class BOPForDebtBalanceInfoGetter extends BaseGetter{
 			String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
 			String qFiller2 = getCommQueryServletRequest().getParameter("qFiller2");
 
-
-			List<Object>paramentList = new ArrayList<Object>();
+			List<Object> paramentList = new ArrayList<Object>();
 			if (StringUtils.isNotBlank(qWorkDateStart)) {
 				hql.append(" AND bds.workDate >= ? ");
 				paramentList.add(qWorkDateStart);
@@ -222,30 +229,25 @@ public class BOPForDebtBalanceInfoGetter extends BaseGetter{
 				hql.append(" AND bds.workDate <= ? ");
 				paramentList.add(qWorkDateEnd);
 			}
-			if(StringUtils.isNotBlank(qActiontype))
-			{
+			if (StringUtils.isNotBlank(qActiontype)) {
 				hql.append(" AND bds.actiontype = ? ");
 				paramentList.add(qActiontype);
 			}
-			if(StringUtils.isNotBlank(qRecStatus))
-			{
+			if (StringUtils.isNotBlank(qRecStatus)) {
 				hql.append(" AND bds.recStatus = ? ");
 				paramentList.add(qRecStatus);
 			}
-			if(StringUtils.isNotBlank(qApproveStatus))
-			{
+			if (StringUtils.isNotBlank(qApproveStatus)) {
 				hql.append(" AND bds.approveStatus = ? ");
 				paramentList.add(qApproveStatus);
 			}
-			if(StringUtils.isNotBlank(qRepStatus))
-			{
+			if (StringUtils.isNotBlank(qRepStatus)) {
 				hql.append(" AND bds.repStatus = ? ");
 				paramentList.add(qRepStatus);
 			}
-			if(StringUtils.isNotBlank(qFiller2))
-			{
+			if (StringUtils.isNotBlank(qFiller2)) {
 				hql.append(" AND bds.filler2 LIKE ? ");
-				paramentList.add("%"+qFiller2+"%");
+				paramentList.add("%" + qFiller2 + "%");
 			}
 			hql.append(" AND bds.apptype = ? ");
 			paramentList.add(TopReportConstants.REPORT_APP_TYPE_CFA);
@@ -269,7 +271,7 @@ public class BOPForDebtBalanceInfoGetter extends BaseGetter{
 			queryCondition.setPageSize(pageSize);
 			queryCondition.setQueryString(hql.toString());
 			queryCondition.setObjArray(paramentList.toArray());
-			return  rootdao.pageQueryByQL(queryCondition);
+			return rootdao.pageQueryByQL(queryCondition);
 		}
 	}
 }

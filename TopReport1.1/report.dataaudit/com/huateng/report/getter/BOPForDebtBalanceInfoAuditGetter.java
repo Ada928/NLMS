@@ -22,8 +22,7 @@ public class BOPForDebtBalanceInfoAuditGetter extends BaseGetter {
 		try {
 			PageQueryResult queryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -33,17 +32,15 @@ public class BOPForDebtBalanceInfoAuditGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
-	private PageQueryResult getData() throws AppException
-	{
+	private PageQueryResult getData() throws AppException {
 		setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "审核信息余额信息查询");
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		int pageSize = getResult().getPage().getEveryPage();
-		//页码
+		// 页码
 		int pageIndex = getResult().getPage().getCurrentPage();
 
 		PageQueryCondition pc = new PageQueryCondition();
@@ -64,41 +61,36 @@ public class BOPForDebtBalanceInfoAuditGetter extends BaseGetter {
 
 		String balanceFileType = getCommQueryServletRequest().getParameter("balanceFileType");
 
-		if(StringUtils.isNotBlank(qworkDate))
-		{
+		if (StringUtils.isNotBlank(qworkDate)) {
 			hql.append(" and bds.workDate >='").append(qworkDate).append("'");
 		}
-		if(StringUtils.isNotBlank(eworkDate))
-		{
+		if (StringUtils.isNotBlank(eworkDate)) {
 			hql.append(" and bds.workDate <='").append(eworkDate).append("'");
 		}
-		if(StringUtils.isNotBlank(qactiontype))
-		{
+		if (StringUtils.isNotBlank(qactiontype)) {
 			hql.append(" and bds.actiontype ='").append(qactiontype).append("'");
 		}
-		if(StringUtils.isNotBlank(qrecStatus))
-		{
+		if (StringUtils.isNotBlank(qrecStatus)) {
 			hql.append(" and bds.recStatus ='").append(qrecStatus).append("'");
 		}
-		if(StringUtils.isNotBlank(qapproveStatus))
-		{
+		if (StringUtils.isNotBlank(qapproveStatus)) {
 			hql.append(" and bds.approveStatus ='").append(qapproveStatus).append("'");
 		}
-		if(StringUtils.isNotBlank(qrepStatus))
-		{
+		if (StringUtils.isNotBlank(qrepStatus)) {
 			hql.append(" and bds.repStatus ='").append(qrepStatus).append("'");
 		}
-		if(StringUtils.isNotBlank(qfiller2))
-		{
+		if (StringUtils.isNotBlank(qfiller2)) {
 			hql.append(" and bds.filler2 like '%").append(qfiller2).append("%'");
 		}
-		hql.append(" and bds.currentfile ='"+TopReportConstants.REPORT_FILE_TYPE_CFA_AS+"' and balanceFileType = '" + balanceFileType + "'"  );
-		hql.append(" and (bds.recStatus ='"+TopReportConstants.REPORT_RECSTATUS_03+"' or bds.recStatus='"+TopReportConstants.REPORT_RECSTATUS_04+"' ) ");
+		hql.append(" and bds.currentfile ='" + TopReportConstants.REPORT_FILE_TYPE_CFA_AS + "' and balanceFileType = '"
+				+ balanceFileType + "'");
+		hql.append(" and (bds.recStatus ='" + TopReportConstants.REPORT_RECSTATUS_03 + "' or bds.recStatus='"
+				+ TopReportConstants.REPORT_RECSTATUS_04 + "' ) ");
 		hql.append(" order by bds.lstUpdTm DESC,bds.workDate,bds.approveStatus,bds.actiontype desc");
 		pc.setPageIndex(pageIndex);
 		pc.setPageSize(pageSize);
 		pc.setQueryString(hql.toString());
 
-		return  rootdao.pageQueryByQL(pc);
+		return rootdao.pageQueryByQL(pc);
 	}
 }

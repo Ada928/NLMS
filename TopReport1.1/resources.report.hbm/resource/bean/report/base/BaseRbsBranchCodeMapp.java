@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the RBS_BRANCE_CODE_MAPP table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * This is an object that contains data related to the RBS_BRANCE_CODE_MAPP
+ * table. Do not modify this class because it will be overwritten if the
+ * configuration file related to this class is modified.
  *
- * @hibernate.class
- *  table="RBS_BRANCE_CODE_MAPP"
+ * @hibernate.class table="RBS_BRANCE_CODE_MAPP"
  */
 
-public abstract class BaseRbsBranchCodeMapp  implements Serializable {
+public abstract class BaseRbsBranchCodeMapp implements Serializable {
 
 	public static String REF = "RbsBranchCodeMapp";
 	public static String PROP_CRT_TLR = "CrtTlr";
@@ -25,23 +23,21 @@ public abstract class BaseRbsBranchCodeMapp  implements Serializable {
 	public static String PROP_LST_UPD_TM = "LstUpdTm";
 	public static String PROP_RBSBRANCHCODE = "Rbsbranchcode";
 
-
 	// constructors
-	public BaseRbsBranchCodeMapp () {
+	public BaseRbsBranchCodeMapp() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseRbsBranchCodeMapp (java.lang.String id) {
+	public BaseRbsBranchCodeMapp(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -58,7 +54,6 @@ public abstract class BaseRbsBranchCodeMapp  implements Serializable {
 	private java.util.Date lstUpdTm;
 	private java.lang.String lstUpdTlr;
 
-
 	public java.lang.String getId() {
 		return id;
 	}
@@ -66,7 +61,6 @@ public abstract class BaseRbsBranchCodeMapp  implements Serializable {
 	public void setId(java.lang.String id) {
 		this.id = id;
 	}
-
 
 	public java.lang.String getStatus() {
 		return status;
@@ -108,19 +102,24 @@ public abstract class BaseRbsBranchCodeMapp  implements Serializable {
 		this.lstUpdTlr = lstUpdTlr;
 	}
 
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.RbsBranchCodeMapp)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.RbsBranchCodeMapp))
+			return false;
 		else {
 			resource.bean.report.RbsBranchCodeMapp rbsBranceCodeMapp = (resource.bean.report.RbsBranchCodeMapp) obj;
-			if (null == this.getId() || null == rbsBranceCodeMapp.getId()) return false;
-			else return (this.getId().equals(rbsBranceCodeMapp.getId()));
+			if (null == this.getId() || null == rbsBranceCodeMapp.getId())
+				return false;
+			else
+				return (this.getId().equals(rbsBranceCodeMapp.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -129,8 +128,7 @@ public abstract class BaseRbsBranchCodeMapp  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
 

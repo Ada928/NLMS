@@ -15,24 +15,24 @@ import com.huateng.exception.AppException;
 import com.huateng.report.bean.BopForDebtFeiOrgSave;
 import com.huateng.report.operation.BopForCorAndAffOrgContactOperation;
 
-public class BopForCorAndAffOrgContactOverUpdate extends BaseUpdate{
-	
+public class BopForCorAndAffOrgContactOverUpdate extends BaseUpdate {
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
-		
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
+
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			
-			//外债主信息
-			UpdateResultBean BcedUpdateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("BopForCorAndAffOrgContactOver");
-			BopForDebtFeiOrgSave debtFeiOrgSave = null ;
-			while (BcedUpdateResultBean.hasNext()){
+
+			// 外债主信息
+			UpdateResultBean BcedUpdateResultBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("BopForCorAndAffOrgContactOver");
+			BopForDebtFeiOrgSave debtFeiOrgSave = null;
+			while (BcedUpdateResultBean.hasNext()) {
 				debtFeiOrgSave = new BopForDebtFeiOrgSave();
-				mapToObject(debtFeiOrgSave,BcedUpdateResultBean.next());
+				mapToObject(debtFeiOrgSave, BcedUpdateResultBean.next());
 			}
-			
+
 			String op = BcedUpdateResultBean.getParameter("op");
 			OperationContext oc = new OperationContext();
 			if (op.equals("new")) {
@@ -44,13 +44,12 @@ public class BopForCorAndAffOrgContactOverUpdate extends BaseUpdate{
 			}
 			oc.setAttribute(BopForCorAndAffOrgContactOperation.IN_SIGNED_FEIORGSAVE, debtFeiOrgSave);
 			OPCaller.call(BopForCorAndAffOrgContactOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

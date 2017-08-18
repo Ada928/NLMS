@@ -53,6 +53,7 @@ public abstract class BaseSysBusinavConf implements Serializable {
 	private java.lang.String queryUrl;
 	private java.lang.String makefileUrl;
 	private java.lang.String busiType;
+
 	/**
 	 * Return the unique identifier of this class
 	 *

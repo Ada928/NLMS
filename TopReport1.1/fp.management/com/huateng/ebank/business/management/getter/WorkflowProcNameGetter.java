@@ -14,33 +14,29 @@ import com.huateng.exception.AppException;
 public class WorkflowProcNameGetter extends BaseGetter {
 
 	@Override
-	public Result call() throws AppException{
-		try
-		{
+	public Result call() throws AppException {
+		try {
 
-//			String procName = DataFormat.trim(getValueFromDataBus("TEMPLET_DESC"));
+			// String procName =
+			// DataFormat.trim(getValueFromDataBus("TEMPLET_DESC"));
 			String bussProc = this.getCommQueryServletRequest().getParameter("bussProc");
-			List list = BaseDAOUtils.getWorkflowBussTempletRelDAO().queryByCondition("po.bussProc = '" + bussProc + "' order by id");
+			List list = BaseDAOUtils.getWorkflowBussTempletRelDAO()
+					.queryByCondition("po.bussProc = '" + bussProc + "' order by id");
 			WorkflowBussTempletRel workflowBussTempletRel = new WorkflowBussTempletRel();
-			if(list != null && list.size() > 0){
-				workflowBussTempletRel = (WorkflowBussTempletRel)list.get(0);
+			if (list != null && list.size() > 0) {
+				workflowBussTempletRel = (WorkflowBussTempletRel) list.get(0);
 			}
-				
-	
-			ResultMng.fillResultByObject(
-					getCommonQueryBean(),
-					getCommQueryServletRequest(),
-					workflowBussTempletRel,
+
+			ResultMng.fillResultByObject(getCommonQueryBean(), getCommQueryServletRequest(), workflowBussTempletRel,
 					getResult());
 			result.setContent(list);
 			result.getPage().setTotalPage(1);
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}

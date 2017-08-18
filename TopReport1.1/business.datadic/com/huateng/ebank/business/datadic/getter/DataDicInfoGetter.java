@@ -26,10 +26,8 @@ public class DataDicInfoGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			List list = getData();
-			
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list,
-					getResult());
+
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);
 			result.getPage().setTotalPage(list.size());
 			result.init();
@@ -37,8 +35,7 @@ public class DataDicInfoGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
@@ -49,7 +46,7 @@ public class DataDicInfoGetter extends BaseGetter {
 		String op = getCommQueryServletRequest().getParameter("op");
 		DataDicService service = new DataDicService();
 		if ("new".equals(op)) {
-			
+
 		} else if ("copynew".equals(op)) {
 			DataDic dd = new DataDic();
 			String dataTypeNo = getCommQueryServletRequest().getParameter("dataTypeNoCopy");
@@ -65,7 +62,7 @@ public class DataDicInfoGetter extends BaseGetter {
 				dd.setDataNoLen(Integer.valueOf(dataNoLen));
 			}
 			list.add(dd);
-		}else if ("mod".equals(op)) {
+		} else if ("mod".equals(op)) {
 			list.add(service.load(Integer.valueOf(id)));
 		}
 		return list;

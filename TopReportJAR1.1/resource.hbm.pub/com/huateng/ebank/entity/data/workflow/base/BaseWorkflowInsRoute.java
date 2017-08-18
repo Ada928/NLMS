@@ -1,21 +1,18 @@
 package com.huateng.ebank.entity.data.workflow.base;
 
-
 import java.io.Serializable;
 
 import com.huateng.ebank.entity.data.workflow.WorkflowInsRoute;
 
-
 /**
  * This is an object that contains data related to the WORKFLOW_INS_ROUTE table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * Do not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="WORKFLOW_INS_ROUTE"
+ * @hibernate.class table="WORKFLOW_INS_ROUTE"
  */
 
-public abstract class BaseWorkflowInsRoute  implements Serializable {
+public abstract class BaseWorkflowInsRoute implements Serializable {
 
 	public static String REF = "WorkflowInsRoute";
 	public static String PROP_APPROVE_AMT = "approveAmt";
@@ -29,23 +26,21 @@ public abstract class BaseWorkflowInsRoute  implements Serializable {
 	public static String PROP_PIID = "piid";
 	public static String PROP_ROLE_ID = "roleId";
 
-
 	// constructors
-	public BaseWorkflowInsRoute () {
+	public BaseWorkflowInsRoute() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseWorkflowInsRoute (java.lang.Integer id) {
+	public BaseWorkflowInsRoute(java.lang.Integer id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -63,199 +58,199 @@ public abstract class BaseWorkflowInsRoute  implements Serializable {
 	private java.lang.String amtType;
 	private java.math.BigDecimal approveAmt;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="sequence"
-     *  column="ID"
-     */
-	public java.lang.Integer getId () {
+	 * 
+	 * @hibernate.id generator-class="sequence" column="ID"
+	 */
+	public java.lang.Integer getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.Integer id) {
+	public void setId(java.lang.Integer id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: PIID
 	 */
-	public java.lang.String getPiid () {
+	public java.lang.String getPiid() {
 		return piid;
 	}
 
 	/**
 	 * Set the value related to the column: PIID
-	 * @param piid the PIID value
+	 * 
+	 * @param piid
+	 *            the PIID value
 	 */
-	public void setPiid (java.lang.String piid) {
+	public void setPiid(java.lang.String piid) {
 		this.piid = piid;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: STOP_ID
 	 */
-	public java.lang.Integer getStopId () {
+	public java.lang.Integer getStopId() {
 		return stopId;
 	}
 
 	/**
 	 * Set the value related to the column: STOP_ID
-	 * @param stopId the STOP_ID value
+	 * 
+	 * @param stopId
+	 *            the STOP_ID value
 	 */
-	public void setStopId (java.lang.Integer stopId) {
+	public void setStopId(java.lang.Integer stopId) {
 		this.stopId = stopId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ROUTE_ID
 	 */
-	public java.lang.Integer getRouteId () {
+	public java.lang.Integer getRouteId() {
 		return routeId;
 	}
 
 	/**
 	 * Set the value related to the column: ROUTE_ID
-	 * @param routeId the ROUTE_ID value
+	 * 
+	 * @param routeId
+	 *            the ROUTE_ID value
 	 */
-	public void setRouteId (java.lang.Integer routeId) {
+	public void setRouteId(java.lang.Integer routeId) {
 		this.routeId = routeId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BRH_CLASS
 	 */
-	public java.lang.String getBrhClass () {
+	public java.lang.String getBrhClass() {
 		return brhClass;
 	}
 
 	/**
 	 * Set the value related to the column: BRH_CLASS
-	 * @param brhClass the BRH_CLASS value
+	 * 
+	 * @param brhClass
+	 *            the BRH_CLASS value
 	 */
-	public void setBrhClass (java.lang.String brhClass) {
+	public void setBrhClass(java.lang.String brhClass) {
 		this.brhClass = brhClass;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ROLE_ID
 	 */
-	public java.lang.Integer getRoleId () {
+	public java.lang.Integer getRoleId() {
 		return roleId;
 	}
 
 	/**
 	 * Set the value related to the column: ROLE_ID
-	 * @param roleId the ROLE_ID value
+	 * 
+	 * @param roleId
+	 *            the ROLE_ID value
 	 */
-	public void setRoleId (java.lang.Integer roleId) {
+	public void setRoleId(java.lang.Integer roleId) {
 		this.roleId = roleId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: NEED
 	 */
-	public java.lang.String getNeed () {
+	public java.lang.String getNeed() {
 		return need;
 	}
 
 	/**
 	 * Set the value related to the column: NEED
-	 * @param need the NEED value
+	 * 
+	 * @param need
+	 *            the NEED value
 	 */
-	public void setNeed (java.lang.String need) {
+	public void setNeed(java.lang.String need) {
 		this.need = need;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PASS
 	 */
-	public java.lang.String getPass () {
+	public java.lang.String getPass() {
 		return pass;
 	}
 
 	/**
 	 * Set the value related to the column: PASS
-	 * @param pass the PASS value
+	 * 
+	 * @param pass
+	 *            the PASS value
 	 */
-	public void setPass (java.lang.String pass) {
+	public void setPass(java.lang.String pass) {
 		this.pass = pass;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: AMT_TYPE
 	 */
-	public java.lang.String getAmtType () {
+	public java.lang.String getAmtType() {
 		return amtType;
 	}
 
 	/**
 	 * Set the value related to the column: AMT_TYPE
-	 * @param amtType the AMT_TYPE value
+	 * 
+	 * @param amtType
+	 *            the AMT_TYPE value
 	 */
-	public void setAmtType (java.lang.String amtType) {
+	public void setAmtType(java.lang.String amtType) {
 		this.amtType = amtType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: APPROVE_AMT
 	 */
-	public java.math.BigDecimal getApproveAmt () {
+	public java.math.BigDecimal getApproveAmt() {
 		return approveAmt;
 	}
 
 	/**
 	 * Set the value related to the column: APPROVE_AMT
-	 * @param approveAmt the APPROVE_AMT value
+	 * 
+	 * @param approveAmt
+	 *            the APPROVE_AMT value
 	 */
-	public void setApproveAmt (java.math.BigDecimal approveAmt) {
+	public void setApproveAmt(java.math.BigDecimal approveAmt) {
 		this.approveAmt = approveAmt;
 	}
 
-
-
-
 	@Override
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof WorkflowInsRoute)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof WorkflowInsRoute))
+			return false;
 		else {
 			WorkflowInsRoute workflowInsRoute = (WorkflowInsRoute) obj;
-			if (null == this.getId() || null == workflowInsRoute.getId()) return false;
-			else return (this.getId().equals(workflowInsRoute.getId()));
+			if (null == this.getId() || null == workflowInsRoute.getId())
+				return false;
+			else
+				return (this.getId().equals(workflowInsRoute.getId()));
 		}
 	}
 
 	@Override
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -264,11 +259,9 @@ public abstract class BaseWorkflowInsRoute  implements Serializable {
 		return this.hashCode;
 	}
 
-
 	@Override
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

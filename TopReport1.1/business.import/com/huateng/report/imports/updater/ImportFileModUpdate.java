@@ -26,27 +26,21 @@ import com.huateng.report.imports.common.ReadWriteFile;
 public class ImportFileModUpdate extends BaseUpdate {
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("ImportFileMod");
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("ImportFileMod");
 
 			ImportFileModBean bean = null;
 			while (updateResultBean.hasNext()) {
 				Map<String, String> map = updateResultBean.next();
-//				bean = new ImportFileModBean();
-//				mapToObject(bean, map);
+				// bean = new ImportFileModBean();
+				// mapToObject(bean, map);
 
-				BiImportLog log = ROOTDAOUtils.getROOTDAO().query(
-						BiImportLog.class, map.get("id"));
-				if (StringUtils.isNotBlank(log.getErrFilePath())
-						&& StringUtils.isNotBlank(log.getErrFile())) {
-					ReadWriteFile readWriteFile = new ReadWriteFile(
-							log.getErrFilePath(), log.getErrFile());
+				BiImportLog log = ROOTDAOUtils.getROOTDAO().query(BiImportLog.class, map.get("id"));
+				if (StringUtils.isNotBlank(log.getErrFilePath()) && StringUtils.isNotBlank(log.getErrFile())) {
+					ReadWriteFile readWriteFile = new ReadWriteFile(log.getErrFilePath(), log.getErrFile());
 					try {
 						// 先读取原有文件内容，然后进行写入操作
 						readWriteFile.replaceTxtFile(map.get("description").replaceAll("\\^p", "\r\n"));
@@ -64,8 +58,7 @@ public class ImportFileModUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		} finally {
 			// 结束导入
 			setSessionObject(Constants.IS_IMPORTING, Constants.NO);

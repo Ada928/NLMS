@@ -36,21 +36,17 @@ public class BopCFAExguInfoAuditGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "对外担保签约信息审核页面查询");
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -66,46 +62,41 @@ public class BopCFAExguInfoAuditGetter extends BaseGetter {
 		String qendDate = getCommQueryServletRequest().getParameter("qendDate");
 
 		String qActiontype = getCommQueryServletRequest().getParameter("qActiontype");
-	    String qRecStatus = getCommQueryServletRequest().getParameter("qRecStatus");
+		String qRecStatus = getCommQueryServletRequest().getParameter("qRecStatus");
 
 		String qApproveStatus = getCommQueryServletRequest().getParameter("qApproveStatus");
-	    String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
+		String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
 
 		String qFiller2 = getCommQueryServletRequest().getParameter("qFiller2");
 
-		List<Object>paramentList = new ArrayList<Object>();
-		if(!DataFormat.isEmpty(qstartDate)){
+		List<Object> paramentList = new ArrayList<Object>();
+		if (!DataFormat.isEmpty(qstartDate)) {
 			hql.append(" AND bds.workDate >= ? ");
 			paramentList.add(qstartDate);
 		}
-		if(!DataFormat.isEmpty(qendDate)){
+		if (!DataFormat.isEmpty(qendDate)) {
 			hql.append(" AND bds.workDate <= ? ");
 			paramentList.add(qendDate);
 		}
-		if(StringUtils.isNotBlank(qActiontype))
-		{
+		if (StringUtils.isNotBlank(qActiontype)) {
 			hql.append(" and bds.actiontype = ? ");
 			paramentList.add(qActiontype);
 		}
-		if(StringUtils.isNotBlank(qRecStatus))
-		{
+		if (StringUtils.isNotBlank(qRecStatus)) {
 			hql.append(" and bds.recStatus = ? ");
 			paramentList.add(qRecStatus);
 		}
-		if(StringUtils.isNotBlank(qApproveStatus))
-		{
+		if (StringUtils.isNotBlank(qApproveStatus)) {
 			hql.append(" and bds.approveStatus = ? ");
 			paramentList.add(qApproveStatus);
 		}
-		if(StringUtils.isNotBlank(qRepStatus))
-		{
+		if (StringUtils.isNotBlank(qRepStatus)) {
 			hql.append(" and bds.repStatus = ? ");
 			paramentList.add(qRepStatus);
 		}
-		if(StringUtils.isNotBlank(qFiller2))
-		{
+		if (StringUtils.isNotBlank(qFiller2)) {
 			hql.append(" and bds.filler2 like ? ");
-			paramentList.add("%"+qFiller2+"%");
+			paramentList.add("%" + qFiller2 + "%");
 		}
 		hql.append(" and bds.brNo= ? ");
 		GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
@@ -121,7 +112,8 @@ public class BopCFAExguInfoAuditGetter extends BaseGetter {
 		paramentList.add(TopReportConstants.REPORT_RECSTATUS_03);
 		paramentList.add(TopReportConstants.REPORT_RECSTATUS_04);
 
-//		hql+=" and bds.actiontype <>'"+TopReportConstants.REPORT_ACTIONTYPE_D+"'";
+		// hql+=" and bds.actiontype
+		// <>'"+TopReportConstants.REPORT_ACTIONTYPE_D+"'";
 		hql.append(" ORDER BY bds.lstUpdTm DESC,bds.workDate,bds.approveStatus,bds.actiontype desc");
 
 		PageQueryCondition queryCondition = new PageQueryCondition();
@@ -134,14 +126,15 @@ public class BopCFAExguInfoAuditGetter extends BaseGetter {
 		PageQueryResult pageQueryResult = rootdao.pageQueryByQL(queryCondition);
 
 		List resultList = pageQueryResult.getQueryResult();
-		for(int i=0; i<resultList.size(); i++){
+		for (int i = 0; i < resultList.size(); i++) {
 			Object[] obs = (Object[]) resultList.get(i);
-			BopCfaExguDs bopCfaExguDs =(BopCfaExguDs)obs[0];
+			BopCfaExguDs bopCfaExguDs = (BopCfaExguDs) obs[0];
 			ReportCommonService commservice = ReportCommonService.getInstance();
 			bopCfaExguDs.setBeneficiary(commservice.getBopExguTorBen(bopCfaExguDs.getId()));
 			bopCfaExguDs.setGuarantore(commservice.getBopExguTorGua(bopCfaExguDs.getId()));
 			List<BopExguTorDs> exguTorList = new ArrayList<BopExguTorDs>();
-		    exguTorList = rootdao.queryByQL2List(" FROM BopExguTorDs model WHERE model.recId = '"+bopCfaExguDs.getId().trim()+"' AND torType = '03' ");
+			exguTorList = rootdao.queryByQL2List(" FROM BopExguTorDs model WHERE model.recId = '"
+					+ bopCfaExguDs.getId().trim() + "' AND torType = '03' ");
 			bopCfaExguDs.setGuappname(exguTorList.get(0).getTorName());
 			bopCfaExguDs.setGuappcode(exguTorList.get(0).getTorCode());
 			bopCfaExguDs.setGuappnamen(exguTorList.get(0).getTorEnname());

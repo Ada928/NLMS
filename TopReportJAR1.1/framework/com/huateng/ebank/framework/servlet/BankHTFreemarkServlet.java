@@ -19,15 +19,13 @@ import com.huateng.mvc.servlet.HTFreemarkerServlet;
 import freemarker.template.Template;
 import freemarker.template.TemplateModel;
 
-
 /**
  * @author shen_antonio
  *
  */
-public class BankHTFreemarkServlet extends HTFreemarkerServlet{
+public class BankHTFreemarkServlet extends HTFreemarkerServlet {
 
-
-	/** memeber variable: long　serialVersionUID. */
+	/** memeber variable: long serialVersionUID. */
 	private static final long serialVersionUID = 57989966371044664L;
 
 	@Override
@@ -54,25 +52,24 @@ public class BankHTFreemarkServlet extends HTFreemarkerServlet{
 	 *         processing.
 	 */
 	@Override
-	protected boolean preTemplateProcess(HttpServletRequest request,
-			HttpServletResponse response, Template template, TemplateModel data)
-			throws ServletException, IOException  {
-		try{
-		HttpSession httpSession = request.getSession();
-		if(httpSession==null){
-//			ExceptionUtil.throwCommonException("用户没有登录.",
-//					ErrorCode.ERROR_CODE_TLRNO_SESSION_INVALID);
-          throw new AppException(Module.SYSTEM_MODULE,ErrorCode.ERROR_CODE_TLRNO_SESSION_INVALID,null,null);
-		}
-		GlobalInfo globalInfo = (GlobalInfo) httpSession.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
-		if (null != globalInfo) {
-			GlobalInfo.setCurrentInstance(globalInfo);
-			String sessionId = httpSession.getId();
-			globalInfo.setSessionId(sessionId);
-		}
+	protected boolean preTemplateProcess(HttpServletRequest request, HttpServletResponse response, Template template,
+			TemplateModel data) throws ServletException, IOException {
+		try {
+			HttpSession httpSession = request.getSession();
+			if (httpSession == null) {
+				// ExceptionUtil.throwCommonException("用户没有登录.",
+				// ErrorCode.ERROR_CODE_TLRNO_SESSION_INVALID);
+				throw new AppException(Module.SYSTEM_MODULE, ErrorCode.ERROR_CODE_TLRNO_SESSION_INVALID, null, null);
+			}
+			GlobalInfo globalInfo = (GlobalInfo) httpSession.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
+			if (null != globalInfo) {
+				GlobalInfo.setCurrentInstance(globalInfo);
+				String sessionId = httpSession.getId();
+				globalInfo.setSessionId(sessionId);
+			}
 
-		return super.preTemplateProcess(request, response, template, data);
-		}catch(AppException asEx){
+			return super.preTemplateProcess(request, response, template, data);
+		} catch (AppException asEx) {
 			asEx.printStackTrace();
 			throw new ServletException(asEx);
 		}

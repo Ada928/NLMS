@@ -30,9 +30,9 @@ public class SelectTlrAddUpdate extends BaseUpdate {
 		try {
 			UpdateResultBean tlrRoleBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_SelectTlrAdd");
 			Map map = tlrRoleBean.next();
-			String brcode = (String)map.get("brcode");
+			String brcode = (String) map.get("brcode");
 			String departmentCode = "3000";
-			String extTlrno = (String)map.get("extTlrno");
+			String extTlrno = (String) map.get("extTlrno");
 
 			setValue2DataBus("brcode", brcode);
 			setValue2DataBus("departmentCode", departmentCode);
@@ -52,6 +52,5 @@ public class SelectTlrAddUpdate extends BaseUpdate {
 			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-
 
 }

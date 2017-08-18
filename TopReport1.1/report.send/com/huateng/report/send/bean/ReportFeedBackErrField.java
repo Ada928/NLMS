@@ -1,6 +1,5 @@
 package com.huateng.report.send.bean;
 
-
 public class ReportFeedBackErrField {
 	private String errField;
 	private String errFieldCn;

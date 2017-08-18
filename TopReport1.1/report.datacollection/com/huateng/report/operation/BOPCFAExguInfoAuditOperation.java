@@ -26,7 +26,6 @@ public class BOPCFAExguInfoAuditOperation extends BaseOperation {
 	public static final String ZR_YU_E = "ZR_YU_E";
 	public static final String LV_MING_XI = "LV_MING_XI";
 
-
 	@Override
 	public void beforeProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
@@ -39,29 +38,28 @@ public class BOPCFAExguInfoAuditOperation extends BaseOperation {
 		String cmd = (String) context.getAttribute(CMD);
 		String choose = (String) context.getAttribute(CHOOSE);
 		BopCFAExguDsService serviceExgu = new BopCFAExguDsService();
-		
-         if (OP_LOAN_AUDIT.equals(cmd)) {
-			
+
+		if (OP_LOAN_AUDIT.equals(cmd)) {
+
 			List<BopCfaExguDs> bopCfaExguDsList = (List<BopCfaExguDs>) context.getAttribute(IN_AUDIT_LIST);
 			String approveStatusChoose = (String) context.getAttribute(IN_AUDIT_STATUS);
 			String approveResultChoose = (String) context.getAttribute(IN_AUDIT_RESULT);
-			
+
 			serviceExgu.AuditBopCFAExguDs(approveStatusChoose, approveResultChoose, bopCfaExguDsList);
-			 if (QIAN_YUE.equals(choose)){
-			    gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrcode(),"执行对外担保签约信息审核"});
-			    htLog.info("Updater.log", new String[]{gi.getBrcode(),gi.getTlrno(),"执行对外担保签约信息审核"});
-			 }
-			 if (ZR_YU_E.equals(choose)){
-				    gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrcode(),"执行对外担保责任余额信息审核"});
-				    htLog.info("Updater.log", new String[]{gi.getBrcode(),gi.getTlrno(),"执行对外担保保责任余额信息审核"});
-				 }
-			 if (LV_MING_XI.equals(choose)){
-				    gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrcode(),"执行对外担保履约明细审核"});
-				    htLog.info("Updater.log", new String[]{gi.getBrcode(),gi.getTlrno(),"执行对外担保履约明细信息审核"});
-				 }
+			if (QIAN_YUE.equals(choose)) {
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行对外担保签约信息审核" });
+				htLog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行对外担保签约信息审核" });
+			}
+			if (ZR_YU_E.equals(choose)) {
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行对外担保责任余额信息审核" });
+				htLog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行对外担保保责任余额信息审核" });
+			}
+			if (LV_MING_XI.equals(choose)) {
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行对外担保履约明细审核" });
+				htLog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行对外担保履约明细信息审核" });
+			}
 		}
-		
-		
+
 	}
 
 	@Override

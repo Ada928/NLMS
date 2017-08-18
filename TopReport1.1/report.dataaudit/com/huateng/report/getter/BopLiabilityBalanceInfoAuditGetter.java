@@ -33,21 +33,17 @@ public class BopLiabilityBalanceInfoAuditGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "对外担保责任余额信息审核页面查询");
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -62,46 +58,40 @@ public class BopLiabilityBalanceInfoAuditGetter extends BaseGetter {
 		String qendDate = getCommQueryServletRequest().getParameter("qendDate");
 		String qActiontype = getCommQueryServletRequest().getParameter("qActiontype");
 
-	    String qRecStatus = getCommQueryServletRequest().getParameter("qRecStatus");
+		String qRecStatus = getCommQueryServletRequest().getParameter("qRecStatus");
 		String qApproveStatus = getCommQueryServletRequest().getParameter("qApproveStatus");
 
-	    String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
+		String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
 		String qFiller2 = getCommQueryServletRequest().getParameter("qFiller2");
 
-
-		List<Object>paramentList = new ArrayList<Object>();
-		if(!DataFormat.isEmpty(qstartDate)){
+		List<Object> paramentList = new ArrayList<Object>();
+		if (!DataFormat.isEmpty(qstartDate)) {
 			hql.append(" AND bds.workDate >= ? ");
 			paramentList.add(qstartDate);
 		}
-		if(!DataFormat.isEmpty(qendDate)){
+		if (!DataFormat.isEmpty(qendDate)) {
 			hql.append(" AND bds.workDate <= ? ");
 			paramentList.add(qendDate);
 		}
-		if(StringUtils.isNotBlank(qActiontype))
-		{
+		if (StringUtils.isNotBlank(qActiontype)) {
 			hql.append(" AND bds.actiontype = ? ");
 			paramentList.add(qActiontype);
 		}
-		if(StringUtils.isNotBlank(qRecStatus))
-		{
+		if (StringUtils.isNotBlank(qRecStatus)) {
 			hql.append(" AND bds.recStatus = ? ");
 			paramentList.add(qRecStatus);
 		}
-		if(StringUtils.isNotBlank(qApproveStatus))
-		{
+		if (StringUtils.isNotBlank(qApproveStatus)) {
 			hql.append(" AND bds.approveStatus = ? ");
 			paramentList.add(qApproveStatus);
 		}
-		if(StringUtils.isNotBlank(qRepStatus))
-		{
+		if (StringUtils.isNotBlank(qRepStatus)) {
 			hql.append(" AND bds.repStatus = ? ");
 			paramentList.add(qRepStatus);
 		}
-		if(StringUtils.isNotBlank(qFiller2))
-		{
+		if (StringUtils.isNotBlank(qFiller2)) {
 			hql.append(" AND bds.filler2 LIKE ? ");
-			paramentList.add("%"+qFiller2+"%");
+			paramentList.add("%" + qFiller2 + "%");
 		}
 
 		hql.append(" AND bds.brNo = ? ");
@@ -119,7 +109,8 @@ public class BopLiabilityBalanceInfoAuditGetter extends BaseGetter {
 		paramentList.add(TopReportConstants.REPORT_RECSTATUS_03);
 		paramentList.add(TopReportConstants.REPORT_RECSTATUS_04);
 
-//		hql+=" and bds.actiontype <>'"+TopReportConstants.REPORT_ACTIONTYPE_D+"'";
+		// hql+=" and bds.actiontype
+		// <>'"+TopReportConstants.REPORT_ACTIONTYPE_D+"'";
 		hql.append(" ORDER BY bds.lstUpdTm DESC,bds.workDate, bds.approveStatus, bds.actiontype DESC ");
 
 		PageQueryCondition queryCondition = new PageQueryCondition();

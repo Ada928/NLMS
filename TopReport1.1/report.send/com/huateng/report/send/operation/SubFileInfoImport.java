@@ -63,9 +63,9 @@ public class SubFileInfoImport extends BaseUpdate {
 			if (feedBackList.size() > 0) {
 				Map<String, String> retMap = new HashMap<String, String>();
 				Map<String, List<ReportFeedBackBean>> appMap = new HashMap<String, List<ReportFeedBackBean>>();
-				for(int i = 0; i < feedBackList.size(); i++){
+				for (int i = 0; i < feedBackList.size(); i++) {
 					ReportFeedBackBean bean = feedBackList.get(i);
-					if(appMap.containsKey(bean.getAppType())){
+					if (appMap.containsKey(bean.getAppType())) {
 						List<ReportFeedBackBean> tempList = appMap.get(bean.getAppType());
 						tempList.add(bean);
 					} else {
@@ -74,7 +74,7 @@ public class SubFileInfoImport extends BaseUpdate {
 						appMap.put(bean.getAppType(), tempList);
 					}
 				}
-				
+
 				for (Iterator iterator = appMap.keySet().iterator(); iterator.hasNext();) {
 					String appType = (String) iterator.next();
 					Date startTm = new Date();
@@ -83,20 +83,22 @@ public class SubFileInfoImport extends BaseUpdate {
 						ReportFeedBackBean bean = tempList.get(i);
 						if (bean.getBusiType().equals(TopReportConstants.REPORT_BUSITYPE_BOP)) {
 							OperationContext ocx = new OperationContext();
-							//检查本地
+							// 检查本地
 							String repPackName = bean.getPackName() + ReportConstant.BOP_SUB_FILE_FEEDBACK;
 
 							ocx.setAttribute(RepFileErrOperation.IN_REPPACK_NAME, repPackName);
 
 							String repTtFileName = repPackName + ".xml";
-							String srcpath = ReportUtils.getSysParamsValue(ReportConstant.REPORT_LOACL_DATA_PARAMGROUP, bean.getAppType(), "/");
-							String destpath = ReportUtils.getSysParamsValue(ReportConstant.REPORT_REMOTE_DATA_PARAMGROUP, bean.getAppType(), "/");
+							String srcpath = ReportUtils.getSysParamsValue(ReportConstant.REPORT_LOACL_DATA_PARAMGROUP,
+									bean.getAppType(), "/");
+							String destpath = ReportUtils.getSysParamsValue(
+									ReportConstant.REPORT_REMOTE_DATA_PARAMGROUP, bean.getAppType(), "/");
 							ocx.setAttribute(RepFileErrOperation.IN_PARAM_SRCPACH, srcpath);
 							ocx.setAttribute(RepFileErrOperation.IN_PARAM_DESTPACH, destpath);
 							String ttFilePath = ReportUtils.getFeedbackFilePath(srcpath, repPackName, repTtFileName);
-							if (ReportUtils.isFileExist(ttFilePath)) {//从本地导入
-								ocx.setAttribute(RepFileErrOperation.CMD,"local");
-							}else{
+							if (ReportUtils.isFileExist(ttFilePath)) {// 从本地导入
+								ocx.setAttribute(RepFileErrOperation.CMD, "local");
+							} else {
 								// 连接服务器
 								if (translate == null) {
 									translate = TransFactory.getInstence();
@@ -106,12 +108,13 @@ public class SubFileInfoImport extends BaseUpdate {
 										continue;
 									}
 								}
-								ocx.setAttribute(RepFileErrOperation.CMD,"server");
+								ocx.setAttribute(RepFileErrOperation.CMD, "server");
 								ocx.setAttribute(RepFileErrOperation.IN_PARAM_TRAN_OBJ, translate);
 							}
 							ocx.setAttribute(RepFileErrOperation.IN_BUSI_TYPE, bean.getBusiType());
 							ocx.setAttribute(RepFileErrOperation.IN_PARAM_FEEDBACK_OBJ, bean);
-							ocx.setAttribute(RepFileErrOperation.IN_PARAM_ERRSIGN, ReportConstant.BOP_SUB_FILE_FEEDBACK);
+							ocx.setAttribute(RepFileErrOperation.IN_PARAM_ERRSIGN,
+									ReportConstant.BOP_SUB_FILE_FEEDBACK);
 							ocx.setAttribute(RepFileErrOperation.IN_PARAM_TLRNO, globalInfo.getTlrno());
 
 							OPCaller.call(RepFileErrOperation.ID, ocx);
@@ -123,8 +126,9 @@ public class SubFileInfoImport extends BaseUpdate {
 					// 写入操作日志
 					Date endTm = new Date();
 					ReportCommonService.getInstance().saveBiProcessLog(DateUtil.dateToNumber(globalInfo.getTxdate()),
-							busiType, appType, globalInfo.getBrno(), TopReportConstants.REPORT_PROCESS_EXECTYPE_LOADBACKFILE,
-							startTm, endTm, TopReportConstants.REPORT_PROCESS_OPERTYPE_MANU);
+							busiType, appType, globalInfo.getBrno(),
+							TopReportConstants.REPORT_PROCESS_EXECTYPE_LOADBACKFILE, startTm, endTm,
+							TopReportConstants.REPORT_PROCESS_OPERTYPE_MANU);
 				}
 				StringBuffer returnStr = new StringBuffer();
 				for (Iterator<String> iterator = retMap.keySet().iterator(); iterator.hasNext();) {
@@ -134,13 +138,13 @@ public class SubFileInfoImport extends BaseUpdate {
 					returnStr.append(":");
 					if (value.equals(ITranslate.RESCODE_SUCCESS)) {
 						returnStr.append("导入执行成功!");
-					}else if (value.equals(ITranslate.RESCODE_NOT_RES)) {
+					} else if (value.equals(ITranslate.RESCODE_NOT_RES)) {
 						returnStr.append("系统尚未收到回执!");
-					}else if (value.equals(ITranslate.RESCODE_PROCESS)) {
+					} else if (value.equals(ITranslate.RESCODE_PROCESS)) {
 						returnStr.append("系统正在下载回执!");
-					}else if (value.equals(ITranslate.RESCODE_FAILED)) {
+					} else if (value.equals(ITranslate.RESCODE_FAILED)) {
 						returnStr.append("发生未知错误!");
-					}else{
+					} else {
 						returnStr.append(value);
 					}
 					returnStr.append("@@");
@@ -148,10 +152,10 @@ public class SubFileInfoImport extends BaseUpdate {
 
 				updateReturnBean.setParameter("ERRMSG", returnStr.toString());
 
-				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-						"导入回执文件，业务类型【" + busiType + "】" });
-				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-						"导入回执文件，业务类型【" + busiType + "】" });
+				globalInfo.addBizLog("Updater.log",
+						new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "导入回执文件，业务类型【" + busiType + "】" });
+				htlog.info("Updater.log",
+						new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "导入回执文件，业务类型【" + busiType + "】" });
 			} else {
 				ExceptionUtil.throwCommonException("没有需要下载导入回执的信息！");
 			}

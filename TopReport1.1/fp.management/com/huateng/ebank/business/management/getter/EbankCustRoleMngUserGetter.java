@@ -25,31 +25,26 @@ public class EbankCustRoleMngUserGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			List pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(),pageResult,
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult, getResult());
 			result.setContent(pageResult);
 			result.getPage().setTotalPage(1);
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	private List getData() throws CommonException {
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
-		String roleId = (String) getCommQueryServletRequest().getParameterMap()
-				.get("roleId");
+		String roleId = (String) getCommQueryServletRequest().getParameterMap().get("roleId");
 		RoleInfoService roleInfoService = RoleInfoService.getInstance();
-		List list  = (List) roleInfoService.queryRoleInfo(roleId, pageIndex, pageSize);
+		List list = (List) roleInfoService.queryRoleInfo(roleId, pageIndex, pageSize);
 		return list;
 	}
 
