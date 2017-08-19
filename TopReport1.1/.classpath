@@ -54,6 +54,9 @@
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
+		<accessrules>
+			<accessrule kind="accessible" pattern="sun/misc/*"/>
+		</accessrules>
 	</classpathentry>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/antlr-runtime-3.0.jar"/>

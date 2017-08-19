@@ -1713,7 +1713,6 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-            <attri te=""></attri>
             <name>onkeypress</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
