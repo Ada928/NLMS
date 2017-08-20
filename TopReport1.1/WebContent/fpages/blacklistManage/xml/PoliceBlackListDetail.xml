@@ -20,9 +20,9 @@
         <Field id="accountCode" desc="账户代号" edittype="text" datatype="string" readonly="true"
             xpath="/policeBlackList/accountCode" />
 
-        <Field id="old_certificateType" desc="证件种类" edittype="text" datatype="string" readonly="true"
+        <Field id="old_certificateType" desc="证件种类" edittype="text" datatype="string" readonly="true" translated="DATA_DIC.21"
             xpath="/old_policeBlackList/certificateType" />
-        <Field id="certificateType" desc="证件种类" edittype="text" datatype="string" readonly="true"
+        <Field id="certificateType" desc="证件种类" edittype="text" datatype="string" readonly="true" translated="DATA_DIC.21"
             xpath="/policeBlackList/certificateType" />
 
         <Field id="old_certificateNumber" desc="证件号码" edittype="text" datatype="string" readonly="true"
