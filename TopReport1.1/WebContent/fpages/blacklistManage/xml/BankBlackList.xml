@@ -67,11 +67,14 @@
 
     <Operations>
         <Button id="btAdd" name="btAdd" desc="新增" operation="" url="#" show="" group="" txn="" icon="icon-add" />
+        
         <Button id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" />
+
         <Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListDEL" url="" />
+            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListDEL" url="#" />
+            
         <Button id="btModOrAdd" name="btModOrAdd" desc="保存" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="" />
+            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="#" />
     </Operations>
     <Sql>
     </Sql>

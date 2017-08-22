@@ -23,7 +23,7 @@
         </tr>
         <tr>
       		<td colspan="2">
-      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
+      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="60%" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
       			<div align="center">
       				<@CommonQueryMacro.Group id="group1" label="机构信息维护"
         			  fieldStr="brno,brname,address,postno,teleno,brclass,blnUpBrcode,blnManageBrcode,brattr,otherAreaFlag" colNm=4/>
@@ -36,7 +36,7 @@
   		</tr>
   		<tr>
       		<td colspan="2">
-      		<@CommonQueryMacro.FloatWindow id="signWindowDet" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
+      		<@CommonQueryMacro.FloatWindow id="signWindowDet" label="" width="60%" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
       			<div align="center">
       				<@CommonQueryMacro.Group id="group1" label="机构信息维护"
         			  fieldStr="brno,brname,address,postno,teleno,brclass,blnUpBrcodeName,blnManageBrcodeName,brattr,otherAreaFlag" colNm=4/>
@@ -166,10 +166,9 @@
 		alert("设置成功");
         Management_branchManage_dataset.flushData(Management_branchManage_dataset.pageIndex);
 	}
+	
     function Management_branchManage_dataset_afterScroll(dataset){
-		 
-		 
-		 <#--
+		 /*
 		 var  v_brcode = Management_branchManage_dataset.getValue("brcode");
 		 var  v_brclass = Management_branchManage_dataset.getValue("brclass");
 		  //数据库中的记录。
@@ -186,7 +185,7 @@
 		  	Management_branchManage_dataset.setFieldReadOnly("blnUpBrcode",false);
 		  }
 		  return true;
-		  -->
+		  */
 		  var lock = Management_branchManage_dataset.getValue("lock");
 		  if(isTrue(lock)){
 		  	btStatus.disable(true);
@@ -256,9 +255,11 @@
       function btSave_postSubmit(button)
       {
 			button.url="#";
-        	//alert("保存成功");
-        	subwindow_signWindow.hide();
-        	Management_branchManage_dataset.flushData(Management_branchManage_dataset.pageIndex);
+        	alert("保存成功");
+        	//subwindow_signWindow.hide();
+            subwindow_signWindow.close();
+        	//Management_branchManage_dataset.flushData(Management_branchManage_dataset.pageIndex);
+            flushCurrentPage();
       }
 
       function btSave_onClickCheck(button)

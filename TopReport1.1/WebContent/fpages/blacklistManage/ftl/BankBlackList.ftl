@@ -122,6 +122,7 @@
 
     //保存后刷新当前页
     function btModOrAdd_postSubmit(button) {
+    	alert("保存成功");
         button.url = "#";
         subwindow_signWindow.close();
         flushCurrentPage();

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="com.huateng.report.utils.NavigationShowUtil"%>
 <%@page import="com.huateng.ebank.business.common.GlobalInfo"%>
@@ -46,8 +47,9 @@
 }
 -->
 </style>
-<div id="navgChangeDiv" class="navgdiv" style="display:none;">
-	<table width="100%" cellpadding="0" cellspacing="3" style="overflow:auto;word-break: keep-all">
+<div id="navgChangeDiv" class="navgdiv" style="display: none;">
+	<table width="100%" cellpadding="0" cellspacing="3"
+		style="overflow: auto; word-break: keep-all">
 		<%
 			for (int a = 0; a < navgList.size(); a++) {
 				FunctionInfo info = (FunctionInfo) navgList.get(a);
@@ -57,21 +59,24 @@
 				<%
 					if (info.getId().equals(reqtype)) {
 				%>
-				<div id="<%="当前：" + info.getFuncname()%>" class="menudiv" title="<%="当前：" + info.getFuncname()%>"
-					style="border-left:1px solid #f7f7fe;border-top:1px solid #f7f7fe;border-bottom:1px solid #999;border-right:1px solid #999;background-color: #e1f0fa">
-					<img src="<%=request.getContextPath() + "/" + info.getIconCls()%>" />
+				<div id="<%="当前：" + info.getFuncname()%>" class="menudiv"
+					title="<%="当前：" + info.getFuncname()%>"
+					style="border-left: 1px solid #f7f7fe; border-top: 1px solid #f7f7fe; border-bottom: 1px solid #999; border-right: 1px solid #999; background-color: #e1f0fa">
+					<img src="<%=request.getContextPath() + "/"
+							+ info.getIconCls()%>" />
 					<div><%=info.getFuncname()%></div>
-				</div> <%
- 	} else {
- %>
-				<div id="<%=info.getFuncname()%>" addtr="navg" class="menudiv" title="<%=info.getFuncname()%>"
-					onmouseover="menudivover(this);" onmouseout="menudivout(this);"
+				</div> 
+				<% } else { %>
+				<div id="<%=info.getFuncname()%>" addtr="navg" class="menudiv"
+					title="<%=info.getFuncname()%>" onmouseover="menudivover(this);"
+					onmouseout="menudivout(this);"
 					onclick="changeNavg('<%=info.getPagepath()%>', '<%=info.getId()%>', '<%=info.getFuncname()%>')">
-					<img src="<%=request.getContextPath() + "/" + info.getIconCls()%>" addtr="navg" />
+					<img src="<%=request.getContextPath() + "/"
+							+ info.getIconCls()%>"
+						addtr="navg" />
 					<div addtr="navg"><%=info.getFuncname()%></div>
-				</div> <%
- 	}
- %>
+				</div>
+				<% } %>
 			</td>
 		</tr>
 		<%
