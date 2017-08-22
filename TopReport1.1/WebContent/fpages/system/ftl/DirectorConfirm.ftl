@@ -34,7 +34,7 @@
 <script language="javascript" src="${contextPath}/js/topTsk.js"></script>
  <script language="javascript">
 function initCallGetter_post() {
-	 var intInsId = "${RequestParameters["intInsId"]?default('')}";
+	 var intInsId = "${RequestParameters['intInsId']?default('')}";
 	 if(intInsId!=null && intInsId.length>0){
 	 	UndoConfirm_interface_dataset.setValue("intInsId", intInsId);
 	 	UndoConfirm_dataset.flushData(UndoConfirm_dataset.pageIndex);

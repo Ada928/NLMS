@@ -76,7 +76,7 @@
 			<td align="right" style="padding-right: 8px;color: #ffffee;font-family:Arial,Helvetica,sans-serif;font-size: 12px; ">只供授权用户登入</td>
 		</tr>
 		<tr valign="top" height="232px">
-			<td align="center"><img src="<%=request.getContextPath()%>/login/images/login_top.gif" border="0" /></td>
+			<td align="center"><img src="<%=request.getContextPath()%>/login/images/login_top_w.gif" border="0" /></td>
 		</tr>
 		<tr height="60px">
 			<td></td>
