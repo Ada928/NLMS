@@ -657,12 +657,27 @@ public class ReportCommonService {
 		String funcIds = ReportUtils.getConfrimCodes(getFunctionNavList(parentCode));
 
 		StringBuffer hql = new StringBuffer();
-		hql.append("select count(rr) from TlrRoleRel tr,RoleFuncRel rr");
-		hql.append(" where tr.roleId=rr.roleId ");
-		hql.append("and tr.tlrno='").append(tlrNo).append("'");
+		hql.append("select count(rr) from TlrRoleRel tr, RoleFuncRel rr");
+		hql.append(" where tr.roleId = rr.roleId ");
+		hql.append(" and tr.tlrno ='").append(tlrNo).append("'");
 		if (funcIds != null && !"()".equals(funcIds)) {
-			hql.append("and rr.funcid in " + funcIds);
+			hql.append(" and rr.funcid in " + funcIds);
+		} else {
+			hql.append(" and rr.funcid in ('')" );
 		}
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		return rootdao.queryByHqlToCount(hql.toString());
+	}
+	
+	public int getFunctionCountByTlrNo2(String tlrNo, String funId) throws CommonException {
+
+		//String funcIds = ReportUtils.getConfrimCodes(getFunctionNavList(parentCode));
+
+		StringBuffer hql = new StringBuffer();
+		hql.append("select count(rr) from TlrRoleRel tr, RoleFuncRel rr");
+		hql.append(" where tr.roleId = rr.roleId ");
+		hql.append(" and tr.tlrno ='").append(tlrNo).append("'");
+		hql.append(" and rr.funcid ='").append(funId).append("'");
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		return rootdao.queryByHqlToCount(hql.toString());
 	}

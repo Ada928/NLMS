@@ -38,9 +38,8 @@
 				);
 				dwr.engine.setAsync(true);
                 createTree(functree,0,0);
-
            </script>
-           </div>
+          </div>
 		</td>
 	</tr>
 </table>
@@ -50,43 +49,41 @@
 </@CommonQueryMacro.CommonQuery>
 </span>
 <script language="javascript">
-	var op = "${RequestParameters["op"]?default('')}";
+	
+	var op = "${RequestParameters['op']?default('')}";
 	_close_flag = true;
 
-	function load(){
+	function load() {
 		funSelectNo();
 		var value = RoleFuncMng_dataset.getString("id");
-		if(value==""){
-
-			RoleFuncMng_dataset.setFieldReadOnly("rolename",false);
-		}else{
-			RoleFuncMng_dataset.setFieldReadOnly("rolename",false);
-			PrivAction.getRoleFuncByid(value,selectFunction);
+		if (value == "") {
+			RoleFuncMng_dataset.setFieldReadOnly("rolename", false);
+		} else {
+			RoleFuncMng_dataset.setFieldReadOnly("rolename", false);
+			PrivAction.getRoleFuncByid(value, selectFunction);
 		}
 	}
 
-	function initCallGetter_post(){
+	function initCallGetter_post() {
 		load();
-		if('detail' == op)
-		{
+		if ('detail' == op) {
 			var chkboxs = $(":checkbox");
 			var len = chkboxs.length;
-			RoleFuncMng_dataset.setFieldReadOnly("rolename",true);
-			for(i=0;i<len;i++){
-		    	chkboxs[i].disabled = true;
+			RoleFuncMng_dataset.setFieldReadOnly("rolename", true);
+			for (i = 0; i < len; i++) {
+				chkboxs[i].disabled = true;
 			}
 			btSelectAll.disable(true);
 			btUnSelectAll.disable(true);
 			btSave.disable(true);
 		}
-
 	}
 
 	//全选
-	function funSelectAll(){
+	function funSelectAll() {
 		var len = document.getElementsByName("id").length;
-		for(i=0;i<len;i++){
-			if (document.getElementsByName("id")[i].disabled == false){
+		for (i = 0; i < len; i++) {
+			if (document.getElementsByName("id")[i].disabled == false) {
 				document.getElementsByName("id")[i].checked = true;
 			}
 		}
@@ -94,11 +91,12 @@
 		pcheck(1);
 		<#--20110818 BMSA-54 权限树目录菜单可全选 end -->
 	}
+	
 	//全不选
-	function funSelectNo(){
+	function funSelectNo() {
 		var len = document.getElementsByName("id").length;
-		for(i=0;i<len;i++){
-			if (document.getElementsByName("id")[i].disabled == false){
+		for (i = 0; i < len; i++) {
+			if (document.getElementsByName("id")[i].disabled == false) {
 				document.getElementsByName("id")[i].checked = false;
 			}
 		}
@@ -106,14 +104,16 @@
 		pcheck(0);
 		<#--20110818 BMSA-54 权限树目录菜单可全选 end -->
 	}
+	
 	//得到所选的权限
-	function getCheckDatas(){
+	function getCheckDatas() {
 		var len = document.getElementsByName("id").length;
 		var s = "";
-		var flag=0;
-		for(i=0;i<len;i++){
-			if(document.getElementsByName("id")[i].checked == true){
-				if(flag > 0) s += ",";
+		var flag = 0;
+		for (i = 0; i < len; i++) {
+			if (document.getElementsByName("id")[i].checked == true) {
+				if (flag > 0)
+					s += ",";
 				s += document.getElementsByName("id")[i].value;
 				flag++;
 			}
@@ -123,76 +123,70 @@
 	}
 
 	//展开节点树
-	function viewtree(){
-		if(_close_flag){
+	function viewtree() {
+		if (_close_flag) {
 			closeAll(1);
 			_close_flag = false;
-		}else{
+		} else {
 			closeAll(0);
 			_close_flag = true;
 		}
 	}
 
-	function save(){
+	function save() {
 		var s = getCheckDatas();
 		//因为无法获取id,所以必须传到后台处理:
 		RoleFuncMng_dataset.setValue("roleList", s);
 	}
 
-	function btOpen_onClick(button){
+	function btOpen_onClick(button) {
 		viewtree();
 	}
-	function btSelectAll_onClick(button){
+	
+	function btSelectAll_onClick(button) {
 		funSelectAll();
 	}
-	function btUnSelectAll_onClick(button){
+	
+	function btUnSelectAll_onClick(button) {
 		funSelectNo();
 	}
-	function btSave_onClickCheck(button){
+	
+	function btSave_onClickCheck(button) {
 		save();
 		return true;
 	}
 
-	function selectFunction(data)
-	{
-		for(var i=0;i <data.length;i++){
-		 	var num = "id" + data[i];
-	        if(document.getElementById(num) != null)
-		 	{
-	         document.getElementById(num).checked=true;
-	         }
-        }
-        <#--20110818 BMSA-54 权限树目录菜单可全选 begin -->
+	function selectFunction(data) {
+		for (var i = 0; i < data.length; i++) {
+			var num = "id" + data[i];
+			if (document.getElementById(num) != null) {
+				document.getElementById(num).checked = true;
+			}
+		}
+		<#--20110818 BMSA-54 权限树目录菜单可全选 begin -->
 		pcheck();
 		<#--20110818 BMSA-54 权限树目录菜单可全选 end -->
 	}
-	function RoleFuncMng_dataset_afterChange(dataset,field,value){
-		if(field.fieldName == "roleName"){
-			PosiNameCheck_dataset.setParameter("roleName",RoleFuncMng_dataset.getValue("roleName"));
+	
+	function RoleFuncMng_dataset_afterChange(dataset, field, value) {
+		if (field.fieldName == "roleName") {
+			PosiNameCheck_dataset.setParameter("roleName", RoleFuncMng_dataset
+					.getValue("roleName"));
 			PosiNameCheck_dataset.flushData(0);
 			var v_flag = PosiNameCheck_dataset.getValue("flag");
-			if(v_flag == "true"){
+			if (v_flag == "true") {
 				alert("该岗位名称已存在，请重新输入");
-				RoleFuncMng_dataset.setValue("roleName","");
+				RoleFuncMng_dataset.setValue("roleName", "");
 				return false;
 			}
 		}
-
 	}
 
-	function btCancel_onClickCheck()
-	{
-
-		if('detail' == op)
-		{
+	function btCancel_onClickCheck() {
+		if ('detail' == op) {
 			closeWind();
-		}
-		else btCancel.click();
+		} else
+			btCancel.click();
 	}
-
-
-
 </script>
-
-
 </@CommonQueryMacro.page>

@@ -24,7 +24,7 @@
         <Field id="adtRcdPk" desc="原纪录主键" status="F" size="32" require="false" readonly="false" edittype="text"
             datatype="string" tip="原纪录主键" xpath="/adtRcdPk" />
         <Field id="updTransCd" desc="操作说明" status="F" size="2" require="false" readonly="false" edittype="select"
-            datatype="string" tip="操作说明" xpath="/updTransCd" translated="DATA_DIC.3001" />
+            datatype="string" tip="操作说明" xpath="/updTransCd" translated="DATA_DIC.311" />
         <Field id="crtDt" desc="创建日期" status="F" size="8" require="false" readonly="false" edittype="text"
             datatype="date" tip="创建日期" xpath="/crtDt" />
         <Field id="lastUpdOper" desc="最后更新人" status="F" size="20" require="false" readonly="false" edittype="text"
@@ -46,7 +46,7 @@
         <Option id="intInsId" dataType="String" size="" desc="记录类型" tip="记录类型" index="2" default="" scale=""
             require="" readOnly="" rules="" errmsg="" translated="DATA_DIC.300001" />
         <Option id="updTransCd" dataType="String" size="" desc="操作类型" tip="操作类型" index="3" default="" scale=""
-            require="" readOnly="" rules="" errmsg="" translated="DATA_DIC.3001" />
+            require="" readOnly="" rules="" errmsg="" translated="DATA_DIC.311" />
     </Where>
     <Operations>
 

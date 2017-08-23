@@ -153,7 +153,6 @@ public class BasePoliceBlackList implements Serializable {
 		this.blacklistType = blacklistType;
 	}
 
-
 	public String getIsValid() {
 		return this.isValid;
 	}
@@ -277,14 +276,14 @@ public class BasePoliceBlackList implements Serializable {
 	public boolean equals(Object obj) {
 		if (null == obj)
 			return false;
-		if (!(obj instanceof resource.bean.report.BankBlackList))
+		if (!(obj instanceof resource.bean.report.PoliceBlackList))
 			return false;
 		else {
-			resource.bean.report.BankBlackList nlmsBankblacklist = (resource.bean.report.BankBlackList) obj;
-			if (null == this.getId() || null == nlmsBankblacklist.getId())
+			resource.bean.report.PoliceBlackList policeBlackList = (resource.bean.report.PoliceBlackList) obj;
+			if (null == this.getId() || null == policeBlackList.getId())
 				return false;
 			else
-				return (this.getId().equals(nlmsBankblacklist.getId()));
+				return (this.getId().equals(policeBlackList.getId()));
 		}
 	}
 
@@ -293,7 +292,8 @@ public class BasePoliceBlackList implements Serializable {
 			if (null == this.getId())
 				return super.hashCode();
 			else {
-				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
+				String hashStr = this.getClass().getName() + ":"
+						+ this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
 			}
 		}

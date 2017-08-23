@@ -38,6 +38,7 @@ public class OperMngModUpdate extends BaseUpdate {
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("operMngMod");
+			System.out.println("hello world");
 			TlrInfo operator = null;
 			while (updateResultBean.hasNext()) {
 				operator = new TlrInfo();

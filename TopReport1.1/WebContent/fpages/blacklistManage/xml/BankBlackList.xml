@@ -13,7 +13,7 @@
     <Fields>
         <Field id="id" desc="黑名单编号" edittype="text" datatype="string" status="F" xpath="/id" />
         <Field id="bankCode" desc="银行代码" edittype="text" datatype="string" status="F" xpath="/bankCode" />
-        <Field id="accountCode" desc="账户代号" status="F" readonly="true" translated="LIST:I,对公客户;C,对私客户;" require="false"
+        <Field id="accountCode" desc="账户代号" status="F" readonly="true" translated="DATA_DIC.21" require="false"
             edittype="select" method="None" primary="true" type="String" xpath="/accountCode" />
         <Field id="certificateType" desc="证件种类" status="F" readonly="true" translated="LIST:11,身份证;14,护照;"
             require="false" edittype="select" method="None" primary="true" type="String" xpath="/certificateType" />
@@ -27,8 +27,8 @@
             edittype="select" method="None" primary="false" type="String" xpath="/isShare" />
         <Field id="isValid" desc="有效状态" status="N" readonly="true" translated="LIST:1,有效;2,无效" require="false"
             edittype="select" method="None" primary="false" type="String" xpath="/isValid" />
-        <Field id="isDelate" desc="是否删除" status="N" edittype="select" method="None" primary="false" type="String"
-            default="" tip="是否删除" translated="LIST:1,不删除;2,删除" xpath="/isDelate" />
+        <Field id="isDelete" desc="是否删除" status="N" edittype="select" method="None" primary="false" type="String"
+            default="" tip="是否删除" translated="LIST:1,不删除;2,删除" xpath="/isDelete" />
 
         <Field id="operateState" desc="操作状态" status="N" require="false" edittype="select" datatype="string"
             method="None" readonly="true" primary="true" type="st" translated="DATA_DIC.3001" default="" xpath="/operateState"
@@ -59,7 +59,7 @@
     <Where>
         <TextBox id="qPartyId" desc="黑名单编号" edittype="text" datatype="string" require="" index="0" />
         <Option id="qCertificateType" default="" desc="证件种类" type="certificateType" tip="" method="None" index="1"
-            translated="LIST:11,身份证;14,护照;" />
+            translated="DATA_DIC.21" />
         <TextBox id="qCertificateNumber" desc="证件号码" edittype="text" datatype="string" index="2" />
         <Option id="qOperateState" default="" desc="操作状态" type="operateState" tip="" method="None" index="3"
             translated="DATA_DIC.3001" />
@@ -67,11 +67,14 @@
 
     <Operations>
         <Button id="btAdd" name="btAdd" desc="新增" operation="" url="#" show="" group="" txn="" icon="icon-add" />
+        
         <Button id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" />
+
         <Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListDEL" url="" />
+            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListDEL" url="#" />
+            
         <Button id="btModOrAdd" name="btModOrAdd" desc="保存" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="" />
+            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="#" />
     </Operations>
     <Sql>
     </Sql>

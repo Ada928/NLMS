@@ -66,10 +66,10 @@
 	</tr>
 </table>
 <script language="javascript">
-	var flag = "${RequestParameters["flag"]?default('')}";
-	var varid = "${RequestParameters["id"]?default('')}";
-	var st = "${RequestParameters["st"]?default('')}";
-	var tskId = "${RequestParameters["tskId"]?default('')}";
+	var flag = "${RequestParameters['flag']?default('')}";
+	var varid = "${RequestParameters['id']?default('')}";
+	var st = "${RequestParameters['st']?default('')}";
+	var tskId = "${RequestParameters['tskId']?default('')}";
 
 	function load(){
 		var value = RoleFuncMng_dataset.getString("id");

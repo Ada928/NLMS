@@ -77,7 +77,7 @@ public class PoliceBlackListService {
 	 * 
 	 * @param paramgroupId 参数段编号
 	 */
-	public List getAllBankBlacklist() throws CommonException {
+	public List getAllPoliceBlacklist() throws CommonException {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		List list = rootDAO.queryByQL2List("1=1");
 		for (int i = 0; i < list.size(); i++) {

@@ -14,8 +14,8 @@ public class PoliceBlackListDetail {
 		return old_policeBlackList;
 	}
 
-	public void setOld_policeBlackList(PoliceBlackList oldbankBlackList) {
-		old_policeBlackList = oldbankBlackList;
+	public void setOld_policeBlackList(PoliceBlackList oldpoliceBlackList) {
+		old_policeBlackList = oldpoliceBlackList;
 	}
 
 	public PoliceBlackList getPoliceBlackList() {

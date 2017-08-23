@@ -70,14 +70,18 @@
             txn="" icon="icon-add" />
 
         <Button id="btDeleteRole" name="btDeleteRole" desc="删除岗位" operation="delrecord" url="#" txn="" />
+        
         <Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
             updateClass="com.huateng.ebank.business.management.updater.CustRoleSaveUpdater" url="#" txn="" />
+            
         <!-- add by zhaozhiguo 2012/2/15 begin FPP-9 用户,岗位及机构的管理页面优化调整 -->
         <Button id="btStatus" name="btUnlockRole" desc="有效/无效" operation="asysubmit"
             updateClass="com.huateng.ebank.business.rolemng.update.RoleStatusChgUpdate" url="#" txn="" icon="icon-set" />
+            
         <!-- add by zhaozhiguo 2012/2/15 end FPP-9 用户,岗位及机构的管理页面优化调整 -->
         <!-- add by zhiyang.he 双岗复核改造 2012-09-03 begin -->
         <Button id="btQuery" name="btQuery" desc="查看对比信息" operation="syncsubmit" url="" txn="" />
+        
         <Button id="btSee" name="btSee" desc="查看信息" operation="syncsubmit" url="" txn="" />
         <!-- add by zhiyang.he 双岗复核改造 2012-09-03 end -->
     </Operations>

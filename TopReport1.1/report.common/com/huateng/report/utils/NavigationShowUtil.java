@@ -86,7 +86,7 @@ public class NavigationShowUtil {
 				FunctionInfo subInfo = (FunctionInfo) subList.get(j);
 				String src = subInfo.getPagepath();
 				if (src != null && src.trim().length() > 0) {
-					int count = commonService.getFunctionCountByTlrNo(tlrNo, subInfo.getId().trim());
+					int count = commonService.getFunctionCountByTlrNo2(tlrNo, subInfo.getId().trim());
 					if (count > 0) {
 						navgList.add(subInfo);
 					}
