@@ -3,13 +3,12 @@
 <beans>
     <!-- 商户黑名单服务类 -->
     <bean id="BankBlackListService" class="com.cibfintech.report.blacklist.service.BankBlackListService" />
-
     <bean id="BankBlackListOperation" class="com.cibfintech.report.blacklist.operation.BankBlackListOperation" />
     
     <bean id="PoliceBlackListService" class="com.cibfintech.report.blacklist.service.PoliceBlackListService" />
-
     <bean id="PoliceBlackListOperation" class="com.cibfintech.report.blacklist.operation.PoliceBlackListOperation" />
     
     <bean id="InternationalBlackListService" class="com.cibfintech.report.blacklist.service.InternationalBlackListService" />
+    <bean id="InternationalBlackListOperation" class="com.cibfintech.report.blacklist.operation.InternationalBlackListOperation" />
  
 </beans>

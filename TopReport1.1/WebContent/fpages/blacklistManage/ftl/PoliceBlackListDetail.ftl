@@ -20,10 +20,10 @@
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="id"/></td>
 						</tr>
 		            	<tr>
-		                  <td nowrap class="labeltd">账户代号</td>
-						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_accountCode"/></td>
-						  <td nowrap class="labeltd">账户代号</td>
-						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="accountCode"/></td>
+		                  <td nowrap class="labeltd">账户类型</td>
+						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_accountType"/></td>
+						  <td nowrap class="labeltd">账户类型</td>
+						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="accountType"/></td>
 						</tr>
 						<tr>
 		                  <td nowrap class="labeltd">证件种类</td>
@@ -82,7 +82,7 @@
 	<table align="left">
       	<tr valign="top">
   			<td valign="center">
-  				<@CommonQueryMacro.Group id="group1" label="公安部黑名单管理详细信息" fieldStr="old_id,old_accountCode,old_certificateType,old_certificateNumber,old_clientName,old_blacklistType,old_isValid,old_validDate,old_lastModifyOperator" colNm=2/>
+  				<@CommonQueryMacro.Group id="group1" label="公安部黑名单管理详细信息" fieldStr="old_id,old_accountType,old_certificateType,old_certificateNumber,old_clientName,old_blacklistType,old_isValid,old_validDate,old_lastModifyOperator" colNm=2/>
   			</td>
   		</tr>
   		<tr valign="top">
