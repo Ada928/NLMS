@@ -8,6 +8,7 @@
     <Query id="PoliceBlackList" path="/fpages/blacklistManage/xml/PoliceBlackList.xml" />
     <Query id="PoliceBlackListDetail" path="/fpages/blacklistManage/xml/PoliceBlackListDetail.xml" />
     
-    <Query id="BlacklistByInternationalQuery" path="/fpages/blacklistManage/xml/BlacklistByInternationalQuery.xml" />
-    <Query id="BlacklistByGABQuery" path="/fpages/blacklistManage/xml/BlacklistByGABQuery.xml" />
-</META>
+   <Query id="InternationalBlackList" path="/fpages/blacklistManage/xml/InternationalBlackList.xml" />
+    <!--  <Query id="InternationalBlacklistDetail" path="/fpages/blacklistManage/xml/InternationalBlacklistDetail.xml" />
+ -->
+ </META>

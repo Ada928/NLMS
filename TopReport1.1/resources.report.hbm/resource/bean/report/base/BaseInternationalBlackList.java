@@ -7,23 +7,29 @@ import java.util.Date;
  * NlmsBankblacklist entity. @author MyEclipse Persistence Tools
  */
 
-public class BasePoliceBlackList implements Serializable {
+public class BaseInternationalBlackList implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static String REF = "PoliceBlackList";
+	public static String REF = "InternationalBlackList";
 	public static String PROP_ID = "id";
 	public static String PROP_BLACKLIST_TYPE = "blacklistType";
+	public static String PROP_SAN_CODE = "sanCode";
+	public static String PROP_SAN_NAME = "sanName";
 	public static String PROP_ACCOUNT_TYPE = "accountType";
-	public static String PROP_ACCOUNT_CODE = "accountCode";
 	public static String PROP_CERTIFICATE_TYPE = "certificateType";
 	public static String PROP_CERTIFICATE_NUMBER = "certificateNumber";
 	public static String PROP_CLIENT_NAME = "clientName";
 	public static String PROP_CLIENT_ENGLISH_NAME = "clientEnglishName";
-	public static String PROP_BANK_CODE = "bankCode";
-	public static String PROP_BLACKLISTED_ORGANIZATION = "blacklistedOrganization";
+	public static String PROP_NATIONALITY = "nationality";
+	public static String PROP_BIRTHDAY = "birthday";
+	public static String PROP_BIRTH_COUNTRY = "birthCountry";
+	public static String PROP_GENDER = "gender";
+	public static String PROP_LAST_OCCUPATION = "lastOccupation";
+	public static String PROP_RESIDENCE_COUNTRY = "residenceCountry";
+	public static String PROP_IS_POLITICIANS = "isPoliticians";
 	public static String PROP_IS_VALID = "isValid";
 	public static String PROP_IS_DELETE = "isDelete";
 	public static String PROP_VALID_DATE = "validDate";
@@ -41,16 +47,20 @@ public class BasePoliceBlackList implements Serializable {
 	private int hashCode = Integer.MIN_VALUE;
 	private String id;
 	private String blacklistType;
+	private String sanCode;
+	private String sanName;
 	private String accountType;
-	private String accountCode;
 	private String certificateType;
 	private String certificateNumber;
 	private String clientName;
 	private String clientEnglishName;
-	private String bankCode;
-	private String blackListedOrganization;
-	private String contact;
-	private String contactPhone;
+	private String nationality;
+	private Date birthday;
+	private String birthCountry;
+	private String gender;
+	private String lastOccupation;
+	private String residenceCountry;
+	private String isPoliticians;
 	private String isValid;
 	private String isDelete;
 	private Date validDate;
@@ -67,10 +77,10 @@ public class BasePoliceBlackList implements Serializable {
 	// Constructors
 
 	/** default constructor */
-	public BasePoliceBlackList() {
+	public BaseInternationalBlackList() {
 	}
 
-	public BasePoliceBlackList(String id) {
+	public BaseInternationalBlackList(String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -89,12 +99,86 @@ public class BasePoliceBlackList implements Serializable {
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-	public String getBankCode() {
-		return this.bankCode;
+	
+
+	public String getBlacklistType() {
+		return blacklistType;
 	}
 
-	public void setBankCode(String bankCode) {
-		this.bankCode = bankCode;
+	public void setBlacklistType(String blacklistType) {
+		this.blacklistType = blacklistType;
+	}
+
+	public String getSanCode() {
+		return sanCode;
+	}
+
+	public void setSanCode(String sanCode) {
+		this.sanCode = sanCode;
+	}
+
+	public String getSanName() {
+		return sanName;
+	}
+
+	public void setSanName(String sanName) {
+		this.sanName = sanName;
+	}
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getBirthCountry() {
+		return birthCountry;
+	}
+
+	public void setBirthCountry(String birthCountry) {
+		this.birthCountry = birthCountry;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getLastOccupation() {
+		return lastOccupation;
+	}
+
+	public void setLastOccupation(String lastOccupation) {
+		this.lastOccupation = lastOccupation;
+	}
+
+	public String getResidenceCountry() {
+		return residenceCountry;
+	}
+
+	public void setResidenceCountry(String residenceCountry) {
+		this.residenceCountry = residenceCountry;
+	}
+
+	public String getIsPoliticians() {
+		return isPoliticians;
+	}
+
+	public void setIsPoliticians(String isPoliticians) {
+		this.isPoliticians = isPoliticians;
 	}
 
 	public String getAccountType() {
@@ -105,13 +189,7 @@ public class BasePoliceBlackList implements Serializable {
 		this.accountType = accountType;
 	}
 
-	public String getAccountCode() {
-		return this.accountCode;
-	}
-
-	public void setAccountCode(String accountCode) {
-		this.accountCode = accountCode;
-	}
+	
 
 	public String getCertificateType() {
 		return this.certificateType;
@@ -145,13 +223,8 @@ public class BasePoliceBlackList implements Serializable {
 		this.clientEnglishName = clientEnglishName;
 	}
 
-	public String getBlacklistType() {
-		return this.blacklistType;
-	}
+	
 
-	public void setBlacklistType(String blacklistType) {
-		this.blacklistType = blacklistType;
-	}
 
 	public String getIsValid() {
 		return this.isValid;
@@ -183,30 +256,6 @@ public class BasePoliceBlackList implements Serializable {
 
 	public void setValidDate(Date validDate) {
 		this.validDate = validDate;
-	}
-
-	public String getBlackListedOrganization() {
-		return blackListedOrganization;
-	}
-
-	public void setBlackListedOrganization(String blackListedOrganization) {
-		this.blackListedOrganization = blackListedOrganization;
-	}
-
-	public String getContact() {
-		return contact;
-	}
-
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
-
-	public String getContactPhone() {
-		return contactPhone;
-	}
-
-	public void setContactPhone(String contactPhone) {
-		this.contactPhone = contactPhone;
 	}
 
 	public String getFiller4() {
@@ -276,14 +325,14 @@ public class BasePoliceBlackList implements Serializable {
 	public boolean equals(Object obj) {
 		if (null == obj)
 			return false;
-		if (!(obj instanceof resource.bean.report.PoliceBlackList))
+		if (!(obj instanceof resource.bean.report.InternationalBlackList))
 			return false;
 		else {
-			resource.bean.report.PoliceBlackList policeBlackList = (resource.bean.report.PoliceBlackList) obj;
-			if (null == this.getId() || null == policeBlackList.getId())
+			resource.bean.report.InternationalBlackList internationalBlackList = (resource.bean.report.InternationalBlackList) obj;
+			if (null == this.getId() || null == internationalBlackList.getId())
 				return false;
 			else
-				return (this.getId().equals(policeBlackList.getId()));
+				return (this.getId().equals(internationalBlackList.getId()));
 		}
 	}
 
@@ -292,8 +341,7 @@ public class BasePoliceBlackList implements Serializable {
 			if (null == this.getId())
 				return super.hashCode();
 			else {
-				String hashStr = this.getClass().getName() + ":"
-						+ this.getId().hashCode();
+				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
 			}
 		}

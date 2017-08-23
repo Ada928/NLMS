@@ -12,13 +12,13 @@ import com.huateng.ebank.framework.util.ApplicationContextUtils;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.report.utils.ReportEnum;
 
-import resource.bean.report.PoliceBlackList;
+import resource.bean.report.InternationalBlackList;
 import resource.bean.report.SysTaskInfo;
 import resource.dao.base.HQLDAO;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
 
-public class PoliceBlackListService {
+public class InternationalBlackListService {
 
 	public PageQueryResult list(int pageIndex, int pageSize, String hql) throws CommonException {
 		PageQueryCondition queryCondition = new PageQueryCondition();
@@ -35,8 +35,8 @@ public class PoliceBlackListService {
 	 * @param paramgroupId 参数段编号
 	 */
 
-	public static PoliceBlackListService getInstance() {
-		return (PoliceBlackListService) ApplicationContextUtils.getBean("PoliceBlackListService");
+	public static InternationalBlackListService getInstance() {
+		return (InternationalBlackListService) ApplicationContextUtils.getBean("InternationalBlackListService");
 	}
 
 	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String partyId, String qCertificateType,
@@ -45,21 +45,21 @@ public class PoliceBlackListService {
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from PoliceBlackList pblt where pblt.isDelete='1'");
+		StringBuffer hql = new StringBuffer(" from InternationalBlackList iblt where 1=1");
 
 		if (StringUtils.isNotBlank(partyId)) {
-			hql.append(" and pblt.id = '").append(partyId.trim()).append("'");
+			hql.append(" and iblt.id = '").append(partyId.trim()).append("'");
 		}
 		if (StringUtils.isNotBlank(qCertificateType)) {
-			hql.append(" and pblt.certificateType = '").append(qCertificateType.trim()).append("'");
+			hql.append(" and iblt.certificateType = '").append(qCertificateType.trim()).append("'");
 		}
 		if (StringUtils.isNotBlank(qCertificateNumber)) {
-			hql.append(" and pblt.certificateNumber like '%").append(qCertificateNumber.trim()).append("%'");
+			hql.append(" and iblt.certificateNumber like '%").append(qCertificateNumber.trim()).append("%'");
 		}
 		if (StringUtils.isNotBlank(qOperateState)) {
-			hql.append(" and pblt.operateState='").append(qOperateState.trim()).append("'");
+			hql.append(" and iblt.operateState='").append(qOperateState.trim()).append("'");
 		} else {
-			hql.append(" and pblt.operateState<>'").append(ReportEnum.REPORT_ST1.N.value).append("'");
+			//hql.append(" and iblt.operateState<>'").append(ReportEnum.REPORT_ST1.N.value).append("'");
 		}
 		try {
 			queryCondition.setPageIndex(pageIndex);
@@ -77,11 +77,11 @@ public class PoliceBlackListService {
 	 * 
 	 * @param paramgroupId 参数段编号
 	 */
-	public List getAllPoliceBlacklist() throws CommonException {
+	public List getAllInternationalkBlacklist() throws CommonException {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		List list = rootDAO.queryByQL2List("1=1");
 		for (int i = 0; i < list.size(); i++) {
-			PoliceBlackList bblt = (PoliceBlackList) list.get(i);
+			InternationalBlackList bblt = (InternationalBlackList) list.get(i);
 			list.set(i, bblt);
 		}
 		return list;
@@ -92,10 +92,10 @@ public class PoliceBlackListService {
 	 * 
 	 * @param biNationregion
 	 */
-	public void removeEntity(PoliceBlackList policeBlackList) {
+	public void removeEntity(InternationalBlackList internationalBlackList) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
-			rootDAO.delete(policeBlackList);
+			rootDAO.delete(internationalBlackList);
 			System.out.println("已删除");
 		} catch (CommonException e) {
 			System.out.println("删除实体出错！ ");
@@ -108,10 +108,10 @@ public class PoliceBlackListService {
 	 * 
 	 * @param biNationregion
 	 */
-	public void modOrAddEntity(PoliceBlackList policeBlackList) {
+	public void modOrAddEntity(InternationalBlackList internationalBlackList) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
-			rootDAO.saveOrUpdate(policeBlackList);
+			rootDAO.saveOrUpdate(internationalBlackList);
 			System.out.println(this.getClass().getName() + " 已插入或更新");
 		} catch (CommonException e) {
 			System.out.println(this.getClass().getName() + " 插入或更新出错！ ");
@@ -119,13 +119,13 @@ public class PoliceBlackListService {
 		}
 	}
 
-	public void addEntity(PoliceBlackList policeBlackList) throws CommonException {
+	public void addEntity(InternationalBlackList internationalBlackList) throws CommonException {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
-		if (isExists(policeBlackList.getId())) {
+		if (isExists(internationalBlackList.getId())) {
 			ExceptionUtil.throwCommonException(" 名单重复");
 		}
 		try {
-			rootDAO.save(policeBlackList);
+			rootDAO.save(internationalBlackList);
 			System.out.println(this.getClass().getName() + " 已插入或更新实体");
 		} catch (CommonException e) {
 			System.out.println(this.getClass().getName() + " 插入或更新实体！ ");
@@ -135,8 +135,8 @@ public class PoliceBlackListService {
 	public boolean isExists(String id) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
-			PoliceBlackList policeBlackList = (PoliceBlackList) rootDAO.query(PoliceBlackList.class, id);
-			if (policeBlackList == null) {
+			InternationalBlackList internationalBlackList = (InternationalBlackList) rootDAO.query(InternationalBlackList.class, id);
+			if (internationalBlackList == null) {
 				return false;
 			}
 		} catch (CommonException e) {
@@ -145,10 +145,10 @@ public class PoliceBlackListService {
 		return true;
 	}
 
-	public void modEntity(PoliceBlackList policeBlackList) {
+	public void modEntity(InternationalBlackList internationalBlackList) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
-			rootDAO.update(policeBlackList);
+			rootDAO.update(internationalBlackList);
 			System.out.println(this.getClass().getName() + " 已插入或更新实体");
 		} catch (CommonException e) {
 			System.out.println(this.getClass().getName() + " 插入或更新实体出错！ ");
@@ -166,15 +166,15 @@ public class PoliceBlackListService {
 	}
 
 	// 通过id来获取实体类
-	public PoliceBlackList selectById(String id) {
+	public InternationalBlackList selectById(String id) {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		PoliceBlackList policeBlackList = null;
+		InternationalBlackList internationalBlackList = null;
 		try {
-			policeBlackList = (PoliceBlackList) rootdao.query(PoliceBlackList.class, id);
+			internationalBlackList = (InternationalBlackList) rootdao.query(InternationalBlackList.class, id);
 		} catch (CommonException e) {
 			e.printStackTrace();
 		}
-		return policeBlackList;
+		return internationalBlackList;
 	}
 
 }

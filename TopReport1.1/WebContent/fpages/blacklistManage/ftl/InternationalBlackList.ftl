@@ -1,7 +1,7 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="公安部黑名单管理">
-<@CommonQueryMacro.CommonQuery id="PoliceBlackList" init="false" submitMode="current"  navigate="false">
+<@CommonQueryMacro.page title="国际黑名单管理">
+<@CommonQueryMacro.CommonQuery id="InternationalBlackList" init="false" submitMode="current"  navigate="false">
 <table align="center" width="100%">
    	<tr>
       	<td colspan="2" >
@@ -24,8 +24,8 @@
       			defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" 
       			exclusive="true" position="center" show="false" >
       			<div align="center">
-      				<@CommonQueryMacro.Group id="group1" label="公安部黑名单维护"
-        			  fieldStr="id,accountType,certificateType,certificateNumber,clientName,clientEnglishName,blacklistType,isValid,validDate" colNm=4/>
+      				<@CommonQueryMacro.Group id="group1" label="国际黑名单维护"
+        			  fieldStr="id,blacklistType,accountType,certificateType,certificateNumber,clientName,clientEnglishName,isValid,validDate" colNm=4/>
         			<br/>
       				<@CommonQueryMacro.Button id="btModOrAdd" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       			</div>
@@ -42,9 +42,9 @@
 <script language="JavaScript">
     //定位一行记录
     function locate(id) {
-        var record = PoliceBlackList_dataset.find(["id"], [id]);
+        var record = InternationalBlackList_dataset.find(["id"], [id]);
         if (record) {
-            PoliceBlackList_dataset.setRecord(record);
+            InternationalBlackList_dataset.setRecord(record);
         }
     }
 
@@ -66,15 +66,15 @@
 	//修改功能
     function openModifyWindow(id) {
         locate(id);
-        PoliceBlackList_dataset.setFieldReadOnly("id", true);
-        PoliceBlackList_dataset.setFieldReadOnly("accountCode", false);
-        PoliceBlackList_dataset.setFieldReadOnly("certificateType", false);
-        PoliceBlackList_dataset.setFieldReadOnly("certificateNumber", false);
-        PoliceBlackList_dataset.setFieldReadOnly("clientName", false);
-        PoliceBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
-        PoliceBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        PoliceBlackList_dataset.setFieldReadOnly("isValid", false);
-        PoliceBlackList_dataset.setFieldReadOnly("validDate", false);
+        InternationalBlackList_dataset.setFieldReadOnly("id", true);
+        InternationalBlackList_dataset.setFieldReadOnly("accountCode", false);
+        InternationalBlackList_dataset.setFieldReadOnly("certificateType", false);
+        InternationalBlackList_dataset.setFieldReadOnly("certificateNumber", false);
+        InternationalBlackList_dataset.setFieldReadOnly("clientName", false);
+        InternationalBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
+        InternationalBlackList_dataset.setFieldReadOnly("blacklistType", false);
+        InternationalBlackList_dataset.setFieldReadOnly("isValid", false);
+        InternationalBlackList_dataset.setFieldReadOnly("validDate", false);
         subwindow_signWindow.show();
     }
 
@@ -95,13 +95,13 @@
         paramMap.put("osta", osta);
         paramMap.put("action", "detail");
         paramMap.put("flag", "0");
-        loadPageWindows("partWin", "公安部黑名单详细信息", "/fpages/blacklistManage/ftl/PoliceBlackListDetail.ftl", paramMap, "winZone");
+        //loadPageWindows("partWin", "公安部黑名单详细信息", "/fpages/blacklistManage/ftl/InternationalBlackListDetail.ftl", paramMap, "winZone");
     }
 
     function btModOrAdd_onClickCheck(button) {
-        var id = PoliceBlackList_dataset.getValue("id");
-        var certificateNumber = PoliceBlackList_dataset.getValue("certificateNumber");
-        var certificateType = PoliceBlackList_dataset.getValue("certificateType");
+        var id = InternationalBlackList_dataset.getValue("id");
+        var certificateNumber = InternationalBlackList_dataset.getValue("certificateNumber");
+        var certificateType = InternationalBlackList_dataset.getValue("certificateType");
         if (id == null || "" == id) {
             alert("黑名单不能为空");
             return false;
@@ -130,32 +130,32 @@
     
     //新增功能
     function btNewClick() {
-        PoliceBlackList_dataset.insertRecord("end");
+        InternationalBlackList_dataset.insertRecord("end");
 
-        PoliceBlackList_dataset.setValue("id", "");
-        PoliceBlackList_dataset.setValue("accountCode", "");
-        PoliceBlackList_dataset.setValue("certificateType", "");
-        PoliceBlackList_dataset.setValue("certificateNumber", "");
-        PoliceBlackList_dataset.setValue("clientName", "");
-        PoliceBlackList_dataset.setValue("clientEnglishName", "");
-        PoliceBlackList_dataset.setValue("blacklistType", "");
-        PoliceBlackList_dataset.setValue("isValid", "");
-        PoliceBlackList_dataset.setValue("validDate", "");
-        PoliceBlackList_dataset.setFieldReadOnly("id", false);
-        PoliceBlackList_dataset.setFieldReadOnly("accountCode", false);
-        PoliceBlackList_dataset.setFieldReadOnly("certificateType", false);
-        PoliceBlackList_dataset.setFieldReadOnly("certificateNumber", false);
-        PoliceBlackList_dataset.setFieldReadOnly("clientName", false);
-        PoliceBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
-        PoliceBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        PoliceBlackList_dataset.setFieldReadOnly("isValid", false);
-        PoliceBlackList_dataset.setFieldReadOnly("validDate", false);
+        InternationalBlackList_dataset.setValue("id", "");
+        InternationalBlackList_dataset.setValue("accountCode", "");
+        InternationalBlackList_dataset.setValue("certificateType", "");
+        InternationalBlackList_dataset.setValue("certificateNumber", "");
+        InternationalBlackList_dataset.setValue("clientName", "");
+        InternationalBlackList_dataset.setValue("clientEnglishName", "");
+        InternationalBlackList_dataset.setValue("blacklistType", "");
+        InternationalBlackList_dataset.setValue("isValid", "");
+        InternationalBlackList_dataset.setValue("validDate", "");
+        InternationalBlackList_dataset.setFieldReadOnly("id", false);
+        InternationalBlackList_dataset.setFieldReadOnly("accountCode", false);
+        InternationalBlackList_dataset.setFieldReadOnly("certificateType", false);
+        InternationalBlackList_dataset.setFieldReadOnly("certificateNumber", false);
+        InternationalBlackList_dataset.setFieldReadOnly("clientName", false);
+        InternationalBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
+        InternationalBlackList_dataset.setFieldReadOnly("blacklistType", false);
+        InternationalBlackList_dataset.setFieldReadOnly("isValid", false);
+        InternationalBlackList_dataset.setFieldReadOnly("validDate", false);
         subwindow_signWindow.show();
     }
     
     function btAdd_onClickCheck(button) {
-        var id = PoliceBlackList_dataset.getValue("id");
-        var certificateNumber = PoliceBlackList_dataset.getValue("certificateNumber");
+        var id = InternationalBlackList_dataset.getValue("id");
+        var certificateNumber = InternationalBlackList_dataset.getValue("certificateNumber");
         if (id == null || "" == id) {
             alert("黑名单不能为空");
             return false;
@@ -191,7 +191,7 @@
 
     //关浮动窗口,释放dataset
     function signWindow_floatWindow_beforeClose(subwindow) {
-        PoliceBlackList_dataset.cancelRecord();
+        InternationalBlackList_dataset.cancelRecord();
         return true;
     }
 
@@ -201,7 +201,7 @@
 
     //刷新当前页
     function flushCurrentPage() {
-        PoliceBlackList_dataset.flushData(PoliceBlackList_dataset.pageIndex);
+        InternationalBlackList_dataset.flushData(InternationalBlackList_dataset.pageIndex);
     }
 
 </script>

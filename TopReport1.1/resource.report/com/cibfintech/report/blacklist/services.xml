@@ -9,5 +9,7 @@
     <bean id="PoliceBlackListService" class="com.cibfintech.report.blacklist.service.PoliceBlackListService" />
 
     <bean id="PoliceBlackListOperation" class="com.cibfintech.report.blacklist.operation.PoliceBlackListOperation" />
-
+    
+    <bean id="InternationalBlackListService" class="com.cibfintech.report.blacklist.service.InternationalBlackListService" />
+ 
 </beans>

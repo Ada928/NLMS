@@ -17,7 +17,7 @@
         <property name="blacklistType" type="string" column="blacklist_type" length="1" />
         <property name="isShare" type="string" column="is_share" length="1" not-null="false" />
         <property name="isValid" type="string" column="is_valid" length="1" not-null="false" />
-        <property name="isDelete" type="string" column="is_delate" length="1" not-null="false" />
+        <property name="isDelete" type="string" column="is_delete" length="1" not-null="false" />
         <property name="operateState" type="string" column="operate_state" length="2" not-null="false" />
         <property name="validDate" type="date" column="valid_date" length="7" not-null="false" />
         <property name="blacklistedDate" type="date" column="blacklisted_date" length="7" not-null="false" />
