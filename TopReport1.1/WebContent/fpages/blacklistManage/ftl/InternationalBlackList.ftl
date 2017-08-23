@@ -95,7 +95,7 @@
         paramMap.put("osta", osta);
         paramMap.put("action", "detail");
         paramMap.put("flag", "0");
-        //loadPageWindows("partWin", "公安部黑名单详细信息", "/fpages/blacklistManage/ftl/InternationalBlackListDetail.ftl", paramMap, "winZone");
+        loadPageWindows("partWin", "国际黑名单详细信息", "/fpages/blacklistManage/ftl/InternationalBlackListDetail.ftl", paramMap, "winZone");
     }
 
     function btModOrAdd_onClickCheck(button) {

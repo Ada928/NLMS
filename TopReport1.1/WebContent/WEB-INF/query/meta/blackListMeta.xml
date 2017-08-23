@@ -14,7 +14,7 @@
 		path="/fpages/blacklistManage/xml/InternationalBlackList.xml" />
 	<Query id="InternationalBlackListShow"
 		path="/fpages/blacklistManage/xml/InternationalBlackList.xml" />
-	<Query id="InternationalBlacklistDetail"
-		path="/fpages/blacklistManage/xml/InternationalBlacklistDetail.xml" />
+	<Query id="InternationalBlackListDetail"
+		path="/fpages/blacklistManage/xml/InternationalBlackListDetail.xml" />
 
 </META>

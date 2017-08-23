@@ -7,7 +7,7 @@
 	    <tr valign="top">
 	  		<td valign="top">
 	  			<FIELDSET name='group6' style="padding: 6px;">
-					<LEGEND>公安部黑名单管理详细信息</LEGEND>
+					<LEGEND>国际黑名单管理详细信息</LEGEND>
 					<table frame=void width="100%" class="grouptable" id="detailTable">
 						<tr>
 		                  <td nowrap class="labeltd" colspan=2>修改前</td>
