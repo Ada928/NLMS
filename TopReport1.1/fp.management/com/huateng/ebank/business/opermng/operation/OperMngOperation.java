@@ -44,6 +44,7 @@ import com.huateng.report.utils.ReportTaskUtil;
 import com.huateng.service.pub.PasswordService;
 import com.huateng.service.pub.UserMgrService;
 import com.huateng.view.pub.TlrRoleRelationView;
+import com.jcraft.jsch.UserInfo;
 
 /**
  * @author zhiguo.zhao
@@ -51,7 +52,8 @@ import com.huateng.view.pub.TlrRoleRelationView;
  */
 public class OperMngOperation extends BaseOperation {
 
-	private static final HtLog htlog = HtLogFactory.getLogger(OperMngOperation.class);
+	private static final HtLog htlog = HtLogFactory
+			.getLogger(OperMngOperation.class);
 
 	public static final String ID = "management.OperMngOperation";
 	public static final String CMD = "cmd";
@@ -65,7 +67,7 @@ public class OperMngOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng
 	 * .ebank.framework.operation.OperationContext)
@@ -76,17 +78,25 @@ public class OperMngOperation extends BaseOperation {
 	}
 
 	// jianxue.zhang
-	private void delUserRel(String tlrno, List<TlrBctlRel> bctls, List<TlrRoleRel> roleList,
-			List<TlrMngRelBean> tlrList) throws CommonException {
+	@SuppressWarnings("unchecked")
+	private void delUserRel(String tlrno, List<TlrBctlRel> bctls,
+			List<TlrRoleRel> roleList, List<TlrMngRelBean> tlrList)
+			throws CommonException {
 		String key = tlrno;
 		// 先删除用户的角色表和机构关联
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		TlrRoleRelDAO tlrRoleRelDAO = DAOUtils.getTlrRoleRelDAO();
-		List<TlrBctlRel> bctlRellist = rootdao.queryByQL2List("from TlrBctlRel where tlrNo = '" + key + "'");
+
+		List<TlrBctlRel> bctlRellist = rootdao
+				.queryByQL2List("from TlrBctlRel where tlrNo = '" + key + "'");
+
 		for (TlrBctlRel trlbctreldel : bctlRellist) {
 			rootdao.delete(trlbctreldel);
 		}
-		List<TlrRoleRel> roleRellist = rootdao.queryByQL2List("from TlrRoleRel where tlrno = '" + key + "'");
+
+		List<TlrRoleRel> roleRellist = rootdao
+				.queryByQL2List("from TlrRoleRel where tlrno = '" + key + "'");
+
 		for (TlrRoleRel trlrolereldel : roleRellist) {
 			rootdao.delete(trlrolereldel);
 		}
@@ -108,7 +118,8 @@ public class OperMngOperation extends BaseOperation {
 			Integer id = trlbctrel.getId();
 			if (id == null) {
 				id = 100;
-				Iterator it = DAOUtils.getHQLDAO().queryByQL("select max(id) from TlrBctlRel");
+				Iterator it = DAOUtils.getHQLDAO().queryByQL(
+						"select max(id) from TlrBctlRel");
 				if (it.hasNext()) {
 					Number num = (Number) it.next();
 					id = num.intValue() + 1;
@@ -119,22 +130,106 @@ public class OperMngOperation extends BaseOperation {
 			rootdao.save(trlbctrel);
 		}
 		// 给销售分配人员
-		for (TlrMngRelBean abc : tlrList) {
-			TlrManRel tlrrel = new TlrManRel();
-			tlrrel.setManage(key);
-			tlrrel.setTlrId(abc.getTlrno());
-			tlrrel.setStatus("1");
-			rootdao.save(tlrrel);
+		// for (TlrMngRelBean abc : tlrList) {
+		// TlrManRel tlrrel = new TlrManRel();
+		// tlrrel.setManage(key);
+		// tlrrel.setTlrId(abc.getTlrno());
+		// tlrrel.setStatus("1");
+		// rootdao.save(tlrrel);
+		// }
+	}
+
+	private RepList<TlrBctlRel> saveBctlRels(List<Bctl> bctls, TlrInfo tlrInfo,
+			ROOTDAO rootdao) throws CommonException {
+		RepList<TlrBctlRel> bctlRellist = new RepList<TlrBctlRel>();
+		for (Bctl bc : bctls) {
+			TlrBctlRel tlrBctlRel = new TlrBctlRel();
+			tlrBctlRel.setBrcode(bc.getBrcode());
+			tlrBctlRel.setTlrNo(tlrInfo.getTlrno());
+			Integer id = tlrBctlRel.getId();
+			if (id == null) {
+				id = 100;
+				Iterator it = DAOUtils.getHQLDAO().queryByQL(
+						"select max(id) from TlrBctlRel");
+				if (it.hasNext()) {
+					Number num = (Number) it.next();
+					id = num.intValue() + 1;
+				}
+				tlrBctlRel.setId(id);
+			}
+			rootdao.save(tlrBctlRel);
+			bctlRellist.add(tlrBctlRel);
 		}
+		return bctlRellist;
+	}
+
+	private RepList<TlrRoleRel> saveRoleRels(List<RoleInfo> roles,
+			TlrInfo tlrInfo) throws CommonException {
+		RepList<TlrRoleRel> roleRellist = new RepList<TlrRoleRel>();
+		TlrRoleRelDAO tlrRoleRelDAO = DAOUtils.getTlrRoleRelDAO();
+		for (RoleInfo rl : roles) {
+			TlrRoleRel tlrRoleRel = new TlrRoleRel();
+			tlrRoleRel.setRoleId(rl.getId());
+			tlrRoleRel.setTlrno(tlrInfo.getTlrno());
+			tlrRoleRel.setStatus(SystemConstant.VALID_FLAG_VALID);
+			tlrRoleRelDAO.insert(tlrRoleRel);
+			roleRellist.add(tlrRoleRel);
+		}
+		return roleRellist;
+	}
+
+	private void addTlrInfo(TlrInfo tlrInfo, GlobalInfo globalInfo,
+			TlrInfoDAO tlrInfoDAO) throws CommonException {
+
+		TlrInfo info = UserMgrService.getInstance().getUserInfo(globalInfo.getTlrno());
+		if (null != tlrInfo.getBrcode() && info.getTlrType().equals(SystemConstant.TLR_NO_TYPE_SUPER_MANAGE)) {
+			Bctl bctl = DAOUtils.getBctlDAO().queryById(tlrInfo.getBrcode());
+			tlrInfo.setTlrno(bctl.getBrno() + "01");
+		} else {
+			Iterator it = DAOUtils.getHQLDAO().queryByQL(
+					"select max(tlrno) from TlrInfo where tlrno like '%"
+							+ globalInfo.getBrno() + "%'");
+			if (it.hasNext()) {
+				String num = (String) it.next();
+				tlrInfo.setTlrno(String.valueOf(Integer.valueOf(num) + 1));
+			} 
+		}
+
+		tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
+		// 设置有效标志
+		tlrInfo.setFlag(SystemConstant.FLAG_ON);
+
+		// 设置默认操作员密码
+		String sysDefaultPwd = CommonService.getInstance().getSysParamDef(
+				"PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
+		String encMethod = CommonService.getInstance().getSysParamDef("PSWD",
+				"ENC_MODE", "AES128");
+		String password = PasswordService.getInstance().EncryptPassword(
+				sysDefaultPwd, encMethod);
+		tlrInfo.setPassword(password);
+
+		tlrInfo.setBrcode(globalInfo.getBrcode());
+
+		// 为操作员密码错误次数付初始值
+		tlrInfo.setTotpswderrcnt(new Integer(0));
+		tlrInfo.setPswderrcnt(new Integer(0));
+		tlrInfo.setPasswdenc(encMethod);
+		tlrInfo.setCreateDate(DateUtil.getCurrentDate());
+		tlrInfo.setLastUpdTime(DateUtil.getTimestamp());
+		tlrInfo.setLastUpdOperId(globalInfo.getTlrno());
+		tlrInfo.setIsLock(SystemConstant.FLAG_OFF);
+		tlrInfo.setSt(ReportEnum.REPORT_ST1.CR.value);
+		tlrInfoDAO.saveOrUpdate(tlrInfo);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.
 	 * ebank.framework.operation.OperationContext)
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes", "deprecation" })
 	public void execute(OperationContext context) throws CommonException {
 		// GlobalInfo就相当于一个session
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
@@ -145,138 +240,79 @@ public class OperMngOperation extends BaseOperation {
 		TaskListService tls = TaskListService.getInstance();
 
 		if ("new".equals(context.getAttribute(CMD))) {
+			TlrInfo tlrInfo = (TlrInfo) context.getAttribute(IN_TLRINFO);
+			List<Bctl> bctls = (List<Bctl>) context.getAttribute(IN_BCTLLIST);
+			List<RoleInfo> roles = (List<RoleInfo>) context
+					.getAttribute(IN_ROLELIST);
+
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
-				TlrInfo tlrInfo = (TlrInfo) context.getAttribute(IN_TLRINFO);
-				List<Bctl> bctls = (List<Bctl>) context.getAttribute(IN_BCTLLIST);
-				List<TlrMngRelBean> tlrs = (List<TlrMngRelBean>) context.getAttribute(IN_TLRLLIST);
-				List<RoleInfo> roles = (List<RoleInfo>) context.getAttribute(IN_ROLELIST);
 				if (tlrInfoDAO.query(tlrInfo.getTlrno()) == null) {
-					tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
-					// 设置有效标志
-					tlrInfo.setFlag(SystemConstant.FLAG_ON);
-					String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD",
-							SystemConstant.DEFAULT_PASSWORD);
-					String encMethod = CommonService.getInstance().getSysParamDef("PSWD", "ENC_MODE", "AES128");
-					String password = PasswordService.getInstance().EncryptPassword(sysDefaultPwd, encMethod);
-					tlrInfo.setPassword(password);// 设置默认操作员密码
-					// 为操作员密码错误次数付初始值
-					tlrInfo.setTotpswderrcnt(new Integer(0));
-					tlrInfo.setPswderrcnt(new Integer(0));
-					tlrInfo.setPasswdenc(encMethod);
-					tlrInfo.setCreateDate(DateUtil.getCurrentDate());
-					tlrInfo.setLastUpdTime(DateUtil.getTimestamp());
-					tlrInfo.setLastUpdOperId(GlobalInfo.getCurrentInstance().getTlrno());
-					tlrInfo.setIsLock(SystemConstant.FLAG_OFF);
-					// tlrInfo.setIsLockModify("1");
-					tlrInfo.setSt(ReportEnum.REPORT__FH_ST.YES.value);
-					tlrInfoDAO.saveOrUpdate(tlrInfo);
-
+					addTlrInfo(tlrInfo, globalInfo, tlrInfoDAO);
 					// 保存授权机构
-					RepList<TlrBctlRel> bctlRellist = new RepList<TlrBctlRel>();
-					for (Bctl bc : bctls) {
-						TlrBctlRel tlrBctlRel = new TlrBctlRel();
-						tlrBctlRel.setBrcode(bc.getBrcode());
-						tlrBctlRel.setTlrNo(tlrInfo.getTlrno());
-						rootdao.save(tlrBctlRel);
-						// bctlRellist.add(tlrBctlRel);
-					}
+					saveBctlRels(bctls, tlrInfo, rootdao);
 					// 保存角色岗位
-					RepList<TlrRoleRel> roleRellist = new RepList<TlrRoleRel>();
-					for (RoleInfo rl : roles) {
-						TlrRoleRel tlrRoleRel = new TlrRoleRel();
-						tlrRoleRel.setRoleId(rl.getId());
-						tlrRoleRel.setTlrno(tlrInfo.getTlrno());
-						tlrRoleRel.setStatus("1");
-						rootdao.save(tlrRoleRel);
-						// roleRellist.add(tlrRoleRel);
-					}
-					// 保存下属信息
-					for (TlrMngRelBean abc : tlrs) {
-						TlrManRel tlrrel = new TlrManRel();
-						tlrrel.setManage(tlrInfo.getTlrno());
-						tlrrel.setTlrId(abc.getTlrno());
-						tlrrel.setStatus("1");
-						rootdao.save(tlrrel);
-					}
-
+					saveRoleRels(roles, tlrInfo);
 				} else {
-					ExceptionUtil.throwCommonException("该操作员已经存在，不能新增", ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
+					ExceptionUtil.throwCommonException("该操作员已经存在，不能新增",
+							ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
 				}
-				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-						"新增用户编号[" + tlrInfo.getTlrno() + "]" });
-				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
+				globalInfo.addBizLog(
+						"Updater.log",
+						new String[] { globalInfo.getTlrno(),
+								globalInfo.getBrno(),
+								"新增用户编号[" + tlrInfo.getTlrno() + "]" });
+				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(),
+						globalInfo.getBrno(),
 						"新增用户编号[" + tlrInfo.getTlrno() + "]" });
 			} else {
-				TlrInfo tlrInfo = (TlrInfo) context.getAttribute(IN_TLRINFO);
-				List<Bctl> bctls = (List<Bctl>) context.getAttribute(IN_BCTLLIST);
-				List<RoleInfo> roles = (List<RoleInfo>) context.getAttribute(IN_ROLELIST);
 				if (tlrInfoDAO.query(tlrInfo.getTlrno()) == null) {
-					tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
-					// 设置有效标志
-					tlrInfo.setFlag(SystemConstant.FLAG_ON);
-					String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD",
-							SystemConstant.DEFAULT_PASSWORD);
-					String encMethod = CommonService.getInstance().getSysParamDef("PSWD", "ENC_MODE", "AES128");
-					String password = PasswordService.getInstance().EncryptPassword(sysDefaultPwd, encMethod);
-					tlrInfo.setPassword(password);// 设置默认操作员密码
-					// 为操作员密码错误次数付初始值
-					tlrInfo.setTotpswderrcnt(new Integer(0));
-					tlrInfo.setPswderrcnt(new Integer(0));
-					tlrInfo.setPasswdenc(encMethod);
-					tlrInfo.setCreateDate(DateUtil.getCurrentDate());
-					tlrInfo.setLastUpdTime(DateUtil.getTimestamp());
-					tlrInfo.setLastUpdOperId(GlobalInfo.getCurrentInstance().getTlrno());
-					tlrInfo.setIsLock(SystemConstant.FLAG_OFF);
-					tlrInfo.setIsLockModify("1");
-					tlrInfo.setSt(ReportEnum.REPORT_ST1.CR.value);
-					tlrInfoDAO.saveOrUpdate(tlrInfo);
-
+					addTlrInfo(tlrInfo, globalInfo, tlrInfoDAO);
 					// 保存授权机构
-					RepList<TlrBctlRel> bctlRellist = new RepList<TlrBctlRel>();
-					for (Bctl bc : bctls) {
-						TlrBctlRel tlrBctlRel = new TlrBctlRel();
-						tlrBctlRel.setBrcode(bc.getBrcode());
-						tlrBctlRel.setTlrNo(tlrInfo.getTlrno());
-						rootdao.save(tlrBctlRel);
-						bctlRellist.add(tlrBctlRel);
-					}
+					RepList<TlrBctlRel> bctlRellist = saveBctlRels(bctls,
+							tlrInfo, rootdao);
 					// 保存角色岗位
-					RepList<TlrRoleRel> roleRellist = new RepList<TlrRoleRel>();
-					for (RoleInfo rl : roles) {
-						TlrRoleRel tlrRoleRel = new TlrRoleRel();
-						tlrRoleRel.setRoleId(rl.getId());
-						tlrRoleRel.setTlrno(tlrInfo.getTlrno());
-						tlrRoleRel.setStatus("1");
-						rootdao.save(tlrRoleRel);
-						roleRellist.add(tlrRoleRel);
-					}
+					RepList<TlrRoleRel> roleRellist = saveRoleRels(roles,
+							tlrInfo);
+
 					try {
 						TlrInfoAuditBean tlrInfoAuditBean = new TlrInfoAuditBean();
 						tlrInfoAuditBean.setTlrInfo(tlrInfo);
 						tlrInfoAuditBean.setBctlRellist(bctlRellist);
 						tlrInfoAuditBean.setRoleRellist(roleRellist);
-						SysTaskInfo tskInf = ReportTaskUtil.getSysTaskInfoBean(
-								ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value,
-								ReportEnum.REPORT_TASK_TRANS_CD.NEW.value, tlrInfoAuditBean,
-								tlrInfoAuditBean.getTlrInfo().getTlrno(), null);
+						SysTaskInfo tskInf = ReportTaskUtil
+								.getSysTaskInfoBean(
+										ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value,
+										ReportEnum.REPORT_TASK_TRANS_CD.NEW.value,
+										tlrInfoAuditBean, tlrInfoAuditBean
+												.getTlrInfo().getTlrno(), null);
 						rootdao.saveOrUpdate(tskInf);
 					} catch (IOException e) {
-						ExceptionUtil.throwCommonException("操作员新增保存，双岗复核序列化到数据库出错！");
+						ExceptionUtil
+								.throwCommonException("操作员新增保存，双岗复核序列化到数据库出错！");
 						e.printStackTrace();
 					}
 				} else {
-					ExceptionUtil.throwCommonException("该操作员已经存在，不能新增", ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
+					ExceptionUtil.throwCommonException("该操作员已经存在，不能新增",
+							ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
 				}
-				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-						"新增用户编号[" + tlrInfo.getTlrno() + "]" });
-				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
+				globalInfo.addBizLog(
+						"Updater.log",
+						new String[] { globalInfo.getTlrno(),
+								globalInfo.getBrno(),
+								"新增用户编号[" + tlrInfo.getTlrno() + "]" });
+				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(),
+						globalInfo.getBrno(),
 						"新增用户编号[" + tlrInfo.getTlrno() + "]" });
 			}
 		} else if ("modify".equals(context.getAttribute(CMD))) {
 			TlrInfo tlrInfo = (TlrInfo) context.getAttribute(IN_TLRINFO);
 			List<Bctl> bctls = (List<Bctl>) context.getAttribute(IN_BCTLLIST);
-			List<RoleInfo> roles = (List<RoleInfo>) context.getAttribute(IN_ROLELIST);
-			List<TlrMngRelBean> tlrs = (List<TlrMngRelBean>) context.getAttribute(IN_TLRLLIST);
+			List<RoleInfo> roles = (List<RoleInfo>) context
+					.getAttribute(IN_ROLELIST);
+
+			List<TlrMngRelBean> tlrs = (List<TlrMngRelBean>) context
+					.getAttribute(IN_TLRLLIST);
+
 			// 授权机构
 			RepList<TlrBctlRel> bctlRellist = new RepList<TlrBctlRel>();
 			for (Bctl bc : bctls) {
@@ -285,29 +321,37 @@ public class OperMngOperation extends BaseOperation {
 				tlrBctlRel.setTlrNo(tlrInfo.getTlrno());
 				bctlRellist.add(tlrBctlRel);
 			}
+
 			// 角色岗位
 			RepList<TlrRoleRel> roleRellist = new RepList<TlrRoleRel>();
 			for (RoleInfo rl : roles) {
 				TlrRoleRel tlrRoleRel = new TlrRoleRel();
 				tlrRoleRel.setRoleId(rl.getId());
 				tlrRoleRel.setTlrno(tlrInfo.getTlrno());
-				tlrRoleRel.setStatus("1");
+				tlrRoleRel.setStatus(SystemConstant.VALID_FLAG_VALID);
 				roleRellist.add(tlrRoleRel);
 			}
-			TlrInfo dbTrlInfo = rootdao.query(TlrInfo.class, tlrInfo.getTlrno());
+
+			TlrInfo dbTrlInfo = rootdao
+					.query(TlrInfo.class, tlrInfo.getTlrno());
 			dbTrlInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
+
 			String oldTlrName = dbTrlInfo.getTlrName();
 			Date oldLastUpTm = dbTrlInfo.getLastUpdTime();
 
 			// 新的值序列化数据库
 			dbTrlInfo.setTlrName(tlrInfo.getTlrName());
-			dbTrlInfo.setLastUpdTime(new Date());
+			dbTrlInfo.setTlrType(tlrInfo.getTlrType());
+			dbTrlInfo.setLastUpdTime(DateUtil.getTimestamp());
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
 				dbTrlInfo.setSt(ReportEnum.REPORT__FH_ST.YES.value);
 				rootdao.saveOrUpdate(dbTrlInfo);
 				delUserRel(dbTrlInfo.getTlrno(), bctlRellist, roleRellist, tlrs);
-				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-						"修改用户编号[" + dbTrlInfo.getTlrno() + "]" });
+				globalInfo.addBizLog(
+						"Updater.log",
+						new String[] { globalInfo.getTlrno(),
+								globalInfo.getBrno(),
+								"修改用户编号[" + dbTrlInfo.getTlrno() + "]" });
 			} else {
 				try {
 					TlrInfoAuditBean tlrInfoAuditBean = new TlrInfoAuditBean();
@@ -315,26 +359,34 @@ public class OperMngOperation extends BaseOperation {
 					tlrInfoAuditBean.setBctlRellist(bctlRellist);
 					tlrInfoAuditBean.setRoleRellist(roleRellist);
 					SysTaskInfo tskInf = ReportTaskUtil.getSysTaskInfoBean(
-							ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
-							tlrInfoAuditBean, tlrInfoAuditBean.getTlrInfo().getTlrno(), dbTrlInfo.getSt());
+							ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value,
+							ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
+							tlrInfoAuditBean, tlrInfoAuditBean.getTlrInfo()
+									.getTlrno(), dbTrlInfo.getSt());
 					rootdao.saveOrUpdate(tskInf);
 				} catch (IOException e) {
-					ExceptionUtil.throwCommonException("操作员修改保存，双岗复核序列化到数据库出错！");
+					ExceptionUtil
+							.throwCommonException("操作员修改保存，双岗复核序列化到数据库出错！");
 					e.printStackTrace();
 				}
 				dbTrlInfo.setLastUpdTime(oldLastUpTm);
 				dbTrlInfo.setTlrName(oldTlrName);
 				rootdao.saveOrUpdate(dbTrlInfo);
-				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-						"修改用户编号[" + dbTrlInfo.getTlrno() + "]" });
-				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
+				globalInfo.addBizLog(
+						"Updater.log",
+						new String[] { globalInfo.getTlrno(),
+								globalInfo.getBrno(),
+								"修改用户编号[" + dbTrlInfo.getTlrno() + "]" });
+				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(),
+						globalInfo.getBrno(),
 						"修改用户编号[" + dbTrlInfo.getTlrno() + "]" });
 			}
 		} else if ("del".equals(context.getAttribute(CMD))) {
 			String tlrno = (String) context.getAttribute(IN_TLRNO);
 			tlrInfoDAO.delete(tlrno);
 
-			List urrlist = relationDao.queryByCondition(" po.tlrno = '" + tlrno + "'");
+			List urrlist = relationDao.queryByCondition(" po.tlrno = '" + tlrno
+					+ "'");
 			for (Iterator it = urrlist.iterator(); it.hasNext();) {
 				TlrRoleRel ref = (TlrRoleRel) it.next();
 				relationDao.delete(ref);
@@ -346,6 +398,7 @@ public class OperMngOperation extends BaseOperation {
 			if (ti != null) {
 				ti.setTlrName(tlrInfo.getTlrName());
 				ti.setBrcode(tlrInfo.getBrcode());
+				// ti.setTlrType(tlrInfo.getTlrType());
 				ti.setEffectDate(tlrInfo.getEffectDate());
 				ti.setExpireDate(tlrInfo.getExpireDate());
 				ti.setEmail(tlrInfo.getEmail());
@@ -355,9 +408,11 @@ public class OperMngOperation extends BaseOperation {
 			List roleList = (List) context.getAttribute(IN_ROLELIST);
 			TlrRoleRel rr = null;
 			for (int i = 0; i < roleList.size(); i++) {
-				TlrRoleRelationView inurr = (TlrRoleRelationView) roleList.get(i);
-				List urrlist = relationDao.queryByCondition(
-						" po.tlrno = '" + inurr.getTlrno() + "'  and po.roleId = " + inurr.getRoleId());
+				TlrRoleRelationView inurr = (TlrRoleRelationView) roleList
+						.get(i);
+				List urrlist = relationDao.queryByCondition(" po.tlrno = '"
+						+ inurr.getTlrno() + "'  and po.roleId = "
+						+ inurr.getRoleId());
 				// 选中的岗位
 				if (inurr.isSelected()) {
 					// 原先无数据,则插入新数据
@@ -365,7 +420,7 @@ public class OperMngOperation extends BaseOperation {
 						rr = new TlrRoleRel();
 						rr.setRoleId(Integer.valueOf(inurr.getRoleId()));
 						rr.setTlrno(inurr.getTlrno());
-						rr.setStatus("1");// 1有效 0无效
+						rr.setStatus(SystemConstant.VALID_FLAG_VALID);// 1有效 0无效
 						relationDao.getHibernateTemplate().saveOrUpdate(rr);
 					}
 					// 原先有数据，则更新status
@@ -373,8 +428,9 @@ public class OperMngOperation extends BaseOperation {
 						for (int j = 0; j < urrlist.size(); j++) {
 							rr = (TlrRoleRel) urrlist.get(j);
 							if (!"1".equals(rr.getStatus())) {
-								rr.setStatus("1");
-								relationDao.getHibernateTemplate().saveOrUpdate(rr);
+								rr.setStatus(SystemConstant.VALID_FLAG_VALID);
+								relationDao.getHibernateTemplate()
+										.saveOrUpdate(rr);
 							}
 						}
 					}
@@ -403,13 +459,19 @@ public class OperMngOperation extends BaseOperation {
 				// tlrInfo.setRestFlg("reset");
 				UserMgrService userMgrService = new UserMgrService();
 
-				String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD",
-						SystemConstant.DEFAULT_PASSWORD);
+				String sysDefaultPwd = CommonService.getInstance()
+						.getSysParamDef("PSWD", "DEFAULT_PWD",
+								SystemConstant.DEFAULT_PASSWORD);
 
-				userMgrService.updatePassword(tlrInfo.getTlrno(), sysDefaultPwd);
-				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-						"重置用户编号[" + tlrInfo.getTlrno() + "]的密码" });
-				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
+				userMgrService
+						.updatePassword(tlrInfo.getTlrno(), sysDefaultPwd);
+				globalInfo.addBizLog(
+						"Updater.log",
+						new String[] { globalInfo.getTlrno(),
+								globalInfo.getBrno(),
+								"重置用户编号[" + tlrInfo.getTlrno() + "]的密码" });
+				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(),
+						globalInfo.getBrno(),
 						"重置用户编号[" + tlrInfo.getTlrno() + "]的密码" });
 
 			} else {
@@ -419,8 +481,12 @@ public class OperMngOperation extends BaseOperation {
 				// userMgrService.updatePassword(tlrno,
 				// SystemConstant.DEFAULT_PASSWORD);
 				TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
-				List<TlrBctlRel> bctlRellist = rootdao.queryByQL2List("from TlrBctlRel where tlrNo = '" + tlrno + "'");
-				List<TlrRoleRel> roleRellist = rootdao.queryByQL2List("from TlrRoleRel where tlrno = '" + tlrno + "'");
+				List<TlrBctlRel> bctlRellist = rootdao
+						.queryByQL2List("from TlrBctlRel where tlrNo = '"
+								+ tlrno + "'");
+				List<TlrRoleRel> roleRellist = rootdao
+						.queryByQL2List("from TlrRoleRel where tlrno = '"
+								+ tlrno + "'");
 				// 授权机构
 				RepList<TlrBctlRel> repBctlList = new RepList<TlrBctlRel>();
 				for (TlrBctlRel tlrBctlRel : bctlRellist) {
@@ -444,17 +510,23 @@ public class OperMngOperation extends BaseOperation {
 					SysTaskInfo tskInf = ReportTaskUtil.getSysTaskInfoBean(
 							ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value,
 							// 这儿得改成修改
-							ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, tlrInfoAuditBean,
-							tlrInfoAuditBean.getTlrInfo().getTlrno(), tlrInfo.getSt());
+							ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
+							tlrInfoAuditBean, tlrInfoAuditBean.getTlrInfo()
+									.getTlrno(), tlrInfo.getSt());
 					rootdao.saveOrUpdate(tskInf);
 				} catch (IOException e) {
-					ExceptionUtil.throwCommonException("操作员重置密码，双岗复核序列化到数据库出错！");
+					ExceptionUtil
+							.throwCommonException("操作员重置密码，双岗复核序列化到数据库出错！");
 					e.printStackTrace();
 				}
 				rootdao.saveOrUpdate(tlrInfo);
-				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-						"重置用户编号[" + tlrInfo.getTlrno() + "]的密码" });
-				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
+				globalInfo.addBizLog(
+						"Updater.log",
+						new String[] { globalInfo.getTlrno(),
+								globalInfo.getBrno(),
+								"重置用户编号[" + tlrInfo.getTlrno() + "]的密码" });
+				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(),
+						globalInfo.getBrno(),
 						"重置用户编号[" + tlrInfo.getTlrno() + "]的密码" });
 			}
 		} else if ("unlock".equals(context.getAttribute(CMD))) {// 解锁
@@ -467,26 +539,35 @@ public class OperMngOperation extends BaseOperation {
 				// tlrInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
 				// String oldIsLock = tlrInfo.getIsLock();
 				// 解锁
-				tlrInfo.setIsLock("0");
+				tlrInfo.setIsLock(SystemConstant.FLAG_OFF);
 
 				// 改回原值
 				// tlrInfo.setIsLock(oldIsLock);
 				rootdao.saveOrUpdate(tlrInfo);
-				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-						"用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });
-				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
+				globalInfo.addBizLog(
+						"Updater.log",
+						new String[] { globalInfo.getTlrno(),
+								globalInfo.getBrno(),
+								"用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });
+				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(),
+						globalInfo.getBrno(),
 						"用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });
 
 			} else {
 				String tlrno = (String) context.getAttribute(IN_TLRNO);
 				TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
-				List<TlrBctlRel> bctlRellist = rootdao.queryByQL2List("from TlrBctlRel where tlrNo = '" + tlrno + "'");
-				List<TlrRoleRel> roleRellist = rootdao.queryByQL2List("from TlrRoleRel where tlrno = '" + tlrno + "'");
+				List<TlrBctlRel> bctlRellist = rootdao
+						.queryByQL2List("from TlrBctlRel where tlrNo = '"
+								+ tlrno + "'");
+				List<TlrRoleRel> roleRellist = rootdao
+						.queryByQL2List("from TlrRoleRel where tlrno = '"
+								+ tlrno + "'");
 				// 授权机构
 				RepList<TlrBctlRel> repBctlList = new RepList<TlrBctlRel>();
 				for (TlrBctlRel tlrBctlRel : bctlRellist) {
 					repBctlList.add(tlrBctlRel);
 				}
+
 				// 角色岗位
 				RepList<TlrRoleRel> repRoleList = new RepList<TlrRoleRel>();
 				for (TlrRoleRel tlrRoleRel : roleRellist) {
@@ -496,15 +577,17 @@ public class OperMngOperation extends BaseOperation {
 				// 设置修改中
 				tlrInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
 				String oldIsLock = tlrInfo.getIsLock();
-				tlrInfo.setIsLock("0");
+				tlrInfo.setIsLock(SystemConstant.FLAG_OFF);
 				try {
 					TlrInfoAuditBean tlrInfoAuditBean = new TlrInfoAuditBean();
 					tlrInfoAuditBean.setTlrInfo(tlrInfo);
 					tlrInfoAuditBean.setBctlRellist(repBctlList);
 					tlrInfoAuditBean.setRoleRellist(repRoleList);
 					SysTaskInfo tskInf = ReportTaskUtil.getSysTaskInfoBean(
-							ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
-							tlrInfoAuditBean, tlrInfoAuditBean.getTlrInfo().getTlrno(), tlrInfo.getSt());
+							ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value,
+							ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
+							tlrInfoAuditBean, tlrInfoAuditBean.getTlrInfo()
+									.getTlrno(), tlrInfo.getSt());
 					rootdao.saveOrUpdate(tskInf);
 				} catch (IOException e) {
 					ExceptionUtil.throwCommonException("操作员解锁，双岗复核序列化到数据库出错！");
@@ -513,12 +596,16 @@ public class OperMngOperation extends BaseOperation {
 				// 改回原值
 				tlrInfo.setIsLock(oldIsLock);
 				rootdao.saveOrUpdate(tlrInfo);
-				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-						"用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });
-				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
+				globalInfo.addBizLog(
+						"Updater.log",
+						new String[] { globalInfo.getTlrno(),
+								globalInfo.getBrno(),
+								"用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });
+				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(),
+						globalInfo.getBrno(),
 						"用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });
 			}
-		} else if ("status".equals(context.getAttribute(CMD))) {// 有效/无效 强行签退
+		} else if ("status".equals(context.getAttribute(CMD))) { // 有效/无效 强行签退
 
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
 
@@ -532,7 +619,8 @@ public class OperMngOperation extends BaseOperation {
 				// String oldFlag = tlrInfo.getFlag();
 				// String oldStatus = tlrInfo.getStatus();
 
-				if (SystemConstant.FLAG_ON.equals(status) || SystemConstant.FLAG_OFF.equals(status)) {
+				if (SystemConstant.FLAG_ON.equals(status)
+						|| SystemConstant.FLAG_OFF.equals(status)) {
 					tlrInfo.setFlag(status);
 				} else if ("logout".equals(status)) {
 					tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
@@ -543,24 +631,35 @@ public class OperMngOperation extends BaseOperation {
 				// tlrInfo.setStatus(oldStatus);
 				rootdao.saveOrUpdate(tlrInfo);
 				if ("logout".equals(status)) {
-					globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
+					globalInfo.addBizLog("Updater.log", new String[] {
+							globalInfo.getTlrno(), globalInfo.getBrno(),
 							"用户编号[" + tlrInfo.getTlrno() + "]强行签退操作" });
-					htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-							"用户编号[" + tlrInfo.getTlrno() + "]强行签退操作" });
+					htlog.info(
+							"Updater.log",
+							new String[] { globalInfo.getTlrno(),
+									globalInfo.getBrno(),
+									"用户编号[" + tlrInfo.getTlrno() + "]强行签退操作" });
 				} else {
-					globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
+					globalInfo.addBizLog("Updater.log", new String[] {
+							globalInfo.getTlrno(), globalInfo.getBrno(),
 							"用户编号[" + tlrInfo.getTlrno() + "]有效无效操作" });
-					htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-							"用户编号[" + tlrInfo.getTlrno() + "有效无效操作" });
+					htlog.info(
+							"Updater.log",
+							new String[] { globalInfo.getTlrno(),
+									globalInfo.getBrno(),
+									"用户编号[" + tlrInfo.getTlrno() + "有效无效操作" });
 				}
-
 			} else {
 				String tlrno = (String) context.getAttribute(IN_TLRNO);
 				String status = (String) context.getAttribute(IN_PARAM);
 
 				TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
-				List<TlrBctlRel> bctlRellist = rootdao.queryByQL2List("from TlrBctlRel where tlrNo = '" + tlrno + "'");
-				List<TlrRoleRel> roleRellist = rootdao.queryByQL2List("from TlrRoleRel where tlrno = '" + tlrno + "'");
+				List<TlrBctlRel> bctlRellist = rootdao
+						.queryByQL2List("from TlrBctlRel where tlrNo = '"
+								+ tlrno + "'");
+				List<TlrRoleRel> roleRellist = rootdao
+						.queryByQL2List("from TlrRoleRel where tlrno = '"
+								+ tlrno + "'");
 				// 授权机构
 				RepList<TlrBctlRel> repBctlList = new RepList<TlrBctlRel>();
 				for (TlrBctlRel tlrBctlRel : bctlRellist) {
@@ -577,25 +676,31 @@ public class OperMngOperation extends BaseOperation {
 				String oldFlag = tlrInfo.getFlag();
 				String oldStatus = tlrInfo.getStatus();
 
-				if (SystemConstant.FLAG_ON.equals(status) || SystemConstant.FLAG_OFF.equals(status)) {
+				if (SystemConstant.FLAG_ON.equals(status)
+						|| SystemConstant.FLAG_OFF.equals(status)) {
 					tlrInfo.setFlag(status);
 				} else if ("logout".equals(status)) {
 					tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
 				}
+
 				try {
 					TlrInfoAuditBean tlrInfoAuditBean = new TlrInfoAuditBean();
 					tlrInfoAuditBean.setTlrInfo(tlrInfo);
 					tlrInfoAuditBean.setBctlRellist(repBctlList);
 					tlrInfoAuditBean.setRoleRellist(repRoleList);
 					SysTaskInfo tskInf = ReportTaskUtil.getSysTaskInfoBean(
-							ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
-							tlrInfoAuditBean, tlrInfoAuditBean.getTlrInfo().getTlrno(), tlrInfo.getSt());
+							ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value,
+							ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
+							tlrInfoAuditBean, tlrInfoAuditBean.getTlrInfo()
+									.getTlrno(), tlrInfo.getSt());
 					rootdao.saveOrUpdate(tskInf);
 				} catch (IOException e) {
 					if ("logout".equals(status)) {
-						ExceptionUtil.throwCommonException("操作员强行签退，双岗复核序列化到数据库出错！");
+						ExceptionUtil
+								.throwCommonException("操作员强行签退，双岗复核序列化到数据库出错！");
 					} else {
-						ExceptionUtil.throwCommonException("操作员有效无效，双岗复核序列化到数据库出错！");
+						ExceptionUtil
+								.throwCommonException("操作员有效无效，双岗复核序列化到数据库出错！");
 					}
 					e.printStackTrace();
 				}
@@ -604,15 +709,23 @@ public class OperMngOperation extends BaseOperation {
 				tlrInfo.setStatus(oldStatus);
 				rootdao.saveOrUpdate(tlrInfo);
 				if ("logout".equals(status)) {
-					globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
+					globalInfo.addBizLog("Updater.log", new String[] {
+							globalInfo.getTlrno(), globalInfo.getBrno(),
 							"用户编号[" + tlrInfo.getTlrno() + "]强行签退操作" });
-					htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-							"用户编号[" + tlrInfo.getTlrno() + "]强行签退操作" });
+					htlog.info(
+							"Updater.log",
+							new String[] { globalInfo.getTlrno(),
+									globalInfo.getBrno(),
+									"用户编号[" + tlrInfo.getTlrno() + "]强行签退操作" });
 				} else {
-					globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
+					globalInfo.addBizLog("Updater.log", new String[] {
+							globalInfo.getTlrno(), globalInfo.getBrno(),
 							"用户编号[" + tlrInfo.getTlrno() + "]有效无效操作" });
-					htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(),
-							"用户编号[" + tlrInfo.getTlrno() + "有效无效操作" });
+					htlog.info(
+							"Updater.log",
+							new String[] { globalInfo.getTlrno(),
+									globalInfo.getBrno(),
+									"用户编号[" + tlrInfo.getTlrno() + "有效无效操作" });
 				}
 			}
 		}
@@ -620,7 +733,7 @@ public class OperMngOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng
 	 * .ebank.framework.operation.OperationContext)
