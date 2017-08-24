@@ -38,7 +38,6 @@ public class OperMngModUpdate extends BaseUpdate {
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("operMngMod");
-			System.out.println("hello world");
 			TlrInfo operator = null;
 			while (updateResultBean.hasNext()) {
 				operator = new TlrInfo();
@@ -84,8 +83,8 @@ public class OperMngModUpdate extends BaseUpdate {
 			oc.setAttribute(OperMngOperation.IN_BCTLLIST, bctls);
 			oc.setAttribute(OperMngOperation.IN_TLRLLIST, tlrmng);
 			oc.setAttribute(OperMngOperation.IN_TLRINFO, operator);
+			
 			OPCaller.call(OperMngOperation.ID, oc);
-
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;

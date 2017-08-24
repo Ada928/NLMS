@@ -56,7 +56,7 @@
 
         <Field id="blnUpBrcode" desc="上级机构" status="F" primary="false" method="None" readonly="false" type="String"
             size="20" default="" edittype="select" translated="CQ:AllBranchSelect" fieldmap="blnUpBrcode=brcode;blnUpBrcodeName=brcodeTypeName"
-            viewField="brcodeTypeName" xpath="/blnUpBrcode" require="true" tip="上级机构" />
+            viewField="brcodeTypeName" xpath="/blnUpBrcode" require="false" tip="上级机构" />
 
         <Field id="blnUpBrcodeName" desc="上级机构" status="F"
             method="com.huateng.ebank.business.common.CQMethod.getBrhNameByBrno" width="" readonly="" primary="true"

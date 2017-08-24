@@ -28,6 +28,7 @@ public class AllBranchSelect extends BaseGetter {
 			}
 			queryCondition.setPageSize(page.getEveryPage());
 			queryCondition.setPageIndex(page.getCurrentPage());
+			
 			PageQueryResult pageResult = DAOUtils.getHQLDAO().pageQueryByQL(queryCondition);
 
 			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),

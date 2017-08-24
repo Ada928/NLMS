@@ -5,18 +5,22 @@ import java.util.Iterator;
 import java.util.List;
 
 import resource.bean.pub.RoleInfo;
+import resource.bean.pub.TlrInfo;
 import resource.bean.pub.TlrRoleRel;
 
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
+import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryResult;
+import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.business.management.common.DAOUtils;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import com.huateng.service.pub.UserMgrService;
 import com.huateng.view.pub.TlrRoleRelationView;
 
 /**
@@ -54,11 +58,21 @@ public class OperMngRoleInfoGetter extends BaseGetter {
 		String op = (String) getCommQueryServletRequest().getParameterMap()
 				.get("op");
 		List roleList = null;
+		String hql = "1=1";
+		
+		//判断是否是超级管理员，不是则过滤超管信息
+		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
+		TlrInfo tlrInfo = UserMgrService.getInstance().getUserInfo(globalInfo.getTlrno());
+		String type = tlrInfo.getTlrType();
+		if (!type.equals(SystemConstant.TLR_NO_TYPE_SUPER_MANAGE)) {
+			hql += " and po.roleType <> 0 " ;
+		}
+		
 		if (op.equals("modify")) {
-			roleList = DAOUtils.getRoleInfoDAO().queryByCondition(" 1=1 ");
+			roleList = DAOUtils.getRoleInfoDAO().queryByCondition(hql);
 		} else {
 			roleList = DAOUtils.getRoleInfoDAO()
-					.queryByCondition(" po.st ='4'");
+					.queryByCondition(hql + " and po.st ='4'");
 		}
 
 		List urrlist = DAOUtils.getTlrRoleRelDAO().queryByCondition(
@@ -69,6 +83,7 @@ public class OperMngRoleInfoGetter extends BaseGetter {
 			roleStr += rr.getRoleId() + "|";
 		}
 		List tlrRoleViewList = new ArrayList();
+		
 		// 对以有的操作员岗位在岗位列表中显示
 		for (int i = 0; i < roleList.size(); i++) {
 			RoleInfo roleInfo = (RoleInfo) roleList.get(i);

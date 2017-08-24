@@ -691,6 +691,7 @@ public class UserMgrService {
 			// Iterator it = roleFuncList.iterator();
 			sessionInfo.setTlrNo(tlrinfo.getTlrno().trim());
 			sessionInfo.setTlrName(DataFormat.trim(tlrinfo.getTlrName()));
+			sessionInfo.setTlrType(tlrinfo.getTlrType().trim());
 			sessionInfo.setBrCode(DataFormat.trim(tlrinfo.getBrcode()));
 
 			sessionInfo.setBrNo(DataFormat.trim(tlrinfo.getBrno()));

@@ -30,6 +30,7 @@ import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.business.common.service.CommonService;
+import com.huateng.ebank.business.common.service.TmpFileFTPCallback;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
@@ -180,21 +181,10 @@ public class OperMngOperation extends BaseOperation {
 
 	private void addTlrInfo(TlrInfo tlrInfo, GlobalInfo globalInfo,
 			TlrInfoDAO tlrInfoDAO) throws CommonException {
-
-		TlrInfo info = UserMgrService.getInstance().getUserInfo(globalInfo.getTlrno());
-		if (null != tlrInfo.getBrcode() && info.getTlrType().equals(SystemConstant.TLR_NO_TYPE_SUPER_MANAGE)) {
-			Bctl bctl = DAOUtils.getBctlDAO().queryById(tlrInfo.getBrcode());
-			tlrInfo.setTlrno(bctl.getBrno() + "01");
-		} else {
-			Iterator it = DAOUtils.getHQLDAO().queryByQL(
-					"select max(tlrno) from TlrInfo where tlrno like '%"
-							+ globalInfo.getBrno() + "%'");
-			if (it.hasNext()) {
-				String num = (String) it.next();
-				tlrInfo.setTlrno(String.valueOf(Integer.valueOf(num) + 1));
-			} 
+		TlrInfo tmpInfo = tlrInfoDAO.query(tlrInfo.getTlrno());
+		if (tmpInfo != null) {
+			ExceptionUtil.throwCommonException("操作员已经存在！");
 		}
-
 		tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
 		// 设置有效标志
 		tlrInfo.setFlag(SystemConstant.FLAG_ON);

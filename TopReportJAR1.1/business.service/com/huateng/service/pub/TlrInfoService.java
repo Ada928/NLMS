@@ -452,6 +452,23 @@ public class TlrInfoService {
 		return tlrInfo.getTlrno();
 	}
 
+	
+	/**
+	 *
+	 * Description: 获得外部操作员类型
+	 *
+	 * @param
+	 * @return String
+	 * @exception @author
+	 *                hyurain_yang
+	 * @version v1.0,2008-8-18
+	 */
+	public String getTlrType(String tlrno) throws CommonException {
+		TlrInfoDAO tlrInfoDAO = BaseDAOUtils.getTlrInfoDAO();
+		TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
+		return tlrInfo.getTlrType();
+	}
+	
 	/**
 	 * Description: 判断操作员是否已经登录,判断操作员登录的Session Id是否一致
 	 *

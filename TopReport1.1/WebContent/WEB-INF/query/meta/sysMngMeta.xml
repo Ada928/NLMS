@@ -11,6 +11,8 @@
 
     <!-- 得到所有机构的下拉选项 -->
     <Query id="AllBranchSelect" path="/fpages/management/dropdownxml/AllBranchSelect.xml" />
+    <!-- 得到成员类型下拉选项 -->
+    <Query id="TlrTypeSelect" path="/fpages/management/dropdownxml/TlrTypeSelect.xml" />
     <!-- 得到总行和所有分行的下拉选项 -->
     <Query id="HeadBranch" path="/fpages/management/dropdownxml/HeadBranch.xml" />
     <!-- 得到所有下属个贷中心 -->

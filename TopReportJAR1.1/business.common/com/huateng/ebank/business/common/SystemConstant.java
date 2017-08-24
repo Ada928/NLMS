@@ -841,6 +841,7 @@ public class SystemConstant {
 	 */
 	public static final String BLACK_TYPE_NATURAL = "1"; // 1个人客户
 	public static final String BLACK_TYPE_ARTIFICIAL = "2"; // 2法人客户
+	
 	/**
 	 * 黑名单关注级别
 	 */
@@ -1893,8 +1894,19 @@ public class SystemConstant {
 
 	public static final String TLR_NO_STATE_LOGIN = "1"; // 签到
 
-	public static final String TLR_NO_STATE_QUIT = "2"; // 离职
+	//public static final String TLR_NO_STATE_QUIT = "2"; // 离职
 
+	/**
+	 * add by NT 2017-08-24 来源于名单管理
+	 */
+	public static final String TLR_NO_TYPE_SUPER_MANAGE = "0"; // 超级管理员
+
+	public static final String TLR_NO_TYPE_MANAGE = "1"; // 普通管理员
+	
+	public static final String TLR_NO_TYPE_NORMAL_USER = "2"; // 普通用户
+	
+	public static final String [] TLR_NO_TYPE_NAME= {"超级管理员", "普通管理员", "普通用户"};
+	
 	/**
 	 * add by NT 2007-09-20 来源于交行个贷 岗位信息，需要更改。
 	 */
@@ -2267,7 +2279,7 @@ public class SystemConstant {
 	/**
 	 * modify by shen_antonio 20080327 增加操作员休假标志 3
 	 */
-	public static final String TLR_NO_STATE_LVDAY = "3";// 休假
+	//public static final String TLR_NO_STATE_LVDAY = "3";// 休假
 	/**
 	 * modify by shen_antonio 20080328 for TaskAssignService 工作类型、工作分配描述
 	 */
@@ -3020,9 +3032,9 @@ public class SystemConstant {
 
 	public static final String TLR_NO_STATE_NORMAL = "1"; // 有效
 
-	// public static final String TLR_NO_STATE_QUIT = "2"; // 离职
+	public static final String TLR_NO_STATE_QUIT = "2"; // 离职
 
-	// public static final String TLR_NO_STATE_LVDAY = "3";// 休假
+	public static final String TLR_NO_STATE_LVDAY = "3";// 休假
 
 	public static final String TLR_NO_STATE_UNUSE = "4"; // 暂停使用
 

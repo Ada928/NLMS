@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-
+<#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="操作员管理">
 <@CommonQueryMacro.CommonQuery id="operMngEntry" init="false" submitMode="current">
 <table width="90%">
@@ -15,7 +15,9 @@
 	 </tr>
 	 <tr>
 		 <td colspan="2">
-			<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="-,btAdd,-,btStatus,-,btLoginStatus,-,unLock" fieldStr="tlrno[60],tlrName[100],flag[55],status[55],isLock[55],brname,lastaccesstm[150],lastlogouttm[150],st[70],opr[85]"  readonly="true" width="100%" hasFrame="true" height="280" />
+			<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="-,btAdd,-,btStatus,-,btLoginStatus,-,unLock" 
+				fieldStr="tlrno[60],tlrName[100],flag[55],status[55],isLock[55],brname,lastaccesstm[150],lastlogouttm[150],st[70],opr[85]" 
+				readonly="true" width="100%" hasFrame="true" height="280" />
 		 </td>
 	 </tr>
 	 <tr align="center">
@@ -32,7 +34,8 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
-    var currentTlrno = "${statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstanceWithoutException().getTlrno()}";
+    var currentTlrno = "${info.tlrNo}";
+    var type = "${info.tlrType}";
     //定位一条记录
     function locate(id) {
         var record = operMngEntry_dataset.find(["tlrno"], [id]);
@@ -44,20 +47,59 @@
     function datatable1_opr_onRefresh(cell, value, record) {
         if (record && record != null) {
             var id = record.getValue("tlrno");
-            var branchId = record.getValue("tlrno");
+            var branchId = record.getValue("brno");
             var st = record.getValue("st");
             var innerStr = "<PRE>";
-            if (st == "1" || st == "2" || st == "3") {
+            //if (st == "1" || st == "2" || st == "3") {
+            if (type == "1" || type == "2" || type == "3") {
                 innerStr = innerStr + "<a style=\"color:#666666\" title=\"记录已锁定，不能操作\">修改</a> " +
-                    " <a style=\"color:#666666\" title=\"记录已锁定，不能操作\">密码重置</a>" + "</PRE>";
+                    " <a style=\"color:#666666\" title=\"记录已锁定，不能操作\">密码重置</a>" + "<a style=\"color:#666666\" title=\"记录已锁定，不能操作\">删除</a>" + "</PRE>";
             } else {
                 innerStr = innerStr + " <a href=\"JavaScript:btModifyShow('" + id + "')\">修改</a>" +
-                    " <a href=\"JavaScript:resetPwd('" + id + "')\">密码重置</a>" + "</PRE>";
+                    " <a href=\"JavaScript:resetPwd('" + id + "')\">密码重置</a>" + " <a href=\"JavaScript:doDel('" + id + "')\">删除</a>" + "</PRE>";
             }
             cell.innerHTML = innerStr;
         } else {
             cell.innerHTML = "";
         }
+    }
+    
+    function btModifyShow(tlrno) {
+        window.location.href = "${contextPath}/fpages/regonization/ftl/OperMngRoleInfo.ftl?op=modify&tlrno=" + tlrno;
+    }
+    
+    function resetPwd(tlrno) {
+        if (tlrno == currentTlrno) {
+            alert("不能重置自己的密码");
+        } else {
+            if (!confirm("确认要重置该操作员吗?")) {
+                return;
+            }
+            locate(tlrno);
+            btResetPwd.click();
+        }
+    }
+
+    function btResetPwd_postSubmit(button) {
+        var retParam = button.returnParam;
+        alert("密码重置成功,初始化为" + retParam.DefaultPWD);
+        flushCurrentPage();
+    }
+    
+    function doDel(id) {
+        locate(id);
+        btDel.click();
+    }
+
+    function btDel_onClickCheck(button) {
+        return confirm("确认删除该条记录？");
+    }
+    
+    function btDel_postSubmit(button) {
+        alert("删除记录成功");
+        button.url = "#";
+        //刷新当前页
+        flushCurrentPage();
     }
 
     function btStatus_onClickCheck(button) {
@@ -81,7 +123,7 @@
     
     function btStatus_postSubmit(button) {
         alert("设置成功");
-        operMngEntry_dataset.flushData(operMngEntry_dataset.pageIndex);
+        flushCurrentPage();
     }
 
     function btLoginStatus_onClickCheck(button) {
@@ -95,7 +137,7 @@
     
     function btLoginStatus_postSubmit(button) {
         alert("签退成功");
-        operMngEntry_dataset.flushData(operMngEntry_dataset.pageIndex);
+        flushCurrentPage();
     }
 
     function operMngEntry_dataset_dataset_afterScroll(dataset) {
@@ -103,8 +145,8 @@
     }
 
     //新增
-    function btAdd_onClick() {
-        window.location.href = "${contextPath}/fpages/regonization/ftl/OperMngRoleInfo.ftl?op=new";
+    function btAdd_onClick(buttton) {
+        window.location.href = "${contextPath}/fpages/regonization/ftl/OperMngRoleInfo.ftl?op=new&type=" + type;
     }
 
     //刷新数据
@@ -113,12 +155,8 @@
     }
 
     function winZone_onCloseCheck() {
-        operMngEntry_dataset.flushData(operMngEntry_dataset.pageIndex);
+        flushCurrentPage();
         return true;
-    }
-
-    function btModifyShow(tlrno) {
-        window.location.href = "${contextPath}/fpages/regonization/ftl/OperMngRoleInfo.ftl?op=modify&tlrno=" + tlrno;
     }
 
     function btAuthShow(tlrno) {
@@ -129,33 +167,15 @@
         loadPageWindows("userWin", "角色设定", "/fpages/regonization/ftl/OperMngRoleInfo.ftl", paramMap, "winZone");
     }
 
-    function resetPwd(tlrno) {
-        if (tlrno == currentTlrno) {
-            alert("不能重置自己的密码");
-        } else {
-            if (!confirm("确认要重置该操作员吗?")) {
-                return;
-            }
-            locate(tlrno);
-            btResetPwd.click();
-        }
-    }
-
-    function btResetPwd_postSubmit(button) {
-        var retParam = button.returnParam;
-        alert("密码重置成功,初始化为" + retParam.DefaultPWD);
-        operMngEntry_dataset.flushData(operMngEntry_dataset.pageIndex);
-    }
-
+    
     function unLock_onClickCheck(button) {
         operMngEntry_dataset.setParameter("tlrno", operMngEntry_dataset.getValue("tlrno"));
     }
     
     function unLock_postSubmit(button) {
         alert("解锁成功！");
-        operMngEntry_dataset.flushData(operMngEntry_dataset.pageIndex);
+        flushCurrentPage();
     }
-
 
     function operMngEntry_dataset_afterScroll(dataset) {
         unLock.disable(dataset.getValue("isLock") != '1');
@@ -187,6 +207,11 @@
 
     function showDetail(tlrno, sta) {
         showWin("用户详细信息", "${contextPath}/fpages/regonization/ftl/OperMngRoleCompare.ftl?id=" + tlrno + "&st=" + sta + "&flag=0", "", "", window);
+    }
+
+    //刷新当前页
+    function flushCurrentPage() {
+    	operMngEntry_dataset.flushData(operMngEntry_dataset.pageIndex);
     }
 </script>
 </@CommonQueryMacro.page>

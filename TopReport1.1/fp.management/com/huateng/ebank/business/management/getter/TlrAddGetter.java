@@ -44,14 +44,14 @@ public class TlrAddGetter extends BaseGetter {
 	protected PageQueryResult getData() throws Exception {
 		String brcode = getValueFromDataBus("brcode");
 		String extTlrno = getValueFromDataBus("extTlrno");
-		;
 		String departmentCode = getValueFromDataBus("departmentCode");
-		;
+
 		OperationContext oc = new OperationContext();
 		oc.setAttribute(TlrInfoExOperation.CMD, "SELECT_TLR_ADD");
 		oc.setAttribute("brcode", brcode);
 		oc.setAttribute("extTlrno", extTlrno);
 		oc.setAttribute("departmentCode", departmentCode);
+		
 		OPCaller.call(TlrInfoExOperation.ID, oc);
 		List tlrInfoList = (List) oc.getAttribute(TlrInfoExOperation.OUT_TLR_JUDGE_LIST);
 		PageQueryResult pageQueryResult = new PageQueryResult();

@@ -1,7 +1,8 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign op=RequestParameters["op"]?default("")>
+<#assign type=RequestParameters['type']?default('')>
 <@CommonQueryMacro.page title="操作员角色管理">
-	<table align="left" width="700">
+	<table align="left" width="90%">
 		<tr align="center">
 			<td width="100%">
 				<@CommonQueryMacro.CommonQuery id="operMngMod" init="true" navigate="false" submitMode="all" >
@@ -12,6 +13,10 @@
 							<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrno"/></td>
 							<td align="center" nowrap class="labeltd"  width="25%"> 操作员名称 </td>
 							<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrName" /></td>
+						</tr>
+						<tr>
+							<td align="center" nowrap class="labeltd" width="25%"> 操作员类型 </td>
+							<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrType"/></td>
 						</tr>
 					   </table>
 				   </@CommonQueryMacro.GroupBox>
@@ -64,44 +69,13 @@
 	            <@CommonQueryMacro.Button id= "btCancel" />
 	      	</td>
 		</tr>
-		<!--
-		<tr id ="show" style="display:none">
-		
-			<td>
-				<@CommonQueryMacro.CommonQuery id="TlrManageRelMng" init="true" submitMode="selected" navigate="false">
-					<@CommonQueryMacro.GroupBox id="guoup1" label="请选择下属的销售人员" expand="true">
-						<table frame=void width="100%">
-					      	<tr>
-					      		<td valign="top">
-									<@CommonQueryMacro.DataTable id ="datatable1" fieldStr="select[60],tlrno[160],tlrName" width="100%" readonly="false"/>
-								</td>
-						 	</tr>
-						<tr align="left">
-		  				 <td>
-		  				  </br>
-	      					<@CommonQueryMacro.Button id= "btRoleSave1" />
-	      					&nbsp;&nbsp;
-	                        <@CommonQueryMacro.Button id= "btCancel1" />
-	      				</td>
-			    	</tr>
-						 </table>
-					 </@CommonQueryMacro.GroupBox>
-				</@CommonQueryMacro.CommonQuery>
-			</td>
-		</tr>
-	    -->
 </table>
 <script language="javascript">
-	
-	//var op = "${op}";
-
-	var op = "${RequestParameters['op']?default('')}";
-
+	var op = "${op}";
+	var type = "${type}";
 	function initCallGetter_post(dataset) {
-		if (op == "new") {
-			operMngMod_dataset.setFieldReadOnly("tlrno", false);
-		} else {
-			operMngMod_dataset.setFieldReadOnly("tlrno", true);
+		if (type == "1" || type == "2" || type == "3") {
+			operMngMod_dataset.setFieldReadOnly("brcode", true);
 		}
 		operMngMod_dataset.setParameter("op", op);
 	}
@@ -109,8 +83,13 @@
 	function btRoleSave_onClickCheck() {
 		var tlrno = operMngMod_dataset.getValue("tlrno");
 		var tlrName = operMngMod_dataset.getValue("tlrName");
-		if (tlrno.length == 0 || tlrName.length == 0) {
-			alert("操作员号和操作员名称必须填写！");
+		var type =  operMngMod_dataset.getValue("tlrType");
+		if (tlrno.length == 0 || tlrName.length == 0 || type.length == 0) {
+			alert("操作员号码, 操作员, 操作员类型名称和银行代码必须填写！");
+			return false;
+		} 
+		if(tlrno.length < 8){
+			alert("操作员号的长度必须大于8位！");
 			return false;
 		}
 		

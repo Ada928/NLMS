@@ -30,6 +30,7 @@ public class UserSessionInfo extends BaseVoObject {
 	private Date txDate;
 	private String tlrNo = ""; // 柜员号
 	private String tlrName = ""; // 柜员名称
+	private String tlrType = ""; // 柜员类型
 	private String brCode = ""; // 机构号
 	private String brNo = "";// 外部机构号
 	private String organCode = ""; // 企业组织机构号
@@ -240,6 +241,14 @@ public class UserSessionInfo extends BaseVoObject {
 	public void setTlrNo(String string) {
 		tlrNo = string;
 	}
+	
+	public String getTlrType() {
+		return tlrType;
+	}
+
+	public void setTlrType(String tlrType) {
+		this.tlrType = tlrType;
+	}
 
 	@Override
 	public String toString() {
@@ -248,6 +257,8 @@ public class UserSessionInfo extends BaseVoObject {
 		sb.append(this.tlrNo);
 		sb.append(", tlrName=");
 		sb.append(this.tlrName);
+		sb.append(", tlrType=");
+		sb.append(this.tlrType);
 		sb.append(", brCode=");
 		sb.append(this.brCode);
 		sb.append(", organCode=");

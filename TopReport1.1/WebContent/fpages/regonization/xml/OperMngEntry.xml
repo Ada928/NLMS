@@ -14,7 +14,7 @@
         <Field id="brno" desc="机构号" status="N" method="None" readonly="" primary="true" type="String" size="20"
             default="" xpath="/brno" />
 
-        <Field id="brname" desc="最近操作机构" status="N" method="com.huateng.ebank.business.common.CQMethod.getBrhName"
+        <Field id="brname" desc="所属机构" status="N" method="com.huateng.ebank.business.common.CQMethod.getBrhName"
             readonly="" primary="true" type="String" size="20" default="" xpath="/brcode" />
 
         <Field id="tlrno" desc="操作员号" status="F" method="None" readonly="" primary="true" type="String" size="20"
@@ -22,10 +22,19 @@
 
         <Field id="tlrName" desc="操作员名称" status="F" method="None" width="50" readonly="" primary="true" type="String"
             size="20" xpath="/tlrName" default="" />
+            
+        <!-- <Field id="tlrType" desc="操作员类型" status="N" readonly="true" translated="DATA_DIC.37" edittype="select"
+            width="90" method="None" primary="true" type="String" size="20" xpath="/tlrType" />
+ -->
+        <Field id="tlrType" desc="操作员类型" status="F" primary="false" method="None" readonly="false" type="String"
+            size="20" edittype="select" translated="CQ:TlrTypeSelect" fieldmap="tlrType=tlrType;tlrTypeName=tlrTypeName"
+            viewField="tlrTypeName" default="" xpath="/tlrType" require="false" tip="操作员类型" />    
+            
+        <Field id="tlrTypeName" desc="操作员类型" status="F" method="com.huateng.ebank.business.common.CQMethod.getTlrType" 
+               width="" readonly="" primary="true" type="String" size="50" xpath="/tlrType" default="" />
 
         <Field id="status" desc="登陆状态" status="N" readonly="true" translated="DATA_DIC.37" edittype="select"
             width="90" method="None" primary="true" type="String" size="20" xpath="/status" />
-
 
         <Field id="flag" desc="有效状态" status="F" readonly="true" translated="LIST:1,有效;0,无效" require="true"
             edittype="select" width="90" method="None" primary="true" type="String" size="20" xpath="/flag" default="" />
@@ -50,6 +59,7 @@
 
         <Field id="misc" desc="所属部门" require="" status="N" method="None" width="" primary="false" type="String"
             size="20" xpath="/misc" default="" />
+            
         <Field id="defRoleid" desc="默认岗位" require="" status="N" readonly="false" edittype="select" fieldmap=""
             method="None" translated="DATA_DIC.100" width="90" viewField="" primary="false" type="String" size="10"
             xpath="/roleid" tip="请先选择操作员岗位" />

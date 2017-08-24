@@ -9,12 +9,30 @@
         <!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
         <!-- primary : true-作为表单项记录上传 false-不作为表单项上传 -->
 
-        <Field id="tlrno" desc="操作员号" status="N" require="true" rules="isTlrno" errmsg="错误的操作员号" primary="true"
+        <Field id="tlrno" desc="操作员号" status="N" require="true" rules="isTlrno" readonly="false" errmsg="错误的操作员号" primary="true"
             type="String" size="10" xpath="/tlrno" edittyep="text" />
 
         <Field id="tlrName" desc="操作员名称" status="N" require="true" readonly="" primary="true" type="String" size="30"
             xpath="/tlrName" />
+           
+        <!-- <Field id="tlrType" desc="操作员类型" status="N" readonly="" translated="DATA_DIC.37" edittype="select"
+            width="90" method="None" primary="true" type="String" size="50" xpath="/tlrType" /> -->
+            
+        <Field id="tlrType" desc="操作员类型" status="F" primary="false" method="None" readonly="false" type="String"
+            size="50" edittype="select" translated="CQ:TlrTypeSelect" fieldmap="tlrType=tlrType;tlrTypeName=tlrTypeName"
+            viewField="tlrTypeName" default="" xpath="/tlrType" require="false" tip="操作员类型" />  
+            
+         <Field id="tlrTypeName" desc="操作员类型" status="F" method="com.huateng.ebank.business.common.CQMethod.getTlrType" 
+               width="" readonly="" primary="true" type="String" size="50" xpath="/tlrType" default="" />
+            
+        <Field id="brcode" desc="银行代码" status="F" primary="false" method="None" readonly="false" type="String"
+            size="50" default="" edittype="select" translated="CQ:AllBranchSelect" fieldmap="brcode=brcode;brcodeName=brcodeTypeName"
+            viewField="brcodeTypeName" xpath="/brcode" require="false" tip="银行代码" />
 
+        <Field id="brcodeName" desc="银行代码" status="F"
+            method="com.huateng.ebank.business.common.CQMethod.getBrhNameByBrno" width="" readonly="" primary="true"
+            type="String" size="150" xpath="/brcode" default="" />
+            
         <Field id="status" desc="状态" status="N" readonly="" translated="DATA_DIC.37" require="" edittype="select"
             width="" method="None" primary="true" type="String" size="20" xpath="/status" default="" />
 
