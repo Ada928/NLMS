@@ -1,20 +1,17 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
+
 <@CommonQueryMacro.page title="机构信息维护">
-<table width="100%" align="left">
-<tr>
-<td>
 <@CommonQueryMacro.CommonQuery id="Management_branchManage" init="true" submitMode="current">
-	<table width="100%">
+	<table width="100%" align="left">
 		<tr>
    			<td valign="top" colspan="2">
    				<@CommonQueryMacro.Interface id="intface" label="机构查询" colNm=4 showButton="true" />
         	</td>
         </tr>
 		<tr>
-   			<td>
+   			<td valign="top">
    				<@CommonQueryMacro.PagePilot id="PagePilot"/>
    			</td>
-  			
   		</tr>
   		<tr>
       		<td colspan="2">
@@ -24,23 +21,27 @@
         </tr>
         <tr>
       		<td colspan="2">
-      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="50%" resize="true" 
-      			defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
-      			<div align="center">
-      				<@CommonQueryMacro.Group id="group1" label="机构信息维护"
-        			  fieldStr="brno,brname,address,postno,teleno,brclass,blnUpBrcode,blnManageBrcode,brattr,otherAreaFlag" colNm=4/>
-        			 </br>
-      				<@CommonQueryMacro.Button id= "btSave"/>
-      			</div>
-     		 </@CommonQueryMacro.FloatWindow>
-        			
+	      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="50%" resize="true" 
+	      			defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
+	      			<div align="center">
+	      				<@CommonQueryMacro.Group id="group1" label="机构信息维护"
+	        			  fieldStr="brno,brname,address,postno,teleno,brclass,blnUpBrcode,blnManageBrcode,brattr,otherAreaFlag" colNm=4/>
+	        			 </br>
+	      				<@CommonQueryMacro.Button id="btSave"/>
+	      			</div>
+	     		 </@CommonQueryMacro.FloatWindow>
   			</td>
   		</tr>
+  		<tr align="center">
+		<td>
+			<div style="display:none">
+				<@CommonQueryMacro.Button id= "btDel" />
+			 </div>
+		</td>
+	</tr>
    </table>
 </@CommonQueryMacro.CommonQuery>
-</td>
-</tr>
-</table>
+
 <script language="javascript">
 	//定位一条记录
 	function locate(id) {
@@ -57,13 +58,29 @@
 			if (isTrue(lock)) {
 				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">修改</a></center>";
 			} else {
-				cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('"
-						+ id + "')\">修改</a></center>";
+				cell.innerHTML = "<a href=\"JavaScript:openModifyWindow('"
+						+ id + "')\">修改</a>" + " <a href=\"JavaScript:doDel('" + id + "')\">删除</a>";
 			}
 		} else {//当不存在记录时
 			cell.innerHTML = "&nbsp;";
 		}
 	}
+	
+	function doDel(id) {
+        locate(id);
+        btDel.click();
+    }
+
+    function btDel_onClickCheck(button) {
+        return confirm("确认删除该条记录？");
+    }
+    
+    function btDel_postSubmit(button) {
+        alert("删除记录成功");
+        button.url = "#";
+        //刷新当前页
+        flushCurrentPage();
+    }
 
 	function openModifyWindow(id) {
 		locate(id);

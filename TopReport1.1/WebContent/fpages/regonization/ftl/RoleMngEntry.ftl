@@ -81,7 +81,7 @@
 
 	function btStatus_postSubmit(button) {
 		alert("设置成功");
-		ebankCustRoleMng_dataset.flushData(ebankCustRoleMng_dataset.pageIndex);
+		flushCurrentPage();
 	}
 
 	function datatable1_opr_onRefresh(cell, value, record) {
@@ -96,11 +96,28 @@
 				innerText = "<center><a href=\"JavaScript:rolePrivShow(" + id + ")\">角色权限设置</a> "
 			}
 			
-			cell.innerHTML = innerText + " <a href=\"JavaScript:btRoleUserShow(" + id + ")\">查看人员</a></center>";
+			innerText = innerText + " <a href=\"JavaScript:btRoleUserShow(" + id + ")\">查看人员</a>";
+			cell.innerHTML = innerText + " <a href=\"JavaScript:doDel('" + id + "')\">删除</a></center>";
 		} else {
 			cell.innerHTML = "";
 		}
 	}
+	
+	function doDel(id) {
+        locate(id);
+        btDeleteRole.click();
+    }
+
+    function btDeleteRole_onClickCheck(button) {
+        return confirm("确认删除该条记录？");
+    }
+    
+    function btDeleteRole_postSubmit(button) {
+        alert("删除记录成功");
+        button.url = "#";
+        //刷新当前页
+        flushCurrentPage();
+    }
 	
 	function rolePrivShow(id) {
 		locate(id);
@@ -181,6 +198,11 @@
 		} else {
 			btStatus.disable(false);
 		}
+	}
+	
+	//刷新当前页
+	function flushCurrentPage() {
+		ebankCustRoleMng_dataset.flushData(ebankCustRoleMng_dataset.pageIndex);
 	}
 </script>
 </@CommonQueryMacro.page>

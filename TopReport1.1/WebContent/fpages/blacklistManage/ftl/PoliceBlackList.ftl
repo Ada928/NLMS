@@ -1,7 +1,8 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
+<#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="公安部黑名单管理">
-<@CommonQueryMacro.CommonQuery id="PoliceBlackList" init="false" submitMode="current"  navigate="false">
+<@CommonQueryMacro.CommonQuery id="PoliceBlackList" init="true" submitMode="current"  navigate="false">
 <table align="center" width="100%">
    	<tr>
       	<td colspan="2" >
@@ -40,6 +41,8 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="JavaScript">
+	var currentTlrno = "${info.tlrNo}";
+	var type = "${info.tlrType}";
     //定位一行记录
     function locate(id) {
         var record = PoliceBlackList_dataset.find(["id"], [id]);
@@ -53,11 +56,11 @@
         if (record) {
             //var lock = record.getValue("lock");
             var id = record.getValue("id");
-            //if(false){
-            //	cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key="删除" /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key="删除" /></a></center>";
-            //} else {
-            cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('" + id + "')\"><@bean.message key='修改'/></a> &nbsp; <a href=\"JavaScript:doDel('" + id + "')\"><@bean.message key='删除'/></a>";
-            //}
+            if(type == "1" || type == "2" || type == "3"){
+            	cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key='修改' /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key='删除' /></a></center>";
+            } else {
+            	cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('" + id + "')\"><@bean.message key='修改'/></a> &nbsp; <a href=\"JavaScript:doDel('" + id + "')\"><@bean.message key='删除'/></a>";
+            }
         } else {
             cell.innerHTML = "";
         }

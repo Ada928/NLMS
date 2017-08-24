@@ -1,36 +1,36 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="操作员管理">
-<@CommonQueryMacro.CommonQuery id="operMngEntry" init="false" submitMode="current">
-<table width="90%">
-	<tr valign="center">
-		<td valign="top" colspan="2">
-			<@CommonQueryMacro.Interface id="intface" label="请输入查询条件" colNm=6 />
-		</td>
-	</tr>
-  	<tr>
-  		<td valign="top">
-			<@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9" showArrow="true" />
-		</td>
-	 </tr>
-	 <tr>
-		 <td colspan="2">
-			<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="-,btAdd,-,btStatus,-,btLoginStatus,-,unLock" 
-				fieldStr="tlrno[60],tlrName[100],flag[55],status[55],isLock[55],brname,lastaccesstm[150],lastlogouttm[150],st[70],opr[85]" 
-				readonly="true" width="100%" hasFrame="true" height="280" />
-		 </td>
-	 </tr>
-	 <tr align="center">
-		<td>
-			<div style="display:none">
-				<@CommonQueryMacro.Button id= "btDel" />
-				<@CommonQueryMacro.Button id= "btModify"/>
-				<@CommonQueryMacro.Button id= "btAuth"/>
-				<@CommonQueryMacro.Button id= "btResetPwd"/>
-			 </div>
-		</td>
-	</tr>
-</table>
+<@CommonQueryMacro.CommonQuery id="operMngEntry" init="true" submitMode="current">
+	<table width="100%" align="left">
+		<tr valign="center">
+			<td valign="top" colspan="2">
+				<@CommonQueryMacro.Interface id="intface" label="请输入查询条件" colNm=6 />
+			</td>
+		</tr>
+	  	<tr>
+	  		<td valign="top">
+				<@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9" showArrow="true" />
+			</td>
+		 </tr>
+		 <tr>
+			 <td colspan="2">
+				<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="-,btAdd,-,btStatus,-,btLoginStatus,-,unLock" 
+					fieldStr="tlrno[60],tlrName[100],flag[55],status[55],isLock[55],brname,lastaccesstm[150],lastlogouttm[150],st[70],opr[85]" 
+					readonly="true" width="100%" hasFrame="true" height="280" />
+			 </td>
+		 </tr>
+		 <tr align="center">
+			<td>
+				<div style="display:none">
+					<@CommonQueryMacro.Button id= "btDel" />
+					<@CommonQueryMacro.Button id= "btModify"/>
+					<@CommonQueryMacro.Button id= "btAuth"/>
+					<@CommonQueryMacro.Button id= "btResetPwd"/>
+				 </div>
+			</td>
+		</tr>
+	</table>
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
