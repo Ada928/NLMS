@@ -31,6 +31,7 @@ import com.huateng.report.utils.ReportEnum;
 
 public class BranchManageUpdateOperation extends BaseOperation {
 	private static final HtLog htlog = HtLogFactory.getLogger(BranchManageUpdateOperation.class);
+	public static final String ID = "Management.BranchManageUpdateOperation";
 	public static final String INSERT_LIST = "INSERT_LIST";
 	public static final String UPDATE_LIST = "UPDATE_LIST";
 	public static final String DEL_LIST = "DEL_LIST";
@@ -46,12 +47,13 @@ public class BranchManageUpdateOperation extends BaseOperation {
 		List delList = (List) context.getAttribute(DEL_LIST);
 		// BctlService bctlService = BctlService.getInstance();
 		// bctlService.bctlInfo(insertList, updateList, delList);
-		AddEntityValue(insertList);
-		UpdateEntityValue(updateList);
+		addEntityValue(insertList);
+		updateEntityValue(updateList);
 
 	}
 
-	public void AddEntityValue(List list) throws CommonException {
+	@SuppressWarnings("deprecation")
+	public void addEntityValue(List list) throws CommonException {
 		for (Iterator it = list.iterator(); it.hasNext();) {
 			Bctl bean = (Bctl) it.next();
 
@@ -100,7 +102,8 @@ public class BranchManageUpdateOperation extends BaseOperation {
 		htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行新建机构管理信息" });
 	}
 
-	public void UpdateEntityValue(List list) throws CommonException {
+	@SuppressWarnings("deprecation")
+	public void updateEntityValue(List list) throws CommonException {
 		for (Iterator it = list.iterator(); it.hasNext();) {
 			Bctl bean = (Bctl) it.next();
 			// Bctl sys1=branchManageDetailService.selectById(bean.getBrcode());
@@ -163,6 +166,7 @@ public class BranchManageUpdateOperation extends BaseOperation {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	public void checkPostNo(Bctl bctl) throws CommonException {
 		String postNo = bctl.getPostno();
 		if (postNo.length() != 6) {

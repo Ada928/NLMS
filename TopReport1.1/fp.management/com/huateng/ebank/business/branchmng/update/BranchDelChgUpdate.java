@@ -17,9 +17,9 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
-public class BranchStatusChgUpdate extends BaseUpdate {
+public class BranchDelChgUpdate extends BaseUpdate {
 
-	private final static String PARAM_ACTION = "statu";
+	private final static String PARAM_ACTION = "delet";
 	private final static String DATASET_ID = "Management_branchManage";
 	private final static String BRH_ID = "brcode";
 
@@ -31,12 +31,12 @@ public class BranchStatusChgUpdate extends BaseUpdate {
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			if (updateResultBean.hasNext()) {
 				String brcode = updateResultBean.next().get(BRH_ID);
-				String status = updateResultBean.getParameter(PARAM_ACTION);
+				String del = updateResultBean.getParameter(PARAM_ACTION);
 
 				OperationContext oc = new OperationContext();
-				oc.setAttribute(BranchMngOperation.CMD, BranchMngOperation.CMD_STATUS);
+				oc.setAttribute(BranchMngOperation.CMD, BranchMngOperation.CMD_DEL);
 				oc.setAttribute(BranchMngOperation.IN_BRHID, brcode);
-				oc.setAttribute(BranchMngOperation.IN_PARAM, status);
+				oc.setAttribute(BranchMngOperation.IN_PARAM, del);
 				OPCaller.call(BranchMngOperation.ID, oc);
 			} else {
 				ExceptionUtil.throwAppException("请选择一条记录", ErrorCode.ERROR_CODE_NORMAL);

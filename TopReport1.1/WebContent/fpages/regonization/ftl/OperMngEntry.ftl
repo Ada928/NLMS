@@ -56,7 +56,7 @@
                     " <a style=\"color:#666666\" title=\"记录已锁定，不能操作\">密码重置</a>" + "<a style=\"color:#666666\" title=\"记录已锁定，不能操作\">删除</a>" + "</PRE>";
             } else {
                 innerStr = innerStr + " <a href=\"JavaScript:btModifyShow('" + id + "')\">修改</a>" +
-                    " <a href=\"JavaScript:resetPwd('" + id + "')\">密码重置</a>" + " <a href=\"JavaScript:doDel('" + id + "')\">删除</a>" + "</PRE>";
+                    " <a href=\"JavaScript:resetPwd('" + id + "')\">密码重置</a>"  + "</PRE>";
             }
             cell.innerHTML = innerStr;
         } else {
@@ -83,22 +83,6 @@
     function btResetPwd_postSubmit(button) {
         var retParam = button.returnParam;
         alert("密码重置成功,初始化为" + retParam.DefaultPWD);
-        flushCurrentPage();
-    }
-    
-    function doDel(id) {
-        locate(id);
-        btDel.click();
-    }
-
-    function btDel_onClickCheck(button) {
-        return confirm("确认删除该条记录？");
-    }
-    
-    function btDel_postSubmit(button) {
-        alert("删除记录成功");
-        button.url = "#";
-        //刷新当前页
         flushCurrentPage();
     }
 

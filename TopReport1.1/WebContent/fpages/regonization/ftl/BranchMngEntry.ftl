@@ -16,7 +16,7 @@
   		<tr>
       		<td colspan="2">
           		<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="btAdd,-,btStatus" 
-          			fieldStr="brno,brname,brclass,status,st,opr" width="100%"  readonly="true"/></br>
+          			fieldStr="brno,brname,brclass,status,opr" width="100%"  readonly="true"/></br>
         	</td>
         </tr>
         <tr>
@@ -55,12 +55,12 @@
 		if (record) {//当存在记录时
 			var lock = record.getValue("lock");
 			var id = record.getValue("brcode");
-			if (isTrue(lock)) {
-				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">修改</a></center>";
-			} else {
+			//if (isTrue(lock)) {
+			//	cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">修改</a></center>";
+			//} else {
 				cell.innerHTML = "<a href=\"JavaScript:openModifyWindow('"
 						+ id + "')\">修改</a>" + " <a href=\"JavaScript:doDel('" + id + "')\">删除</a>";
-			}
+			//}
 		} else {//当不存在记录时
 			cell.innerHTML = "&nbsp;";
 		}
@@ -72,7 +72,24 @@
     }
 
     function btDel_onClickCheck(button) {
-        return confirm("确认删除该条记录？");
+    	var del = Management_branchManage_dataset.getValue("del");
+		if (del == 'false') {
+			if (confirm("确认删除该条记录？")) {
+				Management_branchManage_dataset.setParameter("delet", "T");
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			if (confirm("确认恢复该条记录？")) {
+				Management_branchManage_dataset.setParameter("delet", "F");
+				return true;
+			} else {
+				return false;
+			}
+		}
+    	
+        //return confirm("确认删除该条记录？");
     }
     
     function btDel_postSubmit(button) {
@@ -126,7 +143,6 @@
 
 	function btStatus_onClickCheck(button) {
 		var status = Management_branchManage_dataset.getValue("status");
-		var lock = Management_branchManage_dataset.getValue("lock");
 		if (status == '0') {
 			if (confirm("确认将该机构设置为有效?")) {
 				Management_branchManage_dataset.setParameter("statu", "1");

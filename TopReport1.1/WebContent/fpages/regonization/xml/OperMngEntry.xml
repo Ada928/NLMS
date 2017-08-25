@@ -89,7 +89,7 @@
         <Button id="btAdd" name="btAdd" desc="新增" operation="" url="#" show="" group="" txn="" icon="icon-add" />
 
         <Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
-            updateClass="com.huateng.ebank.business.opermng.update.OperMngDelUpdate" url="#" txn="" />
+            updateClass="com.huateng.ebank.business.opermng.update.OperStatusChgUpdate" url="#" txn="" />
 
         <Button id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" />
 

@@ -21,18 +21,22 @@ import com.huateng.exception.AppException;
 
 public class BranchManageUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	private static final String DATASET_ID = "Management_branchManage";
+
+	public UpdateReturnBean saveOrUpdate(
+			MultiUpdateResultBean multiUpdateResultBean,
+			HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("Management_branchManage");
+					.getUpdateResultBeanByID(BranchManageUpdate.DATASET_ID);
 
 			List updateList = new ArrayList();
 			List insertList = new ArrayList();
 			List delList = new ArrayList();
 
-			Bctl bean = new Bctl();
+			Bctl bean = null;
 			while (updateResultBean.hasNext()) {
 				bean = new Bctl();
 				mapToObject(bean, updateResultBean.next());
@@ -40,26 +44,29 @@ public class BranchManageUpdate extends BaseUpdate {
 				case UpdateResultBean.INSERT:
 					insertList.add(bean);
 					break;
-				case UpdateResultBean.DELETE:
-					delList.add(bean);
-					break;
 				case UpdateResultBean.MODIFY:
 					updateList.add(bean);
+					break;
+				case UpdateResultBean.DELETE:
+					delList.add(bean);
 					break;
 				default:
 					break;
 				}
 			}
 			OperationContext context = new OperationContext();
-			context.setAttribute(BranchManageUpdateOperation.INSERT_LIST, insertList);
-			context.setAttribute(BranchManageUpdateOperation.UPDATE_LIST, updateList);
+			context.setAttribute(BranchManageUpdateOperation.INSERT_LIST,
+					insertList);
+			context.setAttribute(BranchManageUpdateOperation.UPDATE_LIST,
+					updateList);
 			context.setAttribute(BranchManageUpdateOperation.DEL_LIST, delList);
-			OPCaller.call("Management.BranchManageUpdateOperation", context);
+			OPCaller.call(BranchManageUpdateOperation.ID, context);
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

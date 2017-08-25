@@ -121,6 +121,7 @@
             updateClass="com.huateng.ebank.business.branchmng.update.BranchStatusChgUpdate" url="#" txn="" icon="icon-set" />
         <!-- add by zhaozhiguo 2012/2/15 FPP-9 用户,岗位及机构的管理页面优化调整 end -->
         
-        <Button id="btDel" name="btDel" desc="删除" operation="delrecord" url="#" txn="" />
+        <Button id="btDel" name="btDel" desc="删除" operation="asysubmit" 
+        	updateClass="com.huateng.ebank.business.branchmng.update.BranchDelChgUpdate" url="" txn="" />
     </Operations>
 </CommQry>
