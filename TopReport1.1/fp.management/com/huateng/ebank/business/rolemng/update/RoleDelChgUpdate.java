@@ -27,12 +27,13 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
-public class RoleStatusChgUpdate extends BaseUpdate {
+public class RoleDelChgUpdate extends BaseUpdate {
 
-	private final static String PARAM_ACTION = "statu";
+	private final static String PARAM_ACTION = "delet";
 	private final static String DATASET_ID = "ebankCustRoleMng";
 	private final static String ROLE_ID = "id";
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest arg1,
 			HttpServletResponse arg2) throws AppException {
@@ -42,12 +43,12 @@ public class RoleStatusChgUpdate extends BaseUpdate {
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			if (updateResultBean.hasNext()) {
 				String rowid = updateResultBean.next().get(ROLE_ID);
-				String status = updateResultBean.getParameter(PARAM_ACTION);
+				String delet = updateResultBean.getParameter(PARAM_ACTION);
 
 				OperationContext oc = new OperationContext();
 				oc.setAttribute(RoleMngApplyOperation.CMD, RoleMngApplyOperation.CMD_STATUS);
 				oc.setAttribute(RoleMngApplyOperation.IN_BRHID, rowid);
-				oc.setAttribute(RoleMngApplyOperation.IN_PARAM, status);
+				oc.setAttribute(RoleMngApplyOperation.IN_PARAM, delet);
 				OPCaller.call(RoleMngApplyOperation.ID, oc);
 			} else {
 				ExceptionUtil.throwAppException("请选择一条记录", ErrorCode.ERROR_CODE_NORMAL);

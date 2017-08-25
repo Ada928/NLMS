@@ -69,7 +69,8 @@
         <Button id="btAddRole" name="btAddRole" desc="新增岗位" operation="href" url="/fpages/management/ftl/RoleFuncMng.ftl"
             txn="" icon="icon-add" />
 
-        <Button id="btDeleteRole" name="btDeleteRole" desc="删除岗位" operation="delrecord" url="#" txn="" />
+        <Button id="btDeleteRole" name="btDeleteRole" desc="删除"  operation="asysubmit"
+            updateClass="com.huateng.ebank.business.rolemng.update.RoleDelChgUpdate" url="#" txn="" />
         
         <Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
             updateClass="com.huateng.ebank.business.management.updater.CustRoleSaveUpdater" url="#" txn="" />

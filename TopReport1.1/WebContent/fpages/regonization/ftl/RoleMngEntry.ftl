@@ -11,7 +11,7 @@
     <tr>
       	<td valign="top" colspan="2">
       		<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="btAddRole,-,btStatus"
-      			 fieldStr="roleName,status,st,opr" readonly="true" width="100%"/></br>
+      			 fieldStr="roleName,status,opr" readonly="true" width="100%"/></br>
       	</td>
     </tr>
     <tr>
@@ -109,6 +109,23 @@
     }
 
     function btDeleteRole_onClickCheck(button) {
+    	var delet = ebankCustRoleMng_dataset.getValue("isDel");
+		if (delet == 'F') {
+			if (confirm("确认删除该岗位?")) {
+				ebankCustRoleMng_dataset.setParameter("delet", "T");
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			if (confirm("确认恢复该岗位?")) {
+				ebankCustRoleMng_dataset.setParameter("delet", "F");
+				return true;
+			} else {
+				return false;
+			}
+		}
+    	
         return confirm("确认删除该条记录？");
     }
     

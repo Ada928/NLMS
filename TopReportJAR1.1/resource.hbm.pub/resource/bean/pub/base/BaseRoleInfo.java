@@ -63,6 +63,7 @@ public abstract class BaseRoleInfo implements Serializable {
 	private java.lang.String misc;
 	/** add by zhiyang.he 修改锁定状态 2012-09-6 begin */
 	private java.lang.String isLock;
+	private java.lang.String isDel;
 	private java.lang.String st;
 	private java.lang.String crtDt;
 	private java.lang.String lastUpdTms;
@@ -94,6 +95,14 @@ public abstract class BaseRoleInfo implements Serializable {
 	 */
 	public java.lang.String getRoleName() {
 		return roleName;
+	}
+
+	public java.lang.String getIsDel() {
+		return isDel;
+	}
+
+	public void setIsDel(java.lang.String isDel) {
+		this.isDel = isDel;
 	}
 
 	/**
