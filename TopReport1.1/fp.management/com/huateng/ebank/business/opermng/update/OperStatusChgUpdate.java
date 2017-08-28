@@ -33,7 +33,7 @@ public class OperStatusChgUpdate extends BaseUpdate {
 				String tlrno = updateResultBean.next().get(OPER_ID);
 				String status = updateResultBean.getParameter(PARAM_ACTION);
 				OperationContext oc = new OperationContext();
-				oc.setAttribute(OperMngOperation.CMD, "status");
+				oc.setAttribute(OperMngOperation.CMD, OperMngOperation.CMD_STATUS);
 				oc.setAttribute(OperMngOperation.IN_TLRNO, tlrno);
 				oc.setAttribute(OperMngOperation.IN_PARAM, status);
 				OPCaller.call(OperMngOperation.ID, oc);
