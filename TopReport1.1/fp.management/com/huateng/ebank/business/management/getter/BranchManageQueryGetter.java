@@ -47,7 +47,7 @@ public class BranchManageQueryGetter extends BaseGetter {
 			String brno = (String) param.get("brhNo");
 			String brname = (String) param.get("brhName");
 			String qst = getCommQueryServletRequest().getParameter("st");
-			String hql = "po.del='F'";
+			String hql = "1=1";
 
 			if (!DataFormat.isEmpty(brno)) {
 				hql = "brno like '%" + brno + "%' and " + hql;
@@ -60,6 +60,7 @@ public class BranchManageQueryGetter extends BaseGetter {
 			} else {
 				hql += (" and po.st<>'" + ReportEnum.REPORT_ST1.N.value + "'");
 			}
+			hql += (" and po.del<>'T'");
 			hql += ("order by po.brclass,po.brcode");
 			List list = DAOUtils.getBctlDAO().queryByCondition(hql);
 			// mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 end
@@ -69,8 +70,10 @@ public class BranchManageQueryGetter extends BaseGetter {
 			if (maxIndex > list.size()) {
 				maxIndex = list.size();
 			}
-			List resultList = list.subList((nextpage - 1) * everypage, maxIndex);
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), resultList, getResult());
+			List resultList = list
+					.subList((nextpage - 1) * everypage, maxIndex);
+			ResultMng.fillResultByList(getCommonQueryBean(),
+					getCommQueryServletRequest(), resultList, getResult());
 
 			result.setContent(resultList);
 
@@ -81,7 +84,8 @@ public class BranchManageQueryGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}

@@ -383,7 +383,7 @@ public class OperMngOperation extends BaseOperation {
 				TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 
 				// 解锁
-				tlrInfo.setIsDel(SystemConstant.TRUE);
+				tlrInfo.setDel(SystemConstant.TRUE);
 
 				rootdao.saveOrUpdate(tlrInfo);
 				
@@ -427,8 +427,8 @@ public class OperMngOperation extends BaseOperation {
 
 				// 设置修改中
 				tlrInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
-				String oldIsDel = tlrInfo.getIsDel();
-				tlrInfo.setIsDel(SystemConstant.FALSE);
+				boolean oldIsDel = tlrInfo.isDel();
+				tlrInfo.setDel(SystemConstant.FALSE);
 				try {
 					TlrInfoAuditBean tlrInfoAuditBean = new TlrInfoAuditBean();
 					tlrInfoAuditBean.setTlrInfo(tlrInfo);
@@ -445,7 +445,7 @@ public class OperMngOperation extends BaseOperation {
 					e.printStackTrace();
 				}
 				// 改回原值
-				tlrInfo.setIsDel(oldIsDel);
+				tlrInfo.setDel(oldIsDel);
 				rootdao.saveOrUpdate(tlrInfo);
 				globalInfo.addBizLog(
 						"Updater.log",

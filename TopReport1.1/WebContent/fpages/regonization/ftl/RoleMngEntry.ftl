@@ -85,12 +85,13 @@
 	}
 
 	function datatable1_opr_onRefresh(cell, value, record) {
+		var roleType = ebankCustRoleMng_dataset.getValue("roleType");
 		if (record && record != null) {
 			var id = record.getValue("id");
-			var lock = record.getValue("isLock");
+			//var lock = record.getValue("isLock");
 			var innerText = "";
 			
-			if (lock == "1") {
+			if (roleType == "1") {
 				innerText = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">角色权限设置</a> ";
 			} else {
 				innerText = "<center><a href=\"JavaScript:rolePrivShow(" + id + ")\">角色权限设置</a> "

@@ -70,7 +70,7 @@
         <property name="crtDt" column="CRT_DT" type="string" not-null="false" length="8" />
         <property name="lastUpdOper" column="LAST_UPD_OPER" type="string" not-null="false" length="20" />
         <property name="lastUpdTms" column="LAST_UPD_TMS" type="string" not-null="false" length="14" />
-        <property name="isDel" column="IS_DEL" type="string" not-null="false" length="1" />
+        <property name="del" column="IS_DEL" type="true_false" not-null="false" length="1" />
         <!-- add by zhiyang.he 修改锁定状态 2012-09-6 end -->
     </class>
 </hibernate-mapping>

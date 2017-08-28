@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="操作员管理">
+<@CommonQueryMacro.page title="用户管理">
 <@CommonQueryMacro.CommonQuery id="operMngEntry" init="true" submitMode="current">
 	<table width="100%" align="left">
 		<tr valign="center">
@@ -16,7 +16,7 @@
 		 <tr>
 			 <td colspan="2">
 				<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="-,btAdd,-,btStatus,-,btLoginStatus,-,unLock" 
-					fieldStr="tlrno[60],tlrName[100],flag[55],status[55],isLock[55],brname,lastaccesstm[150],lastlogouttm[150],st[70],opr[85]" 
+					fieldStr="tlrno[60],tlrName[100],flag[55],status[55],isLock[55],brname,lastaccesstm[150],lastlogouttm[150],opr[85]" 
 					readonly="true" width="100%" hasFrame="true" height="280" />
 			 </td>
 		 </tr>
@@ -35,7 +35,8 @@
 
 <script language="javascript">
     var currentTlrno = "${info.tlrNo}";
-    var type = "${info.tlrType}";
+    var roleType = "${info.roleTypeList}";
+    
     //定位一条记录
     function locate(id) {
         var record = operMngEntry_dataset.find(["tlrno"], [id]);
@@ -51,12 +52,13 @@
             var st = record.getValue("st");
             var innerStr = "<PRE>";
             //if (st == "1" || st == "2" || st == "3") {
-            if (type == "1" || type == "2" || type == "3") {
+            if (roleType.indexOf("12") >- 1 || roleType.indexOf("13") >- 1  || roleType.indexOf("14") >- 1 || roleType.indexOf("15") >- 1 ) {
                 innerStr = innerStr + "<a style=\"color:#666666\" title=\"记录已锁定，不能操作\">修改</a> " +
-                    " <a style=\"color:#666666\" title=\"记录已锁定，不能操作\">密码重置</a>" + "<a style=\"color:#666666\" title=\"记录已锁定，不能操作\">删除</a>" + "</PRE>";
+                    " <a style=\"color:#666666\" title=\"记录已锁定，不能操作\">密码重置</a> " + "<a style=\"color:#666666\" title=\"记录已锁定，不能操作\">删除</a>" + "</PRE>";
             } else {
                 innerStr = innerStr + " <a href=\"JavaScript:btModifyShow('" + id + "')\">修改</a>" +
-                    " <a href=\"JavaScript:resetPwd('" + id + "')\">密码重置</a>"  + "</PRE>";
+                    " <a href=\"JavaScript:resetPwd('" + id + "')\">密码重置</a>"  + 
+                    " <a href=\"JavaScript:doDel('" + id + "')\">删除</a> "  + "</PRE>";
             }
             cell.innerHTML = innerStr;
         } else {
@@ -86,6 +88,40 @@
         flushCurrentPage();
     }
 
+    
+    function doDel(id) {
+        locate(id);
+        btDel.click();
+    }
+
+    function btDel_onClickCheck(button) {
+    	var del = operMngEntry_dataset.getValue("del");
+		if (del == false) {
+			if (confirm("确认删除该条记录？")) {
+				operMngEntry_dataset.setParameter("delet", "T");
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			if (confirm("确认恢复该条记录？")) {
+				operMngEntry_dataset.setParameter("delet", "F");
+				return true;
+			} else {
+				return false;
+			}
+		}
+    	
+        //return confirm("确认删除该条记录？");
+    }
+    
+    function btDel_postSubmit(button) {
+        alert("删除记录成功");
+        button.url = "#";
+        //刷新当前页
+        flushCurrentPage();
+    }
+    
     function btStatus_onClickCheck(button) {
         var status = operMngEntry_dataset.getValue("flag");
         if (status == '0') {

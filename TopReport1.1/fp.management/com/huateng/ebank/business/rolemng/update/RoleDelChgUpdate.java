@@ -1,23 +1,13 @@
 package com.huateng.ebank.business.rolemng.update;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import resource.bean.pub.RoleInfo;
-import resource.dao.pub.RoleInfoDAO;
-import resource.report.dao.ROOTDAO;
-import resource.report.dao.ROOTDAOUtils;
 
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
 import com.huateng.commquery.result.UpdateResultBean;
 import com.huateng.commquery.result.UpdateReturnBean;
-import com.huateng.ebank.business.branchmng.operation.BranchMngOperation;
-import com.huateng.ebank.business.common.BaseDAOUtils;
 import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.management.operation.RoleMngApplyOperation;
 import com.huateng.ebank.framework.exceptions.CommonException;
@@ -46,7 +36,7 @@ public class RoleDelChgUpdate extends BaseUpdate {
 				String delet = updateResultBean.getParameter(PARAM_ACTION);
 
 				OperationContext oc = new OperationContext();
-				oc.setAttribute(RoleMngApplyOperation.CMD, RoleMngApplyOperation.CMD_STATUS);
+				oc.setAttribute(RoleMngApplyOperation.CMD, RoleMngApplyOperation.CMD_DEL);
 				oc.setAttribute(RoleMngApplyOperation.IN_BRHID, rowid);
 				oc.setAttribute(RoleMngApplyOperation.IN_PARAM, delet);
 				OPCaller.call(RoleMngApplyOperation.ID, oc);

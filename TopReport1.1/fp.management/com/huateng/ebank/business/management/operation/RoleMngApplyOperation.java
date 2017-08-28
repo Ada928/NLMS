@@ -1,16 +1,18 @@
 package com.huateng.ebank.business.management.operation;
 
 import java.io.IOException;
+import java.util.List;
 
 import resource.bean.pub.RoleInfo;
 import resource.bean.report.SysTaskInfo;
 import resource.dao.pub.RoleInfoDAO;
 
-import com.huateng.ebank.business.common.DAOUtils;
+import com.huateng.ebank.business.common.BaseDAOUtils;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.report.common.service.ReportShowDetailService;
+import com.huateng.report.system.service.RoleInfoTSKService;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
 
@@ -46,6 +48,7 @@ public class RoleMngApplyOperation extends BaseOperation {
 	 * com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng
 	 * .ebank.framework.operation.OperationContext)
 	 */
+	@Override
 	public void beforeProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
 
@@ -61,9 +64,13 @@ public class RoleMngApplyOperation extends BaseOperation {
 	@Override
 	public void execute(OperationContext context) throws CommonException {
 		String cmd = (String) context.getAttribute(CMD);
-		Integer rowid = Integer
-				.valueOf((String) context.getAttribute(IN_BRHID));
-		RoleInfoDAO roleInfo = DAOUtils.getRoleInfoDAO();
+		String rowid1 = (String) context.getAttribute(IN_BRHID);
+		Integer rowid = -1;
+		if (null != rowid1 && !"".equals(rowid1)) {
+			rowid = Integer.parseInt(rowid1);
+		}
+
+		RoleInfoDAO roleInfo = BaseDAOUtils.getRoleInfoDAO();
 
 		if (CMD_STATUS.equals(cmd)) {
 			String status = (String) context.getAttribute(IN_PARAM);
@@ -92,8 +99,8 @@ public class RoleMngApplyOperation extends BaseOperation {
 				}
 				// role.setLock(true);
 				role.setSt(ReportEnum.REPORT_ST1.ET.value);
-
-				role.setStatus(ReportEnum.REPORT_VAILD.YES.value);
+				role.setStatus(status);
+				
 				roleInfo.getHibernateTemplate().update(role);
 
 			}
@@ -119,7 +126,7 @@ public class RoleMngApplyOperation extends BaseOperation {
 				}
 				role.setSt(ReportEnum.REPORT_ST1.ET.value);
 
-				role.setStatus(ReportEnum.REPORT_VAILD.NO.value);
+				role.setStatus(status);
 				roleInfo.getHibernateTemplate().update(role);
 
 			}
@@ -180,16 +187,13 @@ public class RoleMngApplyOperation extends BaseOperation {
 				roleInfo.getHibernateTemplate().update(role);
 
 			}
+		} else {
+			List insertList = (List) context.getAttribute(IN_INSERT);
+			List updateList = (List) context.getAttribute(IN_UPDATE);
+			RoleInfoTSKService roleInfoService = RoleInfoTSKService
+					.getInstance();
+			roleInfoService.saveCustRole(insertList, updateList);
 		}
-	}
-
-	public void execute2(OperationContext context) throws CommonException {
-		// TODO Auto-generated method stub
-		// List insertList = (List) context.getAttribute(IN_INSERT);
-		// List updateList = (List) context.getAttribute(IN_UPDATE);
-		// RoleInfoTSKService roleInfoService =
-		// RoleInfoTSKService.getInstance();
-		// roleInfoService.saveCustRole(insertList, updateList);
 	}
 
 }

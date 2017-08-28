@@ -74,17 +74,20 @@ public class OperMngEntryGetter extends BaseGetter {
 		List<TlrInfo> tlrInfoList = new ArrayList<TlrInfo>();
 		String hql = "1=1 ";
 		if (!DataFormat.isEmpty(qtlrnoName)) {
-			hql += " and po.tlrName = '" + qtlrnoName + "' ";
+			hql += " and po.tlrName = '" + qtlrnoName.trim() + "' ";
 		}
 		if (!DataFormat.isEmpty(qtlrno)) {
-			hql += " and po.tlrno like '%" + qtlrno + "%' ";
+			hql += " and po.tlrno like '%" + qtlrno.trim() + "%' ";
 		}
-		
+
 		// 如果不是超级管理员，只显示本行的用户
-		TlrInfo tlrInfo = UserMgrService.getInstance().getUserInfo(globalinfo.getTlrno());
-		if (!tlrInfo.getTlrType().equals(SystemConstant.TLR_NO_TYPE_SUPER_MANAGE)) {
+		TlrInfo tlrInfo = UserMgrService.getInstance().getUserInfo(
+				globalinfo.getTlrno());
+		if (!tlrInfo.getTlrType().equals(
+				SystemConstant.TLR_NO_TYPE_SUPER_MANAGE)) {
 			hql += " and po.brcode = '" + globalinfo.getBrcode() + "' ";
 		}
+		hql += " and po.del <> 'T'";
 		hql += " order by po.tlrno";
 		tlrInfoList = dao.queryByCondition(hql);
 
@@ -100,7 +103,7 @@ public class OperMngEntryGetter extends BaseGetter {
 		for (Iterator it = rs.iterator(); it.hasNext();) {
 			TlrInfo tlrInfo1 = (TlrInfo) it.next();
 			if (tlrInfo1.getBrcode() != null) {
-				//System.out.println(tlrInfo1.getTlrType());
+				// System.out.println(tlrInfo1.getTlrType());
 				tlrInfo1.setBrno(BctlService.getInstance().getExtBrno(
 						tlrInfo1.getBrcode()));
 			}

@@ -13,7 +13,9 @@
 package com.huateng.ebank.business.common;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Vector;
 
 import com.huateng.ebank.framework.operation.BaseVoObject;
@@ -37,6 +39,8 @@ public class UserSessionInfo extends BaseVoObject {
 	private String custNo = ""; // 企业客户号
 	private int custId = 0; // 企业信息id
 	private int branchId = 0; // 机构号
+	private String roleType = ""; // 用户默认角色信息
+	private String roleTypeList = ""; // 用户角色信息
 	private String roleName = ""; // 用户角色信息
 	private int roleid = 0; // 用户角色信息
 	private Hashtable userFunctions = null;// 用户权限
@@ -83,6 +87,22 @@ public class UserSessionInfo extends BaseVoObject {
 
 	public Vector getWorkflowRoles() {
 		return workflowRoles;
+	}
+
+	public String getRoleTypeList() {
+		return roleTypeList;
+	}
+
+	public void setRoleTypeList(String roleTypeList) {
+		this.roleTypeList = roleTypeList;
+	}
+
+	public String getRoleType() {
+		return roleType;
+	}
+
+	public void setRoleType(String roleType) {
+		this.roleType = roleType;
 	}
 
 	public void setWorkflowRoles(Vector workflowRoles) {
@@ -267,6 +287,8 @@ public class UserSessionInfo extends BaseVoObject {
 		sb.append(this.custId);
 		sb.append(", roleName=");
 		sb.append(this.roleName);
+		sb.append(", roleTypeList=");
+		sb.append(this.roleTypeList);
 		sb.append(", roleid=");
 		sb.append(this.roleid);
 		sb.append(", userid=");

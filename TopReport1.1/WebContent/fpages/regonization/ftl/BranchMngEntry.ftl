@@ -73,7 +73,7 @@
 
     function btDel_onClickCheck(button) {
     	var del = Management_branchManage_dataset.getValue("del");
-		if (del == 'false') {
+		if (del == false) {
 			if (confirm("确认删除该条记录？")) {
 				Management_branchManage_dataset.setParameter("delet", "T");
 				return true;
