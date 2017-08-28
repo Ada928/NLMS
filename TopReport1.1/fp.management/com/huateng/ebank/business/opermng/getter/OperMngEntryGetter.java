@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import resource.bean.pub.RoleInfo;
 import resource.bean.pub.TlrInfo;
 import resource.dao.pub.TlrInfoDAO;
 
@@ -63,6 +64,7 @@ public class OperMngEntryGetter extends BaseGetter {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	protected PageQueryResult getData() throws Exception {
 		String qtlrnoName = (String) getCommQueryServletRequest()
 				.getParameterMap().get("qtlrnoName");
@@ -81,12 +83,19 @@ public class OperMngEntryGetter extends BaseGetter {
 		}
 
 		// 如果不是超级管理员，只显示本行的用户
-		TlrInfo tlrInfo = UserMgrService.getInstance().getUserInfo(
+		List<RoleInfo> roleInfos = UserMgrService.getInstance().getUserRoles(
 				globalinfo.getTlrno());
-		if (!tlrInfo.getTlrType().equals(
-				SystemConstant.TLR_NO_TYPE_SUPER_MANAGE)) {
+		List<String> roleTypeList = new ArrayList<String>();
+
+		for (RoleInfo roleInfo : roleInfos) {
+			roleTypeList.add(roleInfo.getRoleType());
+		}
+		
+		if (!roleTypeList.contains(
+				SystemConstant.ROLE_TYPE_SYS_MNG)) {
 			hql += " and po.brcode = '" + globalinfo.getBrcode() + "' ";
 		}
+		
 		hql += " and po.del <> 'T'";
 		hql += " order by po.tlrno";
 		tlrInfoList = dao.queryByCondition(hql);

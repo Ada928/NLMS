@@ -45,7 +45,7 @@ public class PoliceBlackListService {
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from PoliceBlackList pblt where pblt.isDelete='1'");
+		StringBuffer hql = new StringBuffer(" from PoliceBlackList pblt where pblt.del='F'");
 
 		if (StringUtils.isNotBlank(partyId)) {
 			hql.append(" and pblt.id = '").append(partyId.trim()).append("'");

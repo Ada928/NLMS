@@ -209,6 +209,26 @@ public class ReportEnum {
 			return value;
 		}
 	}
+	
+	public static enum REPORT_OPERATE_STATE {
+		ED("1", "编辑中"), VR("2", "审核中"), AP("3", "审批中"), PB("4", "发布中"), N("5", "无效");
+		public String value;
+		public String name;
+
+		private REPORT_OPERATE_STATE(String value, String name) {
+			this.value = value;
+			this.name = name;
+		}
+
+		public static String valueof(String value) {
+			for (int i = 0; i < values().length; i++) {
+				if (values()[i].value.equals(value)) {
+					return values()[i].name;
+				}
+			}
+			return value;
+		}
+	}
 
 	public static enum REPORT_IS {
 		YES("Y", "是"), NO("N", "否");

@@ -24,8 +24,8 @@ public class BasePoliceBlackList implements Serializable {
 	public static String PROP_CLIENT_ENGLISH_NAME = "clientEnglishName";
 	public static String PROP_BANK_CODE = "bankCode";
 	public static String PROP_BLACKLISTED_ORGANIZATION = "blacklistedOrganization";
-	public static String PROP_IS_VALID = "isValid";
-	public static String PROP_IS_DELETE = "isDelete";
+	public static String PROP_VALID = "isValid";
+	public static String PROP_DEL = "del";
 	public static String PROP_VALID_DATE = "validDate";
 	public static String PROP_OPERATE_STATE = "operateState";
 	public static String PROP_FILLER1 = "filler1";
@@ -51,8 +51,8 @@ public class BasePoliceBlackList implements Serializable {
 	private String blackListedOrganization;
 	private String contact;
 	private String contactPhone;
-	private String isValid;
-	private String isDelete;
+	private boolean valid;
+	private boolean del;
 	private Date validDate;
 	private String operateState;
 	private String filler1;
@@ -153,20 +153,20 @@ public class BasePoliceBlackList implements Serializable {
 		this.blacklistType = blacklistType;
 	}
 
-	public String getIsValid() {
-		return this.isValid;
+	public boolean isValid() {
+		return this.valid;
 	}
 
-	public void setIsValid(String isValid) {
-		this.isValid = isValid;
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 
-	public String getIsDelete() {
-		return this.isDelete;
+	public boolean isDel() {
+		return this.del;
 	}
 
-	public void setIsDelete(String isDelete) {
-		this.isDelete = isDelete;
+	public void setDel(boolean del) {
+		this.del = del;
 	}
 
 	public String getOperateState() {

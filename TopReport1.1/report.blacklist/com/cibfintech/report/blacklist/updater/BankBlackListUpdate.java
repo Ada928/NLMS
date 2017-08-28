@@ -9,6 +9,7 @@ import com.cibfintech.report.blacklist.operation.BankBlackListOperation;
 import com.huateng.commquery.result.MultiUpdateResultBean;
 import com.huateng.commquery.result.UpdateResultBean;
 import com.huateng.commquery.result.UpdateReturnBean;
+import com.huateng.ebank.business.opermng.operation.OperMngOperation;
 import com.huateng.ebank.framework.operation.OPCaller;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
@@ -23,6 +24,7 @@ import resource.bean.report.BankBlackList;
 public class BankBlackListUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "BankBlackList";
+	private final static String PARAM_ACTION = "opType";
 
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
@@ -34,7 +36,7 @@ public class BankBlackListUpdate extends BaseUpdate {
 		// 返回结果对象
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 
-		// 返回日牌价对象
+		// 返回黑名单对象
 		BankBlackList bankblacklist = new BankBlackList();
 
 		OperationContext oc = new OperationContext();
@@ -42,13 +44,16 @@ public class BankBlackListUpdate extends BaseUpdate {
 			// 属性拷贝
 			Map map = updateResultBean.next();
 			BaseUpdate.mapToObject(bankblacklist, map);
+			String opType = updateResultBean.getParameter(PARAM_ACTION);
+			
 			if (UpdateResultBean.MODIFY == updateResultBean.getRecodeState()) {
 				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_MOD);
 			}
 			if (UpdateResultBean.INSERT == updateResultBean.getRecodeState()) {
 				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_ADD);
 			}
-			oc.setAttribute(BankBlackListOperation.IN_PARAM, bankblacklist);
+			oc.setAttribute(BankBlackListOperation.IN_PARAM, opType);
+			oc.setAttribute(BankBlackListOperation.IN_BANK_BLACK_LIST, bankblacklist);
 			// call方式开启operation事务
 			OPCaller.call(BankBlackListOperation.ID, oc);
 			return updateReturnBean;

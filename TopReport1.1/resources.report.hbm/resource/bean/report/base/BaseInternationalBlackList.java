@@ -29,9 +29,9 @@ public class BaseInternationalBlackList implements Serializable {
 	public static String PROP_GENDER = "gender";
 	public static String PROP_LAST_OCCUPATION = "lastOccupation";
 	public static String PROP_RESIDENCE_COUNTRY = "residenceCountry";
-	public static String PROP_IS_POLITICIANS = "isPoliticians";
-	public static String PROP_IS_VALID = "isValid";
-	public static String PROP_IS_DELETE = "isDelete";
+	public static String PROP_POLITICIANS = "isPoliticians";
+	public static String PROP_VALID = "isValid";
+	public static String PROP_DEL = "del";
 	public static String PROP_VALID_DATE = "validDate";
 	public static String PROP_OPERATE_STATE = "operateState";
 	public static String PROP_FILLER1 = "filler1";
@@ -60,9 +60,9 @@ public class BaseInternationalBlackList implements Serializable {
 	private String gender;
 	private String lastOccupation;
 	private String residenceCountry;
-	private String isPoliticians;
-	private String isValid;
-	private String isDelete;
+	private boolean politicians;
+	private boolean valid;
+	private boolean del;
 	private Date validDate;
 	private String operateState;
 	private String filler1;
@@ -173,12 +173,12 @@ public class BaseInternationalBlackList implements Serializable {
 		this.residenceCountry = residenceCountry;
 	}
 
-	public String getIsPoliticians() {
-		return isPoliticians;
+	public boolean isPoliticians() {
+		return politicians;
 	}
 
-	public void setIsPoliticians(String isPoliticians) {
-		this.isPoliticians = isPoliticians;
+	public void setPoliticians(boolean politicians) {
+		this.politicians = politicians;
 	}
 
 	public String getAccountType() {
@@ -223,23 +223,20 @@ public class BaseInternationalBlackList implements Serializable {
 		this.clientEnglishName = clientEnglishName;
 	}
 
-	
-
-
-	public String getIsValid() {
-		return this.isValid;
+	public boolean isValid() {
+		return this.valid;
 	}
 
-	public void setIsValid(String isValid) {
-		this.isValid = isValid;
+	public void setValid(boolean isValid) {
+		this.valid = isValid;
 	}
 
-	public String getIsDelete() {
-		return this.isDelete;
+	public boolean isDel() {
+		return this.del;
 	}
 
-	public void setIsDelete(String isDelete) {
-		this.isDelete = isDelete;
+	public void setDel(boolean del) {
+		this.del = del;
 	}
 
 	public String getOperateState() {

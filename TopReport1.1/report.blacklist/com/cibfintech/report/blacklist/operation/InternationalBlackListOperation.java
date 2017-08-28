@@ -7,6 +7,7 @@ import com.huateng.common.DateUtil;
 import com.huateng.common.log.HtLog;
 import com.huateng.common.log.HtLogFactory;
 import com.huateng.ebank.business.common.GlobalInfo;
+import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
@@ -42,7 +43,7 @@ public class InternationalBlackListOperation extends BaseOperation {
 			InternationalBlackList sys1 = service.selectById(internationalBlackList.getId());
 			// sysCurService.update(sysCurrency);
 			sys1.setOperateState(ReportEnum.REPORT_ST1.DE.value);
-			sys1.setIsDelete("2");
+			sys1.setDel(SystemConstant.TRUE);
 			sys1.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			sys1.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(sys1);
@@ -63,7 +64,7 @@ public class InternationalBlackListOperation extends BaseOperation {
 			// service.addEntity(internationalBlackList);
 			internationalBlackList.setOperateState(ReportEnum.REPORT_ST1.CR.value);
 			internationalBlackList.setCreateDate(DateUtil.getCurrentDate());
-			internationalBlackList.setIsDelete("1");
+			internationalBlackList.setDel(SystemConstant.FALSE);
 			internationalBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			internationalBlackList.setLastModifyDate(DateUtil.getCurrentDate());
 
@@ -92,7 +93,7 @@ public class InternationalBlackListOperation extends BaseOperation {
 			sys1.setClientName(internationalBlackList.getClientName());
 			sys1.setClientEnglishName(internationalBlackList.getClientEnglishName());
 			sys1.setBlacklistType(internationalBlackList.getBlacklistType());
-			sys1.setIsValid(internationalBlackList.getIsValid());
+			sys1.setValid(internationalBlackList.isValid());
 			sys1.setValidDate(internationalBlackList.getValidDate());
 			sys1.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			sys1.setLastModifyDate(DateUtil.getCurrentDate());

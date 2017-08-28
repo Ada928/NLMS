@@ -1,5 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
+<#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="岗位管理">
 <@CommonQueryMacro.CommonQuery id="ebankCustRoleMng" init="true" submitMode="current">
 <table align="left" width="100%">
@@ -41,7 +42,9 @@
 </span>
 
 <script language="JavaScript">
-	
+
+	var roleType = "${info.roleTypeList}";
+	alert(roleType);
 	//定位一条记录
 	function locate(id) {
 		var record = ebankCustRoleMng_dataset.find([ "id" ], [ id ]);
@@ -85,16 +88,17 @@
 	}
 
 	function datatable1_opr_onRefresh(cell, value, record) {
-		var roleType = ebankCustRoleMng_dataset.getValue("roleType");
+		//var roleType = ebankCustRoleMng_dataset.getValue("roleType");
 		if (record && record != null) {
 			var id = record.getValue("id");
 			//var lock = record.getValue("isLock");
 			var innerText = "";
 			
-			if (roleType == "1") {
-				innerText = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">角色权限设置</a> ";
+			//if (roleType == "1") {
+			if (roleType.indexOf("12") >- 1  || roleType.indexOf("13") >- 1 || roleType.indexOf("14") >- 1 || roleType.indexOf("15") >- 1 ) {
+				innerText = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">岗位功能分配</a> ";
 			} else {
-				innerText = "<center><a href=\"JavaScript:rolePrivShow(" + id + ")\">角色权限设置</a> "
+				innerText = "<center><a href=\"JavaScript:rolePrivShow(" + id + ")\">岗位功能分配</a> "
 			}
 			
 			innerText = innerText + " <a href=\"JavaScript:btRoleUserShow(" + id + ")\">查看人员</a>";

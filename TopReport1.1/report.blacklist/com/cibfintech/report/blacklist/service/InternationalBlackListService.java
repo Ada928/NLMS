@@ -45,7 +45,7 @@ public class InternationalBlackListService {
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from InternationalBlackList iblt where 1=1");
+		StringBuffer hql = new StringBuffer(" from InternationalBlackList iblt where iblt.del='F'");
 
 		if (StringUtils.isNotBlank(partyId)) {
 			hql.append(" and iblt.id = '").append(partyId.trim()).append("'");

@@ -166,7 +166,7 @@
 
     //新增
     function btAdd_onClick(buttton) {
-        window.location.href = "${contextPath}/fpages/regonization/ftl/OperMngRoleInfo.ftl?op=new&type=" + type;
+        window.location.href = "${contextPath}/fpages/regonization/ftl/OperMngRoleInfo.ftl?op=new";
     }
 
     //刷新数据

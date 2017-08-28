@@ -1,7 +1,7 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign op=RequestParameters["op"]?default("")>
-<#assign type=RequestParameters['type']?default('')>
-<@CommonQueryMacro.page title="操作员角色管理">
+<#assign info = Session["USER_SESSION_INFO"]>
+<@CommonQueryMacro.page title="用户角色管理">
 	<table align="left" width="90%">
 		<tr align="center">
 			<td width="100%">
@@ -14,10 +14,6 @@
 							<td align="center" nowrap class="labeltd"  width="25%"> 操作员名称 </td>
 							<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrName" /></td>
 						</tr>
-						<tr>
-							<td align="center" nowrap class="labeltd" width="25%"> 操作员类型 </td>
-							<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrType"/></td>
-						</tr>
 					   </table>
 				   </@CommonQueryMacro.GroupBox>
 				</@CommonQueryMacro.CommonQuery>
@@ -27,7 +23,7 @@
 		<tr>
 			<td>
 				<@CommonQueryMacro.CommonQuery id="bctlMngEntry" init="true" submitMode="selected" navigate="false">
-					<@CommonQueryMacro.GroupBox id="guoup1" label="授权机构信息" expand="true">
+					<@CommonQueryMacro.GroupBox id="guoup1" label="选择授权机构" expand="true">
 						<table frame=void width="100%">
 					      	<tr>
 					      		<td valign="top">
@@ -47,7 +43,7 @@
 					<table width="100%">
 						<tr>
 							<td width="100%">
-								<@CommonQueryMacro.GroupBox id="guoup2" label="岗位信息" expand="true">
+								<@CommonQueryMacro.GroupBox id="guoup2" label="选择岗位" expand="true">
 									<table frame=void width="100%">
 								      	<tr>
 								      		<td valign="top">
@@ -72,9 +68,9 @@
 </table>
 <script language="javascript">
 	var op = "${op}";
-	var type = "${type}";
+    var roleType = "${info.roleTypeList}";
 	function initCallGetter_post(dataset) {
-		if (type == "1" || type == "2" || type == "3") {
+		if (roleType == "1" || roleType == "2" || roleType == "3") {
 			operMngMod_dataset.setFieldReadOnly("brcode", true);
 		}
 		operMngMod_dataset.setParameter("op", op);
@@ -83,8 +79,7 @@
 	function btRoleSave_onClickCheck() {
 		var tlrno = operMngMod_dataset.getValue("tlrno");
 		var tlrName = operMngMod_dataset.getValue("tlrName");
-		var type =  operMngMod_dataset.getValue("tlrType");
-		if (tlrno.length == 0 || tlrName.length == 0 || type.length == 0) {
+		if (tlrno.length == 0 || tlrName.length == 0) {
 			alert("操作员号码, 操作员, 操作员类型名称和银行代码必须填写！");
 			return false;
 		} 

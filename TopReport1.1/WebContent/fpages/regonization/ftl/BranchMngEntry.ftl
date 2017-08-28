@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-
+<#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="机构信息维护">
 <@CommonQueryMacro.CommonQuery id="Management_branchManage" init="true" submitMode="current">
 	<table width="100%" align="left">
@@ -43,6 +43,7 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
+	var roleType = "${info.roleTypeList}";
 	//定位一条记录
 	function locate(id) {
 		var record = Management_branchManage_dataset.find(["brcode"], [id]);
@@ -56,23 +57,30 @@
 			var lock = record.getValue("lock");
 			var id = record.getValue("brcode");
 			//if (isTrue(lock)) {
-			//	cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">修改</a></center>";
-			//} else {
-				cell.innerHTML = "<a href=\"JavaScript:openModifyWindow('"
-						+ id + "')\">修改</a>" + " <a href=\"JavaScript:doDel('" + id + "')\">删除</a>";
-			//}
+			if (roleType.indexOf("12") > -1 
+					|| roleType.indexOf("13") > -1
+					|| roleType.indexOf("14") > -1
+					|| roleType.indexOf("15") > -1) {
+				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">修改</a></center>";
+
+				//	cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">修改</a></center>";
+			} else {
+				cell.innerHTML = "<a href=\"JavaScript:openModifyWindow('" + id
+						+ "')\">修改</a>" + " <a href=\"JavaScript:doDel('" + id
+						+ "')\">删除</a>";
+			}
 		} else {//当不存在记录时
 			cell.innerHTML = "&nbsp;";
 		}
 	}
-	
-	function doDel(id) {
-        locate(id);
-        btDel.click();
-    }
 
-    function btDel_onClickCheck(button) {
-    	var del = Management_branchManage_dataset.getValue("del");
+	function doDel(id) {
+		locate(id);
+		btDel.click();
+	}
+
+	function btDel_onClickCheck(button) {
+		var del = Management_branchManage_dataset.getValue("del");
 		if (del == false) {
 			if (confirm("确认删除该条记录？")) {
 				Management_branchManage_dataset.setParameter("delet", "T");
@@ -88,16 +96,16 @@
 				return false;
 			}
 		}
-    	
-        //return confirm("确认删除该条记录？");
-    }
-    
-    function btDel_postSubmit(button) {
-        alert("删除记录成功");
-        button.url = "#";
-        //刷新当前页
-        flushCurrentPage();
-    }
+
+		//return confirm("确认删除该条记录？");
+	}
+
+	function btDel_postSubmit(button) {
+		alert("删除记录成功");
+		button.url = "#";
+		//刷新当前页
+		flushCurrentPage();
+	}
 
 	function openModifyWindow(id) {
 		locate(id);
@@ -159,7 +167,7 @@
 			}
 		}
 	}
-	
+
 	function btStatus_postSubmit(button) {
 		alert("设置成功");
 		flushCurrentPage();
@@ -191,7 +199,7 @@
 			btStatus.disable(false);
 		}
 	}
-	
+
 	function Management_branchManage_dataset_afterChange(dataset, field) {
 		if (field.name == "postno") {
 			v_postno = Management_branchManage_dataset.getValue("postno");
@@ -224,7 +232,6 @@
 		}
 	}
 
-	
 	function btAdd_onClick(button) {
 		Management_branchManage_dataset.insertRecord("end");
 
@@ -319,7 +326,7 @@
 		Management_branchManage_dataset.cancelRecord();
 		return true;
 	}
-	
+
 	function signWindow_floatWindow_beforeHide(subwindow) {
 		return signWindow_floatWindow_beforeClose(subwindow);
 	}
