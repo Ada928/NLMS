@@ -23,6 +23,7 @@ public class BankBlackListOperation extends BaseOperation {
 	public static final String IN_BANK_BLACK_LIST = "IN_BANK_BLACK_LIST";
 	public static final String IN_PARAM = "IN_PARAM";
 	public static final String IN_PARAM_SURE = "IN_PARAM_SURE";
+	public static final String IN_ADD = "add";
 	public static final String IN_EDIT = "edit";
 	public static final String IN_APPROVE = "approve";
 	public static final String IN_VERIFY = "verify";

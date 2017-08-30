@@ -5,10 +5,9 @@
 
 <CommQry title="商行黑名单管理" navigate="商行黑名单管理" type="call" interface="true" pagesize="20" async="true" databusid=""
     transdataactionurl="/trans/TransDataAction.do" 
-    getterclassname="com.cibfintech.report.blacklist.getter.BankBlackListGetter">
+    getterclassname="com.cibfintech.report.blacklist.getter.BankBlackListManageGetter">
 
     <Include id="BankParam" />
-    <PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-商行黑名单列表" perfetch="15" />
 
     <Fields>
         <Field id="id" desc="黑名单编号" edittype="text" datatype="string" status="F" xpath="/id" />
@@ -17,7 +16,7 @@
             readonly="" primary="false" type="String" size="20" default="" xpath="/bankCode" />
             
         
-        <Field id="accountType" desc="账户类型" status="F" edittype="select" require="false" method="None" primary=""
+        <Field id="accountType" desc="账户类型" status="F" edittype="select" require="false" method="None" primary="I"
             type="String" default="false" xpath="/accountType" tip="账户类型" translated="LIST:C,对公;I,对私;" />
             
         <Field id="brattr" desc="机构属性" status="F" edittype="select" require="false" method="None" primary=""
@@ -29,7 +28,7 @@
         <Field id="blacklistType" desc="名单性质" status="F" edittype="select" require="false" method="None" primary=""
             type="String" default="false" xpath="/blacklistType" tip="名单性质" translated="LIST:0,白名单;1,灰名单;2,黑名单" />
             
-        <Field id="share" desc="是否共享" status="F" edittype="select" require="false" method="None" primary=""
+        <Field id="share" desc="是否共享" status="F" edittype="select" require="false" method="None" primary="false"
             type="String" default="false" xpath="/share" tip="是否共享" translated="LIST:true,共享;false,不共享" />
             
         <Field id="valid" desc="有效状态" status="F" edittype="select" require="false" method="None" primary=""
@@ -64,38 +63,15 @@
         <Field id="lastModifyOperator" desc="最后修改用户" edittype="text" datatype="string" status="N"
             xpath="/lastModifyOperator" />
         <Field id="remarks" desc="备注" edittype="textarea" datatype="string" status="N" xpath="/remarks" />
-        <Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" default="" tip="操作"
-            require="" />
+        
     </Fields>
 
-    <Where>
-        <TextBox id="qPartyId" desc="黑名单编号" edittype="text" datatype="string" require="" index="0" />
-        <Option id="qCertificateType" default="" desc="证件种类" type="certificateType" tip="" method="None" index="1"
-            translated="DATA_DIC.21" />
-        <TextBox id="qCertificateNumber" desc="证件号码" edittype="text" datatype="string" index="2" />
-    </Where>
+    <Where></Where>
 
     <Operations>
-        <Button id="btAdd" name="btAdd" desc="新增" operation="" 
-        	url="#" show="" group="" txn="" icon="icon-add" />
-        
-        <Button id="btModify" name="btModify" desc="修改" operation=""
-            url="#" show="" group="" txn="" />
-
-        <Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListDEL" url="#" />
-            
-        <Button id="btVerify" name="btVerify" desc="审核" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="#" />
-            
-        <Button id="btApprove" name="btApprove" desc="审批" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="#" />
-            
-        <Button id="btShare" name="btShare" desc="分享" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="#" />
-            
         <Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
-            updateClass="" url="#" />
+            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" 
+            url="/fpages/blacklistManage/ftl/BankBlackList.ftl" />
             
         <Button id="btCancel" name="btCancel" desc="返回" operation="submitform"
             url="/fpages/blacklistManage/ftl/BankBlackList.ftl" txn="" />

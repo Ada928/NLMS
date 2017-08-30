@@ -5,6 +5,7 @@
 	<Query id="BankBlackList" path="/fpages/blacklistManage/xml/BankBlackList.xml" />
 	<Query id="BankBlackListQuery" path="/fpages/blacklistManage/xml/BankBlackList.xml" />
 	<Query id="BankBlackListDetail" path="/fpages/blacklistManage/xml/BankBlackListDetail.xml" />
+	<Query id="BankBlackListManage" path="/fpages/blacklistManage/xml/BankBlackListManage.xml" />
 
 	<Query id="PoliceBlackList" path="/fpages/blacklistManage/xml/PoliceBlackList.xml" />
 	<Query id="PoliceBlackListQuery" path="/fpages/blacklistManage/xml/PoliceBlackList.xml" />

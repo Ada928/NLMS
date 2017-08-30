@@ -42,9 +42,7 @@
 </span>
 
 <script language="JavaScript">
-
 	var roleType = "${info.roleTypeList}";
-	alert(roleType);
 	//定位一条记录
 	function locate(id) {
 		var record = ebankCustRoleMng_dataset.find([ "id" ], [ id ]);
@@ -143,7 +141,7 @@
 	
 	function rolePrivShow(id) {
 		locate(id);
-		window.document.getElementById('btRoleAuthorityManagement').click();
+		btRoleAuthorityManagement.click();
 	}
 	
 	function btRoleUserShow(id) {
