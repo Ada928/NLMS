@@ -26,9 +26,9 @@
       			exclusive="true" position="center" show="false" >
       			<div align="center">
       				<@CommonQueryMacro.Group id="group1" label="国际黑名单维护"
-        			  fieldStr="id,blacklistType,accountType,certificateType,certificateNumber,clientName,clientEnglishName,isValid,validDate" colNm=4/>
+        			  fieldStr="id,blacklistType,accountType,certificateType,certificateNumber,clientName,clientEnglishName,valid,validDate" colNm=4/>
         			<br/>
-      				<@CommonQueryMacro.Button id="btModOrAdd" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      				<@CommonQueryMacro.Button id="btModOrAdd" />
       			</div>
      		</@CommonQueryMacro.FloatWindow>
   		</td>
@@ -79,7 +79,7 @@
         InternationalBlackList_dataset.setFieldReadOnly("clientName", false);
         InternationalBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
         InternationalBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        InternationalBlackList_dataset.setFieldReadOnly("isValid", false);
+        InternationalBlackList_dataset.setFieldReadOnly("valid", false);
         InternationalBlackList_dataset.setFieldReadOnly("validDate", false);
         subwindow_signWindow.show();
     }
@@ -145,7 +145,7 @@
         InternationalBlackList_dataset.setValue("clientName", "");
         InternationalBlackList_dataset.setValue("clientEnglishName", "");
         InternationalBlackList_dataset.setValue("blacklistType", "");
-        InternationalBlackList_dataset.setValue("isValid", "");
+        InternationalBlackList_dataset.setValue("valid", "");
         InternationalBlackList_dataset.setValue("validDate", "");
         InternationalBlackList_dataset.setFieldReadOnly("id", false);
         InternationalBlackList_dataset.setFieldReadOnly("accountCode", false);
@@ -154,7 +154,7 @@
         InternationalBlackList_dataset.setFieldReadOnly("clientName", false);
         InternationalBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
         InternationalBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        InternationalBlackList_dataset.setFieldReadOnly("isValid", false);
+        InternationalBlackList_dataset.setFieldReadOnly("valid", false);
         InternationalBlackList_dataset.setFieldReadOnly("validDate", false);
         subwindow_signWindow.show();
     }

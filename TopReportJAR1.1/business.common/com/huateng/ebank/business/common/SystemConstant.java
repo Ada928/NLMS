@@ -24,6 +24,14 @@ public class SystemConstant {
 	/**
 	 * 是否标志
 	 */
+	public static final String LOG_ADD = "A"; // 增加
+	public static final String LOG_DELEATE = "D"; // 删除
+	public static final String LOG_EDIT = "E"; // 改
+	public static final String LOG_QUERY = "Q"; // 查询
+	
+	/**
+	 * 是否标志
+	 */
 	public static final Boolean TRUE = true; // 否
 	public static final Boolean FALSE = false; // 是
 	

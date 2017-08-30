@@ -91,7 +91,7 @@ public class TlrLoginLogService {
 		}
 	}
 
-	public PageQueryResult queryTlrLoginLOg(int pageIndex, int pageSize, String qtlrNo, String qbrNo, String qloginAddr,
+	public PageQueryResult queryTlrLoginLog(int pageIndex, int pageSize, String qtlrNo, String qbrNo, String qloginAddr,
 			String startDate, String endDate) throws CommonException {
 		StringBuffer sb = new StringBuffer("");
 		List<Object> list = new ArrayList<Object>();

@@ -26,9 +26,9 @@
       			exclusive="true" position="center" show="false" >
       			<div align="center">
       				<@CommonQueryMacro.Group id="group1" label="公安部黑名单维护"
-        			  fieldStr="id,accountType,certificateType,certificateNumber,clientName,clientEnglishName,blacklistType,isValid,validDate" colNm=4/>
+        			  fieldStr="id,accountType,certificateType,certificateNumber,clientName,clientEnglishName,blacklistType,valid,validDate" colNm=4/>
         			<br/>
-      				<@CommonQueryMacro.Button id="btModOrAdd" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      				<@CommonQueryMacro.Button id="btModOrAdd" />
       			</div>
      		</@CommonQueryMacro.FloatWindow>
   		</td>
@@ -79,7 +79,7 @@
         PoliceBlackList_dataset.setFieldReadOnly("clientName", false);
         PoliceBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
         PoliceBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        PoliceBlackList_dataset.setFieldReadOnly("isValid", false);
+        PoliceBlackList_dataset.setFieldReadOnly("valid", false);
         PoliceBlackList_dataset.setFieldReadOnly("validDate", false);
         subwindow_signWindow.show();
     }
@@ -145,7 +145,7 @@
         PoliceBlackList_dataset.setValue("clientName", "");
         PoliceBlackList_dataset.setValue("clientEnglishName", "");
         PoliceBlackList_dataset.setValue("blacklistType", "");
-        PoliceBlackList_dataset.setValue("isValid", "");
+        PoliceBlackList_dataset.setValue("valid", "");
         PoliceBlackList_dataset.setValue("validDate", "");
         PoliceBlackList_dataset.setFieldReadOnly("id", false);
         PoliceBlackList_dataset.setFieldReadOnly("accountCode", false);
@@ -154,7 +154,7 @@
         PoliceBlackList_dataset.setFieldReadOnly("clientName", false);
         PoliceBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
         PoliceBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        PoliceBlackList_dataset.setFieldReadOnly("isValid", false);
+        PoliceBlackList_dataset.setFieldReadOnly("valid", false);
         PoliceBlackList_dataset.setFieldReadOnly("validDate", false);
         subwindow_signWindow.show();
     }

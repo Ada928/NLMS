@@ -62,7 +62,6 @@ public class EbankCustRoleMngGetter extends BaseGetter {
 			ExceptionUtil.throwCommonException("岗位查询失败!");
 			e.printStackTrace();
 		}
-
 		return list;
 	}
 

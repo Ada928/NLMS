@@ -125,6 +125,7 @@ public class UserMgrService {
 	 * @param userBrcode
 	 * @return 校验结果信息，如果用户不存在或用户存在但密码不对，抛出异常；校验通过，返回true
 	 */
+	@SuppressWarnings("unchecked")
 	public TlrInfo checkUser(String userLoginId, String password,
 			String userBrcode) throws CommonException {
 		if (logger.isDebugEnabled()) {
@@ -154,6 +155,9 @@ public class UserMgrService {
 				}
 				if (tlrInfo.getSt().trim().equals("2")) {
 					ExceptionUtil.throwCommonException("修改中的用户，主管未确认不能登录");
+				}
+				if (tlrInfo.isDel()) {
+					ExceptionUtil.throwCommonException("用户已删除，不能登录");
 				}
 
 				// 判断所选择登录机构是否是该用户授权的机构 modify by zhangshishu 2012-09-12
@@ -574,7 +578,7 @@ public class UserMgrService {
 			HQLDAO hqlDAO = BaseDAOUtils.getHQLDAO();
 			StringBuffer sb = new StringBuffer();
 			sb.append("select role from ")
-					.append("TlrRoleRelation tr,RoleInfo role ")
+					.append("RoleInfo role, TlrRoleRel tr ")
 					.append("where tr.roleId=role.id ")
 					.append("and tr.tlrno='").append(tlrNo).append("' ");
 			Iterator iterator;
@@ -769,31 +773,32 @@ public class UserMgrService {
 				}
 			}
 
-			RoleInfoDAO roleInfoDAO = BaseDAOUtils.getRoleInfoDAO();
-			// 查询默认角色
-			RoleInfo roleInfo = roleInfoDAO.query(tlrinfo.getRoleid()
-					.intValue());
-
-			RoleFuncRelDAO roleFuncRelationDAO = BaseDAOUtils
-					.getRoleFuncRelDAO();
-			List roleFuncList = roleFuncRelationDAO
-					.queryByCondition("po.roleId = ?",
-							new Object[] { tlrinfo.getRoleid() }, null);
-			Iterator it = roleFuncList.iterator();
-
-			sessionInfo.addUserRolesItem(tlrinfo.getRoleid());
-			sessionInfo.addWorkflowRolesItem(roleInfo);
-			sessionInfo.setRoleType(roleInfo.getRoleType());
-			roleTypeList.add(roleInfo.getRoleType());
-			while (it.hasNext()) {
-				RoleFuncRel roleFuncRelation = (RoleFuncRel) it.next();
-				if (false == sessionInfo
-						.isExistUserFunctionsItems(roleFuncRelation.getFuncid()
-								.trim())) {
-					sessionInfo.addUserFunctionsItem(roleFuncRelation
-							.getFuncid().trim());
-				}
-			}
+//			RoleInfoDAO roleInfoDAO = BaseDAOUtils.getRoleInfoDAO();
+//			// 查询默认角色
+//			RoleInfo roleInfo = roleInfoDAO.query(tlrinfo.getRoleid()
+//					.intValue());
+//
+//			RoleFuncRelDAO roleFuncRelationDAO = BaseDAOUtils
+//					.getRoleFuncRelDAO();
+//			List roleFuncList = roleFuncRelationDAO
+//					.queryByCondition("po.roleId = ?",
+//							new Object[] { tlrinfo.getRoleid() }, null);
+//			Iterator it = roleFuncList.iterator();
+//
+//			sessionInfo.addUserRolesItem(tlrinfo.getRoleid());
+//			sessionInfo.addWorkflowRolesItem(roleInfo);
+//			sessionInfo.setRoleType(roleInfo.getRoleType());
+//			roleTypeList.add(roleInfo.getRoleType());
+			
+//			while (it.hasNext()) {
+//				RoleFuncRel roleFuncRelation = (RoleFuncRel) it.next();
+//				if (false == sessionInfo
+//						.isExistUserFunctionsItems(roleFuncRelation.getFuncid()
+//								.trim())) {
+//					sessionInfo.addUserFunctionsItem(roleFuncRelation
+//							.getFuncid().trim());
+//				}
+//			}
 
 			String string = "|";
 			for (Object o : roleTypeList) {

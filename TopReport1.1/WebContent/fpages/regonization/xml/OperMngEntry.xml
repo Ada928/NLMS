@@ -106,14 +106,14 @@
 
         <Button id="btResetPwd" name="btResetPwd" desc="重置密码"
             updateClass="com.huateng.ebank.business.opermng.update.OperMngResetPwdUpdate" operation="asysubmit" url="#"
-            show="" group="" txn="management.userresetpwd.update"></Button>
+            show="" group="" txn="management.userresetpwd.update"/>
 
         <Button id="unLock" name="unLock" desc="解锁" updateClass="com.huateng.ebank.business.opermng.update.OperMngUnlockUpdate"
-            operation="asysubmit" url="#" show="" group="" txn="" icon="icon-unlock"></Button>
+            operation="asysubmit" url="#" show="" group="" txn="" icon="icon-unlock"/>
 
         <Button id="btLoginStatus" name="btLoginStatus" desc="强行签退"
             updateClass="com.huateng.ebank.business.opermng.update.OperStatusChgUpdate" operation="asysubmit" url="#"
-            show="" group="" txn="" icon="icon-undo"></Button>
+            show="" group="" txn="" icon="icon-undo"/>
     </Operations>
     <Sql>
     </Sql>

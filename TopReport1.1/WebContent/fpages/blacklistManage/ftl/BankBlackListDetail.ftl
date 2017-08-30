@@ -20,10 +20,10 @@
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="id"/></td>
 						</tr>
 		            	<tr>
-		                  <td nowrap class="labeltd">账户代号</td>
-						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_accountCode"/></td>
-						  <td nowrap class="labeltd">账户代号</td>
-						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="accountCode"/></td>
+		                  <td nowrap class="labeltd">账户类型</td>
+						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_accountType"/></td>
+						  <td nowrap class="labeltd">账户类型</td>
+						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="accountType"/></td>
 						</tr>
 						<tr>
 		                  <td nowrap class="labeltd">证件种类</td>
@@ -50,15 +50,15 @@
 						</tr>
 						<tr>
 		                  <td nowrap class="labeltd">是否共享</td>
-		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_isShare"/></td>
+		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_share"/></td>
 		                  <td nowrap class="labeltd">是否共享</td>
-		                  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="isShare"/></td>
+		                  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="share"/></td>
 		                </tr>
 		                <tr>
 		                  <td nowrap class="labeltd">有效状态</td>
-		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_isValid"/></td>
+		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_valid"/></td>
 		                  <td nowrap class="labeltd">有效状态</td>
-						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="isValid"/></td>
+						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="valid"/></td>
 		                </tr> 
 		            	<tr>
 		                  <td nowrap class="labeltd">有效期</td>
@@ -123,7 +123,7 @@
 	<table align="left">
       	<tr valign="top">
   			<td valign="center">
-  				<@CommonQueryMacro.Group id="group1" label="商行黑名单管理详细信息" fieldStr="old_id,old_accountCode,old_certificateType,old_certificateNumber,old_clientName,old_blacklistType,old_isShare,old_isValid,old_validDate,old_blacklistedDate,old_blacklistedOperator,old_blacklistedReason,old_unblacklistedDate,old_unblacklistedOperator,old_unblacklistedReason,old_lastModifyOperator" colNm=2/>
+  				<@CommonQueryMacro.Group id="group1" label="商行黑名单管理详细信息" fieldStr="old_id,old_accountType,old_certificateType,old_certificateNumber,old_clientName,old_blacklistType,old_share,old_valid,old_validDate,old_blacklistedDate,old_blacklistedOperator,old_blacklistedReason,old_unblacklistedDate,old_unblacklistedOperator,old_unblacklistedReason,old_lastModifyOperator" colNm=2/>
   			</td>
   		</tr>
   		<tr valign="top">

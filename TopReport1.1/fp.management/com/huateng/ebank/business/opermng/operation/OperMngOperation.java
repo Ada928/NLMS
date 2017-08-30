@@ -43,6 +43,7 @@ import com.huateng.report.utils.RepList;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
 import com.huateng.service.pub.PasswordService;
+import com.huateng.service.pub.TlrOperateLogService;
 import com.huateng.service.pub.UserMgrService;
 import com.huateng.view.pub.TlrRoleRelationView;
 import com.jcraft.jsch.UserInfo;
@@ -296,6 +297,10 @@ public class OperMngOperation extends BaseOperation {
 						globalInfo.getBrno(),
 						"新增用户编号[" + tlrInfo.getTlrno() + "]" });
 			}
+			TlrOperateLogService tlrOperateLogService = TlrOperateLogService
+					.getInstance();
+			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_ADD, "",
+					"", "新增用户");
 		} else if ("modify".equals(context.getAttribute(CMD))) {
 			TlrInfo tlrInfo = (TlrInfo) context.getAttribute(IN_TLRINFO);
 			List<Bctl> bctls = (List<Bctl>) context.getAttribute(IN_BCTLLIST);
@@ -373,10 +378,14 @@ public class OperMngOperation extends BaseOperation {
 						globalInfo.getBrno(),
 						"修改用户编号[" + dbTrlInfo.getTlrno() + "]" });
 			}
+			TlrOperateLogService tlrOperateLogService = TlrOperateLogService
+					.getInstance();
+			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_EDIT, "",
+					"", "编辑用户");
 		} else if (CMD_DEL.equals(context.getAttribute(CMD))) {
-			//String tlrno = (String) context.getAttribute(IN_TLRNO);
-			//tlrInfoDAO.delete(tlrno);
-			
+			// String tlrno = (String) context.getAttribute(IN_TLRNO);
+			// tlrInfoDAO.delete(tlrno);
+
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
 
 				String tlrno = (String) context.getAttribute(IN_TLRNO);
@@ -386,14 +395,14 @@ public class OperMngOperation extends BaseOperation {
 				tlrInfo.setDel(SystemConstant.TRUE);
 
 				rootdao.saveOrUpdate(tlrInfo);
-				
-				List urrlist = relationDao.queryByCondition(" po.tlrno = '" + tlrno
-						+ "'");
+
+				List urrlist = relationDao.queryByCondition(" po.tlrno = '"
+						+ tlrno + "'");
 				for (Iterator it = urrlist.iterator(); it.hasNext();) {
 					TlrRoleRel ref = (TlrRoleRel) it.next();
 					relationDao.delete(ref);
 				}
-				
+
 				globalInfo.addBizLog(
 						"Updater.log",
 						new String[] { globalInfo.getTlrno(),
@@ -457,6 +466,10 @@ public class OperMngOperation extends BaseOperation {
 						"用户编号[" + tlrInfo.getTlrno() + "]删除操作" });
 			}
 
+			TlrOperateLogService tlrOperateLogService = TlrOperateLogService
+					.getInstance();
+			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_DELEATE,
+					"", "", "删除用户");
 		} else if ("mod".equals(context.getAttribute(CMD))) {
 			TlrInfo tlrInfo = (TlrInfo) context.getAttribute(IN_TLRINFO);
 			TlrInfo ti = tlrInfoDAO.query(tlrInfo.getTlrno());
@@ -594,6 +607,10 @@ public class OperMngOperation extends BaseOperation {
 						globalInfo.getBrno(),
 						"重置用户编号[" + tlrInfo.getTlrno() + "]的密码" });
 			}
+			TlrOperateLogService tlrOperateLogService = TlrOperateLogService
+					.getInstance();
+			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_EDIT, "",
+					"", "编辑用户，重置密码");
 		} else if ("unlock".equals(context.getAttribute(CMD))) {// 解锁
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
 
@@ -670,14 +687,17 @@ public class OperMngOperation extends BaseOperation {
 						globalInfo.getBrno(),
 						"用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });
 			}
+
+			TlrOperateLogService tlrOperateLogService = TlrOperateLogService
+					.getInstance();
+			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_EDIT, "",
+					"", "解锁用户");
 		} else if (CMD_STATUS.equals(context.getAttribute(CMD))) { // 有效/无效 强行签退
+			String tlrno = (String) context.getAttribute(IN_TLRNO);
+			String status = (String) context.getAttribute(IN_PARAM);
+			TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
-
-				String tlrno = (String) context.getAttribute(IN_TLRNO);
-				String status = (String) context.getAttribute(IN_PARAM);
-
-				TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 
 				// 设置修改中
 				// tlrInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
@@ -715,10 +735,6 @@ public class OperMngOperation extends BaseOperation {
 									"用户编号[" + tlrInfo.getTlrno() + "有效无效操作" });
 				}
 			} else {
-				String tlrno = (String) context.getAttribute(IN_TLRNO);
-				String status = (String) context.getAttribute(IN_PARAM);
-
-				TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 				List<TlrBctlRel> bctlRellist = rootdao
 						.queryByQL2List("from TlrBctlRel where tlrNo = '"
 								+ tlrno + "'");
@@ -793,6 +809,18 @@ public class OperMngOperation extends BaseOperation {
 									"用户编号[" + tlrInfo.getTlrno() + "有效无效操作" });
 				}
 			}
+			TlrOperateLogService tlrOperateLogService = TlrOperateLogService
+					.getInstance();
+			tlrOperateLogService
+					.saveTlrOperateLog(
+							SystemConstant.LOG_EDIT,
+							"",
+							"",
+							"使用户有效/无效 强行签退 "
+									+ ("logout".equals(status) ? "强制签退"
+											: (SystemConstant.FLAG_ON
+													.equals(status) ? "使用户有效"
+													: "使用户无效")));
 		}
 	}
 

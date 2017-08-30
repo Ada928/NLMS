@@ -16,17 +16,18 @@
   		<tr>
       		<td colspan="2">
           		<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="btAdd,-,btStatus" 
-          			fieldStr="brno,brname,brclass,status,opr" width="100%"  readonly="true"/></br>
+          			fieldStr="brno,brname,brclass,status,opr" width="100%"  readonly="true"/><br/>
         	</td>
         </tr>
         <tr>
       		<td colspan="2">
 	      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="50%" resize="true" 
-	      			defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
+	      			defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" 
+	      			exclusive="true" position="center" show="false" >
 	      			<div align="center">
 	      				<@CommonQueryMacro.Group id="group1" label="机构信息维护"
 	        			  fieldStr="brno,brname,address,postno,teleno,brclass,blnUpBrcode,blnManageBrcode,brattr,otherAreaFlag" colNm=4/>
-	        			 </br>
+	        			 <br/>
 	      				<@CommonQueryMacro.Button id="btSave"/>
 	      			</div>
 	     		 </@CommonQueryMacro.FloatWindow>

@@ -8,6 +8,7 @@ import resource.bean.report.SysTaskInfo;
 import resource.dao.pub.RoleInfoDAO;
 
 import com.huateng.ebank.business.common.BaseDAOUtils;
+import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
@@ -15,6 +16,8 @@ import com.huateng.report.common.service.ReportShowDetailService;
 import com.huateng.report.system.service.RoleInfoTSKService;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
+import com.huateng.service.pub.BctlOperateLogService;
+import com.huateng.service.pub.RoleOperateLogService;
 
 /**
  * @Description:
@@ -66,6 +69,8 @@ public class RoleMngApplyOperation extends BaseOperation {
 		String cmd = (String) context.getAttribute(CMD);
 		String rowid1 = (String) context.getAttribute(IN_BRHID);
 		Integer rowid = -1;
+		String message = "";
+		String operateType = "";
 		if (null != rowid1 && !"".equals(rowid1)) {
 			rowid = Integer.parseInt(rowid1);
 		}
@@ -100,9 +105,9 @@ public class RoleMngApplyOperation extends BaseOperation {
 				// role.setLock(true);
 				role.setSt(ReportEnum.REPORT_ST1.ET.value);
 				role.setStatus(status);
-				
 				roleInfo.getHibernateTemplate().update(role);
-
+				operateType = SystemConstant.LOG_EDIT;
+				message = "修改有效变为无效的处理";
 			}
 			// 无效变为 有效的处理
 			else {
@@ -128,7 +133,8 @@ public class RoleMngApplyOperation extends BaseOperation {
 
 				role.setStatus(status);
 				roleInfo.getHibernateTemplate().update(role);
-
+				operateType = SystemConstant.LOG_EDIT;
+				message = "修改无效变为有效的处理";
 			}
 
 		} else if (CMD_DEL.equals(cmd)) {
@@ -161,7 +167,8 @@ public class RoleMngApplyOperation extends BaseOperation {
 
 				role.setIsDel(del);
 				roleInfo.getHibernateTemplate().update(role);
-
+				operateType = SystemConstant.LOG_DELEATE;
+				message = "删除变为不删除的处理";
 			}
 			// 删除的处理
 			else {
@@ -185,15 +192,28 @@ public class RoleMngApplyOperation extends BaseOperation {
 				role.setSt(ReportEnum.REPORT_ST1.ET.value);
 				role.setIsDel(del);
 				roleInfo.getHibernateTemplate().update(role);
-
+				operateType = SystemConstant.LOG_DELEATE;
+				message = "删除的处理";
 			}
 		} else {
 			List insertList = (List) context.getAttribute(IN_INSERT);
+			if(!insertList.isEmpty()){
+				operateType = SystemConstant.LOG_ADD;
+				message = "新增用户信息";
+			}
 			List updateList = (List) context.getAttribute(IN_UPDATE);
+			if(!updateList.isEmpty()){
+				operateType = SystemConstant.LOG_EDIT;
+				message = "编辑用户信息";
+			}
 			RoleInfoTSKService roleInfoService = RoleInfoTSKService
 					.getInstance();
 			roleInfoService.saveCustRole(insertList, updateList);
 		}
+		RoleOperateLogService roleOperateLogService = RoleOperateLogService
+				.getInstance();
+		roleOperateLogService.saveRoleOperateLog(operateType, "",
+				"", message);
 	}
 
 }

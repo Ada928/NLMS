@@ -189,6 +189,26 @@ public class ReportEnum {
 			return value;
 		}
 	}
+	
+	public static enum REPORT_TRUE_FALSE {
+		F(false, "false"), T(true, "true");
+		public Boolean value;
+		public String name;
+
+		private REPORT_TRUE_FALSE(Boolean value, String name) {
+			this.value = value;
+			this.name = name;
+		}
+
+		public static String valueof(String value) {
+			for (int i = 0; i < values().length; i++) {
+				if (values()[i].value.equals(value)) {
+					return values()[i].name;
+				}
+			}
+			return value;
+		}
+	}
 
 	public static enum REPORT_ST1 {
 		CR("1", "创建中"), ET("2", "修改中"), DE("3", "删除中"), Y("4", "有效"), N("5", "无效");
@@ -210,12 +230,32 @@ public class ReportEnum {
 		}
 	}
 	
-	public static enum REPORT_OPERATE_STATE {
+	public static enum REPORT_SYS_SUPER_MANAGER_INFO {
+		BRCODE("0000", "组织编号"), BRNO("000000", "组织机构代码"), TELENO("021-8888888", "电话号码"), STATUS_Y("1", "有效"), STATUS_N("2", "无效"), LOKE_Y("1", "有效"),LOCK_N("2", "无效");
+		public String value;
+		public String name;
+
+		private REPORT_SYS_SUPER_MANAGER_INFO(String value, String name) {
+			this.value = value;
+			this.name = name;
+		}
+
+		public static String valueof(String value) {
+			for (int i = 0; i < values().length; i++) {
+				if (values()[i].value.equals(value)) {
+					return values()[i].name;
+				}
+			}
+			return value;
+		}
+	}
+	
+	public static enum BANK_BLACKLIST_OPERATE_STATE {
 		ED("1", "编辑中"), VR("2", "审核中"), AP("3", "审批中"), PB("4", "发布中"), N("5", "无效");
 		public String value;
 		public String name;
 
-		private REPORT_OPERATE_STATE(String value, String name) {
+		private BANK_BLACKLIST_OPERATE_STATE(String value, String name) {
 			this.value = value;
 			this.name = name;
 		}
@@ -320,7 +360,7 @@ public class ReportEnum {
 		TASK_100899("100899", "安全参数设置"), TASK_100199("100199", "机构管理"), TASK_100299("100299",
 				"角色管理"), TASK_100399("100399", "用户管理"), TASK_100599("100599", "工作日期维护"), TASK_100799("100799",
 						"系统参数设置"), TASK_110199("110199", "币种信息维护"), TASK_110499("110499",
-								"国家/地区代码维护"), TASK_110599("110599", "外汇月牌价维护"), TASK_110699("110699", "外汇日牌价维护");
+								"国家/地区代码维护"), TASK_110599("110599", "外汇月牌价维护"), TASK_110699("110699", "外汇日牌价维护"),TASK_200399("200399", "商行黑名单维护");
 		public String value;
 		public String name;
 

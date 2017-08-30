@@ -95,10 +95,10 @@
 			var innerText = "";
 			
 			//if (roleType == "1") {
-			if (roleType.indexOf("12") >- 1  || roleType.indexOf("13") >- 1 || roleType.indexOf("14") >- 1 || roleType.indexOf("15") >- 1 ) {
-				innerText = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">岗位功能分配</a> ";
-			} else {
+			if (roleType.indexOf("10") >- 1  || roleType.indexOf("11") >- 1) {
 				innerText = "<center><a href=\"JavaScript:rolePrivShow(" + id + ")\">岗位功能分配</a> "
+			} else {
+				innerText = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">岗位功能分配</a> ";
 			}
 			
 			innerText = innerText + " <a href=\"JavaScript:btRoleUserShow(" + id + ")\">查看人员</a>";
@@ -149,7 +149,7 @@
 	function btRoleUserShow(id) {
 		var paramMap = new Map();
 		paramMap.put("roleId", id);
-		loadPageWindows("userWin", "查看人员信息",
+		loadPageWindows("userWin", "查看人员",
 				"/fpages/management/ftl/ebankCustRoleMngUser.ftl", paramMap,
 				"winZone");
 		return;
@@ -187,13 +187,16 @@
 		subwindow_signWindow.hide();
 		ebankCustRoleMng_dataset.flushData(ebankCustRoleMng_dataset.pageIndex);
 	}
+	
 	function signWindow_floatWindow_beforeClose(subwindow) {
 		ebankCustRoleMng_dataset.cancelRecord();
 		return true;
 	}
+	
 	function signWindow_floatWindow_beforeHide(subwindow) {
 		return signWindow_floatWindow_beforeClose(subwindow);
 	}
+	
 	function ebankCustRoleMng_dataset_afterInsert(dataset, mode) {
 		ebankCustRoleMng_dataset.setValue2("status", "1");
 	}
@@ -210,8 +213,8 @@
 				return false;
 			}
 		}
-
 	}
+	
 	function ebankCustRoleMng_dataset_afterScroll(dataset) {
 
 		var Lock = dataset.getValue("isLock");

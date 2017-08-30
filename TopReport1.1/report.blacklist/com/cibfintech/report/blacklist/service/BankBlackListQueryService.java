@@ -25,7 +25,7 @@ import resource.dao.base.HQLDAO;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
 
-public class BankBlackListService {
+public class BankBlackListQueryService {
 
 	public PageQueryResult list(int pageIndex, int pageSize, String hql)
 			throws CommonException {
@@ -43,16 +43,15 @@ public class BankBlackListService {
 	 * @param paramgroupId 参数段编号
 	 */
 
-	public static BankBlackListService getInstance() {
-		return (BankBlackListService) ApplicationContextUtils
-				.getBean("BankBlackListService");
+	public static BankBlackListQueryService getInstance() {
+		return (BankBlackListQueryService) ApplicationContextUtils
+				.getBean("BankBlackListQueryService");
 	}
 
 	@SuppressWarnings("unchecked")
-	public PageQueryResult pageQueryByHql(GlobalInfo globalinfo,
-			Boolean isSuperManager, int pageIndex, int pageSize,
-			String partyId, String qCertificateType, String qCertificateNumber,
-			String operateStates) {
+	public PageQueryResult pageQueryByHql(GlobalInfo globalinfo, boolean isSuperManager, int pageIndex,
+			int pageSize, String partyId, String qCertificateType,
+			String qCertificateNumber) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
@@ -71,12 +70,12 @@ public class BankBlackListService {
 			hql.append(" and bblt.certificateNumber like '%")
 					.append(qCertificateNumber.trim()).append("%'");
 		}
+		
 		if (!isSuperManager) {
-			hql.append(" and bblt.bankCode = '").append(globalinfo.getBrcode())
+			hql.append(" and bblt.share='T' ");
+			hql.append(" or bblt.bankCode = '").append(globalinfo.getBrcode())
 					.append("'");
 		}
-		hql.append(" and bblt.operateState in ").append(operateStates);
-
 		try {
 			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setPageSize(pageSize);

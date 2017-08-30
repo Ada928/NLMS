@@ -20,21 +20,18 @@
 
         <Field id="tlrno" desc="操作员号" status="N" method="None" readonly="true" primary="false" type="String" size="20"
             xpath="/tlrno" />
-
     </Fields>
 
-    <Where>
-
-    </Where>
+    <Where></Where>
     <Operations>
-	<!--modify by zhiyang.he 用户管理双岗复核改造 2012-09-04 begin -->
-	<Button id="btRoleSave" name="btRoleSave" desc="保存" operation="asysubmit"
-		updateClass="com.huateng.ebank.business.opermng.update.OperMngModUpdate"
-		url="#" txn="" />
-		
-	<Button id="btCancel" name="btCancel" desc="返回" operation="submitform"
-		url="/fpages/regonization/ftl/OperMngEntry.ftl" txn="" />
-	<!--modify by zhiyang.he 用户管理双岗复核改造 2012-09-04 end -->
+		<!--modify by zhiyang.he 用户管理双岗复核改造 2012-09-04 begin -->
+		<Button id="btRoleSave" name="btRoleSave" desc="保存" operation="asysubmit"
+			updateClass="com.huateng.ebank.business.opermng.update.OperMngModUpdate"
+			url="#" txn="" />
+			
+		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform"
+			url="/fpages/regonization/ftl/OperMngEntry.ftl" txn="" />
+		<!--modify by zhiyang.he 用户管理双岗复核改造 2012-09-04 end -->
     </Operations>
     <Sql></Sql>
 </CommQry>

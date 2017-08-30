@@ -6,6 +6,7 @@ import java.util.Set;
 
 import resource.bean.pub.RoleInfo;
 
+import com.cibfintech.report.blacklist.service.BankBlackListQueryService;
 import com.cibfintech.report.blacklist.service.BankBlackListService;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
@@ -22,7 +23,7 @@ import com.huateng.report.utils.ReportEnum;
 import com.huateng.service.pub.UserMgrService;
 
 @SuppressWarnings("unchecked")
-public class BankBlackListGetter extends BaseGetter {
+public class BankBlackListQueryGetter extends BaseGetter {
 	/*
 	 * 获取商行黑名单
 	 * 
@@ -64,68 +65,14 @@ public class BankBlackListGetter extends BaseGetter {
 				globalinfo.getTlrno());
 		boolean isSuperManager = false;
 		for (RoleInfo roleInfo : roleInfos) {
-			if (roleInfo.getRoleType().equals(SystemConstant.ROLE_TYPE_SYS_MNG)) {
+			if(roleInfo.getRoleType().equals(SystemConstant.ROLE_TYPE_SYS_MNG)){
 				isSuperManager = true;
 			}
 		}
 
-		String operateStates = getOperateStates(roleInfos);
-
-		PageQueryResult pqr = BankBlackListService.getInstance()
-				.pageQueryByHql(globalinfo, isSuperManager, pageIndex,
-						pageSize, qPartyId, qCertificateType,
-						qCertificateNumber, operateStates);
+		PageQueryResult pqr = BankBlackListQueryService.getInstance()
+				.pageQueryByHql(globalinfo, isSuperManager, pageIndex, pageSize, qPartyId,
+						qCertificateType, qCertificateNumber);
 		return pqr;
-	}
-
-	private String getOperateStates(List<RoleInfo> roleInfos) {
-		Set<String> operateStates = new HashSet<String>();
-		for (RoleInfo roleInfo : roleInfos) {
-			String roleType = roleInfo.getRoleType();
-			if (roleType.equals(SystemConstant.ROLE_TYPE_SYS_MNG)) {
-				operateStates
-						.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.ED.value);
-				operateStates
-						.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
-				operateStates
-						.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
-				operateStates
-						.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
-			} else if (roleType.equals(SystemConstant.ROLE_TYPE_BANK_MGR)) {
-				operateStates
-						.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.ED.value);
-				operateStates
-						.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
-				operateStates
-						.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
-				operateStates
-						.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
-			} else if (roleType.equals(SystemConstant.ROLE_TYPE_INPUT)) {
-				operateStates
-						.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.ED.value);
-			} else if (roleType.equals(SystemConstant.ROLE_TYPE_AUDIT)) {
-				operateStates
-						.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
-			} else if (roleType.equals(SystemConstant.ROLE_TYPE_APPROVE)) {
-				operateStates
-						.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
-			} else if (roleType.equals(SystemConstant.ROLE_TYPE_PUBLISH)) {
-				operateStates
-						.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
-			} else {
-				operateStates
-						.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
-			}
-		}
-
-		String str = "(";
-		for (String op : operateStates) {
-			str += op + ",";
-		}
-		str += "0)";
-		if (operateStates.isEmpty()) {
-			str = "(" + ReportEnum.BANK_BLACKLIST_OPERATE_STATE.N.value + ")";
-		}
-		return str;
 	}
 }

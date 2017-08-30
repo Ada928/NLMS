@@ -7,12 +7,14 @@ import resource.bean.report.SysTaskInfo;
 import resource.dao.pub.BctlDAO;
 
 import com.huateng.ebank.business.common.DAOUtils;
+import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.report.common.service.ReportShowDetailService;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
+import com.huateng.service.pub.BctlOperateLogService;
 
 public class BranchMngOperation extends BaseOperation {
 
@@ -46,6 +48,8 @@ public class BranchMngOperation extends BaseOperation {
 		String cmd = (String) context.getAttribute(CMD);
 		String brhid = (String) context.getAttribute(IN_BRHID);
 		BctlDAO bctlDAO = DAOUtils.getBctlDAO();
+		String message = "";
+		String operateType = "";
 
 		if (CMD_STATUS.equals(cmd)) {
 			String status = (String) context.getAttribute(IN_PARAM);
@@ -77,6 +81,8 @@ public class BranchMngOperation extends BaseOperation {
 
 				bctl.setStatus(ReportEnum.REPORT_VAILD.YES.value);
 				bctlDAO.getHibernateTemplate().update(bctl);
+				message = "银行信息有效变为无效的处理";
+				operateType = SystemConstant.LOG_EDIT;
 
 			}
 			// 无效变为 有效的处理
@@ -103,9 +109,10 @@ public class BranchMngOperation extends BaseOperation {
 
 				bctl.setStatus(ReportEnum.REPORT_VAILD.NO.value);
 				bctlDAO.getHibernateTemplate().update(bctl);
+				message = "银行信息无效变为有效的处理";
+				operateType = SystemConstant.LOG_EDIT;
 
 			}
-
 		} else if (CMD_DEL.equals(cmd)) {
 			String del = (String) context.getAttribute(IN_PARAM);
 			// 往bctl表中插入数据的bean
@@ -136,7 +143,8 @@ public class BranchMngOperation extends BaseOperation {
 
 				bctl.setDel(false);
 				bctlDAO.getHibernateTemplate().update(bctl);
-
+				message = "银行信息恢复删除状态的处理";
+				operateType = SystemConstant.LOG_DELEATE;
 			}
 			// 删除的处理
 			else {
@@ -161,9 +169,14 @@ public class BranchMngOperation extends BaseOperation {
 
 				bctl.setDel(true);
 				bctlDAO.getHibernateTemplate().update(bctl);
-
+				message = "银行信息删除的处理";
+				operateType = SystemConstant.LOG_DELEATE;
 			}
 		}
+
+		BctlOperateLogService bctlOperateLogService = BctlOperateLogService
+				.getInstance();
+		bctlOperateLogService.saveBctlOperateLog(operateType, "", "", message);
 	}
 
 	/*

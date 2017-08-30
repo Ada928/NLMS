@@ -3,6 +3,7 @@
 <beans>
     <!-- 商户黑名单服务类 -->
     <bean id="BankBlackListService" class="com.cibfintech.report.blacklist.service.BankBlackListService" />
+    <bean id="BankBlackListQueryService" class="com.cibfintech.report.blacklist.service.BankBlackListQueryService" />
     <bean id="BankBlackListOperation" class="com.cibfintech.report.blacklist.operation.BankBlackListOperation" />
     
     <bean id="PoliceBlackListService" class="com.cibfintech.report.blacklist.service.PoliceBlackListService" />
