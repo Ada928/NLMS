@@ -2,6 +2,10 @@ package com.cibfintech.report.blacklist.operation;
 
 import java.io.IOException;
 
+import resource.bean.report.BankBlackList;
+import resource.bean.report.SysTaskInfo;
+
+import com.cibfintech.report.blacklist.service.BankBlackListOperateLogService;
 import com.cibfintech.report.blacklist.service.BankBlackListService;
 import com.huateng.common.DateUtil;
 import com.huateng.common.log.HtLog;
@@ -13,9 +17,6 @@ import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
-
-import resource.bean.report.BankBlackList;
-import resource.bean.report.SysTaskInfo;
 
 public class BankBlackListOperation extends BaseOperation {
 	public static final String ID = "BankBlackListOperation";
@@ -49,17 +50,21 @@ public class BankBlackListOperation extends BaseOperation {
 				.getAttribute(IN_BANK_BLACK_LIST);
 		// 调用服务类
 		BankBlackListService service = BankBlackListService.getInstance();
+		String operateType = "";
+		String message = "";
 		if (CMD_DEL.equals(cmd)) {
 			// 删除
 			// service.removeEntity(bankBlackList);
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
+			BankBlackList tempBankBlackList = service.selectById(bankBlackList
+					.getId());
 			// sysCurService.update(sysCurrency);
-			tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.N.value);
+			tempBankBlackList
+					.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.N.value);
 			tempBankBlackList.setShare(ReportEnum.REPORT_TRUE_FALSE.F.value);
 			tempBankBlackList.setValid(ReportEnum.REPORT_TRUE_FALSE.F.value);
 			tempBankBlackList.setDel(SystemConstant.TRUE);
-			tempBankBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance()
-					.getTlrno());
+			tempBankBlackList.setLastModifyOperator(GlobalInfo
+					.getCurrentInstance().getTlrno());
 			tempBankBlackList.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(tempBankBlackList);
 			SysTaskInfo taskInfo;
@@ -73,11 +78,9 @@ public class BankBlackListOperation extends BaseOperation {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			gi.addBizLog("Updater.log",
-					new String[] { gi.getTlrno(), gi.getBrcode(), "商行黑名单的删除" });
-			htlog.info("Updater.log",
-					new String[] { gi.getBrcode(), gi.getTlrno(), "商行黑名单的删除" });
+			operateType = SystemConstant.LOG_DELEATE;
+			message = "国际黑名单的删除";
+			recordRunningLog("Deleter.log", message);
 		} else if (CMD_ADD.equals(cmd)) {
 
 			// 插入或者更新
@@ -108,23 +111,25 @@ public class BankBlackListOperation extends BaseOperation {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			gi.addBizLog("Updater.log",
-					new String[] { gi.getTlrno(), gi.getBrcode(), "商行黑名单的增加" });
-			htlog.info("Updater.log",
-					new String[] { gi.getBrcode(), gi.getTlrno(), "商行黑名单的增加" });
+			operateType = SystemConstant.LOG_ADD;
+			message = "国际黑名单的增加";
+			recordRunningLog("Adder.log", message);
 		} else if (CMD_VERIFY.equals(cmd)) {
 			// 审核
 			// service.removeEntity(bankBlackList);
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
+			BankBlackList tempBankBlackList = service.selectById(bankBlackList
+					.getId());
 			// sysCurService.update(sysCurrency);
-			if(tempBankBlackList.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value)){
-				tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
-			//} else if(tempBankBlackList.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value)){
-			//	tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
+			if (tempBankBlackList.getOperateState().equals(
+					ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value)) {
+				tempBankBlackList
+						.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
+				// } else
+				// if(tempBankBlackList.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value)){
+				// tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
 			}
-			tempBankBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance()
-					.getTlrno());
+			tempBankBlackList.setLastModifyOperator(GlobalInfo
+					.getCurrentInstance().getTlrno());
 			tempBankBlackList.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(tempBankBlackList);
 			SysTaskInfo taskInfo;
@@ -138,22 +143,26 @@ public class BankBlackListOperation extends BaseOperation {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			gi.addBizLog("Updater.log",
-					new String[] { gi.getTlrno(), gi.getBrcode(), "商行黑名单的审核" });
-			htlog.info("Updater.log",
-					new String[] { gi.getBrcode(), gi.getTlrno(), "商行黑名单的审核" });
+
+			operateType = SystemConstant.LOG_EDIT;
+			message = "国际黑名单的审核";
+			recordRunningLog("Updater.log", message);
 		} else if (CMD_APPROVE.equals(cmd)) {
 			// 审批
 			// service.removeEntity(bankBlackList);
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
-			if(tempBankBlackList.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value)){
-				tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
-			} else if(tempBankBlackList.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value)){
-				tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
+			BankBlackList tempBankBlackList = service.selectById(bankBlackList
+					.getId());
+			if (tempBankBlackList.getOperateState().equals(
+					ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value)) {
+				tempBankBlackList
+						.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
+			} else if (tempBankBlackList.getOperateState().equals(
+					ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value)) {
+				tempBankBlackList
+						.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
 			}
-			tempBankBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance()
-					.getTlrno());
+			tempBankBlackList.setLastModifyOperator(GlobalInfo
+					.getCurrentInstance().getTlrno());
 			tempBankBlackList.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(tempBankBlackList);
 			SysTaskInfo taskInfo;
@@ -167,22 +176,23 @@ public class BankBlackListOperation extends BaseOperation {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			gi.addBizLog("Updater.log",
-					new String[] { gi.getTlrno(), gi.getBrcode(), "商行黑名单的审批" });
-			htlog.info("Updater.log",
-					new String[] { gi.getBrcode(), gi.getTlrno(), "商行黑名单的审批" });
+			operateType = SystemConstant.LOG_EDIT;
+			message = "国际黑名单的审批";
+			recordRunningLog("Updater.log", message);
 		} else if (CMD_SHARE.equals(cmd)) {
 			// 分享
 			// service.removeEntity(bankBlackList);
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
-			if(tempBankBlackList.isShare()){
-				tempBankBlackList.setShare(ReportEnum.REPORT_TRUE_FALSE.F.value);
+			BankBlackList tempBankBlackList = service.selectById(bankBlackList
+					.getId());
+			if (tempBankBlackList.isShare()) {
+				tempBankBlackList
+						.setShare(ReportEnum.REPORT_TRUE_FALSE.F.value);
 			} else {
-				tempBankBlackList.setShare(ReportEnum.REPORT_TRUE_FALSE.T.value);
+				tempBankBlackList
+						.setShare(ReportEnum.REPORT_TRUE_FALSE.T.value);
 			}
-			tempBankBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance()
-					.getTlrno());
+			tempBankBlackList.setLastModifyOperator(GlobalInfo
+					.getCurrentInstance().getTlrno());
 			tempBankBlackList.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(tempBankBlackList);
 			SysTaskInfo taskInfo;
@@ -196,42 +206,48 @@ public class BankBlackListOperation extends BaseOperation {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			gi.addBizLog("Updater.log",
-					new String[] { gi.getTlrno(), gi.getBrcode(), "商行黑名单的分享" });
-			htlog.info("Updater.log",
-					new String[] { gi.getBrcode(), gi.getTlrno(), "商行黑名单的分享" });
+			operateType = SystemConstant.LOG_EDIT;
+			message = "国际黑名单的分享";
+			recordRunningLog("Updater.log", message);
 		} else if (CMD_EDIT.equals(cmd)) {
 			// service.modEntity(bankBlackList);
 			// Iterator it=service.selectByid(bankBlackList.getId());
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
+			BankBlackList tempBankBlackList = service.selectById(bankBlackList
+					.getId());
 			if (bankBlackList.getBankCode().trim() == "") {
-				tempBankBlackList.setBankCode(GlobalInfo.getCurrentInstance().getBrcode());
+				tempBankBlackList.setBankCode(GlobalInfo.getCurrentInstance()
+						.getBrcode());
 			} else {
 				tempBankBlackList.setBankCode(bankBlackList.getBankCode());
 			}
 			// tempBankBlackList.setOperateState(ReportEnum.REPORT_OPERATE_STATE.ET.value);
 			tempBankBlackList.setAccountType(bankBlackList.getAccountType());
 			tempBankBlackList.setAccountCode(bankBlackList.getAccountCode());
-			tempBankBlackList.setCertificateType(bankBlackList.getCertificateType());
-			tempBankBlackList.setCertificateNumber(bankBlackList.getCertificateNumber());
+			tempBankBlackList.setCertificateType(bankBlackList
+					.getCertificateType());
+			tempBankBlackList.setCertificateNumber(bankBlackList
+					.getCertificateNumber());
 			tempBankBlackList.setClientName(bankBlackList.getClientName());
-			tempBankBlackList.setClientEnglishName(bankBlackList.getClientEnglishName());
-			tempBankBlackList.setBlacklistType(bankBlackList.getBlacklistType());
+			tempBankBlackList.setClientEnglishName(bankBlackList
+					.getClientEnglishName());
+			tempBankBlackList
+					.setBlacklistType(bankBlackList.getBlacklistType());
 			tempBankBlackList.setValid(bankBlackList.isValid());
 			tempBankBlackList.setValidDate(bankBlackList.getValidDate());
-			tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
+			tempBankBlackList
+					.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
 
 			if (tempBankBlackList.isValid() == SystemConstant.TRUE
 					&& bankBlackList.isValid() == SystemConstant.FALSE) {
-				tempBankBlackList.setUnblacklistedDate(DateUtil.getCurrentDate());
-				tempBankBlackList.setUnblacklistedOperator(GlobalInfo.getCurrentInstance()
-						.getTlrno());
+				tempBankBlackList.setUnblacklistedDate(DateUtil
+						.getCurrentDate());
+				tempBankBlackList.setUnblacklistedOperator(GlobalInfo
+						.getCurrentInstance().getTlrno());
 				tempBankBlackList.setUnblacklistedReason(bankBlackList
 						.getUnblacklistedReason());
 			}
-			tempBankBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance()
-					.getTlrno());
+			tempBankBlackList.setLastModifyOperator(GlobalInfo
+					.getCurrentInstance().getTlrno());
 			tempBankBlackList.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(tempBankBlackList);
 
@@ -246,16 +262,28 @@ public class BankBlackListOperation extends BaseOperation {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			gi.addBizLog("Updater.log",
-					new String[] { gi.getTlrno(), gi.getBrcode(), "商行黑名单的编辑" });
-			htlog.info("Updater.log",
-					new String[] { gi.getBrcode(), gi.getTlrno(), "商行黑名单的编辑" });
+			operateType = SystemConstant.LOG_EDIT;
+			message = "国际黑名单的编辑";
+			recordRunningLog("Updater.log", message);
 		}
+		BankBlackListOperateLogService bankBLOperateLogService = BankBlackListOperateLogService
+				.getInstance();
+		bankBLOperateLogService.saveBankBLOperateLog(operateType, "", "",
+				message);
 	}
 
 	@Override
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
+	}
+
+	@SuppressWarnings("unused")
+	private void recordRunningLog(String type, String message)
+			throws CommonException {
+		GlobalInfo gi = GlobalInfo.getCurrentInstance();
+		gi.addBizLog(type, new String[] { gi.getTlrno(), gi.getBrcode(),
+				message });
+		htlog.info(type,
+				new String[] { gi.getBrcode(), gi.getTlrno(), message });
 	}
 }

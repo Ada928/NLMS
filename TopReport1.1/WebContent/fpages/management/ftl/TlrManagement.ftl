@@ -77,7 +77,7 @@
 			return false;
 		}
 	}
-	<!-- 初始化页面参数 -->
+	/* 初始化页面参数 */
 	function initCallGetter_post(){
 		var record = Management_TlrRole_dataset.firstUnit;
 		defRoleid_DropDownDataset.clearData();

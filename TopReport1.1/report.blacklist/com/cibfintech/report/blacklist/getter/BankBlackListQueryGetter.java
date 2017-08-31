@@ -1,13 +1,11 @@
 package com.cibfintech.report.blacklist.getter;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import resource.bean.pub.RoleInfo;
 
+import com.cibfintech.report.blacklist.service.BankBlackListOperateLogService;
 import com.cibfintech.report.blacklist.service.BankBlackListQueryService;
-import com.cibfintech.report.blacklist.service.BankBlackListService;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -15,11 +13,9 @@ import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.business.common.SystemConstant;
-import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
-import com.huateng.report.utils.ReportEnum;
 import com.huateng.service.pub.UserMgrService;
 
 @SuppressWarnings("unchecked")
@@ -65,14 +61,22 @@ public class BankBlackListQueryGetter extends BaseGetter {
 				globalinfo.getTlrno());
 		boolean isSuperManager = false;
 		for (RoleInfo roleInfo : roleInfos) {
-			if(roleInfo.getRoleType().equals(SystemConstant.ROLE_TYPE_SYS_MNG)){
+			if (roleInfo.getRoleType().equals(SystemConstant.ROLE_TYPE_SYS_MNG)) {
 				isSuperManager = true;
 			}
 		}
 
 		PageQueryResult pqr = BankBlackListQueryService.getInstance()
-				.pageQueryByHql(globalinfo, isSuperManager, pageIndex, pageSize, qPartyId,
-						qCertificateType, qCertificateNumber);
+				.pageQueryByHql(globalinfo, isSuperManager, pageIndex,
+						pageSize, qPartyId, qCertificateType,
+						qCertificateNumber);
+
+		String message = "国际黑名单的查询:partyId=" + qPartyId + ",certificateType="
+				+ qCertificateType + ",certificateNumber=" + qCertificateNumber;
+		BankBlackListOperateLogService bankBLOperateLogService = BankBlackListOperateLogService
+				.getInstance();
+		bankBLOperateLogService.saveBankBLOperateLog(SystemConstant.LOG_QUERY,
+				"", String.valueOf(pqr.getTotalCount()), message);
 		return pqr;
 	}
 }

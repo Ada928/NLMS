@@ -2,6 +2,10 @@ package com.cibfintech.report.blacklist.operation;
 
 import java.io.IOException;
 
+import resource.bean.report.PoliceBlackList;
+import resource.bean.report.SysTaskInfo;
+
+import com.cibfintech.report.blacklist.service.PoliceBlackListOperateLogService;
 import com.cibfintech.report.blacklist.service.PoliceBlackListService;
 import com.huateng.common.DateUtil;
 import com.huateng.common.log.HtLog;
@@ -13,9 +17,6 @@ import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
-
-import resource.bean.report.PoliceBlackList;
-import resource.bean.report.SysTaskInfo;
 
 public class PoliceBlackListOperation extends BaseOperation {
 	public static final String ID = "BankBlackListOperation";
@@ -39,6 +40,9 @@ public class PoliceBlackListOperation extends BaseOperation {
 				.getAttribute(IN_PARAM);
 		// 调用服务类
 		PoliceBlackListService service = PoliceBlackListService.getInstance();
+
+		String operateType = "";
+		String message = "";
 		if (CMD_DEL.equals(cmd)) {
 			// 删除
 			// service.removeEntity(policeBlackList);
@@ -61,11 +65,9 @@ public class PoliceBlackListOperation extends BaseOperation {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			gi.addBizLog("Updater.log",
-					new String[] { gi.getTlrno(), gi.getBrcode(), "公安部黑名单的删除" });
-			htlog.info("Updater.log",
-					new String[] { gi.getBrcode(), gi.getTlrno(), "公安部黑名单的删除" });
+			operateType = SystemConstant.LOG_DELEATE;
+			message = "公安部黑名单的删除";
+			recordRunningLog("Updater.log", message);
 		} else if (CMD_ADD.equals(cmd)) {
 			// 插入或者更新
 			// service.addEntity(policeBlackList);
@@ -90,11 +92,9 @@ public class PoliceBlackListOperation extends BaseOperation {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			gi.addBizLog("Updater.log",
-					new String[] { gi.getTlrno(), gi.getBrcode(), "公安部黑名单的增加" });
-			htlog.info("Updater.log",
-					new String[] { gi.getBrcode(), gi.getTlrno(), "公安部黑名单的增加" });
+			operateType = SystemConstant.LOG_ADD;
+			message = "公安部黑名单的增加";
+			recordRunningLog("Updater.log", message);
 		} else if (CMD_MOD.equals(cmd)) {
 			// service.modEntity(policeBlackList);
 			// Iterator it=service.selectByid(policeBlackList.getId());
@@ -130,16 +130,29 @@ public class PoliceBlackListOperation extends BaseOperation {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			operateType = SystemConstant.LOG_EDIT;
+			message = "公安部黑名单的编辑";
+			recordRunningLog("Updater.log", message);
 		}
-		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		gi.addBizLog("Updater.log",
-				new String[] { gi.getTlrno(), gi.getBrcode(), "公安部黑名单的编辑" });
-		htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(),
-				"公安部黑名单的编辑" });
+
+		PoliceBlackListOperateLogService policeBLOperateLogService = PoliceBlackListOperateLogService
+				.getInstance();
+		policeBLOperateLogService.savePoliceBLOperateLog(operateType, "", "",
+				message);
 	}
 
 	@Override
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
+	}
+
+	@SuppressWarnings("unused")
+	private void recordRunningLog(String type, String message)
+			throws CommonException {
+		GlobalInfo gi = GlobalInfo.getCurrentInstance();
+		gi.addBizLog(type, new String[] { gi.getTlrno(), gi.getBrcode(),
+				message });
+		htlog.info(type,
+				new String[] { gi.getBrcode(), gi.getTlrno(), message });
 	}
 }

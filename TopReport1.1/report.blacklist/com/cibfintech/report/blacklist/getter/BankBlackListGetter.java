@@ -6,6 +6,7 @@ import java.util.Set;
 
 import resource.bean.pub.RoleInfo;
 
+import com.cibfintech.report.blacklist.service.BankBlackListOperateLogService;
 import com.cibfintech.report.blacklist.service.BankBlackListService;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
@@ -14,7 +15,6 @@ import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.business.common.SystemConstant;
-import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
@@ -75,6 +75,12 @@ public class BankBlackListGetter extends BaseGetter {
 				.pageQueryByHql(globalinfo, isSuperManager, pageIndex,
 						pageSize, qPartyId, qCertificateType,
 						qCertificateNumber, operateStates);
+		String message = "国际黑名单的查询:partyId=" + qPartyId + ",certificateType="
+				+ qCertificateType + ",certificateNumber=" + qCertificateNumber;
+		BankBlackListOperateLogService bankBLOperateLogService = BankBlackListOperateLogService
+				.getInstance();
+		bankBLOperateLogService.saveBankBLOperateLog(SystemConstant.LOG_QUERY,
+				"", String.valueOf(pqr.getTotalCount()), message);
 		return pqr;
 	}
 

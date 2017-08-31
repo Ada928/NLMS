@@ -6,14 +6,14 @@
  */
 package com.cibfintech.report.blacklist.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
 import resource.bean.report.BankBLOperateLog;
 import resource.dao.base.HQLDAO;
+import resource.report.dao.ROOTDAO;
+import resource.report.dao.ROOTDAOUtils;
 
 import com.huateng.ebank.business.common.BaseDAOUtils;
 import com.huateng.ebank.business.common.ErrorCode;
@@ -78,42 +78,39 @@ public class BankBlackListOperateLogService {
 	}
 
 	public PageQueryResult queryBankBLOperateLogDetail(int pageIndex,
-			int pageSize, String qtlrNo, String qbrNo, String stdate,
-			String endate) throws CommonException {
+			int pageSize, String qtlrNo, String qtlrIP, String qbrNo,
+			String stdate, String endate) throws CommonException {
 		StringBuffer sb = new StringBuffer("");
-		List<Object> list = new ArrayList<Object>();
 		// sb.append("select log from TlrLoginLog log where 1=1");
-		sb.append("select  distinct log.tlrNo, log.brNo"
-				+ "count(log.tlrNo), max(log.createDate), min(log.createDate) "
-				+ "  from   BankBLOperateLog log  where 1=1  ");
+		sb.append(" from BankBLOperateLog blog  where 1=1  ");
 		if (!DataFormat.isEmpty(qtlrNo)) {
-			sb.append(" and  log.tlrNo= ? ");
-			list.add(qtlrNo);
+			sb.append(" and  blog.tlrNo=  ").append(qtlrNo.trim());
+		}
+		if (!DataFormat.isEmpty(qtlrIP)) {
+			sb.append(" and  blog.tlrIP= ? ").append(qtlrIP.trim());
 		}
 		if (!DataFormat.isEmpty(qbrNo)) {
-			sb.append(" and log.brNo = ? ");
-			list.add(qbrNo);
+			sb.append(" and blog.brNo = ? ").append(qbrNo.trim());
 		}
 
 		if (!DataFormat.isEmpty(stdate)) {
-			sb.append(" and log.createDate>=? ");
-			list.add(DateUtil.stringToDate2(stdate));
+			sb.append(" and blog.createDate>=? ").append(
+					DateUtil.stringToDate2(stdate));
 		}
 		if (!DataFormat.isEmpty(endate)) {
-			sb.append(" and log.createDate<? ");
-			list.add(DateUtil.getStartDateByDays(
-					DateUtil.stringToDate2(endate), -1));
+			sb.append(" and blog.createDate<? ").append(
+					DateUtil.getStartDateByDays(DateUtil.stringToDate2(endate),
+							-1));
 		}
-		sb.append(" group by log.tlrNo, log.brNo");
+		sb.append(" order by blog.brNo");
 
-		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
+		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 
 		PageQueryCondition queryCondition = new PageQueryCondition();
 		queryCondition.setQueryString(sb.toString());
 		queryCondition.setPageIndex(pageIndex);
 		queryCondition.setPageSize(pageSize);
-		queryCondition.setObjArray(list.toArray());
-		PageQueryResult pageQueryResult = hqldao.pageQueryByQL(queryCondition);
+		PageQueryResult pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 		return pageQueryResult;
 	}
 }
