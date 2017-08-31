@@ -83,7 +83,7 @@ public class TlrOperateLogService {
 		StringBuffer sb = new StringBuffer("");
 		List<Object> list = new ArrayList<Object>();
 		// sb.append("select log from TlrLoginLog log where 1=1");
-		sb.append("select log from TlrlOperateLog log where 1=1");
+		sb.append("select log from TlrOperateLog log where 1=1");
 		if (!DataFormat.isEmpty(qtlrNo)) {
 			sb.append(" and  log.tlrNo= ?");
 			list.add(qtlrNo);

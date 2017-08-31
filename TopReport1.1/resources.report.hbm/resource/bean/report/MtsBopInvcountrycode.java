@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseMtsBopInvcountrycode;
 
-public class MtsBopInvcountrycode extends BaseMtsBopInvcountrycode {
+public class MtsBopInvcountrycode extends BaseMtsBopInvcountrycode implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

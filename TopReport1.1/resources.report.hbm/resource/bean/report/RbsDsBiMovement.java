@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseRbsDsBiMovement;
 
-public class RbsDsBiMovement extends BaseRbsDsBiMovement {
+public class RbsDsBiMovement extends BaseRbsDsBiMovement implements
+		java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 

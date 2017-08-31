@@ -2,7 +2,8 @@ package resource.bean.pub;
 
 import resource.bean.pub.base.BaseRoleOperateLog;
 
-public class RoleOperateLog extends BaseRoleOperateLog {
+public class RoleOperateLog extends BaseRoleOperateLog implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

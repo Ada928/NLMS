@@ -2,7 +2,8 @@ package resource.bean.pub;
 
 import resource.bean.pub.base.BaseBctlOperateLog;
 
-public class BctlOperateLog extends BaseBctlOperateLog {
+public class BctlOperateLog extends BaseBctlOperateLog implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

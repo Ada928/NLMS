@@ -2,7 +2,7 @@ package resource.bean.pub;
 
 import resource.bean.pub.base.BaseGlobalinfo;
 
-public class Globalinfo extends BaseGlobalinfo {
+public class Globalinfo extends BaseGlobalinfo implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

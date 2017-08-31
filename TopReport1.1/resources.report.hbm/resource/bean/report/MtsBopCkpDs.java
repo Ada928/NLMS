@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseMtsBopCkpDs;
 
-public class MtsBopCkpDs extends BaseMtsBopCkpDs {
+public class MtsBopCkpDs extends BaseMtsBopCkpDs implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
@@ -20,7 +21,8 @@ public class MtsBopCkpDs extends BaseMtsBopCkpDs {
 	/**
 	 * Constructor for required fields
 	 */
-	public MtsBopCkpDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile) {
+	public MtsBopCkpDs(java.lang.String id, java.lang.String apptype,
+			java.lang.String currentfile) {
 
 		super(id, apptype, currentfile);
 	}

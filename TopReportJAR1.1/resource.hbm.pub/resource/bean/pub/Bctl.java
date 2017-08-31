@@ -2,11 +2,11 @@ package resource.bean.pub;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.huateng.ebank.framework.util.DataFormat;
-
 import resource.bean.pub.base.BaseBctl;
 
-public class Bctl extends BaseBctl {
+import com.huateng.ebank.framework.util.DataFormat;
+
+public class Bctl extends BaseBctl implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

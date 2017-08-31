@@ -6,7 +6,8 @@ import resource.bean.report.base.BaseBiWorkdateConf;
 
 import com.huateng.report.utils.RepList;
 
-public class BiWorkdateConf extends BaseBiWorkdateConf {
+public class BiWorkdateConf extends BaseBiWorkdateConf implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private List<String> workDateList = new RepList<String>();
 

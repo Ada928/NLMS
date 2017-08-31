@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBopProjectInfo;
 
-public class BopProjectInfo extends BaseBopProjectInfo {
+public class BopProjectInfo extends BaseBopProjectInfo implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

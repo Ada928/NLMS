@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseSysTaskInfo;
 
-public class SysTaskInfo extends BaseSysTaskInfo {
+public class SysTaskInfo extends BaseSysTaskInfo implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

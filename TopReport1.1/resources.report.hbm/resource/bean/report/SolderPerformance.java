@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseSolderPerformance;
 
-public class SolderPerformance extends BaseSolderPerformance {
+public class SolderPerformance extends BaseSolderPerformance implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

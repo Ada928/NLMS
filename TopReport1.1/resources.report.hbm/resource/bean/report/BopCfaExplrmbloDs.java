@@ -4,7 +4,8 @@ import java.util.List;
 
 import resource.bean.report.base.BaseBopCfaExplrmbloDs;
 
-public class BopCfaExplrmbloDs extends BaseBopCfaExplrmbloDs {
+public class BopCfaExplrmbloDs extends BaseBopCfaExplrmbloDs implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private List<BopCfaExplbalainfo> explcurrinfos;// 签约
@@ -28,7 +29,8 @@ public class BopCfaExplrmbloDs extends BaseBopCfaExplrmbloDs {
 	/**
 	 * Constructor for required fields
 	 */
-	public BopCfaExplrmbloDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile) {
+	public BopCfaExplrmbloDs(java.lang.String id, java.lang.String apptype,
+			java.lang.String currentfile) {
 
 		super(id, apptype, currentfile);
 	}

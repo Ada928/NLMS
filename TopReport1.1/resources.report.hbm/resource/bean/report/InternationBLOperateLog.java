@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseInternationBLOperateLog;
 
-public class InternationBLOperateLog extends BaseInternationBLOperateLog {
+public class InternationBLOperateLog extends BaseInternationBLOperateLog
+		implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

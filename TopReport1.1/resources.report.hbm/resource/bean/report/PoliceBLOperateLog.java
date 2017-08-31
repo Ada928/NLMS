@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BasePoliceBLOperateLog;
 
-public class PoliceBLOperateLog extends BasePoliceBLOperateLog {
+public class PoliceBLOperateLog extends BasePoliceBLOperateLog implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

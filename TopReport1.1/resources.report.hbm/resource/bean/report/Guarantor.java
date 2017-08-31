@@ -1,6 +1,6 @@
 package resource.bean.report;
 
-public class Guarantor {
+public class Guarantor implements java.io.Serializable {
 
 	private java.lang.String guedcode;
 	private java.lang.String guedname;

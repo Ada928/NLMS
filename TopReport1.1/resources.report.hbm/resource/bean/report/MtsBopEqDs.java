@@ -5,7 +5,7 @@ import java.util.List;
 
 import resource.bean.report.base.BaseMtsBopEqDs;
 
-public class MtsBopEqDs extends BaseMtsBopEqDs {
+public class MtsBopEqDs extends BaseMtsBopEqDs implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

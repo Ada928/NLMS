@@ -2,7 +2,7 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseSysParams;
 
-public class SysParams extends BaseSysParams {
+public class SysParams extends BaseSysParams implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

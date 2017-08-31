@@ -2,7 +2,8 @@ package resource.bean.pub;
 
 import resource.bean.pub.base.BaseTlrOperateLog;
 
-public class TlrOperateLog extends BaseTlrOperateLog {
+public class TlrOperateLog extends BaseTlrOperateLog implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

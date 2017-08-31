@@ -2,14 +2,16 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseSubFileConfPK;
 
-public class SubFileConfPK extends BaseSubFileConfPK {
+public class SubFileConfPK extends BaseSubFileConfPK implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
 	public SubFileConfPK() {
 	}
 
-	public SubFileConfPK(java.lang.String fileType, java.lang.String busiType, java.lang.String appType) {
+	public SubFileConfPK(java.lang.String fileType, java.lang.String busiType,
+			java.lang.String appType) {
 
 		super(fileType, busiType, appType);
 	}

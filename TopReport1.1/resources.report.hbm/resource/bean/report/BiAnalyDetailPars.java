@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBiAnalyDetailPars;
 
-public class BiAnalyDetailPars extends BaseBiAnalyDetailPars {
+public class BiAnalyDetailPars extends BaseBiAnalyDetailPars implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

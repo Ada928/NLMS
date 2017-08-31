@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBopCfaExdebtDs;
 
-public class BopCfaExdebtDs extends BaseBopCfaExdebtDs {
+public class BopCfaExdebtDs extends BaseBopCfaExdebtDs implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
@@ -20,8 +21,8 @@ public class BopCfaExdebtDs extends BaseBopCfaExdebtDs {
 	/**
 	 * Constructor for required fields
 	 */
-	public BopCfaExdebtDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile,
-			java.lang.String buscode) {
+	public BopCfaExdebtDs(java.lang.String id, java.lang.String apptype,
+			java.lang.String currentfile, java.lang.String buscode) {
 
 		super(id, apptype, currentfile, buscode);
 	}

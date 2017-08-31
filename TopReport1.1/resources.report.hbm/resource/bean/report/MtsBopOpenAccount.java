@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseMtsBopOpenAccount;
 
-public class MtsBopOpenAccount extends BaseMtsBopOpenAccount {
+public class MtsBopOpenAccount extends BaseMtsBopOpenAccount implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
