@@ -7,14 +7,12 @@
 package com.huateng.service.pub;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
 import resource.bean.pub.BctlOperateLog;
-import resource.bean.pub.TlrLoginLog;
 import resource.dao.base.HQLDAO;
 
 import com.huateng.ebank.business.common.BaseDAOUtils;
@@ -80,23 +78,24 @@ public class BctlOperateLogService {
 	}
 
 	public PageQueryResult queryBctlOperateLogDetail(int pageIndex,
-			int pageSize, String qtlrNo, String qbrNo, String stdate,
-			String endate) throws CommonException {
+			int pageSize, String qtlrNo, String qtlrIP, String qbrNo,
+			String stdate, String endate) throws CommonException {
 		StringBuffer sb = new StringBuffer("");
 		List<Object> list = new ArrayList<Object>();
 		// sb.append("select log from TlrLoginLog log where 1=1");
-		sb.append("select  distinct log.tlrNo, log.brNo"
-				+ "count(log.tlrNo), max(log.createDate), min(log.createDate) "
-				+ "  from   BctlOperateLog log  where 1=1  ");
+		sb.append("select log from BctlOperateLog log where 1=1");
 		if (!DataFormat.isEmpty(qtlrNo)) {
 			sb.append(" and  log.tlrNo= ? ");
 			list.add(qtlrNo);
+		}
+		if (!DataFormat.isEmpty(qtlrIP)) {
+			sb.append(" and log.tlrIP = ? ");
+			list.add(qtlrIP);
 		}
 		if (!DataFormat.isEmpty(qbrNo)) {
 			sb.append(" and log.brNo = ? ");
 			list.add(qbrNo);
 		}
-
 		if (!DataFormat.isEmpty(stdate)) {
 			sb.append(" and log.createDate>=? ");
 			list.add(DateUtil.stringToDate2(stdate));
@@ -106,7 +105,7 @@ public class BctlOperateLogService {
 			list.add(DateUtil.getStartDateByDays(
 					DateUtil.stringToDate2(endate), -1));
 		}
-		sb.append(" group by log.tlrNo, log.brNo");
+		sb.append(" order by log.tlrNo");
 
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 
