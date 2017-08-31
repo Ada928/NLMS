@@ -10,9 +10,9 @@ import java.io.Serializable;
  * @hibernate.class table="TLR_LOGIN_LOG"
  */
 
-public abstract class BaseBankBLOperateLog implements Serializable {
+public abstract class BaseInternationBLOperateLog implements Serializable {
 
-	public static String REF = "BaseBankBLOperateLog";
+	public static String REF = "BaseInternationBLOperateLog";
 	public static String PROP_MESSAFE = "message";
 	public static String PROP_TLR_NO = "tlrNo";
 	public static String PROP_ID = "id";
@@ -25,14 +25,14 @@ public abstract class BaseBankBLOperateLog implements Serializable {
 	public static String PROP_FILTER3 = "filter3";
 
 	// constructors
-	public BaseBankBLOperateLog() {
+	public BaseInternationBLOperateLog() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseBankBLOperateLog(java.lang.String id) {
+	public BaseInternationBLOperateLog(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -191,11 +191,11 @@ public abstract class BaseBankBLOperateLog implements Serializable {
 		if (!(obj instanceof resource.bean.pub.BctlOperateLog))
 			return false;
 		else {
-			resource.bean.report.BankBLOperateLog bankBLOperateLog = (resource.bean.report.BankBLOperateLog) obj;
-			if (null == this.getId() || null == bankBLOperateLog.getId())
+			resource.bean.report.InternationBLOperateLog intenaBLOperateLog = (resource.bean.report.InternationBLOperateLog) obj;
+			if (null == this.getId() || null == intenaBLOperateLog.getId())
 				return false;
 			else
-				return (this.getId().equals(bankBLOperateLog.getId()));
+				return (this.getId().equals(intenaBLOperateLog.getId()));
 		}
 	}
 
