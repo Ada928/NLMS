@@ -21,5 +21,10 @@
 		path="/fpages/blacklistManage/xml/InternationalBlackListDetail.xml" />
 	<Query id="InternationBlackListLogQuery" 
 	    path="/fpages/blacklistManage/xml/InternationBlackListLogQuery.xml" />
+	    
+	<Query id="QueryDailyLogCount"
+		path="/fpages/blacklistManage/xml/QueryDailyLogCount.xml" />
+	<Query id="QueryMonthlyLogCount" 
+	    path="/fpages/blacklistManage/xml/QueryMonthlyLogCount.xml" />
 
 </META>
