@@ -7,7 +7,6 @@ import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.common.CommonFunctions;
 import com.huateng.ebank.business.common.ErrorCode;
-import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.report.common.ReportConstant;
@@ -73,7 +72,6 @@ public class RoleOperateLogQueryGetter extends BaseGetter {
 			}
 
 		}
-		GlobalInfo info = GlobalInfo.getCurrentInstance();
 		RoleOperateLogService roleOPLogService = RoleOperateLogService
 				.getInstance();
 		return roleOPLogService.queryRoleOperateLogDetail(pageIndex, pageSize,

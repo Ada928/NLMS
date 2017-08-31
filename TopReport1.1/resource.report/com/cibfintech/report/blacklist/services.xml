@@ -17,5 +17,11 @@
     <bean id="InternationalBlackListOperation" class="com.cibfintech.report.blacklist.operation.InternationalBlackListOperation" />
     <bean id="com.cibfintech.report.blacklist.service.InternationBlackListOperateLogService" 
     	class="com.cibfintech.report.blacklist.service.InternationBlackListOperateLogService"/>
+    	
+    	
+    <bean id="com.cibfintech.report.blacklist.service.QueryDailyLogCountService" 
+    	class="com.cibfintech.report.blacklist.service.QueryDailyLogCountService"/>
+    <bean id="com.cibfintech.report.blacklist.service.QueryMonthlyLogCountService" 
+    	class="com.cibfintech.report.blacklist.service.QueryMonthlyLogCountService"/>
  
 </beans>

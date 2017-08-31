@@ -58,8 +58,8 @@ public class PoliceBlackListOperateLogService {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		PoliceBLOperateLog policeBLOperateLog = new PoliceBLOperateLog();
-		policeBLOperateLog.setId(UUID.randomUUID().toString().replaceAll("-", "")
-				.toUpperCase());
+		policeBLOperateLog.setId(UUID.randomUUID().toString()
+				.replaceAll("-", "").toUpperCase());
 		policeBLOperateLog.setBrNo(gi.getBrno());
 		policeBLOperateLog.setTlrNo(gi.getTlrno());
 		policeBLOperateLog.setTlrIP(gi.getIp());
@@ -78,17 +78,19 @@ public class PoliceBlackListOperateLogService {
 	}
 
 	public PageQueryResult queryPoliceBLOperateLogDetail(int pageIndex,
-			int pageSize, String qtlrNo, String qbrNo, String stdate,
-			String endate) throws CommonException {
+			int pageSize, String qtlrNo, String qtlrIP, String qbrNo,
+			String stdate, String endate) throws CommonException {
 		StringBuffer sb = new StringBuffer("");
 		List<Object> list = new ArrayList<Object>();
-		// sb.append("select log from TlrLoginLog log where 1=1");
-		sb.append("select  distinct log.tlrNo, log.brNo"
-				+ "count(log.tlrNo), max(log.createDate), min(log.createDate) "
-				+ "  from   PoliceBLOperateLog log  where 1=1  ");
+		// sb.append("select log from PoliceBLOperateLog log where 1=1");
+		sb.append("select log from PoliceBLOperateLog log where 1=1 ");
 		if (!DataFormat.isEmpty(qtlrNo)) {
 			sb.append(" and  log.tlrNo= ? ");
 			list.add(qtlrNo);
+		}
+		if (!DataFormat.isEmpty(qtlrIP)) {
+			sb.append(" and  log.tlrIP= ? ");
+			list.add(qtlrIP);
 		}
 		if (!DataFormat.isEmpty(qbrNo)) {
 			sb.append(" and log.brNo = ? ");
@@ -104,7 +106,7 @@ public class PoliceBlackListOperateLogService {
 			list.add(DateUtil.getStartDateByDays(
 					DateUtil.stringToDate2(endate), -1));
 		}
-		sb.append(" group by log.tlrNo, log.brNo");
+		sb.append(" order by log.brNo");
 
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 

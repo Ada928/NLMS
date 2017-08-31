@@ -1,5 +1,6 @@
-package com.huateng.report.dataquery.getter;
+package com.cibfintech.report.blacklist.getter;
 
+import com.cibfintech.report.blacklist.service.QueryDailyLogCountService;
 import com.huateng.common.DateUtil;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
@@ -13,22 +14,20 @@ import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
-import com.huateng.service.pub.TlrOperateLogService;
 
 /**
  * @Description: 日志查询
  * @Package: com.huateng.ebank.business.custadmin.getter
  * @Company: Shanghai Huateng Software Systems Co., Ltd.
  */
-public class TlrOperateLogQueryGetter extends BaseGetter {
+public class QueryDailyLogCountGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		try {
 
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME,
-					"用户操作日志查询");
-
+					"每日黑名单日志查询");
 			CommonFunctions comm = CommonFunctions.getInstance();
 			PageQueryResult pageResult = getData();
 			ResultMng.fillResultByList(getCommonQueryBean(),
@@ -51,16 +50,13 @@ public class TlrOperateLogQueryGetter extends BaseGetter {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	private PageQueryResult getData() throws CommonException {
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
 
-		String qtlrNo = (String) getCommQueryServletRequest().getParameterMap()
-				.get("qtlrNo");
 		String qbrNo = (String) getCommQueryServletRequest().getParameterMap()
 				.get("qbrNo");
-		String qtlrIP = (String) getCommQueryServletRequest().getParameterMap()
-				.get("qtlrIP");
 		String startDate = (String) getCommQueryServletRequest()
 				.getParameterMap().get("startDate");
 		String endDate = (String) getCommQueryServletRequest()
@@ -72,10 +68,10 @@ public class TlrOperateLogQueryGetter extends BaseGetter {
 			}
 
 		}
-		TlrOperateLogService tlrOPLogService = TlrOperateLogService
+		QueryDailyLogCountService service = QueryDailyLogCountService
 				.getInstance();
-		return tlrOPLogService.queryTlrOperateLogDetail(pageIndex, pageSize,
-				qtlrNo, qtlrIP, qbrNo, startDate, endDate);
+		return service.queryQueryDailyLogCountDetail(pageIndex, pageSize,
+				qbrNo, startDate, endDate);
 	}
 
 }
