@@ -39,8 +39,7 @@ public class InternationalBlackListService {
 		return (InternationalBlackListService) ApplicationContextUtils.getBean("InternationalBlackListService");
 	}
 
-	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String partyId, String qCertificateType,
-			String qCertificateNumber, String qOperateState) {
+	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String partyId, String qCertificateType, String qCertificateNumber, String qOperateState) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
@@ -59,7 +58,7 @@ public class InternationalBlackListService {
 		if (StringUtils.isNotBlank(qOperateState)) {
 			hql.append(" and iblt.operateState='").append(qOperateState.trim()).append("'");
 		} else {
-			//hql.append(" and iblt.operateState<>'").append(ReportEnum.REPORT_ST1.N.value).append("'");
+			// hql.append(" and iblt.operateState<>'").append(ReportEnum.REPORT_ST1.N.value).append("'");
 		}
 		try {
 			queryCondition.setPageIndex(pageIndex);

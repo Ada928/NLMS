@@ -30,8 +30,7 @@ public class DownExcel {
 					// 第一个参数表示列，第二个表示行
 					Label labelC = null;
 					if (i == j) {
-						WritableFont wfc = new WritableFont(WritableFont.ARIAL, 10, WritableFont.NO_BOLD, false,
-								UnderlineStyle.NO_UNDERLINE, Colour.RED);
+						WritableFont wfc = new WritableFont(WritableFont.ARIAL, 10, WritableFont.NO_BOLD, false, UnderlineStyle.NO_UNDERLINE, Colour.RED);
 						WritableCellFormat wcfFC = new WritableCellFormat(wfc);
 						labelC = new Label(j, i, "这是第" + (i + 1) + "行，第" + (j + 1) + "列", wcfFC);
 					} else if (i == 0 || j == 0) {

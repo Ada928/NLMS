@@ -39,8 +39,7 @@ public class BctlMngEntryComGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
@@ -69,8 +68,7 @@ public class BctlMngEntryComGetter extends BaseGetter {
 					brcodes.add(temp.getBrcode());
 				}
 			}
-			String hql = "select bctl from Bctl bctl where bctl.status='1' and bctl.brcode in"
-					+ ReportUtils.toInString(brcodes) + " order by bctl.brno";
+			String hql = "select bctl from Bctl bctl where bctl.status='1' and bctl.brcode in" + ReportUtils.toInString(brcodes) + " order by bctl.brno";
 			List<Bctl> list = rootdao.queryByQL2List(hql);
 
 			pageQueryResult.setTotalCount(list.size());
@@ -87,8 +85,7 @@ public class BctlMngEntryComGetter extends BaseGetter {
 				for (TlrBctlRel temp : OldValue.getBctlRellist()) {
 					brcodes.add(temp.getBrcode());
 				}
-				String hql = "select bctl from Bctl bctl where bctl.brcode in" + ReportUtils.toInString(brcodes)
-						+ " order by bctl.brcode";
+				String hql = "select bctl from Bctl bctl where bctl.brcode in" + ReportUtils.toInString(brcodes) + " order by bctl.brcode";
 				List<Bctl> list = rootdao.queryByQL2List(hql);
 
 				pageQueryResult.setTotalCount(list.size());

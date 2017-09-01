@@ -24,8 +24,7 @@ public class TlrAddGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult().size() == 0) {
 				result.getPage().setTotalPage(0);
@@ -51,7 +50,7 @@ public class TlrAddGetter extends BaseGetter {
 		oc.setAttribute("brcode", brcode);
 		oc.setAttribute("extTlrno", extTlrno);
 		oc.setAttribute("departmentCode", departmentCode);
-		
+
 		OPCaller.call(TlrInfoExOperation.ID, oc);
 		List tlrInfoList = (List) oc.getAttribute(TlrInfoExOperation.OUT_TLR_JUDGE_LIST);
 		PageQueryResult pageQueryResult = new PageQueryResult();

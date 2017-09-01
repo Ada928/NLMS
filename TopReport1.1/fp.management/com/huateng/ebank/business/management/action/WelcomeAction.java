@@ -35,8 +35,7 @@ public class WelcomeAction extends BaseAction {
 	 */
 	private static final Logger logger = Logger.getLogger(WelcomeAction.class);
 
-	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward actionForward = null;
 		// 登陆检查
 		super.init(request);
@@ -90,14 +89,11 @@ public class WelcomeAction extends BaseAction {
 	 */
 	private Integer getCnt2() throws CommonException {
 		StringBuffer hqlstr = new StringBuffer(512);
-		hqlstr.append(
-				"select li.brcode, li.contractno, li.lnid, li.totamt, li.lnbal, li.applyDate, li.appstat, li.trmClass, li.clrClass, ")
-				.append("ci.custno, ci.cname, ci.id, li.exceptionLoan , ci.blacklist ")
-				.append("from Loaninfo as li, CustomerInfo as ci ").append("where li.custcd = ci.id ")
-				.append(" and li.trmClass <> '").append(SystemConstant.TRM_CLASS_CLOSE).append("'")
+		hqlstr.append("select li.brcode, li.contractno, li.lnid, li.totamt, li.lnbal, li.applyDate, li.appstat, li.trmClass, li.clrClass, ")
+				.append("ci.custno, ci.cname, ci.id, li.exceptionLoan , ci.blacklist ").append("from Loaninfo as li, CustomerInfo as ci ")
+				.append("where li.custcd = ci.id ").append(" and li.trmClass <> '").append(SystemConstant.TRM_CLASS_CLOSE).append("'")
 				.append("and li.mgrno = '" + GlobalInfo.getCurrentInstance().getTlrno() + "'");
-		hqlstr.append(BctlService.getInstance().getQueryBranchCondition("li.brcode", "1",
-				GlobalInfo.getCurrentInstance().getBrcode()));
+		hqlstr.append(BctlService.getInstance().getQueryBranchCondition("li.brcode", "1", GlobalInfo.getCurrentInstance().getBrcode()));
 		hqlstr.append("order by li.contractno desc");
 
 		List resultList = DAOUtils.getHQLDAO().queryByQL2List(hqlstr.toString());
@@ -142,9 +138,8 @@ public class WelcomeAction extends BaseAction {
 	private Integer getCnt5() throws CommonException {
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
 		StringBuffer hqlstr = new StringBuffer(512);
-		hqlstr.append("select distinct ci.custno, ci.cname, ci.idno , ci.idtype, ci.branchBrcode, ci.custType")
-				.append(" from  CustomerInfo as ci ").append(" where  ci.directorManagerNo='")
-				.append(globalInfo.getTlrno()).append("'");
+		hqlstr.append("select distinct ci.custno, ci.cname, ci.idno , ci.idtype, ci.branchBrcode, ci.custType").append(" from  CustomerInfo as ci ")
+				.append(" where  ci.directorManagerNo='").append(globalInfo.getTlrno()).append("'");
 		;
 		List resultList = DAOUtils.getHQLDAO().queryByQL2List(hqlstr.toString());
 		return resultList.size();
@@ -160,8 +155,8 @@ public class WelcomeAction extends BaseAction {
 	private Integer getCnt6() throws CommonException {
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
 		StringBuffer hqlstr = new StringBuffer(512);
-		hqlstr.append("select fci.custno, fci.name, fci.idno, fci.idtype, fci.custcd, fci.remarks")
-				.append(" from FocusCustInfo as fci where fci.tlrno = '").append(globalInfo.getTlrno()).append("'");
+		hqlstr.append("select fci.custno, fci.name, fci.idno, fci.idtype, fci.custcd, fci.remarks").append(" from FocusCustInfo as fci where fci.tlrno = '")
+				.append(globalInfo.getTlrno()).append("'");
 		List resultList = DAOUtils.getHQLDAO().queryByQL2List(hqlstr.toString());
 		return resultList.size();
 	}

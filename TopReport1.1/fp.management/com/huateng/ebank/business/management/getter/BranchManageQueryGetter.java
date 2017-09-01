@@ -28,18 +28,16 @@ public class BranchManageQueryGetter extends BaseGetter {
 
 	public Result call() throws AppException {
 		try {
-
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "机构管理查询");
-
 			/** 获取查询条件 */
 			Map param = this.getCommQueryServletRequest().getParameterMap();
 
+			int pageIndex = getResult().getPage().getCurrentPage();
+			int pageSize = getResult().getPage().getEveryPage();
 			/** 获取everyPage：每页包含的记录数 */
 			int everypage = Integer.parseInt(param.get("everyPage").toString());
-
 			/** 获取nextPage：表示下一页是第几页 */
 			int nextpage = Integer.parseInt(param.get("nextPage").toString());
-
 			/** 获取所有查询结果 */
 			// String brcode = GlobalInfo.getCurrentInstance().getBrcode();
 
@@ -63,7 +61,7 @@ public class BranchManageQueryGetter extends BaseGetter {
 				hql += (" and po.st<>'" + ReportEnum.REPORT_ST1.N.value + "'");
 			}
 			hql += (" and po.del<>'T'");
-			hql += ("order by po.brclass,po.brcode");
+			hql += ("order by po.brclass, po.brcode");
 			List list = DAOUtils.getBctlDAO().queryByCondition(hql);
 			// mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 end
 			int maxIndex = nextpage * everypage;
@@ -72,29 +70,24 @@ public class BranchManageQueryGetter extends BaseGetter {
 			if (maxIndex > list.size()) {
 				maxIndex = list.size();
 			}
-			List resultList = list
-					.subList((nextpage - 1) * everypage, maxIndex);
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), resultList, getResult());
+			List resultList = list.subList((nextpage - 1) * everypage, maxIndex);
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), resultList, getResult());
 
 			result.setContent(resultList);
 
 			result.getPage().setTotalPage((list.size() - 1) / everypage + 1);
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "机构管理查询");
-			BctlOperateLogService bctlOperateLogService = BctlOperateLogService
-					.getInstance();
+
+			BctlOperateLogService bctlOperateLogService = BctlOperateLogService.getInstance();
 			String message = "brno=" + brno + ",brname=" + brname + ",qst=" + qst;
-			bctlOperateLogService.saveBctlOperateLog(SystemConstant.LOG_QUERY,
-					"", String.valueOf(list.size()), "查询银行信息 "+message);
+			bctlOperateLogService.saveBctlOperateLog(SystemConstant.LOG_QUERY, "", String.valueOf(list.size()), "查询银行信息 " + message);
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
-
 	}
 
 	public static String getTime(String format) {
@@ -104,19 +97,14 @@ public class BranchManageQueryGetter extends BaseGetter {
 
 	protected PageQueryResult getData() throws Exception {
 		PageQueryResult pageQueryResult = new PageQueryResult();
-
 		String brcode = GlobalInfo.getCurrentInstance().getBrcode();
-
 		List list = BctlService.getInstance().getAllDownBrcodeList(brcode);
-
 		pageQueryResult.setQueryResult(list);
 
 		return pageQueryResult;
-
 	}
 
 	protected Class getDataObjectClass() {
-		// TODO Auto-generated method stub
 		return Bctl.class;
 	}
 

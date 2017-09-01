@@ -36,8 +36,7 @@ public class QueryDailyLogCountService {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger
-			.getLogger(QueryDailyLogCountService.class);
+	private static final Logger logger = Logger.getLogger(QueryDailyLogCountService.class);
 
 	/**
 	 * get instance.
@@ -45,21 +44,17 @@ public class QueryDailyLogCountService {
 	 * @return
 	 */
 	public synchronized static QueryDailyLogCountService getInstance() {
-		return (QueryDailyLogCountService) ApplicationContextUtils
-				.getBean(QueryDailyLogCountService.class.getName());
+		return (QueryDailyLogCountService) ApplicationContextUtils.getBean(QueryDailyLogCountService.class.getName());
 	}
 
 	public QueryDailyLogCountService() {
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	public void saveQueryDailyLogCount(String operateType, String brNo,
-			String queryTable, String sumQueryRecord, Date countDay)
-			throws CommonException {
+	public void saveQueryDailyLogCount(String operateType, String brNo, String queryTable, String sumQueryRecord, Date countDay) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		QueryDailyLogCount queryDailyLogCount = new QueryDailyLogCount();
-		queryDailyLogCount.setId(UUID.randomUUID().toString()
-				.replaceAll("-", "").toUpperCase());
+		queryDailyLogCount.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
 		queryDailyLogCount.setBrNo(brNo);
 		queryDailyLogCount.setOperateType(operateType);
 		queryDailyLogCount.setQueryTable(queryTable);
@@ -70,14 +65,11 @@ public class QueryDailyLogCountService {
 			hqldao.getHibernateTemplate().save(queryDailyLogCount);
 		} catch (Exception e) {
 			logger.error("update(QueryDailyLogCount)", e);
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
 		}
 	}
 
-	public PageQueryResult queryQueryDailyLogCountDetail(int pageIndex,
-			int pageSize, String qbrNo, String stdate, String endate)
-			throws CommonException {
+	public PageQueryResult queryQueryDailyLogCountDetail(int pageIndex, int pageSize, String qbrNo, String stdate, String endate) throws CommonException {
 		StringBuffer sb = new StringBuffer("");
 		List<Object> list = new ArrayList<Object>();
 		// sb.append("select log from QueryDailyLogCount log where 1=1");
@@ -94,8 +86,7 @@ public class QueryDailyLogCountService {
 		}
 		if (!DataFormat.isEmpty(endate)) {
 			sb.append(" and cont.countDate<? ");
-			list.add(DateUtil.getStartDateByDays(
-					DateUtil.stringToDate2(endate), -1));
+			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endate), -1));
 		}
 		sb.append(" order by cont.brNo");
 

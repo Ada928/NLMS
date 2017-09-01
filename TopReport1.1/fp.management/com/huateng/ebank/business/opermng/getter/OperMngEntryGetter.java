@@ -46,30 +46,23 @@ public class OperMngEntryGetter extends BaseGetter {
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "用户管理查询");
 
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "用户管理查询");
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
 	protected PageQueryResult getData() throws Exception {
-		String qtlrnoName = (String) getCommQueryServletRequest()
-				.getParameterMap().get("qtlrnoName");
-		String qtlrno = (String) getCommQueryServletRequest().getParameterMap()
-				.get("qtlrno");
+		String qtlrnoName = (String) getCommQueryServletRequest().getParameterMap().get("qtlrnoName");
+		String qtlrno = (String) getCommQueryServletRequest().getParameterMap().get("qtlrno");
 		PageQueryResult pageQueryResult = new PageQueryResult();
 		GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
 		TlrInfoDAO dao = DAOUtils.getTlrInfoDAO();
@@ -83,19 +76,17 @@ public class OperMngEntryGetter extends BaseGetter {
 		}
 
 		// 如果不是超级管理员，只显示本行的用户
-		List<RoleInfo> roleInfos = UserMgrService.getInstance().getUserRoles(
-				globalinfo.getTlrno());
+		List<RoleInfo> roleInfos = UserMgrService.getInstance().getUserRoles(globalinfo.getTlrno());
 		List<String> roleTypeList = new ArrayList<String>();
 
 		for (RoleInfo roleInfo : roleInfos) {
 			roleTypeList.add(roleInfo.getRoleType());
 		}
-		
-		if (!roleTypeList.contains(
-				SystemConstant.ROLE_TYPE_SYS_MNG)) {
+
+		if (!roleTypeList.contains(SystemConstant.ROLE_TYPE_SYS_MNG)) {
 			hql += " and po.brcode = '" + globalinfo.getBrcode() + "' ";
 		}
-		
+
 		hql += " and po.del <> 'T'";
 		hql += " order by po.tlrno";
 		tlrInfoList = dao.queryByCondition(hql);
@@ -113,8 +104,7 @@ public class OperMngEntryGetter extends BaseGetter {
 			TlrInfo tlrInfo1 = (TlrInfo) it.next();
 			if (tlrInfo1.getBrcode() != null) {
 				// System.out.println(tlrInfo1.getTlrType());
-				tlrInfo1.setBrno(BctlService.getInstance().getExtBrno(
-						tlrInfo1.getBrcode()));
+				tlrInfo1.setBrno(BctlService.getInstance().getExtBrno(tlrInfo1.getBrcode()));
 			}
 		}
 		pageQueryResult.setTotalCount(tlrInfoList.size());

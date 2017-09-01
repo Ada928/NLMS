@@ -25,8 +25,7 @@ public class PoliceBlackListOperation extends BaseOperation {
 	public final static String CMD_ADD = "CMD_ADD";
 	public final static String CMD_MOD = "CMD_MOD";
 	public final static String CMD_DEL = "CMD_DEL";
-	private static final HtLog htlog = HtLogFactory
-			.getLogger(PoliceBlackListOperation.class);
+	private static final HtLog htlog = HtLogFactory.getLogger(PoliceBlackListOperation.class);
 
 	@Override
 	public void beforeProc(OperationContext context) throws CommonException {
@@ -36,8 +35,7 @@ public class PoliceBlackListOperation extends BaseOperation {
 	@Override
 	public void execute(OperationContext context) throws CommonException {
 		String cmd = (String) context.getAttribute(CMD);
-		PoliceBlackList policeBlackList = (PoliceBlackList) context
-				.getAttribute(IN_PARAM);
+		PoliceBlackList policeBlackList = (PoliceBlackList) context.getAttribute(IN_PARAM);
 		// 调用服务类
 		PoliceBlackListService service = PoliceBlackListService.getInstance();
 
@@ -50,17 +48,13 @@ public class PoliceBlackListOperation extends BaseOperation {
 			// sysCurService.update(sysCurrency);
 			sys1.setOperateState(ReportEnum.REPORT_ST1.DE.value);
 			sys1.setDel(SystemConstant.TRUE);
-			sys1.setLastModifyOperator(GlobalInfo.getCurrentInstance()
-					.getTlrno());
+			sys1.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			sys1.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(sys1);
 			SysTaskInfo taskInfo;
 			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(
-						ReportEnum.REPORT_TASK_FUNCID.TASK_110599.value,
-						ReportEnum.REPORT_TASK_TRANS_CD.DEL.value,
-						policeBlackList, policeBlackList.getId(),
-						policeBlackList.getOperateState());
+				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_110599.value, ReportEnum.REPORT_TASK_TRANS_CD.DEL.value,
+						policeBlackList, policeBlackList.getId(), policeBlackList.getOperateState());
 				service.addTosystaskinfo(taskInfo);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -74,20 +68,15 @@ public class PoliceBlackListOperation extends BaseOperation {
 			policeBlackList.setOperateState(ReportEnum.REPORT_ST1.CR.value);
 			policeBlackList.setCreateDate(DateUtil.getCurrentDate());
 			policeBlackList.setDel(SystemConstant.FALSE);
-			policeBlackList.setBankCode(GlobalInfo.getCurrentInstance()
-					.getBrcode());
-			policeBlackList.setLastModifyOperator(GlobalInfo
-					.getCurrentInstance().getTlrno());
+			policeBlackList.setBankCode(GlobalInfo.getCurrentInstance().getBrcode());
+			policeBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			policeBlackList.setLastModifyDate(DateUtil.getCurrentDate());
 
 			service.addEntity(policeBlackList);
 			SysTaskInfo taskInfo;
 			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(
-						ReportEnum.REPORT_TASK_FUNCID.TASK_110599.value,
-						ReportEnum.REPORT_TASK_TRANS_CD.NEW.value,
-						policeBlackList, policeBlackList.getId(),
-						policeBlackList.getOperateState());
+				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_110599.value, ReportEnum.REPORT_TASK_TRANS_CD.NEW.value,
+						policeBlackList, policeBlackList.getId(), policeBlackList.getOperateState());
 				service.addTosystaskinfo(taskInfo);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -114,18 +103,14 @@ public class PoliceBlackListOperation extends BaseOperation {
 			sys1.setBlacklistType(policeBlackList.getBlacklistType());
 			sys1.setValid(policeBlackList.isValid());
 			sys1.setValidDate(policeBlackList.getValidDate());
-			sys1.setLastModifyOperator(GlobalInfo.getCurrentInstance()
-					.getTlrno());
+			sys1.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			sys1.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(sys1);
 
 			SysTaskInfo taskInfo;
 			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(
-						ReportEnum.REPORT_TASK_FUNCID.TASK_110599.value,
-						ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
-						policeBlackList, policeBlackList.getId(),
-						policeBlackList.getOperateState());
+				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_110599.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
+						policeBlackList, policeBlackList.getId(), policeBlackList.getOperateState());
 				service.addTosystaskinfo(taskInfo);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -135,10 +120,8 @@ public class PoliceBlackListOperation extends BaseOperation {
 			recordRunningLog("Updater.log", message);
 		}
 
-		PoliceBlackListOperateLogService policeBLOperateLogService = PoliceBlackListOperateLogService
-				.getInstance();
-		policeBLOperateLogService.savePoliceBLOperateLog(operateType, "", "",
-				message);
+		PoliceBlackListOperateLogService policeBLOperateLogService = PoliceBlackListOperateLogService.getInstance();
+		policeBLOperateLogService.savePoliceBLOperateLog(operateType, "", "", message);
 	}
 
 	@Override
@@ -147,12 +130,9 @@ public class PoliceBlackListOperation extends BaseOperation {
 	}
 
 	@SuppressWarnings("unused")
-	private void recordRunningLog(String type, String message)
-			throws CommonException {
+	private void recordRunningLog(String type, String message) throws CommonException {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		gi.addBizLog(type, new String[] { gi.getTlrno(), gi.getBrcode(),
-				message });
-		htlog.info(type,
-				new String[] { gi.getBrcode(), gi.getTlrno(), message });
+		gi.addBizLog(type, new String[] { gi.getTlrno(), gi.getBrcode(), message });
+		htlog.info(type, new String[] { gi.getBrcode(), gi.getTlrno(), message });
 	}
 }

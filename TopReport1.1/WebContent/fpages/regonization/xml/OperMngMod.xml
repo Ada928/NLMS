@@ -15,15 +15,8 @@
         <Field id="tlrName" desc="操作员名称" status="N" require="true" readonly="" primary="true" type="String" size="30"
             xpath="/tlrName" />
            
-        <!-- <Field id="tlrType" desc="操作员类型" status="N" readonly="" translated="DATA_DIC.37" edittype="select"
-            width="90" method="None" primary="true" type="String" size="50" xpath="/tlrType" /> -->
-            
-        <Field id="tlrType" desc="操作员类型" status="F" primary="false" method="None" readonly="false" type="String"
-            size="50" edittype="select" translated="CQ:TlrTypeSelect" fieldmap="tlrType=tlrType;tlrTypeName=tlrTypeName"
-            viewField="tlrTypeName" default="" xpath="/tlrType" require="false" tip="操作员类型" />  
-            
-         <Field id="tlrTypeName" desc="操作员类型" status="F" method="com.huateng.ebank.business.common.CQMethod.getTlrType" 
-               width="" readonly="" primary="true" type="String" size="50" xpath="/tlrType" default="" />
+        <Field id="tlrType" desc="操作员类型" status="N" readonly="" translated="DATA_DIC.37" edittype="select"
+            width="90" method="None" primary="true" type="String" size="50" xpath="/tlrType" /> 
             
         <Field id="brcode" desc="银行代码" status="F" primary="false" method="None" readonly="false" type="String"
             size="50" default="" edittype="select" translated="CQ:AllBranchSelect" fieldmap="brcode=brcode;brcodeName=brcodeTypeName"

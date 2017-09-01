@@ -241,8 +241,7 @@ public class SystemParamService {
 	 * 
 	 * @param
 	 * @return PfSysParam
-	 * @exception @author
-	 *                Administrator
+	 * @exception @author Administrator
 	 * @version v1.0,2008-11-15
 	 */
 	public PfSysParam getPfSysParamByCondition(String magicId, String paramId) throws CommonException {

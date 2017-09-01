@@ -37,8 +37,7 @@ public class QueryMonthlyLogCountService {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger
-			.getLogger(QueryMonthlyLogCountService.class);
+	private static final Logger logger = Logger.getLogger(QueryMonthlyLogCountService.class);
 
 	/**
 	 * get instance.
@@ -46,22 +45,19 @@ public class QueryMonthlyLogCountService {
 	 * @return
 	 */
 	public synchronized static QueryMonthlyLogCountService getInstance() {
-		return (QueryMonthlyLogCountService) ApplicationContextUtils
-				.getBean(QueryMonthlyLogCountService.class.getName());
+		return (QueryMonthlyLogCountService) ApplicationContextUtils.getBean(QueryMonthlyLogCountService.class.getName());
 	}
 
 	public QueryMonthlyLogCountService() {
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	public void saveQueryMonthlyLogCount(String operateType, String queryTable,
-			String sumQueryRecord, String measssage, Date countMonth)
+	public void saveQueryMonthlyLogCount(String operateType, String queryTable, String sumQueryRecord, String measssage, Date countMonth)
 			throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		QueryMonthlyLogCount queryMonthlyLogCount = new QueryMonthlyLogCount();
-		queryMonthlyLogCount.setId(UUID.randomUUID().toString()
-				.replaceAll("-", "").toUpperCase());
+		queryMonthlyLogCount.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
 		queryMonthlyLogCount.setBrNo(gi.getBrno());
 		queryMonthlyLogCount.setOperateType(operateType);
 		queryMonthlyLogCount.setQueryTable(queryTable);
@@ -72,14 +68,11 @@ public class QueryMonthlyLogCountService {
 			hqldao.getHibernateTemplate().save(queryMonthlyLogCount);
 		} catch (Exception e) {
 			logger.error("update(QueryMonthlyLogCount)", e);
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
 		}
 	}
 
-	public PageQueryResult queryQueryMonthlyLogCountDetail(int pageIndex,
-			int pageSize, String qbrNo, String stdate, String endate)
-			throws CommonException {
+	public PageQueryResult queryQueryMonthlyLogCountDetail(int pageIndex, int pageSize, String qbrNo, String stdate, String endate) throws CommonException {
 		StringBuffer sb = new StringBuffer("");
 		List<Object> list = new ArrayList<Object>();
 		// sb.append("select log from QueryMonthlyLogCount log where 1=1");
@@ -96,8 +89,7 @@ public class QueryMonthlyLogCountService {
 		}
 		if (!DataFormat.isEmpty(endate)) {
 			sb.append(" and cont.countDate<? ");
-			list.add(DateUtil.getStartDateByDays(
-					DateUtil.stringToDate2(endate), -1));
+			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endate), -1));
 		}
 		sb.append(" order by cont.brNo");
 

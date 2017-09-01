@@ -60,8 +60,7 @@ public class TlrInfo2Getter extends BaseGetter {
 				pageResult = getData2(tlrInfo);
 			}
 
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult().size() == 0) {
 				result.getPage().setTotalPage(0);
@@ -82,7 +81,7 @@ public class TlrInfo2Getter extends BaseGetter {
 
 	/*
 	 * 查询的时候调用 (non-Javadoc)
-	 *
+	 * 
 	 * @see com.extra.common.ObjectDataGetter#getData()
 	 */
 	protected PageQueryResult getData(TlrInfo tlrInfo) throws Exception {
@@ -119,7 +118,7 @@ public class TlrInfo2Getter extends BaseGetter {
 
 	/*
 	 * 新增的时候调用 (non-Javadoc)
-	 *
+	 * 
 	 * @see com.extra.common.ObjectDataGetter#getData()
 	 */
 	protected PageQueryResult getData2(TlrInfo tlrInfo) throws Exception {

@@ -32,8 +32,8 @@ import com.huateng.service.pub.PasswordService;
  */
 public class OperMngAddUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		try {
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
@@ -47,8 +47,7 @@ public class OperMngAddUpdate extends BaseUpdate {
 				operator.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
 				// 设置有效标志
 				operator.setFlag(SystemConstant.FLAG_ON);
-				String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD",
-						SystemConstant.DEFAULT_PASSWORD);
+				String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
 
 				String encMethod = CommonService.getInstance().getSysParamDef("PSWD", "ENC_MODE", "AES128");
 

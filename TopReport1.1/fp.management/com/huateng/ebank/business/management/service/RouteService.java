@@ -60,8 +60,7 @@ public class RouteService {
 	 */
 	public PageQueryResult queryRouteDef(WorkflowRouteDef infwrd, int pageSize, int pageIndex) throws CommonException {
 		StringBuffer sb = new StringBuffer();
-		sb.append("select wrd from WorkflowRouteDef wrd ")
-				.append(" where wrd.status = '" + SystemConstant.VALID_FLAG_VALID + "'");
+		sb.append("select wrd from WorkflowRouteDef wrd ").append(" where wrd.status = '" + SystemConstant.VALID_FLAG_VALID + "'");
 		// 机构级别
 		if (!DataFormat.isEmpty(infwrd.getBrhClass())) {
 			sb.append(" and wrd.brhClass = '" + infwrd.getBrhClass() + "'");
@@ -98,11 +97,9 @@ public class RouteService {
 	 * @param pageIndex
 	 * @return pageQueryResult
 	 */
-	public PageQueryResult queryRouteBindingRouteInfo(WorkflowRouteBinding WorkflowRouteBinding, int pageSize,
-			int pageIndex) throws CommonException {
-		List routedeflist = BaseDAOUtils.getWorkflowRouteDefDAO().queryByCondition(
-				" po.brhClass =? and po.status = ? and po.isSet = ? ", new Object[] {
-						WorkflowRouteBinding.getBrhClass(), SystemConstant.VALID_FLAG_VALID, SystemConstant.FLAG_ON },
+	public PageQueryResult queryRouteBindingRouteInfo(WorkflowRouteBinding WorkflowRouteBinding, int pageSize, int pageIndex) throws CommonException {
+		List routedeflist = BaseDAOUtils.getWorkflowRouteDefDAO().queryByCondition(" po.brhClass =? and po.status = ? and po.isSet = ? ",
+				new Object[] { WorkflowRouteBinding.getBrhClass(), SystemConstant.VALID_FLAG_VALID, SystemConstant.FLAG_ON },
 				new Type[] { Hibernate.STRING, Hibernate.STRING, Hibernate.STRING });
 
 		List resultlist = new ArrayList();
@@ -226,8 +223,7 @@ public class RouteService {
 		for (Iterator it = delList.iterator(); it.hasNext();) {
 			WorkflowRouteDef delwrd = (WorkflowRouteDef) it.next();
 			if (delwrd.getIsBand().equals(SystemConstant.FLAG_ON)) {
-				ExceptionUtil.throwCommonException(
-						"审批路线模板" + delwrd.getId() + " (" + delwrd.getRouteName() + ") 已被绑定，不能删除",
+				ExceptionUtil.throwCommonException("审批路线模板" + delwrd.getId() + " (" + delwrd.getRouteName() + ") 已被绑定，不能删除",
 						ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_DEF_UPDATE);
 			}
 			delwrd.setStatus(SystemConstant.FLAG_OFF);
@@ -243,13 +239,11 @@ public class RouteService {
 	 * @param pageIndex
 	 * @return pageQueryResult
 	 */
-	public PageQueryResult queryRouteParam(WorkflowRouteParam infwrd, int pageSize, int pageIndex)
-			throws CommonException {
+	public PageQueryResult queryRouteParam(WorkflowRouteParam infwrd, int pageSize, int pageIndex) throws CommonException {
 		StringBuffer sb = new StringBuffer();
 		sb.append(
 				"select wrp.stopId, wrp.routeId, wrp.brhClass, wrp.roleId, wrp.need, wrp.pass, wrp.amtType, wrp.approveAmt,wrp.id "
-						+ "from WorkflowRouteParam wrp ")
-				.append(" where wrp.routeId = " + infwrd.getRouteId()).append(" order by wrp.stopId ");
+						+ "from WorkflowRouteParam wrp ").append(" where wrp.routeId = " + infwrd.getRouteId()).append(" order by wrp.stopId ");
 		// 机构级别
 		// if(!DataFormat.isEmpty(infwrd.getBrhClass())){
 		// sb.append(" and wrp.brhClass = '"+ infwrd.getBrhClass()+"'");
@@ -357,13 +351,11 @@ public class RouteService {
 	 * @param pageIndex
 	 * @return pageQueryResult
 	 */
-	public PageQueryResult queryRouteBindingBussInfo(RouteBindingView inview, int pageSize, int pageIndex)
-			throws CommonException {
+	public PageQueryResult queryRouteBindingBussInfo(RouteBindingView inview, int pageSize, int pageIndex) throws CommonException {
 		StringBuffer sb1 = new StringBuffer();
 		sb1.append(
 				"select bind.bussType, bind.draftType, bind.maxAmt, bind.startBrhno, bind.brhClass, bind.routeId, bind.id, bind.startBrhid "
-						+ " from WorkflowRouteBinding bind ")
-				.append(" where 1=1");
+						+ " from WorkflowRouteBinding bind ").append(" where 1=1");
 
 		// 业务种类
 		if (!DataFormat.isEmpty(inview.getBussType())) {
@@ -472,17 +464,14 @@ public class RouteService {
 				Bctl branchInfo = bctlService.getBctlByBrcode(String.valueOf(workflowRouteBinding.getStartBrhid()));
 				String brhClass = branchInfo.getBrclass();
 				if (!NumberUtils.isNumber(brhClass)) {
-					ExceptionUtil.throwCommonException("制定发起机构的机构级别出错",
-							ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
+					ExceptionUtil.throwCommonException("制定发起机构的机构级别出错", ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
 				} else {
 					// 发起行机构级别比机构递归关系高,配置错误
 					if (!NumberUtils.isNumber(insview.getBrhClass())) {
-						ExceptionUtil.throwCommonException("机构递归关系出错",
-								ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
+						ExceptionUtil.throwCommonException("机构递归关系出错", ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
 					}
 					if (Integer.parseInt(brhClass) < Integer.parseInt(insview.getBrhClass())) {
-						ExceptionUtil.throwCommonException("发起行机构级别比机构递归关系高,配置错误",
-								ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
+						ExceptionUtil.throwCommonException("发起行机构级别比机构递归关系高,配置错误", ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
 					}
 				}
 			}
@@ -498,8 +487,7 @@ public class RouteService {
 					ExceptionUtil.throwCommonException("机构递归关系出错", ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
 				}
 				if (brhClass < Integer.parseInt(insview.getBrhClass())) {
-					ExceptionUtil.throwCommonException("发起行机构级别比机构递归关系高,配置错误",
-							ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
+					ExceptionUtil.throwCommonException("发起行机构级别比机构递归关系高,配置错误", ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
 				}
 			}
 			/** modify by shen_antonio 20091214 jira: BMS-2334 end . */
@@ -530,17 +518,14 @@ public class RouteService {
 				Bctl branchInfo = bctlService.getBctlByBrcode(String.valueOf(workflowRouteBinding.getStartBrhid()));
 				String brhClass = branchInfo.getBrclass();
 				if (!NumberUtils.isNumber(brhClass)) {
-					ExceptionUtil.throwCommonException("制定发起机构的机构级别出错",
-							ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
+					ExceptionUtil.throwCommonException("制定发起机构的机构级别出错", ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
 				} else {
 					// 发起行机构级别比机构递归关系高,配置错误
 					if (!NumberUtils.isNumber(updateView.getBrhClass())) {
-						ExceptionUtil.throwCommonException("机构递归关系出错",
-								ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
+						ExceptionUtil.throwCommonException("机构递归关系出错", ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
 					}
 					if (Integer.parseInt(brhClass) < Integer.parseInt(updateView.getBrhClass())) {
-						ExceptionUtil.throwCommonException("发起行机构级别比机构递归关系高,配置错误",
-								ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
+						ExceptionUtil.throwCommonException("发起行机构级别比机构递归关系高,配置错误", ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
 					}
 				}
 			}
@@ -556,8 +541,7 @@ public class RouteService {
 					ExceptionUtil.throwCommonException("机构递归关系出错", ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
 				}
 				if (brhClass < Integer.parseInt(updateView.getBrhClass())) {
-					ExceptionUtil.throwCommonException("发起行机构级别比机构递归关系高,配置错误",
-							ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
+					ExceptionUtil.throwCommonException("发起行机构级别比机构递归关系高,配置错误", ErrorCode.ERROR_CODE_WORKFLOW_ROUTE_BINDING_INSERT);
 				}
 			}
 			/** modify by shen_antonio 20091214 jira: BMS-2334 end . */
@@ -673,13 +657,11 @@ public class RouteService {
 	 * @param pageIndex
 	 * @return pageQueryResult
 	 */
-	public PageQueryResult queryRouteBindingBussInfoNew(RouteBindingView inview, int pageSize, int pageIndex)
-			throws CommonException {
+	public PageQueryResult queryRouteBindingBussInfoNew(RouteBindingView inview, int pageSize, int pageIndex) throws CommonException {
 		StringBuffer sb1 = new StringBuffer();
 		sb1.append(
 				"select bind.bussType, bind.draftType, bind.maxAmt, bind.startBrhno, bind.brhClass, bind.routeId, bind.id, bind.startBrhid "
-						+ " from WorkflowRouteBinding bind ")
-				.append(" where 1=1");
+						+ " from WorkflowRouteBinding bind ").append(" where 1=1");
 
 		// 业务种类
 		if (!DataFormat.isEmpty(inview.getBussType())) {
@@ -759,13 +741,11 @@ public class RouteService {
 	 * @param pageIndex
 	 * @return pageQueryResult
 	 */
-	public PageQueryResult queryApproveNodeRouteBindingInfo(RouteBindingView inview, int pageSize, int pageIndex)
-			throws CommonException {
+	public PageQueryResult queryApproveNodeRouteBindingInfo(RouteBindingView inview, int pageSize, int pageIndex) throws CommonException {
 		StringBuffer sb1 = new StringBuffer();
 		sb1.append(
 				"select bind.bussType, bind.draftType, bind.maxAmt, bind.startBrhno, bind.brhClass, bind.routeId, bind.id, bind.startBrhid "
-						+ " from WorkflowRouteBinding bind ")
-				.append(" where 1=1");
+						+ " from WorkflowRouteBinding bind ").append(" where 1=1");
 
 		// 业务种类
 		if (!DataFormat.isEmpty(inview.getBussType())) {

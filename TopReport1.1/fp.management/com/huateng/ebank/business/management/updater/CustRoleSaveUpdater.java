@@ -41,20 +41,16 @@ public class CustRoleSaveUpdater extends BaseUpdate {
 	private final static String DATASET_ID = "RoleFuncMng";
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-		UpdateResultBean updateResultBean = multiUpdateResultBean
-				.getUpdateResultBeanByID(DATASET_ID);
+		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 		RoleInfoDAO roleInfoDAO = BaseDAOUtils.getRoleInfoDAO();
 		List updateList = new ArrayList();
 		List insertList = new ArrayList();
 		Date txdate = null;
 		try {
-			txdate = new SimpleDateFormat("yyyy-MM-dd").parse(gi.getTxdate()
-					.toString());
+			txdate = new SimpleDateFormat("yyyy-MM-dd").parse(gi.getTxdate().toString());
 		} catch (ParseException e) {
 			ExceptionUtil.throwCommonException("日期转换错误");
 		}
@@ -69,14 +65,12 @@ public class CustRoleSaveUpdater extends BaseUpdate {
 				bean.setEffectDate(GlobalInfo.getCurrentInstance().getTxdate());
 				try {
 					// 新增的时候,给失效日期赋值:
-					bean.setExpireDate(new SimpleDateFormat("yyyyMMdd")
-							.parse("99990101"));
+					bean.setExpireDate(new SimpleDateFormat("yyyyMMdd").parse("99990101"));
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
 				RoleInfo insertBean = new RoleInfo();
-				Iterator it = DAOUtils.getHQLDAO().queryByQL(
-						"select max(id) from RoleInfo");
+				Iterator it = DAOUtils.getHQLDAO().queryByQL("select max(id) from RoleInfo");
 				int id = 100;
 				if (it.hasNext()) {
 					Number num = (Number) it.next();
@@ -86,12 +80,10 @@ public class CustRoleSaveUpdater extends BaseUpdate {
 				// mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 end
 
 				if (bean.getEffectDate().before(txdate)) {
-					ExceptionUtil.throwCommonException("生效日期必须在会计日期之后",
-							"生效日期无效");
+					ExceptionUtil.throwCommonException("生效日期必须在会计日期之后", "生效日期无效");
 				}
 				if (bean.getExpireDate().before(bean.getEffectDate())) {
-					ExceptionUtil.throwCommonException("生效日期必须在失效日期之前",
-							"失效日期无效");
+					ExceptionUtil.throwCommonException("生效日期必须在失效日期之前", "失效日期无效");
 				}
 				insertBean.setEffectDate(bean.getEffectDate());
 				insertBean.setExpireDate(bean.getExpireDate());
@@ -104,10 +96,9 @@ public class CustRoleSaveUpdater extends BaseUpdate {
 				insertBean.setLastUpdFunc("");
 				insertBean.setMisc("");
 				insertBean.setMiscflgs("");
-				insertBean.setTimestamps(new Timestamp(System
-						.currentTimeMillis()));
+				insertBean.setTimestamps(new Timestamp(System.currentTimeMillis()));
 				insertBean.setSt("1");
-				insertBean.setIsLock("1");
+				insertBean.setLock(true);
 				insertBean.setRoleList(bean.getRoleList());
 				insertList.add(insertBean);
 				break;
@@ -133,7 +124,7 @@ public class CustRoleSaveUpdater extends BaseUpdate {
 				updateBean.setLastUpdTlr(gi.getTlrno());
 				updateBean.setRoleList(bean.getRoleList());
 				updateBean.setSt("2");
-				updateBean.setIsLock("1");
+				updateBean.setLock(true);
 				updateList.add(updateBean);
 				break;
 			default:

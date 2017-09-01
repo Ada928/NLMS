@@ -37,8 +37,7 @@ public class BankBlackListOperateLogService {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger
-			.getLogger(BankBlackListOperateLogService.class);
+	private static final Logger logger = Logger.getLogger(BankBlackListOperateLogService.class);
 
 	/**
 	 * get instance.
@@ -46,21 +45,18 @@ public class BankBlackListOperateLogService {
 	 * @return
 	 */
 	public synchronized static BankBlackListOperateLogService getInstance() {
-		return (BankBlackListOperateLogService) ApplicationContextUtils
-				.getBean(BankBlackListOperateLogService.class.getName());
+		return (BankBlackListOperateLogService) ApplicationContextUtils.getBean(BankBlackListOperateLogService.class.getName());
 	}
 
 	public BankBlackListOperateLogService() {
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	public void saveBankBLOperateLog(String operateType, String queryType,
-			String queryNum, String measssage) throws CommonException {
+	public void saveBankBLOperateLog(String operateType, String queryType, String queryNum, String measssage) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		BankBLOperateLog bankBLOperateLog = new BankBLOperateLog();
-		bankBLOperateLog.setId(UUID.randomUUID().toString().replaceAll("-", "")
-				.toUpperCase());
+		bankBLOperateLog.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
 		bankBLOperateLog.setBrNo(gi.getBrno());
 		bankBLOperateLog.setTlrNo(gi.getTlrno());
 		bankBLOperateLog.setTlrIP(gi.getIp());
@@ -73,14 +69,12 @@ public class BankBlackListOperateLogService {
 			hqldao.getHibernateTemplate().save(bankBLOperateLog);
 		} catch (Exception e) {
 			logger.error("update(BankBlackListOperateLog)", e);
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
 		}
 	}
 
-	public PageQueryResult queryBankBLOperateLogDetail(int pageIndex,
-			int pageSize, String qtlrNo, String qtlrIP, String qbrNo,
-			String stdate, String endate) throws CommonException {
+	public PageQueryResult queryBankBLOperateLogDetail(int pageIndex, int pageSize, String qtlrNo, String qtlrIP, String qbrNo, String stdate, String endate)
+			throws CommonException {
 		StringBuffer sb = new StringBuffer("");
 		// sb.append("select log from TlrLoginLog log where 1=1");
 		sb.append(" from BankBLOperateLog blog  where 1=1  ");
@@ -95,13 +89,10 @@ public class BankBlackListOperateLogService {
 		}
 
 		if (!DataFormat.isEmpty(stdate)) {
-			sb.append(" and blog.createDate>=? ").append(
-					DateUtil.stringToDate2(stdate));
+			sb.append(" and blog.createDate>=? ").append(DateUtil.stringToDate2(stdate));
 		}
 		if (!DataFormat.isEmpty(endate)) {
-			sb.append(" and blog.createDate<? ").append(
-					DateUtil.getStartDateByDays(DateUtil.stringToDate2(endate),
-							-1));
+			sb.append(" and blog.createDate<? ").append(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endate), -1));
 		}
 		sb.append(" order by blog.brNo");
 
@@ -122,16 +113,12 @@ public class BankBlackListOperateLogService {
 	 * 
 	 * @param endDate 结束时间
 	 */
-	public List sumQueryBankBlacklist(String startDate, String endDate)
-			throws CommonException {
+	public List sumQueryBankBlacklist(String startDate, String endDate) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-		StringBuffer sb = new StringBuffer(
-				"select log.brNo, sum(log.queryRecordNumber) from BankBLOperateLog log where 1=1");
+		StringBuffer sb = new StringBuffer("select log.brNo, sum(log.queryRecordNumber) from BankBLOperateLog log where 1=1");
 		sb.append(" and log.operateType='Q'");
-		sb.append(" and log.createDate>=to_date('").append(startDate)
-				.append("','yyyy-mm-dd')");
-		sb.append(" and log.createDate<to_date('").append(endDate)
-				.append("','yyyy-mm-dd')");
+		sb.append(" and log.createDate>=to_date('").append(startDate).append("','yyyy-mm-dd')");
+		sb.append(" and log.createDate<to_date('").append(endDate).append("','yyyy-mm-dd')");
 		sb.append(" group by log.brNo");
 		List list = hqldao.queryByQL2List(sb.toString());
 		return list;

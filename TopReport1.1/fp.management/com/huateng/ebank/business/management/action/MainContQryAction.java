@@ -29,8 +29,7 @@ public class MainContQryAction extends BaseAction {
 	 * 传递的所以参数放在request的attribute的SystemConstant.SEND_VALUE_MAP中 URL和SYSTYPE
 	 * 为必加项
 	 */
-	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		Object url = "/LoanMainContQryAction.do";
 		Object systype = "1";// 1.是信贷 2是个贷
@@ -56,7 +55,8 @@ public class MainContQryAction extends BaseAction {
 		String sendUrl = "";
 		if (systype.toString().equals("1")) {
 			sendUrl = RemoteSysMap.getValue("HTSEMSWeb");
-		} else // if(systype.equals("2"))默认往个贷发
+		} else
+			// if(systype.equals("2"))默认往个贷发
 			sendUrl = RemoteSysMap.getValue("PLoanSysWeb");
 
 		// sendUrl ="http://localhost:8888/RemoteTest/CreditServlet";//测试用

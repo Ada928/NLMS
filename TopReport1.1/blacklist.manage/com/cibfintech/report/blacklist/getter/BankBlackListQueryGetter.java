@@ -28,37 +28,28 @@ public class BankBlackListQueryGetter extends BaseGetter {
 	@Override
 	public Result call() throws AppException {
 		try {
-			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME,
-					"商行黑名单管理查询");
+			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "商行黑名单管理查询");
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	protected PageQueryResult getData() throws Exception {
 		String qPartyId = getCommQueryServletRequest().getParameter("qPartyId");
-		String qCertificateType = getCommQueryServletRequest().getParameter(
-				"qCertificateType");
-		String qCertificateNumber = getCommQueryServletRequest().getParameter(
-				"qCertificateNumber");
+		String qCertificateType = getCommQueryServletRequest().getParameter("qCertificateType");
+		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
-		List<RoleInfo> roleInfos = UserMgrService.getInstance().getUserRoles(
-				globalinfo.getTlrno());
+		List<RoleInfo> roleInfos = UserMgrService.getInstance().getUserRoles(globalinfo.getTlrno());
 		boolean isSuperManager = false;
 		for (RoleInfo roleInfo : roleInfos) {
 			if (roleInfo.getRoleType().equals(SystemConstant.ROLE_TYPE_SYS_MNG)) {
@@ -66,17 +57,12 @@ public class BankBlackListQueryGetter extends BaseGetter {
 			}
 		}
 
-		PageQueryResult pqr = BankBlackListQueryService.getInstance()
-				.pageQueryByHql(globalinfo, isSuperManager, pageIndex,
-						pageSize, qPartyId, qCertificateType,
-						qCertificateNumber);
+		PageQueryResult pqr = BankBlackListQueryService.getInstance().pageQueryByHql(globalinfo, isSuperManager, pageIndex, pageSize, qPartyId,
+				qCertificateType, qCertificateNumber);
 
-		String message = "国际黑名单的查询:partyId=" + qPartyId + ",certificateType="
-				+ qCertificateType + ",certificateNumber=" + qCertificateNumber;
-		BankBlackListOperateLogService bankBLOperateLogService = BankBlackListOperateLogService
-				.getInstance();
-		bankBLOperateLogService.saveBankBLOperateLog(SystemConstant.LOG_QUERY,
-				"", String.valueOf(pqr.getTotalCount()), message);
+		String message = "国际黑名单的查询:partyId=" + qPartyId + ",certificateType=" + qCertificateType + ",certificateNumber=" + qCertificateNumber;
+		BankBlackListOperateLogService bankBLOperateLogService = BankBlackListOperateLogService.getInstance();
+		bankBLOperateLogService.saveBankBLOperateLog(SystemConstant.LOG_QUERY, "", String.valueOf(pqr.getTotalCount()), message);
 		return pqr;
 	}
 }

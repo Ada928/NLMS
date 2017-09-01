@@ -22,8 +22,8 @@ import com.huateng.exception.AppException;
 public class BrhWorkFlowMngUpdate extends BaseUpdate {
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		// TODO Auto-generated method stub
 		try {
 			GlobalInfo g = GlobalInfo.getCurrentInstance();
@@ -33,8 +33,7 @@ public class BrhWorkFlowMngUpdate extends BaseUpdate {
 			// }
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("Management_BrhWorkFlowMng");
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_BrhWorkFlowMng");
 			List<BrhWorkflowDef> updateList = new ArrayList<BrhWorkflowDef>();
 			List<BrhWorkflowDef> delList = new ArrayList<BrhWorkflowDef>();
 			List<BrhWorkflowDef> insertList = new ArrayList<BrhWorkflowDef>();

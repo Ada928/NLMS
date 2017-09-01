@@ -23,15 +23,8 @@
         <Field id="tlrName" desc="用户名称" status="F" method="None" width="50" readonly="" primary="true" type="String"
             size="20" xpath="/tlrName" default="" />
             
-        <!-- <Field id="tlrType" desc="用户类型" status="N" readonly="true" translated="DATA_DIC.37" edittype="select"
+        <Field id="tlrType" desc="用户类型" status="N" readonly="true" translated="DATA_DIC.37" edittype="select"
             width="90" method="None" primary="true" type="String" size="20" xpath="/tlrType" />
- -->
-        <Field id="tlrType" desc="用户类型" status="F" primary="false" method="None" readonly="false" type="String"
-            size="20" edittype="select" translated="CQ:TlrTypeSelect" fieldmap="tlrType=tlrType;tlrTypeName=tlrTypeName"
-            viewField="tlrTypeName" default="" xpath="/tlrType" require="false" tip="用户类型" />    
-            
-        <Field id="tlrTypeName" desc="用户类型" status="F" method="com.huateng.ebank.business.common.CQMethod.getTlrType" 
-               width="" readonly="" primary="true" type="String" size="50" xpath="/tlrType" default="" />
 
         <Field id="status" desc="登陆状态" status="N" readonly="true" translated="DATA_DIC.37" edittype="select"
             width="90" method="None" primary="true" type="String" size="20" xpath="/status" />

@@ -74,15 +74,13 @@ public class TellerService {
 				if (bizSubClass.equals(SystemConstant.LNTYPE_ALL))
 					return getTellerApproveLimit(tlrno, SystemConstant.LIMIT_PARAM_BIZ_CLASS_ALL, "0");
 				else {
-					return getTellerApproveLimit(tlrno, SystemConstant.LIMIT_PARAM_BIZ_CLASS_LOAN,
-							SystemConstant.LNTYPE_ALL);
+					return getTellerApproveLimit(tlrno, SystemConstant.LIMIT_PARAM_BIZ_CLASS_LOAN, SystemConstant.LNTYPE_ALL);
 				}
 			} else if (bizClass.equals(SystemConstant.LIMIT_PARAM_BIZ_CLASS_PROJ)) {
 				if (bizSubClass.equals(SystemConstant.PROJECT_TYPE_ALL))
 					return getTellerApproveLimit(tlrno, SystemConstant.LIMIT_PARAM_BIZ_CLASS_ALL, "0");
 				else {
-					return getTellerApproveLimit(tlrno, SystemConstant.LIMIT_PARAM_BIZ_CLASS_PROJ,
-							SystemConstant.PROJECT_TYPE_ALL);
+					return getTellerApproveLimit(tlrno, SystemConstant.LIMIT_PARAM_BIZ_CLASS_PROJ, SystemConstant.PROJECT_TYPE_ALL);
 				}
 			}
 		}
@@ -139,7 +137,7 @@ public class TellerService {
 	//
 	// List list = getTellerRoleList(tlrno);
 	// String brclass = "9";
-	/// *
+	// / *
 	// if (funcCode > 0) {
 	// FunctionInfo funcInfo = DAOUtils.getFunctionInfoDAO().query(funcCode);
 	// if (funcInfo.getMenuFlag().equals(SystemConstant.FLAG_OFF))
@@ -186,8 +184,7 @@ public class TellerService {
 	public List getTellerRoleInfoList(String tlrno) throws CommonException {
 		HQLDAO hqlDAO = DAOUtils.getHQLDAO();
 
-		Iterator it = hqlDAO.queryByQL(
-				"select roleInfo from RoleInfo roleInfo, TlrRoleRel trr where roleInfo.roleId = trr.roleId and trr.tlrno = ?",
+		Iterator it = hqlDAO.queryByQL("select roleInfo from RoleInfo roleInfo, TlrRoleRel trr where roleInfo.roleId = trr.roleId and trr.tlrno = ?",
 				new String[] { tlrno }, new Type[] { Hibernate.STRING });
 		List list = new ArrayList();
 		while (it.hasNext()) {
@@ -228,9 +225,8 @@ public class TellerService {
 			if (funcInfo.getStatus().equals(SystemConstant.FLAG_OFF)) {
 				return checkTellerFuncRight(tlrno, funcInfo.getUpFuncCode());
 			} else {
-				Iterator it = DAOUtils.getHQLDAO()
-						.queryByQL("select a from TlrRoleRel a, RoleFuncRel b where a.roleId = b.roleId and a.tlrno = '"
-								+ tlrno + "' and b.funcCode = " + funcCode);
+				Iterator it = DAOUtils.getHQLDAO().queryByQL(
+						"select a from TlrRoleRel a, RoleFuncRel b where a.roleId = b.roleId and a.tlrno = '" + tlrno + "' and b.funcCode = " + funcCode);
 				if (it.hasNext())
 					return true;
 				else
@@ -263,9 +259,8 @@ public class TellerService {
 			funcCode = funcInfo.getUpFuncCode();
 
 		List list = new ArrayList();
-		Iterator it = DAOUtils.getHQLDAO()
-				.queryByQL("select a.roleId from TlrRoleRel a, RoleFuncRel b where a.roleId = b.roleId and a.tlrno = '"
-						+ tlrno + "' and b.funcCode = " + funcCode);
+		Iterator it = DAOUtils.getHQLDAO().queryByQL(
+				"select a.roleId from TlrRoleRel a, RoleFuncRel b where a.roleId = b.roleId and a.tlrno = '" + tlrno + "' and b.funcCode = " + funcCode);
 		while (it.hasNext()) {
 			list.add((it.next()));
 		}
@@ -332,8 +327,7 @@ public class TellerService {
 	public List getRoleIdByTypeAndTlrno(String roleType, String tlrno) throws CommonException {
 		try {
 			List list = new ArrayList();
-			Iterator it = DAOUtils.getHQLDAO().queryByQL(
-					"select b from TlrRoleRel a, RoleInfo b where a.roleId = b.id and a.tlrno = '" + tlrno + "'");
+			Iterator it = DAOUtils.getHQLDAO().queryByQL("select b from TlrRoleRel a, RoleInfo b where a.roleId = b.id and a.tlrno = '" + tlrno + "'");
 			while (it.hasNext()) {
 				list.add((it.next()));
 			}
@@ -350,7 +344,8 @@ public class TellerService {
 	/**
 	 * 根据当前角色号获取是否有有角色权限
 	 * 
-	 * @param roleList,roleId
+	 * @param roleList
+	 *            ,roleId
 	 * @return boolean
 	 * @throws CommonException
 	 */

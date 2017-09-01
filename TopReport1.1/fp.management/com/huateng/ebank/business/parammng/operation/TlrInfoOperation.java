@@ -41,7 +41,7 @@ public class TlrInfoOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.
 	 * ebank.framework.operation.OperationContext)
@@ -53,7 +53,7 @@ public class TlrInfoOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.
 	 * ebank.framework.operation.OperationContext)
@@ -97,8 +97,7 @@ public class TlrInfoOperation extends BaseOperation {
 			if (temp == 0) {
 				ExceptionUtil.throwCommonException("请至少选择一个岗位。", ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
 			}
-			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD",
-					SystemConstant.DEFAULT_PASSWORD);
+			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
 			String encMethod = CommonService.getInstance().getSysParamDef("PSWD", "ENC_MODE", "AES128");
 
 			String pwd = PasswordService.getInstance().EncryptPassword(sysDefaultPwd, encMethod);
@@ -131,7 +130,7 @@ public class TlrInfoOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng.
 	 * ebank.framework.operation.OperationContext)
@@ -149,8 +148,7 @@ public class TlrInfoOperation extends BaseOperation {
 			if (bean.isSelect1()) { // 选中的岗位
 				List relationList = null;
 				try {
-					relationList = relationDao
-							.queryByCondition("po.tlrno='" + bean.getTlrno() + "' and po.roleId=" + bean.getRoleid());
+					relationList = relationDao.queryByCondition("po.tlrno='" + bean.getTlrno() + "' and po.roleId=" + bean.getRoleid());
 				} catch (Exception e) {
 				}
 				if (relationList == null || relationList.size() == 0) { // 若原来没有这个岗位
@@ -163,8 +161,7 @@ public class TlrInfoOperation extends BaseOperation {
 			} else { // 没有选中的岗位
 				List relationList = null;
 				try {
-					relationList = relationDao
-							.queryByCondition("po.tlrno='" + bean.getTlrno() + "' and po.roleId=" + bean.getRoleid());
+					relationList = relationDao.queryByCondition("po.tlrno='" + bean.getTlrno() + "' and po.roleId=" + bean.getRoleid());
 				} catch (Exception e) {
 				}
 				if (relationList != null && relationList.size() > 0) { // 若原来有这个岗位则删除

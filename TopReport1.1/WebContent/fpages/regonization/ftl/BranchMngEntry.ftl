@@ -57,14 +57,10 @@
 		if (record) {//当存在记录时
 			var lock = record.getValue("lock");
 			var id = record.getValue("brcode");
-			//if (isTrue(lock)) {
-			if (roleType.indexOf("12") > -1 
-					|| roleType.indexOf("13") > -1
+			if (roleType.indexOf("12") > -1 || roleType.indexOf("13") > -1
 					|| roleType.indexOf("14") > -1
 					|| roleType.indexOf("15") > -1) {
 				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">修改</a></center>";
-
-				//	cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">修改</a></center>";
 			} else {
 				cell.innerHTML = "<a href=\"JavaScript:openModifyWindow('" + id
 						+ "')\">修改</a>" + " <a href=\"JavaScript:doDel('" + id
@@ -82,7 +78,7 @@
 
 	function btDel_onClickCheck(button) {
 		var del = Management_branchManage_dataset.getValue("del");
-		if (del == false) {
+		if (del == 'false') {
 			if (confirm("确认删除该条记录？")) {
 				Management_branchManage_dataset.setParameter("delet", "T");
 				return true;
@@ -97,12 +93,15 @@
 				return false;
 			}
 		}
-
-		//return confirm("确认删除该条记录？");
 	}
 
 	function btDel_postSubmit(button) {
-		alert("删除记录成功");
+		var del = Management_branchManage_dataset.getValue("del");
+		if (del == 'false') {
+			alert("删除记录成功 !");
+		} else {
+			alert("删除记录失败 !");
+		}
 		button.url = "#";
 		//刷新当前页
 		flushCurrentPage();

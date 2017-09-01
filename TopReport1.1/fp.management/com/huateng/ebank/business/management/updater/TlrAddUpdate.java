@@ -34,8 +34,8 @@ import com.huateng.view.pub.TlrRoleRelationView;
  */
 public class TlrAddUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		try {
 			UpdateResultBean tlrRoleBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_AllRole");
 			UpdateResultBean tlrInfoBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_TlrAdd");
@@ -64,8 +64,7 @@ public class TlrAddUpdate extends BaseUpdate {
 				tlrInfo.setFlag(SystemConstant.FLAG_ON);
 				// tlrInfo.setCreatDate(new
 				// Date(GlobalInfo.getCurrentInstance().getTxtime().getTime()));
-				String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD",
-						SystemConstant.DEFAULT_PASSWORD);
+				String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
 				String encMethod = CommonService.getInstance().getSysParamDef("PSWD", "ENC_MODE", "AES128");
 				String pwd = PasswordService.getInstance().EncryptPassword(sysDefaultPwd, encMethod);
 				tlrInfo.setPassword(pwd);// 设置默认操作员密码

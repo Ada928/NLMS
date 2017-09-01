@@ -36,8 +36,7 @@ public class PoliceBlackListOperateLogService {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger
-			.getLogger(PoliceBlackListOperateLogService.class);
+	private static final Logger logger = Logger.getLogger(PoliceBlackListOperateLogService.class);
 
 	/**
 	 * get instance.
@@ -45,21 +44,18 @@ public class PoliceBlackListOperateLogService {
 	 * @return
 	 */
 	public synchronized static PoliceBlackListOperateLogService getInstance() {
-		return (PoliceBlackListOperateLogService) ApplicationContextUtils
-				.getBean(PoliceBlackListOperateLogService.class.getName());
+		return (PoliceBlackListOperateLogService) ApplicationContextUtils.getBean(PoliceBlackListOperateLogService.class.getName());
 	}
 
 	public PoliceBlackListOperateLogService() {
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	public void savePoliceBLOperateLog(String operateType, String queryType,
-			String queryNum, String measssage) throws CommonException {
+	public void savePoliceBLOperateLog(String operateType, String queryType, String queryNum, String measssage) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		PoliceBLOperateLog policeBLOperateLog = new PoliceBLOperateLog();
-		policeBLOperateLog.setId(UUID.randomUUID().toString()
-				.replaceAll("-", "").toUpperCase());
+		policeBLOperateLog.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
 		policeBLOperateLog.setBrNo(gi.getBrno());
 		policeBLOperateLog.setTlrNo(gi.getTlrno());
 		policeBLOperateLog.setTlrIP(gi.getIp());
@@ -72,14 +68,12 @@ public class PoliceBlackListOperateLogService {
 			hqldao.getHibernateTemplate().save(policeBLOperateLog);
 		} catch (Exception e) {
 			logger.error("update(PoliceBlackListOperateLog)", e);
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
 		}
 	}
 
-	public PageQueryResult queryPoliceBLOperateLogDetail(int pageIndex,
-			int pageSize, String qtlrNo, String qtlrIP, String qbrNo,
-			String stdate, String endate) throws CommonException {
+	public PageQueryResult queryPoliceBLOperateLogDetail(int pageIndex, int pageSize, String qtlrNo, String qtlrIP, String qbrNo, String stdate, String endate)
+			throws CommonException {
 		StringBuffer sb = new StringBuffer("");
 		List<Object> list = new ArrayList<Object>();
 		// sb.append("select log from PoliceBLOperateLog log where 1=1");
@@ -103,8 +97,7 @@ public class PoliceBlackListOperateLogService {
 		}
 		if (!DataFormat.isEmpty(endate)) {
 			sb.append(" and log.createDate<? ");
-			list.add(DateUtil.getStartDateByDays(
-					DateUtil.stringToDate2(endate), -1));
+			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endate), -1));
 		}
 		sb.append(" order by log.brNo");
 
@@ -126,16 +119,12 @@ public class PoliceBlackListOperateLogService {
 	 * 
 	 * @param endDate 结束时间
 	 */
-	public List sumQueryPoliceBlacklist(String startDate, String endDate)
-			throws CommonException {
+	public List sumQueryPoliceBlacklist(String startDate, String endDate) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-		StringBuffer sb = new StringBuffer(
-				"select log.brNo, sum(log.queryRecordNumber) from PoliceBLOperateLog log where 1=1");
+		StringBuffer sb = new StringBuffer("select log.brNo, sum(log.queryRecordNumber) from PoliceBLOperateLog log where 1=1");
 		sb.append(" and log.operateType='Q'");
-		sb.append(" and log.createDate>=to_date('").append(startDate)
-				.append("','yyyy-mm-dd')");
-		sb.append(" and log.createDate<to_date('").append(endDate)
-				.append("','yyyy-mm-dd')");
+		sb.append(" and log.createDate>=to_date('").append(startDate).append("','yyyy-mm-dd')");
+		sb.append(" and log.createDate<to_date('").append(endDate).append("','yyyy-mm-dd')");
 		sb.append(" group by log.brNo");
 		List list = hqldao.queryByQL2List(sb.toString());
 		return list;

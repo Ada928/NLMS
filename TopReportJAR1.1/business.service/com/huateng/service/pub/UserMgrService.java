@@ -20,14 +20,12 @@ import org.apache.log4j.Logger;
 
 import resource.bean.pub.Bctl;
 import resource.bean.pub.FunctionInfo;
-import resource.bean.pub.RoleFuncRel;
 import resource.bean.pub.RoleInfo;
 import resource.bean.pub.TlrInfo;
 import resource.bean.pub.TlrLoginLog;
 import resource.bean.pub.TlrRoleRel;
 import resource.dao.base.HQLDAO;
 import resource.dao.pub.BctlDAO;
-import resource.dao.pub.RoleFuncRelDAO;
 import resource.dao.pub.RoleInfoDAO;
 import resource.dao.pub.TlrInfoDAO;
 import resource.dao.pub.TlrRoleRelDAO;
@@ -68,8 +66,7 @@ public class UserMgrService {
 	 * @return
 	 */
 	public synchronized static UserMgrService getInstance() {
-		return (UserMgrService) ApplicationContextUtils
-				.getBean(UserMgrService.class.getName());
+		return (UserMgrService) ApplicationContextUtils.getBean(UserMgrService.class.getName());
 	}
 
 	public UserMgrService() {
@@ -85,28 +82,23 @@ public class UserMgrService {
 	 * @return 校验结果信息，如果用户不存在或用户存在但密码不对，抛出异常；校验通过，返回true
 	 *
 	 */
-	public boolean checkUserPwd(String userLoginId, String password)
-			throws CommonException {
+	public boolean checkUserPwd(String userLoginId, String password) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("checkUserPwd(String, String) - start"); //$NON-NLS-1$
 		}
 		TlrInfo tlrInfo = null;
 
-		String encMethod = CommonService.getInstance().getSysParamDef("PSWD",
-				"ENC_MODE", "AES128");
+		String encMethod = CommonService.getInstance().getSysParamDef("PSWD", "ENC_MODE", "AES128");
 
-		String pwd = PasswordService.getInstance().EncryptPassword(password,
-				encMethod);
+		String pwd = PasswordService.getInstance().EncryptPassword(password, encMethod);
 		TlrInfoDAO tlrInfoDAO = BaseDAOUtils.getTlrInfoDAO();
 		tlrInfo = tlrInfoDAO.query(userLoginId);
 		// 判断返回条件
 		if (tlrInfo == null) {
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_USER_NOT_EXIST);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_USER_NOT_EXIST);
 		}
 		if (!tlrInfo.getPassword().equals(pwd)) {
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_USER_PWD_INVALID);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_USER_PWD_INVALID);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -126,23 +118,19 @@ public class UserMgrService {
 	 * @return 校验结果信息，如果用户不存在或用户存在但密码不对，抛出异常；校验通过，返回true
 	 */
 	@SuppressWarnings("unchecked")
-	public TlrInfo checkUser(String userLoginId, String password,
-			String userBrcode) throws CommonException {
+	public TlrInfo checkUser(String userLoginId, String password, String userBrcode) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("checkUser(String, String) - start"); //$NON-NLS-1$
 		}
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
 		try {
 			TlrInfoDAO tlrInfoDAO = BaseDAOUtils.getTlrInfoDAO();
-			List tlrList = tlrInfoDAO.queryByCondition("tlrno = '"
-					+ userLoginId + "'");
+			List tlrList = tlrInfoDAO.queryByCondition("tlrno = '" + userLoginId + "'");
 			if (tlrList.isEmpty()) {
-				ExceptionUtil
-						.throwCommonException(ErrorCode.ERROR_CODE_USER_NOT_EXIST);
+				ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_USER_NOT_EXIST);
 			} else if (tlrList.size() != 1) {
 				logger.error("TlrInfo[" + userLoginId + "] existed mutil");
-				ExceptionUtil
-						.throwCommonException(ErrorCode.ERROR_CODE_USER_PWD_INVALID);
+				ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_USER_PWD_INVALID);
 			} else {
 				// 如果密码错误次数超过3次，那么不校验密码对错，直接告诉客户需要管理员解锁
 				// int totPswdErrCnt = tlrInfo.getTotPswdErrCnt(); //密码连续错误次数
@@ -163,20 +151,14 @@ public class UserMgrService {
 				// 判断所选择登录机构是否是该用户授权的机构 modify by zhangshishu 2012-09-12
 
 				HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-				List list = hqldao
-						.queryByQL2List("from TlrBctlRel where brcode='"
-								+ userBrcode + "' and tlrNo='" + userLoginId
-								+ "'");
+				List list = hqldao.queryByQL2List("from TlrBctlRel where brcode='" + userBrcode + "' and tlrNo='" + userLoginId + "'");
 				if (list.size() <= 0) {
 					ExceptionUtil.throwCommonException("选择登录的机构未授权");
 				}
 
-				List<Bctl> bctls = hqldao
-						.queryByQL2List("from Bctl where brcode='" + userBrcode
-								+ "'");
+				List<Bctl> bctls = hqldao.queryByQL2List("from Bctl where brcode='" + userBrcode + "'");
 				if (bctls.size() <= 0) {
-					ExceptionUtil.throwCommonException("根据选择登录机构号brcode["
-							+ userBrcode + "]未查到机构信息");
+					ExceptionUtil.throwCommonException("根据选择登录机构号brcode[" + userBrcode + "]未查到机构信息");
 				}
 				Bctl bctl = bctls.get(0);
 				tlrInfo.setBrno(bctl.getBrno());
@@ -189,13 +171,11 @@ public class UserMgrService {
 				String status = tlrInfo.getStatus();
 				// 如果用户已经离职，不允许再登陆
 				if (SystemConstant.TLR_NO_STATE_QUIT.equals(status)) {
-					ExceptionUtil
-							.throwCommonException(ErrorCode.ERROR_CODE_TLRNO_STATUS_INVALID);
+					ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_TLRNO_STATUS_INVALID);
 				}
 				// 操作员被删除后，不能登陆
 				if (SystemConstant.FLAG_OFF.equals(tlrInfo.getFlag())) {
-					ExceptionUtil.throwCommonException("操作员不合法",
-							ErrorCode.ERROR_CODE_TLR_BE_DELETE);
+					ExceptionUtil.throwCommonException("操作员不合法", ErrorCode.ERROR_CODE_TLR_BE_DELETE);
 				}
 				// 操作员未到生效日期或操作员登陆日期已超过失效日期后，不能登陆
 				// if (globalInfo.getTxdate().before(tlrInfo.getEffectDate())) {
@@ -240,8 +220,7 @@ public class UserMgrService {
 				return tlrInfo;
 			}
 		} catch (CommonException e) {
-			ExceptionUtil
-					.throwCommonException(e.getErrMessage(), e.getKey(), e);
+			ExceptionUtil.throwCommonException(e.getErrMessage(), e.getKey(), e);
 		}
 		if (logger.isDebugEnabled()) {
 			logger.debug("checkUser(String, String) - end"); //$NON-NLS-1$
@@ -249,24 +228,20 @@ public class UserMgrService {
 		return null;
 	}
 
-	private void checkPassword(TlrInfo user, String password,
-			GlobalInfo globalInfo) throws CommonException {
+	private void checkPassword(TlrInfo user, String password, GlobalInfo globalInfo) throws CommonException {
 		PasswordService passwdService = PasswordService.getInstance();
 		String enc = user.getPasswdenc();
 
-		int lockingTime = Integer.valueOf(CommonService.getInstance()
-				.getSysParamDef("PSWD", "LOCKING_TIME", "-1"));
+		int lockingTime = Integer.valueOf(CommonService.getInstance().getSysParamDef("PSWD", "LOCKING_TIME", "-1"));
 		if (PswdValidteOP.LOCKED.equals(user.getIsLock())) {
 
 			if (lockingTime < 0) {
 				ExceptionUtil.throwCommonException("用户已被锁定,请联系管理员解锁", "");
 			} else {
-				long x = System.currentTimeMillis()
-						- user.getLastfailedtm().getTime();
+				long x = System.currentTimeMillis() - user.getLastfailedtm().getTime();
 				long between = x / 1000 / 60;
 				if (between < lockingTime || lockingTime < 0) {
-					ExceptionUtil.throwCommonException("用户已被锁定,请联系管理员解锁,或等待"
-							+ lockingTime + "分钟后重试", "");
+					ExceptionUtil.throwCommonException("用户已被锁定,请联系管理员解锁,或等待" + lockingTime + "分钟后重试", "");
 				} else {
 					user.setTotpswderrcnt(0);
 					user.setIsLock(PswdValidteOP.NOT_LOCKED);
@@ -284,10 +259,8 @@ public class UserMgrService {
 			}
 			user.setLastfailedtm(new Timestamp(System.currentTimeMillis()));
 
-			int maxErrCnt = Integer.valueOf(CommonService.getInstance()
-					.getSysParamDef("PSWD", "MAX_ERR_CNT", "0"));
-			if (user.getTotpswderrcnt().intValue() > maxErrCnt
-					&& maxErrCnt >= 0) {
+			int maxErrCnt = Integer.valueOf(CommonService.getInstance().getSysParamDef("PSWD", "MAX_ERR_CNT", "0"));
+			if (user.getTotpswderrcnt().intValue() > maxErrCnt && maxErrCnt >= 0) {
 				user.setTotpswderrcnt(0);
 				user.setIsLock(PswdValidteOP.LOCKED);
 				user.setLockReason("用户密码连续输入错误次数超过允许的最大次数" + maxErrCnt);
@@ -297,13 +270,10 @@ public class UserMgrService {
 				if (lockingTime < 0) {
 					ExceptionUtil.throwCommonException("用户已被锁定,请联系管理员解锁", "");
 				} else {
-					ExceptionUtil.throwCommonException("用户已被锁定,请联系管理员解锁,或等待"
-							+ lockingTime + "分钟后重试", "");
+					ExceptionUtil.throwCommonException("用户已被锁定,请联系管理员解锁,或等待" + lockingTime + "分钟后重试", "");
 				}
 			} else {
-				ExceptionUtil.throwCommonException("密码错误,您还有"
-						+ (maxErrCnt - user.getTotpswderrcnt() + 1) + "次尝试机会",
-						ErrorCode.ERROR_CODE_USER_PWD_INVALID);
+				ExceptionUtil.throwCommonException("密码错误,您还有" + (maxErrCnt - user.getTotpswderrcnt() + 1) + "次尝试机会", ErrorCode.ERROR_CODE_USER_PWD_INVALID);
 			}
 		} else {
 			user.setTotpswderrcnt(0);
@@ -314,8 +284,7 @@ public class UserMgrService {
 		DAOUtils.getHQLDAO().getHibernateTemplate().refresh(user);
 
 		// 密码有效时间(天)
-		int effectiveDay = Integer.valueOf(CommonService.getInstance()
-				.getSysParamDef("PSWD", "EFFECTIVE_DAY", "0"));
+		int effectiveDay = Integer.valueOf(CommonService.getInstance().getSysParamDef("PSWD", "EFFECTIVE_DAY", "0"));
 		globalInfo.setEffectiveDay(effectiveDay);
 		if (StringUtils.isBlank(user.getLastPwdUpdTime())) {
 			globalInfo.setPswdForcedToChange(true);// 未修改过密码
@@ -324,8 +293,7 @@ public class UserMgrService {
 			try {
 				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 				globalInfo.setLastpwdchgtm(df.parse(user.getLastPwdUpdTime()));
-				between = DateUtil.getDaysBetween(new Date(),
-						df.parse(user.getLastPwdUpdTime()));
+				between = DateUtil.getDaysBetween(new Date(), df.parse(user.getLastPwdUpdTime()));
 			} catch (ParseException e) {
 				ExceptionUtil.throwCommonException(e.getMessage(), "");
 			}
@@ -335,8 +303,7 @@ public class UserMgrService {
 		}
 
 		// 密码强度
-		GlobalInfo.setPswdStrength(CommonService.getInstance().getSysParamDef(
-				"PSWD", "PSWD_STRENGTH", "2"));
+		GlobalInfo.setPswdStrength(CommonService.getInstance().getSysParamDef("PSWD", "PSWD_STRENGTH", "2"));
 	}
 
 	/**
@@ -403,10 +370,7 @@ public class UserMgrService {
 				// 设置为登出状态
 				// globalInfo.setTlrStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
 				/** 如果当前操作员会话信息是最后登录的操作员信息和操作员当前为签到情况下，进行签退操作. */
-				if (tlrInfo.getStatus().equals(
-						SystemConstant.TLR_NO_STATE_LOGOUT)
-						|| !tlrInfo.getSessionId().equals(
-								globalInfo.getSessionId())) {
+				if (tlrInfo.getStatus().equals(SystemConstant.TLR_NO_STATE_LOGOUT) || !tlrInfo.getSessionId().equals(globalInfo.getSessionId())) {
 					return true;
 				}
 				tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
@@ -427,8 +391,7 @@ public class UserMgrService {
 
 	public void setUserLoginOut() throws CommonException {
 		TlrInfoDAO tlrInfoDAO = BaseDAOUtils.getTlrInfoDAO();
-		List list = tlrInfoDAO.queryByCondition(" po.status='"
-				+ SystemConstant.TLR_NO_STATE_LOGIN + "'");
+		List list = tlrInfoDAO.queryByCondition(" po.status='" + SystemConstant.TLR_NO_STATE_LOGIN + "'");
 		for (int i = 0; i < list.size(); i++) {
 			TlrInfo tlrInfo = (TlrInfo) list.get(i);
 			tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
@@ -473,8 +436,7 @@ public class UserMgrService {
 		TlrInfoDAO tlrInfoDAO = BaseDAOUtils.getTlrInfoDAO();
 		tlrInfo = tlrInfoDAO.query(tlrNo);
 		if (tlrInfo == null) {
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_USER_NOT_EXIST);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_USER_NOT_EXIST);
 		}
 		if (logger.isDebugEnabled()) {
 			logger.debug("getUserInfo(String) - end"); //$NON-NLS-1$
@@ -489,8 +451,7 @@ public class UserMgrService {
 	 *            用户名
 	 * @return 校验结果信息，如果用户不存在或用户存在但密码不对，抛出异常；校验通过，返回0
 	 */
-	public boolean updatePassword(String userLoginId, String newPwd)
-			throws CommonException {
+	public boolean updatePassword(String userLoginId, String newPwd) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("updatePassword(String, String) - start"); //$NON-NLS-1$
 		}
@@ -500,30 +461,20 @@ public class UserMgrService {
 			TlrInfoDAO tlrInfoDAO = BaseDAOUtils.getTlrInfoDAO();
 			tlrInfo = tlrInfoDAO.query(userLoginId);
 			if (null != tlrInfo) {
-				int preventTime = Integer.valueOf(CommonService.getInstance()
-						.getSysParamDef("PSWD", "PREVENT_TIME", "-1"));
+				int preventTime = Integer.valueOf(CommonService.getInstance().getSysParamDef("PSWD", "PREVENT_TIME", "-1"));
 				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 				if (preventTime != -1 && tlrInfo.getLastPwdUpdTime() != null) {
-					long x = System.currentTimeMillis()
-							- df.parse(tlrInfo.getLastPwdUpdTime()).getTime();
+					long x = System.currentTimeMillis() - df.parse(tlrInfo.getLastPwdUpdTime()).getTime();
 					if (x < preventTime * 60 * 60 * 1000L) {
-						ExceptionUtil.throwCommonException(
-								ErrorCode.ERROR_CODE_PREVENT_TIME,
-								new Object[] { preventTime });
+						ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_PREVENT_TIME, new Object[] { preventTime });
 					}
 				}
 
-				String sysDefaultPwd = CommonService.getInstance()
-						.getSysParamDef("PSWD", "DEFAULT_PWD",
-								SystemConstant.DEFAULT_PASSWORD);
-				String encMethod = CommonService.getInstance().getSysParamDef(
-						"PSWD", "ENC_MODE", "AES128");
-				String password = PasswordService.getInstance()
-						.EncryptPassword(newPwd, encMethod);
+				String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
+				String encMethod = CommonService.getInstance().getSysParamDef("PSWD", "ENC_MODE", "AES128");
+				String password = PasswordService.getInstance().EncryptPassword(newPwd, encMethod);
 				if (!sysDefaultPwd.equals(newPwd)) {
-					PasswordService.getInstance().savePasswordHis(
-							tlrInfo.getTlrno(), password,
-							tlrInfo.getPasswdenc());
+					PasswordService.getInstance().savePasswordHis(tlrInfo.getTlrno(), password, tlrInfo.getPasswdenc());
 				}
 				tlrInfo.setPasswdenc(encMethod);
 				tlrInfo.setPassword(password);
@@ -539,8 +490,7 @@ public class UserMgrService {
 				// add by zhaozhiguo end
 				tlrInfoDAO.update(tlrInfo);
 			} else {
-				ExceptionUtil
-						.throwCommonException(ErrorCode.ERROR_CODE_USER_NOT_EXIST);
+				ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_USER_NOT_EXIST);
 			}
 			// modified by NT 2007-09-23 交行机构级别检查。需要可以补加
 			// BctlService bctlService = new BctlService(globalInfo);
@@ -549,8 +499,7 @@ public class UserMgrService {
 			if (e.getKey() != null) {
 				throw e;
 			} else {
-				ExceptionUtil
-						.throwCommonException(ErrorCode.ERROR_CODE_TLR_INFO_SELECT);
+				ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_TLR_INFO_SELECT);
 			}
 		} catch (Exception e) {
 			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_UNKNOWN);
@@ -577,10 +526,8 @@ public class UserMgrService {
 
 			HQLDAO hqlDAO = BaseDAOUtils.getHQLDAO();
 			StringBuffer sb = new StringBuffer();
-			sb.append("select role from ")
-					.append("RoleInfo role, TlrRoleRel tr ")
-					.append("where tr.roleId=role.id ")
-					.append("and tr.tlrno='").append(tlrNo).append("' ");
+			sb.append("select role from ").append("RoleInfo role, TlrRoleRel tr ").append("where tr.roleId=role.id ").append("and tr.tlrno='").append(tlrNo)
+					.append("' ");
 			Iterator iterator;
 			iterator = hqlDAO.queryByQL(sb.toString());
 			while (iterator.hasNext()) {
@@ -594,20 +541,16 @@ public class UserMgrService {
 			return list;
 		} catch (CommonException e) {
 			logger.error("getUserRoles(String)", e); //$NON-NLS-1$
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_USER_INFO_INVALID);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_USER_INFO_INVALID);
 		}
 		return new ArrayList();
 	}
 
-	public List<FunctionInfo> getApproveUserFunc(
-			List<FunctionInfo> userRoleFunclist) {
+	public List<FunctionInfo> getApproveUserFunc(List<FunctionInfo> userRoleFunclist) {
 		List<FunctionInfo> infolist = new ArrayList<FunctionInfo>();
 		for (int i = 0; i < userRoleFunclist.size(); i++) {
 			FunctionInfo info = userRoleFunclist.get(i);
-			if (info.getLastdirectory() != null
-					&& info.getLastdirectory().toString()
-							.equals(ReportConstant.APPROVE_FUNC_ID)) {
+			if (info.getLastdirectory() != null && info.getLastdirectory().toString().equals(ReportConstant.APPROVE_FUNC_ID)) {
 				infolist.add(info);
 			}
 		}
@@ -628,11 +571,8 @@ public class UserMgrService {
 			ArrayList list = new ArrayList(); // 返回的列表
 			HQLDAO hqlDAO = BaseDAOUtils.getHQLDAO();
 			StringBuffer sb = new StringBuffer();
-			sb.append("select distinct func from ")
-					.append("TlrRoleRel tr,RoleFuncRel rr,FunctionInfo func ")
-					.append("where tr.roleId=rr.roleId and rr.funcid=func.id ")
-					.append("and tr.tlrno='").append(tlrNo)
-					.append("' order by func.showseq");
+			sb.append("select distinct func from ").append("TlrRoleRel tr,RoleFuncRel rr,FunctionInfo func ")
+					.append("where tr.roleId=rr.roleId and rr.funcid=func.id ").append("and tr.tlrno='").append(tlrNo).append("' order by func.showseq");
 			Iterator iterator = hqlDAO.queryByQL(sb.toString());
 			while (iterator.hasNext()) {
 				FunctionInfo func = (FunctionInfo) iterator.next();
@@ -644,8 +584,7 @@ public class UserMgrService {
 			return list;
 		} catch (CommonException e) {
 			logger.error("getUserFunctions(String)", e); //$NON-NLS-1$
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_USER_INFO_INVALID);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_USER_INFO_INVALID);
 		}
 		return new ArrayList();
 
@@ -657,18 +596,15 @@ public class UserMgrService {
 	 * @param tlrNo
 	 * @return
 	 */
-	public void getUserFunctionsByMenuType(String tlrNo, String funcId,
-			List<FunctionInfo> resultList) throws CommonException {
+	public void getUserFunctionsByMenuType(String tlrNo, String funcId, List<FunctionInfo> resultList) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("getUserFunctions(String) - start"); //$NON-NLS-1$
 		}
 		try {
 			HQLDAO hqlDAO = BaseDAOUtils.getHQLDAO();
 			StringBuffer sb = new StringBuffer();
-			sb.append("select distinct func from ")
-					.append("TlrRoleRel tr,RoleFuncRel rr,FunctionInfo func ")
-					.append("where tr.roleId=rr.roleId and rr.funcid=func.id ")
-					.append("and tr.tlrno='" + tlrNo + "'");
+			sb.append("select distinct func from ").append("TlrRoleRel tr,RoleFuncRel rr,FunctionInfo func ")
+					.append("where tr.roleId=rr.roleId and rr.funcid=func.id ").append("and tr.tlrno='" + tlrNo + "'");
 			sb.append(" and func.lastdirectory='" + funcId + "'");
 			sb.append(" order by func.showseq");
 			Iterator iterator = hqlDAO.queryByQL(sb.toString());
@@ -678,10 +614,7 @@ public class UserMgrService {
 				if (func.getId().trim().equals(ReportConstant.APPROVE_FUNC_ID)) {
 					func.setIsdirectory(0);// 调整为不是目录
 				}
-				if (func.getLastdirectory() != null
-						&& !func.getLastdirectory().equals(
-								ReportConstant.APPROVE_FUNC_ID)
-						&& func.getIsdirectory() == 1) {
+				if (func.getLastdirectory() != null && !func.getLastdirectory().equals(ReportConstant.APPROVE_FUNC_ID) && func.getIsdirectory() == 1) {
 					getUserFunctionsByMenuType(tlrNo, func.getId(), resultList);
 				}
 			}
@@ -690,8 +623,7 @@ public class UserMgrService {
 			}
 		} catch (CommonException e) {
 			logger.error("getUserFunctions(String)", e); //$NON-NLS-1$
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_USER_INFO_INVALID);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_USER_INFO_INVALID);
 		}
 
 	}
@@ -726,8 +658,7 @@ public class UserMgrService {
 	 * @return UserSessionInfo 用户会话信息
 	 */
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	public UserSessionInfo getUserSessionInfo(TlrInfo tlrinfo)
-			throws CommonException {
+	public UserSessionInfo getUserSessionInfo(TlrInfo tlrinfo) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("getUserSessionInfo(TlrInfo) - start"); //$NON-NLS-1$
 		}
@@ -736,69 +667,62 @@ public class UserMgrService {
 
 			sessionInfo.setTlrNo(tlrinfo.getTlrno().trim());
 			sessionInfo.setTlrName(DataFormat.trim(tlrinfo.getTlrName()));
-			sessionInfo.setTlrType(tlrinfo.getTlrType().trim());
 			sessionInfo.setBrCode(DataFormat.trim(tlrinfo.getBrcode()));
 
 			sessionInfo.setBrNo(DataFormat.trim(tlrinfo.getBrno()));
 
 			BctlService bctlService = BctlService.getInstance();
-			Bctl bctl = bctlService.getBctlByBrcode(DataFormat.trim(tlrinfo
-					.getBrcode()));
+			Bctl bctl = bctlService.getBctlByBrcode(DataFormat.trim(tlrinfo.getBrcode()));
 
 			sessionInfo.setUpBrCode(bctl.getBlnUpBrcode());
 			// 归属分行
 			// sessionInfo.setLastLoginTime(DataFormat.timeToStringEx1(tlrinfo.getLastaccesstm()));
-			sessionInfo.setLastLogoutTime(DataFormat.timeToStringEx1(tlrinfo
-					.getLastlogouttm()));
+			sessionInfo.setLastLogoutTime(DataFormat.timeToStringEx1(tlrinfo.getLastlogouttm()));
 			sessionInfo.setIp(DataFormat.trim(tlrinfo.getLoginIp()));
 			// 这个名称是汉字，大于10个字就截掉，相当于20个字节
-			sessionInfo
-					.setBrName(StringUtils.substring(bctl.getBrname(), 0, 10));
+			sessionInfo.setBrName(StringUtils.substring(bctl.getBrname(), 0, 10));
 
 			TlrRoleRelDAO tlrRoleRelationDAO = BaseDAOUtils.getTlrRoleRelDAO();
 			HashSet roleTypeList = new HashSet();
-			List tlrRoleRelationList = tlrRoleRelationDAO.queryByCondition(
-					"po.tlrno = ?", new Object[] { tlrinfo.getTlrno() }, null);
+			List tlrRoleRelationList = tlrRoleRelationDAO.queryByCondition("po.tlrno = ?", new Object[] { tlrinfo.getTlrno() }, null);
 			if (tlrRoleRelationList.isEmpty()) {
-				ExceptionUtil.throwCommonException("操作员默认岗位编号配置错误",
-						ErrorCode.ERROR_CODE_USER_INFO_INVALID);
+				ExceptionUtil.throwCommonException("操作员默认岗位编号配置错误", ErrorCode.ERROR_CODE_USER_INFO_INVALID);
 			} else {
 				Iterator it = tlrRoleRelationList.iterator();
 				while (it.hasNext()) {
 					TlrRoleRel tlrRoleRel = (TlrRoleRel) it.next();
 					RoleInfoDAO roleInfoDAO = BaseDAOUtils.getRoleInfoDAO();
-					RoleInfo roleInfo = roleInfoDAO.query(tlrRoleRel
-							.getRoleId());
+					RoleInfo roleInfo = roleInfoDAO.query(tlrRoleRel.getRoleId());
 					roleTypeList.add(roleInfo.getRoleType());
 				}
 			}
 
-//			RoleInfoDAO roleInfoDAO = BaseDAOUtils.getRoleInfoDAO();
-//			// 查询默认角色
-//			RoleInfo roleInfo = roleInfoDAO.query(tlrinfo.getRoleid()
-//					.intValue());
-//
-//			RoleFuncRelDAO roleFuncRelationDAO = BaseDAOUtils
-//					.getRoleFuncRelDAO();
-//			List roleFuncList = roleFuncRelationDAO
-//					.queryByCondition("po.roleId = ?",
-//							new Object[] { tlrinfo.getRoleid() }, null);
-//			Iterator it = roleFuncList.iterator();
-//
-//			sessionInfo.addUserRolesItem(tlrinfo.getRoleid());
-//			sessionInfo.addWorkflowRolesItem(roleInfo);
-//			sessionInfo.setRoleType(roleInfo.getRoleType());
-//			roleTypeList.add(roleInfo.getRoleType());
-			
-//			while (it.hasNext()) {
-//				RoleFuncRel roleFuncRelation = (RoleFuncRel) it.next();
-//				if (false == sessionInfo
-//						.isExistUserFunctionsItems(roleFuncRelation.getFuncid()
-//								.trim())) {
-//					sessionInfo.addUserFunctionsItem(roleFuncRelation
-//							.getFuncid().trim());
-//				}
-//			}
+			// RoleInfoDAO roleInfoDAO = BaseDAOUtils.getRoleInfoDAO();
+			// // 查询默认角色
+			// RoleInfo roleInfo = roleInfoDAO.query(tlrinfo.getRoleid()
+			// .intValue());
+			//
+			// RoleFuncRelDAO roleFuncRelationDAO = BaseDAOUtils
+			// .getRoleFuncRelDAO();
+			// List roleFuncList = roleFuncRelationDAO
+			// .queryByCondition("po.roleId = ?",
+			// new Object[] { tlrinfo.getRoleid() }, null);
+			// Iterator it = roleFuncList.iterator();
+			//
+			// sessionInfo.addUserRolesItem(tlrinfo.getRoleid());
+			// sessionInfo.addWorkflowRolesItem(roleInfo);
+			// sessionInfo.setRoleType(roleInfo.getRoleType());
+			// roleTypeList.add(roleInfo.getRoleType());
+
+			// while (it.hasNext()) {
+			// RoleFuncRel roleFuncRelation = (RoleFuncRel) it.next();
+			// if (false == sessionInfo
+			// .isExistUserFunctionsItems(roleFuncRelation.getFuncid()
+			// .trim())) {
+			// sessionInfo.addUserFunctionsItem(roleFuncRelation
+			// .getFuncid().trim());
+			// }
+			// }
 
 			String string = "|";
 			for (Object o : roleTypeList) {
@@ -809,34 +733,24 @@ public class UserMgrService {
 			sessionInfo.setRoleTypeList(string);
 
 			HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-			List<TlrLoginLog> lastSucList = hqldao
-					.queryByQL2List("from TlrLoginLog where tlrNo='"
-							+ tlrinfo.getTlrno()
-							+ "' and loginSucTm=(select max(log.loginSucTm) from TlrLoginLog log where tlrNo='"
-							+ tlrinfo.getTlrno() + "')");
+			List<TlrLoginLog> lastSucList = hqldao.queryByQL2List("from TlrLoginLog where tlrNo='" + tlrinfo.getTlrno()
+					+ "' and loginSucTm=(select max(log.loginSucTm) from TlrLoginLog log where tlrNo='" + tlrinfo.getTlrno() + "')");
 			if (lastSucList != null && lastSucList.size() > 0) {
-				sessionInfo.setLastLoginTime(DataFormat
-						.timeToStringEx1(lastSucList.get(0).getLoginSucTm()));
+				sessionInfo.setLastLoginTime(DataFormat.timeToStringEx1(lastSucList.get(0).getLoginSucTm()));
 			} else {
-				sessionInfo.setLastLoginTime(DataFormat.timeToStringEx1(tlrinfo
-						.getLastaccesstm()));
+				sessionInfo.setLastLoginTime(DataFormat.timeToStringEx1(tlrinfo.getLastaccesstm()));
 			}
 			// 设置最近登录失败时间
-			List<TlrLoginLog> lastFailList = hqldao
-					.queryByQL2List("from TlrLoginLog where tlrNo='"
-							+ tlrinfo.getTlrno()
-							+ "' and loginFailTm=(select max(log.loginFailTm) from TlrLoginLog log where tlrNo='"
-							+ tlrinfo.getTlrno() + "')");
+			List<TlrLoginLog> lastFailList = hqldao.queryByQL2List("from TlrLoginLog where tlrNo='" + tlrinfo.getTlrno()
+					+ "' and loginFailTm=(select max(log.loginFailTm) from TlrLoginLog log where tlrNo='" + tlrinfo.getTlrno() + "')");
 			if (lastFailList != null && lastFailList.size() > 0) {
-				sessionInfo.setLastLoginFailTime(DataFormat
-						.timeToStringEx1(lastFailList.get(0).getLoginFailTm()));
+				sessionInfo.setLastLoginFailTime(DataFormat.timeToStringEx1(lastFailList.get(0).getLoginFailTm()));
 			}
 		} catch (CommonException e) {
 			throw e;
 		} catch (Exception e) {
 			logger.error("getUserSessionInfoEx(String)", e); //$NON-NLS-1$
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_USER_INFO_INVALID);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_USER_INFO_INVALID);
 		} finally {
 		}
 		if (logger.isDebugEnabled()) {
@@ -854,8 +768,7 @@ public class UserMgrService {
 	 * @version v1.0,2008-11-4
 	 * @param userBrno
 	 */
-	public UserSessionInfo loginUserSessionInfo(String userId, String pwd,
-			String userBrcode) throws CommonException {
+	public UserSessionInfo loginUserSessionInfo(String userId, String pwd, String userBrcode) throws CommonException {
 		// 检查用户密码
 		TlrInfo tlrinfo = checkUser(userId, pwd, userBrcode);
 		return getUserSessionInfo(tlrinfo);
@@ -871,8 +784,7 @@ public class UserMgrService {
 	 * @return 校验结果信息，如果用户不存在或用户存在但密码不对，抛出异常；校验通过，返回true
 	 *
 	 */
-	public boolean checkUserPwd(String userLoginId, String password,
-			String newPasswd) throws CommonException {
+	public boolean checkUserPwd(String userLoginId, String password, String newPasswd) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("checkUserPwd(String, String, String) - start"); //$NON-NLS-1$
 		}
@@ -887,30 +799,24 @@ public class UserMgrService {
 			}
 		}
 		if (true == bSameChars)
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_CHG_PWD_SAME_CHARS);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_CHG_PWD_SAME_CHARS);
 
 		// 新旧密码不能相同
 		if (true == newPasswd.trim().equals(password.trim()))
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_NEW_OLD_PWD_IS_SAME);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_NEW_OLD_PWD_IS_SAME);
 		TlrInfo tlrInfo = null;
 		TlrInfoDAO tlrInfoDAO = BaseDAOUtils.getTlrInfoDAO();
 		tlrInfo = tlrInfoDAO.query(userLoginId);
 		// 判断返回条件
 		if (tlrInfo == null) {
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_USER_NOT_EXIST);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_USER_NOT_EXIST);
 		}
-		String encMethod = CommonService.getInstance().getSysParamDef("PSWD",
-				"ENC_MODE", "AES128");
+		String encMethod = CommonService.getInstance().getSysParamDef("PSWD", "ENC_MODE", "AES128");
 
-		String pwd = PasswordService.getInstance().EncryptPassword(password,
-				encMethod);
+		String pwd = PasswordService.getInstance().EncryptPassword(password, encMethod);
 
 		if (!tlrInfo.getPassword().equals(pwd)) {
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_USER_PWD_INVALID);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_USER_PWD_INVALID);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -931,31 +837,25 @@ public class UserMgrService {
 	 * @return
 	 *
 	 */
-	public void checkPwdFields(String oldPwd, String newPwd, String againNewPwd)
-			throws CommonException {
+	public void checkPwdFields(String oldPwd, String newPwd, String againNewPwd) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("checkPwdFields(String, String, String) - start"); //$NON-NLS-1$
 		}
 
 		// 所有密码字段不能为空或空格
 		if ((null == oldPwd) || (null == newPwd) || (null == againNewPwd))
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_PWD_FIELDS_IS_NULL);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_PWD_FIELDS_IS_NULL);
 
-		if ((0 == oldPwd.trim().length()) || (0 == newPwd.trim().length())
-				|| (0 == againNewPwd.trim().length()))
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_PWD_FIELDS_IS_NULL);
+		if ((0 == oldPwd.trim().length()) || (0 == newPwd.trim().length()) || (0 == againNewPwd.trim().length()))
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_PWD_FIELDS_IS_NULL);
 
 		// 新旧密码不能相同
 		if (true == newPwd.trim().equals(oldPwd.trim()))
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_NEW_OLD_PWD_IS_SAME);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_NEW_OLD_PWD_IS_SAME);
 
 		// 新密码和确认密码必须相同
 		if (false == newPwd.trim().equals(againNewPwd.trim()))
-			ExceptionUtil
-					.throwCommonException(ErrorCode.ERROR_CODE_NEW_AGAIN_PWD_IS_NOT_SAME);
+			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_NEW_AGAIN_PWD_IS_NOT_SAME);
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("checkPwdFields(String, String, String) - end"); //$NON-NLS-1$
@@ -1023,8 +923,7 @@ public class UserMgrService {
 		StringBuffer hqlBuffer = new StringBuffer(512);
 		hqlBuffer.append("select distinct func ");
 		hqlBuffer.append(" from FunctionInfo func,BranchFuncRel brel ");
-		hqlBuffer
-				.append(" where brel.funcid = func.id and func.status='1' and brel.brcode = '");
+		hqlBuffer.append(" where brel.funcid = func.id and func.status='1' and brel.brcode = '");
 		hqlBuffer.append(brcode);
 		hqlBuffer.append("'");
 

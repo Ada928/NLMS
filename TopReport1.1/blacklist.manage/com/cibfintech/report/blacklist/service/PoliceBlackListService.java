@@ -39,8 +39,7 @@ public class PoliceBlackListService {
 		return (PoliceBlackListService) ApplicationContextUtils.getBean("PoliceBlackListService");
 	}
 
-	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String partyId, String qCertificateType,
-			String qCertificateNumber, String qOperateState) {
+	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String partyId, String qCertificateType, String qCertificateNumber, String qOperateState) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();

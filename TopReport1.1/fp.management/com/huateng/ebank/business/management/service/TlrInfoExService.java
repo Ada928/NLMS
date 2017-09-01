@@ -200,7 +200,7 @@ public class TlrInfoExService {
 	// tlrInfo = new TlrInfo();
 	// tlrInfo.setBrcode(brcode);
 	// tlrInfo.setTlrno(tlrno);
-	//// tlrInfo.setCreatDate(GlobalInfo.getCurrentInstance().getTxdate());
+	// // tlrInfo.setCreatDate(GlobalInfo.getCurrentInstance().getTxdate());
 	// tlrInfo.setFlag(SystemConstant.FLAG_ON);
 	// tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
 	// tlrInfoList.add(tlrInfo);
@@ -219,7 +219,7 @@ public class TlrInfoExService {
 	// tlrInfo = new TlrInfo();
 	// tlrInfo.setBrcode(brcode);
 	// tlrInfo.setTlrno(tlrno);
-	//// tlrInfo.setCreatDate(GlobalInfo.getCurrentInstance().getTxdate());
+	// // tlrInfo.setCreatDate(GlobalInfo.getCurrentInstance().getTxdate());
 	// tlrInfo.setFlag(SystemConstant.FLAG_ON);
 	// tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
 	// tlrInfo.setPassword("123456");
@@ -414,9 +414,7 @@ public class TlrInfoExService {
 		for (int i = 0; i < insertRoleList.size(); i++) {
 			TlrRoleRelationView tlrRoleView = (TlrRoleRelationView) insertRoleList.get(i);
 			TlrRoleRel tlrRole = new TlrRoleRel();
-			if (tlrRoleDAO
-					.queryByCondition("po.tlrno=? and po.roleId=?",
-							new Object[] { tlrRoleView.getTlrno(), new Integer(tlrRoleView.getRoleId()) }, null)
+			if (tlrRoleDAO.queryByCondition("po.tlrno=? and po.roleId=?", new Object[] { tlrRoleView.getTlrno(), new Integer(tlrRoleView.getRoleId()) }, null)
 					.size() != 0) {
 				continue;
 			}
@@ -426,8 +424,8 @@ public class TlrInfoExService {
 		}
 		for (int i = 0; i < deleteRoleList.size(); i++) {
 			TlrRoleRelationView tlrRoleView = (TlrRoleRelationView) deleteRoleList.get(i);
-			List dellist = tlrRoleDAO.queryByCondition("po.tlrno=? and po.roleId=?",
-					new Object[] { tlrRoleView.getTlrno(), new Integer(tlrRoleView.getRoleId()) }, null);
+			List dellist = tlrRoleDAO.queryByCondition("po.tlrno=? and po.roleId=?", new Object[] { tlrRoleView.getTlrno(),
+					new Integer(tlrRoleView.getRoleId()) }, null);
 			// TlrRoleRel tlrRole = new TlrRoleRel();
 			// tlrRole.setRoleId(new Integer(tlrRoleView.getRoleId()));
 			// tlrRole.setTlrno(tlrRoleView.getTlrno());
@@ -514,9 +512,9 @@ public class TlrInfoExService {
 	// TlrRoleRel trr = (TlrRoleRel) tlrRoleRelationList.get(i);
 	// RoleInfo ri =
 	// DAOUtils.getRoleInfoDAO().query(trr.getRoleId().intValue());
-	//// if (ri.getRoleId().compareTo(ti.getCurRoleid()) == 0) {
-	//// continue;
-	//// }
+	// // if (ri.getRoleId().compareTo(ti.getCurRoleid()) == 0) {
+	// // continue;
+	// // }
 	// pluRoleList.add(ri);
 	// }
 	// return pluRoleList;
@@ -568,8 +566,7 @@ public class TlrInfoExService {
 	 *
 	 * @param
 	 * @return boolean
-	 * @exception @author
-	 *                hyurain_yang
+	 * @exception @author hyurain_yang
 	 * @version v1.0,2008-8-18
 	 * @throws CommonException
 	 */
@@ -590,11 +587,10 @@ public class TlrInfoExService {
 	 *
 	 * @param
 	 * @return boolean
-	 * @exception @author
-	 *                hyurain_yang modify by shen_antonio 2008-11-13
-	 *                如果是总行总行操作员，只能选取总行或者所有分行的操作员信息
-	 *                如果是省分行\直属分行操作员,只能选取本分行和本分行下属机构(省瞎分行\支行):管理分行为该分行
-	 *                如果是省瞎分行操作员,只能选取本分行和本分行下属机构支行 如果是支行操作员,只能是本机构操作员
+	 * @exception @author hyurain_yang modify by shen_antonio 2008-11-13
+	 *            如果是总行总行操作员，只能选取总行或者所有分行的操作员信息
+	 *            如果是省分行\直属分行操作员,只能选取本分行和本分行下属机构(省瞎分行\支行):管理分行为该分行
+	 *            如果是省瞎分行操作员,只能选取本分行和本分行下属机构支行 如果是支行操作员,只能是本机构操作员
 	 * @version v1.0,2008-10-21
 	 */
 	// public boolean judgeTlrAttachBranch(String extTlrno) throws
@@ -648,8 +644,7 @@ public class TlrInfoExService {
 	 *
 	 * @param
 	 * @return List
-	 * @exception @author
-	 *                hyurain_yang
+	 * @exception @author hyurain_yang
 	 * @version v1.0,2008-8-25
 	 */
 	// public List getAllCustManager() throws CommonException {
@@ -672,8 +667,7 @@ public class TlrInfoExService {
 	 *
 	 * @param
 	 * @return List
-	 * @exception @author
-	 *                hyurain_yang
+	 * @exception @author hyurain_yang
 	 * @version v1.0,2008-8-25
 	 */
 	// public List getCustManagerListByValue(String value) throws
@@ -699,8 +693,7 @@ public class TlrInfoExService {
 	 *
 	 * @param
 	 * @return List
-	 * @exception @author
-	 *                hyurain_yang
+	 * @exception @author hyurain_yang
 	 * @version v1.0,2008-10-11
 	 */
 	// public List getProbranchCustManager(String brcode, String value) throws
@@ -779,8 +772,8 @@ public class TlrInfoExService {
 	 *
 	 * @param String
 	 *            where
-	 * @param Object[]
-	 *            b
+	 * @param Object
+	 *            [] b
 	 * @return List
 	 * @exception CommonException
 	 * @author hyurain_yang
@@ -821,8 +814,7 @@ public class TlrInfoExService {
 	 *
 	 * @param brcode
 	 * @return List
-	 * @exception @author
-	 *                hyurain_yang
+	 * @exception @author hyurain_yang
 	 * @version v1.0,2008-10-16
 	 * @throws CommonException
 	 */
@@ -888,8 +880,7 @@ public class TlrInfoExService {
 	 *
 	 * @param
 	 * @return TlrInfo
-	 * @exception @author
-	 *                hyurain_yang
+	 * @exception @author hyurain_yang
 	 * @version v1.0,2008-9-2
 	 */
 	public TlrInfo getTlrInfoByTlrno(String tlrno) throws CommonException {
@@ -904,8 +895,7 @@ public class TlrInfoExService {
 	 * @param tlrno
 	 *            内部操作员号 sessionId 会话ID号
 	 * @return boolean
-	 * @exception @author
-	 *                shen_antonio
+	 * @exception @author shen_antonio
 	 * @version v1.0,2008-10-7
 	 */
 	// public boolean isLogin(String tlrno, String sessionId) throws

@@ -177,8 +177,7 @@ public class DwrFunctions {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public List<String> getRoleFuncByIdCom(String roleId, String st, String flag, String tskId)
-			throws CommonException, IOException, ClassNotFoundException {
+	public List<String> getRoleFuncByIdCom(String roleId, String st, String flag, String tskId) throws CommonException, IOException, ClassNotFoundException {
 		List<String> list = new ArrayList<String>();
 		if (flag.equals("0")) {
 			String str = "select trim(funInfo.id) from FunctionInfo funInfo,RoleFuncRel rolefun where funInfo.id= rolefun.funcid and funInfo.isdirectory=0"
@@ -211,18 +210,15 @@ public class DwrFunctions {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public List<String> getRoleFuncByIdComSeri(String roleId, String st, String flag, String tskId)
-			throws CommonException, IOException, ClassNotFoundException {
+	public List<String> getRoleFuncByIdComSeri(String roleId, String st, String flag, String tskId) throws CommonException, IOException, ClassNotFoundException {
 		List<String> list = new ArrayList<String>();
 		if (flag.equals("0")) {
 			if (st.equals("2")) {
 				ReportTaskUtil rt = new ReportTaskUtil();
-				List<SysTaskInfo> taskList = ROOTDAOUtils.getROOTDAO()
-						.queryByQL2List("from SysTaskInfo where intInsId='100299' and adtRcdPk='" + roleId + "'");
+				List<SysTaskInfo> taskList = ROOTDAOUtils.getROOTDAO().queryByQL2List("from SysTaskInfo where intInsId='100299' and adtRcdPk='" + roleId + "'");
 				if (taskList.size() > 0) {
 					RoleInfo roleInfoSeri = (RoleInfo) rt.getObjctBySysTaskInfo(taskList.get(0));
-					if (roleInfoSeri != null && roleInfoSeri.getRoleList() != null
-							&& roleInfoSeri.getRoleList().length() > 0) {
+					if (roleInfoSeri != null && roleInfoSeri.getRoleList() != null && roleInfoSeri.getRoleList().length() > 0) {
 						list = Arrays.asList(roleInfoSeri.getRoleList().split(","));
 					}
 				}
@@ -316,8 +312,7 @@ public class DwrFunctions {
 	 * @return
 	 * @throws CommonException
 	 */
-	public int saveOrUpdateWorkDate(HttpServletRequest request, String year, List<String> workDates)
-			throws CommonException {
+	public int saveOrUpdateWorkDate(HttpServletRequest request, String year, List<String> workDates) throws CommonException {
 		setGlobalInfo(request);
 
 		OperationContext oc = new OperationContext();
@@ -399,8 +394,8 @@ public class DwrFunctions {
 
 	}
 
-	public List<String[]> getWorkDateByDetail(String year, String type, String taskId, String flag, String st)
-			throws CommonException, IOException, ClassNotFoundException {
+	public List<String[]> getWorkDateByDetail(String year, String type, String taskId, String flag, String st) throws CommonException, IOException,
+			ClassNotFoundException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<String[]> list = new ArrayList<String[]>();
 		ReportShowDetailService service = ReportShowDetailService.getInstance();
@@ -452,8 +447,7 @@ public class DwrFunctions {
 		GlobalInfo.setCurrentInstance(globalInfo);
 		Map funmap = globalInfo.getAllFunctions();
 		List<FunctionInfo> funcInfoList = new ArrayList<FunctionInfo>();
-		UserMgrService.getInstance().getUserFunctionsByMenuType(globalInfo.getTlrno(), globalInfo.getMenuCode(),
-				funcInfoList);
+		UserMgrService.getInstance().getUserFunctionsByMenuType(globalInfo.getTlrno(), globalInfo.getMenuCode(), funcInfoList);
 		/*
 		 * for (Iterator iterator = funmap.keySet().iterator();
 		 * iterator.hasNext();) { String funcId = (String) iterator.next();

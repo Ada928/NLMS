@@ -23,14 +23,11 @@ public class BranchManageUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "Management_branchManage";
 
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
 			throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID(BranchManageUpdate.DATASET_ID);
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(BranchManageUpdate.DATASET_ID);
 
 			List updateList = new ArrayList();
 			List insertList = new ArrayList();
@@ -55,18 +52,15 @@ public class BranchManageUpdate extends BaseUpdate {
 				}
 			}
 			OperationContext context = new OperationContext();
-			context.setAttribute(BranchManageUpdateOperation.INSERT_LIST,
-					insertList);
-			context.setAttribute(BranchManageUpdateOperation.UPDATE_LIST,
-					updateList);
+			context.setAttribute(BranchManageUpdateOperation.INSERT_LIST, insertList);
+			context.setAttribute(BranchManageUpdateOperation.UPDATE_LIST, updateList);
 			context.setAttribute(BranchManageUpdateOperation.DEL_LIST, delList);
 			OPCaller.call(BranchManageUpdateOperation.ID, context);
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

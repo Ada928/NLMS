@@ -21,8 +21,8 @@ import com.huateng.exception.AppException;
 public class DelayUpdate extends BaseUpdate {
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		// TODO Auto-generated method stub
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();

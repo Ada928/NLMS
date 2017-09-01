@@ -27,8 +27,7 @@ import resource.report.dao.ROOTDAOUtils;
 
 public class BankBlackListQueryService {
 
-	public PageQueryResult list(int pageIndex, int pageSize, String hql)
-			throws CommonException {
+	public PageQueryResult list(int pageIndex, int pageSize, String hql) throws CommonException {
 		PageQueryCondition queryCondition = new PageQueryCondition();
 		queryCondition.setQueryString(hql);
 		queryCondition.setPageIndex(pageIndex);
@@ -44,37 +43,31 @@ public class BankBlackListQueryService {
 	 */
 
 	public static BankBlackListQueryService getInstance() {
-		return (BankBlackListQueryService) ApplicationContextUtils
-				.getBean("BankBlackListQueryService");
+		return (BankBlackListQueryService) ApplicationContextUtils.getBean("BankBlackListQueryService");
 	}
 
 	@SuppressWarnings("unchecked")
-	public PageQueryResult pageQueryByHql(GlobalInfo globalinfo, boolean isSuperManager, int pageIndex,
-			int pageSize, String partyId, String qCertificateType,
+	public PageQueryResult pageQueryByHql(GlobalInfo globalinfo, boolean isSuperManager, int pageIndex, int pageSize, String partyId, String qCertificateType,
 			String qCertificateNumber) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(
-				" from BankBlackList bblt where bblt.del='F'");
+		StringBuffer hql = new StringBuffer(" from BankBlackList bblt where bblt.del='F'");
 
 		if (StringUtils.isNotBlank(partyId)) {
 			hql.append(" and bblt.id = '").append(partyId.trim()).append("'");
 		}
 		if (StringUtils.isNotBlank(qCertificateType)) {
-			hql.append(" and bblt.certificateType = '")
-					.append(qCertificateType.trim()).append("'");
+			hql.append(" and bblt.certificateType = '").append(qCertificateType.trim()).append("'");
 		}
 		if (StringUtils.isNotBlank(qCertificateNumber)) {
-			hql.append(" and bblt.certificateNumber like '%")
-					.append(qCertificateNumber.trim()).append("%'");
+			hql.append(" and bblt.certificateNumber like '%").append(qCertificateNumber.trim()).append("%'");
 		}
-		
+
 		if (!isSuperManager) {
 			hql.append(" and bblt.share='T' ");
-			hql.append(" or bblt.bankCode = '").append(globalinfo.getBrcode())
-					.append("'");
+			hql.append(" or bblt.bankCode = '").append(globalinfo.getBrcode()).append("'");
 		}
 		try {
 			queryCondition.setPageIndex(pageIndex);
@@ -150,8 +143,7 @@ public class BankBlackListQueryService {
 	public boolean isExists(String id) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
-			BankBlackList bankBlacklist = (BankBlackList) rootDAO.query(
-					BankBlackList.class, id);
+			BankBlackList bankBlacklist = (BankBlackList) rootDAO.query(BankBlackList.class, id);
 			if (bankBlacklist == null) {
 				return false;
 			}
@@ -186,8 +178,7 @@ public class BankBlackListQueryService {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		BankBlackList bankBlacklist = null;
 		try {
-			bankBlacklist = (BankBlackList) rootdao.query(BankBlackList.class,
-					id);
+			bankBlacklist = (BankBlackList) rootdao.query(BankBlackList.class, id);
 		} catch (CommonException e) {
 			e.printStackTrace();
 		}

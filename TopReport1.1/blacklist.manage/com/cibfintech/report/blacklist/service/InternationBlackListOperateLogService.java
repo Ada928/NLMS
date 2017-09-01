@@ -36,8 +36,7 @@ public class InternationBlackListOperateLogService {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger
-			.getLogger(InternationBlackListOperateLogService.class);
+	private static final Logger logger = Logger.getLogger(InternationBlackListOperateLogService.class);
 
 	/**
 	 * get instance.
@@ -45,22 +44,18 @@ public class InternationBlackListOperateLogService {
 	 * @return
 	 */
 	public synchronized static InternationBlackListOperateLogService getInstance() {
-		return (InternationBlackListOperateLogService) ApplicationContextUtils
-				.getBean(InternationBlackListOperateLogService.class.getName());
+		return (InternationBlackListOperateLogService) ApplicationContextUtils.getBean(InternationBlackListOperateLogService.class.getName());
 	}
 
 	public InternationBlackListOperateLogService() {
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	public void saveInternationBLOperateLog(String operateType,
-			String queryType, String queryNum, String measssage)
-			throws CommonException {
+	public void saveInternationBLOperateLog(String operateType, String queryType, String queryNum, String measssage) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		InternationBLOperateLog internationBLOperateLog = new InternationBLOperateLog();
-		internationBLOperateLog.setId(UUID.randomUUID().toString()
-				.replaceAll("-", "").toUpperCase());
+		internationBLOperateLog.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
 		internationBLOperateLog.setBrNo(gi.getBrno());
 		internationBLOperateLog.setTlrNo(gi.getTlrno());
 		internationBLOperateLog.setTlrIP(gi.getIp());
@@ -73,14 +68,12 @@ public class InternationBlackListOperateLogService {
 			hqldao.getHibernateTemplate().save(internationBLOperateLog);
 		} catch (Exception e) {
 			logger.error("update(InternationBlackListOperateLog)", e);
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
 		}
 	}
 
-	public PageQueryResult queryInternationBLOperateLogDetail(int pageIndex,
-			int pageSize, String qtlrNo, String qtlrIP, String qbrNo,
-			String stdate, String endate) throws CommonException {
+	public PageQueryResult queryInternationBLOperateLogDetail(int pageIndex, int pageSize, String qtlrNo, String qtlrIP, String qbrNo, String stdate,
+			String endate) throws CommonException {
 		StringBuffer sb = new StringBuffer("");
 		List<Object> list = new ArrayList<Object>();
 		// sb.append("select log from InternationBLOperateLog log where 1=1");
@@ -104,8 +97,7 @@ public class InternationBlackListOperateLogService {
 		}
 		if (!DataFormat.isEmpty(endate)) {
 			sb.append(" and log.createDate<? ");
-			list.add(DateUtil.getStartDateByDays(
-					DateUtil.stringToDate2(endate), -1));
+			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endate), -1));
 		}
 		sb.append(" order by log.brNo");
 
@@ -127,16 +119,12 @@ public class InternationBlackListOperateLogService {
 	 * 
 	 * @param endDate 结束时间
 	 */
-	public List sumQueryInternationBlacklist(String startDate, String endDate)
-			throws CommonException {
+	public List sumQueryInternationBlacklist(String startDate, String endDate) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-		StringBuffer sb = new StringBuffer(
-				"select log.brNo, sum(log.queryRecordNumber) from InternationBLOperateLog log where 1=1");
+		StringBuffer sb = new StringBuffer("select log.brNo, sum(log.queryRecordNumber) from InternationBLOperateLog log where 1=1");
 		sb.append(" and log.operateType='Q'");
-		sb.append(" and log.createDate>=to_date('").append(startDate)
-				.append("','yyyy-mm-dd')");
-		sb.append(" and log.createDate<to_date('").append(endDate)
-				.append("','yyyy-mm-dd')");
+		sb.append(" and log.createDate>=to_date('").append(startDate).append("','yyyy-mm-dd')");
+		sb.append(" and log.createDate<to_date('").append(endDate).append("','yyyy-mm-dd')");
 		sb.append(" group by log.brNo");
 		List list = hqldao.queryByQL2List(sb.toString());
 		return list;

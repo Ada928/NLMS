@@ -31,8 +31,7 @@ public class EbankCustRoleMngGetter extends BaseGetter {
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "角色管理查询");
 
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();

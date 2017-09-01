@@ -29,28 +29,21 @@ public class InternationBLOPLogQueryGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 
-			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME,
-					"商行黑名单日志查询");
+			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "商行黑名单日志查询");
 
 			CommonFunctions comm = CommonFunctions.getInstance();
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -59,39 +52,28 @@ public class InternationBLOPLogQueryGetter extends BaseGetter {
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
 
-		String qtlrNo = (String) getCommQueryServletRequest().getParameterMap()
-				.get("qtlrNo");
-		String qbrNo = (String) getCommQueryServletRequest().getParameterMap()
-				.get("qbrNo");
-		String qtlrIP = (String) getCommQueryServletRequest().getParameterMap()
-				.get("qtlrIP");
-		String startDate = (String) getCommQueryServletRequest()
-				.getParameterMap().get("startDate");
-		String endDate = (String) getCommQueryServletRequest()
-				.getParameterMap().get("endDate");
+		String qtlrNo = (String) getCommQueryServletRequest().getParameterMap().get("qtlrNo");
+		String qbrNo = (String) getCommQueryServletRequest().getParameterMap().get("qbrNo");
+		String qtlrIP = (String) getCommQueryServletRequest().getParameterMap().get("qtlrIP");
+		String startDate = (String) getCommQueryServletRequest().getParameterMap().get("startDate");
+		String endDate = (String) getCommQueryServletRequest().getParameterMap().get("endDate");
 		if (startDate != null && endDate != null) {
 			if (DateUtil.comparaDate(endDate, startDate)) {
-				ExceptionUtil.throwCommonException("开始日期大于结束日期！",
-						ErrorCode.ERROR_CODE_OVER_HEAD);
+				ExceptionUtil.throwCommonException("开始日期大于结束日期！", ErrorCode.ERROR_CODE_OVER_HEAD);
 			}
 		}
-		InternationBlackListOperateLogService internationBLOPLogService = InternationBlackListOperateLogService
-				.getInstance();
+		InternationBlackListOperateLogService internationBLOPLogService = InternationBlackListOperateLogService.getInstance();
 
 		List list = internationBLOPLogService.sumQueryInternationBlacklist(
-				com.huateng.ebank.framework.util.DateUtil
-						.dateToString(com.huateng.ebank.framework.util.DateUtil
-								.getBeforeDayWithTime(new Date())),
-				com.huateng.ebank.framework.util.DateUtil
-						.dateToString(new Date()));
+				com.huateng.ebank.framework.util.DateUtil.dateToString(com.huateng.ebank.framework.util.DateUtil.getBeforeDayWithTime(new Date())),
+				com.huateng.ebank.framework.util.DateUtil.dateToString(new Date()));
 
 		for (int i = 0; i < list.size(); i++) {
 			Object[] obj = (Object[]) list.get(i);
 			System.out.println(obj[0] + " " + obj[1]);
 		}
 
-		return internationBLOPLogService.queryInternationBLOperateLogDetail(
-				pageIndex, pageSize, qtlrNo, qtlrIP, qbrNo, startDate, endDate);
+		return internationBLOPLogService.queryInternationBLOperateLogDetail(pageIndex, pageSize, qtlrNo, qtlrIP, qbrNo, startDate, endDate);
 	}
 
 }

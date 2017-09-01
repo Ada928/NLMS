@@ -50,8 +50,7 @@ public class ReportEnum {
 	}
 
 	public static enum REPORT_ANALY_CONF_RETTYPE {
-		NORET("0", "无返回"), RET_SET("1", "集合列表(out参数)"), RET_VAL("2", "单个值(out参数)"), RET_JAVA("3",
-				"java对象"), RET_LIST("4", "集合列表(select形式)");
+		NORET("0", "无返回"), RET_SET("1", "集合列表(out参数)"), RET_VAL("2", "单个值(out参数)"), RET_JAVA("3", "java对象"), RET_LIST("4", "集合列表(select形式)");
 		public String value;
 		public String name;
 
@@ -189,7 +188,7 @@ public class ReportEnum {
 			return value;
 		}
 	}
-	
+
 	public static enum REPORT_TRUE_FALSE {
 		F(false, "false"), T(true, "true");
 		public Boolean value;
@@ -229,13 +228,14 @@ public class ReportEnum {
 			return value;
 		}
 	}
-	
-	public static enum REPORT_SYS_SUPER_MANAGER_INFO {
-		BRCODE("0000", "组织编号"), BRNO("000000", "组织机构代码"), TELENO("021-8888888", "电话号码"), STATUS_Y("1", "有效"), STATUS_N("2", "无效"), LOKE_Y("1", "有效"),LOCK_N("2", "无效");
+
+	public static enum REPORT_SYS_SUPER_MANAGE_ORGAN_INFO {
+		BRCODE("0000", "组织编号"), BRNO("000000", "组织机构代码"), TELENO("021-8888888", "电话号码"), STATUS_Y("1", "有效"), STATUS_N("2", "无效"), LOKE_Y("T", "锁定"), LOCK_N(
+				"F", "解锁");
 		public String value;
 		public String name;
 
-		private REPORT_SYS_SUPER_MANAGER_INFO(String value, String name) {
+		private REPORT_SYS_SUPER_MANAGE_ORGAN_INFO(String value, String name) {
 			this.value = value;
 			this.name = name;
 		}
@@ -249,7 +249,28 @@ public class ReportEnum {
 			return value;
 		}
 	}
-	
+
+	public static enum REPORT_SYS_SUPER_MANAGER_ROLE_INFO {
+		ROLEID("100", "岗位编号"), ROLENAME("超级管理员", "岗位名称"), STATUS_Y("1", "有效"), STATUS_N("2", "无效"), LOKE_Y("T", "锁定"), LOCK_N("F", "解锁"), DEL_Y("T", "删除"), DEL_N(
+				"F", "不删除");
+		public String value;
+		public String name;
+
+		private REPORT_SYS_SUPER_MANAGER_ROLE_INFO(String value, String name) {
+			this.value = value;
+			this.name = name;
+		}
+
+		public static String valueof(String value) {
+			for (int i = 0; i < values().length; i++) {
+				if (values()[i].value.equals(value)) {
+					return values()[i].name;
+				}
+			}
+			return value;
+		}
+	}
+
 	public static enum BANK_BLACKLIST_OPERATE_STATE {
 		ED("1", "编辑中"), VR("2", "审核中"), AP("3", "审批中"), PB("4", "发布中"), N("5", "无效");
 		public String value;
@@ -357,10 +378,9 @@ public class ReportEnum {
 	 *
 	 */
 	public static enum REPORT_TASK_FUNCID {
-		TASK_100899("100899", "安全参数设置"), TASK_100199("100199", "机构管理"), TASK_100299("100299",
-				"角色管理"), TASK_100399("100399", "用户管理"), TASK_100599("100599", "工作日期维护"), TASK_100799("100799",
-						"系统参数设置"), TASK_110199("110199", "币种信息维护"), TASK_110499("110499",
-								"国家/地区代码维护"), TASK_110599("110599", "外汇月牌价维护"), TASK_110699("110699", "外汇日牌价维护"),TASK_200399("200399", "商行黑名单维护");
+		TASK_100899("100899", "安全参数设置"), TASK_100199("100199", "机构管理"), TASK_100299("100299", "角色管理"), TASK_100399("100399", "用户管理"), TASK_100599("100599",
+				"工作日期维护"), TASK_100799("100799", "系统参数设置"), TASK_110199("110199", "币种信息维护"), TASK_110499("110499", "国家/地区代码维护"), TASK_110599("110599",
+				"外汇月牌价维护"), TASK_110699("110699", "外汇日牌价维护"), TASK_200399("200399", "商行黑名单维护");
 		public String value;
 		public String name;
 
@@ -437,9 +457,8 @@ public class ReportEnum {
 	 */
 	public static enum REPORT_RESIDENTS {
 
-		RESIDENTS_700("700", "对私"), RESIDENTS_701("701", "对私"), RESIDENTS_702("702", "对私"), RESIDENTS_703("703",
-				"对私"), RESIDENTS_704("704", "对私"), RESIDENTS_705("705", "对私"), RESIDENTS_720("720",
-						"对私"), RESIDENTS_721("721", "对私"), RESIDENTS_722("722", "对私"), RESIDENTS_723("723", "对私");
+		RESIDENTS_700("700", "对私"), RESIDENTS_701("701", "对私"), RESIDENTS_702("702", "对私"), RESIDENTS_703("703", "对私"), RESIDENTS_704("704", "对私"), RESIDENTS_705(
+				"705", "对私"), RESIDENTS_720("720", "对私"), RESIDENTS_721("721", "对私"), RESIDENTS_722("722", "对私"), RESIDENTS_723("723", "对私");
 
 		public String value;
 		public String name;

@@ -23,9 +23,9 @@ public class BranchDelChgUpdate extends BaseUpdate {
 	private final static String DATASET_ID = "Management_branchManage";
 	private final static String BRH_ID = "brcode";
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest arg1,
-			HttpServletResponse arg2) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);

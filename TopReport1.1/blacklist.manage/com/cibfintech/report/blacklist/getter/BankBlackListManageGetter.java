@@ -11,12 +11,11 @@ import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 
-public class BankBlackListManageGetter extends BaseGetter{
+public class BankBlackListManageGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		String id = getCommQueryServletRequest().getParameter("id");
-
 
 		if (id == null || id.equals("")) {
 			id = "0";

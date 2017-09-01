@@ -35,8 +35,7 @@ public class BankBlackListOperation extends BaseOperation {
 	public final static String CMD_VERIFY = "CMD_verify";
 	public final static String CMD_APPROVE = "CMD_approve";
 	public final static String CMD_SHARE = "CMD_share";
-	private static final HtLog htlog = HtLogFactory
-			.getLogger(BankBlackListOperation.class);
+	private static final HtLog htlog = HtLogFactory.getLogger(BankBlackListOperation.class);
 
 	@Override
 	public void beforeProc(OperationContext context) throws CommonException {
@@ -46,8 +45,7 @@ public class BankBlackListOperation extends BaseOperation {
 	@Override
 	public void execute(OperationContext context) throws CommonException {
 		String cmd = (String) context.getAttribute(CMD);
-		BankBlackList bankBlackList = (BankBlackList) context
-				.getAttribute(IN_BANK_BLACK_LIST);
+		BankBlackList bankBlackList = (BankBlackList) context.getAttribute(IN_BANK_BLACK_LIST);
 		// 调用服务类
 		BankBlackListService service = BankBlackListService.getInstance();
 		String operateType = "";
@@ -55,25 +53,19 @@ public class BankBlackListOperation extends BaseOperation {
 		if (CMD_DEL.equals(cmd)) {
 			// 删除
 			// service.removeEntity(bankBlackList);
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList
-					.getId());
+			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
 			// sysCurService.update(sysCurrency);
-			tempBankBlackList
-					.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.N.value);
+			tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.N.value);
 			tempBankBlackList.setShare(ReportEnum.REPORT_TRUE_FALSE.F.value);
 			tempBankBlackList.setValid(ReportEnum.REPORT_TRUE_FALSE.F.value);
 			tempBankBlackList.setDel(SystemConstant.TRUE);
-			tempBankBlackList.setLastModifyOperator(GlobalInfo
-					.getCurrentInstance().getTlrno());
+			tempBankBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			tempBankBlackList.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(tempBankBlackList);
 			SysTaskInfo taskInfo;
 			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(
-						ReportEnum.REPORT_TASK_FUNCID.TASK_200399.value,
-						ReportEnum.REPORT_TASK_TRANS_CD.DEL.value,
-						bankBlackList, bankBlackList.getId(),
-						bankBlackList.getOperateState());
+				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_200399.value, ReportEnum.REPORT_TASK_TRANS_CD.DEL.value,
+						bankBlackList, bankBlackList.getId(), bankBlackList.getOperateState());
 				service.addTosystaskinfo(taskInfo);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -85,28 +77,21 @@ public class BankBlackListOperation extends BaseOperation {
 
 			// 插入或者更新
 			// service.addEntity(bankBlackList);
-			bankBlackList
-					.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.ED.value);
+			bankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.ED.value);
 			bankBlackList.setCreateDate(DateUtil.getCurrentDate());
 			bankBlackList.setShare(ReportEnum.REPORT_TRUE_FALSE.F.value);
 			bankBlackList.setDel(SystemConstant.FALSE);
-			bankBlackList.setBankCode(GlobalInfo.getCurrentInstance()
-					.getBrcode());
+			bankBlackList.setBankCode(GlobalInfo.getCurrentInstance().getBrcode());
 			bankBlackList.setBlacklistedDate(DateUtil.getCurrentDate());
-			bankBlackList.setBlacklistedOperator(GlobalInfo
-					.getCurrentInstance().getTlrno());
-			bankBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance()
-					.getTlrno());
+			bankBlackList.setBlacklistedOperator(GlobalInfo.getCurrentInstance().getTlrno());
+			bankBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			bankBlackList.setLastModifyDate(DateUtil.getCurrentDate());
 
 			service.addEntity(bankBlackList);
 			SysTaskInfo taskInfo;
 			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(
-						ReportEnum.REPORT_TASK_FUNCID.TASK_200399.value,
-						ReportEnum.REPORT_TASK_TRANS_CD.NEW.value,
-						bankBlackList, bankBlackList.getId(),
-						bankBlackList.getOperateState());
+				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_200399.value, ReportEnum.REPORT_TASK_TRANS_CD.NEW.value,
+						bankBlackList, bankBlackList.getId(), bankBlackList.getOperateState());
 				service.addTosystaskinfo(taskInfo);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -117,28 +102,21 @@ public class BankBlackListOperation extends BaseOperation {
 		} else if (CMD_VERIFY.equals(cmd)) {
 			// 审核
 			// service.removeEntity(bankBlackList);
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList
-					.getId());
+			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
 			// sysCurService.update(sysCurrency);
-			if (tempBankBlackList.getOperateState().equals(
-					ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value)) {
-				tempBankBlackList
-						.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
+			if (tempBankBlackList.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value)) {
+				tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
 				// } else
 				// if(tempBankBlackList.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value)){
 				// tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
 			}
-			tempBankBlackList.setLastModifyOperator(GlobalInfo
-					.getCurrentInstance().getTlrno());
+			tempBankBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			tempBankBlackList.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(tempBankBlackList);
 			SysTaskInfo taskInfo;
 			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(
-						ReportEnum.REPORT_TASK_FUNCID.TASK_200399.value,
-						ReportEnum.REPORT_TASK_TRANS_CD.DEL.value,
-						bankBlackList, bankBlackList.getId(),
-						bankBlackList.getOperateState());
+				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_200399.value, ReportEnum.REPORT_TASK_TRANS_CD.DEL.value,
+						bankBlackList, bankBlackList.getId(), bankBlackList.getOperateState());
 				service.addTosystaskinfo(taskInfo);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -150,28 +128,19 @@ public class BankBlackListOperation extends BaseOperation {
 		} else if (CMD_APPROVE.equals(cmd)) {
 			// 审批
 			// service.removeEntity(bankBlackList);
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList
-					.getId());
-			if (tempBankBlackList.getOperateState().equals(
-					ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value)) {
-				tempBankBlackList
-						.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
-			} else if (tempBankBlackList.getOperateState().equals(
-					ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value)) {
-				tempBankBlackList
-						.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
+			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
+			if (tempBankBlackList.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value)) {
+				tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
+			} else if (tempBankBlackList.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value)) {
+				tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
 			}
-			tempBankBlackList.setLastModifyOperator(GlobalInfo
-					.getCurrentInstance().getTlrno());
+			tempBankBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			tempBankBlackList.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(tempBankBlackList);
 			SysTaskInfo taskInfo;
 			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(
-						ReportEnum.REPORT_TASK_FUNCID.TASK_200399.value,
-						ReportEnum.REPORT_TASK_TRANS_CD.DEL.value,
-						bankBlackList, bankBlackList.getId(),
-						bankBlackList.getOperateState());
+				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_200399.value, ReportEnum.REPORT_TASK_TRANS_CD.DEL.value,
+						bankBlackList, bankBlackList.getId(), bankBlackList.getOperateState());
 				service.addTosystaskinfo(taskInfo);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -182,26 +151,19 @@ public class BankBlackListOperation extends BaseOperation {
 		} else if (CMD_SHARE.equals(cmd)) {
 			// 分享
 			// service.removeEntity(bankBlackList);
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList
-					.getId());
+			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
 			if (tempBankBlackList.isShare()) {
-				tempBankBlackList
-						.setShare(ReportEnum.REPORT_TRUE_FALSE.F.value);
+				tempBankBlackList.setShare(ReportEnum.REPORT_TRUE_FALSE.F.value);
 			} else {
-				tempBankBlackList
-						.setShare(ReportEnum.REPORT_TRUE_FALSE.T.value);
+				tempBankBlackList.setShare(ReportEnum.REPORT_TRUE_FALSE.T.value);
 			}
-			tempBankBlackList.setLastModifyOperator(GlobalInfo
-					.getCurrentInstance().getTlrno());
+			tempBankBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			tempBankBlackList.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(tempBankBlackList);
 			SysTaskInfo taskInfo;
 			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(
-						ReportEnum.REPORT_TASK_FUNCID.TASK_200399.value,
-						ReportEnum.REPORT_TASK_TRANS_CD.DEL.value,
-						bankBlackList, bankBlackList.getId(),
-						bankBlackList.getOperateState());
+				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_200399.value, ReportEnum.REPORT_TASK_TRANS_CD.DEL.value,
+						bankBlackList, bankBlackList.getId(), bankBlackList.getOperateState());
 				service.addTosystaskinfo(taskInfo);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -212,52 +174,37 @@ public class BankBlackListOperation extends BaseOperation {
 		} else if (CMD_EDIT.equals(cmd)) {
 			// service.modEntity(bankBlackList);
 			// Iterator it=service.selectByid(bankBlackList.getId());
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList
-					.getId());
+			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
 			if (bankBlackList.getBankCode().trim() == "") {
-				tempBankBlackList.setBankCode(GlobalInfo.getCurrentInstance()
-						.getBrcode());
+				tempBankBlackList.setBankCode(GlobalInfo.getCurrentInstance().getBrcode());
 			} else {
 				tempBankBlackList.setBankCode(bankBlackList.getBankCode());
 			}
 			// tempBankBlackList.setOperateState(ReportEnum.REPORT_OPERATE_STATE.ET.value);
 			tempBankBlackList.setAccountType(bankBlackList.getAccountType());
 			tempBankBlackList.setAccountCode(bankBlackList.getAccountCode());
-			tempBankBlackList.setCertificateType(bankBlackList
-					.getCertificateType());
-			tempBankBlackList.setCertificateNumber(bankBlackList
-					.getCertificateNumber());
+			tempBankBlackList.setCertificateType(bankBlackList.getCertificateType());
+			tempBankBlackList.setCertificateNumber(bankBlackList.getCertificateNumber());
 			tempBankBlackList.setClientName(bankBlackList.getClientName());
-			tempBankBlackList.setClientEnglishName(bankBlackList
-					.getClientEnglishName());
-			tempBankBlackList
-					.setBlacklistType(bankBlackList.getBlacklistType());
+			tempBankBlackList.setClientEnglishName(bankBlackList.getClientEnglishName());
+			tempBankBlackList.setBlacklistType(bankBlackList.getBlacklistType());
 			tempBankBlackList.setValid(bankBlackList.isValid());
 			tempBankBlackList.setValidDate(bankBlackList.getValidDate());
-			tempBankBlackList
-					.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
+			tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
 
-			if (tempBankBlackList.isValid() == SystemConstant.TRUE
-					&& bankBlackList.isValid() == SystemConstant.FALSE) {
-				tempBankBlackList.setUnblacklistedDate(DateUtil
-						.getCurrentDate());
-				tempBankBlackList.setUnblacklistedOperator(GlobalInfo
-						.getCurrentInstance().getTlrno());
-				tempBankBlackList.setUnblacklistedReason(bankBlackList
-						.getUnblacklistedReason());
+			if (tempBankBlackList.isValid() == SystemConstant.TRUE && bankBlackList.isValid() == SystemConstant.FALSE) {
+				tempBankBlackList.setUnblacklistedDate(DateUtil.getCurrentDate());
+				tempBankBlackList.setUnblacklistedOperator(GlobalInfo.getCurrentInstance().getTlrno());
+				tempBankBlackList.setUnblacklistedReason(bankBlackList.getUnblacklistedReason());
 			}
-			tempBankBlackList.setLastModifyOperator(GlobalInfo
-					.getCurrentInstance().getTlrno());
+			tempBankBlackList.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			tempBankBlackList.setLastModifyDate(DateUtil.getCurrentDate());
 			service.modEntity(tempBankBlackList);
 
 			SysTaskInfo taskInfo;
 			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(
-						ReportEnum.REPORT_TASK_FUNCID.TASK_200399.value,
-						ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
-						bankBlackList, bankBlackList.getId(),
-						bankBlackList.getOperateState());
+				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_200399.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
+						bankBlackList, bankBlackList.getId(), bankBlackList.getOperateState());
 				service.addTosystaskinfo(taskInfo);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -266,10 +213,8 @@ public class BankBlackListOperation extends BaseOperation {
 			message = "国际黑名单的编辑";
 			recordRunningLog("Updater.log", message);
 		}
-		BankBlackListOperateLogService bankBLOperateLogService = BankBlackListOperateLogService
-				.getInstance();
-		bankBLOperateLogService.saveBankBLOperateLog(operateType, "", "",
-				message);
+		BankBlackListOperateLogService bankBLOperateLogService = BankBlackListOperateLogService.getInstance();
+		bankBLOperateLogService.saveBankBLOperateLog(operateType, "", "", message);
 	}
 
 	@Override
@@ -278,12 +223,9 @@ public class BankBlackListOperation extends BaseOperation {
 	}
 
 	@SuppressWarnings("unused")
-	private void recordRunningLog(String type, String message)
-			throws CommonException {
+	private void recordRunningLog(String type, String message) throws CommonException {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		gi.addBizLog(type, new String[] { gi.getTlrno(), gi.getBrcode(),
-				message });
-		htlog.info(type,
-				new String[] { gi.getBrcode(), gi.getTlrno(), message });
+		gi.addBizLog(type, new String[] { gi.getTlrno(), gi.getBrcode(), message });
+		htlog.info(type, new String[] { gi.getBrcode(), gi.getTlrno(), message });
 	}
 }

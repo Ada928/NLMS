@@ -152,8 +152,8 @@ public class GetProcessInstances {
 			List allTokens = new ArrayList();
 			walkTokens(currentToken, allTokens);
 
-			sb.append("<div style='position:relative; background-image:url(" + imageLink + "); width: "
-					+ imageDimension[0] + "px; height: " + imageDimension[1] + "px;'>");
+			sb.append("<div style='position:relative; background-image:url(" + imageLink + "); width: " + imageDimension[0] + "px; height: "
+					+ imageDimension[1] + "px;'>");
 
 			for (int i = 0; i < allTokens.size(); i++) {
 				Token token = (Token) allTokens.get(i);
@@ -172,8 +172,7 @@ public class GetProcessInstances {
 				// boxConstraint[2]-=borderWidth*2;
 				// boxConstraint[3]-=borderWidth*2;
 
-				sb.append("<div style='position:absolute; left: " + boxConstraint[0] + "px; top: " + boxConstraint[1]
-						+ "px; ");
+				sb.append("<div style='position:absolute; left: " + boxConstraint[0] + "px; top: " + boxConstraint[1] + "px; ");
 
 				if (i == (allTokens.size() - 1)) {
 					sb.append("border: " + currentTokenColor);
@@ -181,13 +180,11 @@ public class GetProcessInstances {
 					sb.append("border: " + childTokenColor);
 				}
 
-				sb.append(" " + borderWidth + "px groove; " + "width: " + boxConstraint[2] + "px; height: "
-						+ boxConstraint[3] + "px;'>");
+				sb.append(" " + borderWidth + "px groove; " + "width: " + boxConstraint[2] + "px; height: " + boxConstraint[3] + "px;'>");
 
 				if (token.getName() != null) {
-					sb.append("<span style='color:" + tokenNameColor + ";font-style:italic;position:absolute;left:"
-							+ (boxConstraint[2] + 10) + "px;top:" + ((i - offset) * 20) + ";'>&nbsp;" + token.getName()
-							+ "</span>");
+					sb.append("<span style='color:" + tokenNameColor + ";font-style:italic;position:absolute;left:" + (boxConstraint[2] + 10) + "px;top:"
+							+ ((i - offset) * 20) + ";'>&nbsp;" + token.getName() + "</span>");
 				}
 
 				sb.append("</div>");
@@ -196,15 +193,13 @@ public class GetProcessInstances {
 		} else {
 			boxConstraint = extractBoxConstraint(rootDiagramElement);
 
-			sb.append("<table border=0 cellspacing=0 cellpadding=0 width=" + imageDimension[0] + " height="
-					+ imageDimension[1] + ">");
+			sb.append("<table border=0 cellspacing=0 cellpadding=0 width=" + imageDimension[0] + " height=" + imageDimension[1] + ">");
 			sb.append("  <tr>");
-			sb.append("    <td width=" + imageDimension[0] + " height=" + imageDimension[1]
-					+ " style=\"background-image:url(" + imageLink + ")\" valign=top>");
+			sb.append("    <td width=" + imageDimension[0] + " height=" + imageDimension[1] + " style=\"background-image:url(" + imageLink + ")\" valign=top>");
 			sb.append("      <table border=0 cellspacing=0 cellpadding=0>");
 			sb.append("        <tr>");
-			sb.append("          <td width=" + (boxConstraint[0] - borderWidth) + " height="
-					+ (boxConstraint[1] - borderWidth) + " style=\"background-color:transparent;\"></td>");
+			sb.append("          <td width=" + (boxConstraint[0] - borderWidth) + " height=" + (boxConstraint[1] - borderWidth)
+					+ " style=\"background-color:transparent;\"></td>");
 			sb.append("        </tr>");
 			sb.append("        <tr>");
 			sb.append("          <td style=\"background-color:transparent;\"></td>");
@@ -288,7 +283,6 @@ public class GetProcessInstances {
 		 * System.out.println("ProcName = " + ProcNameTmp + ": ContractTmp = " +
 		 * ContractTmp); if( ProcNameTmp.equals(sProcName) && ContractTmp!= null
 		 * && ContractTmp.equals(sContract) ){ return processInstance; } }
-		 * 
 		 */
 		context.close();
 		return processInstance;

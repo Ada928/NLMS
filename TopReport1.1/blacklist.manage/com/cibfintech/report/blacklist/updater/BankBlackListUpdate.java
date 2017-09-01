@@ -28,16 +28,13 @@ public class BankBlackListUpdate extends BaseUpdate {
 	private final static String PARAM_ACTION_SURE = "sure";
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
 
 		// 返回对象
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 
 		// 返回结果对象
-		UpdateResultBean updateResultBean = multiUpdateResultBean
-				.getUpdateResultBeanByID(DATASET_ID);
+		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 
 		// 返回黑名单对象
 		BankBlackList bankblacklist = new BankBlackList();
@@ -53,29 +50,23 @@ public class BankBlackListUpdate extends BaseUpdate {
 			opType = (null == opType || "" == opType) ? "" : opType;
 
 			if (opType.equals(BankBlackListOperation.IN_EDIT)) {
-				oc.setAttribute(BankBlackListOperation.CMD,
-						BankBlackListOperation.CMD_EDIT);
+				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_EDIT);
 			}
 			if (opType.equals(BankBlackListOperation.IN_ADD)) {
-				oc.setAttribute(BankBlackListOperation.CMD,
-						BankBlackListOperation.CMD_ADD);
+				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_ADD);
 			}
 			if (opType.equals(BankBlackListOperation.IN_VERIFY)) {
-				oc.setAttribute(BankBlackListOperation.CMD,
-						BankBlackListOperation.CMD_VERIFY);
+				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_VERIFY);
 			}
 			if (opType.equals(BankBlackListOperation.IN_APPROVE)) {
-				oc.setAttribute(BankBlackListOperation.CMD,
-						BankBlackListOperation.CMD_APPROVE);
+				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_APPROVE);
 			}
 			if (opType.equals(BankBlackListOperation.IN_SHARE)) {
-				oc.setAttribute(BankBlackListOperation.CMD,
-						BankBlackListOperation.CMD_SHARE);
+				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_SHARE);
 			}
 			oc.setAttribute(BankBlackListOperation.IN_PARAM, opType);
 			oc.setAttribute(BankBlackListOperation.IN_PARAM_SURE, sure);
-			oc.setAttribute(BankBlackListOperation.IN_BANK_BLACK_LIST,
-					bankblacklist);
+			oc.setAttribute(BankBlackListOperation.IN_BANK_BLACK_LIST, bankblacklist);
 			// call方式开启operation事务
 			OPCaller.call(BankBlackListOperation.ID, oc);
 			return updateReturnBean;
