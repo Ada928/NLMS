@@ -166,7 +166,7 @@ public class BasePoliceBlackList implements Serializable {
 	}
 
 	public void setDel(boolean del) {
-		this.del = del
+		this.del = del;
 	}
 
 	public String getOperateState() {
@@ -283,7 +283,7 @@ public class BasePoliceBlackList implements Serializable {
 			if (null == this.getId() || null == policeBlackList.getId())
 				return false;
 			else
-				return (this.getId().equals(policeBlackList.getId()))
+				return (this.getId().equals(policeBlackList.getId()));
 		}
 	}
 
@@ -292,8 +292,7 @@ public class BasePoliceBlackList implements Serializable {
 			if (null == this.getId())
 				return super.hashCode();
 			else {
-				String hashStr = this.getClass().getName() + ":"
-						+ this.getId().hashCode()
+				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
 			}
 		}

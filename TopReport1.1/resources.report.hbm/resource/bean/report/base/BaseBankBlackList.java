@@ -55,7 +55,7 @@ public class BaseBankBlackList implements Serializable {
 	private String blacklistType;
 	private boolean share;
 	private boolean valid;
-	private boolean del
+	private boolean del;
 	private String operateState;
 	private Date validDate;
 	private Date blacklistedDate;
@@ -160,7 +160,7 @@ public class BaseBankBlackList implements Serializable {
 	public void setBlacklistType(String blacklistType) {
 		this.blacklistType = blacklistType;
 	}
- 
+
 	public boolean isShare() {
 		return this.share;
 	}
@@ -182,7 +182,7 @@ public class BaseBankBlackList implements Serializable {
 	}
 
 	public void setDel(boolean del) {
-		this.del = del
+		this.del = del;
 	}
 
 	public String getOperateState() {

@@ -19,7 +19,7 @@
           			fieldStr="brno,brname,brclass,status,opr" width="100%"  readonly="true"/><br/>
         	</td>
         </tr>
-  		<tr align="center">
+  		<tr align="center" style="display:none">
 			<td><@CommonQueryMacro.Button id= "btDel" /></td>
 			<td><@CommonQueryMacro.Button id= "btModify" /></td>
 		</tr>
