@@ -30,11 +30,7 @@ System.out.println("*************************"+result==null);
 		<%   }}else{ %>
 
 		<div class='divmsg' style="font-size: small;text-align:center">
-			无工作提醒 <br>
-			<br>
-			<br>
-			<br>
-			<br>
+			无工作提醒 <br> <br> <br> <br> <br>
 		</div>
 
 

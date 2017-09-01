@@ -46,8 +46,7 @@
 						<%if (bean.getQuartzResult().equals("01")){%>成功 <%} else {%>失败<%} %>
 					</td>
 					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-						<% if (bean.getRemark()==null){%>&nbsp; <% }else { %><%=bean.getRemark() %>
-						<%} %>
+						<% if (bean.getRemark()==null){%>&nbsp; <% }else { %><%=bean.getRemark() %> <%} %>
 					</td>
 					<%} %>
 				

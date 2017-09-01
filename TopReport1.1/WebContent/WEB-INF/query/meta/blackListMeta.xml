@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <META>
+
 	<!-- 黑名单管理 -->
 	<!-- -->
 	<Query id="BankBlackList" path="/fpages/blacklistManage/xml/BankBlackList.xml" />
