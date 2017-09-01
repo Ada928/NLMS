@@ -6,6 +6,7 @@
  */
 package com.cibfintech.report.blacklist.service;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
@@ -112,5 +113,27 @@ public class BankBlackListOperateLogService {
 		queryCondition.setPageSize(pageSize);
 		PageQueryResult pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 		return pageQueryResult;
+	}
+
+	/*
+	 * 查询商行黑名单操作日志中的操作状态为查询的，商行标识号，查询总数 的记录 并且设定操作时间区间 以 商行标识号分组
+	 * 
+	 * @param startDate 开始时间
+	 * 
+	 * @param endDate 结束时间
+	 */
+	public List sumQueryBankBlacklist(String startDate, String endDate)
+			throws CommonException {
+		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
+		StringBuffer sb = new StringBuffer(
+				"select log.brNo, sum(log.queryRecordNumber) from BankBLOperateLog log where 1=1");
+		sb.append(" and log.operateType='Q'");
+		sb.append(" and log.createDate>=to_date('").append(startDate)
+				.append("','yyyy-mm-dd')");
+		sb.append(" and log.createDate<to_date('").append(endDate)
+				.append("','yyyy-mm-dd')");
+		sb.append(" group by log.brNo");
+		List list = hqldao.queryByQL2List(sb.toString());
+		return list;
 	}
 }

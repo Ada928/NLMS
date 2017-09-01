@@ -12,7 +12,7 @@ import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
-import resource.bean.report.InternationBLOperateLog;
+import resource.bean.report.PoliceBLOperateLog;
 import resource.dao.base.HQLDAO;
 
 import com.huateng.ebank.business.common.BaseDAOUtils;
@@ -32,59 +32,58 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
  *         To change the template for this generated type comment go to
  *         Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-public class InternationBlackListOperateLogService {
+public class PoliceBlackListOperateLogService {
 	/**
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger
-			.getLogger(InternationBlackListOperateLogService.class);
+			.getLogger(PoliceBlackListOperateLogService.class);
 
 	/**
 	 * get instance.
 	 *
 	 * @return
 	 */
-	public synchronized static InternationBlackListOperateLogService getInstance() {
-		return (InternationBlackListOperateLogService) ApplicationContextUtils
-				.getBean(InternationBlackListOperateLogService.class.getName());
+	public synchronized static PoliceBlackListOperateLogService getInstance() {
+		return (PoliceBlackListOperateLogService) ApplicationContextUtils
+				.getBean(PoliceBlackListOperateLogService.class.getName());
 	}
 
-	public InternationBlackListOperateLogService() {
+	public PoliceBlackListOperateLogService() {
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	public void saveInternationBLOperateLog(String operateType,
-			String queryType, String queryNum, String measssage)
-			throws CommonException {
+	public void savePoliceBLOperateLog(String operateType, String queryType,
+			String queryNum, String measssage) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		InternationBLOperateLog internationBLOperateLog = new InternationBLOperateLog();
-		internationBLOperateLog.setId(UUID.randomUUID().toString()
+		PoliceBLOperateLog policeBLOperateLog = new PoliceBLOperateLog();
+		policeBLOperateLog.setId(UUID.randomUUID().toString()
 				.replaceAll("-", "").toUpperCase());
-		internationBLOperateLog.setBrNo(gi.getBrno());
-		internationBLOperateLog.setTlrNo(gi.getTlrno());
-		internationBLOperateLog.setTlrIP(gi.getIp());
-		internationBLOperateLog.setOperateType(operateType);
-		internationBLOperateLog.setQueryType(queryType);
-		internationBLOperateLog.setQueryRecordNumber(queryNum);
-		internationBLOperateLog.setCreateDate(DateUtil.getCurrentDate());
-		internationBLOperateLog.setMessage(measssage);
+		policeBLOperateLog.setBrNo(gi.getBrno());
+		policeBLOperateLog.setTlrNo(gi.getTlrno());
+		policeBLOperateLog.setTlrIP(gi.getIp());
+		policeBLOperateLog.setOperateType(operateType);
+		policeBLOperateLog.setQueryType(queryType);
+		policeBLOperateLog.setQueryRecordNumber(queryNum);
+		policeBLOperateLog.setCreateDate(DateUtil.getCurrentDate());
+		policeBLOperateLog.setMessage(measssage);
 		try {
-			hqldao.getHibernateTemplate().save(internationBLOperateLog);
+			hqldao.getHibernateTemplate().save(policeBLOperateLog);
 		} catch (Exception e) {
-			logger.error("update(InternationBlackListOperateLog)", e);
+			logger.error("update(PoliceBlackListOperateLog)", e);
 			ExceptionUtil.throwCommonException(e.getMessage(),
 					ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
 		}
 	}
 
-	public PageQueryResult queryInternationBLOperateLogDetail(int pageIndex,
+	public PageQueryResult queryPoliceBLOperateLogDetail(int pageIndex,
 			int pageSize, String qtlrNo, String qtlrIP, String qbrNo,
 			String stdate, String endate) throws CommonException {
 		StringBuffer sb = new StringBuffer("");
 		List<Object> list = new ArrayList<Object>();
-		// sb.append("select log from InternationBLOperateLog log where 1=1");
-		sb.append("select log from InternationBLOperateLog log where 1=1  ");
+		// sb.append("select log from PoliceBLOperateLog log where 1=1");
+		sb.append("select log from PoliceBLOperateLog log where 1=1 ");
 		if (!DataFormat.isEmpty(qtlrNo)) {
 			sb.append(" and  log.tlrNo= ? ");
 			list.add(qtlrNo);
@@ -118,5 +117,27 @@ public class InternationBlackListOperateLogService {
 		queryCondition.setObjArray(list.toArray());
 		PageQueryResult pageQueryResult = hqldao.pageQueryByQL(queryCondition);
 		return pageQueryResult;
+	}
+
+	/*
+	 * 查询公安部黑名单操作日志中的操作状态为查询的，商行标识号，查询总数 的记录 并且设定操作时间区间 以 商行标识号分组
+	 * 
+	 * @param startDate 开始时间
+	 * 
+	 * @param endDate 结束时间
+	 */
+	public List sumQueryPoliceBlacklist(String startDate, String endDate)
+			throws CommonException {
+		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
+		StringBuffer sb = new StringBuffer(
+				"select log.brNo, sum(log.queryRecordNumber) from PoliceBLOperateLog log where 1=1");
+		sb.append(" and log.operateType='Q'");
+		sb.append(" and log.createDate>=to_date('").append(startDate)
+				.append("','yyyy-mm-dd')");
+		sb.append(" and log.createDate<to_date('").append(endDate)
+				.append("','yyyy-mm-dd')");
+		sb.append(" group by log.brNo");
+		List list = hqldao.queryByQL2List(sb.toString());
+		return list;
 	}
 }

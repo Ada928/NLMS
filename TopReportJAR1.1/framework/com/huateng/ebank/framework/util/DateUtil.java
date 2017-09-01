@@ -10,7 +10,6 @@
 package com.huateng.ebank.framework.util;
 
 import java.math.BigDecimal;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,7 +61,7 @@ public class DateUtil {
 	}
 
 	/**
-	 * 获取当前日期
+	 * 获取当前日期，不包含时间 2017-08-12
 	 *
 	 * @return
 	 */
@@ -71,12 +70,21 @@ public class DateUtil {
 	}
 
 	/**
-	 * 获取当前时间
+	 * 获取当前日期，包含时间 2017-08-12 21:11:30.034
 	 *
 	 * @return
 	 */
-	public static Time getCurrentTime() {
-		return new Time(System.currentTimeMillis());
+	public static java.util.Date getCurrentDateWithTime() {
+		return new java.util.Date(System.currentTimeMillis());
+	}
+
+	/**
+	 * 获取当前时间 ，不包含日期 21:11:30.034
+	 *
+	 * @return
+	 */
+	public static java.sql.Time getCurrentTime() {
+		return new java.sql.Time(System.currentTimeMillis());
 	}
 
 	/**
@@ -85,7 +93,7 @@ public class DateUtil {
 	 * @param today
 	 * @return
 	 */
-	public static Date getLastDateL(Date today) {
+	public static java.util.Date getLastDateL(java.util.Date today) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(today);
 		cal.set(Calendar.DATE, 1);// 设为当前月的1号
@@ -94,16 +102,31 @@ public class DateUtil {
 	}
 
 	/**
+	 * 得到上月第一天的日期
+	 * 
+	 * @param today
+	 * @return
+	 */
+	public static java.util.Date getLastMonthFirstDay(java.util.Date today) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(today);
+		cal.add(Calendar.MONTH, -1);
+		cal.set(Calendar.DATE, 1);// 设为1号
+		return cal.getTime();
+	}
+
+	/**
 	 * 根据计一段时间内的周日有哪些
 	 * 
 	 */
-	public static List getEndWeekDate(Date startDate, Date endDate, SimpleDateFormat sdf) {
+	public static List getEndWeekDate(java.util.Date startDate,
+			java.util.Date endDate, SimpleDateFormat sdf) {
 
 		Calendar cal = Calendar.getInstance();
 		int days = getDaysBetween(startDate, endDate);
 		List list = new ArrayList<String>();
 		for (int i = 1; i < days; i++) {
-			startDate = getNextDay(startDate);
+			startDate = getNextDayWithTime(startDate);
 			cal.setTime(startDate);
 			// 判定要计算的日期是否是周日，假如是则减一天计算周六的，否则会出题目，计算到下一周往了
 			int dayWeek = cal.get(Calendar.DAY_OF_WEEK);// 获得当前日期是一个星期的第几天
@@ -137,7 +160,8 @@ public class DateUtil {
 	 * 根据计一段时间内每个月末日期
 	 * 
 	 */
-	public static List getEndMonthDate(Date startDate, Date endDate, SimpleDateFormat sdf) {
+	public static List getEndMonthDate(java.util.Date startDate,
+			java.util.Date endDate, SimpleDateFormat sdf) {
 
 		Calendar cal = Calendar.getInstance();
 		int months = getMonthsBetween(startDate, endDate);
@@ -148,7 +172,7 @@ public class DateUtil {
 			cal.setTime(startDate);
 			String imptimeEnd = sdf.format(startDate);
 			list.add(imptimeEnd);
-			startDate = getNextDay(startDate);
+			startDate = getNextDayWithTime(startDate);
 		}
 		/*
 		 * // 去掉重复 Set set = new HashSet(); List newList = new ArrayList(); for
@@ -179,7 +203,7 @@ public class DateUtil {
 	}
 
 	// 根据当前的工作日,获取这个月1号到今天的日期列表
-	public static List getSomeDays(Date endDate, SimpleDateFormat sdf) {
+	public static List getSomeDays(java.util.Date endDate, SimpleDateFormat sdf) {
 		Date startDate = getFirstDate(endDate);
 		Calendar cal = Calendar.getInstance();
 		int days = getDaysBetween(startDate, endDate);
@@ -187,7 +211,7 @@ public class DateUtil {
 		for (int i = 0; i <= days; i++) {
 			cal.setTime(startDate);
 			String imptimeEnd = sdf.format(startDate);
-			startDate = getNextDay(startDate);
+			startDate = getNextDayWithTime(startDate);
 			list.add(imptimeEnd);
 		}
 		return list;
@@ -198,7 +222,7 @@ public class DateUtil {
 	 *
 	 * @return
 	 */
-	public static Date getTbsDay() throws CommonException {
+	public static java.util.Date getTbsDay() throws CommonException {
 		// SimpleDateFormat sdp =new SimpleDateFormat("yyyyMMdd");
 		GlobalinfoDAO dao = BaseDAOUtils.getGlobalinfoDAO();
 		Globalinfo gi = dao.findById(SystemConstant.TABLE_GLOBAL_INFO_ID);
@@ -217,7 +241,7 @@ public class DateUtil {
 	 * @param 当前日期
 	 * @return
 	 */
-	public static Date getNextDay(Date nowDate) {
+	public static java.util.Date getNextDayWithTime(java.util.Date nowDate) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(nowDate);
 		cal.add(Calendar.DATE, 1);
@@ -225,11 +249,50 @@ public class DateUtil {
 	}
 
 	/**
+	 * 得到上个一会计日
+	 * 
+	 * @param 当前日期
+	 * @return
+	 */
+	public static java.util.Date getBeforeDayWithTime(java.util.Date nowDate) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(nowDate);
+		cal.add(Calendar.DATE, -1);
+		return cal.getTime();
+	}
+
+	/**
+	 * 得到下个一会计日
+	 * 
+	 * @param 当前日期
+	 * @return
+	 */
+	public static java.sql.Date getNextDay(java.sql.Date nowDate) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(nowDate);
+		cal.add(Calendar.DATE, 1);
+		return (java.sql.Date) cal.getTime();
+	}
+
+	/**
+	 * 得到上个一会计日
+	 * 
+	 * @param 当前日期
+	 * @return
+	 */
+	public static java.sql.Date getBeforeDay(java.sql.Date nowDate) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(nowDate);
+		cal.add(Calendar.DATE, -1);
+		return (java.sql.Date) cal.getTime();
+	}
+
+	/**
 	 * 得到上一个工作日
 	 *
 	 * @return
 	 */
-	public static Date getBhDate() throws CommonException {
+	public static java.util.Date getBhDate() throws CommonException {
 		GlobalinfoDAO dao = BaseDAOUtils.getGlobalinfoDAO();
 		Globalinfo gi = dao.findById(SystemConstant.TABLE_GLOBAL_INFO_ID);
 		return gi.getBhdate();
@@ -241,11 +304,12 @@ public class DateUtil {
 	 * @param date
 	 * @return
 	 */
-	public static String dateToString(Date date) {
+	public static String dateToString(java.util.Date date) {
 		if (date == null)
 			return null;
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SystemConstant.DATE_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				SystemConstant.DATE_PATTERN);
 		return simpleDateFormat.format(date);
 	}
 
@@ -255,11 +319,12 @@ public class DateUtil {
 	 * @param date
 	 * @return
 	 */
-	public static String dateToNumber(Date date) {
+	public static String dateToNumber(java.util.Date date) {
 		if (date == null)
 			return null;
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SystemConstant.DATE_PATTERN_2);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				SystemConstant.DATE_PATTERN_2);
 		return simpleDateFormat.format(date);
 	}
 
@@ -269,10 +334,11 @@ public class DateUtil {
 	 * @param date
 	 * @return
 	 */
-	public static String Time14ToString(java.sql.Timestamp time) {
+	public static String Time14ToString(java.util.Date time) {
 		if (time == null)
 			return null;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SystemConstant.TIME14_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				SystemConstant.TIME14_PATTERN);
 		return simpleDateFormat.format(time);
 	}
 
@@ -287,7 +353,8 @@ public class DateUtil {
 	public static String Time14ToString2(java.util.Date time) {
 		if (time == null)
 			return null;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SystemConstant.TIME14_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				SystemConstant.TIME14_PATTERN);
 		return simpleDateFormat.format(time);
 	}
 
@@ -303,9 +370,11 @@ public class DateUtil {
 	public static String Time14ToString2(java.sql.Timestamp time) {
 		if (time == null)
 			return null;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SystemConstant.TIME14_PATTERN2);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				SystemConstant.TIME14_PATTERN2);
 		return simpleDateFormat.format(time);
 	}
+
 	/* add by haizhou.li 2010-11-19 begin */
 
 	/**
@@ -317,7 +386,8 @@ public class DateUtil {
 	public static String Time6ToString(java.sql.Timestamp time) {
 		if (time == null)
 			return null;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SystemConstant.TIME6_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				SystemConstant.TIME6_PATTERN);
 		return simpleDateFormat.format(time);
 	}
 
@@ -327,15 +397,18 @@ public class DateUtil {
 	 * @param date
 	 * @return
 	 */
-	public static Date stringToDate(String string) throws CommonException {
+	public static java.util.Date stringToDate(String string)
+			throws CommonException {
 		if (string == null)
 			return null;
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SystemConstant.DATE_PATTERN);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				SystemConstant.DATE_PATTERN);
 		try {
 			return simpleDateFormat.parse(string);
 		} catch (ParseException e) {
-			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_DATE_FORMAT_ERR);
+			ExceptionUtil
+					.throwCommonException(ErrorCode.ERROR_CODE_DATE_FORMAT_ERR);
 		}
 		return null;
 	}
@@ -346,15 +419,18 @@ public class DateUtil {
 	 * @param date
 	 * @return
 	 */
-	public static Date stringToDate2(String string) throws CommonException {
+	public static java.util.Date stringToDate2(String string)
+			throws CommonException {
 		if (DataFormat.isEmpty(string))
 			return null;
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SystemConstant.DATE_PATTERN_2);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				SystemConstant.DATE_PATTERN_2);
 		try {
 			return simpleDateFormat.parse(string);
 		} catch (ParseException e) {
-			ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_DATE_FORMAT_ERR);
+			ExceptionUtil
+					.throwCommonException(ErrorCode.ERROR_CODE_DATE_FORMAT_ERR);
 		}
 		return null;
 	}
@@ -379,7 +455,8 @@ public class DateUtil {
 			calendarEndDate = swap;
 		}
 
-		int days = calendarEndDate.get(Calendar.DAY_OF_YEAR) - calendarStartDate.get(Calendar.DAY_OF_YEAR);
+		int days = calendarEndDate.get(Calendar.DAY_OF_YEAR)
+				- calendarStartDate.get(Calendar.DAY_OF_YEAR);
 		int y2 = calendarEndDate.get(Calendar.YEAR);
 		while (calendarStartDate.get(Calendar.YEAR) < y2) {
 			days += calendarStartDate.getActualMaximum(Calendar.DAY_OF_YEAR);
@@ -424,19 +501,19 @@ public class DateUtil {
 
 		calendarEndDate.get(Calendar.MONTH)
 
-				- calendarStartDate.get(Calendar.MONTH)
+		- calendarStartDate.get(Calendar.MONTH)
 
-				+ (calendarEndDate.get(Calendar.YEAR)
+		+ (calendarEndDate.get(Calendar.YEAR)
 
-						- calendarStartDate.get(Calendar.YEAR))
+		- calendarStartDate.get(Calendar.YEAR))
 
-						* 12;
+		* 12;
 
 		Date newEndDate = getEndDateByMonths(startDate, months);
 
 		if (newEndDate.compareTo(endDate) <= 0
 
-				|| isSameDate(newEndDate, endDate) == true)
+		|| isSameDate(newEndDate, endDate) == true)
 
 			months += 1;
 
@@ -464,7 +541,8 @@ public class DateUtil {
 		// 设日历为相应日期
 		calendarStartDate.setTime(startDate);
 		calendarEndDate.setTime(endDate);
-		return calendarEndDate.get(Calendar.YEAR) - calendarStartDate.get(Calendar.YEAR);
+		return calendarEndDate.get(Calendar.YEAR)
+				- calendarStartDate.get(Calendar.YEAR);
 	}
 
 	/**
@@ -487,8 +565,10 @@ public class DateUtil {
 			calendarEndDate = swap;
 		}
 
-		int months = calendarEndDate.get(Calendar.MONTH) - calendarStartDate.get(Calendar.MONTH)
-				+ (calendarEndDate.get(Calendar.YEAR) - calendarStartDate.get(Calendar.YEAR)) * 12;
+		int months = calendarEndDate.get(Calendar.MONTH)
+				- calendarStartDate.get(Calendar.MONTH)
+				+ (calendarEndDate.get(Calendar.YEAR) - calendarStartDate
+						.get(Calendar.YEAR)) * 12;
 
 		if (getEndDateByMonths(startDate, months).compareTo(endDate) < 0)
 			months += 1;
@@ -516,8 +596,10 @@ public class DateUtil {
 			calendarEndDate = swap;
 		}
 
-		int months = calendarEndDate.get(Calendar.MONTH) - calendarStartDate.get(Calendar.MONTH)
-				+ (calendarEndDate.get(Calendar.YEAR) - calendarStartDate.get(Calendar.YEAR)) * 12;
+		int months = calendarEndDate.get(Calendar.MONTH)
+				- calendarStartDate.get(Calendar.MONTH)
+				+ (calendarEndDate.get(Calendar.YEAR) - calendarStartDate
+						.get(Calendar.YEAR)) * 12;
 
 		return months;
 	}
@@ -538,8 +620,10 @@ public class DateUtil {
 			calendarEndDate = swap;
 		}
 
-		int months = calendarEndDate.get(Calendar.MONTH) - calendarStartDate.get(Calendar.MONTH)
-				+ (calendarEndDate.get(Calendar.YEAR) - calendarStartDate.get(Calendar.YEAR)) * 12;
+		int months = calendarEndDate.get(Calendar.MONTH)
+				- calendarStartDate.get(Calendar.MONTH)
+				+ (calendarEndDate.get(Calendar.YEAR) - calendarStartDate
+						.get(Calendar.YEAR)) * 12;
 
 		if (getEndDateByMonths(startDate, months).after(endDate))
 			months = months - 1;
@@ -589,7 +673,8 @@ public class DateUtil {
 		int years = Integer.parseInt(term.substring(0, 2));
 		int months = Integer.parseInt(term.substring(2, 4));
 		int days = Integer.parseInt(term.substring(4, 6));
-		return getEndDateByDays(getEndDateByMonths(startDate, years * 12 + months), days);
+		return getEndDateByDays(
+				getEndDateByMonths(startDate, years * 12 + months), days);
 	}
 
 	/**
@@ -612,8 +697,10 @@ public class DateUtil {
 			calendarEndDate = swap;
 		}
 
-		int months = calendarEndDate.get(Calendar.MONTH) - calendarStartDate.get(Calendar.MONTH)
-				+ (calendarEndDate.get(Calendar.YEAR) - calendarStartDate.get(Calendar.YEAR)) * 12;
+		int months = calendarEndDate.get(Calendar.MONTH)
+				- calendarStartDate.get(Calendar.MONTH)
+				+ (calendarEndDate.get(Calendar.YEAR) - calendarStartDate
+						.get(Calendar.YEAR)) * 12;
 		int days = 0;
 		Date tempEndDate = getEndDateByMonths(startDate, months);
 
@@ -640,8 +727,10 @@ public class DateUtil {
 	 * @param days
 	 * @return
 	 */
-	public static Date getEndDateByTerm(Date startDate, int years, int months, int days) {
-		return getEndDateByDays(getEndDateByMonths(startDate, years * 12 + months), days);
+	public static Date getEndDateByTerm(Date startDate, int years, int months,
+			int days) {
+		return getEndDateByDays(
+				getEndDateByMonths(startDate, years * 12 + months), days);
 	}
 
 	/**
@@ -702,11 +791,14 @@ public class DateUtil {
 			calendarEndDate = swap;
 		}
 
-		if (calendarStartDate.get(Calendar.DATE) == calendarEndDate.get(Calendar.DATE))
+		if (calendarStartDate.get(Calendar.DATE) == calendarEndDate
+				.get(Calendar.DATE))
 			return true;
 
-		if (calendarStartDate.get(Calendar.DATE) > calendarEndDate.get(Calendar.DATE)) {
-			if (calendarEndDate.get(Calendar.DATE) == calendarEndDate.getActualMaximum(Calendar.DATE))
+		if (calendarStartDate.get(Calendar.DATE) > calendarEndDate
+				.get(Calendar.DATE)) {
+			if (calendarEndDate.get(Calendar.DATE) == calendarEndDate
+					.getActualMaximum(Calendar.DATE))
 				return true;
 		}
 
@@ -729,7 +821,8 @@ public class DateUtil {
 			return true;
 
 		if (calendar.get(Calendar.DATE) < day) {
-			if (calendar.get(Calendar.DATE) == calendar.getActualMaximum(Calendar.DATE))
+			if (calendar.get(Calendar.DATE) == calendar
+					.getActualMaximum(Calendar.DATE))
 				return true;
 		}
 
@@ -754,8 +847,10 @@ public class DateUtil {
 		calendarStartDate.setTime(startDate);
 		calendarEndDate.setTime(endDate);
 
-		if (calendarStartDate.get(Calendar.YEAR) == calendarEndDate.get(Calendar.YEAR)
-				&& calendarStartDate.get(Calendar.MONTH) == calendarEndDate.get(Calendar.MONTH))
+		if (calendarStartDate.get(Calendar.YEAR) == calendarEndDate
+				.get(Calendar.YEAR)
+				&& calendarStartDate.get(Calendar.MONTH) == calendarEndDate
+						.get(Calendar.MONTH))
 			return true;
 
 		return false;
@@ -797,7 +892,7 @@ public class DateUtil {
 	 */
 	public static Date getNextLastDate(Date today) {
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(getNextDay(getLastDate(today)));
+		calendar.setTime(getNextDayWithTime(getLastDate(today)));
 		calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DATE));
 
 		return calendar.getTime();
@@ -824,7 +919,8 @@ public class DateUtil {
 
 	public static String iSODateTimeTo8Date(String iSODateTime) {
 		if (DataFormat.trim(iSODateTime).length() >= 10) {
-			return iSODateTime.substring(0, 4) + iSODateTime.substring(5, 7) + iSODateTime.substring(8, 10);
+			return iSODateTime.substring(0, 4) + iSODateTime.substring(5, 7)
+					+ iSODateTime.substring(8, 10);
 		} else
 			return iSODateTime;
 	}
@@ -850,6 +946,7 @@ public class DateUtil {
 		String date = sDateFormat.format(new java.util.Date());
 		return date;
 	}
+
 	// add by shouhao 20091125 BMS-2244 end
 
 	// add by shouhao 20091125 BMS-2336 begin
@@ -859,7 +956,8 @@ public class DateUtil {
 	 */
 	public static String convertStringToTimeString(String dateString) {
 		Date date1 = null;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				"yyyyMMddHHmmss");
 		try {
 			date1 = simpleDateFormat.parse(dateString);
 		} catch (ParseException e) {
@@ -867,7 +965,8 @@ public class DateUtil {
 			e.printStackTrace();
 		}
 
-		SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat format1 = new java.text.SimpleDateFormat(
+				"yyyy-MM-dd HH:mm:ss");
 
 		String day = format1.format(date1);
 		return day;
@@ -882,7 +981,8 @@ public class DateUtil {
 	 */
 	public static String convertString2TimeString(String adateStrteStr) {
 		Date date1 = null;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssS");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				"yyyyMMddHHmmssS");
 		try {
 			date1 = simpleDateFormat.parse(adateStrteStr);
 		} catch (ParseException e) {
@@ -890,12 +990,14 @@ public class DateUtil {
 			e.printStackTrace();
 		}
 
-		SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+		SimpleDateFormat format1 = new java.text.SimpleDateFormat(
+				"yyyy-MM-dd HH:mm:ss.S");
 
 		String day = format1.format(date1);
 		return day;
 
 	}
+
 	// add by shouhao 20091125 BMS-2336 end
 
 	/**
@@ -979,7 +1081,8 @@ public class DateUtil {
 				second = Integer.valueOf(date.substring(12, 14));
 			}
 		} catch (NumberFormatException e) {
-			ExceptionUtil.throwCommonException(e.getLocalizedMessage(), ErrorCode.ERROR_CODE_NORMAL, e);
+			ExceptionUtil.throwCommonException(e.getLocalizedMessage(),
+					ErrorCode.ERROR_CODE_NORMAL, e);
 		}
 		calendar.set(year, month, date_of_month, hourOfDay, minute, second);
 		calendar.set(Calendar.MILLISECOND, 0);
@@ -993,7 +1096,8 @@ public class DateUtil {
 	 * @author lizh
 	 */
 	public static String get19Date(String dtime) {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				"yyyyMMddhhmmss");
 		Calendar calendar = Calendar.getInstance();
 		try {
 			Date dateTime = simpleDateFormat.parse(dtime);
@@ -1002,7 +1106,8 @@ public class DateUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return String.format("%1$4tY-%1$2tm-%1$td %1$2TH:%1$2TM:%1$2TS", calendar);
+		return String.format("%1$4tY-%1$2tm-%1$td %1$2TH:%1$2TM:%1$2TS",
+				calendar);
 	}
 
 	public static String getTermCh(String term) {
@@ -1089,7 +1194,8 @@ public class DateUtil {
 		if (time == null)
 			return null;
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				"yyyyMMddHHmmss");
 		return simpleDateFormat.format(time);
 	}
 

@@ -1,5 +1,8 @@
 package com.cibfintech.report.blacklist.getter;
 
+import java.util.Date;
+import java.util.List;
+
 import com.cibfintech.report.blacklist.service.InternationBlackListOperateLogService;
 import com.huateng.common.DateUtil;
 import com.huateng.common.err.Module;
@@ -71,10 +74,22 @@ public class InternationBLOPLogQueryGetter extends BaseGetter {
 				ExceptionUtil.throwCommonException("开始日期大于结束日期！",
 						ErrorCode.ERROR_CODE_OVER_HEAD);
 			}
-
 		}
 		InternationBlackListOperateLogService internationBLOPLogService = InternationBlackListOperateLogService
 				.getInstance();
+
+		List list = internationBLOPLogService.sumQueryInternationBlacklist(
+				com.huateng.ebank.framework.util.DateUtil
+						.dateToString(com.huateng.ebank.framework.util.DateUtil
+								.getBeforeDayWithTime(new Date())),
+				com.huateng.ebank.framework.util.DateUtil
+						.dateToString(new Date()));
+
+		for (int i = 0; i < list.size(); i++) {
+			Object[] obj = (Object[]) list.get(i);
+			System.out.println(obj[0] + " " + obj[1]);
+		}
+
 		return internationBLOPLogService.queryInternationBLOperateLogDetail(
 				pageIndex, pageSize, qtlrNo, qtlrIP, qbrNo, startDate, endDate);
 	}

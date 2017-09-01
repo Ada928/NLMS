@@ -23,7 +23,8 @@ public class GlobalInfoService {
 
 	/* get instance */
 	public static synchronized GlobalInfoService getInstance() {
-		return (GlobalInfoService) ApplicationContextUtils.getBean(GlobalInfoService.class.getName());
+		return (GlobalInfoService) ApplicationContextUtils
+				.getBean(GlobalInfoService.class.getName());
 	}
 
 	/***/
@@ -50,7 +51,7 @@ public class GlobalInfoService {
 			lbhdate = tbsdy;
 			/* modified by xuhong 20160331 将原来的切到下月改为每日切begin */
 			// tbsdy = DateUtil.getNextLastDate(tbsdy);
-			tbsdy = DateUtil.getNextDay(tbsdy);
+			tbsdy = DateUtil.getNextDayWithTime(tbsdy);
 			/* modified by xuhong 20160331 将原来的切到下月改为每日切begin */
 			bhdate = tbsdy;
 
