@@ -23,7 +23,7 @@
             width="" readonly="" primary="true" datatype="string" size="3" xpath="/id" default="" />
 
         <Field id="rateUnit" desc="单位" edittype="text" datatype="int" size="10" xpath="/rateUnit" />
- 
+
         <Field id="yearMonth" desc="年月" status="F" primary="false" method="None" readonly="false" type="String"
             size="20" default="" edittype="select" fieldmap="yearMonth=yyyyMM;yearMonthName=yyyyMM" viewField="yyyyMM"
             dropdowntype="custom" url="/templets/lib/yyyyMM.ftl" init="false" require="false" tip="" xpath="/yearMonth" />

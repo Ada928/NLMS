@@ -7,7 +7,7 @@
     <bean id="BankBlackListOperation" class="com.cibfintech.report.blacklist.operation.BankBlackListOperation" />
     <bean id="com.cibfintech.report.blacklist.service.BankBlackListOperateLogService" 
     	class="com.cibfintech.report.blacklist.service.BankBlackListOperateLogService"/>
-    
+
     <bean id="PoliceBlackListService" class="com.cibfintech.report.blacklist.service.PoliceBlackListService" />
     <bean id="PoliceBlackListOperation" class="com.cibfintech.report.blacklist.operation.PoliceBlackListOperation" />
     <bean id="com.cibfintech.report.blacklist.service.PoliceBlackListOperateLogService" 

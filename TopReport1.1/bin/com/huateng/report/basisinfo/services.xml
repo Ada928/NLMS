@@ -28,5 +28,5 @@
     <!-- 客户信息管理 -->
     <bean id="CustomerReaOperation" class="com.huateng.report.basis.operation.CustomerReaOperation">
     </bean>
-    
+
 </beans>

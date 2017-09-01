@@ -3,8 +3,8 @@
 <!-- 用于直接生成SQL语句，支持同步和异步提交 -->
 <!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
     txnlogflag:true记录日志 async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
-<CommQry title="公安部黑名单管理" navigate="公安部黑名单管理" type="call" interface="false" pagesize="20" async="true" databusid=""
-    transdataactionurl="/trans/TransDataAction.do" txnlogflag="true"
+<CommQry title="公安部黑名单管理" navigate="公安部黑名单管理" type="call" interface="false" pagesize="20" async="true"
+    databusid="" transdataactionurl="/trans/TransDataAction.do" txnlogflag="true"
     getterclassname="com.cibfintech.report.blacklist.getter.PoliceBlackListDetailGetter">
     <Include id="BankParam" />
 
@@ -32,7 +32,8 @@
 
         <Field id="old_clientName" desc="客户名字" edittype="text" datatype="string" readonly="true"
             xpath="/old_policeBlackList/clientName" />
-        <Field id="clientName" desc="客户名字" edittype="text" datatype="string" readonly="true" xpath="/policeBlackList/clientName" />
+        <Field id="clientName" desc="客户名字" edittype="text" datatype="string" readonly="true"
+            xpath="/policeBlackList/clientName" />
 
         <Field id="old_blacklistType" desc="名单性质" status="N" readonly="true" translated="LIST:0,白名单;1,灰名单;2,黑名单"
             require="false" edittype="select" width="90" method="None" primary="false" type="String"
