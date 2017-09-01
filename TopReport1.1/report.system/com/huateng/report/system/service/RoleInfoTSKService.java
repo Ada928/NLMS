@@ -17,8 +17,8 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
 import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.report.utils.ReportEnum;
-import com.huateng.report.utils.ReportTaskUtil;
 import com.huateng.report.utils.ReportEnum.REPORT_TASK_FUNCID;
+import com.huateng.report.utils.ReportTaskUtil;
 
 /**
  * @author jianxue.zhang
@@ -58,7 +58,7 @@ public class RoleInfoTSKService {
 		if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100299.value)) {
 
 			for (RoleInfo bean : insertList) {
-				bean.setIsLock("0");
+				bean.setLock(false);
 				bean.setSt(ReportEnum.REPORT__FH_ST.YES.value);
 				roleInfoDAO.save(bean);
 				// 取出rolelist执行插入;
@@ -70,7 +70,7 @@ public class RoleInfoTSKService {
 			// 更新新岗位
 			for (RoleInfo bean : updateList) {
 				// 先将数据库中的那条数据的状态更新:
-				bean.setIsLock("0");
+				bean.setLock(false);
 				bean.setSt(ReportEnum.REPORT__FH_ST.YES.value);
 				roleInfoDAO.update(bean);
 				String roleListNew = bean.getRoleList();
@@ -92,8 +92,8 @@ public class RoleInfoTSKService {
 				String updCd = "01";
 				String oldst = "1";
 				try {
-					SysTaskInfo syst = ReportTaskUtil.getSysTaskInfoBean(REPORT_TASK_FUNCID.TASK_100299.value, updCd,
-							bean, String.valueOf(bean.getId()), oldst);
+					SysTaskInfo syst = ReportTaskUtil
+							.getSysTaskInfoBean(REPORT_TASK_FUNCID.TASK_100299.value, updCd, bean, String.valueOf(bean.getId()), oldst);
 					rootdao.saveOrUpdate(syst);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -109,14 +109,14 @@ public class RoleInfoTSKService {
 				// 设为修改
 				roleInfo.setSt("2");
 				// 设为锁定
-				roleInfo.setIsLock("1");
+				roleInfo.setLock(true);
 				roleInfoDAO.update(roleInfo);
 				String updCd = "02";
 				String oldst = "2";
 
 				try {
-					SysTaskInfo syst = ReportTaskUtil.getSysTaskInfoBean(REPORT_TASK_FUNCID.TASK_100299.value, updCd,
-							bean, String.valueOf(bean.getId()), oldst);
+					SysTaskInfo syst = ReportTaskUtil
+							.getSysTaskInfoBean(REPORT_TASK_FUNCID.TASK_100299.value, updCd, bean, String.valueOf(bean.getId()), oldst);
 					rootdao.saveOrUpdate(syst);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

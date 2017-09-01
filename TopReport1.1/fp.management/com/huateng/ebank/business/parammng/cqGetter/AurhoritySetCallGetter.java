@@ -22,8 +22,7 @@ public class AurhoritySetCallGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
@@ -88,8 +87,8 @@ public class AurhoritySetCallGetter extends BaseGetter {
 			// {//1-贷款业务 数据库中 bizSubclass 放的是贷款大类
 			// infoview.setBizsubclass(limitParam.getBizSubclass());
 			// //为了编译通过而注释
-			//// infoview.setBizsubclassname(ParamMngService.getInstance()
-			//// .getLntypeName(limitParam.getBizSubclass()));
+			// // infoview.setBizsubclassname(ParamMngService.getInstance()
+			// // .getLntypeName(limitParam.getBizSubclass()));
 			//
 			// infoview.setProjecttype("");
 			// }else

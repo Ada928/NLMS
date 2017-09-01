@@ -25,8 +25,8 @@ import com.huateng.exception.AppException;
  */
 public class SelectTlrAddUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		try {
 			UpdateResultBean tlrRoleBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_SelectTlrAdd");
 			Map map = tlrRoleBean.next();

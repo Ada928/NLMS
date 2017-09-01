@@ -41,10 +41,10 @@
             require="false" edittype="select" width="90" method="None" primary="false" type="String"
             xpath="/internationalBlackList/blacklistType" />
 
-        <Field id="old_isValid" desc="有效状态" status="N" readonly="true" translated="LIST:1,有效;2,无效" require="false"
-            edittype="select" width="90" method="None" primary="false" type="String" xpath="/old_internationalBlackList/isValid" />
-        <Field id="isValid" desc="有效状态" status="N" readonly="true" translated="LIST:1,有效;2,无效" require="false"
-            edittype="select" width="90" method="None" primary="false" type="String" xpath="/internationalBlackList/isValid" />
+        <Field id="old_valid" desc="有效状态" status="N" readonly="true" translated="LIST:true,有效;false,无效" require="false"
+            edittype="select" width="90" method="None" primary="false" type="String" xpath="/old_internationalBlackList/valid" />
+        <Field id="valid" desc="有效状态" status="N" readonly="true" translated="LIST:true,有效;false,无效" require="false"
+            edittype="select" width="90" method="None" primary="false" type="String" xpath="/internationalBlackList/valid" />
 
         <Field id="old_validDate" desc="有效期" edittype="text" datatype="date" readonly="true"
             xpath="/old_internationalBlackList/validDate" />

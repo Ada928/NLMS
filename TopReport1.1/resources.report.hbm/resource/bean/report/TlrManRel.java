@@ -2,7 +2,7 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseTlrManRel;
 
-public class TlrManRel extends BaseTlrManRel {
+public class TlrManRel extends BaseTlrManRel implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

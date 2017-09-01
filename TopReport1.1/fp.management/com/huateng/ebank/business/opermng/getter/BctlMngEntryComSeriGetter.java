@@ -39,8 +39,7 @@ public class BctlMngEntryComSeriGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
@@ -63,15 +62,14 @@ public class BctlMngEntryComSeriGetter extends BaseGetter {
 		if (flag.equals("0")) {
 			if (st.equals("2")) {
 				ReportTaskUtil rt = new ReportTaskUtil();
-				List<SysTaskInfo> taskList = rootdao
-						.queryByQL2List("from SysTaskInfo where intInsId='100399' and adtRcdPk='" + tlrno + "'");
+				List<SysTaskInfo> taskList = rootdao.queryByQL2List("from SysTaskInfo where intInsId='100399' and adtRcdPk='" + tlrno + "'");
 				if (taskList.size() > 0) {
 					TlrInfoAuditBean auditBean = (TlrInfoAuditBean) rt.getObjctBySysTaskInfo(taskList.get(0));
 					for (TlrBctlRel temp : auditBean.getBctlRellist()) {
 						brcodes.add(temp.getBrcode());
 					}
-					String hql = "select bctl from Bctl bctl where bctl.status='1' and bctl.brcode in"
-							+ ReportUtils.toInString(brcodes) + " order by bctl.brno";
+					String hql = "select bctl from Bctl bctl where bctl.status='1' and bctl.brcode in" + ReportUtils.toInString(brcodes)
+							+ " order by bctl.brno";
 					List<Bctl> list = rootdao.queryByQL2List(hql);
 					pageQueryResult.setTotalCount(list.size());
 					pageQueryResult.setQueryResult(list);
@@ -89,8 +87,7 @@ public class BctlMngEntryComSeriGetter extends BaseGetter {
 				for (TlrBctlRel temp : newValue.getBctlRellist()) {
 					brcodes.add(temp.getBrcode());
 				}
-				String hql = "select bctl from Bctl bctl where bctl.brcode in" + ReportUtils.toInString(brcodes)
-						+ " order by bctl.brcode";
+				String hql = "select bctl from Bctl bctl where bctl.brcode in" + ReportUtils.toInString(brcodes) + " order by bctl.brcode";
 				List<Bctl> list = rootdao.queryByQL2List(hql);
 
 				pageQueryResult.setTotalCount(list.size());

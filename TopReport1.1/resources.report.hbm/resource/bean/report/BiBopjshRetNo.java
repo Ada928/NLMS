@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBiBopjshRetNo;
 
-public class BiBopjshRetNo extends BaseBiBopjshRetNo {
+public class BiBopjshRetNo extends BaseBiBopjshRetNo implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBiProcessLog;
 
-public class BiProcessLog extends BaseBiProcessLog {
+public class BiProcessLog extends BaseBiProcessLog implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

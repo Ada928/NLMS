@@ -44,6 +44,7 @@ public abstract class BaseTlrInfo implements Serializable {
 	public static String PROP_TOTPSWDERRCNT = "totpswderrcnt";
 	public static String PROP_MSRNO = "msrno";
 	public static String PROP_LAST_UPD_OPER_ID = "lastUpdOperId";
+	public static String PROP_IS_DEL = "isDel";
 
 	// constructors
 	public BaseTlrInfo() {
@@ -103,6 +104,7 @@ public abstract class BaseTlrInfo implements Serializable {
 	private java.lang.String crtDt;
 	private java.lang.String lastUpdTms;
 	private java.lang.String lastUpdOper;
+	private java.lang.Boolean isDel;
 	/** add by zhiyang.he 修改锁定状态 2012-09-6 end */
 
 	/**
@@ -157,6 +159,16 @@ public abstract class BaseTlrInfo implements Serializable {
 	 */
 	public void setTlrName(java.lang.String tlrName) {
 		this.tlrName = tlrName;
+	}
+
+	
+	
+	public java.lang.Boolean isDel() {
+		return isDel;
+	}
+
+	public void setDel(java.lang.Boolean isDel) {
+		this.isDel = isDel;
 	}
 
 	/**

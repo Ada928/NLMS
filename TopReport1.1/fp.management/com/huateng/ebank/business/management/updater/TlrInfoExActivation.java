@@ -22,8 +22,8 @@ import com.huateng.exception.AppException;
  */
 public class TlrInfoExActivation extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		UpdateResultBean bean = multiUpdateResultBean.getUpdateResultBeanByID("Management_TlrInfoEx");
 		Map map = bean.next();
 		String tlrno = "";

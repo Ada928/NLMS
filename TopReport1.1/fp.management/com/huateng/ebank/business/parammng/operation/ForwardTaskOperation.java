@@ -59,8 +59,7 @@ public class ForwardTaskOperation extends BaseOperation {
 			// }
 
 			// 指定任务移交
-			WorkFlowForwardTaskBean workFlowForwardTaskBean = new WorkFlowForwardTaskBean(procInsId, taskId,
-					forwardTlrno, obrcode);
+			WorkFlowForwardTaskBean workFlowForwardTaskBean = new WorkFlowForwardTaskBean(procInsId, taskId, forwardTlrno, obrcode);
 			workFlowForwardTaskBean.setTaskName(taskBean.getTaskName());
 			workFlowService.forwardTask(workFlowForwardTaskBean);
 

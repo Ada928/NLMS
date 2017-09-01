@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBopCfaCreditorDs;
 
-public class BopCfaCreditorDs extends BaseBopCfaCreditorDs {
+public class BopCfaCreditorDs extends BaseBopCfaCreditorDs implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

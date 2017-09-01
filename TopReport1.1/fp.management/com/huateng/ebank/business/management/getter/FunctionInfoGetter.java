@@ -46,8 +46,7 @@ public class FunctionInfoGetter extends BaseGetter {
 
 			PageQueryResult pageResult = getData(riv);
 
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult().size() == 0) {
@@ -69,7 +68,7 @@ public class FunctionInfoGetter extends BaseGetter {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.extra.common.ObjectDataGetter#getData()
 	 */
 	protected PageQueryResult getData(RoleInfoView riv) throws Exception {

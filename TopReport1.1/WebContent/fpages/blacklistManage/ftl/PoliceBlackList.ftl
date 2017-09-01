@@ -1,7 +1,8 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
+<#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="公安部黑名单管理">
-<@CommonQueryMacro.CommonQuery id="PoliceBlackList" init="false" submitMode="current"  navigate="false">
+<@CommonQueryMacro.CommonQuery id="PoliceBlackList" init="true" submitMode="current"  navigate="false">
 <table align="center" width="100%">
    	<tr>
       	<td colspan="2" >
@@ -25,9 +26,9 @@
       			exclusive="true" position="center" show="false" >
       			<div align="center">
       				<@CommonQueryMacro.Group id="group1" label="公安部黑名单维护"
-        			  fieldStr="id,accountType,certificateType,certificateNumber,clientName,clientEnglishName,blacklistType,isValid,validDate" colNm=4/>
+        			  fieldStr="id,accountType,certificateType,certificateNumber,clientName,clientEnglishName,blacklistType,valid,validDate" colNm=4/>
         			<br/>
-      				<@CommonQueryMacro.Button id="btModOrAdd" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      				<@CommonQueryMacro.Button id="btModOrAdd" />
       			</div>
      		</@CommonQueryMacro.FloatWindow>
   		</td>
@@ -40,6 +41,8 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="JavaScript">
+	var currentTlrno = "${info.tlrNo}";
+	var roleType = "${info.roleTypeList}";
     //定位一行记录
     function locate(id) {
         var record = PoliceBlackList_dataset.find(["id"], [id]);
@@ -53,11 +56,14 @@
         if (record) {
             //var lock = record.getValue("lock");
             var id = record.getValue("id");
-            //if(false){
-            //	cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key="删除" /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key="删除" /></a></center>";
-            //} else {
-            cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('" + id + "')\"><@bean.message key='修改'/></a> &nbsp; <a href=\"JavaScript:doDel('" + id + "')\"><@bean.message key='删除'/></a>";
-            //}
+            if (roleType.indexOf("12") > -1 
+					|| roleType.indexOf("13") > -1
+					|| roleType.indexOf("14") > -1
+					|| roleType.indexOf("15") > -1) {
+            	cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key='修改' /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\"><@bean.message key='删除' /></a></center>";
+            } else {
+            	cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('" + id + "')\"><@bean.message key='修改'/></a> &nbsp; <a href=\"JavaScript:doDel('" + id + "')\"><@bean.message key='删除'/></a>";
+            }
         } else {
             cell.innerHTML = "";
         }
@@ -73,7 +79,7 @@
         PoliceBlackList_dataset.setFieldReadOnly("clientName", false);
         PoliceBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
         PoliceBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        PoliceBlackList_dataset.setFieldReadOnly("isValid", false);
+        PoliceBlackList_dataset.setFieldReadOnly("valid", false);
         PoliceBlackList_dataset.setFieldReadOnly("validDate", false);
         subwindow_signWindow.show();
     }
@@ -139,7 +145,7 @@
         PoliceBlackList_dataset.setValue("clientName", "");
         PoliceBlackList_dataset.setValue("clientEnglishName", "");
         PoliceBlackList_dataset.setValue("blacklistType", "");
-        PoliceBlackList_dataset.setValue("isValid", "");
+        PoliceBlackList_dataset.setValue("valid", "");
         PoliceBlackList_dataset.setValue("validDate", "");
         PoliceBlackList_dataset.setFieldReadOnly("id", false);
         PoliceBlackList_dataset.setFieldReadOnly("accountCode", false);
@@ -148,7 +154,7 @@
         PoliceBlackList_dataset.setFieldReadOnly("clientName", false);
         PoliceBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
         PoliceBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        PoliceBlackList_dataset.setFieldReadOnly("isValid", false);
+        PoliceBlackList_dataset.setFieldReadOnly("valid", false);
         PoliceBlackList_dataset.setFieldReadOnly("validDate", false);
         subwindow_signWindow.show();
     }

@@ -29,7 +29,8 @@
         <property name="miscflgs" column="MISCFLGS" type="string" not-null="false" />
         <property name="misc" column="MISC" type="string" not-null="false" />
         <!-- add by zhiyang.he 修改锁定状态 2012-09-6 begin -->
-        <property name="isLock" column="IS_LOCK" type="string" length="1" not-null="false" />
+        <property name="lock" column="IS_LOCK" type="true_false" length="1" not-null="false" />
+        <property name="del" column="IS_DEL" type="true_false" length="1" not-null="false" />
         <property name="st" column="ST" type="string" length="1" not-null="false" />
         <property name="crtDt" column="CRT_DT" type="string" not-null="false" length="8" />
         <property name="lastUpdOper" column="LAST_UPD_OPER" type="string" not-null="false" length="20" />

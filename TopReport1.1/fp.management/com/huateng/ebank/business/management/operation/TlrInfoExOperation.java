@@ -97,8 +97,10 @@ public class TlrInfoExOperation extends BaseOperation {
 		}
 		// 操作员更新操作
 		else if (cmd.equals("UPDATE_TLR_INFO")) {
-			context.setAttribute("resultList", ties.updateTlrInfo((List) context.getAttribute("insertRoleList"),
-					(List) context.getAttribute("deleteRoleList"), (TlrInfo) context.getAttribute("tlrInfo")));
+			context.setAttribute(
+					"resultList",
+					ties.updateTlrInfo((List) context.getAttribute("insertRoleList"), (List) context.getAttribute("deleteRoleList"),
+							(TlrInfo) context.getAttribute("tlrInfo")));
 		}
 		// 删除操作员操作
 		else if (cmd.equals("DELETE_TLR")) {
@@ -125,17 +127,15 @@ public class TlrInfoExOperation extends BaseOperation {
 		}
 		// 在操作员增加页面中显示所有岗位信息
 		else if (cmd.equals("SELECT_All_ROLES")) {
-			context.setAttribute(TlrInfoExOperation.ALL_ROLE_LIST,
-					RoleInfoService.getInstance().selectAllRoleInfoService());
+			context.setAttribute(TlrInfoExOperation.ALL_ROLE_LIST, RoleInfoService.getInstance().selectAllRoleInfoService());
 		}
 		// 操作员新增操作
 		else if (cmd.equals("INSERT_TLR_INFO")) {
-			ties.insertTlrInfo((List) context.getAttribute("insertRoleList"),
-					(TlrInfo) context.getAttribute("tlrInfo"));
+			ties.insertTlrInfo((List) context.getAttribute("insertRoleList"), (TlrInfo) context.getAttribute("tlrInfo"));
 		}
 		// 操作员岗位切换获得操作员信息操作
 		// else if (cmd.equals("TLR_ROLE_CHANGE")) {
-		//// context.setAttribute(TlrInfoExOperation.OUT_TLR_ROLE_CHANGE_LIST,
+		// // context.setAttribute(TlrInfoExOperation.OUT_TLR_ROLE_CHANGE_LIST,
 		// ties.getTlrRoleChange());
 		// 操作员岗位切换获得操作员兼任岗位操作
 		// } else if (cmd.equals("TLR_PLURALISM_ROLE")) {
@@ -150,7 +150,7 @@ public class TlrInfoExOperation extends BaseOperation {
 		// if (StringUtils.isEmpty(value)) {
 		// if (StringUtils.isEmpty(brno)) {
 		// brcode = bctlService.getBctlByBrno(branchBrno).getBrcode();
-		//// context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO,
+		// // context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO,
 		// ties.getProbranchCustManager(brcode, value));
 		// } else if (StringUtils.isEmpty(branchBrno)) {
 		// brcode = bctlService.getBctlByBrno(brno).getBrcode();
@@ -160,7 +160,7 @@ public class TlrInfoExOperation extends BaseOperation {
 		// for (int i = 0; i < subBranchList.size(); i++) {
 		// Object[] b = new Object[] { ((Bctl) subBranchList.get(i)).getBrcode()
 		// };
-		//// returnList.addAll(ties.getBranchCustManager(where, b));
+		// // returnList.addAll(ties.getBranchCustManager(where, b));
 		// }
 		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO, returnList);
 		// } else {
@@ -169,7 +169,7 @@ public class TlrInfoExOperation extends BaseOperation {
 		// } else {
 		// if (StringUtils.isEmpty(brno)) {
 		// brcode = bctlService.getBctlByBrno(branchBrno).getBrcode();
-		//// context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO,
+		// // context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO,
 		// ties.getProbranchCustManager(brcode, value));
 		// } else if (StringUtils.isEmpty(branchBrno)) {
 		// brcode = bctlService.getBctlByBrno(brno).getBrcode();
@@ -180,7 +180,7 @@ public class TlrInfoExOperation extends BaseOperation {
 		// for (int i = 0; i < subBranchList.size(); i++) {
 		// Object[] b = new Object[] { ((Bctl)
 		// subBranchList.get(i)).getBrcode(), value };
-		//// returnList.addAll(ties.getBranchCustManager(where, b));
+		// // returnList.addAll(ties.getBranchCustManager(where, b));
 		// }
 		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRNO, returnList);
 		// } else {
@@ -211,7 +211,7 @@ public class TlrInfoExOperation extends BaseOperation {
 		// for (int i = 0; i < subBranchList.size(); i++) {
 		// Object[] b = new Object[] { ((Bctl) subBranchList.get(i)).getBrcode()
 		// };
-		//// returnList.addAll(ties.getBranchCustManager(where, b));
+		// // returnList.addAll(ties.getBranchCustManager(where, b));
 		// }
 		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE, returnList);
 		// }
@@ -240,7 +240,7 @@ public class TlrInfoExOperation extends BaseOperation {
 		// for (int i = 0; i < subBranchList.size(); i++) {
 		// Object[] b = new Object[] { ((Bctl)
 		// subBranchList.get(i)).getBrcode(), value };
-		//// returnList.addAll(ties.getBranchCustManager(where, b));
+		// // returnList.addAll(ties.getBranchCustManager(where, b));
 		// }
 		// context.setAttribute(OUT_CUSTMANAGER_LIST_BRCODE, returnList);
 		// }

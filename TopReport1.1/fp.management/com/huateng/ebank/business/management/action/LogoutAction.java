@@ -19,8 +19,7 @@ public class LogoutAction extends BaseAction {
 	private static final Logger logger = Logger.getLogger(LogoutAction.class);
 
 	@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = null;
 		try {
 			if (request.getSession(false) != null) {

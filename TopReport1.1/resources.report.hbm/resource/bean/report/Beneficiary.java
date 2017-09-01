@@ -1,6 +1,6 @@
 package resource.bean.report;
 
-public class Beneficiary {
+public class Beneficiary implements java.io.Serializable {
 
 	private java.lang.String bencode;
 	private java.lang.String bename;

@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseProductsInfo;
 
-public class ProductsInfo extends BaseProductsInfo {
+public class ProductsInfo extends BaseProductsInfo implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

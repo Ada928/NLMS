@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import resource.bean.report.base.BaseBopAccDs;
 
-public class BopAccDs extends BaseBopAccDs {
+public class BopAccDs extends BaseBopAccDs implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
@@ -22,16 +22,20 @@ public class BopAccDs extends BaseBopAccDs {
 	/**
 	 * Constructor for required fields
 	 */
-	public BopAccDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile) {
+	public BopAccDs(java.lang.String id, java.lang.String apptype,
+			java.lang.String currentfile) {
 
 		super(id, apptype, currentfile);
 	}
 
-	public BopAccDs(String id, String accountno, String accountstat, String amtype, String enCode, String enName,
-			String accountType, String accountCata, String currencyCode, String businessDate, String fileNumber,
-			String limitType, BigDecimal accountLimit, String workDate) {
-		super(id, accountno, accountstat, amtype, enCode, enName, accountType, accountCata, currencyCode, businessDate,
-				fileNumber, limitType, accountLimit, workDate);
+	public BopAccDs(String id, String accountno, String accountstat,
+			String amtype, String enCode, String enName, String accountType,
+			String accountCata, String currencyCode, String businessDate,
+			String fileNumber, String limitType, BigDecimal accountLimit,
+			String workDate) {
+		super(id, accountno, accountstat, amtype, enCode, enName, accountType,
+				accountCata, currencyCode, businessDate, fileNumber, limitType,
+				accountLimit, workDate);
 	}
 
 	/* [CONSTRUCTOR MARKER END] */

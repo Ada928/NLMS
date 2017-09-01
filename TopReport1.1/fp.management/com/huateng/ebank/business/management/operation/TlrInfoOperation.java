@@ -39,7 +39,7 @@ public class TlrInfoOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.
 	 * ebank.framework.operation.OperationContext)
@@ -51,7 +51,7 @@ public class TlrInfoOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.
 	 * ebank.framework.operation.OperationContext)
@@ -94,8 +94,10 @@ public class TlrInfoOperation extends BaseOperation {
 		} else if (cmd.equals("SELECT_ADD")) {
 			context.setAttribute(OUT_TLR_LIST, service.selectTlrInfoAdd(brcode, tlrno));
 		} else if (cmd.equals("UPDATE")) {
-			context.setAttribute("resultList", service.updateTlrInfo((List) context.getAttribute("insertRoleList"),
-					(List) context.getAttribute("deleteRoleList"), (TlrInfo) context.getAttribute("tlrInfo")));
+			context.setAttribute(
+					"resultList",
+					service.updateTlrInfo((List) context.getAttribute("insertRoleList"), (List) context.getAttribute("deleteRoleList"),
+							(TlrInfo) context.getAttribute("tlrInfo")));
 		} else if (cmd.equals("DELETE")) {
 			service.deleteTlr((TlrInfo) context.getAttribute("tlrInfo"));
 		} else if (cmd.equals("ACTIVATION")) {
@@ -109,7 +111,7 @@ public class TlrInfoOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng.
 	 * ebank.framework.operation.OperationContext)

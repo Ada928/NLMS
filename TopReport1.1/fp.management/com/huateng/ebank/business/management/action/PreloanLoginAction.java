@@ -35,8 +35,7 @@ public class PreloanLoginAction extends BaseAction {
 	 */
 	private static final Log logger = LogFactory.getLog(ErrorCodeUtil.class);
 
-	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if (logger.isDebugEnabled()) {
 			logger.debug("execute(ActionMapping, ActionForm, HttpServletRequest, HttpServletResponse) - start"); //$NON-NLS-1$
 		}
@@ -54,8 +53,7 @@ public class PreloanLoginAction extends BaseAction {
 			GlobalInfo.setCurrentInstance(globalInfo);
 			// 第二步：把数据放到对象内
 			operContext.setAttribute(LoginManagerOP.IN_TLR_NO, "99999999");
-			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD",
-					SystemConstant.DEFAULT_PASSWORD);
+			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
 			operContext.setAttribute(LoginManagerOP.IN_TLR_PWD, sysDefaultPwd);
 			operContext.setAttribute(LoginManagerOP.IN_GLOBALINFO, globalInfo);
 			operContext.setAttribute(LoginManagerOP.CONTEXT_PATH, request.getContextPath());

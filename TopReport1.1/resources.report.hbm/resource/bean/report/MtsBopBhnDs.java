@@ -4,7 +4,8 @@ import java.util.List;
 
 import resource.bean.report.base.BaseMtsBopBhnDs;
 
-public class MtsBopBhnDs extends BaseMtsBopBhnDs {
+public class MtsBopBhnDs extends BaseMtsBopBhnDs implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
@@ -22,7 +23,8 @@ public class MtsBopBhnDs extends BaseMtsBopBhnDs {
 	/**
 	 * Constructor for required fields
 	 */
-	public MtsBopBhnDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile) {
+	public MtsBopBhnDs(java.lang.String id, java.lang.String apptype,
+			java.lang.String currentfile) {
 
 		super(id, apptype, currentfile);
 	}

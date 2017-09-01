@@ -32,7 +32,8 @@ public abstract class AbstractDepartmentInfo implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public AbstractDepartmentInfo(long departmentCode, String departmentName, String brcode, String status) {
+	public AbstractDepartmentInfo(long departmentCode, String departmentName,
+			String brcode, String status) {
 		this.departmentCode = departmentCode;
 		this.departmentName = departmentName;
 		this.brcode = brcode;
@@ -41,8 +42,9 @@ public abstract class AbstractDepartmentInfo implements java.io.Serializable {
 
 	/** full constructor */
 
-	public AbstractDepartmentInfo(long departmentCode, String departmentName, String brcode, String status,
-			String lastUpdTlr, Date lastUpdDate, String BZ, String misc, String misc2, String misc3, String misc4) {
+	public AbstractDepartmentInfo(long departmentCode, String departmentName,
+			String brcode, String status, String lastUpdTlr, Date lastUpdDate,
+			String BZ, String misc, String misc2, String misc3, String misc4) {
 		super();
 		this.departmentCode = departmentCode;
 		this.departmentName = departmentName;

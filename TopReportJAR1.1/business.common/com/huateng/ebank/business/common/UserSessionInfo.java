@@ -13,7 +13,9 @@
 package com.huateng.ebank.business.common;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Vector;
 
 import com.huateng.ebank.framework.operation.BaseVoObject;
@@ -30,12 +32,15 @@ public class UserSessionInfo extends BaseVoObject {
 	private Date txDate;
 	private String tlrNo = ""; // 柜员号
 	private String tlrName = ""; // 柜员名称
+	private String tlrType = ""; // 柜员类型
 	private String brCode = ""; // 机构号
 	private String brNo = "";// 外部机构号
 	private String organCode = ""; // 企业组织机构号
 	private String custNo = ""; // 企业客户号
 	private int custId = 0; // 企业信息id
 	private int branchId = 0; // 机构号
+	private String roleType = ""; // 用户默认角色信息
+	private String roleTypeList = ""; // 用户角色信息
 	private String roleName = ""; // 用户角色信息
 	private int roleid = 0; // 用户角色信息
 	private Hashtable userFunctions = null;// 用户权限
@@ -82,6 +87,22 @@ public class UserSessionInfo extends BaseVoObject {
 
 	public Vector getWorkflowRoles() {
 		return workflowRoles;
+	}
+
+	public String getRoleTypeList() {
+		return roleTypeList;
+	}
+
+	public void setRoleTypeList(String roleTypeList) {
+		this.roleTypeList = roleTypeList;
+	}
+
+	public String getRoleType() {
+		return roleType;
+	}
+
+	public void setRoleType(String roleType) {
+		this.roleType = roleType;
 	}
 
 	public void setWorkflowRoles(Vector workflowRoles) {
@@ -240,6 +261,14 @@ public class UserSessionInfo extends BaseVoObject {
 	public void setTlrNo(String string) {
 		tlrNo = string;
 	}
+	
+	public String getTlrType() {
+		return tlrType;
+	}
+
+	public void setTlrType(String tlrType) {
+		this.tlrType = tlrType;
+	}
 
 	@Override
 	public String toString() {
@@ -248,6 +277,8 @@ public class UserSessionInfo extends BaseVoObject {
 		sb.append(this.tlrNo);
 		sb.append(", tlrName=");
 		sb.append(this.tlrName);
+		sb.append(", tlrType=");
+		sb.append(this.tlrType);
 		sb.append(", brCode=");
 		sb.append(this.brCode);
 		sb.append(", organCode=");
@@ -256,6 +287,8 @@ public class UserSessionInfo extends BaseVoObject {
 		sb.append(this.custId);
 		sb.append(", roleName=");
 		sb.append(this.roleName);
+		sb.append(", roleTypeList=");
+		sb.append(this.roleTypeList);
 		sb.append(", roleid=");
 		sb.append(this.roleid);
 		sb.append(", userid=");

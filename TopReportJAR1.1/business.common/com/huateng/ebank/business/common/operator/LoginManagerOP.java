@@ -76,6 +76,7 @@ public class LoginManagerOP extends BaseOperation {
 	 * @see com.huateng.ebank.framework.operation.BaseOperation#beforeProc(com.
 	 * huateng.ebank.framework.operation.OperationContext)
 	 */
+	@SuppressWarnings("deprecation")
 	public void beforeProc(OperationContext context) throws CommonException {
 		// 判断系统状态
 		GlobalinfoDAO globalinfoDAO = BaseDAOUtils.getGlobalinfoDAO();
@@ -102,6 +103,7 @@ public class LoginManagerOP extends BaseOperation {
 	 * com.huateng.ebank.framework.operation.BaseOperation#execute(com.huateng.
 	 * ebank.framework.operation.OperationContext)
 	 */
+	@SuppressWarnings("unchecked")
 	public void execute(OperationContext context) throws CommonException {
 
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();

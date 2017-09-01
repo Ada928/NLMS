@@ -33,8 +33,7 @@ public class BhProcLogGetter extends BaseGetter {
 			 * bhprolog.setId(Integer.valueOf(temp[0].toString()));
 			 * bhprolog.setBhdate(new Date(temp[1].toString())); } }
 			 */
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));// pageResult.getPageCount(getResult().getPage().getEveryPage())
 			result.init();
@@ -58,9 +57,9 @@ public class BhProcLogGetter extends BaseGetter {
 		 * int pageSize = getResult().getPage().getEveryPage();//the number of
 		 * every page int pageIndex =
 		 * getResult().getPage().getCurrentPage();//the number of current page
-		 *
+		 * 
 		 * condition.setPageIndex(pageIndex); condition.setPageSize(pageSize);
-		 *
+		 * 
 		 * String sql = "select
 		 * po.id,po.bhdate,po.jobno,po.step,po.subStep,po.processFunction," +
 		 * "po.processid,po.startTime,po.endTime,po.aceSwitchSta,po.status,po.

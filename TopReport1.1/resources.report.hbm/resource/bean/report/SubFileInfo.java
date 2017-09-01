@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseSubFileInfo;
 
-public class SubFileInfo extends BaseSubFileInfo {
+public class SubFileInfo extends BaseSubFileInfo implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
@@ -20,7 +21,8 @@ public class SubFileInfo extends BaseSubFileInfo {
 	/**
 	 * Constructor for required fields
 	 */
-	public SubFileInfo(java.lang.String id, java.lang.String apptype, java.lang.String currentfile) {
+	public SubFileInfo(java.lang.String id, java.lang.String apptype,
+			java.lang.String currentfile) {
 
 		super(id, apptype, currentfile);
 	}

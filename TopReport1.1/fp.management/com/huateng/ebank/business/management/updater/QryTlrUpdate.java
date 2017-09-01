@@ -27,8 +27,8 @@ import com.huateng.exception.AppException;
  */
 public class QryTlrUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		try {
 			UpdateResultBean tlrRoleBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_QryTlrAdd");
 			Map map = tlrRoleBean.next();

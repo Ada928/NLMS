@@ -38,9 +38,8 @@ public class UserAuthorityExcel extends HttpServlet {
 		String param = request.getParameter("param");
 		String[] ids = param.split(";");
 		List userList = new ArrayList();
-		String sql = new String("SELECT FUNCID,FUNCNAME,ISDIRECTORY,LASTDIRECTORY FROM FUNCTION_INFO B"
-				+ " WHERE B.FUNCID IN (" + "SELECT FUNCID FROM ROLE_FUNC_REL A "
-				+ "WHERE A.ROLE_ID IN (select ROLE_ID from TLR_ROLE_REL WHERE TLRNO='");
+		String sql = new String("SELECT FUNCID,FUNCNAME,ISDIRECTORY,LASTDIRECTORY FROM FUNCTION_INFO B" + " WHERE B.FUNCID IN ("
+				+ "SELECT FUNCID FROM ROLE_FUNC_REL A " + "WHERE A.ROLE_ID IN (select ROLE_ID from TLR_ROLE_REL WHERE TLRNO='");
 		Map authority = new HashMap();
 		List userName = new ArrayList();
 		for (String id : ids) {

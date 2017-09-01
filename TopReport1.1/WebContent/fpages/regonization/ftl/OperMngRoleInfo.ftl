@@ -1,7 +1,8 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign op=RequestParameters["op"]?default("")>
-<@CommonQueryMacro.page title="操作员角色管理">
-	<table align="left" width="700">
+<#assign info = Session["USER_SESSION_INFO"]>
+<@CommonQueryMacro.page title="用户角色管理">
+	<table align="left" width="90%">
 		<tr align="center">
 			<td width="100%">
 				<@CommonQueryMacro.CommonQuery id="operMngMod" init="true" navigate="false" submitMode="all" >
@@ -22,7 +23,7 @@
 		<tr>
 			<td>
 				<@CommonQueryMacro.CommonQuery id="bctlMngEntry" init="true" submitMode="selected" navigate="false">
-					<@CommonQueryMacro.GroupBox id="guoup1" label="授权机构信息" expand="true">
+					<@CommonQueryMacro.GroupBox id="guoup1" label="选择授权机构" expand="true">
 						<table frame=void width="100%">
 					      	<tr>
 					      		<td valign="top">
@@ -42,7 +43,7 @@
 					<table width="100%">
 						<tr>
 							<td width="100%">
-								<@CommonQueryMacro.GroupBox id="guoup2" label="岗位信息" expand="true">
+								<@CommonQueryMacro.GroupBox id="guoup2" label="选择岗位" expand="true">
 									<table frame=void width="100%">
 								      	<tr>
 								      		<td valign="top">
@@ -64,43 +65,12 @@
 	            <@CommonQueryMacro.Button id= "btCancel" />
 	      	</td>
 		</tr>
-		<!--
-		<tr id ="show" style="display:none">
-		
-			<td>
-				<@CommonQueryMacro.CommonQuery id="TlrManageRelMng" init="true" submitMode="selected" navigate="false">
-					<@CommonQueryMacro.GroupBox id="guoup1" label="请选择下属的销售人员" expand="true">
-						<table frame=void width="100%">
-					      	<tr>
-					      		<td valign="top">
-									<@CommonQueryMacro.DataTable id ="datatable1" fieldStr="select[60],tlrno[160],tlrName" width="100%" readonly="false"/>
-								</td>
-						 	</tr>
-						<tr align="left">
-		  				 <td>
-		  				  </br>
-	      					<@CommonQueryMacro.Button id= "btRoleSave1" />
-	      					&nbsp;&nbsp;
-	                        <@CommonQueryMacro.Button id= "btCancel1" />
-	      				</td>
-			    	</tr>
-						 </table>
-					 </@CommonQueryMacro.GroupBox>
-				</@CommonQueryMacro.CommonQuery>
-			</td>
-		</tr>
-	    -->
 </table>
 <script language="javascript">
-	
-	//var op = "${op}";
-
-	var op = "${RequestParameters['op']?default('')}";
-
+	var op = "${op}";
+    var roleType = "${info.roleTypeList}";
 	function initCallGetter_post(dataset) {
-		if (op == "new") {
-			operMngMod_dataset.setFieldReadOnly("tlrno", false);
-		} else {
+		 if (roleType.indexOf("11") >- 1 ||roleType.indexOf("12") >- 1 || roleType.indexOf("13") >- 1  || roleType.indexOf("14") >- 1 || roleType.indexOf("15") >- 1 ){
 			operMngMod_dataset.setFieldReadOnly("tlrno", true);
 		}
 		operMngMod_dataset.setParameter("op", op);
@@ -110,7 +80,11 @@
 		var tlrno = operMngMod_dataset.getValue("tlrno");
 		var tlrName = operMngMod_dataset.getValue("tlrName");
 		if (tlrno.length == 0 || tlrName.length == 0) {
-			alert("操作员号和操作员名称必须填写！");
+			alert("操作员号码, 操作员必须填写！");
+			return false;
+		} 
+		if(tlrno.length < 8){
+			alert("操作员号的长度必须大于8位！");
 			return false;
 		}
 		

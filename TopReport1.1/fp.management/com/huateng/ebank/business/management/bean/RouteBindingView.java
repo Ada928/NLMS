@@ -45,6 +45,7 @@ public class RouteBindingView {
 	public void setV_id(String v_id) {
 		this.v_id = v_id;
 	}
+
 	// *************** yjw add end **********************
 
 	public String getBussType() {

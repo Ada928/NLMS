@@ -20,18 +20,17 @@ public class AllBranchSelect extends BaseGetter {
 			Page page = result.getPage();
 			String value = getCommQueryServletRequest().getParameter("value1");
 			if (value != null && !value.equals("")) {
-				queryCondition.setQueryString(" from Bctl po where po.status = '" + SystemConstant.FLAG_ON
-						+ "' and  po.brcode like '" + value + "' order by po.brcode");
+				queryCondition.setQueryString(" from Bctl po where po.status = '" + SystemConstant.FLAG_ON + "' and  po.brcode like '" + value
+						+ "' order by po.brcode");
 			} else {
-				queryCondition.setQueryString(
-						" from Bctl po where po.status = '" + SystemConstant.FLAG_ON + "' order by po.brcode");
+				queryCondition.setQueryString(" from Bctl po where po.status = '" + SystemConstant.FLAG_ON + "' order by po.brcode");
 			}
 			queryCondition.setPageSize(page.getEveryPage());
 			queryCondition.setPageIndex(page.getCurrentPage());
+
 			PageQueryResult pageResult = DAOUtils.getHQLDAO().pageQueryByQL(queryCondition);
 
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult().size() == 0) {
 				result.getPage().setTotalPage(0);

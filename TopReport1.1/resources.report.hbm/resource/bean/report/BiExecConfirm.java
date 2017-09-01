@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBiExecConfirm;
 
-public class BiExecConfirm extends BaseBiExecConfirm {
+public class BiExecConfirm extends BaseBiExecConfirm implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

@@ -33,7 +33,7 @@ public class BufferTest extends TestCase {
 		// bb.setBasePath("D:/Datas");
 		// bb.setFilePath("tt");
 		// bb.setFileName("BopCfaDofoexloDs01.xml");
-		//// ReportParser.getInstance().generateFile(bb);
+		// // ReportParser.getInstance().generateFile(bb);
 		//
 
 		bb = new ReportBeanIn();
@@ -54,11 +54,11 @@ public class BufferTest extends TestCase {
 		// rfb.setAppType("AA");
 		// rfb.getFiles().add("aaa");
 		// rfb.getFiles().add("222");
-		////
-		//// System.out.println("CTRL:\n\r"+parser.convert2String(rfb));
-		//// Object o =
+		// //
+		// // System.out.println("CTRL:\n\r"+parser.convert2String(rfb));
+		// // Object o =
 		// parser.convert2Bean("<MSG><APPTYPE>应用类型</APPTYPE><CURRENTFILE>当前文件类型</CURRENTFILE><INOUT>输入/输出</INOUT><TOTALFILES>24</TOTALFILES><FILES><FILENAME>文件名1</FILENAME><FILENAME>文件名2</FILENAME></FILES></MSG>");
-		//// System.out.println(o);
+		// // System.out.println(o);
 		//
 		//
 		// ReportFeedBackErrField field = new ReportFeedBackErrField();

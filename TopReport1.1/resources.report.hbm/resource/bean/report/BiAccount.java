@@ -2,7 +2,7 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBiAccount;
 
-public class BiAccount extends BaseBiAccount {
+public class BiAccount extends BaseBiAccount implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

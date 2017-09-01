@@ -64,8 +64,7 @@ public class RouteBindingEntryQueryOperation extends BaseOperation {
 		Integer pageIndexI = (Integer) context.getAttribute(IN_PARAM_PAGEINDEX);
 
 		RouteService routeService = RouteService.getInstance();
-		PageQueryResult result = routeService.queryRouteBindingBussInfo(routeBindingView, pageSizeI.intValue(),
-				pageIndexI.intValue());
+		PageQueryResult result = routeService.queryRouteBindingBussInfo(routeBindingView, pageSizeI.intValue(), pageIndexI.intValue());
 
 		context.setAttribute(OUT_PARAM, result);
 

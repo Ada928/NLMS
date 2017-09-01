@@ -6,7 +6,10 @@
     <Query id="Management_TlrRole" path="/fpages/management/xml/TlrRole.xml" desc="操作员岗位查询" />
 
     <!-- 机构管理 -->
-    <Query id="Management_branchManage" path="/fpages/management/xml/branchManage.xml" txn="" desc="" />
+    <Query id="BranchEntry" path="/fpages/management/xml/BranchEntry.xml" txn="" desc="" />
+    <Query id="BranchManage" path="/fpages/management/xml/BranchManage.xml" txn="" desc="" />
+    
+    
     <!-- modify by shen_antonio JIRA:FPP-4 2011-12-18 begin -->
     <!-- 机构下拉菜单 -->
     <Query id="BranchInfoSelectWithZero" path="/fpages/management/xml/BranchInfoSelectWithZero.xml" txn="" desc="" />

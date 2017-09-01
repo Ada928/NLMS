@@ -33,8 +33,7 @@ public class OperMngRoleInfoComGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
@@ -91,8 +90,7 @@ public class OperMngRoleInfoComGetter extends BaseGetter {
 				for (TlrRoleRel rr : OldValue.getRoleRellist()) {
 					roleIds.add(rr.getRoleId());
 				}
-				List roleList = DAOUtils.getRoleInfoDAO()
-						.queryByCondition(" po.id in" + ReportUtils.toInString(roleIds));
+				List roleList = DAOUtils.getRoleInfoDAO().queryByCondition(" po.id in" + ReportUtils.toInString(roleIds));
 				// 对以有的操作员岗位在岗位列表中显示
 				for (int i = 0; i < roleList.size(); i++) {
 					RoleInfo roleInfo = (RoleInfo) roleList.get(i);

@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,8 +23,10 @@ import resource.bean.pub.FunctionInfo;
 import resource.bean.pub.RoleInfo;
 import resource.bean.pub.TlrInfo;
 import resource.bean.pub.TlrLoginLog;
+import resource.bean.pub.TlrRoleRel;
 import resource.dao.base.HQLDAO;
 import resource.dao.pub.BctlDAO;
+import resource.dao.pub.RoleInfoDAO;
 import resource.dao.pub.TlrInfoDAO;
 import resource.dao.pub.TlrRoleRelDAO;
 
@@ -114,6 +117,7 @@ public class UserMgrService {
 	 * @param userBrcode
 	 * @return 校验结果信息，如果用户不存在或用户存在但密码不对，抛出异常；校验通过，返回true
 	 */
+	@SuppressWarnings("unchecked")
 	public TlrInfo checkUser(String userLoginId, String password, String userBrcode) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("checkUser(String, String) - start"); //$NON-NLS-1$
@@ -140,12 +144,14 @@ public class UserMgrService {
 				if (tlrInfo.getSt().trim().equals("2")) {
 					ExceptionUtil.throwCommonException("修改中的用户，主管未确认不能登录");
 				}
+				if (tlrInfo.isDel()) {
+					ExceptionUtil.throwCommonException("用户已删除，不能登录");
+				}
 
 				// 判断所选择登录机构是否是该用户授权的机构 modify by zhangshishu 2012-09-12
 
 				HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-				List list = hqldao.queryByQL2List(
-						"from TlrBctlRel where brcode='" + userBrcode + "' and tlrNo='" + userLoginId + "'");
+				List list = hqldao.queryByQL2List("from TlrBctlRel where brcode='" + userBrcode + "' and tlrNo='" + userLoginId + "'");
 				if (list.size() <= 0) {
 					ExceptionUtil.throwCommonException("选择登录的机构未授权");
 				}
@@ -267,8 +273,7 @@ public class UserMgrService {
 					ExceptionUtil.throwCommonException("用户已被锁定,请联系管理员解锁,或等待" + lockingTime + "分钟后重试", "");
 				}
 			} else {
-				ExceptionUtil.throwCommonException("密码错误,您还有" + (maxErrCnt - user.getTotpswderrcnt() + 1) + "次尝试机会",
-						ErrorCode.ERROR_CODE_USER_PWD_INVALID);
+				ExceptionUtil.throwCommonException("密码错误,您还有" + (maxErrCnt - user.getTotpswderrcnt() + 1) + "次尝试机会", ErrorCode.ERROR_CODE_USER_PWD_INVALID);
 			}
 		} else {
 			user.setTotpswderrcnt(0);
@@ -365,8 +370,7 @@ public class UserMgrService {
 				// 设置为登出状态
 				// globalInfo.setTlrStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
 				/** 如果当前操作员会话信息是最后登录的操作员信息和操作员当前为签到情况下，进行签退操作. */
-				if (tlrInfo.getStatus().equals(SystemConstant.TLR_NO_STATE_LOGOUT)
-						|| !tlrInfo.getSessionId().equals(globalInfo.getSessionId())) {
+				if (tlrInfo.getStatus().equals(SystemConstant.TLR_NO_STATE_LOGOUT) || !tlrInfo.getSessionId().equals(globalInfo.getSessionId())) {
 					return true;
 				}
 				tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
@@ -457,19 +461,16 @@ public class UserMgrService {
 			TlrInfoDAO tlrInfoDAO = BaseDAOUtils.getTlrInfoDAO();
 			tlrInfo = tlrInfoDAO.query(userLoginId);
 			if (null != tlrInfo) {
-				int preventTime = Integer
-						.valueOf(CommonService.getInstance().getSysParamDef("PSWD", "PREVENT_TIME", "-1"));
+				int preventTime = Integer.valueOf(CommonService.getInstance().getSysParamDef("PSWD", "PREVENT_TIME", "-1"));
 				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 				if (preventTime != -1 && tlrInfo.getLastPwdUpdTime() != null) {
 					long x = System.currentTimeMillis() - df.parse(tlrInfo.getLastPwdUpdTime()).getTime();
 					if (x < preventTime * 60 * 60 * 1000L) {
-						ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_PREVENT_TIME,
-								new Object[] { preventTime });
+						ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_PREVENT_TIME, new Object[] { preventTime });
 					}
 				}
 
-				String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD",
-						SystemConstant.DEFAULT_PASSWORD);
+				String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
 				String encMethod = CommonService.getInstance().getSysParamDef("PSWD", "ENC_MODE", "AES128");
 				String password = PasswordService.getInstance().EncryptPassword(newPwd, encMethod);
 				if (!sysDefaultPwd.equals(newPwd)) {
@@ -515,18 +516,18 @@ public class UserMgrService {
 	 * @param tlrNo
 	 * @return
 	 */
-	public ArrayList getUserRoles(String tlrNo) throws CommonException {
+	public ArrayList<RoleInfo> getUserRoles(String tlrNo) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("getUserRoles(String) - start"); //$NON-NLS-1$
 		}
 		try {
-			ArrayList list = new ArrayList(); // 返回的列表
+			ArrayList<RoleInfo> list = new ArrayList<RoleInfo>(); // 返回的列表
 			// Set set = null; // dao取回的集合
 
 			HQLDAO hqlDAO = BaseDAOUtils.getHQLDAO();
 			StringBuffer sb = new StringBuffer();
-			sb.append("select role from ").append("TlrRoleRelation tr,RoleInfo role ")
-					.append("where tr.roleId=role.id ").append("and tr.tlrno='").append(tlrNo).append("' ");
+			sb.append("select role from ").append("RoleInfo role, TlrRoleRel tr ").append("where tr.roleId=role.id ").append("and tr.tlrno='").append(tlrNo)
+					.append("' ");
 			Iterator iterator;
 			iterator = hqlDAO.queryByQL(sb.toString());
 			while (iterator.hasNext()) {
@@ -549,8 +550,7 @@ public class UserMgrService {
 		List<FunctionInfo> infolist = new ArrayList<FunctionInfo>();
 		for (int i = 0; i < userRoleFunclist.size(); i++) {
 			FunctionInfo info = userRoleFunclist.get(i);
-			if (info.getLastdirectory() != null
-					&& info.getLastdirectory().toString().equals(ReportConstant.APPROVE_FUNC_ID)) {
+			if (info.getLastdirectory() != null && info.getLastdirectory().toString().equals(ReportConstant.APPROVE_FUNC_ID)) {
 				infolist.add(info);
 			}
 		}
@@ -572,8 +572,7 @@ public class UserMgrService {
 			HQLDAO hqlDAO = BaseDAOUtils.getHQLDAO();
 			StringBuffer sb = new StringBuffer();
 			sb.append("select distinct func from ").append("TlrRoleRel tr,RoleFuncRel rr,FunctionInfo func ")
-					.append("where tr.roleId=rr.roleId and rr.funcid=func.id ").append("and tr.tlrno='").append(tlrNo)
-					.append("' order by func.showseq");
+					.append("where tr.roleId=rr.roleId and rr.funcid=func.id ").append("and tr.tlrno='").append(tlrNo).append("' order by func.showseq");
 			Iterator iterator = hqlDAO.queryByQL(sb.toString());
 			while (iterator.hasNext()) {
 				FunctionInfo func = (FunctionInfo) iterator.next();
@@ -597,8 +596,7 @@ public class UserMgrService {
 	 * @param tlrNo
 	 * @return
 	 */
-	public void getUserFunctionsByMenuType(String tlrNo, String funcId, List<FunctionInfo> resultList)
-			throws CommonException {
+	public void getUserFunctionsByMenuType(String tlrNo, String funcId, List<FunctionInfo> resultList) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("getUserFunctions(String) - start"); //$NON-NLS-1$
 		}
@@ -616,8 +614,7 @@ public class UserMgrService {
 				if (func.getId().trim().equals(ReportConstant.APPROVE_FUNC_ID)) {
 					func.setIsdirectory(0);// 调整为不是目录
 				}
-				if (func.getLastdirectory() != null && !func.getLastdirectory().equals(ReportConstant.APPROVE_FUNC_ID)
-						&& func.getIsdirectory() == 1) {
+				if (func.getLastdirectory() != null && !func.getLastdirectory().equals(ReportConstant.APPROVE_FUNC_ID) && func.getIsdirectory() == 1) {
 					getUserFunctionsByMenuType(tlrNo, func.getId(), resultList);
 				}
 			}
@@ -660,40 +657,22 @@ public class UserMgrService {
 	 *
 	 * @return UserSessionInfo 用户会话信息
 	 */
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	public UserSessionInfo getUserSessionInfo(TlrInfo tlrinfo) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("getUserSessionInfo(TlrInfo) - start"); //$NON-NLS-1$
 		}
 		UserSessionInfo sessionInfo = new UserSessionInfo();
 		try {
-			TlrRoleRelDAO tlrRoleRelationDAO = BaseDAOUtils.getTlrRoleRelDAO();
-			// List tlrRoleRelationList =
-			// tlrRoleRelationDAO.queryByCondition("po.tlrno = ? and po.roleId =
-			// ?", new Object[] {
-			// tlrinfo.getTlrno(), tlrinfo.getRoleid() }, null);
-			// if (tlrRoleRelationList.isEmpty()) {
-			// ExceptionUtil.throwCommonException("操作员默认岗位编号配置错误",
-			// ErrorCode.ERROR_CODE_USER_INFO_INVALID);
-			// }
-			// RoleInfoDAO roleInfoDAO = BaseDAOUtils.getRoleInfoDAO();
-			// //查询默认角色
-			// RoleInfo roleInfo =
-			// roleInfoDAO.query(tlrinfo.getRoleid().intValue());
 
-			BctlService bctlService = BctlService.getInstance();
-			Bctl bctl = bctlService.getBctlByBrcode(DataFormat.trim(tlrinfo.getBrcode()));
-
-			// RoleFuncRelDAO roleFuncRelationDAO =
-			// BaseDAOUtils.getRoleFuncRelDAO();
-			// List roleFuncList =
-			// roleFuncRelationDAO.queryByCondition("po.roleId = ?", new
-			// Object[] { tlrinfo.getRoleid() }, null);
-			// Iterator it = roleFuncList.iterator();
 			sessionInfo.setTlrNo(tlrinfo.getTlrno().trim());
 			sessionInfo.setTlrName(DataFormat.trim(tlrinfo.getTlrName()));
 			sessionInfo.setBrCode(DataFormat.trim(tlrinfo.getBrcode()));
 
 			sessionInfo.setBrNo(DataFormat.trim(tlrinfo.getBrno()));
+
+			BctlService bctlService = BctlService.getInstance();
+			Bctl bctl = bctlService.getBctlByBrcode(DataFormat.trim(tlrinfo.getBrcode()));
 
 			sessionInfo.setUpBrCode(bctl.getBlnUpBrcode());
 			// 归属分行
@@ -702,21 +681,60 @@ public class UserMgrService {
 			sessionInfo.setIp(DataFormat.trim(tlrinfo.getLoginIp()));
 			// 这个名称是汉字，大于10个字就截掉，相当于20个字节
 			sessionInfo.setBrName(StringUtils.substring(bctl.getBrname(), 0, 10));
+
+			TlrRoleRelDAO tlrRoleRelationDAO = BaseDAOUtils.getTlrRoleRelDAO();
+			HashSet roleTypeList = new HashSet();
+			List tlrRoleRelationList = tlrRoleRelationDAO.queryByCondition("po.tlrno = ?", new Object[] { tlrinfo.getTlrno() }, null);
+			if (tlrRoleRelationList.isEmpty()) {
+				ExceptionUtil.throwCommonException("操作员默认岗位编号配置错误", ErrorCode.ERROR_CODE_USER_INFO_INVALID);
+			} else {
+				Iterator it = tlrRoleRelationList.iterator();
+				while (it.hasNext()) {
+					TlrRoleRel tlrRoleRel = (TlrRoleRel) it.next();
+					RoleInfoDAO roleInfoDAO = BaseDAOUtils.getRoleInfoDAO();
+					RoleInfo roleInfo = roleInfoDAO.query(tlrRoleRel.getRoleId());
+					roleTypeList.add(roleInfo.getRoleType());
+				}
+			}
+
+			// RoleInfoDAO roleInfoDAO = BaseDAOUtils.getRoleInfoDAO();
+			// // 查询默认角色
+			// RoleInfo roleInfo = roleInfoDAO.query(tlrinfo.getRoleid()
+			// .intValue());
+			//
+			// RoleFuncRelDAO roleFuncRelationDAO = BaseDAOUtils
+			// .getRoleFuncRelDAO();
+			// List roleFuncList = roleFuncRelationDAO
+			// .queryByCondition("po.roleId = ?",
+			// new Object[] { tlrinfo.getRoleid() }, null);
+			// Iterator it = roleFuncList.iterator();
+			//
 			// sessionInfo.addUserRolesItem(tlrinfo.getRoleid());
 			// sessionInfo.addWorkflowRolesItem(roleInfo);
+			// sessionInfo.setRoleType(roleInfo.getRoleType());
+			// roleTypeList.add(roleInfo.getRoleType());
+
 			// while (it.hasNext()) {
 			// RoleFuncRel roleFuncRelation = (RoleFuncRel) it.next();
-			// if (false ==
-			// sessionInfo.isExistUserFunctionsItems(roleFuncRelation.getFuncid().trim()))
-			// {
-			// sessionInfo.addUserFunctionsItem(roleFuncRelation.getFuncid().trim());
+			// if (false == sessionInfo
+			// .isExistUserFunctionsItems(roleFuncRelation.getFuncid()
+			// .trim())) {
+			// sessionInfo.addUserFunctionsItem(roleFuncRelation
+			// .getFuncid().trim());
 			// }
 			// }
 
+			String string = "|";
+			for (Object o : roleTypeList) {
+				String str = (String) o;
+				string += str + "|";
+			}
+
+			sessionInfo.setRoleTypeList(string);
+
 			HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 			List<TlrLoginLog> lastSucList = hqldao.queryByQL2List("from TlrLoginLog where tlrNo='" + tlrinfo.getTlrno()
-					+ "' and loginSucTm=(select max(log.loginSucTm) from TlrLoginLog log where tlrNo='"
-					+ tlrinfo.getTlrno() + "')");
+					+ "' and loginSucTm=(select max(log.loginSucTm) from TlrLoginLog log where tlrNo='" + tlrinfo.getTlrno() + "')");
 			if (lastSucList != null && lastSucList.size() > 0) {
 				sessionInfo.setLastLoginTime(DataFormat.timeToStringEx1(lastSucList.get(0).getLoginSucTm()));
 			} else {
@@ -724,8 +742,7 @@ public class UserMgrService {
 			}
 			// 设置最近登录失败时间
 			List<TlrLoginLog> lastFailList = hqldao.queryByQL2List("from TlrLoginLog where tlrNo='" + tlrinfo.getTlrno()
-					+ "' and loginFailTm=(select max(log.loginFailTm) from TlrLoginLog log where tlrNo='"
-					+ tlrinfo.getTlrno() + "')");
+					+ "' and loginFailTm=(select max(log.loginFailTm) from TlrLoginLog log where tlrNo='" + tlrinfo.getTlrno() + "')");
 			if (lastFailList != null && lastFailList.size() > 0) {
 				sessionInfo.setLastLoginFailTime(DataFormat.timeToStringEx1(lastFailList.get(0).getLoginFailTm()));
 			}
@@ -747,8 +764,7 @@ public class UserMgrService {
 	 *
 	 * @param
 	 * @return UserSessionInfo
-	 * @exception @author
-	 *                shen_antonio
+	 * @exception @author shen_antonio
 	 * @version v1.0,2008-11-4
 	 * @param userBrno
 	 */
@@ -853,8 +869,7 @@ public class UserMgrService {
 	 * @param curRoleId
 	 *            当前岗位号
 	 * @return void
-	 * @exception @author
-	 *                shen_antonio
+	 * @exception @author shen_antonio
 	 * @version v1.0,2008-9-3
 	 */
 	// public void changeRole(Integer curRoleId, UserSessionInfo
@@ -876,9 +891,9 @@ public class UserMgrService {
 	// userSessionInfo.addWorkflowRolesItem(workfoleRole);
 	// // 重新设置GlobalInfo信息
 	// GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
-	//// globalInfo.setRoleId(curRoleId.intValue());
+	// // globalInfo.setRoleId(curRoleId.intValue());
 	// globalInfo.setWorkflowRoleId(workfoleRole);
-	//// globalInfo.getUserRoles().clear();
+	// // globalInfo.getUserRoles().clear();
 	// // 设置操作员当前岗位交易权限
 	// StringBuffer sb = new StringBuffer(512);
 	// sb.append("select fi.funcCode").append(" from RoleFuncRelation as rfr,
@@ -890,7 +905,7 @@ public class UserMgrService {
 	// while (it.hasNext()) {
 	// String results = (String) it.next();
 	// userSessionInfo.addUserFunctionsItem(results.trim());
-	//// globalInfo.getUserRoles().add(results.trim());
+	// // globalInfo.getUserRoles().add(results.trim());
 	// }
 	// } else {
 	// userSessionInfo.clearFunctionsItems();

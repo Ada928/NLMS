@@ -2,7 +2,7 @@
 <!-- 用于直接生成SQL语句，支持同步和异步提交 -->
 <!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
     async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
-<CommQry title="操作员管理" navigate="主页 &gt; 系统管理 &gt; 操作员管理" type="call" interface="false" pagesize="20" async="true"
+<CommQry title="操作员管理" navigate="主页 &gt; 系统管理 &gt; 操作员管理" type="call" interface="false" pagesize="10" async="true"
     databusid="MANAGEMENTTLR" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.huateng.ebank.business.opermng.getter.OperMngRoleInfoGetter">
     <Include id="BankParam" />
 
@@ -20,21 +20,18 @@
 
         <Field id="tlrno" desc="操作员号" status="N" method="None" readonly="true" primary="false" type="String" size="20"
             xpath="/tlrno" />
-
     </Fields>
 
-    <Where>
-
-    </Where>
+    <Where></Where>
     <Operations>
-	<!--modify by zhiyang.he 用户管理双岗复核改造 2012-09-04 begin -->
-	<Button id="btRoleSave" name="btRoleSave" desc="保存" operation="asysubmit"
-		updateClass="com.huateng.ebank.business.opermng.update.OperMngModUpdate"
-		url="#" txn="" />
-		
-	<Button id="btCancel" name="btCancel" desc="返回" operation="submitform"
-		url="/fpages/regonization/ftl/OperMngEntry.ftl" txn="" />
-	<!--modify by zhiyang.he 用户管理双岗复核改造 2012-09-04 end -->
+		<!--modify by zhiyang.he 用户管理双岗复核改造 2012-09-04 begin -->
+		<Button id="btRoleSave" name="btRoleSave" desc="保存" operation="asysubmit"
+			updateClass="com.huateng.ebank.business.opermng.update.OperMngModUpdate"
+			url="#" txn="" />
+			
+		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform"
+			url="/fpages/regonization/ftl/OperMngEntry.ftl" txn="" />
+		<!--modify by zhiyang.he 用户管理双岗复核改造 2012-09-04 end -->
     </Operations>
     <Sql></Sql>
 </CommQry>

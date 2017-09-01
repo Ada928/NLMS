@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import resource.bean.pub.RoleInfo;
 import resource.bean.pub.TlrInfo;
 import resource.dao.pub.TlrInfoDAO;
 
@@ -22,11 +23,16 @@ import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.common.DAOUtils;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryResult;
+import com.huateng.ebank.business.common.SystemConstant;
+import com.huateng.ebank.business.common.UserSessionInfo;
 import com.huateng.ebank.business.common.service.BctlService;
+import com.huateng.ebank.business.common.service.DataDicService;
 import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import com.huateng.service.pub.TlrInfoService;
+import com.huateng.service.pub.UserMgrService;
 
 /**
  * @author zhiguo.zhao
@@ -40,8 +46,7 @@ public class OperMngEntryGetter extends BaseGetter {
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "用户管理查询");
 
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
@@ -54,20 +59,35 @@ public class OperMngEntryGetter extends BaseGetter {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	protected PageQueryResult getData() throws Exception {
 		String qtlrnoName = (String) getCommQueryServletRequest().getParameterMap().get("qtlrnoName");
 		String qtlrno = (String) getCommQueryServletRequest().getParameterMap().get("qtlrno");
 		PageQueryResult pageQueryResult = new PageQueryResult();
 		GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
 		TlrInfoDAO dao = DAOUtils.getTlrInfoDAO();
-		List tlrInfoList = new ArrayList();
+		List<TlrInfo> tlrInfoList = new ArrayList<TlrInfo>();
 		String hql = "1=1 ";
 		if (!DataFormat.isEmpty(qtlrnoName)) {
-			hql += "and po.tlrName = '" + qtlrnoName + "' ";
+			hql += " and po.tlrName = '" + qtlrnoName.trim() + "' ";
 		}
 		if (!DataFormat.isEmpty(qtlrno)) {
-			hql += "and po.tlrno like '%" + qtlrno + "%' ";
+			hql += " and po.tlrno like '%" + qtlrno.trim() + "%' ";
 		}
+
+		// 如果不是超级管理员，只显示本行的用户
+		List<RoleInfo> roleInfos = UserMgrService.getInstance().getUserRoles(globalinfo.getTlrno());
+		List<String> roleTypeList = new ArrayList<String>();
+
+		for (RoleInfo roleInfo : roleInfos) {
+			roleTypeList.add(roleInfo.getRoleType());
+		}
+
+		if (!roleTypeList.contains(SystemConstant.ROLE_TYPE_SYS_MNG)) {
+			hql += " and po.brcode = '" + globalinfo.getBrcode() + "' ";
+		}
+
+		hql += " and po.del <> 'T'";
 		hql += " order by po.tlrno";
 		tlrInfoList = dao.queryByCondition(hql);
 
@@ -83,6 +103,7 @@ public class OperMngEntryGetter extends BaseGetter {
 		for (Iterator it = rs.iterator(); it.hasNext();) {
 			TlrInfo tlrInfo1 = (TlrInfo) it.next();
 			if (tlrInfo1.getBrcode() != null) {
+				// System.out.println(tlrInfo1.getTlrType());
 				tlrInfo1.setBrno(BctlService.getInstance().getExtBrno(tlrInfo1.getBrcode()));
 			}
 		}

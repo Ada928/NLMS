@@ -48,8 +48,7 @@ public class TlrInfo1Getter extends BaseGetter {
 			tbc.setBrcode((String) getCommQueryServletRequest().getParameterMap().get("brcode1"));
 			PageQueryResult pageResult = getData(tbc);
 
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult() == null || pageResult.getQueryResult().size() == 0) {
@@ -71,7 +70,7 @@ public class TlrInfo1Getter extends BaseGetter {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.extra.common.ObjectDataGetter#getData()
 	 */
 	protected PageQueryResult getData(TlrBrcodeCondition tbc) throws Exception {
@@ -107,8 +106,8 @@ public class TlrInfo1Getter extends BaseGetter {
 			tlrInfoList = dao.queryByCondition("po.tlrno = '" + tlrno + "'");
 			/** modified by junzhong.duan 20110421 LNDN-170 end */
 		} else {
-			tlrInfoList = dao.queryByCondition("po.brcode = '" + brcode + "'and po.extTlrno ='" + tlrno
-					+ "' and po.status <> '" + SystemConstant.TLR_NO_STATE_QUIT + "'");
+			tlrInfoList = dao.queryByCondition("po.brcode = '" + brcode + "'and po.extTlrno ='" + tlrno + "' and po.status <> '"
+					+ SystemConstant.TLR_NO_STATE_QUIT + "'");
 		}
 		// 获取操作员所在机构的外部机构号
 		if (tlrInfoList != null && tlrInfoList.size() > 0) {

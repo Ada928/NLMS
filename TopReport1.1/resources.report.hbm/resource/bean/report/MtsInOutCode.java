@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseMtsInOutCode;
 
-public class MtsInOutCode extends BaseMtsInOutCode {
+public class MtsInOutCode extends BaseMtsInOutCode implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

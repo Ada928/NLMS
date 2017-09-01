@@ -87,13 +87,13 @@ public class DemoTranslate {
 	// fileName.add("person3.xml");
 	// fileName.add("person4.xml");
 	// fileMap.put("fileName", fileName);
-	//// try {
+	// // try {
 	// // translate.send(fileMap);
-	//// } catch (TokenLockException e) {
-	//// System.out.println("有文件正处于操作状态！");
-	//// e.printStackTrace();
-	//// return;
-	//// }
+	// // } catch (TokenLockException e) {
+	// // System.out.println("有文件正处于操作状态！");
+	// // e.printStackTrace();
+	// // return;
+	// // }
 	// Map files=new HashMap();
 	// files.put("files", fileName);
 	// files.put("feedBackPath", "e:/feedBack/");

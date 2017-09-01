@@ -2,11 +2,11 @@ package resource.bean.pub;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.huateng.ebank.framework.util.DataFormat;
-
 import resource.bean.pub.base.BaseDataDic;
 
-public class DataDic extends BaseDataDic {
+import com.huateng.ebank.framework.util.DataFormat;
+
+public class DataDic extends BaseDataDic implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
@@ -24,7 +24,8 @@ public class DataDic extends BaseDataDic {
 	/**
 	 * Constructor for required fields
 	 */
-	public DataDic(java.lang.Integer id, java.lang.Integer dataTypeNo, java.lang.String dataNo) {
+	public DataDic(java.lang.Integer id, java.lang.Integer dataTypeNo,
+			java.lang.String dataNo) {
 
 		super(id, dataTypeNo, dataNo);
 	}

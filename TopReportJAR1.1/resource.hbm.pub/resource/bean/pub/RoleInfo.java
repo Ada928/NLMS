@@ -2,7 +2,7 @@ package resource.bean.pub;
 
 import resource.bean.pub.base.BaseRoleInfo;
 
-public class RoleInfo extends BaseRoleInfo {
+public class RoleInfo extends BaseRoleInfo implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private String roleList;
 	private String statusModFlag;

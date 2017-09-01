@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import resource.bean.report.base.BaseBopCfaExguDs;
 
-public class BopCfaExguDs extends BaseBopCfaExguDs {
+public class BopCfaExguDs extends BaseBopCfaExguDs implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private java.util.List beneficiarys = new ArrayList<Beneficiary>();// 受益人列表
 	private java.util.List guarantores = new ArrayList<Guarantor>();// 被担保人列表
@@ -34,7 +35,8 @@ public class BopCfaExguDs extends BaseBopCfaExguDs {
 	/**
 	 * Constructor for required fields
 	 */
-	public BopCfaExguDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile) {
+	public BopCfaExguDs(java.lang.String id, java.lang.String apptype,
+			java.lang.String currentfile) {
 
 		super(id, apptype, currentfile);
 	}

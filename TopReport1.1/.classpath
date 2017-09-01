@@ -17,7 +17,7 @@
 	<classpathentry kind="src" path="business.logger"/>
 	<classpathentry kind="src" path="business.pageqryexp"/>
 	<classpathentry kind="src" path="report.basis"/>
-	<classpathentry kind="src" path="report.blacklist"/>
+	<classpathentry kind="src" path="blacklist.manage"/>
 	<classpathentry kind="src" path="report.bop.audit"/>
 	<classpathentry kind="src" path="report.bop.collection"/>
 	<classpathentry kind="src" path="report.bop.dataquery"/>

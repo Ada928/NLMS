@@ -85,6 +85,7 @@ public class LimitParamInfoView {
 	public void setApprovemode(String approvemode) {
 		this.approvemode = approvemode;
 	}
+
 	/**
 	 * @return Returns the bizclass.
 	 */
@@ -186,6 +187,7 @@ public class LimitParamInfoView {
 	public void setStatusname(String statusname) {
 		this.statusname = statusname;
 	}
+
 	/**
 	 * @return Returns the cooptypename.
 	 */

@@ -2,7 +2,7 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseMtsBopDrDs;
 
-public class MtsBopDrDs extends BaseMtsBopDrDs {
+public class MtsBopDrDs extends BaseMtsBopDrDs implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private java.util.List<String> refnos;
 
@@ -29,7 +29,8 @@ public class MtsBopDrDs extends BaseMtsBopDrDs {
 	/**
 	 * Constructor for required fields
 	 */
-	public MtsBopDrDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile) {
+	public MtsBopDrDs(java.lang.String id, java.lang.String apptype,
+			java.lang.String currentfile) {
 
 		super(id, apptype, currentfile);
 	}

@@ -1,5 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
+<#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="岗位管理">
 <@CommonQueryMacro.CommonQuery id="ebankCustRoleMng" init="true" submitMode="current">
 <table align="left" width="100%">
@@ -11,7 +12,7 @@
     <tr>
       	<td valign="top" colspan="2">
       		<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="btAddRole,-,btStatus"
-      			 fieldStr="roleName,status,st,opr" readonly="true" width="100%"/></br>
+      			 fieldStr="roleName,status,opr" readonly="true" width="100%"/></br>
       	</td>
     </tr>
     <tr>
@@ -41,7 +42,7 @@
 </span>
 
 <script language="JavaScript">
-	
+	var roleType = "${info.roleTypeList}";
 	//定位一条记录
 	function locate(id) {
 		var record = ebankCustRoleMng_dataset.find([ "id" ], [ id ]);
@@ -81,36 +82,72 @@
 
 	function btStatus_postSubmit(button) {
 		alert("设置成功");
-		ebankCustRoleMng_dataset.flushData(ebankCustRoleMng_dataset.pageIndex);
+		flushCurrentPage();
 	}
 
 	function datatable1_opr_onRefresh(cell, value, record) {
+		//var roleType = ebankCustRoleMng_dataset.getValue("roleType");
 		if (record && record != null) {
 			var id = record.getValue("id");
-			var lock = record.getValue("isLock");
+			//var lock = record.getValue("isLock");
 			var innerText = "";
 			
-			if (lock == "1") {
-				innerText = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">角色权限设置</a> ";
+			//if (roleType == "1") {
+			if (roleType.indexOf("10") >- 1  || roleType.indexOf("11") >- 1) {
+				innerText = "<center><a href=\"JavaScript:rolePrivShow(" + id + ")\">岗位功能分配</a> "
 			} else {
-				innerText = "<center><a href=\"JavaScript:rolePrivShow(" + id + ")\">角色权限设置</a> "
+				innerText = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"记录已锁定，不能操作\">岗位功能分配</a> ";
 			}
 			
-			cell.innerHTML = innerText + " <a href=\"JavaScript:btRoleUserShow(" + id + ")\">查看人员</a></center>";
+			innerText = innerText + " <a href=\"JavaScript:btRoleUserShow(" + id + ")\">查看人员</a>";
+			cell.innerHTML = innerText + " <a href=\"JavaScript:doDel('" + id + "')\">删除</a></center>";
 		} else {
 			cell.innerHTML = "";
 		}
 	}
 	
+	function doDel(id) {
+        locate(id);
+        btDeleteRole.click();
+    }
+
+    function btDeleteRole_onClickCheck(button) {
+    	var delet = ebankCustRoleMng_dataset.getValue("isDel");
+		if (delet == 'F') {
+			if (confirm("确认删除该岗位?")) {
+				ebankCustRoleMng_dataset.setParameter("delet", "T");
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			if (confirm("确认恢复该岗位?")) {
+				ebankCustRoleMng_dataset.setParameter("delet", "F");
+				return true;
+			} else {
+				return false;
+			}
+		}
+    	
+        return confirm("确认删除该条记录？");
+    }
+    
+    function btDeleteRole_postSubmit(button) {
+        alert("删除记录成功");
+        button.url = "#";
+        //刷新当前页
+        flushCurrentPage();
+    }
+	
 	function rolePrivShow(id) {
 		locate(id);
-		window.document.getElementById('btRoleAuthorityManagement').click();
+		btRoleAuthorityManagement.click();
 	}
 	
 	function btRoleUserShow(id) {
 		var paramMap = new Map();
 		paramMap.put("roleId", id);
-		loadPageWindows("userWin", "查看人员信息",
+		loadPageWindows("userWin", "查看人员",
 				"/fpages/management/ftl/ebankCustRoleMngUser.ftl", paramMap,
 				"winZone");
 		return;
@@ -148,13 +185,16 @@
 		subwindow_signWindow.hide();
 		ebankCustRoleMng_dataset.flushData(ebankCustRoleMng_dataset.pageIndex);
 	}
+	
 	function signWindow_floatWindow_beforeClose(subwindow) {
 		ebankCustRoleMng_dataset.cancelRecord();
 		return true;
 	}
+	
 	function signWindow_floatWindow_beforeHide(subwindow) {
 		return signWindow_floatWindow_beforeClose(subwindow);
 	}
+	
 	function ebankCustRoleMng_dataset_afterInsert(dataset, mode) {
 		ebankCustRoleMng_dataset.setValue2("status", "1");
 	}
@@ -171,8 +211,8 @@
 				return false;
 			}
 		}
-
 	}
+	
 	function ebankCustRoleMng_dataset_afterScroll(dataset) {
 
 		var Lock = dataset.getValue("isLock");
@@ -181,6 +221,11 @@
 		} else {
 			btStatus.disable(false);
 		}
+	}
+	
+	//刷新当前页
+	function flushCurrentPage() {
+		ebankCustRoleMng_dataset.flushData(ebankCustRoleMng_dataset.pageIndex);
 	}
 </script>
 </@CommonQueryMacro.page>

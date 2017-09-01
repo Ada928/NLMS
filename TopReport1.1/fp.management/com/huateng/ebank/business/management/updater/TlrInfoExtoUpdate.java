@@ -23,8 +23,8 @@ import com.huateng.exception.AppException;
  */
 public class TlrInfoExtoUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		try {
 			UpdateResultBean tlrInfoBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_TlrInfoEx");
 			TlrInfo tlrInfo = new TlrInfo();

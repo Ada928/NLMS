@@ -52,10 +52,6 @@
 	//modify by chenjinghui 2010-5-20 HTEBANK-11 begin
 	function resetForm(){
 		document.loginForm.reset();
-		document.loginForm.brCodeName.value ="--请选择您的机构--";
-		document.loginForm.brCode.value ="";
-		document.loginForm.userName.value ="";
-		document.loginForm.passWord.value ="";
 	}
 	//modify by chenjinghui 2010-5-20 HTEBANK-11 end
 	function nextEvent(strName){
@@ -118,8 +114,8 @@
 									</tr>
 									<tr height="35px">
 										<td width="37px"><img src="<%=request.getContextPath()%>/login/images/icon_user.gif" alt="" /></td>
-										<td width="100%"><input type="text" name="userName" id="userName" value="99999999" placeholder="请输入登录用户名"
-												onkeypress="nextEvent('password');" maxlength="10" class="inputcls" /></td>
+										<td width="100%"><input type="text" name="userName" id="userName" value="" placeholder="请输入登录用户名"
+												onkeypress="nextEvent('password');" class="inputcls" /></td>
 										<td width="9px;"><img src="<%=request.getContextPath()%>/login/images/corner_ipt_login.gif" alt="" /></td>
 									</tr>
 									<tr height="35px">

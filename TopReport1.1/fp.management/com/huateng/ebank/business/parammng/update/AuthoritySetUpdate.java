@@ -26,8 +26,8 @@ import com.huateng.exception.AppException;
  */
 public class AuthoritySetUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		// TODO Auto-generated method stub
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
@@ -57,7 +57,7 @@ public class AuthoritySetUpdate extends BaseUpdate {
 				// if (bean1.getBizsubclass() != null
 				// && !bean1.getBizsubclass().equals("")) {
 				//
-				//// bean.setBizSubclass(bean1.getBizsubclass());
+				// // bean.setBizSubclass(bean1.getBizsubclass());
 				// } else if (bean1.getProjecttype() != null
 				// && !bean1.getProjecttype().equals("")) {
 				// // //add by chenjz 20080925
@@ -70,7 +70,7 @@ public class AuthoritySetUpdate extends BaseUpdate {
 				// //
 				// // bean.setBizSubclass("000");
 				// // }else
-				//// bean.setBizSubclass(bean1.getProjecttype());
+				// // bean.setBizSubclass(bean1.getProjecttype());
 				// }
 				// yjw modify end
 

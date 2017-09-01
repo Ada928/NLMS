@@ -144,6 +144,11 @@
 
     <Query id="TlrLoginLogCountQuery" path="/fpages/dataquery/xml/TlrLoginLogCountQuery.xml" />
     <Query id="tlrLoginLogQueryTabs" path="/fpages/dataquery/xml/tlrLoginLogQueryTabs.xml" />
+    
+    
+    <Query id="BctlOperateLogQuery" path="/fpages/dataquery/xml/BctlOperateLogQuery.xml" />
+    <Query id="RoleOperateLogQuery" path="/fpages/dataquery/xml/RoleOperateLogQuery.xml" />
+    <Query id="TlrOperateLogQuery" path="/fpages/dataquery/xml/TlrOperateLogQuery.xml" />
 
     <!--定时任务日志查询 -->
     <Query id="BiQuartzJobLog" path="/fpages/dataquery/xml/BiQuartzJobLog.xml" />

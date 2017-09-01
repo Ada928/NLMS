@@ -18,6 +18,7 @@ public class TlrRoleInfoView {
 	private String rolename;
 	private boolean select1;
 	private String brcode;
+
 	// private String tlrno;
 	// private String tlrnoName;
 	// private String status;

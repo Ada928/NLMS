@@ -30,19 +30,18 @@ import com.huateng.ebank.framework.web.struts.BaseAction;
  * 
  *          <PRE>
  * Date         Author      Version     Description
- *          </PRE>
+ * </PRE>
  *          <P>
  *          ------------------------------------------------------------------
  * 
  *          <PRE>
  * 2011-12-18   y.nie      1.0         1.0 Version
- *          </PRE>
+ * </PRE>
  */
 public class SwitchLanuageAction extends BaseAction {
 
 	@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 		String language = request.getParameter("language");
 		String country = request.getParameter("country");
 		if (!DataFormat.isEmpty(language) && !DataFormat.isEmpty(country)) {

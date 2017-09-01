@@ -42,8 +42,7 @@ public class ForwardTaskListGetter extends BaseGetter {
 		OPCaller.call(GetTaskListOperation.ID, oc);
 		PageQueryResult pageResult = (PageQueryResult) oc.getAttribute(GetTaskListOperation.RSP_TASK_LIST);
 
-		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-				getResult());
+		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 		result.setContent(pageResult.getQueryResult());
 		result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 		result.init();

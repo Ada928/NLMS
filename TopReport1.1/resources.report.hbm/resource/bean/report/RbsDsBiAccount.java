@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseRbsDsBiAccount;
 
-public class RbsDsBiAccount extends BaseRbsDsBiAccount {
+public class RbsDsBiAccount extends BaseRbsDsBiAccount implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
@@ -20,8 +21,8 @@ public class RbsDsBiAccount extends BaseRbsDsBiAccount {
 	/**
 	 * Constructor for required fields
 	 */
-	public RbsDsBiAccount(java.lang.String id, java.lang.String branchcode, java.lang.String accountnumber,
-			java.lang.String currencycode) {
+	public RbsDsBiAccount(java.lang.String id, java.lang.String branchcode,
+			java.lang.String accountnumber, java.lang.String currencycode) {
 
 		super(id, branchcode, accountnumber, currencycode);
 	}

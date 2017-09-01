@@ -73,8 +73,7 @@ public class WorkflowBussTempletRelOperation extends BaseOperation {
 		outList = workflowBussTempletRelDAO.queryByCondition("bussProc = '" + bussProc + "'");
 		if (outList == null || outList.size() == 0) {
 			// throw exception
-			ExceptionUtil.throwCommonException("业务流程模板配置表信息读取失败",
-					ErrorCode.ERROR_CODE_WORKFLOW_BUSS_TEMPLET_REL_SELECT);
+			ExceptionUtil.throwCommonException("业务流程模板配置表信息读取失败", ErrorCode.ERROR_CODE_WORKFLOW_BUSS_TEMPLET_REL_SELECT);
 		} else {
 			WorkflowBussTempletRel workflowBussTempletRel = (WorkflowBussTempletRel) outList.get(0);
 			workflowBussTempletRel.setTempletName(inBean.getTempletName());

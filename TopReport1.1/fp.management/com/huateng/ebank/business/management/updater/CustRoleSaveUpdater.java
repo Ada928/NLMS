@@ -41,8 +41,7 @@ public class CustRoleSaveUpdater extends BaseUpdate {
 	private final static String DATASET_ID = "RoleFuncMng";
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
@@ -99,7 +98,7 @@ public class CustRoleSaveUpdater extends BaseUpdate {
 				insertBean.setMiscflgs("");
 				insertBean.setTimestamps(new Timestamp(System.currentTimeMillis()));
 				insertBean.setSt("1");
-				insertBean.setIsLock("1");
+				insertBean.setLock(true);
 				insertBean.setRoleList(bean.getRoleList());
 				insertList.add(insertBean);
 				break;
@@ -125,7 +124,7 @@ public class CustRoleSaveUpdater extends BaseUpdate {
 				updateBean.setLastUpdTlr(gi.getTlrno());
 				updateBean.setRoleList(bean.getRoleList());
 				updateBean.setSt("2");
-				updateBean.setIsLock("1");
+				updateBean.setLock(true);
 				updateList.add(updateBean);
 				break;
 			default:

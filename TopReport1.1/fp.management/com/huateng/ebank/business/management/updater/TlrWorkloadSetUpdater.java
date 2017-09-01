@@ -28,8 +28,8 @@ import com.huateng.exception.AppException;
  */
 public class TlrWorkloadSetUpdater extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		try {
 			UpdateResultBean bean = multiUpdateResultBean.getUpdateResultBeanByID("Management_TlrWorkloadSet");
 			List updateList = new ArrayList();
