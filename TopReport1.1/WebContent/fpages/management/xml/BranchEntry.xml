@@ -3,7 +3,7 @@
 <!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
     async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
 <CommQry title="" navigate="主页 &gt; 机构管理 &gt; 机构管理" type="call" interface="false" pagesize="10" async="false"
-    databusid="FIVE" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.huateng.ebank.business.management.getter.BranchManageQueryGetter">
+    databusid="FIVE" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.huateng.ebank.business.management.getter.BranchEntryQueryGetter">
     <Include id="BankParam" />
     <InterfaceViewParam>
         /fpages/management/ftl/BranchMge.ftl
@@ -105,17 +105,18 @@
             desc="机构名称" tip="机构名称" method="genLikeP" index="1" function="" default="" scale="" require="" readOnly=""
             rules="" errmsg="" />
 
-        <Option id="st" default="" desc="记录状态" type="st" tip="" method="None" index="2" translated="DATA_DIC.3001" />
+        <!-- <Option id="st" default="" desc="记录状态" type="st" tip="" method="None" index="2" translated="DATA_DIC.3001" /> -->
         <!-- add by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 end -->
     </Where>
     <Operations>
 
-        <Button id="btAdd" name="btAdd" desc="新增" operation="addrecord" url="#" show="" group="" txn="" icon="icon-add" />
+        <Button id="btAdd" name="btAdd" desc="新增" operation="" url="#" show="" group="" txn="" icon="icon-add" />
+        <Button id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" icon="" />
         
-        <Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
+		<!-- <Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
             updateClass="com.huateng.ebank.business.management.updater.BranchManageUpdate" url="/fpages/management/ftl/BranchMge.ftl"
-            txn="" />
-
+            txn="" /> -->
+            
         <!-- add by zhaozhiguo 2012/2/15 FPP-9 用户,岗位及机构的管理页面优化调整 begin -->
         <Button id="btStatus" name="btStatus" desc="有效/无效" operation="asysubmit"
             updateClass="com.huateng.ebank.business.branchmng.update.BranchStatusChgUpdate" url="#" txn="" icon="icon-set" />

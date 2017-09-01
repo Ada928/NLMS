@@ -326,69 +326,73 @@ public class OperMngOperation extends BaseOperation {
 		} else if (CMD_DEL.equals(context.getAttribute(CMD))) {
 			// String tlrno = (String) context.getAttribute(IN_TLRNO);
 			// tlrInfoDAO.delete(tlrno);
+			String tlrno = (String) context.getAttribute(IN_TLRNO);
+			TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
 
-				String tlrno = (String) context.getAttribute(IN_TLRNO);
-				TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
+				if (tlrInfo.getTlrno().equals(ReportEnum.REPORT_SYS_SUPER_MANAGER_INFO.TLRID.value)) {
+					ExceptionUtil.throwCommonException("不能删除管理员所在机构信息！");
+				} else {
+					// 删除
+					tlrInfo.setDel(SystemConstant.TRUE);
 
-				// 解锁
-				tlrInfo.setDel(SystemConstant.TRUE);
+					rootdao.saveOrUpdate(tlrInfo);
 
-				rootdao.saveOrUpdate(tlrInfo);
+					List urrlist = relationDao.queryByCondition(" po.tlrno = '" + tlrno + "'");
+					for (Iterator it = urrlist.iterator(); it.hasNext();) {
+						TlrRoleRel ref = (TlrRoleRel) it.next();
+						relationDao.delete(ref);
+					}
 
-				List urrlist = relationDao.queryByCondition(" po.tlrno = '" + tlrno + "'");
-				for (Iterator it = urrlist.iterator(); it.hasNext();) {
-					TlrRoleRel ref = (TlrRoleRel) it.next();
-					relationDao.delete(ref);
+					globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]删除操作" });
+					htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]删除操作" });
 				}
-
-				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]删除操作" });
-				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]删除操作" });
 
 			} else {
-				String tlrno = (String) context.getAttribute(IN_TLRNO);
-				String del = (String) context.getAttribute(IN_PARAM);
-				TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
-				List<TlrBctlRel> bctlRellist = rootdao.queryByQL2List("from TlrBctlRel where tlrNo = '" + tlrno + "'");
-				List<TlrRoleRel> roleRellist = rootdao.queryByQL2List("from TlrRoleRel where tlrno = '" + tlrno + "'");
-				// 授权机构
-				RepList<TlrBctlRel> repBctlList = new RepList<TlrBctlRel>();
-				for (TlrBctlRel tlrBctlRel : bctlRellist) {
-					repBctlList.add(tlrBctlRel);
-				}
+				if (tlrInfo.getTlrno().equals(ReportEnum.REPORT_SYS_SUPER_MANAGER_INFO.TLRID.value)) {
+					ExceptionUtil.throwCommonException("不能删除管理员所在机构信息！");
+				} else {
+					List<TlrBctlRel> bctlRellist = rootdao.queryByQL2List("from TlrBctlRel where tlrNo = '" + tlrno + "'");
+					List<TlrRoleRel> roleRellist = rootdao.queryByQL2List("from TlrRoleRel where tlrno = '" + tlrno + "'");
+					// 授权机构
+					RepList<TlrBctlRel> repBctlList = new RepList<TlrBctlRel>();
+					for (TlrBctlRel tlrBctlRel : bctlRellist) {
+						repBctlList.add(tlrBctlRel);
+					}
 
-				// 角色岗位
-				RepList<TlrRoleRel> repRoleList = new RepList<TlrRoleRel>();
-				for (TlrRoleRel tlrRoleRel : roleRellist) {
-					repRoleList.add(tlrRoleRel);
-				}
+					// 角色岗位
+					RepList<TlrRoleRel> repRoleList = new RepList<TlrRoleRel>();
+					for (TlrRoleRel tlrRoleRel : roleRellist) {
+						repRoleList.add(tlrRoleRel);
+					}
 
-				// 设置修改中
-				tlrInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
-				boolean oldIsDel = tlrInfo.isDel();
-				tlrInfo.setDel(SystemConstant.FALSE);
-				try {
-					TlrInfoAuditBean tlrInfoAuditBean = new TlrInfoAuditBean();
-					tlrInfoAuditBean.setTlrInfo(tlrInfo);
-					tlrInfoAuditBean.setBctlRellist(repBctlList);
-					tlrInfoAuditBean.setRoleRellist(repRoleList);
-					SysTaskInfo tskInf = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value,
-							ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, tlrInfoAuditBean, tlrInfoAuditBean.getTlrInfo().getTlrno(), tlrInfo.getSt());
-					rootdao.saveOrUpdate(tskInf);
-				} catch (IOException e) {
-					ExceptionUtil.throwCommonException("操作员删除，双岗复核序列化到数据库出错！");
-					e.printStackTrace();
+					// 设置修改中
+					tlrInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
+					boolean oldIsDel = tlrInfo.isDel();
+					tlrInfo.setDel(SystemConstant.FALSE);
+					try {
+						TlrInfoAuditBean tlrInfoAuditBean = new TlrInfoAuditBean();
+						tlrInfoAuditBean.setTlrInfo(tlrInfo);
+						tlrInfoAuditBean.setBctlRellist(repBctlList);
+						tlrInfoAuditBean.setRoleRellist(repRoleList);
+						SysTaskInfo tskInf = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value,
+								ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, tlrInfoAuditBean, tlrInfoAuditBean.getTlrInfo().getTlrno(), tlrInfo.getSt());
+						rootdao.saveOrUpdate(tskInf);
+					} catch (IOException e) {
+						ExceptionUtil.throwCommonException("操作员删除，双岗复核序列化到数据库出错！");
+						e.printStackTrace();
+					}
+					// 改回原值
+					tlrInfo.setDel(oldIsDel);
+					rootdao.saveOrUpdate(tlrInfo);
+					globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]删除操作" });
+					htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]删除操作" });
 				}
-				// 改回原值
-				tlrInfo.setDel(oldIsDel);
-				rootdao.saveOrUpdate(tlrInfo);
-				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]删除操作" });
-				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]删除操作" });
 			}
 
 			TlrOperateLogService tlrOperateLogService = TlrOperateLogService.getInstance();
-			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_DELEATE, "", "", "删除用户");
+			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_DELEATE, "", "", "删除用户 " + tlrInfo.getTlrno() + " " + tlrInfo.getTlrName());
 		} else if ("mod".equals(context.getAttribute(CMD))) {
 			TlrInfo tlrInfo = (TlrInfo) context.getAttribute(IN_TLRINFO);
 			TlrInfo ti = tlrInfoDAO.query(tlrInfo.getTlrno());
@@ -438,13 +442,13 @@ public class OperMngOperation extends BaseOperation {
 
 			}
 		} else if ("resetPwd".equals(context.getAttribute(CMD))) {
+			String tlrno = (String) context.getAttribute(IN_TLRNO);
+			// 修改用户密码
+			// UserMgrService userMgrService = new UserMgrService();
+			// userMgrService.updatePassword(tlrno,
+			// SystemConstant.DEFAULT_PASSWORD);
+			TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
-				String tlrno = (String) context.getAttribute(IN_TLRNO);
-				// 修改用户密码
-				// UserMgrService userMgrService = new UserMgrService();
-				// userMgrService.updatePassword(tlrno,
-				// SystemConstant.DEFAULT_PASSWORD);
-				TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 
 				// 设置可用
 				// tlrInfo.setSt(ReportEnum.REPORT__FH_ST.YES.value);
@@ -459,12 +463,6 @@ public class OperMngOperation extends BaseOperation {
 				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "重置用户编号[" + tlrInfo.getTlrno() + "]的密码" });
 
 			} else {
-				String tlrno = (String) context.getAttribute(IN_TLRNO);
-				// 修改用户密码
-				// UserMgrService userMgrService = new UserMgrService();
-				// userMgrService.updatePassword(tlrno,
-				// SystemConstant.DEFAULT_PASSWORD);
-				TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 				List<TlrBctlRel> bctlRellist = rootdao.queryByQL2List("from TlrBctlRel where tlrNo = '" + tlrno + "'");
 				List<TlrRoleRel> roleRellist = rootdao.queryByQL2List("from TlrRoleRel where tlrno = '" + tlrno + "'");
 				// 授权机构
@@ -500,12 +498,11 @@ public class OperMngOperation extends BaseOperation {
 				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "重置用户编号[" + tlrInfo.getTlrno() + "]的密码" });
 			}
 			TlrOperateLogService tlrOperateLogService = TlrOperateLogService.getInstance();
-			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_EDIT, "", "", "编辑用户，重置密码");
+			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_EDIT, "", "", "重置用户编号[" + tlrInfo.getTlrno() + "]的密码");
 		} else if ("unlock".equals(context.getAttribute(CMD))) {// 解锁
+			String tlrno = (String) context.getAttribute(IN_TLRNO);
+			TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
-
-				String tlrno = (String) context.getAttribute(IN_TLRNO);
-				TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 
 				// 设置修改中
 				// tlrInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
@@ -520,8 +517,6 @@ public class OperMngOperation extends BaseOperation {
 				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });
 
 			} else {
-				String tlrno = (String) context.getAttribute(IN_TLRNO);
-				TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 				List<TlrBctlRel> bctlRellist = rootdao.queryByQL2List("from TlrBctlRel where tlrNo = '" + tlrno + "'");
 				List<TlrRoleRel> roleRellist = rootdao.queryByQL2List("from TlrRoleRel where tlrno = '" + tlrno + "'");
 				// 授权机构
@@ -560,7 +555,7 @@ public class OperMngOperation extends BaseOperation {
 			}
 
 			TlrOperateLogService tlrOperateLogService = TlrOperateLogService.getInstance();
-			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_EDIT, "", "", "解锁用户");
+			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_EDIT, "", "", "用户编号[" + tlrInfo.getTlrno() + "]解锁操作");
 		} else if (CMD_STATUS.equals(context.getAttribute(CMD))) { // 有效/无效 强行签退
 			String tlrno = (String) context.getAttribute(IN_TLRNO);
 			String status = (String) context.getAttribute(IN_PARAM);
@@ -645,7 +640,9 @@ public class OperMngOperation extends BaseOperation {
 			}
 			TlrOperateLogService tlrOperateLogService = TlrOperateLogService.getInstance();
 			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_EDIT, "", "", "使用户有效/无效 强行签退 "
-					+ ("logout".equals(status) ? "强制签退" : (SystemConstant.FLAG_ON.equals(status) ? "使用户有效" : "使用户无效")));
+					+ tlrInfo.getTlrno()
+					+ ("logout".equals(status) ? "强制签退 " + tlrInfo.getTlrno() : (SystemConstant.FLAG_ON.equals(status) ? "使用户有效 " + tlrInfo.getTlrno()
+							: "使用户无效 " + tlrInfo.getTlrno())));
 		}
 	}
 

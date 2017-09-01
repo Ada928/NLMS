@@ -11,12 +11,15 @@ import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
+import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryResult;
+import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.business.management.common.DAOUtils;
 import com.huateng.ebank.framework.exceptions.CommonException;
-import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import com.huateng.report.utils.ReportEnum;
+import com.huateng.service.pub.UserMgrService;
 import com.huateng.view.pub.TlrRoleRelationView;
 
 /**
@@ -45,16 +48,26 @@ public class OperMngRoleInfoGetter extends BaseGetter {
 		PageQueryResult pageQueryResult = new PageQueryResult();
 
 		String tlrno = getCommQueryServletRequest().getParameter("tlrno");
-		OperationContext oc = new OperationContext();
-		String op = (String) getCommQueryServletRequest().getParameterMap().get("op");
 		List roleList = null;
 		String hql = "1=1";
-
-		if (op.equals("modify")) {
-			roleList = DAOUtils.getRoleInfoDAO().queryByCondition(hql);
-		} else {
-			roleList = DAOUtils.getRoleInfoDAO().queryByCondition(hql + " and po.st ='4'");
+		GlobalInfo glInfo = GlobalInfo.getCurrentInstance();
+		UserMgrService userMgrService = UserMgrService.getInstance();
+		List<RoleInfo> list = userMgrService.getUserRoles(glInfo.getTlrno());
+		boolean isSuperRole = false;
+		for (RoleInfo role : list) {
+			if (role.getRoleType().equals(SystemConstant.ROLE_TYPE_SYS_MNG)) {
+				isSuperRole = true;
+			}
 		}
+		if (isSuperRole) {
+			hql += " and po.status='1'";
+			hql += " and po.del<>'T'";
+		} else {
+			hql += " and po.id<>" + ReportEnum.REPORT_SYS_SUPER_MANAGER_ROLE_INFO.ROLEID.value;
+			hql += " and po.status='1'";
+			hql += " and po.del<>'T'";
+		}
+		roleList = DAOUtils.getRoleInfoDAO().queryByCondition(hql);
 
 		List urrlist = DAOUtils.getTlrRoleRelDAO().queryByCondition(" po.tlrno = '" + tlrno + "' and status <> 0");
 		String roleStr = "|";

@@ -70,8 +70,8 @@
 	var op = "${op}";
     var roleType = "${info.roleTypeList}";
 	function initCallGetter_post(dataset) {
-		if (roleType == "1" || roleType == "2" || roleType == "3") {
-			operMngMod_dataset.setFieldReadOnly("brcode", true);
+		 if (roleType.indexOf("11") >- 1 ||roleType.indexOf("12") >- 1 || roleType.indexOf("13") >- 1  || roleType.indexOf("14") >- 1 || roleType.indexOf("15") >- 1 ){
+			operMngMod_dataset.setFieldReadOnly("tlrno", true);
 		}
 		operMngMod_dataset.setParameter("op", op);
 	}
@@ -80,7 +80,7 @@
 		var tlrno = operMngMod_dataset.getValue("tlrno");
 		var tlrName = operMngMod_dataset.getValue("tlrName");
 		if (tlrno.length == 0 || tlrName.length == 0) {
-			alert("操作员号码, 操作员, 操作员类型名称和银行代码必须填写！");
+			alert("操作员号码, 操作员必须填写！");
 			return false;
 		} 
 		if(tlrno.length < 8){

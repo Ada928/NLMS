@@ -20,7 +20,7 @@ import com.huateng.exception.AppException;
 public class BranchDelChgUpdate extends BaseUpdate {
 
 	private final static String PARAM_ACTION = "delet";
-	private final static String DATASET_ID = "Management_branchManage";
+	private final static String DATASET_ID = "BranchEntry";
 	private final static String BRH_ID = "brcode";
 
 	@SuppressWarnings("deprecation")

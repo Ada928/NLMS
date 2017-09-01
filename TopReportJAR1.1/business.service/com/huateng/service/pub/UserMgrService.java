@@ -516,12 +516,12 @@ public class UserMgrService {
 	 * @param tlrNo
 	 * @return
 	 */
-	public ArrayList getUserRoles(String tlrNo) throws CommonException {
+	public ArrayList<RoleInfo> getUserRoles(String tlrNo) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("getUserRoles(String) - start"); //$NON-NLS-1$
 		}
 		try {
-			ArrayList list = new ArrayList(); // 返回的列表
+			ArrayList<RoleInfo> list = new ArrayList<RoleInfo>(); // 返回的列表
 			// Set set = null; // dao取回的集合
 
 			HQLDAO hqlDAO = BaseDAOUtils.getHQLDAO();

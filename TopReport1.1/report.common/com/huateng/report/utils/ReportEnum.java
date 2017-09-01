@@ -271,6 +271,26 @@ public class ReportEnum {
 		}
 	}
 
+	public static enum REPORT_SYS_SUPER_MANAGER_INFO {
+		TLRID("99999999", "超级管理员编号");
+		public String value;
+		public String name;
+
+		private REPORT_SYS_SUPER_MANAGER_INFO(String value, String name) {
+			this.value = value;
+			this.name = name;
+		}
+
+		public static String valueof(String value) {
+			for (int i = 0; i < values().length; i++) {
+				if (values()[i].value.equals(value)) {
+					return values()[i].name;
+				}
+			}
+			return value;
+		}
+	}
+
 	public static enum BANK_BLACKLIST_OPERATE_STATE {
 		ED("1", "编辑中"), VR("2", "审核中"), AP("3", "审批中"), PB("4", "发布中"), N("5", "无效");
 		public String value;

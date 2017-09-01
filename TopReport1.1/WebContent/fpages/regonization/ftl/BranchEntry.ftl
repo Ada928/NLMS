@@ -1,7 +1,7 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="机构信息维护">
-<@CommonQueryMacro.CommonQuery id="Management_branchManage" init="true" submitMode="current">
+<@CommonQueryMacro.CommonQuery id="BranchEntry" init="true" submitMode="current">
 	<table width="100%" align="left">
 		<tr>
    			<td valign="top" colspan="2">
@@ -19,37 +19,22 @@
           			fieldStr="brno,brname,brclass,status,opr" width="100%"  readonly="true"/><br/>
         	</td>
         </tr>
-        <tr>
-      		<td colspan="2">
-	      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="50%" resize="true" 
-	      			defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" 
-	      			exclusive="true" position="center" show="false" >
-	      			<div align="center">
-	      				<@CommonQueryMacro.Group id="group1" label="机构信息维护"
-	        			  fieldStr="brno,brname,address,postno,teleno,brclass,blnUpBrcode,blnManageBrcode,brattr,otherAreaFlag" colNm=4/>
-	        			 <br/>
-	      				<@CommonQueryMacro.Button id="btSave"/>
-	      			</div>
-	     		 </@CommonQueryMacro.FloatWindow>
-  			</td>
-  		</tr>
   		<tr align="center">
-		<td>
-			<div style="display:none">
-				<@CommonQueryMacro.Button id= "btDel" />
-			 </div>
-		</td>
-	</tr>
+			<td><@CommonQueryMacro.Button id= "btDel" /></td>
+			<td><@CommonQueryMacro.Button id= "btModify" /></td>
+		</tr>
    </table>
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
 	var roleType = "${info.roleTypeList}";
+
+	BranchEntry_dataset.setParameter("statu", "T");
 	//定位一条记录
 	function locate(id) {
-		var record = Management_branchManage_dataset.find(["brcode"], [id]);
+		var record = BranchEntry_dataset.find(["brcode"], [id]);
 		if (record) {
-			Management_branchManage_dataset.setRecord(record);
+			BranchEntry_dataset.setRecord(record);
 		}
 	}
 	
@@ -77,17 +62,17 @@
 	}
 
 	function btDel_onClickCheck(button) {
-		var del = Management_branchManage_dataset.getValue("del");
+		var del = BranchEntry_dataset.getValue("del");
 		if (del == 'false') {
 			if (confirm("确认删除该条记录？")) {
-				Management_branchManage_dataset.setParameter("delet", "T");
+				BranchEntry_dataset.setParameter("delet", "T");
 				return true;
 			} else {
 				return false;
 			}
 		} else {
 			if (confirm("确认恢复该条记录？")) {
-				Management_branchManage_dataset.setParameter("delet", "F");
+				BranchEntry_dataset.setParameter("delet", "F");
 				return true;
 			} else {
 				return false;
@@ -96,7 +81,7 @@
 	}
 
 	function btDel_postSubmit(button) {
-		var del = Management_branchManage_dataset.getValue("del");
+		var del = BranchEntry_dataset.getValue("del");
 		if (del == 'false') {
 			alert("删除记录成功 !");
 		} else {
@@ -107,24 +92,35 @@
 		flushCurrentPage();
 	}
 
-	function openModifyWindow(id) {
+	/* function openModifyWindow(id) {
 		locate(id);
-		Management_branchManage_dataset.setFieldReadOnly("brno", true);
-		Management_branchManage_dataset.setFieldReadOnly("brname", false);
-		Management_branchManage_dataset.setFieldReadOnly("address", false);
-		Management_branchManage_dataset.setFieldReadOnly("postno", false);
-		Management_branchManage_dataset.setFieldReadOnly("teleno", false);
-		Management_branchManage_dataset.setFieldReadOnly("brclass", false);
-		Management_branchManage_dataset.setFieldReadOnly("blnUpBrcode", false);
-		Management_branchManage_dataset.setFieldReadOnly("blnManageBrcode",
+		BranchEntry_dataset.setFieldReadOnly("brno", true);
+		BranchEntry_dataset.setFieldReadOnly("brname", false);
+		BranchEntry_dataset.setFieldReadOnly("address", false);
+		BranchEntry_dataset.setFieldReadOnly("postno", false);
+		BranchEntry_dataset.setFieldReadOnly("teleno", false);
+		BranchEntry_dataset.setFieldReadOnly("brclass", false);
+		BranchEntry_dataset.setFieldReadOnly("blnUpBrcode", false);
+		BranchEntry_dataset.setFieldReadOnly("blnManageBrcode",
 				false);
-		Management_branchManage_dataset.setFieldReadOnly("brattr", false);
-		Management_branchManage_dataset
+		BranchEntry_dataset.setFieldReadOnly("brattr", false);
+		BranchEntry_dataset
 				.setFieldReadOnly("otherAreaFlag", false);
 
 		subwindow_signWindow.show();
+	} */
+	
+	//修改功能
+	function openModifyWindow(id) {
+		locate(id);
+		BranchEntry_dataset.setParameter("brcode", id);
+		window.location.href = "${contextPath}/fpages/regonization/ftl/BranchManage.ftl?opType=edit&brcode="+id;
 	}
 
+	function btAdd_onClick(button) {
+		BranchEntry_dataset.insertRecord();
+		window.location.href = "${contextPath}/fpages/regonization/ftl/BranchManage.ftl?opType=add";
+	}
 	//展示对比功能的js
 	function datatable1_brno_onRefresh(cell, value, record) {
 		if (record != null) {
@@ -150,17 +146,17 @@
 	}
 
 	function btStatus_onClickCheck(button) {
-		var status = Management_branchManage_dataset.getValue("status");
+		var status = BranchEntry_dataset.getValue("status");
 		if (status == '0') {
 			if (confirm("确认将该机构设置为有效?")) {
-				Management_branchManage_dataset.setParameter("statu", "1");
+				BranchEntry_dataset.setParameter("statu", "1");
 				return true;
 			} else {
 				return false;
 			}
 		} else {
 			if (confirm("确认将该机构设置为无效?")) {
-				Management_branchManage_dataset.setParameter("statu", "0");
+				BranchEntry_dataset.setParameter("statu", "0");
 				return true;
 			} else {
 				return false;
@@ -173,26 +169,26 @@
 		flushCurrentPage();
 	}
 
-	function Management_branchManage_dataset_afterScroll(dataset) {
+	function BranchEntry_dataset_afterScroll(dataset) {
 		/*
-		var  v_brcode = Management_branchManage_dataset.getValue("brcode");
-		var  v_brclass = Management_branchManage_dataset.getValue("brclass");
+		var  v_brcode = BranchEntry_dataset.getValue("brcode");
+		var  v_brclass = BranchEntry_dataset.getValue("brclass");
 		 //数据库中的记录。
 		 if ( v_brcode!="" ){
-		   Management_branchManage_dataset.setFieldReadOnly("brno",true);
-		   Management_branchManage_dataset.setFieldReadOnly("brname",false);
+		   BranchEntry_dataset.setFieldReadOnly("brno",true);
+		   BranchEntry_dataset.setFieldReadOnly("brname",false);
 		 }else{
-		   Management_branchManage_dataset.setFieldReadOnly("brno",false);
-		   Management_branchManage_dataset.setFieldReadOnly("brname",false);
+		   BranchEntry_dataset.setFieldReadOnly("brno",false);
+		   BranchEntry_dataset.setFieldReadOnly("brname",false);
 		 }
 		 if ( v_brclass =="1" ){
-		 	Management_branchManage_dataset.setFieldReadOnly("blnUpBrcode",true);
+		 	BranchEntry_dataset.setFieldReadOnly("blnUpBrcode",true);
 		 }else{
-		 	Management_branchManage_dataset.setFieldReadOnly("blnUpBrcode",false);
+		 	BranchEntry_dataset.setFieldReadOnly("blnUpBrcode",false);
 		 }
 		 return true;
 		 */
-		var lock = Management_branchManage_dataset.getValue("lock");
+		var lock = BranchEntry_dataset.getValue("lock");
 		if (isTrue(lock)) {
 			btStatus.disable(true);
 		} else {
@@ -200,74 +196,74 @@
 		}
 	}
 
-	function Management_branchManage_dataset_afterChange(dataset, field) {
+	function BranchEntry_dataset_afterChange(dataset, field) {
 		if (field.name == "postno") {
-			v_postno = Management_branchManage_dataset.getValue("postno");
+			v_postno = BranchEntry_dataset.getValue("postno");
 			if (isNaN(v_postno)) {
 				alert("字段【邮政编码】必须为数字");
-				Management_branchManage_dataset.setValue2("postno", "");
+				BranchEntry_dataset.setValue2("postno", "");
 				return false;
 			} else if (v_postno.indexOf('-') != -1) {
 				alert("字段【邮政编码】必须为数字");
-				Management_branchManage_dataset.setValue2("postno", "");
+				BranchEntry_dataset.setValue2("postno", "");
 				return false;
 			} else if (v_postno.length < 6 && v_postno.length != 0) {
 				alert("字段【邮政编码】必须为6位");
-				Management_branchManage_dataset.setValue2("postno", "");
+				BranchEntry_dataset.setValue2("postno", "");
 				return false;
 			}
 			return true;
 		}
 		if (field.name == "teleno") {
-			var v_teleno = Management_branchManage_dataset.getValue("teleno");
+			var v_teleno = BranchEntry_dataset.getValue("teleno");
 			var validChar = "0123456789-";
 			for (var i = 0; i < v_teleno.length; i++) {
 				var c = v_teleno.charAt(i);
 				if (validChar.indexOf(c) == -1) {
 					alert("字段【联系电话】只能包含-和数字");
-					Management_branchManage_dataset.setValue2("teleno", "");
+					BranchEntry_dataset.setValue2("teleno", "");
 					return false;
 				}
 			}
 		}
 	}
 
-	function btAdd_onClick(button) {
-		Management_branchManage_dataset.insertRecord("end");
+	/* function btAdd_onClick(button) {
+		BranchEntry_dataset.insertRecord("end");
 
-		Management_branchManage_dataset.setValue("brno", "");
-		Management_branchManage_dataset.setValue("brname", "");
-		Management_branchManage_dataset.setValue("address", "");
-		Management_branchManage_dataset.setValue("postno", "");
-		Management_branchManage_dataset.setValue("teleno", "");
-		Management_branchManage_dataset.setValue("brclass", "");
-		Management_branchManage_dataset.setValue("blnUpBrcode", "");
-		Management_branchManage_dataset.setValue("blnManageBrcode", "");
-		Management_branchManage_dataset.setValue("brattr", "");
-		Management_branchManage_dataset.setValue("otherAreaFlag", "");
+		BranchEntry_dataset.setValue("brno", "");
+		BranchEntry_dataset.setValue("brname", "");
+		BranchEntry_dataset.setValue("address", "");
+		BranchEntry_dataset.setValue("postno", "");
+		BranchEntry_dataset.setValue("teleno", "");
+		BranchEntry_dataset.setValue("brclass", "");
+		BranchEntry_dataset.setValue("blnUpBrcode", "");
+		BranchEntry_dataset.setValue("blnManageBrcode", "");
+		BranchEntry_dataset.setValue("brattr", "");
+		BranchEntry_dataset.setValue("otherAreaFlag", "");
 
-		var v_brcode = Management_branchManage_dataset.getValue("brcode");
+		var v_brcode = BranchEntry_dataset.getValue("brcode");
 		//数据库中的记录。
 		if (v_brcode != "") {
-			Management_branchManage_dataset.setFieldReadOnly("brno", true);
-			Management_branchManage_dataset.setFieldReadOnly("brname", false);
+			BranchEntry_dataset.setFieldReadOnly("brno", true);
+			BranchEntry_dataset.setFieldReadOnly("brname", false);
 		} else {
-			Management_branchManage_dataset.setFieldReadOnly("brno", false);
-			Management_branchManage_dataset.setFieldReadOnly("brname", false);
+			BranchEntry_dataset.setFieldReadOnly("brno", false);
+			BranchEntry_dataset.setFieldReadOnly("brname", false);
 		}
 
-		Management_branchManage_dataset.setFieldReadOnly("address", false);
-		Management_branchManage_dataset.setFieldReadOnly("postno", false);
-		Management_branchManage_dataset.setFieldReadOnly("teleno", false);
-		Management_branchManage_dataset.setFieldReadOnly("brclass", false);
-		Management_branchManage_dataset.setFieldReadOnly("blnUpBrcode", false);
-		Management_branchManage_dataset.setFieldReadOnly("blnManageBrcode",
+		BranchEntry_dataset.setFieldReadOnly("address", false);
+		BranchEntry_dataset.setFieldReadOnly("postno", false);
+		BranchEntry_dataset.setFieldReadOnly("teleno", false);
+		BranchEntry_dataset.setFieldReadOnly("brclass", false);
+		BranchEntry_dataset.setFieldReadOnly("blnUpBrcode", false);
+		BranchEntry_dataset.setFieldReadOnly("blnManageBrcode",
 				false);
-		Management_branchManage_dataset.setFieldReadOnly("brattr", false);
-		Management_branchManage_dataset
+		BranchEntry_dataset.setFieldReadOnly("brattr", false);
+		BranchEntry_dataset
 				.setFieldReadOnly("otherAreaFlag", false);
 		subwindow_signWindow.show();
-	}
+	} */
 
 	//function btAdd_onClickCheck(button) {
 	//	return checkValue();
@@ -285,13 +281,13 @@
 	}
 
 	function checkValue() {
-		if (Management_branchManage_dataset.getValue("blnUpBrcode") == ""
-				&& Management_branchManage_dataset.getValue("brclass") != "1") {
+		if (BranchEntry_dataset.getValue("blnUpBrcode") == ""
+				&& BranchEntry_dataset.getValue("brclass") != "1") {
 			alert("字段[上级机构]不应为空。");
 			return false;
 		}
 
-		if (Management_branchManage_dataset.getValue("brclass") == "") {
+		if (BranchEntry_dataset.getValue("brclass") == "") {
 			alert("字段[机构级别]不应为空。");
 			return false;
 		}
@@ -300,7 +296,7 @@
 
 	/* function brclass_DropDown_onSelect(dropDown, record, editor) {
 		var brclass = record.getValue("data").trim();
-		var length = Management_branchManage_dataset.length;
+		var length = BranchEntry_dataset.length;
 		var flag = true;
 		if (length > 1 && brclass == "1") {
 			alert("只能有一个总行!");
@@ -316,14 +312,14 @@
 	//去掉页面“归属分行”字段，但当选中“上级机构”字段时，自动给“归属分行”赋值
 	function blnUpBrcode_DropDown_onSelect(dropDown, record, editor) {
 		var blnUpBrcode = record.getValue("brcode").trim();
-		Management_branchManage_dataset.setValue2("blnBranchBrcode",
+		BranchEntry_dataset.setValue2("blnBranchBrcode",
 				blnUpBrcode);
 		return true;
 
 	}
 
 	function signWindow_floatWindow_beforeClose(subwindow) {
-		Management_branchManage_dataset.cancelRecord();
+		BranchEntry_dataset.cancelRecord();
 		return true;
 	}
 
@@ -331,14 +327,14 @@
 		return signWindow_floatWindow_beforeClose(subwindow);
 	}
 
-	function Management_branchManage_dataset_afterInsert(dataset, mode) {
-		Management_branchManage_dataset.setValue2("status", "1");
+	function BranchEntry_dataset_afterInsert(dataset, mode) {
+		BranchEntry_dataset.setValue2("status", "1");
 	}
 
 	//刷新当前页
 	function flushCurrentPage() {
-		Management_branchManage_dataset
-				.flushData(Management_branchManage_dataset.pageIndex);
+		BranchEntry_dataset
+				.flushData(BranchEntry_dataset.pageIndex);
 	}
 </script>
 </@CommonQueryMacro.page>
