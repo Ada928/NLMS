@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseMtsBopRefnos;
 
-public class MtsBopRefnos extends BaseMtsBopRefnos {
+public class MtsBopRefnos extends BaseMtsBopRefnos implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

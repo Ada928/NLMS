@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import resource.bean.pub.Bctl;
+import resource.bean.pub.BctlOperateLog;
 import resource.dao.pub.BctlDAO;
 
 import com.huateng.common.log.HtLog;
@@ -28,9 +29,11 @@ import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.util.DateUtil;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.report.utils.ReportEnum;
+import com.huateng.service.pub.BctlOperateLogService;
 
 public class BranchManageUpdateOperation extends BaseOperation {
 	private static final HtLog htlog = HtLogFactory.getLogger(BranchManageUpdateOperation.class);
+	public static final String ID = "Management.BranchManageUpdateOperation";
 	public static final String INSERT_LIST = "INSERT_LIST";
 	public static final String UPDATE_LIST = "UPDATE_LIST";
 	public static final String DEL_LIST = "DEL_LIST";
@@ -46,22 +49,23 @@ public class BranchManageUpdateOperation extends BaseOperation {
 		List delList = (List) context.getAttribute(DEL_LIST);
 		// BctlService bctlService = BctlService.getInstance();
 		// bctlService.bctlInfo(insertList, updateList, delList);
-		AddEntityValue(insertList);
-		UpdateEntityValue(updateList);
+		addEntityValue(insertList);
+		updateEntityValue(updateList);
 
 	}
 
-	public void AddEntityValue(List list) throws CommonException {
+	@SuppressWarnings("deprecation")
+	public void addEntityValue(List list) throws CommonException {
+
 		for (Iterator it = list.iterator(); it.hasNext();) {
 			Bctl bean = (Bctl) it.next();
 
 			BctlDAO dao = BaseDAOUtils.getBctlDAO();
 			CommonService commonService = CommonService.getInstance();
-			List lis = dao.queryByCondition(
-					"po.brno = '" + bean.getBrno() + "'" + " and po.status = " + SystemConstant.VALID_FLAG_VALID);
+			List lis = dao.queryByCondition("po.brno = '" + bean.getBrno() + "'" + " and po.status = " + SystemConstant.VALID_FLAG_VALID);
 
 			if (lis.size() > 0) {// 已存在不能添加
-				ExceptionUtil.throwCommonException("机构代码重复", ErrorCode.ERROR_CODE_BCTL_INSERT);
+				ExceptionUtil.throwCommonException("银行代码重复", ErrorCode.ERROR_CODE_BCTL_INSERT);
 			} else {
 				bean.setBrcode(commonService.getBrcodeID());
 				bean.setStatus(SystemConstant.FLAG_ON);
@@ -95,12 +99,17 @@ public class BranchManageUpdateOperation extends BaseOperation {
 			// }
 			// branchManageDetailService.addTosystaskinfo(taskInfo);
 		}
+		if (list.size() > 0) {
+			BctlOperateLogService bctlOperateLogService = BctlOperateLogService.getInstance();
+			bctlOperateLogService.saveBctlOperateLog(SystemConstant.LOG_ADD, "", "", "新增一个银行");
+		}
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行新建机构管理信息" });
-		htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行新建机构管理信息" });
+		gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行新建银行管理信息" });
+		htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行新建银行管理信息" });
 	}
 
-	public void UpdateEntityValue(List list) throws CommonException {
+	@SuppressWarnings("deprecation")
+	public void updateEntityValue(List list) throws CommonException {
 		for (Iterator it = list.iterator(); it.hasNext();) {
 			Bctl bean = (Bctl) it.next();
 			// Bctl sys1=branchManageDetailService.selectById(bean.getBrcode());
@@ -119,13 +128,11 @@ public class BranchManageUpdateOperation extends BaseOperation {
 
 				if (DataFormat.isEmpty(bean.getBlnUpBrcode())) {
 					if (!SystemConstant.BRCODE_CLASS_HEAD.equals(bctlModify.getBrclass())) {// 原级别不为总行
-						ExceptionUtil.throwCommonException("[机构代码]为" + bean.getBrno() + "的记录，字段[上级机构]不应为空.",
-								ErrorCode.ERROR_CODE_INFO_NOT_INPUT);
+						ExceptionUtil.throwCommonException("[银行代码]为" + bean.getBrno() + "的记录，字段[上级机构]不应为空.", ErrorCode.ERROR_CODE_INFO_NOT_INPUT);
 					}
 				}
 				if (DataFormat.isEmpty(bean.getBrclass())) {
-					ExceptionUtil.throwCommonException("[机构代码]为" + bean.getBrno() + "的记录，字段[机构级别]不应为空.",
-							ErrorCode.ERROR_CODE_INFO_NOT_INPUT);
+					ExceptionUtil.throwCommonException("[银行代码]为" + bean.getBrno() + "的记录，字段[机构级别]不应为空.", ErrorCode.ERROR_CODE_INFO_NOT_INPUT);
 				}
 
 			}
@@ -154,15 +161,20 @@ public class BranchManageUpdateOperation extends BaseOperation {
 			// }
 			// branchManageDetailService.addTosystaskinfo(taskInfo);
 		}
+		if (list.size() > 0) {
+			BctlOperateLogService bctlOperateLogService = BctlOperateLogService.getInstance();
+			bctlOperateLogService.saveBctlOperateLog(SystemConstant.LOG_EDIT, "", "", "修改银行信息");
+		}
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行更新机构管理信息" });
-		htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行更新机构管理信息" });
+		gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行更新银行管理信息" });
+		htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行更新银行管理信息" });
 	}
 
 	public void afterProc(OperationContext context) throws CommonException {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	public void checkPostNo(Bctl bctl) throws CommonException {
 		String postNo = bctl.getPostno();
 		if (postNo.length() != 6) {

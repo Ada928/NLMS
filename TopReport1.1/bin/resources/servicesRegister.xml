@@ -105,6 +105,9 @@
     <!-- add by zhiyang.he 双岗复核改造 2012-09-03 end -->
 
     <!-- 用户登录日志管理 -->
-    <bean id="com.huateng.service.pub.TlrLoginLogService" class="com.huateng.service.pub.TlrLoginLogService">
-    </bean>
+    <bean id="com.huateng.service.pub.TlrLoginLogService" class="com.huateng.service.pub.TlrLoginLogService"/>
+    <bean id="com.huateng.service.pub.BctlOperateLogService" class="com.huateng.service.pub.BctlOperateLogService"/>
+    <bean id="com.huateng.service.pub.RoleOperateLogService" class="com.huateng.service.pub.RoleOperateLogService"/>
+    <bean id="com.huateng.service.pub.TlrOperateLogService" class="com.huateng.service.pub.TlrOperateLogService"/>
+    
 </beans>

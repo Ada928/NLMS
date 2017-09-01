@@ -67,8 +67,7 @@ public class BrhWorkFlowMngOperation extends BaseOperation {
 				if (brhWorkflowDef.getId() != 0) {
 					brwQuery = brhWorkFlowDefDAO.query(brhWorkflowDef.getId());
 				} else { // 由于页面的id可能无法取到，改用联合查询
-					brwQuery = brhWorkFlowDefDAO.queryByUk(brhWorkflowDef.getBrcode(), brhWorkflowDef.getApptype(),
-							brhWorkflowDef.getBizClass());
+					brwQuery = brhWorkFlowDefDAO.queryByUk(brhWorkflowDef.getBrcode(), brhWorkflowDef.getApptype(), brhWorkflowDef.getBizClass());
 				}
 
 				if (brwQuery != null) {
@@ -88,8 +87,7 @@ public class BrhWorkFlowMngOperation extends BaseOperation {
 			for (; updit.hasNext();) {
 				brhWorkflowDef = (BrhWorkflowDef) updit.next();
 				// 根据 机构号、申请类型、贷款种类 进行查询，如果不存在记录则新增，否则更新记录
-				BrhWorkflowDef brwQuery = brhWorkFlowDefDAO.queryByUk(brhWorkflowDef.getBrcode(),
-						brhWorkflowDef.getApptype(), brhWorkflowDef.getBizClass());
+				BrhWorkflowDef brwQuery = brhWorkFlowDefDAO.queryByUk(brhWorkflowDef.getBrcode(), brhWorkflowDef.getApptype(), brhWorkflowDef.getBizClass());
 				// 处理bizSubclass 跟申请类型
 				if (brhWorkflowDef.getApptype().trim().equals(SystemConstant.APPLY_TYPE_NORMAL_LOAN))
 					brhWorkflowDef.setBizSubclass("1");// 1-一般贷款合同
@@ -120,8 +118,8 @@ public class BrhWorkFlowMngOperation extends BaseOperation {
 			for (; insit.hasNext();) {
 				brhWorkflowDef = (BrhWorkflowDef) insit.next();
 				// 根据 机构号、申请类型、贷款种类 进行查询，如果不存在记录则新增，否则更新记录
-				BrhWorkflowDef brwQuery = DAOUtils.getBrhWorkFlowDefDAO().queryByUk(brhWorkflowDef.getBrcode(),
-						brhWorkflowDef.getApptype(), brhWorkflowDef.getBizClass());
+				BrhWorkflowDef brwQuery = DAOUtils.getBrhWorkFlowDefDAO().queryByUk(brhWorkflowDef.getBrcode(), brhWorkflowDef.getApptype(),
+						brhWorkflowDef.getBizClass());
 
 				if (brwQuery == null) {
 					// 处理bizSubclass 跟申请类型

@@ -23,9 +23,9 @@ public class BaseBankBlackList implements Serializable {
 	public static String PROP_CLIENT_NAME = "clientName";
 	public static String PROP_CLIENT_ENGLISH_NAME = "clientEnglishName";
 	public static String PROP_BLACKLIST_TYPE = "blacklistType";
-	public static String PROP_IS_SHARE = "isShare";
-	public static String PROP_IS_VALID = "isValid";
-	public static String PROP_IS_DELETE = "isDelete";
+	public static String PROP_SHARE = "isShare";
+	public static String PROP_VALID = "isValid";
+	public static String PROP_DEL = "isDelete";
 	public static String PROP_OPERATE_STATE = "operateState";
 	public static String PROP_VALID_DATE = "validDate";
 	public static String PROP_BLACKLISTED_DATE = "blacklistedDate";
@@ -53,9 +53,9 @@ public class BaseBankBlackList implements Serializable {
 	private String clientName;
 	private String clientEnglishName;
 	private String blacklistType;
-	private String isShare;
-	private String isValid;
-	private String isDelete;
+	private boolean share;
+	private boolean valid;
+	private boolean del
 	private String operateState;
 	private Date validDate;
 	private Date blacklistedDate;
@@ -160,29 +160,29 @@ public class BaseBankBlackList implements Serializable {
 	public void setBlacklistType(String blacklistType) {
 		this.blacklistType = blacklistType;
 	}
-
-	public String getIsShare() {
-		return this.isShare;
+ 
+	public boolean isShare() {
+		return this.share;
 	}
 
-	public void setIsShare(String isShare) {
-		this.isShare = isShare;
+	public void setShare(boolean share) {
+		this.share = share;
 	}
 
-	public String getIsValid() {
-		return this.isValid;
+	public boolean isValid() {
+		return this.valid;
 	}
 
-	public void setIsValid(String isValid) {
-		this.isValid = isValid;
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 
-	public String getIsDelete() {
-		return this.isDelete;
+	public boolean isDel() {
+		return this.del;
 	}
 
-	public void setIsDelete(String isDelete) {
-		this.isDelete = isDelete;
+	public void setDel(boolean del) {
+		this.del = del
 	}
 
 	public String getOperateState() {

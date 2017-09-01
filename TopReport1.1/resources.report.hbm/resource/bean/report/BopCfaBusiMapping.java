@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBopCfaBusiMapping;
 
-public class BopCfaBusiMapping extends BaseBopCfaBusiMapping {
+public class BopCfaBusiMapping extends BaseBopCfaBusiMapping implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

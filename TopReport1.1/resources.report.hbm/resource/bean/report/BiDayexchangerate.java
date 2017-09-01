@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBiDayexchangerate;
 
-public class BiDayexchangerate extends BaseBiDayexchangerate {
+public class BiDayexchangerate extends BaseBiDayexchangerate implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

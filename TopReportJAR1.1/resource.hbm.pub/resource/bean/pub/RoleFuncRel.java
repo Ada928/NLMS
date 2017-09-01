@@ -2,7 +2,8 @@ package resource.bean.pub;
 
 import resource.bean.pub.base.BaseRoleFuncRel;
 
-public class RoleFuncRel extends BaseRoleFuncRel {
+public class RoleFuncRel extends BaseRoleFuncRel implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

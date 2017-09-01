@@ -35,7 +35,7 @@ public class RoleInfoOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.
 	 * ebank.framework.operation.OperationContext)
@@ -47,7 +47,7 @@ public class RoleInfoOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.
 	 * ebank.framework.operation.OperationContext)

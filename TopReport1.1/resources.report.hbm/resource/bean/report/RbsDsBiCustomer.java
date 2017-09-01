@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseRbsDsBiCustomer;
 
-public class RbsDsBiCustomer extends BaseRbsDsBiCustomer {
+public class RbsDsBiCustomer extends BaseRbsDsBiCustomer implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
@@ -20,7 +21,8 @@ public class RbsDsBiCustomer extends BaseRbsDsBiCustomer {
 	/**
 	 * Constructor for required fields
 	 */
-	public RbsDsBiCustomer(java.lang.String id, java.lang.String branchcode, java.lang.String partynumber) {
+	public RbsDsBiCustomer(java.lang.String id, java.lang.String branchcode,
+			java.lang.String partynumber) {
 
 		super(id, branchcode, partynumber);
 	}

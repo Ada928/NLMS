@@ -22,8 +22,7 @@ public class ChangePwdGetter extends BaseGetter {
 		try {
 
 			ChangePwdForm changePwdForm = new ChangePwdForm();
-			ResultMng.fillResultByObject(getCommonQueryBean(), getCommQueryServletRequest(), changePwdForm,
-					getResult());
+			ResultMng.fillResultByObject(getCommonQueryBean(), getCommQueryServletRequest(), changePwdForm, getResult());
 			List content = new ArrayList();
 			content.add(changePwdForm);
 			result.setContent(content);

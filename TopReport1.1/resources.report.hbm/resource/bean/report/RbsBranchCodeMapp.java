@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseRbsBranchCodeMapp;
 
-public class RbsBranchCodeMapp extends BaseRbsBranchCodeMapp {
+public class RbsBranchCodeMapp extends BaseRbsBranchCodeMapp implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

@@ -2,7 +2,7 @@ package resource.bean.pub;
 
 import resource.bean.pub.base.BaseTlrRoleRel;
 
-public class TlrRoleRel extends BaseTlrRoleRel {
+public class TlrRoleRel extends BaseTlrRoleRel implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

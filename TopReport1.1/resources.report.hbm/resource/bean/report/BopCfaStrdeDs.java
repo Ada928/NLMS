@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBopCfaStrdeDs;
 
-public class BopCfaStrdeDs extends BaseBopCfaStrdeDs {
+public class BopCfaStrdeDs extends BaseBopCfaStrdeDs implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String aginrapay;
@@ -22,7 +23,8 @@ public class BopCfaStrdeDs extends BaseBopCfaStrdeDs {
 	/**
 	 * Constructor for required fields
 	 */
-	public BopCfaStrdeDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile) {
+	public BopCfaStrdeDs(java.lang.String id, java.lang.String apptype,
+			java.lang.String currentfile) {
 
 		super(id, apptype, currentfile);
 	}

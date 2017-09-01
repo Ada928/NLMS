@@ -34,7 +34,7 @@ public class PasswordResetOP extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.huateng.ebank.framework.operation.BaseOperation#beforeProc(com.
 	 * huateng.ebank.framework.operation.OperationContext)
 	 */
@@ -52,7 +52,7 @@ public class PasswordResetOP extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.BaseOperation#afterProc(com.huateng
 	 * .ebank.framework.operation.OperationContext)

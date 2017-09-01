@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseNoticeParam;
 
-public class NoticeParam extends BaseNoticeParam {
+public class NoticeParam extends BaseNoticeParam implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

@@ -2,11 +2,12 @@ package resource.bean.report;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.huateng.ebank.framework.util.DataFormat;
-
 import resource.bean.report.base.BaseBiNationregion;
 
-public class BiNationregion extends BaseBiNationregion {
+import com.huateng.ebank.framework.util.DataFormat;
+
+public class BiNationregion extends BaseBiNationregion implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

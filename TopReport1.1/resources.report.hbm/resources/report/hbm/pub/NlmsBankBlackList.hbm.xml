@@ -15,23 +15,23 @@
         <property name="clientName" type="string" column="client_name" length="100" />
         <property name="clientEnglishName" type="string" column="client_english_name" length="100" not-null="false" />
         <property name="blacklistType" type="string" column="blacklist_type" length="1" />
-        <property name="isShare" type="string" column="is_share" length="1" not-null="false" />
-        <property name="isValid" type="string" column="is_valid" length="1" not-null="false" />
-        <property name="isDelete" type="string" column="is_delate" length="1" not-null="false" />
+        <property name="share" type="true_false" column="is_share" length="1" not-null="false" />
+        <property name="valid" type="true_false" column="is_valid" length="1" not-null="false" />
+        <property name="del" type="true_false" column="is_del" length="1" not-null="false" />
         <property name="operateState" type="string" column="operate_state" length="2" not-null="false" />
-        <property name="validDate" type="date" column="valid_date" length="7" not-null="false" />
-        <property name="blacklistedDate" type="date" column="blacklisted_date" length="7" not-null="false" />
+        <property name="validDate" type="java.util.Date" column="valid_date" length="7" not-null="false" />
+        <property name="blacklistedDate" type="java.util.Date" column="blacklisted_date" length="7" not-null="false" />
         <property name="blacklistedOperator" type="string" column="blacklisted_operator" length="20" not-null="false" />
         <property name="blacklistedReason" type="string" column="blacklisted_reason" length="500" not-null="false" />
-        <property name="unblacklistedDate" type="date" column="unblacklisted_date" length="7" not-null="false" />
+        <property name="unblacklistedDate" type="java.util.Date" column="unblacklisted_date" length="7" not-null="false" />
         <property name="unblacklistedOperator" type="string" column="unblacklisted_operator" length="20"
             not-null="false" />
         <property name="unblacklistedReason" type="string" column="unblacklisted_reason" length="500" not-null="false" />
         <property name="filler1" type="string" column="filler1" length="32" not-null="false" />
         <property name="filler2" type="string" column="filler2" length="32" not-null="false" />
         <property name="filler3" type="string" column="filler3" length="32" not-null="false" />
-        <property name="createDate" type="date" column="create_date" length="7" not-null="false" />
-        <property name="lastModifyDate" type="date" column="last_modify_date" length="7" not-null="false" />
+        <property name="createDate" type="java.util.Date" column="create_date" length="7" not-null="false" />
+        <property name="lastModifyDate" type="java.util.Date" column="last_modify_date" length="7" not-null="false" />
         <property name="lastModifyOperator" type="string" column="last_modify_operator" length="32" not-null="false" />
         <property name="remarks" type="string" column="remarks" length="2000" not-null="false" />
 

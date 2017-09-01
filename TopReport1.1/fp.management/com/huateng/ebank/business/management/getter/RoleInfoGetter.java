@@ -39,8 +39,7 @@ public class RoleInfoGetter extends BaseGetter {
 
 			PageQueryResult pageResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult().size() == 0) {
@@ -62,7 +61,7 @@ public class RoleInfoGetter extends BaseGetter {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.extra.common.ObjectDataGetter#getData()
 	 */
 	protected PageQueryResult getData() throws Exception {
@@ -103,7 +102,7 @@ public class RoleInfoGetter extends BaseGetter {
 			// }else{
 			// roleInfoView.setRoletypename("");
 			// }
-			////
+			// //
 			//
 			if (((RoleInfo) roleInfoList.get(i)).getStatus().equals(SystemConstant.VALID_FLAG_INVALID))
 				roleInfoView.setStatus(SystemConstant.VALID_FLAG_INVALID);

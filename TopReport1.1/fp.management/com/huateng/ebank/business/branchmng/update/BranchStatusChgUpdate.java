@@ -24,8 +24,7 @@ public class BranchStatusChgUpdate extends BaseUpdate {
 	private final static String BRH_ID = "brcode";
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest arg1,
-			HttpServletResponse arg2) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
@@ -34,7 +33,7 @@ public class BranchStatusChgUpdate extends BaseUpdate {
 				String status = updateResultBean.getParameter(PARAM_ACTION);
 
 				OperationContext oc = new OperationContext();
-				oc.setAttribute(BranchMngOperation.CMD, "status");
+				oc.setAttribute(BranchMngOperation.CMD, BranchMngOperation.CMD_STATUS);
 				oc.setAttribute(BranchMngOperation.IN_BRHID, brcode);
 				oc.setAttribute(BranchMngOperation.IN_PARAM, status);
 				OPCaller.call(BranchMngOperation.ID, oc);

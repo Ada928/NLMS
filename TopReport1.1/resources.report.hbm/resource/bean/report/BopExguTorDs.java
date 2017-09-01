@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBopExguTorDs;
 
-public class BopExguTorDs extends BaseBopExguTorDs {
+public class BopExguTorDs extends BaseBopExguTorDs implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

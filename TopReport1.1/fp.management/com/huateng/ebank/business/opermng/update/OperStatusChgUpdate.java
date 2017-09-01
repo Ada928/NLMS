@@ -24,8 +24,7 @@ public class OperStatusChgUpdate extends BaseUpdate {
 	private final static String OPER_ID = "tlrno";
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest arg1,
-			HttpServletResponse arg2) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
@@ -33,7 +32,7 @@ public class OperStatusChgUpdate extends BaseUpdate {
 				String tlrno = updateResultBean.next().get(OPER_ID);
 				String status = updateResultBean.getParameter(PARAM_ACTION);
 				OperationContext oc = new OperationContext();
-				oc.setAttribute(OperMngOperation.CMD, "status");
+				oc.setAttribute(OperMngOperation.CMD, OperMngOperation.CMD_STATUS);
 				oc.setAttribute(OperMngOperation.IN_TLRNO, tlrno);
 				oc.setAttribute(OperMngOperation.IN_PARAM, status);
 				OPCaller.call(OperMngOperation.ID, oc);

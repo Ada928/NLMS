@@ -20,6 +20,21 @@ public class SystemConstant {
 	 */
 	public static final String FLAG_OFF = "0"; // 否
 	public static final String FLAG_ON = "1"; // 是
+	
+	/**
+	 * 是否标志
+	 */
+	public static final String LOG_ADD = "A"; // 增加
+	public static final String LOG_DELEATE = "D"; // 删除
+	public static final String LOG_EDIT = "E"; // 改
+	public static final String LOG_QUERY = "Q"; // 查询
+	
+	/**
+	 * 是否标志
+	 */
+	public static final Boolean TRUE = true; // 否
+	public static final Boolean FALSE = false; // 是
+	
 
 	/**
 	 * 有效标志/状态
@@ -241,57 +256,12 @@ public class SystemConstant {
 	public static final String LIMIT_PARAM_BIZ_CLASS_PROJ = "2"; // 合作项目
 
 	/**
-	 * 岗位类型
-	 */
-	/* 岗位类型定义 shen_anotnio . */
-	public static final String ROLE_TYPE_CREDIT_AUDIT = "2"; // 授信审查
-	public static final String ROLE_TYPE_CREDIT_APPROVE = "3"; // 授信审批
-	public static final String ROLE_TYPE_PAY_ARCHIVE = "4"; // 放款中心档案岗
-	public static final String ROLE_TYPE_PAY_AUDIT = "5"; // 放款中心调查岗
-	public static final String ROLE_TYPE_PAY_LAW = "6"; // 放款中心法律岗
-	public static final String ROLE_TYPE_CIEF = "7"; // 放款中心主管岗
-	public static final String ROLE_TYPE_SYS_MNG = "9"; // 系统管理
-	public static final String ROLE_TYPE_AUTH_MNG = "A"; // 授权管理
-	public static final String ROLE_TYPE_BUSN_MNG = "B"; // 业务管理
-	public static final String ROLE_TYPE_ASSET_PROT = "C"; // 资产保全
-	public static final String ROLE_TYPE_OTHER = "0"; // 其它
-	public static final String ROLE_TYPE_INPUT = "2"; // 录入岗/客户经理
-	public static final String ROLE_TYPE_MGR = "2"; // 客户经理
-	public static final String ROLE_TYPE_AUDIT = "3"; // 贷款审查岗
-	public static final String ROLE_TYPE_APPROVE = "4"; // 贷款审批岗
-	public static final String ROLE_TYPE_COUNCIL = "5"; // 贷审会意见录入岗
-	public static final String ROLE_TYPE_SUPERVISE = "6"; // 放款监督岗
-	public static final String ROLE_TYPE_PROJ_AUDIT = "7"; // 项目审查岗
-	public static final String ROLE_TYPE_PROJ_APPROVE = "8"; // 项目审批岗
-	public static final String ROLE_TYPE_COUNCIL_APPROVE = "9"; // 贷审会审批岗
-
-	/* 工作流岗位定义 shen_antonio . */
-	public static final String WF_ROLE_TYPE_ROLE100 = "ROLE100"; // 客户经理
-	public static final String WF_ROLE_TYPE_ROLE101 = "ROLE101"; // 客户经理
-	public static final String WF_ROLE_TYPE_ROLE102 = "ROLE102"; // 支行行长
-	public static final String WF_ROLE_TYPE_ROLE103 = "ROLE103"; // 分行审查岗
-	public static final String WF_ROLE_TYPE_ROLE104 = "ROLE104"; // 分行高级经理
-	public static final String WF_ROLE_TYPE_ROLE105 = "ROLE105"; // 分行分管行长
-
-	public static final String WF_ROLE_TYPE_ROLE106 = "ROLE106"; // 放款中心档案岗
-	public static final String WF_ROLE_TYPE_ROLE107 = "ROLE107"; // 放款中心调查岗
-	public static final String WF_ROLE_TYPE_ROLE108 = "ROLE108"; // 放款中心法律岗
-	public static final String WF_ROLE_TYPE_ROLE109 = "ROLE109"; // 放款中心主管岗
-	public static final String WF_ROLE_TYPE_ROLE110 = "ROLE110"; // 放款中心放款岗
-
-	public static final String WF_ROLE_TYPE_ROLE111 = "ROLE111"; // 系统管理
-	public static final String WF_ROLE_TYPE_ROLE112 = "ROLE112"; // 授权管理
-	public static final String WF_ROLE_TYPE_ROLE113 = "ROLE113"; // 业务管理
-	public static final String WF_ROLE_TYPE_ROLE114 = "ROLE114"; // 资产保全
-	public static final String WF_ROLE_TYPE_ROLE115 = "ROLE115"; // 贷审会秘书
-	public static final String WF_ROLE_TYPE_ROLE116 = "ROLE116"; // 贷后管理岗
-
-	/**
 	 * 岗位名
 	 */
 	public static final int ROLE_CUST_MANAGER = 100;// 客户经理
 	public static final int ROLE_CUST_ZONGJINGLI = 105;// 总经理岗位
 	public static final int ROLE_NPA_MANAGER = 121;// 资产保全管户岗
+	
 
 	/**
 	 * 合作协议状态标志
@@ -299,20 +269,6 @@ public class SystemConstant {
 	public static final String COOPPROT_VALID_FLAG_INVALID = "00";// 无效
 	public static final String COOPPROT_VALID_FLAG_VALID = "01";// 有效
 	public static final String COOPPROT_VALID_FLAG_FREEZE = "02";// 冻结
-
-	/*
-	 * 角色类型
-	 */
-	public static final int ROLE_ID_LOAN_INPUT = 100; // 资料录入/客户经理岗
-	public static final int ROLE_ID_LOAN_AUDIT = 102; // 贷款审查
-	public static final int ROLE_ID_LOAN_MEETING = 103; // 贷审会意见录入岗
-	public static final int ROLE_ID_LOAN_APPROVE = 105; // 贷款审批
-	public static final int ROLE_ID_LOAN_SUPERVISE = 110; // 放款监督
-	public static final int ROLE_ID_LOAN_SAVE = 114; // 资产保全
-	public static final int ROLE_ID_PROJECT_AUDIT = 119; // 项目审查
-	public static final int ROLE_ID_PROJECT_APPROVE = 120; // 项目审批
-	public static final int ROLE_ID_LOAN_UP_APPROVE = 121; // 贷款高级审批
-	public static final int ROLE_ID_LEAVE_APPROVE = 140; // 请假审批
 
 	/**
 	 * 操作员审批控制方式
@@ -841,6 +797,7 @@ public class SystemConstant {
 	 */
 	public static final String BLACK_TYPE_NATURAL = "1"; // 1个人客户
 	public static final String BLACK_TYPE_ARTIFICIAL = "2"; // 2法人客户
+	
 	/**
 	 * 黑名单关注级别
 	 */
@@ -891,7 +848,6 @@ public class SystemConstant {
 	 */
 	public static boolean CORP_PROJ_TEST_DEBUG = true;
 
-	public static final String ROLE_TYPE_CHECK = "2"; // 复核岗(广发新增)
 
 	/**
 	 * 贷款大类(荆州)
@@ -1893,15 +1849,19 @@ public class SystemConstant {
 
 	public static final String TLR_NO_STATE_LOGIN = "1"; // 签到
 
-	public static final String TLR_NO_STATE_QUIT = "2"; // 离职
+	//public static final String TLR_NO_STATE_QUIT = "2"; // 离职
 
 	/**
-	 * add by NT 2007-09-20 来源于交行个贷 岗位信息，需要更改。
+	 * add by NT 2017-08-24 来源于名单管理
 	 */
-	public static final int ROLE_ID_BRANCH_OPERATION_ADMIN = 210; // 分行业务管理岗
+	public static final String TLR_NO_TYPE_SUPER_MANAGE = "0"; // 超级管理员
 
-	public static final int ROLE_ID_SUB_BRANCH_OPERATION_ADMIN = 310; // 支行业务管理岗
-
+	public static final String TLR_NO_TYPE_MANAGE = "1"; // 普通管理员
+	
+	public static final String TLR_NO_TYPE_NORMAL_USER = "2"; // 普通用户
+	
+	public static final String [] TLR_NO_TYPE_NAME= {"超级管理员", "普通管理员", "普通用户"};
+	
 	/**
 	 * add by NT 2007-09-28 日期格式
 	 */
@@ -1911,12 +1871,19 @@ public class SystemConstant {
 
 	public static final String ERRORS_MSG_KEY = "errors.message";
 
+	
+
 	/**
 	 * add by NT 2007-09-29 未筛选，有未使用的变量 角色 范围：100－999 第一位： 1：总行，2：分行，3：支行
 	 * 第二、三位：岗位编号 1XX：总行 2XX：分行（个贷中心） 3XX：支行
 	 */
-	public static final int ROLE_ID_HEAD_BRANCH_SYS_ADMIN = 100; // 总行系统管理岗
-	public static final int ROLE_ID_HEAD_BRANCH_OPERATION_ADMIN = 110;
+	public static final int ROLE_ID_SYSTEM_MANAGEER = 100; // 系统超级管理员
+	public static final int ROLE_ID_HEAD_BRANCH_SYS_ADMIN = 110; // 总行系统管理岗
+	public static final int ROLE_ID_HEAD_BRANCH_OPERATION_ADMIN = 120;
+	public static final int ROLE_ID_HEAD_BRANCH_BLACKLIST_EDIT = 121; // 黑名单编辑岗位
+	public static final int ROLE_ID_HEAD_BRANCH_BLACKLIST_CHECK = 122; // 黑名单审核岗位
+	public static final int ROLE_ID_HEAD_BRANCH_BLACKLIST_APPROVE = 123; // 黑名单审批岗位
+	public static final int ROLE_ID_HEAD_BRANCH_BLACKLIST_PUBLISH = 124; // 黑名单发布岗位
 
 	public static final int ROLE_ID_BRANCH_SYS_ADMIN = 211; // 分行系统管理岗
 	public static final int ROLE_ID_BRANCH_CHIEF = 220; // 分行主管行长
@@ -1932,6 +1899,13 @@ public class SystemConstant {
 	public static final int ROLE_ID_BRANCH_ACCOUNTANT = 230; // 分行会计岗
 	public static final int ROLE_ID_BRANCH_VERIFY = 231; // 分行核查岗
 
+	/**
+	 * add by NT 2007-09-20 来源于交行个贷 岗位信息，需要更改。
+	 */
+	public static final int ROLE_ID_BRANCH_OPERATION_ADMIN = 210; // 分行业务管理岗
+
+	public static final int ROLE_ID_SUB_BRANCH_OPERATION_ADMIN = 310; // 支行业务管理岗
+
 	public static final int ROLE_ID_SUB_BRANCH_SYS_ADMIN = 300; // 支行系统管理岗
 	public static final int ROLE_ID_SUB_BRANCH_CHIEF = 320; // 支行行长
 	public static final int ROLE_ID_SUB_BRANCH_ARCHIVE = 321; // 支行档案管理岗
@@ -1943,6 +1917,71 @@ public class SystemConstant {
 	public static final int ROLE_ID_SUB_BRANCH_SALES = 327; // 支行信贷营销岗
 	public static final int ROLE_ID_SUB_BRANCH_LAW = 328; // 支行法律岗
 	public static final int ROLE_ID_SUB_BRANCH_VERIFY = 329; // 支行核查岗
+	
+	/*
+	 * 角色类型
+	 */
+	public static final int ROLE_ID_LOAN_INPUT = 100; // 资料录入/客户经理岗
+	public static final int ROLE_ID_LOAN_AUDIT = 102; // 贷款审查
+	public static final int ROLE_ID_LOAN_MEETING = 103; // 贷审会意见录入岗
+	public static final int ROLE_ID_LOAN_APPROVE = 105; // 贷款审批
+	public static final int ROLE_ID_LOAN_SUPERVISE = 110; // 放款监督
+	public static final int ROLE_ID_LOAN_SAVE = 114; // 资产保全
+	public static final int ROLE_ID_PROJECT_AUDIT = 119; // 项目审查
+	public static final int ROLE_ID_PROJECT_APPROVE = 120; // 项目审批
+	public static final int ROLE_ID_LOAN_UP_APPROVE = 121; // 贷款高级审批
+	public static final int ROLE_ID_LEAVE_APPROVE = 140; // 请假审批
+	
+	/**
+	 * 岗位类型
+	 */
+	/* 岗位类型定义 shen_anotnio . */
+	public static final String ROLE_TYPE_CREDIT_AUDIT = "02"; // 授信审查
+	public static final String ROLE_TYPE_CREDIT_APPROVE = "03"; // 授信审批
+	public static final String ROLE_TYPE_PAY_ARCHIVE = "04"; // 放款中心档案岗
+	public static final String ROLE_TYPE_PAY_AUDIT = "05"; // 放款中心调查岗
+	public static final String ROLE_TYPE_PAY_LAW = "06"; // 放款中心法律岗
+	public static final String ROLE_TYPE_CIEF = "07"; // 放款中心主管岗
+	public static final String ROLE_TYPE_AUTH_MNG = "A"; // 授权管理
+	public static final String ROLE_TYPE_BUSN_MNG = "B"; // 业务管理
+	public static final String ROLE_TYPE_ASSET_PROT = "C"; // 资产保全
+	public static final String ROLE_TYPE_OTHER = "00"; // 其它
+	
+	public static final String ROLE_TYPE_SYS_MNG = "10"; // 系统超级管理员
+	public static final String ROLE_TYPE_BANK_MGR = "11"; // 银行管理员岗位
+	public static final String ROLE_TYPE_INPUT = "12"; // 编辑岗/客户经理
+	public static final String ROLE_TYPE_AUDIT = "13"; // 黑名单/贷款审查岗
+	public static final String ROLE_TYPE_APPROVE = "14"; // 黑名单/贷款审批岗
+	public static final String ROLE_TYPE_PUBLISH = "15"; // 黑名单发布岗
+	
+	public static final String ROLE_TYPE_COUNCIL = "16"; // 贷审会意见录入岗
+	public static final String ROLE_TYPE_SUPERVISE = "17"; // 放款监督岗
+	public static final String ROLE_TYPE_PROJ_AUDIT = "18"; // 项目审查岗
+	public static final String ROLE_TYPE_PROJ_APPROVE = "19"; // 项目审批岗
+	public static final String ROLE_TYPE_COUNCIL_APPROVE = "20"; // 贷审会审批岗
+
+	/* 工作流岗位定义 shen_antonio . */
+	public static final String WF_ROLE_TYPE_ROLE100 = "ROLE100"; // 客户经理
+	public static final String WF_ROLE_TYPE_ROLE101 = "ROLE101"; // 客户经理
+	public static final String WF_ROLE_TYPE_ROLE102 = "ROLE102"; // 支行行长
+	public static final String WF_ROLE_TYPE_ROLE103 = "ROLE103"; // 分行审查岗
+	public static final String WF_ROLE_TYPE_ROLE104 = "ROLE104"; // 分行高级经理
+	public static final String WF_ROLE_TYPE_ROLE105 = "ROLE105"; // 分行分管行长
+
+	public static final String WF_ROLE_TYPE_ROLE106 = "ROLE106"; // 放款中心档案岗
+	public static final String WF_ROLE_TYPE_ROLE107 = "ROLE107"; // 放款中心调查岗
+	public static final String WF_ROLE_TYPE_ROLE108 = "ROLE108"; // 放款中心法律岗
+	public static final String WF_ROLE_TYPE_ROLE109 = "ROLE109"; // 放款中心主管岗
+	public static final String WF_ROLE_TYPE_ROLE110 = "ROLE110"; // 放款中心放款岗
+
+	public static final String WF_ROLE_TYPE_ROLE111 = "ROLE111"; // 系统管理
+	public static final String WF_ROLE_TYPE_ROLE112 = "ROLE112"; // 授权管理
+	public static final String WF_ROLE_TYPE_ROLE113 = "ROLE113"; // 业务管理
+	public static final String WF_ROLE_TYPE_ROLE114 = "ROLE114"; // 资产保全
+	public static final String WF_ROLE_TYPE_ROLE115 = "ROLE115"; // 贷审会秘书
+	public static final String WF_ROLE_TYPE_ROLE116 = "ROLE116"; // 贷后管理岗
+
+	public static final String ROLE_TYPE_CHECK = "2"; // 复核岗(广发新增)
 
 	public static final String PROC_NAME_PROJECT_APPLY_NO = "01";
 	public static final String PROC_NAME_PROJECT_APPLY_1_NO = "02";
@@ -2267,7 +2306,7 @@ public class SystemConstant {
 	/**
 	 * modify by shen_antonio 20080327 增加操作员休假标志 3
 	 */
-	public static final String TLR_NO_STATE_LVDAY = "3";// 休假
+	//public static final String TLR_NO_STATE_LVDAY = "3";// 休假
 	/**
 	 * modify by shen_antonio 20080328 for TaskAssignService 工作类型、工作分配描述
 	 */
@@ -3020,9 +3059,9 @@ public class SystemConstant {
 
 	public static final String TLR_NO_STATE_NORMAL = "1"; // 有效
 
-	// public static final String TLR_NO_STATE_QUIT = "2"; // 离职
+	public static final String TLR_NO_STATE_QUIT = "2"; // 离职
 
-	// public static final String TLR_NO_STATE_LVDAY = "3";// 休假
+	public static final String TLR_NO_STATE_LVDAY = "3";// 休假
 
 	public static final String TLR_NO_STATE_UNUSE = "4"; // 暂停使用
 

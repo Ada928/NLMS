@@ -62,9 +62,8 @@ public class TlrWorkloadSetGetter extends BaseGetter {
 			}
 
 			StringBuffer queryString = new StringBuffer();
-			queryString
-					.append("select po,load from TlrInfo po,TlrWorkload load where po.tlrno=load.tlrno and po.status <> '"
-							+ SystemConstant.TLR_NO_STATE_QUIT + "' ");
+			queryString.append("select po,load from TlrInfo po,TlrWorkload load where po.tlrno=load.tlrno and po.status <> '"
+					+ SystemConstant.TLR_NO_STATE_QUIT + "' ");
 			if (!DataFormat.isEmpty(brcode)) {
 				queryString.append(" and po.brcode='" + brcode + "'");
 			}
@@ -87,8 +86,7 @@ public class TlrWorkloadSetGetter extends BaseGetter {
 			}
 			pageQueryResult.setQueryResult(resultList);
 
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
-					pageQueryResult.getQueryResult(), getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageQueryResult.getQueryResult(), getResult());
 
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(result.getPage().getEveryPage()));

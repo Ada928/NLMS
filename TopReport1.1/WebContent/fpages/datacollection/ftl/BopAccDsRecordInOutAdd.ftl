@@ -75,7 +75,7 @@
 		</table>
 	</@CommonQueryMacro.CommonQuery>
 	<script language="JavaScript">
-		var op = "${RequestParameters["op"]?default('')}";
+		var op = "${RequestParameters['op']?default('')}";
 		function initCallGetter_post(){
 			bopAccDsRecordInOutAdd_dataset.setFieldReadOnly("accountno",true);
 			if (bopAccDsRecordInOutAdd_dataset.length == 0) {

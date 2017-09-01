@@ -15,14 +15,14 @@
         <Field id="old_id" desc="黑名单编号" edittype="text" datatype="string" readonly="true" xpath="/old_policeBlackList/id"></Field>
         <Field id="id" desc="黑名单编号" edittype="text" datatype="string" readonly="true" xpath="/policeBlackList/id"></Field>
 
-        <Field id="old_accountCode" desc="账户代号" edittype="text" datatype="string" readonly="true"
-            xpath="/old_policeBlackList/accountCode" />
-        <Field id="accountCode" desc="账户代号" edittype="text" datatype="string" readonly="true"
-            xpath="/policeBlackList/accountCode" />
+        <Field id="old_accountType" desc="账户类型" edittype="text" datatype="string" readonly="true"
+            xpath="/old_policeBlackList/accountType" />
+        <Field id="accountType" desc="账户类型" edittype="text" datatype="string" readonly="true"
+            xpath="/policeBlackList/accountType" />
 
-        <Field id="old_certificateType" desc="证件种类" edittype="text" datatype="string" readonly="true"
+        <Field id="old_certificateType" desc="证件种类" edittype="text" datatype="string" readonly="true" translated="DATA_DIC.21"
             xpath="/old_policeBlackList/certificateType" />
-        <Field id="certificateType" desc="证件种类" edittype="text" datatype="string" readonly="true"
+        <Field id="certificateType" desc="证件种类" edittype="text" datatype="string" readonly="true" translated="DATA_DIC.21"
             xpath="/policeBlackList/certificateType" />
 
         <Field id="old_certificateNumber" desc="证件号码" edittype="text" datatype="string" readonly="true"
@@ -41,10 +41,10 @@
             require="false" edittype="select" width="90" method="None" primary="false" type="String"
             xpath="/policeBlackList/blacklistType" />
 
-        <Field id="old_isValid" desc="有效状态" status="N" readonly="true" translated="LIST:1,有效;2,无效" require="false"
-            edittype="select" width="90" method="None" primary="false" type="String" xpath="/old_policeBlackList/isValid" />
-        <Field id="isValid" desc="有效状态" status="N" readonly="true" translated="LIST:1,有效;2,无效" require="false"
-            edittype="select" width="90" method="None" primary="false" type="String" xpath="/policeBlackList/isValid" />
+        <Field id="old_valid" desc="有效状态" status="N" readonly="true" translated="LIST:true,有效;false,无效" require="false"
+            edittype="select" width="90" method="None" primary="false" type="String" xpath="/old_policeBlackList/valid" />
+        <Field id="valid" desc="有效状态" status="N" readonly="true" translated="LIST:true,有效;false,无效" require="false"
+            edittype="select" width="90" method="None" primary="false" type="String" xpath="/policeBlackList/valid" />
 
         <Field id="old_validDate" desc="有效期" edittype="text" datatype="date" readonly="true"
             xpath="/old_policeBlackList/validDate" />

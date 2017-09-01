@@ -4,7 +4,7 @@
     async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
 
 <CommQry title="商行黑名单管理" navigate="商行黑名单管理" type="call" interface="true" pagesize="20" async="true" databusid=""
-    transdataactionurl="/trans/TransDataAction.do" txnlogflag="true"
+    transdataactionurl="/trans/TransDataAction.do" 
     getterclassname="com.cibfintech.report.blacklist.getter.BankBlackListGetter">
 
     <Include id="BankParam" />
@@ -13,26 +13,38 @@
     <Fields>
         <Field id="id" desc="黑名单编号" edittype="text" datatype="string" status="F" xpath="/id" />
         <Field id="bankCode" desc="银行代码" edittype="text" datatype="string" status="F" xpath="/bankCode" />
-        <Field id="accountCode" desc="账户代号" status="F" readonly="true" translated="LIST:I,对公客户;C,对私客户;" require="false"
-            edittype="select" method="None" primary="true" type="String" xpath="/accountCode" />
-        <Field id="certificateType" desc="证件种类" status="F" readonly="true" translated="LIST:11,身份证;14,护照;"
-            require="false" edittype="select" method="None" primary="true" type="String" xpath="/certificateType" />
+        <Field id="bankName" desc="银行名称" status="N" method="com.huateng.ebank.business.common.CQMethod.getBrhName"
+            readonly="" primary="false" type="String" size="20" default="" xpath="/bankCode" />
+            
+        
+        <Field id="accountType" desc="账户类型" status="F" edittype="select" require="false" method="None" primary=""
+            type="String" default="false" xpath="/accountType" tip="账户类型" translated="LIST:C,对公;I,对私;" />
+            
+        <Field id="brattr" desc="机构属性" status="F" edittype="select" require="false" method="None" primary=""
+            type="String" default="false" xpath="/brattr" tip="机构属性" translated="DATA_DIC.455" />
+            
+        <Field id="certificateType" desc="证件种类" status="F" edittype="select" require="false" method="None" primary=""
+            type="String" default="false" xpath="/certificateType" tip="证件种类" translated="DATA_DIC.21" />
+            
+        <Field id="blacklistType" desc="名单性质" status="F" edittype="select" require="false" method="None" primary=""
+            type="String" default="false" xpath="/blacklistType" tip="名单性质" translated="LIST:0,白名单;1,灰名单;2,黑名单" />
+            
+        <Field id="share" desc="是否共享" status="F" edittype="select" require="false" method="None" primary=""
+            type="String" default="false" xpath="/share" tip="是否共享" translated="LIST:true,共享;false,不共享" />
+            
+        <Field id="valid" desc="有效状态" status="F" edittype="select" require="false" method="None" primary=""
+            type="String" default="false" xpath="/valid" tip="有效状态" translated="LIST:true,有效;false,无效" />
+            
+        <Field id="del" desc="是否删除" status="F" edittype="select" require="false" method="None" primary=""
+            type="String" default="false" xpath="/del" tip="是否删除" translated="LIST:false,不删除;true,删除" />
+            
+        <Field id="operateState" desc="操作状态" status="F" edittype="select" require="false" method="None" primary=""
+            type="String" default="false" xpath="/operateState" tip="操作状态" translated="DATA_DIC.3001" />
+                
+            
         <Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" status="F" xpath="/certificateNumber" />
         <Field id="clientName" desc="客户名字" edittype="text" datatype="string" status="F" xpath="/clientName" />
         <Field id="clientEnglishName" desc="英文名字" edittype="text" datatype="string" status="F" xpath="/clientEnglishName" />
-
-        <Field id="blacklistType" desc="名单性质" status="F" readonly="true" translated="LIST:0,白名单;1,灰名单;2,黑名单"
-            require="false" edittype="select" method="None" primary="false" type="String" xpath="/blacklistType" />
-        <Field id="isShare" desc="是否共享" status="N" readonly="true" translated="LIST:1,共享;2,不共享" require="false"
-            edittype="select" method="None" primary="false" type="String" xpath="/isShare" />
-        <Field id="isValid" desc="有效状态" status="N" readonly="true" translated="LIST:1,有效;2,无效" require="false"
-            edittype="select" method="None" primary="false" type="String" xpath="/isValid" />
-        <Field id="isDelate" desc="是否删除" status="N" edittype="select" method="None" primary="false" type="String"
-            default="" tip="是否删除" translated="LIST:1,不删除;2,删除" xpath="/isDelate" />
-
-        <Field id="operateState" desc="操作状态" status="N" require="false" edittype="select" datatype="string"
-            method="None" readonly="true" primary="true" type="st" translated="DATA_DIC.3001" default="" xpath="/operateState"
-            tip="" />
         <Field id="validDate" desc="有效期" edittype="text" status="F" datatype="date" xpath="/validDate" />
         <Field id="blacklistedDate" desc="拉黑时间" edittype="text" datatype="date" status="F" xpath="/blacklistedDate" />
         <Field id="blacklistedOperator" desc="拉黑操作员" edittype="text" datatype="string" status="N"
@@ -59,20 +71,33 @@
     <Where>
         <TextBox id="qPartyId" desc="黑名单编号" edittype="text" datatype="string" require="" index="0" />
         <Option id="qCertificateType" default="" desc="证件种类" type="certificateType" tip="" method="None" index="1"
-            translated="LIST:11,身份证;14,护照;" />
+            translated="DATA_DIC.21" />
         <TextBox id="qCertificateNumber" desc="证件号码" edittype="text" datatype="string" index="2" />
-        <Option id="qOperateState" default="" desc="操作状态" type="operateState" tip="" method="None" index="3"
-            translated="DATA_DIC.3001" />
     </Where>
 
     <Operations>
-        <Button id="btAdd" name="btAdd" desc="新增" operation="" url="#" show="" group="" txn="" icon="icon-add" />
-        <Button id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" />
+        <Button id="btAdd" name="btAdd" desc="新增" operation="" 
+        	url="#" show="" group="" txn="" icon="icon-add" />
+        
+        <Button id="btModify" name="btModify" desc="修改" operation=""
+            url="#" show="" group="" txn="" />
+
         <Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListDEL" url="" />
-        <Button id="btModOrAdd" name="btModOrAdd" desc="保存" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="" />
+            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListDEL" url="#" />
+            
+        <Button id="btVerify" name="btVerify" desc="审核" operation="asysubmit"
+            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="#" />
+            
+        <Button id="btApprove" name="btApprove" desc="审批" operation="asysubmit"
+            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="#" />
+            
+        <Button id="btShare" name="btShare" desc="分享" operation="asysubmit"
+            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="#" />
+            
+        <Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
+            updateClass="" url="#" />
+            
+        <Button id="btCancel" name="btCancel" desc="返回" operation="submitform"
+            url="/fpages/blacklistManage/ftl/BankBlackList.ftl" txn="" />
     </Operations>
-    <Sql>
-    </Sql>
 </CommQry>

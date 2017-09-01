@@ -20,15 +20,13 @@ public class WorkflowProcNameGetter extends BaseGetter {
 			// String procName =
 			// DataFormat.trim(getValueFromDataBus("TEMPLET_DESC"));
 			String bussProc = this.getCommQueryServletRequest().getParameter("bussProc");
-			List list = BaseDAOUtils.getWorkflowBussTempletRelDAO()
-					.queryByCondition("po.bussProc = '" + bussProc + "' order by id");
+			List list = BaseDAOUtils.getWorkflowBussTempletRelDAO().queryByCondition("po.bussProc = '" + bussProc + "' order by id");
 			WorkflowBussTempletRel workflowBussTempletRel = new WorkflowBussTempletRel();
 			if (list != null && list.size() > 0) {
 				workflowBussTempletRel = (WorkflowBussTempletRel) list.get(0);
 			}
 
-			ResultMng.fillResultByObject(getCommonQueryBean(), getCommQueryServletRequest(), workflowBussTempletRel,
-					getResult());
+			ResultMng.fillResultByObject(getCommonQueryBean(), getCommQueryServletRequest(), workflowBussTempletRel, getResult());
 			result.setContent(list);
 			result.getPage().setTotalPage(1);
 			result.init();

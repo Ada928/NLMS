@@ -30,8 +30,7 @@ public class BhProcStepGetter extends BaseGetter {
 
 			PageQueryResult pageResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult().size() == 0) {

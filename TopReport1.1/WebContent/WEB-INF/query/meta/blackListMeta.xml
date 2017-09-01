@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <META>
-    <!-- 黑名单管理 -->
-    <!-- -->
-    <Query id="BankBlackList" path="/fpages/blacklistManage/xml/BankBlackList.xml" />
-    <Query id="BankBlackListDetail" path="/fpages/blacklistManage/xml/BankBlackListDetail.xml" />
-    
-    <Query id="PoliceBlackList" path="/fpages/blacklistManage/xml/PoliceBlackList.xml" />
-    <Query id="PoliceBlackListDetail" path="/fpages/blacklistManage/xml/PoliceBlackListDetail.xml" />
-    
-    <Query id="BlacklistByInternationalQuery" path="/fpages/blacklistManage/xml/BlacklistByInternationalQuery.xml" />
-    <Query id="BlacklistByGABQuery" path="/fpages/blacklistManage/xml/BlacklistByGABQuery.xml" />
+	<!-- 黑名单管理 -->
+	<!-- -->
+	<Query id="BankBlackList" path="/fpages/blacklistManage/xml/BankBlackList.xml" />
+	<Query id="BankBlackListQuery" path="/fpages/blacklistManage/xml/BankBlackList.xml" />
+	<Query id="BankBlackListDetail" path="/fpages/blacklistManage/xml/BankBlackListDetail.xml" />
+	<Query id="BankBlackListManage" path="/fpages/blacklistManage/xml/BankBlackListManage.xml" />
+	<Query id="BankBlackListLogQuery" path="/fpages/blacklistManage/xml/BankBlackListLogQuery.xml" />
+
+	<Query id="PoliceBlackList" path="/fpages/blacklistManage/xml/PoliceBlackList.xml" />
+	<Query id="PoliceBlackListQuery" path="/fpages/blacklistManage/xml/PoliceBlackList.xml" />
+	<Query id="PoliceBlackListDetail" path="/fpages/blacklistManage/xml/PoliceBlackListDetail.xml" />
+	<Query id="PoliceBlackListLogQuery" path="/fpages/blacklistManage/xml/PoliceBlackListLogQuery.xml" />
+
+	<Query id="InternationalBlackList"
+		path="/fpages/blacklistManage/xml/InternationalBlackList.xml" />
+	<Query id="InternationalBlackListQuery"
+		path="/fpages/blacklistManage/xml/InternationalBlackList.xml" />
+	<Query id="InternationalBlackListDetail"
+		path="/fpages/blacklistManage/xml/InternationalBlackListDetail.xml" />
+	<Query id="InternationBlackListLogQuery" 
+	    path="/fpages/blacklistManage/xml/InternationBlackListLogQuery.xml" />
+	    
+	<Query id="QueryDailyLogCount"
+		path="/fpages/blacklistManage/xml/QueryDailyLogCount.xml" />
+	<Query id="QueryMonthlyLogCount" 
+	    path="/fpages/blacklistManage/xml/QueryMonthlyLogCount.xml" />
+
 </META>

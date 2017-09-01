@@ -63,7 +63,7 @@ public class TlrLoginLogQueryGetter extends BaseGetter {
 		}
 		GlobalInfo info = GlobalInfo.getCurrentInstance();
 		TlrLoginLogService tlrLoginLogService = TlrLoginLogService.getInstance();
-		return tlrLoginLogService.queryTlrLoginLOg(pageIndex, pageSize, qtlrNo, qbrNo, qloginAddr, startDate, endDate);
+		return tlrLoginLogService.queryTlrLoginLog(pageIndex, pageSize, qtlrNo, qbrNo, qloginAddr, startDate, endDate);
 	}
 
 }

@@ -2,7 +2,7 @@
 <!-- 用于直接生成SQL语句，支持同步和异步提交 -->
 <!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
     async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
-<CommQry title="操作员管理" navigate="主页 &gt; 系统管理 &gt; 操作员管理" type="call" interface="true" pagesize="10" async="true"
+<CommQry title="用户管理" navigate="主页 &gt; 系统管理 &gt; 用户管理" type="call" interface="true" pagesize="10" async="true"
     btnNm="aaa" databusid="DEMO" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.huateng.ebank.business.opermng.getter.OperMngEntryGetter">
     <Include id="BankParam" />
 
@@ -14,18 +14,20 @@
         <Field id="brno" desc="机构号" status="N" method="None" readonly="" primary="true" type="String" size="20"
             default="" xpath="/brno" />
 
-        <Field id="brname" desc="最近操作机构" status="N" method="com.huateng.ebank.business.common.CQMethod.getBrhName"
+        <Field id="brname" desc="所属机构" status="N" method="com.huateng.ebank.business.common.CQMethod.getBrhName"
             readonly="" primary="true" type="String" size="20" default="" xpath="/brcode" />
 
-        <Field id="tlrno" desc="操作员号" status="F" method="None" readonly="" primary="true" type="String" size="20"
+        <Field id="tlrno" desc="用户帐号" status="F" method="None" readonly="" primary="true" type="String" size="20"
             xpath="/tlrno" default="" />
 
-        <Field id="tlrName" desc="操作员名称" status="F" method="None" width="50" readonly="" primary="true" type="String"
+        <Field id="tlrName" desc="用户名称" status="F" method="None" width="50" readonly="" primary="true" type="String"
             size="20" xpath="/tlrName" default="" />
+            
+        <Field id="tlrType" desc="用户类型" status="N" readonly="true" translated="DATA_DIC.37" edittype="select"
+            width="90" method="None" primary="true" type="String" size="20" xpath="/tlrType" />
 
         <Field id="status" desc="登陆状态" status="N" readonly="true" translated="DATA_DIC.37" edittype="select"
             width="90" method="None" primary="true" type="String" size="20" xpath="/status" />
-
 
         <Field id="flag" desc="有效状态" status="F" readonly="true" translated="LIST:1,有效;0,无效" require="true"
             edittype="select" width="90" method="None" primary="true" type="String" size="20" xpath="/flag" default="" />
@@ -50,12 +52,16 @@
 
         <Field id="misc" desc="所属部门" require="" status="N" method="None" width="" primary="false" type="String"
             size="20" xpath="/misc" default="" />
+            
         <Field id="defRoleid" desc="默认岗位" require="" status="N" readonly="false" edittype="select" fieldmap=""
             method="None" translated="DATA_DIC.100" width="90" viewField="" primary="false" type="String" size="10"
-            xpath="/roleid" tip="请先选择操作员岗位" />
+            xpath="/roleid" tip="请先选择用户岗位" />
 
         <Field id="isLock" desc="锁定状态" require="" status="N" method="None" translated="LIST:1,已锁定;0,未锁定" edittype="select"
             width="" primary="false" type="String" size="20" xpath="/isLock" default="" />
+            
+        <Field id="del" desc="删除状态" require="" status="N" method="None" translated="LIST:T,已删除;F,未删除" edittype="select"
+            width="" primary="false" type="String" size="20" xpath="/isDel" default="" />
 
         <Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" size="20" default=""
             tip="操作" require="" />
@@ -69,9 +75,9 @@
     </Fields>
 
     <Where>
-        <TextBox id="qtlrno" type="String" dataType="" operation="EQ" size="8" desc="操作员号" tip="操作员号" method="genLikeP"
-            index="0" function="" width="" default="" scale="" require="" readOnly="" rules="" errmsg="操作员号必须是八位" />
-        <TextBox id="qtlrnoName" type="String" dataType="" operation="EQ" size="8" desc="操作员名称" tip="操作员名称"
+        <TextBox id="qtlrno" type="String" dataType="" operation="EQ" size="8" desc="用户号" tip="用户号" method="genLikeP"
+            index="0" function="" width="" default="" scale="" require="" readOnly="" rules="" errmsg="用户号必须大于八位" />
+        <TextBox id="qtlrnoName" type="String" dataType="" operation="EQ" size="8" desc="用户名称" tip="用户名称"
             method="genLikeP" index="1" function="" width="" default="" scale="" require="" readOnly="" />
     </Where>
 
@@ -79,7 +85,7 @@
         <Button id="btAdd" name="btAdd" desc="新增" operation="" url="#" show="" group="" txn="" icon="icon-add" />
 
         <Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
-            updateClass="com.huateng.ebank.business.opermng.update.OperMngDelUpdate" url="#" txn="" />
+            updateClass="com.huateng.ebank.business.opermng.update.OperDelChgUpdate" url="#" txn="" />
 
         <Button id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" />
 
@@ -93,14 +99,14 @@
 
         <Button id="btResetPwd" name="btResetPwd" desc="重置密码"
             updateClass="com.huateng.ebank.business.opermng.update.OperMngResetPwdUpdate" operation="asysubmit" url="#"
-            show="" group="" txn="management.userresetpwd.update"></Button>
+            show="" group="" txn="management.userresetpwd.update"/>
 
         <Button id="unLock" name="unLock" desc="解锁" updateClass="com.huateng.ebank.business.opermng.update.OperMngUnlockUpdate"
-            operation="asysubmit" url="#" show="" group="" txn="" icon="icon-unlock"></Button>
+            operation="asysubmit" url="#" show="" group="" txn="" icon="icon-unlock"/>
 
         <Button id="btLoginStatus" name="btLoginStatus" desc="强行签退"
             updateClass="com.huateng.ebank.business.opermng.update.OperStatusChgUpdate" operation="asysubmit" url="#"
-            show="" group="" txn="" icon="icon-undo"></Button>
+            show="" group="" txn="" icon="icon-undo"/>
     </Operations>
     <Sql>
     </Sql>

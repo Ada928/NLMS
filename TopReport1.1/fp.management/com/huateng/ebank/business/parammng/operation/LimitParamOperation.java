@@ -64,7 +64,7 @@ public class LimitParamOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.
 	 * ebank.framework.operation.OperationContext)
@@ -75,7 +75,7 @@ public class LimitParamOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.
 	 * ebank.framework.operation.OperationContext)
@@ -101,8 +101,8 @@ public class LimitParamOperation extends BaseOperation {
 			String bizSubClass = (String) context.getAttribute(LimitParamOperation.IN_PARAM_BIZ_SUBCLASS);
 
 			StringBuffer hqlstr = new StringBuffer(512);
-			hqlstr.append("select lp ").append("from LimitParam as lp, TlrInfo as po ").append("where lp.status = '")
-					.append(SystemConstant.VALID_FLAG_VALID).append("' and lp.tlrno = po.tlrno");
+			hqlstr.append("select lp ").append("from LimitParam as lp, TlrInfo as po ").append("where lp.status = '").append(SystemConstant.VALID_FLAG_VALID)
+					.append("' and lp.tlrno = po.tlrno");
 
 			if (!DataFormat.isEmpty(tlrno)) {
 				hqlstr.append(" and lp.tlrno = '").append(DataFormat.trim(tlrno)).append("' ");
@@ -137,7 +137,7 @@ public class LimitParamOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng.
 	 * ebank.framework.operation.OperationContext)
@@ -195,8 +195,7 @@ public class LimitParamOperation extends BaseOperation {
 			Iterator insit = insertList.iterator();
 			for (; insit.hasNext();) {
 				lp = (LimitParam) insit.next();
-				LimitParam lpQuery = DAOUtils.getLimitParamDAO().query(lp.getTlrno(),
-						Integer.parseInt(lp.getBizClass()), lp.getBizSubclass(), "1");
+				LimitParam lpQuery = DAOUtils.getLimitParamDAO().query(lp.getTlrno(), Integer.parseInt(lp.getBizClass()), lp.getBizSubclass(), "1");
 				if (lpQuery == null) {
 					// ?0?1 若该操作员的权限信息不存在，则新增
 					lp.setEffectDate(date);
@@ -204,8 +203,7 @@ public class LimitParamOperation extends BaseOperation {
 					lp.setStatus(SystemConstant.VALID_FLAG_VALID);
 					lpDao.insert(lp);
 				} else {
-					String message = "该组信息已经存在,请勿重复添加[操作员号,流程,业务品种]=[" + lp.getTlrno() + "," + lp.getBizClass() + ","
-							+ lp.getBizSubclass() + "]";
+					String message = "该组信息已经存在,请勿重复添加[操作员号,流程,业务品种]=[" + lp.getTlrno() + "," + lp.getBizClass() + "," + lp.getBizSubclass() + "]";
 					ExceptionUtil.throwCommonException(message, ErrorCode.ERROR_CODE_DUP_INSERT);
 					// // ?0?1 若该操作员的权限信息存在，
 					// if (lpQuery.getStatus().equals(
@@ -239,13 +237,11 @@ public class LimitParamOperation extends BaseOperation {
 			try {
 				TlrInfo t = tiDao.query(tlrno);
 				if (t == null) {
-					ExceptionUtil.throwCommonException("添加新纪录中的[操作员号]=[" + tlrno + "]不存在",
-							ErrorCode.ERROR_CODE_NO_TLRNO_EXIST);
+					ExceptionUtil.throwCommonException("添加新纪录中的[操作员号]=[" + tlrno + "]不存在", ErrorCode.ERROR_CODE_NO_TLRNO_EXIST);
 				}
 			} catch (Exception e) {
 
-				ExceptionUtil.throwCommonException("添加新纪录中的[操作员号]=[" + tlrno + "]不存在",
-						ErrorCode.ERROR_CODE_NO_TLRNO_EXIST);
+				ExceptionUtil.throwCommonException("添加新纪录中的[操作员号]=[" + tlrno + "]不存在", ErrorCode.ERROR_CODE_NO_TLRNO_EXIST);
 			}
 
 			// 检查roleid 和 是否是本行管辖内的

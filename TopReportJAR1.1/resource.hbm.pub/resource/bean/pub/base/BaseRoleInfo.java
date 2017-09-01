@@ -62,11 +62,13 @@ public abstract class BaseRoleInfo implements Serializable {
 	private java.lang.String miscflgs;
 	private java.lang.String misc;
 	/** add by zhiyang.he 修改锁定状态 2012-09-6 begin */
-	private java.lang.String isLock;
+	private boolean lock;
+	private boolean del;
 	private java.lang.String st;
 	private java.lang.String crtDt;
 	private java.lang.String lastUpdTms;
 	private java.lang.String lastUpdOper;
+
 	/** add by zhiyang.he 修改锁定状态 2012-09-6 end */
 
 	/**
@@ -94,6 +96,14 @@ public abstract class BaseRoleInfo implements Serializable {
 	 */
 	public java.lang.String getRoleName() {
 		return roleName;
+	}
+
+	public boolean isDel() {
+		return del;
+	}
+
+	public void setDel(boolean del) {
+		this.del = del;
 	}
 
 	/**
@@ -324,12 +334,12 @@ public abstract class BaseRoleInfo implements Serializable {
 	}
 
 	/** add by zhiyang.he 修改锁定状态 2012-09-6 begin */
-	public java.lang.String getIsLock() {
-		return isLock;
+	public boolean isLock() {
+		return lock;
 	}
 
-	public void setIsLock(java.lang.String isLock) {
-		this.isLock = isLock;
+	public void setLock(boolean lock) {
+		this.lock = lock;
 	}
 
 	public java.lang.String getSt() {

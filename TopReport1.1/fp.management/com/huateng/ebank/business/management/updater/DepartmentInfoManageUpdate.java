@@ -21,12 +21,11 @@ import com.huateng.exception.AppException;
 
 public class DepartmentInfoManageUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("Management_departmentInfoManage");
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_departmentInfoManage");
 
 			List updateList = new ArrayList();
 			List insertList = new ArrayList();

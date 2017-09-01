@@ -20,7 +20,8 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.report.scheduler.timer.BopTimedScheduler;
 
 public class BopTimedSchedulerOperation extends BaseOperation {
-	private static final HtLog htlog = HtLogFactory.getLogger(BopTimedSchedulerOperation.class);
+	private static final HtLog htlog = HtLogFactory
+			.getLogger(BopTimedSchedulerOperation.class);
 	public static final String ID = "BopTimedSchedulerOperation";
 	public static final String CMD = "CMD";
 	public static final String OP_START = "OP_START";
@@ -48,25 +49,31 @@ public class BopTimedSchedulerOperation extends BaseOperation {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		if (cmd.equals(OP_START)) {
 			String id = (String) context.getAttribute(IN_ID_VALUE);
-			ReportJobConfig jobConfig = rootdao.query(ReportJobConfig.class, id);
+			ReportJobConfig jobConfig = rootdao
+					.query(ReportJobConfig.class, id);
 			jobConfig.setJobStauts(ITimedScheduler.TIMED_STATUS_1);
 			jobConfig.setJobLstTm(new Date());
 			jobConfig.setJobLstTrl(gi.getTlrno());
 			rootdao.update(jobConfig);
 			// 定时任务停止
 			try {
-				BopTimedScheduler.addJob(jobConfig.getId(),
-						(Job) Class.forName(jobConfig.getJobClassName()).newInstance(), jobConfig.getJobTime());
+				BopTimedScheduler.addJob(jobConfig.getId(), (Job) Class
+						.forName(jobConfig.getJobClassName()).newInstance(),
+						jobConfig.getJobTime());
 			} catch (Exception e) {
 				e.printStackTrace();
 				ExceptionUtil.throwCommonException("定时任务停止启动出错");
 			}
 			gi.addBizLog("Updater.log",
-					new String[] { gi.getTlrno(), gi.getBrno(), "启动定时器:" + jobConfig.getJobName() });
-			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "启动定时器:" + jobConfig.getJobName() });
+					new String[] { gi.getTlrno(), gi.getBrno(),
+							"启动定时器:" + jobConfig.getJobName() });
+			htlog.info("Updater.log",
+					new String[] { gi.getTlrno(), gi.getBrno(),
+							"启动定时器:" + jobConfig.getJobName() });
 		} else if (cmd.equals(OP_STOP)) {
 			String id = (String) context.getAttribute(IN_ID_VALUE);
-			ReportJobConfig jobConfig = rootdao.query(ReportJobConfig.class, id);
+			ReportJobConfig jobConfig = rootdao
+					.query(ReportJobConfig.class, id);
 			jobConfig.setJobStauts(ITimedScheduler.TIMED_STATUS_0);
 			jobConfig.setJobLstTm(new Date());
 			jobConfig.setJobLstTrl(gi.getTlrno());
@@ -79,16 +86,22 @@ public class BopTimedSchedulerOperation extends BaseOperation {
 				ExceptionUtil.throwCommonException("定时任务停止启动出错");
 			}
 			gi.addBizLog("Updater.log",
-					new String[] { gi.getTlrno(), gi.getBrno(), "停止定时器:" + jobConfig.getJobName() });
-			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "停止定时器:" + jobConfig.getJobName() });
+					new String[] { gi.getTlrno(), gi.getBrno(),
+							"停止定时器:" + jobConfig.getJobName() });
+			htlog.info("Updater.log",
+					new String[] { gi.getTlrno(), gi.getBrno(),
+							"停止定时器:" + jobConfig.getJobName() });
 		} else if (cmd.equals(OP_UPDATE)) {
-			ReportJobConfig jobConfig = (ReportJobConfig) context.getAttribute(IN_BEAN);
-			ReportJobConfig dbJobConfig = rootdao.query(ReportJobConfig.class, jobConfig.getId());
+			ReportJobConfig jobConfig = (ReportJobConfig) context
+					.getAttribute(IN_BEAN);
+			ReportJobConfig dbJobConfig = rootdao.query(ReportJobConfig.class,
+					jobConfig.getId());
 
 			String dbJobTime = dbJobConfig.getJobTime();
 
 			dbJobConfig.setJobTime(jobConfig.getJobTime());
 			dbJobConfig.setJobRemark(jobConfig.getJobRemark());
+			dbJobConfig.setJustWorkdateRun(jobConfig.getJustWorkdateRun());
 			jobConfig.setJobLstTm(new Date());
 			jobConfig.setJobLstTrl(gi.getTlrno());
 			rootdao.update(dbJobConfig);
@@ -98,20 +111,32 @@ public class BopTimedSchedulerOperation extends BaseOperation {
 					// BopTimedScheduler.modifyJobTime(dbJobConfig.getId(),
 					// dbJobConfig.getJobTime());
 					BopTimedScheduler.removeJob(dbJobConfig.getId());
-					if (jobConfig.getJobStauts().equals(ITimedScheduler.TIMED_STATUS_1)) {
-						BopTimedScheduler.addJob(dbJobConfig.getId(),
-								(Job) Class.forName(dbJobConfig.getJobClassName()).newInstance(),
-								dbJobConfig.getJobTime());
+					if (jobConfig.getJobStauts().equals(
+							ITimedScheduler.TIMED_STATUS_1)) {
+						BopTimedScheduler.addJob(
+								dbJobConfig.getId(),
+								(Job) Class.forName(
+										dbJobConfig.getJobClassName())
+										.newInstance(), dbJobConfig
+										.getJobTime());
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					ExceptionUtil.throwCommonException("定时任务触发器时间修改错误");
 				}
 
-				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(),
-						"修改定时器:" + jobConfig.getJobName() + "," + jobConfig.getJobTime() });
-				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(),
-						"修改定时器:" + jobConfig.getJobName() + "," + jobConfig.getJobTime() });
+				gi.addBizLog("Updater.log",
+						new String[] {
+								gi.getTlrno(),
+								gi.getBrno(),
+								"修改定时器:" + jobConfig.getJobName() + ","
+										+ jobConfig.getJobTime() });
+				htlog.info("Updater.log",
+						new String[] {
+								gi.getTlrno(),
+								gi.getBrno(),
+								"修改定时器:" + jobConfig.getJobName() + ","
+										+ jobConfig.getJobTime() });
 
 			}
 		}

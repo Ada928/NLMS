@@ -5,7 +5,8 @@ import java.util.List;
 
 import resource.bean.report.base.BaseBiAnalyDetail;
 
-public class BiAnalyDetail extends BaseBiAnalyDetail {
+public class BiAnalyDetail extends BaseBiAnalyDetail implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

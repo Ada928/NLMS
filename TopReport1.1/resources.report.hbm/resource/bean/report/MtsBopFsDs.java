@@ -2,7 +2,7 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseMtsBopFsDs;
 
-public class MtsBopFsDs extends BaseMtsBopFsDs {
+public class MtsBopFsDs extends BaseMtsBopFsDs implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

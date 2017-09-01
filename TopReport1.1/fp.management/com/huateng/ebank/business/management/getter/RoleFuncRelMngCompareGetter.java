@@ -39,8 +39,7 @@ public class RoleFuncRelMngCompareGetter extends BaseGetter {
 				roleInfoBean.setIdOld(roleInfo.getId());
 
 				if (st.equals("2")) {
-					List<SysTaskInfo> taskList = ROOTDAOUtils.getROOTDAO()
-							.queryByQL2List("from SysTaskInfo where intInsId='100299' and adtRcdPk='" + id + "'");
+					List<SysTaskInfo> taskList = ROOTDAOUtils.getROOTDAO().queryByQL2List("from SysTaskInfo where intInsId='100299' and adtRcdPk='" + id + "'");
 					if (taskList.size() > 0) {
 						RoleInfo seriBean = (RoleInfo) rt.getObjctBySysTaskInfo(taskList.get(0));
 						roleInfoBean.setRoleName(seriBean.getRoleName());

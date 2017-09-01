@@ -50,47 +50,44 @@
 
  <script language="javascript">
  
-
-//定位一条记录
-function locate(id) {
-	var record = ApproveConfig_dataset.find(["id"],[id]);
-	if (record) {
-		ApproveConfig_dataset.setRecord(record);
-	}
-}
-function datatable1_opr_onRefresh(cell, value, record)
-	{
-	
-		if (record) {//当存在记录时
-			var id = record.getValue("id");
-				cell.innerHTML="<center><a href=\"JavaScript:modDtl('"+id+"')\">修改</a></center>";
+		//定位一条记录
+		function locate(id) {
+			var record = ApproveConfig_dataset.find([ "id" ], [ id ]);
+			if (record) {
+				ApproveConfig_dataset.setRecord(record);
 			}
- else {//当不存在记录时
-		 cell.innerHTML="&nbsp;";
 		}
-	}
-	
-function modDtl(id){
-		locate(id);
-		ApproveConfig_dataset.setFieldReadOnly("id", true);
-		
-		subwindow_signWindow.show();
-	}
+		function datatable1_opr_onRefresh(cell, value, record) {
 
-function btNewClick(){
-		subwindow_signWindow.show();
-		btnAdd.click();
-	}
-	function signWindow_floatWindow_beforeClose(subwindow){
-		ApproveConfig_dataset.cancelRecord();
-		return true;
-	}
+			if (record) {//当存在记录时
+				var id = record.getValue("id");
+				cell.innerHTML = "<center><a href=\"JavaScript:modDtl('" + id
+						+ "')\">修改</a></center>";
+			} else {//当不存在记录时
+				cell.innerHTML = "&nbsp;";
+			}
+		}
+
+		function modDtl(id) {
+			locate(id);
+			ApproveConfig_dataset.setFieldReadOnly("id", true);
+
+			subwindow_signWindow.show();
+		}
+
+		function btNewClick() {
+			subwindow_signWindow.show();
+			btnAdd.click();
+		}
+		function signWindow_floatWindow_beforeClose(subwindow) {
+			ApproveConfig_dataset.cancelRecord();
+			return true;
+		}
 		function btSave_postSubmit(button) {
-		button.url="#";
-		subwindow_signWindow.close();
-		ApproveConfig_dataset.flushData(ApproveConfig_dataset.pageIndex);
-	}
-
+			button.url = "#";
+			subwindow_signWindow.close();
+			ApproveConfig_dataset.flushData(ApproveConfig_dataset.pageIndex);
+		}
 </script>
 
 </@CommonQueryMacro.page>

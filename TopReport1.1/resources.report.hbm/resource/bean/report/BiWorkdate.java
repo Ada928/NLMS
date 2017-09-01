@@ -2,7 +2,7 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBiWorkdate;
 
-public class BiWorkdate extends BaseBiWorkdate {
+public class BiWorkdate extends BaseBiWorkdate implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

@@ -179,8 +179,8 @@ public class HolidayService {
 		String weekendInfoString = "";
 		for (int i = 1; i <= totalDayCnt; i++) {
 			// Set holiday if the day is sunday or saturday
-			weekendInfoString += (iteratorDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY
-					|| iteratorDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) ? "0" : "1";
+			weekendInfoString += (iteratorDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY || iteratorDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) ? "0"
+					: "1";
 			iteratorDate.add(Calendar.DAY_OF_MONTH, 1);
 		}
 		return weekendInfoString;

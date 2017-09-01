@@ -2,7 +2,8 @@ package resource.bean.pub;
 
 import resource.bean.pub.base.BaseBhProcStatus;
 
-public class BhProcStatus extends BaseBhProcStatus {
+public class BhProcStatus extends BaseBhProcStatus implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
@@ -20,7 +21,8 @@ public class BhProcStatus extends BaseBhProcStatus {
 	/**
 	 * Constructor for required fields
 	 */
-	public BhProcStatus(java.lang.Integer id, java.util.Date bhdate, java.lang.Integer jobno, java.lang.Integer step,
+	public BhProcStatus(java.lang.Integer id, java.util.Date bhdate,
+			java.lang.Integer jobno, java.lang.Integer step,
 			java.lang.Integer subStep) {
 
 		super(id, bhdate, jobno, step, subStep);

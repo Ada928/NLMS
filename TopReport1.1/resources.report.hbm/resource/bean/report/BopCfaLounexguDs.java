@@ -2,7 +2,8 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBopCfaLounexguDs;
 
-public class BopCfaLounexguDs extends BaseBopCfaLounexguDs {
+public class BopCfaLounexguDs extends BaseBopCfaLounexguDs implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
@@ -20,7 +21,8 @@ public class BopCfaLounexguDs extends BaseBopCfaLounexguDs {
 	/**
 	 * Constructor for required fields
 	 */
-	public BopCfaLounexguDs(java.lang.String id, java.lang.String apptype, java.lang.String currentfile) {
+	public BopCfaLounexguDs(java.lang.String id, java.lang.String apptype,
+			java.lang.String currentfile) {
 
 		super(id, apptype, currentfile);
 	}
@@ -31,7 +33,8 @@ public class BopCfaLounexguDs extends BaseBopCfaLounexguDs {
 		return fogucodeinfos;
 	}
 
-	public void setFogucodeinfos(java.util.List<BopCfaFogucodeinfo> fogucodeinfos) {
+	public void setFogucodeinfos(
+			java.util.List<BopCfaFogucodeinfo> fogucodeinfos) {
 		this.fogucodeinfos = fogucodeinfos;
 	}
 

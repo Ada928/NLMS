@@ -28,8 +28,8 @@ import com.huateng.view.pub.FunctionInfoView;
  */
 public class RoleInfo1Update extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		// TODO Auto-generated method stub
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();

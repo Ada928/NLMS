@@ -20,13 +20,11 @@ public class WorkflowParamBindingQueryGetter extends BaseGetter {
 			PageQueryCondition con = new PageQueryCondition();
 			con.setPageIndex(result.getPage().getCurrentPage());
 			con.setPageSize(result.getPage().getEveryPage());
-			con.setQueryString("from WorkflowParamBinding po where po.processTemplate = '" + procName
-					+ "' and taskName = '" + taskName + "'");
+			con.setQueryString("from WorkflowParamBinding po where po.processTemplate = '" + procName + "' and taskName = '" + taskName + "'");
 
 			PageQueryResult pageQueryResult = BaseDAOUtils.getHQLDAO().pageQueryByQL(con);
 
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
-					pageQueryResult.getQueryResult(), getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();

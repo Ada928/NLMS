@@ -38,8 +38,7 @@ public class LoginAction extends BaseAction {
 	 */
 	private static final Log logger = LogFactory.getLog(ErrorCodeUtil.class);
 
-	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if (logger.isDebugEnabled()) {
 			logger.debug("execute(ActionMapping, ActionForm, HttpServletRequest, HttpServletResponse) - start"); //$NON-NLS-1$
 		}
@@ -106,9 +105,8 @@ public class LoginAction extends BaseAction {
 			}
 			actionForward = mapping.findForward("success");
 			if (logger.isDebugEnabled()) {
-				logger.debug(
-						"execute(ActionMapping, ActionForm, HttpServletRequest, HttpServletResponse) - actionForward.getPath()" //$NON-NLS-1$
-								+ actionForward.getPath());
+				logger.debug("execute(ActionMapping, ActionForm, HttpServletRequest, HttpServletResponse) - actionForward.getPath()" //$NON-NLS-1$
+						+ actionForward.getPath());
 			}
 
 			// 记录登录日志
@@ -130,8 +128,7 @@ public class LoginAction extends BaseAction {
 
 			// 记录登录日志
 			TlrLoginLogService tlrLoginLogService = TlrLoginLogService.getInstance();
-			tlrLoginLogService.saveTlrLoginExceptionLog(formLogin.getUserName(), formLogin.getBrCode(),
-					request.getRemoteAddr(), sessionId);
+			tlrLoginLogService.saveTlrLoginExceptionLog(formLogin.getUserName(), formLogin.getBrCode(), request.getRemoteAddr(), sessionId);
 
 			actionForward = mapping.findForward("error");
 		}

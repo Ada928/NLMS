@@ -36,8 +36,7 @@ public class OperMngModComSeriGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -61,15 +60,13 @@ public class OperMngModComSeriGetter extends BaseGetter {
 		if (flag.equals("0")) {
 			if (st.equals("2")) {
 				ReportTaskUtil rt = new ReportTaskUtil();
-				List<SysTaskInfo> taskList = ROOTDAOUtils.getROOTDAO()
-						.queryByQL2List("from SysTaskInfo where intInsId='100399' and adtRcdPk='" + tlrno + "'");
+				List<SysTaskInfo> taskList = ROOTDAOUtils.getROOTDAO().queryByQL2List("from SysTaskInfo where intInsId='100399' and adtRcdPk='" + tlrno + "'");
 				if (taskList.size() > 0) {
 					TlrInfoAuditBean auditBean = (TlrInfoAuditBean) rt.getObjctBySysTaskInfo(taskList.get(0));
 					list.add(auditBean.getTlrInfo());
 					result.setQueryResult(list);
 					result.setTotalCount(1);
-					if (auditBean.getTlrInfo().getRestFlg() != null
-							&& auditBean.getTlrInfo().getRestFlg().equals("reset")) {
+					if (auditBean.getTlrInfo().getRestFlg() != null && auditBean.getTlrInfo().getRestFlg().equals("reset")) {
 						list.get(0).setReset("reset");
 					}
 				}

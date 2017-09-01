@@ -43,8 +43,8 @@ public class OperMngRoleInfoCompareGetter extends BaseGetter {
 	}
 
 	public List getSysTaskInfo(String adtRcdPk) throws CommonException {
-		String str = "from SysTaskInfo sti where sti.adtRcdPk = '" + adtRcdPk + "' and sti.intInsId = '"
-				+ ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value + "'";
+		String str = "from SysTaskInfo sti where sti.adtRcdPk = '" + adtRcdPk + "' and sti.intInsId = '" + ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value
+				+ "'";
 		List fl = DAOUtils.getHQLDAO().queryByQL2List(str);
 		return fl;
 	}

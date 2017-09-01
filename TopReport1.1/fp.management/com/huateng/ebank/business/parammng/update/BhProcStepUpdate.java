@@ -30,8 +30,8 @@ import com.huateng.exception.AppException;
 
 public class BhProcStepUpdate extends BaseUpdate {
 	// --------------------------------覆盖saveOrUpdate()方法------------------------------------------------------
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
-			HttpServletResponse response) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("parammng_BhProcStep");
@@ -49,8 +49,7 @@ public class BhProcStepUpdate extends BaseUpdate {
 				// ErrorCode.ERROR_CODE_BHPROC_STEP_PARAM);
 				// }
 				if (reportFlag.length() < 9 && reportFlag.length() > 0) {
-					ExceptionUtil.throwCommonException("报表标志不满足格式:*-*-*-*-*,其中*代表0,1",
-							ErrorCode.ERROR_CODE_BHPROC_STEP_PARAM);
+					ExceptionUtil.throwCommonException("报表标志不满足格式:*-*-*-*-*,其中*代表0,1", ErrorCode.ERROR_CODE_BHPROC_STEP_PARAM);
 				}
 				if (reportFlag.length() == 9) {
 					int tmpFlag1 = 3;// 3起到判断作用
@@ -73,24 +72,18 @@ public class BhProcStepUpdate extends BaseUpdate {
 						tmpFlag8 = reportFlag.substring(7, 8);
 						tmpFlag9 = Integer.parseInt(reportFlag.substring(8, 9));
 					} catch (Exception ex) {
-						ExceptionUtil.throwCommonException("报表标志不满足格式:*-*-*-*-*,其中*代表0,1",
-								ErrorCode.ERROR_CODE_BHPROC_STEP_PARAM);
+						ExceptionUtil.throwCommonException("报表标志不满足格式:*-*-*-*-*,其中*代表0,1", ErrorCode.ERROR_CODE_BHPROC_STEP_PARAM);
 					}
-					if ((tmpFlag1 != 0 && tmpFlag1 != 1) || (tmpFlag3 != 0 && tmpFlag3 != 1)
-							|| (tmpFlag5 != 0 && tmpFlag5 != 1) || (tmpFlag7 != 0 && tmpFlag7 != 1)
-							|| (tmpFlag9 != 0 && tmpFlag9 != 1) || tmpFlag2.equals("-") == false
-							|| tmpFlag4.equals("-") == false || tmpFlag6.equals("-") == false
-							|| tmpFlag8.equals("-") == false) {
-						ExceptionUtil.throwCommonException("报表标志不满足格式:*-*-*-*-*,其中*代表0,1",
-								ErrorCode.ERROR_CODE_BHPROC_STEP_PARAM);
+					if ((tmpFlag1 != 0 && tmpFlag1 != 1) || (tmpFlag3 != 0 && tmpFlag3 != 1) || (tmpFlag5 != 0 && tmpFlag5 != 1)
+							|| (tmpFlag7 != 0 && tmpFlag7 != 1) || (tmpFlag9 != 0 && tmpFlag9 != 1) || tmpFlag2.equals("-") == false
+							|| tmpFlag4.equals("-") == false || tmpFlag6.equals("-") == false || tmpFlag8.equals("-") == false) {
+						ExceptionUtil.throwCommonException("报表标志不满足格式:*-*-*-*-*,其中*代表0,1", ErrorCode.ERROR_CODE_BHPROC_STEP_PARAM);
 					}
 				}
 				switch (updateResultBean.getRecodeState()) {
 				case UpdateResultBean.INSERT:
-					if (jobNo != 5 && jobNo != 10 && jobNo != 20 && jobNo != 25 && jobNo != 35 && jobNo != 40
-							&& jobNo != 50) {
-						ExceptionUtil.throwCommonException("作业号只能为5,10,20,25,35,40,50",
-								ErrorCode.ERROR_CODE_BHPROC_STEP_PARAM);
+					if (jobNo != 5 && jobNo != 10 && jobNo != 20 && jobNo != 25 && jobNo != 35 && jobNo != 40 && jobNo != 50) {
+						ExceptionUtil.throwCommonException("作业号只能为5,10,20,25,35,40,50", ErrorCode.ERROR_CODE_BHPROC_STEP_PARAM);
 					}
 					bhProcStep.setJobno(new Integer(jobNo));
 					bhProcStep.setStep(Integer.valueOf(DataFormat.trim((String) map.get("step"))));
@@ -153,10 +146,8 @@ public class BhProcStepUpdate extends BaseUpdate {
 					delList.add(bhProcStep);
 					break;
 				case UpdateResultBean.MODIFY:
-					if (jobNo != 5 && jobNo != 10 && jobNo != 20 && jobNo != 25 && jobNo != 35 && jobNo != 40
-							&& jobNo != 50) {
-						ExceptionUtil.throwCommonException("作业号只能为5,10,20,25,35,40,50",
-								ErrorCode.ERROR_CODE_BHPROC_STEP_PARAM);
+					if (jobNo != 5 && jobNo != 10 && jobNo != 20 && jobNo != 25 && jobNo != 35 && jobNo != 40 && jobNo != 50) {
+						ExceptionUtil.throwCommonException("作业号只能为5,10,20,25,35,40,50", ErrorCode.ERROR_CODE_BHPROC_STEP_PARAM);
 					}
 					bhProcStep.setId(Integer.valueOf(DataFormat.trim((String) map.get("id"))));
 					bhProcStep.setJobno(Integer.valueOf(DataFormat.trim((String) map.get("jobno"))));
