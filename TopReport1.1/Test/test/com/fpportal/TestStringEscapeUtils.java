@@ -10,7 +10,6 @@
  *
  * Copyright (c) 2012, TNT All Rights Reserved.
  */
-
 package test.com.fpportal;
 
 import org.apache.commons.lang.StringEscapeUtils;
