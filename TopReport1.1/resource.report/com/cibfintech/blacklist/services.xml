@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "/WEB-INF/dtd/spring-beans-2.0.dtd">
+<beans>
+    <!-- 商户黑名单服务类 -->
+    <bean id="BankBlackListService" class="com.cibfintech.blacklist.service.BankBlackListService" />
+    <bean id="BankBlackListQueryService" class="com.cibfintech.blacklist.service.BankBlackListQueryService" />
+    <bean id="BankBlackListOperation" class="com.cibfintech.blacklist.operation.BankBlackListOperation" />
+    <bean id="com.cibfintech.blacklist.service.BankBlackListOperateLogService" 
+    	class="com.cibfintech.blacklist.service.BankBlackListOperateLogService"/>
+
+    <bean id="PoliceBlackListService" class="com.cibfintech.blacklist.service.PoliceBlackListService" />
+    <bean id="PoliceBlackListOperation" class="com.cibfintech.blacklist.operation.PoliceBlackListOperation" />
+    <bean id="com.cibfintech.blacklist.service.PoliceBlackListOperateLogService" 
+    	class="com.cibfintech.blacklist.service.PoliceBlackListOperateLogService"/>
+    
+    <bean id="InternationalBlackListService" class="com.cibfintech.blacklist.service.InternationalBlackListService" />
+    <bean id="InternationalBlackListOperation" class="com.cibfintech.blacklist.operation.InternationalBlackListOperation" />
+    <bean id="com.cibfintech.blacklist.service.InternationBlackListOperateLogService" 
+    	class="com.cibfintech.blacklist.service.InternationBlackListOperateLogService"/>
+    	
+    	
+    <bean id="com.cibfintech.blacklist.service.QueryDailyLogCountService" 
+    	class="com.cibfintech.blacklist.service.QueryDailyLogCountService"/>
+    <bean id="com.cibfintech.blacklist.service.QueryMonthlyLogCountService" 
+    	class="com.cibfintech.blacklist.service.QueryMonthlyLogCountService"/>
+ 
+</beans>
