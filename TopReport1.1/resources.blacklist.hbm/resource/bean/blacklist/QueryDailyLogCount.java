@@ -1,6 +1,6 @@
 package resource.bean.blacklist;
 
-import resource.bean.report.base.BaseQueryDailyLogCount;
+import resource.bean.blacklist.base.BaseQueryDailyLogCount;
 
 public class QueryDailyLogCount extends BaseQueryDailyLogCount implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;

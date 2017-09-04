@@ -1,6 +1,6 @@
 package resource.bean.blacklist;
 
-import resource.bean.report.base.BaseQueryMonthlyLogCount;
+import resource.bean.blacklist.base.BaseQueryMonthlyLogCount;
 
 public class QueryMonthlyLogCount extends BaseQueryMonthlyLogCount implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;

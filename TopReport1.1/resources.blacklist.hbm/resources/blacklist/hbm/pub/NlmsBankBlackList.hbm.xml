@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC
 	"-//Hibernate/Hibernate Mapping DTD//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
-<hibernate-mapping package="resource.bean.report">
+<hibernate-mapping package="resource.bean.blacklist">
     <class name="BankBlackList" table="nlms_bankblacklist">
         <meta attribute="sync-DAO">false</meta>
 

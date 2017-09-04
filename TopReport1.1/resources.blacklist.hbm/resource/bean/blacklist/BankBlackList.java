@@ -2,7 +2,7 @@ package resource.bean.blacklist;
 
 import java.io.Serializable;
 
-import resource.bean.report.base.BaseBankBlackList;
+import resource.bean.blacklist.base.BaseBankBlackList;
 
 public class BankBlackList extends BaseBankBlackList implements Serializable {
 	private static final long serialVersionUID = 1L;

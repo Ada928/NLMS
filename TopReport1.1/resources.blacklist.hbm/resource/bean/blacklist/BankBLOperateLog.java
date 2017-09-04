@@ -1,6 +1,6 @@
 package resource.bean.blacklist;
 
-import resource.bean.report.base.BaseBankBLOperateLog;
+import resource.bean.blacklist.base.BaseBankBLOperateLog;
 
 public class BankBLOperateLog extends BaseBankBLOperateLog implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;

@@ -3,6 +3,8 @@ package resource.bean.blacklist.base;
 import java.io.Serializable;
 import java.util.Date;
 
+import resource.bean.blacklist.BankBlackList;
+
 /**
  * NlmsBankblacklist entity. @author MyEclipse Persistence Tools
  */
@@ -308,10 +310,10 @@ public class BaseBankBlackList implements Serializable {
 	public boolean equals(Object obj) {
 		if (null == obj)
 			return false;
-		if (!(obj instanceof resource.bean.report.BankBlackList))
+		if (!(obj instanceof BankBlackList))
 			return false;
 		else {
-			resource.bean.report.BankBlackList nlmsBankblacklist = (resource.bean.report.BankBlackList) obj;
+			resource.bean.blacklist.BankBlackList nlmsBankblacklist = (BankBlackList) obj;
 			if (null == this.getId() || null == nlmsBankblacklist.getId())
 				return false;
 			else

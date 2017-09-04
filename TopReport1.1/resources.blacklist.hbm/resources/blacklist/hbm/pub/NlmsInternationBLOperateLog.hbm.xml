@@ -3,7 +3,7 @@
 	"-//Hibernate/Hibernate Mapping DTD//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
-<hibernate-mapping package="resource.bean.report">
+<hibernate-mapping package="resource.bean.blacklist">
     <class name="InternationBLOperateLog" table="NLMS_INTERNATI_B_L_OPERATE_LOG">
         <meta attribute="sync-DAO">false</meta>
         <id name="id" type="string" column="LOG_ID"></id>

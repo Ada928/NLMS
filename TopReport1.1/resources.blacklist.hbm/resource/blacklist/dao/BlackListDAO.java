@@ -15,11 +15,11 @@ import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 
-public class ROOTDAO extends resource.dao.base.HQLDAO {
+public class BlackListDAO extends resource.dao.base.HQLDAO {
 
-	private static final Logger log = Logger.getLogger(ROOTDAO.class);
+	private static final Logger log = Logger.getLogger(BlackListDAO.class);
 
-	public ROOTDAO() {
+	public BlackListDAO() {
 		super();
 
 	}

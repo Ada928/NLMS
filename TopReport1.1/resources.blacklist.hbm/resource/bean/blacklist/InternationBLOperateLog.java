@@ -1,6 +1,6 @@
 package resource.bean.blacklist;
 
-import resource.bean.report.base.BaseInternationBLOperateLog;
+import resource.bean.blacklist.base.BaseInternationBLOperateLog;
 
 public class InternationBLOperateLog extends BaseInternationBLOperateLog implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;

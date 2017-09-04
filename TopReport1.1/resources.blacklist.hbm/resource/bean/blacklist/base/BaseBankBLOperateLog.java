@@ -2,6 +2,8 @@ package resource.bean.blacklist.base;
 
 import java.io.Serializable;
 
+import resource.bean.blacklist.BankBLOperateLog;
+
 /**
  * This is an object that contains data related to the TLR_LOGIN_LOG table. Do
  * not modify this class because it will be overwritten if the configuration
@@ -187,10 +189,10 @@ public abstract class BaseBankBLOperateLog implements Serializable {
 	public boolean equals(Object obj) {
 		if (null == obj)
 			return false;
-		if (!(obj instanceof resource.bean.pub.BctlOperateLog))
+		if (!(obj instanceof BankBLOperateLog))
 			return false;
 		else {
-			resource.bean.report.BankBLOperateLog bankBLOperateLog = (resource.bean.report.BankBLOperateLog) obj;
+			BankBLOperateLog bankBLOperateLog = (BankBLOperateLog) obj;
 			if (null == this.getId() || null == bankBLOperateLog.getId())
 				return false;
 			else

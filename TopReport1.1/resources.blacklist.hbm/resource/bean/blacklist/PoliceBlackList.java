@@ -2,7 +2,7 @@ package resource.bean.blacklist;
 
 import java.io.Serializable;
 
-import resource.bean.report.base.BasePoliceBlackList;
+import resource.bean.blacklist.base.BasePoliceBlackList;
 
 public class PoliceBlackList extends BasePoliceBlackList implements Serializable {
 
