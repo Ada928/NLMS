@@ -38,13 +38,13 @@ public class Bctl extends BaseBctl {
 	private String brclassName;
 
 	public String getBrcodeTypeName() {
-		String brno = DataFormat.trim(super.getBrno());
+		String brcode = DataFormat.trim(super.getBrcode());
 		String brname = DataFormat.trim(super.getBrname());
 
-		if (StringUtils.isEmpty(brno) && StringUtils.isEmpty(brname)) {
+		if (StringUtils.isEmpty(brcode) && StringUtils.isEmpty(brname)) {
 			return "";
 		}
-		return brno + "-" + brname;
+		return brcode + " - " + brname;
 	}
 
 	public void setBrcodeTypeName(String name) {

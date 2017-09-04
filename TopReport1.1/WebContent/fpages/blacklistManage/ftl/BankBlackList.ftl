@@ -80,7 +80,8 @@
 	//修改功能
     function openModifyWindow(id) {
         locate(id);
-		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListManage.ftl?opType=edit";
+		BankBlackList_dataset.setParameter("id", id);
+		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListManage.ftl?opType=edit&id="+id;
     }
 
     //展示对比功能的js

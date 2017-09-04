@@ -49,11 +49,9 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getDataDicName(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getDataDicName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		String translated = element.getAnyValue("translated");
-		if (StringUtils.isEmpty(value) || StringUtils.isEmpty(translated)
-				|| !translated.startsWith("DATA_DIC.")) {
+		if (StringUtils.isEmpty(value) || StringUtils.isEmpty(translated) || !translated.startsWith("DATA_DIC.")) {
 			return value;
 		}
 		String dicType = translated.substring(translated.indexOf(".") + 1);
@@ -68,8 +66,7 @@ public class CQMethod {
 	 * @return String roleName
 	 * @throws HuatengException
 	 */
-	public static String getRoleName(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getRoleName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		RoleMgrService roleMgrService = RoleMgrService.getInstance();
 
@@ -78,8 +75,7 @@ public class CQMethod {
 		}
 		String rolename = null;
 		try {
-			rolename = roleMgrService.getRoleById(Integer.parseInt(value))
-					.getRoleName();
+			rolename = roleMgrService.getRoleById(Integer.parseInt(value)).getRoleName();
 		} catch (Exception e) {
 
 		}
@@ -99,8 +95,7 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getUbankNamebyNo(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getUbankNamebyNo(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		if (StringUtils.isEmpty(value)) {
 			return "";
@@ -122,8 +117,7 @@ public class CQMethod {
 	 * 如20121017
 	 */
 
-	public static BigDecimal getDayCNY(BigDecimal currency, String currenyType,
-			String workDate) throws CommonException {
+	public static BigDecimal getDayCNY(BigDecimal currency, String currenyType, String workDate) throws CommonException {
 		if ("CNY".equalsIgnoreCase(currenyType)) {
 			return currency;
 		}
@@ -132,8 +126,7 @@ public class CQMethod {
 		BiDayexchangerate biDay = null;
 		BigDecimal toExCNY = new BigDecimal(0).setScale(2);
 		StringBuffer hql = new StringBuffer("");
-		hql.append(" from BiDayexchangerate biday where id='" + currenyType
-				+ "' and rateDate='" + workDate + "'");
+		hql.append(" from BiDayexchangerate biday where id='" + currenyType + "' and rateDate='" + workDate + "'");
 		dayList = rootdao.queryByQL2List(hql.toString());
 
 		if (null == dayList || dayList.size() == 0) {
@@ -146,8 +139,7 @@ public class CQMethod {
 				ExceptionUtil.throwCommonException("外汇日牌价不存在相应的记录！");
 			}
 			if (null != biDay && "4".equalsIgnoreCase(biDay.getSt())) {
-				toExCNY = currency.divide(biDay.getRateUnit()).multiply(
-						biDay.getRateMidprice());
+				toExCNY = currency.divide(biDay.getRateUnit()).multiply(biDay.getRateMidprice());
 			} else if (null != biDay && !"4".equalsIgnoreCase(biDay.getSt())) {
 				ExceptionUtil.throwCommonException("请检查 外汇日牌价的[主管确认]是否已经完成！");
 			}
@@ -159,8 +151,7 @@ public class CQMethod {
 	 * 获取月牌价折合人民币 currency ：需要转换的金额 currenyType：金额的对应币种 yearMoth ： 对应的年月 如201210
 	 */
 
-	public static BigDecimal getMothCNY(BigDecimal currency,
-			String currenyType, String yearMoth) throws CommonException {
+	public static BigDecimal getMothCNY(BigDecimal currency, String currenyType, String yearMoth) throws CommonException {
 		if ("CNY".equalsIgnoreCase(currenyType)) {
 			return currency;
 		}
@@ -169,8 +160,7 @@ public class CQMethod {
 		BiMonthexchangerate biMoth = null;
 		BigDecimal toExCNY = new BigDecimal(0).setScale(2);
 		StringBuffer hql = new StringBuffer("");
-		hql.append(" from BiMonthexchangerate bimoth where id='" + currenyType
-				+ "' and yearMonth='" + yearMoth + "'");
+		hql.append(" from BiMonthexchangerate bimoth where id='" + currenyType + "' and yearMonth='" + yearMoth + "'");
 		dayList = rootdao.queryByQL2List(hql.toString());
 
 		if (null == dayList || dayList.size() == 0) {
@@ -183,8 +173,7 @@ public class CQMethod {
 				ExceptionUtil.throwCommonException("外汇月牌价不存在相应的记录！");
 			}
 			if (null != biMoth && "4".equalsIgnoreCase(biMoth.getSt())) {
-				toExCNY = currency.divide(biMoth.getRateUnit()).multiply(
-						biMoth.getRateMidprice());
+				toExCNY = currency.divide(biMoth.getRateUnit()).multiply(biMoth.getRateMidprice());
 			} else if (null != biMoth && !"4".equalsIgnoreCase(biMoth.getSt())) {
 				ExceptionUtil.throwCommonException("请检查 外汇月牌价的[主管确认]是否已经完成！");
 			}
@@ -202,8 +191,7 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getRMBCapitalMoney(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getRMBCapitalMoney(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		if (StringUtils.isEmpty(value)) {
 			return "";
@@ -223,9 +211,7 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public final static String formatFenToBigDecimal(
-			ICommonQueryBaseBean element, String value, ServletRequest request)
-			throws HuatengException {
+	public final static String formatFenToBigDecimal(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		if (value == null || "".equals(value)) {
 			return "";
 		}
@@ -244,9 +230,7 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getRMBCapitalformatFenMoney(
-			ICommonQueryBaseBean element, String value, ServletRequest request)
-			throws HuatengException {
+	public static String getRMBCapitalformatFenMoney(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		if (StringUtils.isEmpty(value)) {
 			return "";
@@ -270,9 +254,7 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public final static String formatFenToCurrency(
-			ICommonQueryBaseBean element, String value, ServletRequest request)
-			throws HuatengException {
+	public final static String formatFenToCurrency(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		if (value == null || "".equals(value)) {
 			return "";
 		}
@@ -292,27 +274,19 @@ public class CQMethod {
 	 * @throws HuatengException
 	 */
 
-	public static String getCurrentFile(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws CommonException {
+	public static String getCurrentFile(ICommonQueryBaseBean element, String value, ServletRequest request) throws CommonException {
 		String currentFileName = "";
 		if (value != null && value.trim().length() > 0) {
 			ReportCommonService service = ReportCommonService.getInstance();
 			String typeFile[] = value.split("_");
 			String appType = typeFile[0];
 			String currentFileType = typeFile[1];
-			DataDic dic = service.getDataDic(
-					ReportConstant.DATA_DIC_BUSI_TYPE_NO,
-					TopReportConstants.REPORT_BUSITYPE_BOP);
-			if (dic != null && dic.getMiscflgs() != null
-					&& dic.getMiscflgs().trim().length() > 0) {
+			DataDic dic = service.getDataDic(ReportConstant.DATA_DIC_BUSI_TYPE_NO, TopReportConstants.REPORT_BUSITYPE_BOP);
+			if (dic != null && dic.getMiscflgs() != null && dic.getMiscflgs().trim().length() > 0) {
 				String dataTypeNo = dic.getMiscflgs().trim();
-				DataDic appDic = service.getDataDic(
-						Integer.parseInt(dataTypeNo), appType.trim());
-				if (appDic != null && appDic.getMiscflgs() != null
-						&& appDic.getMiscflgs().trim().length() > 0) {
-					DataDic fileDic = service.getDataDic(
-							Integer.parseInt(appDic.getMiscflgs().trim()),
-							currentFileType.trim());
+				DataDic appDic = service.getDataDic(Integer.parseInt(dataTypeNo), appType.trim());
+				if (appDic != null && appDic.getMiscflgs() != null && appDic.getMiscflgs().trim().length() > 0) {
+					DataDic fileDic = service.getDataDic(Integer.parseInt(appDic.getMiscflgs().trim()), currentFileType.trim());
 					if (fileDic != null) {
 						currentFileName = fileDic.getDataName();
 					}
@@ -332,8 +306,7 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getBrhName(ICommonQueryBaseBean element, String value,
-			ServletRequest request) throws HuatengException {
+	public static String getBrhName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		if (StringUtils.isEmpty(value)) {
 			return value;
 		}
@@ -402,8 +375,7 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getBrnoName(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getBrnoName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		/*
 		 * mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 begin BctlService
@@ -415,8 +387,7 @@ public class CQMethod {
 		if (StringUtils.isEmpty(value)) {
 			return "";
 		}
-		List l = DAOUtils.getBctlDAO().queryByCondition(
-				"po.brno = '" + value + "'");
+		List l = DAOUtils.getBctlDAO().queryByCondition("po.brno = '" + value + "'");
 		if (l == null || l.isEmpty()) {
 			return "";
 		} else {
@@ -436,15 +407,12 @@ public class CQMethod {
 	 * @throws HuatengException
 	 */
 	@SuppressWarnings("rawtypes")
-	public static String getAreacodName(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getAreacodName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		if (StringUtils.isEmpty(value)) {
 			return StringUtils.EMPTY;
 		}
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		List areacodeList = rootdao
-				.queryByQL2List(" FROM BiAreaOfChina WHERE areacode = '"
-						+ value + "' ");
+		List areacodeList = rootdao.queryByQL2List(" FROM BiAreaOfChina WHERE areacode = '" + value + "' ");
 		if (areacodeList == null || areacodeList.isEmpty()) {
 			return "";
 		} else {
@@ -462,8 +430,7 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getBrhNameByBrno(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getBrhNameByBrno(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		/*
 		 * mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 begin BctlService
@@ -475,13 +442,43 @@ public class CQMethod {
 		if (StringUtils.isEmpty(value)) {
 			return "";
 		}
-		List l = DAOUtils.getBctlDAO().queryByCondition(
-				"po.brno = '" + value + "'");
+		List l = DAOUtils.getBctlDAO().queryByCondition("po.brno = '" + value + "'");
 		if (l == null || l.isEmpty()) {
 			return "";
 		} else {
 			Bctl bctl = (Bctl) l.get(0);
 			return value + "-" + bctl.getBrname();
+		}
+		/* mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 end */
+	}
+
+	/**
+	 * 根据外部机构号获取机构名称 机构名称格式为: brno-brname
+	 *
+	 * @param element
+	 * @param value
+	 * @param request
+	 * @return
+	 * @throws HuatengException
+	 */
+	public static String getBrhNameByBrcode(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
+
+		/*
+		 * mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 begin BctlService
+		 * bctlService = BctlService.getInstance(); if
+		 * (StringUtils.isEmpty(value)) { return ""; } String brname =
+		 * bctlService.getBranchName(value); if (StringUtils.isEmpty(brname)) {
+		 * return value; }
+		 */
+		if (StringUtils.isEmpty(value)) {
+			return "";
+		}
+		List l = DAOUtils.getBctlDAO().queryByCondition("po.brcode = '" + value + "'");
+		if (l == null || l.isEmpty()) {
+			return "";
+		} else {
+			Bctl bctl = (Bctl) l.get(0);
+			return value + " - " + bctl.getBrname();
 		}
 		/* mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 end */
 	}
@@ -495,16 +492,13 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getCurNameByCurNo(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getCurNameByCurNo(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		if (StringUtils.isEmpty(value)) {
 			return value;
 		}
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		List l = rootdao
-				.queryByQL2List("from SysCurrency cur where  cur.id = '"
-						+ value + "'");
+		List l = rootdao.queryByQL2List("from SysCurrency cur where  cur.id = '" + value + "'");
 		if (l == null || l.isEmpty()) {
 			return value;
 		} else {
@@ -522,16 +516,13 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getNationregionIdName(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getNationregionIdName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		if (StringUtils.isEmpty(value)) {
 			return "";
 		}
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		List l = rootdao
-				.queryByQL2List("from BiNationregion biNag where  biNag.id = '"
-						+ value + "'");
+		List l = rootdao.queryByQL2List("from BiNationregion biNag where  biNag.id = '" + value + "'");
 		if (l == null || l.isEmpty()) {
 			return "";
 		} else {
@@ -540,25 +531,19 @@ public class CQMethod {
 		}
 	}
 
-	public static String getTotalSucRecords(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getTotalSucRecords(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		if (StringUtils.isEmpty(value)) {
 			return "";
 		}
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		List sfiList = rootdao
-				.queryByQL2List("from SubFileInfo sfi where  sfi.id = '"
-						+ value + "'");
+		List sfiList = rootdao.queryByQL2List("from SubFileInfo sfi where  sfi.id = '" + value + "'");
 		if (sfiList == null || sfiList.isEmpty()) {
 			return "";
 		} else {
 			SubFileInfo sfi = (SubFileInfo) sfiList.get(0);
-			return ""
-					+ (null == sfi.getTotalrecords() ? 0 : sfi
-							.getTotalrecords()) + "/"
-					+ (null == sfi.getSucrecords() ? 0 : sfi.getSucrecords());
+			return "" + (null == sfi.getTotalrecords() ? 0 : sfi.getTotalrecords()) + "/" + (null == sfi.getSucrecords() ? 0 : sfi.getSucrecords());
 		}
 	}
 
@@ -570,13 +555,11 @@ public class CQMethod {
 	 * @exception @author UU_Wu
 	 * @version v1.0,2009-3-11
 	 */
-	public static String getGradeStateNameByNo(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getGradeStateNameByNo(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		if (StringUtils.isEmpty(value)) {
 			return "";
 		} else {
-			String statename = DataDicUtils.getDicName(
-					SystemConstant.DATADIC_TYPE_GRADE_STATE, value);
+			String statename = DataDicUtils.getDicName(SystemConstant.DATADIC_TYPE_GRADE_STATE, value);
 			return statename;
 		}
 	}
@@ -750,8 +733,7 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getBizFuncNameById(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getBizFuncNameById(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		if (StringUtils.isEmpty(value)) {
 			return "";
 		} else {
@@ -781,8 +763,7 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getTlrNameById(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getTlrNameById(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		if (StringUtils.isEmpty(value)) {
 			return "";
 		} else {
@@ -801,17 +782,14 @@ public class CQMethod {
 
 	}
 
-	public static String getMtsInOutCodeName(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws CommonException {
+	public static String getMtsInOutCodeName(ICommonQueryBaseBean element, String value, ServletRequest request) throws CommonException {
 		String codetype = element.getAnyValue("codetype");
 		if (StringUtils.isEmpty(value) || StringUtils.isEmpty(codetype)) {
 			return value;
 		}
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		Map<String, String> map = new HashMap<String, String>();
-		List<MtsInOutCode> codes = rootdao
-				.queryByQL2List("from MtsInOutCode where id.codeType='"
-						+ codetype + "'");
+		List<MtsInOutCode> codes = rootdao.queryByQL2List("from MtsInOutCode where id.codeType='" + codetype + "'");
 		for (MtsInOutCode code : codes) {
 			map.put(code.getId().getId(), code.getCodeName());
 		}
@@ -822,8 +800,7 @@ public class CQMethod {
 		}
 	}
 
-	public static String getTreeCodeName(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getTreeCodeName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		String headNodeNo = element.getAnyValue("headnodeno");
 		if (StringUtils.isEmpty(value) || StringUtils.isEmpty(headNodeNo)) {
 			return value;
@@ -838,9 +815,7 @@ public class CQMethod {
 		}
 	}
 
-	public static String getTreeCodeNameByNavition(
-			ICommonQueryBaseBean element, String value, ServletRequest request)
-			throws HuatengException {
+	public static String getTreeCodeNameByNavition(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		String headNodeNo = "23";
 		if (StringUtils.isEmpty(value)) {
 			return value;
@@ -871,8 +846,7 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getTlrType(ICommonQueryBaseBean element, String value,
-			ServletRequest request) throws HuatengException {
+	public static String getTlrType(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		if (StringUtils.isEmpty(value)) {
 			return "";
 		} else {

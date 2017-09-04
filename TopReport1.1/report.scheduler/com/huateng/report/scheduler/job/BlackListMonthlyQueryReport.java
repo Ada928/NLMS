@@ -13,7 +13,7 @@ import resource.bean.report.ReportJobConfig;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
 
-import com.cibfintech.report.blacklist.Scheduler.BlackListQueryReportTask;
+import com.cibfintech.blacklist.Scheduler.BlackListQueryReportTask;
 import com.huateng.ebank.monitor.globalInfo.service.GlobalInfoService;
 import com.huateng.report.common.service.ReportCommonService;
 import com.huateng.report.utils.ReportEnum;

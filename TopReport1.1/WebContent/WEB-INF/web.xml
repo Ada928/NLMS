@@ -17,7 +17,7 @@
 			classpath:resources/business/bizlog/services.xml,
 			classpath:resources/business/imports/services.xml,
 			classpath:com/huateng/report/basisinfo/services.xml,
-            classpath:com/cibfintech/report/blacklist/services.xml,
+            classpath:com/cibfintech/blacklist/services.xml,
 			classpath:com/huateng/report/dataquery/services.xml,
 			classpath:com/huateng/report/imports/services.xml,
 			classpath:com/huateng/report/system/services.xml,

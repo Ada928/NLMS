@@ -5,7 +5,7 @@
 
 <CommQry title="公安部黑名单管理" navigate="公安部黑名单管理" type="call" interface="true" pagesize="20" async="true" databusid=""
     transdataactionurl="/trans/TransDataAction.do" txnlogflag="true"
-    getterclassname="com.cibfintech.report.blacklist.getter.PoliceBlackListGetter">
+    getterclassname="com.cibfintech.blacklist.getter.PoliceBlackListGetter">
 
     <Include id="BankParam" />
     <PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-公安部黑名单列表"

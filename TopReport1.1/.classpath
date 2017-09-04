@@ -5,6 +5,7 @@
 	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="src" path="resources.i18n"/>
 	<classpathentry kind="src" path="resources.fp"/>
+	<classpathentry kind="src" path="resources.blacklist.hbm"/>
 	<classpathentry kind="src" path="resources.report.hbm"/>
 	<classpathentry kind="src" path="fp.bizlog"/>
 	<classpathentry kind="src" path="fp.common"/>
@@ -63,7 +64,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/BasePackage.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bcprov-jdk14-125.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/c3p0-0.9.1.2.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cglib-nodep-2.1_3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cglib-nodep-2.1_3.jar" sourcepath="C:/Users/yyxyz/AppData/Local/Temp/.org.sf.feeling.decompiler1504492755109/source/cglib-nodep-2.1_3-sources-1504493190299.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cjdp-common.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-collections-3.1.jar"/>

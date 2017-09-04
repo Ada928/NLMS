@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @hibernate.class table="TLR_INFO"
  */
 
-public abstract class BaseTlrInfo implements Serializable {
+public abstract class BaseTlrInfo implements Serializable, Comparable {
 
 	public static String REF = "TlrInfo";
 	public static String PROP_STATUS = "status";
@@ -105,6 +105,7 @@ public abstract class BaseTlrInfo implements Serializable {
 	private java.lang.String lastUpdTms;
 	private java.lang.String lastUpdOper;
 	private java.lang.Boolean isDel;
+
 	/** add by zhiyang.he 修改锁定状态 2012-09-6 end */
 
 	/**
@@ -161,8 +162,6 @@ public abstract class BaseTlrInfo implements Serializable {
 		this.tlrName = tlrName;
 	}
 
-	
-	
 	public java.lang.Boolean isDel() {
 		return isDel;
 	}
@@ -671,6 +670,16 @@ public abstract class BaseTlrInfo implements Serializable {
 			}
 		}
 		return this.hashCode;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+
+		BaseTlrInfo tlro = (BaseTlrInfo) o;
+		Integer otherTlro = Integer.parseInt(tlro.getTlrno());
+		Integer thisTlrno = Integer.parseInt(this.tlrno);
+
+		return thisTlrno.compareTo(otherTlro);
 	}
 
 	public String toString() {
