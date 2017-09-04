@@ -16,7 +16,7 @@
 
     </Fields>
     <Parameters>
-        <Parameter id="value1" desc="机构号" value="" />
+        <Parameter id="value1" desc="银行 ID" value="" />
     </Parameters>
     <Where>
     </Where>

@@ -9,17 +9,17 @@
 					<@CommonQueryMacro.GroupBox id="guoup1" label="操作员信息" expand="true">
 						<table frame=void class="grouptable" width="100%">
 						<tr>
-							<td align="center" nowrap class="labeltd" width="25%"> 操作员号 </td>
-							<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrno"/></td>
-							<td align="center" nowrap class="labeltd"  width="25%"> 操作员名称 </td>
+							<td align="center" nowrap class="labeltd"  width="25%"> 用户姓名 </td>
 							<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrName" /></td>
+							<td align="center" nowrap class="labeltd"  width="25%"> 所属银行 </td>
+							<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="brcode" /></td>
 						</tr>
 					   </table>
 				   </@CommonQueryMacro.GroupBox>
 				</@CommonQueryMacro.CommonQuery>
 			</td>
 		</tr>
-		
+		<#-->
 		<tr>
 			<td>
 				<@CommonQueryMacro.CommonQuery id="bctlMngEntry" init="true" submitMode="selected" navigate="false">
@@ -37,6 +37,7 @@
 			</td>
 			
 		</tr>
+		<-->
 		<tr>
 			<td width="100%">
 				<@CommonQueryMacro.CommonQuery id="operMngRoleInfo" init="true" submitMode="selected" navigate="false">
@@ -60,7 +61,7 @@
 		</tr>
 		<tr id="buttonHide" align="center">
 		  	<td>
-	      		<@CommonQueryMacro.Button id= "btRoleSave" />
+	      		<@CommonQueryMacro.Button id= "btSave" />
 	      					&nbsp;&nbsp;
 	            <@CommonQueryMacro.Button id= "btCancel" />
 	      	</td>
@@ -69,38 +70,16 @@
 <script language="javascript">
 	var op = "${op}";
     var roleType = "${info.roleTypeList}";
+	
 	function initCallGetter_post(dataset) {
-		 if (roleType.indexOf("11") >- 1 ||roleType.indexOf("12") >- 1 || roleType.indexOf("13") >- 1  || roleType.indexOf("14") >- 1 || roleType.indexOf("15") >- 1 ){
-			operMngMod_dataset.setFieldReadOnly("tlrno", true);
-		}
 		operMngMod_dataset.setParameter("op", op);
 	}
 
-	function btRoleSave_onClickCheck() {
-		var tlrno = operMngMod_dataset.getValue("tlrno");
+	function btSave_onClickCheck() {
+		//var brcode = operMngMod_dataset.getValue("brcode");
 		var tlrName = operMngMod_dataset.getValue("tlrName");
-		if (tlrno.length == 0 || tlrName.length == 0) {
-			alert("操作员号码, 操作员必须填写！");
-			return false;
-		} 
-		if(tlrno.length < 8){
-			alert("操作员号的长度必须大于8位！");
-			return false;
-		}
-		
-		var bctlRecord = bctlMngEntry_dataset.getFirstRecord();
-		var chk = 0;
-		var bctlArr = new Array();
-		while (bctlRecord) {
-			var v_selected = bctlRecord.getValue("select");
-			if (v_selected) {
-				bctlArr[chk] = bctlRecord.getValue("brno");
-				chk++;
-			}
-			bctlRecord = bctlRecord.getNextRecord();
-		}
-		if (chk == 0) {
-			alert("至少选择一个授权机构！");
+		if (tlrName.length == 0) {
+			alert("用户姓名必须填写！");
 			return false;
 		}
 
@@ -124,6 +103,11 @@
 		//alert("保存成功！");
 		return true;
 	}
-	
+
+	//保存后刷新当前页
+	function btSave_postSubmit(button) {
+		alert("保存成功");
+		button.url = "/fpages/regonization/ftl/OperatorEntry.ftl";
+	}
 </script>
 </@CommonQueryMacro.page>

@@ -85,7 +85,7 @@
     <Query id="operLoggerQuery" path="/fpages/logger/xml/OperLoggerQuery.xml" txn="" desc="日志查询" />
 
     <!-- add by zhaozhiguo 2012/2/14 FPP-9 用户,岗位及机构的管理页面优化调整 begin -->
-    <Query id="operMngEntry" path="/fpages/regonization/xml/OperMngEntry.xml" txn="" desc="" />
+    <Query id="OperatorEntry" path="/fpages/regonization/xml/OperatorEntry.xml" txn="" desc="" />
     <Query id="operMngAdd" path="/fpages/regonization/xml/OperMngAdd.xml" txn="" desc="" />
     <Query id="operMngMod" path="/fpages/regonization/xml/OperMngMod.xml" txn="" desc="" />
     <Query id="operMngRoleInfo" path="/fpages/regonization/xml/OperMngRoleInfo.xml" txn="" desc="" />

@@ -1,7 +1,7 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="用户管理">
-<@CommonQueryMacro.CommonQuery id="operMngEntry" init="true" submitMode="current">
+<@CommonQueryMacro.CommonQuery id="OperatorEntry" init="true" submitMode="current">
 	<table width="100%" align="left">
 		<tr valign="center">
 			<td valign="top" colspan="2">
@@ -39,9 +39,9 @@
     
     //定位一条记录
     function locate(id) {
-        var record = operMngEntry_dataset.find(["tlrno"], [id]);
+        var record = OperatorEntry_dataset.find(["tlrno"], [id]);
         if (record) {
-            operMngEntry_dataset.setRecord(record);
+            OperatorEntry_dataset.setRecord(record);
         }
     }
 
@@ -95,17 +95,17 @@
     }
 
     function btDel_onClickCheck(button) {
-    	var del = operMngEntry_dataset.getValue("del");
+    	var del = OperatorEntry_dataset.getValue("del");
 		if (del == false) {
 			if (confirm("确认删除该条记录？")) {
-				operMngEntry_dataset.setParameter("delet", "T");
+				OperatorEntry_dataset.setParameter("delet", "T");
 				return true;
 			} else {
 				return false;
 			}
 		} else {
 			if (confirm("确认恢复该条记录？")) {
-				operMngEntry_dataset.setParameter("delet", "F");
+				OperatorEntry_dataset.setParameter("delet", "F");
 				return true;
 			} else {
 				return false;
@@ -123,17 +123,17 @@
     }
     
     function btStatus_onClickCheck(button) {
-        var status = operMngEntry_dataset.getValue("flag");
+        var status = OperatorEntry_dataset.getValue("flag");
         if (status == '0') {
             if (confirm("确认将该操作员设置为有效?")) {
-                operMngEntry_dataset.setParameter("statu", "1");
+                OperatorEntry_dataset.setParameter("statu", "1");
                 return true;
             } else {
                 return false;
             }
         } else {
             if (confirm("确认将该操作员设置为无效?")) {
-                operMngEntry_dataset.setParameter("statu", "0");
+                OperatorEntry_dataset.setParameter("statu", "0");
                 return true;
             } else {
                 return false;
@@ -148,7 +148,7 @@
 
     function btLoginStatus_onClickCheck(button) {
         if (confirm("确认将该操作员强行签退?")) {
-            operMngEntry_dataset.setParameter("statu", "logout");
+            OperatorEntry_dataset.setParameter("statu", "logout");
             return true;
         } else {
             return false;
@@ -160,7 +160,7 @@
         flushCurrentPage();
     }
 
-    function operMngEntry_dataset_dataset_afterScroll(dataset) {
+    function OperatorEntry_dataset_dataset_afterScroll(dataset) {
         unLock.disable(dataset.getValue("isLock") != '1' || dataset.getValue("tlrno") == currentTlrno);
     }
 
@@ -189,7 +189,7 @@
 
     
     function unLock_onClickCheck(button) {
-        operMngEntry_dataset.setParameter("tlrno", operMngEntry_dataset.getValue("tlrno"));
+        OperatorEntry_dataset.setParameter("tlrno", OperatorEntry_dataset.getValue("tlrno"));
     }
     
     function unLock_postSubmit(button) {
@@ -197,7 +197,7 @@
         flushCurrentPage();
     }
 
-    function operMngEntry_dataset_afterScroll(dataset) {
+    function OperatorEntry_dataset_afterScroll(dataset) {
         unLock.disable(dataset.getValue("isLock") != '1');
         btLoginStatus.disable(dataset.getValue("status") != '1');
         btStatus.disable(false);
@@ -231,7 +231,7 @@
 
     //刷新当前页
     function flushCurrentPage() {
-    	operMngEntry_dataset.flushData(operMngEntry_dataset.pageIndex);
+    	OperatorEntry_dataset.flushData(OperatorEntry_dataset.pageIndex);
     }
 </script>
 </@CommonQueryMacro.page>

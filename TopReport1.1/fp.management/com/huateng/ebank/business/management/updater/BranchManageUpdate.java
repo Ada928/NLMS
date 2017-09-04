@@ -21,7 +21,7 @@ import com.huateng.exception.AppException;
 
 public class BranchManageUpdate extends BaseUpdate {
 
-	private static final String DATASET_ID = "BranchEntry";
+	private static final String DATASET_ID = "BranchManage";
 
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
 			throws AppException {

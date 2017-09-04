@@ -15,25 +15,25 @@
         <!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
         <!-- primary : true-作为表单项记录上传 false-不作为表单项上传 -->
 
-        <Field id="brcode" desc="机构号" status="F" primary="false" method="None" readonly="true" type="String" size="20"
-            default="" xpath="/brcode" require="false" tip="机构号" />
+        <Field id="brcode" desc="银行代码" status="F" primary="false" method="None" readonly="true" type="String" size="20"
+            default="" xpath="/brcode" require="true" tip="机构号" />
 
         <Field id="brno" desc="机构代码" status="F" primary="false" edittype="" method="None" type="String" size="12"
             require="true" readonly="false" default="false" xpath="/brno" tip="机构代码" rules="isBrNo" />
 
-        <Field id="brname" desc="机构名称" status="F" primary="false" method="None" readonly="false" type="String"
+        <Field id="brname" desc="银行名称" status="F" primary="false" method="None" readonly="false" type="String"
             size="40" default="" xpath="/brname" require="true" tip="机构名称" />
 
-        <Field id="brclass" desc="机构级别" status="F" edittype="select" require="true" method="None" primary="false"
+        <Field id="brclass" desc="机构级别" status="F" edittype="select" require="false" method="None" primary="false"
             type="String" default="false" xpath="/brclass" tip="机构级别" translated="DATA_DIC.401" />
 
         <Field id="postno" desc="邮政编码" status="F" method="None" rule="isNum" primary="false" type="String"
-            require="true" default="false" size="6" xpath="/postno" tip="邮政编码" />
+            require="false" default="false" size="6" xpath="/postno" tip="邮政编码" />
 
-        <Field id="teleno" desc="联系电话" status="F" method="None" size="14" primary="false" type="String" require="true"
+        <Field id="teleno" desc="联系电话" status="F" method="None" size="14" primary="false" type="String" require="false"
             default="false" xpath="/teleno" tip="联系电话" />
 
-        <Field id="address" desc="机构地址" status="F" method="None" primary="false" type="String" require="true"
+        <Field id="address" desc="机构地址" status="F" method="None" primary="false" type="String" require="false"
             size="100" default="false" xpath="/address" tip="机构地址" />
 
 

@@ -161,7 +161,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 	 * @return ??TlrInfo?????List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString) throws CommonException {
+	public List<TlrInfo> queryByCondition(String whereString) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByCondition(String) - start"); //$NON-NLS-1$
 		}
@@ -331,8 +331,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 	/**
 	 * add by NT 2007-09-29 根据ID查询对象
 	 *
-	 * @param int
-	 *            id ????????
+	 * @param int id ????????
 	 * @throws DAOException
 	 */
 	public TlrInfo queryByName(String name) throws CommonException {
@@ -362,10 +361,8 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 	 * @param String
 	 *            whereString 条件集合 例如 "po.name = 'user1' and po.level = '1' or
 	 *            ...."
-	 * @param int
-	 *            startPage 展现层的开始页数
-	 * @param int
-	 *            maxRows 展现层的每页记录数 -1 :全部; 0 :默认值; 其他:实际值
+	 * @param int startPage 展现层的开始页数
+	 * @param int maxRows 展现层的每页记录数 -1 :全部; 0 :默认值; 其他:实际值
 	 * @return List 对象集合
 	 * @throws DAOException
 	 */

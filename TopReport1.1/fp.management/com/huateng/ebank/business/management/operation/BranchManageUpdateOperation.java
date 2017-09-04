@@ -12,7 +12,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import resource.bean.pub.Bctl;
-import resource.bean.pub.BctlOperateLog;
 import resource.dao.pub.BctlDAO;
 
 import com.huateng.common.log.HtLog;
@@ -51,7 +50,6 @@ public class BranchManageUpdateOperation extends BaseOperation {
 		// bctlService.bctlInfo(insertList, updateList, delList);
 		addEntityValue(insertList);
 		updateEntityValue(updateList);
-
 	}
 
 	@SuppressWarnings("deprecation")
@@ -79,7 +77,6 @@ public class BranchManageUpdateOperation extends BaseOperation {
 				bean.setLock(false);
 				dao.insert(bean);
 				// modified by xuhong 20150331 机构信息直接导入 end
-
 			}
 
 			// branchManageDetailService.addEntity(bean);
@@ -102,10 +99,11 @@ public class BranchManageUpdateOperation extends BaseOperation {
 		if (list.size() > 0) {
 			BctlOperateLogService bctlOperateLogService = BctlOperateLogService.getInstance();
 			bctlOperateLogService.saveBctlOperateLog(SystemConstant.LOG_ADD, "", "", "新增一个银行");
+
+			GlobalInfo gi = GlobalInfo.getCurrentInstance();
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行新建银行管理信息" });
+			htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行新建银行管理信息" });
 		}
-		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行新建银行管理信息" });
-		htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行新建银行管理信息" });
 	}
 
 	@SuppressWarnings("deprecation")
@@ -119,7 +117,6 @@ public class BranchManageUpdateOperation extends BaseOperation {
 
 			// 不更新不存在的表
 			if (null != bctlModify) {
-
 				// 不能修改总行的级别
 				if (SystemConstant.BRCODE_CLASS_HEAD.equals(bctlModify.getBrclass())// 原级别为总行
 						&& !SystemConstant.BRCODE_CLASS_HEAD.equals(bean.getBrclass())) {// 修改后级别非总行
@@ -134,7 +131,6 @@ public class BranchManageUpdateOperation extends BaseOperation {
 				if (DataFormat.isEmpty(bean.getBrclass())) {
 					ExceptionUtil.throwCommonException("[银行代码]为" + bean.getBrno() + "的记录，字段[机构级别]不应为空.", ErrorCode.ERROR_CODE_INFO_NOT_INPUT);
 				}
-
 			}
 
 			// modified by xuhong 20150331 机构信息直接更新 begin
@@ -164,10 +160,11 @@ public class BranchManageUpdateOperation extends BaseOperation {
 		if (list.size() > 0) {
 			BctlOperateLogService bctlOperateLogService = BctlOperateLogService.getInstance();
 			bctlOperateLogService.saveBctlOperateLog(SystemConstant.LOG_EDIT, "", "", "修改银行信息");
+
+			GlobalInfo gi = GlobalInfo.getCurrentInstance();
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行更新银行管理信息" });
+			htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行更新银行管理信息" });
 		}
-		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行更新银行管理信息" });
-		htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "执行更新银行管理信息" });
 	}
 
 	public void afterProc(OperationContext context) throws CommonException {

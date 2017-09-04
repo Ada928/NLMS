@@ -112,8 +112,8 @@
     }
 
     function btDeleteRole_onClickCheck(button) {
-    	var delet = ebankCustRoleMng_dataset.getValue("isDel");
-		if (delet == 'F') {
+    	var delet = ebankCustRoleMng_dataset.getValue("del");
+		if (delet == 'false') {
 			if (confirm("确认删除该岗位?")) {
 				ebankCustRoleMng_dataset.setParameter("delet", "T");
 				return true;
@@ -215,7 +215,7 @@
 	
 	function ebankCustRoleMng_dataset_afterScroll(dataset) {
 
-		var Lock = dataset.getValue("isLock");
+		var Lock = dataset.getValue("lock");
 		if (Lock == "1") {
 			btStatus.disable(true);
 		} else {
