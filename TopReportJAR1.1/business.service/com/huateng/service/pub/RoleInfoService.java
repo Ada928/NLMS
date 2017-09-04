@@ -145,8 +145,7 @@ public class RoleInfoService {
 		RoleInfo roleInfo = BaseDAOUtils.getRoleInfoDAO().query(role_id);
 		// String roleName = riv.getRolename();
 		list2 = new ArrayList();
-		list = BaseDAOUtils.getFunctionInfoDAO()
-				.queryByCondition("po.menuFlag = '1' and po.status = '1' order by po.funcCode");
+		list = BaseDAOUtils.getFunctionInfoDAO().queryByCondition("po.menuFlag = '1' and po.status = '1' order by po.funcCode");
 		tlist = BaseDAOUtils.getRoleFuncRelDAO().queryByCondition(" po.roleId = " + role_id);
 		for (int i = 0; i < list.size(); i++) {
 			FunctionInfo finfo = (FunctionInfo) list.get(i);
@@ -182,8 +181,7 @@ public class RoleInfoService {
 	 *
 	 * @param
 	 * @return RoleInfo
-	 * @exception @author
-	 *                shen_antonio
+	 * @exception @author shen_antonio
 	 * @version v1.0,2008-8-25
 	 */
 	public RoleInfo getRoleInfoByRoleId(int roleId) throws CommonException {
@@ -235,8 +233,7 @@ public class RoleInfoService {
 	 *
 	 * @param
 	 * @return RoleInfo
-	 * @exception @author
-	 *                hyurain_yang
+	 * @exception @author hyurain_yang
 	 * @version v1.0,2008-9-18
 	 */
 	public RoleInfo getRoleInfoByRoleName(String roleName) throws CommonException {
@@ -275,12 +272,11 @@ public class RoleInfoService {
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-	public PageQueryResult queryRole(int pageIndex, int pageSize)
-			throws CommonException, IllegalAccessException, InvocationTargetException {
+	public PageQueryResult queryRole(int pageIndex, int pageSize) throws CommonException, IllegalAccessException, InvocationTargetException {
 		StringBuffer sb = new StringBuffer("");
 		sb.append("select roleInfo from RoleInfo roleInfo where 1=1");
 		/** add by zhiyang.he 双岗复核，无效状态过滤 2012-09-07 begin */
-		sb.append(" and (st <> 5 or st is null )");
+		sb.append(" and roleInfo.del<>'T'");
 		/** add by zhiyang.he 双岗复核，无效状态过滤 2012-09-07 end */
 		sb.append(" order by roleInfo.id ");
 		HQLDAO hqlDAO = BaseDAOUtils.getHQLDAO();
@@ -308,8 +304,7 @@ public class RoleInfoService {
 	 * @param updateList
 	 * @throws CommonException
 	 */
-	public void saveCustRole(List<RoleInfo> insertList, List<RoleInfo> delList, List<RoleInfo> updateList)
-			throws CommonException {
+	public void saveCustRole(List<RoleInfo> insertList, List<RoleInfo> delList, List<RoleInfo> updateList) throws CommonException {
 
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		Date txdate = null;
@@ -416,8 +411,7 @@ public class RoleInfoService {
 		Integer roleid = Integer.parseInt(roleId);
 		RoleInfo roleInfo = (RoleInfo) dao.getHibernateTemplate().get(RoleInfo.class, roleid);
 
-		StringBuffer tlrRoleRel = new StringBuffer(
-				"select tlrRole from TlrRoleRel tlrRole where tlrRole.roleId = '" + roleid + "'");
+		StringBuffer tlrRoleRel = new StringBuffer("select tlrRole from TlrRoleRel tlrRole where tlrRole.roleId = '" + roleid + "'");
 
 		List<TlrRoleRel> listRole = dao.queryByQL2List(tlrRoleRel.toString());
 		List<TlrInfo> listInfo = null;
@@ -432,8 +426,7 @@ public class RoleInfoService {
 			resultList.add(outCust);
 		} else {
 			for (TlrRoleRel tlrRole : listRole) {
-				StringBuffer sb = new StringBuffer(
-						"select tlr from TlrInfo tlr where tlr.tlrno = '" + tlrRole.getTlrno() + "'");
+				StringBuffer sb = new StringBuffer("select tlr from TlrInfo tlr where tlr.tlrno = '" + tlrRole.getTlrno() + "'");
 				sb.append(" order by tlr.tlrno ");
 
 				listInfo = dao.queryByQL2List(sb.toString());
@@ -446,8 +439,7 @@ public class RoleInfoService {
 					outCust.setTlrno(tlrInfo.getTlrno());
 					outCust.setTlrName(tlrInfo.getTlrName());
 					outCust.setStatus(tlrInfo.getStatus());
-					outCust.setLastaccesstm(tlrInfo.getLastaccesstm() == null ? null
-							: new Timestamp(tlrInfo.getLastaccesstm().getTime()));
+					outCust.setLastaccesstm(tlrInfo.getLastaccesstm() == null ? null : new Timestamp(tlrInfo.getLastaccesstm().getTime()));
 					outCust.setFlag(tlrInfo.getFlag());
 					resultList.add(outCust);
 				}

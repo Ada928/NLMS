@@ -5,7 +5,7 @@
 
 <CommQry title="商行黑名单管理" navigate="商行黑名单管理" type="call" interface="true" pagesize="20" async="true" databusid=""
     transdataactionurl="/trans/TransDataAction.do" 
-    getterclassname="com.cibfintech.report.blacklist.getter.BankBlackListGetter">
+    getterclassname="com.cibfintech.blacklist.getter.BankBlackListGetter">
 
     <Include id="BankParam" />
     <PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-商行黑名单列表" perfetch="15" />
@@ -29,13 +29,13 @@
         <Field id="blacklistType" desc="名单性质" status="F" edittype="select" require="false" method="None" primary=""
             type="String" default="false" xpath="/blacklistType" tip="名单性质" translated="LIST:0,白名单;1,灰名单;2,黑名单" />
             
-        <Field id="share" desc="是否共享" status="F" edittype="select" require="false" method="None" primary=""
+        <Field id="share" desc="是否共享" status="F" edittype="radio" require="false" method="None" primary=""
             type="String" default="false" xpath="/share" tip="是否共享" translated="LIST:true,共享;false,不共享" />
             
-        <Field id="valid" desc="有效状态" status="F" edittype="select" require="false" method="None" primary=""
+        <Field id="valid" desc="有效状态" status="F" edittype="radio" require="false" method="None" primary=""
             type="String" default="false" xpath="/valid" tip="有效状态" translated="LIST:true,有效;false,无效" />
             
-        <Field id="del" desc="是否删除" status="F" edittype="select" require="false" method="None" primary=""
+        <Field id="del" desc="是否删除" status="F" edittype="radio" require="false" method="None" primary=""
             type="String" default="false" xpath="/del" tip="是否删除" translated="LIST:false,不删除;true,删除" />
             
         <Field id="operateState" desc="操作状态" status="F" edittype="select" require="false" method="None" primary=""

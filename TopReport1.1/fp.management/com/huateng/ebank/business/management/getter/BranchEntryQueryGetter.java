@@ -21,7 +21,6 @@ import com.huateng.ebank.business.management.common.DAOUtils;
 import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
-import com.huateng.report.utils.ReportEnum;
 import com.huateng.service.pub.BctlOperateLogService;
 
 public class BranchEntryQueryGetter extends BaseGetter {
@@ -46,7 +45,6 @@ public class BranchEntryQueryGetter extends BaseGetter {
 			// BctlService.getInstance().getAllEnableBctl();//.getAllDownBrcodeList(brcode);
 			String brno = (String) param.get("brhNo");
 			String brname = (String) param.get("brhName");
-			String qst = getCommQueryServletRequest().getParameter("st");
 			String hql = "1=1";
 
 			if (!DataFormat.isEmpty(brno)) {
@@ -55,13 +53,8 @@ public class BranchEntryQueryGetter extends BaseGetter {
 			if (!DataFormat.isEmpty(brname)) {
 				hql = "brname like '%" + brname + "%' and " + hql;
 			}
-			if (qst != null && qst.length() > 0) {
-				hql += (" and po.st ='" + qst + "'");
-			} else {
-				hql += (" and po.st<>'" + ReportEnum.REPORT_ST1.N.value + "'");
-			}
 			hql += (" and po.del<>'T'");
-			hql += ("order by po.brclass, po.brcode");
+			hql += ("order by po.brcode");
 			List list = DAOUtils.getBctlDAO().queryByCondition(hql);
 			// mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 end
 			int maxIndex = nextpage * everypage;
@@ -80,7 +73,7 @@ public class BranchEntryQueryGetter extends BaseGetter {
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "机构管理查询");
 
 			BctlOperateLogService bctlOperateLogService = BctlOperateLogService.getInstance();
-			String message = "brno=" + brno + ",brname=" + brname + ",qst=" + qst;
+			String message = "brno=" + brno + ",brname=" + brname;
 			bctlOperateLogService.saveBctlOperateLog(SystemConstant.LOG_QUERY, "", String.valueOf(list.size()), "查询银行信息 " + message);
 			return result;
 		} catch (AppException appEx) {

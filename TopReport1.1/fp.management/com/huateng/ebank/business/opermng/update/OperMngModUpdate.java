@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import resource.bean.pub.Bctl;
 import resource.bean.pub.RoleInfo;
 import resource.bean.pub.TlrInfo;
 
@@ -45,24 +44,7 @@ public class OperMngModUpdate extends BaseUpdate {
 				mapToObject(operator, map);
 			}
 
-			UpdateResultBean bctlUpdateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("bctlMngEntry");
-			List<Bctl> bctls = new ArrayList<Bctl>();
-			while (bctlUpdateResultBean.hasNext()) {
-				Bctl bctl = new Bctl();
-				Map map = bctlUpdateResultBean.next();
-				mapToObject(bctl, map);
-				bctls.add(bctl);
-			}
-			// jianxue.zhang
-			// UpdateResultBean tlrManUpdateResultBean =
-			// multiUpdateResultBean.getUpdateResultBeanByID("TlrManageRelMng");
 			List<TlrMngRelBean> tlrmng = new ArrayList<TlrMngRelBean>();
-			// while (tlrManUpdateResultBean.hasNext()) {
-			// TlrMngRelBean tlrbean = new TlrMngRelBean();
-			// Map map = tlrManUpdateResultBean.next();
-			// mapToObject(tlrbean, map);
-			// tlrmng.add(tlrbean);
-			// }
 			UpdateResultBean roleUpdateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("operMngRoleInfo");
 			List<RoleInfo> roles = new ArrayList<RoleInfo>();
 			while (roleUpdateResultBean.hasNext()) {
@@ -80,7 +62,6 @@ public class OperMngModUpdate extends BaseUpdate {
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(OperMngOperation.CMD, op);
 			oc.setAttribute(OperMngOperation.IN_ROLELIST, roles);
-			oc.setAttribute(OperMngOperation.IN_BCTLLIST, bctls);
 			oc.setAttribute(OperMngOperation.IN_TLRLLIST, tlrmng);
 			oc.setAttribute(OperMngOperation.IN_TLRINFO, operator);
 

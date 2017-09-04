@@ -13,6 +13,11 @@
             <ref bean="mySessionFactory" />
         </property>
     </bean>
+    <bean id="BlackListDAO" class="resource.blacklist.dao.BlackListDAO">
+        <property name="sessionFactory">
+            <ref bean="mySessionFactory" />
+        </property>
+    </bean>
     <bean id="GlobalinfoDAO" class="resource.dao.pub.GlobalinfoDAO">
         <property name="sessionFactory">
             <ref bean="mySessionFactory" />

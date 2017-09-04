@@ -7,11 +7,11 @@
 package com.huateng.ebank.business.opermng.operation;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import resource.bean.pub.Bctl;
 import resource.bean.pub.RoleInfo;
 import resource.bean.pub.TlrBctlRel;
 import resource.bean.pub.TlrInfo;
@@ -44,6 +44,8 @@ import com.huateng.service.pub.PasswordService;
 import com.huateng.service.pub.TlrOperateLogService;
 import com.huateng.service.pub.UserMgrService;
 import com.huateng.view.pub.TlrRoleRelationView;
+
+import edu.emory.mathcs.backport.java.util.Collections;
 
 /**
  * @author zhiguo.zhao
@@ -79,81 +81,23 @@ public class OperMngOperation extends BaseOperation {
 
 	// jianxue.zhang
 	@SuppressWarnings("unchecked")
-	private void delUserRel(String tlrno, List<TlrBctlRel> bctls, List<TlrRoleRel> roleList, List<TlrMngRelBean> tlrList) throws CommonException {
+	private void delUserRel(String tlrno, List<TlrRoleRel> roleList, List<TlrMngRelBean> tlrList) throws CommonException {
 		String key = tlrno;
 		// 先删除用户的角色表和机构关联
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		TlrRoleRelDAO tlrRoleRelDAO = DAOUtils.getTlrRoleRelDAO();
-
-		List<TlrBctlRel> bctlRellist = rootdao.queryByQL2List("from TlrBctlRel where tlrNo = '" + key + "'");
-
-		for (TlrBctlRel trlbctreldel : bctlRellist) {
-			rootdao.delete(trlbctreldel);
-		}
 
 		List<TlrRoleRel> roleRellist = rootdao.queryByQL2List("from TlrRoleRel where tlrno = '" + key + "'");
 
 		for (TlrRoleRel trlrolereldel : roleRellist) {
 			rootdao.delete(trlrolereldel);
 		}
-		// jianxue.zhang
-		// List<TlrManRel> TlrMngRellist = rootdao.queryByQL2List("from
-		// TlrManRel where manage = '" + key
-		// + "'");
-		// for (TlrManRel trlreldel : TlrMngRellist) {
-		// rootdao.delete(trlreldel);
-		// }
+
 		// 给用户分配角色表：
 		for (TlrRoleRel trlrolerel : roleList) {
 			// rootdao.save(trlrolerel);
 			tlrRoleRelDAO.insert(trlrolerel);
 		}
-		// 给用户分机构
-		for (TlrBctlRel trlbctrel : bctls) {
-			// added by xuhong 2015-3-31 手工添加id begin
-			Integer id = trlbctrel.getId();
-			if (id == null) {
-				id = 100;
-				Iterator it = DAOUtils.getHQLDAO().queryByQL("select max(id) from TlrBctlRel");
-				if (it.hasNext()) {
-					Number num = (Number) it.next();
-					id = num.intValue() + 1;
-				}
-				trlbctrel.setId(id);
-			}
-			// added by xuhong 2015-3-31 手工添加id end
-			rootdao.save(trlbctrel);
-		}
-		// 给销售分配人员
-		// for (TlrMngRelBean abc : tlrList) {
-		// TlrManRel tlrrel = new TlrManRel();
-		// tlrrel.setManage(key);
-		// tlrrel.setTlrId(abc.getTlrno());
-		// tlrrel.setStatus("1");
-		// rootdao.save(tlrrel);
-		// }
-	}
-
-	private RepList<TlrBctlRel> saveBctlRels(List<Bctl> bctls, TlrInfo tlrInfo, ROOTDAO rootdao) throws CommonException {
-		RepList<TlrBctlRel> bctlRellist = new RepList<TlrBctlRel>();
-		for (Bctl bc : bctls) {
-			TlrBctlRel tlrBctlRel = new TlrBctlRel();
-			tlrBctlRel.setBrcode(bc.getBrcode());
-			tlrBctlRel.setTlrNo(tlrInfo.getTlrno());
-			Integer id = tlrBctlRel.getId();
-			if (id == null) {
-				id = 100;
-				Iterator it = DAOUtils.getHQLDAO().queryByQL("select max(id) from TlrBctlRel");
-				if (it.hasNext()) {
-					Number num = (Number) it.next();
-					id = num.intValue() + 1;
-				}
-				tlrBctlRel.setId(id);
-			}
-			rootdao.save(tlrBctlRel);
-			bctlRellist.add(tlrBctlRel);
-		}
-		return bctlRellist;
 	}
 
 	private RepList<TlrRoleRel> saveRoleRels(List<RoleInfo> roles, TlrInfo tlrInfo) throws CommonException {
@@ -171,10 +115,37 @@ public class OperMngOperation extends BaseOperation {
 	}
 
 	private void addTlrInfo(TlrInfo tlrInfo, GlobalInfo globalInfo, TlrInfoDAO tlrInfoDAO) throws CommonException {
-		TlrInfo tmpInfo = tlrInfoDAO.query(tlrInfo.getTlrno());
-		if (tmpInfo != null) {
-			ExceptionUtil.throwCommonException("操作员已经存在！");
+		// TlrInfo tmpInfo = tlrInfoDAO.query(tlrInfo.getTlrno());
+		String tlrno = "";
+		String brcode = tlrInfo.getBrcode();
+		String currentBrCode = globalInfo.getBrcode();
+		List<TlrInfo> list = new ArrayList<TlrInfo>();
+		if (null == brcode || "".equals(brcode)) {
+			list = tlrInfoDAO.queryByCondition(" po.tlrno like '%" + currentBrCode + "%'");
+			if (list.isEmpty()) {
+				tlrno = currentBrCode + "001";
+			} else {
+				Collections.sort(list);
+				tlrno = list.get(list.size() - 1).getTlrno();
+				brcode = tlrno.substring(0, 5);
+				int index = Integer.parseInt(tlrno.substring(5, tlrno.length()));
+				index++;
+				if (index < 10) {
+					tlrno = brcode + "00" + String.valueOf(index);
+				} else if (index < 100) {
+					tlrno = brcode + "0" + String.valueOf(index);
+				} else {
+					tlrno = brcode + String.valueOf(index);
+				}
+			}
+			brcode = currentBrCode;
+		} else {
+			tlrno = brcode + "001";
 		}
+
+		tlrInfo.setTlrno(tlrno);
+		tlrInfo.setBrcode(brcode);
+
 		tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
 		// 设置有效标志
 		tlrInfo.setFlag(SystemConstant.FLAG_ON);
@@ -184,8 +155,6 @@ public class OperMngOperation extends BaseOperation {
 		String encMethod = CommonService.getInstance().getSysParamDef("PSWD", "ENC_MODE", "AES128");
 		String password = PasswordService.getInstance().EncryptPassword(sysDefaultPwd, encMethod);
 		tlrInfo.setPassword(password);
-
-		tlrInfo.setBrcode(globalInfo.getBrcode());
 
 		// 为操作员密码错误次数付初始值
 		tlrInfo.setTotpswderrcnt(new Integer(0));
@@ -218,14 +187,11 @@ public class OperMngOperation extends BaseOperation {
 
 		if ("new".equals(context.getAttribute(CMD))) {
 			TlrInfo tlrInfo = (TlrInfo) context.getAttribute(IN_TLRINFO);
-			List<Bctl> bctls = (List<Bctl>) context.getAttribute(IN_BCTLLIST);
 			List<RoleInfo> roles = (List<RoleInfo>) context.getAttribute(IN_ROLELIST);
 
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
 				if (tlrInfoDAO.query(tlrInfo.getTlrno()) == null) {
 					addTlrInfo(tlrInfo, globalInfo, tlrInfoDAO);
-					// 保存授权机构
-					saveBctlRels(bctls, tlrInfo, rootdao);
 					// 保存角色岗位
 					saveRoleRels(roles, tlrInfo);
 				} else {
@@ -236,15 +202,13 @@ public class OperMngOperation extends BaseOperation {
 			} else {
 				if (tlrInfoDAO.query(tlrInfo.getTlrno()) == null) {
 					addTlrInfo(tlrInfo, globalInfo, tlrInfoDAO);
-					// 保存授权机构
-					RepList<TlrBctlRel> bctlRellist = saveBctlRels(bctls, tlrInfo, rootdao);
 					// 保存角色岗位
 					RepList<TlrRoleRel> roleRellist = saveRoleRels(roles, tlrInfo);
 
 					try {
 						TlrInfoAuditBean tlrInfoAuditBean = new TlrInfoAuditBean();
 						tlrInfoAuditBean.setTlrInfo(tlrInfo);
-						tlrInfoAuditBean.setBctlRellist(bctlRellist);
+						// tlrInfoAuditBean.setBctlRellist(bctlRellist);
 						tlrInfoAuditBean.setRoleRellist(roleRellist);
 						SysTaskInfo tskInf = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value,
 								ReportEnum.REPORT_TASK_TRANS_CD.NEW.value, tlrInfoAuditBean, tlrInfoAuditBean.getTlrInfo().getTlrno(), null);
@@ -263,19 +227,9 @@ public class OperMngOperation extends BaseOperation {
 			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_ADD, "", "", "新增用户");
 		} else if ("modify".equals(context.getAttribute(CMD))) {
 			TlrInfo tlrInfo = (TlrInfo) context.getAttribute(IN_TLRINFO);
-			List<Bctl> bctls = (List<Bctl>) context.getAttribute(IN_BCTLLIST);
 			List<RoleInfo> roles = (List<RoleInfo>) context.getAttribute(IN_ROLELIST);
 
 			List<TlrMngRelBean> tlrs = (List<TlrMngRelBean>) context.getAttribute(IN_TLRLLIST);
-
-			// 授权机构
-			RepList<TlrBctlRel> bctlRellist = new RepList<TlrBctlRel>();
-			for (Bctl bc : bctls) {
-				TlrBctlRel tlrBctlRel = new TlrBctlRel();
-				tlrBctlRel.setBrcode(bc.getBrcode());
-				tlrBctlRel.setTlrNo(tlrInfo.getTlrno());
-				bctlRellist.add(tlrBctlRel);
-			}
 
 			// 角色岗位
 			RepList<TlrRoleRel> roleRellist = new RepList<TlrRoleRel>();
@@ -288,6 +242,7 @@ public class OperMngOperation extends BaseOperation {
 			}
 
 			TlrInfo dbTrlInfo = rootdao.query(TlrInfo.class, tlrInfo.getTlrno());
+			dbTrlInfo.setBrcode(tlrInfo.getBrcode());
 			dbTrlInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
 
 			String oldTlrName = dbTrlInfo.getTlrName();
@@ -300,13 +255,13 @@ public class OperMngOperation extends BaseOperation {
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
 				dbTrlInfo.setSt(ReportEnum.REPORT__FH_ST.YES.value);
 				rootdao.saveOrUpdate(dbTrlInfo);
-				delUserRel(dbTrlInfo.getTlrno(), bctlRellist, roleRellist, tlrs);
+				delUserRel(dbTrlInfo.getTlrno(), roleRellist, tlrs);
 				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "修改用户编号[" + dbTrlInfo.getTlrno() + "]" });
 			} else {
 				try {
 					TlrInfoAuditBean tlrInfoAuditBean = new TlrInfoAuditBean();
 					tlrInfoAuditBean.setTlrInfo(dbTrlInfo);
-					tlrInfoAuditBean.setBctlRellist(bctlRellist);
+					// tlrInfoAuditBean.setBctlRellist(bctlRellist);
 					tlrInfoAuditBean.setRoleRellist(roleRellist);
 					SysTaskInfo tskInf = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value,
 							ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, tlrInfoAuditBean, tlrInfoAuditBean.getTlrInfo().getTlrno(), dbTrlInfo.getSt());
@@ -324,8 +279,6 @@ public class OperMngOperation extends BaseOperation {
 			TlrOperateLogService tlrOperateLogService = TlrOperateLogService.getInstance();
 			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_EDIT, "", "", "编辑用户");
 		} else if (CMD_DEL.equals(context.getAttribute(CMD))) {
-			// String tlrno = (String) context.getAttribute(IN_TLRNO);
-			// tlrInfoDAO.delete(tlrno);
 			String tlrno = (String) context.getAttribute(IN_TLRNO);
 			TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 
@@ -444,18 +397,10 @@ public class OperMngOperation extends BaseOperation {
 		} else if ("resetPwd".equals(context.getAttribute(CMD))) {
 			String tlrno = (String) context.getAttribute(IN_TLRNO);
 			// 修改用户密码
-			// UserMgrService userMgrService = new UserMgrService();
-			// userMgrService.updatePassword(tlrno,
-			// SystemConstant.DEFAULT_PASSWORD);
 			TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
 
-				// 设置可用
-				// tlrInfo.setSt(ReportEnum.REPORT__FH_ST.YES.value);
-				// 设置充值密码标识
-				// tlrInfo.setRestFlg("reset");
 				UserMgrService userMgrService = new UserMgrService();
-
 				String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
 
 				userMgrService.updatePassword(tlrInfo.getTlrno(), sysDefaultPwd);
@@ -504,14 +449,10 @@ public class OperMngOperation extends BaseOperation {
 			TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
 
-				// 设置修改中
-				// tlrInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
-				// String oldIsLock = tlrInfo.getIsLock();
 				// 解锁
 				tlrInfo.setIsLock(SystemConstant.FLAG_OFF);
 
 				// 改回原值
-				// tlrInfo.setIsLock(oldIsLock);
 				rootdao.saveOrUpdate(tlrInfo);
 				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });
 				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });
@@ -564,10 +505,6 @@ public class OperMngOperation extends BaseOperation {
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
 
 				// 设置修改中
-				// tlrInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
-				// String oldFlag = tlrInfo.getFlag();
-				// String oldStatus = tlrInfo.getStatus();
-
 				if (SystemConstant.FLAG_ON.equals(status) || SystemConstant.FLAG_OFF.equals(status)) {
 					tlrInfo.setFlag(status);
 				} else if ("logout".equals(status)) {
@@ -575,8 +512,6 @@ public class OperMngOperation extends BaseOperation {
 				}
 
 				// 改回原值
-				// tlrInfo.setFlag(oldFlag);
-				// tlrInfo.setStatus(oldStatus);
 				rootdao.saveOrUpdate(tlrInfo);
 				if ("logout".equals(status)) {
 					globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]强行签退操作" });

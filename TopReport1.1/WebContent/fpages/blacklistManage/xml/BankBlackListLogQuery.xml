@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <CommQry title="日志查询" navigate="主页 &gt; 数据查询&gt; 商行黑名单日志查询" type="call" interface="true" pagesize="10" async="true"
-    databusid="" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.report.blacklist.getter.BankBLOPLogQueryGetter">
+    databusid="" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.getter.BankBLOPLogQueryGetter">
     <Include id="BankParam" />
     <PageQryExp type="XLS" limit="true" encoding="GBK" url="/trans/qryExp.do" desc="批量下载-商行黑名单日志查询" />
     <Fields>

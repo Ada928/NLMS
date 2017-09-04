@@ -9,21 +9,24 @@
         <!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
         <!-- primary : true-作为表单项记录上传 false-不作为表单项上传 -->
 
-        <Field id="tlrno" desc="操作员号" status="N" require="true" rules="isTlrno" readonly="false" errmsg="错误的操作员号" primary="true"
+        <Field id="tlrno" desc="操作员号" status="N" require="false" rules="isTlrno" readonly="false" errmsg="错误的操作员号" primary="true"
             type="String" size="10" xpath="/tlrno" edittyep="text" />
 
         <Field id="tlrName" desc="操作员名称" status="N" require="true" readonly="" primary="true" type="String" size="30"
             xpath="/tlrName" />
+            
+        <Field id="password" desc="操作员密码" status="F" method="None" colspan="2" edittype="password" require="false"
+            primary="true" type="String" size="30" default="" xpath="/password" tip="操作员密码" />
            
         <Field id="tlrType" desc="操作员类型" status="N" readonly="" translated="DATA_DIC.37" edittype="select"
             width="90" method="None" primary="true" type="String" size="50" xpath="/tlrType" /> 
             
-        <Field id="brcode" desc="银行代码" status="F" primary="false" method="None" readonly="false" type="String"
+        <Field id="brcode" desc="银行 ID" status="F" primary="false" method="None" readonly="false" type="String"
             size="50" default="" edittype="select" translated="CQ:AllBranchSelect" fieldmap="brcode=brcode;brcodeName=brcodeTypeName"
-            viewField="brcodeTypeName" xpath="/brcode" require="false" tip="银行代码" />
+            viewField="brcodeTypeName" xpath="/brcode" require="false" tip="银行 ID" />
 
-        <Field id="brcodeName" desc="银行代码" status="F"
-            method="com.huateng.ebank.business.common.CQMethod.getBrhNameByBrno" width="" readonly="" primary="true"
+        <Field id="brcodeName" desc="银行名称" status="F"
+            method="com.huateng.ebank.business.common.CQMethod.getBrhNameByBrcode" width="" readonly="" primary="true"
             type="String" size="150" xpath="/brcode" default="" />
             
         <Field id="status" desc="状态" status="N" readonly="" translated="DATA_DIC.37" require="" edittype="select"
@@ -57,9 +60,11 @@
     </Where>
 
     <Operations>
-        <Button id="btModSave" name="btSave" desc="确定" operation=""
-            updateClass="com.huateng.ebank.business.opermng.update.OperMngModUpdate" url="#" txn="" />
-        <Button id="btCancel" name="btCancel" desc="返回" operation="asysubmit" url="#" txn="" />
+        <Button id="btModSave" name="btSave" desc="确定" operation="asysubmit"
+            updateClass="com.huateng.ebank.business.opermng.update.OperMngModUpdate" 
+            url="/fpages/regonization/ftl/OperatorEntry.ftl" txn="" />
+        <Button id="btCancel" name="btCancel" desc="返回" operation="" 
+        	url="/fpages/regonization/ftl/OperatorEntry.ftl" txn="" />
     </Operations>
     <Sql></Sql>
 </CommQry>

@@ -51,10 +51,10 @@
             primary="true" type="操作" size="12" default="" xpath="" tip="操作" />
         <!-- add by zhaozhiguo 2012/2/15 FPP-9 用户,岗位及机构的管理页面优化调整 end -->
         <!-- add by zhiyang.he 双岗复核改造 2012-09-03 begin -->
-        <Field id="isLock" desc="锁定状态" require="false" edittype="text" datatype="string" method="None" readonly="true"
-            primary="true" type="锁定状态" size="12" default="" xpath="/isLock" tip="锁定状态" />
-        <Field id="isDel" desc="删除状态" require="false" edittype="text" datatype="string" method="None" readonly="true"
-            primary="true" type="删除状态" size="12" default="" xpath="/isDel" tip="删除状态" />
+        <Field id="lock" desc="锁定状态" require="false" edittype="text" datatype="string" method="None" readonly="true"
+            primary="true" type="锁定状态" size="12" default="" xpath="/lock" tip="锁定状态" />
+        <Field id="del" desc="删除状态" require="false" edittype="text" datatype="string" method="None" readonly="true"
+            primary="true" type="删除状态" size="12" default="" xpath="/del" tip="删除状态" />
         <Field id="st" desc="记录状态" require="false" edittype="select" datatype="string" method="None" readonly="true"
             primary="true" type="记录状态" size="12" default="" xpath="/st" tip="记录状态" translated="DATA_DIC.3001" />
         <!-- add by zhiyang.he 双岗复核改造 2012-09-03 end -->

@@ -25,12 +25,12 @@
     <Where></Where>
     <Operations>
 		<!--modify by zhiyang.he 用户管理双岗复核改造 2012-09-04 begin -->
-		<Button id="btRoleSave" name="btRoleSave" desc="保存" operation="asysubmit"
+		<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
 			updateClass="com.huateng.ebank.business.opermng.update.OperMngModUpdate"
-			url="#" txn="" />
+			url="/fpages/regonization/ftl/OperatorEntry.ftl" txn="" />
 			
 		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform"
-			url="/fpages/regonization/ftl/OperMngEntry.ftl" txn="" />
+			url="/fpages/regonization/ftl/OperatorEntry.ftl" txn="" />
 		<!--modify by zhiyang.he 用户管理双岗复核改造 2012-09-04 end -->
     </Operations>
     <Sql></Sql>
