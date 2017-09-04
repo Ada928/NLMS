@@ -61,6 +61,7 @@
                 <value>classpath:/resource/hbm/pub/db2/*.hbm</value>
                 <value>classpath:/resource/hbm/pub/db2/*.xml</value>
                 <value>classpath:/resources/report/hbm/pub/*.xml</value>
+                <value>classpath:/resources/blacklist/hbm/pub/*.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">
