@@ -8,11 +8,13 @@
  */
 package com.huateng.ebank.business.management.bean;
 
+import java.io.Serializable;
+
 /**
  *
  * @author haizhou.li 岗位名称校验Bean
  */
-public class PosiNameCheckBean {
+public class PosiNameCheckBean implements Serializable {
 	private String roleName;
 	private String flag;
 

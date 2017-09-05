@@ -1,28 +1,30 @@
 package com.cibfintech.blacklist.bean;
 
-import resource.bean.blacklist.PoliceBlackList;
+import java.io.Serializable;
+
+import resource.bean.blacklist.NsPoliceBlackList;
 
 /**
  * 
  * 商行黑名单新旧信息的对比的bean
  */
-public class PoliceBlackListDetail {
-	private PoliceBlackList old_policeBlackList;
-	private PoliceBlackList policeBlackList;
+public class PoliceBlackListDetail implements Serializable {
+	private NsPoliceBlackList old_policeBlackList;
+	private NsPoliceBlackList policeBlackList;
 
-	public PoliceBlackList getOld_policeBlackList() {
+	public NsPoliceBlackList getOld_policeBlackList() {
 		return old_policeBlackList;
 	}
 
-	public void setOld_policeBlackList(PoliceBlackList oldpoliceBlackList) {
+	public void setOld_policeBlackList(NsPoliceBlackList oldpoliceBlackList) {
 		old_policeBlackList = oldpoliceBlackList;
 	}
 
-	public PoliceBlackList getPoliceBlackList() {
+	public NsPoliceBlackList getPoliceBlackList() {
 		return policeBlackList;
 	}
 
-	public void setPoliceBlackList(PoliceBlackList policeBlackList) {
+	public void setPoliceBlackList(NsPoliceBlackList policeBlackList) {
 		this.policeBlackList = policeBlackList;
 	}
 

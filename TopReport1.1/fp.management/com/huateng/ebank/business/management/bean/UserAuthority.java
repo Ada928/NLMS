@@ -1,5 +1,6 @@
 package com.huateng.ebank.business.management.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  * 
  */
 
-public class UserAuthority {
+public class UserAuthority implements Serializable {
 
 	private String trlNo;
 	private String trlName;

@@ -1,12 +1,14 @@
 package com.huateng.ebank.business.logger.bean;
 
+import java.io.Serializable;
+
 /**
  * 操作日志Bean
  * 
  * @author kevin_qin
  *
  */
-public class OperLoggerBean {
+public class OperLoggerBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

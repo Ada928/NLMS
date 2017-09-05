@@ -1,5 +1,6 @@
 package com.huateng.ebank.business.management.bean;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -9,7 +10,7 @@ import java.util.Date;
  * @author hyurain_yang
  *
  */
-public class TlrView {
+public class TlrView implements Serializable {
 	private String brcode;
 	private String brno;
 	private String brname;

@@ -5,6 +5,7 @@
 package com.huateng.ebank.business.management.bean;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,7 +24,7 @@ import com.huateng.ebank.framework.struts.HTBaseForm;
  * <li>password - the password to authenticate
  * </ul>
  */
-public final class LoginForm extends HTBaseForm {
+public final class LoginForm extends HTBaseForm implements Serializable {
 
 	private String userName = null;
 	private String passWord = null;

@@ -1,5 +1,6 @@
 package com.huateng.report.dataAnaly.bean;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -16,7 +17,7 @@ import resource.report.dao.ROOTDAOUtils;
  * @author NING-PENG
  *
  */
-public class DataAnalysisTool {
+public class DataAnalysisTool implements Serializable {
 
 	public ConnectionProvider getConnectionProvider() {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();

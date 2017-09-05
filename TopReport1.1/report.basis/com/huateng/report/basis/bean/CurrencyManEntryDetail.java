@@ -1,12 +1,14 @@
 package com.huateng.report.basis.bean;
 
+import java.io.Serializable;
+
 import resource.bean.report.SysCurrency;
 
 /**
  * 
  * author by 计翔 2012.9.5 币种新旧信息的对比的bean
  */
-public class CurrencyManEntryDetail {
+public class CurrencyManEntryDetail implements Serializable {
 	private SysCurrency old_currency;
 	private SysCurrency currency;
 

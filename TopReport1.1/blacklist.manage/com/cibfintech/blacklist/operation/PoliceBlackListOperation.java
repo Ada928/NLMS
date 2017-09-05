@@ -2,7 +2,7 @@ package com.cibfintech.blacklist.operation;
 
 import java.io.IOException;
 
-import resource.bean.blacklist.PoliceBlackList;
+import resource.bean.blacklist.NsPoliceBlackList;
 import resource.bean.report.SysTaskInfo;
 
 import com.cibfintech.blacklist.service.PoliceBlackListOperateLogService;
@@ -35,7 +35,7 @@ public class PoliceBlackListOperation extends BaseOperation {
 	@Override
 	public void execute(OperationContext context) throws CommonException {
 		String cmd = (String) context.getAttribute(CMD);
-		PoliceBlackList policeBlackList = (PoliceBlackList) context.getAttribute(IN_PARAM);
+		NsPoliceBlackList policeBlackList = (NsPoliceBlackList) context.getAttribute(IN_PARAM);
 		// 调用服务类
 		PoliceBlackListService service = PoliceBlackListService.getInstance();
 
@@ -44,7 +44,7 @@ public class PoliceBlackListOperation extends BaseOperation {
 		if (CMD_DEL.equals(cmd)) {
 			// 删除
 			// service.removeEntity(policeBlackList);
-			PoliceBlackList sys1 = service.selectById(policeBlackList.getId());
+			NsPoliceBlackList sys1 = service.selectById(policeBlackList.getId());
 			// sysCurService.update(sysCurrency);
 			sys1.setOperateState(ReportEnum.REPORT_ST1.DE.value);
 			sys1.setDel(SystemConstant.TRUE);
@@ -87,7 +87,7 @@ public class PoliceBlackListOperation extends BaseOperation {
 		} else if (CMD_MOD.equals(cmd)) {
 			// service.modEntity(policeBlackList);
 			// Iterator it=service.selectByid(policeBlackList.getId());
-			PoliceBlackList sys1 = service.selectById(policeBlackList.getId());
+			NsPoliceBlackList sys1 = service.selectById(policeBlackList.getId());
 			if (policeBlackList.getBankCode().trim() == "") {
 				sys1.setBankCode(GlobalInfo.getCurrentInstance().getBrcode());
 			} else {

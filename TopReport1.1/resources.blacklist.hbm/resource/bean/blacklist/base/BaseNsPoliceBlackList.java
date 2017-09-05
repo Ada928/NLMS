@@ -3,13 +3,13 @@ package resource.bean.blacklist.base;
 import java.io.Serializable;
 import java.util.Date;
 
-import resource.bean.blacklist.PoliceBlackList;
+import resource.bean.blacklist.NsPoliceBlackList;
 
 /**
  * NlmsBankblacklist entity. @author MyEclipse Persistence Tools
  */
 
-public class BasePoliceBlackList implements Serializable {
+public class BaseNsPoliceBlackList implements Serializable {
 
 	/**
 	 * 
@@ -69,10 +69,10 @@ public class BasePoliceBlackList implements Serializable {
 	// Constructors
 
 	/** default constructor */
-	public BasePoliceBlackList() {
+	public BaseNsPoliceBlackList() {
 	}
 
-	public BasePoliceBlackList(String id) {
+	public BaseNsPoliceBlackList(String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -278,10 +278,10 @@ public class BasePoliceBlackList implements Serializable {
 	public boolean equals(Object obj) {
 		if (null == obj)
 			return false;
-		if (!(obj instanceof PoliceBlackList))
+		if (!(obj instanceof NsPoliceBlackList))
 			return false;
 		else {
-			PoliceBlackList policeBlackList = (PoliceBlackList) obj;
+			NsPoliceBlackList policeBlackList = (NsPoliceBlackList) obj;
 			if (null == this.getId() || null == policeBlackList.getId())
 				return false;
 			else

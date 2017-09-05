@@ -1,6 +1,8 @@
 package com.huateng.ebank.business.parammng.bean;
 
-public class BhProcStepView {
+import java.io.Serializable;
+
+public class BhProcStepView implements Serializable {
 	private String id;
 	private String jobno;
 	private String step;

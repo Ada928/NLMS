@@ -8,6 +8,7 @@
  */
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,7 +20,7 @@ import com.huateng.ebank.entity.data.workflow.WorkflowTaskInfo;
  *
  *          工作流查询返回Bean.
  */
-public class WorkFlowTaskInfoBean {
+public class WorkFlowTaskInfoBean implements Serializable {
 	private static Set set;
 
 	static {

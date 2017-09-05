@@ -2,7 +2,7 @@ package com.cibfintech.blacklist.operation;
 
 import java.io.IOException;
 
-import resource.bean.blacklist.BankBlackList;
+import resource.bean.blacklist.NsBankBlackList;
 import resource.bean.report.SysTaskInfo;
 
 import com.cibfintech.blacklist.service.BankBlackListOperateLogService;
@@ -45,7 +45,7 @@ public class BankBlackListOperation extends BaseOperation {
 	@Override
 	public void execute(OperationContext context) throws CommonException {
 		String cmd = (String) context.getAttribute(CMD);
-		BankBlackList bankBlackList = (BankBlackList) context.getAttribute(IN_BANK_BLACK_LIST);
+		NsBankBlackList bankBlackList = (NsBankBlackList) context.getAttribute(IN_BANK_BLACK_LIST);
 		// 调用服务类
 		BankBlackListService service = BankBlackListService.getInstance();
 		String operateType = "";
@@ -53,7 +53,7 @@ public class BankBlackListOperation extends BaseOperation {
 		if (CMD_DEL.equals(cmd)) {
 			// 删除
 			// service.removeEntity(bankBlackList);
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
+			NsBankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
 			// sysCurService.update(sysCurrency);
 			tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.N.value);
 			tempBankBlackList.setShare(ReportEnum.REPORT_TRUE_FALSE.F.value);
@@ -102,7 +102,7 @@ public class BankBlackListOperation extends BaseOperation {
 		} else if (CMD_VERIFY.equals(cmd)) {
 			// 审核
 			// service.removeEntity(bankBlackList);
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
+			NsBankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
 			// sysCurService.update(sysCurrency);
 			if (tempBankBlackList.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value)) {
 				tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
@@ -128,7 +128,7 @@ public class BankBlackListOperation extends BaseOperation {
 		} else if (CMD_APPROVE.equals(cmd)) {
 			// 审批
 			// service.removeEntity(bankBlackList);
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
+			NsBankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
 			if (tempBankBlackList.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value)) {
 				tempBankBlackList.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
 			} else if (tempBankBlackList.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value)) {
@@ -151,7 +151,7 @@ public class BankBlackListOperation extends BaseOperation {
 		} else if (CMD_SHARE.equals(cmd)) {
 			// 分享
 			// service.removeEntity(bankBlackList);
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
+			NsBankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
 			if (tempBankBlackList.isShare()) {
 				tempBankBlackList.setShare(ReportEnum.REPORT_TRUE_FALSE.F.value);
 			} else {
@@ -174,7 +174,7 @@ public class BankBlackListOperation extends BaseOperation {
 		} else if (CMD_EDIT.equals(cmd)) {
 			// service.modEntity(bankBlackList);
 			// Iterator it=service.selectByid(bankBlackList.getId());
-			BankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
+			NsBankBlackList tempBankBlackList = service.selectById(bankBlackList.getId());
 			if (bankBlackList.getBankCode().trim() == "") {
 				tempBankBlackList.setBankCode(GlobalInfo.getCurrentInstance().getBrcode());
 			} else {

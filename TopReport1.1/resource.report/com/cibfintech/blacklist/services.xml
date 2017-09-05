@@ -18,10 +18,26 @@
     <bean id="com.cibfintech.blacklist.service.InternationBlackListOperateLogService" 
     	class="com.cibfintech.blacklist.service.InternationBlackListOperateLogService"/>
     	
-    	
     <bean id="com.cibfintech.blacklist.service.QueryDailyLogCountService" 
     	class="com.cibfintech.blacklist.service.QueryDailyLogCountService"/>
     <bean id="com.cibfintech.blacklist.service.QueryMonthlyLogCountService" 
     	class="com.cibfintech.blacklist.service.QueryMonthlyLogCountService"/>
+    	
+    <bean id="com.cibfintech.blacklist.service.BankInfoService" 
+    	class="com.cibfintech.blacklist.service.BankInfoService"/>
+    <bean id="com.cibfintech.blacklist.service.BankOperateLogService" 
+    	class="com.cibfintech.blacklist.service.BankOperateLogService"/>
+    <bean id="com.cibfintech.blacklist.service.BankTlrRelService" 
+    	class="com.cibfintech.blacklist.service.BankTlrRelService"/>
+    <bean id="com.cibfintech.blacklist.service.RoleFuncRelService" 
+    	class="com.cibfintech.blacklist.service.RoleFuncRelService"/>
+    <bean id="com.cibfintech.blacklist.service.RoleInfoService" 
+    	class="com.cibfintech.blacklist.service.RoleInfoService"/>
+    <bean id="com.cibfintech.blacklist.service.RoleOperateLogService" 
+    	class="com.cibfintech.blacklist.service.RoleOperateLogService"/>
+    <bean id="com.cibfintech.blacklist.service.RoleTlrRelService" 
+    	class="com.cibfintech.blacklist.service.RoleTlrRelService"/>
+    	
+    
  
 </beans>

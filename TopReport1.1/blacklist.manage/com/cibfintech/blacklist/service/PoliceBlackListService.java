@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import resource.bean.blacklist.PoliceBlackList;
+import resource.bean.blacklist.NsPoliceBlackList;
 import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
@@ -44,7 +44,7 @@ public class PoliceBlackListService {
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from PoliceBlackList pblt where pblt.del='F'");
+		StringBuffer hql = new StringBuffer(" from NsPoliceBlackList pblt where pblt.del='F'");
 
 		if (StringUtils.isNotBlank(partyId)) {
 			hql.append(" and pblt.id = '").append(partyId.trim()).append("'");
@@ -80,7 +80,7 @@ public class PoliceBlackListService {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		List list = rootDAO.queryByQL2List("1=1");
 		for (int i = 0; i < list.size(); i++) {
-			PoliceBlackList bblt = (PoliceBlackList) list.get(i);
+			NsPoliceBlackList bblt = (NsPoliceBlackList) list.get(i);
 			list.set(i, bblt);
 		}
 		return list;
@@ -91,7 +91,7 @@ public class PoliceBlackListService {
 	 * 
 	 * @param biNationregion
 	 */
-	public void removeEntity(PoliceBlackList policeBlackList) {
+	public void removeEntity(NsPoliceBlackList policeBlackList) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		try {
 			rootDAO.delete(policeBlackList);
@@ -107,7 +107,7 @@ public class PoliceBlackListService {
 	 * 
 	 * @param biNationregion
 	 */
-	public void modOrAddEntity(PoliceBlackList policeBlackList) {
+	public void modOrAddEntity(NsPoliceBlackList policeBlackList) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		try {
 			rootDAO.saveOrUpdate(policeBlackList);
@@ -118,7 +118,7 @@ public class PoliceBlackListService {
 		}
 	}
 
-	public void addEntity(PoliceBlackList policeBlackList) throws CommonException {
+	public void addEntity(NsPoliceBlackList policeBlackList) throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		if (isExists(policeBlackList.getId())) {
 			ExceptionUtil.throwCommonException(" 名单重复");
@@ -134,7 +134,7 @@ public class PoliceBlackListService {
 	public boolean isExists(String id) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		try {
-			PoliceBlackList policeBlackList = (PoliceBlackList) rootDAO.query(PoliceBlackList.class, id);
+			NsPoliceBlackList policeBlackList = (NsPoliceBlackList) rootDAO.query(NsPoliceBlackList.class, id);
 			if (policeBlackList == null) {
 				return false;
 			}
@@ -144,7 +144,7 @@ public class PoliceBlackListService {
 		return true;
 	}
 
-	public void modEntity(PoliceBlackList policeBlackList) {
+	public void modEntity(NsPoliceBlackList policeBlackList) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		try {
 			rootDAO.update(policeBlackList);
@@ -165,11 +165,11 @@ public class PoliceBlackListService {
 	}
 
 	// 通过id来获取实体类
-	public PoliceBlackList selectById(String id) {
+	public NsPoliceBlackList selectById(String id) {
 		BlackListDAO rootdao = BlackListDAOUtils.getBlackListDAO();
-		PoliceBlackList policeBlackList = null;
+		NsPoliceBlackList policeBlackList = null;
 		try {
-			policeBlackList = (PoliceBlackList) rootdao.query(PoliceBlackList.class, id);
+			policeBlackList = (NsPoliceBlackList) rootdao.query(NsPoliceBlackList.class, id);
 		} catch (CommonException e) {
 			e.printStackTrace();
 		}

@@ -13,7 +13,7 @@ import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
-import resource.bean.blacklist.QueryMonthlyLogCount;
+import resource.bean.blacklist.NsQueryMonthlyLogCount;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
 import resource.dao.base.HQLDAO;
@@ -58,7 +58,7 @@ public class QueryMonthlyLogCountService {
 			throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		QueryMonthlyLogCount queryMonthlyLogCount = new QueryMonthlyLogCount();
+		NsQueryMonthlyLogCount queryMonthlyLogCount = new NsQueryMonthlyLogCount();
 		queryMonthlyLogCount.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
 		queryMonthlyLogCount.setBrNo(gi.getBrno());
 		queryMonthlyLogCount.setOperateType(operateType);
@@ -78,7 +78,7 @@ public class QueryMonthlyLogCountService {
 		StringBuffer sb = new StringBuffer("");
 		List<Object> list = new ArrayList<Object>();
 		// sb.append("select log from QueryMonthlyLogCount log where 1=1");
-		sb.append("select cont from QueryMonthlyLogCount cont where 1=1 ");
+		sb.append("select cont from NsQueryMonthlyLogCount cont where 1=1 ");
 
 		if (!DataFormat.isEmpty(qbrNo)) {
 			sb.append(" and cont.brNo = ? ");

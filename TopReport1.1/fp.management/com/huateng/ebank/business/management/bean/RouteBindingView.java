@@ -6,6 +6,7 @@
  */
 package com.huateng.ebank.business.management.bean;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -14,7 +15,7 @@ import java.math.BigDecimal;
  *         TODO To change the template for this generated type comment go to
  *         Window - Preferences - Java - Code Style - Code Templates
  */
-public class RouteBindingView {
+public class RouteBindingView implements Serializable {
 	/** modify by shen_antonio 20091214 jira:BMS-2334 begin . */
 	private boolean select = false;
 	/** modify by shen_antonio 20091214 jira:BMS-2334 end . */

@@ -1,9 +1,10 @@
 package com.huateng.report.send.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportFeedBackErrRec {
+public class ReportFeedBackErrRec implements Serializable {
 	private String bussno;
 	/** 用于读取BOP的错误反馈 */
 	private String rptno;

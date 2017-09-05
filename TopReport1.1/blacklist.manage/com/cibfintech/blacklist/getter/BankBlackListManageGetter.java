@@ -3,7 +3,7 @@ package com.cibfintech.blacklist.getter;
 import java.util.ArrayList;
 import java.util.List;
 
-import resource.bean.blacklist.BankBlackList;
+import resource.bean.blacklist.NsBankBlackList;
 
 import com.cibfintech.blacklist.service.BankBlackListService;
 import com.huateng.commquery.result.Result;
@@ -21,7 +21,7 @@ public class BankBlackListManageGetter extends BaseGetter {
 			id = "0";
 		}
 
-		BankBlackList bankBlackList = (BankBlackList) BankBlackListService.getInstance().selectById(id);
+		NsBankBlackList bankBlackList = (NsBankBlackList) BankBlackListService.getInstance().selectById(id);
 
 		ResultMng.fillResultByObject(this.commonQueryBean, getCommQueryServletRequest(), bankBlackList, getResult());
 

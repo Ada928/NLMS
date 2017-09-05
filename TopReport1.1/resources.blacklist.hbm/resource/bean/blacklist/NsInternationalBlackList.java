@@ -2,21 +2,21 @@ package resource.bean.blacklist;
 
 import java.io.Serializable;
 
-import resource.bean.blacklist.base.BaseInternationalBlackList;
+import resource.bean.blacklist.base.BaseNsInternationalBlackList;
 
-public class InternationalBlackList extends BaseInternationalBlackList implements Serializable {
+public class NsInternationalBlackList extends BaseNsInternationalBlackList implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
-	public InternationalBlackList() {
+	public NsInternationalBlackList() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public InternationalBlackList(String id) {
+	public NsInternationalBlackList(String id) {
 		super(id);
 	}
 

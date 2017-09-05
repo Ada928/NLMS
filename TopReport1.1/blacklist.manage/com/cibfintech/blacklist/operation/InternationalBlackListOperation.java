@@ -2,7 +2,7 @@ package com.cibfintech.blacklist.operation;
 
 import java.io.IOException;
 
-import resource.bean.blacklist.InternationalBlackList;
+import resource.bean.blacklist.NsInternationalBlackList;
 import resource.bean.report.SysTaskInfo;
 
 import com.cibfintech.blacklist.service.InternationBlackListOperateLogService;
@@ -35,7 +35,7 @@ public class InternationalBlackListOperation extends BaseOperation {
 	@Override
 	public void execute(OperationContext context) throws CommonException {
 		String cmd = (String) context.getAttribute(CMD);
-		InternationalBlackList internationalBlackList = (InternationalBlackList) context.getAttribute(IN_PARAM);
+		NsInternationalBlackList internationalBlackList = (NsInternationalBlackList) context.getAttribute(IN_PARAM);
 		// 调用服务类
 		InternationalBlackListService service = InternationalBlackListService.getInstance();
 		String operateType = "";
@@ -43,7 +43,7 @@ public class InternationalBlackListOperation extends BaseOperation {
 		if (CMD_DEL.equals(cmd)) {
 			// 删除
 			// service.removeEntity(internationalBlackList);
-			InternationalBlackList sys1 = service.selectById(internationalBlackList.getId());
+			NsInternationalBlackList sys1 = service.selectById(internationalBlackList.getId());
 			// sysCurService.update(sysCurrency);
 			sys1.setOperateState(ReportEnum.REPORT_ST1.DE.value);
 			sys1.setDel(SystemConstant.TRUE);
@@ -87,7 +87,7 @@ public class InternationalBlackListOperation extends BaseOperation {
 		} else if (CMD_MOD.equals(cmd)) {
 			// service.modEntity(internationalBlackList);
 			// Iterator it=service.selectByid(internationalBlackList.getId());
-			InternationalBlackList sys1 = service.selectById(internationalBlackList.getId());
+			NsInternationalBlackList sys1 = service.selectById(internationalBlackList.getId());
 
 			sys1.setOperateState(ReportEnum.REPORT_ST1.ET.value);
 			sys1.setAccountType(internationalBlackList.getAccountType());

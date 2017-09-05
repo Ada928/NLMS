@@ -11,7 +11,7 @@ import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
-import resource.bean.blacklist.BankBLOperateLog;
+import resource.bean.blacklist.NsBankBLOperateLog;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
 import resource.dao.base.HQLDAO;
@@ -55,7 +55,7 @@ public class BankBlackListOperateLogService {
 	public void saveBankBLOperateLog(String operateType, String queryType, String queryNum, String measssage) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		BankBLOperateLog bankBLOperateLog = new BankBLOperateLog();
+		NsBankBLOperateLog bankBLOperateLog = new NsBankBLOperateLog();
 		bankBLOperateLog.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
 		bankBLOperateLog.setBrNo(gi.getBrno());
 		bankBLOperateLog.setTlrNo(gi.getTlrno());
@@ -77,7 +77,7 @@ public class BankBlackListOperateLogService {
 			throws CommonException {
 		StringBuffer sb = new StringBuffer("");
 		// sb.append("select log from TlrLoginLog log where 1=1");
-		sb.append(" from BankBLOperateLog blog  where 1=1  ");
+		sb.append(" from NsBankBLOperateLog blog  where 1=1  ");
 		if (!DataFormat.isEmpty(qtlrNo)) {
 			sb.append(" and  blog.tlrNo=  ").append(qtlrNo.trim());
 		}
@@ -116,7 +116,7 @@ public class BankBlackListOperateLogService {
 	 */
 	public List sumQueryBankBlacklist(String startDate, String endDate) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-		StringBuffer sb = new StringBuffer("select log.brNo, sum(log.queryRecordNumber) from BankBLOperateLog log where 1=1");
+		StringBuffer sb = new StringBuffer("select log.brNo, sum(log.queryRecordNumber) from NsBankBLOperateLog log where 1=1");
 		sb.append(" and log.operateType='Q'");
 		sb.append(" and log.createDate>=to_date('").append(startDate).append("','yyyy-mm-dd')");
 		sb.append(" and log.createDate<to_date('").append(endDate).append("','yyyy-mm-dd')");

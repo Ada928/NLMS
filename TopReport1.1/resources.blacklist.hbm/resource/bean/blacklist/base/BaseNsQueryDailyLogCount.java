@@ -2,7 +2,7 @@ package resource.bean.blacklist.base;
 
 import java.io.Serializable;
 
-import resource.bean.blacklist.QueryMonthlyLogCount;
+import resource.bean.blacklist.NsQueryDailyLogCount;
 
 /**
  * This is an object that contains data related to the TLR_LOGIN_LOG table. Do
@@ -12,29 +12,29 @@ import resource.bean.blacklist.QueryMonthlyLogCount;
  * @hibernate.class table="TLR_LOGIN_LOG"
  */
 
-public abstract class BaseQueryMonthlyLogCount implements Serializable {
+public abstract class BaseNsQueryDailyLogCount implements Serializable {
 
-	public static String REF = "QueryMonthlyLogCount";
+	public static String REF = "QueryDailyLogCount";
 	public static String PROP_ID = "id";
 	public static String PROP_CREATE_DATE = "create_date";
 	public static String PROP_BR_NO = "brNo";
 	public static String PROP_QUERY_TABLE = "queryTable";
 	public static String PROP_OPERATE_TYPE = "operate_type";
-	public static String PROP_COUNT_DAY = "countMonth";
+	public static String PROP_COUNT_DAY = "countDay";
 	public static String PROP_SUM_QUERY_RECORD = "SUM_QUERY_RECORD";
 	public static String PROP_FILTER1 = "filter1";
 	public static String PROP_FILTER2 = "filter2";
 	public static String PROP_FILTER3 = "filter3";
 
 	// constructors
-	public BaseQueryMonthlyLogCount() {
+	public BaseNsQueryDailyLogCount() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseQueryMonthlyLogCount(java.lang.String id) {
+	public BaseNsQueryDailyLogCount(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -52,7 +52,7 @@ public abstract class BaseQueryMonthlyLogCount implements Serializable {
 	private java.lang.String operateType;
 	private java.lang.String queryTable;
 	private java.lang.String sumQueryRecord;
-	private java.util.Date countMonth;
+	private java.util.Date countDay;
 	private java.util.Date createDate;
 	private java.lang.String filter1;
 	private java.lang.String filter2;
@@ -143,12 +143,12 @@ public abstract class BaseQueryMonthlyLogCount implements Serializable {
 		this.sumQueryRecord = sumQueryRecord;
 	}
 
-	public java.util.Date getCountMonth() {
-		return countMonth;
+	public java.util.Date getCountDay() {
+		return countDay;
 	}
 
-	public void setCountMonth(java.util.Date countDay) {
-		this.countMonth = countDay;
+	public void setCountDay(java.util.Date countDay) {
+		this.countDay = countDay;
 	}
 
 	public java.util.Date getCreateDate() {
@@ -162,10 +162,10 @@ public abstract class BaseQueryMonthlyLogCount implements Serializable {
 	public boolean equals(Object obj) {
 		if (null == obj)
 			return false;
-		if (!(obj instanceof QueryMonthlyLogCount))
+		if (!(obj instanceof NsQueryDailyLogCount))
 			return false;
 		else {
-			QueryMonthlyLogCount bean = (QueryMonthlyLogCount) obj;
+			NsQueryDailyLogCount bean = (NsQueryDailyLogCount) obj;
 			if (null == this.getId() || null == bean.getId())
 				return false;
 			else

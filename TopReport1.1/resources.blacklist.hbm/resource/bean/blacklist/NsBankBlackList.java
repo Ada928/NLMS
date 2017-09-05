@@ -1,19 +1,21 @@
 package resource.bean.blacklist;
 
-import resource.bean.blacklist.base.BaseBankBLOperateLog;
+import java.io.Serializable;
 
-public class BankBLOperateLog extends BaseBankBLOperateLog implements java.io.Serializable {
+import resource.bean.blacklist.base.BaseNsBankBlackList;
+
+public class NsBankBlackList extends BaseNsBankBlackList implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
-	public BankBLOperateLog() {
+	public NsBankBlackList() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BankBLOperateLog(java.lang.String id) {
+	public NsBankBlackList(String id) {
 		super(id);
 	}
 

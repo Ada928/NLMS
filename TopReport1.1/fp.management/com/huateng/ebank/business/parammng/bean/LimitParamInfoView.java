@@ -7,6 +7,7 @@
  */
 package com.huateng.ebank.business.parammng.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -15,7 +16,7 @@ import java.util.Date;
  *         TODO To change the template for this generated type comment go to
  *         Window - Preferences - Java - Code Style - Code Templates
  */
-public class LimitParamInfoView {
+public class LimitParamInfoView implements Serializable {
 	// id
 	private String id;
 	// 操作员号

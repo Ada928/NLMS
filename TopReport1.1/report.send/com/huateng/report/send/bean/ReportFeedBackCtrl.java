@@ -1,9 +1,10 @@
 package com.huateng.report.send.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportFeedBackCtrl {
+public class ReportFeedBackCtrl implements Serializable {
 	public static final String ID = "BUF_TT_FEEDBACK";
 	private String appType;
 	private String currentFile;

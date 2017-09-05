@@ -13,7 +13,7 @@ import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
-import resource.bean.blacklist.QueryDailyLogCount;
+import resource.bean.blacklist.NsQueryDailyLogCount;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
 import resource.dao.base.HQLDAO;
@@ -55,7 +55,7 @@ public class QueryDailyLogCountService {
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	public void saveQueryDailyLogCount(String operateType, String brNo, String queryTable, String sumQueryRecord, Date countDay) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-		QueryDailyLogCount queryDailyLogCount = new QueryDailyLogCount();
+		NsQueryDailyLogCount queryDailyLogCount = new NsQueryDailyLogCount();
 		queryDailyLogCount.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
 		queryDailyLogCount.setBrNo(brNo);
 		queryDailyLogCount.setOperateType(operateType);
@@ -75,7 +75,7 @@ public class QueryDailyLogCountService {
 		StringBuffer sb = new StringBuffer("");
 		List<Object> list = new ArrayList<Object>();
 		// sb.append("select log from QueryDailyLogCount log where 1=1");
-		sb.append("select cont from QueryDailyLogCount cont where 1=1 ");
+		sb.append("select cont from NsQueryDailyLogCount cont where 1=1 ");
 
 		if (!DataFormat.isEmpty(qbrNo)) {
 			sb.append(" and cont.brNo = ? ");

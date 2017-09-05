@@ -1,5 +1,6 @@
 package com.huateng.report.imports.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Map;
  * @date 2008年11月4日
  */
 @SuppressWarnings("unchecked")
-public class Constant {
+public class Constant implements Serializable {
 
 	public String id;
 	public static Map<String, Constant> sessionMap = new HashMap<String, Constant>(10);

@@ -114,9 +114,13 @@ public class OperMngOperation extends BaseOperation {
 	private void updateTlrBctlRels(TlrInfo tlrInfo) throws CommonException {
 		TlrBctlRelDAO dao = DAOUtils.getTlrBctlRelDAO();
 		List<TlrBctlRel> list = dao.queryByCondition(" po.tlrNo='" + tlrInfo.getTlrno() + "'");
-		TlrBctlRel po = list.get(0);
-		po.setBrcode(tlrInfo.getBrcode());
-		dao.update(po);
+		if (null == list) {
+			saveTlrBctleRels(tlrInfo.getBrcode(), tlrInfo.getBrcode());
+		} else {
+			TlrBctlRel po = list.get(0);
+			po.setBrcode(tlrInfo.getBrcode());
+			dao.update(po);
+		}
 	}
 
 	// 保存银行和用户的关系

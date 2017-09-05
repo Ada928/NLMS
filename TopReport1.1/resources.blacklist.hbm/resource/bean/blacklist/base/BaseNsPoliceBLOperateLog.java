@@ -2,7 +2,7 @@ package resource.bean.blacklist.base;
 
 import java.io.Serializable;
 
-import resource.bean.blacklist.BankBLOperateLog;
+import resource.bean.blacklist.NsPoliceBLOperateLog;
 
 /**
  * This is an object that contains data related to the TLR_LOGIN_LOG table. Do
@@ -12,9 +12,9 @@ import resource.bean.blacklist.BankBLOperateLog;
  * @hibernate.class table="TLR_LOGIN_LOG"
  */
 
-public abstract class BaseBankBLOperateLog implements Serializable {
+public abstract class BaseNsPoliceBLOperateLog implements Serializable {
 
-	public static String REF = "BaseBankBLOperateLog";
+	public static String REF = "BasePoliceBLOperateLog";
 	public static String PROP_MESSAFE = "message";
 	public static String PROP_TLR_NO = "tlrNo";
 	public static String PROP_ID = "id";
@@ -27,14 +27,14 @@ public abstract class BaseBankBLOperateLog implements Serializable {
 	public static String PROP_FILTER3 = "filter3";
 
 	// constructors
-	public BaseBankBLOperateLog() {
+	public BaseNsPoliceBLOperateLog() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseBankBLOperateLog(java.lang.String id) {
+	public BaseNsPoliceBLOperateLog(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -189,14 +189,14 @@ public abstract class BaseBankBLOperateLog implements Serializable {
 	public boolean equals(Object obj) {
 		if (null == obj)
 			return false;
-		if (!(obj instanceof BankBLOperateLog))
+		if (!(obj instanceof NsPoliceBLOperateLog))
 			return false;
 		else {
-			BankBLOperateLog bankBLOperateLog = (BankBLOperateLog) obj;
-			if (null == this.getId() || null == bankBLOperateLog.getId())
+			NsPoliceBLOperateLog policeBLOperateLog = (NsPoliceBLOperateLog) obj;
+			if (null == this.getId() || null == policeBLOperateLog.getId())
 				return false;
 			else
-				return (this.getId().equals(bankBLOperateLog.getId()));
+				return (this.getId().equals(policeBLOperateLog.getId()));
 		}
 	}
 

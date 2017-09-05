@@ -5,7 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import resource.bean.blacklist.InternationalBlackList;
+import resource.bean.blacklist.NsInternationalBlackList;
 
 import com.cibfintech.blacklist.operation.InternationalBlackListOperation;
 import com.huateng.common.err.Module;
@@ -35,7 +35,7 @@ public class InternationalBlackListDEL extends BaseUpdate {
 			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			// 更新对象
-			InternationalBlackList internationalBlackList = new InternationalBlackList();
+			NsInternationalBlackList internationalBlackList = new NsInternationalBlackList();
 			// Operation参数
 			OperationContext context = new OperationContext();
 			if (updateResultBean.hasNext()) {

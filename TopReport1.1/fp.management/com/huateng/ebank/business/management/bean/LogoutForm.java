@@ -4,6 +4,8 @@
  */
 package com.huateng.ebank.business.management.bean;
 
+import java.io.Serializable;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.action.ActionErrors;
@@ -19,7 +21,7 @@ import com.huateng.ebank.framework.struts.HTBaseForm;
  * <li>password - the password to authenticate
  * </ul>
  */
-public final class LogoutForm extends HTBaseForm {
+public final class LogoutForm extends HTBaseForm implements Serializable {
 
 	/**
 	 * Reset all properties to their default values.

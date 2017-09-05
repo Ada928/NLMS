@@ -1,6 +1,8 @@
 package com.huateng.report.bean;
 
-public class BopForSameInduDepositBean {
+import java.io.Serializable;
+
+public class BopForSameInduDepositBean implements Serializable {
 
 	// fields
 	private java.lang.String apptype;// 应用类型

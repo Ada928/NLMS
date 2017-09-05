@@ -1,5 +1,6 @@
 package org.topexpression.function;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +10,7 @@ import java.util.Map;
  * @version 1.0
  *
  */
-public class BaseMethodFactory {
+public class BaseMethodFactory implements Serializable {
 	/**
 	 * Mapping global cache.
 	 */

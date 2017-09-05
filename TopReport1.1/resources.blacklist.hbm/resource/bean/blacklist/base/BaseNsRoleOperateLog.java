@@ -2,7 +2,7 @@ package resource.bean.blacklist.base;
 
 import java.io.Serializable;
 
-import resource.bean.blacklist.QueryDailyLogCount;
+import resource.bean.blacklist.NsRoleOperateLog;
 
 /**
  * This is an object that contains data related to the TLR_LOGIN_LOG table. Do
@@ -12,29 +12,29 @@ import resource.bean.blacklist.QueryDailyLogCount;
  * @hibernate.class table="TLR_LOGIN_LOG"
  */
 
-public abstract class BaseQueryDailyLogCount implements Serializable {
+public abstract class BaseNsRoleOperateLog implements Serializable {
 
-	public static String REF = "QueryDailyLogCount";
+	public static String REF = "BaseBctlOperateLog";
+	public static String PROP_MESSAFE = "message";
+	public static String PROP_TLR_NO = "tlrNo";
 	public static String PROP_ID = "id";
 	public static String PROP_CREATE_DATE = "create_date";
 	public static String PROP_BR_NO = "brNo";
-	public static String PROP_QUERY_TABLE = "queryTable";
-	public static String PROP_OPERATE_TYPE = "operate_type";
-	public static String PROP_COUNT_DAY = "countDay";
-	public static String PROP_SUM_QUERY_RECORD = "SUM_QUERY_RECORD";
+	public static String PROP_QUERY_TYPE = "queryType";
+	public static String PROP_TLR_IP = "tlr_ip";
 	public static String PROP_FILTER1 = "filter1";
 	public static String PROP_FILTER2 = "filter2";
 	public static String PROP_FILTER3 = "filter3";
 
 	// constructors
-	public BaseQueryDailyLogCount() {
+	public BaseNsRoleOperateLog() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseQueryDailyLogCount(java.lang.String id) {
+	public BaseNsRoleOperateLog(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -48,11 +48,13 @@ public abstract class BaseQueryDailyLogCount implements Serializable {
 	private java.lang.String id;
 
 	// fields
+	private java.lang.String tlrNo;
+	private java.lang.String tlrIP;
 	private java.lang.String brNo;
 	private java.lang.String operateType;
-	private java.lang.String queryTable;
-	private java.lang.String sumQueryRecord;
-	private java.util.Date countDay;
+	private java.lang.String queryType;
+	private java.lang.String queryRecordNumber;
+	private java.lang.String message;
 	private java.util.Date createDate;
 	private java.lang.String filter1;
 	private java.lang.String filter2;
@@ -79,6 +81,23 @@ public abstract class BaseQueryDailyLogCount implements Serializable {
 	}
 
 	/**
+	 * Return the value associated with the column: TLR_NO
+	 */
+	public java.lang.String getTlrNo() {
+		return tlrNo;
+	}
+
+	/**
+	 * Set the value related to the column: TLR_NO
+	 * 
+	 * @param tlrNo
+	 *            the TLR_NO value
+	 */
+	public void setTlrNo(java.lang.String tlrNo) {
+		this.tlrNo = tlrNo;
+	}
+
+	/**
 	 * Return the value associated with the column: BR_NO
 	 */
 	public java.lang.String getBrNo() {
@@ -93,6 +112,22 @@ public abstract class BaseQueryDailyLogCount implements Serializable {
 	 */
 	public void setBrNo(java.lang.String brNo) {
 		this.brNo = brNo;
+	}
+
+	public java.lang.String getTlrIP() {
+		return tlrIP;
+	}
+
+	public void setTlrIP(java.lang.String tlrIP) {
+		this.tlrIP = tlrIP;
+	}
+
+	public java.lang.String getQueryType() {
+		return queryType;
+	}
+
+	public void setQueryType(java.lang.String queryType) {
+		this.queryType = queryType;
 	}
 
 	public java.lang.String getFilter1() {
@@ -127,28 +162,20 @@ public abstract class BaseQueryDailyLogCount implements Serializable {
 		this.operateType = operateType;
 	}
 
-	public java.lang.String getQueryTable() {
-		return queryTable;
+	public java.lang.String getQueryRecordNumber() {
+		return queryRecordNumber;
 	}
 
-	public void setQueryTable(java.lang.String queryTable) {
-		this.queryTable = queryTable;
+	public void setQueryRecordNumber(java.lang.String queryRecordNumber) {
+		this.queryRecordNumber = queryRecordNumber;
 	}
 
-	public java.lang.String getSumQueryRecord() {
-		return sumQueryRecord;
+	public java.lang.String getMessage() {
+		return message;
 	}
 
-	public void setSumQueryRecord(java.lang.String sumQueryRecord) {
-		this.sumQueryRecord = sumQueryRecord;
-	}
-
-	public java.util.Date getCountDay() {
-		return countDay;
-	}
-
-	public void setCountDay(java.util.Date countDay) {
-		this.countDay = countDay;
+	public void setMessage(java.lang.String message) {
+		this.message = message;
 	}
 
 	public java.util.Date getCreateDate() {
@@ -162,10 +189,10 @@ public abstract class BaseQueryDailyLogCount implements Serializable {
 	public boolean equals(Object obj) {
 		if (null == obj)
 			return false;
-		if (!(obj instanceof QueryDailyLogCount))
+		if (!(obj instanceof NsRoleOperateLog))
 			return false;
 		else {
-			QueryDailyLogCount bean = (QueryDailyLogCount) obj;
+			NsRoleOperateLog bean = (NsRoleOperateLog) obj;
 			if (null == this.getId() || null == bean.getId())
 				return false;
 			else

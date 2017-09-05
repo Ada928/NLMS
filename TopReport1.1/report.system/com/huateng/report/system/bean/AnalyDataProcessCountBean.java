@@ -1,6 +1,8 @@
 package com.huateng.report.system.bean;
 
-public class AnalyDataProcessCountBean {
+import java.io.Serializable;
+
+public class AnalyDataProcessCountBean implements Serializable {
 	private String appType;
 	private String fileType;
 	private int count;

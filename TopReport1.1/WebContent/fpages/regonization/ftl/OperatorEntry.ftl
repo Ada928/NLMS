@@ -16,7 +16,7 @@
 		 <tr>
 			 <td colspan="2">
 				<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="-,btAdd,-,btStatus,-,btLoginStatus,-,unLock" 
-					fieldStr="tlrno[60],tlrName[100],flag[55],status[55],isLock[55],brname,lastaccesstm[150],lastlogouttm[150],opr[85]" 
+					fieldStr="tlrno[60],tlrName[100],flag[55],status[55],lock[55],brname,lastaccesstm[150],lastlogouttm[150],opr[85]" 
 					readonly="true" width="100%" hasFrame="true" height="280" />
 			 </td>
 		 </tr>
@@ -161,7 +161,7 @@
     }
 
     function OperatorEntry_dataset_dataset_afterScroll(dataset) {
-        unLock.disable(dataset.getValue("isLock") != '1' || dataset.getValue("tlrno") == currentTlrno);
+        unLock.disable(dataset.getValue("lock") != 'true' || dataset.getValue("tlrno") == currentTlrno);
     }
 
     //ĞÂÔö
@@ -198,7 +198,7 @@
     }
 
     function OperatorEntry_dataset_afterScroll(dataset) {
-        unLock.disable(dataset.getValue("isLock") != '1');
+        unLock.disable(dataset.getValue("lock") != 'true');
         btLoginStatus.disable(dataset.getValue("status") != '1');
         btStatus.disable(false);
         if (dataset.getValue("tlrno") == currentTlrno) {

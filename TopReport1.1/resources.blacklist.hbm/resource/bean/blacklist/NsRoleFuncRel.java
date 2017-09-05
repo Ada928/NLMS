@@ -1,19 +1,19 @@
 package resource.bean.blacklist;
 
-import resource.bean.blacklist.base.BaseQueryDailyLogCount;
+import resource.bean.blacklist.base.BaseNsRoleFuncRel;
 
-public class QueryDailyLogCount extends BaseQueryDailyLogCount implements java.io.Serializable {
+public class NsRoleFuncRel extends BaseNsRoleFuncRel implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
-	public QueryDailyLogCount() {
+	public NsRoleFuncRel() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public QueryDailyLogCount(java.lang.String id) {
+	public NsRoleFuncRel(java.lang.Integer id) {
 		super(id);
 	}
 

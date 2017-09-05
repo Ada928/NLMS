@@ -6,13 +6,15 @@
  */
 package com.huateng.ebank.business.parammng.bean;
 
+import java.io.Serializable;
+
 /**
  * @author Administrator
  *
  *         TODO To change the template for this generated type comment go to
  *         Window - Preferences - Java - Code Style - Code Templates
  */
-public class TlrBrcodeCondition {
+public class TlrBrcodeCondition implements Serializable {
 	private String brcode;
 	private String tlrno;
 

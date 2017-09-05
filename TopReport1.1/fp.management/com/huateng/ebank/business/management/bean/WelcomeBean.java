@@ -1,12 +1,14 @@
 package com.huateng.ebank.business.management.bean;
 
+import java.io.Serializable;
+
 /**
  * 首页统计信息
  * 
  * @author kangbyron
  *
  */
-public final class WelcomeBean {
+public final class WelcomeBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer cnt1 = 0; // 待办任务
 	private Integer cnt2 = 0; // 我的业务

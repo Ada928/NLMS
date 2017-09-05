@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import resource.bean.blacklist.InternationalBlackList;
+import resource.bean.blacklist.NsInternationalBlackList;
 import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
@@ -43,7 +43,7 @@ public class InternationalBlackListService {
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from InternationalBlackList iblt where iblt.del='F'");
+		StringBuffer hql = new StringBuffer(" from NsInternationalBlackList iblt where iblt.del='F'");
 
 		if (StringUtils.isNotBlank(partyId)) {
 			hql.append(" and iblt.id = '").append(partyId.trim()).append("'");
@@ -79,7 +79,7 @@ public class InternationalBlackListService {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		List list = rootDAO.queryByQL2List("1=1");
 		for (int i = 0; i < list.size(); i++) {
-			InternationalBlackList bblt = (InternationalBlackList) list.get(i);
+			NsInternationalBlackList bblt = (NsInternationalBlackList) list.get(i);
 			list.set(i, bblt);
 		}
 		return list;
@@ -90,7 +90,7 @@ public class InternationalBlackListService {
 	 * 
 	 * @param biNationregion
 	 */
-	public void removeEntity(InternationalBlackList internationalBlackList) {
+	public void removeEntity(NsInternationalBlackList internationalBlackList) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		try {
 			rootDAO.delete(internationalBlackList);
@@ -106,7 +106,7 @@ public class InternationalBlackListService {
 	 * 
 	 * @param biNationregion
 	 */
-	public void modOrAddEntity(InternationalBlackList internationalBlackList) {
+	public void modOrAddEntity(NsInternationalBlackList internationalBlackList) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		try {
 			rootDAO.saveOrUpdate(internationalBlackList);
@@ -117,7 +117,7 @@ public class InternationalBlackListService {
 		}
 	}
 
-	public void addEntity(InternationalBlackList internationalBlackList) throws CommonException {
+	public void addEntity(NsInternationalBlackList internationalBlackList) throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		if (isExists(internationalBlackList.getId())) {
 			ExceptionUtil.throwCommonException(" 名单重复");
@@ -133,7 +133,7 @@ public class InternationalBlackListService {
 	public boolean isExists(String id) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		try {
-			InternationalBlackList internationalBlackList = (InternationalBlackList) rootDAO.query(InternationalBlackList.class, id);
+			NsInternationalBlackList internationalBlackList = (NsInternationalBlackList) rootDAO.query(NsInternationalBlackList.class, id);
 			if (internationalBlackList == null) {
 				return false;
 			}
@@ -143,7 +143,7 @@ public class InternationalBlackListService {
 		return true;
 	}
 
-	public void modEntity(InternationalBlackList internationalBlackList) {
+	public void modEntity(NsInternationalBlackList internationalBlackList) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		try {
 			rootDAO.update(internationalBlackList);
@@ -164,11 +164,11 @@ public class InternationalBlackListService {
 	}
 
 	// 通过id来获取实体类
-	public InternationalBlackList selectById(String id) {
+	public NsInternationalBlackList selectById(String id) {
 		BlackListDAO rootdao = BlackListDAOUtils.getBlackListDAO();
-		InternationalBlackList internationalBlackList = null;
+		NsInternationalBlackList internationalBlackList = null;
 		try {
-			internationalBlackList = (InternationalBlackList) rootdao.query(InternationalBlackList.class, id);
+			internationalBlackList = (NsInternationalBlackList) rootdao.query(NsInternationalBlackList.class, id);
 		} catch (CommonException e) {
 			e.printStackTrace();
 		}

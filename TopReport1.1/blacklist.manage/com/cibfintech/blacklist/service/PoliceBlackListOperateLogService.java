@@ -12,7 +12,7 @@ import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
-import resource.bean.blacklist.PoliceBLOperateLog;
+import resource.bean.blacklist.NsPoliceBLOperateLog;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
 import resource.dao.base.HQLDAO;
@@ -56,7 +56,7 @@ public class PoliceBlackListOperateLogService {
 	public void savePoliceBLOperateLog(String operateType, String queryType, String queryNum, String measssage) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		PoliceBLOperateLog policeBLOperateLog = new PoliceBLOperateLog();
+		NsPoliceBLOperateLog policeBLOperateLog = new NsPoliceBLOperateLog();
 		policeBLOperateLog.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
 		policeBLOperateLog.setBrNo(gi.getBrno());
 		policeBLOperateLog.setTlrNo(gi.getTlrno());
@@ -79,7 +79,7 @@ public class PoliceBlackListOperateLogService {
 		StringBuffer sb = new StringBuffer("");
 		List<Object> list = new ArrayList<Object>();
 		// sb.append("select log from PoliceBLOperateLog log where 1=1");
-		sb.append("select log from PoliceBLOperateLog log where 1=1 ");
+		sb.append("select log from NsPoliceBLOperateLog log where 1=1 ");
 		if (!DataFormat.isEmpty(qtlrNo)) {
 			sb.append(" and  log.tlrNo= ? ");
 			list.add(qtlrNo);
@@ -124,7 +124,7 @@ public class PoliceBlackListOperateLogService {
 	 */
 	public List sumQueryPoliceBlacklist(String startDate, String endDate) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-		StringBuffer sb = new StringBuffer("select log.brNo, sum(log.queryRecordNumber) from PoliceBLOperateLog log where 1=1");
+		StringBuffer sb = new StringBuffer("select log.brNo, sum(log.queryRecordNumber) from NsPoliceBLOperateLog log where 1=1");
 		sb.append(" and log.operateType='Q'");
 		sb.append(" and log.createDate>=to_date('").append(startDate).append("','yyyy-mm-dd')");
 		sb.append(" and log.createDate<to_date('").append(endDate).append("','yyyy-mm-dd')");

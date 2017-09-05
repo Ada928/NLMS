@@ -1,12 +1,14 @@
 package com.huateng.report.basis.bean;
 
+import java.io.Serializable;
+
 import resource.bean.report.BiMonthexchangerate;
 
 /**
  * 
  * author by 计翔 2012.9.5 月币新旧信息的对比的bean
  */
-public class BiMonthExchangeRateDetail {
+public class BiMonthExchangeRateDetail implements Serializable {
 	private BiMonthexchangerate old_bimonthexchangerate;
 	private BiMonthexchangerate bimonthexchangerate;
 

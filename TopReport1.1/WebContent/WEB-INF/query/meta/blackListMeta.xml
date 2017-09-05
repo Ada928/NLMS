@@ -27,5 +27,20 @@
 		path="/fpages/blacklistManage/xml/QueryDailyLogCount.xml" />
 	<Query id="QueryMonthlyLogCount" 
 	    path="/fpages/blacklistManage/xml/QueryMonthlyLogCount.xml" />
-
+	    
+	    
+	<Query id="BankInfoDetail" 
+	    path="/fpages/blacklistManage/xml/BankInfoDetail.xml" />
+	<Query id="BankInfoEntry" 
+	    path="/fpages/blacklistManage/xml/BankInfoEntry.xml" />
+	<Query id="BankInfoManage" 
+	    path="/fpages/blacklistManage/xml/BankInfoManage.xml" />
+	<Query id="BankOperateLogQuery" 
+	    path="/fpages/blacklistManage/xml/BankOperateLogQuery.xml" />
+	    
+	<Query id="RoleInfoEntry" 
+	    path="/fpages/blacklistManage/xml/RoleInfoEntry.xml" />
+	<Query id="RoleOperateLogQuery" 
+	    path="/fpages/blacklistManage/xml/RoleOperateLogQuery.xml" />
+	    
 </META>

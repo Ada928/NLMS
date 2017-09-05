@@ -12,7 +12,7 @@ import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
-import resource.bean.blacklist.InternationBLOperateLog;
+import resource.bean.blacklist.NsInternationBLOperateLog;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
 import resource.dao.base.HQLDAO;
@@ -56,7 +56,7 @@ public class InternationBlackListOperateLogService {
 	public void saveInternationBLOperateLog(String operateType, String queryType, String queryNum, String measssage) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
-		InternationBLOperateLog internationBLOperateLog = new InternationBLOperateLog();
+		NsInternationBLOperateLog internationBLOperateLog = new NsInternationBLOperateLog();
 		internationBLOperateLog.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
 		internationBLOperateLog.setBrNo(gi.getBrno());
 		internationBLOperateLog.setTlrNo(gi.getTlrno());
@@ -79,7 +79,7 @@ public class InternationBlackListOperateLogService {
 		StringBuffer sb = new StringBuffer("");
 		List<Object> list = new ArrayList<Object>();
 		// sb.append("select log from InternationBLOperateLog log where 1=1");
-		sb.append("select log from InternationBLOperateLog log where 1=1  ");
+		sb.append("select log from NsInternationBLOperateLog log where 1=1  ");
 		if (!DataFormat.isEmpty(qtlrNo)) {
 			sb.append(" and  log.tlrNo= ? ");
 			list.add(qtlrNo);
@@ -123,7 +123,7 @@ public class InternationBlackListOperateLogService {
 	 */
 	public List sumQueryInternationBlacklist(String startDate, String endDate) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-		StringBuffer sb = new StringBuffer("select log.brNo, sum(log.queryRecordNumber) from InternationBLOperateLog log where 1=1");
+		StringBuffer sb = new StringBuffer("select log.brNo, sum(log.queryRecordNumber) from NsInternationBLOperateLog log where 1=1");
 		sb.append(" and log.operateType='Q'");
 		sb.append(" and log.createDate>=to_date('").append(startDate).append("','yyyy-mm-dd')");
 		sb.append(" and log.createDate<to_date('").append(endDate).append("','yyyy-mm-dd')");

@@ -1,21 +1,19 @@
 package resource.bean.blacklist;
 
-import java.io.Serializable;
+import resource.bean.blacklist.base.BaseNsRoleTlrRel;
 
-import resource.bean.blacklist.base.BaseBankBlackList;
-
-public class BankBlackList extends BaseBankBlackList implements Serializable {
+public class NsRoleTlrRel extends BaseNsRoleTlrRel implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
-	public BankBlackList() {
+	public NsRoleTlrRel() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BankBlackList(String id) {
+	public NsRoleTlrRel(java.lang.Integer id) {
 		super(id);
 	}
 

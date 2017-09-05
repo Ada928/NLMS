@@ -4,7 +4,7 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping package="resource.bean.blacklist">
-    <class name="PoliceBLOperateLog" table="NLMS_POLICE_B_L_OPERATE_LOG">
+    <class name="NsPoliceBLOperateLog" table="NLMS_POLICE_B_L_OPERATE_LOG">
         <meta attribute="sync-DAO">false</meta>
         <id name="id" type="string" column="LOG_ID"></id>
         <property name="tlrNo" column="TLR_NO" type="string" not-null="false" length="20" />

@@ -1,8 +1,9 @@
 package com.huateng.report.imports.model;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class SqlInfo {
+public class SqlInfo implements Serializable {
 
 	private int rowNumber;
 

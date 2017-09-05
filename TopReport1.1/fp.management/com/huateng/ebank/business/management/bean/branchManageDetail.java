@@ -1,12 +1,14 @@
 package com.huateng.ebank.business.management.bean;
 
+import java.io.Serializable;
+
 import resource.bean.pub.Bctl;
 
 /*
  * author by jixiang 
  * 机构管理的bean
  */
-public class branchManageDetail {
+public class branchManageDetail implements Serializable {
 	private Bctl bctl;
 	private Bctl old_bctl;
 

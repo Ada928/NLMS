@@ -1,6 +1,8 @@
 package com.huateng.ebank.business.management.bean;
 
-public class CreditGradeConditionBean {
+import java.io.Serializable;
+
+public class CreditGradeConditionBean implements Serializable {
 	private String creditType;
 	private String value1;
 	private String value2;

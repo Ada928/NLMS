@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import resource.bean.blacklist.BankBlackList;
+import resource.bean.blacklist.NsBankBlackList;
 import resource.bean.report.SysTaskInfo;
 import resource.bean.report.SysTaskLog;
 
@@ -40,32 +40,32 @@ public class BankBlackListDetailGetter extends BaseGetter {
 				if ("0".equals(flag)) {
 					Iterator it = ReportShowDetailService.getInstance().selectByKey(id);
 					BankBlackListDetail ber = new BankBlackListDetail();
-					BankBlackList oldbean = (BankBlackList) BankBlackListService.getInstance().selectById(id);
+					NsBankBlackList oldbean = (NsBankBlackList) BankBlackListService.getInstance().selectById(id);
 					ber.setOld_bankBlackList(oldbean);
-					BankBlackList newBean = null;
+					NsBankBlackList newBean = null;
 					Class cls = null;
 					while (it.hasNext()) {
 						SysTaskInfo tem = (SysTaskInfo) it.next();
 						Object temp = rt.getObjctBySysTaskInfo(tem);
 						cls = temp.getClass();
-						if (cls.equals(BankBlackList.class)) {
-							newBean = (BankBlackList) temp;
+						if (cls.equals(NsBankBlackList.class)) {
+							newBean = (NsBankBlackList) temp;
 							ber.setBankBlackList(newBean);
 						}
 					}
 					list.add(ber);
 				} else if ("1".equals(flag)) {
 					SysTaskLog systasklog = ReportShowDetailService.getInstance().selectTaskLog(tskId);
-					BankBlackList oldValue = null;
-					BankBlackList newValue = null;
+					NsBankBlackList oldValue = null;
+					NsBankBlackList newValue = null;
 					BankBlackListDetail bimonth = new BankBlackListDetail();
 
 					if (systasklog.getOldVal1() != null) {
-						oldValue = (BankBlackList) rt.getOldObjectByTaskLog(systasklog);
+						oldValue = (NsBankBlackList) rt.getOldObjectByTaskLog(systasklog);
 						// bimonth.setOld_bimonthexchangerate(oldValue);
 					}
 					if (systasklog.getNewVal1() != null) {
-						newValue = (BankBlackList) rt.getNewObjectByTaskLog(systasklog);
+						newValue = (NsBankBlackList) rt.getNewObjectByTaskLog(systasklog);
 						// bimonth.setBimonthexchangerate(newValue);
 					}
 					// 新增的时候

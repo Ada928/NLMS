@@ -5,7 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import resource.bean.blacklist.PoliceBlackList;
+import resource.bean.blacklist.NsPoliceBlackList;
 
 import com.cibfintech.blacklist.operation.PoliceBlackListOperation;
 import com.huateng.common.err.Module;
@@ -35,7 +35,7 @@ public class PoliceBlackListDEL extends BaseUpdate {
 			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			// 更新对象
-			PoliceBlackList policeBlackList = new PoliceBlackList();
+			NsPoliceBlackList policeBlackList = new NsPoliceBlackList();
 			// Operation参数
 			OperationContext context = new OperationContext();
 			if (updateResultBean.hasNext()) {

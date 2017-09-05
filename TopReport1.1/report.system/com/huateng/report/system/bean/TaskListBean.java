@@ -1,6 +1,6 @@
 package com.huateng.report.system.bean;
 
-import com.huateng.ebank.entity.data.mng.PfSysParam;
+import java.io.Serializable;
 
 import resource.bean.pub.Bctl;
 import resource.bean.pub.RoleInfo;
@@ -12,12 +12,14 @@ import resource.bean.report.SysCurrency;
 import resource.bean.report.SysParams;
 import resource.bean.report.SysTaskInfo;
 
+import com.huateng.ebank.entity.data.mng.PfSysParam;
+
 /**
  *
  * @author zjx 这个是用来存储待审批的中间页面的对象的bean 包含taskinfobean和相应任务类型对应的bean;
  *
  */
-public class TaskListBean {
+public class TaskListBean implements Serializable {
 
 	// primary key
 

@@ -1,6 +1,8 @@
 package com.huateng.ebank.business.management.bean;
 
-public class HolidayInfoView {
+import java.io.Serializable;
+
+public class HolidayInfoView implements Serializable {
 	private String regionCode;
 	private String yyyymm;
 	private String holiday;

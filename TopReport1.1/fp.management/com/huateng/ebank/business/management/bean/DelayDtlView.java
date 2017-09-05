@@ -1,6 +1,8 @@
 package com.huateng.ebank.business.management.bean;
 
-public class DelayDtlView {
+import java.io.Serializable;
+
+public class DelayDtlView implements Serializable {
 	private String delaytype;// 顺延方式
 	private boolean check1;// 到期日在非工作日是否顺延到第一个工作日
 	private boolean check2;// 异地票据是否顺延

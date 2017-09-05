@@ -1,28 +1,30 @@
 package com.cibfintech.blacklist.bean;
 
-import resource.bean.blacklist.InternationalBlackList;
+import java.io.Serializable;
+
+import resource.bean.blacklist.NsInternationalBlackList;
 
 /**
  * 
  * 商行黑名单新旧信息的对比的bean
  */
-public class InternationalBlackListDetail {
-	private InternationalBlackList old_internationalBlackList;
-	private InternationalBlackList internationalBlackList;
+public class InternationalBlackListDetail implements Serializable {
+	private NsInternationalBlackList old_internationalBlackList;
+	private NsInternationalBlackList internationalBlackList;
 
-	public InternationalBlackList getOld_internationalBlackList() {
+	public NsInternationalBlackList getOld_internationalBlackList() {
 		return old_internationalBlackList;
 	}
 
-	public void setOld_internationalBlackList(InternationalBlackList oldinternationalBlackList) {
+	public void setOld_internationalBlackList(NsInternationalBlackList oldinternationalBlackList) {
 		old_internationalBlackList = oldinternationalBlackList;
 	}
 
-	public InternationalBlackList getInternationalBlackList() {
+	public NsInternationalBlackList getInternationalBlackList() {
 		return internationalBlackList;
 	}
 
-	public void setInternationalBlackList(InternationalBlackList internationalBlackList) {
+	public void setInternationalBlackList(NsInternationalBlackList internationalBlackList) {
 		this.internationalBlackList = internationalBlackList;
 	}
 

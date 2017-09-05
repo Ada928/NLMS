@@ -1,9 +1,10 @@
 package com.huateng.report.common.bean;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReportBopAndJshRetNoBean {
+public class ReportBopAndJshRetNoBean implements Serializable {
 	private String appType;
 	private String fileType;
 	private boolean isDistCusType = false;

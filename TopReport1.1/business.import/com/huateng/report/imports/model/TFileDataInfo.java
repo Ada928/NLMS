@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -20,7 +21,7 @@ import com.huateng.report.imports.logic.ImportFileVar;
  * @author Administrator
  * 
  */
-public class TFileDataInfo {
+public class TFileDataInfo implements Serializable {
 
 	private List fRowValue = new ArrayList(); // 记录分隔后的值列表
 	private ImportFileVar importFileVar = new ImportFileVar();

@@ -1,12 +1,14 @@
 package com.huateng.ebank.business.management.bean;
 
+import java.io.Serializable;
+
 /**
  * 操作员对应操作员岗位视图类
  *
  * @author hyurain_yang
  *
  */
-public class TlrRoleView {
+public class TlrRoleView implements Serializable {
 	private String tlrno;
 	private String roleId;
 	private String roleName;
