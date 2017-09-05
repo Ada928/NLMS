@@ -29,7 +29,7 @@ public class OperMngResetPwdUpdate extends BaseUpdate {
 		try {
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("operMngEntry");
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("OperatorEntry");
 			if (updateResultBean.hasNext()) {
 				String tlrno = updateResultBean.next().get("tlrno");
 				OperationContext oc = new OperationContext();

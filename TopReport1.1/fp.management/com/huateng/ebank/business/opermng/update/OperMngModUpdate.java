@@ -66,6 +66,8 @@ public class OperMngModUpdate extends BaseUpdate {
 			oc.setAttribute(OperMngOperation.IN_TLRINFO, operator);
 
 			OPCaller.call(OperMngOperation.ID, oc);
+
+			updateReturnBean.setParameter("SuccessInfo", OperMngOperation.getSuccessInfo());
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;

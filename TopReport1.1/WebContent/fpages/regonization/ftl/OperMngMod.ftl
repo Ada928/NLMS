@@ -28,7 +28,9 @@
 		return isChanged;
 	}
 	function btModSave_postSubmit(button) {
-		alert("保存成功");
+        var retParam = button.returnParam;
+        //alert("密码重置成功,初始化为" + retParam.DefaultPWD);
+		alert("保存成功 " + retParam.DefaultPWD);
 	}
 	function operMngMod_dataset_afterChange(dataset) {
 		isChanged = true;

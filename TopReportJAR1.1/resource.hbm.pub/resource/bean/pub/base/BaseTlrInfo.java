@@ -80,7 +80,7 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 	private java.lang.Integer roleid;
 	private java.lang.Integer pswderrcnt;
 	private java.lang.Integer totpswderrcnt;
-	private java.lang.String pswderrdate;
+	private java.util.Date pswderrdate;
 	private java.util.Date lastlogouttm;
 	private java.lang.String loginIp;
 	private java.lang.String passwdenc;
@@ -101,10 +101,10 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 	/** add by zhiyang.he 修改锁定状态 2012-09-6 begin */
 	private java.lang.String isLockModify;
 	private java.lang.String st;
-	private java.lang.String crtDt;
-	private java.lang.String lastUpdTms;
+	private java.util.Date lastUpdTms;
 	private java.lang.String lastUpdOper;
-	private java.lang.Boolean isDel;
+	private java.lang.Boolean lock;
+	private java.lang.Boolean del;
 
 	/** add by zhiyang.he 修改锁定状态 2012-09-6 end */
 
@@ -162,12 +162,20 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 		this.tlrName = tlrName;
 	}
 
-	public java.lang.Boolean isDel() {
-		return isDel;
+	public java.lang.Boolean isLock() {
+		return lock;
 	}
 
-	public void setDel(java.lang.Boolean isDel) {
-		this.isDel = isDel;
+	public void setLock(java.lang.Boolean lock) {
+		this.lock = lock;
+	}
+
+	public java.lang.Boolean isDel() {
+		return del;
+	}
+
+	public void setDel(java.lang.Boolean del) {
+		this.del = del;
 	}
 
 	/**
@@ -343,7 +351,7 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 	/**
 	 * Return the value associated with the column: PSWDERRDATE
 	 */
-	public java.lang.String getPswderrdate() {
+	public java.util.Date getPswderrdate() {
 		return pswderrdate;
 	}
 
@@ -353,7 +361,7 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 	 * @param pswderrdate
 	 *            the PSWDERRDATE value
 	 */
-	public void setPswderrdate(java.lang.String pswderrdate) {
+	public void setPswderrdate(java.util.Date pswderrdate) {
 		this.pswderrdate = pswderrdate;
 	}
 
@@ -703,19 +711,11 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 		this.st = st;
 	}
 
-	public java.lang.String getCrtDt() {
-		return crtDt;
-	}
-
-	public void setCrtDt(java.lang.String crtDt) {
-		this.crtDt = crtDt;
-	}
-
-	public java.lang.String getLastUpdTms() {
+	public java.util.Date getLastUpdTms() {
 		return lastUpdTms;
 	}
 
-	public void setLastUpdTms(java.lang.String lastUpdTms) {
+	public void setLastUpdTms(java.util.Date lastUpdTms) {
 		this.lastUpdTms = lastUpdTms;
 	}
 

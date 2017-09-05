@@ -74,7 +74,7 @@
         if (tlrno == currentTlrno) {
             alert("不能重置自己的密码");
         } else {
-            if (!confirm("确认要重置该操作员吗?")) {
+            if (!confirm("确认要重置该用户的密码吗?")) {
                 return;
             }
             locate(tlrno);
@@ -84,7 +84,7 @@
 
     function btResetPwd_postSubmit(button) {
         var retParam = button.returnParam;
-        alert("密码重置成功,初始化为" + retParam.DefaultPWD);
+       	alert("密码重置成功,初始化为" + retParam.DefaultPWD);
         flushCurrentPage();
     }
 
@@ -125,14 +125,14 @@
     function btStatus_onClickCheck(button) {
         var status = OperatorEntry_dataset.getValue("flag");
         if (status == '0') {
-            if (confirm("确认将该操作员设置为有效?")) {
+            if (confirm("确认将该用户设置为有效?")) {
                 OperatorEntry_dataset.setParameter("statu", "1");
                 return true;
             } else {
                 return false;
             }
         } else {
-            if (confirm("确认将该操作员设置为无效?")) {
+            if (confirm("确认将该用户设置为无效?")) {
                 OperatorEntry_dataset.setParameter("statu", "0");
                 return true;
             } else {
@@ -147,7 +147,7 @@
     }
 
     function btLoginStatus_onClickCheck(button) {
-        if (confirm("确认将该操作员强行签退?")) {
+        if (confirm("确认将该用户强行签退?")) {
             OperatorEntry_dataset.setParameter("statu", "logout");
             return true;
         } else {

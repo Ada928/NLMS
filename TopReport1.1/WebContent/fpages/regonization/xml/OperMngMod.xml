@@ -45,8 +45,8 @@
         <!--modify by zhiyang.he 用户管理双岗复核改造 2012-09-04 begin -->
         <Field id="flag" desc="有效状态" status="N" readonly="true" translated="LIST:1,有效;0,无效" require="false"
             edittype="select" width="" method="None" primary="true" type="String" size="20" xpath="/flag" default="" />
-        <Field id="isLock" desc="锁定状态" require="" status="F" method="None" translated="LIST:1,已锁定;0,未锁定" edittype="select"
-            width="" primary="false" type="String" size="20" xpath="/isLock" readonly="true" default="" />
+        <Field id="lock" desc="锁定状态" require="" status="F" method="None" translated="LIST:T,已锁定;F,未锁定" edittype="select"
+            width="" primary="false" type="String" size="20" xpath="/lock" readonly="true" default="" />
         <Field id="isLockModify" desc="修改锁定状态" require="" status="F" method="None" translated="" edittype="select"
             width="" primary="false" type="String" size="20" xpath="/isLockModify" readonly="true" default="" />
         <Field id="restFlg" desc="重置密码状态" require="" status="F" method="None" translated="" edittype="select"

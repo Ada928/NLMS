@@ -17,6 +17,7 @@ import resource.bean.pub.TlrBctlRel;
 import resource.bean.pub.TlrInfo;
 import resource.bean.pub.TlrRoleRel;
 import resource.bean.report.SysTaskInfo;
+import resource.dao.pub.TlrBctlRelDAO;
 import resource.dao.pub.TlrInfoDAO;
 import resource.dao.pub.TlrRoleRelDAO;
 import resource.report.dao.ROOTDAO;
@@ -67,6 +68,16 @@ public class OperMngOperation extends BaseOperation {
 	// jianxue.zhang
 	public static final String IN_TLRLLIST = "IN_TLRLIST";
 
+	private static String info = "";
+
+	public static String getSuccessInfo() {
+		return info;
+	}
+
+	public static void setSuccessInfo(String str) {
+		info = str;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -100,7 +111,24 @@ public class OperMngOperation extends BaseOperation {
 		}
 	}
 
-	private RepList<TlrRoleRel> saveRoleRels(List<RoleInfo> roles, TlrInfo tlrInfo) throws CommonException {
+	private void updateTlrBctlRels(TlrInfo tlrInfo) throws CommonException {
+		TlrBctlRelDAO dao = DAOUtils.getTlrBctlRelDAO();
+		List<TlrBctlRel> list = dao.queryByCondition(" po.tlrNo='" + tlrInfo.getTlrno() + "'");
+		TlrBctlRel po = list.get(0);
+		po.setBrcode(tlrInfo.getBrcode());
+		dao.update(po);
+	}
+
+	// 保存银行和用户的关系
+	private void saveTlrBctleRels(String brcode, String tlrno) throws CommonException {
+		TlrBctlRelDAO tlrBctlDAO = DAOUtils.getTlrBctlRelDAO();
+		TlrBctlRel tlrBctlRel = new TlrBctlRel();
+		tlrBctlRel.setBrcode(brcode);
+		tlrBctlRel.setTlrNo(tlrno);
+		tlrBctlDAO.insert(tlrBctlRel);
+	}
+
+	private RepList<TlrRoleRel> saveTlrRoleRels(List<RoleInfo> roles, TlrInfo tlrInfo) throws CommonException {
 		RepList<TlrRoleRel> roleRellist = new RepList<TlrRoleRel>();
 		TlrRoleRelDAO tlrRoleRelDAO = DAOUtils.getTlrRoleRelDAO();
 		for (RoleInfo rl : roles) {
@@ -163,9 +191,12 @@ public class OperMngOperation extends BaseOperation {
 		tlrInfo.setCreateDate(DateUtil.getCurrentDate());
 		tlrInfo.setLastUpdTime(DateUtil.getTimestamp());
 		tlrInfo.setLastUpdOperId(globalInfo.getTlrno());
-		tlrInfo.setIsLock(SystemConstant.FLAG_OFF);
-		tlrInfo.setSt(ReportEnum.REPORT_ST1.CR.value);
+		tlrInfo.setLock(SystemConstant.NOT_LOCKED);
+		tlrInfo.setDel(SystemConstant.FALSE);
+		tlrInfo.setSt(ReportEnum.REPORT_ST1.Y.value);
 		tlrInfoDAO.saveOrUpdate(tlrInfo);
+		saveTlrBctleRels(brcode, tlrno);
+		setSuccessInfo("新建用户成功：用户 ID 为 " + tlrno + ", 默认密码为：" + sysDefaultPwd + ", 请及时登录修改密码。");
 	}
 
 	/*
@@ -193,7 +224,7 @@ public class OperMngOperation extends BaseOperation {
 				if (tlrInfoDAO.query(tlrInfo.getTlrno()) == null) {
 					addTlrInfo(tlrInfo, globalInfo, tlrInfoDAO);
 					// 保存角色岗位
-					saveRoleRels(roles, tlrInfo);
+					saveTlrRoleRels(roles, tlrInfo);
 				} else {
 					ExceptionUtil.throwCommonException("该操作员已经存在，不能新增", ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
 				}
@@ -203,7 +234,7 @@ public class OperMngOperation extends BaseOperation {
 				if (tlrInfoDAO.query(tlrInfo.getTlrno()) == null) {
 					addTlrInfo(tlrInfo, globalInfo, tlrInfoDAO);
 					// 保存角色岗位
-					RepList<TlrRoleRel> roleRellist = saveRoleRels(roles, tlrInfo);
+					RepList<TlrRoleRel> roleRellist = saveTlrRoleRels(roles, tlrInfo);
 
 					try {
 						TlrInfoAuditBean tlrInfoAuditBean = new TlrInfoAuditBean();
@@ -230,6 +261,9 @@ public class OperMngOperation extends BaseOperation {
 			List<RoleInfo> roles = (List<RoleInfo>) context.getAttribute(IN_ROLELIST);
 
 			List<TlrMngRelBean> tlrs = (List<TlrMngRelBean>) context.getAttribute(IN_TLRLLIST);
+
+			// 更新用户银行依赖
+			updateTlrBctlRels(tlrInfo);
 
 			// 角色岗位
 			RepList<TlrRoleRel> roleRellist = new RepList<TlrRoleRel>();
@@ -450,7 +484,7 @@ public class OperMngOperation extends BaseOperation {
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
 
 				// 解锁
-				tlrInfo.setIsLock(SystemConstant.FLAG_OFF);
+				tlrInfo.setLock(SystemConstant.NOT_LOCKED);
 
 				// 改回原值
 				rootdao.saveOrUpdate(tlrInfo);
@@ -474,8 +508,8 @@ public class OperMngOperation extends BaseOperation {
 
 				// 设置修改中
 				tlrInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
-				String oldIsLock = tlrInfo.getIsLock();
-				tlrInfo.setIsLock(SystemConstant.FLAG_OFF);
+				boolean oldIsLock = tlrInfo.isLock();
+				tlrInfo.setLock(SystemConstant.NOT_LOCKED);
 				try {
 					TlrInfoAuditBean tlrInfoAuditBean = new TlrInfoAuditBean();
 					tlrInfoAuditBean.setTlrInfo(tlrInfo);
@@ -489,7 +523,7 @@ public class OperMngOperation extends BaseOperation {
 					e.printStackTrace();
 				}
 				// 改回原值
-				tlrInfo.setIsLock(oldIsLock);
+				tlrInfo.setLock(oldIsLock);
 				rootdao.saveOrUpdate(tlrInfo);
 				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });
 				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });

@@ -18,7 +18,7 @@ import org.hibernate.Query;
 import org.hibernate.type.Type;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import resource.bean.pub.TlrRoleRel;
+import resource.bean.pub.TlrBctlRel;
 
 import com.huateng.ebank.business.common.DAOUtils;
 import com.huateng.ebank.business.common.ErrorCode;
@@ -31,13 +31,13 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
  * @date 2005-06-01
  * @desc 数据库访问类
  */
-public class TlrRoleRelDAO extends HibernateDaoSupport {
+public class TlrBctlRelDAO extends HibernateDaoSupport {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger.getLogger(TlrRoleRelDAO.class);
+	private static final Logger logger = Logger.getLogger(TlrBctlRelDAO.class);
 
-	public TlrRoleRelDAO() {
+	public TlrBctlRelDAO() {
 		super();
 	}
 
@@ -48,17 +48,17 @@ public class TlrRoleRelDAO extends HibernateDaoSupport {
 	 * @return TlrInfo
 	 * @throws CommonException
 	 */
-	public TlrRoleRel query(String id) throws CommonException {
+	public TlrBctlRel query(String id) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("query(String) - start"); //$NON-NLS-1$
 		}
 
 		try {
-			TlrRoleRel returnTlrRoleRelation = (TlrRoleRel) this.getHibernateTemplate().load(TlrRoleRel.class, id);
+			TlrBctlRel returnTlrBctlRelation = (TlrBctlRel) this.getHibernateTemplate().load(TlrBctlRel.class, id);
 			if (logger.isDebugEnabled()) {
 				logger.debug("query(String) - end"); //$NON-NLS-1$
 			}
-			return returnTlrRoleRelation;
+			return returnTlrBctlRelation;
 		} catch (Exception e) {
 			logger.error("query(String)", e); //$NON-NLS-1$
 
@@ -78,13 +78,13 @@ public class TlrRoleRelDAO extends HibernateDaoSupport {
 	 * @return 包含TlrInfo对象的List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString) throws CommonException {
+	public List<TlrBctlRel> queryByCondition(String whereString) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByCondition(String) - start"); //$NON-NLS-1$
 		}
 
 		try {
-			List list = this.getHibernateTemplate().find("from TlrRoleRel po where " + whereString);
+			List<TlrBctlRel> list = this.getHibernateTemplate().find("from TlrBctlRel po where " + whereString);
 			if (logger.isDebugEnabled()) {
 				logger.debug("queryByCondition(String) - end"); //$NON-NLS-1$
 			}
@@ -107,7 +107,7 @@ public class TlrRoleRelDAO extends HibernateDaoSupport {
 	 * @param whereString
 	 * @param objArray
 	 * @param typeArray
-	 * @return 包含TlrRoleRelation对象的List
+	 * @return 包含TlrBctlRelation对象的List
 	 * @throws CommonException
 	 */
 	public List queryByCondition(String whereString, Object[] objArray, Type[] typeArray) throws CommonException {
@@ -116,7 +116,7 @@ public class TlrRoleRelDAO extends HibernateDaoSupport {
 		}
 
 		try {
-			List list = this.getHibernateTemplate().find("from TlrRoleRel po where " + whereString, objArray);
+			List list = this.getHibernateTemplate().find("from TlrBctlRel po where " + whereString, objArray);
 
 			if (logger.isDebugEnabled()) {
 				logger.debug("queryByCondition(String, Object[], Type[]) - end"); //$NON-NLS-1$
@@ -140,16 +140,16 @@ public class TlrRoleRelDAO extends HibernateDaoSupport {
 	 * @param po
 	 * @throws CommonException
 	 */
-	public void insert(TlrRoleRel po) throws CommonException {
+	public void insert(TlrBctlRel po) throws CommonException {
 		if (logger.isDebugEnabled()) {
-			logger.debug("insert(TlrRoleRel) - start"); //$NON-NLS-1$
+			logger.debug("insert(TlrBctlRel) - start"); //$NON-NLS-1$
 		}
 
 		// added by xuhong 2015-3-31 手工添加id begin
 		Integer id = po.getId();
 		if (id == null) {
 			id = 100;
-			Iterator it = DAOUtils.getHQLDAO().queryByQL("select max(id) from TlrRoleRel");
+			Iterator it = DAOUtils.getHQLDAO().queryByQL("select max(id) from TlrBctlRel");
 			if (it.hasNext()) {
 				Number num = (Number) it.next();
 				id = num.intValue() + 1;
@@ -160,13 +160,37 @@ public class TlrRoleRelDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().save(po);
 		} catch (Exception e) {
-			logger.error("insert(TlrRoleRel)", e); //$NON-NLS-1$
+			logger.error("insert(TlrBctlRel)", e); //$NON-NLS-1$
 
 			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_ROLE_RELATION_INSERT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("insert(TlrRoleRel) - end"); //$NON-NLS-1$
+			logger.debug("insert(TlrBctlRel) - end"); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * 更新记录
+	 *
+	 * @param po
+	 * @throws CommonException
+	 */
+
+	public void update(TlrBctlRel po) throws CommonException {
+		this.getHibernateTemplate().setCacheQueries(false);
+		if (logger.isDebugEnabled()) {
+			logger.debug("update(TlrBctlRel) - start");
+		}
+		try {
+			this.getHibernateTemplate().update(po);
+		} catch (Exception e) {
+			logger.error("update(TlrBctlRel)", e); //$NON-NLS-1$
+
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_CANNOT_SUBMIT, e);
+		}
+		if (logger.isDebugEnabled()) {
+			logger.debug("update(TlrBctlRel) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -176,21 +200,21 @@ public class TlrRoleRelDAO extends HibernateDaoSupport {
 	 * @param po
 	 * @throws CommonException
 	 */
-	public void delete(TlrRoleRel po) throws CommonException {
+	public void delete(TlrBctlRel po) throws CommonException {
 		if (logger.isDebugEnabled()) {
-			logger.debug("delete(TlrRoleRel) - start"); //$NON-NLS-1$
+			logger.debug("delete(TlrBctlRel) - start"); //$NON-NLS-1$
 		}
 
 		try {
 			this.getHibernateTemplate().delete(po);
 		} catch (Exception e) {
-			logger.error("delete(TlrRoleRel)", e); //$NON-NLS-1$
+			logger.error("delete(TlrBctlRel)", e); //$NON-NLS-1$
 
 			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_ROLE_RELATION_DELETE, e);
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("delete(TlrRoleRel) - end"); //$NON-NLS-1$
+			logger.debug("delete(TlrBctlRel) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -214,7 +238,7 @@ public class TlrRoleRelDAO extends HibernateDaoSupport {
 
 		try {
 
-			String hql = "from TlrRoleRel as po where ";
+			String hql = "from TlrBctlRel as po where ";
 			hql = hql + whereString;
 
 			Query query = this.getSession().createQuery(hql);
@@ -264,7 +288,7 @@ public class TlrRoleRelDAO extends HibernateDaoSupport {
 	//
 	// try {
 	//
-	// String hql = "from TlrRoleRel as po ";
+	// String hql = "from TlrBctlRel as po ";
 	// if (conditionSet.size() > 0) {
 	// hql = hql + "where 0=0 ";
 	// Iterator it = conditionSet.iterator();

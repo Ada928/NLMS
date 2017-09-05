@@ -100,13 +100,13 @@
 			return false;
 		}
 
-		//alert("保存成功！");
 		return true;
 	}
 
 	//保存后刷新当前页
-	function btSave_postSubmit(button) {
-		alert("保存成功");
+	function btSave_postSubmit(button) { 
+        var retParam = button.returnParam;
+		alert("保存成功 "+ retParam.AddTlrno);
 		button.url = "/fpages/regonization/ftl/OperatorEntry.ftl";
 	}
 </script>

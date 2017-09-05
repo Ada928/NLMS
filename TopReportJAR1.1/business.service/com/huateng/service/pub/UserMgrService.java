@@ -7,8 +7,6 @@
 package com.huateng.service.pub;
 
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -125,7 +123,7 @@ public class UserMgrService {
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
 		try {
 			TlrInfoDAO tlrInfoDAO = BaseDAOUtils.getTlrInfoDAO();
-			List tlrList = tlrInfoDAO.queryByCondition("tlrno = '" + userLoginId + "'");
+			List tlrList = tlrInfoDAO.queryByCondition(" po.tlrno = '" + userLoginId.trim() + "'");
 			if (tlrList.isEmpty()) {
 				ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_USER_NOT_EXIST);
 			} else if (tlrList.size() != 1) {
@@ -233,7 +231,7 @@ public class UserMgrService {
 		String enc = user.getPasswdenc();
 
 		int lockingTime = Integer.valueOf(CommonService.getInstance().getSysParamDef("PSWD", "LOCKING_TIME", "-1"));
-		if (PswdValidteOP.LOCKED.equals(user.getIsLock())) {
+		if (SystemConstant.LOCKED.equals(user.isLock())) {
 
 			if (lockingTime < 0) {
 				ExceptionUtil.throwCommonException("用户已被锁定,请联系管理员解锁", "");
@@ -244,7 +242,7 @@ public class UserMgrService {
 					ExceptionUtil.throwCommonException("用户已被锁定,请联系管理员解锁,或等待" + lockingTime + "分钟后重试", "");
 				} else {
 					user.setTotpswderrcnt(0);
-					user.setIsLock(PswdValidteOP.NOT_LOCKED);
+					user.setLock(SystemConstant.NOT_LOCKED);
 				}
 			}
 		}
@@ -262,11 +260,11 @@ public class UserMgrService {
 			int maxErrCnt = Integer.valueOf(CommonService.getInstance().getSysParamDef("PSWD", "MAX_ERR_CNT", "0"));
 			if (user.getTotpswderrcnt().intValue() > maxErrCnt && maxErrCnt >= 0) {
 				user.setTotpswderrcnt(0);
-				user.setIsLock(PswdValidteOP.LOCKED);
+				user.setLock(SystemConstant.LOCKED);
 				user.setLockReason("用户密码连续输入错误次数超过允许的最大次数" + maxErrCnt);
 			}
 			SingleOPCaller.call(PswdValidteOP.ID, context);
-			if (PswdValidteOP.LOCKED.equals(user.getIsLock())) {
+			if (SystemConstant.LOCKED.equals(user.isLock())) {
 				if (lockingTime < 0) {
 					ExceptionUtil.throwCommonException("用户已被锁定,请联系管理员解锁", "");
 				} else {
@@ -286,17 +284,12 @@ public class UserMgrService {
 		// 密码有效时间(天)
 		int effectiveDay = Integer.valueOf(CommonService.getInstance().getSysParamDef("PSWD", "EFFECTIVE_DAY", "0"));
 		globalInfo.setEffectiveDay(effectiveDay);
-		if (StringUtils.isBlank(user.getLastPwdUpdTime())) {
+		if (null == user.getLastPwdUpdTime()) {
 			globalInfo.setPswdForcedToChange(true);// 未修改过密码
 		} else {
 			long between = 0L;
-			try {
-				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-				globalInfo.setLastpwdchgtm(df.parse(user.getLastPwdUpdTime()));
-				between = DateUtil.getDaysBetween(new Date(), df.parse(user.getLastPwdUpdTime()));
-			} catch (ParseException e) {
-				ExceptionUtil.throwCommonException(e.getMessage(), "");
-			}
+			globalInfo.setLastpwdchgtm(user.getLastPwdUpdTime());
+			between = DateUtil.getDaysBetween(new Date(), user.getLastPwdUpdTime());
 			if (between > effectiveDay && effectiveDay >= 0) {
 				globalInfo.setPswdForcedToChange(true);// 超过N久没修改密码,要强制修改
 			}
@@ -396,7 +389,7 @@ public class UserMgrService {
 			TlrInfo tlrInfo = (TlrInfo) list.get(i);
 			tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
 			// 最近登出时间
-			tlrInfo.setLastlogouttm(DateUtil.getTimestamp());
+			tlrInfo.setLastlogouttm(new Date());
 			tlrInfoDAO.update(tlrInfo);
 		}
 	}
@@ -462,9 +455,9 @@ public class UserMgrService {
 			tlrInfo = tlrInfoDAO.query(userLoginId);
 			if (null != tlrInfo) {
 				int preventTime = Integer.valueOf(CommonService.getInstance().getSysParamDef("PSWD", "PREVENT_TIME", "-1"));
-				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+				// SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 				if (preventTime != -1 && tlrInfo.getLastPwdUpdTime() != null) {
-					long x = System.currentTimeMillis() - df.parse(tlrInfo.getLastPwdUpdTime()).getTime();
+					long x = Long.parseLong(new Date().toString()) - Long.parseLong(tlrInfo.getLastPwdUpdTime().toString());
 					if (x < preventTime * 60 * 60 * 1000L) {
 						ExceptionUtil.throwCommonException(ErrorCode.ERROR_CODE_PREVENT_TIME, new Object[] { preventTime });
 					}
@@ -480,10 +473,10 @@ public class UserMgrService {
 				tlrInfo.setPassword(password);
 				tlrInfo.setPswderrcnt(new Integer(0));
 				tlrInfo.setTotpswderrcnt(new Integer(0));
-				tlrInfo.setLastUpdTime(DateUtil.getTimestamp());
+				tlrInfo.setLastUpdTime(new Date());
 				tlrInfo.setLastUpdOperId(tlrInfo.getTlrno());
 				// add by zhaozhiguo begin
-				tlrInfo.setLastPwdUpdTime(df.format(new Date()));
+				tlrInfo.setLastPwdUpdTime(new Date());
 				if (sysDefaultPwd.equals(newPwd)) {// 重置密码
 					tlrInfo.setLastPwdUpdTime(null);
 				}

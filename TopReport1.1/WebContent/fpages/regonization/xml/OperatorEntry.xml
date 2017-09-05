@@ -60,11 +60,11 @@
             method="None" translated="DATA_DIC.100" width="90" viewField="" primary="false" type="String" size="10"
             xpath="/roleid" tip="请先选择用户岗位" />
 
-        <Field id="isLock" desc="锁定状态" require="" status="N" method="None" translated="LIST:1,已锁定;0,未锁定" edittype="select"
-            width="" primary="false" type="String" size="20" xpath="/isLock" default="" />
+        <Field id="lock" desc="锁定状态" require="" status="N" method="None" translated="LIST:T,已锁定;F,未锁定" edittype="select"
+            width="" primary="false" type="String" size="20" xpath="/lock" default="" />
             
         <Field id="del" desc="删除状态" require="" status="N" method="None" translated="LIST:T,已删除;F,未删除" edittype="select"
-            width="" primary="false" type="String" size="20" xpath="/isDel" default="" />
+            width="" primary="false" type="String" size="20" xpath="/del" default="" />
 
         <Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" size="20" default=""
             tip="操作" require="" />
