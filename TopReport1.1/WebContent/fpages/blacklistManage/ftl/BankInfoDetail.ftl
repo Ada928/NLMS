@@ -47,46 +47,7 @@
 		                  <td nowrap class="labeltd">联系电话</td>
 		                  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="teleno"/></td>
 		                </tr>
-						
-						
-						
-						<tr>
-		                  <td nowrap class="labeltd">机构级别</td>
-		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_brclass"/></td>
-		                  <td nowrap class="labeltd">机构级别</td>
-		                  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="brclass"/></td>
-		                </tr>
-		                
-		               
-		                  <tr>
-		                  <td nowrap class="labeltd">上级机构</td>
-		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_blnUpBrcode"/></td>
-		                  <td nowrap class="labeltd">上级机构</td>
-		                  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="blnUpBrcode"/></td>
-		                </tr>
 		                 <tr>
-		                  <td nowrap class="labeltd">财务机构</td>
-		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_blnManageBrcode"/></td>
-		                  <td nowrap class="labeltd">财务机构</td>
-		                  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="blnManageBrcode"/></td>
-		                </tr>
-		                
-		                
-		                  <tr>
-		                  <td nowrap class="labeltd">机构属性</td>
-		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_brattr"/></td>
-		                  <td nowrap class="labeltd">机构属性</td>
-		                  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="brattr"/></td>
-		                </tr>
-		                 </tr>
-		                  <tr>
-		                  <td nowrap class="labeltd">异地行标志</td>
-		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_otherAreaFlag"/></td>
-		                  <td nowrap class="labeltd">异地行标志</td>
-		                  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="otherAreaFlag"/></td>
-		                </tr>
-		                
-		                  <tr>
 		                  <td nowrap class="labeltd">有效标志</td>
 		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_status"/></td>
 		                  <td nowrap class="labeltd">有效标志</td>
@@ -108,7 +69,7 @@
 	<table align="left">
       <tr valign="top">
   			<td valign="center">
-  			<@CommonQueryMacro.Group id ="group1" label="机构管理详细信息" fieldStr="old_brno,old_brname,old_address,old_postno,old_teleno,old_brclass,old_blnUpBrcode,old_blnManageBrcode,old_brattr,old_otherAreaFlag,old_status" colNm=2/>
+  			<@CommonQueryMacro.Group id ="group1" label="机构管理详细信息" fieldStr="old_brno,old_brname,old_address,old_postno,old_teleno,old_status" colNm=2/>
   			</td>
   		</tr>
   		<tr valign="top">

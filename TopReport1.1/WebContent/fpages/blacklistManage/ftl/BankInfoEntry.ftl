@@ -16,7 +16,7 @@
   		<tr>
       		<td colspan="2">
           		<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="btAdd,-,btStatus" 
-          			fieldStr="brno,brname,status,opr" width="100%"  readonly="true"/><br/>
+          			fieldStr="brno,brname,lock,opr" width="100%"  readonly="true"/><br/>
         	</td>
         </tr>
   		<tr align="center" style="display:none">
@@ -29,7 +29,6 @@
 <script language="javascript">
 	var roleType = "${info.roleTypeList}";
 
-	BankInfoEntry_dataset.setParameter("statu", "T");
 	//定位一条记录
 	function locate(id) {
 		var record = BankInfoEntry_dataset.find(["brcode"], [id]);
@@ -95,13 +94,23 @@
 	//修改功能
 	function openModifyWindow(id) {
 		locate(id);
-		BankInfoEntry_dataset.setParameter("brcode", id);
-		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl?opType=edit&brcode="+id;
+		var paramMap = new Map();
+		paramMap.put("opType", "edit");
+		paramMap.put("brcode", id);
+		loadPageWindows("partWin", "银行信息管理",
+				"${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl", paramMap,
+				"winZone");
+		//window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl?opType=edit&="+id;
 	}
 
 	function btAdd_onClick(button) {
 		BankInfoEntry_dataset.insertRecord();
-		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl?opType=add";
+		var paramMap = new Map();
+		paramMap.put("opType", "add");
+		loadPageWindows("partWin", "银行信息管理",
+				"${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl", paramMap,
+				"winZone");
+		//window.location.href = "?opType=add";
 	}
 	//展示对比功能的js
 	function datatable1_brno_onRefresh(cell, value, record) {
@@ -122,8 +131,8 @@
 		paramMap.put("st", sta);
 		paramMap.put("action", "detail");
 		paramMap.put("flag", "0");
-		loadPageWindows("partWin", "机构管理",
-				"/fpages/blacklistManage/ftl/branchManageDetail.ftl", paramMap,
+		loadPageWindows("partWin", "银行信息管理",
+				"/fpages/blacklistManage/ftl/BankInfoDetail.ftl", paramMap,
 				"winZone");
 	}
 
@@ -152,24 +161,6 @@
 	}
 
 	function BankInfoEntry_dataset_afterScroll(dataset) {
-		/*
-		var  v_brcode = BankInfoEntry_dataset.getValue("brcode");
-		var  v_brclass = BankInfoEntry_dataset.getValue("brclass");
-		 //数据库中的记录。
-		 if ( v_brcode!="" ){
-		   BankInfoEntry_dataset.setFieldReadOnly("brno",true);
-		   BankInfoEntry_dataset.setFieldReadOnly("brname",false);
-		 }else{
-		   BankInfoEntry_dataset.setFieldReadOnly("brno",false);
-		   BankInfoEntry_dataset.setFieldReadOnly("brname",false);
-		 }
-		 if ( v_brclass =="1" ){
-		 	BankInfoEntry_dataset.setFieldReadOnly("blnUpBrcode",true);
-		 }else{
-		 	BankInfoEntry_dataset.setFieldReadOnly("blnUpBrcode",false);
-		 }
-		 return true;
-		 */
 		var lock = BankInfoEntry_dataset.getValue("lock");
 		if (isTrue(lock)) {
 			btStatus.disable(true);
@@ -208,15 +199,6 @@
 				}
 			}
 		}
-	}
-
-	//去掉页面“归属分行”字段，但当选中“上级机构”字段时，自动给“归属分行”赋值
-	function blnUpBrcode_DropDown_onSelect(dropDown, record, editor) {
-		var blnUpBrcode = record.getValue("brcode").trim();
-		BankInfoEntry_dataset.setValue2("blnBranchBrcode",
-				blnUpBrcode);
-		return true;
-
 	}
 
 	function signWindow_floatWindow_beforeClose(subwindow) {

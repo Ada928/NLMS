@@ -1,10 +1,7 @@
 package com.cibfintech.blacklist.getter;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
 
 import resource.bean.blacklist.NsBankOperateLog;
 import resource.bean.pub.RoleInfo;
@@ -17,7 +14,6 @@ import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.common.GlobalInfo;
-import com.huateng.ebank.business.common.PageQueryCondition;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.framework.exceptions.CommonException;
@@ -55,8 +51,6 @@ public class BankInfoGetter extends BaseGetter {
 		String brName = getCommQueryServletRequest().getParameter("brhName");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
-		PageQueryCondition queryCondition = new PageQueryCondition();
-		List<Object> list = new ArrayList<Object>();
 
 		GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
 		List<RoleInfo> roleInfos = UserMgrService.getInstance().getUserRoles(globalinfo.getTlrno());
@@ -67,31 +61,8 @@ public class BankInfoGetter extends BaseGetter {
 			}
 		}
 
-		StringBuffer hql = new StringBuffer(" from NsBankInfo bblt where");
-		hql.append(" bblt.del=?");
-		list.add("F");
-
-		if (StringUtils.isNotBlank(brNo)) {
-			hql.append(" and bblt.brno=?");
-			list.add(brNo.trim());
-		}
-		if (StringUtils.isNotBlank(brName)) {
-			hql.append(" and bblt.brname like '%?%'");
-			list.add(brName.trim());
-		}
-		if (!isSuperManager) {
-			hql.append(" and bblt.brcode=?");
-			list.add(globalinfo.getBrcode());
-		}
-		hql.append(" order by bblt.brcode");
-
-		queryCondition.setPageIndex(pageIndex);
-		queryCondition.setPageSize(pageSize);
-		queryCondition.setQueryString(hql.toString());
-		queryCondition.setObjArray(list.toArray());
-
-		PageQueryResult pqr = BankInfoService.getInstance().pageQueryByHql(queryCondition);
-		String message = "国际黑名单的查询:brhNo=" + brNo + ",brhName=" + brName;
+		PageQueryResult pqr = BankInfoService.getInstance().pageQueryByHql(pageSize, pageIndex, brNo, brName, isSuperManager, globalinfo);
+		String message = "银行信息管理:brhNo=" + brNo + ",brhName=" + brName;
 		recordOperateLog(globalinfo, pqr, message);
 		return pqr;
 	}
@@ -103,7 +74,7 @@ public class BankInfoGetter extends BaseGetter {
 		bean.setBrNo(globalinfo.getBrno());
 		bean.setId(String.valueOf(GenerateID.getId()));
 		bean.setQueryType("");
-		bean.setQueryRecordNumber(String.valueOf(pqr.getTotalCount()));
+		bean.setQueryRecordNumber(String.valueOf(null == pqr ? "0" : pqr.getTotalCount()));
 		bean.setTlrIP(globalinfo.getIp());
 		bean.setTlrNo(globalinfo.getTlrno());
 		bean.setOperateType(SystemConstant.LOG_QUERY);

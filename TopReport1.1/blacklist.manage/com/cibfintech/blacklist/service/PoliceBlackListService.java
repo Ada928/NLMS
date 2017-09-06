@@ -1,5 +1,6 @@
 package com.cibfintech.blacklist.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -43,8 +44,11 @@ public class PoliceBlackListService {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
+		List<Object> list = new ArrayList<Object>();
 
-		StringBuffer hql = new StringBuffer(" from NsPoliceBlackList pblt where pblt.del='F'");
+		StringBuffer hql = new StringBuffer(" from NsPoliceBlackList pblt where 1=1");
+		hql.append(" and pblt.del=?");
+		list.add(false);
 
 		if (StringUtils.isNotBlank(partyId)) {
 			hql.append(" and pblt.id = '").append(partyId.trim()).append("'");
@@ -64,6 +68,7 @@ public class PoliceBlackListService {
 			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setPageSize(pageSize);
 			queryCondition.setQueryString(hql.toString());
+			queryCondition.setObjArray(list.toArray());
 			pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 		} catch (CommonException e) {
 			e.printStackTrace();

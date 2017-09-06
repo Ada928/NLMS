@@ -5,13 +5,13 @@
 <@CommonQueryMacro.CommonQuery id="BankInfoManage" init="true" submitMode="current">
    <table align="center" width="100%">
 	<tr>
-		<td  align="left">
+		<td align="left">
 				<@CommonQueryMacro.Group id="BankInfoManageGroup" label="银行机构信息维护"
 	        			  fieldStr="brcode,brno,brname,address,postno,teleno" colNm=4/>
 		</td>
 	</tr>
 	<tr >
-		<td  align="center">
+		<td align="center">
 	  		<@CommonQueryMacro.Button id="btSave" />
 		 	&nbsp;&nbsp;&nbsp;&nbsp;
 			<@CommonQueryMacro.Button id="btCancel" />

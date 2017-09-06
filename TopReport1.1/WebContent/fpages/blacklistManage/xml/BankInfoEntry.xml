@@ -37,6 +37,9 @@
         <Field id="lock" desc="是否锁定" edittype="text" datatype="string" status="F" size="1" xpath="/lock" />
         
         <Field id="del" desc="是否已删除" edittype="text" datatype="string" status="F" size="1" xpath="/del" />
+        
+        <Field id="status" desc="有效标志" status="F" edittype="select" method="None" primary="false" type="String"
+            default="" xpath="/status" tip="有效标志" translated="LIST:1,1-有效;0,0-无效" />
 
         <Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" size="20" default=""
             tip="操作" require="" />

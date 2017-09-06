@@ -33,38 +33,6 @@
         <Field id="teleno" desc="联系电话" status="F" method="None" size="14" primary="false" type="String" require="true"
             default="false" readonly="true" xpath="/bctl/teleno" tip="联系电话" />
 
-
-        <Field id="old_brclass" desc="机构级别" status="F" edittype="select" require="true" method="None" primary="false"
-            type="String" default="false" readonly="true" xpath="/old_bctl/brclass" tip="机构级别" translated="DATA_DIC.401" />
-        <Field id="brclass" desc="机构级别" status="F" edittype="select" require="true" method="None" primary="false"
-            type="String" default="false" readonly="true" xpath="/bctl/brclass" tip="机构级别" translated="DATA_DIC.401" />
-
-        <Field id="blnUpBrcode" desc="上级机构" status="F" primary="false" method="None" readonly="true" type="String"
-            size="20" default="" edittype="select" translated="CQ:AllBranchSelect" fieldmap="blnUpBrcode=brcode;blnUpBrcodeName=brcodeTypeName"
-            viewField="brcodeTypeName" xpath="/bctl/blnUpBrcode" require="true" tip="上级机构" />
-        <Field id="old_blnUpBrcode" desc="上级机构" status="F" primary="false" method="None" readonly="true" type="String"
-            size="20" default="" edittype="select" translated="CQ:AllBranchSelect" fieldmap="blnUpBrcode=brcode;blnUpBrcodeName=brcodeTypeName"
-            viewField="brcodeTypeName" xpath="/old_bctl/blnUpBrcode" require="true" tip="上级机构" />
-
-
-        <Field id="old_blnManageBrcode" desc="账务机构" status="F" primary="false" method="None" readonly="true" type="String"
-            size="20" edittype="select" translated="CQ:AllBranchSelect" fieldmap="blnManageBrcode=brcode;blnManageBrcodeName=brcodeTypeName"
-            viewField="brcodeTypeName" default="" xpath="/old_bctl/blnManageBrcode" require="false" tip="账务机构" />
-        <Field id="blnManageBrcode" desc="账务机构" status="F" primary="false" method="None" readonly="true" type="String"
-            size="20" edittype="select" translated="CQ:AllBranchSelect" fieldmap="blnManageBrcode=brcode;blnManageBrcodeName=brcodeTypeName"
-            viewField="brcodeTypeName" default="" xpath="/bctl/blnManageBrcode" require="false" tip="账务机构" />
-
-        <Field id="old_brattr" desc="机构属性" status="F" primary="false" edittype="select" translated="DATA_DIC.455"
-            method="None" readonly="true" type="String" size="20" require="" default="" xpath="/old_bctl/brattr" tip="机构属性" />
-        <Field id="brattr" desc="机构属性" status="F" primary="false" edittype="select" translated="DATA_DIC.455"
-            method="None" readonly="true" type="String" size="20" require="" default="" xpath="/bctl/brattr" tip="机构属性" />
-
-        <Field id="old_otherAreaFlag" desc="异地行标志" status="F" method="None" edittype="select" translated="DATA_DIC.457"
-            primary="false" readonly="true" type="String" default="" xpath="/old_bctl/otherAreaFlag" tip="异地行标志" />
-        <Field id="otherAreaFlag" desc="异地行标志" status="F" method="None" edittype="select" translated="DATA_DIC.457"
-            primary="false" readonly="true" type="String" default="" xpath="/bctl/otherAreaFlag" tip="异地行标志" />
-
-
         <Field id="old_status" desc="有效标志" status="F" edittype="select" method="None" primary="false" type="String"
             default="" readonly="true" xpath="/old_bctl/status" tip="有效标志" translated="LIST:1,1-有效;0,0-无效" />
 

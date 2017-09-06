@@ -1,12 +1,10 @@
 package com.cibfintech.blacklist.getter;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.lang.StringUtils;
-
+import resource.bean.blacklist.NsBankBlackList;
 import resource.bean.pub.RoleInfo;
 
 import com.cibfintech.blacklist.service.BankBlackListOperateLogService;
@@ -16,7 +14,6 @@ import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.common.GlobalInfo;
-import com.huateng.ebank.business.common.PageQueryCondition;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.framework.report.common.ReportConstant;
@@ -56,9 +53,6 @@ public class BankBlackListGetter extends BaseGetter {
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 
-		PageQueryCondition queryCondition = new PageQueryCondition();
-		List<Object> list = new ArrayList<Object>();
-
 		GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
 		List<RoleInfo> roleInfos = UserMgrService.getInstance().getUserRoles(globalinfo.getTlrno());
 		boolean isSuperManager = false;
@@ -69,37 +63,16 @@ public class BankBlackListGetter extends BaseGetter {
 		}
 
 		String operateStates = getOperateStates(roleInfos);
-		StringBuffer hql = new StringBuffer(" from NsBankBlackList bblt where ");
-		hql.append("bblt.del= ?");
-		list.add("F");
+		NsBankBlackList queryParam = new NsBankBlackList();
+		queryParam.setId(qPartyId);
+		queryParam.setCertificateNumber(qCertificateNumber);
+		queryParam.setCertificateType(qCertificateType);
 
-		if (StringUtils.isNotBlank(qPartyId)) {
-			hql.append(" and bblt.id = ?");
-			list.add(qPartyId.trim());
-		}
-		if (StringUtils.isNotBlank(qCertificateType)) {
-			hql.append(" and bblt.certificateType = ?");
-			list.add(qCertificateType.trim());
-		}
-		if (StringUtils.isNotBlank(qCertificateNumber)) {
-			hql.append(" and bblt.certificateNumber like '%?%'");
-			list.add(qCertificateNumber.trim());
-		}
-		if (!isSuperManager) {
-			hql.append(" and bblt.bankCode = ?");
-			list.add(globalinfo.getBrcode());
-		}
-		hql.append(" and bblt.operateState in ?");
-		list.add(operateStates);
-		queryCondition.setPageIndex(pageIndex);
-		queryCondition.setPageSize(pageSize);
-		queryCondition.setObjArray(list.toArray());
-		queryCondition.setQueryString(hql.toString());
-
-		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(queryCondition);
+		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageSize, pageIndex, queryParam, operateStates, isSuperManager, globalinfo);
 		String message = "国际黑名单的查询:partyId=" + qPartyId + ",certificateType=" + qCertificateType + ",certificateNumber=" + qCertificateNumber;
 		BankBlackListOperateLogService service = BankBlackListOperateLogService.getInstance();
-		service.saveBankBLOperateLog(SystemConstant.LOG_QUERY, "", String.valueOf(pqr.getTotalCount()), message);
+		// service.saveBankBLOperateLog(SystemConstant.LOG_QUERY, "",
+		// String.valueOf(pqr.getTotalCount()), message);
 		return pqr;
 	}
 
