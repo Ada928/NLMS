@@ -94,23 +94,12 @@
 	//修改功能
 	function openModifyWindow(id) {
 		locate(id);
-		var paramMap = new Map();
-		paramMap.put("opType", "edit");
-		paramMap.put("brcode", id);
-		loadPageWindows("partWin", "银行信息管理",
-				"${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl", paramMap,
-				"winZone");
-		//window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl?opType=edit&="+id;
+		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl?opType=edit&brcode="+id;
 	}
 
 	function btAdd_onClick(button) {
 		BankInfoEntry_dataset.insertRecord();
-		var paramMap = new Map();
-		paramMap.put("opType", "add");
-		loadPageWindows("partWin", "银行信息管理",
-				"${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl", paramMap,
-				"winZone");
-		//window.location.href = "?opType=add";
+		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl?opType=add";
 	}
 	//展示对比功能的js
 	function datatable1_brno_onRefresh(cell, value, record) {
@@ -126,14 +115,7 @@
 	}
 
 	function showDetail(id, sta) {
-		var paramMap = new Map();
-		paramMap.put("id", id);
-		paramMap.put("st", sta);
-		paramMap.put("action", "detail");
-		paramMap.put("flag", "0");
-		loadPageWindows("partWin", "银行信息管理",
-				"/fpages/blacklistManage/ftl/BankInfoDetail.ftl", paramMap,
-				"winZone");
+		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankInfoDetail.ftl?opType=showDetail&brcode="+id;
 	}
 
 	function btStatus_onClickCheck(button) {
@@ -167,47 +149,6 @@
 		} else {
 			btStatus.disable(false);
 		}
-	}
-
-	function BankInfoEntry_dataset_afterChange(dataset, field) {
-		if (field.name == "postno") {
-			v_postno = BankInfoEntry_dataset.getValue("postno");
-			if (isNaN(v_postno)) {
-				alert("字段【邮政编码】必须为数字");
-				BankInfoEntry_dataset.setValue2("postno", "");
-				return false;
-			} else if (v_postno.indexOf('-') != -1) {
-				alert("字段【邮政编码】必须为数字");
-				BankInfoEntry_dataset.setValue2("postno", "");
-				return false;
-			} else if (v_postno.length < 6 && v_postno.length != 0) {
-				alert("字段【邮政编码】必须为6位");
-				BankInfoEntry_dataset.setValue2("postno", "");
-				return false;
-			}
-			return true;
-		}
-		if (field.name == "teleno") {
-			var v_teleno = BankInfoEntry_dataset.getValue("teleno");
-			var validChar = "0123456789-";
-			for (var i = 0; i < v_teleno.length; i++) {
-				var c = v_teleno.charAt(i);
-				if (validChar.indexOf(c) == -1) {
-					alert("字段【联系电话】只能包含-和数字");
-					BankInfoEntry_dataset.setValue2("teleno", "");
-					return false;
-				}
-			}
-		}
-	}
-
-	function signWindow_floatWindow_beforeClose(subwindow) {
-		BankInfoEntry_dataset.cancelRecord();
-		return true;
-	}
-
-	function signWindow_floatWindow_beforeHide(subwindow) {
-		return signWindow_floatWindow_beforeClose(subwindow);
 	}
 
 	function BankInfoEntry_dataset_afterInsert(dataset, mode) {

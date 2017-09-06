@@ -28,7 +28,6 @@ import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.util.DateUtil;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.report.utils.ReportEnum;
-import com.huateng.service.pub.BctlOperateLogService;
 
 public class BranchManageUpdateOperation extends BaseOperation {
 	private static final HtLog htlog = HtLogFactory.getLogger(BranchManageUpdateOperation.class);
@@ -97,8 +96,10 @@ public class BranchManageUpdateOperation extends BaseOperation {
 			// branchManageDetailService.addTosystaskinfo(taskInfo);
 		}
 		if (list.size() > 0) {
-			BctlOperateLogService bctlOperateLogService = BctlOperateLogService.getInstance();
-			bctlOperateLogService.saveBctlOperateLog(SystemConstant.LOG_ADD, "", "", "新增一个银行");
+			// BctlOperateLogService bctlOperateLogService =
+			// BctlOperateLogService.getInstance();
+			// bctlOperateLogService.saveBctlOperateLog(SystemConstant.LOG_ADD,
+			// "", "", "新增一个银行");
 
 			GlobalInfo gi = GlobalInfo.getCurrentInstance();
 			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行新建银行管理信息" });
@@ -158,8 +159,10 @@ public class BranchManageUpdateOperation extends BaseOperation {
 			// branchManageDetailService.addTosystaskinfo(taskInfo);
 		}
 		if (list.size() > 0) {
-			BctlOperateLogService bctlOperateLogService = BctlOperateLogService.getInstance();
-			bctlOperateLogService.saveBctlOperateLog(SystemConstant.LOG_EDIT, "", "", "修改银行信息");
+			// BctlOperateLogService bctlOperateLogService =
+			// BctlOperateLogService.getInstance();
+			// bctlOperateLogService.saveBctlOperateLog(SystemConstant.LOG_EDIT,
+			// "", "", "修改银行信息");
 
 			GlobalInfo gi = GlobalInfo.getCurrentInstance();
 			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "执行更新银行管理信息" });

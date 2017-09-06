@@ -31,54 +31,10 @@
         <Field id="address" desc="机构地址" status="F" method="None" primary="false" type="String" require="false"
             size="100" default="false" xpath="/address" tip="机构地址" />
 
-
-        <!-- 根据对比需求增加的字段 -->
-
         <Field id="st" desc="记录状态" status="F" require="false" edittype="select" datatype="string" method="None"
             readonly="true" primary="true" type="st" translated="DATA_DIC.3001" size="30" default="" xpath="/st" tip="" />
         <Field id="lock" desc="是否锁定" edittype="text" datatype="string" status="F" size="1" xpath="/lock" />
         <Field id="del" desc="是否已删除" edittype="text" datatype="string" status="F" size="1" xpath="/del" />
-
-        <!-- 根据成商需求增加的要显示的字段 -->
-
-        <!-- translated="CQ:HeadBranch" -->
-        <!-- <Field id="blnBranchBrcode" desc="归属分行" status="F" primary="false" method="None" readonly="false" type="String" 
-            size="20" edittype="select" translated="CQ:AllBranchSelect" fieldmap="blnBranchBrcode=brcode;blnBranchBrcodeName=brcodeTypeName" 
-            viewField="brcodeTypeName" default="" xpath="/blnBranchBrcode" require="false" tip="归属分行" /> -->
-        <Field id="blnBranchBrcode" desc="归属分行" status="F" primary="false" method="None" readonly="false" type="String"
-            size="20" edittype="text" default="" xpath="/blnBranchBrcode" require="false" tip="归属分行" />
-        <!-- translated="CQ:CenterBrcodeSelect" -->
-
-        <Field id="blnUpBrcode" desc="上级机构" status="F" primary="false" method="None" readonly="false" type="String"
-            size="20" default="" edittype="select" translated="CQ:AllBranchSelect" fieldmap="blnUpBrcode=brcode;blnUpBrcodeName=brcodeTypeName"
-            viewField="brcodeTypeName" xpath="/blnUpBrcode" require="false" tip="上级机构" />
-
-        <Field id="blnUpBrcodeName" desc="上级机构" status="F"
-            method="com.huateng.ebank.business.common.CQMethod.getBrhNameByBrcode" width="" readonly="" primary="true"
-            type="String" size="150" xpath="/blnUpBrcode" default="" />
-
-        <!-- translated="CQ:CenterBrcodeSelect2" -->
-        <Field id="blnManageBrcode" desc="账务机构" status="F" primary="false" method="None" readonly="false" type="String"
-            size="20" edittype="select" translated="CQ:AllBranchSelect" fieldmap="blnManageBrcode=brcode;blnManageBrcodeName=brcodeTypeName"
-            viewField="brcodeTypeName" default="" xpath="/blnManageBrcode" require="false" tip="账务机构" />
-
-        <Field id="blnManageBrcodeName" desc="上级机构" status="F"
-            method="com.huateng.ebank.business.common.CQMethod.getBrhNameByBrno" width="" readonly="" primary="true"
-            type="String" size="150" xpath="/blnManageBrcode" default="" />
-
-        <!-- translated="CQ:PlCenterBrcodeSelect" -->
-        <Field id="txnBrcode" desc="归属分行个贷中心" status="F" primary="false" method="None" type="String" size="20"
-            require="" edittype="select" translated="CQ:AllBranchSelect" fieldmap="txnBrcode=brcode;txnBrcodeName=brcodeTypeName"
-            viewField="brcodeTypeName" default="" xpath="/txnBrcode" tip="归属分行个贷中心" />
-
-        <Field id="brattr" desc="机构属性" status="F" primary="false" edittype="select" translated="DATA_DIC.455"
-            method="None" type="String" size="20" require="" default="" xpath="/brattr" tip="机构属性" />
-
-        <Field id="otherAreaFlag" desc="异地行标志" status="F" method="None" edittype="select" translated="DATA_DIC.457"
-            primary="false" type="String" default="" xpath="/otherAreaFlag" tip="异地行标志" />
-
-        <Field id="miscflgs" desc="" status="F" method="None" primary="false" type="String" default="false" xpath="/miscflgs"
-            tip="" />
 
         <Field id="status" desc="有效标志" status="F" edittype="select" method="None" primary="false" type="String"
             default="" xpath="/status" tip="有效标志" translated="LIST:1,1-有效;0,0-无效" />
@@ -86,10 +42,8 @@
         <Field id="timestamps" desc="" status="F" method="None" primary="false" type="String" default=""
             xpath="/timestamps" tip="" />
 
-        <!-- add by zhaozhiguo 2012/2/16 begin -->
         <Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" size="20" default=""
             tip="操作" require="" />
-        <!-- add by zhaozhiguo 2012/2/16 end -->
     </Fields>
     <Where>
     </Where>

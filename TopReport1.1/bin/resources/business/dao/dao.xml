@@ -46,7 +46,7 @@
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
-	</bean>
+	</bean> 
 
 	<bean id="TlrRoleRelDAO" class="resource.dao.pub.TlrRoleRelDAO">
 		<property name="sessionFactory">

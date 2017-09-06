@@ -5,7 +5,7 @@
 
 <CommQry title="商行黑名单管理" navigate="商行黑名单管理" type="call" interface="true" pagesize="20" async="true" databusid=""
     transdataactionurl="/trans/TransDataAction.do" 
-    getterclassname="com.cibfintech.blacklist.getter.BankBlackListGetter">
+    getterclassname="com.cibfintech.blacklist.bankblacklist.getter.BankBlackListGetter">
 
     <Include id="BankParam" />
     <PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-商行黑名单列表" perfetch="15" />
@@ -83,16 +83,16 @@
             url="#" show="" group="" txn="" />
 
         <Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListDEL" url="#" />
+            updateClass="com.cibfintech.report.blacklist.bankblacklist.updater.BankBlackListDEL" url="#" />
             
         <Button id="btVerify" name="btVerify" desc="审核" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="#" />
+            updateClass="com.cibfintech.report.blacklist.bankblacklist.updater.BankBlackListUpdate" url="#" />
             
         <Button id="btApprove" name="btApprove" desc="审批" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="#" />
+            updateClass="com.cibfintech.report.blacklist.bankblacklist.updater.BankBlackListUpdate" url="#" />
             
         <Button id="btShare" name="btShare" desc="分享" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.BankBlackListUpdate" url="#" />
+            updateClass="com.cibfintech.report.blacklist.bankblacklist.updater.BankBlackListUpdate" url="#" />
             
         <Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
             updateClass="" url="#" />

@@ -42,7 +42,6 @@ import com.huateng.report.utils.RepList;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
 import com.huateng.service.pub.PasswordService;
-import com.huateng.service.pub.TlrOperateLogService;
 import com.huateng.service.pub.UserMgrService;
 import com.huateng.view.pub.TlrRoleRelationView;
 
@@ -258,8 +257,7 @@ public class OperMngOperation extends BaseOperation {
 				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "新增用户编号[" + tlrInfo.getTlrno() + "]" });
 				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "新增用户编号[" + tlrInfo.getTlrno() + "]" });
 			}
-			TlrOperateLogService tlrOperateLogService = TlrOperateLogService.getInstance();
-			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_ADD, "", "", "新增用户");
+
 		} else if ("modify".equals(context.getAttribute(CMD))) {
 			TlrInfo tlrInfo = (TlrInfo) context.getAttribute(IN_TLRINFO);
 			List<RoleInfo> roles = (List<RoleInfo>) context.getAttribute(IN_ROLELIST);
@@ -314,8 +312,7 @@ public class OperMngOperation extends BaseOperation {
 				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "修改用户编号[" + dbTrlInfo.getTlrno() + "]" });
 				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "修改用户编号[" + dbTrlInfo.getTlrno() + "]" });
 			}
-			TlrOperateLogService tlrOperateLogService = TlrOperateLogService.getInstance();
-			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_EDIT, "", "", "编辑用户");
+
 		} else if (CMD_DEL.equals(context.getAttribute(CMD))) {
 			String tlrno = (String) context.getAttribute(IN_TLRNO);
 			TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
@@ -381,9 +378,6 @@ public class OperMngOperation extends BaseOperation {
 					htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]删除操作" });
 				}
 			}
-
-			TlrOperateLogService tlrOperateLogService = TlrOperateLogService.getInstance();
-			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_DELEATE, "", "", "删除用户 " + tlrInfo.getTlrno() + " " + tlrInfo.getTlrName());
 		} else if ("mod".equals(context.getAttribute(CMD))) {
 			TlrInfo tlrInfo = (TlrInfo) context.getAttribute(IN_TLRINFO);
 			TlrInfo ti = tlrInfoDAO.query(tlrInfo.getTlrno());
@@ -480,8 +474,6 @@ public class OperMngOperation extends BaseOperation {
 				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "重置用户编号[" + tlrInfo.getTlrno() + "]的密码" });
 				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "重置用户编号[" + tlrInfo.getTlrno() + "]的密码" });
 			}
-			TlrOperateLogService tlrOperateLogService = TlrOperateLogService.getInstance();
-			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_EDIT, "", "", "重置用户编号[" + tlrInfo.getTlrno() + "]的密码");
 		} else if ("unlock".equals(context.getAttribute(CMD))) {// 解锁
 			String tlrno = (String) context.getAttribute(IN_TLRNO);
 			TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
@@ -532,9 +524,6 @@ public class OperMngOperation extends BaseOperation {
 				globalInfo.addBizLog("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });
 				htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "]解锁操作" });
 			}
-
-			TlrOperateLogService tlrOperateLogService = TlrOperateLogService.getInstance();
-			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_EDIT, "", "", "用户编号[" + tlrInfo.getTlrno() + "]解锁操作");
 		} else if (CMD_STATUS.equals(context.getAttribute(CMD))) { // 有效/无效 强行签退
 			String tlrno = (String) context.getAttribute(IN_TLRNO);
 			String status = (String) context.getAttribute(IN_PARAM);
@@ -611,11 +600,6 @@ public class OperMngOperation extends BaseOperation {
 					htlog.info("Updater.log", new String[] { globalInfo.getTlrno(), globalInfo.getBrno(), "用户编号[" + tlrInfo.getTlrno() + "有效无效操作" });
 				}
 			}
-			TlrOperateLogService tlrOperateLogService = TlrOperateLogService.getInstance();
-			tlrOperateLogService.saveTlrOperateLog(SystemConstant.LOG_EDIT, "", "", "使用户有效/无效 强行签退 "
-					+ tlrInfo.getTlrno()
-					+ ("logout".equals(status) ? "强制签退 " + tlrInfo.getTlrno() : (SystemConstant.FLAG_ON.equals(status) ? "使用户有效 " + tlrInfo.getTlrno()
-							: "使用户无效 " + tlrInfo.getTlrno())));
 		}
 	}
 

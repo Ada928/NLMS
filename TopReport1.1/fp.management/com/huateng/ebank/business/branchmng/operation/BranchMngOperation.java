@@ -15,7 +15,6 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.report.common.service.ReportShowDetailService;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
-import com.huateng.service.pub.BctlOperateLogService;
 
 public class BranchMngOperation extends BaseOperation {
 
@@ -160,8 +159,10 @@ public class BranchMngOperation extends BaseOperation {
 			}
 		}
 
-		BctlOperateLogService bctlOperateLogService = BctlOperateLogService.getInstance();
-		bctlOperateLogService.saveBctlOperateLog(operateType, "", "", message);
+		// BctlOperateLogService bctlOperateLogService =
+		// BctlOperateLogService.getInstance();
+		// bctlOperateLogService.saveBctlOperateLog(operateType, "", "",
+		// message);
 	}
 
 	/*

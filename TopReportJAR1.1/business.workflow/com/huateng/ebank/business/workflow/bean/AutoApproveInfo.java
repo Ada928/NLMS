@@ -1,8 +1,9 @@
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class AutoApproveInfo {
+public class AutoApproveInfo implements Serializable {
 	private BigDecimal amt; // 业务金额
 	private String lnid; // 业务品种
 	private String brcode; // 机构

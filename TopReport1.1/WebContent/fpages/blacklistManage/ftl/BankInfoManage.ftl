@@ -41,7 +41,31 @@
 	}
 
 	function checkValue() {
-		if (BankInfoManage_dataset.getValue("blnUpBrcode") == ""
+		v_postno = BankInfoEntry_dataset.getValue("postno");
+		if (isNaN(v_postno)) {
+			alert("字段【邮政编码】必须为数字");
+			BankInfoEntry_dataset.setValue2("postno", "");
+			return false;
+		} else if (v_postno.indexOf('-') != -1) {
+			alert("字段【邮政编码】必须为数字");
+			BankInfoEntry_dataset.setValue2("postno", "");
+			return false;
+		} else if (v_postno.length < 6 && v_postno.length != 0) {
+			alert("字段【邮政编码】必须为6位");
+			BankInfoEntry_dataset.setValue2("postno", "");
+			return false;
+		}
+		var v_teleno = BankInfoEntry_dataset.getValue("teleno");
+		var validChar = "0123456789-";
+		for (var i = 0; i < v_teleno.length; i++) {
+			var c = v_teleno.charAt(i);
+			if (validChar.indexOf(c) == -1) {
+				alert("字段【联系电话】只能包含-和数字");
+				BankInfoEntry_dataset.setValue2("teleno", "");
+				return false;
+			}
+		}
+		/* if (BankInfoManage_dataset.getValue("blnUpBrcode") == ""
 				&& BankInfoManage_dataset.getValue("brclass") != "1") {
 			alert("字段[上级机构]不应为空。");
 			return false;
@@ -50,14 +74,27 @@
 		if (BankInfoManage_dataset.getValue("brclass") == "") {
 			alert("字段[机构级别]不应为空。");
 			return false;
-		}
+		} */
 		return true;
 	}
 	
 	//保存后刷新当前页
 	function btSave_postSubmit(button) {
 		alert("保存成功");
-		button.url = "/fpages/regonization/ftl/BranchEntry.ftl";
+		button.url = "/fpages/blacklistManage/ftl/BankInfoEntry.ftl";
+		flushCurrentPage();
+	}
+	
+	function btCancel_onClickCheck(button) {
+		//unloadPageWindows("partWin");
+		button.url = "/fpages/blacklistManage/ftl/BankInfoEntry.ftl";
+		flushCurrentPage();
+		//return false;
+	}
+	
+	function flushCurrentPage() {
+		BankInfoManage_dataset
+				.flushData(BankInfoManage_dataset.pageIndex);
 	}
 </script>
 </@CommonQueryMacro.page>

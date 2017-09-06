@@ -3,7 +3,7 @@
 <!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
     async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
 <CommQry title="" navigate="主页 &gt; 银行信息管理 &gt; 银行管理" type="call" interface="false" pagesize="10" async="false"
-    databusid="FIVE" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.getter.BankInfoGetter">
+    databusid="FIVE" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.bankinfo.getter.BankInfoGetter">
     <Include id="BankParam" />
     
     <Fields>
@@ -34,12 +34,14 @@
         <Field id="st" desc="记录状态" status="F" require="false" edittype="select" datatype="string" method="None"
             readonly="true" primary="true" type="st" translated="DATA_DIC.3001" size="30" default="" xpath="/st" tip="" />
             
-        <Field id="lock" desc="是否锁定" edittype="text" datatype="string" status="F" size="1" xpath="/lock" />
+		<Field id="lock" desc="是否锁定" status="F" edittype="select"
+			method="None" primary="false" type="String" default="" xpath="/lock"
+			tip="有效标志" translated="LIST:true,锁定;false,未锁定" />
         
         <Field id="del" desc="是否已删除" edittype="text" datatype="string" status="F" size="1" xpath="/del" />
         
         <Field id="status" desc="有效标志" status="F" edittype="select" method="None" primary="false" type="String"
-            default="" xpath="/status" tip="有效标志" translated="LIST:1,1-有效;0,0-无效" />
+            default="" xpath="/status" tip="有效标志" translated="LIST:true,有效;false,无效" />
 
         <Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" size="20" default=""
             tip="操作" require="" />
@@ -58,9 +60,9 @@
         <Button id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" icon="" />
        
         <Button id="btStatus" name="btStatus" desc="有效/无效" operation="asysubmit"
-            updateClass="com.huateng.ebank.business.branchmng.update.BranchStatusChgUpdate" url="#" txn="" icon="icon-set" />
+            updateClass="com.cibfintech.blacklist.bankinfo.updater.BankInfoUpdate" url="#" txn="" icon="icon-set" />
         
         <Button id="btDel" name="btDel" desc="删除" operation="asysubmit" 
-        	updateClass="com.huateng.ebank.business.branchmng.update.BranchDelChgUpdate" url="" txn="" />
+        	updateClass="com.cibfintech.blacklist.bankinfo.updater.BankInfoDEL" url="" txn="" />
     </Operations>
 </CommQry>

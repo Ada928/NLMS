@@ -5,7 +5,7 @@
 
 <CommQry title="公安部黑名单管理" navigate="公安部黑名单管理" type="call" interface="true" pagesize="20" async="true" databusid=""
     transdataactionurl="/trans/TransDataAction.do" txnlogflag="true"
-    getterclassname="com.cibfintech.blacklist.getter.PoliceBlackListGetter">
+    getterclassname="com.cibfintech.blacklist.policeblacklist.getter.PoliceBlackListGetter">
 
     <Include id="BankParam" />
     <PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-公安部黑名单列表"
@@ -60,9 +60,9 @@
         <Button id="btAdd" name="btAdd" desc="新增" operation="" url="#" show="" group="" txn="" icon="icon-add" />
         <Button id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" />
         <Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.PoliceBlackListDEL" url="" />
+            updateClass="com.cibfintech.report.blacklist.policeblacklist.updater.PoliceBlackListDEL" url="" />
         <Button id="btModOrAdd" name="btModOrAdd" desc="保存" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.updater.PoliceBlackListUpdate" url="" />
+            updateClass="com.cibfintech.report.blacklist.policeblacklist.updater.PoliceBlackListUpdate" url="" />
     </Operations>
     <Sql>
     </Sql>

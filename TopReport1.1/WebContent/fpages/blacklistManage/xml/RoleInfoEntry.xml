@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <CommQry title="企业岗位维护" navigate="主页 &gt; 权限管理 &gt; 岗位管理" type="call" interface="true" pagesize="10" async="true"
-    databusid="" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.getter.EbankCustRoleMngGetter">
+    databusid="" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.roleinfo.getter.RoleInfoGetter">
     <Include id="BankParam" />
     <Fields>
         <!-- 岗位信息 -->
@@ -54,28 +54,30 @@
             primary="true" type="记录状态" size="12" default="" xpath="/st" tip="记录状态" translated="DATA_DIC.3001" />
     </Fields>
     <Where>
+	    <TextBox id="qroleName" type="String" dataType="" operation="EQ" size="8" desc="岗位名称" tip="岗位名称"
+	            method="genLikeP" index="1" function="" width="" default="" scale="" require="" readOnly="" />
     </Where>
     <Operations>
         <Button id="btRoleAuthorityManagement" name="btRoleAuthorityManagement" desc="设置岗位功能" operation="syncsubmit"
             url="/fpages/management/ftl/RoleFuncMng.ftl" txn="" />
 
-        <Button id="btSelectRole" name="btSelectRole" desc="查询人员信息" operation="syncsubmit"
-            url="/fpages/management/ftl/ebankCustRoleMngUser.ftl" txn="" />
+        <!-- <Button id="btSelectRole" name="btSelectRole" desc="查询人员信息" operation="syncsubmit"
+            url="/fpages/management/ftl/ebankCustRoleMngUser.ftl" txn="" /> -->
 
-        <Button id="btAddRole" name="btAddRole" desc="新增岗位" operation="href" url="/fpages/management/ftl/RoleFuncMng.ftl"
+        <Button id="btAdd" name="btAdd" desc="新增岗位" operation="href" url="/fpages/management/ftl/RoleFuncMng.ftl"
             txn="" icon="icon-add" />
 
-        <Button id="btDeleteRole" name="btDeleteRole" desc="删除"  operation="asysubmit"
+        <Button id="btDel" name="btDeleteRole" desc="删除"  operation="asysubmit"
             updateClass="com.huateng.ebank.business.rolemng.update.RoleDelChgUpdate" url="#" txn="" />
         
-        <Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
-            updateClass="com.huateng.ebank.business.management.updater.CustRoleSaveUpdater" url="#" txn="" />
+      <!--   <Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
+            updateClass="com.huateng.ebank.business.management.updater.CustRoleSaveUpdater" url="#" txn="" /> -->
             
         <Button id="btStatus" name="btUnlockRole" desc="有效/无效" operation="asysubmit"
             updateClass="com.huateng.ebank.business.rolemng.update.RoleStatusChgUpdate" url="#" txn="" icon="icon-set" />
             
-        <Button id="btQuery" name="btQuery" desc="查看对比信息" operation="syncsubmit" url="" txn="" />
+        <!-- <Button id="btQuery" name="btQuery" desc="查看对比信息" operation="syncsubmit" url="" txn="" /> 
         
-        <Button id="btSee" name="btSee" desc="查看信息" operation="syncsubmit" url="" txn="" />
+        <Button id="btSee" name="btSee" desc="查看信息" operation="syncsubmit" url="" txn="" />-->
     </Operations>
 </CommQry>

@@ -1,5 +1,7 @@
 package com.huateng.ebank.business.common.bean;
 
+import java.io.Serializable;
+
 /**
  * @Description:
  * @Package: com.huateng.ebank.business.custadmin.bean
@@ -8,7 +10,7 @@ package com.huateng.ebank.business.common.bean;
  * @Copyright: Copyright (c) 2010
  * @Company: Shanghai Huateng Software Systems Co., Ltd.
  */
-public class CustAdminOperatorBean {
+public class CustAdminOperatorBean implements Serializable {
 	private java.lang.Integer id;
 	private java.lang.String roleName;
 

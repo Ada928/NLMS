@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <CommQry title="日志查询" navigate="主页 &gt; 数据查询&gt; 银行操作日志查询" type="call" interface="true" pagesize="10" async="true"
-    databusid="" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.huateng.report.dataquery.getter.BctlOperateLogQueryGetter">
+    databusid="" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.bankinfo.getter.BankOperateLogQueryGetter">
     <Include id="BankParam" />
     <PageQryExp type="XLS" limit="true" encoding="GBK" url="/trans/qryExp.do" desc="批量下载-银行操作日志查询" />
     <Fields>

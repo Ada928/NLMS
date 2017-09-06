@@ -17,7 +17,6 @@ import com.huateng.report.common.service.ReportShowDetailService;
 import com.huateng.report.system.service.RoleInfoTSKService;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
-import com.huateng.service.pub.RoleOperateLogService;
 
 /**
  * @Description:
@@ -200,8 +199,10 @@ public class RoleMngApplyOperation extends BaseOperation {
 			RoleInfoTSKService roleInfoService = RoleInfoTSKService.getInstance();
 			roleInfoService.saveCustRole(insertList, updateList);
 		}
-		RoleOperateLogService roleOperateLogService = RoleOperateLogService.getInstance();
-		roleOperateLogService.saveRoleOperateLog(operateType, "", "", message);
+		// RoleOperateLogService roleOperateLogService =
+		// RoleOperateLogService.getInstance();
+		// roleOperateLogService.saveRoleOperateLog(operateType, "", "",
+		// message);
 
 	}
 }

@@ -1,6 +1,8 @@
 package com.huateng.ebank.business.common.bean;
 
-public class MgnDepartInfoBean {
+import java.io.Serializable;
+
+public class MgnDepartInfoBean implements Serializable {
 
 	private Integer id;
 

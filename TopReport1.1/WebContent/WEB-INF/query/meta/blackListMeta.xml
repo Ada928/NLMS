@@ -40,7 +40,20 @@
 	    
 	<Query id="RoleInfoEntry" 
 	    path="/fpages/blacklistManage/xml/RoleInfoEntry.xml" />
+	<Query id="ShowRoleUser" 
+	    path="/fpages/blacklistManage/xml/ShowRoleUser.xml" />
 	<Query id="RoleOperateLogQuery" 
 	    path="/fpages/blacklistManage/xml/RoleOperateLogQuery.xml" />
+	    
+	<!-- <Query id="UserDetail" 
+	    path="/fpages/blacklistManage/xml/UserDetail.xml" /> -->
+	<Query id="UserInfoEntry" 
+	    path="/fpages/blacklistManage/xml/UserInfoEntry.xml" />
+	<Query id="UserInfoManage" 
+	    path="/fpages/blacklistManage/xml/UserInfoManage.xml" />
+	<Query id="UserRoleRelSelect" 
+	    path="/fpages/blacklistManage/xml/UserRoleRelSelect.xml" />
+	<Query id="UserOperateLogQuery" 
+	    path="/fpages/blacklistManage/xml/UserOperateLogQuery.xml" /> 
 	    
 </META>
