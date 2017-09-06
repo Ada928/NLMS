@@ -20,7 +20,7 @@ import com.huateng.exception.AppException;
  * @author huangcheng
  *
  */
-public class BankInfoUpdate extends BaseUpdate {
+public class UserInfoUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "BankInfoManage";
 	private final static String PARAM_ACTION = "opType";

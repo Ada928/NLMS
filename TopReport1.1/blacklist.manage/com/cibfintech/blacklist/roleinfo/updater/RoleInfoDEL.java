@@ -22,7 +22,7 @@ import com.huateng.exception.AppException;
 
  * 
  */
-public class BankInfoDEL extends BaseUpdate {
+public class RoleInfoDEL extends BaseUpdate {
 
 	private static final String DATASET_ID = "BankInfoEntry";
 
