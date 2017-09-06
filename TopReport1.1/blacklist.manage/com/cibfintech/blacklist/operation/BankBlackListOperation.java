@@ -5,8 +5,8 @@ import java.io.IOException;
 import resource.bean.blacklist.NsBankBlackList;
 import resource.bean.report.SysTaskInfo;
 
-import com.cibfintech.blacklist.service.BankBlackListOperateLogService;
-import com.cibfintech.blacklist.service.BankBlackListService;
+import com.cibfintech.blacklist.bankblacklist.service.BankBlackListOperateLogService;
+import com.cibfintech.blacklist.bankblacklist.service.BankBlackListService;
 import com.huateng.common.DateUtil;
 import com.huateng.common.log.HtLog;
 import com.huateng.common.log.HtLogFactory;

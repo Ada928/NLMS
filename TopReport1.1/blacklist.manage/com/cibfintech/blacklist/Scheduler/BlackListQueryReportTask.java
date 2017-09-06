@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.cibfintech.blacklist.service.BankBlackListOperateLogService;
-import com.cibfintech.blacklist.service.InternationBlackListOperateLogService;
-import com.cibfintech.blacklist.service.PoliceBlackListOperateLogService;
+import com.cibfintech.blacklist.bankblacklist.service.BankBlackListOperateLogService;
+import com.cibfintech.blacklist.internationblacklist.service.InternationBlackListOperateLogService;
+import com.cibfintech.blacklist.policeblacklist.service.PoliceBlackListOperateLogService;
 import com.cibfintech.blacklist.service.QueryDailyLogCountService;
 import com.cibfintech.blacklist.service.QueryMonthlyLogCountService;
 import com.huateng.ebank.framework.exceptions.CommonException;
