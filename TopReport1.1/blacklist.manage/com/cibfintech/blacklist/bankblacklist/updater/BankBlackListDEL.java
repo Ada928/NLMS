@@ -44,7 +44,7 @@ public class BankBlackListDEL extends BaseUpdate {
 				context.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_DEL);
 				BaseUpdate.mapToObject(bankBlackList, map);
 				// call方式开启operation事务
-				context.setAttribute(BankBlackListOperation.IN_PARAM, bankBlackList);
+				context.setAttribute(BankBlackListOperation.IN_BANK_BLACK_LIST, bankBlackList);
 				OPCaller.call(BankBlackListOperation.ID, context);
 				return updateReturnBean;
 			}

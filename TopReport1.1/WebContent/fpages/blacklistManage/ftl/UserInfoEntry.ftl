@@ -66,9 +66,17 @@
         }
     }
     
-    function btModifyShow(tlrno) {
-        window.location.href = "${contextPath}/fpages/blacklistManage/ftl/UserInfoManage.ftl?op=modify&tlrno=" + tlrno;
+    function btModifyShow(id) {
+		locate(id);
+		btModify.click();
     }
+    
+	function btAdd_onClick() {
+		UserInfoEntry_dataset.insertRecord();
+		UserInfoEntry_dataset.setParameter("op", "new");
+		UserInfoEntry_dataset.setParameter("id", "0");
+	}
+
     
     function resetPwd(tlrno) {
         if (tlrno == currentTlrno) {
@@ -111,8 +119,6 @@
 				return false;
 			}
 		}
-    	
-        //return confirm("确认删除该条记录？");
     }
     
     function btDel_postSubmit(button) {
@@ -162,11 +168,6 @@
 
     function UserInfoEntry_dataset_dataset_afterScroll(dataset) {
         unLock.disable(dataset.getValue("lock") != 'true' || dataset.getValue("tlrno") == currentTlrno);
-    }
-
-    //新增
-    function btAdd_onClick(buttton) {
-        window.location.href = "${contextPath}/fpages/blacklistManage/ftl/UserInfoManage.ftl?op=new";
     }
 
     //刷新数据

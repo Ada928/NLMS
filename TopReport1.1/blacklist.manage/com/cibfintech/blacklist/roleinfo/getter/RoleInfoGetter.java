@@ -57,6 +57,7 @@ public class RoleInfoGetter extends BaseGetter {
 		for (RoleInfo roleInfo : roleInfos) {
 			if (roleInfo.getRoleType().equals(SystemConstant.ROLE_TYPE_SYS_MNG)) {
 				isSuperManager = true;
+				break;
 			}
 		}
 

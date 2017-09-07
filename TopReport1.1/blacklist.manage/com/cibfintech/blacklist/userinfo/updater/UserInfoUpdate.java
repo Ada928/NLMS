@@ -1,13 +1,18 @@
 package com.cibfintech.blacklist.userinfo.updater;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import resource.bean.pub.Bctl;
+import resource.bean.pub.RoleInfo;
+import resource.bean.pub.TlrInfo;
 
-import com.cibfintech.blacklist.operation.BankInfoOperation;
+import com.cibfintech.blacklist.operation.UserInfoOperation;
+import com.huateng.common.err.Module;
+import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
 import com.huateng.commquery.result.UpdateResultBean;
 import com.huateng.commquery.result.UpdateReturnBean;
@@ -22,40 +27,46 @@ import com.huateng.exception.AppException;
  */
 public class UserInfoUpdate extends BaseUpdate {
 
-	private static final String DATASET_ID = "BankInfoManage";
-	private final static String PARAM_ACTION = "opType";
-	private final static String PARAM_ACTION_SURE = "sure";
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+			throws AppException {
+		try {
 
-	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
-		// 返回对象
-		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-		// 返回结果对象
-		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-		// 返回黑名单对象
-		Bctl bean = new Bctl();
-		OperationContext oc = new OperationContext();
-		if (updateResultBean.hasNext()) {
-			// 属性拷贝
-			Map map = updateResultBean.next();
-			BaseUpdate.mapToObject(bean, map);
-			String opType = updateResultBean.getParameter(PARAM_ACTION);
-			String sure = updateResultBean.getParameter(PARAM_ACTION_SURE);
-			sure = (null == sure || "" == sure) ? "" : sure;
-			opType = (null == opType || "" == opType) ? "" : opType;
-			if (opType.equals(BankInfoOperation.IN_EDIT)) {
-				oc.setAttribute(BankInfoOperation.CMD, BankInfoOperation.CMD_EDIT);
+			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("UserInfoManage");
+			TlrInfo bean = null;
+			while (updateResultBean.hasNext()) {
+				bean = new TlrInfo();
+				Map map = updateResultBean.next();
+				mapToObject(bean, map);
 			}
-			if (opType.equals(BankInfoOperation.IN_ADD)) {
-				oc.setAttribute(BankInfoOperation.CMD, BankInfoOperation.CMD_ADD);
+
+			UpdateResultBean roleUpdateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("UserRoleRelSelect");
+			List<RoleInfo> roles = new ArrayList<RoleInfo>();
+			while (roleUpdateResultBean.hasNext()) {
+				RoleInfo role = new RoleInfo();
+				Map map = roleUpdateResultBean.next();
+				String roleId = (String) map.get("roleId");
+				String roleName = (String) map.get("roleName");
+				role.setId(Integer.parseInt(roleId));
+				role.setRoleName(roleName);
+				roles.add(role);
 			}
-			oc.setAttribute(BankInfoOperation.IN_PARAM, opType);
-			oc.setAttribute(BankInfoOperation.IN_PARAM_SURE, sure);
-			oc.setAttribute(BankInfoOperation.IN_BANK_INFO, bean);
-			// call方式开启operation事务
-			OPCaller.call(BankInfoOperation.ID, oc);
+
+			String op = updateResultBean.getParameter("op");
+
+			OperationContext oc = new OperationContext();
+			oc.setAttribute(UserInfoOperation.CMD, op);
+			oc.setAttribute(UserInfoOperation.IN_ROLE_LIST, roles);
+			oc.setAttribute(UserInfoOperation.IN_USER_INFO, bean);
+
+			OPCaller.call(UserInfoOperation.ID, oc);
+
+			updateReturnBean.setParameter("SuccessInfo", UserInfoOperation.getSuccessInfo());
 			return updateReturnBean;
+		} catch (AppException appEx) {
+			throw appEx;
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
-		return null;
 	}
 }

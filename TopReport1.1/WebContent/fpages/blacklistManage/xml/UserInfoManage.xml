@@ -61,10 +61,10 @@
 
     <Operations>
         <Button id="btModSave" name="btSave" desc="确定" operation="asysubmit"
-            updateClass="com.huateng.ebank.business.opermng.update.OperMngModUpdate" 
-            url="/fpages/regonization/ftl/OperatorEntry.ftl" txn="" />
+            updateClass="com.cibfintech.blacklist.userinfo.updater.UserInfoUpdate" 
+            url="/fpages/blacklistManage/ftl/UserInfoEntry.ftl" txn="" />
         <Button id="btCancel" name="btCancel" desc="返回" operation="" 
-        	url="/fpages/regonization/ftl/OperatorEntry.ftl" txn="" />
+        	url="/fpages/blacklistManage/ftl/UserInfoEntry.ftl" txn="" />
     </Operations>
     <Sql></Sql>
 </CommQry>

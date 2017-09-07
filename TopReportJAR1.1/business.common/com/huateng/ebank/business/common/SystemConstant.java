@@ -1953,7 +1953,7 @@ public class SystemConstant {
 	public static final String ROLE_TYPE_INPUT = "12"; // 编辑岗/客户经理
 	public static final String ROLE_TYPE_AUDIT = "13"; // 黑名单/贷款审查岗
 	public static final String ROLE_TYPE_APPROVE = "14"; // 黑名单/贷款审批岗
-	public static final String ROLE_TYPE_PUBLISH = "15"; // 黑名单发布岗
+	public static final String ROLE_TYPE_QUERY = "15"; // 普通查询岗位
 
 	public static final String ROLE_TYPE_COUNCIL = "16"; // 贷审会意见录入岗
 	public static final String ROLE_TYPE_SUPERVISE = "17"; // 放款监督岗

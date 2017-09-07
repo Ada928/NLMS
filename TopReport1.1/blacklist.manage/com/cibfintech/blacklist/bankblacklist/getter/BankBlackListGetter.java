@@ -96,7 +96,7 @@ public class BankBlackListGetter extends BaseGetter {
 				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
 			} else if (roleType.equals(SystemConstant.ROLE_TYPE_APPROVE)) {
 				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
-			} else if (roleType.equals(SystemConstant.ROLE_TYPE_PUBLISH)) {
+			} else if (roleType.equals(SystemConstant.ROLE_TYPE_QUERY)) {
 				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
 			} else {
 				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);

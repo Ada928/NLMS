@@ -25,7 +25,7 @@ public abstract class BaseRoleFuncRel implements Serializable {
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseRoleFuncRel(java.lang.Integer id) {
+	public BaseRoleFuncRel(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -36,7 +36,7 @@ public abstract class BaseRoleFuncRel implements Serializable {
 	private int hashCode = Integer.MIN_VALUE;
 
 	// primary key
-	private java.lang.Integer id;
+	private java.lang.String id;
 
 	// fields
 	private java.lang.Integer roleId;
@@ -47,7 +47,7 @@ public abstract class BaseRoleFuncRel implements Serializable {
 	 * 
 	 * @hibernate.id generator-class="sequence" column="ID"
 	 */
-	public java.lang.Integer getId() {
+	public java.lang.String getId() {
 		return id;
 	}
 
@@ -57,7 +57,7 @@ public abstract class BaseRoleFuncRel implements Serializable {
 	 * @param id
 	 *            the new ID
 	 */
-	public void setId(java.lang.Integer id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}

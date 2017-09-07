@@ -33,7 +33,7 @@ public class RoleFuncRelService {
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from RoleFuncRel bblt where bblt.del='F'");
+		StringBuffer hql = new StringBuffer(" from RoleFuncRel po where 1=1");
 
 		/*
 		 * if (StringUtils.isNotBlank(partyId)) {
@@ -77,6 +77,21 @@ public class RoleFuncRelService {
 	}
 
 	/*
+	 * 查询
+	 * 
+	 * @param paramgroupId 参数段编号
+	 */
+	public List<RoleFuncRel> getRelByRoleId(Integer roleId) throws CommonException {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		List<RoleFuncRel> list = rootDAO.queryByQL2List("from RoleFuncRel po where 1=1 and po.roleId=" + roleId);
+		for (int i = 0; i < list.size(); i++) {
+			RoleFuncRel bean = (RoleFuncRel) list.get(i);
+			list.set(i, bean);
+		}
+		return list;
+	}
+
+	/*
 	 * 删除实体
 	 * 
 	 * @param biNationregion
@@ -110,7 +125,7 @@ public class RoleFuncRelService {
 
 	public void addEntity(RoleFuncRel bean) throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
-		if (isExists(bean.getId().toString())) {
+		if (isExists(bean.getId())) {
 			ExceptionUtil.throwCommonException(" 银行用户关系信息重复");
 		}
 		try {

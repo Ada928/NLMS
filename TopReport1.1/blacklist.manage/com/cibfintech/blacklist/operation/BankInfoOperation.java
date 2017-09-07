@@ -23,7 +23,7 @@ import com.huateng.report.utils.ReportTaskUtil;
 public class BankInfoOperation extends BaseOperation {
 	public static final String ID = "BankInfoOperation";
 	public static final String CMD = "CMD";
-	public static final String IN_BANK_INFO = "IN_BANK_INFO_LIST";
+	public static final String IN_BANK_INFO = "IN_BANK_INFO";
 	public static final String IN_PARAM = "IN_PARAM";
 	public static final String IN_PARAM_SURE = "IN_PARAM_SURE";
 	public static final String IN_ADD = "add";
@@ -75,6 +75,8 @@ public class BankInfoOperation extends BaseOperation {
 			bctl.setStatus("1");
 			bctl.setLock(SystemConstant.FALSE);
 			bctl.setDel(SystemConstant.FALSE);
+			bctl.setTimestamps(DateUtil.getCurrentDateWithTime());
+			bctl.setEffectDate(DateUtil.getCurrentDateWithTime());
 			bctl.setLastUpdTlr(globalInfo.getTlrno());
 			bctl.setLastUpdDate(DateUtil.getCurrentDateWithTime());
 

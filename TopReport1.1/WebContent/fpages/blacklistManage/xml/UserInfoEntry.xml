@@ -85,12 +85,14 @@
     </Where>
 
     <Operations>
-        <Button id="btAdd" name="btAdd" desc="新增" operation="" url="#" show="" group="" txn="" icon="icon-add" />
+        <Button id="btAdd" name="btAdd" desc="新增" operation="href" 
+       		 url="/fpages/blacklistManage/ftl/UserInfoManage.ftl?op=new" show="" group="" txn="" icon="icon-add" />
 
         <Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
-            updateClass="com.huateng.ebank.business.opermng.update.OperDelChgUpdate" url="#" txn="" />
-
-        <Button id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" />
+            updateClass="com.cibfintech.blacklist.userinfo.updater.UserInfoDEL" url="#" txn="" />
+        	
+        <Button id="btModify" name="btModify" desc="修改" operation="syncsubmit"
+            url="/fpages/blacklistManage/ftl/UserInfoManage.ftl?op=edit" txn="" /> 
 
         <Button id="btStatus" name="btStatus" desc="有效/无效" operation="asysubmit"
             updateClass="com.huateng.ebank.business.opermng.update.OperStatusChgUpdate" url="#" txn="" icon="icon-set" />

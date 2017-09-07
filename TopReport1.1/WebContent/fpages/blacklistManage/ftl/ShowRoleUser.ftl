@@ -2,7 +2,7 @@
 
 <@CommonQueryMacro.page title="岗位人员信息">
 <@CommonQueryMacro.CommonQuery id="ShowRoleUser" init="true" mode="0" submitMode="all">
-<table align="left">
+<table align="left" width="100%">
       		<tr valign="top">
       			<td valign="center">
       			<@CommonQueryMacro.Group id ="group1" label="岗位人员信息" fieldStr="roleName" colNm=4/>
@@ -24,9 +24,5 @@
 
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript">
-	function btClose_onClickCheck(button){
-	  	unloadPageWindows("userWin");
-	    return false;
-	}
 </script>
 </@CommonQueryMacro.page>

@@ -156,7 +156,7 @@ public class RoleInfoService {
 	}
 
 	// 通过id来获取实体类
-	public RoleInfo selectById(String id) {
+	public RoleInfo selectById(Integer id) {
 		BlackListDAO rootdao = BlackListDAOUtils.getBlackListDAO();
 		RoleInfo bean = null;
 		try {

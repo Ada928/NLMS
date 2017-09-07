@@ -127,7 +127,7 @@ public class OperMngOperation extends BaseOperation {
 		TlrBctlRelDAO tlrBctlDAO = DAOUtils.getTlrBctlRelDAO();
 		TlrBctlRel tlrBctlRel = new TlrBctlRel();
 		tlrBctlRel.setBrcode(brcode);
-		tlrBctlRel.setTlrNo(tlrno);
+		tlrBctlRel.setTlrno(tlrno);
 		tlrBctlDAO.insert(tlrBctlRel);
 	}
 
@@ -288,6 +288,7 @@ public class OperMngOperation extends BaseOperation {
 			dbTrlInfo.setTlrName(tlrInfo.getTlrName());
 			// dbTrlInfo.setTlrType(tlrInfo.getTlrType());
 			dbTrlInfo.setLastUpdTime(DateUtil.getTimestamp());
+
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
 				dbTrlInfo.setSt(ReportEnum.REPORT__FH_ST.YES.value);
 				rootdao.saveOrUpdate(dbTrlInfo);

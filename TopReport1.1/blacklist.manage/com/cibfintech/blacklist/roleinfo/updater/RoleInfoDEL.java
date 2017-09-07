@@ -5,9 +5,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import resource.bean.pub.Bctl;
+import resource.bean.pub.RoleInfo;
 
-import com.cibfintech.blacklist.operation.BankInfoOperation;
+import com.cibfintech.blacklist.operation.RoleInfoOperation;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -35,17 +35,17 @@ public class RoleInfoDEL extends BaseUpdate {
 			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			// 更新对象
-			Bctl bctl = new Bctl();
+			RoleInfo bean = new RoleInfo();
 			// Operation参数
 			OperationContext context = new OperationContext();
 			if (updateResultBean.hasNext()) {
 				// 属性拷贝
 				Map map = updateResultBean.next();
-				context.setAttribute(BankInfoOperation.CMD, BankInfoOperation.CMD_DEL);
-				BaseUpdate.mapToObject(bctl, map);
+				context.setAttribute(RoleInfoOperation.CMD, RoleInfoOperation.CMD_DEL);
+				BaseUpdate.mapToObject(bean, map);
 				// call方式开启operation事务
-				context.setAttribute(BankInfoOperation.IN_PARAM, bctl);
-				OPCaller.call(BankInfoOperation.ID, context);
+				context.setAttribute(RoleInfoOperation.IN_ROLE_INFO, bean);
+				OPCaller.call(RoleInfoOperation.ID, context);
 				return updateReturnBean;
 			}
 		} catch (AppException appe) {

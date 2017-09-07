@@ -50,6 +50,7 @@
 
 	function btAdd_onClick() {
 		RoleInfoEntry_dataset.insertRecord();
+		RoleInfoEntry_dataset.setParameter("opType", "add");
 		RoleInfoEntry_dataset.setParameter("id", "0");
 	}
 
@@ -95,6 +96,16 @@
 		}
 	}
 	
+	function rolePrivShow(id) {
+		locate(id);
+		btRoleAuthorityManagement.click();
+	}
+	
+	function btRoleUserShow(id) {
+		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/ShowRoleUser.ftl?roleId="+id;
+		
+	}
+	
 	function doDel(id) {
         locate(id);
         btDel.click();
@@ -128,20 +139,6 @@
         flushCurrentPage();
     }
 	
-	function rolePrivShow(id) {
-		locate(id);
-		btRoleAuthorityManagement.click();
-	}
-	
-	function btRoleUserShow(id) {
-		var paramMap = new Map();
-		paramMap.put("roleId", id);
-		loadPageWindows("userWin", "查看人员",
-				"/fpages/blacklistManage/ftl/ShowRoleUser.ftl", paramMap,
-				"winZone");
-		return;
-	}
-	
 	function datatable1_rolename_onRefresh(cell, value, record) {
 		if (record != null) {
 			var st = record.getValue("st");
@@ -152,14 +149,6 @@
 			cell.innerHTML = ""
 		}
 	}
-	
-	//function showDetail(id,st){
-	//var paramMap = new Map();
-	//paramMap.put("id",id);
-	//paramMap.put("st",st);
-	//paramMap.put("op","detail");
-	//loadPageWindows("partWin", "角色管理详细信息","/fpages/management/ftl/RoleFuncMng.ftl", paramMap, "winZone");
-	//}
 	
 	//详细
 	function showDetail(id, st) {

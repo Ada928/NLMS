@@ -65,7 +65,7 @@ public abstract class BaseRoleInfo implements Serializable {
 	private boolean lock;
 	private boolean del;
 	private java.lang.String st;
-	private java.lang.String crtDt;
+	private java.util.Date crtDt;
 	private java.lang.String lastUpdTms;
 	private java.lang.String lastUpdOper;
 
@@ -350,11 +350,11 @@ public abstract class BaseRoleInfo implements Serializable {
 		this.st = st;
 	}
 
-	public java.lang.String getCrtDt() {
+	public java.util.Date getCrtDt() {
 		return crtDt;
 	}
 
-	public void setCrtDt(java.lang.String crtDt) {
+	public void setCrtDt(java.util.Date crtDt) {
 		this.crtDt = crtDt;
 	}
 

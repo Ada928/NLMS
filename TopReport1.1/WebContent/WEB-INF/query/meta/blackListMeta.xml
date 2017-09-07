@@ -40,6 +40,8 @@
 	    
 	<Query id="RoleInfoEntry" 
 	    path="/fpages/blacklistManage/xml/RoleInfoEntry.xml" />
+	<Query id="RoleInfoManage" 
+	    path="/fpages/blacklistManage/xml/RoleInfoManage.xml" />
 	<Query id="ShowRoleUser" 
 	    path="/fpages/blacklistManage/xml/ShowRoleUser.xml" />
 	<Query id="RoleOperateLogQuery" 

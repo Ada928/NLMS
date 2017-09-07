@@ -55,7 +55,6 @@
 		class="com.cibfintech.blacklist.userinfo.service.UserOperateLogService" />
 
 	<bean id="BankInfoOperation" class="com.cibfintech.blacklist.operation.BankInfoOperation" />
-	<!-- <bean id="RoleInfoOperation" class="com.cibfintech.blacklist.operation.RoleInfoOperation" 
-		/> <bean id="UserInfoOperation" class="com.cibfintech.blacklist.operation.UserInfoOperation" 
-		/> -->
+	<bean id="RoleInfoOperation" class="com.cibfintech.blacklist.operation.RoleInfoOperation" />
+	<bean id="UserInfoOperation" class="com.cibfintech.blacklist.operation.UserInfoOperation" />
 </beans>

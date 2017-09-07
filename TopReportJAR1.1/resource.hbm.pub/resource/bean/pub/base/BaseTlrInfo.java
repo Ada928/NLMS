@@ -70,41 +70,42 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 	// fields
 	private java.lang.String extTlrno;
 	private java.lang.String tlrName;
-	private java.lang.String tlrType;
-	private java.lang.String agentType;
 	private java.lang.String brcode;
 	private java.lang.String password;
 	private java.lang.String status;
-	private java.lang.String chekDpwdFlg;
+	private java.lang.String loginIp;
+	private java.util.Date pswderrdate;
 	private java.util.Date lastaccesstm;
+	private java.util.Date lastlogouttm;
+	private java.lang.String flag;
+	private java.lang.String sessionId;
+	private java.util.Date lastUpdTms;
+	private java.lang.String lastUpdOper;
+	private java.lang.Boolean lock;
+	private java.lang.Boolean del;
+	private java.lang.String lastUpdOperId;
+	private java.util.Date effectDate;
+	private java.util.Date expireDate;
+	private java.util.Date createDate;
+	private java.util.Date lastUpdTime;
+
+	private java.lang.String tlrType;
+	private java.lang.String agentType;
+	private java.lang.String chekDpwdFlg;
 	private java.lang.Integer roleid;
 	private java.lang.Integer pswderrcnt;
 	private java.lang.Integer totpswderrcnt;
-	private java.util.Date pswderrdate;
-	private java.util.Date lastlogouttm;
-	private java.lang.String loginIp;
 	private java.lang.String passwdenc;
 	private java.lang.Integer failmaxlogin;
 	private java.lang.Integer passwdchginterval;
 	private java.lang.Integer passwdwarninterval;
-	private java.lang.String sessionId;
 	private java.lang.Integer msrno;
-	private java.lang.String flag;
-	private java.util.Date createDate;
-	private java.lang.String lastUpdOperId;
-	private java.util.Date lastUpdTime;
-	private java.util.Date effectDate;
-	private java.util.Date expireDate;
 	private java.lang.String email;
 	private java.lang.String misc;
 	private java.lang.String idNumber;
 	/** add by zhiyang.he 修改锁定状态 2012-09-6 begin */
 	private java.lang.String isLockModify;
 	private java.lang.String st;
-	private java.util.Date lastUpdTms;
-	private java.lang.String lastUpdOper;
-	private java.lang.Boolean lock;
-	private java.lang.Boolean del;
 
 	/** add by zhiyang.he 修改锁定状态 2012-09-6 end */
 

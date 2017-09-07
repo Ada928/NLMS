@@ -83,6 +83,21 @@ public class UserInfoService {
 	}
 
 	/*
+	 * 查询
+	 * 
+	 * @param paramgroupId 参数段编号
+	 */
+	public List queryUserByHql(String hql) throws CommonException {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		List list = rootDAO.queryByQL2List(hql);
+		for (int i = 0; i < list.size(); i++) {
+			TlrInfo bean = (TlrInfo) list.get(i);
+			list.set(i, bean);
+		}
+		return list;
+	}
+
+	/*
 	 * 删除实体
 	 * 
 	 * @param biNationregion

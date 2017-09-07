@@ -149,7 +149,7 @@ public class UserMgrService {
 				// 判断所选择登录机构是否是该用户授权的机构 modify by zhangshishu 2012-09-12
 
 				HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-				List list = hqldao.queryByQL2List("from TlrBctlRel where brcode='" + userBrcode + "' and tlrNo='" + userLoginId + "'");
+				List list = hqldao.queryByQL2List("from TlrBctlRel where brcode='" + userBrcode + "' and tlrno='" + userLoginId + "'");
 				if (list.size() <= 0) {
 					ExceptionUtil.throwCommonException("选择登录的机构未授权");
 				}

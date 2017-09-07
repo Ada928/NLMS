@@ -355,12 +355,12 @@ public class TaskListService {
 				Iterator iterator;
 				try {
 					iterator = DAOUtils.getHQLDAO().queryByQL("select max(id) from RoleFuncRel");
-					int id = 100;
+					long id = 100;
 					if (iterator.hasNext()) {
 						Number num = (Number) iterator.next();
 						id = num.intValue() + 1;
 					}
-					newrfr.setId(id);
+					newrfr.setId(String.valueOf(id));
 				} catch (CommonException e) {
 					e.printStackTrace();
 				}

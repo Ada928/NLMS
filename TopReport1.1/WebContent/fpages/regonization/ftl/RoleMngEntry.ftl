@@ -145,12 +145,13 @@
 	}
 	
 	function btRoleUserShow(id) {
-		var paramMap = new Map();
+	/* 	var paramMap = new Map();
 		paramMap.put("roleId", id);
 		loadPageWindows("userWin", "查看人员",
 				"/fpages/management/ftl/ebankCustRoleMngUser.ftl", paramMap,
 				"winZone");
-		return;
+		return; */
+		window.location.href = "${contextPath}/fpages/management/ftl/ebankCustRoleMngUser.ftl?roleId="+id;
 	}
 	
 	function datatable1_rolename_onRefresh(cell, value, record) {
@@ -178,6 +179,7 @@
 		showWin("角色管理详细信息",
 				"${contextPath}/fpages/system/ftl/RoleFuncMngWithEdit.ftl?id="
 						+ id + "&st=" + st + "&flag=0", null, null, window);
+		//window.location.href = "${contextPath}/fpages/management/ftl/ebankCustRoleMngUser.ftl?roleId="+id;
 	}
 
 	function btSave_postSubmit() {

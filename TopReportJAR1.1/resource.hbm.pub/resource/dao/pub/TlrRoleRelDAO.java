@@ -78,7 +78,7 @@ public class TlrRoleRelDAO extends HibernateDaoSupport {
 	 * @return 包含TlrInfo对象的List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString) throws CommonException {
+	public List<TlrRoleRel> queryByCondition(String whereString) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByCondition(String) - start"); //$NON-NLS-1$
 		}

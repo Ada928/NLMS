@@ -44,7 +44,7 @@ public class BankInfoDEL extends BaseUpdate {
 				context.setAttribute(BankInfoOperation.CMD, BankInfoOperation.CMD_DEL);
 				BaseUpdate.mapToObject(bctl, map);
 				// call方式开启operation事务
-				context.setAttribute(BankInfoOperation.IN_PARAM, bctl);
+				context.setAttribute(BankInfoOperation.IN_BANK_INFO, bctl);
 				OPCaller.call(BankInfoOperation.ID, context);
 				return updateReturnBean;
 			}

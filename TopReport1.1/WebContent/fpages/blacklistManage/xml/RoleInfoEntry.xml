@@ -59,7 +59,7 @@
     </Where>
     <Operations>
         <Button id="btRoleAuthorityManagement" name="btRoleAuthorityManagement" desc="设置岗位功能" operation="syncsubmit"
-            url="/fpages/management/ftl/RoleFuncMng.ftl" txn="" />
+            url="/fpages/blacklistManage/ftl/RoleInfoManage.ftl?opType=edit" txn="" /> 
 
         <!-- <Button id="btSelectRole" name="btSelectRole" desc="查询人员信息" operation="syncsubmit"
             url="/fpages/management/ftl/ebankCustRoleMngUser.ftl" txn="" /> -->
