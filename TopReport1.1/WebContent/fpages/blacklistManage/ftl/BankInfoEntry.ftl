@@ -1,11 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
+<#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="银行机构信息维护">
-<@CommonQueryMacro.CommonQuery id="BankInfoEntry" init="true" submitMode="current">
+<@CommonQueryMacro.CommonQuery id="BankInfoEntry" init="true" submitMode="current"  navigate="false">
 	<table width="100%" align="left">
 		<tr>
    			<td valign="top" colspan="2">
-   				<@CommonQueryMacro.Interface id="intface" label="银行机构查询" colNm=4 showButton="true" />
+   				<@CommonQueryMacro.Interface id="intface" label="银行机构查询" colNm=4 />
         	</td>
         </tr>
 		<tr>
@@ -29,7 +30,7 @@
 
 <script language="javascript">
 	var roleType = "${info.roleTypeList}";
-
+	
 	//定位一条记录
 	function locate(id) {
 		var record = BankInfoEntry_dataset.find(["brcode"], [id]);
@@ -148,10 +149,6 @@
 		} else {
 			btStatus.disable(false);
 		}
-	}
-
-	function BankInfoEntry_dataset_afterInsert(dataset, mode) {
-		BankInfoEntry_dataset.setValue2("status", "1");
 	}
 
 	//刷新当前页

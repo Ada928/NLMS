@@ -1,7 +1,10 @@
 package com.cibfintech.blacklist.userinfo.getter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 
 import resource.bean.pub.RoleInfo;
 import resource.bean.pub.TlrOperateLog;
@@ -59,23 +62,43 @@ public class UserInfoGetter extends BaseGetter {
 		for (RoleInfo roleInfo : roleInfos) {
 			if (roleInfo.getRoleType().equals(SystemConstant.ROLE_TYPE_SYS_MNG)) {
 				isSuperManager = true;
+				break;
 			}
 		}
 
-		PageQueryResult pqr = UserInfoService.getInstance().pageQueryByHql(pageSize, pageIndex, userNo, userName, isSuperManager, globalinfo);
+		StringBuffer hql = new StringBuffer("from TlrInfo bblt where 1=1");
+		List<Object> list = new ArrayList<Object>();
+		hql.append(" and bblt.del= ? ");
+		list.add(false);
+
+		if (StringUtils.isNotBlank(userNo)) {
+			hql.append(" and bblt.tlrno= ? ");
+			list.add(userNo.trim());
+		}
+		if (StringUtils.isNotBlank(userName)) {
+			hql.append(" and bblt.tlrName like ? ");
+			list.add("%" + userName.trim() + "%");
+		}
+		if (!isSuperManager) {
+			hql.append(" and bblt.brcode= ? ");
+			list.add(globalinfo.getBrcode());
+		}
+		hql.append(" order by bblt.tlrno");
+
+		PageQueryResult pqr = UserInfoService.getInstance().pageQueryByHql(pageSize, pageIndex, hql.toString(), list);
 		String message = "用户信息管理:brNo=" + userNo + ",brName=" + userName;
-		recordOperateLog(globalinfo, pqr, message);
+		recordOperateLog(globalinfo, pqr.getTotalCount(), message);
 		return pqr;
 	}
 
 	// 记录查询日志
-	private void recordOperateLog(GlobalInfo globalinfo, PageQueryResult pqr, String message) {
+	private void recordOperateLog(GlobalInfo globalinfo, int count, String message) {
 		UserOperateLogService service = UserOperateLogService.getInstance();
 		TlrOperateLog bean = new TlrOperateLog();
 		bean.setBrNo(globalinfo.getBrno());
 		bean.setId(String.valueOf(GenerateID.getId()));
 		bean.setQueryType("");
-		bean.setQueryRecordNumber(String.valueOf(null == pqr ? "0" : pqr.getTotalCount()));
+		bean.setQueryRecordNumber(String.valueOf(count));
 		bean.setTlrIP(globalinfo.getIp());
 		bean.setTlrNo(globalinfo.getTlrno());
 		bean.setOperateType(SystemConstant.LOG_QUERY);

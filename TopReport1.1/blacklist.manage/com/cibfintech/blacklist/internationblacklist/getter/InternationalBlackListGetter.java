@@ -1,6 +1,10 @@
 package com.cibfintech.blacklist.internationblacklist.getter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 
 import resource.bean.blacklist.NsInternationBLOperateLog;
 
@@ -44,28 +48,50 @@ public class InternationalBlackListGetter extends BaseGetter {
 	}
 
 	protected PageQueryResult getData() throws Exception {
-		String qPartyId = getCommQueryServletRequest().getParameter("qPartyId");
+		String partyId = getCommQueryServletRequest().getParameter("qPartyId");
 		String qCertificateType = getCommQueryServletRequest().getParameter("qCertificateType");
 		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
 		String qOperateState = getCommQueryServletRequest().getParameter("qOperateState");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
-		PageQueryResult pqr = InternationalBlackListService.getInstance().pageQueryByHql(pageIndex, pageSize, qPartyId, qCertificateType, qCertificateNumber,
-				qOperateState);
 
-		String message = "国际黑名单的查询:partyId=" + qPartyId + "certificateType=" + qCertificateType + "certificateNumber=" + qCertificateNumber;
-		recordOperateLog(GlobalInfo.getCurrentInstance(), pqr, message);
+		StringBuffer hql = new StringBuffer(" from NsInternationalBlackList iblt where iblt.del='F'");
+		List<Object> list = new ArrayList<Object>();
+
+		if (StringUtils.isNotBlank(partyId)) {
+			hql.append(" and iblt.id = ?");
+			list.add(partyId.trim());
+		}
+		if (StringUtils.isNotBlank(qCertificateType)) {
+			hql.append(" and iblt.certificateType = ?");
+			list.add(qCertificateType);
+		}
+		if (StringUtils.isNotBlank(qCertificateNumber)) {
+			hql.append(" and iblt.certificateNumber like '%");
+			list.add("%" + qCertificateNumber + "%");
+		}
+		if (StringUtils.isNotBlank(qOperateState)) {
+			hql.append(" and iblt.operateState=?");
+			list.add(qOperateState);
+		} else {
+			// hql.append(" and iblt.operateState<>'").append(ReportEnum.REPORT_ST1.N.value).append("'");
+		}
+
+		PageQueryResult pqr = InternationalBlackListService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString(), list);
+
+		String message = "国际黑名单的查询:partyId=" + partyId + "certificateType=" + qCertificateType + "certificateNumber=" + qCertificateNumber;
+		recordOperateLog(GlobalInfo.getCurrentInstance(), pqr.getTotalCount(), message);
 		return pqr;
 	}
 
 	// 记录查询日志
-	private void recordOperateLog(GlobalInfo globalinfo, PageQueryResult pqr, String message) {
+	private void recordOperateLog(GlobalInfo globalinfo, int count, String message) {
 		InternationBlackListOperateLogService service = InternationBlackListOperateLogService.getInstance();
 		NsInternationBLOperateLog bean = new NsInternationBLOperateLog();
 		bean.setBrNo(globalinfo.getBrno());
 		bean.setId(String.valueOf(GenerateID.getId()));
 		bean.setQueryType("");
-		bean.setQueryRecordNumber(String.valueOf(null == pqr ? "0" : pqr.getTotalCount()));
+		bean.setQueryRecordNumber(String.valueOf(count));
 		bean.setTlrIP(globalinfo.getIp());
 		bean.setTlrNo(globalinfo.getTlrno());
 		bean.setOperateType(SystemConstant.LOG_QUERY);

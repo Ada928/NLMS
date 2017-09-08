@@ -1,16 +1,12 @@
 package com.cibfintech.blacklist.bankinfo.service;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
 
 import resource.bean.pub.Bctl;
 import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
 
-import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryCondition;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.exceptions.CommonException;
@@ -30,33 +26,13 @@ public class BankInfoService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public PageQueryResult pageQueryByHql(int pageSize, int pageIndex, String brNo, String brName, boolean isSuperManager, GlobalInfo globalinfo) {
+	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String hql, List list) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		PageQueryResult pageQueryResult = null;
-
-		StringBuffer hql = new StringBuffer("from Bctl bblt where 1=1");
-		List<Object> list = new ArrayList<Object>();
-		hql.append(" and bblt.del= ? ");
-		list.add(false);
-
-		if (StringUtils.isNotBlank(brNo)) {
-			hql.append(" and bblt.brno= ? ");
-			list.add(brNo.trim());
-		}
-		if (StringUtils.isNotBlank(brName)) {
-			hql.append(" and bblt.brname like ? ");
-			list.add("%" + brName.trim() + "%");
-		}
-		if (!isSuperManager) {
-			hql.append(" and bblt.brcode= ? ");
-			list.add(globalinfo.getBrcode());
-		}
-		hql.append(" order by bblt.brcode");
-
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
 		try {
-			queryCondition.setQueryString(hql.toString());
+			queryCondition.setQueryString(hql);
 			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setPageSize(pageSize);
 			queryCondition.setObjArray(list.toArray());

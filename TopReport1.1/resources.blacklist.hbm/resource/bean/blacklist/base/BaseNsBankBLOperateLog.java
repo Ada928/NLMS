@@ -192,11 +192,11 @@ public abstract class BaseNsBankBLOperateLog implements Serializable {
 		if (!(obj instanceof NsBankBLOperateLog))
 			return false;
 		else {
-			NsBankBLOperateLog bankBLOperateLog = (NsBankBLOperateLog) obj;
-			if (null == this.getId() || null == bankBLOperateLog.getId())
+			NsBankBLOperateLog bean = (NsBankBLOperateLog) obj;
+			if (null == this.getId() || null == bean.getId())
 				return false;
 			else
-				return (this.getId().equals(bankBLOperateLog.getId()));
+				return (this.getId().equals(bean.getId()));
 		}
 	}
 

@@ -7,7 +7,6 @@ import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
 
-import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryCondition;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.exceptions.CommonException;
@@ -27,33 +26,19 @@ public class BankTlrRelService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public PageQueryResult pageQueryByHql(GlobalInfo globalinfo, Boolean isSuperManager, int pageIndex, int pageSize, String partyId, String qCertificateType,
-			String qCertificateNumber, String operateStates) {
+	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String hql, List list) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from TlrBctlRel bblt where bblt.del='F'");
-
-		/*
-		 * if (StringUtils.isNotBlank(partyId)) {
-		 * hql.append(" and bblt.id = '").append(partyId.trim()).append("'"); }
-		 * if (StringUtils.isNotBlank(qCertificateType)) {
-		 * hql.append(" and bblt.certificateType = '"
-		 * ).append(qCertificateType.trim()).append("'"); } if
-		 * (StringUtils.isNotBlank(qCertificateNumber)) {
-		 * hql.append(" and bblt.certificateNumber like '%"
-		 * ).append(qCertificateNumber.trim()).append("%'"); } if
-		 * (!isSuperManager) {
-		 * hql.append(" and bblt.bankCode = '").append(globalinfo
-		 * .getBrcode()).append("'"); }
-		 * hql.append(" and bblt.operateState in ").append(operateStates);
-		 */
+		// StringBuffer hql = new
+		// StringBuffer(" from TlrBctlRel bblt where 1=1");
 
 		try {
 			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setPageSize(pageSize);
-			queryCondition.setQueryString(hql.toString());
+			queryCondition.setQueryString(hql);
+			queryCondition.setObjArray(list.toArray());
 			pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 		} catch (CommonException e) {
 			e.printStackTrace();

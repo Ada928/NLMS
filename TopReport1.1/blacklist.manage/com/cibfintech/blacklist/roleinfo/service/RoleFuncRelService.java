@@ -7,7 +7,6 @@ import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
 
-import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryCondition;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.exceptions.CommonException;
@@ -27,13 +26,13 @@ public class RoleFuncRelService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public PageQueryResult pageQueryByHql(GlobalInfo globalinfo, Boolean isSuperManager, int pageIndex, int pageSize, String partyId, String qCertificateType,
-			String qCertificateNumber, String operateStates) {
+	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String hql, List list) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from RoleFuncRel po where 1=1");
+		// StringBuffer hql = new
+		// StringBuffer(" from RoleFuncRel po where 1=1");
 
 		/*
 		 * if (StringUtils.isNotBlank(partyId)) {
@@ -54,6 +53,7 @@ public class RoleFuncRelService {
 			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setPageSize(pageSize);
 			queryCondition.setQueryString(hql.toString());
+			queryCondition.setObjArray(list.toArray());
 			pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 		} catch (CommonException e) {
 			e.printStackTrace();

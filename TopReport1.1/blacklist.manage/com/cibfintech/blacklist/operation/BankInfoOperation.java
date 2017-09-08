@@ -42,14 +42,14 @@ public class BankInfoOperation extends BaseOperation {
 	@Override
 	public void execute(OperationContext context) throws CommonException {
 		String cmd = (String) context.getAttribute(CMD);
-		Bctl bctl = (Bctl) context.getAttribute(IN_BANK_INFO);
+		Bctl fromBean = (Bctl) context.getAttribute(IN_BANK_INFO);
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
 		// 调用服务类
 		BankInfoService service = BankInfoService.getInstance();
 		String operateType = "";
 		String message = "";
 		if (CMD_DEL.equals(cmd)) {
-			Bctl bean = service.selectById(bctl.getBrcode());
+			Bctl bean = service.selectById(fromBean.getBrcode());
 			bean.setSt(ReportEnum.REPORT_ST1.DE.value);
 			bean.setStatus("0");
 			bean.setLock(SystemConstant.TRUE);
@@ -59,33 +59,34 @@ public class BankInfoOperation extends BaseOperation {
 			service.modEntity(bean);
 			operateType = SystemConstant.LOG_DELEATE;
 			message = "银行信息的删除";
-			recordRunningLog("Deleter.log", message, bctl, service);
+			recordRunningLog("Deleter.log", message, fromBean, service);
 		} else if (CMD_ADD.equals(cmd)) {
 
 			// 插入或者更新
-			bctl.setBrclass("1");
-			bctl.setSt(ReportEnum.REPORT_ST1.Y.value);
-			bctl.setStatus("1");
-			bctl.setLock(SystemConstant.FALSE);
-			bctl.setDel(SystemConstant.FALSE);
-			bctl.setTimestamps(DateUtil.getCurrentDateWithTime());
-			bctl.setEffectDate(DateUtil.getCurrentDateWithTime());
-			bctl.setExpireDate(DateUtil.getDayAfter100Years());
-			bctl.setLastUpdTlr(globalInfo.getTlrno());
-			bctl.setLastUpdDate(DateUtil.getCurrentDateWithTime());
+			fromBean.setBrclass("1");
+			fromBean.setSt(ReportEnum.REPORT_ST1.Y.value);
+			fromBean.setStatus("1");
+			fromBean.setLock(SystemConstant.FALSE);
+			fromBean.setDel(SystemConstant.FALSE);
+			fromBean.setTimestamps(DateUtil.getCurrentDateWithTime());
+			fromBean.setEffectDate(DateUtil.getCurrentDateWithTime());
+			fromBean.setExpireDate(DateUtil.getDayAfter100Years());
+			fromBean.setLastUpdTlr(globalInfo.getTlrno());
+			fromBean.setLastUpdDate(DateUtil.getCurrentDateWithTime());
 
+			service.addEntity(fromBean);
 			operateType = SystemConstant.LOG_ADD;
 			message = "银行信息的增加";
-			recordRunningLog("Adder.log", message, bctl, service);
+			recordRunningLog("Adder.log", message, fromBean, service);
 		} else if (CMD_EDIT.equals(cmd)) {
-			Bctl bean = service.selectById(bctl.getBrcode());
+			Bctl bean = service.selectById(fromBean.getBrcode());
 
-			bean.setBrcode(bctl.getBrcode());
-			bean.setBrno(bctl.getBrno());
-			bean.setBrname(bctl.getBrname());
-			bean.setTeleno(bctl.getTeleno());
-			bean.setAddress(bctl.getAddress());
-			bean.setPostno(bctl.getPostno());
+			bean.setBrcode(fromBean.getBrcode());
+			bean.setBrno(fromBean.getBrno());
+			bean.setBrname(fromBean.getBrname());
+			bean.setTeleno(fromBean.getTeleno());
+			bean.setAddress(fromBean.getAddress());
+			bean.setPostno(fromBean.getPostno());
 
 			bean.setLastUpdTlr(globalInfo.getTlrno());
 			bean.setLastUpdDate(DateUtil.getCurrentDateWithTime());
@@ -96,8 +97,8 @@ public class BankInfoOperation extends BaseOperation {
 			message = "银行信息的编辑";
 			recordRunningLog("Updater.log", message, bean, service);
 		} else if (CMD_CHGSTATUES.equals(cmd)) {
-			Bctl bean = service.selectById(bctl.getBrcode());
-			if (bctl.getStatus().equals("0")) {
+			Bctl bean = service.selectById(fromBean.getBrcode());
+			if (fromBean.getStatus().equals("0")) {
 				bean.setStatus("1");
 			} else {
 				bean.setStatus("0");

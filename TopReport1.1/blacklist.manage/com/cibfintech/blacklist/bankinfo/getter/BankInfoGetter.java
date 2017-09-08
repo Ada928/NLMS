@@ -1,7 +1,10 @@
 package com.cibfintech.blacklist.bankinfo.getter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 
 import resource.bean.pub.BctlOperateLog;
 import resource.bean.pub.RoleInfo;
@@ -47,8 +50,8 @@ public class BankInfoGetter extends BaseGetter {
 	}
 
 	protected PageQueryResult getData() throws Exception {
-		String brNo = getCommQueryServletRequest().getParameter("brhNo");
-		String brName = getCommQueryServletRequest().getParameter("brhName");
+		String brNo = getCommQueryServletRequest().getParameter("brNo");
+		String brName = getCommQueryServletRequest().getParameter("brName");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 
@@ -58,23 +61,43 @@ public class BankInfoGetter extends BaseGetter {
 		for (RoleInfo roleInfo : roleInfos) {
 			if (roleInfo.getRoleType().equals(SystemConstant.ROLE_TYPE_SYS_MNG)) {
 				isSuperManager = true;
+				break;
 			}
 		}
 
-		PageQueryResult pqr = BankInfoService.getInstance().pageQueryByHql(pageSize, pageIndex, brNo, brName, isSuperManager, globalinfo);
+		StringBuffer hql = new StringBuffer("from Bctl bblt where 1=1");
+		List<Object> list = new ArrayList<Object>();
+		hql.append(" and bblt.del= ? ");
+		list.add(false);
+
+		if (StringUtils.isNotBlank(brNo)) {
+			hql.append(" and bblt.brno= ? ");
+			list.add(brNo.trim());
+		}
+		if (StringUtils.isNotBlank(brName)) {
+			hql.append(" and bblt.brname like ? ");
+			list.add("%" + brName.trim() + "%");
+		}
+		if (!isSuperManager) {
+			hql.append(" and bblt.brcode= ? ");
+			list.add(globalinfo.getBrcode());
+		}
+		hql.append(" order by bblt.brcode");
+
+		PageQueryResult pqr = BankInfoService.getInstance().pageQueryByHql(pageSize, pageIndex, hql.toString(), list);
 		String message = "银行信息管理:brhNo=" + brNo + ",brhName=" + brName;
-		recordOperateLog(globalinfo, pqr, message);
+		recordOperateLog(globalinfo, pqr.getTotalCount(), message);
 		return pqr;
 	}
 
 	// 记录查询日志
-	private void recordOperateLog(GlobalInfo globalinfo, PageQueryResult pqr, String message) {
+	private void recordOperateLog(GlobalInfo globalinfo, int count, String message) {
 		BankOperateLogService service = BankOperateLogService.getInstance();
 		BctlOperateLog bean = new BctlOperateLog();
 		bean.setBrNo(globalinfo.getBrno());
 		bean.setId(String.valueOf(GenerateID.getId()));
 		bean.setQueryType("");
-		bean.setQueryRecordNumber(String.valueOf(null == pqr ? "0" : pqr.getTotalCount()));
+		bean.setQueryRecordNumber(String.valueOf(count));
 		bean.setTlrIP(globalinfo.getIp());
 		bean.setTlrNo(globalinfo.getTlrno());
 		bean.setOperateType(SystemConstant.LOG_QUERY);

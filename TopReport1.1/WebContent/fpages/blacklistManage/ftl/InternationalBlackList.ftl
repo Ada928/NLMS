@@ -15,7 +15,7 @@
 	<tr>
 		<td colspan="2">
 			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd" 
-				fieldStr="id[160],accountType,certificateType,certificateNumber[160],clientName[280],clientEnglishName[280],lastModifyOperator,opr"  
+				fieldStr="id[160],accountType,certificateType,certificateNumber[160],clientName[280],clientEnglishName[280],opr"  
 				width="100%" hasFrame="true"/>
 		</td>
 	</tr>

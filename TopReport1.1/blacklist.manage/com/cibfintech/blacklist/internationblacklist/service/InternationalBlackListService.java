@@ -2,8 +2,6 @@ package com.cibfintech.blacklist.internationblacklist.service;
 
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
-
 import resource.bean.blacklist.NsInternationalBlackList;
 import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
@@ -38,31 +36,16 @@ public class InternationalBlackListService {
 		return (InternationalBlackListService) ApplicationContextUtils.getBean("InternationalBlackListService");
 	}
 
-	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String partyId, String qCertificateType, String qCertificateNumber, String qOperateState) {
+	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String hql, List list) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from NsInternationalBlackList iblt where iblt.del='F'");
-
-		if (StringUtils.isNotBlank(partyId)) {
-			hql.append(" and iblt.id = '").append(partyId.trim()).append("'");
-		}
-		if (StringUtils.isNotBlank(qCertificateType)) {
-			hql.append(" and iblt.certificateType = '").append(qCertificateType.trim()).append("'");
-		}
-		if (StringUtils.isNotBlank(qCertificateNumber)) {
-			hql.append(" and iblt.certificateNumber like '%").append(qCertificateNumber.trim()).append("%'");
-		}
-		if (StringUtils.isNotBlank(qOperateState)) {
-			hql.append(" and iblt.operateState='").append(qOperateState.trim()).append("'");
-		} else {
-			// hql.append(" and iblt.operateState<>'").append(ReportEnum.REPORT_ST1.N.value).append("'");
-		}
 		try {
 			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setPageSize(pageSize);
 			queryCondition.setQueryString(hql.toString());
+			queryCondition.setObjArray(list.toArray());
 			pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 		} catch (CommonException e) {
 			e.printStackTrace();

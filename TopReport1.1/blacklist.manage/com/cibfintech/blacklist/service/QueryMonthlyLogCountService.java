@@ -6,7 +6,6 @@
  */
 package com.cibfintech.blacklist.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -25,7 +24,6 @@ import com.huateng.ebank.business.common.PageQueryCondition;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
-import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.util.DateUtil;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 
@@ -74,36 +72,21 @@ public class QueryMonthlyLogCountService {
 		}
 	}
 
-	public PageQueryResult queryQueryMonthlyLogCountDetail(int pageIndex, int pageSize, String qbrNo, String stdate, String endate) throws CommonException {
-		StringBuffer sb = new StringBuffer("");
-		List<Object> list = new ArrayList<Object>();
-		// sb.append("select log from QueryMonthlyLogCount log where 1=1");
-		sb.append("select cont from NsQueryMonthlyLogCount cont where 1=1 ");
-
-		if (!DataFormat.isEmpty(qbrNo)) {
-			sb.append(" and cont.brNo = ? ");
-			list.add(qbrNo);
-		}
-
-		if (!DataFormat.isEmpty(stdate)) {
-			sb.append(" and cont.countDate>=? ");
-			list.add(DateUtil.stringToDate2(stdate));
-		}
-		if (!DataFormat.isEmpty(endate)) {
-			sb.append(" and cont.countDate<? ");
-			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endate), -1));
-		}
-		sb.append(" order by cont.brNo");
-
-		// HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
+	@SuppressWarnings("unchecked")
+	public PageQueryResult pageQueryByHql(int pageSize, int pageIndex, String hql, List list) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
-
+		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
-		queryCondition.setQueryString(sb.toString());
-		queryCondition.setPageIndex(pageIndex);
-		queryCondition.setPageSize(pageSize);
-		queryCondition.setObjArray(list.toArray());
-		PageQueryResult pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
+
+		try {
+			queryCondition.setPageIndex(pageIndex);
+			queryCondition.setPageSize(pageSize);
+			queryCondition.setQueryString(hql.toString());
+			queryCondition.setObjArray(list.toArray());
+			pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
+		} catch (CommonException e) {
+			e.printStackTrace();
+		}
 		return pageQueryResult;
 	}
 }

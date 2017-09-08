@@ -2,8 +2,6 @@ package com.cibfintech.blacklist.roleinfo.service;
 
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
-
 import resource.bean.pub.TlrRoleRel;
 import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
@@ -29,33 +27,22 @@ public class RoleTlrRelService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public PageQueryResult pageQueryByHql(GlobalInfo globalinfo, int pageIndex, int pageSize, String tlrno) {
+	public PageQueryResult pageQueryByHql(GlobalInfo globalinfo, int pageIndex, int pageSize, String hql, List list) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
+		// StringBuffer hql = new
+		// StringBuffer(" from TlrRoleRel bblt where 1=1");
 
-		StringBuffer hql = new StringBuffer(" from TlrRoleRel bblt where 1=1");
-
-		if (StringUtils.isNotBlank(tlrno)) {
-			hql.append(" and bblt.tlrno = '").append(tlrno.trim()).append("'");
-		}
-		/*
-		 * if (StringUtils.isNotBlank(qCertificateType)) {
-		 * hql.append(" and bblt.certificateType = '"
-		 * ).append(qCertificateType.trim()).append("'"); } if
-		 * (StringUtils.isNotBlank(qCertificateNumber)) {
-		 * hql.append(" and bblt.certificateNumber like '%"
-		 * ).append(qCertificateNumber.trim()).append("%'"); } if
-		 * (!isSuperManager) {
-		 * hql.append(" and bblt.bankCode = '").append(globalinfo
-		 * .getBrcode()).append("'"); }
-		 * hql.append(" and bblt.operateState in ").append(operateStates);
-		 */
+		// if (StringUtils.isNotBlank(tlrno)) {
+		// hql.append(" and bblt.tlrno = '").append(tlrno.trim()).append("'");
+		// }
 
 		try {
 			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setPageSize(pageSize);
 			queryCondition.setQueryString(hql.toString());
+			queryCondition.setObjArray(list.toArray());
 			pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 		} catch (CommonException e) {
 			e.printStackTrace();

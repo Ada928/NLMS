@@ -1,23 +1,22 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
+<#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign opType="${RequestParameters['opType']?default('')}" />
 <#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="商行黑名单管理">
-<@CommonQueryMacro.CommonQuery id="BankBlackList" init="true" submitMode="current">
+<@CommonQueryMacro.CommonQuery id="BankBlackList" init="true" submitMode="current" navigate="false">
 <table align="center" width="100%">
    	<tr>
       	<td valign="top" colspan="2" >
-			<@CommonQueryMacro.Interface id="intface" label="请输入查询条件" colNm=4  showButton="true" />
+			<@CommonQueryMacro.Interface id="intface" label="请输入查询条件" colNm=4  />
 		</td>
 	</tr>
   	<tr>
-  		<td valign="top">
-  			<@CommonQueryMacro.PagePilot id="PagePilot"/>
-  		</td>
+  		<td><@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9" showArrow="true"  pageCache="false"/></td>
 	</tr>
 	<tr>
 		<td colspan="2">
 			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd" 
-				fieldStr="id[160],accountType,certificateType,certificateNumber[160],clientName[280],clientEnglishName[280],blacklistedOperator,blacklistedReason,unblacklistedDate,unblacklistedOperator,unblacklistedReason,lastModifyOperator,operateState,opr[200]"  
+				fieldStr="id[160],accountType,certificateType,certificateNumber[160],clientName[280],clientEnglishName[280],operateState,opr[200]"  
 				width="100%" hasFrame="true"/><br/>
 		</td>
 	</tr>
@@ -81,7 +80,6 @@
     function openModifyWindow(id) {
         locate(id);
         btModify.click();  
-		//window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListManage.ftl?opType=edit&id="+id;
     }
 
     //展示对比功能的js

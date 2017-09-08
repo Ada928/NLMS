@@ -1,9 +1,6 @@
 package com.cibfintech.blacklist.bankblacklist.service;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
 
 import resource.bean.blacklist.NsBankBlackList;
 import resource.bean.report.SysTaskInfo;
@@ -11,7 +8,6 @@ import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
 import resource.dao.base.HQLDAO;
 
-import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryCondition;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.business.management.common.DAOUtils;
@@ -41,37 +37,13 @@ public class BankBlackListService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public PageQueryResult pageQueryByHql(int pageSize, int pageIndex, NsBankBlackList queryParam, String operateStates, boolean isSuperManager,
-			GlobalInfo globalinfo) {
+	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String hql, List list) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from NsBankBlackList bblt where 1=1");
-		List<Object> list = new ArrayList<Object>();
-		hql.append("and bblt.del= ?");
-		list.add(false);
-
-		if (StringUtils.isNotBlank(queryParam.getId())) {
-			hql.append(" and bblt.id = ?");
-			list.add(queryParam.getId());
-		}
-		if (StringUtils.isNotBlank(queryParam.getCertificateType())) {
-			hql.append(" and bblt.certificateType = ?");
-			list.add(queryParam.getCertificateType());
-		}
-		if (StringUtils.isNotBlank(queryParam.getCertificateNumber())) {
-			hql.append(" and bblt.certificateNumber like ?");
-			list.add("%" + queryParam.getCertificateNumber() + "%");
-		}
-		if (!isSuperManager) {
-			hql.append(" and bblt.bankCode = ?");
-			list.add(globalinfo.getBrcode());
-		}
-		hql.append(" and bblt.operateState in " + operateStates);
-
 		try {
-			queryCondition.setQueryString(hql.toString());
+			queryCondition.setQueryString(hql);
 			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setPageSize(pageSize);
 			queryCondition.setObjArray(list.toArray());

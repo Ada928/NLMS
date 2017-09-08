@@ -1,10 +1,9 @@
 package com.cibfintech.blacklist.internationblacklist.getter;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cibfintech.blacklist.internationblacklist.service.InternationBlackListOperateLogService;
-import com.huateng.common.DateUtil;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -14,6 +13,8 @@ import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.report.common.ReportConstant;
+import com.huateng.ebank.framework.util.DataFormat;
+import com.huateng.ebank.framework.util.DateUtil;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
@@ -58,22 +59,39 @@ public class InternationBLOPLogQueryGetter extends BaseGetter {
 		String startDate = (String) getCommQueryServletRequest().getParameterMap().get("startDate");
 		String endDate = (String) getCommQueryServletRequest().getParameterMap().get("endDate");
 		if (startDate != null && endDate != null) {
-			if (DateUtil.comparaDate(endDate, startDate)) {
+			if (com.huateng.common.DateUtil.comparaDate(endDate, startDate)) {
 				ExceptionUtil.throwCommonException("开始日期大于结束日期！", ErrorCode.ERROR_CODE_OVER_HEAD);
 			}
 		}
 		InternationBlackListOperateLogService internationBLOPLogService = InternationBlackListOperateLogService.getInstance();
 
-		List list = internationBLOPLogService.sumQueryInternationBlacklist(
-				com.huateng.ebank.framework.util.DateUtil.dateToString(com.huateng.ebank.framework.util.DateUtil.getBeforeDayWithTime(new Date())),
-				com.huateng.ebank.framework.util.DateUtil.dateToString(new Date()));
-
-		for (int i = 0; i < list.size(); i++) {
-			Object[] obj = (Object[]) list.get(i);
-			System.out.println(obj[0] + " " + obj[1]);
+		StringBuffer sb = new StringBuffer("");
+		List<Object> list = new ArrayList<Object>();
+		sb.append(" from NsInternationBLOperateLog log where 1=1");
+		if (!DataFormat.isEmpty(qtlrNo)) {
+			sb.append(" and  log.tlrNo= ?");
+			list.add(qtlrNo);
+		}
+		if (!DataFormat.isEmpty(qtlrIP)) {
+			sb.append(" and  log.tlrIP= ?");
+			list.add(qtlrIP);
+		}
+		if (!DataFormat.isEmpty(qbrNo)) {
+			sb.append(" and log.brNo = ?");
+			list.add(qbrNo);
 		}
 
-		return internationBLOPLogService.pageQueryByHql(pageIndex, pageSize, qtlrNo, qtlrIP, qbrNo, startDate, endDate);
+		if (!DataFormat.isEmpty(startDate)) {
+			sb.append(" and log.createDate>=?");
+			list.add(DateUtil.stringToDate2(startDate));
+		}
+		if (!DataFormat.isEmpty(endDate)) {
+			sb.append(" and log.createDate<?");
+			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endDate), -1));
+		}
+		sb.append(" order by log.tlrNo");
+
+		return internationBLOPLogService.pageQueryByHql(pageIndex, pageSize, sb.toString(), list);
 	}
 
 }

@@ -2,7 +2,7 @@
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="公安部黑名单管理">
-<@CommonQueryMacro.CommonQuery id="PoliceBlackList" init="true" submitMode="current"  navigate="false">
+<@CommonQueryMacro.CommonQuery id="PoliceBlackList" init="true" submitMode="current" navigate="false">
 <table align="center" width="100%">
    	<tr>
       	<td colspan="2" >
@@ -15,11 +15,11 @@
 	<tr>
 		<td colspan="2">
 			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd" 
-				fieldStr="id[160],accountType,certificateType,certificateNumber[160],clientName[280],clientEnglishName[280],lastModifyOperator,opr"  
+				fieldStr="id[160],accountType,certificateType,certificateNumber[160],clientName[280],clientEnglishName[280],opr"  
 				width="100%" hasFrame="true"/>
 		</td>
 	</tr>
-	<tr style="display:none">
+	<tr align="center" style="display:none">
 		<td><@CommonQueryMacro.Button id="btDel" /></td>
 		<td><@CommonQueryMacro.Button id="btModify" /></td>
 		<td><@CommonQueryMacro.Button id="btDetail" /></td>

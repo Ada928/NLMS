@@ -1,7 +1,10 @@
 package com.cibfintech.blacklist.roleinfo.getter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 
 import resource.bean.pub.RoleInfo;
 import resource.bean.pub.RoleOperateLog;
@@ -61,20 +64,35 @@ public class RoleInfoGetter extends BaseGetter {
 			}
 		}
 
-		PageQueryResult pqr = RoleInfoService.getInstance().pageQueryByHql(pageSize, pageIndex, roleName, isSuperManager, globalinfo);
+		StringBuffer hql = new StringBuffer("from RoleInfo bblt where 1=1");
+		List<Object> list = new ArrayList<Object>();
+		hql.append(" and bblt.del= ? ");
+		list.add(false);
+
+		if (StringUtils.isNotBlank(roleName)) {
+			hql.append(" and bblt.roleName like ? ");
+			list.add("%" + roleName.trim() + "%");
+		}
+		if (!isSuperManager) {
+			hql.append(" and bblt.id <> ? ");
+			list.add("100");
+		}
+		hql.append(" order by bblt.id");
+
+		PageQueryResult pqr = RoleInfoService.getInstance().pageQueryByHql(pageSize, pageIndex, hql.toString(), list);
 		String message = "岗位信息管理:brhName=" + roleName;
-		recordOperateLog(globalinfo, pqr, message);
+		recordOperateLog(globalinfo, pqr.getTotalCount(), message);
 		return pqr;
 	}
 
 	// 记录查询日志
-	private void recordOperateLog(GlobalInfo globalinfo, PageQueryResult pqr, String message) {
+	private void recordOperateLog(GlobalInfo globalinfo, int count, String message) {
 		RoleOperateLogService service = RoleOperateLogService.getInstance();
 		RoleOperateLog bean = new RoleOperateLog();
 		bean.setBrNo(globalinfo.getBrno());
 		bean.setId(String.valueOf(GenerateID.getId()));
 		bean.setQueryType("");
-		bean.setQueryRecordNumber(String.valueOf(null == pqr ? "0" : pqr.getTotalCount()));
+		bean.setQueryRecordNumber(String.valueOf(count));
 		bean.setTlrIP(globalinfo.getIp());
 		bean.setTlrNo(globalinfo.getTlrno());
 		bean.setOperateType(SystemConstant.LOG_QUERY);

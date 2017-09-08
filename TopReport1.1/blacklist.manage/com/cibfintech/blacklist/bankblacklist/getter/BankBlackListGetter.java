@@ -1,12 +1,14 @@
 package com.cibfintech.blacklist.bankblacklist.getter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
+
 import resource.bean.blacklist.NsBankBLOperateLog;
-import resource.bean.blacklist.NsBankBlackList;
 import resource.bean.pub.RoleInfo;
 
 import com.cibfintech.blacklist.bankblacklist.service.BankBlackListOperateLogService;
@@ -63,18 +65,38 @@ public class BankBlackListGetter extends BaseGetter {
 		for (RoleInfo roleInfo : roleInfos) {
 			if (roleInfo.getRoleType().equals(SystemConstant.ROLE_TYPE_SYS_MNG)) {
 				isSuperManager = true;
+				break;
 			}
 		}
 
 		String operateStates = getOperateStates(roleInfos);
-		NsBankBlackList queryParam = new NsBankBlackList();
-		queryParam.setId(qPartyId);
-		queryParam.setCertificateNumber(qCertificateNumber);
-		queryParam.setCertificateType(qCertificateType);
 
-		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageSize, pageIndex, queryParam, operateStates, isSuperManager, globalinfo);
+		StringBuffer hql = new StringBuffer(" from NsBankBlackList bblt where 1=1");
+		List<Object> list = new ArrayList<Object>();
+		hql.append("and bblt.del= ?");
+		list.add(false);
+
+		if (StringUtils.isNotBlank(qPartyId)) {
+			hql.append(" and bblt.id = ?");
+			list.add(qPartyId.trim());
+		}
+		if (StringUtils.isNotBlank(qCertificateType)) {
+			hql.append(" and bblt.certificateType = ?");
+			list.add(qCertificateType.trim());
+		}
+		if (StringUtils.isNotBlank(qCertificateNumber)) {
+			hql.append(" and bblt.certificateNumber like ?");
+			list.add("%" + qCertificateNumber.trim() + "%");
+		}
+		if (!isSuperManager) {
+			hql.append(" and bblt.bankCode = ?");
+			list.add(globalinfo.getBrcode());
+		}
+		hql.append(" and bblt.operateState in " + operateStates);
+
+		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageSize, pageIndex, hql.toString(), list);
 		String message = "国际黑名单的查询:partyId=" + qPartyId + ",certificateType=" + qCertificateType + ",certificateNumber=" + qCertificateNumber;
-		recordOperateLog(globalinfo, pqr, message);
+		recordOperateLog(globalinfo, pqr.getTotalCount(), message);
 		return pqr;
 	}
 
@@ -117,13 +139,13 @@ public class BankBlackListGetter extends BaseGetter {
 	}
 
 	// 记录查询日志
-	private void recordOperateLog(GlobalInfo globalinfo, PageQueryResult pqr, String message) {
+	private void recordOperateLog(GlobalInfo globalinfo, int count, String message) {
 		BankBlackListOperateLogService service = BankBlackListOperateLogService.getInstance();
 		NsBankBLOperateLog bean = new NsBankBLOperateLog();
 		bean.setBrNo(globalinfo.getBrno());
 		bean.setId(String.valueOf(GenerateID.getId()));
 		bean.setQueryType("");
-		bean.setQueryRecordNumber(String.valueOf(null == pqr ? "0" : pqr.getTotalCount()));
+		bean.setQueryRecordNumber(String.valueOf(count));
 		bean.setTlrIP(globalinfo.getIp());
 		bean.setTlrNo(globalinfo.getTlrno());
 		bean.setOperateType(SystemConstant.LOG_QUERY);

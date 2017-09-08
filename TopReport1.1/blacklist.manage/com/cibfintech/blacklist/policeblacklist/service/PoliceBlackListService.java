@@ -1,9 +1,6 @@
 package com.cibfintech.blacklist.policeblacklist.service;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
 
 import resource.bean.blacklist.NsPoliceBlackList;
 import resource.bean.report.SysTaskInfo;
@@ -17,7 +14,6 @@ import com.huateng.ebank.business.management.common.DAOUtils;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
 import com.huateng.ebank.framework.util.ExceptionUtil;
-import com.huateng.report.utils.ReportEnum;
 
 public class PoliceBlackListService {
 
@@ -40,30 +36,10 @@ public class PoliceBlackListService {
 		return (PoliceBlackListService) ApplicationContextUtils.getBean("PoliceBlackListService");
 	}
 
-	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String partyId, String qCertificateType, String qCertificateNumber, String qOperateState) {
+	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String hql, List list) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
-		List<Object> list = new ArrayList<Object>();
-
-		StringBuffer hql = new StringBuffer(" from NsPoliceBlackList pblt where 1=1");
-		hql.append(" and pblt.del=?");
-		list.add(false);
-
-		if (StringUtils.isNotBlank(partyId)) {
-			hql.append(" and pblt.id = '").append(partyId.trim()).append("'");
-		}
-		if (StringUtils.isNotBlank(qCertificateType)) {
-			hql.append(" and pblt.certificateType = '").append(qCertificateType.trim()).append("'");
-		}
-		if (StringUtils.isNotBlank(qCertificateNumber)) {
-			hql.append(" and pblt.certificateNumber like '%").append(qCertificateNumber.trim()).append("%'");
-		}
-		if (StringUtils.isNotBlank(qOperateState)) {
-			hql.append(" and pblt.operateState='").append(qOperateState.trim()).append("'");
-		} else {
-			hql.append(" and pblt.operateState<>'").append(ReportEnum.REPORT_ST1.N.value).append("'");
-		}
 		try {
 			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setPageSize(pageSize);

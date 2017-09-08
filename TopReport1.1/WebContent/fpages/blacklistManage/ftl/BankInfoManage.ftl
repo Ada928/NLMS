@@ -41,27 +41,27 @@
 	}
 
 	function checkValue() {
-		v_postno = BankInfoEntry_dataset.getValue("postno");
+		v_postno = BankInfoManage_dataset.getValue("postno");
 		if (isNaN(v_postno)) {
 			alert("字段【邮政编码】必须为数字");
-			BankInfoEntry_dataset.setValue2("postno", "");
+			BankInfoManage_dataset.setValue2("postno", "");
 			return false;
 		} else if (v_postno.indexOf('-') != -1) {
 			alert("字段【邮政编码】必须为数字");
-			BankInfoEntry_dataset.setValue2("postno", "");
+			BankInfoManage_dataset.setValue2("postno", "");
 			return false;
 		} else if (v_postno.length < 6 && v_postno.length != 0) {
 			alert("字段【邮政编码】必须为6位");
-			BankInfoEntry_dataset.setValue2("postno", "");
+			BankInfoManage_dataset.setValue2("postno", "");
 			return false;
 		}
-		var v_teleno = BankInfoEntry_dataset.getValue("teleno");
+		var v_teleno = BankInfoManage_dataset.getValue("teleno");
 		var validChar = "0123456789-";
 		for (var i = 0; i < v_teleno.length; i++) {
 			var c = v_teleno.charAt(i);
 			if (validChar.indexOf(c) == -1) {
 				alert("字段【联系电话】只能包含-和数字");
-				BankInfoEntry_dataset.setValue2("teleno", "");
+				BankInfoManage_dataset.setValue2("teleno", "");
 				return false;
 			}
 		}
