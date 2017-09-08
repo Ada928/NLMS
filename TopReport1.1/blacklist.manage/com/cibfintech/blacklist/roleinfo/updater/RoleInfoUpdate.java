@@ -24,8 +24,6 @@ public class RoleInfoUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "RoleInfoManage";
 	private final static String PARAM_ACTION = "opType";
-	private final static String PARAM_ACTION_ROLE_LIST = "roleList";
-	private final static String PARAM_ACTION_SURE = "sure";
 
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {

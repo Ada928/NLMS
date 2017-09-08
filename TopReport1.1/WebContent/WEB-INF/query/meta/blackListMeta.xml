@@ -10,54 +10,42 @@
 	<Query id="BankBlackListLogQuery" path="/fpages/blacklistManage/xml/BankBlackListLogQuery.xml" />
 
 	<Query id="PoliceBlackList" path="/fpages/blacklistManage/xml/PoliceBlackList.xml" />
+	<Query id="PoliceBlacklistManage" path="/fpages/blacklistManage/xml/PoliceBlackListManage.xml" />
 	<Query id="PoliceBlackListQuery" path="/fpages/blacklistManage/xml/PoliceBlackList.xml" />
 	<Query id="PoliceBlackListDetail" path="/fpages/blacklistManage/xml/PoliceBlackListDetail.xml" />
-	<Query id="PoliceBlackListLogQuery" path="/fpages/blacklistManage/xml/PoliceBlackListLogQuery.xml" />
+	<Query id="PoliceBlackListLogQuery"
+		path="/fpages/blacklistManage/xml/PoliceBlackListLogQuery.xml" />
 
 	<Query id="InternationalBlackList"
 		path="/fpages/blacklistManage/xml/InternationalBlackList.xml" />
+	<Query id="InternationalBlacklistManage"
+		path="/fpages/blacklistManage/xml/InternationalBlackListManage.xml" />
 	<Query id="InternationalBlackListQuery"
 		path="/fpages/blacklistManage/xml/InternationalBlackList.xml" />
 	<Query id="InternationalBlackListDetail"
 		path="/fpages/blacklistManage/xml/InternationalBlackListDetail.xml" />
-	<Query id="InternationBlackListLogQuery" 
-	    path="/fpages/blacklistManage/xml/InternationBlackListLogQuery.xml" />
-	    
-	<Query id="QueryDailyLogCount"
-		path="/fpages/blacklistManage/xml/QueryDailyLogCount.xml" />
-	<Query id="QueryMonthlyLogCount" 
-	    path="/fpages/blacklistManage/xml/QueryMonthlyLogCount.xml" />
-	    
-	    
-	<Query id="BankInfoDetail" 
-	    path="/fpages/blacklistManage/xml/BankInfoDetail.xml" />
-	<Query id="BankInfoEntry" 
-	    path="/fpages/blacklistManage/xml/BankInfoEntry.xml" />
-	<Query id="BankInfoManage" 
-	    path="/fpages/blacklistManage/xml/BankInfoManage.xml" />
-	<Query id="BankOperateLogQuery" 
-	    path="/fpages/blacklistManage/xml/BankOperateLogQuery.xml" />
-	    
-	<Query id="RoleInfoEntry" 
-	    path="/fpages/blacklistManage/xml/RoleInfoEntry.xml" />
-	<Query id="RoleInfoManage" 
-	    path="/fpages/blacklistManage/xml/RoleInfoManage.xml" />
-	<Query id="ShowRoleUser" 
-	    path="/fpages/blacklistManage/xml/ShowRoleUser.xml" />
-	<Query id="RoleOperateLogQuery" 
-	    path="/fpages/blacklistManage/xml/RoleOperateLogQuery.xml" />
-	    
-	<Query id="UserInfoDetail" 
-	    path="/fpages/blacklistManage/xml/UserInfoDetail.xml" />
-	<Query id="UserInfoDetailRoleRel" 
-	    path="/fpages/blacklistManage/xml/UserInfoDetailRoleRel.xml" />
-	<Query id="UserInfoEntry" 
-	    path="/fpages/blacklistManage/xml/UserInfoEntry.xml" />
-	<Query id="UserInfoManage" 
-	    path="/fpages/blacklistManage/xml/UserInfoManage.xml" />
-	<Query id="UserRoleRelSelect" 
-	    path="/fpages/blacklistManage/xml/UserRoleRelSelect.xml" />
-	<Query id="UserOperateLogQuery" 
-	    path="/fpages/blacklistManage/xml/UserOperateLogQuery.xml" /> 
-	    
+	<Query id="InternationBlackListLogQuery"
+		path="/fpages/blacklistManage/xml/InternationBlackListLogQuery.xml" />
+
+	<Query id="QueryDailyLogCount" path="/fpages/blacklistManage/xml/QueryDailyLogCount.xml" />
+	<Query id="QueryMonthlyLogCount" path="/fpages/blacklistManage/xml/QueryMonthlyLogCount.xml" />
+
+
+	<Query id="BankInfoDetail" path="/fpages/blacklistManage/xml/BankInfoDetail.xml" />
+	<Query id="BankInfoEntry" path="/fpages/blacklistManage/xml/BankInfoEntry.xml" />
+	<Query id="BankInfoManage" path="/fpages/blacklistManage/xml/BankInfoManage.xml" />
+	<Query id="BankOperateLogQuery" path="/fpages/blacklistManage/xml/BankOperateLogQuery.xml" />
+
+	<Query id="RoleInfoEntry" path="/fpages/blacklistManage/xml/RoleInfoEntry.xml" />
+	<Query id="RoleInfoManage" path="/fpages/blacklistManage/xml/RoleInfoManage.xml" />
+	<Query id="ShowRoleUser" path="/fpages/blacklistManage/xml/ShowRoleUser.xml" />
+	<Query id="RoleOperateLogQuery" path="/fpages/blacklistManage/xml/RoleOperateLogQuery.xml" />
+
+	<Query id="UserInfoDetail" path="/fpages/blacklistManage/xml/UserInfoDetail.xml" />
+	<Query id="UserInfoDetailRoleRel" path="/fpages/blacklistManage/xml/UserInfoDetailRoleRel.xml" />
+	<Query id="UserInfoEntry" path="/fpages/blacklistManage/xml/UserInfoEntry.xml" />
+	<Query id="UserInfoManage" path="/fpages/blacklistManage/xml/UserInfoManage.xml" />
+	<Query id="UserRoleRelSelect" path="/fpages/blacklistManage/xml/UserRoleRelSelect.xml" />
+	<Query id="UserOperateLogQuery" path="/fpages/blacklistManage/xml/UserOperateLogQuery.xml" />
+
 </META>

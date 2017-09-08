@@ -24,7 +24,6 @@ public class BankBlackListUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "BankBlackListManage";
 	private final static String PARAM_ACTION = "opType";
-	private final static String PARAM_ACTION_SURE = "sure";
 
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
@@ -44,8 +43,6 @@ public class BankBlackListUpdate extends BaseUpdate {
 			Map map = updateResultBean.next();
 			BaseUpdate.mapToObject(bankblacklist, map);
 			String opType = updateResultBean.getParameter(PARAM_ACTION);
-			String sure = updateResultBean.getParameter(PARAM_ACTION_SURE);
-			sure = (null == sure || "" == sure) ? "" : sure;
 			opType = (null == opType || "" == opType) ? "" : opType;
 
 			if (opType.equals(BankBlackListOperation.IN_EDIT)) {
@@ -64,7 +61,6 @@ public class BankBlackListUpdate extends BaseUpdate {
 				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_SHARE);
 			}
 			oc.setAttribute(BankBlackListOperation.IN_PARAM, opType);
-			oc.setAttribute(BankBlackListOperation.IN_PARAM_SURE, sure);
 			oc.setAttribute(BankBlackListOperation.IN_BANK_BLACK_LIST, bankblacklist);
 			// call方式开启operation事务
 			OPCaller.call(BankBlackListOperation.ID, oc);

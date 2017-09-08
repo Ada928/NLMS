@@ -44,7 +44,7 @@
     //保存后刷新当前页
     function btSave_postSubmit(button) {
     	alert("保存成功");
-        button.url = "/fpages/blacklistManage/ftl/BankBlackList.ftl";
+        //button.url = "/fpages/blacklistManage/ftl/BankBlackList.ftl";
     }
     
 

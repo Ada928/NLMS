@@ -19,22 +19,10 @@
 				width="100%" hasFrame="true"/>
 		</td>
 	</tr>
-	<tr>
-      	<td colspan="2">
-      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="80%" resize="true" 
-      			defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" 
-      			exclusive="true" position="center" show="false" >
-      			<div align="center">
-      				<@CommonQueryMacro.Group id="group1" label="公安部黑名单维护"
-        			  fieldStr="id,accountType,certificateType,certificateNumber,clientName,clientEnglishName,blacklistType,valid,validDate" colNm=4/>
-        			<br/>
-      				<@CommonQueryMacro.Button id="btModOrAdd" />
-      			</div>
-     		</@CommonQueryMacro.FloatWindow>
-  		</td>
-  	</tr>
 	<tr style="display:none">
 		<td><@CommonQueryMacro.Button id="btDel" /></td>
+		<td><@CommonQueryMacro.Button id="btModify" /></td>
+		<td><@CommonQueryMacro.Button id="btDetail" /></td>
 	</tr>
 </table>
 
@@ -72,16 +60,7 @@
 	//修改功能
     function openModifyWindow(id) {
         locate(id);
-        PoliceBlackList_dataset.setFieldReadOnly("id", true);
-        PoliceBlackList_dataset.setFieldReadOnly("accountCode", false);
-        PoliceBlackList_dataset.setFieldReadOnly("certificateType", false);
-        PoliceBlackList_dataset.setFieldReadOnly("certificateNumber", false);
-        PoliceBlackList_dataset.setFieldReadOnly("clientName", false);
-        PoliceBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
-        PoliceBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        PoliceBlackList_dataset.setFieldReadOnly("valid", false);
-        PoliceBlackList_dataset.setFieldReadOnly("validDate", false);
-        subwindow_signWindow.show();
+        btModify.click();
     }
 
     //展示对比功能的js
@@ -95,83 +74,16 @@
         }
     }
 
-    function showDetail(id, osta) {
-        var paramMap = new Map();
-        paramMap.put("id", id);
-        paramMap.put("osta", osta);
-        paramMap.put("action", "detail");
-        paramMap.put("flag", "0");
-        loadPageWindows("partWin", "公安部黑名单详细信息", "/fpages/blacklistManage/ftl/PoliceBlackListDetail.ftl", paramMap, "winZone");
+    function showDetail(id) {
+       locate(id);
+       btDetail.click();
     }
 
-    function btModOrAdd_onClickCheck(button) {
-        var id = PoliceBlackList_dataset.getValue("id");
-        var certificateNumber = PoliceBlackList_dataset.getValue("certificateNumber");
-        var certificateType = PoliceBlackList_dataset.getValue("certificateType");
-        if (id == null || "" == id) {
-            alert("黑名单不能为空");
-            return false;
-        }
-        if (certificateType == null || "" == certificateType) {
-            alert("证件类型不能为空");
-            return false;
-        }
-        if (certificateNumber == null || "" == certificateNumber) {
-            alert("证件号不能为空");
-            return false;
-        }
-        return true;
+    function btAdd_onClick(id) {
+		locate(id);
+		PoliceBlackList_dataset.insertRecord();
     }
-
-    //保存后刷新当前页
-    function btModOrAdd_postSubmit(button) {
-        button.url = "#";
-        subwindow_signWindow.close();
-        flushCurrentPage();
-    }
-    
-    function btAdd_onClick(button) {
-        btNewClick();
-    }
-    
-    //新增功能
-    function btNewClick() {
-        PoliceBlackList_dataset.insertRecord("end");
-
-        PoliceBlackList_dataset.setValue("id", "");
-        PoliceBlackList_dataset.setValue("accountCode", "");
-        PoliceBlackList_dataset.setValue("certificateType", "");
-        PoliceBlackList_dataset.setValue("certificateNumber", "");
-        PoliceBlackList_dataset.setValue("clientName", "");
-        PoliceBlackList_dataset.setValue("clientEnglishName", "");
-        PoliceBlackList_dataset.setValue("blacklistType", "");
-        PoliceBlackList_dataset.setValue("valid", "");
-        PoliceBlackList_dataset.setValue("validDate", "");
-        PoliceBlackList_dataset.setFieldReadOnly("id", false);
-        PoliceBlackList_dataset.setFieldReadOnly("accountCode", false);
-        PoliceBlackList_dataset.setFieldReadOnly("certificateType", false);
-        PoliceBlackList_dataset.setFieldReadOnly("certificateNumber", false);
-        PoliceBlackList_dataset.setFieldReadOnly("clientName", false);
-        PoliceBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
-        PoliceBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        PoliceBlackList_dataset.setFieldReadOnly("valid", false);
-        PoliceBlackList_dataset.setFieldReadOnly("validDate", false);
-        subwindow_signWindow.show();
-    }
-    
-    function btAdd_onClickCheck(button) {
-        var id = PoliceBlackList_dataset.getValue("id");
-        var certificateNumber = PoliceBlackList_dataset.getValue("certificateNumber");
-        if (id == null || "" == id) {
-            alert("黑名单不能为空");
-            return false;
-        }
-        if (certificateNumber == null || "" == certificateNumber) {
-            alert("证件号不能为空");
-            return false;
-        }
-        return true;
-    }
+ 
 
     function doDel(id) {
         locate(id);
@@ -185,24 +97,7 @@
     function btDel_postSubmit(button) {
         alert("删除记录成功");
         button.url = "#";
-        //刷新当前页
         flushCurrentPage();
-    }
-
-	//取消功能
-    function btCancel_onClickCheck(button) {
-        //关闭浮动窗口
-        subwindow_signWindow.close();
-    }
-
-    //关浮动窗口,释放dataset
-    function signWindow_floatWindow_beforeClose(subwindow) {
-        PoliceBlackList_dataset.cancelRecord();
-        return true;
-    }
-
-    function signWindow_floatWindow_beforeHide(subwindow) {
-        return signWindow_floatWindow_beforeClose(subwindow);
     }
 
     //刷新当前页

@@ -76,11 +76,14 @@
     </Where>
 
     <Operations>
-        <Button id="btAdd" name="btAdd" desc="新增" operation="" 
-        	url="#" show="" group="" txn="" icon="icon-add" />
+        <Button id="btAdd" name="btAdd" desc="新增" operation="href" 
+       		 url="/fpages/blacklistManage/ftl/BankBlacklistManage.ftl?op=add" show="" group="" txn="" icon="icon-add" />
+       		 
+        <Button id="btModify" name="btModify" desc="修改" operation="syncsubmit"
+            url="/fpages/blacklistManage/ftl/BankBlacklistManage.ftl?op=edit" txn="" /> 
         
-        <Button id="btModify" name="btModify" desc="修改" operation=""
-            url="#" show="" group="" txn="" />
+        <Button id="btDetail" name="btDetail" desc="详细信息" operation="syncsubmit"
+            url="/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail" txn="" /> 
 
         <Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
             updateClass="com.cibfintech.report.blacklist.bankblacklist.updater.BankBlackListDEL" url="#" />

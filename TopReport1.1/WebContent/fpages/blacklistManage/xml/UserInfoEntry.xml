@@ -88,7 +88,6 @@
 
         <Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
             updateClass="com.cibfintech.blacklist.userinfo.updater.UserInfoDEL" url="#" txn="" />
-        	
             
         <Button id="btDetail" name="btDetail" desc="详细信息" operation="syncsubmit"
             url="/fpages/blacklistManage/ftl/UserInfoDetail.ftl?op=detail" txn="" /> 

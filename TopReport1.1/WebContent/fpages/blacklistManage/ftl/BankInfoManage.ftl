@@ -65,29 +65,19 @@
 				return false;
 			}
 		}
-		/* if (BankInfoManage_dataset.getValue("blnUpBrcode") == ""
-				&& BankInfoManage_dataset.getValue("brclass") != "1") {
-			alert("字段[上级机构]不应为空。");
-			return false;
-		}
-
-		if (BankInfoManage_dataset.getValue("brclass") == "") {
-			alert("字段[机构级别]不应为空。");
-			return false;
-		} */
 		return true;
 	}
 	
 	//保存后刷新当前页
 	function btSave_postSubmit(button) {
 		alert("保存成功");
-		button.url = "/fpages/blacklistManage/ftl/BankInfoEntry.ftl";
+		//button.url = "/fpages/blacklistManage/ftl/BankInfoEntry.ftl";
 		flushCurrentPage();
 	}
 	
 	function btCancel_onClickCheck(button) {
 		//unloadPageWindows("partWin");
-		button.url = "/fpages/blacklistManage/ftl/BankInfoEntry.ftl";
+		//button.url = "/fpages/blacklistManage/ftl/BankInfoEntry.ftl";
 		flushCurrentPage();
 		//return false;
 	}

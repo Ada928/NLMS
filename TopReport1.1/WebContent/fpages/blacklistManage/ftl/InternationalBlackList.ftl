@@ -19,22 +19,10 @@
 				width="100%" hasFrame="true"/>
 		</td>
 	</tr>
-	<tr>
-      	<td colspan="2">
-      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="80%" resize="true" 
-      			defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" 
-      			exclusive="true" position="center" show="false" >
-      			<div align="center">
-      				<@CommonQueryMacro.Group id="group1" label="国际黑名单维护"
-        			  fieldStr="id,blacklistType,accountType,certificateType,certificateNumber,clientName,clientEnglishName,valid,validDate" colNm=4/>
-        			<br/>
-      				<@CommonQueryMacro.Button id="btModOrAdd" />
-      			</div>
-     		</@CommonQueryMacro.FloatWindow>
-  		</td>
-  	</tr>
 	<tr style="display:none">
-		<td><@CommonQueryMacro.Button id="btDel" /></td>
+		<td><@CommonQueryMacro.Button id= "btDel" /></td>
+		<td><@CommonQueryMacro.Button id= "btModify" /></td>
+		<td><@CommonQueryMacro.Button id= "btDetail" /></td>
 	</tr>
 </table>
 
@@ -72,16 +60,7 @@
 	//修改功能
     function openModifyWindow(id) {
         locate(id);
-        InternationalBlackList_dataset.setFieldReadOnly("id", true);
-        InternationalBlackList_dataset.setFieldReadOnly("accountCode", false);
-        InternationalBlackList_dataset.setFieldReadOnly("certificateType", false);
-        InternationalBlackList_dataset.setFieldReadOnly("certificateNumber", false);
-        InternationalBlackList_dataset.setFieldReadOnly("clientName", false);
-        InternationalBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
-        InternationalBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        InternationalBlackList_dataset.setFieldReadOnly("valid", false);
-        InternationalBlackList_dataset.setFieldReadOnly("validDate", false);
-        subwindow_signWindow.show();
+        btModify.click();  
     }
 
     //展示对比功能的js
@@ -96,15 +75,11 @@
     }
 
     function showDetail(id, osta) {
-        var paramMap = new Map();
-        paramMap.put("id", id);
-        paramMap.put("osta", osta);
-        paramMap.put("action", "detail");
-        paramMap.put("flag", "0");
-        loadPageWindows("partWin", "国际黑名单详细信息", "/fpages/blacklistManage/ftl/InternationalBlackListDetail.ftl", paramMap, "winZone");
+		locate(id);
+		btDetail.click();
     }
 
-    function btModOrAdd_onClickCheck(button) {
+    function btSave_onClickCheck(button) {
         var id = InternationalBlackList_dataset.getValue("id");
         var certificateNumber = InternationalBlackList_dataset.getValue("certificateNumber");
         var certificateType = InternationalBlackList_dataset.getValue("certificateType");
@@ -122,42 +97,11 @@
         }
         return true;
     }
-
-    //保存后刷新当前页
-    function btModOrAdd_postSubmit(button) {
-        button.url = "#";
-        subwindow_signWindow.close();
-        flushCurrentPage();
-    }
-    
-    function btAdd_onClick(button) {
-        btNewClick();
-    }
-    
-    //新增功能
-    function btNewClick() {
-        InternationalBlackList_dataset.insertRecord("end");
-
-        InternationalBlackList_dataset.setValue("id", "");
-        InternationalBlackList_dataset.setValue("accountCode", "");
-        InternationalBlackList_dataset.setValue("certificateType", "");
-        InternationalBlackList_dataset.setValue("certificateNumber", "");
-        InternationalBlackList_dataset.setValue("clientName", "");
-        InternationalBlackList_dataset.setValue("clientEnglishName", "");
-        InternationalBlackList_dataset.setValue("blacklistType", "");
-        InternationalBlackList_dataset.setValue("valid", "");
-        InternationalBlackList_dataset.setValue("validDate", "");
-        InternationalBlackList_dataset.setFieldReadOnly("id", false);
-        InternationalBlackList_dataset.setFieldReadOnly("accountCode", false);
-        InternationalBlackList_dataset.setFieldReadOnly("certificateType", false);
-        InternationalBlackList_dataset.setFieldReadOnly("certificateNumber", false);
-        InternationalBlackList_dataset.setFieldReadOnly("clientName", false);
-        InternationalBlackList_dataset.setFieldReadOnly("clientEnglishName", false);
-        InternationalBlackList_dataset.setFieldReadOnly("blacklistType", false);
-        InternationalBlackList_dataset.setFieldReadOnly("valid", false);
-        InternationalBlackList_dataset.setFieldReadOnly("validDate", false);
-        subwindow_signWindow.show();
-    }
+   
+    function btAdd_onClick() {
+		locate(id);
+		InternationalBlackList_dataset.insertRecord();
+	}
     
     function btAdd_onClickCheck(button) {
         var id = InternationalBlackList_dataset.getValue("id");
@@ -185,24 +129,7 @@
     function btDel_postSubmit(button) {
         alert("删除记录成功");
         button.url = "#";
-        //刷新当前页
         flushCurrentPage();
-    }
-
-	//取消功能
-    function btCancel_onClickCheck(button) {
-        //关闭浮动窗口
-        subwindow_signWindow.close();
-    }
-
-    //关浮动窗口,释放dataset
-    function signWindow_floatWindow_beforeClose(subwindow) {
-        InternationalBlackList_dataset.cancelRecord();
-        return true;
-    }
-
-    function signWindow_floatWindow_beforeHide(subwindow) {
-        return signWindow_floatWindow_beforeClose(subwindow);
     }
 
     //刷新当前页

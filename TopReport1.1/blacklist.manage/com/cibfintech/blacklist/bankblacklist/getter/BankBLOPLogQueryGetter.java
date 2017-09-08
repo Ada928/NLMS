@@ -6,7 +6,6 @@ import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
-import com.huateng.ebank.business.common.CommonFunctions;
 import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.exceptions.CommonException;
@@ -28,7 +27,6 @@ public class BankBLOPLogQueryGetter extends BaseGetter {
 
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "商行黑名单日志查询");
 
-			CommonFunctions comm = CommonFunctions.getInstance();
 			PageQueryResult pageResult = getData();
 			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
@@ -61,7 +59,7 @@ public class BankBLOPLogQueryGetter extends BaseGetter {
 
 		}
 		BankBlackListOperateLogService bankBLOPLogService = BankBlackListOperateLogService.getInstance();
-		return bankBLOPLogService.queryBankBLOperateLogDetail(pageIndex, pageSize, qtlrNo, qtlrIP, qbrNo, startDate, endDate);
+		return bankBLOPLogService.pageQueryByHql(pageIndex, pageSize, qtlrNo, qtlrIP, qbrNo, startDate, endDate);
 	}
 
 }

@@ -70,7 +70,7 @@
 
     <Operations>
         <Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
-            updateClass="com.cibfintech.report.blacklist.bankblacklist.updater.BankBlackListUpdate" 
+            updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListUpdate" 
             url="/fpages/blacklistManage/ftl/BankBlackList.ftl" />
             
         <Button id="btCancel" name="btCancel" desc="返回" operation="submitform"

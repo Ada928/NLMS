@@ -49,7 +49,5 @@
         <TextBox id="qtlrIP" type="String" operation="EQ" size="30" desc="操作员IP" tip="操作员IP" index="4" />
     </Where>
     <Operations>
-
-
     </Operations>
 </CommQry>

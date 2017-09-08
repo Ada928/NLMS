@@ -1,14 +1,17 @@
 package com.cibfintech.blacklist.bankblacklist.getter;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import resource.bean.blacklist.NsBankBLOperateLog;
 import resource.bean.blacklist.NsBankBlackList;
 import resource.bean.pub.RoleInfo;
 
 import com.cibfintech.blacklist.bankblacklist.service.BankBlackListOperateLogService;
 import com.cibfintech.blacklist.bankblacklist.service.BankBlackListService;
+import com.cibfintech.blacklist.util.GenerateID;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -16,6 +19,7 @@ import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.business.common.SystemConstant;
+import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
@@ -70,9 +74,7 @@ public class BankBlackListGetter extends BaseGetter {
 
 		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageSize, pageIndex, queryParam, operateStates, isSuperManager, globalinfo);
 		String message = "国际黑名单的查询:partyId=" + qPartyId + ",certificateType=" + qCertificateType + ",certificateNumber=" + qCertificateNumber;
-		BankBlackListOperateLogService service = BankBlackListOperateLogService.getInstance();
-		// service.saveBankBLOperateLog(SystemConstant.LOG_QUERY, "",
-		// String.valueOf(pqr.getTotalCount()), message);
+		recordOperateLog(globalinfo, pqr, message);
 		return pqr;
 	}
 
@@ -112,5 +114,25 @@ public class BankBlackListGetter extends BaseGetter {
 			str = "(" + ReportEnum.BANK_BLACKLIST_OPERATE_STATE.N.value + ")";
 		}
 		return str;
+	}
+
+	// 记录查询日志
+	private void recordOperateLog(GlobalInfo globalinfo, PageQueryResult pqr, String message) {
+		BankBlackListOperateLogService service = BankBlackListOperateLogService.getInstance();
+		NsBankBLOperateLog bean = new NsBankBLOperateLog();
+		bean.setBrNo(globalinfo.getBrno());
+		bean.setId(String.valueOf(GenerateID.getId()));
+		bean.setQueryType("");
+		bean.setQueryRecordNumber(String.valueOf(null == pqr ? "0" : pqr.getTotalCount()));
+		bean.setTlrIP(globalinfo.getIp());
+		bean.setTlrNo(globalinfo.getTlrno());
+		bean.setOperateType(SystemConstant.LOG_QUERY);
+		bean.setMessage(message);
+		bean.setCreateDate(new Date());
+		try {
+			service.addEntity(bean);
+		} catch (CommonException e) {
+			e.printStackTrace();
+		}
 	}
 }

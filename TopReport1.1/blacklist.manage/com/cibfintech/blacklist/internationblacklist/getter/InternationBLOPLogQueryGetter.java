@@ -73,7 +73,7 @@ public class InternationBLOPLogQueryGetter extends BaseGetter {
 			System.out.println(obj[0] + " " + obj[1]);
 		}
 
-		return internationBLOPLogService.queryInternationBLOperateLogDetail(pageIndex, pageSize, qtlrNo, qtlrIP, qbrNo, startDate, endDate);
+		return internationBLOPLogService.pageQueryByHql(pageIndex, pageSize, qtlrNo, qtlrIP, qbrNo, startDate, endDate);
 	}
 
 }

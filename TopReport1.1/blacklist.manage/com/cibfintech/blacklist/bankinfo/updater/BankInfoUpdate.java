@@ -24,7 +24,6 @@ public class BankInfoUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "BankInfoManage";
 	private final static String PARAM_ACTION = "opType";
-	private final static String PARAM_ACTION_SURE = "sure";
 
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
@@ -40,8 +39,6 @@ public class BankInfoUpdate extends BaseUpdate {
 			Map map = updateResultBean.next();
 			BaseUpdate.mapToObject(bean, map);
 			String opType = updateResultBean.getParameter(PARAM_ACTION);
-			String sure = updateResultBean.getParameter(PARAM_ACTION_SURE);
-			sure = (null == sure || "" == sure) ? "" : sure;
 			opType = (null == opType || "" == opType) ? "" : opType;
 			if (opType.equals(BankInfoOperation.IN_EDIT)) {
 				oc.setAttribute(BankInfoOperation.CMD, BankInfoOperation.CMD_EDIT);
@@ -50,7 +47,6 @@ public class BankInfoUpdate extends BaseUpdate {
 				oc.setAttribute(BankInfoOperation.CMD, BankInfoOperation.CMD_ADD);
 			}
 			oc.setAttribute(BankInfoOperation.IN_PARAM, opType);
-			oc.setAttribute(BankInfoOperation.IN_PARAM_SURE, sure);
 			oc.setAttribute(BankInfoOperation.IN_BANK_INFO, bean);
 			// call方式开启operation事务
 			OPCaller.call(BankInfoOperation.ID, oc);

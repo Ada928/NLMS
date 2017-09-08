@@ -86,5 +86,4 @@ public class BankInfoGetter extends BaseGetter {
 			e.printStackTrace();
 		}
 	}
-
 }

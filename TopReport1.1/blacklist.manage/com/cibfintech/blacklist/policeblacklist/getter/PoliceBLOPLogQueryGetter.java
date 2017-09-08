@@ -60,7 +60,7 @@ public class PoliceBLOPLogQueryGetter extends BaseGetter {
 
 		}
 		PoliceBlackListOperateLogService policeBLOPLogService = PoliceBlackListOperateLogService.getInstance();
-		return policeBLOPLogService.queryPoliceBLOperateLogDetail(pageIndex, pageSize, qtlrNo, qtlrIP, qbrNo, startDate, endDate);
+		return policeBLOPLogService.pageQueryByHql(pageIndex, pageSize, qtlrNo, qtlrIP, qbrNo, startDate, endDate);
 	}
 
 }
