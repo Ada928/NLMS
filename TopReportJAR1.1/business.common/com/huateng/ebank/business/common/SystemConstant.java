@@ -34,6 +34,7 @@ public class SystemConstant {
 	public static final String LOG_DELEATE = "D"; // 删除
 	public static final String LOG_EDIT = "E"; // 改
 	public static final String LOG_QUERY = "Q"; // 查询
+	public static final String LOG_RESET = "R"; // 查询
 
 	/**
 	 * 是否对错

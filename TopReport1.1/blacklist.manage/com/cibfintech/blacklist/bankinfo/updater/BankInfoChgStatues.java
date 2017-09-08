@@ -1,13 +1,13 @@
-package com.cibfintech.blacklist.roleinfo.updater;
+package com.cibfintech.blacklist.bankinfo.updater;
 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import resource.bean.pub.RoleInfo;
+import resource.bean.pub.Bctl;
 
-import com.cibfintech.blacklist.operation.RoleInfoOperation;
+import com.cibfintech.blacklist.operation.BankInfoOperation;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -22,9 +22,9 @@ import com.huateng.exception.AppException;
 
  * 
  */
-public class RoleInfoDEL extends BaseUpdate {
+public class BankInfoChgStatues extends BaseUpdate {
 
-	private static final String DATASET_ID = "RoleInfoEntry";
+	private static final String DATASET_ID = "BankInfoEntry";
 
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
@@ -35,17 +35,17 @@ public class RoleInfoDEL extends BaseUpdate {
 			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			// 更新对象
-			RoleInfo bean = new RoleInfo();
+			Bctl bctl = new Bctl();
 			// Operation参数
 			OperationContext context = new OperationContext();
 			if (updateResultBean.hasNext()) {
 				// 属性拷贝
 				Map map = updateResultBean.next();
-				context.setAttribute(RoleInfoOperation.CMD, RoleInfoOperation.CMD_DEL);
-				BaseUpdate.mapToObject(bean, map);
+				context.setAttribute(BankInfoOperation.CMD, BankInfoOperation.CMD_CHGSTATUES);
+				BaseUpdate.mapToObject(bctl, map);
 				// call方式开启operation事务
-				context.setAttribute(RoleInfoOperation.IN_ROLE_INFO, bean);
-				OPCaller.call(RoleInfoOperation.ID, context);
+				context.setAttribute(BankInfoOperation.IN_BANK_INFO, bctl);
+				OPCaller.call(BankInfoOperation.ID, context);
 				return updateReturnBean;
 			}
 		} catch (AppException appe) {

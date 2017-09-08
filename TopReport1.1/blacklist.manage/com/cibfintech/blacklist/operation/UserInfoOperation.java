@@ -29,6 +29,7 @@ import com.huateng.ebank.framework.util.DateUtil;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
 import com.huateng.service.pub.PasswordService;
+import com.huateng.service.pub.UserMgrService;
 
 import edu.emory.mathcs.backport.java.util.Collections;
 
@@ -37,9 +38,12 @@ public class UserInfoOperation extends BaseOperation {
 	public static final String CMD = "CMD";
 	public static final String IN_USER_INFO = "IN_USER_INFO";
 	public static final String IN_ROLE_LIST = "IN_ROLELIST";
+	public final static String IN_TLRNO = "IN_TLRNO";
 	public final static String CMD_ADD = "add";
 	public final static String CMD_DEL = "CMD_DEL";
 	public final static String CMD_EDIT = "edit";
+	public final static String CMD_RESETPWD = "CMD_RESETPWD";
+
 	private static final HtLog htlog = HtLogFactory.getLogger(UserInfoOperation.class);
 	private static String info = "";
 
@@ -168,6 +172,8 @@ public class UserInfoOperation extends BaseOperation {
 		tlrInfo.setCreateDate(DateUtil.getCurrentDate());
 		tlrInfo.setLastUpdTime(DateUtil.getTimestamp());
 		tlrInfo.setLastUpdOperId(globalInfo.getTlrno());
+		tlrInfo.setEffectDate(DateUtil.getCurrentDateWithTime());
+		tlrInfo.setExpireDate(DateUtil.getDayAfter100Years());
 		tlrInfo.setLock(SystemConstant.NOT_LOCKED);
 		tlrInfo.setDel(SystemConstant.FALSE);
 		tlrInfo.setSt(ReportEnum.REPORT_ST1.Y.value);
@@ -231,6 +237,18 @@ public class UserInfoOperation extends BaseOperation {
 			message = "用户信息的编辑";
 			recordRunningLog("Updater.log", message, userInfo, service);
 
+		} else if (CMD_RESETPWD.equals(context.getAttribute(CMD))) {
+			String tlrno = (String) context.getAttribute(IN_TLRNO);
+			// 修改用户密码
+			TlrInfo tlrInfo = service.selectById(tlrno);
+
+			UserMgrService userMgrService = new UserMgrService();
+			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
+
+			userMgrService.updatePassword(tlrInfo.getTlrno(), sysDefaultPwd);
+			message = "重置用户密码";
+			operateType = SystemConstant.LOG_RESET;
+			recordRunningLog("RestPwd.log", message, tlrInfo, service);
 		}
 		recordOperateLog(globalInfo, operateType, message);
 	}
@@ -248,7 +266,7 @@ public class UserInfoOperation extends BaseOperation {
 		SysTaskInfo taskInfo;
 		try {
 			taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, bean,
-					bean.getTlrno().toString(), bean.getSt());
+					bean.getTlrno(), bean.getSt());
 			service.addTosystaskinfo(taskInfo);
 		} catch (IOException e) {
 			e.printStackTrace();

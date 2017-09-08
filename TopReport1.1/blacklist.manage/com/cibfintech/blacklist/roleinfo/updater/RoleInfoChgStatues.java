@@ -22,7 +22,7 @@ import com.huateng.exception.AppException;
 
  * 
  */
-public class RoleInfoDEL extends BaseUpdate {
+public class RoleInfoChgStatues extends BaseUpdate {
 
 	private static final String DATASET_ID = "RoleInfoEntry";
 
@@ -41,7 +41,7 @@ public class RoleInfoDEL extends BaseUpdate {
 			if (updateResultBean.hasNext()) {
 				// 属性拷贝
 				Map map = updateResultBean.next();
-				context.setAttribute(RoleInfoOperation.CMD, RoleInfoOperation.CMD_DEL);
+				context.setAttribute(RoleInfoOperation.CMD, RoleInfoOperation.CMD_CHGSTATUS);
 				BaseUpdate.mapToObject(bean, map);
 				// call方式开启operation事务
 				context.setAttribute(RoleInfoOperation.IN_ROLE_INFO, bean);

@@ -1,8 +1,6 @@
 package com.cibfintech.blacklist.operation;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -40,6 +38,7 @@ public class RoleInfoOperation extends BaseOperation {
 	public static final String IN_EDIT = "edit";
 	public final static String CMD_ADD = "CMD_ADD";
 	public final static String CMD_DEL = "CMD_DEL";
+	public final static String CMD_CHGSTATUS = "CMD_CHGSTATUS";
 	public final static String CMD_EDIT = "CMD_edit";
 	private static final HtLog htlog = HtLogFactory.getLogger(RoleInfoOperation.class);
 
@@ -66,19 +65,10 @@ public class RoleInfoOperation extends BaseOperation {
 			bean.setLastUpdTlr(globalInfo.getTlrno());
 			bean.setLastUpdDate(DateUtil.getCurrentDateWithTime());
 			service.modEntity(bean);
-			SysTaskInfo taskInfo;
-			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value, ReportEnum.REPORT_TASK_TRANS_CD.DEL.value,
-						fromBean, fromBean.getId().toString(), fromBean.getSt());
-				service.addTosystaskinfo(taskInfo);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 			operateType = SystemConstant.LOG_DELEATE;
 			message = "岗位信息的删除";
-			recordRunningLog("Deleter.log", message);
+			recordRunningLog("Deleter.log", message, fromBean, service);
 		} else if (CMD_ADD.equals(cmd)) {
-
 			Iterator it = DAOUtils.getHQLDAO().queryByQL("select max(id) from RoleInfo");
 			int id = 100;
 			if (it.hasNext()) {
@@ -93,30 +83,18 @@ public class RoleInfoOperation extends BaseOperation {
 			fromBean.setLock(SystemConstant.FALSE);
 			fromBean.setDel(SystemConstant.FALSE);
 			fromBean.setEffectDate(DateUtil.getCurrentDateWithTime());
-			String rolelist = fromBean.getRoleList();
-			updateRoleFuncRel(id, rolelist);
-			try {
-				// 新增的时候,给失效日期赋值:
-				fromBean.setExpireDate(new SimpleDateFormat("yyyyMMdd").parse("99990101"));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			fromBean.setExpireDate(DateUtil.getDayAfter100Years());
 			fromBean.setCrtDt(DateUtil.getCurrentDateWithTime());
 			fromBean.setLastUpdTlr(globalInfo.getTlrno());
 			fromBean.setLastUpdDate(DateUtil.getCurrentDateWithTime());
 
+			String rolelist = fromBean.getRoleList();
+			updateRoleFuncRel(id, rolelist);
 			service.addEntity(fromBean);
-			SysTaskInfo taskInfo;
-			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value, ReportEnum.REPORT_TASK_TRANS_CD.NEW.value,
-						fromBean, fromBean.getId().toString(), fromBean.getSt());
-				service.addTosystaskinfo(taskInfo);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+
 			operateType = SystemConstant.LOG_ADD;
 			message = "岗位信息的增加";
-			recordRunningLog("Adder.log", message);
+			recordRunningLog("Adder.log", message, fromBean, service);
 		} else if (CMD_EDIT.equals(cmd)) {
 			RoleInfo bean = service.selectById(fromBean.getId());
 
@@ -137,17 +115,23 @@ public class RoleInfoOperation extends BaseOperation {
 
 			service.modEntity(bean);
 
-			SysTaskInfo taskInfo;
-			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
-						fromBean, fromBean.getId().toString(), fromBean.getSt());
-				service.addTosystaskinfo(taskInfo);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 			operateType = SystemConstant.LOG_EDIT;
 			message = "岗位信息的编辑";
-			recordRunningLog("Updater.log", message);
+			recordRunningLog("Updater.log", message, fromBean, service);
+		} else if (CMD_CHGSTATUS.equals(cmd)) {
+			RoleInfo bean = service.selectById(fromBean.getId());
+			if (fromBean.getStatus().equals("1")) {
+				bean.setStatus("0");
+			} else {
+				bean.setStatus("1");
+			}
+			bean.setLastUpdTlr(globalInfo.getTlrno());
+			bean.setLastUpdDate(DateUtil.getCurrentDateWithTime());
+			service.modEntity(bean);
+
+			operateType = SystemConstant.LOG_EDIT;
+			message = "岗位信息有效性设置";
+			recordRunningLog("ChangeStatues.log", message, fromBean, service);
 		}
 		recordOperateLog(globalInfo, operateType, message);
 	}
@@ -158,10 +142,18 @@ public class RoleInfoOperation extends BaseOperation {
 	}
 
 	@SuppressWarnings("unused")
-	private void recordRunningLog(String type, String message) throws CommonException {
+	private void recordRunningLog(String type, String message, RoleInfo bean, RoleInfoService service) throws CommonException {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		gi.addBizLog(type, new String[] { gi.getTlrno(), gi.getBrcode(), message });
 		htlog.info(type, new String[] { gi.getBrcode(), gi.getTlrno(), message });
+		SysTaskInfo taskInfo;
+		try {
+			taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, bean,
+					String.valueOf(bean.getId()), bean.getSt());
+			service.addTosystaskinfo(taskInfo);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	// 记录查询日志

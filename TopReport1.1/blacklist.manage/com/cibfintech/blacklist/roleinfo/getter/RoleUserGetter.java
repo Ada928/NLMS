@@ -42,7 +42,7 @@ public class RoleUserGetter extends BaseGetter {
 	private List getData() throws CommonException {
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
-		String roleId = (String) getCommQueryServletRequest().getParameterMap().get("roleId");
+		String roleId = getCommQueryServletRequest().getParameter("id");
 		RoleInfoService roleInfoService = RoleInfoService.getInstance();
 		List list = (List) roleInfoService.queryRoleInfo(roleId, pageIndex, pageSize);
 		return list;

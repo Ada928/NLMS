@@ -143,6 +143,7 @@
 	</table>
 </td>
 </tr>
+</table>
 <script language="javascript">
 	var st = "${st}";
 	var flag = "${flag}";

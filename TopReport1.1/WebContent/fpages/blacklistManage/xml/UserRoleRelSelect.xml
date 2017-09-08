@@ -27,14 +27,12 @@
 
 	<Where></Where>
 	<Operations>
-		<!--modify by zhiyang.he 用户管理双岗复核改造 2012-09-04 begin -->
 		<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
 			updateClass="com.cibfintech.blacklist.userinfo.updater.UserInfoUpdate"
 			url="/fpages/blacklistManage/ftl/UserInfoEntry.ftl" txn="" />
 
 		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform"
 			url="/fpages/blacklistManage/ftl/UserInfoEntry.ftl" txn="" />
-		<!--modify by zhiyang.he 用户管理双岗复核改造 2012-09-04 end -->
 	</Operations>
 	<Sql></Sql>
 </CommQry>

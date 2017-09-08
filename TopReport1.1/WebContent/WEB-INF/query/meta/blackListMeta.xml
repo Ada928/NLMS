@@ -47,8 +47,10 @@
 	<Query id="RoleOperateLogQuery" 
 	    path="/fpages/blacklistManage/xml/RoleOperateLogQuery.xml" />
 	    
-	<!-- <Query id="UserDetail" 
-	    path="/fpages/blacklistManage/xml/UserDetail.xml" /> -->
+	<Query id="UserInfoDetail" 
+	    path="/fpages/blacklistManage/xml/UserInfoDetail.xml" />
+	<Query id="UserInfoDetailRoleRel" 
+	    path="/fpages/blacklistManage/xml/UserInfoDetailRoleRel.xml" />
 	<Query id="UserInfoEntry" 
 	    path="/fpages/blacklistManage/xml/UserInfoEntry.xml" />
 	<Query id="UserInfoManage" 

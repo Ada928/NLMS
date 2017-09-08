@@ -31,6 +31,7 @@ public class BankInfoOperation extends BaseOperation {
 	public final static String CMD_ADD = "CMD_ADD";
 	public final static String CMD_DEL = "CMD_DEL";
 	public final static String CMD_EDIT = "CMD_edit";
+	public final static String CMD_CHGSTATUES = "CMD_CHGSTATUES";
 	private static final HtLog htlog = HtLogFactory.getLogger(BankInfoOperation.class);
 
 	@Override
@@ -56,17 +57,9 @@ public class BankInfoOperation extends BaseOperation {
 			bean.setLastUpdTlr(globalInfo.getTlrno());
 			bean.setLastUpdDate(DateUtil.getCurrentDateWithTime());
 			service.modEntity(bean);
-			SysTaskInfo taskInfo;
-			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value, ReportEnum.REPORT_TASK_TRANS_CD.DEL.value, bctl,
-						bctl.getBrcode(), bctl.getSt());
-				service.addTosystaskinfo(taskInfo);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 			operateType = SystemConstant.LOG_DELEATE;
 			message = "银行信息的删除";
-			recordRunningLog("Deleter.log", message);
+			recordRunningLog("Deleter.log", message, bctl, service);
 		} else if (CMD_ADD.equals(cmd)) {
 
 			// 插入或者更新
@@ -77,21 +70,13 @@ public class BankInfoOperation extends BaseOperation {
 			bctl.setDel(SystemConstant.FALSE);
 			bctl.setTimestamps(DateUtil.getCurrentDateWithTime());
 			bctl.setEffectDate(DateUtil.getCurrentDateWithTime());
+			bctl.setExpireDate(DateUtil.getDayAfter100Years());
 			bctl.setLastUpdTlr(globalInfo.getTlrno());
 			bctl.setLastUpdDate(DateUtil.getCurrentDateWithTime());
 
-			service.addEntity(bctl);
-			SysTaskInfo taskInfo;
-			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value, ReportEnum.REPORT_TASK_TRANS_CD.NEW.value, bctl,
-						bctl.getBrcode(), bctl.getSt());
-				service.addTosystaskinfo(taskInfo);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 			operateType = SystemConstant.LOG_ADD;
 			message = "银行信息的增加";
-			recordRunningLog("Adder.log", message);
+			recordRunningLog("Adder.log", message, bctl, service);
 		} else if (CMD_EDIT.equals(cmd)) {
 			Bctl bean = service.selectById(bctl.getBrcode());
 
@@ -107,17 +92,23 @@ public class BankInfoOperation extends BaseOperation {
 
 			service.modEntity(bean);
 
-			SysTaskInfo taskInfo;
-			try {
-				taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, bctl,
-						bctl.getBrcode(), bctl.getSt());
-				service.addTosystaskinfo(taskInfo);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 			operateType = SystemConstant.LOG_EDIT;
 			message = "银行信息的编辑";
-			recordRunningLog("Updater.log", message);
+			recordRunningLog("Updater.log", message, bean, service);
+		} else if (CMD_CHGSTATUES.equals(cmd)) {
+			Bctl bean = service.selectById(bctl.getBrcode());
+			if (bctl.getStatus().equals("0")) {
+				bean.setStatus("1");
+			} else {
+				bean.setStatus("0");
+			}
+
+			bean.setLastUpdTlr(globalInfo.getTlrno());
+			bean.setLastUpdDate(DateUtil.getCurrentDateWithTime());
+			service.modEntity(bean);
+			operateType = SystemConstant.LOG_DELEATE;
+			message = "银行信息有效性改变 " + bean.getStatus();
+			recordRunningLog("ChangeStatues.log", message, bean, service);
 		}
 		recordOperateLog(globalInfo, operateType, message);
 	}
@@ -128,10 +119,18 @@ public class BankInfoOperation extends BaseOperation {
 	}
 
 	@SuppressWarnings("unused")
-	private void recordRunningLog(String type, String message) throws CommonException {
+	private void recordRunningLog(String type, String message, Bctl bean, BankInfoService service) throws CommonException {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		gi.addBizLog(type, new String[] { gi.getTlrno(), gi.getBrcode(), message });
 		htlog.info(type, new String[] { gi.getBrcode(), gi.getTlrno(), message });
+		SysTaskInfo taskInfo;
+		try {
+			taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, bean,
+					bean.getBrcode(), bean.getSt());
+			service.addTosystaskinfo(taskInfo);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	// 记录查询日志

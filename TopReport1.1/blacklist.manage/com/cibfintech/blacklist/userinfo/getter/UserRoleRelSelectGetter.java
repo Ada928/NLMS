@@ -47,7 +47,6 @@ public class UserRoleRelSelectGetter extends BaseGetter {
 	private PageQueryResult getData() throws CommonException {
 		PageQueryResult pageQueryResult = new PageQueryResult();
 		String tlrno = getCommQueryServletRequest().getParameter("tlrno");
-		List roleList = null;
 		GlobalInfo glInfo = GlobalInfo.getCurrentInstance();
 		UserMgrService userMgrService = UserMgrService.getInstance();
 		List<RoleInfo> list = userMgrService.getUserRoles(glInfo.getTlrno());
@@ -55,6 +54,7 @@ public class UserRoleRelSelectGetter extends BaseGetter {
 		for (RoleInfo role : list) {
 			if (role.getRoleType().equals(SystemConstant.ROLE_TYPE_SYS_MNG)) {
 				isSuperRole = true;
+				break;
 			}
 		}
 
@@ -67,7 +67,7 @@ public class UserRoleRelSelectGetter extends BaseGetter {
 			hql += " and po.status='1'";
 			hql += " and po.del<>'T'";
 		}
-		roleList = DAOUtils.getRoleInfoDAO().queryByCondition(hql);
+		List roleList = DAOUtils.getRoleInfoDAO().queryByCondition(hql);
 
 		List urrlist = DAOUtils.getTlrRoleRelDAO().queryByCondition(" po.tlrno = '" + tlrno + "' and status <> 0");
 		String roleStr = "|";

@@ -23,6 +23,7 @@
      <tr>
       	<td style="display:none">
       		<@CommonQueryMacro.Button id= "btDel"/>
+      		<@CommonQueryMacro.Button id= "btShowUser"/>
       		<@CommonQueryMacro.Button id= "btRoleAuthorityManagement"/>
       	</td>
       </tr>
@@ -43,11 +44,6 @@
 		}
 	}
 
-	function openRoleDtl(id) {
-		locate(id);
-		subwindow_signWindow.show();
-	}
-
 	function btAdd_onClick() {
 		RoleInfoEntry_dataset.insertRecord();
 		RoleInfoEntry_dataset.setParameter("opType", "add");
@@ -58,14 +54,12 @@
 		var status = RoleInfoEntry_dataset.getValue("status");
 		if (status == '0') {
 			if (confirm("确认将该岗位设置为有效?")) {
-				RoleInfoEntry_dataset.setParameter("statu", "1");
 				return true;
 			} else {
 				return false;
 			}
 		} else {
 			if (confirm("确认将该岗位设置为无效?")) {
-				RoleInfoEntry_dataset.setParameter("statu", "0");
 				return true;
 			} else {
 				return false;
@@ -102,8 +96,8 @@
 	}
 	
 	function btRoleUserShow(id) {
-		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/ShowRoleUser.ftl?roleId="+id;
-		
+		locate(id);
+		btShowUser.click();
 	}
 	
 	function doDel(id) {
@@ -115,21 +109,17 @@
     	var delet = RoleInfoEntry_dataset.getValue("del");
 		if (delet == 'false') {
 			if (confirm("确认删除该岗位?")) {
-				RoleInfoEntry_dataset.setParameter("delet", "T");
 				return true;
 			} else {
 				return false;
 			}
 		} else {
 			if (confirm("确认恢复该岗位?")) {
-				RoleInfoEntry_dataset.setParameter("delet", "F");
 				return true;
 			} else {
 				return false;
 			}
 		}
-    	
-        return confirm("确认删除该条记录？");
     }
     
     function btDel_postSubmit(button) {
@@ -138,40 +128,6 @@
         //刷新当前页
         flushCurrentPage();
     }
-	
-	function datatable1_rolename_onRefresh(cell, value, record) {
-		if (record != null) {
-			var st = record.getValue("st");
-			var id = record.getValue("id");
-			cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "','"
-					+ st + "')\">" + value + "</a>";
-		} else {
-			cell.innerHTML = ""
-		}
-	}
-	
-	//详细
-	function showDetail(id, st) {
-		locate(id);
-		showWin("角色管理详细信息",
-				"${contextPath}/fpages/system/ftl/RoleFuncMngWithEdit.ftl?id="
-						+ id + "&st=" + st + "&flag=0", null, null, window);
-	}
-
-	function btSave_postSubmit() {
-		alert('保存成功！');
-		subwindow_signWindow.hide();
-		RoleInfoEntry_dataset.flushData(RoleInfoEntry_dataset.pageIndex);
-	}
-	
-	function signWindow_floatWindow_beforeClose(subwindow) {
-		RoleInfoEntry_dataset.cancelRecord();
-		return true;
-	}
-	
-	function signWindow_floatWindow_beforeHide(subwindow) {
-		return signWindow_floatWindow_beforeClose(subwindow);
-	}
 	
 	function RoleInfoEntry_dataset_afterInsert(dataset, mode) {
 		RoleInfoEntry_dataset.setValue2("status", "1");
@@ -192,7 +148,6 @@
 	}
 	
 	function RoleInfoEntry_dataset_afterScroll(dataset) {
-
 		var Lock = dataset.getValue("lock");
 		if (Lock == "1") {
 			btStatus.disable(true);
@@ -205,5 +160,24 @@
 	function flushCurrentPage() {
 		RoleInfoEntry_dataset.flushData(RoleInfoEntry_dataset.pageIndex);
 	}
+
+	/* function datatable1_rolename_onRefresh(cell, value, record) {
+		if (record != null) {
+			var st = record.getValue("st");
+			var id = record.getValue("id");
+			cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "','"
+					+ st + "')\">" + value + "</a>";
+		} else {
+			cell.innerHTML = ""
+		}
+	}
+	
+	//详细
+	function showDetail(id, st) {
+		locate(id);
+		showWin("角色管理详细信息",
+				"${contextPath}/fpages/system/ftl/RoleFuncMngWithEdit.ftl?id="
+						+ id + "&st=" + st + "&flag=0", null, null, window);
+	} */
 </script>
 </@CommonQueryMacro.page>

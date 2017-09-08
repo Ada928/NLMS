@@ -55,12 +55,18 @@
             rules="" errmsg="" />
     </Where>
     <Operations>
-
-        <Button id="btAdd" name="btAdd" desc="新增" operation="" url="#" show="" group="" txn="" icon="icon-add" />
-        <Button id="btModify" name="btModify" desc="修改" operation="" url="#" show="" group="" txn="" icon="" />
+        <Button id="btAdd" name="btAdd" desc="新增" operation="href" 
+       		 url="/fpages/blacklistManage/ftl/BankInfoManage.ftl?opType=add" show="" group="" txn="" icon="icon-add" />
+       		 
+        <Button id="btModify" name="btModify" desc="修改" operation="syncsubmit"
+            url="/fpages/blacklistManage/ftl/BankInfoManage.ftl?opType=edit" txn="" /> 
+        
+        
+        <Button id="btDetail" name="btDetail" desc="详细信息" operation="syncsubmit"
+            url="/fpages/blacklistManage/ftl/BankInfoDetail.ftl?opType=detail" txn="" /> 
        
         <Button id="btStatus" name="btStatus" desc="有效/无效" operation="asysubmit"
-            updateClass="com.cibfintech.blacklist.bankinfo.updater.BankInfoUpdate" url="#" txn="" icon="icon-set" />
+            updateClass="com.cibfintech.blacklist.bankinfo.updater.BankInfoChgStatues" url="#" txn="" icon="icon-set" />
         
         <Button id="btDel" name="btDel" desc="删除" operation="asysubmit" 
         	updateClass="com.cibfintech.blacklist.bankinfo.updater.BankInfoDEL" url="" txn="" />

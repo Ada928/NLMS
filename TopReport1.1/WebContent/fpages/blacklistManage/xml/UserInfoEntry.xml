@@ -25,9 +25,6 @@
 
         <Field id="tlrName" desc="用户姓名" status="F" method="None" width="50" readonly="" primary="true" type="String"
             size="20" xpath="/tlrName" default="" />
-            
-        <Field id="tlrType" desc="用户类型" status="N" readonly="true" translated="DATA_DIC.37" edittype="select"
-            width="90" method="None" primary="true" type="String" size="20" xpath="/tlrType" />
 
         <Field id="status" desc="登陆状态" status="N" readonly="true" translated="DATA_DIC.37" edittype="select"
             width="90" method="None" primary="true" type="String" size="20" xpath="/status" />
@@ -69,12 +66,10 @@
         <Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" size="20" default=""
             tip="操作" require="" />
 
-        <!--add by zhiyang.he 用户管理双岗复核改造 2012-09-04 begin -->
         <Field id="isLockModify" desc="修改锁定状态" status="N" method="None" xpath="/isLockModify" primary="true" type=""
             size="20" default="" tip="修改锁定状态" require="" />
         <Field id="st" desc="记录状态" status="N" readonly="" tip="修改锁定状态" translated="DATA_DIC.3001" require=""
             edittype="select" width="90" method="None" primary="true" type="String" size="20" xpath="/st" default="" />
-        <!--add by zhiyang.he 用户管理双岗复核改造 2012-09-04 end -->
     </Fields>
 
     <Where>
@@ -87,28 +82,35 @@
     <Operations>
         <Button id="btAdd" name="btAdd" desc="新增" operation="href" 
        		 url="/fpages/blacklistManage/ftl/UserInfoManage.ftl?op=new" show="" group="" txn="" icon="icon-add" />
+       		 
+        <Button id="btModify" name="btModify" desc="修改" operation="syncsubmit"
+            url="/fpages/blacklistManage/ftl/UserInfoManage.ftl?op=edit" txn="" /> 
 
         <Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
             updateClass="com.cibfintech.blacklist.userinfo.updater.UserInfoDEL" url="#" txn="" />
         	
-        <Button id="btModify" name="btModify" desc="修改" operation="syncsubmit"
-            url="/fpages/blacklistManage/ftl/UserInfoManage.ftl?op=edit" txn="" /> 
-
-        <Button id="btStatus" name="btStatus" desc="有效/无效" operation="asysubmit"
-            updateClass="com.huateng.ebank.business.opermng.update.OperStatusChgUpdate" url="#" txn="" icon="icon-set" />
-
-        <Button id="btAuth" name="btAuth" desc="分配角色" operation="" url="#" txn="" />
+            
+        <Button id="btDetail" name="btDetail" desc="详细信息" operation="syncsubmit"
+            url="/fpages/blacklistManage/ftl/UserInfoDetail.ftl?op=detail" txn="" /> 
 
         <Button id="btResetPwd" name="btResetPwd" desc="重置密码"
-            updateClass="com.huateng.ebank.business.opermng.update.OperMngResetPwdUpdate" operation="asysubmit" url="#"
-            show="" group="" txn="management.userresetpwd.update"/>
-
-        <Button id="unLock" name="unLock" desc="解锁" updateClass="com.huateng.ebank.business.opermng.update.OperMngUnlockUpdate"
-            operation="asysubmit" url="#" show="" group="" txn="" icon="icon-unlock"/>
-
+            updateClass="com.cibfintech.blacklist.userinfo.updater.UserInfoResetPwdUpdate" operation="asysubmit" url="#"
+            show="" group="" txn=""/>
+<!-- 
+        <Button id="btStatus" name="btStatus" desc="有效/无效" operation="asysubmit"
+            updateClass="com.huateng.ebank.business.opermng.update.OperStatusChgUpdate" url="#" txn="" icon="icon-set" />
+            
+        <Button id="btAuth" name="btAuth" desc="分配角色" operation="" url="#" txn="" />
+            
         <Button id="btLoginStatus" name="btLoginStatus" desc="强行签退"
             updateClass="com.huateng.ebank.business.opermng.update.OperStatusChgUpdate" operation="asysubmit" url="#"
             show="" group="" txn="" icon="icon-undo"/>
+            
+        <Button id="unLock" name="unLock" desc="解锁" updateClass="com.huateng.ebank.business.opermng.update.OperMngUnlockUpdate"
+            operation="asysubmit" url="#" show="" group="" txn="" icon="icon-unlock"/>
+ -->
+
+
     </Operations>
     <Sql>
     </Sql>

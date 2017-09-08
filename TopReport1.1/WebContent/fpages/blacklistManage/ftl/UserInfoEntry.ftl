@@ -15,7 +15,7 @@
 		 </tr>
 		 <tr>
 			 <td colspan="2">
-				<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="-,btAdd,-,btStatus,-,btLoginStatus,-,unLock" 
+				<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="-,btAdd" 
 					fieldStr="tlrno[60],tlrName[100],flag[55],status[55],lock[55],brname,lastaccesstm[150],lastlogouttm[150],opr[85]" 
 					readonly="true" width="100%" hasFrame="true" height="280" />
 			 </td>
@@ -25,7 +25,7 @@
 				<div style="display:none">
 					<@CommonQueryMacro.Button id= "btDel" />
 					<@CommonQueryMacro.Button id= "btModify"/>
-					<@CommonQueryMacro.Button id= "btAuth"/>
+					<@CommonQueryMacro.Button id= "btDetail"/>
 					<@CommonQueryMacro.Button id= "btResetPwd"/>
 				 </div>
 			</td>
@@ -72,6 +72,7 @@
     }
     
 	function btAdd_onClick() {
+		locate(id);
 		UserInfoEntry_dataset.insertRecord();
 		UserInfoEntry_dataset.setParameter("op", "new");
 		UserInfoEntry_dataset.setParameter("id", "0");
@@ -127,8 +128,30 @@
         //刷新当前页
         flushCurrentPage();
     }
+
+    //展示对比功能的js
+    function datatable1_tlrno_onRefresh(cell, value, record) {
+        if (record != null) {
+            var sta = record.getValue("st");
+            var tlrno = record.getValue("tlrno");
+            cell.innerHTML = "<a href=\"Javascript:showDetail('" + tlrno + "','" + sta + "')\">" + tlrno + "</a>";
+        } else {
+            cell.innerHTML = ""
+        }
+    }
+
+    function showDetail(id) {
+		locate(id);
+		btDetail.click();
+        //showWin("用户详细信息", "${contextPath}/fpages/blacklistManage/ftl/UserInfoDetail.ftl?op=detail&tlrno=" + id, "", "", window);
+    }
+
+    //刷新当前页
+    function flushCurrentPage() {
+    	UserInfoEntry_dataset.flushData(UserInfoEntry_dataset.pageIndex);
+    }
     
-    function btStatus_onClickCheck(button) {
+    /* function btStatus_onClickCheck(button) {
         var status = UserInfoEntry_dataset.getValue("flag");
         if (status == '0') {
             if (confirm("确认将该用户设置为有效?")) {
@@ -213,26 +236,7 @@
             unLock.disable(true);
             btLoginStatus.disable(true);
         }
-    }
+    } */
 
-    //展示对比功能的js
-    function datatable1_tlrno_onRefresh(cell, value, record) {
-        if (record != null) {
-            var sta = record.getValue("st");
-            var tlrno = record.getValue("tlrno");
-            cell.innerHTML = "<a href=\"Javascript:showDetail('" + tlrno + "','" + sta + "')\">" + tlrno + "</a>";
-        } else {
-            cell.innerHTML = ""
-        }
-    }
-
-    function showDetail(tlrno, sta) {
-        showWin("用户详细信息", "${contextPath}/fpages/regonization/ftl/OperMngRoleCompare.ftl?id=" + tlrno + "&st=" + sta + "&flag=0", "", "", window);
-    }
-
-    //刷新当前页
-    function flushCurrentPage() {
-    	UserInfoEntry_dataset.flushData(UserInfoEntry_dataset.pageIndex);
-    }
 </script>
 </@CommonQueryMacro.page>

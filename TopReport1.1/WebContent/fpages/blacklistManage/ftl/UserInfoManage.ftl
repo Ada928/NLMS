@@ -8,12 +8,12 @@
 				<@CommonQueryMacro.CommonQuery id="UserInfoManage" init="true" navigate="false" submitMode="all" >
 					<@CommonQueryMacro.GroupBox id="guoup1" label="操作员信息" expand="true">
 						<table frame=void class="grouptable" width="100%">
-						<tr>
-							<td align="center" nowrap class="labeltd"  width="25%"> 用户姓名 </td>
-							<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrName" /></td>
-							<td align="center" nowrap class="labeltd"  width="25%"> 所属银行 </td>
-							<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="brcode" /></td>
-						</tr>
+							<tr>
+								<td align="center" nowrap class="labeltd"  width="25%"> 用户姓名 </td>
+								<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrName" /></td>
+								<td align="center" nowrap class="labeltd"  width="25%"> 所属银行 </td>
+								<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="brcode" /></td>
+							</tr>
 					   </table>
 				   </@CommonQueryMacro.GroupBox>
 				</@CommonQueryMacro.CommonQuery>
@@ -57,7 +57,6 @@
 	}
 
 	function btSave_onClickCheck() {
-		//var brcode = UserInfoManage_dataset.getValue("brcode");
 		var tlrName = UserInfoManage_dataset.getValue("tlrName");
 		if (tlrName.length == 0) {
 			alert("用户姓名必须填写！");

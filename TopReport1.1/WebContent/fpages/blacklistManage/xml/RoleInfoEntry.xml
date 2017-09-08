@@ -61,20 +61,20 @@
         <Button id="btRoleAuthorityManagement" name="btRoleAuthorityManagement" desc="设置岗位功能" operation="syncsubmit"
             url="/fpages/blacklistManage/ftl/RoleInfoManage.ftl?opType=edit" txn="" /> 
 
-        <!-- <Button id="btSelectRole" name="btSelectRole" desc="查询人员信息" operation="syncsubmit"
-            url="/fpages/management/ftl/ebankCustRoleMngUser.ftl" txn="" /> -->
+        <Button id="btShowUser" name="btShowUser" desc="查询人员信息" operation="syncsubmit"
+            url="/fpages/blacklistManage/ftl/ShowRoleUser.ftl" txn="" /> <!---->
 
         <Button id="btAdd" name="btAdd" desc="新增岗位" operation="href" url="/fpages/management/ftl/RoleFuncMng.ftl"
             txn="" icon="icon-add" />
 
         <Button id="btDel" name="btDeleteRole" desc="删除"  operation="asysubmit"
-            updateClass="com.huateng.ebank.business.rolemng.update.RoleDelChgUpdate" url="#" txn="" />
+            updateClass="com.cibfintech.blacklist.roleinfo.updater.RoleInfoDEL" url="#" txn="" />
         
       <!--   <Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
             updateClass="com.huateng.ebank.business.management.updater.CustRoleSaveUpdater" url="#" txn="" /> -->
             
         <Button id="btStatus" name="btUnlockRole" desc="有效/无效" operation="asysubmit"
-            updateClass="com.huateng.ebank.business.rolemng.update.RoleStatusChgUpdate" url="#" txn="" icon="icon-set" />
+            updateClass="com.cibfintech.blacklist.roleinfo.updater.RoleInfoChgStatues" url="#" txn="" icon="icon-set" />
             
         <!-- <Button id="btQuery" name="btQuery" desc="查看对比信息" operation="syncsubmit" url="" txn="" /> 
         

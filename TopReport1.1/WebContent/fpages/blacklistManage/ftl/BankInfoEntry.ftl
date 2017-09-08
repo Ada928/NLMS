@@ -22,6 +22,7 @@
   		<tr align="center" style="display:none">
 			<td><@CommonQueryMacro.Button id= "btDel" /></td>
 			<td><@CommonQueryMacro.Button id= "btModify" /></td>
+			<td><@CommonQueryMacro.Button id= "btDetail" /></td>
 		</tr>
    </table>
 </@CommonQueryMacro.CommonQuery>
@@ -64,14 +65,12 @@
 		var del = BankInfoEntry_dataset.getValue("del");
 		if (del == 'false') {
 			if (confirm("确认删除该条记录？")) {
-				BankInfoEntry_dataset.setParameter("delet", "T");
 				return true;
 			} else {
 				return false;
 			}
 		} else {
 			if (confirm("确认恢复该条记录？")) {
-				BankInfoEntry_dataset.setParameter("delet", "F");
 				return true;
 			} else {
 				return false;
@@ -94,13 +93,14 @@
 	//修改功能
 	function openModifyWindow(id) {
 		locate(id);
-		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl?opType=edit&brcode="+id;
+		btModify.click();
 	}
 
-	function btAdd_onClick(button) {
+	function btAdd_onClick() {
+		locate(id);
 		BankInfoEntry_dataset.insertRecord();
-		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl?opType=add";
 	}
+	
 	//展示对比功能的js
 	function datatable1_brno_onRefresh(cell, value, record) {
 		if (record != null) {
@@ -115,21 +115,20 @@
 	}
 
 	function showDetail(id, sta) {
-		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankInfoDetail.ftl?opType=showDetail&brcode="+id;
+		locate(id);
+		btDetail.click();
 	}
 
 	function btStatus_onClickCheck(button) {
 		var status = BankInfoEntry_dataset.getValue("status");
 		if (status == '0') {
 			if (confirm("确认将该机构设置为有效?")) {
-				BankInfoEntry_dataset.setParameter("statu", "1");
 				return true;
 			} else {
 				return false;
 			}
 		} else {
 			if (confirm("确认将该机构设置为无效?")) {
-				BankInfoEntry_dataset.setParameter("statu", "0");
 				return true;
 			} else {
 				return false;

@@ -2,6 +2,8 @@ package com.cibfintech.blacklist.roleinfo.service;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import resource.bean.pub.TlrRoleRel;
 import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
@@ -27,17 +29,17 @@ public class RoleTlrRelService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public PageQueryResult pageQueryByHql(GlobalInfo globalinfo, Boolean isSuperManager, int pageIndex, int pageSize, String partyId, String qCertificateType,
-			String qCertificateNumber, String operateStates) {
+	public PageQueryResult pageQueryByHql(GlobalInfo globalinfo, int pageIndex, int pageSize, String tlrno) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer(" from TlrRoleRel bblt where bblt.del='F'");
+		StringBuffer hql = new StringBuffer(" from TlrRoleRel bblt where 1=1");
 
+		if (StringUtils.isNotBlank(tlrno)) {
+			hql.append(" and bblt.tlrno = '").append(tlrno.trim()).append("'");
+		}
 		/*
-		 * if (StringUtils.isNotBlank(partyId)) {
-		 * hql.append(" and bblt.id = '").append(partyId.trim()).append("'"); }
 		 * if (StringUtils.isNotBlank(qCertificateType)) {
 		 * hql.append(" and bblt.certificateType = '"
 		 * ).append(qCertificateType.trim()).append("'"); } if
@@ -69,6 +71,38 @@ public class RoleTlrRelService {
 	public List getAllTlrRoleRel() throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		List list = rootDAO.queryByQL2List("1=1");
+		for (int i = 0; i < list.size(); i++) {
+			TlrRoleRel bean = (TlrRoleRel) list.get(i);
+			list.set(i, bean);
+		}
+		return list;
+	}
+
+	/*
+	 * 查询
+	 * 
+	 * @param paramgroupId 参数段编号
+	 */
+	@SuppressWarnings("unchecked")
+	public List<TlrRoleRel> getTlrRoleRelByTlrno(String tlrno) throws CommonException {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		List<TlrRoleRel> list = rootDAO.queryByQL2List(" from TlrRoleRel bblt where 1=1 and bblt.tlrno=" + tlrno);
+		for (int i = 0; i < list.size(); i++) {
+			TlrRoleRel bean = (TlrRoleRel) list.get(i);
+			list.set(i, bean);
+		}
+		return list;
+	}
+
+	/*
+	 * 查询
+	 * 
+	 * @param paramgroupId 参数段编号
+	 */
+	@SuppressWarnings("unchecked")
+	public List<TlrRoleRel> getTlrRoleRelByRoleId(String roleId) throws CommonException {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		List<TlrRoleRel> list = rootDAO.queryByQL2List(" from TlrRoleRel bblt where 1=1 and bblt.roleId=" + roleId);
 		for (int i = 0; i < list.size(); i++) {
 			TlrRoleRel bean = (TlrRoleRel) list.get(i);
 			list.set(i, bean);
