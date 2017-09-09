@@ -3,19 +3,22 @@
 <!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
 	async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
 
-<CommQry title="商行黑名单管理" navigate="商行黑名单管理" type="call" interface="true" pagesize="20" async="true" databusid="" txnlogflag="true"
-	transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.bankblacklist.getter.BankBlackListGetter">
+<CommQry title="商行黑名单管理" navigate="商行黑名单管理" type="call" interface="true" pagesize="20" async="true" databusid=""
+	txnlogflag="true" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.bankblacklist.getter.BankBlackListApproveGetter">
 
 	<Include id="BankParam" />
-	<PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-商行黑名单列表" perfetch="15" />
 
 	<Fields>
+
+		<Field id="select" desc="选择" status="N" method="None" datetype="checkbox" edittype="checkbox" readonly="false"
+			primary="true" type="String" size="20" default="false" xpath="/selected" />
+
 		<Field id="id" desc="黑名单编号" edittype="text" datatype="string" status="F" xpath="/id" />
 
 		<Field id="bankCode" desc="银行代码" edittype="text" datatype="string" status="F" xpath="/bankCode" />
 
 		<Field id="bankName" desc="银行名称" status="N" method="com.huateng.ebank.business.common.CQMethod.getBrhName"
-			readonly="" primary="false" type="String" size="20" default="" xpath="/bankCode" />
+			readonly="true" primary="false" type="String" size="20" default="" xpath="/bankCode" />
 
 		<Field id="accountType" desc="账户类型" status="F" edittype="select" require="false" method="None" primary="" type="String"
 			default="false" xpath="/accountType" tip="账户类型" translated="LIST:C,对公;I,对私;" />
@@ -29,17 +32,26 @@
 		<Field id="blacklistType" desc="名单性质" status="F" edittype="select" require="false" method="None" primary=""
 			type="String" default="false" xpath="/blacklistType" tip="名单性质" translated="LIST:0,白名单;1,灰名单;2,黑名单" />
 
-		<Field id="share" desc="是否共享" status="F" edittype="radio" require="false" method="None" primary="" type="String"
-			default="false" xpath="/share" tip="是否共享" translated="LIST:true,共享;false,不共享" />
+		<Field id="share" desc="是否共享" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/share" tip="是否共享" translated="LIST:T,共享;F,不共享" />
 
-		<Field id="valid" desc="有效状态" status="F" edittype="radio" require="false" method="None" primary="" type="String"
-			default="false" xpath="/valid" tip="有效状态" translated="LIST:true,有效;false,无效" />
+		<Field id="valid" desc="有效状态" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/valid" tip="有效状态" translated="LIST:T,有效;F,无效" />
 
-		<Field id="del" desc="是否删除" status="F" edittype="radio" require="false" method="None" primary="" type="String"
-			default="false" xpath="/del" tip="是否删除" translated="LIST:false,不删除;true,删除" />
+		<Field id="del" desc="是否删除" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/del" tip="是否删除" translated="LIST:F,不删除;true,删除" />
 
 		<Field id="operateState" desc="操作状态" status="F" edittype="select" require="false" method="None" primary="" type="String"
 			default="false" xpath="/operateState" tip="操作状态" translated="DATA_DIC.3001" />
+		
+		<Field id="shareState" desc="分享状态" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/shareState" tip="分享状态" translated="DATA_DIC.3001" />
+		
+		<Field id="validState" desc="有效状态" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/validState" tip="有效状态" translated="DATA_DIC.3001" />
+		
+		<Field id="delState" desc="删除状态" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/delState" tip="删除状态" translated="DATA_DIC.3001" />
 
 		<Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" status="F" xpath="/certificateNumber" />
 
@@ -86,30 +98,17 @@
 	</Where>
 
 	<Operations>
-		<Button id="btAdd" name="btAdd" desc="新增" operation="href"
-			url="/fpages/blacklistManage/ftl/BankBlacklistManage.ftl?op=add" show="" group="" txn="" icon="icon-add" />
-
-		<Button id="btModify" name="btModify" desc="修改" operation="syncsubmit"
-			url="/fpages/blacklistManage/ftl/BankBlacklistManage.ftl?op=edit" txn="" />
-
 		<Button id="btDetail" name="btDetail" desc="详细信息" operation="syncsubmit"
 			url="/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail" txn="" />
 
-		<Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
-			updateClass="com.cibfintech.report.blacklist.bankblacklist.updater.BankBlackListDEL" url="#" />
+		<Button id="btApprove" name="btApprove" desc="通过审批" operation="asysubmit"
+			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListApprove" 
+			url="/fpages/blacklistManage/ftl/BankBlackList.ftl"
+			icon="icon-ok" />
 
-		<Button id="btVerify" name="btVerify" desc="审核" operation="asysubmit"
-			updateClass="com.cibfintech.report.blacklist.bankblacklist.updater.BankBlackListUpdate" url="#" />
-
-		<Button id="btApprove" name="btApprove" desc="审批" operation="asysubmit"
-			updateClass="com.cibfintech.report.blacklist.bankblacklist.updater.BankBlackListUpdate" url="#" />
-
-		<Button id="btShare" name="btShare" desc="分享" operation="asysubmit"
-			updateClass="com.cibfintech.report.blacklist.bankblacklist.updater.BankBlackListUpdate" url="#" />
-
-		<Button id="btSave" name="btSave" desc="保存" operation="asysubmit" updateClass="" url="#" />
-
-		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform" url="/fpages/blacklistManage/ftl/BankBlackList.ftl"
-			txn="" />
+		<Button id="btCancelApprove" name="btCancelApprove" desc="取消审批，重新审核" operation="asysubmit"
+			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListApprove" 
+			url="/fpages/blacklistManage/ftl/BankBlackList.ftl"
+			icon="icon-cancel" />
 	</Operations>
 </CommQry>

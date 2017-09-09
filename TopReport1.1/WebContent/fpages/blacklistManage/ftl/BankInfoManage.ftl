@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<#assign opType=RequestParameters["opType"]?default("")>
+<#assign op=RequestParameters["op"]?default("")>
 <#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="银行机构信息维护">
 <@CommonQueryMacro.CommonQuery id="BankInfoManage" init="true" submitMode="current">
@@ -23,7 +23,7 @@
 <script language="javascript">
 	
 	var roleType = "${info.roleTypeList}";
-	var opType = "${opType}";
+	var op = "${op}";
 
 	function initCallGetter_post(dataset) {
 		var brcode = BankInfoManage_dataset.getValue("brcode");

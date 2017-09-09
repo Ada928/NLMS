@@ -24,10 +24,10 @@
 		<Field id="bankCode" desc="银行代码" edittype="text" datatype="string" status="F" xpath="/bankCode" />
 		<Field id="blackListOrganization" desc="银行代码" edittype="text" datatype="string" status="F" xpath="/blackListOrganization" />
 
-		<Field id="valid" desc="有效状态" status="N" readonly="true" translated="LIST:true,有效;false,无效" require="false"
+		<Field id="valid" desc="有效状态" status="N" readonly="true" translated="LIST:T,有效;F,无效" require="false"
 			edittype="select" method="None" primary="false" type="String" xpath="/valid" />
 		<Field id="del" desc="是否删除" status="N" edittype="select" method="None" primary="false" type="String" default=""
-			tip="是否删除" translated="LIST:true,不删除;false,删除" xpath="/del" />
+			tip="是否删除" translated="LIST:T,不删除;F,删除" xpath="/del" />
 		<Field id="validDate" desc="有效期" edittype="text" status="F" datatype="date" xpath="/validDate" />
 		<Field id="operateState" desc="操作状态" status="N" require="false" edittype="select" datatype="string" method="None"
 			readonly="true" primary="true" type="st" translated="DATA_DIC.3001" default="" xpath="/operateState" tip="" />

@@ -73,7 +73,7 @@ public class BranchManageUpdateOperation extends BaseOperation {
 				// bean.setLock(true);
 				// //dao.insert(bean);
 				bean.setSt(ReportEnum.REPORT_ST1.Y.value);
-				bean.setLock(false);
+				bean.setLock(SystemConstant.FALSE);
 				dao.insert(bean);
 				// modified by xuhong 20150331 机构信息直接导入 end
 			}

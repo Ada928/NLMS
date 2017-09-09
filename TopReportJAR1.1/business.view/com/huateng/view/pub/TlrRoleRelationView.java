@@ -9,10 +9,10 @@ import java.io.Serializable;
  *
  */
 public class TlrRoleRelationView implements Serializable {
-	private String tlrno;
+	private boolean selected;
 	private String roleId;
 	private String roleName;
-	private boolean selected;
+	private String tlrno;
 	private String brcode;
 
 	public String getTlrno() {

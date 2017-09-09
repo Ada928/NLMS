@@ -50,8 +50,8 @@ public class BankInfoGetter extends BaseGetter {
 	}
 
 	protected PageQueryResult getData() throws Exception {
-		String brNo = getCommQueryServletRequest().getParameter("brNo");
-		String brName = getCommQueryServletRequest().getParameter("brName");
+		String brNo = getCommQueryServletRequest().getParameter("brhNo");
+		String brName = getCommQueryServletRequest().getParameter("brhName");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 
@@ -65,10 +65,10 @@ public class BankInfoGetter extends BaseGetter {
 			}
 		}
 
-		StringBuffer hql = new StringBuffer("from Bctl bblt where 1=1");
+		StringBuffer hql = new StringBuffer(" from resource.bean.pub.Bctl bblt where 1=1");
 		List<Object> list = new ArrayList<Object>();
 		hql.append(" and bblt.del= ? ");
-		list.add(false);
+		list.add(Boolean.FALSE);
 
 		if (StringUtils.isNotBlank(brNo)) {
 			hql.append(" and bblt.brno= ? ");
@@ -84,7 +84,7 @@ public class BankInfoGetter extends BaseGetter {
 		}
 		hql.append(" order by bblt.brcode");
 
-		PageQueryResult pqr = BankInfoService.getInstance().pageQueryByHql(pageSize, pageIndex, hql.toString(), list);
+		PageQueryResult pqr = BankInfoService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString(), list);
 		String message = "银行信息管理:brhNo=" + brNo + ",brhName=" + brName;
 		recordOperateLog(globalinfo, pqr.getTotalCount(), message);
 		return pqr;

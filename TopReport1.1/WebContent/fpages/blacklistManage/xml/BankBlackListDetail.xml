@@ -31,17 +31,26 @@
 		<Field id="blacklistType" desc="名单性质" status="F" edittype="select" require="false" method="None" primary=""
 			type="String" default="false" xpath="/blacklistType" tip="名单性质" readonly="true" translated="LIST:0,白名单;1,灰名单;2,黑名单" />
 
-		<Field id="share" desc="是否共享" status="F" edittype="radio" require="false" method="None" primary="" type="String"
-			default="false" xpath="/share" tip="是否共享" readonly="true" translated="LIST:true,共享;false,不共享" />
+		<Field id="share" desc="是否共享" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/share" tip="是否共享" readonly="true" translated="LIST:T,共享;F,不共享" />
 
-		<Field id="valid" desc="有效状态" status="F" edittype="radio" require="false" method="None" primary="" type="String"
-			default="false" xpath="/valid" tip="有效状态" readonly="true" translated="LIST:true,有效;false,无效" />
+		<Field id="valid" desc="有效状态" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/valid" tip="有效状态" readonly="true" translated="LIST:T,有效;F,无效" />
 
-		<Field id="del" desc="是否删除" status="F" edittype="radio" require="false" method="None" primary="" type="String"
-			default="false" xpath="/del" tip="是否删除" readonly="true" translated="LIST:false,不删除;true,删除" />
+		<Field id="del" desc="是否删除" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/del" tip="是否删除" readonly="true" translated="LIST:F,不删除;true,删除" />
 
 		<Field id="operateState" desc="操作状态" status="F" edittype="select" require="false" method="None" primary="" type="String"
-			default="false" xpath="/operateState" tip="操作状态" readonly="true" translated="DATA_DIC.3001" />
+			default="false" xpath="/operateState" tip="操作状态" translated="DATA_DIC.3001" />
+		
+		<Field id="shareState" desc="分享状态" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/shareState" tip="分享状态" translated="DATA_DIC.3001" />
+		
+		<Field id="validState" desc="有效状态" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/validState" tip="有效状态" translated="DATA_DIC.3001" />
+		
+		<Field id="delState" desc="删除状态" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/delState" tip="删除状态" translated="DATA_DIC.3001" />
 
 
 		<Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" readonly="true" status="F"
@@ -90,7 +99,7 @@
 
 	</Fields>
 	<Operations>
-		<Button id="btClose" name="btClose" desc="返回" operation="submitform" url="/fpages/blacklistManage/ftl/BankBlacklist.ftl"
-			txn="" />
+		<Button id="btClose" name="btClose" desc="返回" operation="submitform" url="/fpages/blacklistManage/ftl/BankBlacklistEdit.ftl"
+			txn="" icon="icon-back" />
 	</Operations>
 </CommQry>

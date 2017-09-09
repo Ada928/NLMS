@@ -23,10 +23,11 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import com.huateng.report.utils.ReportEnum;
 import com.huateng.service.pub.UserMgrService;
 
 @SuppressWarnings("unchecked")
-public class BankBlackListQueryGetter extends BaseGetter {
+public class BankBlackListApproveGetter extends BaseGetter {
 	/*
 	 * 获取商行黑名单
 	 * 
@@ -50,11 +51,12 @@ public class BankBlackListQueryGetter extends BaseGetter {
 	}
 
 	protected PageQueryResult getData() throws Exception {
-		String partyId = getCommQueryServletRequest().getParameter("qPartyId");
+		String qPartyId = getCommQueryServletRequest().getParameter("qPartyId");
 		String qCertificateType = getCommQueryServletRequest().getParameter("qCertificateType");
 		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
+
 		GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
 		List<RoleInfo> roleInfos = UserMgrService.getInstance().getUserRoles(globalinfo.getTlrno());
 		boolean isSuperManager = false;
@@ -65,11 +67,14 @@ public class BankBlackListQueryGetter extends BaseGetter {
 			}
 		}
 
-		StringBuffer hql = new StringBuffer(" from NsBankBlackList bblt where bblt.del='F'");
+		StringBuffer hql = new StringBuffer(" from NsBankBlackList bblt where 1=1");
 		List<Object> list = new ArrayList<Object>();
-		if (StringUtils.isNotBlank(partyId)) {
+		hql.append("and bblt.del= ?");
+		list.add("F");
+
+		if (StringUtils.isNotBlank(qPartyId)) {
 			hql.append(" and bblt.id = ?");
-			list.add(partyId.trim());
+			list.add(qPartyId.trim());
 		}
 		if (StringUtils.isNotBlank(qCertificateType)) {
 			hql.append(" and bblt.certificateType = ?");
@@ -79,17 +84,29 @@ public class BankBlackListQueryGetter extends BaseGetter {
 			hql.append(" and bblt.certificateNumber like ?");
 			list.add("%" + qCertificateNumber.trim() + "%");
 		}
-
 		if (!isSuperManager) {
-			hql.append(" and bblt.share=?");
-			list.add("T");
-			hql.append(" or bblt.bankCode = ?");
+			hql.append(" and bblt.bankCode = ?");
 			list.add(globalinfo.getBrcode());
 		}
+		hql.append(" or ( bblt.operateState = ?");
+		list.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.EDVRED.value);
+		hql.append(" or bblt.operateState = ?)");
+		list.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.EDAPED.value);
+		hql.append(" or ( bblt.shareState = ?");
+		list.add(ReportEnum.BANK_BLACKLIST_SHARE_STATE.SHVRED.value);
+		hql.append(" or bblt.shareState = ? )");
+		list.add(ReportEnum.BANK_BLACKLIST_SHARE_STATE.SHAPED.value);
+		hql.append(" or ( bblt.validState = ?");
+		list.add(ReportEnum.BANK_BLACKLIST_VALID_STATE.VAVRED.value);
+		hql.append(" or bblt.validState = ?)");
+		list.add(ReportEnum.BANK_BLACKLIST_VALID_STATE.VAAPED.value);
+		hql.append(" and ( bblt.delState = ?");
+		list.add(ReportEnum.BANK_BLACKLIST_DEL_STATE.DEVRED.value);
+		hql.append(" or bblt.delState = ?)");
+		list.add(ReportEnum.BANK_BLACKLIST_DEL_STATE.DEAPED.value);
 
-		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageSize, pageIndex, hql.toString(), list);
-
-		String message = "国际黑名单的查询:partyId=" + partyId + ",certificateType=" + qCertificateType + ",certificateNumber=" + qCertificateNumber;
+		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString(), list);
+		String message = "国际黑名单的查询:partyId=" + qPartyId + ",certificateType=" + qCertificateType + ",certificateNumber=" + qCertificateNumber;
 		recordOperateLog(globalinfo, pqr.getTotalCount(), message);
 		return pqr;
 	}

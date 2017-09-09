@@ -1,5 +1,7 @@
 package com.cibfintech.blacklist.bankblacklist.updater;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +26,8 @@ import com.huateng.exception.AppException;
  */
 public class BankBlackListDEL extends BaseUpdate {
 
-	private static final String DATASET_ID = "BankBlackList";
+	private static final String DATASET_ID = "BankBlackListEdit";
+	private static final String PARAM_ACTION = "op";
 
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
@@ -34,26 +37,32 @@ public class BankBlackListDEL extends BaseUpdate {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
+			String del = updateResultBean.getParameter(PARAM_ACTION);
+			del = (null == del || "" == del) ? "" : del;
 			// 更新对象
-			NsBankBlackList bankBlackList = new NsBankBlackList();
+			List<NsBankBlackList> beans = new ArrayList<NsBankBlackList>();
 			// Operation参数
 			OperationContext context = new OperationContext();
-			if (updateResultBean.hasNext()) {
-				// 属性拷贝
+			while (updateResultBean.hasNext()) {
+				NsBankBlackList bean = new NsBankBlackList();
 				Map map = updateResultBean.next();
-				context.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_DEL);
-				BaseUpdate.mapToObject(bankBlackList, map);
-				// call方式开启operation事务
-				context.setAttribute(BankBlackListOperation.IN_BANK_BLACK_LIST, bankBlackList);
-				OPCaller.call(BankBlackListOperation.ID, context);
-				return updateReturnBean;
+				String id = (String) map.get("id");
+				bean.setId(id);
+				beans.add(bean);
 			}
+
+			OperationContext oc = new OperationContext();
+			oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_DEL);
+			oc.setAttribute(BankBlackListOperation.IN_DEL, del);
+			oc.setAttribute(BankBlackListOperation.IN_BANK_BLACK_LISTS, beans);
+
+			// call方式开启operation事务
+			OPCaller.call(BankBlackListOperation.ID, oc);
+			return updateReturnBean;
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
 			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
-		return null;
 	}
-
 }

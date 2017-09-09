@@ -23,7 +23,7 @@ import com.huateng.exception.AppException;
 public class RoleInfoUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "RoleInfoManage";
-	private final static String PARAM_ACTION = "opType";
+	private final static String PARAM_ACTION = "op";
 
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
@@ -38,15 +38,15 @@ public class RoleInfoUpdate extends BaseUpdate {
 			// 属性拷贝
 			Map map = updateResultBean.next();
 			BaseUpdate.mapToObject(bean, map);
-			String opType = updateResultBean.getParameter(PARAM_ACTION);
-			opType = (null == opType || "" == opType) ? "" : opType;
-			if (opType.equals(RoleInfoOperation.IN_EDIT)) {
+			String op = updateResultBean.getParameter(PARAM_ACTION);
+			op = (null == op || "" == op) ? "" : op;
+			if (op.equals(RoleInfoOperation.IN_EDIT)) {
 				oc.setAttribute(RoleInfoOperation.CMD, RoleInfoOperation.CMD_EDIT);
 			}
-			if (opType.equals(RoleInfoOperation.IN_ADD)) {
+			if (op.equals(RoleInfoOperation.IN_ADD)) {
 				oc.setAttribute(RoleInfoOperation.CMD, RoleInfoOperation.CMD_ADD);
 			}
-			oc.setAttribute(RoleInfoOperation.IN_PARAM, opType);
+			oc.setAttribute(RoleInfoOperation.IN_PARAM, op);
 			oc.setAttribute(RoleInfoOperation.IN_ROLE_INFO, bean);
 			// call方式开启operation事务
 			OPCaller.call(RoleInfoOperation.ID, oc);

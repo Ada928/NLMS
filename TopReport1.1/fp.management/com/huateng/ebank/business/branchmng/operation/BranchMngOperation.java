@@ -65,7 +65,7 @@ public class BranchMngOperation extends BaseOperation {
 					SysTaskInfo taskInfo;
 					try {
 						Bctl bctlTaskInfo = bctlDAO.query(brhid);
-						bctlTaskInfo.setLock(false);
+						bctlTaskInfo.setLock(SystemConstant.FALSE);
 						bctlTaskInfo.setStatus(status);
 
 						taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value,
@@ -88,7 +88,7 @@ public class BranchMngOperation extends BaseOperation {
 					SysTaskInfo taskInfo;
 					try {
 						Bctl bctlTaskInfo = bctlDAO.query(brhid);
-						bctlTaskInfo.setLock(true);
+						bctlTaskInfo.setLock(SystemConstant.TRUE);
 						bctlTaskInfo.setStatus(status);
 
 						taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value,
@@ -118,8 +118,8 @@ public class BranchMngOperation extends BaseOperation {
 					SysTaskInfo taskInfo;
 					try {
 						Bctl bctlTaskInfo = bctlDAO.query(brhid);
-						bctlTaskInfo.setLock(false);
-						bctlTaskInfo.setDel(false);
+						bctlTaskInfo.setLock(SystemConstant.FALSE);
+						bctlTaskInfo.setDel(SystemConstant.FALSE);
 
 						taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value,
 								ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, bctlTaskInfo, bctlTaskInfo.getBrcode(), bctlTaskInfo.getSt());
@@ -130,7 +130,7 @@ public class BranchMngOperation extends BaseOperation {
 					// bctl.setLock(true);
 					bctl.setSt(ReportEnum.REPORT_ST1.ET.value);
 
-					bctl.setDel(false);
+					bctl.setDel(SystemConstant.FALSE);
 					bctlDAO.getHibernateTemplate().update(bctl);
 					message = "银行信息恢复删除状态的处理";
 					operateType = SystemConstant.LOG_DELEATE;
@@ -140,8 +140,8 @@ public class BranchMngOperation extends BaseOperation {
 					SysTaskInfo taskInfo;
 					try {
 						Bctl bctlTaskInfo = bctlDAO.query(brhid);
-						bctlTaskInfo.setLock(true);
-						bctlTaskInfo.setDel(true);
+						bctlTaskInfo.setLock(SystemConstant.TRUE);
+						bctlTaskInfo.setDel(SystemConstant.TRUE);
 
 						taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value,
 								ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, bctlTaskInfo, bctlTaskInfo.getBrcode(), bctlTaskInfo.getSt());
@@ -150,7 +150,7 @@ public class BranchMngOperation extends BaseOperation {
 						e.printStackTrace();
 					}
 					bctl.setSt(ReportEnum.REPORT_ST1.ET.value);
-					bctl.setDel(true);
+					bctl.setDel(SystemConstant.TRUE);
 					bctlDAO.getHibernateTemplate().update(bctl);
 
 					message = "银行信息删除的处理";

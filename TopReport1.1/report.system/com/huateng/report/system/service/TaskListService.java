@@ -429,14 +429,14 @@ public class TaskListService {
 					if (extraFlag) {
 						// 新增:
 						RoleInfo obj = (RoleInfo) getObjectByOldKey(oldkey, intInsId);
-						obj.setLock(false);
+						obj.setLock(SystemConstant.FALSE);
 						obj.setSt(REPORT__FH_ST.YES.value);
 						rootdao.saveOrUpdate(obj);
 					} else {
 						// 修改:
 						RoleInfo roleInfo = null;
 						roleInfo = (RoleInfo) rt.getObjctBySysTaskInfo(taskbean);
-						roleInfo.setLock(false);
+						roleInfo.setLock(SystemConstant.FALSE);
 						roleInfo.setSt(REPORT__FH_ST.YES.value);
 						rootdao.saveOrUpdate(roleInfo);
 						String roleListNew = roleInfo.getRoleList();
@@ -550,7 +550,7 @@ public class TaskListService {
 						deleRoleFunc(id);
 					} else {// 角色修该拒绝
 						RoleInfo obj = (RoleInfo) getObjectByOldKey(oldkey, intInsId);
-						obj.setLock(false);
+						obj.setLock(SystemConstant.FALSE);
 						obj.setSt(REPORT__FH_ST.YES.value);
 						rootdao.saveOrUpdate(obj);
 

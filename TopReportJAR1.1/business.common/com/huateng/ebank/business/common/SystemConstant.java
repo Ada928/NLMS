@@ -22,12 +22,6 @@ public class SystemConstant {
 	public static final String FLAG_ON = "1"; // 是
 
 	/**
-	 * 是否锁定
-	 */
-	public final static Boolean NOT_LOCKED = false;
-	public final static Boolean LOCKED = true;
-
-	/**
 	 * 是否标志
 	 */
 	public static final String LOG_ADD = "A"; // 增加
@@ -39,8 +33,8 @@ public class SystemConstant {
 	/**
 	 * 是否对错
 	 */
-	public static final Boolean TRUE = true; // 否
-	public static final Boolean FALSE = false; // 是
+	public static final String TRUE = "T"; // 否
+	public static final String FALSE = "F"; // 是
 
 	/**
 	 * 有效标志/状态

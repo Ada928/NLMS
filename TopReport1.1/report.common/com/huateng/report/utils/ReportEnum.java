@@ -292,11 +292,71 @@ public class ReportEnum {
 	}
 
 	public static enum BANK_BLACKLIST_OPERATE_STATE {
-		ED("1", "编辑中"), VR("2", "审核中"), AP("3", "审批中"), PB("4", "发布中"), N("5", "无效");
+		EDING("1", "編輯中..."), EDED("2", "編輯完成，待审核"), EDVRED("3", "编辑审核完成，待审批"), EDAPED("4", "审批完成，已发布"), N("0", "无效");
 		public String value;
 		public String name;
 
 		private BANK_BLACKLIST_OPERATE_STATE(String value, String name) {
+			this.value = value;
+			this.name = name;
+		}
+
+		public static String valueof(String value) {
+			for (int i = 0; i < values().length; i++) {
+				if (values()[i].value.equals(value)) {
+					return values()[i].name;
+				}
+			}
+			return value;
+		}
+	}
+
+	public static enum BANK_BLACKLIST_SHARE_STATE {
+		SHING("1", "編輯中..."), SHED("2", "編輯完成，待审核"), SHVRED("3", "编辑审核完成，待审批"), SHAPED("4", "审批完成，已发布"), N("0", "无效");
+		public String value;
+		public String name;
+
+		private BANK_BLACKLIST_SHARE_STATE(String value, String name) {
+			this.value = value;
+			this.name = name;
+		}
+
+		public static String valueof(String value) {
+			for (int i = 0; i < values().length; i++) {
+				if (values()[i].value.equals(value)) {
+					return values()[i].name;
+				}
+			}
+			return value;
+		}
+	}
+
+	public static enum BANK_BLACKLIST_VALID_STATE {
+		VAING("1", "編輯中..."), VAED("2", "編輯完成，待审核"), VAVRED("3", "编辑审核完成，待审批"), VAAPED("4", "审批完成，已发布"), N("0", "无效");
+		public String value;
+		public String name;
+
+		private BANK_BLACKLIST_VALID_STATE(String value, String name) {
+			this.value = value;
+			this.name = name;
+		}
+
+		public static String valueof(String value) {
+			for (int i = 0; i < values().length; i++) {
+				if (values()[i].value.equals(value)) {
+					return values()[i].name;
+				}
+			}
+			return value;
+		}
+	}
+
+	public static enum BANK_BLACKLIST_DEL_STATE {
+		DEING("1", "編輯中..."), DEED("2", "編輯完成，待审核"), DEVRED("3", "编辑审核完成，待审批"), DEAPED("4", "审批完成，已发布"), N("0", "无效");
+		public String value;
+		public String name;
+
+		private BANK_BLACKLIST_DEL_STATE(String value, String name) {
 			this.value = value;
 			this.name = name;
 		}

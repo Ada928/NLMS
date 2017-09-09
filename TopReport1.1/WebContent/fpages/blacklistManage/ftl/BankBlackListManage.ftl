@@ -1,12 +1,13 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign opType=RequestParameters["opType"]?default("")>
-<@CommonQueryMacro.page title="商行黑名单管理">
+<@CommonQueryMacro.page title="商行黑名单編輯">
 <@CommonQueryMacro.CommonQuery id="BankBlackListManage" init="true">
 <table align="center" width="100%">
 	<tr>
 		<td  align="left">
 				<@CommonQueryMacro.Group id ="bankBlackListManageGroup" label="岗位信息" 
-				fieldStr="id,accountType,certificateType,certificateNumber,clientName,clientEnglishName,blacklistType,share,valid,validDate,blacklistedReason,unblacklistedReason" 
+				fieldStr="bankCode,bankName,accountType,blacklistType,certificateType,certificateNumber,clientName,"+
+					"clientEnglishName,valid,validDate,blacklistedReason,unblacklistedReason" 
         	    colNm=4/>
 		</td>
 	</tr>
@@ -43,8 +44,7 @@
 
     //保存后刷新当前页
     function btSave_postSubmit(button) {
-    	alert("保存成功");
-        //button.url = "/fpages/blacklistManage/ftl/BankBlackList.ftl";
+    	alert("保存成功，请等待审核。");
     }
     
 

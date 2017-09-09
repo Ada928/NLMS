@@ -1,83 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <CommQry title="企业岗位维护" navigate="主页 &gt; 权限管理 &gt; 岗位管理" type="call" interface="true" pagesize="10" async="true"
-    databusid="" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.roleinfo.getter.RoleInfoGetter">
-    <Include id="BankParam" />
-    <Fields>
-        <!-- 岗位信息 -->
-        <Field id="id" desc="岗位编号" status="F" require="" edittype="text" datatype="int" method="None" readonly=""
-            primary="true" type="岗位编号" size="8" default="" xpath="/id" tip="岗位编号" />
-        <Field id="roleName" desc="岗位名称" status="F" require="true" edittype="text" datatype="string" method="None"
-            readonly="" primary="true" type="岗位名称" size="30" default="" xpath="/roleName" tip="岗位名称" />
-        <Field id="status" desc="有效标志" status="F" require="true" edittype="select" translated="LIST:1,1-有效;0,0-无效"
-            datatype="string" method="None" readonly="true" primary="true" type="有效标示" size="1" default="" xpath="/status"
-            tip="有效标示" />
-        <Field id="effectDate" desc="生效日期" status="F" require="" edittype="text" datatype="date" method="None"
-            readonly="" primary="true" type="生效日期" size="8" default="" xpath="effectDate" tip="生效日期" />
+	databusid="" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.roleinfo.getter.RoleInfoGetter">
+	<Include id="BankParam" />
+	<Fields>
+		<!-- 岗位信息 -->
+		<Field id="id" desc="岗位编号" status="F" require="" edittype="text" datatype="int" method="None" readonly=""
+			primary="true" type="岗位编号" size="8" default="" xpath="/id" tip="岗位编号" />
+		<Field id="roleName" desc="岗位名称" status="F" require="true" edittype="text" datatype="string" method="None"
+			readonly="" primary="true" type="岗位名称" size="30" default="" xpath="/roleName" tip="岗位名称" />
+		<Field id="status" desc="有效标志" status="F" require="true" edittype="select" translated="LIST:1,1-有效;0,0-无效"
+			datatype="string" method="None" readonly="true" primary="true" type="有效标示" size="1" default="" xpath="/status" tip="有效标示" />
+		<Field id="effectDate" desc="生效日期" status="F" require="" edittype="text" datatype="date" method="None" readonly=""
+			primary="true" type="生效日期" size="8" default="" xpath="effectDate" tip="生效日期" />
 
-        <Field id="expireDate" desc="失效日期" status="F" require="" edittype="text" datatype="date" method="None"
-            readonly="" primary="true" type="失效日期" size="8" default="" xpath="expireDate" tip="失效日期" />
+		<Field id="expireDate" desc="失效日期" status="F" require="" edittype="text" datatype="date" method="None" readonly=""
+			primary="true" type="失效日期" size="8" default="" xpath="expireDate" tip="失效日期" />
 
-        <Field id="roleType" desc="岗位类型" status="F" require="false" edittype="text" datatype="string" method="None" readonly="false" primary="true" type="岗位类型" size="8" default="" xpath="/roleTyped" 
-            tip="岗位类型" /> 
-            
-        <Field id="brclass" desc="所属机构级别" status="F" edittype="select" require="false" method="None" readonly="true"
-            primary="false" type="String" default="" xpath="/brclass" tip="所属机构级别" translated="DATA_DIC.401" />
+		<Field id="roleType" desc="岗位类型" status="F" require="false" edittype="text" datatype="string" method="None"
+			readonly="false" primary="true" type="岗位类型" size="8" default="" xpath="/roleTyped" tip="岗位类型" />
 
-        <Field id="lastUpdTlr" desc="最后更新操作员号" status="F" require="false" edittype="text" datatype="string"
-            method="None" readonly="true" primary="true" type="最后更新时间" size="8" default="" xpath="/lastUpdTlr" tip="最后更新操作员号" />
+		<Field id="brclass" desc="所属机构级别" status="F" edittype="select" require="false" method="None" readonly="true"
+			primary="false" type="String" default="" xpath="/brclass" tip="所属机构级别" translated="DATA_DIC.401" />
 
-        <Field id="lastUpdDate" desc="最后更新时间" status="F" require="false" edittype="text" datatype="string" method="None"
-            readonly="true" primary="true" type="最后更新时间" size="8" default="" xpath="/lastUpdDate" tip="最后更新时间" />
-       
-        <Field id="lastUpdFunc" desc="最后更新交易号" status="F" require="false" edittype="text" datatype="string" method="None" 
-            readonly="false" primary="true" type="最后更新交易号" size="8" default="" xpath="/lastUpdFunc" tip="最后更新交易号" /> 
-       
-        <Field id="timestamps" desc="时间戳" status="F" require="false" 
-            edittype="text" datatype="string" method="None" readonly="false" primary="true" type="时间戳" size="8" default="" xpath="/timestamps" 
-            tip="时间戳" /> 
-            
-        <Field id="miscflgs" desc="扩展标志位" status="F" require="false" edittype="text" datatype="string" method="None" 
-            readonly="false" primary="true" type="扩展标志位" size="8" default="" xpath="/miscflgs" tip="扩展标志位" /> 
-        
-        <Field id="misc" desc="MISC"  status="F" require="false" edittype="text" datatype="string" method="None" readonly="false" primary="true" type="MISC" size="8" 
-            default="" xpath="/misc" tip="MISC" /> 
-            
-        <Field id="opr" desc="操作" require="false" edittype="text" datatype="string" method="None" readonly="true"
-            primary="true" type="操作" size="12" default="" xpath="" tip="操作" />
-            
-        <Field id="lock" desc="锁定状态" require="false" edittype="text" datatype="string" method="None" readonly="true"
-            primary="true" type="锁定状态" size="12" default="" xpath="/lock" tip="锁定状态" />
-        <Field id="del" desc="删除状态" require="false" edittype="text" datatype="string" method="None" readonly="true"
-            primary="true" type="删除状态" size="12" default="" xpath="/del" tip="删除状态" />
-        <Field id="st" desc="记录状态" require="false" edittype="select" datatype="string" method="None" readonly="true"
-            primary="true" type="记录状态" size="12" default="" xpath="/st" tip="记录状态" translated="DATA_DIC.3001" />
-    </Fields>
-    <Where>
-	    <TextBox id="qroleName" type="String" dataType="" operation="EQ" size="8" desc="岗位名称" tip="岗位名称"
-	            method="genLikeP" index="1" function="" width="" default="" scale="" require="" readOnly="" />
-    </Where>
-    <Operations>
-        <Button id="btRoleAuthorityManagement" name="btRoleAuthorityManagement" desc="设置岗位功能" operation="syncsubmit"
-            url="/fpages/blacklistManage/ftl/RoleInfoManage.ftl?opType=edit" txn="" /> 
+		<Field id="lastUpdTlr" desc="最后更新操作员号" status="F" require="false" edittype="text" datatype="string" method="None"
+			readonly="true" primary="true" type="最后更新时间" size="8" default="" xpath="/lastUpdTlr" tip="最后更新操作员号" />
 
-        <Button id="btShowUser" name="btShowUser" desc="查询人员信息" operation="syncsubmit"
-            url="/fpages/blacklistManage/ftl/ShowRoleUser.ftl" txn="" /> <!---->
+		<Field id="lastUpdDate" desc="最后更新时间" status="F" require="false" edittype="text" datatype="string" method="None"
+			readonly="true" primary="true" type="最后更新时间" size="8" default="" xpath="/lastUpdDate" tip="最后更新时间" />
 
-        <Button id="btAdd" name="btAdd" desc="新增岗位" operation="href" url="/fpages/management/ftl/RoleFuncMng.ftl"
-            txn="" icon="icon-add" />
+		<Field id="lastUpdFunc" desc="最后更新交易号" status="F" require="false" edittype="text" datatype="string" method="None"
+			readonly="false" primary="true" type="最后更新交易号" size="8" default="" xpath="/lastUpdFunc" tip="最后更新交易号" />
 
-        <Button id="btDel" name="btDeleteRole" desc="删除"  operation="asysubmit"
-            updateClass="com.cibfintech.blacklist.roleinfo.updater.RoleInfoDEL" url="#" txn="" />
-        
-      <!--   <Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
-            updateClass="com.huateng.ebank.business.management.updater.CustRoleSaveUpdater" url="#" txn="" /> -->
-            
-        <Button id="btStatus" name="btUnlockRole" desc="有效/无效" operation="asysubmit"
-            updateClass="com.cibfintech.blacklist.roleinfo.updater.RoleInfoChgStatues" url="#" txn="" icon="icon-set" />
-            
-        <!-- <Button id="btQuery" name="btQuery" desc="查看对比信息" operation="syncsubmit" url="" txn="" /> 
-        
-        <Button id="btSee" name="btSee" desc="查看信息" operation="syncsubmit" url="" txn="" />-->
-    </Operations>
+		<Field id="timestamps" desc="时间戳" status="F" require="false" edittype="text" datatype="string" method="None"
+			readonly="false" primary="true" type="时间戳" size="8" default="" xpath="/timestamps" tip="时间戳" />
+
+		<Field id="miscflgs" desc="扩展标志位" status="F" require="false" edittype="text" datatype="string" method="None"
+			readonly="false" primary="true" type="扩展标志位" size="8" default="" xpath="/miscflgs" tip="扩展标志位" />
+
+		<Field id="misc" desc="MISC" status="F" require="false" edittype="text" datatype="string" method="None"
+			readonly="false" primary="true" type="MISC" size="8" default="" xpath="/misc" tip="MISC" />
+
+		<Field id="opr" desc="操作" require="false" edittype="text" datatype="string" method="None" readonly="true"
+			primary="true" type="操作" size="12" default="" xpath="" tip="操作" />
+
+		<Field id="lock" desc="锁定状态" status="F" edittype="radio" require="false" method="None" primary="" type="String"
+			default="false" xpath="/del" readonly="true" tip="锁定状态" translated="LIST:F,不锁定;T,sd" />
+			
+		<Field id="del" desc="是否删除" status="F" edittype="radio" require="false" method="None" primary="" type="String"
+			default="false" xpath="/del" readonly="true" tip="是否删除" translated="LIST:F,不删除;T,删除" />
+			
+		<Field id="st" desc="记录状态" require="false" edittype="select" datatype="string" method="None" readonly="true"
+			primary="true" type="记录状态" size="12" default="" xpath="/st" tip="记录状态" translated="DATA_DIC.3001" />
+	</Fields>
+	<Where>
+		<TextBox id="qroleName" type="String" dataType="" operation="EQ" size="8" desc="岗位名称" tip="岗位名称" method="genLikeP"
+			index="1" function="" width="" default="" scale="" require="" readOnly="" />
+	</Where>
+	<Operations>
+		<Button id="btRoleAuthorityManagement" name="btRoleAuthorityManagement" desc="设置岗位功能" operation="syncsubmit"
+			url="/fpages/blacklistManage/ftl/RoleInfoManage.ftl?op=edit" txn="" />
+
+		<Button id="btShowUser" name="btShowUser" desc="查询人员信息" operation="syncsubmit"
+			url="/fpages/blacklistManage/ftl/ShowRoleUser.ftl" txn="" /> <!---->
+
+		<Button id="btAdd" name="btAdd" desc="新增岗位" operation="href" url="/fpages/management/ftl/RoleFuncMng.ftl" txn=""
+			icon="icon-add" />
+
+		<Button id="btDel" name="btDeleteRole" desc="删除" operation="asysubmit"
+			updateClass="com.cibfintech.blacklist.roleinfo.updater.RoleInfoDEL" url="#" txn="" />
+
+		<!-- <Button id="btSave" name="btSave" desc="保存" operation="asysubmit" updateClass="com.huateng.ebank.business.management.updater.CustRoleSaveUpdater" 
+			url="#" txn="" /> -->
+
+		<Button id="btStatus" name="btUnlockRole" desc="有效/无效" operation="asysubmit"
+			updateClass="com.cibfintech.blacklist.roleinfo.updater.RoleInfoChgStatues" url="#" txn="" icon="icon-set" />
+
+		<!-- <Button id="btQuery" name="btQuery" desc="查看对比信息" operation="syncsubmit" url="" txn="" /> <Button id="btSee" name="btSee" 
+			desc="查看信息" operation="syncsubmit" url="" txn="" /> -->
+	</Operations>
 </CommQry>

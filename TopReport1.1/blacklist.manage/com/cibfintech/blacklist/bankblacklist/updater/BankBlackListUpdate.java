@@ -23,7 +23,7 @@ import com.huateng.exception.AppException;
 public class BankBlackListUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "BankBlackListManage";
-	private final static String PARAM_ACTION = "opType";
+	private final static String PARAM_ACTION = "op";
 
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
@@ -42,25 +42,16 @@ public class BankBlackListUpdate extends BaseUpdate {
 			// 属性拷贝
 			Map map = updateResultBean.next();
 			BaseUpdate.mapToObject(bankblacklist, map);
-			String opType = updateResultBean.getParameter(PARAM_ACTION);
-			opType = (null == opType || "" == opType) ? "" : opType;
+			String op = updateResultBean.getParameter(PARAM_ACTION);
+			op = (null == op || "" == op) ? "" : op;
 
-			if (opType.equals(BankBlackListOperation.IN_EDIT)) {
+			if (op.equals(BankBlackListOperation.IN_EDIT)) {
 				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_EDIT);
 			}
-			if (opType.equals(BankBlackListOperation.IN_ADD)) {
+			if (op.equals(BankBlackListOperation.IN_ADD)) {
 				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_ADD);
 			}
-			if (opType.equals(BankBlackListOperation.IN_VERIFY)) {
-				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_VERIFY);
-			}
-			if (opType.equals(BankBlackListOperation.IN_APPROVE)) {
-				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_APPROVE);
-			}
-			if (opType.equals(BankBlackListOperation.IN_SHARE)) {
-				oc.setAttribute(BankBlackListOperation.CMD, BankBlackListOperation.CMD_SHARE);
-			}
-			oc.setAttribute(BankBlackListOperation.IN_PARAM, opType);
+			oc.setAttribute(BankBlackListOperation.IN_PARAM, op);
 			oc.setAttribute(BankBlackListOperation.IN_BANK_BLACK_LIST, bankblacklist);
 			// call方式开启operation事务
 			OPCaller.call(BankBlackListOperation.ID, oc);

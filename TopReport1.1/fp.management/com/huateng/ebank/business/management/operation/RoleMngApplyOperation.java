@@ -146,7 +146,7 @@ public class RoleMngApplyOperation extends BaseOperation {
 					try {
 						RoleInfo roleTaskInfo = roleInfo.query(rowid);
 						// roleTaskInfo.setLock(true);
-						roleTaskInfo.setDel(false);
+						roleTaskInfo.setDel(SystemConstant.FALSE);
 
 						taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value,
 								ReportEnum.REPORT_TASK_TRANS_CD.DEL.value, roleTaskInfo, roleTaskInfo.getId().toString(), roleTaskInfo.getSt());
@@ -158,7 +158,7 @@ public class RoleMngApplyOperation extends BaseOperation {
 					// role.setLock(true);
 					role.setSt(ReportEnum.REPORT_ST1.ET.value);
 
-					role.setDel(false);
+					role.setDel(SystemConstant.FALSE);
 					roleInfo.getHibernateTemplate().update(role);
 					operateType = SystemConstant.LOG_DELEATE;
 					message = "删除变为不删除的处理";
@@ -169,7 +169,7 @@ public class RoleMngApplyOperation extends BaseOperation {
 					try {
 						RoleInfo roleTaskInfo = roleInfo.query(rowid);
 						// roleTaskInfo.setLock(true);
-						roleTaskInfo.setDel(true);
+						roleTaskInfo.setDel(SystemConstant.TRUE);
 
 						taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value,
 								ReportEnum.REPORT_TASK_TRANS_CD.DEL.value, roleTaskInfo, roleTaskInfo.getId().toString(), roleTaskInfo.getSt());
@@ -179,7 +179,7 @@ public class RoleMngApplyOperation extends BaseOperation {
 						e.printStackTrace();
 					}
 					role.setSt(ReportEnum.REPORT_ST1.ET.value);
-					role.setDel(true);
+					role.setDel(SystemConstant.TRUE);
 					roleInfo.getHibernateTemplate().update(role);
 					operateType = SystemConstant.LOG_DELEATE;
 					message = "删除的处理";

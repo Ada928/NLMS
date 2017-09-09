@@ -142,7 +142,7 @@ public class UserMgrService {
 				if (tlrInfo.getSt().trim().equals("2")) {
 					ExceptionUtil.throwCommonException("修改中的用户，主管未确认不能登录");
 				}
-				if (tlrInfo.isDel()) {
+				if (tlrInfo.getDel() == SystemConstant.TRUE) {
 					ExceptionUtil.throwCommonException("用户已删除，不能登录");
 				}
 
@@ -231,7 +231,7 @@ public class UserMgrService {
 		String enc = user.getPasswdenc();
 
 		int lockingTime = Integer.valueOf(CommonService.getInstance().getSysParamDef("PSWD", "LOCKING_TIME", "-1"));
-		if (SystemConstant.LOCKED.equals(user.isLock())) {
+		if (SystemConstant.TRUE.equals(user.getLock())) {
 
 			if (lockingTime < 0) {
 				ExceptionUtil.throwCommonException("用户已被锁定,请联系管理员解锁", "");
@@ -242,7 +242,7 @@ public class UserMgrService {
 					ExceptionUtil.throwCommonException("用户已被锁定,请联系管理员解锁,或等待" + lockingTime + "分钟后重试", "");
 				} else {
 					user.setTotpswderrcnt(0);
-					user.setLock(SystemConstant.NOT_LOCKED);
+					user.setLock(SystemConstant.FALSE);
 				}
 			}
 		}
@@ -260,11 +260,11 @@ public class UserMgrService {
 			int maxErrCnt = Integer.valueOf(CommonService.getInstance().getSysParamDef("PSWD", "MAX_ERR_CNT", "0"));
 			if (user.getTotpswderrcnt().intValue() > maxErrCnt && maxErrCnt >= 0) {
 				user.setTotpswderrcnt(0);
-				user.setLock(SystemConstant.LOCKED);
+				user.setLock(SystemConstant.TRUE);
 				user.setLockReason("用户密码连续输入错误次数超过允许的最大次数" + maxErrCnt);
 			}
 			SingleOPCaller.call(PswdValidteOP.ID, context);
-			if (SystemConstant.LOCKED.equals(user.isLock())) {
+			if (SystemConstant.TRUE.equals(user.getLock())) {
 				if (lockingTime < 0) {
 					ExceptionUtil.throwCommonException("用户已被锁定,请联系管理员解锁", "");
 				} else {

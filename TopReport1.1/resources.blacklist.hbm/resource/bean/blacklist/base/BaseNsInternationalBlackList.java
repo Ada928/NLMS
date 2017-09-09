@@ -62,9 +62,9 @@ public class BaseNsInternationalBlackList implements Serializable {
 	private String gender;
 	private String lastOccupation;
 	private String residenceCountry;
-	private boolean politicians;
-	private boolean valid;
-	private boolean del;
+	private String politicians;
+	private String valid;
+	private String del;
 	private Date validDate;
 	private String operateState;
 	private String filler1;
@@ -173,11 +173,11 @@ public class BaseNsInternationalBlackList implements Serializable {
 		this.residenceCountry = residenceCountry;
 	}
 
-	public boolean isPoliticians() {
+	public String getPoliticians() {
 		return politicians;
 	}
 
-	public void setPoliticians(boolean politicians) {
+	public void setPoliticians(String politicians) {
 		this.politicians = politicians;
 	}
 
@@ -221,19 +221,19 @@ public class BaseNsInternationalBlackList implements Serializable {
 		this.clientEnglishName = clientEnglishName;
 	}
 
-	public boolean isValid() {
+	public String getValid() {
 		return this.valid;
 	}
 
-	public void setValid(boolean isValid) {
+	public void setValid(String isValid) {
 		this.valid = isValid;
 	}
 
-	public boolean isDel() {
+	public String getDel() {
 		return this.del;
 	}
 
-	public void setDel(boolean del) {
+	public void setDel(String del) {
 		this.del = del;
 	}
 

@@ -2,7 +2,7 @@
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="银行机构信息维护">
-<@CommonQueryMacro.CommonQuery id="BankInfoEntry" init="true" submitMode="current"  navigate="false">
+<@CommonQueryMacro.CommonQuery id="BankInfoEntry" init="true" submitMode="current">
 	<table width="100%" align="left">
 		<tr>
    			<td valign="top" colspan="2">
@@ -17,7 +17,7 @@
   		<tr>
       		<td colspan="2">
           		<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="btAdd,-,btStatus" 
-          			fieldStr="brno,brname,lock,opr" width="100%"  readonly="true"/><br/>
+          			fieldStr="brno,brname,lock,opr" width="100%"/><br/>
         	</td>
         </tr>
   		<tr align="center" style="display:none">

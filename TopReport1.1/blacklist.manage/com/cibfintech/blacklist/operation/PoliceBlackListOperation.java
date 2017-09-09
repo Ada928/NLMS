@@ -86,7 +86,7 @@ public class PoliceBlackListOperation extends BaseOperation {
 			bean.setClientName(fromBean.getClientName());
 			bean.setClientEnglishName(fromBean.getClientEnglishName());
 			bean.setBlacklistType(fromBean.getBlacklistType());
-			bean.setValid(fromBean.isValid());
+			bean.setValid(fromBean.getValid());
 			bean.setValidDate(fromBean.getValidDate());
 			bean.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 			bean.setLastModifyDate(DateUtil.getCurrentDate());

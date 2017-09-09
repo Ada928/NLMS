@@ -33,8 +33,8 @@ public class BankInfoService {
 
 		try {
 			queryCondition.setQueryString(hql);
-			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setPageSize(pageSize);
+			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setObjArray(list.toArray());
 			pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 		} catch (CommonException e) {

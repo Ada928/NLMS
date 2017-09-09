@@ -23,6 +23,5 @@
 </@CommonQueryMacro.CommonQuery>
 <script language="JavaScript">
 
-
 </script>
 </@CommonQueryMacro.page>

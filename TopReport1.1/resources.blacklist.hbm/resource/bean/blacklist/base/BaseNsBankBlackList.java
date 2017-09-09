@@ -28,6 +28,9 @@ public class BaseNsBankBlackList implements Serializable {
 	public static String PROP_SHARE = "isShare";
 	public static String PROP_VALID = "isValid";
 	public static String PROP_DEL = "isDelete";
+	public static String PROP_SHARE_STATE = "shareState";
+	public static String PROP_DEL_STATE = "delState";
+	public static String PROP_VALID_STATE = "validState";
 	public static String PROP_OPERATE_STATE = "operateState";
 	public static String PROP_VALID_DATE = "validDate";
 	public static String PROP_BLACKLISTED_DATE = "blacklistedDate";
@@ -55,9 +58,12 @@ public class BaseNsBankBlackList implements Serializable {
 	private String clientName;
 	private String clientEnglishName;
 	private String blacklistType;
-	private boolean share;
-	private boolean valid;
-	private boolean del;
+	private String share;
+	private String valid;
+	private String del;
+	private String shareState;
+	private String validState;
+	private String delState;
 	private String operateState;
 	private Date validDate;
 	private Date blacklistedDate;
@@ -105,6 +111,30 @@ public class BaseNsBankBlackList implements Serializable {
 
 	public void setBankCode(String bankCode) {
 		this.bankCode = bankCode;
+	}
+
+	public String getShareState() {
+		return shareState;
+	}
+
+	public void setShareState(String shareState) {
+		this.shareState = shareState;
+	}
+
+	public String getValidState() {
+		return validState;
+	}
+
+	public void setValidState(String validState) {
+		this.validState = validState;
+	}
+
+	public String getDelState() {
+		return delState;
+	}
+
+	public void setDelState(String delState) {
+		this.delState = delState;
 	}
 
 	public String getAccountType() {
@@ -163,27 +193,27 @@ public class BaseNsBankBlackList implements Serializable {
 		this.blacklistType = blacklistType;
 	}
 
-	public boolean isShare() {
+	public String getShare() {
 		return this.share;
 	}
 
-	public void setShare(boolean share) {
+	public void setShare(String share) {
 		this.share = share;
 	}
 
-	public boolean isValid() {
+	public String getValid() {
 		return this.valid;
 	}
 
-	public void setValid(boolean valid) {
+	public void setValid(String valid) {
 		this.valid = valid;
 	}
 
-	public boolean isDel() {
+	public String getDel() {
 		return this.del;
 	}
 
-	public void setDel(boolean del) {
+	public void setDel(String del) {
 		this.del = del;
 	}
 

@@ -81,8 +81,8 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 	private java.lang.String sessionId;
 	private java.util.Date lastUpdTms;
 	private java.lang.String lastUpdOper;
-	private java.lang.Boolean lock;
-	private java.lang.Boolean del;
+	private java.lang.String lock;
+	private java.lang.String del;
 	private java.lang.String lastUpdOperId;
 	private java.util.Date effectDate;
 	private java.util.Date expireDate;
@@ -163,19 +163,19 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 		this.tlrName = tlrName;
 	}
 
-	public java.lang.Boolean isLock() {
+	public java.lang.String getLock() {
 		return lock;
 	}
 
-	public void setLock(java.lang.Boolean lock) {
+	public void setLock(java.lang.String lock) {
 		this.lock = lock;
 	}
 
-	public java.lang.Boolean isDel() {
+	public java.lang.String getDel() {
 		return del;
 	}
 
-	public void setDel(java.lang.Boolean del) {
+	public void setDel(java.lang.String del) {
 		this.del = del;
 	}
 

@@ -2,14 +2,11 @@ package com.cibfintech.blacklist.bankblacklist.getter;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 
 import resource.bean.blacklist.NsBankBLOperateLog;
-import resource.bean.pub.RoleInfo;
 
 import com.cibfintech.blacklist.bankblacklist.service.BankBlackListOperateLogService;
 import com.cibfintech.blacklist.bankblacklist.service.BankBlackListService;
@@ -25,11 +22,9 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
-import com.huateng.report.utils.ReportEnum;
-import com.huateng.service.pub.UserMgrService;
 
 @SuppressWarnings("unchecked")
-public class BankBlackListGetter extends BaseGetter {
+public class BankBlackListShareGetter extends BaseGetter {
 	/*
 	 * 获取商行黑名单
 	 * 
@@ -53,32 +48,18 @@ public class BankBlackListGetter extends BaseGetter {
 	}
 
 	protected PageQueryResult getData() throws Exception {
-		String qPartyId = getCommQueryServletRequest().getParameter("qPartyId");
+		String partyId = getCommQueryServletRequest().getParameter("qPartyId");
 		String qCertificateType = getCommQueryServletRequest().getParameter("qCertificateType");
 		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
-
 		GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
-		List<RoleInfo> roleInfos = UserMgrService.getInstance().getUserRoles(globalinfo.getTlrno());
-		boolean isSuperManager = false;
-		for (RoleInfo roleInfo : roleInfos) {
-			if (roleInfo.getRoleType().equals(SystemConstant.ROLE_TYPE_SYS_MNG)) {
-				isSuperManager = true;
-				break;
-			}
-		}
 
-		String operateStates = getOperateStates(roleInfos);
-
-		StringBuffer hql = new StringBuffer(" from NsBankBlackList bblt where 1=1");
+		StringBuffer hql = new StringBuffer(" from NsBankBlackList bblt where bblt.del='F'");
 		List<Object> list = new ArrayList<Object>();
-		hql.append("and bblt.del= ?");
-		list.add(false);
-
-		if (StringUtils.isNotBlank(qPartyId)) {
+		if (StringUtils.isNotBlank(partyId)) {
 			hql.append(" and bblt.id = ?");
-			list.add(qPartyId.trim());
+			list.add(partyId.trim());
 		}
 		if (StringUtils.isNotBlank(qCertificateType)) {
 			hql.append(" and bblt.certificateType = ?");
@@ -88,54 +69,15 @@ public class BankBlackListGetter extends BaseGetter {
 			hql.append(" and bblt.certificateNumber like ?");
 			list.add("%" + qCertificateNumber.trim() + "%");
 		}
-		if (!isSuperManager) {
-			hql.append(" and bblt.bankCode = ?");
-			list.add(globalinfo.getBrcode());
-		}
-		hql.append(" and bblt.operateState in " + operateStates);
+
+		hql.append(" and bblt.share=?");
+		list.add("T");
 
 		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageSize, pageIndex, hql.toString(), list);
-		String message = "国际黑名单的查询:partyId=" + qPartyId + ",certificateType=" + qCertificateType + ",certificateNumber=" + qCertificateNumber;
+
+		String message = "国际黑名单的查询:partyId=" + partyId + ",certificateType=" + qCertificateType + ",certificateNumber=" + qCertificateNumber;
 		recordOperateLog(globalinfo, pqr.getTotalCount(), message);
 		return pqr;
-	}
-
-	private String getOperateStates(List<RoleInfo> roleInfos) {
-		Set<String> operateStates = new HashSet<String>();
-		for (RoleInfo roleInfo : roleInfos) {
-			String roleType = roleInfo.getRoleType();
-			if (roleType.equals(SystemConstant.ROLE_TYPE_SYS_MNG)) {
-				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.ED.value);
-				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
-				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
-				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
-			} else if (roleType.equals(SystemConstant.ROLE_TYPE_BANK_MGR)) {
-				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.ED.value);
-				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
-				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
-				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
-			} else if (roleType.equals(SystemConstant.ROLE_TYPE_INPUT)) {
-				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.ED.value);
-			} else if (roleType.equals(SystemConstant.ROLE_TYPE_AUDIT)) {
-				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.VR.value);
-			} else if (roleType.equals(SystemConstant.ROLE_TYPE_APPROVE)) {
-				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.AP.value);
-			} else if (roleType.equals(SystemConstant.ROLE_TYPE_QUERY)) {
-				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
-			} else {
-				operateStates.add(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.PB.value);
-			}
-		}
-
-		String str = "(";
-		for (String op : operateStates) {
-			str += op + ",";
-		}
-		str += "0)";
-		if (operateStates.isEmpty()) {
-			str = "(" + ReportEnum.BANK_BLACKLIST_OPERATE_STATE.N.value + ")";
-		}
-		return str;
 	}
 
 	// 记录查询日志

@@ -53,8 +53,8 @@ public class BaseNsPoliceBlackList implements Serializable {
 	private String blackListedOrganization;
 	private String contact;
 	private String contactPhone;
-	private boolean valid;
-	private boolean del;
+	private String valid;
+	private String del;
 	private Date validDate;
 	private String operateState;
 	private String filler1;
@@ -155,19 +155,19 @@ public class BaseNsPoliceBlackList implements Serializable {
 		this.blacklistType = blacklistType;
 	}
 
-	public boolean isValid() {
+	public String getValid() {
 		return this.valid;
 	}
 
-	public void setValid(boolean valid) {
+	public void setValid(String valid) {
 		this.valid = valid;
 	}
 
-	public boolean isDel() {
+	public String getDel() {
 		return this.del;
 	}
 
-	public void setDel(boolean del) {
+	public void setDel(String del) {
 		this.del = del;
 	}
 

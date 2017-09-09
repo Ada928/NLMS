@@ -194,7 +194,7 @@ public class OperMngOperation extends BaseOperation {
 		tlrInfo.setCreateDate(DateUtil.getCurrentDate());
 		tlrInfo.setLastUpdTime(DateUtil.getTimestamp());
 		tlrInfo.setLastUpdOperId(globalInfo.getTlrno());
-		tlrInfo.setLock(SystemConstant.NOT_LOCKED);
+		tlrInfo.setLock(SystemConstant.FALSE);
 		tlrInfo.setDel(SystemConstant.FALSE);
 		tlrInfo.setSt(ReportEnum.REPORT_ST1.Y.value);
 		tlrInfoDAO.saveOrUpdate(tlrInfo);
@@ -358,7 +358,7 @@ public class OperMngOperation extends BaseOperation {
 
 					// 设置修改中
 					tlrInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
-					boolean oldIsDel = tlrInfo.isDel();
+					String oldIsDel = tlrInfo.getDel();
 					tlrInfo.setDel(SystemConstant.FALSE);
 					try {
 						TlrInfoAuditBean tlrInfoAuditBean = new TlrInfoAuditBean();
@@ -481,7 +481,7 @@ public class OperMngOperation extends BaseOperation {
 			if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value)) {
 
 				// 解锁
-				tlrInfo.setLock(SystemConstant.NOT_LOCKED);
+				tlrInfo.setLock(SystemConstant.FALSE);
 
 				// 改回原值
 				rootdao.saveOrUpdate(tlrInfo);
@@ -505,8 +505,8 @@ public class OperMngOperation extends BaseOperation {
 
 				// 设置修改中
 				tlrInfo.setSt(ReportEnum.REPORT_ST1.ET.value);
-				boolean oldIsLock = tlrInfo.isLock();
-				tlrInfo.setLock(SystemConstant.NOT_LOCKED);
+				String oldIsLock = tlrInfo.getLock();
+				tlrInfo.setLock(SystemConstant.FALSE);
 				try {
 					TlrInfoAuditBean tlrInfoAuditBean = new TlrInfoAuditBean();
 					tlrInfoAuditBean.setTlrInfo(tlrInfo);

@@ -174,7 +174,7 @@ public class UserInfoOperation extends BaseOperation {
 		tlrInfo.setLastUpdOperId(globalInfo.getTlrno());
 		tlrInfo.setEffectDate(DateUtil.getCurrentDateWithTime());
 		tlrInfo.setExpireDate(DateUtil.getDayAfter100Years());
-		tlrInfo.setLock(SystemConstant.NOT_LOCKED);
+		tlrInfo.setLock(SystemConstant.FALSE);
 		tlrInfo.setDel(SystemConstant.FALSE);
 		tlrInfo.setSt(ReportEnum.REPORT_ST1.Y.value);
 

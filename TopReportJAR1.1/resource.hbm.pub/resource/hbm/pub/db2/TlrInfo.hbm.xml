@@ -58,7 +58,7 @@
         <property name="lastPwdUpdTime" type="date" column ="LASTPWDCHGTM" not-null="false" length="14" />
 
         <property name="lastfailedtm" column="LASTFAILEDTM" type="date" not-null="false" length="14" />
-        <property name="lock" column="IS_LOCK" type="true_false" not-null="false" length="1" />
+        <property name="lock" column="IS_LOCK" type="string" not-null="false" length="1" />
 
         <property name="lockReason" column="LOCK_REASON" type="string" not-null="false" length="200" />
         <!-- add by zhaozhiguo 2011-6-20 BMS-3153 添加上次密码输入错误时间和错误次数 end -->
@@ -67,7 +67,7 @@
         <property name="st" column="ST" type="string" length="1" not-null="false" />
         <property name="lastUpdOper" column="LAST_UPD_OPER" type="string" not-null="false" length="20" />
         <property name="lastUpdTms" column="LAST_UPD_TMS" type="date" not-null="false" length="14" />
-        <property name="del" column="IS_DEL" type="true_false" not-null="false" length="1" />
+        <property name="del" column="IS_DEL" type="string" not-null="false" length="1" />
         <!-- add by zhiyang.he 修改锁定状态 2012-09-6 end -->
     </class>
 </hibernate-mapping>

@@ -46,7 +46,7 @@
 
 	function btAdd_onClick() {
 		RoleInfoEntry_dataset.insertRecord();
-		RoleInfoEntry_dataset.setParameter("opType", "add");
+		RoleInfoEntry_dataset.setParameter("op", "add");
 		RoleInfoEntry_dataset.setParameter("id", "0");
 	}
 

@@ -219,8 +219,8 @@
     function unLock_postSubmit(button) {
         alert("½âËø³É¹¦£¡");
         flushCurrentPage();
-    }
-
+    }*/
+/*
     function UserInfoEntry_dataset_afterScroll(dataset) {
         unLock.disable(dataset.getValue("lock") != 'true');
         btLoginStatus.disable(dataset.getValue("status") != '1');
@@ -236,7 +236,7 @@
             unLock.disable(true);
             btLoginStatus.disable(true);
         }
-    } */
-
+    } 
+*/
 </script>
 </@CommonQueryMacro.page>

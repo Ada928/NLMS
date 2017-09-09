@@ -5,6 +5,8 @@
 <CommQry title="" navigate="主页 &gt; 银行信息管理 &gt; 银行管理" type="call" interface="false" pagesize="10" async="false"
 	txnlogflag="true" databusid="" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.bankinfo.getter.BankInfoGetter">
 	<Include id="BankParam" />
+	<!-- com.cibfintech.blacklist.bankinfo.getter.BankInfoGetter -->
+	<!-- com.huateng.ebank.business.management.getter.BranchEntryQueryGetter -->
 
 	<Fields>
 		<!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
@@ -35,31 +37,31 @@
 			readonly="true" primary="true" type="st" translated="DATA_DIC.3001" size="30" default="" xpath="/st" tip="" />
 
 		<Field id="lock" desc="是否锁定" status="F" edittype="select" method="None" primary="false" type="String" default=""
-			xpath="/lock" tip="有效标志" translated="LIST:true,锁定;false,未锁定" />
+			xpath="/lock" tip="有效标志" translated="LIST:T,锁定;F,未锁定" />
 
 		<Field id="del" desc="是否已删除" edittype="text" datatype="string" status="F" size="1" xpath="/del" />
 
 		<Field id="status" desc="有效标志" status="F" edittype="select" method="None" primary="false" type="String" default=""
-			xpath="/status" tip="有效标志" translated="LIST:true,有效;false,无效" />
+			xpath="/status" tip="有效标志" translated="LIST:T,有效;F,无效" />
 
 		<Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" size="20" default="" tip="操作"
 			require="" />
 	</Fields>
 	<Where>
-		<TextBox id="brNo" tablename="bo" fieldname="brNo" type="" dataType="" operation="EQ" size="20" desc="机构代码"
+		<TextBox id="brhNo" tablename="bo" fieldname="brhNo" type="" dataType="" operation="EQ" size="20" desc="机构代码"
 			tip="机构代码" method="genLikeP" index="1" function="" default="" scale="" require="" readOnly="" rules="" errmsg="" />
-		<TextBox id="brName" tablename="bo" fieldname="brName" type="" dataType="" operation="EQ" size="20" desc="机构名称"
+		<TextBox id="brhName" tablename="bo" fieldname="brhName" type="" dataType="" operation="EQ" size="20" desc="机构名称"
 			tip="机构名称" method="genLikeP" index="1" function="" default="" scale="" require="" readOnly="" rules="" errmsg="" />
 	</Where>
 	<Operations>
-		<Button id="btAdd" name="btAdd" desc="新增" operation="href" url="/fpages/blacklistManage/ftl/BankInfoManage.ftl?opType=add"
+		<Button id="btAdd" name="btAdd" desc="新增" operation="href" url="/fpages/blacklistManage/ftl/BankInfoManage.ftl?op=add"
 			show="" group="" txn="" icon="icon-add" />
 
 		<Button id="btModify" name="btModify" desc="修改" operation="syncsubmit"
-			url="/fpages/blacklistManage/ftl/BankInfoManage.ftl?opType=edit" txn="" />
+			url="/fpages/blacklistManage/ftl/BankInfoManage.ftl?op=edit" txn="" />
 
 		<Button id="btDetail" name="btDetail" desc="详细信息" operation="syncsubmit"
-			url="/fpages/blacklistManage/ftl/BankInfoDetail.ftl?opType=detail" txn="" />
+			url="/fpages/blacklistManage/ftl/BankInfoDetail.ftl?op=detail" txn="" />
 
 		<Button id="btStatus" name="btStatus" desc="有效/无效" operation="asysubmit"
 			updateClass="com.cibfintech.blacklist.bankinfo.updater.BankInfoChgStatues" url="#" txn="" icon="icon-set" />

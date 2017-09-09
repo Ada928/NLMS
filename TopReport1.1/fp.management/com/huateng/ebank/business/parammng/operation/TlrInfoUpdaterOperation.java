@@ -61,7 +61,7 @@ public class TlrInfoUpdaterOperation extends BaseOperation {
 			DAOUtils.getTlrInfoDAO().delete(tlrno);
 
 		} else if ("unlock".equals(cmd)) {
-			tlrinfo.setLock(SystemConstant.NOT_LOCKED);
+			tlrinfo.setLock(SystemConstant.FALSE);
 			DAOUtils.getTlrInfoDAO().update(tlrinfo);
 		}
 	}

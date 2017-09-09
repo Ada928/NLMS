@@ -110,15 +110,15 @@ public abstract class BaseBctl implements Serializable {
 	private java.lang.String accumFundBrid;
 	private java.util.Date effectDate;
 	private java.util.Date expireDate;
-	private boolean lock;
+	private String lock;
 	private java.lang.String st;
-	private boolean del;
+	private String del;
 
-	public boolean isLock() {
+	public String getLock() {
 		return lock;
 	}
 
-	public void setLock(boolean lock) {
+	public void setLock(String lock) {
 		this.lock = lock;
 	}
 
@@ -130,11 +130,11 @@ public abstract class BaseBctl implements Serializable {
 		this.st = st;
 	}
 
-	public boolean isDel() {
+	public String getDel() {
 		return del;
 	}
 
-	public void setDel(boolean del) {
+	public void setDel(String del) {
 		this.del = del;
 	}
 

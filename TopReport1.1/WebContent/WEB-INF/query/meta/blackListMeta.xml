@@ -3,8 +3,10 @@
 
 	<!-- 黑名单管理 -->
 	<!-- -->
-	<Query id="BankBlackList" path="/fpages/blacklistManage/xml/BankBlackList.xml" />
-	<Query id="BankBlackListQuery" path="/fpages/blacklistManage/xml/BankBlackList.xml" />
+	<Query id="BankBlackListEdit" path="/fpages/blacklistManage/xml/BankBlackListEdit.xml" />
+	<Query id="BankBlackListVerify" path="/fpages/blacklistManage/xml/BankBlackListVerify.xml" />
+	<Query id="BankBlackListApprove" path="/fpages/blacklistManage/xml/BankBlackListApprove.xml" />
+	<Query id="ShareBankBlackListQuery" path="/fpages/blacklistManage/xml/ShareBankBlackListQuery.xml" />
 	<Query id="BankBlackListDetail" path="/fpages/blacklistManage/xml/BankBlackListDetail.xml" />
 	<Query id="BankBlackListManage" path="/fpages/blacklistManage/xml/BankBlackListManage.xml" />
 	<Query id="BankBlackListLogQuery" path="/fpages/blacklistManage/xml/BankBlackListLogQuery.xml" />

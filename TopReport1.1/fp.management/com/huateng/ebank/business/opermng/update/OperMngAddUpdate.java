@@ -61,7 +61,7 @@ public class OperMngAddUpdate extends BaseUpdate {
 				operator.setCreateDate(DateUtil.getCurrentDate());
 				operator.setLastUpdTime(DateUtil.getTimestamp());
 				operator.setLastUpdOperId(GlobalInfo.getCurrentInstance().getTlrno());
-				operator.setLock(SystemConstant.NOT_LOCKED);
+				operator.setLock(SystemConstant.FALSE);
 			}
 
 			OperationContext oc = new OperationContext();

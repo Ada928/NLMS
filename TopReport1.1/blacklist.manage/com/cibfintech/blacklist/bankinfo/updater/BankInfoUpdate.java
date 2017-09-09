@@ -23,7 +23,7 @@ import com.huateng.exception.AppException;
 public class BankInfoUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "BankInfoManage";
-	private final static String PARAM_ACTION = "opType";
+	private final static String PARAM_ACTION = "op";
 
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
@@ -38,15 +38,15 @@ public class BankInfoUpdate extends BaseUpdate {
 			// 属性拷贝
 			Map map = updateResultBean.next();
 			BaseUpdate.mapToObject(bean, map);
-			String opType = updateResultBean.getParameter(PARAM_ACTION);
-			opType = (null == opType || "" == opType) ? "" : opType;
-			if (opType.equals(BankInfoOperation.IN_EDIT)) {
+			String op = updateResultBean.getParameter(PARAM_ACTION);
+			op = (null == op || "" == op) ? "" : op;
+			if (op.equals(BankInfoOperation.IN_EDIT)) {
 				oc.setAttribute(BankInfoOperation.CMD, BankInfoOperation.CMD_EDIT);
 			}
-			if (opType.equals(BankInfoOperation.IN_ADD)) {
+			if (op.equals(BankInfoOperation.IN_ADD)) {
 				oc.setAttribute(BankInfoOperation.CMD, BankInfoOperation.CMD_ADD);
 			}
-			oc.setAttribute(BankInfoOperation.IN_PARAM, opType);
+			oc.setAttribute(BankInfoOperation.IN_PARAM, op);
 			oc.setAttribute(BankInfoOperation.IN_BANK_INFO, bean);
 			// call方式开启operation事务
 			OPCaller.call(BankInfoOperation.ID, oc);
