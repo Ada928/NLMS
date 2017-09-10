@@ -7,9 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import resource.bean.blacklist.NsBankBlackList;
-
 import com.cibfintech.blacklist.operation.BankBlackListOperation;
+import com.cibfintech.view.pub.BankBlackListAuditStateView;
 import com.huateng.commquery.result.MultiUpdateResultBean;
 import com.huateng.commquery.result.UpdateResultBean;
 import com.huateng.commquery.result.UpdateReturnBean;
@@ -37,9 +36,9 @@ public class BankBlackListShare extends BaseUpdate {
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 		String share = updateResultBean.getParameter(PARAM_ACTION);
 		share = (null == share || "" == share) ? "" : share;
-		List<NsBankBlackList> beans = new ArrayList<NsBankBlackList>();
+		List<BankBlackListAuditStateView> beans = new ArrayList<BankBlackListAuditStateView>();
 		while (updateResultBean.hasNext()) {
-			NsBankBlackList bean = new NsBankBlackList();
+			BankBlackListAuditStateView bean = new BankBlackListAuditStateView();
 			Map map = updateResultBean.next();
 			String id = (String) map.get("id");
 			bean.setId(id);

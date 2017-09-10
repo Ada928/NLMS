@@ -7,7 +7,7 @@
     <class name="NsQueryDailyLogCount" table="NLMS_QUERY_DAILY_LOG_COUNT">
         <meta attribute="sync-DAO">false</meta>
         <id name="id" type="string" column="LOG_ID"></id>
-        <property name="brNo" column="BR_NO" type="string" not-null="false" length="20" />
+        <property name="brcode" column="BRCODE" type="string" not-null="false" length="20" />
         <property name="operateType" column="OPERATE_TYPE" type="string" not-null="false" length="2" />
         <property name="queryTable" column="QUERY_Table" type="string" not-null="false" length="2" />
         <property name="sumQueryRecord" column="SUM_QUERY_RECORD" type="string" not-null="false" length="20" />

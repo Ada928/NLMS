@@ -6,7 +6,7 @@
     <class name="NsPoliceBlackList" table="nlms_policeblacklist">
         <meta attribute="sync-DAO">false</meta>
 
-        <id name="id" type="string" column="party_id" />
+        <id name="id" type="string" column="blacklist_id" />
         <property name="blacklistType" type="string" column="blacklist_type" length="1" />
         <property name="accountType" type="string" column="account_type" length="1" not-null="false" />
         <property name="accountCode" type="string" column="account_code" length="32" not-null="false" />

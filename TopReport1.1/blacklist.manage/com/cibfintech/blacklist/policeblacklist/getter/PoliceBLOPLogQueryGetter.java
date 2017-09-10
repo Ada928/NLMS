@@ -53,7 +53,7 @@ public class PoliceBLOPLogQueryGetter extends BaseGetter {
 		int pageSize = getResult().getPage().getEveryPage();
 
 		String qtlrNo = (String) getCommQueryServletRequest().getParameterMap().get("qtlrNo");
-		String qbrNo = (String) getCommQueryServletRequest().getParameterMap().get("qbrNo");
+		String qbrcode = (String) getCommQueryServletRequest().getParameterMap().get("qbrcode");
 		String qtlrIP = (String) getCommQueryServletRequest().getParameterMap().get("qtlrIP");
 		String startDate = (String) getCommQueryServletRequest().getParameterMap().get("startDate");
 		String endDate = (String) getCommQueryServletRequest().getParameterMap().get("endDate");
@@ -67,16 +67,16 @@ public class PoliceBLOPLogQueryGetter extends BaseGetter {
 		List<Object> list = new ArrayList<Object>();
 		sb.append(" from NsPoliceBLOperateLog log where 1=1");
 		if (!DataFormat.isEmpty(qtlrNo)) {
-			sb.append(" and  log.tlrNo= ?");
+			sb.append(" and  log.tlrno= ?");
 			list.add(qtlrNo);
 		}
 		if (!DataFormat.isEmpty(qtlrIP)) {
 			sb.append(" and  log.tlrIP= ?");
 			list.add(qtlrIP);
 		}
-		if (!DataFormat.isEmpty(qbrNo)) {
-			sb.append(" and log.brNo = ?");
-			list.add(qbrNo);
+		if (!DataFormat.isEmpty(qbrcode)) {
+			sb.append(" and log.brcode = ?");
+			list.add(qbrcode);
 		}
 
 		if (!DataFormat.isEmpty(startDate)) {

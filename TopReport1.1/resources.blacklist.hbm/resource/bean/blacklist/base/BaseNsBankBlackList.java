@@ -28,10 +28,11 @@ public class BaseNsBankBlackList implements Serializable {
 	public static String PROP_SHARE = "isShare";
 	public static String PROP_VALID = "isValid";
 	public static String PROP_DEL = "isDelete";
-	public static String PROP_SHARE_STATE = "shareState";
-	public static String PROP_DEL_STATE = "delState";
-	public static String PROP_VALID_STATE = "validState";
-	public static String PROP_OPERATE_STATE = "operateState";
+	public static String PROP_APPROVE = "isApprove";
+	// public static String PROP_SHARE_STATE = "shareState";
+	// public static String PROP_DEL_STATE = "delState";
+	// public static String PROP_VALID_STATE = "validState";
+	// public static String PROP_OPERATE_STATE = "operateState";
 	public static String PROP_VALID_DATE = "validDate";
 	public static String PROP_BLACKLISTED_DATE = "blacklistedDate";
 	public static String PROP_BLACKLISTED_OPERATOR = "blacklistedOperator";
@@ -61,10 +62,11 @@ public class BaseNsBankBlackList implements Serializable {
 	private String share;
 	private String valid;
 	private String del;
-	private String shareState;
-	private String validState;
-	private String delState;
-	private String operateState;
+	private String approve;
+	// private String shareState;
+	// private String validState;
+	// private String delState;
+	// private String operateState;
 	private Date validDate;
 	private Date blacklistedDate;
 	private String blacklistedOperator;
@@ -113,29 +115,29 @@ public class BaseNsBankBlackList implements Serializable {
 		this.bankCode = bankCode;
 	}
 
-	public String getShareState() {
-		return shareState;
-	}
-
-	public void setShareState(String shareState) {
-		this.shareState = shareState;
-	}
-
-	public String getValidState() {
-		return validState;
-	}
-
-	public void setValidState(String validState) {
-		this.validState = validState;
-	}
-
-	public String getDelState() {
-		return delState;
-	}
-
-	public void setDelState(String delState) {
-		this.delState = delState;
-	}
+	// public String getShareState() {
+	// return shareState;
+	// }
+	//
+	// public void setShareState(String shareState) {
+	// this.shareState = shareState;
+	// }
+	//
+	// public String getValidState() {
+	// return validState;
+	// }
+	//
+	// public void setValidState(String validState) {
+	// this.validState = validState;
+	// }
+	//
+	// public String getDelState() {
+	// return delState;
+	// }
+	//
+	// public void setDelState(String delState) {
+	// this.delState = delState;
+	// }
 
 	public String getAccountType() {
 		return this.accountType;
@@ -217,12 +219,12 @@ public class BaseNsBankBlackList implements Serializable {
 		this.del = del;
 	}
 
-	public String getOperateState() {
-		return this.operateState;
+	public String getApprove() {
+		return this.approve;
 	}
 
-	public void setOperateState(String operateState) {
-		this.operateState = operateState;
+	public void setApprove(String approve) {
+		this.approve = approve;
 	}
 
 	public Date getValidDate() {

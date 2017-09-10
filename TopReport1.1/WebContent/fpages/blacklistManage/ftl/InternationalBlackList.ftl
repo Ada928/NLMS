@@ -59,7 +59,7 @@
     
 	//ÐÞ¸Ä¹¦ÄÜ
     function openModifyWindow(id) {
-        locate(id);
+        //locate(id);
         btModify.click();  
     }
 

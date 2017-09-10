@@ -3,16 +3,8 @@
 <#assign op="${RequestParameters['op']?default('')}" />
 <#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="商行黑名单编辑">
-<@CommonQueryMacro.CommonQuery id="BankBlackListEdit" init="false"  submitMode="selected"  navigate="false">
+<@CommonQueryMacro.CommonQuery id="BankBlackListEdit" init="true"  submitMode="selected"  navigate="false">
 <table align="center" width="100%">
-   	<tr>
-      	<td valign="top" colspan="2" >
-			<@CommonQueryMacro.Interface id="intface" label="请输入查询条件" colNm=4  />
-		</td>
-	</tr>
-  	<tr>
-  		<td><@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9" showArrow="true"  pageCache="false"/></td>
-	</tr>
 	<tr>
 		<td width="100%">
 			<@CommonQueryMacro.GroupBox id="BankBlackListEditGuoup" label="选择黑名单信息" expand="true">
@@ -20,8 +12,8 @@
 					<tr>
 						<td colspan="2">
 							<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btDel" 
-									fieldStr="select,id[100],blacklistType,accountType[60],certificateType,certificateNumber[100],clientName[200],"+
-										"clientEnglishName[200],operateState[100],shareState[100],delState[100],opr[150]"  
+									fieldStr="select,blacklistid,brcode,auditType,auditState,certificateType,certificateNumber,"+
+										"clientName,clientEnglishName,blacklistType,editUserID,verifyUserID,approveUserID,editDate,verifyDate,approveDate,opr"  
 									width="100%" hasFrame="true"/><br/>
 						</td>
 					</tr>
@@ -56,17 +48,16 @@
 	//系统刷新单元格
 	function datatable1_opr_onRefresh(cell, value, record) {
 		if (record) {
-			var op = record.getValue("operateState");
-			var share = record.getValue("share");
-			var shareState = record.getValue("shareState");
-			var id = record.getValue("id");
+			var share = record.getValue("auditType");
+			var shareState = record.getValue("auditState");
+			var id = record.getValue("blacklistid");
 			var tempHtml = "<center>";
 			tempHtml += "<a href=\"JavaScript:openModifyWindow('" + id
 					+ "')\">修改</a> ";
-			if (share == "F" && shareState == "1") {
+			if (share == "" && shareState == "1") {
 				tempHtml += "<a href=\"JavaScript:doShare('" + id
 						+ "')\">分享</a> ";
-			} else if (share == "T" && shareState == "4") {
+			} else if (share == "" && shareState == "4") {
 				tempHtml += "<a href=\"JavaScript:doCancelShare('" + id
 						+ "')\">取消分享</a> ";
 			}
@@ -75,10 +66,29 @@
 			cell.innerHTML = "";
 		}
 	}
+	
+	
+	//展示对比功能的js
+	function datatable1_blacklistid_onRefresh(cell, value, record) {
+		if (record) {
+			var id = record.getValue("blacklistid");
+			cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "')\">"
+					+ value + "</a>";
+		} else {
+			cell.innerHTML = "";
+		}
+	}
+
+	function showDetail(id) {
+		locate(id);
+		BankBlackListEdit_dataset.setParameter("blacklistid", id);
+		btDetail.click();
+	}
 
 	//修改功能
 	function openModifyWindow(id) {
-		locate(id);
+		//locate(id);
+		BankBlackListEdit_dataset.setParameter("blacklistid", id);
 		btModify.click();
 	}
 
@@ -136,22 +146,6 @@
 		alert("删除黑名单申请提交成功，请等待审核。");
 		button.url = "#";
 		flushCurrentPage();
-	}
-
-	//展示对比功能的js
-	function datatable1_id_onRefresh(cell, value, record) {
-		if (record) {
-			var id = record.getValue("id");
-			cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "')\">"
-					+ value + "</a>";
-		} else {
-			cell.innerHTML = "";
-		}
-	}
-
-	function showDetail(id) {
-		locate(id);
-		btDetail.click();
 	}
 
 	function btAdd_onClick(button) {

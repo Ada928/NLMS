@@ -3,6 +3,7 @@
 
 	<!-- 黑名单管理 -->
 	<!-- -->
+	<Query id="BankBlackListEntry" path="/fpages/blacklistManage/xml/BankBlackListEntry.xml" />
 	<Query id="BankBlackListEdit" path="/fpages/blacklistManage/xml/BankBlackListEdit.xml" />
 	<Query id="BankBlackListVerify" path="/fpages/blacklistManage/xml/BankBlackListVerify.xml" />
 	<Query id="BankBlackListApprove" path="/fpages/blacklistManage/xml/BankBlackListApprove.xml" />

@@ -68,7 +68,7 @@ public class BankInfoGetter extends BaseGetter {
 		StringBuffer hql = new StringBuffer(" from resource.bean.pub.Bctl bblt where 1=1");
 		List<Object> list = new ArrayList<Object>();
 		hql.append(" and bblt.del= ? ");
-		list.add(Boolean.FALSE);
+		list.add("F");
 
 		if (StringUtils.isNotBlank(brNo)) {
 			hql.append(" and bblt.brno= ? ");
@@ -94,12 +94,12 @@ public class BankInfoGetter extends BaseGetter {
 	private void recordOperateLog(GlobalInfo globalinfo, int count, String message) {
 		BankOperateLogService service = BankOperateLogService.getInstance();
 		BctlOperateLog bean = new BctlOperateLog();
-		bean.setBrNo(globalinfo.getBrno());
+		bean.setBrcode(globalinfo.getBrcode());
 		bean.setId(String.valueOf(GenerateID.getId()));
 		bean.setQueryType("");
 		bean.setQueryRecordNumber(String.valueOf(count));
 		bean.setTlrIP(globalinfo.getIp());
-		bean.setTlrNo(globalinfo.getTlrno());
+		bean.setTlrno(globalinfo.getTlrno());
 		bean.setOperateType(SystemConstant.LOG_QUERY);
 		bean.setMessage(message);
 		bean.setCreateDate(new Date());

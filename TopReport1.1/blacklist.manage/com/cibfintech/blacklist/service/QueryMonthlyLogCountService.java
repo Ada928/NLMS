@@ -58,7 +58,7 @@ public class QueryMonthlyLogCountService {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		NsQueryMonthlyLogCount queryMonthlyLogCount = new NsQueryMonthlyLogCount();
 		queryMonthlyLogCount.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
-		queryMonthlyLogCount.setBrNo(gi.getBrno());
+		queryMonthlyLogCount.setBrcode(gi.getBrno());
 		queryMonthlyLogCount.setOperateType(operateType);
 		queryMonthlyLogCount.setQueryTable(queryTable);
 		queryMonthlyLogCount.setSumQueryRecord(sumQueryRecord);

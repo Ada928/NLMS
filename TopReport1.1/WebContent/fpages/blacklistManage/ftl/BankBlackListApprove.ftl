@@ -4,16 +4,8 @@
 <#assign op="${RequestParameters['op']?default('')}" />
 <#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="商行黑名单审批">
-<@CommonQueryMacro.CommonQuery id="BankBlackListApprove" init="false"  submitMode="selected"  navigate="false">
+<@CommonQueryMacro.CommonQuery id="BankBlackListApprove" init="true"  submitMode="selected"  navigate="false">
 <table align="center" width="100%">
-   	<tr>
-      	<td valign="top" colspan="2" >
-			<@CommonQueryMacro.Interface id="intface" label="请输入查询条件" colNm=4  />
-		</td>
-	</tr>
-  	<tr>
-  		<td><@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9" showArrow="true"  pageCache="false"/></td>
-	</tr>
 	<tr>
 		<td width="100%">
 			<@CommonQueryMacro.GroupBox id="BankBlackListApproveGuoup" label="选择黑名单信息" expand="true">
@@ -21,8 +13,8 @@
 					<tr>
 						<td colspan="2">
 							<@CommonQueryMacro.DataTable id="datatable1" paginationbar="" 
-									fieldStr="select,id[100],accountType[60],certificateType,certificateNumber[100],clientName[200],"+
-										"clientEnglishName[200],operateState[100],blacklistType,share,valid"  
+									fieldStr="select,blacklistid,brcode,auditType,auditState,certificateType,certificateNumber,"+
+										"clientName,clientEnglishName,blacklistType,editUserID,verifyUserID,approveUserID,editDate,verifyDate,approveDate"  
 									width="100%" hasFrame="true"/><br/>
 						</td>
 					</tr>
@@ -61,9 +53,9 @@
 	}
 
 	//展示对比功能的js
-	function datatable1_id_onRefresh(cell, value, record) {
+	function datatable1_blacklistid_onRefresh(cell, value, record) {
 		if (record) {
-			var id = record.getValue("id");
+			var id = record.getValue("blacklistid");
 			cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "')\">" + value + "</a>";
 		} else {
 			cell.innerHTML = "";
@@ -71,7 +63,7 @@
 	}
 
 	function showDetail(id) {
-		locate(id);
+		BankBlackListApprove_dataset.setParameter("blacklistid", id);
 		btDetail.click();
 	}
 

@@ -311,12 +311,13 @@ public class ReportEnum {
 		}
 	}
 
-	public static enum BANK_BLACKLIST_SHARE_STATE {
-		SHING("1", "編輯中..."), SHED("2", "編輯完成，待审核"), SHVRED("3", "编辑审核完成，待审批"), SHAPED("4", "审批完成，已发布"), N("0", "无效");
+	public static enum BANK_BLACKLIST_AUDIT_TYPE {
+		ADD("1", "添加黑名单"), EDIT("2", "編輯黑名单"), SHARE("3", "分享黑名单"), CANCELSHARE("4", "取消分享黑名单"), VALID("5", "设置黑名单有效"), INVALID("6", "设置黑名单无效"), DELETE("7",
+				"删除黑名单");
 		public String value;
 		public String name;
 
-		private BANK_BLACKLIST_SHARE_STATE(String value, String name) {
+		private BANK_BLACKLIST_AUDIT_TYPE(String value, String name) {
 			this.value = value;
 			this.name = name;
 		}
@@ -331,32 +332,12 @@ public class ReportEnum {
 		}
 	}
 
-	public static enum BANK_BLACKLIST_VALID_STATE {
-		VAING("1", "編輯中..."), VAED("2", "編輯完成，待审核"), VAVRED("3", "编辑审核完成，待审批"), VAAPED("4", "审批完成，已发布"), N("0", "无效");
+	public static enum BANK_BLACKLIST_AUDIT_STATE {
+		EDING("1", "編輯中..."), EDED("2", "編輯完成，提交审核"), VRED("3", "审核完成，待审批"), APED("4", "审批完成，已发布"), N("0", "无效");
 		public String value;
 		public String name;
 
-		private BANK_BLACKLIST_VALID_STATE(String value, String name) {
-			this.value = value;
-			this.name = name;
-		}
-
-		public static String valueof(String value) {
-			for (int i = 0; i < values().length; i++) {
-				if (values()[i].value.equals(value)) {
-					return values()[i].name;
-				}
-			}
-			return value;
-		}
-	}
-
-	public static enum BANK_BLACKLIST_DEL_STATE {
-		DEING("1", "編輯中..."), DEED("2", "編輯完成，待审核"), DEVRED("3", "编辑审核完成，待审批"), DEAPED("4", "审批完成，已发布"), N("0", "无效");
-		public String value;
-		public String name;
-
-		private BANK_BLACKLIST_DEL_STATE(String value, String name) {
+		private BANK_BLACKLIST_AUDIT_STATE(String value, String name) {
 			this.value = value;
 			this.name = name;
 		}

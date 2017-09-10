@@ -57,8 +57,8 @@ public class PoliceBlackListOperateLogService {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		NsPoliceBLOperateLog policeBLOperateLog = new NsPoliceBLOperateLog();
 		policeBLOperateLog.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
-		policeBLOperateLog.setBrNo(gi.getBrno());
-		policeBLOperateLog.setTlrNo(gi.getTlrno());
+		policeBLOperateLog.setBrcode(gi.getBrcode());
+		policeBLOperateLog.setTlrno(gi.getTlrno());
 		policeBLOperateLog.setTlrIP(gi.getIp());
 		policeBLOperateLog.setOperateType(operateType);
 		policeBLOperateLog.setQueryType(queryType);

@@ -6,7 +6,7 @@
   			<td valign="center">
   				<@CommonQueryMacro.Group id="group1" label="商行黑名单管理详细信息" 
   					fieldStr="id,bankCode,bankName,accountType,brattr,certificateType,blacklistType,share,valid,del,"+
-						"operateState,certificateNumber,clientName,clientEnglishName,validDate,blacklistedDate,"+
+						"approve,certificateNumber,clientName,clientEnglishName,validDate,blacklistedDate,"+
 						"blacklistedOperator,blacklistedReason,unblacklistedDate,unblacklistedOperator,"+
 						"unblacklistedReason,createDate,lastModifyDate,lastModifyOperator,remarks"
 					colNm=4/>

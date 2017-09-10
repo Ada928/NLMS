@@ -12,14 +12,14 @@
         <Field id="id" desc="记录主键" require="" edittype="text" datatype="string" method="None" readonly="false"
             size="32" status="N" default="" primary="true" xpath="/id" />
 
-        <Field id="tlrNo" desc="操作员编号" require="" edittype="text" datatype="string" method="None" readonly="false"
-            size="20" status="F" default="" xpath="/tlrNo" />
+        <Field id="tlrno" desc="操作员编号" require="" edittype="text" datatype="string" method="None" readonly="false"
+            size="20" status="F" default="" xpath="/tlrno" />
             
         <Field id="tlrIP" desc="操作员IP地址" require="" edittype="text" datatype="string" method="None" readonly="false"
             size="32" status="F" default="" xpath="/tlrIP" />    
 
-        <Field id="brNo" desc="机构编号" require="" edittype="text" datatype="string" method="None" readonly="false"
-            size="20" status="F" default="" xpath="/brNo" />
+        <Field id="brcode" desc="机构编号" require="" edittype="text" datatype="string" method="None" readonly="false"
+            size="20" status="F" default="" xpath="/brcode" />
 
         <Field id="operateType" desc="操作类型" require="" edittype="textarea" datatype="string" method="None"
             readonly="false" size="256" status="F" default="" xpath="/operateType" />
@@ -38,7 +38,7 @@
     </Fields>
     <Where>
         <TextBox id="qtlrNo" type="String" operation="EQ" size="8" desc="操作员编号" tip="操作员编号" index="0" />
-        <Option id="qbrNo" operation="EQ" size="" desc="所属银行" tip="机构号" type="string" translated="CQ:BctlAllSelect"
+        <Option id="qbrcode" operation="EQ" size="" desc="所属银行" tip="机构号" type="string" translated="CQ:BctlAllSelect"
             fieldmap="qbrNo=brno;qbrNoName=brcodeTypeName" viewField="brcodeTypeName" dropdowntype="dynamic" init="true"
             require="false" readOnly="" index="1" />
 

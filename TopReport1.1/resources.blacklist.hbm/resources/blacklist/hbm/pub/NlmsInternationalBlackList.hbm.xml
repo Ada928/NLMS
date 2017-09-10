@@ -6,7 +6,7 @@
     <class name="NsInternationalBlackList" table="nlms_internationalblacklist">
         <meta attribute="sync-DAO">false</meta>
 
-        <id name="id" type="string" column="party_id" />
+        <id name="id" type="string" column="blacklist_id" />
         <property name="blacklistType" type="string" column="blacklist_type" length="1" />
         <property name="sanCode" type="string" column="san_code" length="32" not-null="false" />
         <property name="sanName" type="string" column="san_name" length="32" not-null="false" />

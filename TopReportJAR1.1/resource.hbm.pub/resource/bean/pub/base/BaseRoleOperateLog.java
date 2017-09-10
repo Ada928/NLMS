@@ -14,10 +14,10 @@ public abstract class BaseRoleOperateLog implements Serializable {
 
 	public static String REF = "BaseBctlOperateLog";
 	public static String PROP_MESSAFE = "message";
-	public static String PROP_TLR_NO = "tlrNo";
+	public static String PROP_TLRNO = "tlrno";
 	public static String PROP_ID = "id";
 	public static String PROP_CREATE_DATE = "create_date";
-	public static String PROP_BR_NO = "brNo";
+	public static String PROP_BRCODE = "brcode";
 	public static String PROP_QUERY_TYPE = "queryType";
 	public static String PROP_TLR_IP = "tlr_ip";
 	public static String PROP_FILTER1 = "filter1";
@@ -46,9 +46,9 @@ public abstract class BaseRoleOperateLog implements Serializable {
 	private java.lang.String id;
 
 	// fields
-	private java.lang.String tlrNo;
+	private java.lang.String tlrno;
 	private java.lang.String tlrIP;
-	private java.lang.String brNo;
+	private java.lang.String brcode;
 	private java.lang.String operateType;
 	private java.lang.String queryType;
 	private java.lang.String queryRecordNumber;
@@ -57,7 +57,6 @@ public abstract class BaseRoleOperateLog implements Serializable {
 	private java.lang.String filter1;
 	private java.lang.String filter2;
 	private java.lang.String filter3;
-	
 
 	/**
 	 * Return the unique identifier of this class
@@ -82,8 +81,8 @@ public abstract class BaseRoleOperateLog implements Serializable {
 	/**
 	 * Return the value associated with the column: TLR_NO
 	 */
-	public java.lang.String getTlrNo() {
-		return tlrNo;
+	public java.lang.String getTlrno() {
+		return tlrno;
 	}
 
 	/**
@@ -92,15 +91,15 @@ public abstract class BaseRoleOperateLog implements Serializable {
 	 * @param tlrNo
 	 *            the TLR_NO value
 	 */
-	public void setTlrNo(java.lang.String tlrNo) {
-		this.tlrNo = tlrNo;
+	public void setTlrno(java.lang.String tlrNo) {
+		this.tlrno = tlrNo;
 	}
 
 	/**
 	 * Return the value associated with the column: BR_NO
 	 */
-	public java.lang.String getBrNo() {
-		return brNo;
+	public java.lang.String getBrcode() {
+		return brcode;
 	}
 
 	/**
@@ -109,10 +108,10 @@ public abstract class BaseRoleOperateLog implements Serializable {
 	 * @param brNo
 	 *            the BR_NO value
 	 */
-	public void setBrNo(java.lang.String brNo) {
-		this.brNo = brNo;
+	public void setBrcode(java.lang.String brNo) {
+		this.brcode = brNo;
 	}
-	
+
 	public java.lang.String getTlrIP() {
 		return tlrIP;
 	}
@@ -204,8 +203,7 @@ public abstract class BaseRoleOperateLog implements Serializable {
 			if (null == this.getId())
 				return super.hashCode();
 			else {
-				String hashStr = this.getClass().getName() + ":"
-						+ this.getId().hashCode();
+				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
 			}
 		}

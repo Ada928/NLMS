@@ -5,8 +5,10 @@ import java.util.List;
 
 import resource.bean.blacklist.NsBankBLOperateLog;
 import resource.bean.blacklist.NsBankBlackList;
+import resource.bean.blacklist.NsBankBlackListAuditState;
 import resource.bean.report.SysTaskInfo;
 
+import com.cibfintech.blacklist.bankblacklist.service.BankBlackListAuditStateService;
 import com.cibfintech.blacklist.bankblacklist.service.BankBlackListOperateLogService;
 import com.cibfintech.blacklist.bankblacklist.service.BankBlackListService;
 import com.cibfintech.blacklist.util.GenerateID;
@@ -27,6 +29,7 @@ public class BankBlackListOperation extends BaseOperation {
 	public static final String IN_BANK_BLACK_LIST = "IN_BANK_BLACK_LIST";
 	public static final String IN_BANK_BLACK_LISTS = "IN_BANK_BLACK_LISTS";
 	public static final String IN_PARAM = "IN_PARAM";
+	public static final String IN_PARAM_SAVE = "IN_PARAM_SAVE";
 	public static final String IN_PARAM_SURE = "IN_PARAM_SURE";
 	public static final String IN_DEL = "del";
 	public static final String IN_ADD = "add";
@@ -51,6 +54,7 @@ public class BankBlackListOperation extends BaseOperation {
 	public void execute(OperationContext context) throws CommonException {
 		String cmd = (String) context.getAttribute(CMD);
 		BankBlackListService service = BankBlackListService.getInstance();
+		BankBlackListAuditStateService auditStateService = BankBlackListAuditStateService.getInstance();
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
 		String operateType = "";
 		String message = "";
@@ -62,11 +66,6 @@ public class BankBlackListOperation extends BaseOperation {
 			for (NsBankBlackList bblt : fromBean) {
 				NsBankBlackList bean = service.selectById(bblt.getId());
 
-				if (del.equals("delT")) {
-					if (bean.getDelState().equals(ReportEnum.BANK_BLACKLIST_DEL_STATE.DEING.value)) {
-						bean.setDelState(ReportEnum.BANK_BLACKLIST_DEL_STATE.DEED.value);
-					}
-				}
 				//
 				// bean.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.N.value);
 				// bean.setShare(SystemConstant.FALSE);
@@ -85,19 +84,36 @@ public class BankBlackListOperation extends BaseOperation {
 		} else if (CMD_ADD.equals(cmd)) {
 			// 插入或者更新
 			NsBankBlackList fromBean = (NsBankBlackList) context.getAttribute(IN_BANK_BLACK_LIST);
-			fromBean.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.EDED.value);
-			fromBean.setShareState(ReportEnum.BANK_BLACKLIST_SHARE_STATE.SHING.value);
-			fromBean.setDelState(ReportEnum.BANK_BLACKLIST_DEL_STATE.DEING.value);
-			fromBean.setValidState(ReportEnum.BANK_BLACKLIST_VALID_STATE.VAING.value);
+			String param = (String) context.getAttribute(IN_PARAM_SAVE);
+			String blacklistID = String.valueOf(GenerateID.getId());
+			String tlrno = globalInfo.getTlrno();
+			String brcode = globalInfo.getBrcode();
+
+			if (param.equals("queryVerify")) {
+				NsBankBlackListAuditState auditState = new NsBankBlackListAuditState();
+				auditState.setId(String.valueOf(GenerateID.getId()));
+				auditState.setBlacklistID(blacklistID);
+				auditState.setAuditType(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.ADD.value);
+				auditState.setAuditState(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDED.value);
+				auditState.setBrcode(brcode);
+				auditState.setEditUserID(tlrno);
+				auditState.setEditDate(DateUtil.getCurrentDateWithTime());
+				auditStateService.addEntity(auditState);
+			}
+
+			fromBean.setId(blacklistID);
+			fromBean.setBankCode(brcode);
 			fromBean.setCreateDate(DateUtil.getCurrentDate());
-			fromBean.setShare(SystemConstant.FALSE);
 			fromBean.setDel(SystemConstant.FALSE);
-			fromBean.setValid(SystemConstant.FALSE);
-			fromBean.setBankCode(GlobalInfo.getCurrentInstance().getBrcode());
+			fromBean.setApprove(SystemConstant.FALSE);
+			fromBean.setShare(SystemConstant.FALSE);
 			fromBean.setBlacklistedDate(DateUtil.getCurrentDate());
-			fromBean.setBlacklistedOperator(GlobalInfo.getCurrentInstance().getTlrno());
-			fromBean.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
+			fromBean.setBlacklistedOperator(tlrno);
+			fromBean.setLastModifyOperator(tlrno);
 			fromBean.setLastModifyDate(DateUtil.getCurrentDate());
+			if (fromBean.getValid() == null || fromBean.getValid() == "") {
+				fromBean.setValid(SystemConstant.FALSE);
+			}
 			if (fromBean.getValidDate() == null || fromBean.getValidDate().toString() == "") {
 				fromBean.setValidDate(DateUtil.getDayAfter100Years());
 			}
@@ -115,34 +131,6 @@ public class BankBlackListOperation extends BaseOperation {
 			String verify = (String) context.getAttribute(IN_VERIFY);
 			for (NsBankBlackList bblt : fromBeans) {
 				NsBankBlackList bean = service.selectById(bblt.getId());
-				if (bean.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.EDED.value)) {
-					if (verify.equals("verifyT")) {
-						bean.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.EDVRED.value);
-					} else if (verify.equals("verifyF")) {
-						bean.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.EDING.value);
-					}
-				}
-				if (bean.getShareState().equals(ReportEnum.BANK_BLACKLIST_SHARE_STATE.SHED.value)) {
-					if (verify.equals("verifyT")) {
-						bean.setShareState(ReportEnum.BANK_BLACKLIST_SHARE_STATE.SHVRED.value);
-					} else if (verify.equals("verifyF")) {
-						bean.setShareState(ReportEnum.BANK_BLACKLIST_SHARE_STATE.SHING.value);
-					}
-				}
-				if (bean.getValidDate().equals(ReportEnum.BANK_BLACKLIST_VALID_STATE.VAED.value)) {
-					if (verify.equals("verifyT")) {
-						bean.setValidState(ReportEnum.BANK_BLACKLIST_VALID_STATE.VAVRED.value);
-					} else if (verify.equals("verifyF")) {
-						bean.setValidState(ReportEnum.BANK_BLACKLIST_VALID_STATE.VAING.value);
-					}
-				}
-				if (bean.getDelState().equals(ReportEnum.BANK_BLACKLIST_DEL_STATE.DEED.value)) {
-					if (verify.equals("verifyT")) {
-						bean.setDelState(ReportEnum.BANK_BLACKLIST_DEL_STATE.DEVRED.value);
-					} else if (verify.equals("verifyF")) {
-						bean.setDelState(ReportEnum.BANK_BLACKLIST_DEL_STATE.DEING.value);
-					}
-				}
 
 				bean.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 				bean.setLastModifyDate(DateUtil.getCurrentDate());
@@ -160,52 +148,7 @@ public class BankBlackListOperation extends BaseOperation {
 
 			for (NsBankBlackList bblt : fromBeans) {
 				NsBankBlackList bean = service.selectById(bblt.getId());
-				if (bean.getOperateState().equals(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.EDVRED.value)) {
-					if (approve.equals("approveT")) {
-						bean.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.EDAPED.value);
-					} else if (approve.equals("approveF")) {
-						bean.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.EDED.value);
-					}
-				}
-				if (bean.getShareState().equals(ReportEnum.BANK_BLACKLIST_SHARE_STATE.SHVRED.value)) {
-					if (approve.equals("approveT")) {
-						bean.setShareState(ReportEnum.BANK_BLACKLIST_SHARE_STATE.SHAPED.value);
-						if (bblt.getShare() == SystemConstant.FALSE) {
-							bean.setShare(SystemConstant.TRUE);
-						} else {
-							bean.setShare(SystemConstant.FALSE);
-						}
-					} else if (approve.equals("approveF")) {
-						bean.setShareState(ReportEnum.BANK_BLACKLIST_SHARE_STATE.SHED.value);
-					}
-				}
-				if (bean.getValidDate().equals(ReportEnum.BANK_BLACKLIST_VALID_STATE.VAVRED.value)) {
-					if (approve.equals("approveT")) {
-						bean.setValidState(ReportEnum.BANK_BLACKLIST_VALID_STATE.VAAPED.value);
-						if (bblt.getValid() == SystemConstant.FALSE) {
-							bean.setValid(SystemConstant.TRUE);
-						} else {
-							bean.setValid(SystemConstant.FALSE);
-						}
-					} else if (approve.equals("approveF")) {
-						bean.setValidState(ReportEnum.BANK_BLACKLIST_VALID_STATE.VAED.value);
-					}
-				}
-				if (bean.getDelState().equals(ReportEnum.BANK_BLACKLIST_DEL_STATE.DEVRED.value)) {
-					if (approve.equals("approveT")) {
-						bean.setDelState(ReportEnum.BANK_BLACKLIST_DEL_STATE.N.value);
-						if (bblt.getDel() == SystemConstant.FALSE) {
-							bean.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.N.value);
-							bean.setShareState(ReportEnum.BANK_BLACKLIST_SHARE_STATE.N.value);
-							bean.setValidState(ReportEnum.BANK_BLACKLIST_VALID_STATE.N.value);
-							bean.setShare(SystemConstant.FALSE);
-							bean.setValid(SystemConstant.FALSE);
-							bean.setDel(SystemConstant.TRUE);
-						}
-					} else if (approve.equals("approveF")) {
-						bean.setDelState(ReportEnum.BANK_BLACKLIST_DEL_STATE.DEED.value);
-					}
-				}
+
 				bean.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 				bean.setLastModifyDate(DateUtil.getCurrentDate());
 				service.modEntity(bean);
@@ -222,12 +165,6 @@ public class BankBlackListOperation extends BaseOperation {
 			String share = (String) context.getAttribute(IN_SHARE);
 			for (NsBankBlackList bblt : fromBeans) {
 				NsBankBlackList bean = service.selectById(bblt.getId());
-				if (share.equals("shareT")) {
-					bean.setShareState(ReportEnum.BANK_BLACKLIST_SHARE_STATE.SHED.value);
-				} else if (share.equals("shareF")) {
-					bean.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.EDED.value);
-					bean.setShareState(ReportEnum.BANK_BLACKLIST_SHARE_STATE.SHED.value);
-				}
 
 				bean.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 				bean.setLastModifyDate(DateUtil.getCurrentDate());
@@ -242,12 +179,21 @@ public class BankBlackListOperation extends BaseOperation {
 		} else if (CMD_EDIT.equals(cmd)) {
 			NsBankBlackList fromBean = (NsBankBlackList) context.getAttribute(IN_BANK_BLACK_LIST);
 			NsBankBlackList bean = service.selectById(fromBean.getId());
-			if (fromBean.getBankCode().trim() == "") {
-				bean.setBankCode(GlobalInfo.getCurrentInstance().getBrcode());
-			} else {
-				bean.setBankCode(fromBean.getBankCode());
+			String param = (String) context.getAttribute(IN_PARAM_SAVE);
+			String blacklistID = String.valueOf(GenerateID.getId());
+			String tlrno = globalInfo.getTlrno();
+			String brcode = globalInfo.getBrcode();
+
+			if (param.equals("queryVerify")) {
+				NsBankBlackListAuditState auditState = new NsBankBlackListAuditState();
+				auditState.setId(String.valueOf(GenerateID.getId()));
+				auditState.setBlacklistID(blacklistID);
+				auditState.setAuditType(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.ADD.value);
+				auditState.setAuditState(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDED.value);
+				auditState.setBrcode(brcode);
+				auditState.setEditUserID(tlrno);
+				auditState.setEditDate(DateUtil.getCurrentDateWithTime());
 			}
-			bean.setOperateState(ReportEnum.BANK_BLACKLIST_OPERATE_STATE.EDED.value);
 
 			bean.setAccountType(fromBean.getAccountType());
 			bean.setAccountCode(fromBean.getAccountCode());
@@ -289,7 +235,7 @@ public class BankBlackListOperation extends BaseOperation {
 		SysTaskInfo taskInfo;
 		try {
 			taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_200399.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, bean,
-					bean.getId(), bean.getOperateState());
+					bean.getId(), bean.getApprove());
 			service.addTosystaskinfo(taskInfo);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -300,11 +246,11 @@ public class BankBlackListOperation extends BaseOperation {
 	private void recordOperateLog(GlobalInfo globalinfo, String operateType, String message) {
 		BankBlackListOperateLogService service = BankBlackListOperateLogService.getInstance();
 		NsBankBLOperateLog bean = new NsBankBLOperateLog();
-		bean.setBrNo(globalinfo.getBrno());
+		bean.setBrcode(globalinfo.getBrcode());
 		bean.setId(String.valueOf(GenerateID.getId()));
 		bean.setQueryType("");
 		bean.setTlrIP(globalinfo.getIp());
-		bean.setTlrNo(globalinfo.getTlrno());
+		bean.setTlrno(globalinfo.getTlrno());
 		bean.setOperateType(operateType);
 		bean.setMessage(message);
 		bean.setCreateDate(DateUtil.getCurrentDateWithTime());

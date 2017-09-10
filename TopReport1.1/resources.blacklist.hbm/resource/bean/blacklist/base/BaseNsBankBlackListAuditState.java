@@ -1,6 +1,8 @@
-package resource.bean.pub.base;
+package resource.bean.blacklist.base;
 
 import java.io.Serializable;
+
+import resource.bean.blacklist.NsBankBlackListAuditState;
 
 /**
  * This is an object that contains data related to the TLR_LOGIN_LOG table. Do
@@ -10,29 +12,29 @@ import java.io.Serializable;
  * @hibernate.class table="TLR_LOGIN_LOG"
  */
 
-public abstract class BaseTlrOperateLog implements Serializable {
+public abstract class BaseNsBankBlackListAuditState implements Serializable {
 
-	public static String REF = "BaseBctlOperateLog";
+	public static String REF = "BaseInternationBLOperateLog";
 	public static String PROP_MESSAFE = "message";
 	public static String PROP_TLRNO = "tlrno";
 	public static String PROP_ID = "id";
 	public static String PROP_CREATE_DATE = "create_date";
 	public static String PROP_BRCODE = "brcode";
-	public static String PROP_QUERY_TYPE = "queryType";
+	public static String PROP_AUDIT_TYPE = "auditType";
 	public static String PROP_TLR_IP = "tlr_ip";
 	public static String PROP_FILTER1 = "filter1";
 	public static String PROP_FILTER2 = "filter2";
 	public static String PROP_FILTER3 = "filter3";
 
 	// constructors
-	public BaseTlrOperateLog() {
+	public BaseNsBankBlackListAuditState() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseTlrOperateLog(java.lang.String id) {
+	public BaseNsBankBlackListAuditState(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -46,14 +48,18 @@ public abstract class BaseTlrOperateLog implements Serializable {
 	private java.lang.String id;
 
 	// fields
-	private java.lang.String tlrno;
-	private java.lang.String tlrIP;
+
+	private java.lang.String editUserID;
+	private java.lang.String verifyUserID;
+	private java.lang.String approveUserID;
+	private java.lang.String blacklistID;
 	private java.lang.String brcode;
-	private java.lang.String operateType;
-	private java.lang.String queryType;
-	private java.lang.String queryRecordNumber;
-	private java.lang.String message;
-	private java.util.Date createDate;
+	private java.lang.String auditType;
+	private java.lang.String auditState;
+	private java.util.Date editDate;
+	private java.util.Date verifyDate;
+	private java.util.Date approveDate;
+
 	private java.lang.String filter1;
 	private java.lang.String filter2;
 	private java.lang.String filter3;
@@ -81,8 +87,8 @@ public abstract class BaseTlrOperateLog implements Serializable {
 	/**
 	 * Return the value associated with the column: TLR_NO
 	 */
-	public java.lang.String getTlrno() {
-		return tlrno;
+	public java.lang.String getEditUserID() {
+		return editUserID;
 	}
 
 	/**
@@ -91,8 +97,24 @@ public abstract class BaseTlrOperateLog implements Serializable {
 	 * @param tlrNo
 	 *            the TLR_NO value
 	 */
-	public void setTlrno(java.lang.String tlrNo) {
-		this.tlrno = tlrNo;
+	public void setEditUserID(java.lang.String editUserID) {
+		this.editUserID = editUserID;
+	}
+
+	public java.lang.String getVerifyUserID() {
+		return verifyUserID;
+	}
+
+	public void setVerifyUserID(java.lang.String verifyUserID) {
+		this.verifyUserID = verifyUserID;
+	}
+
+	public java.lang.String getApproveUserID() {
+		return approveUserID;
+	}
+
+	public void setApproveUserID(java.lang.String approveUserID) {
+		this.approveUserID = approveUserID;
 	}
 
 	/**
@@ -112,20 +134,28 @@ public abstract class BaseTlrOperateLog implements Serializable {
 		this.brcode = brNo;
 	}
 
-	public java.lang.String getTlrIP() {
-		return tlrIP;
+	public java.lang.String getBlacklistID() {
+		return blacklistID;
 	}
 
-	public void setTlrIP(java.lang.String tlrIP) {
-		this.tlrIP = tlrIP;
+	public void setBlacklistID(java.lang.String blacklistID) {
+		this.blacklistID = blacklistID;
 	}
 
-	public java.lang.String getQueryType() {
-		return queryType;
+	public java.lang.String getAuditType() {
+		return auditType;
 	}
 
-	public void setQueryType(java.lang.String queryType) {
-		this.queryType = queryType;
+	public void setAuditType(java.lang.String auditType) {
+		this.auditType = auditType;
+	}
+
+	public java.lang.String getAuditState() {
+		return auditState;
+	}
+
+	public void setAuditState(java.lang.String auditState) {
+		this.auditState = auditState;
 	}
 
 	public java.lang.String getFilter1() {
@@ -152,49 +182,41 @@ public abstract class BaseTlrOperateLog implements Serializable {
 		this.filter3 = filter3;
 	}
 
-	public java.lang.String getOperateType() {
-		return operateType;
+	public java.util.Date getVerifyDate() {
+		return verifyDate;
 	}
 
-	public void setOperateType(java.lang.String operateType) {
-		this.operateType = operateType;
+	public void setVerifyDate(java.util.Date verifyDate) {
+		this.verifyDate = verifyDate;
 	}
 
-	public java.lang.String getQueryRecordNumber() {
-		return queryRecordNumber;
+	public java.util.Date getApproveDate() {
+		return approveDate;
 	}
 
-	public void setQueryRecordNumber(java.lang.String queryRecordNumber) {
-		this.queryRecordNumber = queryRecordNumber;
+	public void setApproveDate(java.util.Date approveDate) {
+		this.approveDate = approveDate;
 	}
 
-	public java.lang.String getMessage() {
-		return message;
+	public java.util.Date getEditDate() {
+		return editDate;
 	}
 
-	public void setMessage(java.lang.String message) {
-		this.message = message;
-	}
-
-	public java.util.Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(java.util.Date createDate) {
-		this.createDate = createDate;
+	public void setEditDate(java.util.Date editDate) {
+		this.editDate = editDate;
 	}
 
 	public boolean equals(Object obj) {
 		if (null == obj)
 			return false;
-		if (!(obj instanceof resource.bean.pub.BctlOperateLog))
+		if (!(obj instanceof NsBankBlackListAuditState))
 			return false;
 		else {
-			resource.bean.pub.TlrOperateLog tlrOperateLog = (resource.bean.pub.TlrOperateLog) obj;
-			if (null == this.getId() || null == tlrOperateLog.getId())
+			NsBankBlackListAuditState intenaBLOperateLog = (NsBankBlackListAuditState) obj;
+			if (null == this.getId() || null == intenaBLOperateLog.getId())
 				return false;
 			else
-				return (this.getId().equals(tlrOperateLog.getId()));
+				return (this.getId().equals(intenaBLOperateLog.getId()));
 		}
 	}
 

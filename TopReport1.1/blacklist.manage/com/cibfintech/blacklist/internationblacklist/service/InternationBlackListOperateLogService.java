@@ -57,8 +57,8 @@ public class InternationBlackListOperateLogService {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		NsInternationBLOperateLog internationBLOperateLog = new NsInternationBLOperateLog();
 		internationBLOperateLog.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
-		internationBLOperateLog.setBrNo(gi.getBrno());
-		internationBLOperateLog.setTlrNo(gi.getTlrno());
+		internationBLOperateLog.setBrcode(gi.getBrno());
+		internationBLOperateLog.setTlrno(gi.getTlrno());
 		internationBLOperateLog.setTlrIP(gi.getIp());
 		internationBLOperateLog.setOperateType(operateType);
 		internationBLOperateLog.setQueryType(queryType);

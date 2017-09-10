@@ -84,12 +84,12 @@ public class BankBlackListShareGetter extends BaseGetter {
 	private void recordOperateLog(GlobalInfo globalinfo, int count, String message) {
 		BankBlackListOperateLogService service = BankBlackListOperateLogService.getInstance();
 		NsBankBLOperateLog bean = new NsBankBLOperateLog();
-		bean.setBrNo(globalinfo.getBrno());
+		bean.setBrcode(globalinfo.getBrcode());
 		bean.setId(String.valueOf(GenerateID.getId()));
-		bean.setQueryType("");
+		bean.setQueryType("share");
 		bean.setQueryRecordNumber(String.valueOf(count));
 		bean.setTlrIP(globalinfo.getIp());
-		bean.setTlrNo(globalinfo.getTlrno());
+		bean.setTlrno(globalinfo.getTlrno());
 		bean.setOperateType(SystemConstant.LOG_QUERY);
 		bean.setMessage(message);
 		bean.setCreateDate(new Date());

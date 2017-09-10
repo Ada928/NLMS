@@ -59,7 +59,7 @@
     
 	//ÐÞ¸Ä¹¦ÄÜ
     function openModifyWindow(id) {
-        locate(id);
+        //locate(id);
         btModify.click();
     }
 
@@ -75,18 +75,18 @@
     }
 
     function showDetail(id) {
-       locate(id);
+       //locate(id);
        btDetail.click();
     }
 
     function btAdd_onClick(id) {
-		locate(id);
+		//locate(id);
 		PoliceBlackList_dataset.insertRecord();
     }
  
 
     function doDel(id) {
-        locate(id);
+        //locate(id);
         btDel.click();
     }
 

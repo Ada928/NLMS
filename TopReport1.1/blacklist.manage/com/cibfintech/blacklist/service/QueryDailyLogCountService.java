@@ -55,7 +55,7 @@ public class QueryDailyLogCountService {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		NsQueryDailyLogCount queryDailyLogCount = new NsQueryDailyLogCount();
 		queryDailyLogCount.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
-		queryDailyLogCount.setBrNo(brNo);
+		queryDailyLogCount.setBrcode(brNo);
 		queryDailyLogCount.setOperateType(operateType);
 		queryDailyLogCount.setQueryTable(queryTable);
 		queryDailyLogCount.setSumQueryRecord(sumQueryRecord);

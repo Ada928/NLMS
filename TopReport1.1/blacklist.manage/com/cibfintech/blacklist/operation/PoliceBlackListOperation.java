@@ -124,11 +124,11 @@ public class PoliceBlackListOperation extends BaseOperation {
 	private void recordOperateLog(GlobalInfo globalinfo, String operateType, String message) {
 		BankBlackListOperateLogService service = BankBlackListOperateLogService.getInstance();
 		NsBankBLOperateLog bean = new NsBankBLOperateLog();
-		bean.setBrNo(globalinfo.getBrno());
+		bean.setBrcode(globalinfo.getBrcode());
 		bean.setId(String.valueOf(GenerateID.getId()));
 		bean.setQueryType("");
 		bean.setTlrIP(globalinfo.getIp());
-		bean.setTlrNo(globalinfo.getTlrno());
+		bean.setTlrno(globalinfo.getTlrno());
 		bean.setOperateType(operateType);
 		bean.setMessage(message);
 		bean.setCreateDate(DateUtil.getCurrentDateWithTime());

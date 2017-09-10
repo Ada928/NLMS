@@ -57,8 +57,8 @@ public class BankBlackListOperateLogService {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		NsBankBLOperateLog bankBLOperateLog = new NsBankBLOperateLog();
 		bankBLOperateLog.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
-		bankBLOperateLog.setBrNo(gi.getBrno());
-		bankBLOperateLog.setTlrNo(gi.getTlrno());
+		bankBLOperateLog.setBrcode(gi.getBrno());
+		bankBLOperateLog.setTlrno(gi.getTlrno());
 		bankBLOperateLog.setTlrIP(gi.getIp());
 		bankBLOperateLog.setOperateType(operateType);
 		bankBLOperateLog.setQueryType(queryType);

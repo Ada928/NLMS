@@ -17,7 +17,7 @@ public abstract class BaseNsQueryMonthlyLogCount implements Serializable {
 	public static String REF = "QueryMonthlyLogCount";
 	public static String PROP_ID = "id";
 	public static String PROP_CREATE_DATE = "create_date";
-	public static String PROP_BR_NO = "brNo";
+	public static String PROP_BRCODE = "brcode";
 	public static String PROP_QUERY_TABLE = "queryTable";
 	public static String PROP_OPERATE_TYPE = "operate_type";
 	public static String PROP_COUNT_DAY = "countMonth";
@@ -48,7 +48,7 @@ public abstract class BaseNsQueryMonthlyLogCount implements Serializable {
 	private java.lang.String id;
 
 	// fields
-	private java.lang.String brNo;
+	private java.lang.String brcode;
 	private java.lang.String operateType;
 	private java.lang.String queryTable;
 	private java.lang.String sumQueryRecord;
@@ -81,8 +81,8 @@ public abstract class BaseNsQueryMonthlyLogCount implements Serializable {
 	/**
 	 * Return the value associated with the column: BR_NO
 	 */
-	public java.lang.String getBrNo() {
-		return brNo;
+	public java.lang.String getBrcode() {
+		return brcode;
 	}
 
 	/**
@@ -91,8 +91,8 @@ public abstract class BaseNsQueryMonthlyLogCount implements Serializable {
 	 * @param brNo
 	 *            the BR_NO value
 	 */
-	public void setBrNo(java.lang.String brNo) {
-		this.brNo = brNo;
+	public void setBrcode(java.lang.String brNo) {
+		this.brcode = brNo;
 	}
 
 	public java.lang.String getFilter1() {

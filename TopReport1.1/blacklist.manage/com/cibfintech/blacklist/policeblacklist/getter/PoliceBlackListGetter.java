@@ -59,7 +59,7 @@ public class PoliceBlackListGetter extends BaseGetter {
 		List<Object> list = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer(" from NsPoliceBlackList pblt where 1=1");
 		hql.append(" and pblt.del=?");
-		list.add(false);
+		list.add("F");
 
 		if (StringUtils.isNotBlank(partyId)) {
 			hql.append(" and pblt.id = '").append(partyId.trim()).append("'");
@@ -87,12 +87,12 @@ public class PoliceBlackListGetter extends BaseGetter {
 	private void recordOperateLog(GlobalInfo globalinfo, int count, String message) {
 		PoliceBlackListOperateLogService service = PoliceBlackListOperateLogService.getInstance();
 		NsPoliceBLOperateLog bean = new NsPoliceBLOperateLog();
-		bean.setBrNo(globalinfo.getBrno());
+		bean.setBrcode(globalinfo.getBrcode());
 		bean.setId(String.valueOf(GenerateID.getId()));
 		bean.setQueryType("");
 		bean.setQueryRecordNumber(String.valueOf(count));
 		bean.setTlrIP(globalinfo.getIp());
-		bean.setTlrNo(globalinfo.getTlrno());
+		bean.setTlrno(globalinfo.getTlrno());
 		bean.setOperateType(SystemConstant.LOG_QUERY);
 		bean.setMessage(message);
 		bean.setCreateDate(new Date());

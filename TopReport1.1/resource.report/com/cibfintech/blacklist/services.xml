@@ -4,6 +4,8 @@
 	<!-- 商户黑名单服务类 -->
 	<bean id="BankBlackListService"
 		class="com.cibfintech.blacklist.bankblacklist.service.BankBlackListService" />
+	<bean id="BankBlackListAuditStateService"
+		class="com.cibfintech.blacklist.bankblacklist.service.BankBlackListAuditStateService" />
 	<bean id="BankBlackListOperation"
 		class="com.cibfintech.blacklist.operation.BankBlackListOperation" />
 	<bean

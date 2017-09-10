@@ -52,7 +52,7 @@ public class QueryMonthlyLogCountGetter extends BaseGetter {
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
 
-		String qbrNo = (String) getCommQueryServletRequest().getParameterMap().get("qbrNo");
+		String qbrcode = (String) getCommQueryServletRequest().getParameterMap().get("qbrcode");
 		String startDate = (String) getCommQueryServletRequest().getParameterMap().get("startDate");
 		String endDate = (String) getCommQueryServletRequest().getParameterMap().get("endDate");
 		if (startDate != null && endDate != null) {
@@ -65,9 +65,9 @@ public class QueryMonthlyLogCountGetter extends BaseGetter {
 		List<Object> list = new ArrayList<Object>();
 		sb.append("select cont from NsQueryMonthlyLogCount cont where 1=1 ");
 
-		if (!DataFormat.isEmpty(qbrNo)) {
-			sb.append(" and cont.brNo = ? ");
-			list.add(qbrNo);
+		if (!DataFormat.isEmpty(qbrcode)) {
+			sb.append(" and cont.brcode = ? ");
+			list.add(qbrcode);
 		}
 
 		if (!DataFormat.isEmpty(startDate)) {
@@ -78,7 +78,7 @@ public class QueryMonthlyLogCountGetter extends BaseGetter {
 			sb.append(" and cont.countDate<? ");
 			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endDate), -1));
 		}
-		sb.append(" order by cont.brNo");
+		sb.append(" order by cont.brcode");
 
 		QueryMonthlyLogCountService service = QueryMonthlyLogCountService.getInstance();
 		return service.pageQueryByHql(pageIndex, pageSize, sb.toString(), list);

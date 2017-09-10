@@ -37,10 +37,11 @@ public class BankBlackListManageGetter extends BaseGetter {
 	protected PageQueryResult getData() throws Exception {
 		PageQueryResult result = new PageQueryResult();
 		String id = this.getCommQueryServletRequest().getParameter("id");
+		String blacklistid = this.getCommQueryServletRequest().getParameter("blacklistid");
 		String opType = this.getCommQueryServletRequest().getParameter("op");
 		if (!opType.equals("add")) {
 			List list = new ArrayList();
-			NsBankBlackList bean = BankBlackListService.getInstance().selectById(id);
+			NsBankBlackList bean = BankBlackListService.getInstance().selectById(blacklistid);
 			list.add(bean);
 			result.setQueryResult(list);
 			result.setTotalCount(1);

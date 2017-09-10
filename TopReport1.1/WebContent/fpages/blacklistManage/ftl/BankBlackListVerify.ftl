@@ -1,28 +1,19 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<#assign opType="${RequestParameters['opType']?default('')}" />
 <#assign op="${RequestParameters['op']?default('')}" />
 <#assign info = Session["USER_SESSION_INFO"]>
 <@CommonQueryMacro.page title="商行黑名单审核">
-<@CommonQueryMacro.CommonQuery id="BankBlackListVerify" init="false"  submitMode="selected"  navigate="false">
+<@CommonQueryMacro.CommonQuery id="BankBlackListVerify" init="true"  submitMode="selected"  navigate="false">
 <table align="center" width="100%">
-   	<tr>
-      	<td valign="top" colspan="2" >
-			<@CommonQueryMacro.Interface id="intface" label="请输入查询条件" colNm=4  />
-		</td>
-	</tr>
-  	<tr>
-  		<td><@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9" showArrow="true"  pageCache="false"/></td>
-	</tr>
 	<tr>
 		<td width="100%">
 			<@CommonQueryMacro.GroupBox id="BankBlackListVerifyGuoup" label="选择黑名单信息" expand="true">
 				<table frame=void width="100%">
 					<tr>
 						<td colspan="2">
-							<@CommonQueryMacro.DataTable id="datatable1" paginationbar="" 
-									fieldStr="select,id[100],accountType[60],certificateType,certificateNumber[100],clientName[200],"+
-										"clientEnglishName[200],operateState[100],blacklistType,share,valid"  
+							<@CommonQueryMacro.DataTable id="datatable1" paginationbar="-" 
+									fieldStr="select,blacklistid,brcode,auditType,auditState,certificateType,certificateNumber,"+
+										"clientName,clientEnglishName,blacklistType,editUserID,verifyUserID,approveUserID,editDate,verifyDate,approveDate"  
 									width="100%" hasFrame="true"/><br/>
 						</td>
 					</tr>
@@ -58,10 +49,11 @@
 	}
 
 	//展示详细信息的js
-	function datatable1_id_onRefresh(cell, value, record) {
+	function datatable1_blacklistid_onRefresh(cell, value, record) {
 		if (record) {
-			var id = record.getValue("id");
-			cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "')\">" + value + "</a>";
+			var id = record.getValue("blacklistid");
+			cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "')\">"
+			+ value + "</a>";
 		} else {
 			cell.innerHTML = "";
 		}
@@ -69,6 +61,7 @@
 
 	function showDetail(id) {
 		locate(id);
+		BankBlackListVerify_dataset.setParameter("blacklistid", id);
 		btDetail.click();
 	}
 
