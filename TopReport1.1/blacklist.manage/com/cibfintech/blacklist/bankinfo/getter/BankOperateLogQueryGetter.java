@@ -87,7 +87,7 @@ public class BankOperateLogQueryGetter extends BaseGetter {
 			sb.append(" and log.createDate<?");
 			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endDate), -1));
 		}
-		sb.append(" order by log.tlrNo");
+		sb.append(" order by log.tlrno");
 
 		BankOperateLogService service = BankOperateLogService.getInstance();
 		return service.pageQueryByHql(pageSize, pageIndex, sb.toString(), list);

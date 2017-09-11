@@ -86,7 +86,7 @@ public class BankBLOPLogQueryGetter extends BaseGetter {
 			sb.append(" and log.createDate<?");
 			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endDate), -1));
 		}
-		sb.append(" order by log.tlrNo");
+		sb.append(" order by log.tlrno");
 
 		BankBlackListOperateLogService bankBLOPLogService = BankBlackListOperateLogService.getInstance();
 		return bankBLOPLogService.pageQueryByHql(pageSize, pageIndex, sb.toString(), list);
