@@ -58,8 +58,8 @@
 	</Where>
 
 	<Operations>
-		<Button id="btDetail" name="btDetail" desc="详细信息" operation="syncsubmit"
-			url="/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail" txn="" />
+		<Button id="btDetail" name="btDetail" desc="详细信息" operation=""
+			url="#" txn="" />
 
 		<Button id="btApprove" name="btApprove" desc="通过审批" operation="asysubmit"
 			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListApprove" 

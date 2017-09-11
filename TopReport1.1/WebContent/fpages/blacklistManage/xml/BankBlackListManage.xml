@@ -11,6 +11,8 @@
 	<Fields>
 		<Field id="id" desc="黑名单编号" edittype="text" datatype="string" status="F" xpath="/id" />
 		
+		<Field id="auditStateId" desc="黑名单审核编号" edittype="text" datatype="string" status="F" xpath="/auditStateId" />
+		
 		<Field id="bankCode" desc="银行代码" edittype="text" datatype="string" readonly="true"  status="F" xpath="/bankCode" />
 		
 		<Field id="bankName" desc="银行名称" status="N" method="com.huateng.ebank.business.common.CQMethod.getBrhName"

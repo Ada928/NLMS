@@ -1,4 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
+<#assign reType="${RequestParameters['reType']?default('')}" />
 <@CommonQueryMacro.page title="商行黑名单管理">
 <@CommonQueryMacro.CommonQuery id="BankBlackListDetail" init="true" submitMode="all"  navigate="false">
 	<table align="left" width="100%">
@@ -20,6 +21,19 @@
 	</table>
 </@CommonQueryMacro.CommonQuery>
  <script language="javascript">
+ 	var reType = "${reType}";
+ 	alert(reType);
+ 	function btClose_onClick(button){
+ 		if(reType == "entry"){
+			window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEntry.ftl";
+		} else if(reType == "approve"){
+			window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistApprove.ftl";
+		} else if(reType == "verify"){
+			window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistVerify.ftl";
+		} else if(reType == "edit"){
+			window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEdit.ftl";
+		}
+ 	}
 </script>
 
 </@CommonQueryMacro.page>

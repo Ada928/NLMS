@@ -42,7 +42,9 @@ public class BankBlackListVerify extends BaseUpdate {
 			BankBlackListAuditStateView bean = new BankBlackListAuditStateView();
 			Map map = updateResultBean.next();
 			String id = (String) map.get("id");
+			String blacklistID = (String) map.get("blacklistid");
 			bean.setId(id);
+			bean.setBlacklistID(blacklistID);
 			beans.add(bean);
 		}
 

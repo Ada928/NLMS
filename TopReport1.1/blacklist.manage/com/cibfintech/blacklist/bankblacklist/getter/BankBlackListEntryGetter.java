@@ -50,9 +50,11 @@ public class BankBlackListEntryGetter extends BaseGetter {
 	}
 
 	protected PageQueryResult getData() throws Exception {
-		String qPartyId = getCommQueryServletRequest().getParameter("qPartyId");
+		String qClientName = getCommQueryServletRequest().getParameter("qClientName");
 		String qCertificateType = getCommQueryServletRequest().getParameter("qCertificateType");
 		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
+		String qBlacklistType = getCommQueryServletRequest().getParameter("qBlacklistType");
+		String qApprove = getCommQueryServletRequest().getParameter("qApprove");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 
@@ -67,30 +69,44 @@ public class BankBlackListEntryGetter extends BaseGetter {
 		}
 
 		StringBuffer hql = new StringBuffer(" from NsBankBlackList bblt where 1=1");
+		StringBuffer message = new StringBuffer("国际黑名单的查询:");
 		List<Object> list = new ArrayList<Object>();
 		hql.append(" and bblt.del= ?");
 		list.add("F");
 
-		if (StringUtils.isNotBlank(qPartyId)) {
-			hql.append(" and bblt.id = ?");
-			list.add(qPartyId.trim());
+		if (StringUtils.isNotBlank(qClientName)) {
+			hql.append(" and bblt.clientName like ?");
+			list.add("%" + qClientName.trim() + "%");
+			message.append("qClientName=").append(qClientName);
 		}
 		if (StringUtils.isNotBlank(qCertificateType)) {
 			hql.append(" and bblt.certificateType = ?");
 			list.add(qCertificateType.trim());
+			message.append("qClientName=").append(qClientName);
 		}
 		if (StringUtils.isNotBlank(qCertificateNumber)) {
 			hql.append(" and bblt.certificateNumber like ?");
 			list.add("%" + qCertificateNumber.trim() + "%");
+			message.append("qCertificateNumber=").append(qCertificateNumber);
+		}
+		if (StringUtils.isNotBlank(qBlacklistType)) {
+			hql.append(" and bblt.blacklistType like ?");
+			list.add("%" + qBlacklistType.trim() + "%");
+			message.append("qBlacklistType=").append(qBlacklistType);
 		}
 		if (!isSuperManager) {
 			hql.append(" and bblt.bankCode = ?");
 			list.add(globalinfo.getBrcode());
+			message.append("bankCode=").append(globalinfo.getBrcode());
+		}
+		if (StringUtils.isNotBlank(qApprove)) {
+			hql.append(" and bblt.approve = ?");
+			list.add(qApprove.trim());
+			message.append("qApprove=").append(qApprove);
 		}
 
 		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString(), list);
-		String message = "国际黑名单的查询:partyId=" + qPartyId + ",certificateType=" + qCertificateType + ",certificateNumber=" + qCertificateNumber;
-		recordOperateLog(globalinfo, pqr.getTotalCount(), message);
+		recordOperateLog(globalinfo, pqr.getTotalCount(), message.toString());
 		return pqr;
 	}
 

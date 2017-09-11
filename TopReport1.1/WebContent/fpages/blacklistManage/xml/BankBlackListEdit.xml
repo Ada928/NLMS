@@ -64,8 +64,8 @@
 		<Button id="btModify" name="btModify" desc="修改" operation="syncsubmit"
 			url="/fpages/blacklistManage/ftl/BankBlacklistManage.ftl?op=edit" txn="" />
 
-		<Button id="btDetail" name="btDetail" desc="黑名单详细信息" operation="syncsubmit"
-			url="/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail" txn="" />
+		<Button id="btDetail" name="btDetail" desc="黑名单详细信息" operation=""
+			url="#" txn="" />
 
 		<Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
 			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListDEL" url="#" icon="icon-remove" />

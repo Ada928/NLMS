@@ -7,14 +7,14 @@ import resource.bean.blacklist.base.BaseNsBankBlackList;
 public class NsBankBlackList extends BaseNsBankBlackList implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private boolean selected;
+	private String auditStateId;
 
-	public boolean isSelected() {
-		return selected;
+	public String getAuditStateId() {
+		return auditStateId;
 	}
 
-	public void setSelected(boolean selected) {
-		this.selected = selected;
+	public void setAuditStateId(String auditStateId) {
+		this.auditStateId = auditStateId;
 	}
 
 	/* [CONSTRUCTOR MARKER BEGIN] */

@@ -42,6 +42,7 @@ public class BankBlackListManageGetter extends BaseGetter {
 		if (!opType.equals("add")) {
 			List list = new ArrayList();
 			NsBankBlackList bean = BankBlackListService.getInstance().selectById(blacklistid);
+			bean.setAuditStateId(id);
 			list.add(bean);
 			result.setQueryResult(list);
 			result.setTotalCount(1);

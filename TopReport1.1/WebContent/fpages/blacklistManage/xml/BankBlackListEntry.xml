@@ -10,10 +10,6 @@
 	<PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-商行黑名单列表" perfetch="15" />
 
 	<Fields>
-
-		<Field id="select" desc="选择" status="N" method="None" datetype="checkbox" edittype="checkbox" readonly="false"
-			primary="true" type="String" size="20" default="false" xpath="/selected" />
-
 		<Field id="id" desc="黑名单编号" edittype="text" datatype="string" status="F" xpath="/id" />
 
 		<Field id="bankCode" desc="银行代码" edittype="text" datatype="string" status="F" xpath="/bankCode" />
@@ -41,7 +37,7 @@
 
 		<Field id="del" desc="是否删除" status="F" edittype="select" require="false" method="None" primary="" type="String"
 			default="false" xpath="/del" tip="是否删除" translated="LIST:F,不删除;T,删除" />
-			
+
 		<Field id="approve" desc="是否审批通过" status="F" edittype="select" require="false" method="None" primary="" type="String"
 			default="false" xpath="/approve" tip="是否审批通过" translated="LIST:F,未通过;T,通过" />
 
@@ -83,14 +79,17 @@
 	</Fields>
 
 	<Where>
-		<TextBox id="qPartyId" desc="黑名单编号" edittype="text" datatype="string" require="" index="0" />
-		<Option id="qCertificateType" default="" desc="证件种类" type="certificateType" tip="" method="None" index="1"
+		<TextBox id="qClientName" desc="黑名单用户名" edittype="text" datatype="string" require="" index="0" />
+		<Option id="qCertificateType" default="11" desc="证件种类" type="certificateType" tip="" method="None" index="1"
 			translated="DATA_DIC.21" />
 		<TextBox id="qCertificateNumber" desc="证件号码" edittype="text" datatype="string" index="2" />
+		<Option id="qBlacklistType" default="2" desc="名单性质" type="blacklistType" tip="" method="None" index="3"
+			translated="LIST:0,白名单;1,灰名单;2,黑名单" />
+		<Option id="qApprove" default="" desc="是否审批通过" type="approve" tip="" method="None" index="4" translated="LIST:T,通过;F,未通过" />
 	</Where>
 
 	<Operations>
-		<Button id="btDetail" name="btDetail" desc="详细信息" operation="syncsubmit"
-			url="/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail" txn="" />
+		<Button id="btDetail" name="btDetail" desc="详细信息" operation=""
+			url="#" txn="" />
 	</Operations>
 </CommQry>

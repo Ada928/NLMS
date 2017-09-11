@@ -13,8 +13,9 @@
 					<tr>
 						<td colspan="2">
 							<@CommonQueryMacro.DataTable id="datatable1" paginationbar="" 
-									fieldStr="select,blacklistid,brcode,auditType,auditState,certificateType,certificateNumber,"+
-										"clientName,clientEnglishName,blacklistType,editUserID,verifyUserID,approveUserID,editDate,verifyDate,approveDate"  
+									fieldStr="select,blacklistid,brcode,certificateType,certificateNumber,"+
+										"clientName,clientEnglishName,blacklistType,editUserID,verifyUserID,approveUserID,editDate,"+
+										"auditType,auditState,verifyDate,approveDate"  
 									width="100%" hasFrame="true"/><br/>
 						</td>
 					</tr>
@@ -63,8 +64,9 @@
 	}
 
 	function showDetail(id) {
-		BankBlackListApprove_dataset.setParameter("blacklistid", id);
-		btDetail.click();
+		//BankBlackListApprove_dataset.setParameter("blacklistid", id);
+		//btDetail.click();
+		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=approve&blacklistid="+id;
 	}
 
 	function btApprove_onClickCheck() {

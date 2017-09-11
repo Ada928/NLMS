@@ -24,7 +24,7 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="JavaScript">
-    
+
     function btSave_onClickCheck(button) {
         var id = BankBlackListManage_dataset.getValue("id");
         var certificateNumber = BankBlackListManage_dataset.getValue("certificateNumber");

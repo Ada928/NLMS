@@ -19,7 +19,7 @@
 						<td colspan="2">
 							<@CommonQueryMacro.DataTable id="datatable1" paginationbar="" 
 									fieldStr="id[100],blacklistType,accountType[60],certificateType,certificateNumber[100],clientName[200],"+
-										"clientEnglishName[200],operateState[100],shareState[100],delState[100]"  
+										"clientEnglishName[200],approve"  
 									width="100%" hasFrame="true"/><br/>
 						</td>
 					</tr>
@@ -34,6 +34,9 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="JavaScript">
+
+	//function initCallGetter_post(dataset) {
+	//}
 	
 	//定位一行记录
 	function locate(id) {
@@ -55,8 +58,7 @@
 	}
 
 	function showDetail(id) {
-		locate(id);
-		btDetail.click();
+		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=entry&blacklistid="+id;
 	}
 
 	//刷新当前页
@@ -64,5 +66,6 @@
 		BankBlackListEntry_dataset
 				.flushData(BankBlackListEntry_dataset.pageIndex);
 	}
+	
 </script>
 </@CommonQueryMacro.page>

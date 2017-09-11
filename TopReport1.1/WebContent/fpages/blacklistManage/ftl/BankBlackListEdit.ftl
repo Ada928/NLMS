@@ -12,8 +12,9 @@
 					<tr>
 						<td colspan="2">
 							<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btDel" 
-									fieldStr="select,blacklistid,brcode,auditType,auditState,certificateType,certificateNumber,"+
-										"clientName,clientEnglishName,blacklistType,editUserID,verifyUserID,approveUserID,editDate,verifyDate,approveDate,opr"  
+									fieldStr="select,blacklistid,brcode,auditType,certificateNumber,"+
+										"clientName,clientEnglishName,blacklistType,editUserID,verifyUserID,approveUserID,editDate,"+
+										"verifyDate,approveDate,auditState,certificateType,opr"  
 									width="100%" hasFrame="true"/><br/>
 						</td>
 					</tr>
@@ -54,10 +55,10 @@
 			var tempHtml = "<center>";
 			tempHtml += "<a href=\"JavaScript:openModifyWindow('" + id
 					+ "')\">修改</a> ";
-			if (share == "" && shareState == "1") {
+			if (share != "3" && shareState == "4") {
 				tempHtml += "<a href=\"JavaScript:doShare('" + id
 						+ "')\">分享</a> ";
-			} else if (share == "" && shareState == "4") {
+			} else if (share == "3" && shareState == "4") {
 				tempHtml += "<a href=\"JavaScript:doCancelShare('" + id
 						+ "')\">取消分享</a> ";
 			}
@@ -66,7 +67,6 @@
 			cell.innerHTML = "";
 		}
 	}
-	
 	
 	//展示对比功能的js
 	function datatable1_blacklistid_onRefresh(cell, value, record) {
@@ -80,14 +80,13 @@
 	}
 
 	function showDetail(id) {
-		locate(id);
-		BankBlackListEdit_dataset.setParameter("blacklistid", id);
-		btDetail.click();
+		//BankBlackListEdit_dataset.setParameter("blacklistid", id);
+		//btDetail.click();
+		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=edit&blacklistid="+id;
 	}
 
 	//修改功能
 	function openModifyWindow(id) {
-		//locate(id);
 		BankBlackListEdit_dataset.setParameter("blacklistid", id);
 		btModify.click();
 	}
