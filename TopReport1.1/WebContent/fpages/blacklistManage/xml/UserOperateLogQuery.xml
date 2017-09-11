@@ -21,8 +21,8 @@
 		<Field id="brcode" desc="机构编号" require="" edittype="text" datatype="string" method="None" readonly="false" size="20"
 			status="F" default="" xpath="/brcode" />
 
-		<Field id="operateType" desc="操作类型" require="" edittype="textarea" datatype="string" method="None" readonly="false"
-			size="256" status="F" default="" xpath="/operateType" />
+		<Field id="operateType" desc="操作类型" status="F" edittype="select" require="false" method="None" primary=""
+			type="String" default="false" xpath="/operateType" tip="审核类型" translated="DATA_DIC.3004" />
 
 		<Field id="queryType" desc="查询类型" require="" edittype="textarea" datatype="string" method="None" readonly="false"
 			size="256" status="F" default="" xpath="/queryType" />
@@ -38,10 +38,6 @@
 	</Fields>
 	<Where>
 		<TextBox id="qtlrNo" type="String" operation="EQ" size="8" desc="操作员编号" tip="操作员编号" index="0" />
-		<Option id="qbrcode" operation="EQ" size="" desc="所属银行" tip="机构号" type="string" translated="CQ:BctlAllSelect"
-			fieldmap="qbrNo=brno;qbrNoName=brcodeTypeName" viewField="brcodeTypeName" dropdowntype="dynamic" init="true" require="false"
-			readOnly="" index="1" />
-
 		<DateTextBox id="startDate" desc="开始日期" tip="开始日期" require="false" status="F" datatype="date" method="None"
 			size="150" width="" primary="false" index="2" type="String" />
 		<DateTextBox id="endDate" desc="结束日期" tip="结束日期" require="false" status="F" datatype="date" method="None"

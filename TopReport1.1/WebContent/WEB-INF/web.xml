@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<display-name>TOP</display-name>
 	<description>TOP</description>
 
-<!--             
- -->	<context-param>
+	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
      	 	classpath:resources/SQLContext.xml,
@@ -40,9 +40,7 @@
 			classpath:com/huateng/report/jsh/dataquery/services.xml
 		</param-value>
 	</context-param>
-	<!--
-	classpath:resources/business/rule/services.xml,
-	 -->
+	<!-- classpath:resources/business/rule/services.xml, -->
 
 	<context-param>
 		<param-name>startJob</param-name>
@@ -59,9 +57,7 @@
 
 	<filter>
 		<filter-name>transfilter</filter-name>
-		<filter-class>
-			com.huateng.ebank.framework.web.TransFilter
-		</filter-class>
+		<filter-class>com.huateng.ebank.framework.web.TransFilter</filter-class>
 		<init-param>
 			<param-name>LOGIN_REF</param-name>
 			<param-value>
@@ -76,9 +72,7 @@
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>
-		<filter-class>
-			org.springframework.web.filter.CharacterEncodingFilter
-		</filter-class>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>GBK</param-value>
@@ -91,9 +85,7 @@
 
 	<filter>
 		<filter-name>addHeaderFilter</filter-name>
-		<filter-class>
-			com.huateng.ebank.framework.web.AddHeaderFilter
-		</filter-class>
+		<filter-class>com.huateng.ebank.framework.web.AddHeaderFilter</filter-class>
 		<init-param>
 			<param-name>headers</param-name>
 			<param-value>Content-Encoding=gzip</param-value>
@@ -102,9 +94,7 @@
 
 	<filter>
 		<filter-name>lockPageFilter</filter-name>
-		<filter-class>
-			com.huateng.report.common.filter.ReportLockPageFilter
-		</filter-class>
+		<filter-class>com.huateng.report.common.filter.ReportLockPageFilter</filter-class>
 		<init-param>
 			<param-name>LOCK_PAGE</param-name>
 			<param-value>true</param-value>
@@ -154,32 +144,22 @@
 	</filter-mapping>
 
 	<listener>
-		<listener-class>
-			org.springframework.web.context.ContextLoaderListener
-		</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>
-			com.huateng.ebank.framework.servlet.listener.ContextLoaderListener
-		</listener-class>
+		<listener-class>com.huateng.ebank.framework.servlet.listener.ContextLoaderListener</listener-class>
 	</listener>
 
 	<listener>
-		<listener-class>
-			com.huateng.ebank.framework.servlet.listener.ApplicationListener
-		</listener-class>
+		<listener-class>com.huateng.ebank.framework.servlet.listener.ApplicationListener</listener-class>
 	</listener>
 	<listener>
-        <listener-class>
-        	com.huateng.ebank.business.remote.base.SessionListener
-		</listener-class>
+		<listener-class>com.huateng.ebank.business.remote.base.SessionListener</listener-class>
 	</listener>
 
 	<servlet>
 		<servlet-name>action</servlet-name>
-		<servlet-class>
-			org.apache.struts.action.ActionServlet
-		</servlet-class>
+		<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
 		<init-param>
 			<param-name>config</param-name>
 			<param-value>
@@ -196,9 +176,7 @@
 	</servlet>
 	<servlet>
 		<servlet-name>CommQueryInterfaceServlet</servlet-name>
-		<servlet-class>
-			com.huateng.ebank.framework.web.commQuery.BankCommQueryInterfaceServlet
-		</servlet-class>
+		<servlet-class>com.huateng.ebank.framework.web.commQuery.BankCommQueryInterfaceServlet</servlet-class>
 		<init-param>
 			<param-name>errorPage</param-name>
 			<param-value>/common/errorPage.ftl</param-value>
@@ -207,9 +185,7 @@
 
 	<servlet>
 		<servlet-name>CommQueryResultServlet</servlet-name>
-		<servlet-class>
-			com.huateng.ebank.framework.web.commQuery.BankCommQueryResultServlet
-		</servlet-class>
+		<servlet-class>com.huateng.ebank.framework.web.commQuery.BankCommQueryResultServlet</servlet-class>
 		<init-param>
 			<param-name>errorPage</param-name>
 			<param-value>/common/errorPage.ftl</param-value>
@@ -218,20 +194,16 @@
 
 	<servlet>
 		<servlet-name>ExcelUploadServlet</servlet-name>
-		<servlet-class>
-			com.huateng.ebank.business.common.ExcelUploadServlet
-		</servlet-class>
+		<servlet-class>com.huateng.ebank.business.common.ExcelUploadServlet</servlet-class>
 	</servlet>
-		<servlet>
+	<servlet>
 		<servlet-name>PrintServlet</servlet-name>
 		<servlet-class>com.huateng.ebank.business.print.servlet.PrintServlet</servlet-class>
 	</servlet>
 
 	<servlet>
 		<servlet-name>commQuery</servlet-name>
-		<servlet-class>
-			com.huateng.ebank.framework.web.commQuery.BankCommQueryServlet
-		</servlet-class>
+		<servlet-class>com.huateng.ebank.framework.web.commQuery.BankCommQueryServlet</servlet-class>
 		<init-param>
 			<param-name>CommonQueryConfigLocation</param-name>
 			<param-value>
@@ -266,9 +238,7 @@
 	<!--1 FreeMarker view servlet (to replace JSP) -->
 	<servlet>
 		<servlet-name>freemarker</servlet-name>
-		<servlet-class>
-			com.huateng.ebank.framework.servlet.BankHTFreemarkServlet
-		</servlet-class>
+		<servlet-class>com.huateng.ebank.framework.servlet.BankHTFreemarkServlet</servlet-class>
 
 		<!-- FreemarkerServlet settings: -->
 		<init-param>
@@ -302,9 +272,7 @@
 
 	<servlet>
 		<servlet-name>dwr-invoker</servlet-name>
-		<servlet-class>
-			org.directwebremoting.servlet.DwrServlet
-		</servlet-class>
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
 		<!-- Added by HuangWeijing Rule Engine 20100906 Begin -->
 		<init-param>
 			<param-name>config-0</param-name>
@@ -316,12 +284,7 @@
 		</init-param>
 		<!-- Rule Engine End -->
 		<!-- Added by LinRongke TlaRule Engine 20101215 Begin -->
-		<!--
-		<init-param>
-			<param-name>config-2</param-name>
-			<param-value>/WEB-INF/dwr-tlarule.xml</param-value>
-		</init-param>
-		-->
+		<!-- <init-param> <param-name>config-2</param-name> <param-value>/WEB-INF/dwr-tlarule.xml</param-value> </init-param> -->
 		<!-- Rule Engine End -->
 
 		<init-param>
@@ -332,12 +295,12 @@
 			<param-name>activeReverseAjaxEnabled</param-name>
 			<param-value>true</param-value>
 		</init-param>
-		<!-- dwr push beign-->
+		<!-- dwr push beign -->
 		<init-param>
-         	<param-name>pollAndCometEnabled</param-name>
-         	<param-value>true</param-value>
-         </init-param>
-         <!-- dwr push end -->
+			<param-name>pollAndCometEnabled</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<!-- dwr push end -->
 		<init-param>
 			<param-name>initApplicationScopeCreatorsAtStartup</param-name>
 			<param-value>true</param-value>
@@ -355,9 +318,7 @@
 
 	<servlet>
 		<servlet-name>ProcessImageServlet</servlet-name>
-		<servlet-class>
-			com.huateng.ebank.business.workflow.ProcessImageServlet
-		</servlet-class>
+		<servlet-class>com.huateng.ebank.business.workflow.ProcessImageServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<display-name>PortalMenuServlet</display-name>
@@ -369,60 +330,52 @@
 		</description>
 		<display-name>TokenCheckServlet</display-name>
 		<servlet-name>TokenCheckServlet</servlet-name>
-		<servlet-class>
-		com.huateng.ebank.business.remote.TokenCheckServlet</servlet-class>
+		<servlet-class>com.huateng.ebank.business.remote.TokenCheckServlet
+		</servlet-class>
 	</servlet>
 
 	<servlet>
 		<description>
 		</description>
-		<display-name>
-		PageBackServlet</display-name>
+		<display-name>PageBackServlet
+		</display-name>
 		<servlet-name>PageBackServlet</servlet-name>
-		<servlet-class>
-		com.huateng.ebank.business.remote.PageBackServlet</servlet-class>
+		<servlet-class>com.huateng.ebank.business.remote.PageBackServlet
+		</servlet-class>
 	</servlet>
-    <servlet>
-        <servlet-name>Uploadify</servlet-name>
-        <servlet-class>com.huateng.report.imports.servlet.Uploadify</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Uploadify</servlet-name>
-        <url-pattern>/scripts/uploadify</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>UserAuthorityExcel</servlet-name>
-        <servlet-class>com.huateng.ebank.business.rolemng.update.UserAuthorityExcel</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserAuthorityExcel</servlet-name>
-        <url-pattern>/excel</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>UserAuthorityPdf</servlet-name>
-        <servlet-class>com.huateng.ebank.business.rolemng.update.UserAuthorityPdf</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserAuthorityPdf</servlet-name>
-        <url-pattern>/pdf</url-pattern>
-    </servlet-mapping>
-<!--
 	<servlet>
-			<servlet-name>CMSServlet</servlet-name>
-			<servlet-class>com.huateng.comm.servlet.CMSServerServlet</servlet-class>
+		<servlet-name>Uploadify</servlet-name>
+		<servlet-class>com.huateng.report.imports.servlet.Uploadify</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>CMSServlet</servlet-name>
-		<url-pattern>/CMSServlet</url-pattern>
+		<servlet-name>Uploadify</servlet-name>
+		<url-pattern>/scripts/uploadify</url-pattern>
 	</servlet-mapping>
- -->
-<!--  for servlet add by Haier 20100825 -->
-	<!-- add by kangbyron 20101122 servlet for print begin-->
+	<servlet>
+		<servlet-name>UserAuthorityExcel</servlet-name>
+		<servlet-class>com.huateng.ebank.business.rolemng.update.UserAuthorityExcel</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserAuthorityExcel</servlet-name>
+		<url-pattern>/excel</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>UserAuthorityPdf</servlet-name>
+		<servlet-class>com.huateng.ebank.business.rolemng.update.UserAuthorityPdf</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserAuthorityPdf</servlet-name>
+		<url-pattern>/pdf</url-pattern>
+	</servlet-mapping>
+	<!-- <servlet> <servlet-name>CMSServlet</servlet-name> <servlet-class>com.huateng.comm.servlet.CMSServerServlet</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>CMSServlet</servlet-name> <url-pattern>/CMSServlet</url-pattern> </servlet-mapping> -->
+	<!-- for servlet add by Haier 20100825 -->
+	<!-- add by kangbyron 20101122 servlet for print begin -->
 	<servlet-mapping>
 		<servlet-name>PrintServlet</servlet-name>
 		<url-pattern>/PrintServlet</url-pattern>
 	</servlet-mapping>
-	<!-- add by kangbyron 20101122 servlet for print end-->
+	<!-- add by kangbyron 20101122 servlet for print end -->
 	<servlet-mapping>
 		<servlet-name>ProcessImageServlet</servlet-name>
 		<url-pattern>/processimage</url-pattern>
@@ -443,7 +396,7 @@
 		<url-pattern>*.ftl</url-pattern>
 	</servlet-mapping>
 
-	<!--  Common Query -->
+	<!-- Common Query -->
 	<servlet-mapping>
 		<servlet-name>commQuery</servlet-name>
 		<url-pattern>/trans/CommQueryServlet</url-pattern>
@@ -478,9 +431,7 @@
 
 	<servlet>
 		<servlet-name>ProcessImageByProcNameServlet</servlet-name>
-		<servlet-class>
-			com.huateng.ebank.business.workflow.ProcessImageByProcNameServlet
-		</servlet-class>
+		<servlet-class>com.huateng.ebank.business.workflow.ProcessImageByProcNameServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>DownloadFileServlet</servlet-name>
@@ -497,74 +448,66 @@
 	</servlet-mapping>
 
 
-	<!-- Define the pushlet servlet
-	<servlet>
-		<servlet-name>pushlet</servlet-name>
-		<servlet-class>nl.justobjects.pushlet.servlet.Pushlet</servlet-class>
-		<load-on-startup>3</load-on-startup>
-	</servlet>-->
+	<!-- Define the pushlet servlet <servlet> <servlet-name>pushlet</servlet-name> <servlet-class>nl.justobjects.pushlet.servlet.Pushlet</servlet-class> 
+		<load-on-startup>3</load-on-startup> </servlet> -->
 	<!-- Define the Servlet Mappings. -->
-	<!-- The pushlet
-	<servlet-mapping>
-		<servlet-name>pushlet</servlet-name>
-		<url-pattern>/pushlet.srv</url-pattern>
-	</servlet-mapping>-->
+	<!-- The pushlet <servlet-mapping> <servlet-name>pushlet</servlet-name> <url-pattern>/pushlet.srv</url-pattern> </servlet-mapping> -->
 
 	<welcome-file-list>
 		<welcome-file>/login/login.jsp</welcome-file>
 	</welcome-file-list>
 
 	<session-config>
-        <session-timeout>30</session-timeout>
-    </session-config>
-  	<error-page>
-   		<error-code>404</error-code>
-   		<location>/common/error.jsp</location>
-  	</error-page>
-  	<error-page>
-   		<error-code>501</error-code>
-   		<location>/common/error.jsp</location>
-  	</error-page>
-  	 <error-page>
-   		<error-code>500</error-code>
-   		<location>/common/error.jsp</location>
-  	</error-page>
-  	<error-page>
-   		<error-code>505</error-code>
-   		<location>/common/error.jsp</location>
-  	</error-page>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/common/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>501</error-code>
+		<location>/common/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/common/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>505</error-code>
+		<location>/common/error.jsp</location>
+	</error-page>
 
 
 
- <jsp-config>
-	<taglib>
-		<taglib-uri>/tags/application-tags</taglib-uri>
-		<taglib-location>/WEB-INF/app.tld</taglib-location>
-	</taglib>
-	<taglib>
-		<taglib-uri>/tags/struts-bean</taglib-uri>
-		<taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
-	</taglib>
-	<taglib>
-		<taglib-uri>/tags/struts-html</taglib-uri>
-		<taglib-location>/WEB-INF/struts-html.tld</taglib-location>
-	</taglib>
-	<taglib>
-		<taglib-uri>/tags/struts-logic</taglib-uri>
-		<taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
-	</taglib>
-	<taglib>
-		<taglib-uri>/tags/struts-template</taglib-uri>
-		<taglib-location>/WEB-INF/struts-template.tld</taglib-location>
-	</taglib>
-	<taglib>
-		<taglib-uri>/tags/struts-tiles</taglib-uri>
-		<taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
-	</taglib>
-	<taglib>
-		<taglib-uri>/tags/struts-nested</taglib-uri>
-		<taglib-location>/WEB-INF/struts-nested.tld</taglib-location>
-	</taglib>
-</jsp-config>
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/tags/application-tags</taglib-uri>
+			<taglib-location>/WEB-INF/app.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/struts-bean</taglib-uri>
+			<taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/struts-html</taglib-uri>
+			<taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/struts-logic</taglib-uri>
+			<taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/struts-template</taglib-uri>
+			<taglib-location>/WEB-INF/struts-template.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/struts-tiles</taglib-uri>
+			<taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/struts-nested</taglib-uri>
+			<taglib-location>/WEB-INF/struts-nested.tld</taglib-location>
+		</taglib>
+	</jsp-config>
 
 </web-app>

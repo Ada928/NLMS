@@ -77,7 +77,7 @@ public class InternationBLOPLogQueryGetter extends BaseGetter {
 			list.add(qtlrIP);
 		}
 		if (!DataFormat.isEmpty(qbrcode)) {
-			sb.append(" and log.brno = ?");
+			sb.append(" and log.brcode = ?");
 			list.add(qbrcode);
 		}
 
@@ -89,7 +89,7 @@ public class InternationBLOPLogQueryGetter extends BaseGetter {
 			sb.append(" and log.createDate<?");
 			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endDate), -1));
 		}
-		sb.append(" order by log.tlrNo");
+		sb.append(" order by log.tlrno, log.createDate desc");
 
 		return internationBLOPLogService.pageQueryByHql(pageIndex, pageSize, sb.toString(), list);
 	}

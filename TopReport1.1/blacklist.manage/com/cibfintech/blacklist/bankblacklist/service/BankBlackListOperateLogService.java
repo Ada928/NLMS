@@ -6,6 +6,7 @@
  */
 package com.cibfintech.blacklist.bankblacklist.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -80,19 +81,19 @@ public class BankBlackListOperateLogService {
 	 * 
 	 * @param endDate 结束时间
 	 */
-	public List sumQueryBankBlacklist(String startDate, String endDate) throws CommonException {
+	public List sumQueryBankBlacklist(Date startDate, Date endDate) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-		StringBuffer sb = new StringBuffer("select log.brNo, sum(log.queryRecordNumber) from NsBankBLOperateLog log where 1=1");
+		StringBuffer sb = new StringBuffer("select log.brcode, sum(log.queryRecordNumber) from NsBankBLOperateLog log where 1=1");
 		sb.append(" and log.operateType='Q'");
-		sb.append(" and log.createDate>=to_date('").append(startDate).append("','yyyy-mm-dd')");
-		sb.append(" and log.createDate<to_date('").append(endDate).append("','yyyy-mm-dd')");
-		sb.append(" group by log.brNo");
+		sb.append(" and log.createDate>=to_date('").append(DateUtil.dateToString(startDate)).append("','yyyy-mm-dd')");
+		sb.append(" and log.createDate<to_date('").append(DateUtil.dateToString(endDate)).append("','yyyy-mm-dd')");
+		sb.append(" group by log.brcode");
 		List list = hqldao.queryByQL2List(sb.toString());
 		return list;
 	}
 
 	@SuppressWarnings("unchecked")
-	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String hql, List list) throws CommonException {
+	public PageQueryResult pageQueryByHql(int pageSize, int pageIndex, String hql, List list) throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();

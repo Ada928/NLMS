@@ -20,7 +20,7 @@
         <Field id="jobClassName" desc="任务执行类" require="" edittype="text" datatype="string" method="None" readonly="true"
             size="256" status="F" default="" xpath="/jobClassName" />
 
-        <Field id="jobTime" desc="执行时间参数" require="" edittype="text" datatype="string" method="None" readonly="false"
+        <Field id="jobTime" desc="执行时间参数(秒，分，时，日，月，年)" require="" edittype="text" datatype="string" method="None" readonly="false"
             size="64" status="F" default="" xpath="/jobTime" />
 
         <Field id="jobStauts" desc="任务状态" require="" edittype="select" datatype="string" method="None" readonly="true"

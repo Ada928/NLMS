@@ -82,7 +82,7 @@ public class BankInfoGetter extends BaseGetter {
 			hql.append(" and bblt.brcode= ? ");
 			list.add(globalinfo.getBrcode());
 		}
-		hql.append(" order by bblt.brcode");
+		hql.append(" order by bblt.brcode, bblt.effectDate desc");
 
 		PageQueryResult pqr = BankInfoService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString(), list);
 		String message = "银行信息管理:brhNo=" + brNo + ",brhName=" + brName;

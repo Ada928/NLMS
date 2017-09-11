@@ -86,7 +86,7 @@ public class RoleOperateLogQueryGetter extends BaseGetter {
 			sb.append(" and log.createDate<?");
 			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endDate), -1));
 		}
-		sb.append(" order by log.tlrNo");
+		sb.append(" order by log.tlrno, log.createDate desc");
 
 		RoleOperateLogService service = RoleOperateLogService.getInstance();
 		return service.pageQueryByHql(pageIndex, pageSize, sb.toString(), list);

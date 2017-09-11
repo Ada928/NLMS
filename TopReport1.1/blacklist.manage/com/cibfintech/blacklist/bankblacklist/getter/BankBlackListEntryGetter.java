@@ -104,6 +104,7 @@ public class BankBlackListEntryGetter extends BaseGetter {
 			list.add(qApprove.trim());
 			message.append("qApprove=").append(qApprove);
 		}
+		hql.append(" and order by po.createDate desc");
 
 		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString(), list);
 		recordOperateLog(globalinfo, pqr.getTotalCount(), message.toString());

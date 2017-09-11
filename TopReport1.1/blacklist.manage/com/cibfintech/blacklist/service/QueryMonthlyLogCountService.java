@@ -13,6 +13,7 @@ import java.util.UUID;
 import org.apache.log4j.Logger;
 
 import resource.bean.blacklist.NsQueryMonthlyLogCount;
+import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
 import resource.dao.base.HQLDAO;
@@ -89,4 +90,95 @@ public class QueryMonthlyLogCountService {
 		}
 		return pageQueryResult;
 	}
+
+	/*
+	 * 删除实体
+	 * 
+	 * @param biNationregion
+	 */
+	public void removeEntity(NsQueryMonthlyLogCount bean) {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		try {
+			rootDAO.delete(bean);
+			System.out.println("已删除");
+		} catch (CommonException e) {
+			System.out.println("删除实体出错！ ");
+			e.printStackTrace();
+		}
+	}
+
+	/*
+	 * 插入或者更新实体
+	 * 
+	 * @param biNationregion
+	 */
+	public void modOrAddEntity(NsQueryMonthlyLogCount bean) {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		try {
+			rootDAO.saveOrUpdate(bean);
+			System.out.println(this.getClass().getName() + " 已插入或更新");
+		} catch (CommonException e) {
+			System.out.println(this.getClass().getName() + " 插入或更新出错！ ");
+			e.printStackTrace();
+		}
+	}
+
+	public void addEntity(NsQueryMonthlyLogCount bean) throws CommonException {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		if (isExists(bean.getId().toString())) {
+			ExceptionUtil.throwCommonException(" 角色信息重复");
+		}
+		try {
+			rootDAO.save(bean);
+			System.out.println(this.getClass().getName() + " 已插入或更新实体");
+		} catch (CommonException e) {
+			System.out.println(this.getClass().getName() + " 插入或更新实体！ ");
+		}
+	}
+
+	public boolean isExists(String id) {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		try {
+			NsQueryMonthlyLogCount bean = (NsQueryMonthlyLogCount) rootDAO.query(NsQueryMonthlyLogCount.class, id);
+			if (bean == null) {
+				return false;
+			}
+		} catch (CommonException e) {
+			System.out.println("判断实体是否重复出错");
+		}
+		return true;
+	}
+
+	public void modEntity(NsQueryMonthlyLogCount bean) {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		try {
+			rootDAO.update(bean);
+			System.out.println(this.getClass().getName() + " 已插入或更新实体");
+		} catch (CommonException e) {
+			System.out.println(this.getClass().getName() + " 插入或更新实体出错！ ");
+			e.printStackTrace();
+		}
+	}
+
+	public void addTosystaskinfo(SysTaskInfo systackinfo) {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		try {
+			rootDAO.saveOrUpdate(systackinfo);
+		} catch (CommonException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// 通过id来获取实体类
+	public NsQueryMonthlyLogCount selectById(Integer id) {
+		BlackListDAO rootdao = BlackListDAOUtils.getBlackListDAO();
+		NsQueryMonthlyLogCount bean = null;
+		try {
+			bean = (NsQueryMonthlyLogCount) rootdao.query(NsQueryMonthlyLogCount.class, id);
+		} catch (CommonException e) {
+			e.printStackTrace();
+		}
+		return bean;
+	}
+
 }

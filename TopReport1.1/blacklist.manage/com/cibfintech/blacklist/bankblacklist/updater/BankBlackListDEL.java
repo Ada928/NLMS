@@ -7,9 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import resource.bean.blacklist.NsBankBlackList;
-
 import com.cibfintech.blacklist.operation.BankBlackListOperation;
+import com.cibfintech.view.pub.BankBlackListAuditStateView;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -40,14 +39,16 @@ public class BankBlackListDEL extends BaseUpdate {
 			String del = updateResultBean.getParameter(PARAM_ACTION);
 			del = (null == del || "" == del) ? "" : del;
 			// 更新对象
-			List<NsBankBlackList> beans = new ArrayList<NsBankBlackList>();
+			List<BankBlackListAuditStateView> beans = new ArrayList<BankBlackListAuditStateView>();
 			// Operation参数
 			OperationContext context = new OperationContext();
 			while (updateResultBean.hasNext()) {
-				NsBankBlackList bean = new NsBankBlackList();
+				BankBlackListAuditStateView bean = new BankBlackListAuditStateView();
 				Map map = updateResultBean.next();
 				String id = (String) map.get("id");
+				String blacklistID = (String) map.get("blacklistid");
 				bean.setId(id);
+				bean.setBlacklistID(blacklistID);
 				beans.add(bean);
 			}
 

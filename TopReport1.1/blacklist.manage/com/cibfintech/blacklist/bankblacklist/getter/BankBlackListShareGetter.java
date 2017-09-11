@@ -72,6 +72,9 @@ public class BankBlackListShareGetter extends BaseGetter {
 
 		hql.append(" and bblt.share=?");
 		list.add("T");
+		hql.append(" and bblt.approve=?");
+		list.add("T");
+		hql.append(" and order by bblt.createDate desc");
 
 		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageSize, pageIndex, hql.toString(), list);
 

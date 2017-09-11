@@ -22,6 +22,16 @@
 </table>
 </@CommonQueryMacro.CommonQuery>
 <script language="JavaScript">
-
+	function initCallGetter_post(dataset) {
+		var brcode = BankBlackListLogQuery_dataset.getValue("brcode");
+		if (brcode == null || brcode == "99999") {
+			BankBlackListLogQuery_dataset.setFieldReadOnly("brcode", false);
+			//alert(brcode);
+			//document.getElementById("qbrcode").style.disabled = "none";
+			//document.getElementById("btResetPwd").style.disabled = "none"; qbrcode
+		} else {
+			BankBlackListLogQuery_dataset.setFieldReadOnly("brcode", true);
+		}
+	}
 </script>
 </@CommonQueryMacro.page>

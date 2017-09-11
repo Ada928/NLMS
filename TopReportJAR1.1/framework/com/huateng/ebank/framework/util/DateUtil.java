@@ -93,7 +93,7 @@ public class DateUtil {
 	 * @param today
 	 * @return
 	 */
-	public static java.util.Date getLastDateL(java.util.Date today) {
+	public static java.util.Date getLastDateLastMonth(java.util.Date today) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(today);
 		cal.set(Calendar.DATE, 1);// 设为当前月的1号

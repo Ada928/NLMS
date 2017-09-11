@@ -78,10 +78,10 @@ public class QueryDailyLogCountGetter extends BaseGetter {
 			sb.append(" and cont.countDate<? ");
 			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endDate), -1));
 		}
-		sb.append(" order by cont.brcode");
+		sb.append(" order by cont.brcode, cont.createDate desc");
 
 		QueryDailyLogCountService service = QueryDailyLogCountService.getInstance();
-		return service.pageQueryByHql(pageIndex, pageSize, sb.toString(), list);
+		return service.pageQueryByHql(pageSize, pageIndex, sb.toString(), list);
 	}
 
 }

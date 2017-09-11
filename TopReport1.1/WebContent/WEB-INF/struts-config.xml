@@ -23,50 +23,51 @@
     </global-exceptions>
     <global-forwards>
         <forward name="error" path="/common/error.jsp" />
-        <forward name="ok" path="/send.do"></forward>
+        <forward name="ok" path="/send.do"/>
     </global-forwards>
 
     <action-mappings>
         <!-- =================== Action Mapping Definitions ===================== -->
         <action path="/custlogin" type="com.huateng.ebank.business.management.action.LoginAction" name="loginForm"
             scope="request" input="/login/login.jsp">
-            <forward name="login" path="/login/login.jsp"></forward>
+            <forward name="login" path="/login/login.jsp"/>
             <forward name="success" path="/login/index.jsp" />
             <forward name="error" path="/common/error.jsp" />
+            <forward name="loginError" path="/common/loginError.jsp" />
             <forward name="chgpwd" path="/fpages/management/ftl/ChangePwd.ftl" />
         </action>
         <action path="/custlogout" type="com.huateng.ebank.business.management.action.LogoutAction" name="logoutForm"
             scope="request">
-            <forward name="success" path="/login/login.jsp"></forward>
-            <forward name="failure" path="/login/login.jsp"></forward>
+            <forward name="success" path="/login/login.jsp"/>
+            <forward name="failure" path="/login/login.jsp"/>
         </action>
 
         <!-- ===============================navg menu forward -->
         <action path="/menunavg" type="com.huateng.report.common.action.NavigationAction" scope="request">
-            <forward name="Report0101" redirect="true" path="/login/index.jsp"></forward>
-            <forward name="Report0302" redirect="true" path="/login/index.jsp"></forward>
+            <forward name="Report0101" redirect="true" path="/login/index.jsp"/>
+            <forward name="Report0302" redirect="true" path="/login/index.jsp"/>
         </action>
         <!-- <action path="/trans/TransDataAction" type="com.huateng.ebank.framework.web.commQuery.TransDataAction"> -->
         <!-- </action> -->
 
         <action path="/TaskSend" type="com.huateng.ebank.business.management.action.TaskSendAction" scope="request">
-            <forward name="ok" path="/send.do"></forward>
-            <forward name="error" path="/common/error.jsp"></forward>
+            <forward name="ok" path="/send.do"/>
+            <forward name="error" path="/common/error.jsp"/>
         </action>
 
         <action path="/send" type="com.huateng.ebank.business.remote.SendAction" scope="request">
-            <forward name="success" path="/send.jsp"></forward>
-            <forward name="failure" path="/login_c.jsp"></forward>
+            <forward name="success" path="/send.jsp"/>
+            <forward name="failure" path="/login_c.jsp"/>
         </action>
         <action path="/RepaymentQuery" type="com.huateng.ebank.business.postloanmng.repayment.action.RepaymentQueryAction"
             scope="request">
-            <forward name="ok" path="/send.do"></forward>
-            <forward name="error" path="/common/error.jsp"></forward>
+            <forward name="ok" path="/send.do"/>
+            <forward name="error" path="/common/error.jsp"/>
         </action>
         <action path="/intrateChgApplyAction" type="com.huateng.ebank.business.postloanalter.intratechg.action.IntrateChgApplyAction"
             scope="request">
-            <forward name="success" path="/intrateChgApply.jsp"></forward>
-            <forward name="failure" path="/login_c.jsp"></forward>
+            <forward name="success" path="/intrateChgApply.jsp"/>
+            <forward name="failure" path="/login_c.jsp"/>
         </action>
 
         <!-- 查询客户基本信息Action -->
@@ -77,26 +78,26 @@
 
         <!-- 综合查询-对公主合同查询 -->
         <action path="/mainContQry" type="com.huateng.ebank.business.loancenter.action.ContDtlInfoAction" scope="request">
-            <forward name="ok" path="/send.do"></forward>
-            <forward name="error" path="/common/error.jsp"></forward>
+            <forward name="ok" path="/send.do"/>
+            <forward name="error" path="/common/error.jsp"/>
         </action>
         <!-- 综合查询-个人主合同查询 -->
         <action path="/pMainContQry" type="com.huateng.ebank.business.loancenter.action.PContQryAction" scope="request">
-            <forward name="ok" path="/send.do"></forward>
-            <forward name="error" path="/common/error.jsp"></forward>
+            <forward name="ok" path="/send.do"/>
+            <forward name="error" path="/common/error.jsp"/>
         </action>
 
         <!-- 综合查询-对公从合同查询 -->
         <action path="/AContQry" type="com.huateng.ebank.business.loancenter.action.AContQryAction" scope="request">
-            <forward name="ok" path="/send.do"></forward>
-            <forward name="error" path="/common/error.jsp"></forward>
+            <forward name="ok" path="/send.do"/>
+            <forward name="error" path="/common/error.jsp"/>
         </action>
 
         <!-- 综合查询-担保信息查询 -->
         <action path="/GuaranteesQryAction" type="com.huateng.ebank.business.loancenter.action.GuaranteesQryAction"
             scope="request">
-            <forward name="ok" path="/send.do"></forward>
-            <forward name="error" path="/common/error.jsp"></forward>
+            <forward name="ok" path="/send.do"/>
+            <forward name="error" path="/common/error.jsp"/>
         </action>
 
 
