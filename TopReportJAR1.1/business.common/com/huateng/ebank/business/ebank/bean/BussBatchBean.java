@@ -1,6 +1,8 @@
 package com.huateng.ebank.business.ebank.bean;
 
-public class BussBatchBean {
+import java.io.Serializable;
+
+public class BussBatchBean implements Serializable {
 	private java.lang.Integer id;
 
 	// fields

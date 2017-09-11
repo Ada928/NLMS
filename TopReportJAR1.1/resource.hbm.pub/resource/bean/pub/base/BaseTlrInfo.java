@@ -70,41 +70,42 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 	// fields
 	private java.lang.String extTlrno;
 	private java.lang.String tlrName;
-	private java.lang.String tlrType;
-	private java.lang.String agentType;
 	private java.lang.String brcode;
 	private java.lang.String password;
 	private java.lang.String status;
-	private java.lang.String chekDpwdFlg;
+	private java.lang.String loginIp;
+	private java.util.Date pswderrdate;
 	private java.util.Date lastaccesstm;
+	private java.util.Date lastlogouttm;
+	private java.lang.String flag;
+	private java.lang.String sessionId;
+	private java.util.Date lastUpdTms;
+	private java.lang.String lastUpdOper;
+	private java.lang.String lock;
+	private java.lang.String del;
+	private java.lang.String lastUpdOperId;
+	private java.util.Date effectDate;
+	private java.util.Date expireDate;
+	private java.util.Date createDate;
+	private java.util.Date lastUpdTime;
+
+	private java.lang.String tlrType;
+	private java.lang.String agentType;
+	private java.lang.String chekDpwdFlg;
 	private java.lang.Integer roleid;
 	private java.lang.Integer pswderrcnt;
 	private java.lang.Integer totpswderrcnt;
-	private java.lang.String pswderrdate;
-	private java.util.Date lastlogouttm;
-	private java.lang.String loginIp;
 	private java.lang.String passwdenc;
 	private java.lang.Integer failmaxlogin;
 	private java.lang.Integer passwdchginterval;
 	private java.lang.Integer passwdwarninterval;
-	private java.lang.String sessionId;
 	private java.lang.Integer msrno;
-	private java.lang.String flag;
-	private java.util.Date createDate;
-	private java.lang.String lastUpdOperId;
-	private java.util.Date lastUpdTime;
-	private java.util.Date effectDate;
-	private java.util.Date expireDate;
 	private java.lang.String email;
 	private java.lang.String misc;
 	private java.lang.String idNumber;
 	/** add by zhiyang.he 修改锁定状态 2012-09-6 begin */
 	private java.lang.String isLockModify;
 	private java.lang.String st;
-	private java.lang.String crtDt;
-	private java.lang.String lastUpdTms;
-	private java.lang.String lastUpdOper;
-	private java.lang.Boolean isDel;
 
 	/** add by zhiyang.he 修改锁定状态 2012-09-6 end */
 
@@ -162,12 +163,20 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 		this.tlrName = tlrName;
 	}
 
-	public java.lang.Boolean isDel() {
-		return isDel;
+	public java.lang.String getLock() {
+		return lock;
 	}
 
-	public void setDel(java.lang.Boolean isDel) {
-		this.isDel = isDel;
+	public void setLock(java.lang.String lock) {
+		this.lock = lock;
+	}
+
+	public java.lang.String getDel() {
+		return del;
+	}
+
+	public void setDel(java.lang.String del) {
+		this.del = del;
 	}
 
 	/**
@@ -343,7 +352,7 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 	/**
 	 * Return the value associated with the column: PSWDERRDATE
 	 */
-	public java.lang.String getPswderrdate() {
+	public java.util.Date getPswderrdate() {
 		return pswderrdate;
 	}
 
@@ -353,7 +362,7 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 	 * @param pswderrdate
 	 *            the PSWDERRDATE value
 	 */
-	public void setPswderrdate(java.lang.String pswderrdate) {
+	public void setPswderrdate(java.util.Date pswderrdate) {
 		this.pswderrdate = pswderrdate;
 	}
 
@@ -703,19 +712,11 @@ public abstract class BaseTlrInfo implements Serializable, Comparable {
 		this.st = st;
 	}
 
-	public java.lang.String getCrtDt() {
-		return crtDt;
-	}
-
-	public void setCrtDt(java.lang.String crtDt) {
-		this.crtDt = crtDt;
-	}
-
-	public java.lang.String getLastUpdTms() {
+	public java.util.Date getLastUpdTms() {
 		return lastUpdTms;
 	}
 
-	public void setLastUpdTms(java.lang.String lastUpdTms) {
+	public void setLastUpdTms(java.util.Date lastUpdTms) {
 		this.lastUpdTms = lastUpdTms;
 	}
 

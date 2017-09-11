@@ -1,5 +1,6 @@
 package com.huateng.report.imports.common;
 
+
 public interface Constants {
 	String YES = "1";// 是
 	String NO = "0"; // 否

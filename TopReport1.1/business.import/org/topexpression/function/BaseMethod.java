@@ -1,12 +1,14 @@
 package org.topexpression.function;
 
+import java.io.Serializable;
+
 /**
  * @author lei.zhang
  * @since 2010-12-7
  * @version 1.0
  *
  */
-public abstract class BaseMethod implements IMethod {
+public abstract class BaseMethod implements IMethod, Serializable {
 
 	private String methodName;
 

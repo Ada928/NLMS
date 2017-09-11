@@ -1,8 +1,10 @@
 package com.huateng.report.bean;
 
+import java.io.Serializable;
+
 import org.apache.commons.lang.StringUtils;
 
-public class ExecuteResultBean {
+public class ExecuteResultBean implements Serializable {
 	private String workDate;
 	private String brNo;
 	private String brName;

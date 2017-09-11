@@ -28,8 +28,6 @@
 
 <script language="javascript">
 	var roleType = "${info.roleTypeList}";
-
-	BranchEntry_dataset.setParameter("statu", "T");
 	//定位一条记录
 	function locate(id) {
 		var record = BranchEntry_dataset.find(["brcode"], [id]);
@@ -152,24 +150,6 @@
 	}
 
 	function BranchEntry_dataset_afterScroll(dataset) {
-		/*
-		var  v_brcode = BranchEntry_dataset.getValue("brcode");
-		var  v_brclass = BranchEntry_dataset.getValue("brclass");
-		 //数据库中的记录。
-		 if ( v_brcode!="" ){
-		   BranchEntry_dataset.setFieldReadOnly("brno",true);
-		   BranchEntry_dataset.setFieldReadOnly("brname",false);
-		 }else{
-		   BranchEntry_dataset.setFieldReadOnly("brno",false);
-		   BranchEntry_dataset.setFieldReadOnly("brname",false);
-		 }
-		 if ( v_brclass =="1" ){
-		 	BranchEntry_dataset.setFieldReadOnly("blnUpBrcode",true);
-		 }else{
-		 	BranchEntry_dataset.setFieldReadOnly("blnUpBrcode",false);
-		 }
-		 return true;
-		 */
 		var lock = BranchEntry_dataset.getValue("lock");
 		if (isTrue(lock)) {
 			btStatus.disable(true);
@@ -208,15 +188,6 @@
 				}
 			}
 		}
-	}
-
-	//去掉页面“归属分行”字段，但当选中“上级机构”字段时，自动给“归属分行”赋值
-	function blnUpBrcode_DropDown_onSelect(dropDown, record, editor) {
-		var blnUpBrcode = record.getValue("brcode").trim();
-		BranchEntry_dataset.setValue2("blnBranchBrcode",
-				blnUpBrcode);
-		return true;
-
 	}
 
 	function signWindow_floatWindow_beforeClose(subwindow) {

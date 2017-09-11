@@ -1,6 +1,8 @@
 package com.huateng.ebank.business.common.bean;
 
-public class BatchInfoViewBean {
+import java.io.Serializable;
+
+public class BatchInfoViewBean implements Serializable {
 	// primary key
 	private java.lang.String id;
 	// fields

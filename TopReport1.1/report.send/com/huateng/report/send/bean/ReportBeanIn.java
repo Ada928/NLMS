@@ -1,9 +1,10 @@
 package com.huateng.report.send.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportBeanIn {
+public class ReportBeanIn implements Serializable {
 	private String beanId;
 	private String basePath;// d:/123/
 	private String filePath;// send/cfaxxxtt01/

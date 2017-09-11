@@ -1,12 +1,14 @@
 package com.huateng.report.basis.bean;
 
+import java.io.Serializable;
+
 import resource.bean.report.BiNationregion;
 
 /**
  * 
  * author by 计翔 2012.9.5 国家地区代码维护信息对比的bean
  */
-public class BiNationregionEntryDetail {
+public class BiNationregionEntryDetail implements Serializable {
 	private BiNationregion old_binationregion;
 	private BiNationregion binationregion;
 

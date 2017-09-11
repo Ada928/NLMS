@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 用于直接生成SQL语句，支持同步和异步提交 -->
+<!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
+	async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
+
+<CommQry title="商行黑名单管理" navigate="商行黑名单管理" type="call" interface="true" pagesize="20" async="true" databusid=""
+	txnlogflag="true" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.bankblacklist.getter.BankBlackListEntryGetter">
+
+	<Include id="BankParam" />
+	<PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-商行黑名单列表" perfetch="15" />
+
+	<Fields>
+		<Field id="id" desc="黑名单编号" edittype="text" datatype="string" status="F" xpath="/id" />
+
+		<Field id="bankCode" desc="银行代码" edittype="text" datatype="string" status="F" xpath="/bankCode" />
+
+		<Field id="bankName" desc="银行名称" status="N" method="com.huateng.ebank.business.common.CQMethod.getBrhName"
+			readonly="true" primary="false" type="String" size="20" default="" xpath="/bankCode" />
+
+		<Field id="accountType" desc="账户类型" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/accountType" tip="账户类型" translated="LIST:C,对公;I,对私;" />
+
+		<Field id="brattr" desc="机构属性" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/brattr" tip="机构属性" translated="DATA_DIC.455" />
+
+		<Field id="certificateType" desc="证件种类" status="F" edittype="select" require="false" method="None" primary=""
+			type="String" default="false" xpath="/certificateType" tip="证件种类" translated="DATA_DIC.21" />
+
+		<Field id="blacklistType" desc="名单性质" status="F" edittype="select" require="false" method="None" primary=""
+			type="String" default="false" xpath="/blacklistType" tip="名单性质" translated="LIST:0,白名单;1,灰名单;2,黑名单" />
+
+		<Field id="share" desc="是否共享" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/share" tip="是否共享" translated="LIST:T,共享;F,不共享" />
+
+		<Field id="valid" desc="有效状态" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/valid" tip="有效状态" translated="LIST:T,有效;F,无效" />
+
+		<Field id="del" desc="是否删除" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/del" tip="是否删除" translated="LIST:F,不删除;T,删除" />
+
+		<Field id="approve" desc="是否审批通过" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/approve" tip="是否审批通过" translated="LIST:F,未通过;T,通过" />
+
+		<Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" status="F" xpath="/certificateNumber" />
+
+		<Field id="clientName" desc="客户名字" edittype="text" datatype="string" status="F" xpath="/clientName" />
+
+		<Field id="clientEnglishName" desc="英文名字" edittype="text" datatype="string" status="F" xpath="/clientEnglishName" />
+
+		<Field id="validDate" desc="有效期" edittype="text" status="F" datatype="date" xpath="/validDate" />
+
+		<Field id="blacklistedDate" desc="拉黑时间" edittype="text" datatype="date" status="F" xpath="/blacklistedDate" />
+
+		<Field id="blacklistedOperator" desc="拉黑操作员" edittype="text" datatype="string" status="N" xpath="/blacklistedOperator" />
+
+		<Field id="blacklistedReason" desc="拉黑原因" edittype="textarea" datatype="string" status="F" xpath="/blacklistedReason" />
+
+		<Field id="unblacklistedDate" desc="解除时间" edittype="text" datatype="date" status="F" xpath="/unblacklistedDate" />
+
+		<Field id="unblacklistedOperator" desc="解除操作员" edittype="text" datatype="string" status="N" xpath="/unblacklistedOperator" />
+
+		<Field id="unblacklistedReason" desc="解除原因" edittype="textarea" datatype="string" status="F" xpath="/unblacklistedReason" />
+
+		<Field id="filler1" desc="备用字段1" edittype="text" datatype="string" status="N" xpath="/filler1" />
+
+		<Field id="filler2" desc="备用字段2" edittype="text" datatype="string" status="N" xpath="/filler2" />
+
+		<Field id="filler3" desc="备用字段3" edittype="text" datatype="string" status="N" xpath="/filler3" />
+
+		<Field id="createDate" desc="建立日期" edittype="text" datatype="date" status="N" xpath="/createDate" />
+
+		<Field id="lastModifyDate" desc="最后修改时间" edittype="text" datatype="date" status="N" xpath="/lastModifyDate" />
+
+		<Field id="lastModifyOperator" desc="最后修改用户" edittype="text" datatype="string" status="N" xpath="/lastModifyOperator" />
+
+		<Field id="remarks" desc="备注" edittype="textarea" datatype="string" status="N" xpath="/remarks" />
+
+		<Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" default="" tip="操作" require="" />
+	</Fields>
+
+	<Where>
+		<TextBox id="qClientName" desc="黑名单用户名" edittype="text" datatype="string" require="" index="0" />
+		<Option id="qCertificateType" default="11" desc="证件种类" type="certificateType" tip="" method="None" index="1"
+			translated="DATA_DIC.21" />
+		<TextBox id="qCertificateNumber" desc="证件号码" edittype="text" datatype="string" index="2" />
+		<Option id="qBlacklistType" default="2" desc="名单性质" type="blacklistType" tip="" method="None" index="3"
+			translated="LIST:0,白名单;1,灰名单;2,黑名单" />
+		<Option id="qApprove" default="" desc="是否审批通过" type="approve" tip="" method="None" index="4" translated="LIST:T,通过;F,未通过" />
+	</Where>
+
+	<Operations>
+		<Button id="btDetail" name="btDetail" desc="详细信息" operation=""
+			url="#" txn="" />
+	</Operations>
+</CommQry>

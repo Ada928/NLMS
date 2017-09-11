@@ -1,6 +1,8 @@
 package com.huateng.report.bean;
 
-public class BOPCfaLounexguRecordBean {
+import java.io.Serializable;
+
+public class BOPCfaLounexguRecordBean implements Serializable {
 	// 签约信息
 	private java.lang.String id;// 主键编号
 

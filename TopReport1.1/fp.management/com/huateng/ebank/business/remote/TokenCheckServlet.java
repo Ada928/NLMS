@@ -1,51 +1,49 @@
 package com.huateng.ebank.business.remote;
 
-import java.io.IOException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.io.IOException;
 
 /**
  * Servlet implementation class TokenCheckServlet
  */
 public class TokenCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static Log log = LogFactory.getLog(TokenCheckServlet.class);
+    private static Log log = LogFactory.getLog(TokenCheckServlet.class);   
+    
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TokenCheckServlet() {
+        super();
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public TokenCheckServlet() {
-		super();
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
+		try{
 			String tokenId = request.getParameter("tokenId");
 			String sessionId = request.getParameter("sessionId");
-
+			
 			String result = new TokenCheckUtil().check(sessionId, tokenId);
-
-			writeResult(response, result);
+				
+			writeResult(response,result);
 			return;
-
-		} catch (Exception e) {
+			
+		}catch(Exception e){
 			log.info(e);
-			writeResult(response, "222");
+			writeResult(response,"222");
 			return;
 		}
 	}
 
-	private static void writeResult(HttpServletResponse response, String result) throws IOException {
+	private  static void writeResult(HttpServletResponse response,String result) throws IOException{
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		try {
@@ -55,13 +53,11 @@ public class TokenCheckServlet extends HttpServlet {
 			throw e;
 		}
 	}
-
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		doGet(request,response);
 	}
 
 }

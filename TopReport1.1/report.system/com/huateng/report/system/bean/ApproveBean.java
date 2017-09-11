@@ -1,9 +1,11 @@
 package com.huateng.report.system.bean;
 
+import java.io.Serializable;
+
 /**
  * @author jianxue.zhang 用于approve_common.xml的数据获取bean;
  */
-public class ApproveBean {
+public class ApproveBean implements Serializable {
 	private String bizSubClass;
 	private String adtResult;
 	private String remark;

@@ -6,13 +6,13 @@
  */
 package com.huateng.ebank.business.management.operation;
 
-import java.util.List;
-
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.service.pub.RoleInfoService;
 import com.huateng.view.pub.RoleInfoView;
+
+import java.util.List;
 
 /**
  * Title: com.huateng.ebank.business.management.operation.RoleInfoOperation.java
@@ -35,10 +35,8 @@ public class RoleInfoOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.
-	 * ebank.framework.operation.OperationContext)
+	 *
+	 * @see com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.ebank.framework.operation.OperationContext)
 	 */
 	public void beforeProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
@@ -47,10 +45,8 @@ public class RoleInfoOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.
-	 * ebank.framework.operation.OperationContext)
+	 *
+	 * @see com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.ebank.framework.operation.OperationContext)
 	 */
 	public void execute(OperationContext context) {
 		// TODO Auto-generated method stub
@@ -85,14 +81,16 @@ public class RoleInfoOperation extends BaseOperation {
 				e.printStackTrace();
 			}
 		} else if (cmd.equals("UPDATE_FUNC")) {
-			List mylist = (List) context.getAttribute(RoleInfoOperation.IN_FUNC_LIST);
+			List mylist = (List) context
+					.getAttribute(RoleInfoOperation.IN_FUNC_LIST);
 			try {
 				ris.updateRoleInfoFuncService(mylist);
 			} catch (CommonException e) {
 				e.printStackTrace();
 			}
 		} else if (cmd.equals("UPDATE_REPORT")) {
-			List mylist = (List) context.getAttribute(RoleInfoOperation.IN_REPORT_LIST);
+			List mylist = (List) context
+					.getAttribute(RoleInfoOperation.IN_REPORT_LIST);
 			try {
 				ris.updateRoleInfoReportService(mylist);
 			} catch (CommonException e) {

@@ -1,6 +1,8 @@
 package com.huateng.report.common.bean;
 
-public class SubFileChangeDateBean {
+import java.io.Serializable;
+
+public class SubFileChangeDateBean implements Serializable {
 	private String oldFileDate;
 	private String newFileDate;
 

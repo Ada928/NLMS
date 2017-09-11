@@ -4,16 +4,13 @@
  */
 package com.huateng.ebank.business.management.bean;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.huateng.ebank.framework.struts.HTBaseForm;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
-
 import sun.misc.BASE64Decoder;
 
-import com.huateng.ebank.framework.struts.HTBaseForm;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * Form bean for the Login main page. There are two fields on this form used for
@@ -88,8 +85,8 @@ public final class LoginForm extends HTBaseForm {
 	 * Validate the properties that have been set from this HTTP request, and
 	 * return an <code>ActionErrors</code> object that encapsulates any
 	 * validation errors that have been found. If no errors are found, return
-	 * <code>null</code> or an <code>ActionErrors</code> object with no recorded
-	 * error messages.
+	 * <code>null</code> or an <code>ActionErrors</code> object with no
+	 * recorded error messages.
 	 *
 	 * @param mapping
 	 *            The mapping used to select this instance

@@ -1,6 +1,8 @@
 package com.huateng.view.pub;
 
-public class BranchManagementResultBean {
+import java.io.Serializable;
+
+public class BranchManagementResultBean implements Serializable {
 
 	private Integer id;
 	private String brhNo;

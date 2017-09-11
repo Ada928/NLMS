@@ -3,6 +3,8 @@
  */
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
+
 /**
  * Title: WorkFlowForwardTaskBean Description: 工作流工作移交Bean Copyright: Copyright
  * (c) 2008 Company: Shanghai Huateng Software Systems Co., Ltd.
@@ -10,7 +12,7 @@ package com.huateng.ebank.business.workflow.bean;
  * @author shen_antonio
  * @version 1.1, 2008-3-31
  */
-public class WorkFlowForwardTaskBean {
+public class WorkFlowForwardTaskBean implements Serializable {
 
 	/** memeber variable: String oTlrno. */
 	private String oTlrno;

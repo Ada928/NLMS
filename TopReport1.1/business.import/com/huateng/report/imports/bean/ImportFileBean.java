@@ -1,8 +1,10 @@
 package com.huateng.report.imports.bean;
 
+import java.io.Serializable;
+
 import resource.bean.report.BiImportFileConfig;
 
-public class ImportFileBean extends BiImportFileConfig {
+public class ImportFileBean extends BiImportFileConfig implements Serializable {
 	private boolean reImport;
 
 	private boolean select;

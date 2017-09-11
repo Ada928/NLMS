@@ -78,7 +78,7 @@ public class TlrRoleRelDAO extends HibernateDaoSupport {
 	 * @return 包含TlrInfo对象的List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString) throws CommonException {
+	public List<TlrRoleRel> queryByCondition(String whereString) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByCondition(String) - start"); //$NON-NLS-1$
 		}
@@ -200,10 +200,8 @@ public class TlrRoleRelDAO extends HibernateDaoSupport {
 	 * @param String
 	 *            whereString 条件集合 例如 "po.name = 'user1' and po.level = '1' or
 	 *            ...."
-	 * @param int
-	 *            startPage 展现层的开始页数
-	 * @param int
-	 *            maxRows 展现层的每页记录数 -1 :全部; 0 :默认值; 其他:实际值
+	 * @param int startPage 展现层的开始页数
+	 * @param int maxRows 展现层的每页记录数 -1 :全部; 0 :默认值; 其他:实际值
 	 * @return List 对象集合
 	 * @throws DAOException
 	 */

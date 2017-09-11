@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 用于直接生成SQL语句，支持同步和异步提交 -->
+<!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
+	async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
+<CommQry title="" navigate="主页 &gt; 机构管理 &gt; 机构管理" type="call" interface="true" pagesize="10" async="true"
+	databusid="" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.bankinfo.getter.BankManageQueryGetter">
+	<Include id="BankParam" />
+
+	<Fields>
+		<!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
+		<!-- primary : true-作为表单项记录上传 false-不作为表单项上传 -->
+		<Field id="brcode" desc="银行代码" status="F" primary="false" method="None" readonly="true" type="String" size="20"
+			default="" xpath="/brcode" require="true" tip="机构号" />
+
+		<Field id="brno" desc="机构代码" status="F" primary="false" edittype="" method="None" type="String" size="12"
+			require="true" readonly="false" default="false" xpath="/brno" tip="机构代码" rules="isBrNo" />
+
+		<Field id="brname" desc="银行名称" status="F" primary="false" method="None" readonly="false" type="String" size="40"
+			default="" xpath="/brname" require="true" tip="机构名称" />
+
+		<Field id="brclass" desc="机构级别" status="F" edittype="select" require="false" method="None" primary="false" type="String"
+			default="false" xpath="/brclass" tip="机构级别" translated="DATA_DIC.401" />
+
+		<Field id="postno" desc="邮政编码" status="F" method="None" rule="isNum" primary="false" type="String" require="false"
+			default="false" size="6" xpath="/postno" tip="邮政编码" />
+
+		<Field id="teleno" desc="联系电话" status="F" method="None" size="14" primary="false" type="String" require="false"
+			default="false" xpath="/teleno" tip="联系电话" />
+
+		<Field id="address" desc="机构地址" status="F" method="None" primary="false" type="String" require="false" size="100"
+			default="false" xpath="/address" tip="机构地址" />
+
+		<Field id="st" desc="记录状态" status="F" require="false" edittype="select" datatype="string" method="None"
+			readonly="true" primary="true" type="st" translated="DATA_DIC.3001" size="30" default="" xpath="/st" tip="" />
+
+		<Field id="lock" desc="是否锁定" status="F" edittype="select" method="None" primary="false" type="String" default=""
+			xpath="/lock" tip="有效标志" translated="LIST:T,锁定;F,未锁定" />
+
+		<Field id="status" desc="有效标志" status="F" edittype="select" method="None" primary="false" type="String" default=""
+			xpath="/status" tip="有效标志" translated="LIST:T,有效;F,无效" />
+
+		<Field id="del" desc="是否已删除" edittype="text" datatype="string" status="F" size="1" xpath="/del" />
+
+		<Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" size="20" default="" tip="操作"
+			require="" />
+	</Fields>
+	<Where>
+	</Where>
+	<Operations>
+		<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
+			updateClass="com.cibfintech.blacklist.bankinfo.updater.BankInfoUpdate" url="/fpages/blacklistManage/ftl/BankInfoEntry.ftl"
+			icon="icon-save" />
+
+		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform" url="/fpages/blacklistManage/ftl/BankInfoEntry.ftl"
+			txn="" icon="icon-back" />
+	</Operations>
+</CommQry>

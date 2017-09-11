@@ -1,14 +1,5 @@
 package com.huateng.ebank.business.management.updater;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import resource.bean.pub.TlrInfo;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -21,6 +12,13 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.service.pub.RoleInfoService;
 import com.huateng.view.pub.TlrRoleRelationView;
+import resource.bean.pub.TlrInfo;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 更新操作员信息EX
@@ -30,7 +28,9 @@ import com.huateng.view.pub.TlrRoleRelationView;
  */
 public class TlrInfoExUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+	public UpdateReturnBean saveOrUpdate(
+			MultiUpdateResultBean multiUpdateResultBean,
+			HttpServletRequest request, HttpServletResponse response)
 			throws AppException {
 		try {
 			UpdateResultBean tlrRoleBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_TlrRole");
@@ -45,13 +45,10 @@ public class TlrInfoExUpdate extends BaseUpdate {
 				mapToObject(tlrRoleView, tlrRoleBean.next());
 				if (tlrRoleBean.getRecodeState() == UpdateResultBean.MODIFY) {
 					if (tlrRoleView.isSelected()) {
-						// if
-						// (CommonService.getInstance().isProBranchRoleAddCustManageAndSubBranch(brcode
-						// , tlrRoleView.getRoleId())){
-						insertRoleList.add(tlrRoleView);
-						// } else
-						// ExceptionUtil.throwCommonException("只有支行级别的机构可以增加操作员为客户经理或支行行长",
-						// ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
+//						if (CommonService.getInstance().isProBranchRoleAddCustManageAndSubBranch(brcode , tlrRoleView.getRoleId())){
+							insertRoleList.add(tlrRoleView);
+//						} else
+//							ExceptionUtil.throwCommonException("只有支行级别的机构可以增加操作员为客户经理或支行行长", ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
 
 					} else {
 						deleteRoleList.add(tlrRoleView);
@@ -69,11 +66,11 @@ public class TlrInfoExUpdate extends BaseUpdate {
 				} catch (Exception e) {
 					tlrInfo.setRoleid(ris.getRoleInfoByRoleName(map.get("defRoleid").toString()).getId());
 				}
-				// tlrInfo.setEffectDate(new SimpleDateFormat("yyyy-MM-dd")
-				// .parse(map.get("effectDate").toString()));
-				// tlrInfo.setExpireDate(new SimpleDateFormat("yyyy-MM-dd")
-				// .parse(map.get("expireDate").toString()));
-				// tlrInfo.setCurRoleid(tlrInfo.getDefRoleid());
+//				tlrInfo.setEffectDate(new SimpleDateFormat("yyyy-MM-dd")
+//						.parse(map.get("effectDate").toString()));
+//				tlrInfo.setExpireDate(new SimpleDateFormat("yyyy-MM-dd")
+//						.parse(map.get("expireDate").toString()));
+//				tlrInfo.setCurRoleid(tlrInfo.getDefRoleid());
 				tlrInfo.setLoginIp((String) map.get("loginIp"));
 			}
 
@@ -87,7 +84,8 @@ public class TlrInfoExUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

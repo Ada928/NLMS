@@ -6,6 +6,7 @@
  */
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ import com.huateng.ebank.entity.data.workflow.WorkflowParam;
  *         TODO To change the template for this generated type comment go to
  *         Window - Preferences - Java - Code Style - Code Templates
  */
-public class WorkflowParamBean {
+public class WorkflowParamBean implements Serializable {
 	// //流程名 英文
 	// private String flowName;
 

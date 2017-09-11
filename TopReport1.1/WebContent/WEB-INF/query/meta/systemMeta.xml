@@ -4,7 +4,7 @@
 
     <Query id="biWorkDate" path="/fpages/system/xml/BiWorkDate.xml" />
     <Query id="SysParamsEntryDetail" path="/fpages/system/xml/SysParamsEntryDetail.xml" />
-    <Query id="branchManageDetail" path="/fpages/management/xml/branchManageDetail.xml" />
+    <Query id="BranchManageDetail" path="/fpages/management/xml/BranchManageDetail.xml" />
     <Query id="cutoverWorkDate" path="/fpages/system/xml/CutoverWorkDate.xml" />
     <!-- 安全参数设置 -->
     <Query id="SysParamsSec" path="/fpages/system/xml/SysParamsSec.xml" />

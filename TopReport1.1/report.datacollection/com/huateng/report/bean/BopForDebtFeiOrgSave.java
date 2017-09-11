@@ -1,5 +1,7 @@
 package com.huateng.report.bean;
 
+import java.io.Serializable;
+
 /**
  * 
  * 外债信息表、债权人信息表bean
@@ -9,7 +11,7 @@ package com.huateng.report.bean;
  * 
  */
 
-public class BopForDebtFeiOrgSave {
+public class BopForDebtFeiOrgSave implements Serializable {
 
 	private java.lang.String id;
 	// fields

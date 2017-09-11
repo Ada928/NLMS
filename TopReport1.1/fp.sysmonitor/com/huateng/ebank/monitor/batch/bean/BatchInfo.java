@@ -1,5 +1,6 @@
 package com.huateng.ebank.monitor.batch.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  * @author wangpeng
  * 
  */
-public class BatchInfo {
+public class BatchInfo implements Serializable {
 	// private BatchStepInfo currentStep;//当前执行步骤
 	private List<BatchStepInfo> stepList;// 步骤列表
 	private String bhDate;// 批量日期
@@ -41,8 +42,7 @@ public class BatchInfo {
 					break;
 				}
 				// 存在不能忽略的出错的必是已出错
-				else if (stepInfo.getStatusCode().equals(BatchConstant.MERGEINFO_FLAG_FAILED)
-						&& stepInfo.suspend() == false) {
+				else if (stepInfo.getStatusCode().equals(BatchConstant.MERGEINFO_FLAG_FAILED) && stepInfo.suspend() == false) {
 					status = BatchConstant.MERGEINFO_FLAG_FAILED;
 					break;
 				}

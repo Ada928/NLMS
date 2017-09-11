@@ -164,8 +164,7 @@ public class TlrInfoService {
 			tlrInfo.setBrcode(brcode);
 			tlrInfo.setTlrno(tlrno);
 			tlrInfo.setStatus(SystemConstant.VALID_FLAG_VALID);
-			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD",
-					SystemConstant.DEFAULT_PASSWORD);
+			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
 			tlrInfo.setPassword(sysDefaultPwd);
 			tlrInfoList.add(tlrInfo);
 		}
@@ -336,8 +335,7 @@ public class TlrInfoService {
 	public List getPluRole() throws CommonException {
 		List pluRoleList = new ArrayList();
 		TlrInfo ti = BaseDAOUtils.getTlrInfoDAO().queryById(GlobalInfo.getCurrentInstance().getTlrno());
-		List tlrRoleRelationList = BaseDAOUtils.getTlrRoleRelDAO()
-				.queryByCondition("po.tlrno='" + GlobalInfo.getCurrentInstance().getTlrno() + "'");
+		List tlrRoleRelationList = BaseDAOUtils.getTlrRoleRelDAO().queryByCondition("po.tlrno='" + GlobalInfo.getCurrentInstance().getTlrno() + "'");
 		for (int i = 0; i < tlrRoleRelationList.size(); i++) {
 			TlrRoleRel trr = (TlrRoleRel) tlrRoleRelationList.get(i);
 			RoleInfo ri = BaseDAOUtils.getRoleInfoDAO().query(trr.getRoleId().intValue());
@@ -355,8 +353,7 @@ public class TlrInfoService {
 	 *
 	 * @param
 	 * @return boolean
-	 * @exception @author
-	 *                hyurain_yang
+	 * @exception @author hyurain_yang
 	 * @version v1.0,2008-9-19
 	 */
 	public boolean judgeTlrIsCustManager(String extTlrno) throws CommonException {
@@ -397,14 +394,12 @@ public class TlrInfoService {
 	 *
 	 * @param
 	 * @return String
-	 * @exception @author
-	 *                hyurain_yang
+	 * @exception @author hyurain_yang
 	 * @version v1.0,2008-8-18
 	 */
 	public String getTlrno(String extTlrno) throws CommonException {
 		TlrInfoDAO tlrInfoDAO = BaseDAOUtils.getTlrInfoDAO();
-		List tlrInfoList = tlrInfoDAO.queryByCondition("po.tlrno=?", new Object[] { extTlrno },
-				new Type[] { Hibernate.STRING });
+		List tlrInfoList = tlrInfoDAO.queryByCondition("po.tlrno=?", new Object[] { extTlrno }, new Type[] { Hibernate.STRING });
 		String tlrno = null;
 		if (tlrInfoList.size() != 0) {
 			tlrno = ((TlrInfo) tlrInfoList.get(0)).getTlrno();
@@ -421,8 +416,7 @@ public class TlrInfoService {
 	 *
 	 * @param
 	 * @return boolean
-	 * @exception @author
-	 *                hyurain_yang
+	 * @exception @author hyurain_yang
 	 * @version v1.0,2008-8-18
 	 * @throws CommonException
 	 */
@@ -442,8 +436,7 @@ public class TlrInfoService {
 	 *
 	 * @param
 	 * @return String
-	 * @exception @author
-	 *                hyurain_yang
+	 * @exception @author hyurain_yang
 	 * @version v1.0,2008-8-18
 	 */
 	public String getExtTlrno(String tlrno) throws CommonException {
@@ -452,15 +445,13 @@ public class TlrInfoService {
 		return tlrInfo.getTlrno();
 	}
 
-	
 	/**
 	 *
 	 * Description: 获得外部操作员类型
 	 *
 	 * @param
 	 * @return String
-	 * @exception @author
-	 *                hyurain_yang
+	 * @exception @author hyurain_yang
 	 * @version v1.0,2008-8-18
 	 */
 	public String getTlrType(String tlrno) throws CommonException {
@@ -468,22 +459,20 @@ public class TlrInfoService {
 		TlrInfo tlrInfo = tlrInfoDAO.query(tlrno);
 		return tlrInfo.getTlrType();
 	}
-	
+
 	/**
 	 * Description: 判断操作员是否已经登录,判断操作员登录的Session Id是否一致
 	 *
 	 * @param tlrno
 	 *            内部操作员号 sessionId 会话ID号
 	 * @return boolean
-	 * @exception @author
-	 *                shen_antonio
+	 * @exception @author shen_antonio
 	 * @version v1.0,2008-10-7
 	 */
 	public boolean isLogin(String tlrno, String sessionId) {
 		try {
 			TlrInfo tlrInfo = getTlrInfoByTlrno(tlrno);
-			if (tlrInfo.getStatus().equals(SystemConstant.TLR_NO_STATE_LOGIN)
-					&& tlrInfo.getSessionId().equals(sessionId)) {
+			if (tlrInfo.getStatus().equals(SystemConstant.TLR_NO_STATE_LOGIN) && tlrInfo.getSessionId().equals(sessionId)) {
 				return true;
 			}
 		} catch (CommonException e) {

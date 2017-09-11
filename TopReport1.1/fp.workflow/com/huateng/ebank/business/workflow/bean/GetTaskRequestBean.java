@@ -1,6 +1,8 @@
 package com.huateng.ebank.business.workflow.bean;
 
-public class GetTaskRequestBean {
+import java.io.Serializable;
+
+public class GetTaskRequestBean implements Serializable {
 	/** 操作员号 */
 	private String tlrno;
 	/** 工作流名 */

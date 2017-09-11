@@ -1,8 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -10,6 +7,9 @@ import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.management.bean.ChangePwdForm;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author yjw
@@ -22,7 +22,8 @@ public class ChangePwdGetter extends BaseGetter {
 		try {
 
 			ChangePwdForm changePwdForm = new ChangePwdForm();
-			ResultMng.fillResultByObject(getCommonQueryBean(), getCommQueryServletRequest(), changePwdForm, getResult());
+			ResultMng.fillResultByObject(getCommonQueryBean(),
+					getCommQueryServletRequest(), changePwdForm, getResult());
 			List content = new ArrayList();
 			content.add(changePwdForm);
 			result.setContent(content);
@@ -32,7 +33,8 @@ public class ChangePwdGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

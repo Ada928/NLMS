@@ -16,13 +16,12 @@
 	<tr>
 		<td>
 			<@CommonQueryMacro.DataTable id ="datatable1" 
-			fieldStr="tlrNo,brNo,tlrIP,operateType,queryType,queryRecordNumber,message,createDate" readonly="true" width="100%"/></br>
+			fieldStr="tlrno,brcode,tlrIP,operateType,queryType,queryRecordNumber,message,createDate" readonly="true" width="100%"/></br>
 		</td>
 	</tr>
 </table>
 </@CommonQueryMacro.CommonQuery>
 <script language="JavaScript">
-
 
 </script>
 </@CommonQueryMacro.page>

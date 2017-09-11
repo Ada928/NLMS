@@ -8,6 +8,7 @@
  */
 package com.huateng.ebank.business.ebank.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Date;
  * 
  *          客户查询条件实体Bean.
  */
-public class SubmitInfo {
+public class SubmitInfo implements Serializable {
 
 	private Date date;
 	private String trlno;

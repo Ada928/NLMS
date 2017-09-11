@@ -3,15 +3,6 @@
  */
 package com.huateng.ebank.business.opermng.update;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import resource.bean.pub.TlrInfo;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -23,6 +14,13 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.view.pub.TlrRoleRelationView;
+import resource.bean.pub.TlrInfo;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author zhiguo.zhao
@@ -30,29 +28,33 @@ import com.huateng.view.pub.TlrRoleRelationView;
  */
 public class OperMngRoleInfoUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+	public UpdateReturnBean saveOrUpdate(
+			MultiUpdateResultBean multiUpdateResultBean,
+			HttpServletRequest request, HttpServletResponse response)
 			throws AppException {
 		try {
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean tlrRoleBean = multiUpdateResultBean.getUpdateResultBeanByID("operMngRoleInfo");
-			UpdateResultBean tlrInfoBean = multiUpdateResultBean.getUpdateResultBeanByID("operMngMod");
+			UpdateResultBean tlrRoleBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("operMngRoleInfo");
+			UpdateResultBean tlrInfoBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("operMngMod");
 			TlrInfo tlrInfo = null;
 			while (tlrInfoBean.hasNext()) {
 				tlrInfo = new TlrInfo();
 				Map map = tlrInfoBean.next();
 				mapToObject(tlrInfo, map);
 			}
-
+			
 			List roleList = new ArrayList();
 			while (tlrRoleBean.hasNext()) {
 				TlrRoleRelationView tlrRoleView = new TlrRoleRelationView();
 				mapToObject(tlrRoleView, tlrRoleBean.next());
 				tlrRoleView.setTlrno(tlrInfo.getTlrno());
 
-				// if (tlrRoleView.isSelected()) {
-				roleList.add(tlrRoleView);
-				// }
+				//if (tlrRoleView.isSelected()) {
+					roleList.add(tlrRoleView);
+				//}
 			}
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(OperMngOperation.CMD, "auth");
@@ -63,7 +65,8 @@ public class OperMngRoleInfoUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

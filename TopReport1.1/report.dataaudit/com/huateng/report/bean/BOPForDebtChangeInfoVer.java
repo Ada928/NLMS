@@ -1,8 +1,9 @@
 package com.huateng.report.bean;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class BOPForDebtChangeInfoVer {
+public class BOPForDebtChangeInfoVer implements Serializable {
 
 	private String id;
 

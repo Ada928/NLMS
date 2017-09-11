@@ -7,13 +7,15 @@
  */
 package com.huateng.view.pub;
 
+import java.io.Serializable;
+
 /**
  * @author Administrator
  *
  *         TODO To change the template for this generated type comment go to
  *         Window - Preferences - Java - Code Style - Code Templates
  */
-public class FunctionInfoView {
+public class FunctionInfoView implements Serializable {
 	private boolean select = false;
 	private String funccode = "";
 	private String funcname = "";

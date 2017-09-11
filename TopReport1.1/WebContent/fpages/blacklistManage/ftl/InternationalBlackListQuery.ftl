@@ -1,7 +1,7 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="国际黑名单管理">
+<@CommonQueryMacro.page title="国际黑名单查询">
 <@CommonQueryMacro.CommonQuery id="InternationalBlackListQuery" init="true" submitMode="current"  navigate="false">
 <table align="center" width="100%">
    	<tr>
@@ -19,13 +19,14 @@
 				width="100%" hasFrame="true"/>
 		</td>
 	</tr>
+	<tr align="center" style="display:none">
+		<td><@CommonQueryMacro.Button id="btDetail" /></td>
+	</tr>
 </table>
 
 </@CommonQueryMacro.CommonQuery>
 
 <script language="JavaScript">
-	var currentTlrno = "${info.tlrNo}";
-	var roleType = "${info.roleTypeList}";
     //定位一行记录
     function locate(id) {
         var record = InternationalBlackListQuery_dataset.find(["id"], [id]);
@@ -34,31 +35,19 @@
         }
     }
 
-   
-    //展示对比功能的js
-    function datatable1_id_onRefresh(cell, value, record) {
-        if (record) {
-            var osta = record.getValue("operateState");
-            var id = record.getValue("id");
-            cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "','" + osta + "')\">" + value + "</a>";
-        } else {
-            cell.innerHTML = "";
-        }
-    }
+  //展示对比功能的js
+	function datatable1_id_onRefresh(cell, value, record) {
+		if (record) {
+			var id = record.getValue("id");
+			cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "')\">" + value + "</a>";
+		} else {
+			cell.innerHTML = "";
+		}
+	}
 
-    function showDetail(id, osta) {
-        var paramMap = new Map();
-        paramMap.put("id", id);
-        paramMap.put("osta", osta);
-        paramMap.put("action", "detail");
-        paramMap.put("flag", "0");
-        loadPageWindows("partWin", "国际黑名单详细信息", "/fpages/blacklistManage/ftl/InternationalBlackListDetail.ftl", paramMap, "winZone");
-    }
-
-    //刷新当前页
-    function flushCurrentPage() {
-        InternationalBlackListQuery_dataset.flushData(InternationalBlackListQuery_dataset.pageIndex);
-    }
-
+	function showDetail(id) {
+		locate(id);
+		btDetail.click();
+	}
 </script>
 </@CommonQueryMacro.page>

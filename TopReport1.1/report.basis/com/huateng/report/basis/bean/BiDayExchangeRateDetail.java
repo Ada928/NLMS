@@ -6,9 +6,11 @@ package com.huateng.report.basis.bean;
  * 日币的新旧信息对比的bean
  */
 
+import java.io.Serializable;
+
 import resource.bean.report.BiDayexchangerate;
 
-public class BiDayExchangeRateDetail {
+public class BiDayExchangeRateDetail implements Serializable {
 	private BiDayexchangerate bidayexchangerate;
 	private BiDayexchangerate old_bidayexchangerate;
 

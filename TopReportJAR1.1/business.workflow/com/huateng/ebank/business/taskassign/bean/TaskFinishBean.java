@@ -3,6 +3,8 @@
  */
 package com.huateng.ebank.business.taskassign.bean;
 
+import java.io.Serializable;
+
 /**
  * Title: TaskFinishBean Description: 完成任务结点Bean Copyright: Copyright (c) 2008
  * Company: Shanghai Huateng Software Systems Co., Ltd.
@@ -10,7 +12,7 @@ package com.huateng.ebank.business.taskassign.bean;
  * @author shen_antonio
  * @version 1.1, 2008-3-29
  */
-public class TaskFinishBean {
+public class TaskFinishBean implements Serializable {
 
 	/** memeber variable: String processId 进程号. */
 	private String processId;
@@ -41,8 +43,7 @@ public class TaskFinishBean {
 	 * @param tlrno
 	 *            操作员号 2008-3-29
 	 */
-	public TaskFinishBean(String processId, String taskId, String assignMode, String tlrno, String workType,
-			String brcode) {
+	public TaskFinishBean(String processId, String taskId, String assignMode, String tlrno, String workType, String brcode) {
 		super();
 		this.processId = processId;
 		this.taskId = taskId;

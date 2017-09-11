@@ -1,5 +1,6 @@
 package com.huateng.report.common.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Map;
  * 
  *         2012-8-28上午11:01:10
  */
-public class ReportBackErrBean {
+public class ReportBackErrBean implements Serializable {
 	private String errType;
 	private List<String> errMsg = new ArrayList<String>();
 	private Map<String, String> errFiledMap = new HashMap<String, String>();
@@ -50,8 +51,7 @@ public class ReportBackErrBean {
 		this.errMsg = errMsg;
 	}
 
-	public ReportBackErrBean(String errType, List<String> errMsg, Map<String, String> errFiledMap,
-			Map<String, String> errFiledContentMap) {
+	public ReportBackErrBean(String errType, List<String> errMsg, Map<String, String> errFiledMap, Map<String, String> errFiledContentMap) {
 		super();
 		this.errType = errType;
 		this.errMsg = errMsg;

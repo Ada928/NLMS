@@ -1,6 +1,8 @@
 package com.huateng.report.genupreportfile.bean;
 
-public class ReportWaitToFileBean {
+import java.io.Serializable;
+
+public class ReportWaitToFileBean implements Serializable {
 	private String fileDate;
 
 	private String appType;

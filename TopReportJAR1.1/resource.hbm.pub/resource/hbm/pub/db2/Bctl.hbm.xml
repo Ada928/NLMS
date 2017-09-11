@@ -57,8 +57,8 @@
         <!-- lilinfeng add end -->
 
         <property name="st" column="ST" type="string" not-null="false" length="1" />
-        <property name="lock" column="IS_LOCK" type="true_false" not-null="false" length="1" />
-        <property name="del" column="IS_DEL" type="true_false" not-null="false" length="1" />
+        <property name="lock" column="IS_LOCK" type="string" not-null="false" length="1" />
+        <property name="del" column="IS_DEL" type="string" not-null="false" length="1" />
 
     </class>
 </hibernate-mapping>

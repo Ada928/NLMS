@@ -1,6 +1,8 @@
 package com.huateng.report.send.bean;
 
-public class ReportFeedBackErrField {
+import java.io.Serializable;
+
+public class ReportFeedBackErrField implements Serializable {
 	private String errField;
 	private String errFieldCn;
 	private String errDesc;

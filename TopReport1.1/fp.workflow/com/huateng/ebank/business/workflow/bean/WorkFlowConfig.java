@@ -1,9 +1,10 @@
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-public class WorkFlowConfig {
+public class WorkFlowConfig implements Serializable {
 	private static final String BUNDLE_NAME = "resources/workFlowConfig"; // 外系统名称-地址配置
 	private static final String nameSuffix = "_NAME"; // 外系统名称-地址配置
 	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);

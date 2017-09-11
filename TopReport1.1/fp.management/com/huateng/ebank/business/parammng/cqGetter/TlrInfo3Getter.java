@@ -8,12 +8,6 @@
  */
 package com.huateng.ebank.business.parammng.cqGetter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import resource.bean.pub.TlrInfo;
-import resource.dao.pub.TlrInfoDAO;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -23,6 +17,11 @@ import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.business.common.service.BctlService;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import resource.bean.pub.TlrInfo;
+import resource.dao.pub.TlrInfoDAO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TlrInfo3Getter extends BaseGetter {
 
@@ -31,19 +30,22 @@ public class TlrInfo3Getter extends BaseGetter {
 			int totalPage = 0;
 			List list = new ArrayList();
 
-			String action = (String) getCommQueryServletRequest().getParameterMap().get("action");
+			String action = (String) getCommQueryServletRequest()
+					.getParameterMap().get("action");
 
 			TlrInfo tlrInfo = new TlrInfo();
 			// 操作员查询的时候
 			if (action != null && action.equals("query")) {
 				if (this.getHttpReq().getAttribute("tlrInfo") != null) {
-					tlrInfo = (TlrInfo) this.getHttpReq().getAttribute("tlrInfo");
+					tlrInfo = (TlrInfo) this.getHttpReq().getAttribute(
+							"tlrInfo");
 					/** added by junzhong.duan 20120422 LNDN-202 begin */
-					// 因为在传值过程中出现乱码，所以重新查询一次
+					//因为在传值过程中出现乱码，所以重新查询一次
 					tlrInfo = DAOUtils.getTlrInfoDAO().queryById(tlrInfo.getTlrno());
 					/** added by junzhong.duan 20120422 LNDN-202 end */
 				} else {
-					BeanUtilsEx(tlrInfo, getCommQueryServletRequest().getParameterMap());
+					BeanUtilsEx(tlrInfo, getCommQueryServletRequest()
+							.getParameterMap());
 					TlrInfoDAO dao = DAOUtils.getTlrInfoDAO();
 					tlrInfo = dao.queryById(tlrInfo.getTlrno());
 				}
@@ -58,7 +60,8 @@ public class TlrInfo3Getter extends BaseGetter {
 				tlrInfo.setStatus(SystemConstant.VALID_FLAG_VALID);// 有效
 				totalPage = 1;
 			}
-			ResultMng.fillResultByObject(getCommonQueryBean(), getCommQueryServletRequest(), tlrInfo, getResult());
+			ResultMng.fillResultByObject(getCommonQueryBean(),
+					getCommQueryServletRequest(), tlrInfo, getResult());
 			List content = new ArrayList();
 			content.add(tlrInfo);
 			result.setContent(content);
@@ -69,7 +72,8 @@ public class TlrInfo3Getter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
