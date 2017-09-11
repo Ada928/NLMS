@@ -15,7 +15,7 @@
 	<tr>
 		<td>
 			<@CommonQueryMacro.DataTable id ="datatable1" 
-			    fieldStr="brcode,operateType,queryTable,sumQueryRecord,countMonth" readonly="true" width="100%"/></br>
+			    fieldStr="brcode,queryTable,sumQueryRecord,countMonth" readonly="true" width="100%"/></br>
 		</td>
 	</tr>
 </table>

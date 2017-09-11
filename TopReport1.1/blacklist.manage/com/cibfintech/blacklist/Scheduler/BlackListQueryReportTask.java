@@ -5,11 +5,15 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import resource.bean.blacklist.NsQueryDailyLogCount;
+import resource.bean.blacklist.NsQueryMonthlyLogCount;
+
 import com.cibfintech.blacklist.bankblacklist.service.BankBlackListOperateLogService;
 import com.cibfintech.blacklist.internationblacklist.service.InternationBlackListOperateLogService;
 import com.cibfintech.blacklist.policeblacklist.service.PoliceBlackListOperateLogService;
 import com.cibfintech.blacklist.service.QueryDailyLogCountService;
 import com.cibfintech.blacklist.service.QueryMonthlyLogCountService;
+import com.cibfintech.blacklist.util.GenerateID;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.DateUtil;
 
@@ -20,8 +24,8 @@ public class BlackListQueryReportTask {
 	 * 每日查询数据统计: 1, 统计查询国际黑名单的数据 2， 统计查询公安部黑名单的数据 3，统计查询商行黑名单的数据
 	 */
 	public void dailyBlackListQueryCount() throws CommonException {
-		String startDate = DateUtil.dateToString(DateUtil.getBeforeDayWithTime(new Date()));
-		String endDate = DateUtil.dateToString(new Date());
+		Date startDate = DateUtil.getBeforeDayWithTime(new Date());
+		Date endDate = new Date();
 		InternationBlackListOperateLogService interService = InternationBlackListOperateLogService.getInstance();
 		List interList = interService.sumQueryInternationBlacklist(startDate, endDate);
 		saveToDailyLogCount(interList, "0", startDate);
@@ -36,8 +40,9 @@ public class BlackListQueryReportTask {
 	}
 
 	public void monthlyBlackListQueryCount() throws CommonException {
-		String startDate = DateUtil.dateToString(DateUtil.getLastMonthFirstDay(new Date()));
-		String endDate = DateUtil.dateToString(DateUtil.getLastDateL(new Date()));
+		Date startDate = DateUtil.getLastMonthFirstDay(new Date());
+		Date endDate = DateUtil.getLastDateLastMonth(new Date());
+		// String endDate =new Date();
 		InternationBlackListOperateLogService interService = InternationBlackListOperateLogService.getInstance();
 		List interList = interService.sumQueryInternationBlacklist(startDate, endDate);
 		saveToMonthlyLogCount(interList, "0", startDate);
@@ -51,25 +56,47 @@ public class BlackListQueryReportTask {
 		saveToMonthlyLogCount(bankList, "2", startDate);
 	}
 
-	private void saveToDailyLogCount(List list, String table, String day) throws CommonException {
+	private void saveToDailyLogCount(List list, String table, Date day) throws CommonException {
 		for (int i = 0; i < list.size(); i++) {
 			Object[] obj = (Object[]) list.get(i);
-			String brno = (String) obj[0];
+			String brcode = (String) obj[0];
 			String sumQueryRecord = (String) obj[1];
 
+			NsQueryDailyLogCount queryDailyLogCount = new NsQueryDailyLogCount();
+			queryDailyLogCount.setId(String.valueOf(GenerateID.getId()));
+			queryDailyLogCount.setBrcode(brcode);
+			queryDailyLogCount.setOperateType("");
+			queryDailyLogCount.setQueryTable(table);
+			queryDailyLogCount.setSumQueryRecord(sumQueryRecord);
+			queryDailyLogCount.setCountDay(day);
+			queryDailyLogCount.setCreateDate(DateUtil.getCurrentDate());
+
 			QueryDailyLogCountService queryDailyService = QueryDailyLogCountService.getInstance();
-			queryDailyService.saveQueryDailyLogCount("", brno, table, sumQueryRecord, DateUtil.stringToDate(day));
+			queryDailyService.addEntity(queryDailyLogCount);
+			// queryDailyService.saveQueryDailyLogCount("", brcode, table,
+			// sumQueryRecord, DateUtil.stringToDate(day));
 		}
 	}
 
-	private void saveToMonthlyLogCount(List list, String table, String day) throws CommonException {
+	private void saveToMonthlyLogCount(List list, String table, Date day) throws CommonException {
 		for (int i = 0; i < list.size(); i++) {
 			Object[] obj = (Object[]) list.get(i);
-			String brno = (String) obj[0];
+			String brcode = (String) obj[0];
 			String sumQueryRecord = (String) obj[1];
 
+			NsQueryMonthlyLogCount queryMonthlyLogCount = new NsQueryMonthlyLogCount();
+			queryMonthlyLogCount.setId(String.valueOf(GenerateID.getId()));
+			queryMonthlyLogCount.setBrcode(brcode);
+			queryMonthlyLogCount.setOperateType("");
+			queryMonthlyLogCount.setQueryTable(table);
+			queryMonthlyLogCount.setSumQueryRecord(sumQueryRecord);
+			queryMonthlyLogCount.setCountMonth(day);
+			queryMonthlyLogCount.setCreateDate(DateUtil.getCurrentDate());
+
 			QueryMonthlyLogCountService queryMonthlyService = QueryMonthlyLogCountService.getInstance();
-			queryMonthlyService.saveQueryMonthlyLogCount("", brno, table, sumQueryRecord, DateUtil.stringToDate(day));
+			queryMonthlyService.addEntity(queryMonthlyLogCount);
+			// queryMonthlyService.saveQueryMonthlyLogCount("", brcode, table,
+			// sumQueryRecord, DateUtil.stringToDate(day));
 		}
 	}
 }
