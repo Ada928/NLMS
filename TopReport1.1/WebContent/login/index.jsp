@@ -30,9 +30,9 @@
 						<li id="li1">
 							<a href="javascript:void(0)" title="返回主页" onclick="showHome()"></a>
 						</li>
-						<li id="li2" addtr="navg">
+						<!-- <li id="li2" addtr="navg">
 							<a href="javascript:void(0)" title="功能切换" onclick="changNavg()" addtr="navg"></a>
-						</li>
+						</li> -->
 						<li id="li5">
 							<a href="javascript:void(0)" title="个人密码修改" onclick="goChangePwd()"></a>
 						</li>
@@ -49,9 +49,9 @@
 				<td><%@include file="menu/easymenu.jsp"%></td>
 				<td id="topMenu" style="display:none;white-space:nowrap;" nowrap="nowrap">
 					<ul class="small-tool">
-						<li id="li2">
+						<!-- <li id="li2">
 							<a href="javascript:void(0)" title="功能切换" onclick="changNavg()" addtr="navg"></a>
-						</li>
+						</li> -->
 						<li id="li3">
 							<a href="javascript:void(0)" title="还原" onclick="topShow()"></a>
 						</li>
