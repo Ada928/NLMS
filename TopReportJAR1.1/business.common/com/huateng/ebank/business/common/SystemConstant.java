@@ -28,7 +28,12 @@ public class SystemConstant {
 	public static final String LOG_DELEATE = "D"; // 删除
 	public static final String LOG_EDIT = "E"; // 改
 	public static final String LOG_QUERY = "Q"; // 查询
-	public static final String LOG_RESET = "R"; // 查询
+	public static final String LOG_RESET = "R"; // 重置
+	public static final String LOG_APPROVE = "AP"; // 审批
+	public static final String LOG_VERIFY = "VF"; // 审核
+	public static final String LOG_SHARE = "SH"; // 分享
+	public static final String LOG_VALID = "VD"; // 有效性
+	public static final String LOG_LOGOUT = "LO"; // 登出
 
 	/**
 	 * 是否对错

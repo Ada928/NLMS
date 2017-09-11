@@ -21,8 +21,8 @@
 		<Field id="brcode" desc="机构编号" require="" edittype="text" datatype="string" method="None" readonly="false" size="20"
 			status="F" default="" xpath="/brcode" />
 
-		<Field id="operateType" desc="操作类型" require="" edittype="textarea" datatype="string" method="None" readonly="false"
-			size="256" status="F" default="" xpath="/operateType" />
+		<Field id="operateType" desc="操作类型" status="F" edittype="select" require="false" method="None" primary=""
+			type="String" default="false" xpath="/operateType" tip="审核类型" translated="DATA_DIC.3004" />
 
 		<Field id="queryType" desc="查询类型" require="" edittype="textarea" datatype="string" method="None" readonly="false"
 			size="256" status="F" default="" xpath="/queryType" />
