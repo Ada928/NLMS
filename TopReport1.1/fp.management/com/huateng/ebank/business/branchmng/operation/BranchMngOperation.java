@@ -11,7 +11,6 @@ import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
-import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.report.common.service.ReportShowDetailService;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
@@ -20,7 +19,6 @@ public class BranchMngOperation extends BaseOperation {
 
 	public static final String ID = "management.BranchMngOperation";
 	public static final String CMD = "cmd";
-	public static final String CMD_STATUS = "cmd_status";
 	public static final String CMD_DEL = "cmd_del";
 	public static final String IN_BRHID = "IN_BRHID";
 	public static final String IN_PARAM = "IN_PARAM";
@@ -44,125 +42,62 @@ public class BranchMngOperation extends BaseOperation {
 	 * com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.
 	 * ebank.framework.operation.OperationContext)
 	 */
-	@SuppressWarnings("deprecation")
 	public void execute(OperationContext context) throws CommonException {
-		String cmd = (String) context.getAttribute(CMD);
-		String brhid = (String) context.getAttribute(IN_BRHID);
 		BctlDAO bctlDAO = DAOUtils.getBctlDAO();
-		String message = "";
-		String operateType = "";
-
-		if (CMD_STATUS.equals(cmd)) {
+		if ("status".equals(context.getAttribute(CMD))) {
+			String brhid = (String) context.getAttribute(IN_BRHID);
 			String status = (String) context.getAttribute(IN_PARAM);
 			// 往bctl表中插入数据的bean
 			Bctl bctl = bctlDAO.query(brhid);
-			if (bctl.getBrcode().equals(ReportEnum.REPORT_SYS_SUPER_MANAGE_ORGAN_INFO.BRCODE.value)) {
-				ExceptionUtil.throwCommonException("不能使管理员所在机构失效！");
-			} else {
-				// 有效变为无效的处理
-				if ("0".equals(status)) {
-					// 序列华后往taskInfo中插入数据
-					SysTaskInfo taskInfo;
-					try {
-						Bctl bctlTaskInfo = bctlDAO.query(brhid);
-						bctlTaskInfo.setLock(SystemConstant.FALSE);
-						bctlTaskInfo.setStatus(status);
+			// 有效变为无效的处理
+			if ("0".equals(status)) {
 
-						taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value,
-								ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, bctlTaskInfo, bctlTaskInfo.getBrcode(), bctlTaskInfo.getSt());
-						ReportShowDetailService.getInstance().addTosystaskinfo(taskInfo);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					// bctl.setLock(true);
-					bctl.setSt(ReportEnum.REPORT_ST1.ET.value);
-					bctl.setStatus(ReportEnum.REPORT_VAILD.YES.value);
-					bctlDAO.getHibernateTemplate().update(bctl);
+				// 序列华后往taskInfo中插入数据
 
-					message = "银行信息有效变为无效的处理";
-					operateType = SystemConstant.LOG_EDIT;
+				SysTaskInfo taskInfo;
+				try {
+					Bctl bctlTaskInfo = bctlDAO.query(brhid);
+					bctlTaskInfo.setLock(SystemConstant.TRUE);
+					bctlTaskInfo.setStatus(status);
+
+					taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
+							bctlTaskInfo, bctlTaskInfo.getBrcode(), bctlTaskInfo.getSt());
+					ReportShowDetailService.getInstance().addTosystaskinfo(taskInfo);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				// 无效变为 有效的处理
-				else {
+				// bctl.setLock(true);
+				bctl.setSt(ReportEnum.REPORT_ST1.ET.value);
 
-					SysTaskInfo taskInfo;
-					try {
-						Bctl bctlTaskInfo = bctlDAO.query(brhid);
-						bctlTaskInfo.setLock(SystemConstant.TRUE);
-						bctlTaskInfo.setStatus(status);
+				bctl.setStatus(ReportEnum.REPORT_VAILD.YES.value);
+				bctlDAO.getHibernateTemplate().update(bctl);
 
-						taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value,
-								ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, bctlTaskInfo, bctlTaskInfo.getBrcode(), bctlTaskInfo.getSt());
-						ReportShowDetailService.getInstance().addTosystaskinfo(taskInfo);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					bctl.setSt(ReportEnum.REPORT_ST1.ET.value);
-					bctl.setStatus(ReportEnum.REPORT_VAILD.NO.value);
-					bctlDAO.getHibernateTemplate().update(bctl);
-
-					message = "银行信息无效变为有效的处理";
-					operateType = SystemConstant.LOG_EDIT;
-				}
 			}
-		} else if (CMD_DEL.equals(cmd)) {
-			String del = (String) context.getAttribute(IN_PARAM);
-			// 往bctl表中插入数据的bean
-			Bctl bctl = bctlDAO.query(brhid);
-			if (bctl.getBrcode().equals(ReportEnum.REPORT_SYS_SUPER_MANAGE_ORGAN_INFO.BRCODE.value)) {
-				ExceptionUtil.throwCommonException("不能删除管理员所在机构信息！");
-			} else {
-				if ("F".equals(del)) {
-					// 删除变为不删除的处理
-					// 序列华后往taskInfo中插入数据
-					SysTaskInfo taskInfo;
-					try {
-						Bctl bctlTaskInfo = bctlDAO.query(brhid);
-						bctlTaskInfo.setLock(SystemConstant.FALSE);
-						bctlTaskInfo.setDel(SystemConstant.FALSE);
+			// 无效变为 有效的处理
+			else {
 
-						taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value,
-								ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, bctlTaskInfo, bctlTaskInfo.getBrcode(), bctlTaskInfo.getSt());
-						ReportShowDetailService.getInstance().addTosystaskinfo(taskInfo);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					// bctl.setLock(true);
-					bctl.setSt(ReportEnum.REPORT_ST1.ET.value);
+				SysTaskInfo taskInfo;
+				try {
+					Bctl bctlTaskInfo = bctlDAO.query(brhid);
+					bctlTaskInfo.setLock(SystemConstant.TRUE);
+					bctlTaskInfo.setStatus(status);
 
-					bctl.setDel(SystemConstant.FALSE);
-					bctlDAO.getHibernateTemplate().update(bctl);
-					message = "银行信息恢复删除状态的处理";
-					operateType = SystemConstant.LOG_DELEATE;
+					taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value, ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value,
+							bctlTaskInfo, bctlTaskInfo.getBrcode(), bctlTaskInfo.getSt());
+					ReportShowDetailService.getInstance().addTosystaskinfo(taskInfo);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				// 删除的处理
-				else {
-					SysTaskInfo taskInfo;
-					try {
-						Bctl bctlTaskInfo = bctlDAO.query(brhid);
-						bctlTaskInfo.setLock(SystemConstant.TRUE);
-						bctlTaskInfo.setDel(SystemConstant.TRUE);
+				bctl.setSt(ReportEnum.REPORT_ST1.ET.value);
 
-						taskInfo = ReportTaskUtil.getSysTaskInfoBean(ReportEnum.REPORT_TASK_FUNCID.TASK_100199.value,
-								ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value, bctlTaskInfo, bctlTaskInfo.getBrcode(), bctlTaskInfo.getSt());
-						ReportShowDetailService.getInstance().addTosystaskinfo(taskInfo);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					bctl.setSt(ReportEnum.REPORT_ST1.ET.value);
-					bctl.setDel(SystemConstant.TRUE);
-					bctlDAO.getHibernateTemplate().update(bctl);
+				bctl.setStatus(ReportEnum.REPORT_VAILD.NO.value);
+				bctlDAO.getHibernateTemplate().update(bctl);
 
-					message = "银行信息删除的处理";
-					operateType = SystemConstant.LOG_DELEATE;
-				}
 			}
+
 		}
-
-		// BctlOperateLogService bctlOperateLogService =
-		// BctlOperateLogService.getInstance();
-		// bctlOperateLogService.saveBctlOperateLog(operateType, "", "",
-		// message);
 	}
 
 	/*

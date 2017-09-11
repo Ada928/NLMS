@@ -2,7 +2,7 @@ package com.cibfintech.blacklist.userinfo.service;
 
 import java.util.List;
 
-import resource.bean.pub.TlrOperateLog;
+import resource.bean.blacklist.TlrOperateLog;
 import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;

@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import resource.bean.pub.BctlOperateLog;
+import resource.bean.blacklist.BctlOperateLog;
 import resource.bean.pub.RoleInfo;
 
 import com.cibfintech.blacklist.bankinfo.service.BankInfoService;

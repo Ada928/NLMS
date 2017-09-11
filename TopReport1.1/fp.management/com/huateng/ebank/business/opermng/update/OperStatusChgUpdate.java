@@ -1,8 +1,5 @@
 package com.huateng.ebank.business.opermng.update;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -17,6 +14,9 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 public class OperStatusChgUpdate extends BaseUpdate {
 
 	private final static String PARAM_ACTION = "statu";
@@ -24,22 +24,23 @@ public class OperStatusChgUpdate extends BaseUpdate {
 	private final static String OPER_ID = "tlrno";
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest arg1, HttpServletResponse arg2)
+	        throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-			if (updateResultBean.hasNext()) {
+			if(updateResultBean.hasNext()) {
 				String tlrno = updateResultBean.next().get(OPER_ID);
 				String status = updateResultBean.getParameter(PARAM_ACTION);
 				OperationContext oc = new OperationContext();
-				oc.setAttribute(OperMngOperation.CMD, OperMngOperation.CMD_STATUS);
+				oc.setAttribute(OperMngOperation.CMD, "status");
 				oc.setAttribute(OperMngOperation.IN_TLRNO, tlrno);
 				oc.setAttribute(OperMngOperation.IN_PARAM, status);
 				OPCaller.call(OperMngOperation.ID, oc);
 			} else {
 				ExceptionUtil.throwAppException("请选择一条记录", ErrorCode.ERROR_CODE_NORMAL);
 			}
-
+			
 			return updateReturnBean;
 		} catch (CommonException ex) {
 			throw ex;

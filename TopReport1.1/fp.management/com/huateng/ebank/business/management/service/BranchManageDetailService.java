@@ -1,12 +1,11 @@
 package com.huateng.ebank.business.management.service;
 
-import com.huateng.ebank.framework.exceptions.CommonException;
-
 import resource.bean.pub.Bctl;
-
 import resource.bean.report.SysTaskInfo;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
+
+import com.huateng.ebank.framework.exceptions.CommonException;
 
 /*
  * 

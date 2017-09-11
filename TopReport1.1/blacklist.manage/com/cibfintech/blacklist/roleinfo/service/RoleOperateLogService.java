@@ -2,7 +2,7 @@ package com.cibfintech.blacklist.roleinfo.service;
 
 import java.util.List;
 
-import resource.bean.pub.RoleOperateLog;
+import resource.bean.blacklist.RoleOperateLog;
 import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;

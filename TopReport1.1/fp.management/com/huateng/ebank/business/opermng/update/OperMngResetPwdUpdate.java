@@ -1,8 +1,5 @@
 package com.huateng.ebank.business.opermng.update;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -18,6 +15,9 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author zhiguo.zhao
  *
@@ -25,12 +25,15 @@ import com.huateng.exception.AppException;
 public class OperMngResetPwdUpdate extends BaseUpdate {
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
+			HttpServletRequest arg1, HttpServletResponse arg2)
+			throws AppException {
 		try {
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("OperatorEntry");
-			if (updateResultBean.hasNext()) {
+			UpdateResultBean updateResultBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("operMngEntry");
+			if(updateResultBean.hasNext()) {
 				String tlrno = updateResultBean.next().get("tlrno");
 				OperationContext oc = new OperationContext();
 				oc.setAttribute(OperMngOperation.CMD, "resetPwd");
@@ -46,7 +49,8 @@ public class OperMngResetPwdUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

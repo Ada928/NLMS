@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import resource.bean.blacklist.TlrOperateLog;
 import resource.bean.pub.RoleInfo;
 import resource.bean.pub.TlrBctlRel;
 import resource.bean.pub.TlrInfo;
-import resource.bean.pub.TlrOperateLog;
 import resource.bean.pub.TlrRoleRel;
 import resource.bean.report.SysTaskInfo;
 import resource.dao.pub.TlrBctlRelDAO;

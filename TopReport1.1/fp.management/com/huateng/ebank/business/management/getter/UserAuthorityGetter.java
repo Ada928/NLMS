@@ -1,17 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.apache.commons.lang.StringUtils;
-
-import resource.report.dao.ROOTDAOUtils;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -21,6 +9,10 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import org.apache.commons.lang.StringUtils;
+import resource.report.dao.ROOTDAOUtils;
+
+import java.util.*;
 
 /**
  * @Description: 企业岗位查询
@@ -59,7 +51,7 @@ public class UserAuthorityGetter extends BaseGetter {
 				String tlrName = (String) object[1];
 				String roleName = (String) object[3];
 
-				String key = tlrNo.trim() + "-" + tlrName.trim();
+				String key = tlrNo.trim()+"-"+tlrName.trim();
 
 				if (oMap.containsKey(key)) {
 					Set<String> set = oMap.get(key);
@@ -79,14 +71,14 @@ public class UserAuthorityGetter extends BaseGetter {
 				ua.setTrlName(keys[1]);
 				Set<String> roleNameSet = oMap.get(key);
 				StringBuffer rolename = new StringBuffer();
-				int i = 0;
+				int i=0;
 				for (Iterator iterator2 = roleNameSet.iterator(); iterator2.hasNext();) {
 					String name = (String) iterator2.next();
 					i++;
-					if (i == roleNameSet.size()) {
+					if(i==roleNameSet.size()){
 						rolename.append(name);
-					} else {
-						rolename.append(name + "，");
+					}else{
+						rolename.append(name+"，");
 					}
 				}
 				ua.setRoleIdName(rolename.toString());

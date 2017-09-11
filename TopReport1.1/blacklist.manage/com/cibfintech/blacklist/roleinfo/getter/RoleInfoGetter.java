@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
+import resource.bean.blacklist.RoleOperateLog;
 import resource.bean.pub.RoleInfo;
-import resource.bean.pub.RoleOperateLog;
 
 import com.cibfintech.blacklist.roleinfo.service.RoleInfoService;
 import com.cibfintech.blacklist.roleinfo.service.RoleOperateLogService;

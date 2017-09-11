@@ -2,8 +2,8 @@ package com.cibfintech.blacklist.operation;
 
 import java.io.IOException;
 
+import resource.bean.blacklist.BctlOperateLog;
 import resource.bean.pub.Bctl;
-import resource.bean.pub.BctlOperateLog;
 import resource.bean.report.SysTaskInfo;
 
 import com.cibfintech.blacklist.bankinfo.service.BankInfoService;

@@ -7,14 +7,6 @@
  */
 package com.huateng.ebank.business.parammng.operation;
 
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
-import resource.bean.pub.TlrInfo;
-import resource.dao.pub.TlrInfoDAO;
-import resource.dao.pub.TlrRoleRelDAO;
-
 import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.SystemConstant;
@@ -26,6 +18,13 @@ import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.util.ExceptionUtil;
+import resource.bean.pub.TlrInfo;
+import resource.dao.pub.TlrInfoDAO;
+import resource.dao.pub.TlrRoleRelDAO;
+
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author wuguangjie 审批权限设置 TODO To change the template for this generated type
@@ -60,14 +59,12 @@ public class LimitParamOperation extends BaseOperation {
 
 	public static final String IN_PARAM_PROJECTTYPE = "IN_PARAM_PROJECTTYPE";
 
-	public static final String IN_PARAM_BIZ_SUBCLASS = "IN_PARAM_BIZ_SUBCLASS";
+	public static final String IN_PARAM_BIZ_SUBCLASS="IN_PARAM_BIZ_SUBCLASS";
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.
-	 * ebank.framework.operation.OperationContext)
+	 *
+	 * @see com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.ebank.framework.operation.OperationContext)
 	 */
 	public void beforeProc(OperationContext context) throws CommonException {
 
@@ -75,60 +72,71 @@ public class LimitParamOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.
-	 * ebank.framework.operation.OperationContext)
+	 *
+	 * @see com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.ebank.framework.operation.OperationContext)
 	 */
 	public void execute(OperationContext context) throws CommonException {
 
-		// LimitParamDAO lninfoDao = DAOUtils.getLimitParamDAO();
+		//LimitParamDAO lninfoDao = DAOUtils.getLimitParamDAO();
 		String cmd = (String) context.getAttribute(LimitParamOperation.CMD);
 		// 查询所有岗位信息
 		if (cmd.equals("SELECT")) {
 
-			// List resultList = new ArrayList();
-			// List typeList = new ArrayList();
-			// List objList = new ArrayList();
-			// String brcode = (String) context
-			// .getAttribute(LimitParamOperation.IN_PARAM_BRCODE);
-			String tlrno = (String) context.getAttribute(LimitParamOperation.IN_PARAM_TLRNO);
-			String bizClass = (String) context.getAttribute(LimitParamOperation.IN_PARAM_BIZCLASS);
-			// String loantype = (String) context
-			// .getAttribute(LimitParamOperation.IN_PARAM_LOANTYPE);
-			// String projecttype = (String) context
-			// .getAttribute(LimitParamOperation.IN_PARAM_PROJECTTYPE);
-			String bizSubClass = (String) context.getAttribute(LimitParamOperation.IN_PARAM_BIZ_SUBCLASS);
+//			List resultList = new ArrayList();
+//			List typeList = new ArrayList();
+//			List objList = new ArrayList();
+//			String brcode = (String) context
+//					.getAttribute(LimitParamOperation.IN_PARAM_BRCODE);
+			String tlrno = (String) context
+					.getAttribute(LimitParamOperation.IN_PARAM_TLRNO);
+			String bizClass = (String) context
+					.getAttribute(LimitParamOperation.IN_PARAM_BIZCLASS);
+//			String loantype = (String) context
+//					.getAttribute(LimitParamOperation.IN_PARAM_LOANTYPE);
+//			String projecttype = (String) context
+//					.getAttribute(LimitParamOperation.IN_PARAM_PROJECTTYPE);
+			String bizSubClass = (String) context
+					.getAttribute(LimitParamOperation.IN_PARAM_BIZ_SUBCLASS);
 
 			StringBuffer hqlstr = new StringBuffer(512);
-			hqlstr.append("select lp ").append("from LimitParam as lp, TlrInfo as po ").append("where lp.status = '").append(SystemConstant.VALID_FLAG_VALID)
-					.append("' and lp.tlrno = po.tlrno");
+			hqlstr.append("select lp ").append(
+					"from LimitParam as lp, TlrInfo as po ").append(
+					"where lp.status = '").append(
+					SystemConstant.VALID_FLAG_VALID).append(
+					"' and lp.tlrno = po.tlrno");
 
 			if (!DataFormat.isEmpty(tlrno)) {
-				hqlstr.append(" and lp.tlrno = '").append(DataFormat.trim(tlrno)).append("' ");
+				hqlstr.append(" and lp.tlrno = '").append(
+						DataFormat.trim(tlrno)).append("' ");
 			}
 
 			if (!DataFormat.isEmpty(bizClass)) {// 如果审批类型的条件选上了
-				hqlstr.append(" and lp.bizClass = '").append(DataFormat.trim(bizClass)).append("' ");
+				hqlstr.append(" and lp.bizClass = '").append(
+						DataFormat.trim(bizClass)).append("' ");
 			}
 			if (!DataFormat.isEmpty(bizSubClass)) {// 如果审批类型的条件选上了
-				hqlstr.append(" and lp.bizSubClass = '").append(DataFormat.trim(bizSubClass)).append("' ");
+				hqlstr.append(" and lp.bizSubClass = '").append(
+						DataFormat.trim(bizSubClass)).append("' ");
 			}
 
 			hqlstr.append(" order by lp.tlrno, lp.bizClass, lp.bizSubclass ");
 			String hql = hqlstr.toString();
 			Iterator iter = DAOUtils.getHQLDAO().queryByQL(hql);
-			// List list = new ArrayList();
-			// while (iter.hasNext()) {
-			// LimitParam lp = (LimitParam) iter.next();
-			// list.add(lp);
-			// }
+//			List list = new ArrayList();
+//			while (iter.hasNext()) {
+//				LimitParam lp = (LimitParam) iter.next();
+//				list.add(lp);
+//			}
 			context.setAttribute(LimitParamOperation.OUT_PARAM, iter);
 		} else {// db 更新
-			List deleteList = (List) context.getAttribute(LimitParamOperation.DELETE_LIST);
-			List updateList = (List) context.getAttribute(LimitParamOperation.UPDATE_LIST);
-			List insertList = (List) context.getAttribute(LimitParamOperation.INSERT_LIST);
-			List noneList = (List) context.getAttribute(LimitParamOperation.NONE_LIST);
+			List deleteList = (List) context
+					.getAttribute(LimitParamOperation.DELETE_LIST);
+			List updateList = (List) context
+					.getAttribute(LimitParamOperation.UPDATE_LIST);
+			List insertList = (List) context
+					.getAttribute(LimitParamOperation.INSERT_LIST);
+			List noneList = (List) context
+					.getAttribute(LimitParamOperation.NONE_LIST);
 
 			save(deleteList, updateList, insertList, noneList);
 		}
@@ -137,16 +145,15 @@ public class LimitParamOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng.
-	 * ebank.framework.operation.OperationContext)
+	 *
+	 * @see com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng.ebank.framework.operation.OperationContext)
 	 */
 	public void afterProc(OperationContext context) throws CommonException {
 
 	}
 
-	private void save(List deleteList, List updateList, List insertList, List noneList) throws CommonException {
+	private void save(List deleteList, List updateList, List insertList,
+			List noneList) throws CommonException {
 		LimitParamDAO lpDao = DAOUtils.getLimitParamDAO();
 		LimitParam lp;
 		if (deleteList.size() > 0) {
@@ -161,9 +168,9 @@ public class LimitParamOperation extends BaseOperation {
 				} else {
 					return;
 				}
-				// limitInfo1.setStatus("0");
-				// limitInfo1.setExpireDate(GlobalInfo.getCurrentInstance()
-				// .getTxdate());
+//				limitInfo1.setStatus("0");
+//				limitInfo1.setExpireDate(GlobalInfo.getCurrentInstance()
+//						.getTxdate());
 				lpDao.delete(limitInfo1);
 			}
 		}
@@ -195,7 +202,8 @@ public class LimitParamOperation extends BaseOperation {
 			Iterator insit = insertList.iterator();
 			for (; insit.hasNext();) {
 				lp = (LimitParam) insit.next();
-				LimitParam lpQuery = DAOUtils.getLimitParamDAO().query(lp.getTlrno(), Integer.parseInt(lp.getBizClass()), lp.getBizSubclass(), "1");
+				LimitParam lpQuery = DAOUtils.getLimitParamDAO().query(
+						lp.getTlrno(), Integer.parseInt(lp.getBizClass()), lp.getBizSubclass(),"1");
 				if (lpQuery == null) {
 					// ?0?1 若该操作员的权限信息不存在，则新增
 					lp.setEffectDate(date);
@@ -203,23 +211,26 @@ public class LimitParamOperation extends BaseOperation {
 					lp.setStatus(SystemConstant.VALID_FLAG_VALID);
 					lpDao.insert(lp);
 				} else {
-					String message = "该组信息已经存在,请勿重复添加[操作员号,流程,业务品种]=[" + lp.getTlrno() + "," + lp.getBizClass() + "," + lp.getBizSubclass() + "]";
-					ExceptionUtil.throwCommonException(message, ErrorCode.ERROR_CODE_DUP_INSERT);
-					// // ?0?1 若该操作员的权限信息存在，
-					// if (lpQuery.getStatus().equals(
-					// SystemConstant.VALID_FLAG_INVALID)) {// 如果是删除导致status变为
-					// // 0
-					// // ，则用update
-					// lpQuery.setLimitMode(lp.getLimitMode());
-					// lpQuery.setLimitMaxamount(lp.getLimitMaxamount());
-					// lpQuery.setEffectDate(date);
-					// lpQuery.setExpireDate(date1);
-					// lpQuery.setMisc("");
-					// lpQuery.setStatus(lp.getStatus().substring(0, 1));
-					// lpDao.update(lpQuery);
+					String message = "该组信息已经存在,请勿重复添加[操作员号,流程,业务品种]=["
+						+ lp.getTlrno() + "," + lp.getBizClass() + ","
+						+ lp.getBizSubclass() + "]";
+					ExceptionUtil.throwCommonException(message,
+						ErrorCode.ERROR_CODE_DUP_INSERT);
+//					// ?0?1 若该操作员的权限信息存在，
+//					if (lpQuery.getStatus().equals(
+//							SystemConstant.VALID_FLAG_INVALID)) {// 如果是删除导致status变为
+//																	// 0
+//																	// ，则用update
+//						lpQuery.setLimitMode(lp.getLimitMode());
+//						lpQuery.setLimitMaxamount(lp.getLimitMaxamount());
+//						lpQuery.setEffectDate(date);
+//						lpQuery.setExpireDate(date1);
+//						lpQuery.setMisc("");
+//						lpQuery.setStatus(lp.getStatus().substring(0, 1));
+//						lpDao.update(lpQuery);
+					}
 				}
 			}
-		}
 		DAOUtils.getHQLDAO().flush();
 
 	}
@@ -235,90 +246,92 @@ public class LimitParamOperation extends BaseOperation {
 			// 检查该柜员是否存在
 			String tlrno = lp.getTlrno();
 			try {
-				TlrInfo t = tiDao.query(tlrno);
-				if (t == null) {
-					ExceptionUtil.throwCommonException("添加新纪录中的[操作员号]=[" + tlrno + "]不存在", ErrorCode.ERROR_CODE_NO_TLRNO_EXIST);
+				TlrInfo t= tiDao.query(tlrno);
+				if(t== null){
+					ExceptionUtil.throwCommonException("添加新纪录中的[操作员号]=[" + tlrno
+							+ "]不存在", ErrorCode.ERROR_CODE_NO_TLRNO_EXIST);
 				}
 			} catch (Exception e) {
 
-				ExceptionUtil.throwCommonException("添加新纪录中的[操作员号]=[" + tlrno + "]不存在", ErrorCode.ERROR_CODE_NO_TLRNO_EXIST);
+				ExceptionUtil.throwCommonException("添加新纪录中的[操作员号]=[" + tlrno
+						+ "]不存在", ErrorCode.ERROR_CODE_NO_TLRNO_EXIST);
 			}
 
 			// 检查roleid 和 是否是本行管辖内的
 			// List trrList = trrDao.queryByCondition("po.tlrno = '" + tlrno
 			// + "' and (po.roleId = 105 or po.roleId = 120)");
 
-			// List roleInfoList = TellerService.getInstance()
-			// .getTellerRoleInfoList(tlrno);
-			//
-			// // if (trrList == null || trrList.size() == 0) {
-			// // ExceptionUtil.throwCommonException(
-			// // "该操作员[" + tlrno + "]不具备审批角色",
-			// // ErrorCode.ERROR_CODE_NO_RIGHT_ROLEID);
-			// // }
-			//
-			// String bizclass = lp.getBizClass();
-			// int roleid = 0;
-			// if (bizclass.equals(SystemConstant.LIMIT_PARAM_BIZ_CLASS_LOAN)) {
-			// // 贷款业务（贷款审批岗以及贷审会审批岗）
-			// boolean isLoanApprove = false;
-			// for (int k = 0; k < roleInfoList.size(); k++) {
-			// RoleInfo roleInfo = (RoleInfo) roleInfoList.get(k);
-			// if (roleInfo.getRoleType().equals(
-			// SystemConstant.ROLE_TYPE_APPROVE)
-			// || roleInfo.getRoleType().equals(
-			// SystemConstant.ROLE_TYPE_COUNCIL_APPROVE)) {
-			// isLoanApprove = true;
-			// roleid = roleInfo.getRoleId();
-			// break;
-			// }
-			// }
-			// if (!isLoanApprove) {
-			// ExceptionUtil.throwCommonException("该操作员[" + tlrno
-			// + "]不具备审批贷款业务角色",
-			// ErrorCode.ERROR_CODE_NO_RIGHT_ROLEID);
-			// }
-			//
-			// // 检查机构是否是本行管辖内的
-			// String tlrBrcode = TellerService.getInstance()
-			// .getBrcodeByTlrRole(tlrno, roleid);
-			// if (!brcode.equals(tlrBrcode)
-			// && !BctlService.getInstance().isBlnBrcode(tlrBrcode,
-			// brcode)) {
-			//
-			// ExceptionUtil.throwCommonException("该操作员[" + tlrno
-			// + "]不在本行管辖内", ErrorCode.ERROR_CODE_NO_RANGE);
-			// }
-			//
-			// } else if (bizclass
-			// .equals(SystemConstant.LIMIT_PARAM_BIZ_CLASS_PROJ)) {
-			// boolean isProjApprove = false;
-			// for (int k = 0; k < roleInfoList.size(); k++) {
-			// RoleInfo roleInfo = (RoleInfo) roleInfoList.get(k);
-			// if (roleInfo.getRoleType().equals(
-			// SystemConstant.ROLE_TYPE_PROJ_APPROVE)) {
-			// isProjApprove = true;
-			// roleid = roleInfo.getRoleId();
-			// break;
-			// }
-			// }
-			// if (!isProjApprove) {
-			// ExceptionUtil.throwCommonException("该操作员[" + tlrno
-			// + "]不具备审批合作项目角色",
-			// ErrorCode.ERROR_CODE_NO_RIGHT_ROLEID);
-			// }
-			// // 检查机构是否是本行管辖内的
-			// String tlrBrcode = TellerService.getInstance()
-			// .getBrcodeByTlrRole(tlrno, roleid);
-			// if (!brcode.equals(tlrBrcode)
-			// && !BctlService.getInstance().isBlnBrcode(tlrBrcode,
-			// brcode)) {
-			//
-			// ExceptionUtil.throwCommonException("该操作员[" + tlrno
-			// + "]不在本行管辖内", ErrorCode.ERROR_CODE_NO_RANGE);
-			// }
-			//
-			// }
+//			List roleInfoList = TellerService.getInstance()
+//					.getTellerRoleInfoList(tlrno);
+//
+//			// if (trrList == null || trrList.size() == 0) {
+//			// ExceptionUtil.throwCommonException(
+//			// "该操作员[" + tlrno + "]不具备审批角色",
+//			// ErrorCode.ERROR_CODE_NO_RIGHT_ROLEID);
+//			// }
+//
+//			String bizclass = lp.getBizClass();
+//			int roleid = 0;
+//			if (bizclass.equals(SystemConstant.LIMIT_PARAM_BIZ_CLASS_LOAN)) {
+//				// 贷款业务（贷款审批岗以及贷审会审批岗）
+//				boolean isLoanApprove = false;
+//				for (int k = 0; k < roleInfoList.size(); k++) {
+//					RoleInfo roleInfo = (RoleInfo) roleInfoList.get(k);
+//					if (roleInfo.getRoleType().equals(
+//							SystemConstant.ROLE_TYPE_APPROVE)
+//							|| roleInfo.getRoleType().equals(
+//									SystemConstant.ROLE_TYPE_COUNCIL_APPROVE)) {
+//						isLoanApprove = true;
+//						roleid = roleInfo.getRoleId();
+//						break;
+//					}
+//				}
+//				if (!isLoanApprove) {
+//					ExceptionUtil.throwCommonException("该操作员[" + tlrno
+//							+ "]不具备审批贷款业务角色",
+//							ErrorCode.ERROR_CODE_NO_RIGHT_ROLEID);
+//				}
+//
+//				// 检查机构是否是本行管辖内的
+//				String tlrBrcode = TellerService.getInstance()
+//						.getBrcodeByTlrRole(tlrno, roleid);
+//				if (!brcode.equals(tlrBrcode)
+//						&& !BctlService.getInstance().isBlnBrcode(tlrBrcode,
+//								brcode)) {
+//
+//					ExceptionUtil.throwCommonException("该操作员[" + tlrno
+//							+ "]不在本行管辖内", ErrorCode.ERROR_CODE_NO_RANGE);
+//				}
+//
+//			} else if (bizclass
+//					.equals(SystemConstant.LIMIT_PARAM_BIZ_CLASS_PROJ)) {
+//				boolean isProjApprove = false;
+//				for (int k = 0; k < roleInfoList.size(); k++) {
+//					RoleInfo roleInfo = (RoleInfo) roleInfoList.get(k);
+//					if (roleInfo.getRoleType().equals(
+//							SystemConstant.ROLE_TYPE_PROJ_APPROVE)) {
+//						isProjApprove = true;
+//						roleid = roleInfo.getRoleId();
+//						break;
+//					}
+//				}
+//				if (!isProjApprove) {
+//					ExceptionUtil.throwCommonException("该操作员[" + tlrno
+//							+ "]不具备审批合作项目角色",
+//							ErrorCode.ERROR_CODE_NO_RIGHT_ROLEID);
+//				}
+//				// 检查机构是否是本行管辖内的
+//				String tlrBrcode = TellerService.getInstance()
+//						.getBrcodeByTlrRole(tlrno, roleid);
+//				if (!brcode.equals(tlrBrcode)
+//						&& !BctlService.getInstance().isBlnBrcode(tlrBrcode,
+//								brcode)) {
+//
+//					ExceptionUtil.throwCommonException("该操作员[" + tlrno
+//							+ "]不在本行管辖内", ErrorCode.ERROR_CODE_NO_RANGE);
+//				}
+//
+//			}
 
 			// else if (bizclass
 			// .equals(SystemConstant.LIMIT_PARAM_BIZ_CLASS_ALL)) {

@@ -76,7 +76,6 @@ function checkStrong(pwd){
 	} 
 	return bitTotal(modes); 
 } 
-
 function getComplexity(pwd) {
 	var modes=0; 
 	for (i=0;i<pwd.length;i++){ 
@@ -105,7 +104,6 @@ function checkComplexity(pwd) {
 	}
 	return true;
 }
-
 function pwdStrength(pwd){ 
 	O_color="#eeeeee"; 
 	L_color="#FF0000"; 
@@ -160,7 +158,6 @@ function btSave_onClickCheck(button) {
 		alert("您输入的密码强度太弱，请重新输入！("+msg+")");
 		return false;
 	}
-
 	if(!checkComplexity(newPasswd)) {
 		return false;
 	}

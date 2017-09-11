@@ -1,13 +1,5 @@
 package com.huateng.ebank.business.management.updater;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import resource.bean.pub.DepartmentInfo;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -18,12 +10,19 @@ import com.huateng.ebank.framework.operation.OPCaller;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
+import resource.bean.pub.DepartmentInfo;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DepartmentInfoManageUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
+			HttpServletRequest request, HttpServletResponse response)
 			throws AppException {
-		try {
+		try{
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_departmentInfoManage");
 
@@ -33,7 +32,7 @@ public class DepartmentInfoManageUpdate extends BaseUpdate {
 
 			DepartmentInfo departmentInfo = new DepartmentInfo();
 
-			while (updateResultBean.hasNext()) {
+			while (updateResultBean.hasNext()){
 				departmentInfo = new DepartmentInfo();
 				mapToObject(departmentInfo, updateResultBean.next());
 				switch (updateResultBean.getRecodeState()) {
@@ -54,12 +53,13 @@ public class DepartmentInfoManageUpdate extends BaseUpdate {
 			context.setAttribute(DepartmentInfoManageUpdateOperation.INSERT_LIST, insertList);
 			context.setAttribute(DepartmentInfoManageUpdateOperation.UPDATE_LIST, updateList);
 			context.setAttribute(DepartmentInfoManageUpdateOperation.DEL_LIST, delList);
-			OPCaller.call("Management.DepartmentInfoManageUpdateOperation", context);
+			OPCaller.call("Management.DepartmentInfoManageUpdateOperation",context);
 			return updateReturnBean;
-		} catch (AppException appEx) {
+		}catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

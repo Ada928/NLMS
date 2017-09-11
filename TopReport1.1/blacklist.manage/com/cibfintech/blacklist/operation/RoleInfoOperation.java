@@ -7,9 +7,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import resource.bean.blacklist.RoleOperateLog;
 import resource.bean.pub.RoleFuncRel;
 import resource.bean.pub.RoleInfo;
-import resource.bean.pub.RoleOperateLog;
 import resource.bean.report.SysTaskInfo;
 
 import com.cibfintech.blacklist.roleinfo.service.RoleFuncRelService;

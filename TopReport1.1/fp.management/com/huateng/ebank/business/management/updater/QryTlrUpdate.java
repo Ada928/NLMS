@@ -1,11 +1,5 @@
 package com.huateng.ebank.business.management.updater;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -19,6 +13,11 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Map;
+
 /**
  * 操作员增加EX
  *
@@ -27,20 +26,20 @@ import com.huateng.exception.AppException;
  */
 public class QryTlrUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			UpdateResultBean tlrRoleBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_QryTlrAdd");
 			Map map = tlrRoleBean.next();
-			String brcode = (String) map.get("brcode");
-			String departmentCode = (String) map.get("departmentCode");
-			String extTlrno = (String) map.get("extTlrno");
+			String brcode = (String)map.get("brcode");
+			String departmentCode = (String)map.get("departmentCode");
+			String extTlrno = (String)map.get("extTlrno");
 
-			if (brcode != null && brcode != "")
+			if(brcode !=null && brcode !="")
 				setValue2DataBus("brcode", brcode);
-			if (departmentCode != null && departmentCode != "")
+			if(departmentCode !=null && departmentCode !="")
 				setValue2DataBus("departmentCode", departmentCode);
-			if (departmentCode != null && departmentCode != "")
+			if(departmentCode !=null && departmentCode !="")
 				setValue2DataBus("extTlrno", extTlrno);
 
 			OperationContext oc = new OperationContext();
@@ -50,8 +49,8 @@ public class QryTlrUpdate extends BaseUpdate {
 			oc.setAttribute("tlrno", extTlrno);
 			OPCaller.call(TlrInfoExOperation.ID, oc);
 			List tlrViewList = (List) oc.getAttribute(TlrInfoExOperation.OUT_TLR_INFO_LIST);
-			if (tlrViewList.size() == 0) {
-				ExceptionUtil.throwCommonException("没有找到符合条件的记录", ErrorCode.ERROR_CODE_TLR_INFO_SELECT);
+			if(tlrViewList.size() == 0 ){
+				ExceptionUtil.throwCommonException("没有找到符合条件的记录",ErrorCode.ERROR_CODE_TLR_INFO_SELECT);
 			}
 
 			return new UpdateReturnBean();
@@ -61,5 +60,6 @@ public class QryTlrUpdate extends BaseUpdate {
 			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
+
 
 }

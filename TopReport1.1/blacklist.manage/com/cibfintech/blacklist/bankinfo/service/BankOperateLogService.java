@@ -2,7 +2,7 @@ package com.cibfintech.blacklist.bankinfo.service;
 
 import java.util.List;
 
-import resource.bean.pub.BctlOperateLog;
+import resource.bean.blacklist.BctlOperateLog;
 import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;

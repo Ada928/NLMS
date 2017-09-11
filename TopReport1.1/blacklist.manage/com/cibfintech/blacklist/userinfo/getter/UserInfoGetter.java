@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
+import resource.bean.blacklist.TlrOperateLog;
 import resource.bean.pub.RoleInfo;
-import resource.bean.pub.TlrOperateLog;
 
 import com.cibfintech.blacklist.userinfo.service.UserInfoService;
 import com.cibfintech.blacklist.userinfo.service.UserOperateLogService;

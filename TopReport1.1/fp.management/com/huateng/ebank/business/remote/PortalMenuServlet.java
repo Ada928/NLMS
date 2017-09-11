@@ -1,7 +1,10 @@
 package com.huateng.ebank.business.remote;
 
-import java.io.IOException;
-import java.util.UUID;
+import com.huateng.ebank.business.common.GlobalInfo;
+import com.huateng.ebank.business.remote.base.RemoteSysMap;
+import com.huateng.ebank.business.remote.base.SessionFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -10,13 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.huateng.ebank.business.common.GlobalInfo;
-import com.huateng.ebank.business.remote.base.RemoteSysMap;
-import com.huateng.ebank.business.remote.base.SessionFactory;
+import java.io.IOException;
+import java.util.UUID;
 
 /**
  * Servlet implementation class PortalMenuServlet
@@ -39,21 +37,23 @@ public class PortalMenuServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		// 判断session是否过期
 		if (session == null) {
 			log.info("session is null");
-			go2TimeOutPage(request, response);
+			go2TimeOutPage(request,response);
 			return;
 		}
 
-		GlobalInfo gd = (GlobalInfo) session.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
+		GlobalInfo gd = (GlobalInfo) session
+				.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
 		String sessionId = session.getId();
 
 		if (gd == null) {
 			log.info("GlobalInfo is null");
-			go2TimeOutPage(request, response);
+			go2TimeOutPage(request,response);
 			return;
 		}
 		String tokenId = gd.getTokenId();
@@ -96,6 +96,8 @@ public class PortalMenuServlet extends HttpServlet {
 		request.setAttribute("_URL", url);
 		request.setAttribute("_sendUrl", sendUrl);
 
+		
+		
 		rd.forward(request, response);
 	}
 
@@ -103,15 +105,18 @@ public class PortalMenuServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 
-	private void go2TimeOutPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		resp.setHeader("Pragma", "No-cache");
-		resp.setHeader("Cache-Control", "no-cache,no-store,max-age=0");
-		resp.setDateHeader("Expires", 1);
-		resp.sendRedirect("/common/expired.jsp");
+	
+	private void go2TimeOutPage(HttpServletRequest req,
+			HttpServletResponse resp) throws ServletException, IOException {
+		
+			resp.setHeader("Pragma", "No-cache");
+			resp.setHeader("Cache-Control", "no-cache,no-store,max-age=0");
+			resp.setDateHeader("Expires", 1);
+			resp.sendRedirect("/common/expired.jsp");
 	}
 }
