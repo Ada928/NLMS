@@ -17,10 +17,10 @@
 
 		<Field id="operateType" desc="操作类型" require="" edittype="textarea" datatype="string" method="None" readonly="false"
 			size="256" status="F" default="" xpath="/operateType" />
-
-		<Field id="queryTable" desc="查询表" require="" edittype="textarea" datatype="string" method="None" readonly="false"
-			size="256" status="F" default="" xpath="/queryTable" />
-
+		
+		<Field id="queryTable" desc="查询表" status="F" edittype="select" require="false" method="None" primary=""
+			type="String" default="false" xpath="/queryTable" tip="审核类型" translated="LIST:0,国际黑名单表;1,公安部黑名单表;2,商行黑名单表" />
+			
 		<Field id="sumQueryRecord" desc="结果数量" require="" edittype="text" datatype="string" method="None" readonly="false"
 			size="32" status="F" default="" xpath="/sumQueryRecord" />
 

@@ -92,7 +92,7 @@ public class BankBlackListOperateLogService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String hql, List list) throws CommonException {
+	public PageQueryResult pageQueryByHql(int pageSize, int pageIndex, String hql, List list) throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();

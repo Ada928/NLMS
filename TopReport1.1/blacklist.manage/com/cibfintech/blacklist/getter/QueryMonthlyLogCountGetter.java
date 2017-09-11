@@ -81,7 +81,7 @@ public class QueryMonthlyLogCountGetter extends BaseGetter {
 		sb.append(" order by cont.brcode");
 
 		QueryMonthlyLogCountService service = QueryMonthlyLogCountService.getInstance();
-		return service.pageQueryByHql(pageIndex, pageSize, sb.toString(), list);
+		return service.pageQueryByHql(pageSize, pageIndex, sb.toString(), list);
 	}
 
 }

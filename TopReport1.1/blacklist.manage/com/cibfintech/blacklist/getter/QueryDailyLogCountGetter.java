@@ -81,7 +81,7 @@ public class QueryDailyLogCountGetter extends BaseGetter {
 		sb.append(" order by cont.brcode");
 
 		QueryDailyLogCountService service = QueryDailyLogCountService.getInstance();
-		return service.pageQueryByHql(pageIndex, pageSize, sb.toString(), list);
+		return service.pageQueryByHql(pageSize, pageIndex, sb.toString(), list);
 	}
 
 }
