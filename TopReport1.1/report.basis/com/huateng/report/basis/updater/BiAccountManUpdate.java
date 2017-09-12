@@ -18,46 +18,42 @@ import com.huateng.report.basis.operation.BiAccountOperation;
 
 public class BiAccountManUpdate extends BaseUpdate {
 
-	private static final String DATASET_ID="BiAccountEntry";
+	private static final String DATASET_ID = "BiAccountEntry";
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
-		//返回对象
+		// 返回对象
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 
-		//取得结果集对象
+		// 取得结果集对象
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 
-		//开始处理
+		// 开始处理
 
 		BiAccount biAccount = new BiAccount();
 
 		OperationContext oc = new OperationContext();
 
-		if(updateResultBean.hasNext())
-		{
+		if (updateResultBean.hasNext()) {
 			Map map = updateResultBean.next();
 
-			switch (updateResultBean.getRecodeState())
-			{
+			switch (updateResultBean.getRecodeState()) {
 			case UpdateResultBean.INSERT:
 				oc.setAttribute(BiAccountOperation.CMD, BiAccountOperation.CMD_INSERT);
-				mapToObject(biAccount,map);
+				mapToObject(biAccount, map);
 				break;
 			case UpdateResultBean.MODIFY:
 				oc.setAttribute(BiAccountOperation.CMD, BiAccountOperation.CMD_UPDATE);
-				mapToObject(biAccount,map);
+				mapToObject(biAccount, map);
 				break;
-			default :
+			default:
 				break;
 
 			}
 		}
 		oc.setAttribute(BiAccountOperation.IN_PARAM, biAccount);
 		OPCaller.call(BiAccountOperation.ID, oc);
-
 
 		return updateReturnBean;
 	}

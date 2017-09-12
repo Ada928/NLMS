@@ -13,6 +13,7 @@ import resource.bean.pub.TlrInfo;
 import resource.bean.pub.TlrRoleRel;
 
 import com.huateng.ebank.business.common.DAOUtils;
+import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
@@ -52,15 +53,15 @@ public class TlrInfoUpdaterOperation extends BaseOperation {
 		String tlrno = (String) context.getAttribute(TLRNO);
 		TlrInfo tlrinfo = DAOUtils.getTlrInfoDAO().queryById(tlrno);
 		if ("del".equals(cmd)) {
-			List tlrref = DAOUtils.getTlrRoleRelDAO().queryByCondition("tlrno="+tlrno);
+			List tlrref = DAOUtils.getTlrRoleRelDAO().queryByCondition("tlrno=" + tlrno);
 			for (Iterator it = tlrref.iterator(); it.hasNext();) {
 				TlrRoleRel ref = (TlrRoleRel) it.next();
 				DAOUtils.getTlrRoleRelDAO().delete(ref);
 			}
 			DAOUtils.getTlrInfoDAO().delete(tlrno);
-			
+
 		} else if ("unlock".equals(cmd)) {
-			tlrinfo.setIsLock("0");
+			tlrinfo.setLock(SystemConstant.FALSE);
 			DAOUtils.getTlrInfoDAO().update(tlrinfo);
 		}
 	}

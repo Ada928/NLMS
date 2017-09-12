@@ -20,6 +20,7 @@ public class MakeupConfirmOperation extends BaseOperation {
 	public final static String APP_TYPE = "APP_TYPE";
 
 	private static final HtLog htlog = HtLogFactory.getLogger(MakeupConfirmOperation.class);
+
 	@Override
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
@@ -40,12 +41,16 @@ public class MakeupConfirmOperation extends BaseOperation {
 		String appType = (String) context.getAttribute(APP_TYPE);
 		String brNo = globalInfo.getBrno().trim();
 		Date startTm = new Date();
-		MakeupConfirmServices.getInstance().excue(busiType, appType,globalInfo.getTlrno(),brNo, workDate);
+		MakeupConfirmServices.getInstance().excue(busiType, appType, globalInfo.getTlrno(), brNo, workDate);
 		Date endTm = new Date();
-		ReportCommonService.getInstance().saveBiProcessLog(DateUtil.dateToNumber(globalInfo.getTxdate()), busiType, appType, brNo, TopReportConstants.REPORT_PROCESS_EXECTYPE_COLLCONFIRM, startTm, endTm, TopReportConstants.REPORT_PROCESS_OPERTYPE_MANU);
+		ReportCommonService.getInstance().saveBiProcessLog(DateUtil.dateToNumber(globalInfo.getTxdate()), busiType,
+				appType, brNo, TopReportConstants.REPORT_PROCESS_EXECTYPE_COLLCONFIRM, startTm, endTm,
+				TopReportConstants.REPORT_PROCESS_OPERTYPE_MANU);
 
-		globalInfo.addBizLog("Updater.log", new String[]{globalInfo.getTlrno(), brNo, "补录完成确认，业务类型【"+busiType+"】,应用类型【" + appType + "】"});
-		htlog.info("Updater.log", new String[]{globalInfo.getTlrno(), brNo, "补录完成确认，业务类型【"+busiType+"】,应用类型【" + appType + "】"});
+		globalInfo.addBizLog("Updater.log",
+				new String[] { globalInfo.getTlrno(), brNo, "补录完成确认，业务类型【" + busiType + "】,应用类型【" + appType + "】" });
+		htlog.info("Updater.log",
+				new String[] { globalInfo.getTlrno(), brNo, "补录完成确认，业务类型【" + busiType + "】,应用类型【" + appType + "】" });
 	}
 
 }

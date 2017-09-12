@@ -71,8 +71,8 @@ public class ReportCreateSubFileService {
 		List retlist = new ArrayList();
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		StringBuffer countHql = new StringBuffer();
-		countHql.append("select model.apptype as aptype,model.currentfile as ftype,count(model) as tpcount from ").append(HQL_TABLENAME)
-				.append(" model where 1=1 ");
+		countHql.append("select model.apptype as aptype,model.currentfile as ftype,count(model) as tpcount from ")
+				.append(HQL_TABLENAME).append(" model where 1=1 ");
 		if (ReportConstant.CREATE_SUB_FILE_IS_WORKDATE) {
 			countHql.append(" and model.workDate='" + workDate + "'");
 		}
@@ -141,7 +141,8 @@ public class ReportCreateSubFileService {
 		String basePath = ReportUtils.getSysParamsValue(ReportConstant.REPORT_LOACL_DATA_PARAMGROUP, appType);
 		for (int j = 0; j < subFileList.size(); j++) {
 			SubFileConf conf = (SubFileConf) subFileList.get(j);
-			if (conf != null && conf.getFileResultPath() != null && conf.getFileResultPath().trim().length() > 0 && conf.getXmlFileId() != null) {
+			if (conf != null && conf.getFileResultPath() != null && conf.getFileResultPath().trim().length() > 0
+					&& conf.getXmlFileId() != null) {
 				String xmlId = conf.getXmlFileId();
 				String fileType = conf.getId().getFileType();
 
@@ -149,8 +150,8 @@ public class ReportCreateSubFileService {
 
 				if (dsDataList != null && dsDataList.size() > 0) {
 					// 1.生成文件
-					List<SubFileInfo> subFileInfo = CreateFileByDataList(info, dsDataList, subDate, brNo, appType, fileType, xmlId, basePath, pack,
-							busiType);
+					List<SubFileInfo> subFileInfo = CreateFileByDataList(info, dsDataList, subDate, brNo, appType,
+							fileType, xmlId, basePath, pack, busiType);
 					if (!fileType.equals(controlFileTypeName)) {
 						for (int k = 0; k < subFileInfo.size(); k++) {
 							SubFileInfo retInfo = subFileInfo.get(k);
@@ -163,17 +164,20 @@ public class ReportCreateSubFileService {
 			}
 		}
 		Date endTm = new Date();
-		ReportCommonService.getInstance().saveBiProcessLog(DateUtil.dateToNumber(info.getTxdate()), busiType, appType, brNo,
-				TopReportConstants.REPORT_PROCESS_EXECTYPE_GENREPORT, startTm, endTm, TopReportConstants.REPORT_PROCESS_OPERTYPE_MANU);
+		ReportCommonService.getInstance().saveBiProcessLog(DateUtil.dateToNumber(info.getTxdate()), busiType, appType,
+				brNo, TopReportConstants.REPORT_PROCESS_EXECTYPE_GENREPORT, startTm, endTm,
+				TopReportConstants.REPORT_PROCESS_OPERTYPE_MANU);
 
-		info.addBizLog("Updater.log", new String[] { info.getTlrno(), brNo, "上报文件生成，业务类型【" + busiType + "】，应用类型【" + appType + "】" });
-		htlog.info("Updater.log", new String[] { info.getTlrno(), brNo, "上报文件生成，业务类型【" + busiType + "】，应用类型【" + appType + "】" });
+		info.addBizLog("Updater.log",
+				new String[] { info.getTlrno(), brNo, "上报文件生成，业务类型【" + busiType + "】，应用类型【" + appType + "】" });
+		htlog.info("Updater.log",
+				new String[] { info.getTlrno(), brNo, "上报文件生成，业务类型【" + busiType + "】，应用类型【" + appType + "】" });
 
 		return uploadPackList;
 	}
 
-	public void saveSubFileInfo(GlobalInfo info, SubFileConf conf, List dataList, List<SubFileInfo> subFileList, String controlFileTypeName)
-			throws CommonException {
+	public void saveSubFileInfo(GlobalInfo info, SubFileConf conf, List dataList, List<SubFileInfo> subFileList,
+			String controlFileTypeName) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		if (subFileList != null && subFileList.size() > 0) {
 			for (int i = 0; i < subFileList.size(); i++) {
@@ -195,9 +199,10 @@ public class ReportCreateSubFileService {
 								bussNo = ReportUtils.getBopDsBusiNo(obj, conf.getBusiPkStr(), conf);
 							}
 							// 判断已报送文件是否已经生成过
-							List alreadySubInfoList = rootdao.queryByQL2List(" from AlreadySubInfo model where model.apptype='"
-									+ conf.getId().getAppType() + "' and model.currentfile='" + conf.getId().getFileType() + "' and model.recId='"
-									+ recId + "'");
+							List alreadySubInfoList = rootdao
+									.queryByQL2List(" from AlreadySubInfo model where model.apptype='"
+											+ conf.getId().getAppType() + "' and model.currentfile='"
+											+ conf.getId().getFileType() + "' and model.recId='" + recId + "'");
 							AlreadySubInfo alInfo = null;
 							if (alreadySubInfoList.size() == 1) {
 								alInfo = (AlreadySubInfo) alreadySubInfoList.get(0);
@@ -221,8 +226,10 @@ public class ReportCreateSubFileService {
 							rootdao.saveOrUpdate(obj);
 
 							// 4.写入数据处理日志
-							ReportCommonService.getInstance().saveBiDataProcessLog(conf.getId().getAppType(), conf.getId().getFileType(), recId,
-									bussNo, TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_GENREPORT, subFileInfo.getId(), subFileInfo.getFilePack());
+							ReportCommonService.getInstance().saveBiDataProcessLog(conf.getId().getAppType(),
+									conf.getId().getFileType(), recId, bussNo,
+									TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_GENREPORT, subFileInfo.getId(),
+									subFileInfo.getFilePack());
 						}
 					}
 				} catch (Exception e) {
@@ -243,7 +250,8 @@ public class ReportCreateSubFileService {
 	 * @return
 	 * @throws CommonException
 	 */
-	public String getSubFileNameOrPack(String appType, String fileDate, String brNo, String fileType, String ext) throws CommonException {
+	public String getSubFileNameOrPack(String appType, String fileDate, String brNo, String fileType, String ext)
+			throws CommonException {
 		String btl = brNo;
 		if (!ReportConstant.BOP_SUB_FILE_BRNO_TYPE) {
 			btl = ReportUtils.getSysParamsValue("SUB", "BOP", brNo);
@@ -253,8 +261,8 @@ public class ReportCreateSubFileService {
 		str.append(btl);
 		str.append(fileDate);
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		Object maxObj = rootdao.queryByHqlMax(" select max(subFileSeq) from SubFileInfo where fileDate='" + fileDate + "' and apptype='" + appType
-				+ "' and currentfile='" + fileType + "' and brNo='" + btl + "'");
+		Object maxObj = rootdao.queryByHqlMax(" select max(subFileSeq) from SubFileInfo where fileDate='" + fileDate
+				+ "' and apptype='" + appType + "' and currentfile='" + fileType + "' and brNo='" + btl + "'");
 		if (maxObj == null || maxObj.toString().trim().length() == 0) {
 			str.append("01");
 		} else {
@@ -286,8 +294,9 @@ public class ReportCreateSubFileService {
 	 * @return
 	 * @throws CommonException
 	 */
-	public List<SubFileInfo> CreateFileByDataList(GlobalInfo info, List list, String subDate, String brNo, String appType, String fileType,
-			String xmlId, String basePath, String pack, String busiType) throws CommonException {
+	public List<SubFileInfo> CreateFileByDataList(GlobalInfo info, List list, String subDate, String brNo,
+			String appType, String fileType, String xmlId, String basePath, String pack, String busiType)
+					throws CommonException {
 		String workdate = DateUtil.dateToNumber(info.getTxdate());
 		ReportBeanIn repBean = new ReportBeanIn();
 		repBean.setAppType(appType);
@@ -336,7 +345,7 @@ public class ReportCreateSubFileService {
 			String appType = info.getApptype();
 			localFilePath = ReportUtils.getSysParamsValue(ReportConstant.REPORT_LOACL_DATA_PARAMGROUP, appType);
 			serverFilePath = ReportUtils.getSysParamsValue(ReportConstant.REPORT_REMOTE_DATA_PARAMGROUP, appType);
-			
+
 			// 开始上传
 			for (int i = 0; i < subFileInfoList.size(); i++) {
 				SubFileInfo subFile = subFileInfoList.get(i);

@@ -31,13 +31,10 @@ public class BOPForDebtOtherDebtsGenGetter extends BaseGetter {
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外债-其他外债补录信息查询-签约信息查询");
 
 			if (!queryResult.getQueryResult().isEmpty()) {
-				ResultMng.fillResultByList(getCommonQueryBean(),
-						getCommQueryServletRequest(), queryResult
-								.getQueryResult(), getResult());
+				ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+						queryResult.getQueryResult(), getResult());
 				result.setContent(queryResult.getQueryResult());
-				result.getPage().setTotalPage(
-						queryResult.getPageCount(getResult().getPage()
-								.getEveryPage()));
+				result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 				result.init();
 			} else {
 				result.setContent(Collections.emptyList());
@@ -46,8 +43,7 @@ public class BOPForDebtOtherDebtsGenGetter extends BaseGetter {
 			}
 			return result;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -64,7 +60,8 @@ public class BOPForDebtOtherDebtsGenGetter extends BaseGetter {
 
 		String workDate = GlobalInfo.getCurrentInstance().getFileDate();
 		String actiontype = getCommQueryServletRequest().getParameter("actiontype");
-//		String repStatus = getCommQueryServletRequest().getParameter("repStatus");
+		// String repStatus =
+		// getCommQueryServletRequest().getParameter("repStatus");
 		String filler2 = getCommQueryServletRequest().getParameter("filler2");
 		String brcode = getCommQueryServletRequest().getParameter("qbrNo");
 
@@ -74,9 +71,9 @@ public class BOPForDebtOtherDebtsGenGetter extends BaseGetter {
 		if (StringUtils.isNotBlank(actiontype)) {
 			hql.append(" AND bds.actiontype = '").append(actiontype).append("' ");
 		}
-//		if (StringUtils.isNotBlank(repStatus)) {
-//			hql.append(" AND bds.repStatus = '").append(repStatus).append("' ");
-//		}
+		// if (StringUtils.isNotBlank(repStatus)) {
+		// hql.append(" AND bds.repStatus = '").append(repStatus).append("' ");
+		// }
 		if (StringUtils.isNotBlank(filler2)) {
 			hql.append(" AND bds.filler2 LIKE '%").append(filler2).append("%' ");
 		}

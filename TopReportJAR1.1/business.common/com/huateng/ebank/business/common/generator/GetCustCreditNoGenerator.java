@@ -28,15 +28,11 @@ public class GetCustCreditNoGenerator extends BaseGenerator {
 		Map paramMap = (Map) obj;
 		String brcode = (String) paramMap.get("brcode");// 行号
 		String custno = (String) paramMap.get("custno");// 核心客户号
-		//String areano = BctlService.getInstance().getRegId(brcode);// 地区号
-		String valueIndex = CREDITNOTYPE_CUST + DataFormat.getYear(GlobalInfo.getCurrentInstance()
-						.getTxdate());
-		int seqno = CommonService.getInstance().getSeqno(
-				SystemConstant.VALUE_NO_CREDITNO, valueIndex);
-		return CREDITNOTYPE_CUST
-				+ DataFormat.getYear(GlobalInfo.getCurrentInstance()
-						.getTxdate()).substring(2) + DataFormat.intToString(seqno, 6);
+		// String areano = BctlService.getInstance().getRegId(brcode);// 地区号
+		String valueIndex = CREDITNOTYPE_CUST + DataFormat.getYear(GlobalInfo.getCurrentInstance().getTxdate());
+		int seqno = CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_CREDITNO, valueIndex);
+		return CREDITNOTYPE_CUST + DataFormat.getYear(GlobalInfo.getCurrentInstance().getTxdate()).substring(2)
+				+ DataFormat.intToString(seqno, 6);
 	}
-
 
 }

@@ -24,39 +24,38 @@ public class BufBOPForDebtBuyerLoanImpl implements IGetSubFileList {
 	private static final int PAGESIZE = 500;
 
 	@SuppressWarnings("unchecked")
-	public List getSubFileResultList(Map<String, Object> paramMap)
-			throws CommonException {
+	public List getSubFileResultList(Map<String, Object> paramMap) throws CommonException {
 		BufBOPForDebtOverseaLendingImpl impl = new BufBOPForDebtOverseaLendingImpl();
-		List<BopCfaExdebtDs>exdebtdsList = impl.getSubFileResultList(paramMap);
+		List<BopCfaExdebtDs> exdebtdsList = impl.getSubFileResultList(paramMap);
 
-		Map<String, BopCfaExdebtDs>bopcfadexdebtdsMap = new HashMap<String, BopCfaExdebtDs>();
+		Map<String, BopCfaExdebtDs> bopcfadexdebtdsMap = new HashMap<String, BopCfaExdebtDs>();
 		for (BopCfaExdebtDs bopcfaexdebtds : exdebtdsList) {
 			bopcfadexdebtdsMap.put(bopcfaexdebtds.getId(), bopcfaexdebtds);
 		}
-		List<String>uuidList = new LinkedList<String>();
+		List<String> uuidList = new LinkedList<String>();
 		for (BopCfaExdebtDs cfa : exdebtdsList) {
 			uuidList.add(cfa.getId());
-			if(PAGESIZE == uuidList.size()){
+			if (PAGESIZE == uuidList.size()) {
 				assemblyExdebtDs(uuidList, bopcfadexdebtdsMap);
 				uuidList.clear();
 			}
 		}
-		if(!uuidList.isEmpty()){
+		if (!uuidList.isEmpty()) {
 			assemblyExdebtDs(uuidList, bopcfadexdebtdsMap);
 		}
 		return exdebtdsList;
 	}
 
 	@SuppressWarnings("unchecked")
-	private void assemblyExdebtDs(List<String> uuidList,
-			Map<String, BopCfaExdebtDs> exdebtdsMap) throws CommonException {
+	private void assemblyExdebtDs(List<String> uuidList, Map<String, BopCfaExdebtDs> exdebtdsMap)
+			throws CommonException {
 		String hql = SEARCH_PROJECTINFO + ReportUtils.toInString(uuidList);
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		List<BopProjectInfo>list = rootdao.queryByQL2List(hql);
-		for(BopProjectInfo projectinfo : list) {
+		List<BopProjectInfo> list = rootdao.queryByQL2List(hql);
+		for (BopProjectInfo projectinfo : list) {
 			BopCfaExdebtDs bopcfaexdebtds = exdebtdsMap.get(projectinfo.getRecId());
-			if(null != bopcfaexdebtds) {
-				if(null == bopcfaexdebtds.getProjects()){
+			if (null != bopcfaexdebtds) {
+				if (null == bopcfaexdebtds.getProjects()) {
 					bopcfaexdebtds.setProjects(new ArrayList<BopProjectInfo>());
 				}
 				bopcfaexdebtds.getProjects().add(projectinfo.getProjectname());

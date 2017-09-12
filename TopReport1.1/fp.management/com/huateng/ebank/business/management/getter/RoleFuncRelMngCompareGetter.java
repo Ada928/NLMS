@@ -1,14 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import resource.bean.pub.RoleInfo;
-import resource.bean.report.SysTaskInfo;
-import resource.bean.report.SysTaskLog;
-import resource.report.dao.ROOTDAO;
-import resource.report.dao.ROOTDAOUtils;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -18,6 +9,14 @@ import com.huateng.exception.AppException;
 import com.huateng.report.common.service.ReportShowDetailService;
 import com.huateng.report.system.bean.RoleInfoBean;
 import com.huateng.report.utils.ReportTaskUtil;
+import resource.bean.pub.RoleInfo;
+import resource.bean.report.SysTaskInfo;
+import resource.bean.report.SysTaskLog;
+import resource.report.dao.ROOTDAO;
+import resource.report.dao.ROOTDAOUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RoleFuncRelMngCompareGetter extends BaseGetter {
 

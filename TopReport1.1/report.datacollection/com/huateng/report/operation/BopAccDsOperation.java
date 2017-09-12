@@ -16,7 +16,7 @@ public class BopAccDsOperation extends BaseOperation {
 	private static final HtLog htlog = HtLogFactory.getLogger(BopAccDsOperation.class);
 	public static final String ID = "dataCollection.BopAccDsOperation";
 	public static final String CMD = "CMD";
-	public static final String OP_AD_NEW="OP_AD_NEW";
+	public static final String OP_AD_NEW = "OP_AD_NEW";
 	public static final String OP_AD_MOD = "OP_AD_MOD";
 	public static final String OP_AD_DEL = "OP_AD_DEL";
 	public static final String OP_INOUT_NEW = "OP_INOUT_NEW";
@@ -44,49 +44,49 @@ public class BopAccDsOperation extends BaseOperation {
 		String cmd = (String) context.getAttribute(CMD);
 		BopAccDsService bopAccDsService = BopAccDsService.getInstance();
 		if (OP_AD_NEW.equals(cmd)) {
-			BopAccDs bopAccDs =  (BopAccDs) context.getAttribute(IN_AD_NEW);
+			BopAccDs bopAccDs = (BopAccDs) context.getAttribute(IN_AD_NEW);
 			bopAccDsService.saveAccDs(bopAccDs, OP_AD_NEW);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇开关账户信息新增"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇开关账户信息新增"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇开关账户信息新增" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇开关账户信息新增" });
 		} else if (OP_AD_MOD.equals(cmd)) {
-			BopAccDs bopAccDs =  (BopAccDs) context.getAttribute(IN_AD_MOD);
+			BopAccDs bopAccDs = (BopAccDs) context.getAttribute(IN_AD_MOD);
 			bopAccDsService.saveAccDs(bopAccDs, OP_AD_MOD);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇开关账户信息修改"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇开关账户信息修改"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇开关账户信息修改" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇开关账户信息修改" });
 		} else if (OP_AD_DEL.equals(cmd)) {
-			BopAccDs bopAccDs =  (BopAccDs) context.getAttribute(IN_AD_DEL);
+			BopAccDs bopAccDs = (BopAccDs) context.getAttribute(IN_AD_DEL);
 			bopAccDsService.saveAccDs(bopAccDs, OP_AD_DEL);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇开关账户信息删除"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇开关账户信息删除"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇开关账户信息删除" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇开关账户信息删除" });
 		} else if (OP_INOUT_NEW.equals(cmd)) {
-			BopAccDs bopAccDs =  (BopAccDs) context.getAttribute(IN_INOUT_NEW);
+			BopAccDs bopAccDs = (BopAccDs) context.getAttribute(IN_INOUT_NEW);
 			bopAccDsService.saveAccDs(bopAccDs, OP_INOUT_NEW);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇账户收支余信息新增"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇账户收支余信息新增"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇账户收支余信息新增" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇账户收支余信息新增" });
 		} else if (OP_INOUT_MOD.equals(cmd)) {
-			BopAccDs bopAccDs =  (BopAccDs) context.getAttribute(IN_INOUT_MOD);
+			BopAccDs bopAccDs = (BopAccDs) context.getAttribute(IN_INOUT_MOD);
 			bopAccDsService.saveAccDs(bopAccDs, OP_INOUT_MOD);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇账户收支余信息修改"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇账户收支余信息修改"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇账户收支余信息修改" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇账户收支余信息修改" });
 		} else if (OP_INOUT_DEL.equals(cmd)) {
-			BopAccDs bopAccDs =  (BopAccDs) context.getAttribute(IN_INOUT_DEL);
+			BopAccDs bopAccDs = (BopAccDs) context.getAttribute(IN_INOUT_DEL);
 			bopAccDsService.saveAccDs(bopAccDs, OP_INOUT_DEL);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇账户收支余信息删除"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇账户收支余信息删除"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇账户收支余信息删除" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇账户收支余信息删除" });
 		} else if (OP_AD_AUDIT.equals(cmd)) {
 			List<BopAccDs> bopAccDsList = (List<BopAccDs>) context.getAttribute(IN_AUDIT_LIST);
 			String approveStatusChoose = (String) context.getAttribute(IN_AUDIT_STATUS);
 			String approveResultChoose = (String) context.getAttribute(IN_AUDIT_RESULT);
 			bopAccDsService.auditAccDs(approveStatusChoose, approveResultChoose, bopAccDsList, OP_AD_AUDIT);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇账户开关信息审核"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇账户开关信息审核"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇账户开关信息审核" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇账户开关信息审核" });
 		} else if (OP_INOUT_AUDIT.equals(cmd)) {
 			List<BopAccDs> bopAccDsList = (List<BopAccDs>) context.getAttribute(IN_AUDIT_LIST);
 			String approveStatusChoose = (String) context.getAttribute(IN_AUDIT_STATUS);
 			String approveResultChoose = (String) context.getAttribute(IN_AUDIT_RESULT);
 			bopAccDsService.auditAccDs(approveStatusChoose, approveResultChoose, bopAccDsList, OP_INOUT_AUDIT);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇账户收支余信息审核"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"外汇账户收支余信息审核"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇账户收支余信息审核" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "外汇账户收支余信息审核" });
 		}
 	}
 

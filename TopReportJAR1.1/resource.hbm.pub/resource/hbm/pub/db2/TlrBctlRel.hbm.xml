@@ -4,36 +4,17 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping package="resource.bean.pub">
-	<class
-		name="TlrBctlRel"
-		table="TLR_BCTL_REL"
-	>
-		<meta attribute="sync-DAO">false</meta>
-		<id
-			name="id"
-			type="integer"
-			column="ID"
-		>
-			<generator class="assigned">
-				 
-			</generator>
-		</id>
+    <class name="TlrBctlRel" table="TLR_BCTL_REL">
+        <meta attribute="sync-DAO">false</meta>
+        <id name="id" type="integer" column="ID">
+            <generator class="assigned">
 
-		<property
-			name="tlrNo"
-			column="TLR_NO"
-			type="string"
-			not-null="false"
-			length="20"
-		/>
-		<property
-			name="brcode"
-			column="BRCODE"
-			type="string"
-			not-null="false"
-			length="20"
-		/>
+            </generator>
+        </id>
+
+        <property name="tlrno" column="TLR_NO" type="string" not-null="false" length="20" />
+        <property name="brcode" column="BRCODE" type="string" not-null="false" length="20" />
 
 
-	</class>	
+    </class>
 </hibernate-mapping>

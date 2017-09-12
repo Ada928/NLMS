@@ -12,7 +12,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.huateng.common.log.LoggerConstants;
 import com.huateng.exception.AppException;
 
-public abstract class _DialectSeq extends HibernateDaoSupport implements IDialectSeq{
+public abstract class _DialectSeq extends HibernateDaoSupport implements IDialectSeq {
 
 	public Logger logger = Logger.getLogger(LoggerConstants.SYSTEM_STRAT_UP_LOG);
 
@@ -30,45 +30,46 @@ public abstract class _DialectSeq extends HibernateDaoSupport implements IDialec
 
 	/**
 	 * 校验当前的sequenceList 的准确性
+	 * 
 	 * @throws SQLException
 	 */
-	public void createAndCheckSequence(String getNextSequence,String defaultCreateSequece) throws AppException{
+	public void createAndCheckSequence(String getNextSequence, String defaultCreateSequece) throws AppException {
 
-		if(sequenceList!=null && sequenceList.size()!=0){
-			for(int i=0;i<sequenceList.size();i++){
+		if (sequenceList != null && sequenceList.size() != 0) {
+			for (int i = 0; i < sequenceList.size(); i++) {
 				String sequence = (String) sequenceList.get(i);
-				if(sequence!=null&&!sequence.equals("")){
+				if (sequence != null && !sequence.equals("")) {
 					String sql = getNextSequence;
 					String sql1 = defaultCreateSequece;
 					sql = sql.replace("${1}", sequence);
-					if(logger.isDebugEnabled()){
-						logger.debug("执行"+ sql );
+					if (logger.isDebugEnabled()) {
+						logger.debug("执行" + sql);
 					}
-					try{
+					try {
 						createSQLQuery(sql);
-						//将当前有的Sequence 放入Map
+						// 将当前有的Sequence 放入Map
 						squenceMap.put(sequence, "true");
-					}catch(Exception e){
+					} catch (Exception e) {
 						logger.warn("当前序号没有在generatorRegister.xml 的sequenceList 定义过" + sequence);
 						logger.warn("系统采取默认新建Sequence 方式: " + sequence);
-						sql1 =  sql1.replace("${1}", sequence);
-						if(logger.isDebugEnabled()){
-							logger.debug("执行SQL"+ sql1 );
+						sql1 = sql1.replace("${1}", sequence);
+						if (logger.isDebugEnabled()) {
+							logger.debug("执行SQL" + sql1);
 						}
 						try {
 							executeSQLQuery(sql1);
-							//将当前有的Sequence 放入Map
-							if(logger.isDebugEnabled()){
-								logger.debug("成功执行创建Sequence ："+sequence +"语句" );
+							// 将当前有的Sequence 放入Map
+							if (logger.isDebugEnabled()) {
+								logger.debug("成功执行创建Sequence ：" + sequence + "语句");
 							}
 							squenceMap.put(sequence, "true");
 						} catch (Exception e1) {
 							e1.printStackTrace();
-						}finally{
+						} finally {
 							try {
 								statment.close();
 								conn.close();
-								statment =null;
+								statment = null;
 								conn = null;
 							} catch (SQLException e1) {
 								throw new AppException("");
@@ -78,53 +79,58 @@ public abstract class _DialectSeq extends HibernateDaoSupport implements IDialec
 				}
 			}
 
-		}else{
+		} else {
 			logger.warn("当前没有存在sequenceList 在generatorRegister.xml ");
-//			logger.warn(ErrorCodeUnit.getErrorMessage(Module.BO_MODULE+Rescode.SEQUENCE_PREFIX_NOT_FOUND));
+			// logger.warn(ErrorCodeUnit.getErrorMessage(Module.BO_MODULE+Rescode.SEQUENCE_PREFIX_NOT_FOUND));
 		}
 
 	}
 
 	/**
 	 * 执行sql 语句
+	 * 
 	 * @param sql
 	 * @throws Exception
 	 */
 	public List createSQLQuery(String sql) throws Exception {
 
-		Session  s = this.getHibernateTemplate().getSessionFactory().openSession();
-		List list =  s.createSQLQuery(sql).list();
+		Session s = this.getHibernateTemplate().getSessionFactory().openSession();
+		List list = s.createSQLQuery(sql).list();
 		s.close();
 		return list;
 	}
 
 	public void executeSQLQuery(String sql) throws Exception {
-		Session  s = this.getHibernateTemplate().getSessionFactory().openSession();
-		if(conn ==null){
-			conn= s.connection();
-			statment= conn.createStatement();
+		Session s = this.getHibernateTemplate().getSessionFactory().openSession();
+		if (conn == null) {
+			conn = s.connection();
+			statment = conn.createStatement();
 		}
 		statment.execute(sql);
 		conn.commit();
 		s.close();
 	}
 
-
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getDesc() {
 		return desc;
 	}
+
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
+
 	public List getSequenceList() {
 		return sequenceList;
 	}
+
 	public void setSequenceList(List sequenceList) {
 		this.sequenceList = sequenceList;
 	}

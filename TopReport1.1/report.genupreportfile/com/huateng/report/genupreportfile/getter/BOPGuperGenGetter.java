@@ -35,21 +35,17 @@ public class BOPGuperGenGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "对外担保履约明细信息上报生成文件查询");
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -63,48 +59,45 @@ public class BOPGuperGenGetter extends BaseGetter {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
-		
-		
-		 String hql ="select bds from BopCfaExguDs bds where 1=1 ";
 
-		 String qbrNo = getCommQueryServletRequest().getParameter("qbrNo");		   
-		 String qactiontype = getCommQueryServletRequest().getParameter("qactiontype");
-	     String qFiller2 = getCommQueryServletRequest().getParameter("qFiller2");
-			    	   
-			   if(StringUtils.isNotBlank(qbrNo))
-			   {
-				   hql+=" and bds.brNo ='"+qbrNo+"'";
-			   }
-			  
-			   if(StringUtils.isNotBlank(qactiontype))
-			   {
-				   hql+=" and bds.actiontype ='"+qactiontype+"'";
-			   }
-			   if(StringUtils.isNotBlank(qFiller2))
-			   {
-				   hql+=" and bds.filler2 like '%"+qFiller2+"%'";
-			   }
-		   
-		   hql+=" and bds.brNo='"+gInfo.getBrno()+"'";
-		   hql+=" and bds.apptype='"+TopReportConstants.REPORT_APP_TYPE_CFA+"'";
-		   hql+=" and bds.currentfile='"+TopReportConstants.REPORT_FILE_TYPE_CFA_BC+"'";
-		   hql+=" and  bds.recStatus ='"+TopReportConstants.REPORT_RECSTATUS_05+"'";
-		   hql+=" and bds.actiontype <>'"+TopReportConstants.REPORT_ACTIONTYPE_D+"'";
-		   hql+=" order by bds.workDate,bds.approveStatus,bds.actiontype desc";
+		String hql = "select bds from BopCfaExguDs bds where 1=1 ";
+
+		String qbrNo = getCommQueryServletRequest().getParameter("qbrNo");
+		String qactiontype = getCommQueryServletRequest().getParameter("qactiontype");
+		String qFiller2 = getCommQueryServletRequest().getParameter("qFiller2");
+
+		if (StringUtils.isNotBlank(qbrNo)) {
+			hql += " and bds.brNo ='" + qbrNo + "'";
+		}
+
+		if (StringUtils.isNotBlank(qactiontype)) {
+			hql += " and bds.actiontype ='" + qactiontype + "'";
+		}
+		if (StringUtils.isNotBlank(qFiller2)) {
+			hql += " and bds.filler2 like '%" + qFiller2 + "%'";
+		}
+
+		hql += " and bds.brNo='" + gInfo.getBrno() + "'";
+		hql += " and bds.apptype='" + TopReportConstants.REPORT_APP_TYPE_CFA + "'";
+		hql += " and bds.currentfile='" + TopReportConstants.REPORT_FILE_TYPE_CFA_BC + "'";
+		hql += " and  bds.recStatus ='" + TopReportConstants.REPORT_RECSTATUS_05 + "'";
+		hql += " and bds.actiontype <>'" + TopReportConstants.REPORT_ACTIONTYPE_D + "'";
+		hql += " order by bds.workDate,bds.approveStatus,bds.actiontype desc";
 		queryCondition.setQueryString(hql);
 		queryCondition.setPageIndex(pageIndex);
 		queryCondition.setPageSize(pageSize);
 		pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 
 		List resultList = pageQueryResult.getQueryResult();
-		for(int i=0; i<resultList.size(); i++){
+		for (int i = 0; i < resultList.size(); i++) {
 			Object[] obs = (Object[]) resultList.get(i);
-			BopCfaExguDs bopCfaExguDs =(BopCfaExguDs)obs[0];
+			BopCfaExguDs bopCfaExguDs = (BopCfaExguDs) obs[0];
 			List<BopExguTorDs> exguTorList = new ArrayList<BopExguTorDs>();
-		    exguTorList = rootdao.queryByQL2List(" from BopExguTorDs model where model.recId='"+bopCfaExguDs.getId().trim()+"' and torType = '01'");
+			exguTorList = rootdao.queryByQL2List(" from BopExguTorDs model where model.recId='"
+					+ bopCfaExguDs.getId().trim() + "' and torType = '01'");
 			bopCfaExguDs.setBename(exguTorList.get(0).getTorName());
 			bopCfaExguDs.setBencode(exguTorList.get(0).getTorCode());
-			bopCfaExguDs.setBenamen(exguTorList.get(0).getTorEnname());			
+			bopCfaExguDs.setBenamen(exguTorList.get(0).getTorEnname());
 		}
 		return pageQueryResult;
 	}

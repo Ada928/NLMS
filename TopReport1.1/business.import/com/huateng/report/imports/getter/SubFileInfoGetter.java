@@ -15,15 +15,14 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 
-public class SubFileInfoGetter  extends BaseGetter{
+public class SubFileInfoGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		try {
-			PageQueryResult pageResult  = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(),
-					pageResult.getQueryResult(),getResult());
+			PageQueryResult pageResult = getData();
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
@@ -33,28 +32,27 @@ public class SubFileInfoGetter  extends BaseGetter{
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
-	private PageQueryResult getData() throws CommonException{
+	private PageQueryResult getData() throws CommonException {
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
 		String packname = getCommQueryServletRequest().getParameter("packname");
-		//文件名称
+		// 文件名称
 		String recId = getCommQueryServletRequest().getParameter("recId");
 		String hql = "";
-		if(StringUtils.isEmpty(recId)){
-			if (packname==null||packname.length()==0) {
+		if (StringUtils.isEmpty(recId)) {
+			if (packname == null || packname.length() == 0) {
 				return new PageQueryResult();
 			}
-			hql = " from SubFileInfo sf where sf.filePack='"+packname+"'";
+			hql = " from SubFileInfo sf where sf.filePack='" + packname + "'";
 		} else {
-			hql = " from SubFileInfo sf where sf.id='"+recId+"'";
+			hql = " from SubFileInfo sf where sf.id='" + recId + "'";
 		}
-		
-		PageQueryCondition pc =new PageQueryCondition();
+
+		PageQueryCondition pc = new PageQueryCondition();
 		pc.setPageIndex(pageIndex);
 		pc.setPageSize(pageSize);
 		pc.setQueryString(hql);

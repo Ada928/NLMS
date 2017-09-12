@@ -15,32 +15,29 @@ import com.huateng.exception.AppException;
 import com.huateng.report.service.BopForDebtYinTuanService;
 
 @SuppressWarnings("unchecked")
-public class BopForDebtFeiPerSaveOverGenGetter  extends BaseGetter {
+public class BopForDebtFeiPerSaveOverGenGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
-	public PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException{
+	public PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException {
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		Map map = getCommQueryServletRequest().getParameterMap();
@@ -53,4 +50,3 @@ public class BopForDebtFeiPerSaveOverGenGetter  extends BaseGetter {
 		return debtYinTuanService.queryFeiPerGen("over", pageIndex, pageSize, workDate, qactiontype, qFiller2, qbrNo);
 	}
 }
-

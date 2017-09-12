@@ -24,55 +24,54 @@ public class DataDicTreeSelectGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-//			result.getPage().setTotalPage(
-//					pageResult.getPageCount(getResult().getPage()
-//							.getEveryPage()));
+			// result.getPage().setTotalPage(
+			// pageResult.getPageCount(getResult().getPage()
+			// .getEveryPage()));
 			result.getPage().setTotalPage(0);
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
-	
+
 	private PageQueryResult getData() throws CommonException {
 
-		//分页大小
+		// 分页大小
 		int pageSize = getResult().getPage().getEveryPage();
-		//页码
+		// 页码
 		int pageIndex = getResult().getPage().getCurrentPage();
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		StringBuffer hql = new StringBuffer("select dd from DataDic dd where 1=1");
-		
+
 		String headDataTypeNo = getCommQueryServletRequest().getParameter("headDataTypeNo");
-//		String levelStr = getCommQueryServletRequest().getParameter("_level_");
+		// String levelStr =
+		// getCommQueryServletRequest().getParameter("_level_");
 		String pid = getCommQueryServletRequest().getParameter("_id");
-		
+
 		PageQueryResult queryresult = null;
 		List<TreeNode> list = new ArrayList<TreeNode>();
-		if(StringUtils.isNotEmpty(headDataTypeNo) && StringUtils.isBlank(pid)) {
+		if (StringUtils.isNotEmpty(headDataTypeNo) && StringUtils.isBlank(pid)) {
 			hql.append(" and dd.dataTypeNo=").append(headDataTypeNo);
 			List<DataDic> dataDics = rootdao.queryByQL2List(hql.toString());
-			for(DataDic dd : dataDics){
+			for (DataDic dd : dataDics) {
 				TreeNode dicTreeBean = new TreeNode();
 				dicTreeBean.setAttributes(dd);
 				dicTreeBean.setId(dd.getMiscflgs());
 				dicTreeBean.setText(dd.getDataName());
-//				dicTreeBean.setName(dd.getDataName());
-//				dicTreeBean.setLevel(1);
+				// dicTreeBean.setName(dd.getDataName());
+				// dicTreeBean.setLevel(1);
 				if (StringUtils.isNotEmpty(dd.getMiscflgs())) {
 					dicTreeBean.setHasChild(true);
 					dicTreeBean.setCanSelected(false);
-//					dicTreeBean.setPid(dd.getMiscflgs());
+					// dicTreeBean.setPid(dd.getMiscflgs());
 				} else {
 					dicTreeBean.setId(dd.getDataNo());
 					dicTreeBean.setHasChild(false);
@@ -83,17 +82,17 @@ public class DataDicTreeSelectGetter extends BaseGetter {
 		} else {
 			hql.append(" and dd.dataTypeNo=").append(pid);
 			List<DataDic> dataDics = rootdao.queryByQL2List(hql.toString());
-			for(DataDic dd : dataDics){
+			for (DataDic dd : dataDics) {
 				TreeNode dicTreeBean = new TreeNode();
 				dicTreeBean.setAttributes(dd);
 				dicTreeBean.setId(dd.getMiscflgs());
 				dicTreeBean.setText(dd.getDataName());
-//				dicTreeBean.setName(dd.getDataName());
-//				dicTreeBean.setLevel(level);
+				// dicTreeBean.setName(dd.getDataName());
+				// dicTreeBean.setLevel(level);
 				if (StringUtils.isNotEmpty(dd.getMiscflgs())) {
 					dicTreeBean.setHasChild(true);
 					dicTreeBean.setCanSelected(false);
-//					dicTreeBean.setPid(dd.getMiscflgs());
+					// dicTreeBean.setPid(dd.getMiscflgs());
 				} else {
 					dicTreeBean.setId(dd.getDataNo());
 					dicTreeBean.setHasChild(false);
@@ -105,7 +104,7 @@ public class DataDicTreeSelectGetter extends BaseGetter {
 		queryresult = new PageQueryResult();
 		queryresult.setQueryResult(list);
 		queryresult.setTotalCount(list.size());
-		
+
 		return queryresult;
 	}
 }

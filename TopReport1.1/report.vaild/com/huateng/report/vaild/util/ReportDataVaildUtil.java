@@ -14,9 +14,9 @@ import com.huateng.report.vaild.absbean.AbsReportDataVaild;
 
 public class ReportDataVaildUtil {
 
-	public static boolean regVaild(String regEx,String val){
+	public static boolean regVaild(String regEx, String val) {
 		boolean bl = false;
-		if (val!=null) {
+		if (val != null) {
 			Pattern pattern = Pattern.compile(regEx);
 			Matcher matcher = pattern.matcher(val.toString());
 			bl = matcher.matches();
@@ -26,6 +26,7 @@ public class ReportDataVaildUtil {
 
 	/**
 	 * 执行验证
+	 * 
 	 * @param busiType
 	 * @param appType
 	 * @param fileType
@@ -33,29 +34,30 @@ public class ReportDataVaildUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static void executeVaild(String appType, String fileType, Object obj) throws CommonException{
+	public static void executeVaild(String appType, String fileType, Object obj) throws CommonException {
 		String result = null;
-		SubFileConf conf =ReportUtils.getSubFileConfByBopPk(appType, fileType);
+		SubFileConf conf = ReportUtils.getSubFileConfByBopPk(appType, fileType);
 		try {
-			if (conf!=null && conf.getDataValidPath()!=null && conf.getDataValidPath().trim().length()>0) {
-				AbsReportDataVaild vaild = (AbsReportDataVaild) Class.forName(conf.getDataValidPath().trim()).newInstance();
+			if (conf != null && conf.getDataValidPath() != null && conf.getDataValidPath().trim().length() > 0) {
+				AbsReportDataVaild vaild = (AbsReportDataVaild) Class.forName(conf.getDataValidPath().trim())
+						.newInstance();
 				result = vaild.executeDataVaild(obj);
 			}
 		} catch (Exception e) {
 			throw new CommonException(e.getMessage());
 		}
-		if(result!=null && result.trim().length()>0){
-			ExceptionUtil.throwCommonException(result,appType+"_"+fileType+"_ERR");
+		if (result != null && result.trim().length() > 0) {
+			ExceptionUtil.throwCommonException(result, appType + "_" + fileType + "_ERR");
 		}
 	}
 
 	public static void main(String[] args) {
 		String regEx = "[+-]?([0-9]{1}[\\d]{0,19}|[0-9]{1}[\\d]{0,19}[\\.][\\d]{1,2}|0)$";
 		Perl5Util pl = new Perl5Util();
-		//boolean bl = pl.match(regEx, "20.1");
+		// boolean bl = pl.match(regEx, "20.1");
 
 		System.out.println(regVaild(regEx, "20.1"));
 
-		//System.out.println(bl);
+		// System.out.println(bl);
 	}
 }

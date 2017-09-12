@@ -42,6 +42,7 @@ import com.huateng.report.utils.ReportUtils;
  */
 public class AnalyProService {
 	private static final HtLog htlog = HtLogFactory.getLogger(AnalyProService.class);
+
 	/*
 	 * 获取自身实例
 	 */
@@ -82,7 +83,6 @@ public class AnalyProService {
 			bi.setDetailRemark(getDataAnalyProcessStatusByProg(bi.getId()));
 		}
 
-
 		if (biAnalyProcessList.size() == 0) {// 产生当前工作日分析任务
 			String busiDate = DateUtil.dateToNumber(GlobalInfo.getCurrentInstance().getTxdate());
 			if (qworkDate.equals(busiDate)) {
@@ -100,13 +100,15 @@ public class AnalyProService {
 	public String getDataAnalyProcessStatusByProg(String processId) throws CommonException {
 		StringBuffer status = new StringBuffer();
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
-		List list = rootDAO.queryByQL2List("select model.executeResult ,count(model) from BiAnalyDetail model where model.analyNo='" + processId + "' group by model.executeResult");
-		if (list != null && list.size()>0) {
+		List list = rootDAO.queryByQL2List(
+				"select model.executeResult ,count(model) from BiAnalyDetail model where model.analyNo='" + processId
+						+ "' group by model.executeResult");
+		if (list != null && list.size() > 0) {
 			for (int i = 0; i < list.size(); i++) {
 				Object[] obj = (Object[]) list.get(i);
 				String sta = (String) obj[0];
-				String count =  String.valueOf(obj[1]);
-				status.append(ReportEnum.REPORT_ANALY_RESULT.valueof(sta)+":"+count+" ");
+				String count = String.valueOf(obj[1]);
+				status.append(ReportEnum.REPORT_ANALY_RESULT.valueof(sta) + ":" + count + " ");
 			}
 		}
 		return status.toString();
@@ -226,9 +228,10 @@ public class AnalyProService {
 		return false;
 	}
 
-	public BiAnalyProcess getBiAnalyProcessByTypeAndWorkDate(String qworkDate, String qbusiType) throws CommonException {
-		String hql = "from BiAnalyProcess process where process.workDate = '" + qworkDate
-				+ "' and process.busiType = '" + qbusiType + "'";
+	public BiAnalyProcess getBiAnalyProcessByTypeAndWorkDate(String qworkDate, String qbusiType)
+			throws CommonException {
+		String hql = "from BiAnalyProcess process where process.workDate = '" + qworkDate + "' and process.busiType = '"
+				+ qbusiType + "'";
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		List list = rootDAO.queryByQL2List(hql);
 		if (list.size() == 1) {
@@ -261,7 +264,7 @@ public class AnalyProService {
 	public BiAnalyProcess getBiAnalyProcessByPk(String analyNo) throws CommonException {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		BiAnalyProcess bi = (BiAnalyProcess) rootDAO.query(BiAnalyProcess.class, analyNo);
-		if (bi!=null) {
+		if (bi != null) {
 			bi.setDetailRemark(getDataAnalyProcessStatusByProg(bi.getId()));
 		}
 		return bi;
@@ -269,7 +272,8 @@ public class AnalyProService {
 
 	public PageQueryResult getAnalyProcessDetail(PageQueryCondition queryCondition, Map map) throws CommonException {
 		String analyNo = (String) map.get("analyNo");
-		StringBuffer isWhere = new StringBuffer(" from BiAnalyDetail model where model.analyNo='" + analyNo + "' order by model.confSeq");
+		StringBuffer isWhere = new StringBuffer(
+				" from BiAnalyDetail model where model.analyNo='" + analyNo + "' order by model.confSeq");
 		queryCondition.setQueryString(isWhere.toString());
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		PageQueryResult queryresult = rootdao.pageQueryByQL(queryCondition);
@@ -279,15 +283,18 @@ public class AnalyProService {
 	public List getAnalyProcessDetailBySta(String analyNo) throws CommonException {
 		ROOTDAO dao = ROOTDAOUtils.getROOTDAO();
 		StringBuffer isWhere = new StringBuffer(" from BiAnalyDetail model where model.analyNo='" + analyNo + "'");
-		isWhere.append(" and model.execSta='" + ReportEnum.REPORT_ANALY_STAUS.NOEXEC.value + "' or model.executeResult='"
-				+ ReportEnum.REPORT_ANALY_RESULT.NOEXEC.value + "' or model.executeResult='"+ReportEnum.REPORT_ANALY_RESULT.FAILD.value+"' order by model.confSeq");
+		isWhere.append(
+				" and model.execSta='" + ReportEnum.REPORT_ANALY_STAUS.NOEXEC.value + "' or model.executeResult='"
+						+ ReportEnum.REPORT_ANALY_RESULT.NOEXEC.value + "' or model.executeResult='"
+						+ ReportEnum.REPORT_ANALY_RESULT.FAILD.value + "' order by model.confSeq");
 		List list = dao.queryByQL2List(isWhere.toString());
 		return list;
 	}
 
-	public List getAnalyDetailParList(String detId)throws CommonException{
+	public List getAnalyDetailParList(String detId) throws CommonException {
 		ROOTDAO dao = ROOTDAOUtils.getROOTDAO();
-		List parList = dao.queryByQL2List(" from BiAnalyDetailPars model where model.detId='" + detId+ "' order by model.parSeq");
+		List parList = dao.queryByQL2List(
+				" from BiAnalyDetailPars model where model.detId='" + detId + "' order by model.parSeq");
 		return parList;
 	}
 
@@ -314,22 +321,23 @@ public class AnalyProService {
 		return detailList;
 	}
 
-	public Object[] getBiAnalyDetailList(Object analyNo,String workDate,String busiType,String appType,String execType,String tlrNo,String brNO) throws CommonException{
+	public Object[] getBiAnalyDetailList(Object analyNo, String workDate, String busiType, String appType,
+			String execType, String tlrNo, String brNO) throws CommonException {
 		Object[] objs = new Object[2];
-		//查询分析并写入明细
+		// 查询分析并写入明细
 		List analyDetList = null;
-		if (analyNo!=null && analyNo.toString().trim().length()>0) {//已执行分析，查询分析错误信息重新执行
+		if (analyNo != null && analyNo.toString().trim().length() > 0) {// 已执行分析，查询分析错误信息重新执行
 			String status = getDataAnalyProcessStatus(analyNo.toString());
-			if (status==null||status.equals(ReportEnum.REPORT_ANALY_STAUS.EXEC.value)) {//执行中
+			if (status == null || status.equals(ReportEnum.REPORT_ANALY_STAUS.EXEC.value)) {// 执行中
 				ExceptionUtil.throwCommonException("数据分析正在执行，不能进行操作!");
 			}
-			String result = getDataAnalyProcessResult(status,analyNo.toString());
-			if (result==null || result.equals(ReportEnum.REPORT_ANALY_RESULT.SUCCESS.value)) {
+			String result = getDataAnalyProcessResult(status, analyNo.toString());
+			if (result == null || result.equals(ReportEnum.REPORT_ANALY_RESULT.SUCCESS.value)) {
 				ExceptionUtil.throwCommonException("数据分析正在执行或已正确执行，不能进行操作!");
 			}
 			analyDetList = getAnalyProcessDetailBySta(analyNo.toString());
-		}else{
-			//创建分析明细并开始执行
+		} else {
+			// 创建分析明细并开始执行
 			analyNo = ReportUtils.getUUID();
 			OperationContext context = new OperationContext();
 			context.setAttribute(AnalyseDataOperation.WORK_DATE, workDate);
@@ -351,12 +359,17 @@ public class AnalyProService {
 
 	/**
 	 * 执行数据分析
-	 * @param execType 执行类型
-	 * @param analyNo 分析号
-	 * @param detailList 分析明细
+	 * 
+	 * @param execType
+	 *            执行类型
+	 * @param analyNo
+	 *            分析号
+	 * @param detailList
+	 *            分析明细
 	 * @throws CommonException
 	 */
-	public String executeAnalyDetail(String workDate,String busiType,String appType,String execType,Object analyNo) throws CommonException {
+	public String executeAnalyDetail(String workDate, String busiType, String appType, String execType, Object analyNo)
+			throws CommonException {
 		GlobalInfo globalInfo = null;
 		String tlrno = null;
 		String brNo = null;
@@ -365,14 +378,14 @@ public class AnalyProService {
 			globalInfo = GlobalInfo.getCurrentInstanceWithoutException();
 			tlrno = globalInfo.getTlrno().trim();
 			brNo = globalInfo.getBrno().trim();
-		}else if(execType.equals(TopReportConstants.REPORT_PROCESS_OPERTYPE_TIME)){
+		} else if (execType.equals(TopReportConstants.REPORT_PROCESS_OPERTYPE_TIME)) {
 			tlrno = "-1";
-			brNo = ReportUtils.getSysParamsValue("SUB", "BOP","-1");
+			brNo = ReportUtils.getSysParamsValue("SUB", "BOP", "-1");
 		}
-		Object[] objs = getBiAnalyDetailList(analyNo, workDate, busiType, appType, execType,tlrno,brNo);
+		Object[] objs = getBiAnalyDetailList(analyNo, workDate, busiType, appType, execType, tlrno, brNo);
 		String newAnalyNo = objs[0].toString();
 		List<BiAnalyDetail> analyDetList = (List<BiAnalyDetail>) objs[1];
-		if (analyDetList==null || analyDetList.size()==0) {
+		if (analyDetList == null || analyDetList.size() == 0) {
 			ExceptionUtil.throwCommonException("没有可执行的数据分析配置!");
 		}
 		Date startdate = new Date();
@@ -390,7 +403,7 @@ public class AnalyProService {
 			detail.setExecSta(ReportEnum.REPORT_ANALY_STAUS.EXEC.value);
 			detail.setExecuteResult(ReportEnum.REPORT_ANALY_RESULT.EXEC.value);
 			detail.setExecRemark("");
-			detail=(BiAnalyDetail) rootdao.saveOrUpdate(detail);
+			detail = (BiAnalyDetail) rootdao.saveOrUpdate(detail);
 			String exRet = null;
 			try {
 				ExecuteDataAnalysis.execute(detail);
@@ -400,29 +413,30 @@ public class AnalyProService {
 				htlog.error(e.getMessage());
 				e.printStackTrace();
 				detail.setExecRemark(e.getMessage());
-			}finally{
+			} finally {
 				detail.setEndTm(DateUtil.getCurrentDate("yy-MM-dd hh:mm:ss"));
 				detail.setExecSta(ReportEnum.REPORT_ANALY_STAUS.COMPLTE.value);
 				detail.setExecuteResult(exRet);
 				rootdao.saveOrUpdate(detail);
 				if (detail.getExecuteResult().equals(ReportEnum.REPORT_ANALY_RESULT.FAILD.value)) {
-					//执行异常是否继续执行
-					if (isNext==null || isNext.equalsIgnoreCase(ReportEnum.REPORT_IS_STR.NO.value)) {
+					// 执行异常是否继续执行
+					if (isNext == null || isNext.equalsIgnoreCase(ReportEnum.REPORT_IS_STR.NO.value)) {
 						break;
-					}else if(isNext!=null && isNext.equalsIgnoreCase(ReportEnum.REPORT_IS_STR.YES.value)){
+					} else if (isNext != null && isNext.equalsIgnoreCase(ReportEnum.REPORT_IS_STR.YES.value)) {
 						continue;
 					}
 				}
 			}
 		}
 		Date enddate = new Date();
-		if (globalInfo!=null) {
+		if (globalInfo != null) {
 			// 记录日志
-			ReportCommonService.getInstance().saveBiProcessLog(process.getWorkDate(), process.getBusiType(), brNo, process.getAppType(),
-					TopReportConstants.REPORT_PROCESS_EXECTYPE_ANALY, startdate,
-					enddate, execType);
-			globalInfo.addBizLog("Updater.log", new String[]{tlrno, brNo, "执行数据分析，业务-应用类型【"+process.getBusiType()+"-"+process.getAppType()+"】"});
-		}else{
+			ReportCommonService.getInstance().saveBiProcessLog(process.getWorkDate(), process.getBusiType(), brNo,
+					process.getAppType(), TopReportConstants.REPORT_PROCESS_EXECTYPE_ANALY, startdate, enddate,
+					execType);
+			globalInfo.addBizLog("Updater.log", new String[] { tlrno, brNo,
+					"执行数据分析，业务-应用类型【" + process.getBusiType() + "-" + process.getAppType() + "】" });
+		} else {
 			// 写入操作日志
 			BiProcessLog biProcessLog = new BiProcessLog();
 			biProcessLog.setBrNo(brNo);
@@ -438,9 +452,9 @@ public class AnalyProService {
 			biProcessLog.setIp("server");
 			rootdao.save(biProcessLog);
 		}
-		htlog.info("Updater.log", new String[]{tlrno, brNo, "执行数据分析，业务-应用类型【"+process.getBusiType()+"-"+process.getAppType()+"】"});
+		htlog.info("Updater.log", new String[] { tlrno, brNo,
+				"执行数据分析，业务-应用类型【" + process.getBusiType() + "-" + process.getAppType() + "】" });
 		return newAnalyNo;
 	}
-
 
 }

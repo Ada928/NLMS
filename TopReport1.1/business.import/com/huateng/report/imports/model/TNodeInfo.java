@@ -3,6 +3,7 @@
  */
 package com.huateng.report.imports.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * 
  */
 @SuppressWarnings("unchecked")
-public class TNodeInfo {
+public class TNodeInfo implements Serializable {
 	public TNodeKeyInfo keyinfo; // 键值，包含uid,fuid
 	public String brc; // 分行号
 	public String guid;

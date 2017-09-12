@@ -23,7 +23,7 @@ import com.huateng.report.constants.TopReportConstants;
 public class JshDfDsLoadPageGetter extends BaseGetter {
 
 	private static final String TYPE_MAMAGE = "manage";
-	
+
 	@Override
 	public Result call() throws AppException {
 		// TODO Auto-generated method stub
@@ -32,23 +32,19 @@ public class JshDfDsLoadPageGetter extends BaseGetter {
 			CommQueryServletRequest request = this.getCommQueryServletRequest();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境外汇款申请书拾取页面查询");
 			String type = request.getParameter("type");
-			if(TYPE_MAMAGE.equals(type)) {
+			if (TYPE_MAMAGE.equals(type)) {
 				request.setParameter("type", TYPE_MAMAGE);
-			} 
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			}
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -59,25 +55,25 @@ public class JshDfDsLoadPageGetter extends BaseGetter {
 		String qworkDateEnd = (String) paramsMap.get("qworkDateEnd");
 		String qrptno = (String) paramsMap.get("qrptno");
 		String qfiller2 = (String) paramsMap.get("qfiller2");
-		//本机构
+		// 本机构
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
 		String brNo = globalInfo.getBrno();
 		StringBuffer buff = new StringBuffer();
 		buff.append(" from MtsJshDefgDs ds where 1 = 1");
-		if(StringUtils.isNotBlank(qworkDateStart))
-		buff.append(" and ds.workDate >= '"+qworkDateStart+"'");
-		if(StringUtils.isNotBlank(qworkDateEnd))
-			buff.append(" and ds.workDate <= '"+qworkDateEnd+"'");
-		if(StringUtils.isNotBlank(qrptno)) {
-			buff.append(" and ds.rptno like '%"+qrptno+"'%");
+		if (StringUtils.isNotBlank(qworkDateStart))
+			buff.append(" and ds.workDate >= '" + qworkDateStart + "'");
+		if (StringUtils.isNotBlank(qworkDateEnd))
+			buff.append(" and ds.workDate <= '" + qworkDateEnd + "'");
+		if (StringUtils.isNotBlank(qrptno)) {
+			buff.append(" and ds.rptno like '%" + qrptno + "'%");
 		}
-		if(StringUtils.isNotBlank(qfiller2))
-		buff.append(" and ds.filler2 like '%"+qfiller2+"%'");
-		buff.append(" and ds.actiontype != '"+TopReportConstants.REPORT_ACTIONTYPE_D+"'");
-		//拾取的是基础信息
-		buff.append(" and ds.currentfile = '"+TopReportConstants.REPORT_FILE_TYPE_JSH_D+"'");
-		buff.append(" and ds.apptype = '"+TopReportConstants.REPORT_APP_TYPE_JSH+"'");
-		buff.append(" and ds.brNo = '"+brNo+"'");
+		if (StringUtils.isNotBlank(qfiller2))
+			buff.append(" and ds.filler2 like '%" + qfiller2 + "%'");
+		buff.append(" and ds.actiontype != '" + TopReportConstants.REPORT_ACTIONTYPE_D + "'");
+		// 拾取的是基础信息
+		buff.append(" and ds.currentfile = '" + TopReportConstants.REPORT_FILE_TYPE_JSH_D + "'");
+		buff.append(" and ds.apptype = '" + TopReportConstants.REPORT_APP_TYPE_JSH + "'");
+		buff.append(" and ds.brNo = '" + brNo + "'");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		PageQueryCondition pageQueryCondition = new PageQueryCondition();

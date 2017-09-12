@@ -5,61 +5,51 @@ import org.apache.commons.lang.StringUtils;
 import com.huateng.ebank.entity.data.mng.base.BaseBctl;
 import com.huateng.ebank.framework.util.DataFormat;
 
-
-
 public class Bctl extends BaseBctl {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public Bctl () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public Bctl() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public Bctl (java.lang.String brcode) {
+	public Bctl(java.lang.String brcode) {
 		super(brcode);
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public Bctl (
-		java.lang.String brcode,
-		java.lang.String brno) {
+	public Bctl(java.lang.String brcode, java.lang.String brno) {
 
-		super (
-			brcode,
-			brno);
+		super(brcode, brno);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
+	/* [CONSTRUCTOR MARKER END] */
 
 	private String blnBranchBrno;
 	private String blnUpBrno;
 	private String blnManageBrno;
 
-
-	private String billMailAddrName ;
+	private String billMailAddrName;
 	private String brclassName;
-	public String getBrcodeTypeName()
-	{
-		String brno = DataFormat.trim(super.getBrno());
+
+	public String getBrcodeTypeName() {
+		String brcode = DataFormat.trim(super.getBrcode());
 		String brname = DataFormat.trim(super.getBrname());
 
-		if(StringUtils.isEmpty(brno) && StringUtils.isEmpty(brname))
-		{
+		if (StringUtils.isEmpty(brcode) && StringUtils.isEmpty(brname)) {
 			return "";
 		}
-		return brno + "-" + brname;
+		return brcode + " - " + brname;
 	}
 
-	public void setBrcodeTypeName(String name)
-	{
+	public void setBrcodeTypeName(String name) {
 
 	}
-
 
 	public String getBrclassName() {
 		return brclassName;
@@ -69,43 +59,43 @@ public class Bctl extends BaseBctl {
 		this.brclassName = brclassName;
 	}
 
-/**
- * @return Returns the billMailAddrName.
- */
-public String getBillMailAddrName() {
-	return billMailAddrName;
-}
-/**
- * @param billMailAddrName The billMailAddrName to set.
- */
-public void setBillMailAddrName(String billMailAddrName) {
-	this.billMailAddrName = billMailAddrName;
-}
+	/**
+	 * @return Returns the billMailAddrName.
+	 */
+	public String getBillMailAddrName() {
+		return billMailAddrName;
+	}
 
-public String getBlnBranchBrno() {
-	return blnBranchBrno;
-}
+	/**
+	 * @param billMailAddrName
+	 *            The billMailAddrName to set.
+	 */
+	public void setBillMailAddrName(String billMailAddrName) {
+		this.billMailAddrName = billMailAddrName;
+	}
 
-public void setBlnBranchBrno(String blnBranchBrno) {
-	this.blnBranchBrno = blnBranchBrno;
-}
+	public String getBlnBranchBrno() {
+		return blnBranchBrno;
+	}
 
-public String getBlnUpBrno() {
-	return blnUpBrno;
-}
+	public void setBlnBranchBrno(String blnBranchBrno) {
+		this.blnBranchBrno = blnBranchBrno;
+	}
 
-public void setBlnUpBrno(String blnUpBrno) {
-	this.blnUpBrno = blnUpBrno;
-}
+	public String getBlnUpBrno() {
+		return blnUpBrno;
+	}
 
-public String getBlnManageBrno() {
-	return blnManageBrno;
-}
+	public void setBlnUpBrno(String blnUpBrno) {
+		this.blnUpBrno = blnUpBrno;
+	}
 
-public void setBlnManageBrno(String blnManageBrno) {
-	this.blnManageBrno = blnManageBrno;
-}
+	public String getBlnManageBrno() {
+		return blnManageBrno;
+	}
 
-
+	public void setBlnManageBrno(String blnManageBrno) {
+		this.blnManageBrno = blnManageBrno;
+	}
 
 }

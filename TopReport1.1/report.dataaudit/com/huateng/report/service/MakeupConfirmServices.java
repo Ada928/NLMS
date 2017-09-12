@@ -46,7 +46,8 @@ public class MakeupConfirmServices {
 	}
 
 	// 执行补录 补录成功更改记录状态为03
-	public void excue(String busiType, String appType, String tlrNo, String brNo, String workDate) throws CommonException {
+	public void excue(String busiType, String appType, String tlrNo, String brNo, String workDate)
+			throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		Map<String, List<DataDic>> map = ReportCommonService.getInstance().getAppAndFileTypeByDataDic(busiType, appType,
 				null);
@@ -54,7 +55,7 @@ public class MakeupConfirmServices {
 		querySql.append(" from ").append(HQL_TABLENAME);
 		querySql.append(" where recStatus='" + TopReportConstants.REPORT_RECSTATUS_02 + "'");
 		String[] workDateStrs = workDate.split(",");
-		if(workDate.split(",").length == 2) {
+		if (workDate.split(",").length == 2) {
 			if (workDateStrs[0].split("=").length == 2 && workDateStrs[0].split("=")[1].length() == 8) {
 				querySql.append(" and workDate >='" + workDateStrs[0].split("=")[1] + "'");
 			}
@@ -64,15 +65,16 @@ public class MakeupConfirmServices {
 		}
 		querySql.append(" and brNo='" + brNo + "'");
 		String flag = ReportUtils.getSysParamsValue("CFM", "0001");
-		if(ReportEnum.REPORT_IS_STR.YES.value.equals(flag)){
+		if (ReportEnum.REPORT_IS_STR.YES.value.equals(flag)) {
 			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			querySql.append(" and lstUpdTlr='"+ gi.getTlrno() +"'");
+			querySql.append(" and lstUpdTlr='" + gi.getTlrno() + "'");
 		}
-		
+
 		Set<String> tableNmSet = new HashSet<String>();
-//		for (Iterator<String> iterator = map.keySet().iterator(); iterator.hasNext();) {
-//			String appType = iterator.next().trim();
-		if(map.size() > 0){
+		// for (Iterator<String> iterator = map.keySet().iterator();
+		// iterator.hasNext();) {
+		// String appType = iterator.next().trim();
+		if (map.size() > 0) {
 			List<DataDic> ddList = map.get(appType);
 			for (int i = 0; i < ddList.size(); i++) {
 				DataDic dd = ddList.get(i);
@@ -100,50 +102,55 @@ public class MakeupConfirmServices {
 		}
 	}
 
-	public List getMakeUpConfirmList(String busiType, String qappType, String workDateStart, String workDateEnd, String brNo,String isShwoZero) throws CommonException {
+	public List getMakeUpConfirmList(String busiType, String qappType, String workDateStart, String workDateEnd,
+			String brNo, String isShwoZero) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		StringBuffer countHql = new StringBuffer();
 		countHql.append("select count(model) from ").append(HQL_TABLENAME).append(" model where");
-		if(StringUtils.isNotEmpty(workDateStart) && StringUtils.isNotEmpty(workDateEnd)){
+		if (StringUtils.isNotEmpty(workDateStart) && StringUtils.isNotEmpty(workDateEnd)) {
 			countHql.append(" model.workDate >='" + HQL_PARAM_WORKDATE_START + "'");
 			countHql.append(" and model.workDate <='" + HQL_PARAM_WORKDATE_END + "'");
 		} else if (StringUtils.isNotEmpty(workDateStart) && StringUtils.isEmpty(workDateEnd)) {
 			countHql.append(" model.workDate >='" + HQL_PARAM_WORKDATE_START + "'");
-		} else if (StringUtils.isEmpty(workDateStart) && StringUtils.isNotEmpty(workDateEnd)){
+		} else if (StringUtils.isEmpty(workDateStart) && StringUtils.isNotEmpty(workDateEnd)) {
 			countHql.append(" model.workDate <='" + HQL_PARAM_WORKDATE_END + "'");
 		}
 		countHql.append(" and model.recStatus='" + HQL_PARAM_RECSTATUS + "'");
 		countHql.append(" and model.brNo='" + HQL_PARAM_BRNO + "'");
-//		countHql.append(" and model.apptype='" + HQL_PARAM_APPTYPE + "'");
+		// countHql.append(" and model.apptype='" + HQL_PARAM_APPTYPE + "'");
 		countHql.append(" and model.apptype='" + qappType + "'");
 		countHql.append(" and model.currentfile='" + HQL_PARAM_CURRENTFILE + "'");
-		//是否按操作人员进行确认
+		// 是否按操作人员进行确认
 		String flag = ReportUtils.getSysParamsValue("CFM", "0001");
-		if(ReportEnum.REPORT_IS_STR.YES.value.equals(flag)){
+		if (ReportEnum.REPORT_IS_STR.YES.value.equals(flag)) {
 			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			countHql.append(" and model.lstUpdTlr='"+ gi.getTlrno() +"'");
+			countHql.append(" and model.lstUpdTlr='" + gi.getTlrno() + "'");
 		}
-		
-//		Map<String, List<DataDic>> map = ReportCommonService.getInstance().getAppAndFileTypeByDataDic(busiType, null, null);
-		Map<String, List<DataDic>> map = ReportCommonService.getInstance().getAppAndFileTypeByDataDic(busiType, qappType, null);
+
+		// Map<String, List<DataDic>> map =
+		// ReportCommonService.getInstance().getAppAndFileTypeByDataDic(busiType,
+		// null, null);
+		Map<String, List<DataDic>> map = ReportCommonService.getInstance().getAppAndFileTypeByDataDic(busiType,
+				qappType, null);
 		List<MakeupConfirmBean> list = new ArrayList<MakeupConfirmBean>();
-//		for (Iterator<String> iterator = map.keySet().iterator(); iterator.hasNext();) {
-//			String appType = iterator.next().trim();
-		if(map.size() > 0){
+		// for (Iterator<String> iterator = map.keySet().iterator();
+		// iterator.hasNext();) {
+		// String appType = iterator.next().trim();
+		if (map.size() > 0) {
 			List<DataDic> ddList = map.get(qappType);
 			for (int i = 0; i < ddList.size(); i++) {
 				DataDic dd = ddList.get(i);
 				String fileType = dd.getDataNo().trim();
 				String tableBean = dd.getHighLimit();
 				if (tableBean != null) {
-					String hql = countHql.toString().replaceAll(HQL_TABLENAME, tableBean.trim()).replaceAll(
-							HQL_PARAM_BRNO, brNo).replaceAll(HQL_PARAM_WORKDATE_START, workDateStart).replaceAll(
-							HQL_PARAM_WORKDATE_END, workDateEnd).replaceAll(
-							HQL_PARAM_CURRENTFILE, fileType);
-					int hashNum = rootdao.queryByHqlToCount(hql.replaceAll(HQL_PARAM_RECSTATUS,
-							TopReportConstants.REPORT_RECSTATUS_02));
-					int noNum = rootdao.queryByHqlToCount(hql.replaceAll(HQL_PARAM_RECSTATUS,
-							TopReportConstants.REPORT_RECSTATUS_01));
+					String hql = countHql.toString().replaceAll(HQL_TABLENAME, tableBean.trim())
+							.replaceAll(HQL_PARAM_BRNO, brNo).replaceAll(HQL_PARAM_WORKDATE_START, workDateStart)
+							.replaceAll(HQL_PARAM_WORKDATE_END, workDateEnd)
+							.replaceAll(HQL_PARAM_CURRENTFILE, fileType);
+					int hashNum = rootdao.queryByHqlToCount(
+							hql.replaceAll(HQL_PARAM_RECSTATUS, TopReportConstants.REPORT_RECSTATUS_02));
+					int noNum = rootdao.queryByHqlToCount(
+							hql.replaceAll(HQL_PARAM_RECSTATUS, TopReportConstants.REPORT_RECSTATUS_01));
 					if (isShwoZero.equals(ReportEnum.REPORT_IS_STR.NO.value)) {
 						if (hashNum == 0 && noNum == 0) {
 							continue;

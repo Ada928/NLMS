@@ -14,16 +14,13 @@ import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.report.common.service.ReportCommonService;
 
-
-
-public class BiExecConfirmedGetter extends BaseGetter{
+public class BiExecConfirmedGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		try {
 			PageQueryResult queryResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(1);
@@ -34,12 +31,11 @@ public class BiExecConfirmedGetter extends BaseGetter{
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-	private PageQueryResult getData() throws CommonException
-	{
+
+	private PageQueryResult getData() throws CommonException {
 		PageQueryResult queryResult = new PageQueryResult();
 		List<BiExecConfirm> biExecs = ReportCommonService.getInstance().getAllBrNoBiExecConfirm();
 		queryResult.setQueryResult(biExecs);

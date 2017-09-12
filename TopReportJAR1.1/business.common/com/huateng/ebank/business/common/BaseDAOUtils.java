@@ -19,6 +19,7 @@ import resource.dao.pub.FunctionInfoDAO;
 import resource.dao.pub.GlobalinfoDAO;
 import resource.dao.pub.RoleFuncRelDAO;
 import resource.dao.pub.RoleInfoDAO;
+import resource.dao.pub.TlrBctlRelDAO;
 import resource.dao.pub.TlrInfoDAO;
 import resource.dao.pub.TlrRoleRelDAO;
 import resource.dao.pub.TlrWorkloadDAO;
@@ -48,12 +49,11 @@ import com.huateng.ebank.entity.dao.workflow.WorkflowTaskInfoDAO;
 import com.huateng.ebank.entity.dao.workflow.WorkflowTaskPoolDAO;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
 
-
 /**
  * @author <a href="mailto:liu_wen@huateng.com">Liu Wen </a>
  * @version $Revision: 1.23 $
  *
- * 用来获得DAO实例的工具类. 主要是避免DAO的名称在各处的使用而导致以后修改出现困难.
+ *          用来获得DAO实例的工具类. 主要是避免DAO的名称在各处的使用而导致以后修改出现困难.
  */
 public class BaseDAOUtils {
 
@@ -61,7 +61,7 @@ public class BaseDAOUtils {
 		return (HQLDAO) ApplicationContextUtils.getBean("HQLDAO");
 	}
 
-	final public static ApplydtlDAO getApplydtlDAO(){
+	final public static ApplydtlDAO getApplydtlDAO() {
 		return (ApplydtlDAO) ApplicationContextUtils.getBean("ApplydtlDAO");
 	}
 
@@ -73,7 +73,7 @@ public class BaseDAOUtils {
 		return (BctlDAO) ApplicationContextUtils.getBean("BctlDAO");
 	}
 
-	final public static BizLogDAO getBizLogDAO(){
+	final public static BizLogDAO getBizLogDAO() {
 		return (BizLogDAO) ApplicationContextUtils.getBean("BizLogDAO");
 	}
 
@@ -85,15 +85,14 @@ public class BaseDAOUtils {
 		return (CommLogDAO) ApplicationContextUtils.getBean("CommLogDAO");
 	}
 
-
 	final public static CurrencyDAO getCurrencyDAO() {
 		return (CurrencyDAO) ApplicationContextUtils.getBean("CurrencyDAO");
 	}
 
-
 	final public static DataDicDAO getDataDicDAO() {
 		return (DataDicDAO) ApplicationContextUtils.getBean("DataDicDAO");
 	}
+
 	final public static FunctionInfoDAO getFunctionInfoDAO() {
 		return (FunctionInfoDAO) ApplicationContextUtils.getBean("FunctionInfoDAO");
 	}
@@ -106,7 +105,6 @@ public class BaseDAOUtils {
 		return (HolidayDAO) ApplicationContextUtils.getBean("HolidayDAO");
 	}
 
-
 	final public static LimitParamDAO getLimitParamDAO() {
 		return (LimitParamDAO) ApplicationContextUtils.getBean("LimitParamDAO");
 	}
@@ -115,12 +113,11 @@ public class BaseDAOUtils {
 		return (PfSysParamDAO) ApplicationContextUtils.getBean("PfSysParamDAO");
 	}
 
-
-	final public static RelationCodeDAO getRelationCodeDAO(){
+	final public static RelationCodeDAO getRelationCodeDAO() {
 		return (RelationCodeDAO) ApplicationContextUtils.getBean("RelationCodeDAO");
 	}
 
-	final public static ReportInfoDAO getReportInfoDAO(){
+	final public static ReportInfoDAO getReportInfoDAO() {
 		return (ReportInfoDAO) ApplicationContextUtils.getBean("ReportInfoDAO");
 	}
 
@@ -148,69 +145,77 @@ public class BaseDAOUtils {
 		return (DepartmentInfoDAO) ApplicationContextUtils.getBean("DepartmentInfoDAO");
 	}
 
-	/** 批量处理相关表的DAO  */
-	final public static BhProcStepDAO getBatchProcessStepDAO(){
-		return (BhProcStepDAO)ApplicationContextUtils.getBean("BhProcStepDAO");
+	/** 批量处理相关表的DAO */
+	final public static BhProcStepDAO getBatchProcessStepDAO() {
+		return (BhProcStepDAO) ApplicationContextUtils.getBean("BhProcStepDAO");
 	}
+
 	final public static TlrRoleRelDAO getTlrRoleRelDAO() {
 		return (TlrRoleRelDAO) ApplicationContextUtils.getBean("TlrRoleRelDAO");
 	}
-	final public static WorkflowAppInfoDAO getWorkflowAppInfoDAO(){
+
+	final public static TlrBctlRelDAO getTlrBctlRelDAO() {
+		return (TlrBctlRelDAO) ApplicationContextUtils.getBean("TlrBctlRelDAO");
+	}
+
+	final public static WorkflowAppInfoDAO getWorkflowAppInfoDAO() {
 		return (WorkflowAppInfoDAO) ApplicationContextUtils.getBean("WorkflowAppInfoDAO");
 	}
-	final public static WorkflowParamDAO getWorkflowParamDAO(){
+
+	final public static WorkflowParamDAO getWorkflowParamDAO() {
 		return (WorkflowParamDAO) ApplicationContextUtils.getBean("WorkflowParamDAO");
 	}
-	final public static WorkflowTaskInfoDAO getWorkflowTaskInfoDAO(){
+
+	final public static WorkflowTaskInfoDAO getWorkflowTaskInfoDAO() {
 		return (WorkflowTaskInfoDAO) ApplicationContextUtils.getBean("WorkflowTaskInfoDAO");
 	}
-	final public static WorkFlowDAO getWorkFlowDAO(){
+
+	final public static WorkFlowDAO getWorkFlowDAO() {
 		return (WorkFlowDAO) ApplicationContextUtils.getBean("WorkFlowDAO");
 	}
-	final public static WorkflowAttitudeDAO getWorkflowAttitudeDAO(){
+
+	final public static WorkflowAttitudeDAO getWorkflowAttitudeDAO() {
 		return (WorkflowAttitudeDAO) ApplicationContextUtils.getBean("WorkflowAttitudeDAO");
 	}
+
 	final public static BrhWorkFlowDefDAO getBrhWorkFlowDefDAO() {
 		return (BrhWorkFlowDefDAO) ApplicationContextUtils.getBean("BrhWorkFlowDefDAO");
 	}
-    public static BizFuncInfoDAO getBizFuncInfoDAO() {
+
+	public static BizFuncInfoDAO getBizFuncInfoDAO() {
 		return (BizFuncInfoDAO) ApplicationContextUtils.getBean("BizFuncInfoDAO");
 	}
 
 	public static WorkflowRouteBindingDAO getWorkflowRouteBindingDAO() {
-		return (WorkflowRouteBindingDAO) ApplicationContextUtils
-				.getBean("WorkflowRouteBindingDAO");
+		return (WorkflowRouteBindingDAO) ApplicationContextUtils.getBean("WorkflowRouteBindingDAO");
 	}
 
 	public static WorkflowRouteDefDAO getWorkflowRouteDefDAO() {
-		return (WorkflowRouteDefDAO) ApplicationContextUtils
-				.getBean("WorkflowRouteDefDAO");
+		return (WorkflowRouteDefDAO) ApplicationContextUtils.getBean("WorkflowRouteDefDAO");
 	}
 
 	public static WorkflowRouteParamDAO getWorkflowRouteParamDAO() {
-		return (WorkflowRouteParamDAO) ApplicationContextUtils
-				.getBean("WorkflowRouteParamDAO");
+		return (WorkflowRouteParamDAO) ApplicationContextUtils.getBean("WorkflowRouteParamDAO");
 	}
 
 	public static WorkflowInsRouteDAO getWorkflowInsRouteDAO() {
-		return (WorkflowInsRouteDAO) ApplicationContextUtils
-				.getBean("WorkflowInsRouteDAO");
+		return (WorkflowInsRouteDAO) ApplicationContextUtils.getBean("WorkflowInsRouteDAO");
 	}
+
 	/* add by kangbyron 2011-2-22 操作员审批阀值设置 begin */
 	public static TlrWorkloadDAO getTlrWorkloadDAO() {
-		return (TlrWorkloadDAO) ApplicationContextUtils
-				.getBean("TlrWorkloadDAO");
+		return (TlrWorkloadDAO) ApplicationContextUtils.getBean("TlrWorkloadDAO");
 	}
+
 	/* add by kangbyron 2011-2-22 操作员审批阀值设置 end */
 	/* add by kangbyron 2011-2-25 工作流任务池 begin */
 	public static WorkflowTaskPoolDAO getWorkflowTaskPoolDAO() {
-		return (WorkflowTaskPoolDAO) ApplicationContextUtils
-				.getBean("WorkflowTaskPoolDAO");
+		return (WorkflowTaskPoolDAO) ApplicationContextUtils.getBean("WorkflowTaskPoolDAO");
 	}
+
 	/* add by kangbyron 2011-2-25 工作流任务池 end */
-	
-	public static WorkflowBussTempletRelDAO getWorkflowBussTempletRelDAO(){
+
+	public static WorkflowBussTempletRelDAO getWorkflowBussTempletRelDAO() {
 		return (WorkflowBussTempletRelDAO) ApplicationContextUtils.getBean("WorkflowBussTempletRelDAO");
 	}
 }
-

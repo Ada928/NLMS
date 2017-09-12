@@ -26,25 +26,21 @@ import com.huateng.report.constants.TopReportConstants;
  */
 @SuppressWarnings("unchecked")
 public class BopDDsLoadPageGetter extends BaseGetter {
-	
+
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境内收入申报单基础信息补录页面查询");
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -57,14 +53,13 @@ public class BopDDsLoadPageGetter extends BaseGetter {
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuilder hql = new StringBuilder(
-				" SELECT model FROM MtsBopDrDs model WHERE 1 = 1 ");
+		StringBuilder hql = new StringBuilder(" SELECT model FROM MtsBopDrDs model WHERE 1 = 1 ");
 		Map<String, String> paramsMap = this.getCommQueryServletRequest().getParameterMap();
 		String qworkDateStart = paramsMap.get("qworkDateStart");
 		String qworkDateEnd = paramsMap.get("qworkDateEnd");
 		String qrptno = paramsMap.get("qrptno");
 		String qfiller2 = paramsMap.get("qfiller2");
-		
+
 		List<Object> paramentList = new ArrayList<Object>();
 		if (!DataFormat.isEmpty(qworkDateStart)) {
 			hql.append(" AND model.workDate >= ? ");
@@ -90,9 +85,9 @@ public class BopDDsLoadPageGetter extends BaseGetter {
 		paramentList.add(TopReportConstants.REPORT_APP_TYPE_BOP);
 
 		hql.append(" AND model.currentfile= ? ");
-		paramentList.add(TopReportConstants.REPORT_FILE_TYPE_BOP_D);		
-		hql.append(" AND  model.actiontype <>'"+TopReportConstants.REPORT_ACTIONTYPE_D+"'");
-	
+		paramentList.add(TopReportConstants.REPORT_FILE_TYPE_BOP_D);
+		hql.append(" AND  model.actiontype <>'" + TopReportConstants.REPORT_ACTIONTYPE_D + "'");
+
 		hql.append(" ORDER BY model.workDate, model.actiontype, model.approveStatus DESC");
 		queryCondition.setQueryString(hql.toString());
 		queryCondition.setPageIndex(pageIndex);
@@ -100,6 +95,6 @@ public class BopDDsLoadPageGetter extends BaseGetter {
 		queryCondition.setObjArray(paramentList.toArray());
 		pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 
-	    return pageQueryResult;
+		return pageQueryResult;
 	}
 }

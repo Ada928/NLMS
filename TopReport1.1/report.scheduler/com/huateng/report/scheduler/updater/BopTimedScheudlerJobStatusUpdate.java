@@ -16,20 +16,19 @@ import com.huateng.report.scheduler.operation.BopTimedSchedulerOperation;
 public class BopTimedScheudlerJobStatusUpdate extends BaseUpdate {
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
-		//返回对象
+		// 返回对象
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-		//取得结果集对象
+		// 取得结果集对象
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("bopTimedScheduler");
-		//开始处理
+		// 开始处理
 		String jobStatus = updateResultBean.getParameter("jobStatus");
 		String id = updateResultBean.getParameter("id");
 
 		OperationContext oc = new OperationContext();
 		oc.setAttribute(BopTimedSchedulerOperation.IN_ID_VALUE, id);
-		if(jobStatus.equals(ITimedScheduler.TIMED_STATUS_1)){
+		if (jobStatus.equals(ITimedScheduler.TIMED_STATUS_1)) {
 			oc.setAttribute(BopTimedSchedulerOperation.CMD, BopTimedSchedulerOperation.OP_START);
 		} else {
 			oc.setAttribute(BopTimedSchedulerOperation.CMD, BopTimedSchedulerOperation.OP_STOP);

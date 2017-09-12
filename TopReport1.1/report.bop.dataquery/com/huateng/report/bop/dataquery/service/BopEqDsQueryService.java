@@ -20,15 +20,16 @@ public class BopEqDsQueryService {
 	protected static final Logger logger = Logger.getLogger(BopEqDsQueryService.class);
 
 	protected BopEqDsQueryService() {
-		
+
 	}
 
 	public synchronized static BopEqDsQueryService getInstance() {
 		return (BopEqDsQueryService) ApplicationContextUtils.getBean(BopEqDsQueryService.class.getName());
 	}
-	
+
 	/**
 	 * 上报数据查询
+	 * 
 	 * @param queryType
 	 * @param pageIndex
 	 * @param pageSize
@@ -39,13 +40,12 @@ public class BopEqDsQueryService {
 	 * @param qrepStatus
 	 * @param qworkDate
 	 * @param eworkDate
-	 * @param qfiller2 
+	 * @param qfiller2
 	 * @return
-	 * @throws CommonException 
+	 * @throws CommonException
 	 */
-	public PageQueryResult queryBOPEqRecord(String queryType, int pageIndex,
-			int pageSize, String qbrNo, String qrecStatus, String qactiontype,
-			String qapproveStatus, String qrepStatus, String qworkDate,
+	public PageQueryResult queryBOPEqRecord(String queryType, int pageIndex, int pageSize, String qbrNo,
+			String qrecStatus, String qactiontype, String qapproveStatus, String qrepStatus, String qworkDate,
 			String eworkDate, String qfiller2) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<Object> objs = new ArrayList<Object>();
@@ -82,11 +82,11 @@ public class BopEqDsQueryService {
 			hql.append(" AND model.repStatus = ? ");
 			objs.add(qrepStatus);
 		}
-		if(!DataFormat.isEmpty(qbrNo)){
+		if (!DataFormat.isEmpty(qbrNo)) {
 			hql.append(" AND model.brNo = ? ");
 			objs.add(qbrNo);
 		}
-		if(!DataFormat.isEmpty(qfiller2)){
+		if (!DataFormat.isEmpty(qfiller2)) {
 			hql.append(" AND model.filler2 like '%" + qfiller2 + "%'");
 		}
 		hql.append(" ORDER BY model.lstUpdTm DESC ");

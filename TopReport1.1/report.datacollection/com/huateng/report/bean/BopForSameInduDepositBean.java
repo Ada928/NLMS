@@ -1,6 +1,8 @@
 package com.huateng.report.bean;
 
-public class BopForSameInduDepositBean {
+import java.io.Serializable;
+
+public class BopForSameInduDepositBean implements Serializable {
 
 	// fields
 	private java.lang.String apptype;// 应用类型
@@ -15,8 +17,7 @@ public class BopForSameInduDepositBean {
 	private java.math.BigDecimal anninrate; // 年化利率值
 	private java.lang.String spapfeboindex; // 是否经外汇局特批不需占用指标
 	private java.lang.String remark; // 备注
-	private java.lang.String brNo; //机构号
-	
+	private java.lang.String brNo; // 机构号
 
 	// 系统信息
 	private java.lang.String workDate;// 工作日期
@@ -35,13 +36,11 @@ public class BopForSameInduDepositBean {
 
 	// 余额信息
 	private java.lang.String filler1;
-	
-	//业务流水号
-	private java.lang.String  filler2;
-	//签约信息业务流水号
-	private java.lang.String filler2Oth;
-	
 
+	// 业务流水号
+	private java.lang.String filler2;
+	// 签约信息业务流水号
+	private java.lang.String filler2Oth;
 
 	private java.lang.String buscode; // 银行账号
 	private java.lang.String changeno;// 变动编号
@@ -113,7 +112,7 @@ public class BopForSameInduDepositBean {
 	public void setFiller2Oth(java.lang.String filler2Oth) {
 		this.filler2Oth = filler2Oth;
 	}
-	
+
 	/**
 	 * @return the creditorid
 	 */
@@ -355,8 +354,8 @@ public class BopForSameInduDepositBean {
 
 	public void setBrNo(java.lang.String brNo) {
 		this.brNo = brNo;
-	}	
-	
+	}
+
 	/**
 	 * @param workDate
 	 *            the workDate to set
@@ -651,7 +650,6 @@ public class BopForSameInduDepositBean {
 		this.changeno = changeno;
 	}
 
-
 	public java.lang.String getChdate() {
 		return chdate;
 	}
@@ -659,6 +657,7 @@ public class BopForSameInduDepositBean {
 	public void setChdate(java.lang.String chdate) {
 		this.chdate = chdate;
 	}
+
 	public java.math.BigDecimal getAccoamount() {
 		return accoamount;
 	}

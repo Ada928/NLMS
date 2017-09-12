@@ -20,14 +20,14 @@ import com.huateng.report.databak.service.ReportDataBakService;
  *
  * @author shishu.zhang
  *
- * 2012-10-10下午3:30:39
+ *         2012-10-10下午3:30:39
  */
-public class RecoverBakFileUpdate extends BaseUpdate{
+public class RecoverBakFileUpdate extends BaseUpdate {
 	private static final HtLog htlog = HtLogFactory.getLogger(UpdateReturnBean.class);
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
 
 		try {
 			GlobalInfo info = GlobalInfo.getCurrentInstance();
@@ -38,25 +38,24 @@ public class RecoverBakFileUpdate extends BaseUpdate{
 			RecoverBakFileBean bakFileBean = null;
 			String zipFileName = null;
 			String remark = null;
-			while(updateResultBean.hasNext()){
+			while (updateResultBean.hasNext()) {
 				bakFileBean = new RecoverBakFileBean();
 				mapToObject(bakFileBean, updateResultBean.next());
 				zipFileName = bakFileBean.getFilePath();
 				remark = bakFileBean.getRecoverReason();
 			}
-//			bakFileBean
-			//TODO 数据恢复调用
+			// bakFileBean
+			// TODO 数据恢复调用
 			ReportDataBakService.getInstance().recoveryDataBak(zipFileName);
 
-			info.addBizLog("Updater.log", new String[] { info.getTlrno(), info.getBrno(), "执行业务数据恢复:"+remark });
-			htlog.info("Updater.log", new String[] { info.getTlrno(), info.getBrno(), "执行业务数据恢复:"+remark });
+			info.addBizLog("Updater.log", new String[] { info.getTlrno(), info.getBrno(), "执行业务数据恢复:" + remark });
+			htlog.info("Updater.log", new String[] { info.getTlrno(), info.getBrno(), "执行业务数据恢复:" + remark });
 
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

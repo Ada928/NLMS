@@ -11,8 +11,8 @@ import org.topexpression.IllegalExpressionException;
 public interface IMethod {
 
 	public String getMethodName();
-	
-	public Object call(Object[] arg)  throws IllegalExpressionException;
-	
-	public Object compile(Object[] arg)  throws IllegalExpressionException;
+
+	public Object call(Object[] arg) throws IllegalExpressionException;
+
+	public Object compile(Object[] arg) throws IllegalExpressionException;
 }

@@ -3,11 +3,6 @@
  */
 package com.huateng.ebank.business.management.updater;
 
-import java.util.Date;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -23,17 +18,18 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+
 /**
  * @author yjw
  *
  */
 public class ChangePwdUpdate extends BaseUpdate {
 
-	
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		// TODO Auto-generated method stub
 		try {
 			System.out.println("=====start==========saveOrUpdate");
@@ -43,14 +39,14 @@ public class ChangePwdUpdate extends BaseUpdate {
 			while (updateResultBean.hasNext()) {
 				mapToObject(cpf, updateResultBean.next());
 			}
-			if(!(cpf.getNewPassWord().equals(cpf.getAgainNewPassWord()))){
-				ExceptionUtil.throwCommonException("新密码两次输入不一致",ErrorCode.ERROR_CODE_NEW_AGAIN_PWD_IS_NOT_SAME);
+			if (!(cpf.getNewPassWord().equals(cpf.getAgainNewPassWord()))) {
+				ExceptionUtil.throwCommonException("新密码两次输入不一     致", ErrorCode.ERROR_CODE_NEW_AGAIN_PWD_IS_NOT_SAME);
 			}
 			cpf.setTlrno(GlobalInfo.getCurrentInstance().getTlrno().toString());
 			OperationContext oc = new OperationContext();
-			oc.setAttribute(ChangePwdOP.IN_OLD_PWD,cpf.getOldPassWord());
-			oc.setAttribute(ChangePwdOP.IN_NEW_PWD,cpf.getNewPassWord());
-			oc.setAttribute(ChangePwdOP.IN_AGAIN_NEW_PWD,cpf.getAgainNewPassWord());
+			oc.setAttribute(ChangePwdOP.IN_OLD_PWD, cpf.getOldPassWord());
+			oc.setAttribute(ChangePwdOP.IN_NEW_PWD, cpf.getNewPassWord());
+			oc.setAttribute(ChangePwdOP.IN_AGAIN_NEW_PWD, cpf.getAgainNewPassWord());
 			OPCaller.call(ChangePwdOP.ID, oc);
 			/** add by zhaozhiguo 2011-6-20 BMS-3153 begin */
 			GlobalInfo.getCurrentInstance().setPswdForcedToChange(false);
@@ -60,8 +56,7 @@ public class ChangePwdUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

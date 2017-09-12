@@ -19,40 +19,38 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.bop.collection.operation.BopFsDsOperation;
+
 public class BopFDsAuditUpdate extends BaseUpdate {
-	
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
-		
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
+
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("BopFDsAudit");
 			List<MtsBopFsDs> mtsBopFsDsList = new ArrayList<MtsBopFsDs>();
-			while (updateResultBean.hasNext())
-			{
+			while (updateResultBean.hasNext()) {
 				MtsBopFsDs mtsBopFsDs = new MtsBopFsDs();
 				Map map = updateResultBean.next();
-				mapToObject(mtsBopFsDs,map);
+				mapToObject(mtsBopFsDs, map);
 				mtsBopFsDsList.add(mtsBopFsDs);
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
 			String approveResultChoose = updateResultBean.getParameter("approveResultChoose");
-			
+
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(BopFsDsOperation.CMD, BopFsDsOperation.OP_F_AUDIT);
 			oc.setAttribute(BopFsDsOperation.IN_AUDIT_LIST, mtsBopFsDsList);
 			oc.setAttribute(BopFsDsOperation.IN_AUDIT_STATUS, approveStatusChoose);
 			oc.setAttribute(BopFsDsOperation.IN_AUDIT_RESULT, approveResultChoose);
 			OPCaller.call(BopFsDsOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

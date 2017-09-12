@@ -1,5 +1,6 @@
 package com.huateng.ebank.monitor.batch.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,10 +9,10 @@ import java.util.List;
  * @author wangpeng
  * 
  */
-public class BatchInfo {
+public class BatchInfo implements Serializable {
 	// private BatchStepInfo currentStep;//当前执行步骤
 	private List<BatchStepInfo> stepList;// 步骤列表
-	private String bhDate;//批量日期
+	private String bhDate;// 批量日期
 
 	/**
 	 * @return the bhDate
@@ -21,7 +22,8 @@ public class BatchInfo {
 	}
 
 	/**
-	 * @param bhDate the bhDate to set
+	 * @param bhDate
+	 *            the bhDate to set
 	 */
 	public void setBhDate(String bhDate) {
 		this.bhDate = bhDate;
@@ -35,21 +37,17 @@ public class BatchInfo {
 		for (BatchStepInfo stepInfo : stepList) {
 			if (stepInfo.getStatusCode() != null) {
 				// 存在运行中的则必运行中
-				if (stepInfo.getStatusCode().equals(
-						BatchConstant.MERGEINFO_FLAG_RUNING)) {
+				if (stepInfo.getStatusCode().equals(BatchConstant.MERGEINFO_FLAG_RUNING)) {
 					status = BatchConstant.MERGEINFO_FLAG_RUNING;
 					break;
 				}
 				// 存在不能忽略的出错的必是已出错
-				else if (stepInfo.getStatusCode().equals(
-						BatchConstant.MERGEINFO_FLAG_FAILED)
-						&& stepInfo.suspend() == false) {
+				else if (stepInfo.getStatusCode().equals(BatchConstant.MERGEINFO_FLAG_FAILED) && stepInfo.suspend() == false) {
 					status = BatchConstant.MERGEINFO_FLAG_FAILED;
 					break;
 				}
 				// 有已完成的则不是未运行
-				else if (stepInfo.getStatusCode().equals(
-						BatchConstant.MERGEINFO_FLAG_FINISHED)) {
+				else if (stepInfo.getStatusCode().equals(BatchConstant.MERGEINFO_FLAG_FINISHED)) {
 					status = BatchConstant.MERGEINFO_FLAG_FINISHED;
 				}
 			}
@@ -61,14 +59,11 @@ public class BatchInfo {
 	public String getStatusDisp() {
 		String disp = "未运行";
 		if (this.getStatusCode() != null) {
-			if (this.getStatusCode()
-					.equals(BatchConstant.MERGEINFO_FLAG_FAILED)) {
+			if (this.getStatusCode().equals(BatchConstant.MERGEINFO_FLAG_FAILED)) {
 				disp = "异常中断";
-			} else if (this.getStatusCode().equals(
-					BatchConstant.MERGEINFO_FLAG_FINISHED)) {
+			} else if (this.getStatusCode().equals(BatchConstant.MERGEINFO_FLAG_FINISHED)) {
 				disp = "结束";
-			} else if (this.getStatusCode().equals(
-					BatchConstant.MERGEINFO_FLAG_RUNING)) {
+			} else if (this.getStatusCode().equals(BatchConstant.MERGEINFO_FLAG_RUNING)) {
 				disp = "运行";
 			}
 		}
@@ -83,8 +78,7 @@ public class BatchInfo {
 		if (this.stepList != null) {
 			for (BatchStepInfo stepInfo : this.stepList) {
 				if (stepInfo.getStatusCode() != null) {
-					if (stepInfo.getStatusCode().equals(
-							BatchConstant.MERGEINFO_FLAG_RUNING)) {
+					if (stepInfo.getStatusCode().equals(BatchConstant.MERGEINFO_FLAG_RUNING)) {
 						currentStep = stepInfo;
 						break;
 					}
@@ -100,8 +94,7 @@ public class BatchInfo {
 			for (BatchStepInfo stepInfo : this.stepList) {
 				currentIndex++;
 				if (stepInfo.getStatusCode() != null) {
-					if (stepInfo.getStatusCode().equals(
-							BatchConstant.MERGEINFO_FLAG_RUNING)) {
+					if (stepInfo.getStatusCode().equals(BatchConstant.MERGEINFO_FLAG_RUNING)) {
 						break;
 					}
 				}
@@ -149,8 +142,7 @@ public class BatchInfo {
 		int count = 0;
 		for (BatchStepInfo stepInfo : this.stepList) {
 			if (stepInfo.getStatusCode() != null) {
-				if (stepInfo.getStatusCode().equals(
-						BatchConstant.MERGEINFO_FLAG_FINISHED)) {
+				if (stepInfo.getStatusCode().equals(BatchConstant.MERGEINFO_FLAG_FINISHED)) {
 					count += 1;
 				}
 			}
@@ -160,7 +152,7 @@ public class BatchInfo {
 	}
 
 	/**
-	 *失败子步骤数
+	 * 失败子步骤数
 	 * 
 	 * @return
 	 */
@@ -171,8 +163,7 @@ public class BatchInfo {
 		int count = 0;
 		for (BatchStepInfo stepInfo : this.stepList) {
 			if (stepInfo.getStatusCode() != null) {
-				if (stepInfo.getStatusCode().equals(
-						BatchConstant.MERGEINFO_FLAG_FAILED)) {
+				if (stepInfo.getStatusCode().equals(BatchConstant.MERGEINFO_FLAG_FAILED)) {
 					count += 1;
 				}
 			}

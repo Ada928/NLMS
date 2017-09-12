@@ -61,8 +61,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("query(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -85,8 +84,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 		}
 
 		try {
-			TlrInfo returnTlrInfo = (TlrInfo) this.getHibernateTemplate().get(
-					TlrInfo.class, id);
+			TlrInfo returnTlrInfo = (TlrInfo) this.getHibernateTemplate().get(TlrInfo.class, id);
 			if (logger.isDebugEnabled()) {
 				logger.debug("query(String) - end"); //$NON-NLS-1$
 			}
@@ -94,8 +92,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("query(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -105,7 +102,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 	}
 
 	/**
-	 *根据业务主键查询，如果没有找到记录，则返回null
+	 * 根据业务主键查询，如果没有找到记录，则返回null
 	 *
 	 * @param key1
 	 * @param key2
@@ -120,8 +117,8 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 	 *             e) { ExceptionUtil.throwCommonException(e.getMessage(),
 	 *             ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e); }
 	 *
-	 * if (list.size() != 1) { return null; } else { return (TlrInfo)
-	 * list.get(0); } }
+	 *             if (list.size() != 1) { return null; } else { return
+	 *             (TlrInfo) list.get(0); } }
 	 */
 
 	/**
@@ -133,26 +130,22 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 	 * @return ??TlrInfo?????List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString, Object[] objArray,
-			Type[] typeArray) throws CommonException {
+	public List queryByCondition(String whereString, Object[] objArray, Type[] typeArray) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByCondition(String, Object[], Type[]) - start"); //$NON-NLS-1$
 		}
 
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from TlrInfo po where " + whereString, objArray);
+			List list = this.getHibernateTemplate().find("from TlrInfo po where " + whereString, objArray);
 
 			if (logger.isDebugEnabled()) {
-				logger
-						.debug("queryByCondition(String, Object[], Type[]) - end"); //$NON-NLS-1$
+				logger.debug("queryByCondition(String, Object[], Type[]) - end"); //$NON-NLS-1$
 			}
 			return list;
 		} catch (Exception e) {
 			logger.error("queryByCondition(String, Object[], Type[])", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -168,14 +161,13 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 	 * @return ??TlrInfo?????List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString) throws CommonException {
+	public List<TlrInfo> queryByCondition(String whereString) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByCondition(String) - start"); //$NON-NLS-1$
 		}
 
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from TlrInfo po where " + whereString);
+			List list = this.getHibernateTemplate().find("from TlrInfo po where " + whereString);
 
 			if (logger.isDebugEnabled()) {
 				logger.debug("queryByCondition(String) - end"); //$NON-NLS-1$
@@ -184,8 +176,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("queryByCondition(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -210,8 +201,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("update(TlrInfo)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_UPDATE, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -219,23 +209,22 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public int update(String queryString,Object[] values)throws CommonException{
+	public int update(String queryString, Object[] values) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("update(TlrInfo) - start"); //$NON-NLS-1$
 		}
 		int updateRow = 0;
 		try {
 
-			if(values == null){
+			if (values == null) {
 				updateRow = this.getHibernateTemplate().bulkUpdate(queryString);
-			}else{
+			} else {
 				updateRow = this.getHibernateTemplate().bulkUpdate(queryString, values);
 			}
 		} catch (Exception e) {
 			logger.error("update(String,Object[])", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_UPDATE, e);
 		}
 		if (logger.isDebugEnabled()) {
 			logger.debug("update(TlrInfo) - end"); //$NON-NLS-1$
@@ -259,8 +248,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("insert(TlrInfo)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -284,8 +272,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("update(TlrInfo)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_UPDATE, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -309,8 +296,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("delete(TlrInfo)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_DELETE, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -334,8 +320,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("delete(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_DELETE, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -344,10 +329,9 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 	}
 
 	/**
-	 *add by NT 2007-09-29 根据ID查询对象
+	 * add by NT 2007-09-29 根据ID查询对象
 	 *
-	 * @param int
-	 *            id ????????
+	 * @param int id ????????
 	 * @throws DAOException
 	 */
 	public TlrInfo queryByName(String name) throws CommonException {
@@ -365,8 +349,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("queryByName(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
 		}
 
 		return pojo;
@@ -378,23 +361,19 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 	 * @param String
 	 *            whereString 条件集合 例如 "po.name = 'user1' and po.level = '1' or
 	 *            ...."
-	 * @param int
-	 *            startPage 展现层的开始页数
-	 * @param int
-	 *            maxRows 展现层的每页记录数 -1 :全部; 0 :默认值; 其他:实际值
+	 * @param int startPage 展现层的开始页数
+	 * @param int maxRows 展现层的每页记录数 -1 :全部; 0 :默认值; 其他:实际值
 	 * @return List 对象集合
 	 * @throws DAOException
 	 */
-	public List queryByCondition(String whereString, int startPage, int maxRows)
-			throws CommonException {
+	public List queryByCondition(String whereString, int startPage, int maxRows) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByCondition(String, int, int) - start"); //$NON-NLS-1$
 		}
 
 		List returnValue = new ArrayList();
 		startPage = startPage >= 1 ? startPage : 1;
-		int firstResult = (startPage - 1)
-				* (maxRows > 0 ? maxRows : SystemConstant.MAX_ROWS);
+		int firstResult = (startPage - 1) * (maxRows > 0 ? maxRows : SystemConstant.MAX_ROWS);
 		int rows = maxRows;
 		rows = (rows == 0 ? SystemConstant.MAX_ROWS : rows);
 
@@ -410,8 +389,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 			returnValue = query.list();
 		} catch (HibernateException e) {
 			logger.error("queryByCondition(String, int, int)", e); //$NON-NLS-1$
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -430,17 +408,14 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 	 */
 	public TlrInfo getTlrByExtno(String extno) throws CommonException {
 		try {
-			List list = this.queryByCondition("po.extTlrno = '" + extno
-					+ "'");
+			List list = this.queryByCondition("po.extTlrno = '" + extno + "'");
 			if (list == null || list.size() != 1) {
-				ExceptionUtil.throwCommonException("没有找到符合条件的操作员",
-						ErrorCode.ERROR_CODE_TLR_INFO_SELECT);
+				ExceptionUtil.throwCommonException("没有找到符合条件的操作员", ErrorCode.ERROR_CODE_TLR_INFO_SELECT);
 			} else {
 				return ((TlrInfo) list.get(0));
 			}
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
 		}
 		return null;
 	}
@@ -459,8 +434,7 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 				return "";
 			return this.query(tlrno).getExtTlrno();
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
 		}
 		return null;
 	}
@@ -475,17 +449,14 @@ public class TlrInfoDAO extends HibernateDaoSupport {
 	public String getTlrnoByExtno(String extTlrno) throws CommonException {
 
 		try {
-			List list = this.queryByCondition("po.extTlrno = '" + extTlrno
-					+ "'");
+			List list = this.queryByCondition("po.extTlrno = '" + extTlrno + "'");
 			if (list == null || list.size() != 1) {
-				ExceptionUtil.throwCommonException("没有找到符合条件的操作员",
-						ErrorCode.ERROR_CODE_RECORD_NOTFOUND);
+				ExceptionUtil.throwCommonException("没有找到符合条件的操作员", ErrorCode.ERROR_CODE_RECORD_NOTFOUND);
 			} else {
 				return ((TlrInfo) list.get(0)).getTlrno();
 			}
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_SELECT, e);
 		}
 		return null;
 	}

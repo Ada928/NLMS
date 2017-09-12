@@ -61,7 +61,7 @@ public class HQLDAO extends HibernateDaoSupport {
 
 		Iterator it = null;
 		try {
-			//it = this.getSession().iterate(hql);
+			// it = this.getSession().iterate(hql);
 			List list = this.getHibernateTemplate().find(hql);
 			if (logger.isDebugEnabled()) {
 				logger.debug("queryByQL(String) - hql hql=" + hql); //$NON-NLS-1$
@@ -74,8 +74,7 @@ public class HQLDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("queryByQL(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -109,8 +108,7 @@ public class HQLDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("queryByQL2List(String)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -126,14 +124,14 @@ public class HQLDAO extends HibernateDaoSupport {
 	 * @return List，对象数组集合
 	 * @throws CommonException
 	 */
-	public List queryByQL2List(String hql ,Object[] objArg, Type[] typeArg ) throws CommonException {
+	public List queryByQL2List(String hql, Object[] objArg, Type[] typeArg) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByQL2List(String) - start"); //$NON-NLS-1$
 		}
 
 		List list = null;
 		try {
-			list = this.getHibernateTemplate().find(hql,objArg);
+			list = this.getHibernateTemplate().find(hql, objArg);
 			if (logger.isDebugEnabled()) {
 				logger.debug("queryByQL2List(String, Object[], Type[]) - hql hql=" + hql); //$NON-NLS-1$
 			}
@@ -144,8 +142,7 @@ public class HQLDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("queryByQL2List(String, Object[], Type[])", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -168,25 +165,21 @@ public class HQLDAO extends HibernateDaoSupport {
 		final String tempSql = sql;
 		Iterator it = null;
 		try {
-			it = (Iterator)getHibernateTemplate().execute(new HibernateCallback()
-			{
-			   public Object doInHibernate(Session session)
-			     throws HibernateException
-			   {
-				 if (logger.isDebugEnabled()) {
-					   logger.debug("queryBySQL(String) - sql sql=" + tempSql); //$NON-NLS-1$
-				 }
-			     SQLQuery sqlQuery = session.createSQLQuery(tempSql);
-			     return sqlQuery.list().iterator();
-			    }
-			   });
+			it = (Iterator) getHibernateTemplate().execute(new HibernateCallback() {
+				public Object doInHibernate(Session session) throws HibernateException {
+					if (logger.isDebugEnabled()) {
+						logger.debug("queryBySQL(String) - sql sql=" + tempSql); //$NON-NLS-1$
+					}
+					SQLQuery sqlQuery = session.createSQLQuery(tempSql);
+					return sqlQuery.list().iterator();
+				}
+			});
 			if (logger.isDebugEnabled()) {
 				logger.debug("queryBySQL(String) - list end"); //$NON-NLS-1$
 			}
 		} catch (Exception e) {
 			logger.error("queryBySQL(String)", e); //$NON-NLS-1$
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -194,9 +187,11 @@ public class HQLDAO extends HibernateDaoSupport {
 		}
 		return it;
 	}
+
 	/**
 	 * 根据输入条件查询
-	 *	@author jianxue.zhang
+	 * 
+	 * @author jianxue.zhang
 	 * @param sql，SQL查询语句
 	 * @return List，返回数组集合
 	 * @throws CommonException
@@ -208,25 +203,21 @@ public class HQLDAO extends HibernateDaoSupport {
 		final String tempSql = sql;
 		List it = null;
 		try {
-			it = (List)getHibernateTemplate().execute(new HibernateCallback()
-			{
-			   public Object doInHibernate(Session session)
-			     throws HibernateException
-			   {
-				 if (logger.isDebugEnabled()) {
-					   logger.debug("queryBySQL(String) - sql sql=" + tempSql); //$NON-NLS-1$
-				 }
-			     SQLQuery sqlQuery = session.createSQLQuery(tempSql);
-			     return sqlQuery.list();
-			    }
-			   });
+			it = (List) getHibernateTemplate().execute(new HibernateCallback() {
+				public Object doInHibernate(Session session) throws HibernateException {
+					if (logger.isDebugEnabled()) {
+						logger.debug("queryBySQL(String) - sql sql=" + tempSql); //$NON-NLS-1$
+					}
+					SQLQuery sqlQuery = session.createSQLQuery(tempSql);
+					return sqlQuery.list();
+				}
+			});
 			if (logger.isDebugEnabled()) {
 				logger.debug("queryBySQL(String) - list end"); //$NON-NLS-1$
 			}
 		} catch (Exception e) {
 			logger.error("queryBySQL(String)", e); //$NON-NLS-1$
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -234,6 +225,7 @@ public class HQLDAO extends HibernateDaoSupport {
 		}
 		return it;
 	}
+
 	/**
 	 * 根据输入条件查询
 	 *
@@ -245,15 +237,14 @@ public class HQLDAO extends HibernateDaoSupport {
 	 * @return Iterator，对象数组集合
 	 * @throws CommonException
 	 */
-	public Iterator queryByQL(String hql, Object[] objArg, Type[] typeArg)
-			throws CommonException {
+	public Iterator queryByQL(String hql, Object[] objArg, Type[] typeArg) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByQL(String, Object[], Type[]) - start"); //$NON-NLS-1$
 		}
 
 		Iterator it = null;
 		try {
-//			it = this.getSession().iterate(hql, objArg, typeArg);
+			// it = this.getSession().iterate(hql, objArg, typeArg);
 			List list = this.getHibernateTemplate().find(hql, objArg);
 
 			Iterator returnIterator = list.iterator();
@@ -264,8 +255,7 @@ public class HQLDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("queryByQL(String, Object[], Type[])", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -278,30 +268,29 @@ public class HQLDAO extends HibernateDaoSupport {
 	 * 根据输入条件查询
 	 *
 	 * @param sql，SQL查询语句
-	 * @param objArg Object[] 值对象
-	 * @param typeArg Type[] 类型对象
+	 * @param objArg
+	 *            Object[] 值对象
+	 * @param typeArg
+	 *            Type[] 类型对象
 	 * @return Iterator，对象数组集合
 	 * @throws CommonException
 	 */
-	public Iterator queryBySQL(final String sql,final Object[] objArg, final Type[] typeArg) throws CommonException {
+	public Iterator queryBySQL(final String sql, final Object[] objArg, final Type[] typeArg) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByQL(String sql, Object[] objArg, Type[] typeArg) - start"); //$NON-NLS-1$
 		}
 		final String tempSql = sql;
 		Iterator it = null;
 		try {
-			it = (Iterator)getHibernateTemplate().execute(new HibernateCallback()
-			{
-			   public Object doInHibernate(Session session)
-			     throws HibernateException
-			   {
-			     SQLQuery sqlQuery = session.createSQLQuery(tempSql);
-				 if (null != objArg) {
+			it = (Iterator) getHibernateTemplate().execute(new HibernateCallback() {
+				public Object doInHibernate(Session session) throws HibernateException {
+					SQLQuery sqlQuery = session.createSQLQuery(tempSql);
+					if (null != objArg) {
 						for (int i = 0; i < objArg.length; i++) {
 							if (logger.isDebugEnabled()) {
-								logger.debug("i="+i);
-								logger.debug("values[i]="+objArg[i]);
-								logger.debug("types[i]="+objArg[i]);
+								logger.debug("i=" + i);
+								logger.debug("values[i]=" + objArg[i]);
+								logger.debug("types[i]=" + objArg[i]);
 							}
 							if (typeArg != null) {
 								sqlQuery.setParameter(i, objArg[i], typeArg[i]);
@@ -310,32 +299,31 @@ public class HQLDAO extends HibernateDaoSupport {
 							}
 						}
 					}
-				 if (logger.isDebugEnabled()) {
+					if (logger.isDebugEnabled()) {
 						logger.debug("queryByQL(String sql, Object[] objArg, Type[] typeArg) - end"); //$NON-NLS-1$
 					}
-			     return sqlQuery.list().iterator();
-			    }
-			   });
+					return sqlQuery.list().iterator();
+				}
+			});
 		} catch (Exception e) {
 			logger.error("queryByQL(String sql, Object[] objArg, Type[] typeArg)", e); //$NON-NLS-1$
-			ExceptionUtil.throwCommonException(e.getMessage(),ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 		return it;
 	}
 
-	public Iterator iterator(String hql, Object[] objArg, Type[] typeArg) throws CommonException{
+	public Iterator iterator(String hql, Object[] objArg, Type[] typeArg) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("iterator(String, Object[], Type[]) - start"); //$NON-NLS-1$
 		}
 
 		Iterator it = null;
 		try {
-			it = this.getHibernateTemplate().iterate(hql,objArg);
+			it = this.getHibernateTemplate().iterate(hql, objArg);
 		} catch (Exception e) {
 			logger.error("iterator(String, Object[], Type[])", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -356,17 +344,14 @@ public class HQLDAO extends HibernateDaoSupport {
 		}
 		Integer count = new Integer(-1);
 		try {
-			count = (Integer)this.getHibernateTemplate().execute(new HibernateCallback() {
-                public Object doInHibernate(Session session)
-                throws HibernateException, SQLException {
-                	return new Integer(session.createQuery("delete " + hql).executeUpdate());
-            }
-        }
-       );
+			count = (Integer) this.getHibernateTemplate().execute(new HibernateCallback() {
+				public Object doInHibernate(Session session) throws HibernateException, SQLException {
+					return new Integer(session.createQuery("delete " + hql).executeUpdate());
+				}
+			});
 		} catch (Exception e) {
 			logger.error("delete(String)", e); //$NON-NLS-1$
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 		if (logger.isDebugEnabled()) {
 			logger.debug("delete(String) - end"); //$NON-NLS-1$
@@ -376,6 +361,7 @@ public class HQLDAO extends HibernateDaoSupport {
 
 	/**
 	 * flush函数,强制数据库操作进行flush.
+	 * 
 	 * @throws CommonException
 	 */
 	public void flush() throws CommonException {
@@ -388,8 +374,7 @@ public class HQLDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("flush()", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -399,10 +384,10 @@ public class HQLDAO extends HibernateDaoSupport {
 
 	/**
 	 * 分页查询方法
+	 * 
 	 * @return PageQueryResult
 	 */
-	public PageQueryResult pageQueryByQL(PageQueryCondition queryCondition)
-			throws CommonException {
+	public PageQueryResult pageQueryByQL(PageQueryCondition queryCondition) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("pageQueryByQL(PageQueryCondition) - start"); //$NON-NLS-1$
 		}
@@ -418,8 +403,7 @@ public class HQLDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("pageQueryByQL(PageQueryCondition)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -430,10 +414,10 @@ public class HQLDAO extends HibernateDaoSupport {
 
 	/**
 	 * SQL分页查询方法
+	 * 
 	 * @return PageQueryResult
 	 */
-	public PageQueryResult pageQueryBySQL(PageQueryCondition queryCondition)
-			throws CommonException {
+	public PageQueryResult pageQueryBySQL(PageQueryCondition queryCondition) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("pageQueryByQL(PageQueryCondition) - start"); //$NON-NLS-1$
 		}
@@ -449,8 +433,7 @@ public class HQLDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("pageQueryByQL(PageQueryCondition)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -458,21 +441,15 @@ public class HQLDAO extends HibernateDaoSupport {
 		}
 		return null;
 	}
-	/** add by shen_antonio 20091030 jira:BMS-2140 begin .*/
+	/** add by shen_antonio 20091030 jira:BMS-2140 begin . */
 
 	/**
-	* @Title: 分页查询方法
-	* @Description: 使用count(*)获取总记录数，效率高，局限性对于union不支持，请使用pageQueryByQL
-	* @param @param queryCondition
-	* @param @return
-	* @param @throws CommonException
-	* @return PageQueryResult
-	* @author shenantonio
-	* @date 2009-10-30 下午02:46:10
-	* @throws
-	*/
-	public PageQueryResult pageQueryByQLWithCount(PageQueryCondition queryCondition)
-			throws CommonException {
+	 * @Title: 分页查询方法 @Description:
+	 * 使用count(*)获取总记录数，效率高，局限性对于union不支持，请使用pageQueryByQL @param @param
+	 * queryCondition @param @return @param @throws CommonException @return
+	 * PageQueryResult @author shenantonio @date 2009-10-30 下午02:46:10 @throws
+	 */
+	public PageQueryResult pageQueryByQLWithCount(PageQueryCondition queryCondition) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("pageQueryByQL(PageQueryCondition) - start"); //$NON-NLS-1$
 		}
@@ -487,8 +464,7 @@ public class HQLDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("pageQueryByQL(PageQueryCondition)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -496,14 +472,14 @@ public class HQLDAO extends HibernateDaoSupport {
 		}
 		return null;
 	}
-	/** add by shen_antonio 20091030 jira: BMS-2140 end .*/
+	/** add by shen_antonio 20091030 jira: BMS-2140 end . */
 
 	/**
 	 * 范围查询方法
+	 * 
 	 * @return PageQueryResult
 	 */
-	public RangeQueryResult rangeQueryByQL(RangeQueryCondition queryCondition)
-			throws CommonException {
+	public RangeQueryResult rangeQueryByQL(RangeQueryCondition queryCondition) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("rangeQueryByQL(RangeQueryCondition) - start"); //$NON-NLS-1$
 		}
@@ -518,8 +494,7 @@ public class HQLDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("rangeQueryByQL(RangeQueryCondition)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -539,8 +514,7 @@ public class HQLDAO extends HibernateDaoSupport {
 	 * @return Iterator，对象数组集合
 	 * @throws CommonException
 	 */
-	public Iterator createQuery(String hql)
-			throws CommonException {
+	public Iterator createQuery(String hql) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByQL(String, Object[], Type[]) - start"); //$NON-NLS-1$
 		}
@@ -559,8 +533,7 @@ public class HQLDAO extends HibernateDaoSupport {
 			session.close();
 			logger.error("queryByQL(String, Object[], Type[])", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 		if (logger.isDebugEnabled()) {
 			logger.debug("queryByQL(String, Object[], Type[]) - end"); //$NON-NLS-1$
@@ -569,17 +542,17 @@ public class HQLDAO extends HibernateDaoSupport {
 	}
 
 }
-/** add by shen_antonio 20091030 jira: BMS-2140 begin .*/
+
+/** add by shen_antonio 20091030 jira: BMS-2140 begin . */
 /**
-* @Title: 分页方法回调类
-* @Package com.huateng.ebank.entity.base
-* @Description: 使用count方法的分页查询
-* @author shen_antonio
-* @date 2009-10-30 下午02:48:45
-* Copyright: Copyright (c) 2009
-* Company: Shanghai Huateng Software Systems Co., Ltd.
-* @version V1.0
-*/
+ * @Title: 分页方法回调类
+ * @Package com.huateng.ebank.entity.base
+ * @Description: 使用count方法的分页查询
+ * @author shen_antonio
+ * @date 2009-10-30 下午02:48:45 Copyright: Copyright (c) 2009 Company: Shanghai
+ *       Huateng Software Systems Co., Ltd.
+ * @version V1.0
+ */
 class PageQueryCallbackWithCount implements HibernateCallback {
 	/**
 	 * Logger for this class
@@ -598,23 +571,23 @@ class PageQueryCallbackWithCount implements HibernateCallback {
 		}
 		Query queryObject = session.createQuery(queryCondition.getQueryString());
 		String countHQL = HqlUtils.transferCountHQL(queryCondition.getQueryString());
-		if(logger.isInfoEnabled()){
+		if (logger.isInfoEnabled()) {
 			logger.info("COUNTHQL = " + countHQL);
 		}
 		Query queryCount = session.createQuery(countHQL);
-		Long totleCount = (Long)queryCount.uniqueResult();
+		Long totleCount = (Long) queryCount.uniqueResult();
 
 		PageQueryResult queryResult = new PageQueryResult();
 		queryResult.setQueryResult(new ArrayList());
 		queryResult.setTotalCount(totleCount.intValue());
-		if(totleCount > 0){
+		if (totleCount > 0) {
 			int pageSize = queryCondition.getPageSize();
 			int pageIndex = queryCondition.getPageIndex() - 1;
 			int startRowNum = pageIndex * pageSize;
 			queryObject.setFirstResult(startRowNum);
 			queryObject.setMaxResults(pageSize);
 			ScrollableResults sr = queryObject.scroll();
-			while(sr.next()){
+			while (sr.next()) {
 				queryResult.getQueryResult().add(sr.get());
 			}
 
@@ -623,11 +596,10 @@ class PageQueryCallbackWithCount implements HibernateCallback {
 			logger.debug("doInHibernate(Session) - end"); //$NON-NLS-1$
 		}
 		return queryResult;
-}
+	}
 }
 
-
-/** add by shen_antonio 20091030 jira:BMS-2140 end .*/
+/** add by shen_antonio 20091030 jira:BMS-2140 end . */
 /**
  *
  * 分页查询的回调类.
@@ -649,16 +621,15 @@ class PageQueryCallback implements HibernateCallback {
 			logger.debug("doInHibernate(Session) - start"); //$NON-NLS-1$
 		}
 
-		Query queryObject = session
-				.createQuery(queryCondition.getQueryString());
+		Query queryObject = session.createQuery(queryCondition.getQueryString());
 		Object[] values = queryCondition.getObjArray();
 		Type[] types = queryCondition.getTypeArray();
 		if (null != values) {
 			for (int i = 0; i < values.length; i++) {
 				if (logger.isDebugEnabled()) {
-					logger.debug("i="+i);
-					logger.debug("values[i]="+values[i]);
-					logger.debug("types[i]="+types[i]);
+					logger.debug("i=" + i);
+					logger.debug("values[i]=" + values[i]);
+					logger.debug("types[i]=" + types[i]);
 				}
 				if (types != null) {
 					queryObject.setParameter(i, values[i], types[i]);
@@ -717,9 +688,9 @@ class PageQueryCallback implements HibernateCallback {
 }
 
 /**
-*
-* 分页查询的回调类.
-*/
+ *
+ * 分页查询的回调类.
+ */
 class PageQueryCallbackForSQL implements HibernateCallback {
 	/**
 	 * Logger for this class
@@ -743,9 +714,9 @@ class PageQueryCallbackForSQL implements HibernateCallback {
 		if (null != values) {
 			for (int i = 0; i < values.length; i++) {
 				if (logger.isDebugEnabled()) {
-					logger.debug("i="+i);
-					logger.debug("values[i]="+values[i]);
-					logger.debug("types[i]="+types[i]);
+					logger.debug("i=" + i);
+					logger.debug("values[i]=" + values[i]);
+					logger.debug("types[i]=" + types[i]);
 				}
 				if (types != null) {
 					queryObject.setParameter(i, values[i], types[i]);
@@ -803,9 +774,6 @@ class PageQueryCallbackForSQL implements HibernateCallback {
 	}
 }
 
-
-
-
 /**
  *
  * 范围查询的回调类.
@@ -827,17 +795,16 @@ class RangeQueryCallback implements HibernateCallback {
 			logger.debug("doInHibernate(Session) - start"); //$NON-NLS-1$
 		}
 
-		Query queryObject = session
-				.createQuery(queryCondition.getQueryString());
+		Query queryObject = session.createQuery(queryCondition.getQueryString());
 		Object[] values = queryCondition.getObjArray();
 		Type[] types = queryCondition.getTypeArray();
 
 		if (null != values) {
 			for (int i = 0; i < values.length; i++) {
 				if (logger.isDebugEnabled()) {
-					logger.debug("i="+i);
-					logger.debug("values[i]="+values[i]);
-					logger.debug("types[i]="+types[i]);
+					logger.debug("i=" + i);
+					logger.debug("values[i]=" + values[i]);
+					logger.debug("types[i]=" + types[i]);
 				}
 				if (types != null) {
 					queryObject.setParameter(i, values[i], types[i]);

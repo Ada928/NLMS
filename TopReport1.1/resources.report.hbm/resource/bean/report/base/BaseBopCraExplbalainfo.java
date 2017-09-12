@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the BOP_CRA_EXPLBALAINFO table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * This is an object that contains data related to the BOP_CRA_EXPLBALAINFO
+ * table. Do not modify this class because it will be overwritten if the
+ * configuration file related to this class is modified.
  *
- * @hibernate.class
- *  table="BOP_CRA_EXPLBALAINFO"
+ * @hibernate.class table="BOP_CRA_EXPLBALAINFO"
  */
 
-public abstract class BaseBopCraExplbalainfo  implements Serializable {
+public abstract class BaseBopCraExplbalainfo implements Serializable {
 
 	public static String REF = "BopCfaExplbalainfo";
 	public static String PROP_EXPLPERAMOUNT = "explperamount";
@@ -24,25 +22,22 @@ public abstract class BaseBopCraExplbalainfo  implements Serializable {
 	public static String PROP_REC_ID = "recId";
 	public static String PROP_EXPLBALAINFO_ID = "explbalainfoId";
 
-
 	// constructors
-	public BaseBopCraExplbalainfo () {
+	public BaseBopCraExplbalainfo() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public BaseBopCraExplbalainfo (
-		java.lang.String explbalainfoId) {
+	public BaseBopCraExplbalainfo(java.lang.String explbalainfoId) {
 
 		this.setExplbalainfoId(explbalainfoId);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	// fields
 	private java.lang.String explbalainfoId;
@@ -54,154 +49,144 @@ public abstract class BaseBopCraExplbalainfo  implements Serializable {
 	private java.util.Date crtTm;
 	private java.lang.String recId;
 
-
-
-
-
-
 	/**
 	 * Return the value associated with the column: EXPLBALAINFO_ID
 	 */
-	public java.lang.String getExplbalainfoId () {
+	public java.lang.String getExplbalainfoId() {
 		return explbalainfoId;
 	}
 
 	/**
 	 * Set the value related to the column: EXPLBALAINFO_ID
-	 * @param explbalainfoId the EXPLBALAINFO_ID value
+	 * 
+	 * @param explbalainfoId
+	 *            the EXPLBALAINFO_ID value
 	 */
-	public void setExplbalainfoId (java.lang.String explbalainfoId) {
+	public void setExplbalainfoId(java.lang.String explbalainfoId) {
 		this.explbalainfoId = explbalainfoId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EXPLCURR
 	 */
-	public java.lang.String getExplcurr () {
+	public java.lang.String getExplcurr() {
 		return explcurr;
 	}
 
 	/**
 	 * Set the value related to the column: EXPLCURR
-	 * @param explcurr the EXPLCURR value
+	 * 
+	 * @param explcurr
+	 *            the EXPLCURR value
 	 */
-	public void setExplcurr (java.lang.String explcurr) {
+	public void setExplcurr(java.lang.String explcurr) {
 		this.explcurr = explcurr;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EXPLAMOUNT
 	 */
-	public java.math.BigDecimal getExplamount () {
+	public java.math.BigDecimal getExplamount() {
 		return explamount;
 	}
 
 	/**
 	 * Set the value related to the column: EXPLAMOUNT
-	 * @param explamount the EXPLAMOUNT value
+	 * 
+	 * @param explamount
+	 *            the EXPLAMOUNT value
 	 */
-	public void setExplamount (java.math.BigDecimal explamount) {
+	public void setExplamount(java.math.BigDecimal explamount) {
 		this.explamount = explamount;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EXPLBALA
 	 */
-	public java.math.BigDecimal getExplbala () {
+	public java.math.BigDecimal getExplbala() {
 		return explbala;
 	}
 
 	/**
 	 * Set the value related to the column: EXPLBALA
-	 * @param explbala the EXPLBALA value
+	 * 
+	 * @param explbala
+	 *            the EXPLBALA value
 	 */
-	public void setExplbala (java.math.BigDecimal explbala) {
+	public void setExplbala(java.math.BigDecimal explbala) {
 		this.explbala = explbala;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EXPLPERAMOUNT
 	 */
-	public java.math.BigDecimal getExplperamount () {
+	public java.math.BigDecimal getExplperamount() {
 		return explperamount;
 	}
 
 	/**
 	 * Set the value related to the column: EXPLPERAMOUNT
-	 * @param explperamount the EXPLPERAMOUNT value
+	 * 
+	 * @param explperamount
+	 *            the EXPLPERAMOUNT value
 	 */
-	public void setExplperamount (java.math.BigDecimal explperamount) {
+	public void setExplperamount(java.math.BigDecimal explperamount) {
 		this.explperamount = explperamount;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PLCOSEAMOUNT
 	 */
-	public java.math.BigDecimal getPlcoseamount () {
+	public java.math.BigDecimal getPlcoseamount() {
 		return plcoseamount;
 	}
 
 	/**
 	 * Set the value related to the column: PLCOSEAMOUNT
-	 * @param plcoseamount the PLCOSEAMOUNT value
+	 * 
+	 * @param plcoseamount
+	 *            the PLCOSEAMOUNT value
 	 */
-	public void setPlcoseamount (java.math.BigDecimal plcoseamount) {
+	public void setPlcoseamount(java.math.BigDecimal plcoseamount) {
 		this.plcoseamount = plcoseamount;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CRT_TM
 	 */
-	public java.util.Date getCrtTm () {
+	public java.util.Date getCrtTm() {
 		return crtTm;
 	}
 
 	/**
 	 * Set the value related to the column: CRT_TM
-	 * @param crtTm the CRT_TM value
+	 * 
+	 * @param crtTm
+	 *            the CRT_TM value
 	 */
-	public void setCrtTm (java.util.Date crtTm) {
+	public void setCrtTm(java.util.Date crtTm) {
 		this.crtTm = crtTm;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: REC_ID
 	 */
-	public java.lang.String getRecId () {
+	public java.lang.String getRecId() {
 		return recId;
 	}
 
 	/**
 	 * Set the value related to the column: REC_ID
-	 * @param recId the REC_ID value
+	 * 
+	 * @param recId
+	 *            the REC_ID value
 	 */
-	public void setRecId (java.lang.String recId) {
+	public void setRecId(java.lang.String recId) {
 		this.recId = recId;
 	}
 
-
-
-
-
-
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

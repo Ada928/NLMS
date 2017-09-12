@@ -14,27 +14,27 @@ public class BaseBiAreaOfChina implements Serializable {
 
 	public static String PROP_ST = "st";
 	public static String PROP_LOCK = "lock";
-	public static String PROP_DEL ="del";
+	public static String PROP_DEL = "del";
 
 	public static String PROP_CRT_DT = "crtDt";
 	public static String PROP_LAST_UPD_TMS = "lastUpdTms";
 	public static String PROP_LAST_UPD_OPER = "lastUpdOper";
 
 	// constructors
-	public BaseBiAreaOfChina () {
+	public BaseBiAreaOfChina() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseBiAreaOfChina (java.lang.String areacode) {
+	public BaseBiAreaOfChina(java.lang.String areacode) {
 		setAreacode(areacode);
 		initialize();
 	}
 
-	protected void initialize () {}
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -54,8 +54,6 @@ public class BaseBiAreaOfChina implements Serializable {
 	private java.lang.String crtDt;
 	private java.lang.String lastUpdTms;
 	private java.lang.String lastUpdOper;
-
-
 
 	public java.lang.String getAreacode() {
 		return areacode;
@@ -145,20 +143,24 @@ public class BaseBiAreaOfChina implements Serializable {
 		this.lastUpdOper = lastUpdOper;
 	}
 
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.BiAreaOfChina)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.BiAreaOfChina))
+			return false;
 		else {
 			resource.bean.report.BiAreaOfChina biAreaOfChina = (resource.bean.report.BiAreaOfChina) obj;
-			if (null == this.getAreacode() || null == biAreaOfChina.getAreacode()) return false;
-			else return (this.getAreacode().equals(biAreaOfChina.getAreacode()));
+			if (null == this.getAreacode() || null == biAreaOfChina.getAreacode())
+				return false;
+			else
+				return (this.getAreacode().equals(biAreaOfChina.getAreacode()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getAreacode()) return super.hashCode();
+			if (null == this.getAreacode())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getAreacode().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -167,7 +169,7 @@ public class BaseBiAreaOfChina implements Serializable {
 		return this.hashCode;
 	}
 
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
 

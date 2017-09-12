@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,14 +6,14 @@
 <title>批量导入</title>
 </head>
 <style>
-body{
-	margin:0px auto;
-	text-align:center;
+body {
+	margin: 0px auto;
+	text-align: center;
 }
 </style>
 <body>
-	<br/>
-	<br/>
+	<br />
+	<br />
 	<form method="POST" enctype="multipart/form-data" id="postForm"
 		action="<%=request.getContextPath()%>/ExcelUploadServlet" target="_self">
 		<input type="file" name="filename"></input>

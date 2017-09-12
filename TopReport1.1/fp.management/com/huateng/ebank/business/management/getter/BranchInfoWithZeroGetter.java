@@ -1,12 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.common.DAOUtils;
@@ -17,6 +10,12 @@ import com.huateng.ebank.entity.data.mng.Bctl;
 import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import org.apache.commons.lang.StringUtils;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * @Title: BranchInfoWithZeroGetter.java
@@ -32,8 +31,7 @@ public class BranchInfoWithZeroGetter extends BaseGetter {
 	@Override
 	public Result call() throws AppException {
 		List list = new ArrayList();
-		String value = DataFormat.trim(getCommQueryServletRequest()
-				.getParameter("value"));
+		String value = DataFormat.trim(getCommQueryServletRequest().getParameter("value"));
 		if (StringUtils.isEmpty(value)) {
 			value = "";
 		}
@@ -46,10 +44,9 @@ public class BranchInfoWithZeroGetter extends BaseGetter {
 
 		StringBuffer hql = new StringBuffer();
 		// Modified by UU_Wu 2010-3-23 BMS-2547 end
-		if(!StringUtils.isEmpty(value)){
-			hql.append("from Bctl po where  po.brno like '" + value
-				+ "' or po.brname like '" + value + "'");
-		}else{
+		if (!StringUtils.isEmpty(value)) {
+			hql.append("from Bctl po where  po.brno like '" + value + "' or po.brname like '" + value + "'");
+		} else {
 			hql.append("from Bctl");
 		}
 
@@ -74,9 +71,7 @@ public class BranchInfoWithZeroGetter extends BaseGetter {
 				Bctl branchInfo = new Bctl();
 				branchInfo.setBrcode(String.valueOf(-1 * Integer.parseInt(brhId)));
 				if (brhName.indexOf("-") != -1) {
-					branchInfo
-							.setBrname(brhName.substring(brhName.indexOf("-") + 1)
-									+ "级别");
+					branchInfo.setBrname(brhName.substring(brhName.indexOf("-") + 1) + "级别");
 				} else {
 					branchInfo.setBrname(brhName + "级别");
 				}
@@ -84,8 +79,7 @@ public class BranchInfoWithZeroGetter extends BaseGetter {
 			}
 		}
 
-		ResultMng.fillResultByList(getCommonQueryBean(),
-				getCommQueryServletRequest(), list, getResult());
+		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 		getResult().setContent(list);
 		getResult().getPage().setTotalPage(1);
 		getResult().init();

@@ -9,39 +9,27 @@ public class RelationCode extends BaseRelationCode {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
-	public RelationCode () {
+	public RelationCode() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public RelationCode (java.lang.String id) {
+	public RelationCode(java.lang.String id) {
 		super(id);
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public RelationCode (
-		java.lang.String id,
-		java.lang.String relationName,
-		java.lang.String cusType,
-		java.lang.String unique,
-		java.lang.String needCustno,
-		java.lang.String needMemorabilia) {
+	public RelationCode(java.lang.String id, java.lang.String relationName, java.lang.String cusType,
+			java.lang.String unique, java.lang.String needCustno, java.lang.String needMemorabilia) {
 
-		super (
-			id,
-			relationName,
-			cusType,
-			unique,
-			needCustno,
-			needMemorabilia);
+		super(id, relationName, cusType, unique, needCustno, needMemorabilia);
 	}
 
 	/* [CONSTRUCTOR MARKER END] */
-
 
 	public String getIdTypeName() {
 		String id = DataFormat.trim(super.getId());

@@ -26,20 +26,16 @@ public class BopCfaStrdeEntryTerminateAddGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -61,8 +57,7 @@ public class BopCfaStrdeEntryTerminateAddGetter extends BaseGetter {
 			List<BopCfaStrdeDs> mtsBopCfaStrdeDsInfos = dao.queryByQL2List(hql);
 			for (BopCfaStrdeDs ds : mtsBopCfaStrdeDsInfos) {
 				String id = ds.getFiller1();
-				BopCfaStrdeDs collBopCfaStrdeDs = dao.query(
-						BopCfaStrdeDs.class, id);
+				BopCfaStrdeDs collBopCfaStrdeDs = dao.query(BopCfaStrdeDs.class, id);
 				if (collBopCfaStrdeDs != null) {
 					// strdecode branchcode clientcode clientname contractdate
 					// contract

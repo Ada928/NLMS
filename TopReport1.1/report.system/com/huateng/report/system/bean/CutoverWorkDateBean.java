@@ -2,18 +2,19 @@ package com.huateng.report.system.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+
 /**
  * 
  * @author shishu.zhang
- *	
- * 2012-8-15上午10:39:24
+ * 
+ *         2012-8-15上午10:39:24
  */
-public class CutoverWorkDateBean implements Serializable{
-	
+public class CutoverWorkDateBean implements Serializable {
+
 	private Date lastDate;
-	
+
 	private Date currentDate;
-	
+
 	private Date nextDate;
 
 	public Date getLastDate() {
@@ -39,5 +40,5 @@ public class CutoverWorkDateBean implements Serializable{
 	public void setNextDate(Date nextDate) {
 		this.nextDate = nextDate;
 	}
-	
+
 }

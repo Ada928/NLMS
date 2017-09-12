@@ -1,10 +1,5 @@
 package com.huateng.ebank.business.management.operation;
 
-import java.util.Iterator;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 import com.huateng.common.CommonFunction;
 import com.huateng.ebank.business.common.BaseDAOUtils;
 import com.huateng.ebank.business.common.GlobalInfo;
@@ -14,6 +9,10 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.util.DateUtil;
+import org.apache.log4j.Logger;
+
+import java.util.Iterator;
+import java.util.List;
 
 public class RelationCodeOperation extends BaseOperation {
 	public static final String CMD = "CMD";

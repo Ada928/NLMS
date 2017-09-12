@@ -71,8 +71,7 @@ public class BranchFuncRelDAO extends HibernateDaoSupport {
 		log.debug("finding BranchFuncRel instance by example");
 		try {
 			List results = getHibernateTemplate().findByExample(instance);
-			log.debug("find by example successful, result size: "
-					+ results.size());
+			log.debug("find by example successful, result size: " + results.size());
 			return results;
 		} catch (RuntimeException re) {
 			log.error("find by example failed", re);
@@ -81,11 +80,9 @@ public class BranchFuncRelDAO extends HibernateDaoSupport {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding BranchFuncRel instance with property: "
-				+ propertyName + ", value: " + value);
+		log.debug("finding BranchFuncRel instance with property: " + propertyName + ", value: " + value);
 		try {
-			String queryString = "from BranchFuncRel model where model."
-					+ propertyName + "= ?";
+			String queryString = "from BranchFuncRel model where model." + propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
@@ -115,8 +112,7 @@ public class BranchFuncRelDAO extends HibernateDaoSupport {
 	public BranchFuncRel merge(BranchFuncRel detachedInstance) {
 		log.debug("merging BranchFuncRel instance");
 		try {
-			BranchFuncRel result = (BranchFuncRel) getHibernateTemplate()
-					.merge(detachedInstance);
+			BranchFuncRel result = (BranchFuncRel) getHibernateTemplate().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -147,8 +143,7 @@ public class BranchFuncRelDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public static BranchFuncRelDAO getFromApplicationContext(
-			ApplicationContext ctx) {
+	public static BranchFuncRelDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (BranchFuncRelDAO) ctx.getBean("BranchFuncRelDAO");
 	}
 }

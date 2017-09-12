@@ -1,8 +1,9 @@
 package com.huateng.report.imports.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ReportFeedBackBean {
+public class ReportFeedBackBean implements Serializable {
 	private String busiType;
 	private String appType;
 	private String packName;
@@ -10,10 +11,10 @@ public class ReportFeedBackBean {
 	private Date feedBackDate;// 上报时间
 	private String feedBackMsg;// 回执信息
 	private int fileCount;// 上报文件数
-	private String isSub;//是否已上报
-	private Date crtDate;//生成时间
-	private String subType;//上报方式
-	private String workDate;//工作日期
+	private String isSub;// 是否已上报
+	private Date crtDate;// 生成时间
+	private String subType;// 上报方式
+	private String workDate;// 工作日期
 
 	public String getWorkDate() {
 		return workDate;
@@ -108,8 +109,7 @@ public class ReportFeedBackBean {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReportFeedBackBean(String busiType, String appType, String packName, String isHashFeedBack,
-			Date feedBackDate, String feedBackMsg, int fileCount) {
+	public ReportFeedBackBean(String busiType, String appType, String packName, String isHashFeedBack, Date feedBackDate, String feedBackMsg, int fileCount) {
 		super();
 		this.busiType = busiType;
 		this.appType = appType;

@@ -18,7 +18,7 @@ import com.huateng.report.service.BopForDebtYinTuanService;
  *
  * @author shishu.zhang
  *
- * 2012-8-15上午10:54:59
+ *         2012-8-15上午10:54:59
  */
 public class BopForDebtFeiOrgSaveOverQueryGetter extends BaseGetter {
 
@@ -26,40 +26,38 @@ public class BopForDebtFeiOrgSaveOverQueryGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageQueryResult = getData();
-			
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-	
-	public PageQueryResult getData() throws IllegalAccessException, InvocationTargetException, AppException{
-		
+
+	public PageQueryResult getData() throws IllegalAccessException, InvocationTargetException, AppException {
+
 		this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "非居民机构存款余额信息查询");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		Map map = getCommQueryServletRequest().getParameterMap();
 		String qbrNo = (String) map.get("qbrNo");
-		String qworkDate = (String)map.get("qworkDate");
-		String eworkDate = (String)map.get("eworkDate");
+		String qworkDate = (String) map.get("qworkDate");
+		String eworkDate = (String) map.get("eworkDate");
 		String qactiontype = (String) map.get("qactiontype");
 		String qrecStatus = (String) map.get("qrecStatus");
 		String qapproveStatus = (String) map.get("qapproveStatus");
 		String qrepStatus = (String) map.get("qrepStatus");
 		String qFiller2 = (String) map.get("qFiller2");
 		BopForDebtYinTuanService debtYinTuanService = BopForDebtYinTuanService.getInstance();
-		return debtYinTuanService.queryFeiOrgSaveQuery("over", pageIndex, pageSize, qbrNo, qrecStatus, qactiontype, qapproveStatus, qrepStatus, qFiller2, qworkDate,eworkDate);
+		return debtYinTuanService.queryFeiOrgSaveQuery("over", pageIndex, pageSize, qbrNo, qrecStatus, qactiontype,
+				qapproveStatus, qrepStatus, qFiller2, qworkDate, eworkDate);
 	}
 }

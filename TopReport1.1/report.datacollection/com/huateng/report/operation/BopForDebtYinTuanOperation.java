@@ -25,7 +25,7 @@ public class BopForDebtYinTuanOperation extends BaseOperation {
 	public static final String OP_CHANGE_MOD = "OP_CHANGE_MOD";
 	public static final String OP_CHANGE_DEL = "OP_CHANGE_DEL";
 	public static final String IN_SIGNED_DEBTBEAN = "IN_SIGNED_DEBTBEAN";
-	public static final String IN_SIGNED_PRONEW="IN_SIGNED_PRONEW";
+	public static final String IN_SIGNED_PRONEW = "IN_SIGNED_PRONEW";
 	public static final String IN_SIGNED_PROMOD = "IN_SIGNED_PROMOD";
 	public static final String IN_SIGNED_PRODEL = "IN_SIGNED_PRODEL";
 	public static final String IN_SIGNED_CRENEW = "IN_SIGNED_CRENEW";
@@ -52,20 +52,20 @@ public class BopForDebtYinTuanOperation extends BaseOperation {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		String cmd = (String) context.getAttribute(CMD);
 		BopForDebtYinTuanService bopForDebtYinTuanService = BopForDebtYinTuanService.getInstance();
-		if(OP_SIGNED_AUDIT.equals(cmd)) {
+		if (OP_SIGNED_AUDIT.equals(cmd)) {
 			List<BopCfaExdebtDs> list = (List<BopCfaExdebtDs>) context.getAttribute(IN_AUDIT_LIST);
 			String approveStatusChoose = (String) context.getAttribute(IN_AUDIT_STATUS);
 			String approveResultChoose = (String) context.getAttribute(IN_AUDIT_RESULT);
 			bopForDebtYinTuanService.auditYinTuan(approveStatusChoose, approveResultChoose, list, OP_SIGNED_AUDIT);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款签约信息审核"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款签约信息审核"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款签约信息审核" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款签约信息审核" });
 		} else if (OP_CHANGE_AUDIT.equals(cmd)) {
 			List<BopCfaExdebtDs> list = (List<BopCfaExdebtDs>) context.getAttribute(IN_AUDIT_LIST);
 			String approveStatusChoose = (String) context.getAttribute(IN_AUDIT_STATUS);
 			String approveResultChoose = (String) context.getAttribute(IN_AUDIT_RESULT);
 			bopForDebtYinTuanService.auditYinTuan(approveStatusChoose, approveResultChoose, list, OP_CHANGE_AUDIT);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款变动信息审核"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款变动信息审核"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款变动信息审核" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款变动信息审核" });
 		} else {
 			BopCfaExdebtDs bopCfaExdebtDs = (BopCfaExdebtDs) context.getAttribute(IN_SIGNED_DEBTBEAN);
 			List<BopProjectInfo> proNewList = (List<BopProjectInfo>) context.getAttribute(IN_SIGNED_PRONEW);
@@ -80,25 +80,26 @@ public class BopForDebtYinTuanOperation extends BaseOperation {
 			bopCfaExdebtDs.setCreditors(checkCreditorList);
 			bopCfaExdebtDs.setProjects(checkProjectList);
 
-			bopForDebtYinTuanService.saveDebtYinTuan(cmd, bopCfaExdebtDs, proNewList, proModList, proDelList, creNewList, creModList, creDelList);
+			bopForDebtYinTuanService.saveDebtYinTuan(cmd, bopCfaExdebtDs, proNewList, proModList, proDelList,
+					creNewList, creModList, creDelList);
 			if (OP_SIGNED_NEW.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款签约信息新增"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款签约信息新增"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款签约信息新增" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款签约信息新增" });
 			} else if (OP_SIGNED_MOD.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款签约信息修改"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款签约信息修改"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款签约信息修改" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款签约信息修改" });
 			} else if (OP_SIGNED_DEL.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款签约信息删除"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款签约信息删除"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款签约信息删除" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款签约信息删除" });
 			} else if (OP_CHANGE_NEW.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款变动信息新增"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款变动信息新增"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款变动信息新增" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款变动信息新增" });
 			} else if (OP_CHANGE_MOD.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款变动信息修改"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款变动信息修改"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款变动信息修改" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款变动信息修改" });
 			} else if (OP_CHANGE_DEL.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款变动信息删除"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"银团贷款变动信息删除"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款变动信息删除" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "银团贷款变动信息删除" });
 			}
 		}
 	}

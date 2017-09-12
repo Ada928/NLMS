@@ -14,6 +14,5 @@ public interface IGenBopBusinessNo {
 	public static final String FILE_TYPE = "FILE_TYPE";
 	public static final String CUS_TYPE = "CUS_TYPE";
 
-
 	public void updateBopBusiNo(Map<String, Object> paramMap) throws CommonException;
 }

@@ -1,8 +1,5 @@
 package com.huateng.ebank.business.opermng.update;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -17,6 +14,9 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author zhiguo.zhao

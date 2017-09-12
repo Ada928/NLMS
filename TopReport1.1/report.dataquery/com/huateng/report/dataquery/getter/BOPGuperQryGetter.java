@@ -35,22 +35,17 @@ public class BOPGuperQryGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
-			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME,
-					"对外担保履约明细信息数据查询页面查询");
+			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "对外担保履约明细信息数据查询页面查询");
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -67,21 +62,15 @@ public class BOPGuperQryGetter extends BaseGetter {
 
 		String hql = "select bds from BopCfaExguDs bds where 1=1 ";
 
-		String qWorkDateStart = getCommQueryServletRequest().getParameter(
-				"qWorkDateStart");
-		String qWorkDateEnd = getCommQueryServletRequest().getParameter(
-				"qWorkDateEnd");
-		String qActiontype = getCommQueryServletRequest().getParameter(
-				"qActiontype");
+		String qWorkDateStart = getCommQueryServletRequest().getParameter("qWorkDateStart");
+		String qWorkDateEnd = getCommQueryServletRequest().getParameter("qWorkDateEnd");
+		String qActiontype = getCommQueryServletRequest().getParameter("qActiontype");
 		String qBrNo = getCommQueryServletRequest().getParameter("qBrNo");
 
-		String qRecStatus = getCommQueryServletRequest().getParameter(
-				"qRecStatus");
-		String qApproveStatus = getCommQueryServletRequest().getParameter(
-				"qApproveStatus");
+		String qRecStatus = getCommQueryServletRequest().getParameter("qRecStatus");
+		String qApproveStatus = getCommQueryServletRequest().getParameter("qApproveStatus");
 
-		String qRepStatus = getCommQueryServletRequest().getParameter(
-				"qRepStatus");
+		String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
 		String qFiller2 = getCommQueryServletRequest().getParameter("qFiller2");
 
 		if (StringUtils.isNotBlank(qWorkDateStart)) {
@@ -109,10 +98,8 @@ public class BOPGuperQryGetter extends BaseGetter {
 			hql += " and bds.brNo ='" + qBrNo + "'";
 		}
 
-		hql += " and bds.apptype='" + TopReportConstants.REPORT_APP_TYPE_CFA
-				+ "'";
-		hql += " and bds.currentfile='"
-				+ TopReportConstants.REPORT_FILE_TYPE_CFA_BC + "'";
+		hql += " and bds.apptype='" + TopReportConstants.REPORT_APP_TYPE_CFA + "'";
+		hql += " and bds.currentfile='" + TopReportConstants.REPORT_FILE_TYPE_CFA_BC + "'";
 
 		hql += " order by bds.workDate,bds.approveStatus,bds.actiontype desc";
 		queryCondition.setQueryString(hql);
@@ -120,14 +107,15 @@ public class BOPGuperQryGetter extends BaseGetter {
 		queryCondition.setPageSize(pageSize);
 		pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 		List resultList = pageQueryResult.getQueryResult();
-		for(int i=0; i<resultList.size(); i++){
+		for (int i = 0; i < resultList.size(); i++) {
 			Object[] obs = (Object[]) resultList.get(i);
-			BopCfaExguDs bopCfaExguDs =(BopCfaExguDs)obs[0];
+			BopCfaExguDs bopCfaExguDs = (BopCfaExguDs) obs[0];
 			List<BopExguTorDs> exguTorList = new ArrayList<BopExguTorDs>();
-		    exguTorList = rootdao.queryByQL2List(" from BopExguTorDs model where model.recId='"+bopCfaExguDs.getId().trim()+"' and torType = '01'");
+			exguTorList = rootdao.queryByQL2List(" from BopExguTorDs model where model.recId='"
+					+ bopCfaExguDs.getId().trim() + "' and torType = '01'");
 			bopCfaExguDs.setBename(exguTorList.get(0).getTorName());
 			bopCfaExguDs.setBencode(exguTorList.get(0).getTorCode());
-			bopCfaExguDs.setBenamen(exguTorList.get(0).getTorEnname());			
+			bopCfaExguDs.setBenamen(exguTorList.get(0).getTorEnname());
 		}
 		return pageQueryResult;
 	}

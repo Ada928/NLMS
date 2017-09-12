@@ -2,17 +2,15 @@ package resource.bean.pub.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the TLR_INFO table.
- * Do not modify this class because it will be overwritten if the configuration file
+ * This is an object that contains data related to the TLR_INFO table. Do not
+ * modify this class because it will be overwritten if the configuration file
  * related to this class is modified.
  *
- * @hibernate.class
- *  table="TLR_INFO"
+ * @hibernate.class table="TLR_INFO"
  */
 
-public abstract class BaseTlrInfo  implements Serializable {
+public abstract class BaseTlrInfo implements Serializable, Comparable {
 
 	public static String REF = "TlrInfo";
 	public static String PROP_STATUS = "status";
@@ -46,24 +44,23 @@ public abstract class BaseTlrInfo  implements Serializable {
 	public static String PROP_TOTPSWDERRCNT = "totpswderrcnt";
 	public static String PROP_MSRNO = "msrno";
 	public static String PROP_LAST_UPD_OPER_ID = "lastUpdOperId";
-
+	public static String PROP_IS_DEL = "isDel";
 
 	// constructors
-	public BaseTlrInfo () {
+	public BaseTlrInfo() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseTlrInfo (java.lang.String tlrno) {
+	public BaseTlrInfo(java.lang.String tlrno) {
 		this.setTlrno(tlrno);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -73,588 +70,609 @@ public abstract class BaseTlrInfo  implements Serializable {
 	// fields
 	private java.lang.String extTlrno;
 	private java.lang.String tlrName;
-	private java.lang.String tlrType;
-	private java.lang.String agentType;
 	private java.lang.String brcode;
 	private java.lang.String password;
 	private java.lang.String status;
-	private java.lang.String chekDpwdFlg;
+	private java.lang.String loginIp;
+	private java.util.Date pswderrdate;
 	private java.util.Date lastaccesstm;
+	private java.util.Date lastlogouttm;
+	private java.lang.String flag;
+	private java.lang.String sessionId;
+	private java.util.Date lastUpdTms;
+	private java.lang.String lastUpdOper;
+	private java.lang.String lock;
+	private java.lang.String del;
+	private java.lang.String lastUpdOperId;
+	private java.util.Date effectDate;
+	private java.util.Date expireDate;
+	private java.util.Date createDate;
+	private java.util.Date lastUpdTime;
+
+	private java.lang.String tlrType;
+	private java.lang.String agentType;
+	private java.lang.String chekDpwdFlg;
 	private java.lang.Integer roleid;
 	private java.lang.Integer pswderrcnt;
 	private java.lang.Integer totpswderrcnt;
-	private java.lang.String pswderrdate;
-	private java.util.Date lastlogouttm;
-	private java.lang.String loginIp;
 	private java.lang.String passwdenc;
 	private java.lang.Integer failmaxlogin;
 	private java.lang.Integer passwdchginterval;
 	private java.lang.Integer passwdwarninterval;
-	private java.lang.String sessionId;
 	private java.lang.Integer msrno;
-	private java.lang.String flag;
-	private java.util.Date createDate;
-	private java.lang.String lastUpdOperId;
-	private java.util.Date lastUpdTime;
-	private java.util.Date effectDate;
-	private java.util.Date expireDate;
 	private java.lang.String email;
 	private java.lang.String misc;
 	private java.lang.String idNumber;
-	/** add by zhiyang.he 修改锁定状态 2012-09-6 begin*/
+	/** add by zhiyang.he 修改锁定状态 2012-09-6 begin */
 	private java.lang.String isLockModify;
 	private java.lang.String st;
-	private java.lang.String crtDt;
-	private java.lang.String lastUpdTms;
-	private java.lang.String lastUpdOper;
-	/** add by zhiyang.he 修改锁定状态 2012-09-6 end*/
+
+	/** add by zhiyang.he 修改锁定状态 2012-09-6 end */
 
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="assigned"
-     *  column="TLRNO"
-     */
-	public java.lang.String getTlrno () {
+	 * 
+	 * @hibernate.id generator-class="assigned" column="TLRNO"
+	 */
+	public java.lang.String getTlrno() {
 		return tlrno;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param tlrno the new ID
+	 * 
+	 * @param tlrno
+	 *            the new ID
 	 */
-	public void setTlrno (java.lang.String tlrno) {
+	public void setTlrno(java.lang.String tlrno) {
 		this.tlrno = tlrno;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: EXT_TLRNO
 	 */
-	public java.lang.String getExtTlrno () {
+	public java.lang.String getExtTlrno() {
 		return extTlrno;
 	}
 
 	/**
 	 * Set the value related to the column: EXT_TLRNO
-	 * @param extTlrno the EXT_TLRNO value
+	 * 
+	 * @param extTlrno
+	 *            the EXT_TLRNO value
 	 */
-	public void setExtTlrno (java.lang.String extTlrno) {
+	public void setExtTlrno(java.lang.String extTlrno) {
 		this.extTlrno = extTlrno;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TLR_NAME
 	 */
-	public java.lang.String getTlrName () {
+	public java.lang.String getTlrName() {
 		return tlrName;
 	}
 
 	/**
 	 * Set the value related to the column: TLR_NAME
-	 * @param tlrName the TLR_NAME value
+	 * 
+	 * @param tlrName
+	 *            the TLR_NAME value
 	 */
-	public void setTlrName (java.lang.String tlrName) {
+	public void setTlrName(java.lang.String tlrName) {
 		this.tlrName = tlrName;
 	}
 
+	public java.lang.String getLock() {
+		return lock;
+	}
 
+	public void setLock(java.lang.String lock) {
+		this.lock = lock;
+	}
+
+	public java.lang.String getDel() {
+		return del;
+	}
+
+	public void setDel(java.lang.String del) {
+		this.del = del;
+	}
 
 	/**
 	 * Return the value associated with the column: TLR_TYPE
 	 */
-	public java.lang.String getTlrType () {
+	public java.lang.String getTlrType() {
 		return tlrType;
 	}
 
 	/**
 	 * Set the value related to the column: TLR_TYPE
-	 * @param tlrType the TLR_TYPE value
+	 * 
+	 * @param tlrType
+	 *            the TLR_TYPE value
 	 */
-	public void setTlrType (java.lang.String tlrType) {
+	public void setTlrType(java.lang.String tlrType) {
 		this.tlrType = tlrType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: AGENT_TYPE
 	 */
-	public java.lang.String getAgentType () {
+	public java.lang.String getAgentType() {
 		return agentType;
 	}
 
 	/**
 	 * Set the value related to the column: AGENT_TYPE
-	 * @param agentType the AGENT_TYPE value
+	 * 
+	 * @param agentType
+	 *            the AGENT_TYPE value
 	 */
-	public void setAgentType (java.lang.String agentType) {
+	public void setAgentType(java.lang.String agentType) {
 		this.agentType = agentType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BRCODE
 	 */
-	public java.lang.String getBrcode () {
+	public java.lang.String getBrcode() {
 		return brcode;
 	}
 
 	/**
 	 * Set the value related to the column: BRCODE
-	 * @param brcode the BRCODE value
+	 * 
+	 * @param brcode
+	 *            the BRCODE value
 	 */
-	public void setBrcode (java.lang.String brcode) {
+	public void setBrcode(java.lang.String brcode) {
 		this.brcode = brcode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PASSWORD
 	 */
-	public java.lang.String getPassword () {
+	public java.lang.String getPassword() {
 		return password;
 	}
 
 	/**
 	 * Set the value related to the column: PASSWORD
-	 * @param password the PASSWORD value
+	 * 
+	 * @param password
+	 *            the PASSWORD value
 	 */
-	public void setPassword (java.lang.String password) {
+	public void setPassword(java.lang.String password) {
 		this.password = password;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: STATUS
 	 */
-	public java.lang.String getStatus () {
+	public java.lang.String getStatus() {
 		return status;
 	}
 
 	/**
 	 * Set the value related to the column: STATUS
-	 * @param status the STATUS value
+	 * 
+	 * @param status
+	 *            the STATUS value
 	 */
-	public void setStatus (java.lang.String status) {
+	public void setStatus(java.lang.String status) {
 		this.status = status;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CHEK_DPWD_FLG
 	 */
-	public java.lang.String getChekDpwdFlg () {
+	public java.lang.String getChekDpwdFlg() {
 		return chekDpwdFlg;
 	}
 
 	/**
 	 * Set the value related to the column: CHEK_DPWD_FLG
-	 * @param chekDpwdFlg the CHEK_DPWD_FLG value
+	 * 
+	 * @param chekDpwdFlg
+	 *            the CHEK_DPWD_FLG value
 	 */
-	public void setChekDpwdFlg (java.lang.String chekDpwdFlg) {
+	public void setChekDpwdFlg(java.lang.String chekDpwdFlg) {
 		this.chekDpwdFlg = chekDpwdFlg;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LASTACCESSTM
 	 */
-	public java.util.Date getLastaccesstm () {
+	public java.util.Date getLastaccesstm() {
 		return lastaccesstm;
 	}
 
 	/**
 	 * Set the value related to the column: LASTACCESSTM
-	 * @param lastaccesstm the LASTACCESSTM value
+	 * 
+	 * @param lastaccesstm
+	 *            the LASTACCESSTM value
 	 */
-	public void setLastaccesstm (java.util.Date lastaccesstm) {
+	public void setLastaccesstm(java.util.Date lastaccesstm) {
 		this.lastaccesstm = lastaccesstm;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ROLEID
 	 */
-	public java.lang.Integer getRoleid () {
+	public java.lang.Integer getRoleid() {
 		return roleid;
 	}
 
 	/**
 	 * Set the value related to the column: ROLEID
-	 * @param roleid the ROLEID value
+	 * 
+	 * @param roleid
+	 *            the ROLEID value
 	 */
-	public void setRoleid (java.lang.Integer roleid) {
+	public void setRoleid(java.lang.Integer roleid) {
 		this.roleid = roleid;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PSWDERRCNT
 	 */
-	public java.lang.Integer getPswderrcnt () {
+	public java.lang.Integer getPswderrcnt() {
 		return pswderrcnt;
 	}
 
 	/**
 	 * Set the value related to the column: PSWDERRCNT
-	 * @param pswderrcnt the PSWDERRCNT value
+	 * 
+	 * @param pswderrcnt
+	 *            the PSWDERRCNT value
 	 */
-	public void setPswderrcnt (java.lang.Integer pswderrcnt) {
+	public void setPswderrcnt(java.lang.Integer pswderrcnt) {
 		this.pswderrcnt = pswderrcnt;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TOTPSWDERRCNT
 	 */
-	public java.lang.Integer getTotpswderrcnt () {
+	public java.lang.Integer getTotpswderrcnt() {
 		return totpswderrcnt;
 	}
 
 	/**
 	 * Set the value related to the column: TOTPSWDERRCNT
-	 * @param totpswderrcnt the TOTPSWDERRCNT value
+	 * 
+	 * @param totpswderrcnt
+	 *            the TOTPSWDERRCNT value
 	 */
-	public void setTotpswderrcnt (java.lang.Integer totpswderrcnt) {
+	public void setTotpswderrcnt(java.lang.Integer totpswderrcnt) {
 		this.totpswderrcnt = totpswderrcnt;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PSWDERRDATE
 	 */
-	public java.lang.String getPswderrdate () {
+	public java.util.Date getPswderrdate() {
 		return pswderrdate;
 	}
 
 	/**
 	 * Set the value related to the column: PSWDERRDATE
-	 * @param pswderrdate the PSWDERRDATE value
+	 * 
+	 * @param pswderrdate
+	 *            the PSWDERRDATE value
 	 */
-	public void setPswderrdate (java.lang.String pswderrdate) {
+	public void setPswderrdate(java.util.Date pswderrdate) {
 		this.pswderrdate = pswderrdate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LASTLOGOUTTM
 	 */
-	public java.util.Date getLastlogouttm () {
+	public java.util.Date getLastlogouttm() {
 		return lastlogouttm;
 	}
 
 	/**
 	 * Set the value related to the column: LASTLOGOUTTM
-	 * @param lastlogouttm the LASTLOGOUTTM value
+	 * 
+	 * @param lastlogouttm
+	 *            the LASTLOGOUTTM value
 	 */
-	public void setLastlogouttm (java.util.Date lastlogouttm) {
+	public void setLastlogouttm(java.util.Date lastlogouttm) {
 		this.lastlogouttm = lastlogouttm;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LOGIN_IP
 	 */
-	public java.lang.String getLoginIp () {
+	public java.lang.String getLoginIp() {
 		return loginIp;
 	}
 
 	/**
 	 * Set the value related to the column: LOGIN_IP
-	 * @param loginIp the LOGIN_IP value
+	 * 
+	 * @param loginIp
+	 *            the LOGIN_IP value
 	 */
-	public void setLoginIp (java.lang.String loginIp) {
+	public void setLoginIp(java.lang.String loginIp) {
 		this.loginIp = loginIp;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PASSWDENC
 	 */
-	public java.lang.String getPasswdenc () {
+	public java.lang.String getPasswdenc() {
 		return passwdenc;
 	}
 
 	/**
 	 * Set the value related to the column: PASSWDENC
-	 * @param passwdenc the PASSWDENC value
+	 * 
+	 * @param passwdenc
+	 *            the PASSWDENC value
 	 */
-	public void setPasswdenc (java.lang.String passwdenc) {
+	public void setPasswdenc(java.lang.String passwdenc) {
 		this.passwdenc = passwdenc;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FAILMAXLOGIN
 	 */
-	public java.lang.Integer getFailmaxlogin () {
+	public java.lang.Integer getFailmaxlogin() {
 		return failmaxlogin;
 	}
 
 	/**
 	 * Set the value related to the column: FAILMAXLOGIN
-	 * @param failmaxlogin the FAILMAXLOGIN value
+	 * 
+	 * @param failmaxlogin
+	 *            the FAILMAXLOGIN value
 	 */
-	public void setFailmaxlogin (java.lang.Integer failmaxlogin) {
+	public void setFailmaxlogin(java.lang.Integer failmaxlogin) {
 		this.failmaxlogin = failmaxlogin;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PASSWDCHGINTERVAL
 	 */
-	public java.lang.Integer getPasswdchginterval () {
+	public java.lang.Integer getPasswdchginterval() {
 		return passwdchginterval;
 	}
 
 	/**
 	 * Set the value related to the column: PASSWDCHGINTERVAL
-	 * @param passwdchginterval the PASSWDCHGINTERVAL value
+	 * 
+	 * @param passwdchginterval
+	 *            the PASSWDCHGINTERVAL value
 	 */
-	public void setPasswdchginterval (java.lang.Integer passwdchginterval) {
+	public void setPasswdchginterval(java.lang.Integer passwdchginterval) {
 		this.passwdchginterval = passwdchginterval;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PASSWDWARNINTERVAL
 	 */
-	public java.lang.Integer getPasswdwarninterval () {
+	public java.lang.Integer getPasswdwarninterval() {
 		return passwdwarninterval;
 	}
 
 	/**
 	 * Set the value related to the column: PASSWDWARNINTERVAL
-	 * @param passwdwarninterval the PASSWDWARNINTERVAL value
+	 * 
+	 * @param passwdwarninterval
+	 *            the PASSWDWARNINTERVAL value
 	 */
-	public void setPasswdwarninterval (java.lang.Integer passwdwarninterval) {
+	public void setPasswdwarninterval(java.lang.Integer passwdwarninterval) {
 		this.passwdwarninterval = passwdwarninterval;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: SESSION_ID
 	 */
-	public java.lang.String getSessionId () {
+	public java.lang.String getSessionId() {
 		return sessionId;
 	}
 
 	/**
 	 * Set the value related to the column: SESSION_ID
-	 * @param sessionId the SESSION_ID value
+	 * 
+	 * @param sessionId
+	 *            the SESSION_ID value
 	 */
-	public void setSessionId (java.lang.String sessionId) {
+	public void setSessionId(java.lang.String sessionId) {
 		this.sessionId = sessionId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MSRNO
 	 */
-	public java.lang.Integer getMsrno () {
+	public java.lang.Integer getMsrno() {
 		return msrno;
 	}
 
 	/**
 	 * Set the value related to the column: MSRNO
-	 * @param msrno the MSRNO value
+	 * 
+	 * @param msrno
+	 *            the MSRNO value
 	 */
-	public void setMsrno (java.lang.Integer msrno) {
+	public void setMsrno(java.lang.Integer msrno) {
 		this.msrno = msrno;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FLAG
 	 */
-	public java.lang.String getFlag () {
+	public java.lang.String getFlag() {
 		return flag;
 	}
 
 	/**
 	 * Set the value related to the column: FLAG
-	 * @param flag the FLAG value
+	 * 
+	 * @param flag
+	 *            the FLAG value
 	 */
-	public void setFlag (java.lang.String flag) {
+	public void setFlag(java.lang.String flag) {
 		this.flag = flag;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CREATE_DATE
 	 */
-	public java.util.Date getCreateDate () {
+	public java.util.Date getCreateDate() {
 		return createDate;
 	}
 
 	/**
 	 * Set the value related to the column: CREATE_DATE
-	 * @param createDate the CREATE_DATE value
+	 * 
+	 * @param createDate
+	 *            the CREATE_DATE value
 	 */
-	public void setCreateDate (java.util.Date createDate) {
+	public void setCreateDate(java.util.Date createDate) {
 		this.createDate = createDate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LAST_UPD_OPER_ID
 	 */
-	public java.lang.String getLastUpdOperId () {
+	public java.lang.String getLastUpdOperId() {
 		return lastUpdOperId;
 	}
 
 	/**
 	 * Set the value related to the column: LAST_UPD_OPER_ID
-	 * @param lastUpdOperId the LAST_UPD_OPER_ID value
+	 * 
+	 * @param lastUpdOperId
+	 *            the LAST_UPD_OPER_ID value
 	 */
-	public void setLastUpdOperId (java.lang.String lastUpdOperId) {
+	public void setLastUpdOperId(java.lang.String lastUpdOperId) {
 		this.lastUpdOperId = lastUpdOperId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LAST_UPD_TIME
 	 */
-	public java.util.Date getLastUpdTime () {
+	public java.util.Date getLastUpdTime() {
 		return lastUpdTime;
 	}
 
 	/**
 	 * Set the value related to the column: LAST_UPD_TIME
-	 * @param lastUpdTime the LAST_UPD_TIME value
+	 * 
+	 * @param lastUpdTime
+	 *            the LAST_UPD_TIME value
 	 */
-	public void setLastUpdTime (java.util.Date lastUpdTime) {
+	public void setLastUpdTime(java.util.Date lastUpdTime) {
 		this.lastUpdTime = lastUpdTime;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EFFECT_DATE
 	 */
-	public java.util.Date getEffectDate () {
+	public java.util.Date getEffectDate() {
 		return effectDate;
 	}
 
 	/**
 	 * Set the value related to the column: EFFECT_DATE
-	 * @param effectDate the EFFECT_DATE value
+	 * 
+	 * @param effectDate
+	 *            the EFFECT_DATE value
 	 */
-	public void setEffectDate (java.util.Date effectDate) {
+	public void setEffectDate(java.util.Date effectDate) {
 		this.effectDate = effectDate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EXPIRE_DATE
 	 */
-	public java.util.Date getExpireDate () {
+	public java.util.Date getExpireDate() {
 		return expireDate;
 	}
 
 	/**
 	 * Set the value related to the column: EXPIRE_DATE
-	 * @param expireDate the EXPIRE_DATE value
+	 * 
+	 * @param expireDate
+	 *            the EXPIRE_DATE value
 	 */
-	public void setExpireDate (java.util.Date expireDate) {
+	public void setExpireDate(java.util.Date expireDate) {
 		this.expireDate = expireDate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EMAIL
 	 */
-	public java.lang.String getEmail () {
+	public java.lang.String getEmail() {
 		return email;
 	}
 
 	/**
 	 * Set the value related to the column: EMAIL
-	 * @param email the EMAIL value
+	 * 
+	 * @param email
+	 *            the EMAIL value
 	 */
-	public void setEmail (java.lang.String email) {
+	public void setEmail(java.lang.String email) {
 		this.email = email;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MISC
 	 */
-	public java.lang.String getMisc () {
+	public java.lang.String getMisc() {
 		return misc;
 	}
 
 	/**
 	 * Set the value related to the column: MISC
-	 * @param misc the MISC value
+	 * 
+	 * @param misc
+	 *            the MISC value
 	 */
-	public void setMisc (java.lang.String misc) {
+	public void setMisc(java.lang.String misc) {
 		this.misc = misc;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: IDNumber
 	 */
-	public java.lang.String getIdNumber () {
+	public java.lang.String getIdNumber() {
 		return idNumber;
 	}
 
 	/**
 	 * Set the value related to the column: IDNumber
-	 * @param idNumber the IDNumber value
+	 * 
+	 * @param idNumber
+	 *            the IDNumber value
 	 */
-	public void setIdNumber (java.lang.String idNumber) {
+	public void setIdNumber(java.lang.String idNumber) {
 		this.idNumber = idNumber;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.pub.TlrInfo)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.pub.TlrInfo))
+			return false;
 		else {
 			resource.bean.pub.TlrInfo tlrInfo = (resource.bean.pub.TlrInfo) obj;
-			if (null == this.getTlrno() || null == tlrInfo.getTlrno()) return false;
-			else return (this.getTlrno().equals(tlrInfo.getTlrno()));
+			if (null == this.getTlrno() || null == tlrInfo.getTlrno())
+				return false;
+			else
+				return (this.getTlrno().equals(tlrInfo.getTlrno()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getTlrno()) return super.hashCode();
+			if (null == this.getTlrno())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getTlrno().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -663,11 +681,21 @@ public abstract class BaseTlrInfo  implements Serializable {
 		return this.hashCode;
 	}
 
+	@Override
+	public int compareTo(Object o) {
 
-	public String toString () {
+		BaseTlrInfo tlro = (BaseTlrInfo) o;
+		Integer otherTlro = Integer.parseInt(tlro.getTlrno());
+		Integer thisTlrno = Integer.parseInt(this.tlrno);
+
+		return thisTlrno.compareTo(otherTlro);
+	}
+
+	public String toString() {
 		return super.toString();
 	}
-	/** add by zhiyang.he 修改锁定状态 2012-09-6 begin*/
+
+	/** add by zhiyang.he 修改锁定状态 2012-09-6 begin */
 	public java.lang.String getIsLockModify() {
 		return isLockModify;
 	}
@@ -675,6 +703,7 @@ public abstract class BaseTlrInfo  implements Serializable {
 	public void setIsLockModify(java.lang.String isLockModify) {
 		this.isLockModify = isLockModify;
 	}
+
 	public java.lang.String getSt() {
 		return st;
 	}
@@ -682,19 +711,12 @@ public abstract class BaseTlrInfo  implements Serializable {
 	public void setSt(java.lang.String st) {
 		this.st = st;
 	}
-	public java.lang.String getCrtDt() {
-		return crtDt;
-	}
 
-	public void setCrtDt(java.lang.String crtDt) {
-		this.crtDt = crtDt;
-	}
-
-	public java.lang.String getLastUpdTms() {
+	public java.util.Date getLastUpdTms() {
 		return lastUpdTms;
 	}
 
-	public void setLastUpdTms(java.lang.String lastUpdTms) {
+	public void setLastUpdTms(java.util.Date lastUpdTms) {
 		this.lastUpdTms = lastUpdTms;
 	}
 
@@ -705,6 +727,6 @@ public abstract class BaseTlrInfo  implements Serializable {
 	public void setLastUpdOper(java.lang.String lastUpdOper) {
 		this.lastUpdOper = lastUpdOper;
 	}
-	/** add by zhiyang.he 修改锁定状态 2012-09-6 end*/
+	/** add by zhiyang.he 修改锁定状态 2012-09-6 end */
 
 }

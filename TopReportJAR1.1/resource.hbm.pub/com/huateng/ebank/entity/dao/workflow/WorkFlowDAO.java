@@ -51,15 +51,13 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 * @return WIFlowInstance 流程实例类
 	 * @throws WIException
 	 */
-	public WIFlowInstance startFlow(String userName, String pwd,
-			List assignUserNmList, String flowName, String version,
+	public WIFlowInstance startFlow(String userName, String pwd, List assignUserNmList, String flowName, String version,
 			String status, Map attribute, String key) throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
-		WIFlowInstance wiFlowInstance = wiWorkflow.startFlow(userName, pwd,
-				assignUserNmList, flowName, version, status, attribute, key);
-//		session.flush();
+		WIFlowInstance wiFlowInstance = wiWorkflow.startFlow(userName, pwd, assignUserNmList, flowName, version, status,
+				attribute, key);
+		// session.flush();
 		try {
 			session.connection().commit();
 		} catch (HibernateException e) {
@@ -93,11 +91,9 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 *            执行任务留言(允许为NULL)
 	 * @throws WIException
 	 */
-	public WITask doTask(String userName, String password, String taskId,
-			List assignUserNameList, String status, Map valueMap, String comment)
-			throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+	public WITask doTask(String userName, String password, String taskId, List assignUserNameList, String status,
+			Map valueMap, String comment) throws WIException {
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
 		WITask wiTask = wiWorkflow.doTask(DataFormat.trim(userName), DataFormat.trim(password), DataFormat.trim(taskId),
 				assignUserNameList, DataFormat.trim(status), valueMap, DataFormat.trim(comment));
@@ -113,10 +109,8 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 *            新分配的用户
 	 * @throws WIException
 	 */
-	public void forwardTask(String taskId, String newUserName)
-			throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+	public void forwardTask(String taskId, String newUserName) throws WIException {
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
 		wiWorkflow.forwardTask(taskId, newUserName);
 	}
@@ -132,18 +126,17 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 *            给予任务用户名
 	 * @throws WIException
 	 */
-	public void forwardAllTask(String userName, String password,
-			String newUserName) throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+	public void forwardAllTask(String userName, String password, String newUserName) throws WIException {
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
 		wiWorkflow.forwardAllTask(userName, password, newUserName);
 	}
 
 	/** modified by jornezhang 20100805 begin */
+
 	/**
 	 * 修改代办任务查询，改成分页查询，可以通过Map传参数，进行分页查询
-	 * */
+	 */
 	/**
 	 * 列出用户所有的任务
 	 *
@@ -151,16 +144,18 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 *            用户名(允许为空，默认是所有用户）
 	 * @param password
 	 *            用户密码(允许为空，默认是所有用户）
-	 * @param pageIndex 当前页
-	 * @param pageSize 一页显示多少条记录
-	 * @param transMap 参数
+	 * @param pageIndex
+	 *            当前页
+	 * @param pageSize
+	 *            一页显示多少条记录
+	 * @param transMap
+	 *            参数
 	 * @return List<WITask>
 	 * @throws WIException
 	 */
-	public WIPageQueryResult getTaskList(String userName, String password, String taskState ,Integer pageIndex,Integer pageSize,Map transMap)
-			throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+	public WIPageQueryResult getTaskList(String userName, String password, String taskState, Integer pageIndex,
+			Integer pageSize, Map transMap) throws WIException {
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
 		return wiWorkflow.getTaskList(userName, password, taskState, pageIndex, pageSize, transMap);
 	}
@@ -179,31 +174,31 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 * @return List<WITask>
 	 * @throws WIException
 	 */
-	public WIPageQueryResult getTaskList(String userName, String password, String flowName,
-			String version, String taskState, Integer pageIndex,Integer pageSize,Map transMap) throws WIException {
-//		Session session = this.getHibernateTemplate().getSessionFactory()
-//				.getCurrentSession();
+	public WIPageQueryResult getTaskList(String userName, String password, String flowName, String version,
+			String taskState, Integer pageIndex, Integer pageSize, Map transMap) throws WIException {
+		// Session session = this.getHibernateTemplate().getSessionFactory()
+		// .getCurrentSession();
 		WIPageQueryResult taslList = new WIPageQueryResult();
 		Session session = null;
 		HQLDAO hqlDAO = DAOUtils.getHQLDAO();
-		try{
+		try {
 			session = hqlDAO.getSessionFactory().openSession();
 			WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
 
-			taslList = wiWorkflow.getTaskList(DataFormat.trim(userName), DataFormat.trim(password), DataFormat.trim(flowName), DataFormat.trim(version),
-					null, DataFormat.trim(taskState) , pageIndex, pageSize, transMap);
+			taslList = wiWorkflow.getTaskList(DataFormat.trim(userName), DataFormat.trim(password),
+					DataFormat.trim(flowName), DataFormat.trim(version), null, DataFormat.trim(taskState), pageIndex,
+					pageSize, transMap);
 		} catch (WIException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			throw e;
-		}
-		finally{
-			try{
-				if(session != null && session.isOpen()){
+		} finally {
+			try {
+				if (session != null && session.isOpen()) {
 					session.close();
 				}
-			}catch(Exception e){
-				logger.error("close session error",e);
+			} catch (Exception e) {
+				logger.error("close session error", e);
 			}
 		}
 		return taslList;
@@ -225,14 +220,12 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 * @return
 	 * @throws WIException
 	 */
-	public WIPageQueryResult getTaskList(String userName, String password, String flowName,
-			String version, String taskName, String taskState, Integer pageIndex,Integer pageSize,Map transMap)
-			throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+	public WIPageQueryResult getTaskList(String userName, String password, String flowName, String version,
+			String taskName, String taskState, Integer pageIndex, Integer pageSize, Map transMap) throws WIException {
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
-		return wiWorkflow.getTaskList(userName, password, flowName, version,
-				taskName, taskState, pageIndex, pageSize, transMap);
+		return wiWorkflow.getTaskList(userName, password, flowName, version, taskName, taskState, pageIndex, pageSize,
+				transMap);
 	}
 	/** modified by jornezhang 20100805 end */
 
@@ -252,13 +245,11 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 * @return List<WIFlowInstance>
 	 * @throws WIException
 	 */
-	public List getFlowInstanceList(String userName, String password,
-			String flowName, String version, String key) throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+	public List getFlowInstanceList(String userName, String password, String flowName, String version, String key)
+			throws WIException {
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
-		return wiWorkflow.getFlowInstanceList(userName, password, flowName,
-				version, key);
+		return wiWorkflow.getFlowInstanceList(userName, password, flowName, version, key);
 	}
 
 	/**
@@ -270,8 +261,7 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 * @throws WIException
 	 */
 	public WIFlowInstance getFlowInstance(String flowInsId) throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
 		return wiWorkflow.getFlowInstance(flowInsId);
 	}
@@ -284,8 +274,7 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 * @throws WIException
 	 */
 	public void closeFlowInstance(String flowInsId) throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
 		wiWorkflow.closeFlowInstance(flowInsId);
 	}
@@ -297,8 +286,7 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 * @throws WIException
 	 */
 	public Map getValue(String taskId) throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
 		return wiWorkflow.getValue(taskId);
 	}
@@ -313,8 +301,7 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 * @throws WIException
 	 */
 	public void setValue(String taskId, Map value) throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
 		wiWorkflow.setValue(taskId, value);
 	}
@@ -329,8 +316,7 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 * @throws WIException
 	 */
 	public void lockTask(String userName, String taskId) throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
 		wiWorkflow.lockTask(userName, taskId);
 	}
@@ -343,8 +329,7 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 * @return
 	 */
 	public void releaseTask(String taskId) throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
 		wiWorkflow.releaseTask(taskId);
 	}
@@ -359,11 +344,11 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 *                任务不存在
 	 */
 	public void keepTask(String taskId) throws WIException {
-		Session session = this.getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
 		wiWorkflow.keepTask(taskId);
 	}
+
 	/**
 	 * 获取任务信息
 	 *
@@ -373,11 +358,10 @@ public class WorkFlowDAO extends HibernateDaoSupport {
 	 * @exception WIException
 	 *                任务不存在
 	 */
-	public WITask getTask(String taskId)throws WIException{
+	public WITask getTask(String taskId) throws WIException {
 		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		WIWorkflow wiWorkflow = WIWorkflowFactory.getInstance(session);
 		return wiWorkflow.getTask(taskId);
 	}
-
 
 }

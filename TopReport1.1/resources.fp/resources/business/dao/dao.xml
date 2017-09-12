@@ -13,14 +13,18 @@
 			<ref bean="mySessionFactory" />
 		</property>
 	</bean>
+	<bean id="BlackListDAO" class="resource.blacklist.dao.BlackListDAO">
+		<property name="sessionFactory">
+			<ref bean="mySessionFactory" />
+		</property>
+	</bean>
 	<bean id="GlobalinfoDAO" class="resource.dao.pub.GlobalinfoDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
 	</bean>
 
-	<bean id="FunctionInfoDAO"
-		class="resource.dao.pub.FunctionInfoDAO">
+	<bean id="FunctionInfoDAO" class="resource.dao.pub.FunctionInfoDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
@@ -31,7 +35,7 @@
 		</property>
 	</bean>
 
-	<!--add by tanyang 部门管理功能-->
+	<!--add by tanyang 部门管理功能 -->
 	<bean id="DepartmentInfoDAO" class="resource.dao.pub.DepartmentInfoDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
@@ -42,8 +46,15 @@
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
-	</bean>
+	</bean> 
+
 	<bean id="TlrRoleRelDAO" class="resource.dao.pub.TlrRoleRelDAO">
+		<property name="sessionFactory">
+			<ref bean="mySessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="TlrBctlRelDAO" class="resource.dao.pub.TlrBctlRelDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
@@ -54,8 +65,7 @@
 			<ref bean="mySessionFactory" />
 		</property>
 	</bean>
-	<bean id="BranchFuncRelDAO"
-		class="resource.dao.pub.BranchFuncRelDAO">
+	<bean id="BranchFuncRelDAO" class="resource.dao.pub.BranchFuncRelDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
@@ -78,8 +88,7 @@
 		</property>
 	</bean>
 
-	<bean id="SeqctlDAO"
-		class="com.huateng.ebank.entity.dao.mng.SeqctlDAO">
+	<bean id="SeqctlDAO" class="com.huateng.ebank.entity.dao.mng.SeqctlDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
@@ -88,8 +97,7 @@
 
 
 	<!-- 工作流的 DAO -->
-	<bean id="WorkFlowDAO"
-		class="com.huateng.ebank.entity.dao.workflow.WorkFlowDAO">
+	<bean id="WorkFlowDAO" class="com.huateng.ebank.entity.dao.workflow.WorkFlowDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
@@ -101,27 +109,23 @@
 		</property>
 	</bean>
 
-	<bean id="LimitParamDAO"
-		class="com.huateng.ebank.entity.dao.workflow.LimitParamDAO">
+	<bean id="LimitParamDAO" class="com.huateng.ebank.entity.dao.workflow.LimitParamDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
 	</bean>
-	<bean id="ApplydtlDAO"
-		class="com.huateng.ebank.entity.dao.flowManagement.ApplydtlDAO">
+	<bean id="ApplydtlDAO" class="com.huateng.ebank.entity.dao.flowManagement.ApplydtlDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
 	</bean>
-	<bean id="WorkflowParamDAO"
-		class="com.huateng.ebank.entity.dao.workflow.WorkflowParamDAO">
+	<bean id="WorkflowParamDAO" class="com.huateng.ebank.entity.dao.workflow.WorkflowParamDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
 	</bean>
 
-	<bean id="HolidayDAO"
-		class="com.huateng.ebank.entity.dao.mng.HolidayDAO">
+	<bean id="HolidayDAO" class="com.huateng.ebank.entity.dao.mng.HolidayDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
@@ -135,21 +139,19 @@
 	</bean>
 
 
-	 <bean id="PfSysParamDAO" class="com.huateng.ebank.entity.dao.mng.PfSysParamDAO">
+	<bean id="PfSysParamDAO" class="com.huateng.ebank.entity.dao.mng.PfSysParamDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
 	</bean>
 
-	<bean id="BizFuncInfoDAO"
-		class="com.huateng.ebank.entity.dao.mng.BizFuncInfoDAO">
+	<bean id="BizFuncInfoDAO" class="com.huateng.ebank.entity.dao.mng.BizFuncInfoDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
 	</bean>
 
-	<bean id="BizLogDAO"
-		class="com.huateng.ebank.entity.dao.mng.BizLogDAO">
+	<bean id="BizLogDAO" class="com.huateng.ebank.entity.dao.mng.BizLogDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
@@ -186,15 +188,13 @@
 
 
 	<!-- lilinfeng add 岗位报表权限查询 -->
-	<bean id="RoleReportParamDAO"
-		class="com.huateng.ebank.entity.dao.mng.RoleReportParamDAO">
+	<bean id="RoleReportParamDAO" class="com.huateng.ebank.entity.dao.mng.RoleReportParamDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
 	</bean>
 
-	<bean id="ReportInfoDAO"
-		class="com.huateng.ebank.entity.dao.mng.ReportInfoDAO">
+	<bean id="ReportInfoDAO" class="com.huateng.ebank.entity.dao.mng.ReportInfoDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
@@ -202,8 +202,7 @@
 	<!-- lilinfeng add 报表查询 -->
 
 	<!-- add by kangbyron 2011-2-22 操作员审批阀值设置 begin -->
-	<bean id="TlrWorkloadDAO"
-		class="resource.dao.pub.TlrWorkloadDAO">
+	<bean id="TlrWorkloadDAO" class="resource.dao.pub.TlrWorkloadDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
@@ -218,23 +217,21 @@
 	</bean>
 	<!-- add by kangbyron 2011-2-25 工作流任务池 end -->
 	<bean id="WorkflowBussTempletRelDAO"
-                class="com.huateng.ebank.entity.dao.workflow.WorkflowBussTempletRelDAO">
-                <property name="sessionFactory">
-                        <ref bean="mySessionFactory" />
-                </property>
-    </bean>
+		class="com.huateng.ebank.entity.dao.workflow.WorkflowBussTempletRelDAO">
+		<property name="sessionFactory">
+			<ref bean="mySessionFactory" />
+		</property>
+	</bean>
 
-    <!-- 查询结果 - 批量下载 -->
-	<bean id="TBLCSFileExportTskDAO"
-		class="com.huateng.ebank.entity.dao.mng.TBLCSFileExportTskDAO">
+	<!-- 查询结果 - 批量下载 -->
+	<bean id="TBLCSFileExportTskDAO" class="com.huateng.ebank.entity.dao.mng.TBLCSFileExportTskDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>
 	</bean>
 
 	<!-- 日志 -->
-	<bean id="TblBizLogDAO"
-		class="com.huateng.ebank.entity.dao.mng.TblBizLogDAO">
+	<bean id="TblBizLogDAO" class="com.huateng.ebank.entity.dao.mng.TblBizLogDAO">
 		<property name="sessionFactory">
 			<ref bean="mySessionFactory" />
 		</property>

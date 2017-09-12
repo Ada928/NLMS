@@ -4,16 +4,13 @@
  */
 package com.huateng.ebank.business.management.bean;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.huateng.ebank.framework.struts.HTBaseForm;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
-
 import sun.misc.BASE64Decoder;
 
-import com.huateng.ebank.framework.struts.HTBaseForm;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * Form bean for the Login main page. There are two fields on this form used for

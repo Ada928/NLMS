@@ -36,13 +36,15 @@ public class TBLCSFileExportTskDAO extends HibernateDaoSupport {
 	private static final Log log = LogFactory.getLog(TBLCSFileExportTskDAO.class);
 
 	public static final String SPRING_BEAN_ANME = "TBLCSFileExportTskDAO";
-	
+
 	@Override
 	protected void initDao() {
 		// do nothing
 	}
+
 	/**
 	 * 插入数据库
+	 * 
 	 * @param expTsk
 	 */
 	public void save(TblCSFileExportTskInf expTsk) {
@@ -55,38 +57,46 @@ public class TBLCSFileExportTskDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
+
 	/**
 	 * 分页查询
+	 * 
 	 * @param detachedCriteria
 	 * @param pageSize
 	 * @param currentPage
 	 * @return
 	 */
-	public List findByCriteria(final DetachedCriteria detachedCriteria,final int pageSize,final int currentPage) {
-		 return (List) getHibernateTemplate().execute(new HibernateCallback() {
-			    public Object doInHibernate(Session session) throws HibernateException {
-			    Criteria criteria = detachedCriteria.getExecutableCriteria(session);
-				 criteria.setFirstResult((currentPage-1)*pageSize);
-				 criteria.setMaxResults(pageSize);
-				 criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
-			    return criteria.list();}
-			    }, true);
-	 }
+	public List findByCriteria(final DetachedCriteria detachedCriteria, final int pageSize, final int currentPage) {
+		return (List) getHibernateTemplate().execute(new HibernateCallback() {
+			public Object doInHibernate(Session session) throws HibernateException {
+				Criteria criteria = detachedCriteria.getExecutableCriteria(session);
+				criteria.setFirstResult((currentPage - 1) * pageSize);
+				criteria.setMaxResults(pageSize);
+				criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+				return criteria.list();
+			}
+		}, true);
+	}
+
 	/**
 	 * 条件查询
+	 * 
 	 * @param detachedCriteria
 	 * @return
 	 */
 	public List findByCriteria(final DetachedCriteria detachedCriteria) {
-		 return (List) getHibernateTemplate().execute(new HibernateCallback() {
-		    public Object doInHibernate(Session session) throws HibernateException {
-		    Criteria criteria = detachedCriteria.getExecutableCriteria(session);
-		    criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
-		    return criteria.list();}
-		    }, true);
-	 }
+		return (List) getHibernateTemplate().execute(new HibernateCallback() {
+			public Object doInHibernate(Session session) throws HibernateException {
+				Criteria criteria = detachedCriteria.getExecutableCriteria(session);
+				criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+				return criteria.list();
+			}
+		}, true);
+	}
+
 	/**
 	 * 删除批量任务记录
+	 * 
 	 * @param expTsk
 	 */
 	public void delete(TblCSFileExportTskInf expTsk) {
@@ -99,8 +109,10 @@ public class TBLCSFileExportTskDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
+
 	/**
 	 * 更新批量任务表
+	 * 
 	 * @param expTsk
 	 */
 	public void update(TblCSFileExportTskInf expTsk) {
@@ -113,6 +125,7 @@ public class TBLCSFileExportTskDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
+
 	/**
 	 * 
 	 * @param tskId
@@ -129,26 +142,28 @@ public class TBLCSFileExportTskDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
+
 	/**
 	 * 根据字段名和值，获取数据记录集
+	 * 
 	 * @param propertyName
 	 * @param value
 	 * @return
 	 */
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding TblCSFileExportTskInf instance with property: "
-				+ propertyName + ", value: " + value);
+		log.debug("finding TblCSFileExportTskInf instance with property: " + propertyName + ", value: " + value);
 		try {
-			String queryString = "from TblCSFileExportTskInf model where model."
-					+ propertyName + "= ?";
+			String queryString = "from TblCSFileExportTskInf model where model." + propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
 			throw re;
 		}
 	}
+
 	/**
 	 * 获取所有的任务信息
+	 * 
 	 * @return
 	 */
 	public List findAll() {
@@ -162,21 +177,23 @@ public class TBLCSFileExportTskDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public static TBLCSFileExportTskDAO getFromApplicationContext(
-			ApplicationContext ctx) {
+	public static TBLCSFileExportTskDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (TBLCSFileExportTskDAO) ctx.getBean("TBLCSFileExportTskDAO");
 	}
-	
+
 	/**
 	 * 取出update后的记录
-	 * @param num 记录数
-	 * @param whereString 过滤条件
+	 * 
+	 * @param num
+	 *            记录数
+	 * @param whereString
+	 *            过滤条件
 	 * @return
 	 */
-	public void getForUpdate(int num,String owner){
-				
+	public void getForUpdate(int num, String owner) {
+
 		Session session = null;
-		try{
+		try {
 			PageQueryResult resultFirst = null;
 			String hqlStr = "from TblCSFileExportTskInf po where tskStat = '0' order by tskStartTms ";
 			PageQueryCondition pqc = new PageQueryCondition();
@@ -184,83 +201,92 @@ public class TBLCSFileExportTskDAO extends HibernateDaoSupport {
 			pqc.setPageSize(num);
 			pqc.setQueryString(hqlStr);
 			resultFirst = DAOUtils.getHQLDAO().pageQueryByQLWithCount(pqc);
-			
-//			mod by zhaozhiguo begin
+
+			// mod by zhaozhiguo begin
 			for (Iterator it = resultFirst.getQueryResult().iterator(); it.hasNext();) {
 				Object[] obj = (Object[]) it.next();
 				TblCSFileExportTskInf tblCSFileExportTskInf = (TblCSFileExportTskInf) obj[0];
 				tblCSFileExportTskInf.setTskStat("1");
 				tblCSFileExportTskInf.setTskOwner(owner);
 				DAOUtils.getExportTskDAO().update(tblCSFileExportTskInf);
-				
-//				Object[] obj = (Object[]) it.next();
-//				String id = (String) obj[0];
-//				
-//				TblCSFileExportTskInf tskInf = new TblCSFileExportTskInf();
-//				tskInf.setId(id);
-//				tskInf.setTskStat("0");
-//				List list = DAOUtils.getExportTskDAO().getHibernateTemplate().findByExample(tskInf);
-//				for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-//					TblCSFileExportTskInf tblCSFileExportTskInf = (TblCSFileExportTskInf) iterator.next();
-//					
-//					tblCSFileExportTskInf.setTskStat("1");
-//					DAOUtils.getExportTskDAO().update(tblCSFileExportTskInf);
-//				}
-			}
-//			session = this.getHibernateTemplate().getSessionFactory().openSession();
-//			String dbType = "DB2";
-//
-//			Query query = null;
-//			List<TblCSFileExportTskInf> sqlReusltList = null;
-//			String whereStr = "WHERE 1=1 ";
-//			String queryStr = null;
-//			String orderStr = null;
-//			StringBuffer tskIdArr = new StringBuffer();
-//			if(resultFirst.getQueryResult().size() == 0) return;
-//			tskIdArr.append("(");
-//			for(int index =0 ;index < resultFirst.getQueryResult().size() ; index++){
-//				tskIdArr.append("'");
-//				tskIdArr.append(((Object[])resultFirst.getQueryResult().get(index))[0]);
-//				tskIdArr.append("'");
-//				if(index != resultFirst.getQueryResult().size()-1) tskIdArr.append(",");
-//			}
-//			tskIdArr.append(")");
-//			//锁表查询
-//			if("SQLSERVER".equals(dbType)){
-//				/* 目前使用查询两次的方式进行锁表操作.*/
-//				 whereStr += "and TSK_STAT = '0' ";
-//				 whereStr += "and TSK_ID in " + tskIdArr.toString();
-//				 orderStr = "ORDER BY TSK_START_TMS";
-//				 queryStr = "SELECT * FROM TBL_CS_FILE_EXPORT_TSK_INF WITH (XLOCK, ROWLOCK) SET LOCK_TIMEOUT -1 " + whereStr;
-//				 SQLQuery sqlQuery = session.createSQLQuery(queryStr + orderStr);
-//				 sqlQuery.addEntity(TblCSFileExportTskInf.class);
-//				 sqlReusltList = (List<TblCSFileExportTskInf>)sqlQuery.list();
-//			}else{
-//				 whereStr += " and tskStat = '0'";
-//				 whereStr += " and id in " + tskIdArr.toString();
-//				 orderStr = " ORDER BY tskStartTms";
-//				 queryStr = "from TblCSFileExportTskInf as tblCSFileExportTskInf " + whereStr;
-//				 query = session.createQuery(queryStr + orderStr);
-//				 //query.setLockMode("tblCSFileExportTskInf", LockMode.UPGRADE);
-//				 sqlReusltList =  (List<TblCSFileExportTskInf>)query.list();
-//			}
-//			
-//			TBLCSFileExportTskDAO dao = DAOUtils.getExportTskDAO();
-//			for(int index = 0;index < num && index < sqlReusltList.size();index++){
-//				TblCSFileExportTskInf tskInf = sqlReusltList.get(index);
-//				tskInf.setTskOwner(owner);
-//				tskInf.setTskStat("1");
-//				dao.update(tskInf);
-//			}
-//			mod by zhaozhiguo end
 
-		}catch(Exception ex){
-			throw new RuntimeException("forupdate 查询表记录出错",ex);
-		}finally{
-			if(session != null){
+				// Object[] obj = (Object[]) it.next();
+				// String id = (String) obj[0];
+				//
+				// TblCSFileExportTskInf tskInf = new TblCSFileExportTskInf();
+				// tskInf.setId(id);
+				// tskInf.setTskStat("0");
+				// List list =
+				// DAOUtils.getExportTskDAO().getHibernateTemplate().findByExample(tskInf);
+				// for (Iterator iterator = list.iterator();
+				// iterator.hasNext();) {
+				// TblCSFileExportTskInf tblCSFileExportTskInf =
+				// (TblCSFileExportTskInf) iterator.next();
+				//
+				// tblCSFileExportTskInf.setTskStat("1");
+				// DAOUtils.getExportTskDAO().update(tblCSFileExportTskInf);
+				// }
+			}
+			// session =
+			// this.getHibernateTemplate().getSessionFactory().openSession();
+			// String dbType = "DB2";
+			//
+			// Query query = null;
+			// List<TblCSFileExportTskInf> sqlReusltList = null;
+			// String whereStr = "WHERE 1=1 ";
+			// String queryStr = null;
+			// String orderStr = null;
+			// StringBuffer tskIdArr = new StringBuffer();
+			// if(resultFirst.getQueryResult().size() == 0) return;
+			// tskIdArr.append("(");
+			// for(int index =0 ;index < resultFirst.getQueryResult().size() ;
+			// index++){
+			// tskIdArr.append("'");
+			// tskIdArr.append(((Object[])resultFirst.getQueryResult().get(index))[0]);
+			// tskIdArr.append("'");
+			// if(index != resultFirst.getQueryResult().size()-1)
+			// tskIdArr.append(",");
+			// }
+			// tskIdArr.append(")");
+			// //锁表查询
+			// if("SQLSERVER".equals(dbType)){
+			// /* 目前使用查询两次的方式进行锁表操作.*/
+			// whereStr += "and TSK_STAT = '0' ";
+			// whereStr += "and TSK_ID in " + tskIdArr.toString();
+			// orderStr = "ORDER BY TSK_START_TMS";
+			// queryStr = "SELECT * FROM TBL_CS_FILE_EXPORT_TSK_INF WITH (XLOCK,
+			// ROWLOCK) SET LOCK_TIMEOUT -1 " + whereStr;
+			// SQLQuery sqlQuery = session.createSQLQuery(queryStr + orderStr);
+			// sqlQuery.addEntity(TblCSFileExportTskInf.class);
+			// sqlReusltList = (List<TblCSFileExportTskInf>)sqlQuery.list();
+			// }else{
+			// whereStr += " and tskStat = '0'";
+			// whereStr += " and id in " + tskIdArr.toString();
+			// orderStr = " ORDER BY tskStartTms";
+			// queryStr = "from TblCSFileExportTskInf as tblCSFileExportTskInf "
+			// + whereStr;
+			// query = session.createQuery(queryStr + orderStr);
+			// //query.setLockMode("tblCSFileExportTskInf", LockMode.UPGRADE);
+			// sqlReusltList = (List<TblCSFileExportTskInf>)query.list();
+			// }
+			//
+			// TBLCSFileExportTskDAO dao = DAOUtils.getExportTskDAO();
+			// for(int index = 0;index < num && index <
+			// sqlReusltList.size();index++){
+			// TblCSFileExportTskInf tskInf = sqlReusltList.get(index);
+			// tskInf.setTskOwner(owner);
+			// tskInf.setTskStat("1");
+			// dao.update(tskInf);
+			// }
+			// mod by zhaozhiguo end
+
+		} catch (Exception ex) {
+			throw new RuntimeException("forupdate 查询表记录出错", ex);
+		} finally {
+			if (session != null) {
 				session.close();
 			}
 		}
 	}
-	
+
 }

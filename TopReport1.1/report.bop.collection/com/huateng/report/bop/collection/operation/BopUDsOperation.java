@@ -48,43 +48,52 @@ public class BopUDsOperation extends BaseOperation {
 
 		BopUDsService service = BopUDsService.getInstance();
 		if (StringUtils.equals(CMD_NEW, cmd)) {
-			MtsBopUDs bopu = (MtsBopUDs)context.getAttribute(PARAM_U);
-			List<MtsBopInvcountrycode> countryList = (List<MtsBopInvcountrycode>)context.getAttribute(PARAM_COUNTRY_ADD);
-			List<MtsBopOpenAccount> openaccountList = (List<MtsBopOpenAccount>)context.getAttribute(PARAM_OPENACCOUNT_ADD);
+			MtsBopUDs bopu = (MtsBopUDs) context.getAttribute(PARAM_U);
+			List<MtsBopInvcountrycode> countryList = (List<MtsBopInvcountrycode>) context
+					.getAttribute(PARAM_COUNTRY_ADD);
+			List<MtsBopOpenAccount> openaccountList = (List<MtsBopOpenAccount>) context
+					.getAttribute(PARAM_OPENACCOUNT_ADD);
 			service.saveBopU(bopu, countryList, openaccountList);
 
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"单位基本情况表新增"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"单位基本情况表新增"});
-		} else if (StringUtils.equals(CMD_MOD, cmd)){
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "单位基本情况表新增" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "单位基本情况表新增" });
+		} else if (StringUtils.equals(CMD_MOD, cmd)) {
 
-			MtsBopUDs bopu = (MtsBopUDs)context.getAttribute(PARAM_U);
-			List<MtsBopInvcountrycode> countryList = (List<MtsBopInvcountrycode>)context.getAttribute(PARAM_COUNTRY_ADD);
-			List<MtsBopOpenAccount> openaccountList = (List<MtsBopOpenAccount>)context.getAttribute(PARAM_OPENACCOUNT_ADD);
+			MtsBopUDs bopu = (MtsBopUDs) context.getAttribute(PARAM_U);
+			List<MtsBopInvcountrycode> countryList = (List<MtsBopInvcountrycode>) context
+					.getAttribute(PARAM_COUNTRY_ADD);
+			List<MtsBopOpenAccount> openaccountList = (List<MtsBopOpenAccount>) context
+					.getAttribute(PARAM_OPENACCOUNT_ADD);
 
-			List<MtsBopInvcountrycode> modcountryList = (List<MtsBopInvcountrycode>)context.getAttribute(PARAM_COUNTRY_MOD);
-			List<MtsBopOpenAccount> modopenaccountList = (List<MtsBopOpenAccount>)context.getAttribute(PARAM_OPENACCOUNT_MOD);
+			List<MtsBopInvcountrycode> modcountryList = (List<MtsBopInvcountrycode>) context
+					.getAttribute(PARAM_COUNTRY_MOD);
+			List<MtsBopOpenAccount> modopenaccountList = (List<MtsBopOpenAccount>) context
+					.getAttribute(PARAM_OPENACCOUNT_MOD);
 
-			List<MtsBopInvcountrycode>delcountryList = (List<MtsBopInvcountrycode>)context.getAttribute(PARAM_COUNTRY_DEL);
-			List<MtsBopOpenAccount> delopenaccountList = (List<MtsBopOpenAccount>)context.getAttribute(PARAM_OPENACCOUNT_DEL);
+			List<MtsBopInvcountrycode> delcountryList = (List<MtsBopInvcountrycode>) context
+					.getAttribute(PARAM_COUNTRY_DEL);
+			List<MtsBopOpenAccount> delopenaccountList = (List<MtsBopOpenAccount>) context
+					.getAttribute(PARAM_OPENACCOUNT_DEL);
 
-			service.updateBopU(bopu, countryList, openaccountList, modcountryList, modopenaccountList, delcountryList, delopenaccountList);
+			service.updateBopU(bopu, countryList, openaccountList, modcountryList, modopenaccountList, delcountryList,
+					delopenaccountList);
 
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"单位基本情况表修改"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"单位基本情况表修改"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "单位基本情况表修改" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "单位基本情况表修改" });
 		} else if (StringUtils.equals(CMD_DEL, cmd)) {
 
-			MtsBopUDs bopu = (MtsBopUDs)context.getAttribute(PARAM_U);
+			MtsBopUDs bopu = (MtsBopUDs) context.getAttribute(PARAM_U);
 			service.deleteBopU(bopu);
 
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"单位基本情况表删除"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"单位基本情况表删除"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "单位基本情况表删除" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "单位基本情况表删除" });
 		} else if (StringUtils.equals(CMD_AUDIT, cmd)) {
-			List<MtsBopUDs> bopuList = (List<MtsBopUDs>)context.getAttribute(PARAM_U);
-			String approveStatusChoose = (String)context.getAttribute(IN_AUDIT_STATUS);
-			String approveResultChoose = (String)context.getAttribute(IN_AUDIT_RESULT);
+			List<MtsBopUDs> bopuList = (List<MtsBopUDs>) context.getAttribute(PARAM_U);
+			String approveStatusChoose = (String) context.getAttribute(IN_AUDIT_STATUS);
+			String approveResultChoose = (String) context.getAttribute(IN_AUDIT_RESULT);
 			service.audit(bopuList, approveStatusChoose, approveResultChoose);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"单位基本情况表审核"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"单位基本情况表审核"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "单位基本情况表审核" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "单位基本情况表审核" });
 		}
 	}
 

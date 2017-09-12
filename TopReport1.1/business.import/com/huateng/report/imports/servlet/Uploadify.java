@@ -27,8 +27,7 @@ import com.huateng.ebank.framework.util.DateUtil;
 import com.huateng.report.imports.common.FileImportUtil;
 
 public class Uploadify extends HttpServlet {
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// 设置接收的编码格式
 		request.setCharacterEncoding("UTF-8");
@@ -62,14 +61,15 @@ public class Uploadify extends HttpServlet {
 					firstFileName = item.getName();
 					if (savePath == null) {
 						try {
-							//modified by xuhong 2015-4-24 修改上传路径 begin
-//							savePath = FileImportUtil.getFilePath(firstFileName
-//									.substring(
-//											firstFileName.lastIndexOf("_") + 1,
-//											firstFileName.lastIndexOf(".")));
+							// modified by xuhong 2015-4-24 修改上传路径 begin
+							// savePath =
+							// FileImportUtil.getFilePath(firstFileName
+							// .substring(
+							// firstFileName.lastIndexOf("_") + 1,
+							// firstFileName.lastIndexOf(".")));
 							String workdate = DataFormat.dateToNumber(DateUtil.getTbsDay());
 							savePath = FileImportUtil.getFilePath(workdate);
-							//modified by xuhong 2015-4-24 修改上传路径 end
+							// modified by xuhong 2015-4-24 修改上传路径 end
 						} catch (CommonException e) {
 							e.printStackTrace();
 							return;
@@ -81,12 +81,10 @@ public class Uploadify extends HttpServlet {
 						}
 					}
 					fileRealPath = savePath + firstFileName;// 文件存放真实地址
-					BufferedInputStream in = new BufferedInputStream(
-							item.getInputStream());// 获得文件输入流
+					BufferedInputStream in = new BufferedInputStream(item.getInputStream());// 获得文件输入流
 					File f = new File(fileRealPath);
 					f.createNewFile();
-					BufferedOutputStream outStream = new BufferedOutputStream(
-							new FileOutputStream(f));// 获得文件输出流
+					BufferedOutputStream outStream = new BufferedOutputStream(new FileOutputStream(f));// 获得文件输出流
 					Streams.copy(in, outStream, true);// 开始把文件写到你指定的上传文件夹
 					// 上传成功，则插入数据库
 					if (new File(fileRealPath).exists()) {
@@ -109,8 +107,7 @@ public class Uploadify extends HttpServlet {
 
 	}
 
-	public void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
 	}
 }

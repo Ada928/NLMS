@@ -15,10 +15,11 @@ public class ReportBopJshRetNoUtil {
 
 	/**
 	 * 加载国际收支申报号码生成规则
+	 * 
 	 * @throws CommonException
 	 */
 	public static Map<String, ReportBopAndJshRetNoBean> getReportBopJshMap() throws CommonException {
-		if (RET_NO_MAP == null || RET_NO_MAP.size()==0) {
+		if (RET_NO_MAP == null || RET_NO_MAP.size() == 0) {
 			RET_NO_MAP = new HashMap<String, ReportBopAndJshRetNoBean>();
 			List list = ReportCommonService.getInstance().getReportBopJshList();
 			for (int i = 0; i < list.size(); i++) {
@@ -57,8 +58,8 @@ public class ReportBopJshRetNoUtil {
 	public static void main(String[] args) {
 		int seq = 2899;
 		int maxseq = 999;
-		System.out.println(seq/maxseq);
-		System.out.println(seq%maxseq);
+		System.out.println(seq / maxseq);
+		System.out.println(seq % maxseq);
 	}
 
 }

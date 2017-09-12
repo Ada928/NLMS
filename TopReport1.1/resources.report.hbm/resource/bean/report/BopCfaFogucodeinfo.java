@@ -2,27 +2,23 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBopCfaFogucodeinfo;
 
-
-
-public class BopCfaFogucodeinfo extends BaseBopCfaFogucodeinfo {
+public class BopCfaFogucodeinfo extends BaseBopCfaFogucodeinfo implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public BopCfaFogucodeinfo () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public BopCfaFogucodeinfo() {
 		super();
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public BopCfaFogucodeinfo (
-		java.lang.String fogucodeinfoId) {
+	public BopCfaFogucodeinfo(java.lang.String fogucodeinfoId) {
 
-		super (
-			fogucodeinfoId);
+		super(fogucodeinfoId);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
-
+	/* [CONSTRUCTOR MARKER END] */
 
 }

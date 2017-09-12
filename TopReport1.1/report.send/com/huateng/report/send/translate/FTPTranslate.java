@@ -46,8 +46,7 @@ public class FTPTranslate extends AbstractTranslate {
 				ROOT = "/";
 			}
 			this.destPath = ROOT + destPath;
-			logger.info("ftp connected, current work deirctory is "
-					+ ftp.printWorkingDirectory());
+			logger.info("ftp connected, current work deirctory is " + ftp.printWorkingDirectory());
 			ftpClient = ftp;
 		} catch (Exception e) {
 			logger.error("create ftp failed", e);
@@ -90,8 +89,7 @@ public class FTPTranslate extends AbstractTranslate {
 		}
 	}
 
-	public boolean send(String sourcePath, String destPath, String filePack,
-			String fileName) {
+	public boolean send(String sourcePath, String destPath, String filePack, String fileName) {
 		String src = this.sourcePath;
 		String dest = this.destPath;
 		this.sourcePath = sourcePath;
@@ -119,15 +117,13 @@ public class FTPTranslate extends AbstractTranslate {
 			if (!f2) {
 				return false;
 			}
-			logger.info("change to directory["
-					+ ftpClient.printWorkingDirectory() + "]");
+			logger.info("change to directory[" + ftpClient.printWorkingDirectory() + "]");
 		} catch (IOException e1) {
 			logger.error("create package work directory failed", e1);
 			return false;
 		}
 		FileInputStream input = null;
-		String sourceFilepath = sourcePath + getSourceSend() + filePack
-				+ File.separator + fileName;
+		String sourceFilepath = sourcePath + getSourceSend() + filePack + File.separator + fileName;
 		File sourceFile = new File(sourceFilepath);
 		boolean rs = false;
 		if (sourceFile.exists()) {
@@ -170,8 +166,7 @@ public class FTPTranslate extends AbstractTranslate {
 			ftpClient.changeWorkingDirectory(destPath);
 			ftpClient.changeWorkingDirectory(getDestFeedback());
 		} catch (IOException e) {
-			logger.error("CWD " + destPath + getDestFeedback()
-					+ " No such directory", e);
+			logger.error("CWD " + destPath + getDestFeedback() + " No such directory", e);
 			return "No such directory " + destPath + getDestFeedback();
 		}
 		try {
@@ -215,8 +210,7 @@ public class FTPTranslate extends AbstractTranslate {
 				if (".".equals(file.getName()) || "..".equals(file.getName())) {
 					continue;
 				}
-				srcfilepath = sourcePath + getSourceFeedback() + packname
-						+ File.separator + file.getName();
+				srcfilepath = sourcePath + getSourceFeedback() + packname + File.separator + file.getName();
 				output = new FileOutputStream(srcfilepath);
 				ftpClient.retrieveFile(file.getName(), output);
 				output.close();

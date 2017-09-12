@@ -1,10 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.List;
-
-import resource.bean.pub.Bctl;
-import resource.dao.pub.BctlDAO;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -15,6 +10,10 @@ import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.business.common.service.BctlService;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import resource.bean.pub.Bctl;
+import resource.dao.pub.BctlDAO;
+
+import java.util.List;
 
 /**
  * Title: com.huateng.ebank.business.management.getter.HeadBranchSelect.java

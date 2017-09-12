@@ -2,17 +2,15 @@ package resource.bean.pub.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the GLOBALINFO table.
- * Do not modify this class because it will be overwritten if the configuration file
+ * This is an object that contains data related to the GLOBALINFO table. Do not
+ * modify this class because it will be overwritten if the configuration file
  * related to this class is modified.
  *
- * @hibernate.class
- *  table="GLOBALINFO"
+ * @hibernate.class table="GLOBALINFO"
  */
 
-public abstract class BaseGlobalinfo  implements Serializable {
+public abstract class BaseGlobalinfo implements Serializable {
 
 	public static String REF = "Globalinfo";
 	public static String PROP_TIMESTAMPS = "timestamps";
@@ -25,23 +23,21 @@ public abstract class BaseGlobalinfo  implements Serializable {
 	public static String PROP_BHDATE = "bhdate";
 	public static String PROP_ID = "id";
 
-
 	// constructors
-	public BaseGlobalinfo () {
+	public BaseGlobalinfo() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseGlobalinfo (java.lang.Integer id) {
+	public BaseGlobalinfo(java.lang.Integer id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -58,180 +54,180 @@ public abstract class BaseGlobalinfo  implements Serializable {
 	private java.lang.String timestamps;
 	private java.lang.String miscflgs;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="assigned"
-     *  column="ID"
-     */
-	public java.lang.Integer getId () {
+	 * 
+	 * @hibernate.id generator-class="assigned" column="ID"
+	 */
+	public java.lang.Integer getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.Integer id) {
+	public void setId(java.lang.Integer id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: SYSTEM_NAME
 	 */
-	public java.lang.String getSystemName () {
+	public java.lang.String getSystemName() {
 		return systemName;
 	}
 
 	/**
 	 * Set the value related to the column: SYSTEM_NAME
-	 * @param systemName the SYSTEM_NAME value
+	 * 
+	 * @param systemName
+	 *            the SYSTEM_NAME value
 	 */
-	public void setSystemName (java.lang.String systemName) {
+	public void setSystemName(java.lang.String systemName) {
 		this.systemName = systemName;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TBSDY
 	 */
-	public java.util.Date getTbsdy () {
+	public java.util.Date getTbsdy() {
 		return tbsdy;
 	}
 
 	/**
 	 * Set the value related to the column: TBSDY
-	 * @param tbsdy the TBSDY value
+	 * 
+	 * @param tbsdy
+	 *            the TBSDY value
 	 */
-	public void setTbsdy (java.util.Date tbsdy) {
+	public void setTbsdy(java.util.Date tbsdy) {
 		this.tbsdy = tbsdy;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BHDATE
 	 */
-	public java.util.Date getBhdate () {
+	public java.util.Date getBhdate() {
 		return bhdate;
 	}
 
 	/**
 	 * Set the value related to the column: BHDATE
-	 * @param bhdate the BHDATE value
+	 * 
+	 * @param bhdate
+	 *            the BHDATE value
 	 */
-	public void setBhdate (java.util.Date bhdate) {
+	public void setBhdate(java.util.Date bhdate) {
 		this.bhdate = bhdate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LBHDATE
 	 */
-	public java.util.Date getLbhdate () {
+	public java.util.Date getLbhdate() {
 		return lbhdate;
 	}
 
 	/**
 	 * Set the value related to the column: LBHDATE
-	 * @param lbhdate the LBHDATE value
+	 * 
+	 * @param lbhdate
+	 *            the LBHDATE value
 	 */
-	public void setLbhdate (java.util.Date lbhdate) {
+	public void setLbhdate(java.util.Date lbhdate) {
 		this.lbhdate = lbhdate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: STATUS
 	 */
-	public java.lang.String getStatus () {
+	public java.lang.String getStatus() {
 		return status;
 	}
 
 	/**
 	 * Set the value related to the column: STATUS
-	 * @param status the STATUS value
+	 * 
+	 * @param status
+	 *            the STATUS value
 	 */
-	public void setStatus (java.lang.String status) {
+	public void setStatus(java.lang.String status) {
 		this.status = status;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: SYSTEM_TYPE
 	 */
-	public java.lang.String getSystemType () {
+	public java.lang.String getSystemType() {
 		return systemType;
 	}
 
 	/**
 	 * Set the value related to the column: SYSTEM_TYPE
-	 * @param systemType the SYSTEM_TYPE value
+	 * 
+	 * @param systemType
+	 *            the SYSTEM_TYPE value
 	 */
-	public void setSystemType (java.lang.String systemType) {
+	public void setSystemType(java.lang.String systemType) {
 		this.systemType = systemType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TIMESTAMPS
 	 */
-	public java.lang.String getTimestamps () {
+	public java.lang.String getTimestamps() {
 		return timestamps;
 	}
 
 	/**
 	 * Set the value related to the column: TIMESTAMPS
-	 * @param timestamps the TIMESTAMPS value
+	 * 
+	 * @param timestamps
+	 *            the TIMESTAMPS value
 	 */
-	public void setTimestamps (java.lang.String timestamps) {
+	public void setTimestamps(java.lang.String timestamps) {
 		this.timestamps = timestamps;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MISCFLGS
 	 */
-	public java.lang.String getMiscflgs () {
+	public java.lang.String getMiscflgs() {
 		return miscflgs;
 	}
 
 	/**
 	 * Set the value related to the column: MISCFLGS
-	 * @param miscflgs the MISCFLGS value
+	 * 
+	 * @param miscflgs
+	 *            the MISCFLGS value
 	 */
-	public void setMiscflgs (java.lang.String miscflgs) {
+	public void setMiscflgs(java.lang.String miscflgs) {
 		this.miscflgs = miscflgs;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.pub.Globalinfo)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.pub.Globalinfo))
+			return false;
 		else {
 			resource.bean.pub.Globalinfo globalinfo = (resource.bean.pub.Globalinfo) obj;
-			if (null == this.getId() || null == globalinfo.getId()) return false;
-			else return (this.getId().equals(globalinfo.getId()));
+			if (null == this.getId() || null == globalinfo.getId())
+				return false;
+			else
+				return (this.getId().equals(globalinfo.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -240,10 +236,8 @@ public abstract class BaseGlobalinfo  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

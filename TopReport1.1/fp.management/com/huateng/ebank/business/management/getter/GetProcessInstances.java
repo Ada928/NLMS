@@ -3,24 +3,6 @@
  */
 package com.huateng.ebank.business.management.getter;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
-import org.dom4j.XPath;
-import org.dom4j.xpath.DefaultXPath;
-
-import resource.dao.base.HQLDAO;
-
 import com.huateng.ebank.business.management.common.DAOUtils;
 import com.huateng.topbpm.TopBPMConfiguration;
 import com.huateng.topbpm.TopBPMContext;
@@ -29,6 +11,17 @@ import com.huateng.topbpm.graph.def.ProcessDefinition;
 import com.huateng.topbpm.graph.exe.ProcessInstance;
 import com.huateng.topbpm.graph.exe.Token;
 import com.huateng.topbpm.taskmgmt.exe.TaskInstance;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.XPath;
+import org.dom4j.xpath.DefaultXPath;
+import resource.dao.base.HQLDAO;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * Title: GetProcessInstances

@@ -30,8 +30,8 @@ import com.huateng.report.utils.ReportEnum;
  *
  */
 public class SysParamsService {
-	private static final HtLog htlog = HtLogFactory
-	.getLogger(SysParamsService.class);
+	private static final HtLog htlog = HtLogFactory.getLogger(SysParamsService.class);
+
 	/*
 	 * 获得自身的实例
 	 *
@@ -42,21 +42,23 @@ public class SysParamsService {
 
 	/*
 	 * 分页查询
+	 * 
 	 * @param paramgroupId 参数段编号
 	 */
 
-	public PageQueryResult pageQueryByHql(int pageIndex,int maxRows,String paramgroupId,String qst) {
+	public PageQueryResult pageQueryByHql(int pageIndex, int maxRows, String paramgroupId, String qst) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 		String hql = "from SysParams sysParams where sysParams.del='F'";
-		if(paramgroupId != null && !"".equals(paramgroupId)) {
-			hql += ("and sysParams.id.paramgroupId like '"+paramgroupId.trim()+"'");
-		} if(qst!=null && qst.length()>0){
-			   hql+=" and sysParams.st ='"+qst+"'";
-		   }else{
-			   hql+=" and sysParams.st<>'"+ReportEnum.REPORT_ST1.N.value+"'";
-		   }
+		if (paramgroupId != null && !"".equals(paramgroupId)) {
+			hql += ("and sysParams.id.paramgroupId like '" + paramgroupId.trim() + "'");
+		}
+		if (qst != null && qst.length() > 0) {
+			hql += " and sysParams.st ='" + qst + "'";
+		} else {
+			hql += " and sysParams.st<>'" + ReportEnum.REPORT_ST1.N.value + "'";
+		}
 
 		try {
 			queryCondition.setQueryString(hql);
@@ -81,10 +83,10 @@ public class SysParamsService {
 		List<SysParams> list = new ArrayList<SysParams>();
 		try {
 			Iterator it = (Iterator) rootDAO.queryByQL(hql);
-			while(it.hasNext()) {
+			while (it.hasNext()) {
 				SysParams sysParamsTemp = new SysParams();
 				SysParamsPK sysParamsPKTemp = new SysParamsPK();
-				sysParamsPKTemp.setParamgroupId((String)it.next());
+				sysParamsPKTemp.setParamgroupId((String) it.next());
 				sysParamsTemp.setId(sysParamsPKTemp);
 				list.add(sysParamsTemp);
 			}
@@ -94,15 +96,17 @@ public class SysParamsService {
 		}
 		return list;
 	}
+
 	/*
 	 *
 	 * 参数段编号下拉框(获得所有参数段编号,模糊筛选框)
+	 * 
 	 * @param paramgroupId
 	 */
-	public PageQueryResult paramgroupIdSelect(int pageIndex,int pageSize,String paramgroupId) {
+	public PageQueryResult paramgroupIdSelect(int pageIndex, int pageSize, String paramgroupId) {
 		String hql = "from SysParams sysParams ";
-		if(StringUtils.isNotBlank(paramgroupId))
-			hql += " where sysParams.id.paramgroupId like '"+paramgroupId+"'";
+		if (StringUtils.isNotBlank(paramgroupId))
+			hql += " where sysParams.id.paramgroupId like '" + paramgroupId + "'";
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		PageQueryCondition queryCondition = new PageQueryCondition();
 		queryCondition.setPageIndex(pageIndex);
@@ -114,12 +118,12 @@ public class SysParamsService {
 		try {
 			pageQueryResult = rootDAO.pageQueryByQL((queryCondition));
 			List tempList = pageQueryResult.getQueryResult();
-			//去除重复的参数段编号
-			for(Object o : tempList) {
-				SysParams sysParams = (SysParams) ((Object[])o)[0];
+			// 去除重复的参数段编号
+			for (Object o : tempList) {
+				SysParams sysParams = (SysParams) ((Object[]) o)[0];
 				set.add(sysParams.getId().getParamgroupId());
 			}
-			for(String s : set) {
+			for (String s : set) {
 				SysParams sysParamsTemp = new SysParams();
 				SysParamsPK sysParamsPKTemp = new SysParamsPK();
 				sysParamsPKTemp.setParamgroupId(s);
@@ -135,6 +139,7 @@ public class SysParamsService {
 
 	/*
 	 * 更新系统参数
+	 * 
 	 * @param sysParams
 	 *
 	 */
@@ -148,19 +153,21 @@ public class SysParamsService {
 			e.printStackTrace();
 		}
 	}
-/*
- *
- * 查询某条需要修改的ITEM
- */
-	public Iterator selectByid(String paramgroupid,String paramid){
 
+	/*
+	 *
+	 * 查询某条需要修改的ITEM
+	 */
+	public Iterator selectByid(String paramgroupid, String paramid) {
 
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 
 		try {
-		return	rootDAO.queryByQL("from SysParams sysParams where sysParams.id.paramgroupId='"+paramgroupid+"'and sysParams.id.paramId='"+paramid+"'");
-			//return	rootDAO.queryBySQL("select * from sys_params  where PARAMGROUP_ID ='"+paramgroupid+"'  and PARAM_ID='"+paramid+"'"
-						//);
+			return rootDAO.queryByQL("from SysParams sysParams where sysParams.id.paramgroupId='" + paramgroupid
+					+ "'and sysParams.id.paramId='" + paramid + "'");
+			// return rootDAO.queryBySQL("select * from sys_params where
+			// PARAMGROUP_ID ='"+paramgroupid+"' and PARAM_ID='"+paramid+"'"
+			// );
 		} catch (CommonException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -171,8 +178,8 @@ public class SysParamsService {
 
 	/*
 	 * 对象序列化后写入taskinfo auto by 计翔
-	 * */
-	public void addTosystaskinfo(SysTaskInfo systackinfo){
+	 */
+	public void addTosystaskinfo(SysTaskInfo systackinfo) {
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
 		try {
 			rootDAO.saveOrUpdate(systackinfo);
@@ -181,111 +188,107 @@ public class SysParamsService {
 			e.printStackTrace();
 		}
 	}
-	//通过联合主键来获取操作对象
-	 public SysParams  selectById(SysParamsPK id){
-		  ROOTDAO rootdao=ROOTDAOUtils.getROOTDAO();
-		  SysParams  sysparams = null;
-		  try {
 
-			  sysparams=  (SysParams)rootdao.query(SysParams.class, id);
+	// 通过联合主键来获取操作对象
+	public SysParams selectById(SysParamsPK id) {
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		SysParams sysparams = null;
+		try {
 
-			 	} catch (CommonException e) {
+			sysparams = (SysParams) rootdao.query(SysParams.class, id);
+
+		} catch (CommonException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		return sysparams;
-	  }
+	}
 
-   /*获取安全参数操作对象
-	 public PfSysParam  selectId(PfSysParamPK id){
-		  ROOTDAO rootdao=ROOTDAOUtils.getROOTDAO();
-		  PfSysParam  pfsysparam = null;
-		  try {
+	/*
+	 * 获取安全参数操作对象 public PfSysParam selectId(PfSysParamPK id){ ROOTDAO
+	 * rootdao=ROOTDAOUtils.getROOTDAO(); PfSysParam pfsysparam = null; try {
+	 * 
+	 * pfsysparam= (PfSysParam)rootdao.query(PfSysParam.class, id);
+	 * 
+	 * } catch (CommonException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); }
+	 * 
+	 * return pfsysparam; }
+	 * 
+	 */
+	public Iterator selectID(String magicId, String paramId) {
+		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
+		try {
+			return rootDAO.queryByQL("from PfSysParam pfsysparam where pfsysparam.id.magicId='" + magicId
+					+ "'and pfsysparam.id.paramId='" + paramId + "'");
+		} catch (CommonException e) {
 
-			  pfsysparam= (PfSysParam)rootdao.query(PfSysParam.class, id);
+			e.printStackTrace();
+			return null;
+		}
+	}
 
-			 	} catch (CommonException e) {
+	/**
+	 * @Description 安全参数查询
+	 * @return
+	 * @throws CommonException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 */
+	public PageQueryResult querySysParam(int pageIndex, int pageSize, String qst) throws CommonException {
+		StringBuffer sb = new StringBuffer("");
+		sb.append(" FROM PfSysParam WHERE id.paramId = 'PSWD'");
+
+		Object[] parameters = null;
+		if (StringUtils.isNotBlank(qst)) {
+			sb.append(" AND st = ? ");
+			parameters = new Object[] { qst };
+		}
+
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		PageQueryCondition queryCondition = new PageQueryCondition();
+		queryCondition.setQueryString(sb.toString());
+		if (null != parameters) {
+			queryCondition.setObjArray(parameters);
+		}
+
+		queryCondition.setPageIndex(pageIndex);
+		queryCondition.setPageSize(pageSize);
+
+		PageQueryResult pageQueryResult = rootdao.pageQueryByQL(queryCondition);
+		return pageQueryResult;
+	}
+
+	/**
+	 *
+	 * @desc 安全参数修改
+	 * @param insertList
+	 * @param delList
+	 * @param updateList
+	 * @throws CommonException
+	 */
+	public void saveSecParam(PfSysParam param) throws CommonException {
+
+		GlobalInfo gi = GlobalInfo.getCurrentInstance();
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+
+		PfSysParam sysparam = (PfSysParam) rootdao.query(PfSysParam.class, param.getId());
+		sysparam.setParamValueTx(param.getParamValueTx());
+		rootdao.update(sysparam);
+		GlobalInfo.getCurrentInstance().addBizLog("Updater.log",
+				new String[] { gi.getTlrno(), gi.getBrno(), "修改安全参数" });
+		htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "修改安全参数" });
+
+	}
+
+	public void savePfParam(PfSysParam param) {
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		try {
+			rootdao.saveOrUpdate(param);
+		} catch (CommonException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		return pfsysparam;
-	  }
-
-	  */
-	 public Iterator selectID(String magicId,String paramId){
-			ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
-			try {
-			return	rootDAO.queryByQL("from PfSysParam pfsysparam where pfsysparam.id.magicId='"+magicId+"'and pfsysparam.id.paramId='"+paramId+"'");
-			} catch (CommonException e) {
-
-				e.printStackTrace();
-				return null;
-			}
-		}
-	 /**
-		 * @Description 安全参数查询
-		 * @return
-		 * @throws CommonException
-		 * @throws IllegalAccessException
-		 * @throws InvocationTargetException
-		 */
-		public PageQueryResult querySysParam(int pageIndex, int pageSize, String qst)
-				throws CommonException {
-			StringBuffer sb = new StringBuffer("");
-			sb.append(" FROM PfSysParam WHERE id.paramId = 'PSWD'");
-
-			Object[] parameters = null;
-			if(StringUtils.isNotBlank(qst)){
-				sb.append(" AND st = ? ");
-				parameters = new Object[]{qst};
-			}
-
-			ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-			PageQueryCondition queryCondition = new PageQueryCondition();
-			queryCondition.setQueryString(sb.toString());
-			if(null != parameters) {
-				queryCondition.setObjArray(parameters);
-			}
-
-			queryCondition.setPageIndex(pageIndex);
-			queryCondition.setPageSize(pageSize);
-
-			PageQueryResult pageQueryResult = rootdao.pageQueryByQL(queryCondition);
-			return pageQueryResult;
-		}
-
-		/**
-		 *
-		 * @desc 安全参数修改
-		 * @param insertList
-		 * @param delList
-		 * @param updateList
-		 * @throws CommonException
-		 */
-		public void saveSecParam(PfSysParam param) throws CommonException {
-
-			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-
-			PfSysParam sysparam = (PfSysParam) rootdao.query(PfSysParam.class,
-					param.getId());
-			sysparam.setParamValueTx(param.getParamValueTx());
-			rootdao.update(sysparam);
-			GlobalInfo.getCurrentInstance().addBizLog("Updater.log",
-					new String[] { gi.getTlrno(), gi.getBrno(), "修改安全参数" });
-			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(),
-					"修改安全参数" });
-
-		}
-		public void savePfParam(PfSysParam param){
-			ROOTDAO rootdao=ROOTDAOUtils.getROOTDAO();
-			try {
-				rootdao.saveOrUpdate(param);
-			} catch (CommonException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+	}
 }

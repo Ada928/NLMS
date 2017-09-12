@@ -1,6 +1,5 @@
 package com.huateng.report.imports.updater;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,51 +23,46 @@ public class ImportXmlConfigUpdate extends BaseUpdate {
 
 	@Override
 	public UpdateReturnBean saveOrUpdate(
-			
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+
+			MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+					throws AppException {
 		// TODO Auto-generated method stub
 
-			String nextUrl = "";
+		String nextUrl = "";
 
-			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("ImportXmlConfig");
+		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
+		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("ImportXmlConfig");
 
+		List updateList = new ArrayList();
+		List delList = new ArrayList();
+		List insertList = new ArrayList();
 
-			List updateList = new ArrayList();
-			List delList = new ArrayList();
-			List insertList = new ArrayList();
+		while (updateResultBean.hasNext()) {
+			BiImportXmlConfig importFieldBean = new BiImportXmlConfig();
+			Map map = updateResultBean.next();
+			mapToObject(importFieldBean, map);
 
-
-			while (updateResultBean.hasNext()) {
-				BiImportXmlConfig importFieldBean=new BiImportXmlConfig();
-				Map map = updateResultBean.next();
-				mapToObject(importFieldBean, map);
-
-				switch (updateResultBean.getRecodeState()) {
-				case UpdateResultBean.INSERT:
-					insertList.add(importFieldBean);
-					break;				
-				case UpdateResultBean.DELETE:
-					delList.add(importFieldBean);
-					break;
-				case UpdateResultBean.MODIFY:
-					updateList.add(importFieldBean);
-					break;
-				default:
-					break;
-				}
-
+			switch (updateResultBean.getRecodeState()) {
+			case UpdateResultBean.INSERT:
+				insertList.add(importFieldBean);
+				break;
+			case UpdateResultBean.DELETE:
+				delList.add(importFieldBean);
+				break;
+			case UpdateResultBean.MODIFY:
+				updateList.add(importFieldBean);
+				break;
+			default:
+				break;
 			}
-			OperationContext oc = new OperationContext();
-			oc.setAttribute(ImportXmlConfigOperation.IN_DEL, delList);
-			oc.setAttribute(ImportXmlConfigOperation.IN_INSERT, insertList);
-			oc.setAttribute(ImportXmlConfigOperation.IN_UPDATE, updateList);
-			OPCaller.call("ImportXmlConfigOperation", oc);
-			return updateReturnBean;
 
+		}
+		OperationContext oc = new OperationContext();
+		oc.setAttribute(ImportXmlConfigOperation.IN_DEL, delList);
+		oc.setAttribute(ImportXmlConfigOperation.IN_INSERT, insertList);
+		oc.setAttribute(ImportXmlConfigOperation.IN_UPDATE, updateList);
+		OPCaller.call("ImportXmlConfigOperation", oc);
+		return updateReturnBean;
 
 	}
 

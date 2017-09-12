@@ -25,19 +25,17 @@ public class BopUDsAuditUpdate extends BaseUpdate {
 	private static final String DATASET_ID = "BopUDsAudit";
 
 	@SuppressWarnings("rawtypes")
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
 
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			List<MtsBopUDs> mtsBopFsDsList = new ArrayList<MtsBopUDs>();
-			while (updateResultBean.hasNext())
-			{
+			while (updateResultBean.hasNext()) {
 				MtsBopUDs mtsBopUDs = new MtsBopUDs();
 				Map map = updateResultBean.next();
-				mapToObject(mtsBopUDs,map);
+				mapToObject(mtsBopUDs, map);
 				mtsBopFsDsList.add(mtsBopUDs);
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
@@ -58,8 +56,7 @@ public class BopUDsAuditUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

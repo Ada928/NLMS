@@ -44,36 +44,37 @@ public class ProcessImageByProcNameServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
+			throws ServletException, IOException {
 		Session session = null;
-		try{
-		 TopBPMConfiguration topbpmConfiguration = TopBPMConfiguration.getInstance();
+		try {
+			TopBPMConfiguration topbpmConfiguration = TopBPMConfiguration.getInstance();
 
-		 TopBPMContext topBPMContext= topbpmConfiguration.createTopBPMContext();
-		 HQLDAO dao = DAOUtils.getHQLDAO();
-		 session = dao.getHibernateTemplate().getSessionFactory().openSession();
-		 topBPMContext.setSession(session);
-		 ProcessDefinition processDefinition = null;
-		 processDefinition = topBPMContext.getGraphSession().findLatestProcessDefinition(request.getParameter("procName"));
+			TopBPMContext topBPMContext = topbpmConfiguration.createTopBPMContext();
+			HQLDAO dao = DAOUtils.getHQLDAO();
+			session = dao.getHibernateTemplate().getSessionFactory().openSession();
+			topBPMContext.setSession(session);
+			ProcessDefinition processDefinition = null;
+			processDefinition = topBPMContext.getGraphSession()
+					.findLatestProcessDefinition(request.getParameter("procName"));
 
-	    byte[] bytes = processDefinition.getFileDefinition().getBytes("processimage.jpg");
-	    OutputStream out = response.getOutputStream();
-	    out.write(bytes);
-	    out.flush();
-	}catch (RuntimeException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}finally{
-		if(session != null){
-			session.close();
+			byte[] bytes = processDefinition.getFileDefinition().getBytes("processimage.jpg");
+			OutputStream out = response.getOutputStream();
+			out.write(bytes);
+			out.flush();
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
-	}
 
-
-    // leave this in.  it is in case we want to set the mime type later.
-    // get the mime type
-    // String contentType = URLConnection.getFileNameMap().getContentTypeFor( fileName );
-    // set the content type (=mime type)
-    // response.setContentType( contentType );
+		// leave this in. it is in case we want to set the mime type later.
+		// get the mime type
+		// String contentType =
+		// URLConnection.getFileNameMap().getContentTypeFor( fileName );
+		// set the content type (=mime type)
+		// response.setContentType( contentType );
 	}
 }

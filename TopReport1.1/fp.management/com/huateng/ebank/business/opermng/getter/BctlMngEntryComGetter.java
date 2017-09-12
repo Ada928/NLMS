@@ -8,15 +8,6 @@
  */
 package com.huateng.ebank.business.opermng.getter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import resource.bean.pub.Bctl;
-import resource.bean.pub.TlrBctlRel;
-import resource.bean.report.SysTaskLog;
-import resource.report.dao.ROOTDAO;
-import resource.report.dao.ROOTDAOUtils;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -29,6 +20,14 @@ import com.huateng.report.common.service.ReportShowDetailService;
 import com.huateng.report.system.bean.TlrInfoAuditBean;
 import com.huateng.report.utils.ReportTaskUtil;
 import com.huateng.report.utils.ReportUtils;
+import resource.bean.pub.Bctl;
+import resource.bean.pub.TlrBctlRel;
+import resource.bean.report.SysTaskLog;
+import resource.report.dao.ROOTDAO;
+import resource.report.dao.ROOTDAOUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author zhiguo.zhao

@@ -1,19 +1,17 @@
 package com.huateng.ebank.business.remote;
 
-import java.io.IOException;
-import java.util.HashMap;
+import com.huateng.ebank.business.common.MapUtil;
+import com.huateng.ebank.business.common.TransferConstant;
+import com.huateng.ebank.framework.util.encrypt.Base64URLEncode;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.log4j.Logger;
-
-import com.huateng.ebank.business.common.MapUtil;
-import com.huateng.ebank.business.common.TransferConstant;
-import com.huateng.ebank.framework.util.encrypt.Base64URLEncode;
+import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Servlet implementation class PageBackServlet

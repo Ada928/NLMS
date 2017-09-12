@@ -9,7 +9,8 @@ import com.huateng.ebank.framework.util.DataFormat;
 public class GetCorpCreditIdGenerator extends BaseGenerator {
 
 	public String gen(Object obj) throws CommonException {
-		return DataFormat.intToString(CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_CORP_CREDIT_NO, "creditbkid"),10);
+		return DataFormat.intToString(
+				CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_CORP_CREDIT_NO, "creditbkid"), 10);
 	}
 
 }

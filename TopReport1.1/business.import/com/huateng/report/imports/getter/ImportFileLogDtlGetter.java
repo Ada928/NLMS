@@ -24,11 +24,9 @@ public class ImportFileLogDtlGetter extends BaseGetter {
 			// 页码
 			int pageIndex = getResult().getPage().getCurrentPage();
 
-			StringBuffer hql = new StringBuffer(
-					"from BiImportLogDtl where 1=1 ");
-			
-			String logid = getCommQueryServletRequest().getParameter(
-					"logid");
+			StringBuffer hql = new StringBuffer("from BiImportLogDtl where 1=1 ");
+
+			String logid = getCommQueryServletRequest().getParameter("logid");
 			if (StringUtils.isNotBlank(logid)) {
 				hql.append("and log.id = '" + logid + "' ");
 			}
@@ -38,23 +36,18 @@ public class ImportFileLogDtlGetter extends BaseGetter {
 			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setPageSize(pageSize);
 
-			PageQueryResult pageResult = ROOTDAOUtils.getROOTDAO()
-					.pageQueryByQL(queryCondition);
+			PageQueryResult pageResult = ROOTDAOUtils.getROOTDAO().pageQueryByQL(queryCondition);
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

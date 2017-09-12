@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the BI_PROCESS_LOG table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * This is an object that contains data related to the BI_PROCESS_LOG table. Do
+ * not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="BI_PROCESS_LOG"
+ * @hibernate.class table="BI_PROCESS_LOG"
  */
 
-public abstract class BaseBiProcessLog  implements Serializable {
+public abstract class BaseBiProcessLog implements Serializable {
 
 	public static String REF = "BiProcessLog";
 	public static String PROP_EXECUTE_TM = "executeTm";
@@ -28,21 +26,20 @@ public abstract class BaseBiProcessLog  implements Serializable {
 	public static String PROP_IP = "ip";
 
 	// constructors
-	public BaseBiProcessLog () {
+	public BaseBiProcessLog() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseBiProcessLog (java.lang.String id) {
+	public BaseBiProcessLog(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -61,7 +58,6 @@ public abstract class BaseBiProcessLog  implements Serializable {
 	private java.lang.String operType;
 	private java.lang.String ip;
 
-
 	public java.lang.String getIp() {
 		return ip;
 	}
@@ -72,88 +68,89 @@ public abstract class BaseBiProcessLog  implements Serializable {
 
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  column="PRO_ID"
-     */
-	public java.lang.String getId () {
+	 * 
+	 * @hibernate.id column="PRO_ID"
+	 */
+	public java.lang.String getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.String id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: WORK_DATE
 	 */
-	public java.lang.String getWorkDate () {
+	public java.lang.String getWorkDate() {
 		return workDate;
 	}
 
 	/**
 	 * Set the value related to the column: WORK_DATE
-	 * @param workDate the WORK_DATE value
+	 * 
+	 * @param workDate
+	 *            the WORK_DATE value
 	 */
-	public void setWorkDate (java.lang.String workDate) {
+	public void setWorkDate(java.lang.String workDate) {
 		this.workDate = workDate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BUSI_TYPE
 	 */
-	public java.lang.String getBusiType () {
+	public java.lang.String getBusiType() {
 		return busiType;
 	}
 
 	/**
 	 * Set the value related to the column: BUSI_TYPE
-	 * @param busiType the BUSI_TYPE value
+	 * 
+	 * @param busiType
+	 *            the BUSI_TYPE value
 	 */
-	public void setBusiType (java.lang.String busiType) {
+	public void setBusiType(java.lang.String busiType) {
 		this.busiType = busiType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BR_NO
 	 */
-	public java.lang.String getBrNo () {
+	public java.lang.String getBrNo() {
 		return brNo;
 	}
 
 	/**
 	 * Set the value related to the column: BR_NO
-	 * @param brNo the BR_NO value
+	 * 
+	 * @param brNo
+	 *            the BR_NO value
 	 */
-	public void setBrNo (java.lang.String brNo) {
+	public void setBrNo(java.lang.String brNo) {
 		this.brNo = brNo;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EXECUTE_TYPE
 	 */
-	public java.lang.String getExecuteType () {
+	public java.lang.String getExecuteType() {
 		return executeType;
 	}
 
 	/**
 	 * Set the value related to the column: EXECUTE_TYPE
-	 * @param executeType the EXECUTE_TYPE value
+	 * 
+	 * @param executeType
+	 *            the EXECUTE_TYPE value
 	 */
-	public void setExecuteType (java.lang.String executeType) {
+	public void setExecuteType(java.lang.String executeType) {
 		this.executeType = executeType;
 	}
 
@@ -184,56 +181,55 @@ public abstract class BaseBiProcessLog  implements Serializable {
 	/**
 	 * Return the value associated with the column: EXECUTE_ID
 	 */
-	public java.lang.String getExecuteId () {
+	public java.lang.String getExecuteId() {
 		return executeId;
 	}
 
 	/**
 	 * Set the value related to the column: EXECUTE_ID
-	 * @param executeId the EXECUTE_ID value
+	 * 
+	 * @param executeId
+	 *            the EXECUTE_ID value
 	 */
-	public void setExecuteId (java.lang.String executeId) {
+	public void setExecuteId(java.lang.String executeId) {
 		this.executeId = executeId;
 	}
-
-
-
-	
-
-
-
 
 	/**
 	 * Return the value associated with the column: OPER_TYPE
 	 */
-	public java.lang.String getOperType () {
+	public java.lang.String getOperType() {
 		return operType;
 	}
 
 	/**
 	 * Set the value related to the column: OPER_TYPE
-	 * @param operType the OPER_TYPE value
+	 * 
+	 * @param operType
+	 *            the OPER_TYPE value
 	 */
-	public void setOperType (java.lang.String operType) {
+	public void setOperType(java.lang.String operType) {
 		this.operType = operType;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.BiProcessLog)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.BiProcessLog))
+			return false;
 		else {
 			resource.bean.report.BiProcessLog biProcessLog = (resource.bean.report.BiProcessLog) obj;
-			if (null == this.getId() || null == biProcessLog.getId()) return false;
-			else return (this.getId().equals(biProcessLog.getId()));
+			if (null == this.getId() || null == biProcessLog.getId())
+				return false;
+			else
+				return (this.getId().equals(biProcessLog.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -242,10 +238,8 @@ public abstract class BaseBiProcessLog  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

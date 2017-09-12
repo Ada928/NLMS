@@ -17,6 +17,7 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.operation.BopCfaStrdeDsOperation;
+
 /*
  * 利息给付update
  */
@@ -24,27 +25,27 @@ public class BopCfaStrdeDsInpayUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "bopCfaStrdeDsEntryInpayAdd";
 	private static final String updateType = "INPAY_";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
-			//返回对象
+			// 返回对象
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			//结果集对象
+			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-			//更新对象
+			// 更新对象
 			BopCfaStrdeDs bopCfaStrdeDs = new BopCfaStrdeDs();
-			//Operation参数
+			// Operation参数
 			OperationContext context = new OperationContext();
 			while (updateResultBean.hasNext()) {
-				//属性拷贝
+				// 属性拷贝
 				Map map = updateResultBean.next();
 				String op = updateResultBean.getParameter("op");
 				mapToObject(bopCfaStrdeDs, map);
-				//获得利息给付备注
-				bopCfaStrdeDs.setRemark((String)map.get("remark1"));
-				context.setAttribute(BopCfaStrdeDsOperation.CMD, updateType+op);
+				// 获得利息给付备注
+				bopCfaStrdeDs.setRemark((String) map.get("remark1"));
+				context.setAttribute(BopCfaStrdeDsOperation.CMD, updateType + op);
 				context.setAttribute(BopCfaStrdeDsOperation.INPAY_IN_PARAM, bopCfaStrdeDs);
 				OPCaller.call(BopCfaStrdeDsOperation.ID, context);
 				return updateReturnBean;
@@ -52,7 +53,7 @@ public class BopCfaStrdeDsInpayUpdate extends BaseUpdate {
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
-			throw new AppException(Module.SYSTEM_MODULE,Rescode.DEFAULT_RESCODE,e.getMessage(),e);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
 		return null;
 	}

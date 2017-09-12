@@ -18,26 +18,23 @@ public class SubFileChangeFileDateGetter extends BaseGetter {
 	@Override
 	public Result call() throws AppException {
 		try {
-			List list=new ArrayList();
+			List list = new ArrayList();
 
 			String fileDate = GlobalInfo.getCurrentInstance().getFileDate();
-			SubFileChangeDateBean bean = new SubFileChangeDateBean(fileDate,fileDate);
+			SubFileChangeDateBean bean = new SubFileChangeDateBean(fileDate, fileDate);
 			list.add(bean);
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(),list, getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 			getResult().setContent(list);
 			getResult().getPage().setTotalPage(1);
 			getResult().init();
 			return getResult();
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

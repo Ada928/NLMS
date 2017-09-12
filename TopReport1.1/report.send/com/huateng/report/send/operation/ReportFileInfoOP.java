@@ -22,8 +22,7 @@ public class ReportFileInfoOP extends BaseOperation {
 	public void execute(OperationContext context) throws CommonException {
 		String cmd = (String) context.getAttribute(CMD);
 		if (DO_SAVE_REPORT_FILE_INFO.equals(cmd)) {
-			List<SubFileInfo> list = (List<SubFileInfo>) context
-					.getAttribute(PARAM);
+			List<SubFileInfo> list = (List<SubFileInfo>) context.getAttribute(PARAM);
 			for (SubFileInfo fi : list) {
 				ROOTDAOUtils.getROOTDAO().saveOrUpdate(fi);
 			}

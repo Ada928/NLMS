@@ -12,6 +12,7 @@ public class ReportDataCleanOperation extends BaseOperation {
 	private static final HtLog htlog = HtLogFactory.getLogger(ReportDataCleanOperation.class);
 	public static final String ID = "ReportDataCleanOperation";
 	public static final String IN_OBJ = "IN_OBJ";
+
 	@Override
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub

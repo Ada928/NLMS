@@ -25,24 +25,24 @@ import com.huateng.report.utils.ReportUtils;
 /**
  *
  * 外债信息表 update insert delete Getter
+ * 
  * @author wenhao.chen
- * @version 1.0
- * 2012-8-30
+ * @version 1.0 2012-8-30
  *
- * */
+ */
 @SuppressWarnings("unchecked")
 public class BOPForDebtCurrMarketToolsColGetter extends BaseGetter {
 
-	private static final String DELETE_CMD="del";
-	private static final String NEW_CMD="new";
-	private static final String MOD_CMD="mod";
-	private static final String DETAILE_CMD="detaile";
+	private static final String DELETE_CMD = "del";
+	private static final String NEW_CMD = "new";
+	private static final String MOD_CMD = "mod";
+	private static final String DETAILE_CMD = "detaile";
 
 	@SuppressWarnings("rawtypes")
 	public Result call() throws AppException {
 		try {
 			List queryResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),getCommQueryServletRequest(), queryResult,getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult, getResult());
 			result.setContent(queryResult);
 			result.getPage().setTotalPage(0);
 			result.init();
@@ -50,14 +50,12 @@ public class BOPForDebtCurrMarketToolsColGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	@SuppressWarnings("rawtypes")
 	private List getData() throws CommonException {
-
 
 		List<BOPForDebtBilLoanCreditor> list = new ArrayList<BOPForDebtBilLoanCreditor>();
 		String id = getCommQueryServletRequest().getParameter("id");
@@ -79,15 +77,16 @@ public class BOPForDebtCurrMarketToolsColGetter extends BaseGetter {
 
 			return list;
 
-		} else if (DETAILE_CMD.equalsIgnoreCase(op) || DELETE_CMD.equalsIgnoreCase(op) || MOD_CMD.equalsIgnoreCase(op)) {
+		} else if (DETAILE_CMD.equalsIgnoreCase(op) || DELETE_CMD.equalsIgnoreCase(op)
+				|| MOD_CMD.equalsIgnoreCase(op)) {
 
 			ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 			BopCfaExdebtDs exdebtds = rootdao.query(BopCfaExdebtDs.class, id);
 
 			StringBuilder query = new StringBuilder(" FROM BopCfaCreditorDs WHERE recId = ? ");
-			List<BopCfaCreditorDs>creditorList = rootdao.queryByQL2List(query.toString(), new Object[]{id}, null);
+			List<BopCfaCreditorDs> creditorList = rootdao.queryByQL2List(query.toString(), new Object[] { id }, null);
 
-			if(null != exdebtds){
+			if (null != exdebtds) {
 				bop.setId(exdebtds.getId());
 				bop.setApptype(exdebtds.getApptype());
 				bop.setCurrentfile(exdebtds.getCurrentfile());
@@ -113,7 +112,7 @@ public class BOPForDebtCurrMarketToolsColGetter extends BaseGetter {
 				bop.setFiller1(exdebtds.getFiller1());
 				bop.setBrNo(exdebtds.getBrNo());
 				bop.setActiontype(exdebtds.getActiontype());
-				if (!StringUtils.equalsIgnoreCase(MOD_CMD, op)){
+				if (!StringUtils.equalsIgnoreCase(MOD_CMD, op)) {
 					bop.setActiondesc(exdebtds.getActiondesc());
 				}
 				bop.setRecStatus(exdebtds.getRecStatus());
@@ -127,7 +126,7 @@ public class BOPForDebtCurrMarketToolsColGetter extends BaseGetter {
 				bop.setIsincode(exdebtds.getIsincode());
 			}
 
-			if(!creditorList.isEmpty()){
+			if (!creditorList.isEmpty()) {
 				BopCfaCreditorDs creditor = creditorList.get(0);
 				bop.setCreditorid(creditor.getId());
 				bop.setCreditorcode(creditor.getCreditorcode());

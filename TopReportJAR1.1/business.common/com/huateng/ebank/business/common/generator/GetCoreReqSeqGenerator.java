@@ -29,8 +29,7 @@ public class GetCoreReqSeqGenerator extends BaseGenerator {
 	 * @see com.huateng.commquery.cfieldmodel.BaseGenerator#gen(java.util.Map)
 	 */
 
-	public synchronized String gen(Object paramMap)
-			throws CommonException {
+	public synchronized String gen(Object paramMap) throws CommonException {
 		int seqNo = 0;
 		if (beginNo == endNo) {
 			getSeqNo();
@@ -51,7 +50,7 @@ public class GetCoreReqSeqGenerator extends BaseGenerator {
 		String valueIndex = SystemConstant.VALUE_INDEX;
 		// TODO Auto-generated method stub
 		int seqNo = 0; // 取出的序号
-		int seqRange = 100; //号段范围，可通过配置获取
+		int seqRange = 100; // 号段范围，可通过配置获取
 		// 根据输入的机构号，序号种类，序号索引得到当前使用的序号。
 		SeqctlDAO dao = BaseDAOUtils.getSeqctlDAO();
 		Seqctl po = dao.query(valueNo, valueIndex);
@@ -59,11 +58,11 @@ public class GetCoreReqSeqGenerator extends BaseGenerator {
 			// 如果存在该序号记录，则取出当前序号并将序号加1
 			seqNo = po.getValueCurr();
 			po.setValueCurr(seqNo + seqRange); // 序号加1
-			//设置起始和结束号段
+			// 设置起始和结束号段
 			beginNo = seqNo;
 			endNo = beginNo + seqRange - 1;
 			//
-			if (po.getValueCurr() > po.getMaxValue()){
+			if (po.getValueCurr() > po.getMaxValue()) {
 				po.setValueCurr(po.getMinValue() + seqRange);
 				beginNo = po.getMinValue();
 				endNo = beginNo + seqRange - 1;

@@ -19,7 +19,8 @@
   		</tr>
   		<tr>
       		<td colspan="2">
-          		<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="btDo,-,btSee" fieldStr="select,id,intInsId,updTransCd,intOperId,insCd,crtDt" width="100%"  readonly="true"/></br>
+          		<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="btDo,-,btSee" fieldStr="select,id,intInsId,updTransCd,intOperId,insCd,crtDt" width="100%"  readonly="true"/>
+				</br>
         	</td>
         </tr>
 
@@ -33,7 +34,7 @@
 <script language="javascript" src="${contextPath}/js/topTsk.js"></script>
  <script language="javascript">
 function initCallGetter_post() {
-	 var intInsId = "${RequestParameters["intInsId"]?default('')}";
+	 var intInsId = "${RequestParameters['intInsId']?default('')}";
 	 if(intInsId!=null && intInsId.length>0){
 	 	UndoConfirm_interface_dataset.setValue("intInsId", intInsId);
 	 	UndoConfirm_dataset.flushData(UndoConfirm_dataset.pageIndex);

@@ -99,7 +99,6 @@ public class BiMonthExchangeRateDetailGetter extends BaseGetter {
 			getResult().setContent(list);
 			getResult().getPage().setTotalPage(1);
 			getResult().init();
-			
 
 			return getResult();
 		} catch (CommonException e) {

@@ -3,49 +3,52 @@
  */
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
+
 /**
  * @author user
  *
  */
-public class WorkFlowParamSelectBean {
+public class WorkFlowParamSelectBean implements Serializable {
 
-	/*工作流模板名 */
+	/* 工作流模板名 */
 	private String processTemplate;
 
 	private String processTemplateName;
 
-	/* 任务名*/
+	/* 任务名 */
 	private String taskName;
 
 	private String taskNameLable;
 
 	private String taskNameName;
-	/* 审批类型*/
+	/* 审批类型 */
 	private String bizClass;
 
 	private String bizClassName;
 
-//========================================
+	// ========================================
 	/* 贷款品种类型 */
 	private String bizSubclass;
 
 	private String bizSubclassName;
 
-	/*申请类型*/
+	/* 申请类型 */
 	private String appType;
 
 	private String appTypeName;
 
-	/*机构类型*/
+	/* 机构类型 */
 	private String brclass;
 
 	private String brclassName;
 
-	/*流程名称*/
+	/* 流程名称 */
 	private String procName;
 
 	private String procNameName;
-//=========================================
+
+	// =========================================
 
 	public String getProcessTemplate() {
 		return processTemplate;
@@ -79,8 +82,8 @@ public class WorkFlowParamSelectBean {
 		this.taskNameLable = taskNameLable;
 	}
 
-//	===============================================
-//add by GuanLin 20090904
+	// ===============================================
+	// add by GuanLin 20090904
 	public String getBizClass() {
 		return bizClass;
 	}
@@ -129,7 +132,7 @@ public class WorkFlowParamSelectBean {
 		this.brclassName = brclassName;
 	}
 
-//============================================
+	// ============================================
 	public String getBizSubclass() {
 		return bizSubclass;
 	}
@@ -169,7 +172,5 @@ public class WorkFlowParamSelectBean {
 	public void setProcNameName(String procNameName) {
 		this.procNameName = procNameName;
 	}
-
-
 
 }

@@ -28,16 +28,15 @@ import com.huateng.topbpm.taskmgmt.def.AssignmentHandler;
 import com.huateng.topbpm.taskmgmt.exe.Assignable;
 
 /**
- * ClassName:GetCommonTaskAssign
- * Function: TODO ADD FUNCTION
- * Reason:	 TODO ADD REASON
+ * ClassName:GetCommonTaskAssign Function: TODO ADD FUNCTION Reason: TODO ADD
+ * REASON
  *
- * @author   shen_antonio
- * @version  
- * @since    Ver 1.1
- * @Date	 2011-12-18		下午11:38:21
+ * @author shen_antonio
+ * @version
+ * @since Ver 1.1
+ * @Date 2011-12-18 下午11:38:21
  *
- * @see 	 
+ * @see
  */
 public class GetCommonTaskAssign implements AssignmentHandler {
 
@@ -46,7 +45,7 @@ public class GetCommonTaskAssign implements AssignmentHandler {
 		// TODO Auto-generated method stub
 		System.out.println("---------------Task Enter---------------");
 		Statement statement = null;
-		try{
+		try {
 			Map map = arg1.getTaskInstance().getVariables();
 			long taskId = arg1.getTaskInstance().getId();
 			String procName = arg1.getProcessDefinition().getName();
@@ -57,28 +56,26 @@ public class GetCommonTaskAssign implements AssignmentHandler {
 			map.put("TASK_NAME", nodeName);
 			map.put("PROC_INS_ID", Long.toString(procInsId));
 
-
 			Map resultmap = WorkFlowParamService.getInstance().getCommonTaskAssign(map);
-			//记录当前分配岗位	Added by UU_Wu 2009-9-22
+			// 记录当前分配岗位 Added by UU_Wu 2009-9-22
 			arg1.getTaskInstance().setVariable(WorkflowConstant.WORKFLOW_ATTRIBUTE_ROLEID,
 					resultmap.get(WorkflowConstant.WORKFLOW_ATTRIBUTE_ROLEID));
-			//记录当前分配机构 Added by UU_Wu 2009-9-27
+			// 记录当前分配机构 Added by UU_Wu 2009-9-27
 			arg1.getTaskInstance().setVariable(WorkflowConstant.WORKFLOW_ATTRIBUTE_CURRBRHID,
 					resultmap.get(WorkflowConstant.WORKFLOW_ATTRIBUTE_CURRBRHID));
-			String[] arr =  (String[]) resultmap.get("OPRNO_ARR");
-			/* modify by shen_antonio 20100714 jira:BMS-2809 begin .*/
-			if(arr.length == 1){
+			String[] arr = (String[]) resultmap.get("OPRNO_ARR");
+			/* modify by shen_antonio 20100714 jira:BMS-2809 begin . */
+			if (arr.length == 1) {
 				arg1.getTaskInstance().setPooledActors(arr);
 				map.put("OPRNO_ARR", arr[0]);
-			}
-			else if(arr.length ==0){
-				arg1.getTaskInstance().setPooledActors(new String[]{WorkFlowServiceHelper.TASKASSIGN_NONE3});
+			} else if (arr.length == 0) {
+				arg1.getTaskInstance().setPooledActors(new String[] { WorkFlowServiceHelper.TASKASSIGN_NONE3 });
 				map.put("OPRNO_ARR", WorkflowConstant.WORKFLOW_ASSIGN_NONE);
 				WIException wex = new WIException("任务分配错误，没有合适的人员执行一下一个任务");
-				throw(wex);
+				throw (wex);
 			}
-			/* modify by shen_antonio 20100714 jira:BMS-2809 end.*/
-			else{
+			/* modify by shen_antonio 20100714 jira:BMS-2809 end. */
+			else {
 				arg1.getTaskInstance().setPooledActors(arr);
 				map.put("OPRNO_ARR", WorkFlowParamService.getInstance().transArrayToString(arr));
 			}
@@ -89,31 +86,29 @@ public class GetCommonTaskAssign implements AssignmentHandler {
 
 			System.out.println("---------------Before TaskLeave---------------");
 			System.out.println("nextNode = " + arg1.getNode().getName());
-			System.out.println("nextTlrnoList = " + arg1.getTaskInstance().getPooledActors() );
-			//node
+			System.out.println("nextTlrnoList = " + arg1.getTaskInstance().getPooledActors());
+			// node
 
-//			List transList = arg1.getNode().getLeavingTransitionsList();
+			// List transList = arg1.getNode().getLeavingTransitionsList();
 
-
-		}catch(CommonException cex){
-			if(DataFormat.isEmpty(arg1.getTaskInstance().getActorId())
-					&&arg1.getTaskInstance().getPooledActors().isEmpty()){
+		} catch (CommonException cex) {
+			if (DataFormat.isEmpty(arg1.getTaskInstance().getActorId())
+					&& arg1.getTaskInstance().getPooledActors().isEmpty()) {
 				arg1.getTaskInstance().setActorId(WorkFlowServiceHelper.TASKASSIGN_NONE3);
 				GlobalInfo globalData = GlobalInfo.getCurrentInstanceWithoutException();
 
-				//把分配结果存入全局变量
-				if(globalData!=null){
+				// 把分配结果存入全局变量
+				if (globalData != null) {
 					globalData.setAssignedOprid(WorkFlowServiceHelper.TASKASSIGN_NONE3);
 				}
 			}
 
 			throw new WIException(cex.getErrMessage());
-		}catch(WIException wex){
+		} catch (WIException wex) {
 			throw wex;
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
 }
-

@@ -1,11 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.common.PageQueryCondition;
@@ -15,6 +9,11 @@ import com.huateng.ebank.business.management.common.DAOUtils;
 import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import org.apache.commons.lang.StringUtils;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 
 /**

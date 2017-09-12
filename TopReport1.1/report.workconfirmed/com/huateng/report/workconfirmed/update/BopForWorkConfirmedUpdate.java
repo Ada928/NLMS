@@ -16,42 +16,38 @@ import com.huateng.report.workconfirmed.operation.BopForWorkConfirmedOperation;
 
 public class BopForWorkConfirmedUpdate extends BaseUpdate {
 
-	private static final String DATASET_ID="BOPForBiExecConfirmedEntry";
+	private static final String DATASET_ID = "BOPForBiExecConfirmedEntry";
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
-		
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
+
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 
-			//TODO
-			
+			// TODO
+
 			String confirmRemark = updateResultBean.getParameter("confirmRemark");
 			String busiType = updateResultBean.getParameter("busiType");
 			String appType = updateResultBean.getParameter("appType");
-			
-			if(null==confirmRemark)
-			{
-				confirmRemark="";
+
+			if (null == confirmRemark) {
+				confirmRemark = "";
 			}
-		
-			
+
 			OperationContext oc = new OperationContext();
-			oc.setAttribute(BopForWorkConfirmedOperation.CMD,BopForWorkConfirmedOperation.OP_LOCK);
+			oc.setAttribute(BopForWorkConfirmedOperation.CMD, BopForWorkConfirmedOperation.OP_LOCK);
 			oc.setAttribute(BopForWorkConfirmedOperation.IN_REMARK, confirmRemark);
 			oc.setAttribute(BopForWorkConfirmedOperation.IN_BUSITYPE, busiType);
 			oc.setAttribute(BopForWorkConfirmedOperation.IN_APPTYPE, appType);
 			OPCaller.call(BopForWorkConfirmedOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

@@ -26,20 +26,16 @@ public class BopCfaStrdeDsEntryInoutMoAddGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -47,35 +43,38 @@ public class BopCfaStrdeDsEntryInoutMoAddGetter extends BaseGetter {
 	private PageQueryResult getData() throws CommonException {
 		Map paramsMap = getCommQueryServletRequest().getParameterMap();
 		String op = (String) paramsMap.get("op");
-		if(ADD.equals(op)) {
-			//新增
+		if (ADD.equals(op)) {
+			// 新增
 			PageQueryResult pageQueryResult = new PageQueryResult();
 			return pageQueryResult;
 		}
-		if(MOD.equals(op) || DEL.equals(op) || DETAIL.equals(op)) {
-			//修改和删除
+		if (MOD.equals(op) || DEL.equals(op) || DETAIL.equals(op)) {
+			// 修改和删除
 			String rec_id = (String) paramsMap.get("id");
 
 			BopCfaStrdeDsService service = BopCfaStrdeDsService.getInstance();
 			BopCfaStrdeDs bopcfastrdeds = service.queryByIdReturnBean(rec_id);
-//			if (StringUtils.equals(MOD, op)) {
-//				bopcfastrdeds.setActiondesc(null);
-//				if (StringUtils.equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO, bopcfastrdeds.getSubSuccess())) {
-//					bopcfastrdeds.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_A);
-//				} else {
-//					bopcfastrdeds.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_C);
-//				}
-//			} else if(StringUtils.equals(op, BopCfaDofoexloDsUpdate.OPERATION_DELETE)){
-//				bopcfastrdeds.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_D);
-//			}
-//			if (StringUtils.equals(op, MOD)
-//					|| StringUtils.equals(op, DEL)){
-//				bopcfastrdeds.setRecStatus(TopReportConstants.REPORT_RECSTATUS_02);
-//				bopcfastrdeds.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
-//				bopcfastrdeds.setApproveStatus(TopReportConstants.REPORT_APPROVESTATUS_00);
-//			}
-			List<BopCfaStrdeDs>list = new ArrayList<BopCfaStrdeDs>();
-			if(bopcfastrdeds!= null) {
+			// if (StringUtils.equals(MOD, op)) {
+			// bopcfastrdeds.setActiondesc(null);
+			// if
+			// (StringUtils.equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO,
+			// bopcfastrdeds.getSubSuccess())) {
+			// bopcfastrdeds.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_A);
+			// } else {
+			// bopcfastrdeds.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_C);
+			// }
+			// } else if(StringUtils.equals(op,
+			// BopCfaDofoexloDsUpdate.OPERATION_DELETE)){
+			// bopcfastrdeds.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_D);
+			// }
+			// if (StringUtils.equals(op, MOD)
+			// || StringUtils.equals(op, DEL)){
+			// bopcfastrdeds.setRecStatus(TopReportConstants.REPORT_RECSTATUS_02);
+			// bopcfastrdeds.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
+			// bopcfastrdeds.setApproveStatus(TopReportConstants.REPORT_APPROVESTATUS_00);
+			// }
+			List<BopCfaStrdeDs> list = new ArrayList<BopCfaStrdeDs>();
+			if (bopcfastrdeds != null) {
 				list.add(bopcfastrdeds);
 			}
 			PageQueryResult queryResult = new PageQueryResult();

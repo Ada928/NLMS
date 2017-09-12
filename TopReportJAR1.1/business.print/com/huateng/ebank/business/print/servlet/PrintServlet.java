@@ -16,23 +16,22 @@ import com.huateng.ebank.business.print.base.BasePrinter;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
 
+public class PrintServlet extends HttpServlet {
+	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		try {
+			List jasperPrintList = null;
+			// setGlobalInfoToThreadLoacl(request);
+			String reportId = request.getParameter("report_id");
+			BasePrinter printer = (BasePrinter) ApplicationContextUtils.getBean(reportId);
+			jasperPrintList = printer.getPrinterList(request);
 
-public class PrintServlet extends HttpServlet{
-	public void service(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-		try{
-            List jasperPrintList=null;
-            //setGlobalInfoToThreadLoacl(request);
-            String reportId=request.getParameter("report_id");
-            BasePrinter printer=(BasePrinter)ApplicationContextUtils.getBean(reportId);
-            jasperPrintList=printer.getPrinterList(request);
-
-            //byte[] compressByteArr=getCompressObject(jasperPrintList);//得到数据压缩后的字节数组
+			// byte[]
+			// compressByteArr=getCompressObject(jasperPrintList);//得到数据压缩后的字节数组
 			response.reset();
 			response.setContentType("application/octet-stream;charset=utf-8");
 			ServletOutputStream ouputStream = response.getOutputStream();
 
-			GZIPOutputStream gzpos=new GZIPOutputStream(ouputStream);
+			GZIPOutputStream gzpos = new GZIPOutputStream(ouputStream);
 			ObjectOutputStream oos = new ObjectOutputStream(gzpos);
 			oos.writeObject(jasperPrintList);
 
@@ -48,43 +47,37 @@ public class PrintServlet extends HttpServlet{
 		}
 	}
 
-	protected void setGlobalInfoToThreadLoacl(HttpServletRequest request)
-		throws CommonException {
-			HttpSession httpSession = request.getSession();
-			GlobalInfo globalInfo = (GlobalInfo) httpSession
-				.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
-			if (null != globalInfo) {
-				GlobalInfo.setCurrentInstance(globalInfo);
-				String sessionId = httpSession.getId();
-				globalInfo.setSessionId(sessionId);
-			}
+	protected void setGlobalInfoToThreadLoacl(HttpServletRequest request) throws CommonException {
+		HttpSession httpSession = request.getSession();
+		GlobalInfo globalInfo = (GlobalInfo) httpSession.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
+		if (null != globalInfo) {
+			GlobalInfo.setCurrentInstance(globalInfo);
+			String sessionId = httpSession.getId();
+			globalInfo.setSessionId(sessionId);
+		}
 	}
 
+	/** 数据压缩 */
+	public byte[] getCompressObject(Object data) {
+		byte[] result = null;
+		try {
+			// 建立字节数组输出流
+			ByteArrayOutputStream byteos = new ByteArrayOutputStream();
+			// 建立gzip压缩输出流
+			GZIPOutputStream gzout = new GZIPOutputStream(byteos);
+			// 建立对象序列化输出流
+			ObjectOutputStream out = new ObjectOutputStream(gzout);
+			out.writeObject(data);
+			out.flush();
+			out.close();
+			gzout.close();
 
-	/**数据压缩*/
-	public byte[] getCompressObject(Object data)
-	{
-	byte[] result=null;
-	try
-	{
-	//建立字节数组输出流
-	ByteArrayOutputStream byteos = new ByteArrayOutputStream();
-	//建立gzip压缩输出流
-	GZIPOutputStream gzout=new GZIPOutputStream(byteos);
-	//建立对象序列化输出流
-	ObjectOutputStream out = new ObjectOutputStream(gzout);
-	out.writeObject(data);
-	out.flush();
-	out.close();
-	gzout.close();
-
-	//返回压缩字节流
-	result=byteos.toByteArray();
-	byteos.close();
-	}catch(IOException e)
-	{
-	System.out.println(e);
-	}
-	return result;
+			// 返回压缩字节流
+			result = byteos.toByteArray();
+			byteos.close();
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+		return result;
 	}
 }

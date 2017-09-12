@@ -14,9 +14,8 @@ import freemarker.template.TemplateMethodModel;
 import freemarker.template.TemplateModelException;
 
 public class SysDicStrMethodInter implements TemplateMethodModel {
-	protected static Logger logger = Logger
-			.getLogger(SysDicStrMethodInter.class);
-	
+	protected static Logger logger = Logger.getLogger(SysDicStrMethodInter.class);
+
 	public Object exec(List args) throws TemplateModelException {
 
 		String tblNm = null;
@@ -27,9 +26,9 @@ public class SysDicStrMethodInter implements TemplateMethodModel {
 			if ((index = trans.indexOf(".")) == -1)
 				return "";
 			tblNm = trans.substring(0, index);
-			//国际化后的表名
+			// 国际化后的表名
 			tblNm = MessageResourceUtil.getDataDicTblNm(tblNm);
-			
+
 			fldNm = trans.substring(index + 1);
 		} else if (args.size() == 2) {
 			tblNm = args.get(0).toString();
@@ -38,11 +37,9 @@ public class SysDicStrMethodInter implements TemplateMethodModel {
 			throw new TemplateModelException("Wrong arguments");
 		}
 		String str = "";
-		LinkedHashMap allMap = SystemDictionaryUnit.getAllFieldDesc(tblNm,
-				fldNm);
+		LinkedHashMap allMap = SystemDictionaryUnit.getAllFieldDesc(tblNm, fldNm);
 		if (allMap == null) {
-			(new TemplateModelException("tblNm = " + tblNm + " : fldVal = "
-					+ fldNm + " not found")).printStackTrace();
+			(new TemplateModelException("tblNm = " + tblNm + " : fldVal = " + fldNm + " not found")).printStackTrace();
 			return "";
 		}
 		Iterator it = allMap.keySet().iterator();

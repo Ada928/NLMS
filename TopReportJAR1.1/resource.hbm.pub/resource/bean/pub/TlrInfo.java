@@ -1,28 +1,26 @@
 package resource.bean.pub;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import resource.bean.pub.base.BaseTlrInfo;
 
-
-
-public class TlrInfo extends BaseTlrInfo {
+public class TlrInfo extends BaseTlrInfo implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public TlrInfo () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public TlrInfo() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public TlrInfo (java.lang.String tlrno) {
+	public TlrInfo(java.lang.String tlrno) {
 		super(tlrno);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
+	/* [CONSTRUCTOR MARKER END] */
 	private String brno;
 
 	public String getBrno() {
@@ -32,19 +30,17 @@ public class TlrInfo extends BaseTlrInfo {
 	public void setBrno(String brno) {
 		this.brno = brno;
 	}
-	
-	
+
 	/** add by zhaozhiguo 2011-6-20 BMS-3153 begin */
-	private String lastPwdUpdTime;
-	private Timestamp lastfailedtm;
-	private String isLock;
+	private java.util.Date lastPwdUpdTime;
+	private Date lastfailedtm;
 	private String lockReason;
 	private List roleList;
 	private String newFlag;
 	private String RestFlg;
-	
+
 	private String reset;
-	
+
 	public String getReset() {
 		return reset;
 	}
@@ -53,20 +49,12 @@ public class TlrInfo extends BaseTlrInfo {
 		this.reset = reset;
 	}
 
-	public Timestamp getLastfailedtm() {
+	public Date getLastfailedtm() {
 		return lastfailedtm;
 	}
 
-	public void setLastfailedtm(Timestamp lastfailedtm) {
+	public void setLastfailedtm(Date lastfailedtm) {
 		this.lastfailedtm = lastfailedtm;
-	}
-
-	public String getIsLock() {
-		return isLock;
-	}
-
-	public void setIsLock(String isLock) {
-		this.isLock = isLock;
 	}
 
 	public String getLockReason() {
@@ -77,19 +65,17 @@ public class TlrInfo extends BaseTlrInfo {
 		this.lockReason = lockReason;
 	}
 
-	public String getLastPwdUpdTime() {
+	public java.util.Date getLastPwdUpdTime() {
 		return lastPwdUpdTime;
 	}
 
-	public void setLastPwdUpdTime(String lastPwdUpdTime) {
+	public void setLastPwdUpdTime(java.util.Date lastPwdUpdTime) {
 		this.lastPwdUpdTime = lastPwdUpdTime;
 	}
 
 	/** add by zhaozhiguo 2011-6-20 BMS-3153 end */
-	
-	
 
-	//操作员审批阀值
+	// 操作员审批阀值
 	private long maxWl;
 
 	public long getMaxWl() {
@@ -123,5 +109,5 @@ public class TlrInfo extends BaseTlrInfo {
 	public void setRestFlg(String restFlg) {
 		RestFlg = restFlg;
 	}
-	
+
 }

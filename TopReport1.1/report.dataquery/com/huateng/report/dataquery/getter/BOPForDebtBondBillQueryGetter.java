@@ -25,26 +25,21 @@ import com.huateng.report.constants.TopReportConstants;
 @SuppressWarnings("unchecked")
 public class BOPForDebtBondBillQueryGetter extends BaseGetter {
 
-
 	@Override
 	public Result call() throws AppException {
 		try {
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "债券和票据签约信息查询");
 			PageQueryResult queryResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
-			result.getPage().setTotalPage(
-					queryResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -62,7 +57,7 @@ public class BOPForDebtBondBillQueryGetter extends BaseGetter {
 		String filler2 = getCommQueryServletRequest().getParameter("filler2");
 		String qbrNo = getCommQueryServletRequest().getParameter("qbrNo");
 
-		List<Object>paramentList = new ArrayList<Object>();
+		List<Object> paramentList = new ArrayList<Object>();
 		if (StringUtils.isNotBlank(qWorkDate)) {
 			hql.append(" AND bds.workDate >= ? ");
 			paramentList.add(qWorkDate);
@@ -89,7 +84,7 @@ public class BOPForDebtBondBillQueryGetter extends BaseGetter {
 		}
 		if (StringUtils.isNotBlank(filler2)) {
 			hql.append(" AND bds.filler2 LIKE ? ");
-			paramentList.add("%"+filler2+"%");
+			paramentList.add("%" + filler2 + "%");
 		}
 		if (StringUtils.isNotBlank(qbrNo)) {
 			hql.append(" AND brNo = ? ");
@@ -117,19 +112,20 @@ public class BOPForDebtBondBillQueryGetter extends BaseGetter {
 		queryCondition.setObjArray(paramentList.toArray());
 		PageQueryResult pageQueryResult = rootdao.pageQueryByQL(queryCondition);
 		List resultList = pageQueryResult.getQueryResult();
-		for(int i=0;i<resultList.size();i++){
-			   Object[] obj = (Object[])resultList.get(i);
-			   BopCfaExdebtDs bopCfaExdebtDs = (BopCfaExdebtDs)obj[0];
-			   List creditorsList = rootdao.queryByQL2List(" FROM BopCfaCreditorDs model WHERE model.recId = '"+bopCfaExdebtDs.getId().trim()+"' ");
-			   BopCfaCreditorDs bopCfaCreditorDs =(BopCfaCreditorDs)creditorsList.get(0);
-			   bopCfaExdebtDs.setCreditorcode(bopCfaCreditorDs.getCreditorcode());
-			   bopCfaExdebtDs.setCreditorname(bopCfaCreditorDs.getCreditorname());
-			   bopCfaExdebtDs.setCreditornamen(bopCfaCreditorDs.getCreditornamen());
-			   bopCfaExdebtDs.setCreditortype(bopCfaCreditorDs.getCreditortype());
-			   bopCfaExdebtDs.setCrehqcode(bopCfaCreditorDs.getCrehqcode());
-			   bopCfaExdebtDs.setOpercode(bopCfaCreditorDs.getOpercode());
-		   }
-		   pageQueryResult.setQueryResult(resultList);
+		for (int i = 0; i < resultList.size(); i++) {
+			Object[] obj = (Object[]) resultList.get(i);
+			BopCfaExdebtDs bopCfaExdebtDs = (BopCfaExdebtDs) obj[0];
+			List creditorsList = rootdao.queryByQL2List(
+					" FROM BopCfaCreditorDs model WHERE model.recId = '" + bopCfaExdebtDs.getId().trim() + "' ");
+			BopCfaCreditorDs bopCfaCreditorDs = (BopCfaCreditorDs) creditorsList.get(0);
+			bopCfaExdebtDs.setCreditorcode(bopCfaCreditorDs.getCreditorcode());
+			bopCfaExdebtDs.setCreditorname(bopCfaCreditorDs.getCreditorname());
+			bopCfaExdebtDs.setCreditornamen(bopCfaCreditorDs.getCreditornamen());
+			bopCfaExdebtDs.setCreditortype(bopCfaCreditorDs.getCreditortype());
+			bopCfaExdebtDs.setCrehqcode(bopCfaCreditorDs.getCrehqcode());
+			bopCfaExdebtDs.setOpercode(bopCfaCreditorDs.getOpercode());
+		}
+		pageQueryResult.setQueryResult(resultList);
 		return pageQueryResult;
 	}
 }

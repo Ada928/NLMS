@@ -13,20 +13,19 @@ import com.huateng.report.system.common.IGetSubFileList;
 
 public class BufBopBDsImpl implements IGetSubFileList {
 
-	public List getSubFileResultList(Map<String, Object> paramMap)
-			throws CommonException {
+	public List getSubFileResultList(Map<String, Object> paramMap) throws CommonException {
 		// TODO Auto-generated method stub
 		ROOTDAO dao = ROOTDAOUtils.getROOTDAO();
 		StringBuffer hqlBuff = new StringBuffer();
 		String fileDate = (String) paramMap.get(IGetSubFileList.IN_FILE_DATE);
 		String appType = (String) paramMap.get(IGetSubFileList.IN_APP_TYPE);
 		String fileType = (String) paramMap.get(IGetSubFileList.IN_FILE_TYPE);
-		hqlBuff.append(" from MtsBopBhnDs model ").append(" where model.apptype = '"+appType).append("'")
-		.append(" and model.currentfile = '"+fileType+"'");
-		if (fileDate!=null && fileDate.trim().length()>0) {
-			hqlBuff.append(" and model.workDate = '"+fileDate+"'");
+		hqlBuff.append(" from MtsBopBhnDs model ").append(" where model.apptype = '" + appType).append("'")
+				.append(" and model.currentfile = '" + fileType + "'");
+		if (fileDate != null && fileDate.trim().length() > 0) {
+			hqlBuff.append(" and model.workDate = '" + fileDate + "'");
 		}
-		hqlBuff.append(" and model.recStatus = '"+TopReportConstants.REPORT_RECSTATUS_05+"'");
+		hqlBuff.append(" and model.recStatus = '" + TopReportConstants.REPORT_RECSTATUS_05 + "'");
 		List<MtsBopBhnDs> reportList = dao.queryByQL2List(hqlBuff.toString());
 		return reportList;
 	}

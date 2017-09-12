@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012-8-20 15:52:38 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="resource.bean.report.BiImportLogDtl" table="BI_IMPORT_LOG_DTL" >
+    <class name="resource.bean.report.BiImportLogDtl" table="BI_IMPORT_LOG_DTL">
         <id name="id" type="string">
             <column name="ID" length="32" />
             <generator class="uuid" />
@@ -21,10 +21,10 @@
             <column name="SEQ_NO" />
         </property>
         <property name="lineNo" type="integer">
-            <column name="LINE_NO"/>
+            <column name="LINE_NO" />
         </property>
         <property name="posNo" type="string">
-            <column name="POS_NO" length="40"/>
+            <column name="POS_NO" length="40" />
         </property>
         <property name="errorMessage" type="string">
             <column name="ERROR_MESSAGE" length="1000" />

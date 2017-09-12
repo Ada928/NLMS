@@ -38,11 +38,9 @@ public class BizLogDAO extends HibernateDaoSupport {
 	 */
 	public BizLog query(long id) throws CommonException {
 		try {
-			return (BizLog) this.getHibernateTemplate().load(BizLog.class,
-					new Long(id));
+			return (BizLog) this.getHibernateTemplate().load(BizLog.class, new Long(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e);
 		}
 		return null;
 	}
@@ -54,24 +52,17 @@ public class BizLogDAO extends HibernateDaoSupport {
 	 * @param key2
 	 * @return BizLog
 	 * @throws CommonException
-	public BizLog query(String key1, String key2) throws CommonException {
-		List list = new ArrayList();
-		try {
-			StringBuffer whereString = new StringBuffer();
-			whereString.append("po.key1 = '").append(key1).append(
-					"' and po.key2 = '").append(key2).append("'");
-			list = queryByCondition(whereString.toString());
-		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e);
-		}
-
-		if (list.size() != 1) {
-			return null;
-		} else {
-			return (BizLog) list.get(0);
-		}
-	}
+	 *             public BizLog query(String key1, String key2) throws
+	 *             CommonException { List list = new ArrayList(); try {
+	 *             StringBuffer whereString = new StringBuffer();
+	 *             whereString.append("po.key1 = '").append(key1).append(
+	 *             "' and po.key2 = '").append(key2).append("'"); list =
+	 *             queryByCondition(whereString.toString()); } catch (Exception
+	 *             e) { ExceptionUtil.throwCommonException(e.getMessage(),
+	 *             ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e); }
+	 * 
+	 *             if (list.size() != 1) { return null; } else { return (BizLog)
+	 *             list.get(0); } }
 	 */
 
 	/**
@@ -83,15 +74,12 @@ public class BizLogDAO extends HibernateDaoSupport {
 	 * @return 包含BizLog对象的List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString, Object[] objArray,
-			Type[] typeArray) throws CommonException {
+	public List queryByCondition(String whereString, Object[] objArray, Type[] typeArray) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from BizLog po where " + whereString, objArray);
+			List list = this.getHibernateTemplate().find("from BizLog po where " + whereString, objArray);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e);
 		}
 		return null;
 	}
@@ -105,12 +93,10 @@ public class BizLogDAO extends HibernateDaoSupport {
 	 */
 	public List queryByCondition(String whereString) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from BizLog po where " + whereString);
+			List list = this.getHibernateTemplate().find("from BizLog po where " + whereString);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e);
 		}
 		return null;
 	}
@@ -125,8 +111,7 @@ public class BizLogDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().update(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BIZ_LOG_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BIZ_LOG_UPDATE, e);
 		}
 	}
 
@@ -140,8 +125,7 @@ public class BizLogDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().save(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BIZ_LOG_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BIZ_LOG_INSERT, e);
 		}
 	}
 
@@ -155,8 +139,7 @@ public class BizLogDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BIZ_LOG_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BIZ_LOG_DELETE, e);
 		}
 	}
 
@@ -170,8 +153,7 @@ public class BizLogDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(query(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BIZ_LOG_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BIZ_LOG_DELETE, e);
 		}
 	}
 }

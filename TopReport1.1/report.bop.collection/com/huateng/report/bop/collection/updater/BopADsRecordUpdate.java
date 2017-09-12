@@ -18,27 +18,26 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.bop.collection.operation.BopAgDsOperation;
 
-public class BopADsRecordUpdate extends BaseUpdate{
-	
-	private static final String DATASET_ID="bopADsRecordInfo";
-	private static final String RECORD_DEL="del";
-	private static final String RECORD_ADD="add";
-	private static final String RECORD_MOD="mod";
-	
+public class BopADsRecordUpdate extends BaseUpdate {
+
+	private static final String DATASET_ID = "bopADsRecordInfo";
+	private static final String RECORD_DEL = "del";
+	private static final String RECORD_ADD = "add";
+	private static final String RECORD_MOD = "mod";
+
 	@SuppressWarnings("rawtypes")
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
 
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-			MtsBopAgDs bopAgDs = null ;
+			MtsBopAgDs bopAgDs = null;
 			while (updateResultBean.hasNext()) {
 				bopAgDs = new MtsBopAgDs();
 				Map map = updateResultBean.next();
-				mapToObject(bopAgDs,map);
+				mapToObject(bopAgDs, map);
 			}
 
 			String op = updateResultBean.getParameter("op");
@@ -62,8 +61,7 @@ public class BopADsRecordUpdate extends BaseUpdate{
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

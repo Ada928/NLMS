@@ -1,9 +1,10 @@
 package com.huateng.report.genupreportfile.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportShowCreateFileBean {
+public class ReportShowCreateFileBean implements Serializable {
 	private String appType;
 	private String appTypeName;
 	private String packName;

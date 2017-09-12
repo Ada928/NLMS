@@ -20,31 +20,30 @@ import org.apache.xerces.impl.dv.util.Base64;
  * @author <a href="mailto:liu_wen@huateng.com">Liu Wen</a>
  * @version $Revision: 1.1 $
  * @date 2005-7-14
- *  
- * 把一个类的实例与String之间互相转换.
+ * 
+ *       把一个类的实例与String之间互相转换.
  */
 public class ObjectSerializer {
 	public static String serialize(Object obj) throws IOException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		//GZIPOutputStream gos = new GZIPOutputStream(baos);
+		// GZIPOutputStream gos = new GZIPOutputStream(baos);
 		ObjectOutputStream oos = new ObjectOutputStream(baos);
 		try {
 			oos.writeObject(obj);
-			//gos.finish();
+			// gos.finish();
 			byte abyte0[] = baos.toByteArray();
 			return new String(Base64.encode(abyte0));
-		} finally {			
+		} finally {
 			oos.close();
-			//gos.close();
+			// gos.close();
 			baos.close();
 		}
-	}//--serialize
+	}// --serialize
 
-	public static Object unserialize(String objectString) throws IOException,
-			ClassNotFoundException {
+	public static Object unserialize(String objectString) throws IOException, ClassNotFoundException {
 		byte[] abyte1 = Base64.decode(objectString);
 		ByteArrayInputStream bais = new ByteArrayInputStream(abyte1);
-		//GZIPInputStream gis = new GZIPInputStream(bais);
+		// GZIPInputStream gis = new GZIPInputStream(bais);
 		ObjectInputStream ois = new ObjectInputStream(bais);
 		try {
 			Object obj = ois.readObject();
@@ -52,19 +51,18 @@ public class ObjectSerializer {
 		} finally {
 			ois.close();
 		}
-	}//--unserialize
+	}// --unserialize
 
-	
 	public static void main(String[] argv) {
 		try {
 			/*
-			 Loaninfo loaninfo = new Loaninfo();
-
-			String nIStr = ObjectSerializer.serialize(loaninfo);
-			System.out.println("nIStr.length = " + nIStr.length());
-			loaninfo = (Loaninfo) ObjectSerializer.unserialize(nIStr);
-			*/
-			//System.out.println("nI.value = " + nI.intValue());
+			 * Loaninfo loaninfo = new Loaninfo();
+			 * 
+			 * String nIStr = ObjectSerializer.serialize(loaninfo);
+			 * System.out.println("nIStr.length = " + nIStr.length()); loaninfo
+			 * = (Loaninfo) ObjectSerializer.unserialize(nIStr);
+			 */
+			// System.out.println("nI.value = " + nI.intValue());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

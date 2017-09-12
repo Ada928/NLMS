@@ -2,17 +2,15 @@ package com.huateng.ebank.entity.data.workflow.base;
 
 import java.io.Serializable;
 
-
 /**
  * This is an object that contains data related to the BRH_WORKFLOW_DEF table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * Do not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="BRH_WORKFLOW_DEF"
+ * @hibernate.class table="BRH_WORKFLOW_DEF"
  */
 
-public abstract class BaseBrhWorkflowDef  implements Serializable {
+public abstract class BaseBrhWorkflowDef implements Serializable {
 
 	public static String REF = "BrhWorkflowDef";
 	public static String PROP_STATUS = "status";
@@ -25,16 +23,15 @@ public abstract class BaseBrhWorkflowDef  implements Serializable {
 	public static String PROP_APPTYPE = "apptype";
 	public static String PROP_BRCODE = "brcode";
 
-
 	// constructors
-	public BaseBrhWorkflowDef () {
+	public BaseBrhWorkflowDef() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseBrhWorkflowDef (long id) {
+	public BaseBrhWorkflowDef(long id) {
 		this.setId(id);
 		initialize();
 	}
@@ -42,11 +39,8 @@ public abstract class BaseBrhWorkflowDef  implements Serializable {
 	/**
 	 * Constructor for required fields
 	 */
-	public BaseBrhWorkflowDef (
-		long id,
-		java.lang.String brcode,
-		java.lang.String apptype,
-		java.lang.String bizSubclass) {
+	public BaseBrhWorkflowDef(long id, java.lang.String brcode, java.lang.String apptype,
+			java.lang.String bizSubclass) {
 
 		this.setId(id);
 		this.setBrcode(brcode);
@@ -55,9 +49,8 @@ public abstract class BaseBrhWorkflowDef  implements Serializable {
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -74,187 +67,182 @@ public abstract class BaseBrhWorkflowDef  implements Serializable {
 	private java.util.Date expireDate;
 	private java.lang.String status;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="sequence"
-     *  column="ID"
-     */
-	public long getId () {
+	 * 
+	 * @hibernate.id generator-class="sequence" column="ID"
+	 */
+	public long getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (long id) {
+	public void setId(long id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: BRCODE
 	 */
-	public java.lang.String getBrcode () {
+	public java.lang.String getBrcode() {
 		return brcode;
 	}
 
 	/**
 	 * Set the value related to the column: BRCODE
-	 * @param brcode the BRCODE value
+	 * 
+	 * @param brcode
+	 *            the BRCODE value
 	 */
-	public void setBrcode (java.lang.String brcode) {
+	public void setBrcode(java.lang.String brcode) {
 		this.brcode = brcode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: APPTYPE
 	 */
-	public java.lang.String getApptype () {
+	public java.lang.String getApptype() {
 		return apptype;
 	}
 
 	/**
 	 * Set the value related to the column: APPTYPE
-	 * @param apptype the APPTYPE value
+	 * 
+	 * @param apptype
+	 *            the APPTYPE value
 	 */
-	public void setApptype (java.lang.String apptype) {
+	public void setApptype(java.lang.String apptype) {
 		this.apptype = apptype;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BIZ_CLASS
 	 */
-	public java.lang.String getBizClass () {
+	public java.lang.String getBizClass() {
 		return bizClass;
 	}
 
 	/**
 	 * Set the value related to the column: BIZ_CLASS
-	 * @param bizClass the BIZ_CLASS value
+	 * 
+	 * @param bizClass
+	 *            the BIZ_CLASS value
 	 */
-	public void setBizClass (java.lang.String bizClass) {
+	public void setBizClass(java.lang.String bizClass) {
 		this.bizClass = bizClass;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BIZ_SUBCLASS
 	 */
-	public java.lang.String getBizSubclass () {
+	public java.lang.String getBizSubclass() {
 		return bizSubclass;
 	}
 
 	/**
 	 * Set the value related to the column: BIZ_SUBCLASS
-	 * @param bizSubclass the BIZ_SUBCLASS value
+	 * 
+	 * @param bizSubclass
+	 *            the BIZ_SUBCLASS value
 	 */
-	public void setBizSubclass (java.lang.String bizSubclass) {
+	public void setBizSubclass(java.lang.String bizSubclass) {
 		this.bizSubclass = bizSubclass;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PROCESS_TEMPLATE
 	 */
-	public java.lang.String getProcessTemplate () {
+	public java.lang.String getProcessTemplate() {
 		return processTemplate;
 	}
 
 	/**
 	 * Set the value related to the column: PROCESS_TEMPLATE
-	 * @param processTemplate the PROCESS_TEMPLATE value
+	 * 
+	 * @param processTemplate
+	 *            the PROCESS_TEMPLATE value
 	 */
-	public void setProcessTemplate (java.lang.String processTemplate) {
+	public void setProcessTemplate(java.lang.String processTemplate) {
 		this.processTemplate = processTemplate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EFFECT_DATE
 	 */
-	public java.util.Date getEffectDate () {
+	public java.util.Date getEffectDate() {
 		return effectDate;
 	}
 
 	/**
 	 * Set the value related to the column: EFFECT_DATE
-	 * @param effectDate the EFFECT_DATE value
+	 * 
+	 * @param effectDate
+	 *            the EFFECT_DATE value
 	 */
-	public void setEffectDate (java.util.Date effectDate) {
+	public void setEffectDate(java.util.Date effectDate) {
 		this.effectDate = effectDate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EXPIRE_DATE
 	 */
-	public java.util.Date getExpireDate () {
+	public java.util.Date getExpireDate() {
 		return expireDate;
 	}
 
 	/**
 	 * Set the value related to the column: EXPIRE_DATE
-	 * @param expireDate the EXPIRE_DATE value
+	 * 
+	 * @param expireDate
+	 *            the EXPIRE_DATE value
 	 */
-	public void setExpireDate (java.util.Date expireDate) {
+	public void setExpireDate(java.util.Date expireDate) {
 		this.expireDate = expireDate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: STATUS
 	 */
-	public java.lang.String getStatus () {
+	public java.lang.String getStatus() {
 		return status;
 	}
 
 	/**
 	 * Set the value related to the column: STATUS
-	 * @param status the STATUS value
+	 * 
+	 * @param status
+	 *            the STATUS value
 	 */
-	public void setStatus (java.lang.String status) {
+	public void setStatus(java.lang.String status) {
 		this.status = status;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof com.huateng.ebank.entity.data.workflow.BrhWorkflowDef)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof com.huateng.ebank.entity.data.workflow.BrhWorkflowDef))
+			return false;
 		else {
 			com.huateng.ebank.entity.data.workflow.BrhWorkflowDef brhWorkflowDef = (com.huateng.ebank.entity.data.workflow.BrhWorkflowDef) obj;
 			return (this.getId() == brhWorkflowDef.getId());
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
 			return (int) this.getId();
 		}
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

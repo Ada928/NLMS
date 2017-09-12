@@ -60,10 +60,10 @@ public class GetBOPJSHRptNoGentator extends BaseGenerator {
 			htlog.warn("BI_BOPJSH_RET_NO申报号码规则未设置");
 		}
 		if (cusType != null && cusType.trim().length() > 0) {
-			String key = appType+fileType;
+			String key = appType + fileType;
 			if (confMap != null && confMap.containsKey(key)) {
 				ReportBopAndJshRetNoBean bean = confMap.get(key);
-				if(bean.isDistCusType()){
+				if (bean.isDistCusType()) {
 					cusTypeTemp = ReportEnum.CUS_TYPE_MAPPING.valueof(cusType.trim());
 					valueIndex.append(cusTypeTemp);
 				}
@@ -78,12 +78,12 @@ public class GetBOPJSHRptNoGentator extends BaseGenerator {
 			ExceptionUtil.throwCommonException("申报号码生成错误,编号不能小于1，" + valueIndex);
 		}
 		int len = retNo.length() - startIndex;
-		result.append(getConvertNo(appType, fileType, len, seq, cusTypeTemp,confMap));
+		result.append(getConvertNo(appType, fileType, len, seq, cusTypeTemp, confMap));
 		return result.toString();
 	}
 
-	private String getConvertNo(String appType, String fileType, int len, int seq, String cusTypeTemp,Map<String, ReportBopAndJshRetNoBean> confMap)
-			throws CommonException {
+	private String getConvertNo(String appType, String fileType, int len, int seq, String cusTypeTemp,
+			Map<String, ReportBopAndJshRetNoBean> confMap) throws CommonException {
 		String code = null;
 		String key = appType + fileType;
 		if (confMap != null && confMap.containsKey(key)) {
@@ -115,8 +115,8 @@ public class GetBOPJSHRptNoGentator extends BaseGenerator {
 					idx = divNum - 1;
 					thenNum = maxSeq;
 				}
-				if (idx<0 && idx > strs.length - 1) {
-					ExceptionUtil.throwCommonException("申报号码错误,超出设置范围("+idx+")!", key);
+				if (idx < 0 && idx > strs.length - 1) {
+					ExceptionUtil.throwCommonException("申报号码错误,超出设置范围(" + idx + ")!", key);
 				}
 				String lett = strs[idx].toUpperCase();
 				String tmpCode = DataFormat.intToString(thenNum, len - lett.length());

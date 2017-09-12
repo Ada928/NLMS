@@ -5,15 +5,15 @@ import java.io.Serializable;
 public class RecordAndAuditProcessInfoBean implements Serializable {
 
 	private String brNo;
-	
+
 	private String brNoName;
-	
+
 	private String appType;
-	
+
 	private Integer notRecord;
-	
+
 	private Integer notAudit;
-	
+
 	private Integer hasReport;
 
 	public String getBrNo() {

@@ -38,27 +38,23 @@ public class BopCfaStrdeDsLoadPageGetter extends BaseGetter {
 			CommQueryServletRequest request = getCommQueryServletRequest();
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "商业银行人民币结构性存款拾取页面查询");
 			String type = request.getParameter("type");
-			if(terminate_type.equals(type)) {
+			if (terminate_type.equals(type)) {
 				request.setParameter("type", terminate_type);
-			} else if(inpay_type.equals(type)) {
+			} else if (inpay_type.equals(type)) {
 				request.setParameter("type", inpay_type);
-			} else if(inoutmo_type.equals(type)) {
+			} else if (inoutmo_type.equals(type)) {
 				request.setParameter("type", inoutmo_type);
 			}
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -73,33 +69,33 @@ public class BopCfaStrdeDsLoadPageGetter extends BaseGetter {
 		String qfiller2 = (String) paramsMap.get("qfiller2");
 		String qbranchcode = (String) paramsMap.get("qbranchcode");
 		String qcontract = (String) paramsMap.get("qcontract");
-		//本机构
+		// 本机构
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
 		String brNo = globalInfo.getBrno();
 
-		List<Object>paramentList = new ArrayList<Object>();
+		List<Object> paramentList = new ArrayList<Object>();
 		StringBuffer buff = new StringBuffer(" FROM BopCfaStrdeDs ds WHERE 1 = 1");
-		if(StringUtils.isNotBlank(qworkDateStart)) {
+		if (StringUtils.isNotBlank(qworkDateStart)) {
 			buff.append(" AND ds.workDate >= ? ");
 			paramentList.add(qworkDateStart);
 		}
-		if(StringUtils.isNotBlank(qworkDateEnd)) {
+		if (StringUtils.isNotBlank(qworkDateEnd)) {
 			buff.append(" AND ds.workDate <= ? ");
 			paramentList.add(qworkDateEnd);
 		}
-		if(StringUtils.isNotBlank(qfiller2)) {
+		if (StringUtils.isNotBlank(qfiller2)) {
 			buff.append(" AND ds.filler2 LIKE ? ");
-			paramentList.add("%"+qfiller2+"%");
+			paramentList.add("%" + qfiller2 + "%");
 		}
-		if(StringUtils.isNotBlank(qbranchcode)) {
+		if (StringUtils.isNotBlank(qbranchcode)) {
 			buff.append(" AND ds.branchcode LIKE ? ");
-			paramentList.add("%"+qbranchcode+"%");
+			paramentList.add("%" + qbranchcode + "%");
 		}
-		if(StringUtils.isNotBlank(qcontract)) {
+		if (StringUtils.isNotBlank(qcontract)) {
 			buff.append(" AND ds.contract LIKE ? ");
-			paramentList.add("%"+qcontract+"%");
+			paramentList.add("%" + qcontract + "%");
 		}
-		//拾取的是签约信息
+		// 拾取的是签约信息
 		buff.append(" and ds.currentfile = ? ");
 		paramentList.add(TopReportConstants.REPORT_FILE_TYPE_CFA_FA);
 

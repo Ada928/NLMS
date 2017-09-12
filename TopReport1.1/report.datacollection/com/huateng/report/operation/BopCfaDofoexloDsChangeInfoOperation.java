@@ -29,7 +29,6 @@ public class BopCfaDofoexloDsChangeInfoOperation extends BaseOperation {
 	public static final String CMD_APPROVED = "CMD_APPROVED";
 	public static final String IN_PARAM = "IN_PARAM";
 
-
 	@SuppressWarnings("unchecked")
 	public void execute(OperationContext context) throws CommonException {
 
@@ -43,42 +42,43 @@ public class BopCfaDofoexloDsChangeInfoOperation extends BaseOperation {
 			BopCfaDofoexloDs bopcfa = (BopCfaDofoexloDs) context.getAttribute(IN_PARAM);
 			service.saveChangeInfo(bopcfa);
 
-			logservice.saveBiDataProcessLog(bopcfa.getApptype(), bopcfa
-					.getCurrentfile(), bopcfa.getId(), null, TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "新增", "新增 国内外汇贷款变动信息 ID : " +bopcfa.getId());
+			logservice.saveBiDataProcessLog(bopcfa.getApptype(), bopcfa.getCurrentfile(), bopcfa.getId(), null,
+					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "新增", "新增 国内外汇贷款变动信息 ID : " + bopcfa.getId());
 
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrcode(),"国内外汇贷款变动信息新增"});
-			htlog.info("Updater.log", new String[]{gi.getBrcode(),gi.getTlrno(),"国内外汇贷款变动信息新增"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "国内外汇贷款变动信息新增" });
+			htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "国内外汇贷款变动信息新增" });
 
 		} else if (StringUtils.equals(CMD_UPDATE, cmd)) {
 			BopCfaDofoexloDs bopcfa = (BopCfaDofoexloDs) context.getAttribute(IN_PARAM);
 			service.updateChangeInfo(bopcfa);
 
-			logservice.saveBiDataProcessLog(bopcfa.getApptype(), bopcfa
-					.getCurrentfile(), bopcfa.getId(), null, TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "修改", "修改 国内外汇贷款变动信息 ID : " + bopcfa.getId());
+			logservice.saveBiDataProcessLog(bopcfa.getApptype(), bopcfa.getCurrentfile(), bopcfa.getId(), null,
+					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "修改", "修改 国内外汇贷款变动信息 ID : " + bopcfa.getId());
 
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrcode(),"国内外汇贷款变动信息修改"});
-			htlog.info("Updater.log", new String[]{gi.getBrcode(),gi.getTlrno(),"国内外汇贷款变动信息修改"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "国内外汇贷款变动信息修改" });
+			htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "国内外汇贷款变动信息修改" });
 
 		} else if (StringUtils.equals(CMD_DELETE, cmd)) {
 			BopCfaDofoexloDs bopcfa = (BopCfaDofoexloDs) context.getAttribute(IN_PARAM);
 			service.deleteChangeInfo(bopcfa);
 
-			logservice.saveBiDataProcessLog(bopcfa.getApptype(), bopcfa
-					.getCurrentfile(), bopcfa.getId(), null, TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_DEL, "删除", "删除 国内外汇贷款变动信息 ID : " + bopcfa.getId());
+			logservice.saveBiDataProcessLog(bopcfa.getApptype(), bopcfa.getCurrentfile(), bopcfa.getId(), null,
+					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_DEL, "删除", "删除 国内外汇贷款变动信息 ID : " + bopcfa.getId());
 
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrcode(),"国内外汇贷款变动信息删除"});
-			htlog.info("Updater.log", new String[]{gi.getBrcode(),gi.getTlrno(),"国内外汇贷款变动信息删除"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "国内外汇贷款变动信息删除" });
+			htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "国内外汇贷款变动信息删除" });
 
 		} else if (StringUtils.equals(CMD_APPROVED, cmd)) {
 			List<BopCfaDofoexloDs> list = (List<BopCfaDofoexloDs>) context.getAttribute(IN_PARAM);
 			service.approved(list);
 			for (BopCfaDofoexloDs dofoexlods : list) {
-				logservice.saveBiDataProcessLog(dofoexlods.getApptype(), dofoexlods
-						.getCurrentfile(), dofoexlods.getId(), null, TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, "审核", "审核 国内外汇贷款变动信息 ID : " + dofoexlods.getId());
+				logservice.saveBiDataProcessLog(dofoexlods.getApptype(), dofoexlods.getCurrentfile(),
+						dofoexlods.getId(), null, TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, "审核",
+						"审核 国内外汇贷款变动信息 ID : " + dofoexlods.getId());
 			}
 
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrcode(),"国内外汇贷款变动信息审核"});
-			htlog.info("Updater.log", new String[]{gi.getBrcode(),gi.getTlrno(),"国内外汇贷款变动信息审核"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "国内外汇贷款变动信息审核" });
+			htlog.info("Updater.log", new String[] { gi.getBrcode(), gi.getTlrno(), "国内外汇贷款变动信息审核" });
 		}
 	}
 

@@ -1,9 +1,5 @@
 package com.huateng.ebank.business.parammng.cqGetter;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -16,6 +12,10 @@ import com.huateng.ebank.framework.operation.OPCaller;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class AurhoritySetCallGetter extends BaseGetter {
 

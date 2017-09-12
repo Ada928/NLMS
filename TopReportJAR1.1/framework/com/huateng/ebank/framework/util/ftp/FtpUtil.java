@@ -13,7 +13,7 @@ import sun.net.ftp.FtpClient;
 
 /**
  * ftp上传，下载
- *  
+ * 
  * @author jonay
  * 
  */
@@ -56,31 +56,31 @@ public class FtpUtil {
 	 * @throws IOException
 	 */
 	public boolean connectServer(int ftpMode) {
-//		ftpClient = new FtpClient();
-//		try {
-//			ftpClient.setReadTimeout(TIMEOUT);
-//			if (this.port != -1) {
-//				ftpClient.openServer(this.ip, this.port);
-//			} else {
-//				ftpClient.openServer(this.ip);
-//			}
-//			ftpClient.login(this.username, this.password);
-//			if (this.path.length() != 0) {
-//				ftpClient.cd(this.path);// path是ftp服务下主目录的子目录
-//			}
-//			
-//			if (FTP.BINARY_FILE_TYPE == ftpMode) {//2  二进制 
-//				ftpClient.binary();
-//			} else if (FTP.ASCII_FILE_TYPE == ftpMode){//0 ASCII码
-//				ftpClient.ascii();
-//			}
-//			System.out.println("已登录到\"" + ftpClient.pwd() + "\"目录");
-//			return true;
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			return false;
-//		}
-		return true; //Add by dxb
+		// ftpClient = new FtpClient();
+		// try {
+		// ftpClient.setReadTimeout(TIMEOUT);
+		// if (this.port != -1) {
+		// ftpClient.openServer(this.ip, this.port);
+		// } else {
+		// ftpClient.openServer(this.ip);
+		// }
+		// ftpClient.login(this.username, this.password);
+		// if (this.path.length() != 0) {
+		// ftpClient.cd(this.path);// path是ftp服务下主目录的子目录
+		// }
+		//
+		// if (FTP.BINARY_FILE_TYPE == ftpMode) {//2 二进制
+		// ftpClient.binary();
+		// } else if (FTP.ASCII_FILE_TYPE == ftpMode){//0 ASCII码
+		// ftpClient.ascii();
+		// }
+		// System.out.println("已登录到\"" + ftpClient.pwd() + "\"目录");
+		// return true;
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// return false;
+		// }
+		return true; // Add by dxb
 	}
 
 	/**
@@ -89,23 +89,23 @@ public class FtpUtil {
 	 * @throws IOException
 	 */
 	public boolean closeServer() {
-//		try {
-//			if (is != null) {
-//				is.close();
-//			}
-//			if (os != null) {
-//				os.close();
-//			}
-//			if (ftpClient != null) {
-//				ftpClient.closeServer();
-//			}
-//			System.out.println("已从服务器断开");
-//			return true;
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			return false;
-//		}
-		return true; //Add by dxb
+		// try {
+		// if (is != null) {
+		// is.close();
+		// }
+		// if (os != null) {
+		// os.close();
+		// }
+		// if (ftpClient != null) {
+		// ftpClient.closeServer();
+		// }
+		// System.out.println("已从服务器断开");
+		// return true;
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// return false;
+		// }
+		return true; // Add by dxb
 	}
 
 	/**
@@ -120,42 +120,42 @@ public class FtpUtil {
 	 */
 	public long downloadFile(String filename, String newfilename) {
 		long result = 0;
-//		TelnetInputStream is = null;
-//		FileOutputStream os = null;
-//		try {
-//			is = ftpClient.get(filename);
-//			File outfile = new File(newfilename);
-//			if (!outfile.getParentFile().exists()) {
-//				outfile.getParentFile().mkdirs();
-//			}
-//			os = new FileOutputStream(outfile);
-//			byte[] bytes = new byte[1024];
-//			int c;
-//			while ((c = is.read(bytes)) != -1) {
-//				os.write(bytes, 0, c);
-//				result = result + c;
-//			}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (is != null) {
-//					is.close();
-//				}
-//				if (os != null) {
-//					os.close();
-//				}
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
+		// TelnetInputStream is = null;
+		// FileOutputStream os = null;
+		// try {
+		// is = ftpClient.get(filename);
+		// File outfile = new File(newfilename);
+		// if (!outfile.getParentFile().exists()) {
+		// outfile.getParentFile().mkdirs();
+		// }
+		// os = new FileOutputStream(outfile);
+		// byte[] bytes = new byte[1024];
+		// int c;
+		// while ((c = is.read(bytes)) != -1) {
+		// os.write(bytes, 0, c);
+		// result = result + c;
+		// }
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// } finally {
+		// try {
+		// if (is != null) {
+		// is.close();
+		// }
+		// if (os != null) {
+		// os.close();
+		// }
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// }
+		// }
 		return result;
 	}
 
 	public static void main(String[] args) {
-		FtpUtil ftp = new FtpUtil("127.0.0.1", 21,"test1", "test");
+		FtpUtil ftp = new FtpUtil("127.0.0.1", 21, "test1", "test");
 		ftp.connectServer(FTP.BINARY_FILE_TYPE);
-		System.out.println(ftp.downloadFile("upload/test你好吗.xls", "f:/upload/test你好吗.xls")); 
+		System.out.println(ftp.downloadFile("upload/test你好吗.xls", "f:/upload/test你好吗.xls"));
 		ftp.closeServer();
 		/**
 		 * FTP远程命令列表 USER PORT RETR ALLO DELE SITE XMKD CDUP FEAT PASS PASV STOR

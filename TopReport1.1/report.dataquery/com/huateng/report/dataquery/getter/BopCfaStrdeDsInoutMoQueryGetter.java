@@ -21,26 +21,22 @@ public class BopCfaStrdeDsInoutMoQueryGetter extends BaseGetter {
 		try {
 			PageQueryResult pageResult = getData();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "商业银行人民币结构性存款资金流出入和结购汇信息查询");
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	private PageQueryResult getData() throws CommonException {
 		// TODO Auto-generated method stub
-		Map<String,String> map = this.getCommQueryServletRequest().getParameterMap();
+		Map<String, String> map = this.getCommQueryServletRequest().getParameterMap();
 		String qbrNo = map.get("qbrNo");
 		String qworkDateStart = map.get("qworkDateStart");
 		String qworkDateEnd = map.get("qworkDateEnd");
@@ -51,8 +47,9 @@ public class BopCfaStrdeDsInoutMoQueryGetter extends BaseGetter {
 		String qfiller2 = map.get("qfiller2");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
-		
-		return BopCfaStrdeDsQueryService.getInstance().pageQueryByQL(qfiller2, qbrNo, qworkDateStart,qworkDateEnd, qactiontype, qrecStatus, qapproveStatus, qrepStatus, pageSize, pageIndex);
+
+		return BopCfaStrdeDsQueryService.getInstance().pageQueryByQL(qfiller2, qbrNo, qworkDateStart, qworkDateEnd,
+				qactiontype, qrecStatus, qapproveStatus, qrepStatus, pageSize, pageIndex);
 	}
 
 }

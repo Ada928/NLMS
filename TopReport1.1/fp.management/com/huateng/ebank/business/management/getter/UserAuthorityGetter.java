@@ -1,17 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.apache.commons.lang.StringUtils;
-
-import resource.report.dao.ROOTDAOUtils;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -21,6 +9,10 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import org.apache.commons.lang.StringUtils;
+import resource.report.dao.ROOTDAOUtils;
+
+import java.util.*;
 
 /**
  * @Description: 企业岗位查询

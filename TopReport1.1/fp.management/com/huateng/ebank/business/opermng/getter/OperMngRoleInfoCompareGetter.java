@@ -1,9 +1,5 @@
 package com.huateng.ebank.business.opermng.getter;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import resource.bean.report.SysTaskInfo;
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.management.common.DAOUtils;
@@ -13,6 +9,11 @@ import com.huateng.exception.AppException;
 import com.huateng.report.system.bean.TlrInfoBean;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
+import resource.bean.report.SysTaskInfo;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OperMngRoleInfoCompareGetter extends BaseGetter {
 

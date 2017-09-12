@@ -3,7 +3,6 @@
  */
 package com.huateng.report.imports.logic;
 
-
 /**
  * 
  * 
@@ -11,7 +10,6 @@ package com.huateng.report.imports.logic;
  */
 @SuppressWarnings("unchecked")
 public class ImportFileVar {
-
 
 	// 字段分隔类型
 	final public static String FILEDATA_FORMATTYPE_FIXED = "3"; // 固定位数
@@ -64,16 +62,14 @@ public class ImportFileVar {
 	final public static String IMPORT_TIME_ENDOFMONTH = "11"; // 月日
 	final public static String IMPORT_TIME_ENDOFYEAR = "12"; // 年日
 	final public static String IMPORT_TIME_ONCEMONTH = "13"; // 一个月一次
-	
-	//导入状态
-	final public static String IMPORT_STATUS_TRUE="1";//成功
-	final public static String IMPORT_STATUS_FALSE="0";//失败
-	//修正状态
-	final public static String IMPORTLOG_MODFLG_MOD="01";//完成修正
-	final public static String IMPORTLOG_MODFLG_IMPORT="02";//成功导入
 
-	final public static String IMPORT_PATH="c:";//失败
+	// 导入状态
+	final public static String IMPORT_STATUS_TRUE = "1";// 成功
+	final public static String IMPORT_STATUS_FALSE = "0";// 失败
+	// 修正状态
+	final public static String IMPORTLOG_MODFLG_MOD = "01";// 完成修正
+	final public static String IMPORTLOG_MODFLG_IMPORT = "02";// 成功导入
 
-
+	final public static String IMPORT_PATH = "c:";// 失败
 
 }

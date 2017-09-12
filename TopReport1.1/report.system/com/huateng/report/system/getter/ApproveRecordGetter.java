@@ -9,20 +9,16 @@ import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.report.system.bean.ApproveBean;
+
 /**
- * @author jianxue.zhang
- * 用于approve_common的getter类
+ * @author jianxue.zhang 用于approve_common的getter类
  */
 public class ApproveRecordGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		List list = getData();
-		ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				list,
-				getResult());
+		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 		result.setContent(list);
 		result.getPage().setTotalPage(1);
 		result.init();

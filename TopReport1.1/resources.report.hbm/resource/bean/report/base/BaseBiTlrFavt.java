@@ -2,41 +2,38 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the BI_TLR_FAVT table.
- * Do not modify this class because it will be overwritten if the configuration file
+ * This is an object that contains data related to the BI_TLR_FAVT table. Do not
+ * modify this class because it will be overwritten if the configuration file
  * related to this class is modified.
  *
- * @hibernate.class
- *  table="BI_TLR_FAVT"
+ * @hibernate.class table="BI_TLR_FAVT"
  */
 
-public abstract class BaseBiTlrFavt  implements Serializable {
+public abstract class BaseBiTlrFavt implements Serializable {
 
 	public static String REF = "BiTlrFavt";
 	public static String PROP_FUNC_ID = "funcId";
 	public static String PROP_TLR_NO = "tlrNo";
 	public static String PROP_ID = "id";
 	public static String PROP_SHOW_SEQ = "showSeq";
-	public static String PROP_FUNC_TYPE="funcType";
+	public static String PROP_FUNC_TYPE = "funcType";
 
 	// constructors
-	public BaseBiTlrFavt () {
+	public BaseBiTlrFavt() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseBiTlrFavt (java.lang.String id) {
+	public BaseBiTlrFavt(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -49,8 +46,6 @@ public abstract class BaseBiTlrFavt  implements Serializable {
 	private java.lang.Integer showSeq;
 	private java.lang.String funcType;
 
-
-
 	public java.lang.String getFuncType() {
 		return funcType;
 	}
@@ -61,90 +56,93 @@ public abstract class BaseBiTlrFavt  implements Serializable {
 
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  column="ID"
-     */
-	public java.lang.String getId () {
+	 * 
+	 * @hibernate.id column="ID"
+	 */
+	public java.lang.String getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.String id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: TLR_NO
 	 */
-	public java.lang.String getTlrNo () {
+	public java.lang.String getTlrNo() {
 		return tlrNo;
 	}
 
 	/**
 	 * Set the value related to the column: TLR_NO
-	 * @param tlrNo the TLR_NO value
+	 * 
+	 * @param tlrNo
+	 *            the TLR_NO value
 	 */
-	public void setTlrNo (java.lang.String tlrNo) {
+	public void setTlrNo(java.lang.String tlrNo) {
 		this.tlrNo = tlrNo;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FUNC_ID
 	 */
-	public java.lang.String getFuncId () {
+	public java.lang.String getFuncId() {
 		return funcId;
 	}
 
 	/**
 	 * Set the value related to the column: FUNC_ID
-	 * @param funcId the FUNC_ID value
+	 * 
+	 * @param funcId
+	 *            the FUNC_ID value
 	 */
-	public void setFuncId (java.lang.String funcId) {
+	public void setFuncId(java.lang.String funcId) {
 		this.funcId = funcId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: SHOW_SEQ
 	 */
-	public java.lang.Integer getShowSeq () {
+	public java.lang.Integer getShowSeq() {
 		return showSeq;
 	}
 
 	/**
 	 * Set the value related to the column: SHOW_SEQ
-	 * @param showSeq the SHOW_SEQ value
+	 * 
+	 * @param showSeq
+	 *            the SHOW_SEQ value
 	 */
-	public void setShowSeq (java.lang.Integer showSeq) {
+	public void setShowSeq(java.lang.Integer showSeq) {
 		this.showSeq = showSeq;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.BiTlrFavt)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.BiTlrFavt))
+			return false;
 		else {
 			resource.bean.report.BiTlrFavt biTlrFavt = (resource.bean.report.BiTlrFavt) obj;
-			if (null == this.getId() || null == biTlrFavt.getId()) return false;
-			else return (this.getId().equals(biTlrFavt.getId()));
+			if (null == this.getId() || null == biTlrFavt.getId())
+				return false;
+			else
+				return (this.getId().equals(biTlrFavt.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -153,10 +151,8 @@ public abstract class BaseBiTlrFavt  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

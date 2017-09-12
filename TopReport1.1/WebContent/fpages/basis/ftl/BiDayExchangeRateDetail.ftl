@@ -9,12 +9,9 @@
 	  			<FIELDSET name='group6' style="padding: 6px;">
 					<LEGEND>日牌价维护详细信息</LEGEND>
 					<table frame=void width="100%" class="grouptable" id="detailTable">
-					<tr>
-					             
-		                  <td nowrap class="labeltd" colspan=2>修改前</td>
-						          
-						   <td nowrap class="labeltd" colspan=2>修改后</td>
-						 
+						<tr>      
+		                  <td nowrap class="labeltd" colspan=2>修改前</td>      
+						  <td nowrap class="labeltd" colspan=2>修改后</td>
 						</tr>
 		            	<tr>
 		                  <td nowrap class="labeltd">币种</td>

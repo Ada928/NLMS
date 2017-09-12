@@ -31,77 +31,87 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
  * @date 2009-5-11
  * @desc 审批路线绑定
  */
-public class  RouteBindingDetail2Operation extends BaseOperation {
-    private static Log log = LogFactory
-            .getLog(RouteBindingDetail2Operation.class);
+public class RouteBindingDetail2Operation extends BaseOperation {
+	private static Log log = LogFactory.getLog(RouteBindingDetail2Operation.class);
 
-    public static final String IN_PARAM = "IN_PARAM";
+	public static final String IN_PARAM = "IN_PARAM";
 
-    public static final String IN_ID = "IN_ID";
+	public static final String IN_ID = "IN_ID";
 
-    public static final String IN_PARAM_PAGESIZE = "IN_PARAM_PAGESIZE";
+	public static final String IN_PARAM_PAGESIZE = "IN_PARAM_PAGESIZE";
 
-    public static final String IN_PARAM_PAGEINDEX = "IN_PARAM_PAGEINDEX";
+	public static final String IN_PARAM_PAGEINDEX = "IN_PARAM_PAGEINDEX";
 
-    public static final String OUT_PARAM = "OUT_PARAM";
+	public static final String OUT_PARAM = "OUT_PARAM";
 
-    /* (non-Javadoc)
-     * @see com.huateng.ebank.framework.operation.BaseOperation#beforeProc(com.huateng.ebank.framework.operation.OperationContext)
-     */
-    @Override
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.huateng.ebank.framework.operation.BaseOperation#beforeProc(com.
+	 * huateng.ebank.framework.operation.OperationContext)
+	 */
+	@Override
 	public void beforeProc(OperationContext context) throws CommonException {
-        // TODO Auto-generated method stub
-    }
+		// TODO Auto-generated method stub
+	}
 
-    /* (non-Javadoc)
-     * @see com.huateng.ebank.framework.operation.BaseOperation#execute(com.huateng.ebank.framework.operation.OperationContext)
-     */
-    @Override
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.huateng.ebank.framework.operation.BaseOperation#execute(com.huateng.
+	 * ebank.framework.operation.OperationContext)
+	 */
+	@Override
 	public void execute(OperationContext context) throws CommonException {
-        if (log.isDebugEnabled()) {
-            log.debug("enter into execute");
-        }
-        String id = (String) context .getAttribute(IN_ID);
-//        RouteBindingView inrouteBindingView = (RouteBindingView) context .getAttribute(IN_PARAM);
+		if (log.isDebugEnabled()) {
+			log.debug("enter into execute");
+		}
+		String id = (String) context.getAttribute(IN_ID);
+		// RouteBindingView inrouteBindingView = (RouteBindingView) context
+		// .getAttribute(IN_PARAM);
 
-        WorkflowRouteBinding WorkflowRouteBinding = DAOUtils.getWorkflowRouteBindingDAO().query(Integer.valueOf(id));
+		WorkflowRouteBinding WorkflowRouteBinding = DAOUtils.getWorkflowRouteBindingDAO().query(Integer.valueOf(id));
 
-        Integer pageSizeI = (Integer) context.getAttribute(IN_PARAM_PAGESIZE);
-        Integer pageIndexI = (Integer) context.getAttribute(IN_PARAM_PAGEINDEX);
-        String brclass = WorkflowRouteBinding.getBrhClass();
+		Integer pageSizeI = (Integer) context.getAttribute(IN_PARAM_PAGESIZE);
+		Integer pageIndexI = (Integer) context.getAttribute(IN_PARAM_PAGEINDEX);
+		String brclass = WorkflowRouteBinding.getBrhClass();
 
-        //判断该审批路径适用的机构级别
-        if(DataFormat.isEmpty(brclass)){
+		// 判断该审批路径适用的机构级别
+		if (DataFormat.isEmpty(brclass)) {
 
-        	 List branchinfolist = BaseDAOUtils.getBctlDAO().queryByCondition("po.brno='" + WorkflowRouteBinding.getStartBrhno() + "'");
-        	 if(branchinfolist.isEmpty()){
-        		 ExceptionUtil.throwCommonException("开户行不存在", "BL7100");
-        	 }
-        	 else if(branchinfolist.size()>1){
-        		 ExceptionUtil.throwCommonException("开户行有多条记录", "BL7100");
-        	 }
-        	 else{
-        		 Bctl branchInfo = (Bctl) branchinfolist.get(0);
-        		 brclass = branchInfo.getBrclass();
-        	 }
-        }
+			List branchinfolist = BaseDAOUtils.getBctlDAO()
+					.queryByCondition("po.brno='" + WorkflowRouteBinding.getStartBrhno() + "'");
+			if (branchinfolist.isEmpty()) {
+				ExceptionUtil.throwCommonException("开户行不存在", "BL7100");
+			} else if (branchinfolist.size() > 1) {
+				ExceptionUtil.throwCommonException("开户行有多条记录", "BL7100");
+			} else {
+				Bctl branchInfo = (Bctl) branchinfolist.get(0);
+				brclass = branchInfo.getBrclass();
+			}
+		}
 
+		RouteService routeService = RouteService.getInstance();
+		PageQueryResult result = routeService.queryRouteBindingRouteInfo(WorkflowRouteBinding, pageSizeI.intValue(),
+				pageIndexI.intValue());
+		context.setAttribute(OUT_PARAM, result);
 
-        RouteService routeService = RouteService.getInstance();
-        PageQueryResult result = routeService.queryRouteBindingRouteInfo(WorkflowRouteBinding, pageSizeI.intValue(),pageIndexI.intValue());
-        context.setAttribute(OUT_PARAM,result);
+		if (log.isDebugEnabled()) {
+			log.debug("Exit execute");
+		}
+	}
 
-        if (log.isDebugEnabled()) {
-            log.debug("Exit execute");
-        }
-    }
-
-    /* (non-Javadoc)
-     * @see com.huateng.ebank.framework.operation.BaseOperation#afterProc(com.huateng.ebank.framework.operation.OperationContext)
-     */
-    @Override
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.huateng.ebank.framework.operation.BaseOperation#afterProc(com.huateng
+	 * .ebank.framework.operation.OperationContext)
+	 */
+	@Override
 	public void afterProc(OperationContext context) throws CommonException {
-        // TODO Auto-generated method stub
-    }
+		// TODO Auto-generated method stub
+	}
 
 }

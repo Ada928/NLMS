@@ -1,20 +1,18 @@
 package com.huateng.ebank.business.remote.base;
 
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import resource.bean.pub.TlrInfo;
-import resource.dao.pub.TlrInfoDAO;
-
 import com.huateng.ebank.business.common.BaseDAOUtils;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.DateUtil;
 import com.huateng.service.pub.UserMgrService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import resource.bean.pub.TlrInfo;
+import resource.dao.pub.TlrInfoDAO;
+
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
 
 public class SessionListener implements HttpSessionListener {
 	private static Log log = LogFactory.getLog(SessionListener.class);

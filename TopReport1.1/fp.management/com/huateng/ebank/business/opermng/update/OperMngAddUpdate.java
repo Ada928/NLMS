@@ -32,15 +32,12 @@ import com.huateng.service.pub.PasswordService;
  */
 public class OperMngAddUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
 			throws AppException {
 		try {
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("operMngAdd");
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("operMngAdd");
 			TlrInfo operator = null;
 			while (updateResultBean.hasNext()) {
 				operator = new TlrInfo();
@@ -64,7 +61,7 @@ public class OperMngAddUpdate extends BaseUpdate {
 				operator.setCreateDate(DateUtil.getCurrentDate());
 				operator.setLastUpdTime(DateUtil.getTimestamp());
 				operator.setLastUpdOperId(GlobalInfo.getCurrentInstance().getTlrno());
-				operator.setIsLock(SystemConstant.FLAG_OFF);
+				operator.setLock(SystemConstant.FALSE);
 			}
 
 			OperationContext oc = new OperationContext();
@@ -76,8 +73,7 @@ public class OperMngAddUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

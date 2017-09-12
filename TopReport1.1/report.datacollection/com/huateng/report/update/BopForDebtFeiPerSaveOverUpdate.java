@@ -15,24 +15,24 @@ import com.huateng.exception.AppException;
 import com.huateng.report.bean.BopForDebtFeiPerSave;
 import com.huateng.report.operation.BopForDebtFeiPerSaveOperation;
 
-public class BopForDebtFeiPerSaveOverUpdate extends BaseUpdate{
-	
+public class BopForDebtFeiPerSaveOverUpdate extends BaseUpdate {
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
-		
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
+
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			
-			//外债主信息
-			UpdateResultBean BcedUpdateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("bopForDebtFeiPerSaveOver");
-			BopForDebtFeiPerSave debtFeiPerSave = null ;
-			while (BcedUpdateResultBean.hasNext()){
+
+			// 外债主信息
+			UpdateResultBean BcedUpdateResultBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("bopForDebtFeiPerSaveOver");
+			BopForDebtFeiPerSave debtFeiPerSave = null;
+			while (BcedUpdateResultBean.hasNext()) {
 				debtFeiPerSave = new BopForDebtFeiPerSave();
-				mapToObject(debtFeiPerSave,BcedUpdateResultBean.next());
+				mapToObject(debtFeiPerSave, BcedUpdateResultBean.next());
 			}
-			
+
 			String op = BcedUpdateResultBean.getParameter("op");
 			OperationContext oc = new OperationContext();
 			if (op.equals("new")) {
@@ -44,13 +44,12 @@ public class BopForDebtFeiPerSaveOverUpdate extends BaseUpdate{
 			}
 			oc.setAttribute(BopForDebtFeiPerSaveOperation.IN_SIGNED_FEIPERSAVE, debtFeiPerSave);
 			OPCaller.call(BopForDebtFeiPerSaveOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

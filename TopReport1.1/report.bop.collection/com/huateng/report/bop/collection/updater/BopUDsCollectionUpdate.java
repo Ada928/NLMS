@@ -30,27 +30,26 @@ public class BopUDsCollectionUpdate extends BaseUpdate {
 	private static final String OPENACCOUNT_ID = "BopOpenDsCollection";
 
 	@SuppressWarnings("rawtypes")
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
-			//返回对象
+			// 返回对象
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			//结果集对象
+			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(BOPU_ID);
 
 			MtsBopUDs bopu = null;
 			while (updateResultBean.hasNext()) {
 				bopu = new MtsBopUDs();
 				Map map = updateResultBean.next();
-				mapToObject(bopu,map);
+				mapToObject(bopu, map);
 			}
 
-			List<MtsBopInvcountrycode>insertcountryList = new ArrayList<MtsBopInvcountrycode>();
-			List<MtsBopInvcountrycode>modifycountryList = new ArrayList<MtsBopInvcountrycode>();
-			List<MtsBopInvcountrycode>deletecountryList = new ArrayList<MtsBopInvcountrycode>();
+			List<MtsBopInvcountrycode> insertcountryList = new ArrayList<MtsBopInvcountrycode>();
+			List<MtsBopInvcountrycode> modifycountryList = new ArrayList<MtsBopInvcountrycode>();
+			List<MtsBopInvcountrycode> deletecountryList = new ArrayList<MtsBopInvcountrycode>();
 
-			List<String>checkCountryList = new ArrayList<String>();
+			List<String> checkCountryList = new ArrayList<String>();
 
 			updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(INVCOUNTRYCODE_ID);
 
@@ -58,7 +57,7 @@ public class BopUDsCollectionUpdate extends BaseUpdate {
 			while (updateResultBean.hasNext()) {
 				countrycode = new MtsBopInvcountrycode();
 				Map map = updateResultBean.next();
-				mapToObject(countrycode,map);
+				mapToObject(countrycode, map);
 				if (UpdateResultBean.DELETE != updateResultBean.getRecodeState()) {
 					checkCountryList.add(countrycode.getInvcountrycode());
 				}
@@ -77,13 +76,11 @@ public class BopUDsCollectionUpdate extends BaseUpdate {
 				}
 			}
 
+			List<MtsBopOpenAccount> insertopenaccountList = new ArrayList<MtsBopOpenAccount>();
+			List<MtsBopOpenAccount> modifyopenaccountList = new ArrayList<MtsBopOpenAccount>();
+			List<MtsBopOpenAccount> deleteopenaccountList = new ArrayList<MtsBopOpenAccount>();
 
-
-			List<MtsBopOpenAccount>insertopenaccountList = new ArrayList<MtsBopOpenAccount>();
-			List<MtsBopOpenAccount>modifyopenaccountList = new ArrayList<MtsBopOpenAccount>();
-			List<MtsBopOpenAccount>deleteopenaccountList = new ArrayList<MtsBopOpenAccount>();
-
-			List<MtsBopOpenAccount>checkBankinfoList = new ArrayList<MtsBopOpenAccount>();
+			List<MtsBopOpenAccount> checkBankinfoList = new ArrayList<MtsBopOpenAccount>();
 
 			updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(OPENACCOUNT_ID);
 
@@ -91,7 +88,7 @@ public class BopUDsCollectionUpdate extends BaseUpdate {
 			while (updateResultBean.hasNext()) {
 				openaccount = new MtsBopOpenAccount();
 				Map map = updateResultBean.next();
-				mapToObject(openaccount,map);
+				mapToObject(openaccount, map);
 				if (UpdateResultBean.DELETE != updateResultBean.getRecodeState()) {
 					checkBankinfoList.add(openaccount);
 				}
@@ -149,8 +146,7 @@ public class BopUDsCollectionUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

@@ -50,20 +50,16 @@ public class BOPForDebtBondBillGetter extends BaseGetter {
 		try {
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "债券和票据签约信息查询");
 			PageQueryResult queryResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
-			result.getPage().setTotalPage(
-					queryResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -76,19 +72,19 @@ public class BOPForDebtBondBillGetter extends BaseGetter {
 
 			bopcfa.setCrtTm(new Date());
 
-			//应用类型 CFA-资本项目
+			// 应用类型 CFA-资本项目
 			bopcfa.setApptype(TopReportConstants.REPORT_APP_TYPE_CFA);
-			//文件类型 AK - 外债债券和票据—签约信息
+			// 文件类型 AK - 外债债券和票据—签约信息
 			bopcfa.setCurrentfile(TopReportConstants.REPORT_FILE_TYPE_CFA_AK);
-			//操作状态=A-创建
+			// 操作状态=A-创建
 			bopcfa.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_A);
-			//记录状态=02-编辑待确认
+			// 记录状态=02-编辑待确认
 			bopcfa.setRecStatus(TopReportConstants.REPORT_RECSTATUS_02);
-			//审核状态=00-未审核
+			// 审核状态=00-未审核
 			bopcfa.setApproveStatus(TopReportConstants.REPORT_APPROVESTATUS_00);
-			//回执状态=00-未返回
+			// 回执状态=00-未返回
 			bopcfa.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
-			//是否已成功上报=0-否
+			// 是否已成功上报=0-否
 			bopcfa.setSubSuccess(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO);
 
 			/** 债权人类型代码，见境外主体类型代码表。“债券和票据”类外债的债权人类型代码统一填报为“资本市场”。 */
@@ -107,22 +103,22 @@ public class BOPForDebtBondBillGetter extends BaseGetter {
 			queryResult.setQueryResult(list);
 			queryResult.setTotalCount(list.size());
 			return queryResult;
-		} else if (StringUtils.equals(MOD_CMD, op) || StringUtils.equals(DELETE_CMD, op) || StringUtils.equals(DETAILE_CMD, op)) {
+		} else if (StringUtils.equals(MOD_CMD, op) || StringUtils.equals(DELETE_CMD, op)
+				|| StringUtils.equals(DETAILE_CMD, op)) {
 			String id = getCommQueryServletRequest().getParameter("id");
 			BOPForDebtBilLoanCreditor bop = getDebtCreditor(id);
 			List<BOPForDebtBilLoanCreditor> list = new ArrayList<BOPForDebtBilLoanCreditor>();
 			if (null != bop) {
-				if(StringUtils.equals(op, MOD_CMD)){
+				if (StringUtils.equals(op, MOD_CMD)) {
 					if (StringUtils.equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO, bop.getSubSuccess())) {
 						bop.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_A);
 					} else {
 						bop.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_C);
 					}
-				} else if(StringUtils.equals(op, DELETE_CMD)){
+				} else if (StringUtils.equals(op, DELETE_CMD)) {
 					bop.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_D);
 				}
-				if (StringUtils.equals(op, MOD_CMD)
-						|| StringUtils.equals(op, DELETE_CMD)){
+				if (StringUtils.equals(op, MOD_CMD) || StringUtils.equals(op, DELETE_CMD)) {
 					bop.setRecStatus(TopReportConstants.REPORT_RECSTATUS_02);
 					bop.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
 					bop.setApproveStatus(TopReportConstants.REPORT_APPROVESTATUS_00);
@@ -146,7 +142,7 @@ public class BOPForDebtBondBillGetter extends BaseGetter {
 			String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
 			String filler2 = getCommQueryServletRequest().getParameter("filler2");
 
-			List<Object>paramentList = new ArrayList<Object>();
+			List<Object> paramentList = new ArrayList<Object>();
 			if (StringUtils.isNotBlank(qWorkDateStart)) {
 				hql.append(" AND bds.workDate >= ? ");
 				paramentList.add(qWorkDateStart);
@@ -173,20 +169,20 @@ public class BOPForDebtBondBillGetter extends BaseGetter {
 			}
 			if (StringUtils.isNotBlank(filler2)) {
 				hql.append(" AND bds.filler2 LIKE ? ");
-				paramentList.add("%"+filler2+"%");
+				paramentList.add("%" + filler2 + "%");
 			}
 
-			//只查询应用类型 为 资本项目
+			// 只查询应用类型 为 资本项目
 			hql.append(" AND bds.apptype = ? ");
 			paramentList.add(TopReportConstants.REPORT_APP_TYPE_CFA);
-			//只查询文件类型 为 债券和票据
+			// 只查询文件类型 为 债券和票据
 			hql.append(" AND bds.currentfile = ? ");
 			paramentList.add(TopReportConstants.REPORT_FILE_TYPE_CFA_AK);
-			//只查询记录状态为可编辑何编辑待确认的记录
+			// 只查询记录状态为可编辑何编辑待确认的记录
 			hql.append(" AND (bds.recStatus = ? OR  bds.recStatus = ? ) ");
 			paramentList.add(TopReportConstants.REPORT_RECSTATUS_01);
 			paramentList.add(TopReportConstants.REPORT_RECSTATUS_02);
-			//只查询当前分行数据
+			// 只查询当前分行数据
 			GlobalInfo ginfo = GlobalInfo.getCurrentInstance();
 			String brno = ginfo.getBrno();
 			if (StringUtils.isNotBlank(brno)) {
@@ -210,17 +206,16 @@ public class BOPForDebtBondBillGetter extends BaseGetter {
 		}
 	}
 
-	private BOPForDebtBilLoanCreditor getDebtCreditor(String id)
-			throws CommonException {
+	private BOPForDebtBilLoanCreditor getDebtCreditor(String id) throws CommonException {
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		BopCfaExdebtDs exdebtds = rootdao.query(BopCfaExdebtDs.class, id);
 
 		StringBuilder query = new StringBuilder(" FROM BopCfaCreditorDs WHERE recId = ? ");
-		List<BopCfaCreditorDs>creditorList = rootdao.queryByQL2List(query.toString(), new Object[]{id}, null);
+		List<BopCfaCreditorDs> creditorList = rootdao.queryByQL2List(query.toString(), new Object[] { id }, null);
 
 		BOPForDebtBilLoanCreditor bop = new BOPForDebtBilLoanCreditor();
-		if(null != exdebtds){
+		if (null != exdebtds) {
 			bop.setId(exdebtds.getId());
 			bop.setApptype(exdebtds.getApptype());
 			bop.setCurrentfile(exdebtds.getCurrentfile());
@@ -259,7 +254,7 @@ public class BOPForDebtBondBillGetter extends BaseGetter {
 
 		}
 
-		if(!creditorList.isEmpty()){
+		if (!creditorList.isEmpty()) {
 			BopCfaCreditorDs creditor = creditorList.get(0);
 			bop.setCreditorid(creditor.getId());
 			bop.setCreditorcode(creditor.getCreditorcode());

@@ -3,11 +3,6 @@
  */
 package com.huateng.ebank.business.parammng.operation;
 
-import java.util.List;
-
-import resource.bean.pub.TlrInfo;
-import resource.dao.pub.TlrInfoDAO;
-
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.business.management.common.DAOUtils;
@@ -19,6 +14,10 @@ import com.huateng.ebank.entity.data.flowManagement.Applydtl;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
+import resource.bean.pub.TlrInfo;
+import resource.dao.pub.TlrInfoDAO;
+
+import java.util.List;
 
 public class ForwardTaskOperation extends BaseOperation {
 

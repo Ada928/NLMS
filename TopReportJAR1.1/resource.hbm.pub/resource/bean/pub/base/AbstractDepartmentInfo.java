@@ -27,20 +27,18 @@ public abstract class AbstractDepartmentInfo implements java.io.Serializable {
 
 	// Constructors
 
-
-
 	/** default constructor */
 	public AbstractDepartmentInfo() {
 	}
 
 	/** minimal constructor */
-	public AbstractDepartmentInfo(long departmentCode, String departmentName, String brcode, String status) {
+	public AbstractDepartmentInfo(long departmentCode, String departmentName,
+			String brcode, String status) {
 		this.departmentCode = departmentCode;
 		this.departmentName = departmentName;
 		this.brcode = brcode;
 		this.status = status;
 	}
-
 
 	/** full constructor */
 
@@ -60,7 +58,6 @@ public abstract class AbstractDepartmentInfo implements java.io.Serializable {
 		this.misc3 = misc3;
 		this.misc4 = misc4;
 	}
-
 
 	// Property accessors
 

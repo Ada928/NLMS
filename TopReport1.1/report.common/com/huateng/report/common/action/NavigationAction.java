@@ -21,13 +21,13 @@ public class NavigationAction extends BaseAction {
 
 		String type = request.getParameter("type");
 
-		logger.info("forward funcid="+type);
+		logger.info("forward funcid=" + type);
 
 		GlobalInfo globalInfo = (GlobalInfo) request.getSession().getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
 		globalInfo.setMenuCode(type);
 		GlobalInfo.setCurrentInstance(globalInfo);
 
-		actionForward = mapping.findForward("Report"+type);
+		actionForward = mapping.findForward("Report" + type);
 
 		return actionForward;
 

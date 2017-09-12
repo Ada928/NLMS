@@ -26,13 +26,10 @@ public class BopCfaExplrmbloDsChangeInfoAuditGetter extends BaseGetter {
 			PageQueryResult queryResult = getData();
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外汇质押人民币贷款变动信息审核查询");
 			if (!queryResult.getQueryResult().isEmpty()) {
-				ResultMng.fillResultByList(getCommonQueryBean(),
-						getCommQueryServletRequest(), queryResult
-								.getQueryResult(), getResult());
+				ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+						queryResult.getQueryResult(), getResult());
 				result.setContent(queryResult.getQueryResult());
-				result.getPage().setTotalPage(
-						queryResult.getPageCount(getResult().getPage()
-								.getEveryPage()));
+				result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 				result.init();
 			} else {
 				result.setContent(Collections.emptyList());
@@ -41,8 +38,7 @@ public class BopCfaExplrmbloDsChangeInfoAuditGetter extends BaseGetter {
 			}
 			return result;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -65,14 +61,13 @@ public class BopCfaExplrmbloDsChangeInfoAuditGetter extends BaseGetter {
 			String recStatus = getCommQueryServletRequest().getParameter("recStatus");
 			String approveStatus = getCommQueryServletRequest().getParameter("approveStatus");
 			String repStatus = getCommQueryServletRequest().getParameter("repStatus");
-//			String explrmblono = getCommQueryServletRequest().getParameter("explrmblono");
+			// String explrmblono =
+			// getCommQueryServletRequest().getParameter("explrmblono");
 			String filler2 = getCommQueryServletRequest().getParameter("filler2");
 			String brno = GlobalInfo.getCurrentInstance().getBrno();
 			BopCfaExplrmbloDsService service = BopCfaExplrmbloDsService.getInstance();
-			return service.pageQueryByAudit(pageIndex, pageSize,
-					TopReportConstants.REPORT_FILE_TYPE_CFA_EB, qworkDate,eworkDate,
-					actiontype, recStatus, approveStatus, repStatus,
-					filler2, brno);
+			return service.pageQueryByAudit(pageIndex, pageSize, TopReportConstants.REPORT_FILE_TYPE_CFA_EB, qworkDate,
+					eworkDate, actiontype, recStatus, approveStatus, repStatus, filler2, brno);
 		} else {
 			PageQueryResult presult = new PageQueryResult();
 			presult.setTotalCount(0);

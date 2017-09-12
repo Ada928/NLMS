@@ -1,8 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -10,6 +7,9 @@ import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.management.bean.ChangePwdForm;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author yjw

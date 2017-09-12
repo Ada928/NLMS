@@ -1,14 +1,5 @@
 package com.huateng.ebank.business.management.updater;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import resource.bean.pub.TlrInfo;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -25,6 +16,13 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.service.pub.PasswordService;
 import com.huateng.view.pub.TlrRoleRelationView;
+import resource.bean.pub.TlrInfo;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 操作员增加EX

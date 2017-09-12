@@ -45,11 +45,11 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.report.system.bean.TaskListBean;
 import com.huateng.report.system.bean.TlrInfoAuditBean;
 import com.huateng.report.utils.RepList;
-import com.huateng.report.utils.ReportObjectSerializerUtil;
-import com.huateng.report.utils.ReportTaskUtil;
 import com.huateng.report.utils.ReportEnum.REPORT_TASK_FUNCID;
 import com.huateng.report.utils.ReportEnum.REPORT_TASK_TRANS_CD;
 import com.huateng.report.utils.ReportEnum.REPORT__FH_ST;
+import com.huateng.report.utils.ReportObjectSerializerUtil;
+import com.huateng.report.utils.ReportTaskUtil;
 import com.huateng.service.pub.UserMgrService;
 
 public class TaskListService {
@@ -122,22 +122,21 @@ public class TaskListService {
 		return list;
 	}
 
-	//获取审核模块是否需要审核
-	
-	public boolean isNeedApprove(String taskNo) throws CommonException{
+	// 获取审核模块是否需要审核
+
+	public boolean isNeedApprove(String taskNo) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		SysTaskConfig sytc= rootdao.query(SysTaskConfig.class, taskNo);
-		if(sytc!=null && sytc.getFlag().equals("0")){
+		SysTaskConfig sytc = rootdao.query(SysTaskConfig.class, taskNo);
+		if (sytc != null && sytc.getFlag().equals("0")) {
 			return false;
-		}
-		else{
-		return true;
+		} else {
+			return true;
 		}
 	}
+
 	// 复核后将taskInfo写入tasklog表
 	// TODO
-	private boolean LogTask(SysTaskInfo st, String pl, String inscd, String result, String remark)
-			throws CommonException {
+	private boolean LogTask(SysTaskInfo st, String pl, String inscd, String result, String remark) throws CommonException {
 		try {
 			ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 			SysTaskLog stlog = new SysTaskLog();
@@ -163,13 +162,12 @@ public class TaskListService {
 				stlog.setNewVal2(st.getNewVal2());
 				if (insflag.equals(REPORT_TASK_FUNCID.TASK_100299.value)) {
 					// 角色
-					List<String> rolelist = rootdao.queryByQL2List("select funcid from RoleFuncRel where roleId = '"
-							+ key + "'");
+					List<String> rolelist = rootdao.queryByQL2List("select funcid from RoleFuncRel where roleId = '" + key + "'");
 					StringBuffer roleListString = new StringBuffer("");
 					for (String func : rolelist) {
 						roleListString.append(func.trim()).append(",");
 					}
-					if(roleListString.length() > 0){
+					if (roleListString.length() > 0) {
 						roleListString = roleListString.deleteCharAt(roleListString.length() - 1);
 					}
 					RoleInfo roleInfo = (RoleInfo) getObjectByOldKey(key, insflag);
@@ -181,10 +179,8 @@ public class TaskListService {
 				} else if (insflag.equals(REPORT_TASK_FUNCID.TASK_100399.value)) {
 					// 用户
 					TlrInfo tlrInfo = (TlrInfo) getObjectByOldKey(key, insflag);
-					List<TlrBctlRel> bctlRellist = rootdao
-							.queryByQL2List("from TlrBctlRel where tlrNo = '" + key + "'");
-					List<TlrRoleRel> roleRellist = rootdao
-							.queryByQL2List("from TlrRoleRel where tlrno = '" + key + "'");
+					List<TlrBctlRel> bctlRellist = rootdao.queryByQL2List("from TlrBctlRel where tlrNo = '" + key + "'");
+					List<TlrRoleRel> roleRellist = rootdao.queryByQL2List("from TlrRoleRel where tlrno = '" + key + "'");
 					RepList<TlrBctlRel> repBctlList = new RepList<TlrBctlRel>();
 					for (TlrBctlRel tlrBctlRel : bctlRellist) {
 						repBctlList.add(tlrBctlRel);
@@ -278,9 +274,8 @@ public class TaskListService {
 	}
 
 	// 审批通用方法函数,不处理:角色,日期,用户
-	private void getObjectAndApprove(SysTaskInfo taskbean, String st, Boolean isLock, Boolean isDel, boolean oldflag,
-			boolean newDel, String approvePeople, String approveInsCd, String approveResult, String approveRemark,
-			String intInsId) throws CommonException {
+	private void getObjectAndApprove(SysTaskInfo taskbean, String st, Boolean isLock, Boolean isDel, boolean oldflag, boolean newDel, String approvePeople,
+			String approveInsCd, String approveResult, String approveRemark, String intInsId) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		ReportTaskUtil rt = new ReportTaskUtil();
 		String oldkey = taskbean.getAdtRcdPk();
@@ -356,20 +351,20 @@ public class TaskListService {
 				oldfuncs.remove(newfid);
 			} else {
 				RoleFuncRel newrfr = new RoleFuncRel();
-				//added by xuhong 2015-3-30 id赋值 begin
+				// added by xuhong 2015-3-30 id赋值 begin
 				Iterator iterator;
 				try {
 					iterator = DAOUtils.getHQLDAO().queryByQL("select max(id) from RoleFuncRel");
-					int id = 100;
+					long id = 100;
 					if (iterator.hasNext()) {
 						Number num = (Number) iterator.next();
 						id = num.intValue() + 1;
 					}
-					newrfr.setId(id);
+					newrfr.setId(String.valueOf(id));
 				} catch (CommonException e) {
 					e.printStackTrace();
 				}
-				//added by xuhong 2015-3-30 id赋值 end
+				// added by xuhong 2015-3-30 id赋值 end
 				newrfr.setFuncid(newfid);
 				newrfr.setRoleId(rid);
 				rfrd.save(newrfr);
@@ -397,8 +392,8 @@ public class TaskListService {
 
 	// 对角色\日期\用户进行特殊处理
 	// TODO
-	private void getObjectAndApproveExtra(SysTaskInfo taskbean, String st, boolean extraFlag, String approvePeople,
-			String approveInsCd, String approveResult, String approveRemark, String intInsId) throws CommonException {
+	private void getObjectAndApproveExtra(SysTaskInfo taskbean, String st, boolean extraFlag, String approvePeople, String approveInsCd, String approveResult,
+			String approveRemark, String intInsId) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		ReportTaskUtil rt = new ReportTaskUtil();
 		String oldkey = taskbean.getAdtRcdPk();
@@ -434,14 +429,14 @@ public class TaskListService {
 					if (extraFlag) {
 						// 新增:
 						RoleInfo obj = (RoleInfo) getObjectByOldKey(oldkey, intInsId);
-						obj.setIsLock("0");
+						obj.setLock(SystemConstant.FALSE);
 						obj.setSt(REPORT__FH_ST.YES.value);
 						rootdao.saveOrUpdate(obj);
 					} else {
 						// 修改:
 						RoleInfo roleInfo = null;
 						roleInfo = (RoleInfo) rt.getObjctBySysTaskInfo(taskbean);
-						roleInfo.setIsLock("0");
+						roleInfo.setLock(SystemConstant.FALSE);
 						roleInfo.setSt(REPORT__FH_ST.YES.value);
 						rootdao.saveOrUpdate(roleInfo);
 						String roleListNew = roleInfo.getRoleList();
@@ -486,20 +481,18 @@ public class TaskListService {
 								rootdao.saveOrUpdate(newinfo);
 
 							}
-						}else{
+						} else {
 							// 说明是其它修改
 							tlrInfo.setSt(REPORT__FH_ST.YES.value);
 							// 有效/无效
 							rootdao.saveOrUpdate(tlrInfo);
 							String key = tlrInfo.getTlrno();
 							// 先删除用户的角色表和机构关联
-							List<TlrBctlRel> bctlRellist = rootdao.queryByQL2List("from TlrBctlRel where tlrNo = '" + key
-									+ "'");
+							List<TlrBctlRel> bctlRellist = rootdao.queryByQL2List("from TlrBctlRel where tlrNo = '" + key + "'");
 							for (TlrBctlRel trlbctreldel : bctlRellist) {
 								rootdao.delete(trlbctreldel);
 							}
-							List<TlrRoleRel> roleRellist = rootdao.queryByQL2List("from TlrRoleRel where tlrno = '" + key
-									+ "'");
+							List<TlrRoleRel> roleRellist = rootdao.queryByQL2List("from TlrRoleRel where tlrno = '" + key + "'");
 							for (TlrRoleRel trlrolereldel : roleRellist) {
 								rootdao.delete(trlrolereldel);
 							}
@@ -557,7 +550,7 @@ public class TaskListService {
 						deleRoleFunc(id);
 					} else {// 角色修该拒绝
 						RoleInfo obj = (RoleInfo) getObjectByOldKey(oldkey, intInsId);
-						obj.setIsLock("0");
+						obj.setLock(SystemConstant.FALSE);
 						obj.setSt(REPORT__FH_ST.YES.value);
 						rootdao.saveOrUpdate(obj);
 
@@ -598,8 +591,7 @@ public class TaskListService {
 	}
 
 	// 审批操作--jianxue.zhang--新版本
-	public void approveList(List insert, List update, List del, String approveResult, String approveRemark,
-			String intInsId) throws CommonException {
+	public void approveList(List insert, List update, List del, String approveResult, String approveRemark, String intInsId) throws CommonException {
 		// 公用数据:
 		GlobalInfo GI = GlobalInfo.getCurrentInstance();
 		String approvePeople = GI.getTlrno();
@@ -639,14 +631,11 @@ public class TaskListService {
 					st = REPORT__FH_ST.YES.value;
 					isLock = new Boolean(false);
 					extraFlag = true;
-					if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100299.value)
-							|| intInsId.equals(REPORT_TASK_FUNCID.TASK_100599.value)
+					if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100299.value) || intInsId.equals(REPORT_TASK_FUNCID.TASK_100599.value)
 							|| intInsId.equals(REPORT_TASK_FUNCID.TASK_100399.value)) {
-						getObjectAndApproveExtra(taskbean, st, extraFlag, approvePeople, approveInsCd, approveResult,
-								approveRemark, intInsId);
+						getObjectAndApproveExtra(taskbean, st, extraFlag, approvePeople, approveInsCd, approveResult, approveRemark, intInsId);
 					} else {
-						getObjectAndApprove(taskbean, st, isLock, isDel, oldflag, newDel, approvePeople, approveInsCd,
-								approveResult, approveRemark, intInsId);
+						getObjectAndApprove(taskbean, st, isLock, isDel, oldflag, newDel, approvePeople, approveInsCd, approveResult, approveRemark, intInsId);
 					}
 				}
 
@@ -666,14 +655,11 @@ public class TaskListService {
 					// end
 					st = REPORT__FH_ST.YES.value;
 					isLock = new Boolean(false);
-					if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100299.value)
-							|| intInsId.equals(REPORT_TASK_FUNCID.TASK_100599.value)
+					if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100299.value) || intInsId.equals(REPORT_TASK_FUNCID.TASK_100599.value)
 							|| intInsId.equals(REPORT_TASK_FUNCID.TASK_100399.value)) {
-						getObjectAndApproveExtra(taskbean, st, extraFlag, approvePeople, approveInsCd, approveResult,
-								approveRemark, intInsId);
+						getObjectAndApproveExtra(taskbean, st, extraFlag, approvePeople, approveInsCd, approveResult, approveRemark, intInsId);
 					} else {
-						getObjectAndApprove(taskbean, st, isLock, isDel, oldflag, newDel, approvePeople, approveInsCd,
-								approveResult, approveRemark, intInsId);
+						getObjectAndApprove(taskbean, st, isLock, isDel, oldflag, newDel, approvePeople, approveInsCd, approveResult, approveRemark, intInsId);
 					}
 				}
 			}
@@ -694,21 +680,16 @@ public class TaskListService {
 					isLock = new Boolean(false);
 					isDel = new Boolean(true);
 					oldflag = true;
-					if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100299.value)
-							|| intInsId.equals(REPORT_TASK_FUNCID.TASK_100599.value)
+					if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100299.value) || intInsId.equals(REPORT_TASK_FUNCID.TASK_100599.value)
 							|| intInsId.equals(REPORT_TASK_FUNCID.TASK_100399.value)) {
-						getObjectAndApproveExtra(taskbean, st, extraFlag, approvePeople, approveInsCd, approveResult,
-								approveRemark, intInsId);
+						getObjectAndApproveExtra(taskbean, st, extraFlag, approvePeople, approveInsCd, approveResult, approveRemark, intInsId);
 					} else {
-						getObjectAndApprove(taskbean, st, isLock, isDel, oldflag, newDel, approvePeople, approveInsCd,
-								approveResult, approveRemark, intInsId);
+						getObjectAndApprove(taskbean, st, isLock, isDel, oldflag, newDel, approvePeople, approveInsCd, approveResult, approveRemark, intInsId);
 					}
 				}
 			}
-			GI.addBizLog("Updater.log", new String[] { GI.getTlrno(), GI.getBrcode(),
-					"主管确认-复核通过-业务类型【" + intInsId + "】" });
-			htlog.info("Updater.log",
-					new String[] { GI.getTlrno(), GI.getBrcode(), "主管确认-复核通过-业务类型【" + intInsId + "】" });
+			GI.addBizLog("Updater.log", new String[] { GI.getTlrno(), GI.getBrcode(), "主管确认-复核通过-业务类型【" + intInsId + "】" });
+			htlog.info("Updater.log", new String[] { GI.getTlrno(), GI.getBrcode(), "主管确认-复核通过-业务类型【" + intInsId + "】" });
 		} else {
 			// ---复核拒绝---
 			// 新增操作:st:无效5,lock:解锁,del:null,oldflag:false;
@@ -729,14 +710,11 @@ public class TaskListService {
 					isDel = new Boolean(true);
 					extraFlag = true;
 					newDel = true;
-					if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100299.value)
-							|| intInsId.equals(REPORT_TASK_FUNCID.TASK_100599.value)
+					if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100299.value) || intInsId.equals(REPORT_TASK_FUNCID.TASK_100599.value)
 							|| intInsId.equals(REPORT_TASK_FUNCID.TASK_100399.value)) {
-						getObjectAndApproveExtra(taskbean, st, extraFlag, approvePeople, approveInsCd, approveResult,
-								approveRemark, intInsId);
+						getObjectAndApproveExtra(taskbean, st, extraFlag, approvePeople, approveInsCd, approveResult, approveRemark, intInsId);
 					} else {
-						getObjectAndApprove(taskbean, st, isLock, isDel, oldflag, newDel, approvePeople, approveInsCd,
-								approveResult, approveRemark, intInsId);
+						getObjectAndApprove(taskbean, st, isLock, isDel, oldflag, newDel, approvePeople, approveInsCd, approveResult, approveRemark, intInsId);
 					}
 				}
 
@@ -757,14 +735,11 @@ public class TaskListService {
 					st = REPORT__FH_ST.YES.value;
 					isLock = new Boolean(false);
 					oldflag = true;
-					if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100299.value)
-							|| intInsId.equals(REPORT_TASK_FUNCID.TASK_100599.value)
+					if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100299.value) || intInsId.equals(REPORT_TASK_FUNCID.TASK_100599.value)
 							|| intInsId.equals(REPORT_TASK_FUNCID.TASK_100399.value)) {
-						getObjectAndApproveExtra(taskbean, st, extraFlag, approvePeople, approveInsCd, approveResult,
-								approveRemark, intInsId);
+						getObjectAndApproveExtra(taskbean, st, extraFlag, approvePeople, approveInsCd, approveResult, approveRemark, intInsId);
 					} else {
-						getObjectAndApprove(taskbean, st, isLock, isDel, oldflag, newDel, approvePeople, approveInsCd,
-								approveResult, approveRemark, intInsId);
+						getObjectAndApprove(taskbean, st, isLock, isDel, oldflag, newDel, approvePeople, approveInsCd, approveResult, approveRemark, intInsId);
 					}
 				}
 			}
@@ -785,22 +760,17 @@ public class TaskListService {
 					isLock = new Boolean(false);
 					isDel = new Boolean(false);
 					oldflag = true;
-					if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100299.value)
-							|| intInsId.equals(REPORT_TASK_FUNCID.TASK_100599.value)
+					if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100299.value) || intInsId.equals(REPORT_TASK_FUNCID.TASK_100599.value)
 							|| intInsId.equals(REPORT_TASK_FUNCID.TASK_100399.value)) {
-						getObjectAndApproveExtra(taskbean, st, extraFlag, approvePeople, approveInsCd, approveResult,
-								approveRemark, intInsId);
+						getObjectAndApproveExtra(taskbean, st, extraFlag, approvePeople, approveInsCd, approveResult, approveRemark, intInsId);
 					} else {
-						getObjectAndApprove(taskbean, st, isLock, isDel, oldflag, newDel, approvePeople, approveInsCd,
-								approveResult, approveRemark, intInsId);
+						getObjectAndApprove(taskbean, st, isLock, isDel, oldflag, newDel, approvePeople, approveInsCd, approveResult, approveRemark, intInsId);
 					}
 				}
 
 			}
-			GI.addBizLog("Updater.log", new String[] { GI.getTlrno(), GI.getBrcode(),
-					"主管确认-复核拒绝-业务类型【" + intInsId + "】" });
-			htlog.info("Updater.log",
-					new String[] { GI.getTlrno(), GI.getBrcode(), "主管确认-复核拒绝-业务类型【" + intInsId + "】" });
+			GI.addBizLog("Updater.log", new String[] { GI.getTlrno(), GI.getBrcode(), "主管确认-复核拒绝-业务类型【" + intInsId + "】" });
+			htlog.info("Updater.log", new String[] { GI.getTlrno(), GI.getBrcode(), "主管确认-复核拒绝-业务类型【" + intInsId + "】" });
 		}
 
 	}

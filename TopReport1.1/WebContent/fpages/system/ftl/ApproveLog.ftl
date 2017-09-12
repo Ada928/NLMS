@@ -37,27 +37,34 @@
 </table>
 
 <script language="javascript" src="${contextPath}/js/topTsk.js"></script>
- <script language="javascript">
+<script language="javascript">
 
-//定位一条记录
-function locate(id) {
-	var record = UndoConfirm_dataset.find(["id"],[id]);
-	if (record) {
-		UndoConfirm_dataset.setRecord(record);
-	}
-}
-//给id加链接
-function datatable1_id_onRefresh(cell, value, record){
-	if(record){
-		var type = record.getValue("intInsId");
-		var sta = record.getValue("updTransCd");
-		var rcdpk = record.getValue("adtRcdPk");
-		cell.innerHTML = "<a href=\"Javascript:void(0);\" onClick=\"Javascript:Compdetail.showCompTaskDetail('"+type+"','"+sta+"','"+rcdpk+"','"+value+"')\">"+value+"</a>";
- 	}else {
-		cell.innerHTML = "";
-	}
-}
-
+		//定位一条记录
+		function locate(id) {
+			var record = UndoConfirm_dataset.find([ "id" ], [ id ]);
+			if (record) {
+				UndoConfirm_dataset.setRecord(record);
+			}
+		}
+		//给id加链接
+		function datatable1_id_onRefresh(cell, value, record) {
+			if (record) {
+				var type = record.getValue("intInsId");
+				var sta = record.getValue("updTransCd");
+				var rcdpk = record.getValue("adtRcdPk");
+				cell.innerHTML = "<a href=\"Javascript:void(0);\" onClick=\"Javascript:Compdetail.showCompTaskDetail('"
+						+ type
+						+ "','"
+						+ sta
+						+ "','"
+						+ rcdpk
+						+ "','"
+						+ value
+						+ "')\">" + value + "</a>";
+			} else {
+				cell.innerHTML = "";
+			}
+		}
 </script>
 
 </@CommonQueryMacro.page>

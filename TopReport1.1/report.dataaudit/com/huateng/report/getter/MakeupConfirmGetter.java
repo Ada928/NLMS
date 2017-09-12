@@ -17,7 +17,6 @@ import com.huateng.report.service.MakeupConfirmServices;
 @SuppressWarnings("unchecked")
 public class MakeupConfirmGetter extends BaseGetter {
 
-
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
@@ -44,7 +43,8 @@ public class MakeupConfirmGetter extends BaseGetter {
 		String workDateEnd = (String) paramMap.get("workDateEnd");
 		String isShowZero = (String) paramMap.get("isShowZero");
 		String qappType = (String) paramMap.get("qappType");
-		List list = MakeupConfirmServices.getInstance().getMakeUpConfirmList(busiType, qappType, workDateStart, workDateEnd, info.getBrno(),isShowZero);
+		List list = MakeupConfirmServices.getInstance().getMakeUpConfirmList(busiType, qappType, workDateStart,
+				workDateEnd, info.getBrno(), isShowZero);
 		pageQueryResult.setQueryResult(list);
 		return pageQueryResult;
 	}

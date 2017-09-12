@@ -49,11 +49,9 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getDataDicName(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getDataDicName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		String translated = element.getAnyValue("translated");
-		if (StringUtils.isEmpty(value) || StringUtils.isEmpty(translated)
-				|| !translated.startsWith("DATA_DIC.")) {
+		if (StringUtils.isEmpty(value) || StringUtils.isEmpty(translated) || !translated.startsWith("DATA_DIC.")) {
 			return value;
 		}
 		String dicType = translated.substring(translated.indexOf(".") + 1);
@@ -68,8 +66,7 @@ public class CQMethod {
 	 * @return String roleName
 	 * @throws HuatengException
 	 */
-	public static String getRoleName(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getRoleName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		RoleMgrService roleMgrService = RoleMgrService.getInstance();
 
@@ -89,24 +86,24 @@ public class CQMethod {
 	}
 
 	/**
-	*
-	* get getUbankName by no
-	*
-	* @param element
-	* @param value
-	* @param request
-	* @return
-	* @throws HuatengException
-	*/
-	public static String getUbankNamebyNo(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	 *
+	 * get getUbankName by no
+	 *
+	 * @param element
+	 * @param value
+	 * @param request
+	 * @return
+	 * @throws HuatengException
+	 */
+	public static String getUbankNamebyNo(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		if (StringUtils.isEmpty(value)) {
 			return "";
 		}
 		String ubankName = null;
 		try {
-//			ubankName = DAOUtils.getTblEbUnionBankDAO().getUnionBankByNo(value).getUbankName();
+			// ubankName =
+			// DAOUtils.getTblEbUnionBankDAO().getUnionBankByNo(value).getUbankName();
 		} catch (Exception e) {
 		}
 		if (StringUtils.isEmpty(ubankName)) {
@@ -116,88 +113,68 @@ public class CQMethod {
 	}
 
 	/**
-	 * 获取日牌价折合人民币
-	 * currency ：需要转换的金额
-	 * currenyType：金额的对应币种
-	 * workDate ： 对应的工作日期 如20121017
+	 * 获取日牌价折合人民币 currency ：需要转换的金额 currenyType：金额的对应币种 workDate ： 对应的工作日期
+	 * 如20121017
 	 */
 
-	public static BigDecimal getDayCNY(BigDecimal currency,String currenyType,String workDate) throws CommonException
-	{
-		if("CNY".equalsIgnoreCase(currenyType))
-		{
+	public static BigDecimal getDayCNY(BigDecimal currency, String currenyType, String workDate) throws CommonException {
+		if ("CNY".equalsIgnoreCase(currenyType)) {
 			return currency;
 		}
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<BiDayexchangerate> dayList = new ArrayList<BiDayexchangerate>();
-		BiDayexchangerate biDay =null;
+		BiDayexchangerate biDay = null;
 		BigDecimal toExCNY = new BigDecimal(0).setScale(2);
 		StringBuffer hql = new StringBuffer("");
-		hql.append(" from BiDayexchangerate biday where id='"+currenyType+"' and rateDate='"+workDate+"'");
+		hql.append(" from BiDayexchangerate biday where id='" + currenyType + "' and rateDate='" + workDate + "'");
 		dayList = rootdao.queryByQL2List(hql.toString());
 
-		if(null ==dayList || dayList.size()==0)
-		{
+		if (null == dayList || dayList.size() == 0) {
 			ExceptionUtil.throwCommonException("外汇日牌价不存在相应的记录！");
 		}
 
-		for(Object dayObj : dayList)
-		{
-			biDay = (BiDayexchangerate)dayObj;
-			if(null ==biDay)
-			{
+		for (Object dayObj : dayList) {
+			biDay = (BiDayexchangerate) dayObj;
+			if (null == biDay) {
 				ExceptionUtil.throwCommonException("外汇日牌价不存在相应的记录！");
 			}
-			if(null !=biDay && "4".equalsIgnoreCase(biDay.getSt()))
-			{
+			if (null != biDay && "4".equalsIgnoreCase(biDay.getSt())) {
 				toExCNY = currency.divide(biDay.getRateUnit()).multiply(biDay.getRateMidprice());
-			}else if(null !=biDay && !"4".equalsIgnoreCase(biDay.getSt()))
-			{
+			} else if (null != biDay && !"4".equalsIgnoreCase(biDay.getSt())) {
 				ExceptionUtil.throwCommonException("请检查 外汇日牌价的[主管确认]是否已经完成！");
 			}
 		}
 		return toExCNY;
 	}
 
-
 	/**
-	 * 获取月牌价折合人民币
-	 * currency ：需要转换的金额
-	 * currenyType：金额的对应币种
-	 * yearMoth ： 对应的年月 如201210
+	 * 获取月牌价折合人民币 currency ：需要转换的金额 currenyType：金额的对应币种 yearMoth ： 对应的年月 如201210
 	 */
 
-	public static BigDecimal getMothCNY(BigDecimal currency,String currenyType,String yearMoth) throws CommonException
-	{
-		if("CNY".equalsIgnoreCase(currenyType))
-		{
+	public static BigDecimal getMothCNY(BigDecimal currency, String currenyType, String yearMoth) throws CommonException {
+		if ("CNY".equalsIgnoreCase(currenyType)) {
 			return currency;
 		}
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<BiMonthexchangerate> dayList = new ArrayList<BiMonthexchangerate>();
-		BiMonthexchangerate biMoth =null;
+		BiMonthexchangerate biMoth = null;
 		BigDecimal toExCNY = new BigDecimal(0).setScale(2);
 		StringBuffer hql = new StringBuffer("");
-		hql.append(" from BiMonthexchangerate bimoth where id='"+currenyType+"' and yearMonth='"+yearMoth+"'");
+		hql.append(" from BiMonthexchangerate bimoth where id='" + currenyType + "' and yearMonth='" + yearMoth + "'");
 		dayList = rootdao.queryByQL2List(hql.toString());
 
-		if(null ==dayList || dayList.size()==0)
-		{
+		if (null == dayList || dayList.size() == 0) {
 			ExceptionUtil.throwCommonException("外汇月牌价不存在相应的记录！");
 		}
 
-		for(Object dayObj : dayList)
-		{
-			biMoth = (BiMonthexchangerate)dayObj;
-			if(null ==biMoth)
-			{
+		for (Object dayObj : dayList) {
+			biMoth = (BiMonthexchangerate) dayObj;
+			if (null == biMoth) {
 				ExceptionUtil.throwCommonException("外汇月牌价不存在相应的记录！");
 			}
-			if(null !=biMoth && "4".equalsIgnoreCase(biMoth.getSt()))
-			{
+			if (null != biMoth && "4".equalsIgnoreCase(biMoth.getSt())) {
 				toExCNY = currency.divide(biMoth.getRateUnit()).multiply(biMoth.getRateMidprice());
-			}else if(null !=biMoth && !"4".equalsIgnoreCase(biMoth.getSt()))
-			{
+			} else if (null != biMoth && !"4".equalsIgnoreCase(biMoth.getSt())) {
 				ExceptionUtil.throwCommonException("请检查 外汇月牌价的[主管确认]是否已经完成！");
 			}
 		}
@@ -205,17 +182,16 @@ public class CQMethod {
 	}
 
 	/**
-	*
-	* get getUbankName by no
-	*
-	* @param element
-	* @param value
-	* @param request
-	* @return
-	* @throws HuatengException
-	*/
-	public static String getRMBCapitalMoney(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	 *
+	 * get getUbankName by no
+	 *
+	 * @param element
+	 * @param value
+	 * @param request
+	 * @return
+	 * @throws HuatengException
+	 */
+	public static String getRMBCapitalMoney(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		if (StringUtils.isEmpty(value)) {
 			return "";
@@ -225,19 +201,18 @@ public class CQMethod {
 
 	/** add by junyun.lin 2010-05-20 HTEBANK-10 begin */
 	/**
-	*
-	* 将用string表示的以分为单位的金额字符串转换成以元为单位
-	* 如：以分为单位的String a = 2000，转换成 BigDecimal 20.00
-	*
-	* @param element
-	* @param value
-	* @param request
-	* @return
-	* @throws HuatengException
-	*/
-	public final static String formatFenToBigDecimal(ICommonQueryBaseBean element,
-			String value, ServletRequest request)throws HuatengException{
-		if(value==null||"".equals(value)){
+	 *
+	 * 将用string表示的以分为单位的金额字符串转换成以元为单位 如：以分为单位的String a = 2000，转换成 BigDecimal
+	 * 20.00
+	 *
+	 * @param element
+	 * @param value
+	 * @param request
+	 * @return
+	 * @throws HuatengException
+	 */
+	public final static String formatFenToBigDecimal(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
+		if (value == null || "".equals(value)) {
 			return "";
 		}
 		BigDecimal bigDec = new BigDecimal(value);
@@ -245,18 +220,17 @@ public class CQMethod {
 		return String.valueOf(bigDec.setScale(2));
 	}
 
-   /**
-	*
-	* get getUbankName by no
-	*
-	* @param element
-	* @param value
-	* @param request
-	* @return
-	* @throws HuatengException
-	*/
-	public static String getRMBCapitalformatFenMoney(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	/**
+	 *
+	 * get getUbankName by no
+	 *
+	 * @param element
+	 * @param value
+	 * @param request
+	 * @return
+	 * @throws HuatengException
+	 */
+	public static String getRMBCapitalformatFenMoney(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		if (StringUtils.isEmpty(value)) {
 			return "";
@@ -266,22 +240,22 @@ public class CQMethod {
 		value = String.valueOf(bigDec.setScale(2));
 		return DataFormat.getRMBCapitalMoney(Double.parseDouble(value));
 	}
+
 	/** add by junyun.lin 2010-05-20 HTEBANK-10 end */
 
 	/**
-	*
-	* 将用string表示的以分为单位的金额字符串转换成以元为单位,带分隔符的
-	* 如：以分为单位的String a = 123456，转换成 String 1,234.56
-	*
-	* @param element
-	* @param value
-	* @param request
-	* @return
-	* @throws HuatengException
-	*/
-	public final static String formatFenToCurrency(ICommonQueryBaseBean element,
-			String value, ServletRequest request)throws HuatengException{
-		if(value==null||"".equals(value)){
+	 *
+	 * 将用string表示的以分为单位的金额字符串转换成以元为单位,带分隔符的 如：以分为单位的String a = 123456，转换成 String
+	 * 1,234.56
+	 *
+	 * @param element
+	 * @param value
+	 * @param request
+	 * @return
+	 * @throws HuatengException
+	 */
+	public final static String formatFenToCurrency(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
+		if (value == null || "".equals(value)) {
 			return "";
 		}
 		BigDecimal bigDec = new BigDecimal(value);
@@ -291,7 +265,7 @@ public class CQMethod {
 	}
 
 	/**
-	 * 根据应用类型取得文件类型 	返回格式: 文件类型名称
+	 * 根据应用类型取得文件类型 返回格式: 文件类型名称
 	 *
 	 * @param element
 	 * @param value
@@ -300,20 +274,20 @@ public class CQMethod {
 	 * @throws HuatengException
 	 */
 
-	public static String getCurrentFile(ICommonQueryBaseBean element,String value, ServletRequest request) throws CommonException{
+	public static String getCurrentFile(ICommonQueryBaseBean element, String value, ServletRequest request) throws CommonException {
 		String currentFileName = "";
-		if (value!=null && value.trim().length()>0) {
+		if (value != null && value.trim().length() > 0) {
 			ReportCommonService service = ReportCommonService.getInstance();
 			String typeFile[] = value.split("_");
 			String appType = typeFile[0];
-			String currentFileType =  typeFile[1];
+			String currentFileType = typeFile[1];
 			DataDic dic = service.getDataDic(ReportConstant.DATA_DIC_BUSI_TYPE_NO, TopReportConstants.REPORT_BUSITYPE_BOP);
-			if (dic!=null && dic.getMiscflgs()!=null && dic.getMiscflgs().trim().length()>0) {
+			if (dic != null && dic.getMiscflgs() != null && dic.getMiscflgs().trim().length() > 0) {
 				String dataTypeNo = dic.getMiscflgs().trim();
 				DataDic appDic = service.getDataDic(Integer.parseInt(dataTypeNo), appType.trim());
-				if (appDic!=null && appDic.getMiscflgs()!=null && appDic.getMiscflgs().trim().length()>0) {
+				if (appDic != null && appDic.getMiscflgs() != null && appDic.getMiscflgs().trim().length() > 0) {
 					DataDic fileDic = service.getDataDic(Integer.parseInt(appDic.getMiscflgs().trim()), currentFileType.trim());
-					if (fileDic!=null) {
+					if (fileDic != null) {
 						currentFileName = fileDic.getDataName();
 					}
 				}
@@ -321,7 +295,6 @@ public class CQMethod {
 		}
 		return currentFileName;
 	}
-
 
 	/**
 	 *
@@ -333,8 +306,7 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getBrhName(ICommonQueryBaseBean element, String value,
-			ServletRequest request) throws HuatengException {
+	public static String getBrhName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		if (StringUtils.isEmpty(value)) {
 			return value;
 		}
@@ -352,45 +324,47 @@ public class CQMethod {
 			if (StringUtils.isEmpty(value)) {
 				return value;
 			}
-			if(DataFormat.isEmpty(brhName)){
+			if (DataFormat.isEmpty(brhName)) {
 				brhName = "";
 			}
 			return brhName;
 		}
 
 	}
-//del by zhaozhiguo
-//	/**
-//	 *
-//	 * 获取保险公司名称
-//	 */
-//	public static String getInsurer(ICommonQueryBaseBean element, String value,
-//			ServletRequest request) throws HuatengException {
-//		if (StringUtils.isEmpty(value)) {
-//			return "";
-//		} else {
-//			try {
-//				StringBuffer hql = new StringBuffer();
-//				hql.append("select po.cname from CustomerInfo po where po.custType = '")
-//						.append(SystemConstant.CUST_TYPE_FINANCIAL);
-//				hql.append("'");
-//				hql.append(" and (po.cname like '").append(value).append("'");
-//				hql.append(" or po.custno like '").append(value).append("')");
-//
-//				CustomerInfoDAO dao = BaseDAOUtils.getCustomerInfoDAO();
-//				CustomerInfo customerInfo = dao.query(value);
-//				if(customerInfo != null) {
-//					return customerInfo.getCname();
-//				} else {
-//					return "";
-//				}
-//
-//			} catch (Exception e) {
-//				return "";
-//			}
-//		}
-//
-//	}
+
+	// del by zhaozhiguo
+	// /**
+	// *
+	// * 获取保险公司名称
+	// */
+	// public static String getInsurer(ICommonQueryBaseBean element, String
+	// value,
+	// ServletRequest request) throws HuatengException {
+	// if (StringUtils.isEmpty(value)) {
+	// return "";
+	// } else {
+	// try {
+	// StringBuffer hql = new StringBuffer();
+	// hql.append("select po.cname from CustomerInfo po where po.custType = '")
+	// .append(SystemConstant.CUST_TYPE_FINANCIAL);
+	// hql.append("'");
+	// hql.append(" and (po.cname like '").append(value).append("'");
+	// hql.append(" or po.custno like '").append(value).append("')");
+	//
+	// CustomerInfoDAO dao = BaseDAOUtils.getCustomerInfoDAO();
+	// CustomerInfo customerInfo = dao.query(value);
+	// if(customerInfo != null) {
+	// return customerInfo.getCname();
+	// } else {
+	// return "";
+	// }
+	//
+	// } catch (Exception e) {
+	// return "";
+	// }
+	// }
+	//
+	// }
 
 	/**
 	 * 根据外部机构号获取机构名称 机构名称格式为: brname
@@ -401,18 +375,15 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getBrnoName(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getBrnoName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
-		/* mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 begin
-		BctlService bctlService = BctlService.getInstance();
-		if (StringUtils.isEmpty(value)) {
-			return "";
-		}
-		String brname = bctlService.getBranchName(value);
-		if (StringUtils.isEmpty(brname)) {
-			return value;
-		}*/
+		/*
+		 * mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 begin BctlService
+		 * bctlService = BctlService.getInstance(); if
+		 * (StringUtils.isEmpty(value)) { return ""; } String brname =
+		 * bctlService.getBranchName(value); if (StringUtils.isEmpty(brname)) {
+		 * return value; }
+		 */
 		if (StringUtils.isEmpty(value)) {
 			return "";
 		}
@@ -423,9 +394,8 @@ public class CQMethod {
 			Bctl bctl = (Bctl) l.get(0);
 			return bctl.getBrname();
 		}
-		/* mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整  end*/
+		/* mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 end */
 	}
-
 
 	/**
 	 * 根据区域代码获取对应的中文名称 机构名称格式为: areaname
@@ -437,8 +407,7 @@ public class CQMethod {
 	 * @throws HuatengException
 	 */
 	@SuppressWarnings("rawtypes")
-	public static String getAreacodName(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getAreacodName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		if (StringUtils.isEmpty(value)) {
 			return StringUtils.EMPTY;
 		}
@@ -452,7 +421,6 @@ public class CQMethod {
 		}
 	}
 
-
 	/**
 	 * 根据外部机构号获取机构名称 机构名称格式为: brno-brname
 	 *
@@ -462,18 +430,15 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getBrhNameByBrno(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getBrhNameByBrno(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
-		/* mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 begin
-		BctlService bctlService = BctlService.getInstance();
-		if (StringUtils.isEmpty(value)) {
-			return "";
-		}
-		String brname = bctlService.getBranchName(value);
-		if (StringUtils.isEmpty(brname)) {
-			return value;
-		}*/
+		/*
+		 * mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 begin BctlService
+		 * bctlService = BctlService.getInstance(); if
+		 * (StringUtils.isEmpty(value)) { return ""; } String brname =
+		 * bctlService.getBranchName(value); if (StringUtils.isEmpty(brname)) {
+		 * return value; }
+		 */
 		if (StringUtils.isEmpty(value)) {
 			return "";
 		}
@@ -484,14 +449,11 @@ public class CQMethod {
 			Bctl bctl = (Bctl) l.get(0);
 			return value + "-" + bctl.getBrname();
 		}
-		/* mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整  end*/
+		/* mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 end */
 	}
 
-
-
-
 	/**
-	 * 根据币种编码获取币种名称 	返回格式: currencyNo-currencyName
+	 * 根据外部机构号获取机构名称 机构名称格式为: brno-brname
 	 *
 	 * @param element
 	 * @param value
@@ -499,8 +461,38 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getCurNameByCurNo(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getBrhNameByBrcode(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
+
+		/*
+		 * mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 begin BctlService
+		 * bctlService = BctlService.getInstance(); if
+		 * (StringUtils.isEmpty(value)) { return ""; } String brname =
+		 * bctlService.getBranchName(value); if (StringUtils.isEmpty(brname)) {
+		 * return value; }
+		 */
+		if (StringUtils.isEmpty(value)) {
+			return "";
+		}
+		List l = DAOUtils.getBctlDAO().queryByCondition("po.brcode = '" + value + "'");
+		if (l == null || l.isEmpty()) {
+			return "";
+		} else {
+			Bctl bctl = (Bctl) l.get(0);
+			return value + " - " + bctl.getBrname();
+		}
+		/* mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 end */
+	}
+
+	/**
+	 * 根据币种编码获取币种名称 返回格式: currencyNo-currencyName
+	 *
+	 * @param element
+	 * @param value
+	 * @param request
+	 * @return
+	 * @throws HuatengException
+	 */
+	public static String getCurNameByCurNo(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		if (StringUtils.isEmpty(value)) {
 			return value;
@@ -516,7 +508,7 @@ public class CQMethod {
 	}
 
 	/**
-	 * 根据国家地区代码获取名称 	返回格式: nationregionId-Name
+	 * 根据国家地区代码获取名称 返回格式: nationregionId-Name
 	 *
 	 * @param element
 	 * @param value
@@ -524,8 +516,7 @@ public class CQMethod {
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getNationregionIdName(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getNationregionIdName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		if (StringUtils.isEmpty(value)) {
 			return "";
@@ -540,10 +531,7 @@ public class CQMethod {
 		}
 	}
 
-
-
-	public static String getTotalSucRecords(ICommonQueryBaseBean element,
-			String value, ServletRequest request) throws HuatengException {
+	public static String getTotalSucRecords(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 
 		if (StringUtils.isEmpty(value)) {
 			return "";
@@ -555,196 +543,205 @@ public class CQMethod {
 			return "";
 		} else {
 			SubFileInfo sfi = (SubFileInfo) sfiList.get(0);
-			return ""+(null == sfi.getTotalrecords() ? 0: sfi.getTotalrecords())+"/"+ (null == sfi.getSucrecords() ? 0: sfi.getSucrecords());
+			return "" + (null == sfi.getTotalrecords() ? 0 : sfi.getTotalrecords()) + "/" + (null == sfi.getSucrecords() ? 0 : sfi.getSucrecords());
 		}
 	}
 
 	/**
 	 * Description: 评分功能：显示评分要素状态
+	 * 
 	 * @param
 	 * @return String
-	 * @exception
-	 * @author UU_Wu
+	 * @exception @author UU_Wu
 	 * @version v1.0,2009-3-11
 	 */
-	public static String getGradeStateNameByNo(ICommonQueryBaseBean element,String value, ServletRequest request) throws HuatengException {
-			if( StringUtils.isEmpty(value) ){
-				return "";
-			}else{
-				String statename = DataDicUtils.getDicName(SystemConstant.DATADIC_TYPE_GRADE_STATE, value);
-				return statename;
-			}
+	public static String getGradeStateNameByNo(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
+		if (StringUtils.isEmpty(value)) {
+			return "";
+		} else {
+			String statename = DataDicUtils.getDicName(SystemConstant.DATADIC_TYPE_GRADE_STATE, value);
+			return statename;
+		}
 	}
-//del by zhaozhiguo
-//	/**
-//	 *
-//	 * 客户号翻译成客户名称方法
-//	 */
-//	public static String getCustNameById(ICommonQueryBaseBean element, String value,
-//			ServletRequest request) throws HuatengException {
-//		if (StringUtils.isEmpty(value)) {
-//			return "";
-//		} else {
-//			try {
-//				CustomerInfoDAO dao = BaseDAOUtils.getCustomerInfoDAO();
-//				CustomerInfo customerInfo = dao.query(value);
-//				if(customerInfo != null) {
-//					return customerInfo.getCname();
-//				} else {
-//					return "";
-//				}
-//
-//			} catch (Exception e) {
-//				return "";
-//			}
-//		}
-//
-//	}
-//
-//	/**
-//	 *
-//	 * 贷款品种id翻译成名称方法
-//	 */
-//	public static String getLoanNameById(ICommonQueryBaseBean element, String value,
-//			ServletRequest request) throws HuatengException {
-//		if (DataFormat.isEmpty(value)) {
-//			return "";
-//		}
-//		else if ("000000".equals(value)) {
-//			return "000000-不限";
-//		}
-//
-//		else {
-//			try {
-//				LoanParamDAO dao = BaseDAOUtils.getLoanParamDAO();
-//				LoanParam loanParam = null;
-//				List list = dao.queryByCondition(" po.lnid ='"+value+"' ");
-//				if(list!=null&&list.size()>0){
-//					loanParam = (LoanParam)list.get(0);
-//				}
-//				if(loanParam != null) {
-//					return value+"-"+loanParam.getLnname();
-//				} else {
-//					return "";
-//				}
-//
-//			} catch (Exception e) {
-//				return "";
-//			}
-//		}
-//
-//	}
-//
-//
-//	/**
-//	 * Description: 评分模型，根据要素号获得要素名称
-//	 * @param
-//	 * @return String
-//	 * @exception
-//	 * @author lu_kangyi
-//	 * @version v1.0,2009-3-10
-//	 */
-//	public static String getGradeNameByNo(ICommonQueryBaseBean element,String value, ServletRequest request) throws HuatengException {
-//			if( StringUtils.isEmpty(value) ){
-//				return "";
-//			}else{
-//				GradeModelElementsDAO dao = DAOUtils.getGradeModelElementsDAO();
-//				List list = dao.queryByCondition("po.id ='"+Integer.parseInt(value)+"'");
-//				GradeModelElements gradeModelElements = (GradeModelElements)list.get(0);
-//				return gradeModelElements.getGradeName();
-//			}
-//	}
-//
-//
-//	/**
-//	 * Description: 查询企业行业性质
-//	 * @param
-//	 * @return String
-//	 * @exception
-//	 * @author lu_kangyi
-//	 * @version v1.0,2009-3-10
-//	 */
-//	public static String getCustClassName(ICommonQueryBaseBean element,String value, ServletRequest request) throws HuatengException {
-//			if( StringUtils.isEmpty(value) ){
-//				return "";
-//			}else{
-//				List list = BaseDAOUtils.getDataDicDAO().queryByCondition("po.dataTypeNo='900' and po.dataNo='" + value + "'");
-//				DataDic dic = (DataDic)list.get(0);
-//				return dic.getDataName();
-//			}
-//	}
-//
-//	/**
-//	 * Description: 查询企业行业
-//	 * @param
-//	 * @return String
-//	 * @exception
-//	 * @author lu_kangyi
-//	 * @version v1.0,2009-3-10
-//	 */
-//	public static String getBizType(ICommonQueryBaseBean element,String value, ServletRequest request) throws HuatengException {
-//			if( StringUtils.isEmpty(value) ){
-//				return "";
-//			}else{
-//				Iterator it = BaseDAOUtils.getHQLDAO().queryByQL("from IndustryTypes po where po.id = '" + value + "'");
-//				return ((IndustryTypes)it.next()).getIndustryName();
-//			}
-//	}
-//
-//
-//
-//
-//	/**
-//	 *
-//	 * Description: TODO
-//	 *
-//	 * @param
-//	 * @return String
-//	 * @exception
-//	 * @author Administrator
-//	 * @version v1.0,2008-9-6
-//	 */
-//	public static String getLoanClassNameByCode(ICommonQueryBaseBean element,
-//			String value, ServletRequest request) throws HuatengException {
-//
-//		HQLDAO hqldao = DAOUtils.getHQLDAO();
-//
-//		//保证
-//		//测试用sql
-//		StringBuffer sb = new StringBuffer(
-//		"select lp.lnname from LoanParam lp where 1 = 1");
-//		if(null != value && !"".equals(value)){
-//			sb.append(" and lp.lnid= '" + value + "'");
-//		}else{
-//			return "";
-//		}
-//
-//		List list = hqldao.queryByQL2List(sb.toString());
-//		if(null != list && list.size() == 1){
-//			return value + "-" + list.get(0).toString();
-//		}else{
-//			return "";
-//		}
-//	}
 
+	// del by zhaozhiguo
+	// /**
+	// *
+	// * 客户号翻译成客户名称方法
+	// */
+	// public static String getCustNameById(ICommonQueryBaseBean element, String
+	// value,
+	// ServletRequest request) throws HuatengException {
+	// if (StringUtils.isEmpty(value)) {
+	// return "";
+	// } else {
+	// try {
+	// CustomerInfoDAO dao = BaseDAOUtils.getCustomerInfoDAO();
+	// CustomerInfo customerInfo = dao.query(value);
+	// if(customerInfo != null) {
+	// return customerInfo.getCname();
+	// } else {
+	// return "";
+	// }
+	//
+	// } catch (Exception e) {
+	// return "";
+	// }
+	// }
+	//
+	// }
+	//
+	// /**
+	// *
+	// * 贷款品种id翻译成名称方法
+	// */
+	// public static String getLoanNameById(ICommonQueryBaseBean element, String
+	// value,
+	// ServletRequest request) throws HuatengException {
+	// if (DataFormat.isEmpty(value)) {
+	// return "";
+	// }
+	// else if ("000000".equals(value)) {
+	// return "000000-不限";
+	// }
+	//
+	// else {
+	// try {
+	// LoanParamDAO dao = BaseDAOUtils.getLoanParamDAO();
+	// LoanParam loanParam = null;
+	// List list = dao.queryByCondition(" po.lnid ='"+value+"' ");
+	// if(list!=null&&list.size()>0){
+	// loanParam = (LoanParam)list.get(0);
+	// }
+	// if(loanParam != null) {
+	// return value+"-"+loanParam.getLnname();
+	// } else {
+	// return "";
+	// }
+	//
+	// } catch (Exception e) {
+	// return "";
+	// }
+	// }
+	//
+	// }
+	//
+	//
+	// /**
+	// * Description: 评分模型，根据要素号获得要素名称
+	// * @param
+	// * @return String
+	// * @exception
+	// * @author lu_kangyi
+	// * @version v1.0,2009-3-10
+	// */
+	// public static String getGradeNameByNo(ICommonQueryBaseBean element,String
+	// value, ServletRequest request) throws HuatengException {
+	// if( StringUtils.isEmpty(value) ){
+	// return "";
+	// }else{
+	// GradeModelElementsDAO dao = DAOUtils.getGradeModelElementsDAO();
+	// List list = dao.queryByCondition("po.id ='"+Integer.parseInt(value)+"'");
+	// GradeModelElements gradeModelElements = (GradeModelElements)list.get(0);
+	// return gradeModelElements.getGradeName();
+	// }
+	// }
+	//
+	//
+	// /**
+	// * Description: 查询企业行业性质
+	// * @param
+	// * @return String
+	// * @exception
+	// * @author lu_kangyi
+	// * @version v1.0,2009-3-10
+	// */
+	// public static String getCustClassName(ICommonQueryBaseBean element,String
+	// value, ServletRequest request) throws HuatengException {
+	// if( StringUtils.isEmpty(value) ){
+	// return "";
+	// }else{
+	// List list =
+	// BaseDAOUtils.getDataDicDAO().queryByCondition("po.dataTypeNo='900' and
+	// po.dataNo='" + value + "'");
+	// DataDic dic = (DataDic)list.get(0);
+	// return dic.getDataName();
+	// }
+	// }
+	//
+	// /**
+	// * Description: 查询企业行业
+	// * @param
+	// * @return String
+	// * @exception
+	// * @author lu_kangyi
+	// * @version v1.0,2009-3-10
+	// */
+	// public static String getBizType(ICommonQueryBaseBean element,String
+	// value, ServletRequest request) throws HuatengException {
+	// if( StringUtils.isEmpty(value) ){
+	// return "";
+	// }else{
+	// Iterator it = BaseDAOUtils.getHQLDAO().queryByQL("from IndustryTypes po
+	// where po.id = '" + value + "'");
+	// return ((IndustryTypes)it.next()).getIndustryName();
+	// }
+	// }
+	//
+	//
+	//
+	//
+	// /**
+	// *
+	// * Description: TODO
+	// *
+	// * @param
+	// * @return String
+	// * @exception
+	// * @author Administrator
+	// * @version v1.0,2008-9-6
+	// */
+	// public static String getLoanClassNameByCode(ICommonQueryBaseBean element,
+	// String value, ServletRequest request) throws HuatengException {
+	//
+	// HQLDAO hqldao = DAOUtils.getHQLDAO();
+	//
+	// //保证
+	// //测试用sql
+	// StringBuffer sb = new StringBuffer(
+	// "select lp.lnname from LoanParam lp where 1 = 1");
+	// if(null != value && !"".equals(value)){
+	// sb.append(" and lp.lnid= '" + value + "'");
+	// }else{
+	// return "";
+	// }
+	//
+	// List list = hqldao.queryByQL2List(sb.toString());
+	// if(null != list && list.size() == 1){
+	// return value + "-" + list.get(0).toString();
+	// }else{
+	// return "";
+	// }
+	// }
 
-	/**翻译功能码名称
+	/**
+	 * 翻译功能码名称
+	 * 
 	 * @param element
 	 * @param value
 	 * @param request
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getBizFuncNameById(ICommonQueryBaseBean element, String value,
-			ServletRequest request) throws HuatengException {
+	public static String getBizFuncNameById(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		if (StringUtils.isEmpty(value)) {
 			return "";
 		} else {
 			try {
 				BizFuncInfoDAO dao = BaseDAOUtils.getBizFuncInfoDAO();
-				List list = dao.queryByCondition(" po.id = '"+value+"'");
-				if(list != null&&list.size()>0) {
-					BizFuncInfo info = (BizFuncInfo)list.get(0);
+				List list = dao.queryByCondition(" po.id = '" + value + "'");
+				if (list != null && list.size() > 0) {
+					BizFuncInfo info = (BizFuncInfo) list.get(0);
 					return info.getBizFuncName();
 				} else {
 					return value;
@@ -757,22 +754,23 @@ public class CQMethod {
 
 	}
 
-	/**翻译操作员名称
+	/**
+	 * 翻译操作员名称
+	 * 
 	 * @param element
 	 * @param value
 	 * @param request
 	 * @return
 	 * @throws HuatengException
 	 */
-	public static String getTlrNameById(ICommonQueryBaseBean element, String value,
-			ServletRequest request) throws HuatengException {
+	public static String getTlrNameById(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		if (StringUtils.isEmpty(value)) {
 			return "";
 		} else {
 			try {
 				String tlrName = "";
 				TlrInfo info = DAOUtils.getTlrInfoDAO().queryById(value);
-				if(info!=null){
+				if (info != null) {
 					tlrName = info.getTlrName();
 				}
 				return tlrName;
@@ -784,8 +782,7 @@ public class CQMethod {
 
 	}
 
-	public static String getMtsInOutCodeName(ICommonQueryBaseBean element, String value,
-			ServletRequest request) throws CommonException{
+	public static String getMtsInOutCodeName(ICommonQueryBaseBean element, String value, ServletRequest request) throws CommonException {
 		String codetype = element.getAnyValue("codetype");
 		if (StringUtils.isEmpty(value) || StringUtils.isEmpty(codetype)) {
 			return value;
@@ -793,7 +790,7 @@ public class CQMethod {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		Map<String, String> map = new HashMap<String, String>();
 		List<MtsInOutCode> codes = rootdao.queryByQL2List("from MtsInOutCode where id.codeType='" + codetype + "'");
-		for(MtsInOutCode code : codes){
+		for (MtsInOutCode code : codes) {
 			map.put(code.getId().getId(), code.getCodeName());
 		}
 		if (!map.containsKey(value)) {
@@ -803,8 +800,7 @@ public class CQMethod {
 		}
 	}
 
-	public static String getTreeCodeName(ICommonQueryBaseBean element, String value,
-			ServletRequest request) throws HuatengException {
+	public static String getTreeCodeName(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		String headNodeNo = element.getAnyValue("headnodeno");
 		if (StringUtils.isEmpty(value) || StringUtils.isEmpty(headNodeNo)) {
 			return value;
@@ -819,17 +815,16 @@ public class CQMethod {
 		}
 	}
 
-	public static String getTreeCodeNameByNavition(ICommonQueryBaseBean element, String value,
-			ServletRequest request) throws HuatengException {
+	public static String getTreeCodeNameByNavition(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
 		String headNodeNo = "23";
 		if (StringUtils.isEmpty(value)) {
 			return value;
 		}
 		String[] strs = value.split(",");
-		if (strs.length != 2){
+		if (strs.length != 2) {
 			return value;
 		}
-		if(strs[0].equals("CHN")){
+		if (strs[0].equals("CHN")) {
 			headNodeNo = "16";
 		}
 		DataDicService dataDicService = DataDicService.getInstance();
@@ -842,61 +837,80 @@ public class CQMethod {
 		}
 	}
 
+	/**
+	 * 根据外部机构号获取机构名称 机构名称格式为: brno-brname
+	 *
+	 * @param element
+	 * @param value
+	 * @param request
+	 * @return
+	 * @throws HuatengException
+	 */
+	public static String getTlrType(ICommonQueryBaseBean element, String value, ServletRequest request) throws HuatengException {
+		if (StringUtils.isEmpty(value)) {
+			return "";
+		} else {
+			return SystemConstant.TLR_NO_TYPE_NAME[Integer.parseInt(value)];
+		}
+	}
 
-//del by zhaozhiguo
-//    /**
-//     * 根据评分模型代码 获模型名称
-//     * @param element
-//     * @param value
-//     * @param request
-//     * @return
-//     * @throws HuatengException
-//     */
-//	public static String getModelNameByModelCode(ICommonQueryBaseBean element, String value,
-//			ServletRequest request) throws HuatengException {
-//		if (StringUtils.isEmpty(value)) {
-//			return "";
-//		} else {
-//			try {
-//				GradeModelInfoDAO dao = DAOUtils.getGradeModelInfoDAO();
-//				List list = dao.queryByCondition(" po.id = '"+value+"'");
-//				if(list != null&&list.size()>0) {
-//					GradeModelInfo info = (GradeModelInfo)list.get(0);
-//					return value+"-"+info.getModelName();
-//				} else {
-//					return value;
-//				}
-//			} catch (Exception e) {
-//				return value;
-//			}
-//		}
-//	}
-//
-//	public static String getProNoById(ICommonQueryBaseBean element, String value,
-//			ServletRequest request) throws HuatengException {
-//		if (DataFormat.isEmpty(value)) {
-//			return "";
-//		}else{
-//			NpaAssetsProDAO dao = DAOUtils.getNpaAssetsProDAO();
-//			return dao.query(Integer.valueOf(value)).getProNo();
-//		}
-//	}
-//
-//
-//
-//	public static String getCustnoByCustcd(ICommonQueryBaseBean element, String value,
-//			ServletRequest request) throws HuatengException {
-//		if(StringUtils.isBlank(value)){
-//			return "";
-//		}else{
-//			CustomerInfoDAO customerInfoDAO = DAOUtils.getCustomerInfoDAO();
-//			CustomerInfo customerInfo = customerInfoDAO.query(value);
-//			if(null == customerInfo){
-//				return "";
-//			}else{
-//				return customerInfo.getCustno();
-//			}
-//		}
-//	}
+	// del by zhaozhiguo
+	// /**
+	// * 根据评分模型代码 获模型名称
+	// * @param element
+	// * @param value
+	// * @param request
+	// * @return
+	// * @throws HuatengException
+	// */
+	// public static String getModelNameByModelCode(ICommonQueryBaseBean
+	// element, String value,
+	// ServletRequest request) throws HuatengException {
+	// if (StringUtils.isEmpty(value)) {
+	// return "";
+	// } else {
+	// try {
+	// GradeModelInfoDAO dao = DAOUtils.getGradeModelInfoDAO();
+	// List list = dao.queryByCondition(" po.id = '"+value+"'");
+	// if(list != null&&list.size()>0) {
+	// GradeModelInfo info = (GradeModelInfo)list.get(0);
+	// return value+"-"+info.getModelName();
+	// } else {
+	// return value;
+	// }
+	// } catch (Exception e) {
+	// return value;
+	// }
+	// }
+	// }
+	//
+	// public static String getProNoById(ICommonQueryBaseBean element, String
+	// value,
+	// ServletRequest request) throws HuatengException {
+	// if (DataFormat.isEmpty(value)) {
+	// return "";
+	// }else{
+	// NpaAssetsProDAO dao = DAOUtils.getNpaAssetsProDAO();
+	// return dao.query(Integer.valueOf(value)).getProNo();
+	// }
+	// }
+	//
+	//
+	//
+	// public static String getCustnoByCustcd(ICommonQueryBaseBean element,
+	// String value,
+	// ServletRequest request) throws HuatengException {
+	// if(StringUtils.isBlank(value)){
+	// return "";
+	// }else{
+	// CustomerInfoDAO customerInfoDAO = DAOUtils.getCustomerInfoDAO();
+	// CustomerInfo customerInfo = customerInfoDAO.query(value);
+	// if(null == customerInfo){
+	// return "";
+	// }else{
+	// return customerInfo.getCustno();
+	// }
+	// }
+	// }
 
 }

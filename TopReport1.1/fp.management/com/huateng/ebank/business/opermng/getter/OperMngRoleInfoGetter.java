@@ -1,12 +1,5 @@
 package com.huateng.ebank.business.opermng.getter;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import resource.bean.pub.RoleInfo;
-import resource.bean.pub.TlrRoleRel;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -18,6 +11,12 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.view.pub.TlrRoleRelationView;
+import resource.bean.pub.RoleInfo;
+import resource.bean.pub.TlrRoleRel;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author zhiguo.zhao

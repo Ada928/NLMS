@@ -40,6 +40,7 @@ public class BopUDsService {
 
 	/**
 	 * BOP记录查询
+	 * 
 	 * @param pageIndex
 	 * @param pageSize
 	 * @param qstartDate
@@ -59,13 +60,13 @@ public class BopUDsService {
 		hql.append(" apptype = ? AND currentfile = ? AND recStatus IN (?, ?) ");
 		objs.add(TopReportConstants.REPORT_APP_TYPE_BOP);
 		objs.add(TopReportConstants.REPORT_FILE_TYPE_BOP_U);
- 		objs.add(TopReportConstants.REPORT_RECSTATUS_01);
+		objs.add(TopReportConstants.REPORT_RECSTATUS_01);
 		objs.add(TopReportConstants.REPORT_RECSTATUS_02);
-		if(!DataFormat.isEmpty(qstartDate)){
+		if (!DataFormat.isEmpty(qstartDate)) {
 			hql.append(" AND workDate >= ? ");
 			objs.add(qstartDate);
 		}
-		if(!DataFormat.isEmpty(qendDate)){
+		if (!DataFormat.isEmpty(qendDate)) {
 			hql.append(" AND workDate <= ? ");
 			objs.add(qendDate);
 		}
@@ -81,7 +82,7 @@ public class BopUDsService {
 			hql.append(" AND repStatus = ? ");
 			objs.add(qrepStatus);
 		}
-		if (!DataFormat.isEmpty(qcustcode)){
+		if (!DataFormat.isEmpty(qcustcode)) {
 			hql.append(" AND custcode LIKE ? ");
 			objs.add("%" + qcustcode + "%");
 		}
@@ -99,6 +100,7 @@ public class BopUDsService {
 
 	/**
 	 * BOP记录查询
+	 * 
 	 * @param pageIndex
 	 * @param pageSize
 	 * @param qstartDate
@@ -118,13 +120,13 @@ public class BopUDsService {
 		hql.append(" apptype = ? AND currentfile = ? AND recStatus IN (?, ?) ");
 		objs.add(TopReportConstants.REPORT_APP_TYPE_BOP);
 		objs.add(TopReportConstants.REPORT_FILE_TYPE_BOP_U);
- 		objs.add(TopReportConstants.REPORT_RECSTATUS_03);
+		objs.add(TopReportConstants.REPORT_RECSTATUS_03);
 		objs.add(TopReportConstants.REPORT_RECSTATUS_04);
-		if(!DataFormat.isEmpty(qstartDate)){
+		if (!DataFormat.isEmpty(qstartDate)) {
 			hql.append(" AND workDate >= ? ");
 			objs.add(qstartDate);
 		}
-		if(!DataFormat.isEmpty(qendDate)){
+		if (!DataFormat.isEmpty(qendDate)) {
 			hql.append(" AND workDate <= ? ");
 			objs.add(qendDate);
 		}
@@ -140,7 +142,7 @@ public class BopUDsService {
 			hql.append(" AND repStatus = ? ");
 			objs.add(qrepStatus);
 		}
-		if (!DataFormat.isEmpty(qcustcode)){
+		if (!DataFormat.isEmpty(qcustcode)) {
 			hql.append(" AND custcode LIKE ? ");
 			objs.add("%" + qcustcode + "%");
 		}
@@ -157,7 +159,8 @@ public class BopUDsService {
 	}
 
 	public PageQueryResult queryBopU(int pageIndex, int pageSize, String qstartDate, String qendDate,
-			String qapproveStatus, String qrepStatus, String qrecStatus, String qbrno, String qcustcode, String qcustname) throws CommonException {
+			String qapproveStatus, String qrepStatus, String qrecStatus, String qbrno, String qcustcode,
+			String qcustname) throws CommonException {
 		List<Object> objs = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer(" FROM MtsBopUDs WHERE ");
 		hql.append(" apptype = ? AND currentfile = ? ");
@@ -183,7 +186,7 @@ public class BopUDsService {
 			hql.append(" AND repStatus = ? ");
 			objs.add(qrepStatus);
 		}
-		if (!DataFormat.isEmpty(qbrno)){
+		if (!DataFormat.isEmpty(qbrno)) {
 			hql.append(" AND brNo = ? ");
 			objs.add(qbrno);
 		}
@@ -208,15 +211,15 @@ public class BopUDsService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<MtsBopInvcountrycode>loadInvcountrycode(String id) throws CommonException{
+	public List<MtsBopInvcountrycode> loadInvcountrycode(String id) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		return rootdao.queryByQL2List(" FROM MtsBopInvcountrycode WHERE recId = ? ", new Object[]{id}, null);
+		return rootdao.queryByQL2List(" FROM MtsBopInvcountrycode WHERE recId = ? ", new Object[] { id }, null);
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<MtsBopOpenAccount>loadOpenAccount(String id) throws CommonException{
+	public List<MtsBopOpenAccount> loadOpenAccount(String id) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		return rootdao.queryByQL2List(" FROM MtsBopOpenAccount WHERE recId = ? ", new Object[]{id}, null);
+		return rootdao.queryByQL2List(" FROM MtsBopOpenAccount WHERE recId = ? ", new Object[] { id }, null);
 	}
 
 	public MtsBopUDs loadBopU(String id) throws CommonException {
@@ -225,13 +228,15 @@ public class BopUDsService {
 	}
 
 	@SuppressWarnings("deprecation")
-	public void saveBopU(MtsBopUDs bopu, List<MtsBopInvcountrycode>countryList, List<MtsBopOpenAccount>openaccountList) throws CommonException{
+	public void saveBopU(MtsBopUDs bopu, List<MtsBopInvcountrycode> countryList,
+			List<MtsBopOpenAccount> openaccountList) throws CommonException {
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		String hql = " SELECT COUNT(*) FROM MtsBopUDs WHERE custcode = '" + bopu.getCustcode() + "' ";
 		int count = rootdao.queryByHqlToCount(hql);
 		if (0 < count) {
-			ExceptionUtil.throwCommonException("已经存在相同组织机构代码的单位基本情况表",bopu.getApptype() + "_" + bopu.getCurrentfile() + "_ERR");
+			ExceptionUtil.throwCommonException("已经存在相同组织机构代码的单位基本情况表",
+					bopu.getApptype() + "_" + bopu.getCurrentfile() + "_ERR");
 		}
 
 		bopu.setId(ReportUtils.getUUID());
@@ -257,7 +262,7 @@ public class BopUDsService {
 
 		ReportDataVaildUtil.executeVaild(bopu.getApptype(), bopu.getCurrentfile(), bopu);
 
-		//数据处理记录表保存
+		// 数据处理记录表保存
 		ReportCommonService commonService = ReportCommonService.getInstance();
 		commonService.saveBiDataProcessLog(bopu.getApptype(), bopu.getCurrentfile(), bopu.getId(), bopu.getCustcode(),
 				TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "新增", "新增");
@@ -268,16 +273,17 @@ public class BopUDsService {
 			country.setRecId(bopu.getId());
 			rootdao.save(country);
 		}
-		for (MtsBopOpenAccount openaccount: openaccountList) {
+		for (MtsBopOpenAccount openaccount : openaccountList) {
 			openaccount.setId(ReportUtils.getUUID());
 			openaccount.setRecId(bopu.getId());
 			rootdao.save(openaccount);
 		}
 	}
 
-	public void updateBopU(MtsBopUDs bopu, List<MtsBopInvcountrycode>countryList, List<MtsBopOpenAccount>openaccountList,
-			List<MtsBopInvcountrycode> modcountryList, List<MtsBopOpenAccount> modopenaccountList,
-			List<MtsBopInvcountrycode> delcountryList, List<MtsBopOpenAccount> delopenaccountList) throws CommonException{
+	public void updateBopU(MtsBopUDs bopu, List<MtsBopInvcountrycode> countryList,
+			List<MtsBopOpenAccount> openaccountList, List<MtsBopInvcountrycode> modcountryList,
+			List<MtsBopOpenAccount> modopenaccountList, List<MtsBopInvcountrycode> delcountryList,
+			List<MtsBopOpenAccount> delopenaccountList) throws CommonException {
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		MtsBopUDs dbbopu = rootdao.query(MtsBopUDs.class, bopu.getId());
@@ -287,9 +293,9 @@ public class BopUDsService {
 		dbbopu.setLstUpdTlr(gi.getTlrno());
 		dbbopu.setWorkDate(DateUtil.dateToNumber(gi.getTxdate()));
 
-		if(StringUtils.equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_YES, dbbopu.getSubSuccess())) {
+		if (StringUtils.equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_YES, dbbopu.getSubSuccess())) {
 			dbbopu.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_C);
-		} else if(StringUtils.equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO, dbbopu.getSubSuccess())) {
+		} else if (StringUtils.equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO, dbbopu.getSubSuccess())) {
 			dbbopu.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_A);
 		}
 
@@ -317,10 +323,10 @@ public class BopUDsService {
 
 		ReportDataVaildUtil.executeVaild(dbbopu.getApptype(), dbbopu.getCurrentfile(), dbbopu);
 
-		//数据处理记录表保存
+		// 数据处理记录表保存
 		ReportCommonService commonService = ReportCommonService.getInstance();
-		commonService.saveBiDataProcessLog(dbbopu.getApptype(), dbbopu.getCurrentfile(), dbbopu.getId(), dbbopu.getCustcode(),
-				TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "修改", "修改");
+		commonService.saveBiDataProcessLog(dbbopu.getApptype(), dbbopu.getCurrentfile(), dbbopu.getId(),
+				dbbopu.getCustcode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "修改", "修改");
 
 		rootdao.update(dbbopu);
 		for (MtsBopInvcountrycode country : countryList) {
@@ -328,7 +334,7 @@ public class BopUDsService {
 			country.setRecId(dbbopu.getId());
 			rootdao.save(country);
 		}
-		for (MtsBopOpenAccount openaccount: openaccountList) {
+		for (MtsBopOpenAccount openaccount : openaccountList) {
 			openaccount.setId(ReportUtils.getUUID());
 			openaccount.setRecId(dbbopu.getId());
 			rootdao.save(openaccount);
@@ -357,7 +363,7 @@ public class BopUDsService {
 		}
 	}
 
-	public void deleteBopU(MtsBopUDs bopu) throws CommonException{
+	public void deleteBopU(MtsBopUDs bopu) throws CommonException {
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		MtsBopUDs dbbopu = rootdao.query(MtsBopUDs.class, bopu.getId());
@@ -372,17 +378,18 @@ public class BopUDsService {
 		dbbopu.setApproveStatus(TopReportConstants.REPORT_APPROVESTATUS_00);
 		dbbopu.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
 
-		//数据处理记录表保存
+		// 数据处理记录表保存
 		ReportCommonService commonService = ReportCommonService.getInstance();
-		commonService.saveBiDataProcessLog(dbbopu.getApptype(), dbbopu.getCurrentfile(), dbbopu.getId(), dbbopu.getCustcode(),
-				TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "删除", "删除");
+		commonService.saveBiDataProcessLog(dbbopu.getApptype(), dbbopu.getCurrentfile(), dbbopu.getId(),
+				dbbopu.getCustcode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "删除", "删除");
 
 		rootdao.update(dbbopu);
 
 	}
 
 	@SuppressWarnings("unchecked")
-	public void audit(List<MtsBopUDs>bopuList, String approveStatusChoose, String approveResultChoose) throws CommonException {
+	public void audit(List<MtsBopUDs> bopuList, String approveStatusChoose, String approveResultChoose)
+			throws CommonException {
 		List<String> bopuidList = new ArrayList<String>();
 		for (MtsBopUDs bopu : bopuList) {
 			bopuidList.add(bopu.getId());
@@ -393,9 +400,9 @@ public class BopUDsService {
 		List<MtsBopUDs> dbBopUDsList = rootdao.queryByQL2List(hql);
 
 		String approveStatusChooseName = "";
-		if(StringUtils.equals(TopReportConstants.REPORT_APPROVESTATUS_01, approveStatusChoose)) {
+		if (StringUtils.equals(TopReportConstants.REPORT_APPROVESTATUS_01, approveStatusChoose)) {
 			approveStatusChooseName = "通过";
-		} else if(StringUtils.equals(TopReportConstants.REPORT_APPROVESTATUS_02, approveStatusChoose)) {
+		} else if (StringUtils.equals(TopReportConstants.REPORT_APPROVESTATUS_02, approveStatusChoose)) {
 			approveStatusChooseName = "不通过";
 		}
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
@@ -410,7 +417,7 @@ public class BopUDsService {
 			bopUDs.setRecStatus(TopReportConstants.REPORT_RECSTATUS_04);
 
 			rootdao.saveOrUpdate(bopUDs);
-			//记录到数据处理记录表
+			// 记录到数据处理记录表
 			String appType = TopReportConstants.REPORT_APP_TYPE_BOP;
 			String currentFile = TopReportConstants.REPORT_FILE_TYPE_BOP_U;
 			String execType = TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT;
@@ -419,12 +426,13 @@ public class BopUDsService {
 			String custcode = bopUDs.getCustcode();
 			String execResult = approveStatusChooseName;
 			String execRemark = null;
-			if(StringUtils.equals(bopUDs.getActiontype(), TopReportConstants.REPORT_ACTIONTYPE_D) && StringUtils.equals(bopUDs.getSubSuccess(), TopReportConstants.REPORT_IS_SUB_SUCCESS_YES)){
+			if (StringUtils.equals(bopUDs.getActiontype(), TopReportConstants.REPORT_ACTIONTYPE_D)
+					&& StringUtils.equals(bopUDs.getSubSuccess(), TopReportConstants.REPORT_IS_SUB_SUCCESS_YES)) {
 				execRemark = "删除成功";
 			} else {
 				execRemark = approveResultChoose;
 			}
-			//数据处理记录表保存
+			// 数据处理记录表保存
 			commonService.saveBiDataProcessLog(appType, currentFile, recId, custcode, execType, execResult, execRemark);
 		}
 	}

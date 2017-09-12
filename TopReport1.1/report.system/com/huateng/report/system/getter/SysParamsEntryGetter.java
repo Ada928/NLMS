@@ -15,39 +15,36 @@ import com.huateng.report.system.service.SysParamsService;
 public class SysParamsEntryGetter extends BaseGetter {
 	/*
 	 * 获取系统参数列表
+	 * 
 	 * @author zhuhongyong
 	 */
 	@Override
 	public Result call() throws AppException {
 		try {
-			
+
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "系统参数设置查询");
-			
+
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	private PageQueryResult getData() {
 
 		Map paramMap = this.getCommQueryServletRequest().getParameterMap();
-		String paramgroupId = (String)paramMap.get("paramgroupIdSelect");
-		String qst=getCommQueryServletRequest().getParameter("st");
+		String paramgroupId = (String) paramMap.get("paramgroupIdSelect");
+		String qst = getCommQueryServletRequest().getParameter("st");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
-		return SysParamsService.getInstance().pageQueryByHql(pageIndex, pageSize, paramgroupId,qst);
+		return SysParamsService.getInstance().pageQueryByHql(pageIndex, pageSize, paramgroupId, qst);
 	}
 }

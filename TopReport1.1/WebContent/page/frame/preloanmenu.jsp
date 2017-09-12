@@ -23,14 +23,13 @@
 -->
 </style>
 </head>
-<body style="margin: 0; overflow: hidden ;background-color: #cae1f3;" >
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-<tr>
-	<td height="86" width="800">
-		<img src="<%=request.getContextPath()%>/images/title-a.jpg" align="left" height="86" />
-	</td>
-	<td background="<%=request.getContextPath()%>/images/title-b.jpg">&nbsp;</td>
-</tr>
-</table>
+<body style="margin: 0; overflow: hidden ;background-color: #cae1f3;">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td height="86" width="800"><img src="<%=request.getContextPath()%>/images/title-a.jpg" align="left" height="86" />
+			</td>
+			<td background="<%=request.getContextPath()%>/images/title-b.jpg">&nbsp;</td>
+		</tr>
+	</table>
 </body>
 </html>

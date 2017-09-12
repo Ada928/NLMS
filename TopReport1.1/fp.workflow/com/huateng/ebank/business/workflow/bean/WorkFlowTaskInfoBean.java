@@ -8,89 +8,106 @@
  */
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 import com.huateng.ebank.entity.data.workflow.WorkflowTaskInfo;
 
-
-
 /**
- * @author 	UU_Wu 2008-6-24
+ * @author UU_Wu 2008-6-24
  * @version $Revision: 1.1 $
  *
- * 工作流查询返回Bean.
+ *          工作流查询返回Bean.
  */
-public class WorkFlowTaskInfoBean {
+public class WorkFlowTaskInfoBean implements Serializable {
 	private static Set set;
 
-    static {
-        set = new HashSet();
-        set.add("workflowTaskInfo");
-    }
-    WorkflowTaskInfo workflowTaskInfo = new WorkflowTaskInfo();
+	static {
+		set = new HashSet();
+		set.add("workflowTaskInfo");
+	}
 
-    /**
-     * 指定的属性名是否是bean类型的属性。
-     * @param propertyName 属性名称
-     * @return
-     */
-    public static boolean isBeanProperty(String propertyName) {
-        return set.contains(propertyName);
-    }
+	WorkflowTaskInfo workflowTaskInfo = new WorkflowTaskInfo();
 
-    private String taskNameName;
-    private String processTemplateName;
-    private String tlrName;
-    private String cname;
-    private String taskEndFlagCN;
-    private String status;
+	/**
+	 * 指定的属性名是否是bean类型的属性。
+	 * 
+	 * @param propertyName
+	 *            属性名称
+	 * @return
+	 */
+	public static boolean isBeanProperty(String propertyName) {
+		return set.contains(propertyName);
+	}
+
+	private String taskNameName;
+	private String processTemplateName;
+	private String tlrName;
+	private String cname;
+	private String taskEndFlagCN;
+	private String status;
+
 	public static Set getSet() {
 		return set;
 	}
+
 	public static void setSet(Set set) {
 		WorkFlowTaskInfoBean.set = set;
 	}
+
 	public WorkflowTaskInfo getWorkflowTaskInfo() {
 		return workflowTaskInfo;
 	}
+
 	public void setWorkflowTaskInfo(WorkflowTaskInfo workflowTaskInfo) {
 		this.workflowTaskInfo = workflowTaskInfo;
 	}
+
 	public String getTlrName() {
 		return tlrName;
 	}
+
 	public void setTlrName(String tlrName) {
 		this.tlrName = tlrName;
 	}
-	
+
 	public String getCname() {
 		return cname;
 	}
+
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
+
 	public String getTaskEndFlagCN() {
 		return taskEndFlagCN;
 	}
+
 	public void setTaskEndFlagCN(String taskEndFlagCN) {
 		this.taskEndFlagCN = taskEndFlagCN;
 	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public String getTaskNameName() {
 		return taskNameName;
 	}
+
 	public void setTaskNameName(String taskNameName) {
 		this.taskNameName = taskNameName;
 	}
+
 	public String getProcessTemplateName() {
 		return processTemplateName;
 	}
+
 	public void setProcessTemplateName(String processTemplateName) {
 		this.processTemplateName = processTemplateName;
 	}

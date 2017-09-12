@@ -20,44 +20,40 @@ import com.huateng.report.system.service.BiWorkDateService;
 /**
  * 
  * @author shishu.zhang
- *	
- * 2012-8-15上午10:54:59
+ * 
+ *         2012-8-15上午10:54:59
  */
 public class CutoverWorkDateGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		try {
-			
+
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "工作日期切换查询");
-			
+
 			GlobalInfo gi = GlobalInfo.getCurrentInstance();
-			List<CutoverWorkDateBean> list = new ArrayList<CutoverWorkDateBean>(); 
+			List<CutoverWorkDateBean> list = new ArrayList<CutoverWorkDateBean>();
 			CutoverWorkDateBean cutoverWorkDateBean = new CutoverWorkDateBean();
-			
+
 			Date currentdate = DateUtil.getTbsDay();
 			Date lastDate = DateUtil.getBhDate();
 			cutoverWorkDateBean.setLastDate(lastDate);
 			cutoverWorkDateBean.setCurrentDate(currentdate);
 			Date nextDate = BiWorkDateService.getInstance().getNextWorkDateByCurDate(currentdate);
 			cutoverWorkDateBean.setNextDate(nextDate);
-			
+
 			list.add(cutoverWorkDateBean);
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list,
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);
 			result.getPage().setTotalPage(1);
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

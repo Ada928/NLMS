@@ -1,10 +1,5 @@
 package com.huateng.ebank.business.opermng.getter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import resource.bean.pub.TlrInfo;
-import resource.bean.report.SysTaskInfo;
-import resource.dao.pub.TlrInfoDAO;
+
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.management.common.DAOUtils;
@@ -14,6 +9,13 @@ import com.huateng.exception.AppException;
 import com.huateng.report.system.bean.TlrInfoBean;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
+import resource.bean.pub.TlrInfo;
+import resource.bean.report.SysTaskInfo;
+import resource.dao.pub.TlrInfoDAO;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OperMngAddCompareGetter extends BaseGetter {
 

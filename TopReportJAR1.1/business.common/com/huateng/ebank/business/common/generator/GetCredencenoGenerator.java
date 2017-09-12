@@ -29,15 +29,13 @@ public class GetCredencenoGenerator extends BaseGenerator {
 	 */
 	public String gen(Object obj) throws CommonException {
 		// TODO Auto-generated method stub
-		String year =  DataFormat.getYear(GlobalInfo.getCurrentInstance()
-						.getTxdate());
+		String year = DataFormat.getYear(GlobalInfo.getCurrentInstance().getTxdate());
 		Map paramMap = (Map) obj;
 		String brno = (String) paramMap.get("brno");
 		String acontType = (String) paramMap.get("acontType");
-		String valueIndex = brno + year ;
-		return valueIndex
-				+ DataFormat.intToString(CommonService.getInstance().getSeqno(
-						SystemConstant.VALUE_NO_LOANCENTER, "LC"+year), 6);
+		String valueIndex = brno + year;
+		return valueIndex + DataFormat
+				.intToString(CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_LOANCENTER, "LC" + year), 6);
 	}
 
 }

@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
- <%@ page contentType="text/html;charset=utf-8" language="java"%>
+<%@ page contentType="text/html;charset=utf-8" language="java"%>
 <html>
-  <head>
+<head>
 <script>
       function openNewSessionIE8NoMerge() {
         // This opens a new session window for windows with IE8, unfortually there is a Active X security warning.     
@@ -47,6 +47,6 @@
 	}
 </script>
 </head>
-  <body onload="openNewSessionIE8NoMerge()">
-  </body>
+<body onload="openNewSessionIE8NoMerge()">
+</body>
 </html>

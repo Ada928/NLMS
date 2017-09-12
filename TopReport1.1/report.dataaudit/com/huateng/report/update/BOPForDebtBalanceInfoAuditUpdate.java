@@ -24,17 +24,16 @@ public class BOPForDebtBalanceInfoAuditUpdate extends BaseUpdate {
 
 	@SuppressWarnings("rawtypes")
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
-			throws AppException {
+			HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("BOPForDebtBalanceInfoAudit");
+			UpdateResultBean updateResultBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("BOPForDebtBalanceInfoAudit");
 			List<BopCfaExdebtDs> bopCfaExDsList = new ArrayList<BopCfaExdebtDs>();
-			while (updateResultBean.hasNext())
-			{
+			while (updateResultBean.hasNext()) {
 				BopCfaExdebtDs bopCfaExdebtDs = new BopCfaExdebtDs();
 				Map map = updateResultBean.next();
-				mapToObject(bopCfaExdebtDs,map);
+				mapToObject(bopCfaExdebtDs, map);
 				bopCfaExDsList.add(bopCfaExdebtDs);
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
@@ -51,8 +50,7 @@ public class BOPForDebtBalanceInfoAuditUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}

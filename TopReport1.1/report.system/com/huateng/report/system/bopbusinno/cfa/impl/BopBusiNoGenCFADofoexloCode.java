@@ -33,18 +33,19 @@ public class BopBusiNoGenCFADofoexloCode implements IGenBopBusinessNo {
 		BopCfaDofoexloDs dofoexlo = (BopCfaDofoexloDs) obj;
 		String code = dofoexlo.getDofoexlocode();
 
-		if (code.indexOf(paramValue)>=0) {
+		if (code.indexOf(paramValue) >= 0) {
 			// 更新国内外汇贷款编号
-			String newcode = ReportUtils.getCfaCode(paramValue, busiType, appType,fileType, workDate, code);
+			String newcode = ReportUtils.getCfaCode(paramValue, busiType, appType, fileType, workDate, code);
 			dofoexlo.setDofoexlocode(newcode);
 			dofoexlo = (BopCfaDofoexloDs) rootdao.saveOrUpdate(dofoexlo);
 		}
 		// 更新变动国内外汇贷款编号
 		String recId = dofoexlo.getId();
-		List list = rootdao.queryByQL2List(" from BopCfaDofoexloDs where filler1='" + recId + "' and dofoexlocode<>'"+dofoexlo.getDofoexlocode()+"'");
+		List list = rootdao.queryByQL2List(" from BopCfaDofoexloDs where filler1='" + recId + "' and dofoexlocode<>'"
+				+ dofoexlo.getDofoexlocode() + "'");
 		for (int i = 0; i < list.size(); i++) {
 			BopCfaDofoexloDs dofo = (BopCfaDofoexloDs) list.get(i);
-			if (dofo.getDofoexlocode().indexOf(paramValue)<0) {
+			if (dofo.getDofoexlocode().indexOf(paramValue) < 0) {
 				continue;
 			}
 			dofo.setDofoexlocode(dofoexlo.getDofoexlocode());
@@ -53,11 +54,13 @@ public class BopBusiNoGenCFADofoexloCode implements IGenBopBusinessNo {
 		// 产生变动序号
 		int seq = 1;
 		String seqTemp = ReportUtils.getTempStr(null, 4);
-		Object maxObj = rootdao.queryByHqlMax("select max(changeno) from BopCfaDofoexloDs where  filler1='" + recId + "' and  changeno<>'" + seqTemp + "'");
+		Object maxObj = rootdao.queryByHqlMax("select max(changeno) from BopCfaDofoexloDs where  filler1='" + recId
+				+ "' and  changeno<>'" + seqTemp + "'");
 		if (maxObj != null) {
 			seq = Integer.parseInt(maxObj.toString()) + 1;
 		}
-		List seqList = rootdao.queryByQL2List(" from BopCfaDofoexloDs where filler1='" + recId + "' and changeno='" + seqTemp + "' order by crtTm");
+		List seqList = rootdao.queryByQL2List(
+				" from BopCfaDofoexloDs where filler1='" + recId + "' and changeno='" + seqTemp + "' order by crtTm");
 		for (int i = 0; i < seqList.size(); i++) {
 			BopCfaDofoexloDs ds = (BopCfaDofoexloDs) seqList.get(i);
 			if (ds.getChangeno().indexOf(paramValue) < 0) {
@@ -69,11 +72,12 @@ public class BopBusiNoGenCFADofoexloCode implements IGenBopBusinessNo {
 			seq++;
 		}
 
-		//FIXME 更新境外担保项下境内贷款-签约信息中使用到的国内外汇贷款编号
-		List lounexguDsList = rootdao.queryByQL2List(" from BopCfaLounexguDs where filler1='" + recId + "' and dofoexlocode<>'"+dofoexlo.getDofoexlocode()+"'");
+		// FIXME 更新境外担保项下境内贷款-签约信息中使用到的国内外汇贷款编号
+		List lounexguDsList = rootdao.queryByQL2List(" from BopCfaLounexguDs where filler1='" + recId
+				+ "' and dofoexlocode<>'" + dofoexlo.getDofoexlocode() + "'");
 		for (int i = 0; i < lounexguDsList.size(); i++) {
 			BopCfaLounexguDs guds = (BopCfaLounexguDs) lounexguDsList.get(i);
-			if (guds.getDofoexlocode().indexOf(paramValue)<0) {
+			if (guds.getDofoexlocode().indexOf(paramValue) < 0) {
 				continue;
 			}
 			guds.setDofoexlocode(dofoexlo.getDofoexlocode());

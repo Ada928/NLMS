@@ -12,7 +12,6 @@ import com.huateng.report.constants.TopReportConstants;
 import com.huateng.report.service.BopCFAExguDsService;
 import com.huateng.report.service.BopExguTorDsService;
 
-
 public class BopLiabilityBalanceOperation extends BaseOperation {
 	public static final String ID = "BopLiabilityBalanceOperation";
 	public static final String CMD = "CMD";
@@ -55,76 +54,59 @@ public class BopLiabilityBalanceOperation extends BaseOperation {
 		String cmd = (String) context.getAttribute(CMD);
 
 		// 对外担保信息表
-		BopCfaExguDs bopCfaExguDs = (BopCfaExguDs) context
-				.getAttribute(IN_PARAM_EXGU);
+		BopCfaExguDs bopCfaExguDs = (BopCfaExguDs) context.getAttribute(IN_PARAM_EXGU);
 		// 担保人申请人
-		BopExguTorDs bopExguTorDs = (BopExguTorDs) context
-				.getAttribute(IN_PARAM_TOR);
+		BopExguTorDs bopExguTorDs = (BopExguTorDs) context.getAttribute(IN_PARAM_TOR);
 		BopExguTorDsService serviceTor = BopExguTorDsService.getInstance();
 		// 调用服务类
 		BopCFAExguDsService serviceCFA = BopCFAExguDsService.getInstance();
 		// 数据处理记录表
-		ReportCommonService reportCommonService = ReportCommonService
-				.getInstance();
+		ReportCommonService reportCommonService = ReportCommonService.getInstance();
 
 		// 对外担保 update insert delete
 		if (CMD_INSERT.equalsIgnoreCase(cmd)) {
 			serviceCFA.save(bopCfaExguDs);
 			serviceTor.save(bopExguTorDs);
-			reportCommonService.saveBiDataProcessLog(bopCfaExguDs.getApptype(),
-					bopCfaExguDs.getCurrentfile(), bopCfaExguDs.getId(),
-					TopReportConstants.REPORT_BUSITYPE_BOP,
-					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT,
-					"A-创建", "对外担保-签约信息        签约信息ID ：" + bopCfaExguDs.getId());
-			reportCommonService.saveBiDataProcessLog(bopCfaExguDs.getApptype(),
-					bopCfaExguDs.getCurrentfile(), bopCfaExguDs.getId(),
-					TopReportConstants.REPORT_BUSITYPE_BOP,
-					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT,
-					"A-创建",
-					"对外担保-签约信息-担保申请人信息       签约信息ID ：" + bopCfaExguDs.getId()
-							+ "    受益人或被担保人名称：" + bopExguTorDs.getTorName());
+			reportCommonService.saveBiDataProcessLog(bopCfaExguDs.getApptype(), bopCfaExguDs.getCurrentfile(),
+					bopCfaExguDs.getId(), TopReportConstants.REPORT_BUSITYPE_BOP,
+					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "A-创建",
+					"对外担保-签约信息        签约信息ID ：" + bopCfaExguDs.getId());
+			reportCommonService.saveBiDataProcessLog(bopCfaExguDs.getApptype(), bopCfaExguDs.getCurrentfile(),
+					bopCfaExguDs.getId(), TopReportConstants.REPORT_BUSITYPE_BOP,
+					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "A-创建", "对外担保-签约信息-担保申请人信息       签约信息ID ："
+							+ bopCfaExguDs.getId() + "    受益人或被担保人名称：" + bopExguTorDs.getTorName());
 		}
 
 		else if (CMD_UPDATE.equalsIgnoreCase(cmd)) {
-			if (!(TopReportConstants.REPORT_RECSTATUS_02
-					.equalsIgnoreCase(bopCfaExguDs.getRecStatus()) || TopReportConstants.REPORT_RECSTATUS_01
-					.equalsIgnoreCase(bopCfaExguDs.getRecStatus()))) {
-				ExceptionUtil.throwCommonException("不能修改当前签约信息记录,当前记录状态为    "
-						+ bopCfaExguDs.getRecStatus() + "");
+			if (!(TopReportConstants.REPORT_RECSTATUS_02.equalsIgnoreCase(bopCfaExguDs.getRecStatus())
+					|| TopReportConstants.REPORT_RECSTATUS_01.equalsIgnoreCase(bopCfaExguDs.getRecStatus()))) {
+				ExceptionUtil.throwCommonException("不能修改当前签约信息记录,当前记录状态为    " + bopCfaExguDs.getRecStatus() + "");
 			}
 
 			serviceCFA.update(bopCfaExguDs);
 			serviceTor.update(bopExguTorDs);
 
-			reportCommonService.saveBiDataProcessLog(bopCfaExguDs.getApptype(),
-					bopCfaExguDs.getCurrentfile(), bopCfaExguDs.getId(),
-					TopReportConstants.REPORT_BUSITYPE_BOP,
-					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT,
-					"C-修改",
+			reportCommonService.saveBiDataProcessLog(bopCfaExguDs.getApptype(), bopCfaExguDs.getCurrentfile(),
+					bopCfaExguDs.getId(), TopReportConstants.REPORT_BUSITYPE_BOP,
+					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "C-修改",
 					"更新对外担保-签约信息          签约信息ID ：" + bopCfaExguDs.getId());
-			reportCommonService.saveBiDataProcessLog(bopCfaExguDs.getApptype(),
-					bopCfaExguDs.getCurrentfile(), bopCfaExguDs.getId(),
-					TopReportConstants.REPORT_BUSITYPE_BOP,
-					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT,
-					"C-修改",
-					"对外担保-签约信息-担保申请人信息       签约信息ID ：" + bopCfaExguDs.getId()
-							+ "    受益人或被担保人名称：" + bopExguTorDs.getTorName());
+			reportCommonService.saveBiDataProcessLog(bopCfaExguDs.getApptype(), bopCfaExguDs.getCurrentfile(),
+					bopCfaExguDs.getId(), TopReportConstants.REPORT_BUSITYPE_BOP,
+					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "C-修改", "对外担保-签约信息-担保申请人信息       签约信息ID ："
+							+ bopCfaExguDs.getId() + "    受益人或被担保人名称：" + bopExguTorDs.getTorName());
 
 		} else if (CMD_DELETE.equalsIgnoreCase(cmd)) {
-			if (!(TopReportConstants.REPORT_RECSTATUS_02
-					.equalsIgnoreCase(bopCfaExguDs.getRecStatus()) || TopReportConstants.REPORT_RECSTATUS_01
-					.equalsIgnoreCase(bopCfaExguDs.getRecStatus()))) {
-				ExceptionUtil.throwCommonException("不能删除当前签约信息记录,当前记录状态为    "
-						+ bopCfaExguDs.getRecStatus() + "");
+			if (!(TopReportConstants.REPORT_RECSTATUS_02.equalsIgnoreCase(bopCfaExguDs.getRecStatus())
+					|| TopReportConstants.REPORT_RECSTATUS_01.equalsIgnoreCase(bopCfaExguDs.getRecStatus()))) {
+				ExceptionUtil.throwCommonException("不能删除当前签约信息记录,当前记录状态为    " + bopCfaExguDs.getRecStatus() + "");
 			}
 
 			serviceCFA.update(bopCfaExguDs);
-			reportCommonService.saveBiDataProcessLog(bopCfaExguDs.getApptype(),
-					bopCfaExguDs.getCurrentfile(), bopCfaExguDs.getId(),
-					TopReportConstants.REPORT_BUSITYPE_BOP,
+			reportCommonService.saveBiDataProcessLog(bopCfaExguDs.getApptype(), bopCfaExguDs.getCurrentfile(),
+					bopCfaExguDs.getId(), TopReportConstants.REPORT_BUSITYPE_BOP,
 					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_DEL, "D-删除",
 					"删除对外担保-签约信息        签约信息ID ：" + bopCfaExguDs.getId());
-			
+
 		}
 
 	}

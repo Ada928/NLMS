@@ -17,6 +17,7 @@ public class ReportCreateFileOperation extends BaseOperation {
 	public static final String IN_BUSI_TYPE = "IN_BUSI_TYPE";
 	public static final String RET_FILE_RESULT = "RET_FILE_RESULT";
 	public static final String IN_APP_TYPE = "IN_APP_TYPE";
+
 	@Override
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
@@ -26,7 +27,6 @@ public class ReportCreateFileOperation extends BaseOperation {
 	@Override
 	public void beforeProc(OperationContext context) throws CommonException {
 
-
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class ReportCreateFileOperation extends BaseOperation {
 		String busiType = (String) context.getAttribute(IN_BUSI_TYPE);
 		String appType = (String) context.getAttribute(IN_APP_TYPE);
 		String fileDate = (String) context.getAttribute(IN_FILE_DATE);
-		
+
 		List<String> packList = service.createSubFile(fileDate, busiType, appType);
 		context.setAttribute(RET_FILE_RESULT, packList);
 	}

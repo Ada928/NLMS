@@ -1,7 +1,5 @@
 package com.huateng.report.basis.updater;
 
-
-
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,25 +19,25 @@ import com.huateng.report.basis.operation.BiDayExchangeRateOperation;
 public class BiDayExchangeRateDEL extends BaseUpdate {
 
 	private static final String DATASET_ID = "BiDayExchangeRate";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
-			//返回对象
+			// 返回对象
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			//结果集对象
+			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-			//更新对象
+			// 更新对象
 			BiDayexchangerate biDayexchangerate = new BiDayexchangerate();
-			//Operation参数
+			// Operation参数
 			OperationContext context = new OperationContext();
-			if(updateResultBean.hasNext()) {
-				//属性拷贝
+			if (updateResultBean.hasNext()) {
+				// 属性拷贝
 				Map map = updateResultBean.next();
-				context.setAttribute(BiDayExchangeRateOperation.CMD,BiDayExchangeRateOperation.CMD_DEL);
+				context.setAttribute(BiDayExchangeRateOperation.CMD, BiDayExchangeRateOperation.CMD_DEL);
 				BaseUpdate.mapToObject(biDayexchangerate, map);
-				//call方式开启operation事务
+				// call方式开启operation事务
 				context.setAttribute(BiDayExchangeRateOperation.IN_PARAM, biDayexchangerate);
 				OPCaller.call(BiDayExchangeRateOperation.ID, context);
 				return updateReturnBean;
@@ -47,10 +45,9 @@ public class BiDayExchangeRateDEL extends BaseUpdate {
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
-			throw new AppException(Module.SYSTEM_MODULE,Rescode.DEFAULT_RESCODE,e.getMessage(),e);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
 		return null;
 	}
-	
-}
 
+}

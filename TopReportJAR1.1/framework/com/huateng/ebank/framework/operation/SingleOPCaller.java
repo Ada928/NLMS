@@ -15,13 +15,12 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 /**
  * @author yujianjun
  *
- * Operation caller.
+ *         Operation caller.
  */
 public class SingleOPCaller {
 	private final static Log log = LogFactory.getLog(SingleOPCaller.class);
 
-	public void callOperation(BaseOperation operation, OperationContext context)
-			throws CommonException {
+	public void callOperation(BaseOperation operation, OperationContext context) throws CommonException {
 		try {
 			operation.beforeProc(context);
 			operation.execute(context);
@@ -29,8 +28,7 @@ public class SingleOPCaller {
 		} catch (CommonException ce) {
 			throw ce;
 		} catch (Throwable t) {
-			ExceptionUtil.throwCommonException("GD0001_1",
-					ErrorCode.ERROR_CODE_UNKNOWN, t);
+			ExceptionUtil.throwCommonException("GD0001_1", ErrorCode.ERROR_CODE_UNKNOWN, t);
 		}
 	}
 
@@ -44,12 +42,9 @@ public class SingleOPCaller {
 	 * @throws CommonException
 	 *             异常发生
 	 */
-	public static void call(String beanName, OperationContext context)
-			throws CommonException {
-		SingleOPCaller caller = (SingleOPCaller) ApplicationContextUtils
-				.getBean("singleCaller");
-		BaseOperation operation = (BaseOperation) ApplicationContextUtils
-				.getBean(beanName);
+	public static void call(String beanName, OperationContext context) throws CommonException {
+		SingleOPCaller caller = (SingleOPCaller) ApplicationContextUtils.getBean("singleCaller");
+		BaseOperation operation = (BaseOperation) ApplicationContextUtils.getBean(beanName);
 		try {
 			caller.callOperation(operation, context);
 		} catch (CommonException cex) {

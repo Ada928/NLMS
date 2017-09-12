@@ -2,21 +2,17 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseTradeLogPK;
 
-public class TradeLogPK extends BaseTradeLogPK {
+public class TradeLogPK extends BaseTradeLogPK implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public TradeLogPK () {}
-	
-	public TradeLogPK (
-		java.util.Date txdate,
-		java.lang.String id) {
-
-		super (
-			txdate,
-			id);
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public TradeLogPK() {
 	}
-/*[CONSTRUCTOR MARKER END]*/
 
+	public TradeLogPK(java.util.Date txdate, java.lang.String id) {
+
+		super(txdate, id);
+	}
+	/* [CONSTRUCTOR MARKER END] */
 
 }

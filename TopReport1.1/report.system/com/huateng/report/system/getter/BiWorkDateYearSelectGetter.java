@@ -18,41 +18,37 @@ import com.huateng.report.system.bean.BiWorkDateYearBean;
 /**
  * 
  * @author shishu.zhang
- *	
- * 2012-8-14上午11:07:00
+ * 
+ *         2012-8-14上午11:07:00
  */
 public class BiWorkDateYearSelectGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		try {
-			
+
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "工作日期维护查询");
-			
-			List<BiWorkDateYearBean> list = new ArrayList<BiWorkDateYearBean>(); 
+
+			List<BiWorkDateYearBean> list = new ArrayList<BiWorkDateYearBean>();
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(new Date());
 			int year = cal.get(Calendar.YEAR);
-			for (int i = 0; i <=9; i++) {
+			for (int i = 0; i <= 9; i++) {
 				BiWorkDateYearBean biwd = new BiWorkDateYearBean();
 				biwd.setYr((year + i) + "");
 				list.add(biwd);
 			}
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list,
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);
 			result.getPage().setTotalPage(1);
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

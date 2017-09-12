@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
  * This is an object that contains data related to the REPORT_JOB_CONFIG table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * Do not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="REPORT_JOB_CONFIG"
+ * @hibernate.class table="REPORT_JOB_CONFIG"
  */
 
-public abstract class BaseReportJobConfig  implements Serializable {
+public abstract class BaseReportJobConfig implements Serializable {
 
 	public static String REF = "ReportJobConfig";
 	public static String PROP_JOB_REMARK = "jobRemark";
@@ -25,23 +23,21 @@ public abstract class BaseReportJobConfig  implements Serializable {
 	public static String PROP_JOB_STAUTS = "jobStauts";
 	public static String PROP_JUST_WORKDATE_RUN = "justWorkdateRun";
 
-
 	// constructors
-	public BaseReportJobConfig () {
+	public BaseReportJobConfig() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseReportJobConfig (java.lang.String id) {
+	public BaseReportJobConfig(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -58,179 +54,180 @@ public abstract class BaseReportJobConfig  implements Serializable {
 	private java.util.Date jobLstTm;
 	private java.lang.String jobLstTrl;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  column="JOB_ID"
-     */
-	public java.lang.String getId () {
+	 * 
+	 * @hibernate.id column="JOB_ID"
+	 */
+	public java.lang.String getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.String id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: JOB_NAME
 	 */
-	public java.lang.String getJobName () {
+	public java.lang.String getJobName() {
 		return jobName;
 	}
 
 	/**
 	 * Set the value related to the column: JOB_NAME
-	 * @param jobName the JOB_NAME value
+	 * 
+	 * @param jobName
+	 *            the JOB_NAME value
 	 */
-	public void setJobName (java.lang.String jobName) {
+	public void setJobName(java.lang.String jobName) {
 		this.jobName = jobName;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: JOB_CLASS_NAME
 	 */
-	public java.lang.String getJobClassName () {
+	public java.lang.String getJobClassName() {
 		return jobClassName;
 	}
 
 	/**
 	 * Set the value related to the column: JOB_CLASS_NAME
-	 * @param jobClassName the JOB_CLASS_NAME value
+	 * 
+	 * @param jobClassName
+	 *            the JOB_CLASS_NAME value
 	 */
-	public void setJobClassName (java.lang.String jobClassName) {
+	public void setJobClassName(java.lang.String jobClassName) {
 		this.jobClassName = jobClassName;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: JOB_TIME
 	 */
-	public java.lang.String getJobTime () {
+	public java.lang.String getJobTime() {
 		return jobTime;
 	}
 
 	/**
 	 * Set the value related to the column: JOB_TIME
-	 * @param jobTime the JOB_TIME value
+	 * 
+	 * @param jobTime
+	 *            the JOB_TIME value
 	 */
-	public void setJobTime (java.lang.String jobTime) {
+	public void setJobTime(java.lang.String jobTime) {
 		this.jobTime = jobTime;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: JOB_STAUTS
 	 */
-	public java.lang.String getJobStauts () {
+	public java.lang.String getJobStauts() {
 		return jobStauts;
 	}
 
 	/**
 	 * Set the value related to the column: JOB_STAUTS
-	 * @param jobStauts the JOB_STAUTS value
+	 * 
+	 * @param jobStauts
+	 *            the JOB_STAUTS value
 	 */
-	public void setJobStauts (java.lang.String jobStauts) {
+	public void setJobStauts(java.lang.String jobStauts) {
 		this.jobStauts = jobStauts;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: JUST_WORKDATE_RUN
 	 */
-	public java.lang.String getJustWorkdateRun () {
+	public java.lang.String getJustWorkdateRun() {
 		return justWorkdateRun;
 	}
 
 	/**
 	 * Set the value related to the column: JUST_WORKDATE_RUN
-	 * @param justWorkdateRun the JUST_WORKDATE_RUN value
+	 * 
+	 * @param justWorkdateRun
+	 *            the JUST_WORKDATE_RUN value
 	 */
-	public void setJustWorkdateRun (java.lang.String justWorkdateRun) {
+	public void setJustWorkdateRun(java.lang.String justWorkdateRun) {
 		this.justWorkdateRun = justWorkdateRun;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: JOB_REMARK
 	 */
-	public java.lang.String getJobRemark () {
+	public java.lang.String getJobRemark() {
 		return jobRemark;
 	}
 
 	/**
 	 * Set the value related to the column: JOB_REMARK
-	 * @param jobRemark the JOB_REMARK value
+	 * 
+	 * @param jobRemark
+	 *            the JOB_REMARK value
 	 */
-	public void setJobRemark (java.lang.String jobRemark) {
+	public void setJobRemark(java.lang.String jobRemark) {
 		this.jobRemark = jobRemark;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: JOB_LST_TM
 	 */
-	public java.util.Date getJobLstTm () {
+	public java.util.Date getJobLstTm() {
 		return jobLstTm;
 	}
 
 	/**
 	 * Set the value related to the column: JOB_LST_TM
-	 * @param jobLstTm the JOB_LST_TM value
+	 * 
+	 * @param jobLstTm
+	 *            the JOB_LST_TM value
 	 */
-	public void setJobLstTm (java.util.Date jobLstTm) {
+	public void setJobLstTm(java.util.Date jobLstTm) {
 		this.jobLstTm = jobLstTm;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: JOB_LST_TRL
 	 */
-	public java.lang.String getJobLstTrl () {
+	public java.lang.String getJobLstTrl() {
 		return jobLstTrl;
 	}
 
 	/**
 	 * Set the value related to the column: JOB_LST_TRL
-	 * @param jobLstTrl the JOB_LST_TRL value
+	 * 
+	 * @param jobLstTrl
+	 *            the JOB_LST_TRL value
 	 */
-	public void setJobLstTrl (java.lang.String jobLstTrl) {
+	public void setJobLstTrl(java.lang.String jobLstTrl) {
 		this.jobLstTrl = jobLstTrl;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.ReportJobConfig)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.ReportJobConfig))
+			return false;
 		else {
 			resource.bean.report.ReportJobConfig reportJobConfig = (resource.bean.report.ReportJobConfig) obj;
-			if (null == this.getId() || null == reportJobConfig.getId()) return false;
-			else return (this.getId().equals(reportJobConfig.getId()));
+			if (null == this.getId() || null == reportJobConfig.getId())
+				return false;
+			else
+				return (this.getId().equals(reportJobConfig.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -239,10 +236,8 @@ public abstract class BaseReportJobConfig  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

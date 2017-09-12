@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.io.File" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.io.File"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,30 +10,33 @@
 <style>
 </style>
 <body>
-    <%
+	<%
        String path = File.separator + "rpt_templates" + File.separator + "DATA_IMPORT_EXCEL_TEMPLATE_20100926.xls";
        String root = request.getRealPath("/");
        String realPath = root + path;
     %>
-	<br/>
-	<br/>
+	<br />
+	<br />
 	<form method="POST" enctype="multipart/form-data" id="postForm" onsubmit="return importData();"
 		action="excelDataImport.do" target="_self">
-		<P>上传Excel文件：<input type="file" name="filename" class="button"></input>
-		<input type="submit" class="button" value="导入"/>
+		<P>
+			上传Excel文件：
+			<input type="file" name="filename" class="button"></input>
+			<input type="submit" class="button" value="导入" />
 	</form>
 	<br>
 	<table height='50px'>
 	</table>
 	<br>
 	<table align="center">
-	   <tr align="center">
-	     <td align="center">
-	          <form name="downloadForm" id="downloadForm" action="<%=request.getContextPath()%>/filedownload/FileDownloadAction.do?downloadinfo=<%=realPath%>" method="post">
-                 <input type="submit" value="下载EXCEL模板">
-             </form>
-         </td>
-       </tr>
+		<tr align="center">
+			<td align="center">
+				<form name="downloadForm" id="downloadForm"
+					action="<%=request.getContextPath()%>/filedownload/FileDownloadAction.do?downloadinfo=<%=realPath%>" method="post">
+					<input type="submit" value="下载EXCEL模板">
+				</form>
+			</td>
+		</tr>
 	</table>
 </body>
 <script type="text/javascript" src="js/jquery-1.2.6.js"></script>

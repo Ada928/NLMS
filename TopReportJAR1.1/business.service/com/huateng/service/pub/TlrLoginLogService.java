@@ -30,8 +30,8 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 /**
  * @author Administrator
  *
- * To change the template for this generated type comment go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
+ *         To change the template for this generated type comment go to
+ *         Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class TlrLoginLogService {
 	/**
@@ -60,7 +60,7 @@ public class TlrLoginLogService {
 			tlrLoginLog.setBrNo(gi.getBrno());
 			tlrLoginLog.setCrtTm(new Date());
 			tlrLoginLog.setLoginAddr(gi.getIp());
-			if(successFlag){
+			if (successFlag) {
 				tlrLoginLog.setLoginSucTm(new Date());
 			} else {
 				tlrLoginLog.setLoginFailTm(new Date());
@@ -76,8 +76,8 @@ public class TlrLoginLogService {
 			}
 		} else {
 			String sessionId = gi.getSessionId();
-			List<TlrLoginLog> list = hqldao.queryByQL2List("from TlrLoginLog where sessionId='" + sessionId +
-					"' and crtTm=(select max(log.crtTm) from TlrLoginLog log where sessionId='" + sessionId + "')");
+			List<TlrLoginLog> list = hqldao.queryByQL2List("from TlrLoginLog where sessionId='" + sessionId
+					+ "' and crtTm=(select max(log.crtTm) from TlrLoginLog log where sessionId='" + sessionId + "')");
 			try {
 				if (list.size() > 0) {
 					TlrLoginLog tlrLoginLog = list.get(0);
@@ -91,29 +91,28 @@ public class TlrLoginLogService {
 		}
 	}
 
-	public PageQueryResult queryTlrLoginLOg(int pageIndex, int pageSize,
-			String qtlrNo, String qbrNo, String qloginAddr, String startDate,
-			String endDate) throws CommonException {
+	public PageQueryResult queryTlrLoginLog(int pageIndex, int pageSize, String qtlrNo, String qbrNo, String qloginAddr,
+			String startDate, String endDate) throws CommonException {
 		StringBuffer sb = new StringBuffer("");
-		List<Object> list=new ArrayList<Object>();
+		List<Object> list = new ArrayList<Object>();
 		sb.append("select log from TlrLoginLog log where 1=1");
-		if(!DataFormat.isEmpty(qtlrNo)){
+		if (!DataFormat.isEmpty(qtlrNo)) {
 			sb.append(" and log.tlrNo = ? ");
 			list.add(qtlrNo);
 		}
-		if(!DataFormat.isEmpty(qbrNo)){
+		if (!DataFormat.isEmpty(qbrNo)) {
 			sb.append(" and log.brNo = ? ");
 			list.add(qbrNo);
 		}
-		if(!DataFormat.isEmpty(qloginAddr)){
+		if (!DataFormat.isEmpty(qloginAddr)) {
 			sb.append(" and log.loginAddr = ? ");
 			list.add(qloginAddr);
 		}
-		if(!DataFormat.isEmpty(startDate)){
+		if (!DataFormat.isEmpty(startDate)) {
 			sb.append(" and log.crtTm>=? ");
 			list.add(DateUtil.stringToDate2(startDate));
 		}
-		if(!DataFormat.isEmpty(endDate)){
+		if (!DataFormat.isEmpty(endDate)) {
 			sb.append(" and log.crtTm<? ");
 			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endDate), -1));
 		}
@@ -128,7 +127,8 @@ public class TlrLoginLogService {
 		return pageQueryResult;
 	}
 
-	public void saveTlrLoginExceptionLog(String userName, String brCode, String ip, String sessionId) throws CommonException {
+	public void saveTlrLoginExceptionLog(String userName, String brCode, String ip, String sessionId)
+			throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		TlrLoginLog tlrLoginLog = new TlrLoginLog();
 		tlrLoginLog.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
@@ -147,38 +147,34 @@ public class TlrLoginLogService {
 		}
 	}
 
-
-	public PageQueryResult queryTlrLogDetail(int pageIndex, int pageSize,
-			String qtlrNo, String qbrNo,String stdate,String endate) throws CommonException {
+	public PageQueryResult queryTlrLogDetail(int pageIndex, int pageSize, String qtlrNo, String qbrNo, String stdate,
+			String endate) throws CommonException {
 		StringBuffer sb = new StringBuffer("");
-		List<Object> list=new ArrayList<Object>();
-		//sb.append("select log from TlrLoginLog log where 1=1");
-		sb.append("select  distinct tl.tlrNo ,tl.brNo, " +
-				"count(tl.tlrNo),max(tl.crtTm) , min(tl.crtTm) " +
-				"  from   TlrLoginLog tl  where 1=1  " );
-		if(!DataFormat.isEmpty(qtlrNo)){
+		List<Object> list = new ArrayList<Object>();
+		// sb.append("select log from TlrLoginLog log where 1=1");
+		sb.append("select  distinct tl.tlrNo ,tl.brNo, " + "count(tl.tlrNo),max(tl.crtTm) , min(tl.crtTm) "
+				+ "  from   TlrLoginLog tl  where 1=1  ");
+		if (!DataFormat.isEmpty(qtlrNo)) {
 			sb.append(" and  tl.tlrNo= ? ");
 			list.add(qtlrNo);
 		}
-		if(!DataFormat.isEmpty(qbrNo)){
+		if (!DataFormat.isEmpty(qbrNo)) {
 			sb.append(" and tl.brNo = ? ");
 			list.add(qbrNo);
 		}
 
-		if(!DataFormat.isEmpty(stdate)){
+		if (!DataFormat.isEmpty(stdate)) {
 			sb.append(" and tl.crtTm>=? ");
 			list.add(DateUtil.stringToDate2(stdate));
 		}
-		if(!DataFormat.isEmpty(endate)){
+		if (!DataFormat.isEmpty(endate)) {
 			sb.append(" and tl.crtTm<? ");
 			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endate), -1));
 		}
 
-
 		sb.append(" group  by  tl.tlrNo ,tl.brNo");
 
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-
 
 		PageQueryCondition queryCondition = new PageQueryCondition();
 		queryCondition.setQueryString(sb.toString());
@@ -188,7 +184,5 @@ public class TlrLoginLogService {
 		PageQueryResult pageQueryResult = hqldao.pageQueryByQL(queryCondition);
 		return pageQueryResult;
 	}
-
-	
 
 }

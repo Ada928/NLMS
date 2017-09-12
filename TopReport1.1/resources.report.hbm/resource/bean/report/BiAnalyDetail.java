@@ -5,36 +5,31 @@ import java.util.List;
 
 import resource.bean.report.base.BaseBiAnalyDetail;
 
-
-
-public class BiAnalyDetail extends BaseBiAnalyDetail {
+public class BiAnalyDetail extends BaseBiAnalyDetail implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public BiAnalyDetail () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public BiAnalyDetail() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BiAnalyDetail (java.lang.String id) {
+	public BiAnalyDetail(java.lang.String id) {
 		super(id);
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public BiAnalyDetail (
-		java.lang.String id,
-		java.lang.String analyNo) {
+	public BiAnalyDetail(java.lang.String id, java.lang.String analyNo) {
 
-		super (
-			id,
-			analyNo);
+		super(id, analyNo);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
+	/* [CONSTRUCTOR MARKER END] */
 
 	private List<BiAnalyDetailPars> parsList = new ArrayList<BiAnalyDetailPars>();
 

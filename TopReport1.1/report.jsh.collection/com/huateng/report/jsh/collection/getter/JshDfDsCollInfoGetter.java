@@ -22,42 +22,38 @@ import com.huateng.report.utils.ReportUtils;
 
 public class JshDfDsCollInfoGetter extends BaseGetter {
 
-	private static final String GETTER_OP_ADD = "add"; 
-	private static final String GETTER_OP_MOD = "mod"; 
-	private static final String GETTER_OP_DEL = "del"; 
-	private static final String GETTER_OP_DETAIL = "detail"; 
-	
+	private static final String GETTER_OP_ADD = "add";
+	private static final String GETTER_OP_MOD = "mod";
+	private static final String GETTER_OP_DEL = "del";
+	private static final String GETTER_OP_DETAIL = "detail";
+
 	@Override
 	public Result call() throws AppException {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		try {
 			PageQueryResult pageResult = getData();
-			//记录日志
+			// 记录日志
 			String op = this.getCommQueryServletRequest().getParameter("op");
 			String message = null;
-			if(GETTER_OP_ADD.equals(op)) {
+			if (GETTER_OP_ADD.equals(op)) {
 				message = "新增";
-			} else if(GETTER_OP_MOD.equals(op)) {
+			} else if (GETTER_OP_MOD.equals(op)) {
 				message = "修改";
-			} else if(GETTER_OP_DEL.equals(op)) {
+			} else if (GETTER_OP_DEL.equals(op)) {
 				message = "删除";
 			}
-			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外汇账户内结汇"+message+"补录基础信息查询");
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外汇账户内结汇" + message + "补录基础信息查询");
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -65,12 +61,13 @@ public class JshDfDsCollInfoGetter extends BaseGetter {
 		// TODO Auto-generated method stub
 		Map paramsMap = this.getCommQueryServletRequest().getParameterMap();
 		String op = (String) paramsMap.get("op");
-		if(GETTER_OP_ADD.equals(op)) {
+		if (GETTER_OP_ADD.equals(op)) {
 			PageQueryResult pageQueryResult = new PageQueryResult();
 			MtsJshDefgDs ds = new MtsJshDefgDs();
-			//申报号码
-//			//测试用
-//			String rptno = UUID.randomUUID().toString().replace("-", "").substring(0,22);
+			// 申报号码
+			// //测试用
+			// String rptno = UUID.randomUUID().toString().replace("-",
+			// "").substring(0,22);
 			String rptno = ReportUtils.getBussinessNo(TopReportConstants.REPORT_FILE_TYPE_JSH_D);
 			ds.setRptno(rptno);
 			List list = new ArrayList();
@@ -78,10 +75,10 @@ public class JshDfDsCollInfoGetter extends BaseGetter {
 			pageQueryResult.setQueryResult(list);
 			return pageQueryResult;
 		}
-		if(GETTER_OP_MOD.equals(op) || GETTER_OP_DEL.equals(op) || GETTER_OP_DETAIL.equals(op)) {
+		if (GETTER_OP_MOD.equals(op) || GETTER_OP_DEL.equals(op) || GETTER_OP_DETAIL.equals(op)) {
 			String rec_id = (String) paramsMap.get("id");
 			String hql = " from MtsJshDefgDs ds where 1 = 1 ";
-			hql += " and ds.id = '"+rec_id+"'";
+			hql += " and ds.id = '" + rec_id + "'";
 			int pageIndex = this.getResult().getPage().getCurrentPage();
 			int maxRows = this.getResult().getPage().getEveryPage();
 			PageQueryCondition pageQueryCondition = new PageQueryCondition();

@@ -9,10 +9,9 @@ import javax.crypto.spec.IvParameterSpec;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
-
 /**
- * DES encryption algorithm, providing the encryption and decryption
- * algorithm for byte array and string
+ * DES encryption algorithm, providing the encryption and decryption algorithm
+ * for byte array and string
  */
 
 public class CryptionData {
@@ -23,10 +22,12 @@ public class CryptionData {
 	// The initialization vector should be 8 bytes
 	private final byte[] EncryptionIV = "abcdefgh".getBytes();
 	private final static String DES = "DES/CBC/PKCS5Padding";
-  
+
 	/**
 	 * Saving key for encryption and decryption
-	 * @param EncryptionString String
+	 * 
+	 * @param EncryptionString
+	 *            String
 	 */
 	public CryptionData(String EncryptionString) {
 		this.EncryptionString = EncryptionString;
@@ -34,7 +35,9 @@ public class CryptionData {
 
 	/**
 	 * Encrypt a byte array
-	 * @param SourceData byte[]
+	 * 
+	 * @param SourceData
+	 *            byte[]
 	 * @throws Exception
 	 * @return byte[]
 	 */
@@ -50,7 +53,7 @@ public class CryptionData {
 		SecretKey securekey = keyFactory.generateSecret(dks);
 
 		// Create IvParameterSpec object with initialization vector
-		IvParameterSpec spec=new IvParameterSpec(EncryptionIV);
+		IvParameterSpec spec = new IvParameterSpec(EncryptionIV);
 
 		// Create Cipter object
 		Cipher cipher = Cipher.getInstance(DES);
@@ -65,7 +68,9 @@ public class CryptionData {
 
 	/**
 	 * Decrypt a byte array
-	 * @param SourceData byte[]
+	 * 
+	 * @param SourceData
+	 *            byte[]
 	 * @throws Exception
 	 * @return byte[]
 	 */
@@ -79,7 +84,7 @@ public class CryptionData {
 		SecretKey securekey = keyFactory.generateSecret(dks);
 
 		// Create IvParameterSpec object with initialization vector
-		IvParameterSpec spec=new IvParameterSpec(EncryptionIV);
+		IvParameterSpec spec = new IvParameterSpec(EncryptionIV);
 
 		// Create Cipter object
 		Cipher cipher = Cipher.getInstance(DES);
@@ -95,7 +100,9 @@ public class CryptionData {
 
 	/**
 	 * Encrypt a string
-	 * @param SourceData String
+	 * 
+	 * @param SourceData
+	 *            String
 	 * @throws Exception
 	 * @return String
 	 */
@@ -118,7 +125,9 @@ public class CryptionData {
 
 	/**
 	 * Decrypt a string
-	 * @param SourceData String
+	 * 
+	 * @param SourceData
+	 *            String
 	 * @throws Exception
 	 * @return String
 	 */

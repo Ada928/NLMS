@@ -2,12 +2,10 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "/WEB-INF/dtd/spring-beans-2.0.dtd">
 <beans>
 
-	<bean id="com.huateng.report.execconfirm.service.BiExecConfirmService"
-		class="com.huateng.report.execconfirm.service.BiExecConfirmService">
-	</bean>
-	
-	<bean id="execConfirm.BiExecConfirmOperation"
-		class="com.huateng.report.execconfirm.operation.BiExecConfirmOperation">
-	</bean>
-	
+    <bean id="com.huateng.report.execconfirm.service.BiExecConfirmService" class="com.huateng.report.execconfirm.service.BiExecConfirmService">
+    </bean>
+
+    <bean id="execConfirm.BiExecConfirmOperation" class="com.huateng.report.execconfirm.operation.BiExecConfirmOperation">
+    </bean>
+
 </beans>

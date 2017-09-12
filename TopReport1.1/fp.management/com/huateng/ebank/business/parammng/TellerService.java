@@ -8,18 +8,6 @@
  */
 package com.huateng.ebank.business.parammng;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import org.hibernate.Hibernate;
-import org.hibernate.type.Type;
-
-import resource.bean.pub.FunctionInfo;
-import resource.bean.pub.RoleInfo;
-import resource.bean.pub.TlrRoleRel;
-import resource.dao.base.HQLDAO;
-
 import com.huateng.ebank.business.common.DAOUtils;
 import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.common.SystemConstant;
@@ -28,6 +16,16 @@ import com.huateng.ebank.entity.data.workflow.LimitParam;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
 import com.huateng.ebank.framework.util.ExceptionUtil;
+import org.hibernate.Hibernate;
+import org.hibernate.type.Type;
+import resource.bean.pub.FunctionInfo;
+import resource.bean.pub.RoleInfo;
+import resource.bean.pub.TlrRoleRel;
+import resource.dao.base.HQLDAO;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author valley

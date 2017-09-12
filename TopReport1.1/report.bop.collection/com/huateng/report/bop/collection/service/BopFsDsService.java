@@ -30,7 +30,7 @@ public class BopFsDsService {
 	protected static final Logger logger = Logger.getLogger(BopFsDsService.class);
 
 	protected BopFsDsService() {
-		
+
 	}
 
 	public synchronized static BopFsDsService getInstance() {
@@ -39,6 +39,7 @@ public class BopFsDsService {
 
 	/**
 	 * BOP记录查询
+	 * 
 	 * @param pageIndex
 	 * @param pageSize
 	 * @param qstartDate
@@ -47,12 +48,13 @@ public class BopFsDsService {
 	 * @param qrecStatus
 	 * @param qapproveStatus
 	 * @param qrepStatus
-	 * @param qfiller2 
+	 * @param qfiller2
 	 * @return
 	 * @throws CommonException
 	 */
-	public PageQueryResult queryBopFsCollection(String queryType, int pageIndex, int pageSize, String qstartDate, String qendDate, String qactiontype,
-			String qapproveStatus, String qrepStatus, String qrecStatus, String qfiller2) throws CommonException {
+	public PageQueryResult queryBopFsCollection(String queryType, int pageIndex, int pageSize, String qstartDate,
+			String qendDate, String qactiontype, String qapproveStatus, String qrepStatus, String qrecStatus,
+			String qfiller2) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<Object> objs = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer(" SELECT model FROM MtsBopFsDs model WHERE ");
@@ -60,16 +62,16 @@ public class BopFsDsService {
 		objs.add(TopReportConstants.REPORT_APP_TYPE_BOP);
 		if (queryType.equals("F")) {
 			objs.add(TopReportConstants.REPORT_FILE_TYPE_BOP_F);
-		} else if(queryType.equals("S")) {
+		} else if (queryType.equals("S")) {
 			objs.add(TopReportConstants.REPORT_FILE_TYPE_BOP_S);
 		}
- 		objs.add(TopReportConstants.REPORT_RECSTATUS_01);
+		objs.add(TopReportConstants.REPORT_RECSTATUS_01);
 		objs.add(TopReportConstants.REPORT_RECSTATUS_02);
-		if(!DataFormat.isEmpty(qstartDate)){
+		if (!DataFormat.isEmpty(qstartDate)) {
 			hql.append(" AND model.workDate >= ? ");
 			objs.add(qstartDate);
 		}
-		if(!DataFormat.isEmpty(qendDate)){
+		if (!DataFormat.isEmpty(qendDate)) {
 			hql.append(" AND model.workDate <= ? ");
 			objs.add(qendDate);
 		}
@@ -104,25 +106,26 @@ public class BopFsDsService {
 		queryCondition.setObjArray(objs.toArray());
 		return rootdao.pageQueryByQL(queryCondition);
 	}
-	
+
 	/**
 	 * BOP审核查询
+	 * 
 	 * @param queryType
 	 * @param pageIndex
 	 * @param pageSize
 	 * @param qworkDate
 	 * @param eworkDate
 	 * @param qactiontype
-	 * @param 
+	 * @param
 	 * @param qapproveStatus
 	 * @param qrepStatus
-	 * @param qfiller2 
+	 * @param qfiller2
 	 * @return
 	 * @throws CommonException
 	 */
-	public PageQueryResult queryBopFsAudit(String queryType, int pageIndex,
-			int pageSize, String qworkDate, String eworkDate,String qactiontype, String qrecStatus,
-			String qapproveStatus, String qrepStatus, String qfiller2) throws CommonException {
+	public PageQueryResult queryBopFsAudit(String queryType, int pageIndex, int pageSize, String qworkDate,
+			String eworkDate, String qactiontype, String qrecStatus, String qapproveStatus, String qrepStatus,
+			String qfiller2) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<Object> objs = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer(" SELECT model FROM MtsBopFsDs model WHERE model.apptype = ? ");
@@ -177,9 +180,10 @@ public class BopFsDsService {
 		queryCondition.setObjArray(objs.toArray());
 		return rootdao.pageQueryByQL(queryCondition);
 	}
-	
+
 	/**
 	 * 补录查询
+	 * 
 	 * @param queryType
 	 * @param pageIndex
 	 * @param pageSize
@@ -190,14 +194,13 @@ public class BopFsDsService {
 	 * @param qrepStatus
 	 * @param qworkDate
 	 * @param eworkDate
-	 * @param qfiller2 
+	 * @param qfiller2
 	 * @return
-	 * @throws CommonException 
+	 * @throws CommonException
 	 */
-	public PageQueryResult queryFsDs(String queryType, int pageIndex,
-			int pageSize, String qbrNo, String qrecStatus, String qactiontype,
-			String qapproveStatus, String qrepStatus, String qworkDate,
-			String eworkDate, String qfiller2) throws CommonException {
+	public PageQueryResult queryFsDs(String queryType, int pageIndex, int pageSize, String qbrNo, String qrecStatus,
+			String qactiontype, String qapproveStatus, String qrepStatus, String qworkDate, String eworkDate,
+			String qfiller2) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<Object> objs = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer(" SELECT model FROM MtsBopFsDs model WHERE model.apptype = ? ");
@@ -234,7 +237,7 @@ public class BopFsDsService {
 			hql.append(" AND model.repStatus = ? ");
 			objs.add(qrepStatus);
 		}
-		if(!DataFormat.isEmpty(qbrNo)){
+		if (!DataFormat.isEmpty(qbrNo)) {
 			hql.append(" AND model.brNo = ? ");
 			objs.add(qbrNo);
 		}
@@ -254,15 +257,16 @@ public class BopFsDsService {
 
 	/**
 	 * 保存
+	 * 
 	 * @param bopFsDs
 	 * @param type
-	 * @throws CommonException 
+	 * @throws CommonException
 	 */
 	public void saveFsDs(MtsBopFsDs bopFsDs, String type) throws CommonException {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		ReportCommonService commonService = ReportCommonService.getInstance();
-		if (BopFsDsOperation.OP_F_NEW.equals(type)){
+		if (BopFsDsOperation.OP_F_NEW.equals(type)) {
 			bopFsDs.setActiontype(TopReportConstants.REPORT_ACTIONTYPE_A);
 			bopFsDs.setRecStatus(TopReportConstants.REPORT_RECSTATUS_02);
 			bopFsDs.setApproveStatus(TopReportConstants.REPORT_APPROVESTATUS_00);
@@ -277,21 +281,21 @@ public class BopFsDsService {
 			bopFsDs.setCurrentfile(TopReportConstants.REPORT_FILE_TYPE_BOP_F);
 			bopFsDs.setWorkDate(DateUtil.dateToNumber(gi.getTxdate()));
 
-			//TODO 写验证类并且配置
+			// TODO 写验证类并且配置
 			ReportDataVaildUtil.executeVaild(bopFsDs.getApptype(), bopFsDs.getCurrentfile(), bopFsDs);
 
-			//数据处理记录表保存
-			commonService.saveBiDataProcessLog(bopFsDs.getApptype(), bopFsDs.getCurrentfile(), bopFsDs.getId(), bopFsDs.getBuscode(),
-					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "新增", "新增");
+			// 数据处理记录表保存
+			commonService.saveBiDataProcessLog(bopFsDs.getApptype(), bopFsDs.getCurrentfile(), bopFsDs.getId(),
+					bopFsDs.getBuscode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "新增", "新增");
 
 			rootdao.save(bopFsDs);
-		} else if (BopFsDsOperation.OP_F_MOD.equals(type)){
+		} else if (BopFsDsOperation.OP_F_MOD.equals(type)) {
 			MtsBopFsDs dbBopFsDs = rootdao.query(MtsBopFsDs.class, bopFsDs.getId());
-			
-			if(!StringUtils.equals(bopFsDs.getRecStatus(), dbBopFsDs.getRecStatus())){
-				ExceptionUtil.throwCommonException("该记录["+bopFsDs.getRptno()+"]已经被其他用户修改");
+
+			if (!StringUtils.equals(bopFsDs.getRecStatus(), dbBopFsDs.getRecStatus())) {
+				ExceptionUtil.throwCommonException("该记录[" + bopFsDs.getRptno() + "]已经被其他用户修改");
 			}
-			//修改的数据进行设置值 TODO
+			// 修改的数据进行设置值 TODO
 			dbBopFsDs.setOppuser(bopFsDs.getOppuser());
 			dbBopFsDs.setCustype(bopFsDs.getCustype());
 			dbBopFsDs.setIdcode(bopFsDs.getIdcode());
@@ -316,7 +320,7 @@ public class BopFsDsService {
 			dbBopFsDs.setIssdate(bopFsDs.getIssdate());
 			dbBopFsDs.setTenor(bopFsDs.getTenor());
 			dbBopFsDs.setActiondesc(bopFsDs.getActiondesc());
-			
+
 			dbBopFsDs.setWorkDate(DateUtil.dateToNumber(gi.getTxdate()));
 			dbBopFsDs.setLstUpdTlr(gi.getTlrno());
 			dbBopFsDs.setLstUpdTm(new Date());
@@ -331,23 +335,24 @@ public class BopFsDsService {
 
 			ReportDataVaildUtil.executeVaild(dbBopFsDs.getApptype(), dbBopFsDs.getCurrentfile(), dbBopFsDs);
 
-			//数据处理记录表保存
-			commonService.saveBiDataProcessLog(dbBopFsDs.getApptype(), dbBopFsDs.getCurrentfile(), dbBopFsDs.getId(), dbBopFsDs.getBuscode(),
-					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "修改", "修改");
+			// 数据处理记录表保存
+			commonService.saveBiDataProcessLog(dbBopFsDs.getApptype(), dbBopFsDs.getCurrentfile(), dbBopFsDs.getId(),
+					dbBopFsDs.getBuscode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "修改", "修改");
 
 			rootdao.saveOrUpdate(dbBopFsDs);
-		} else if(BopFsDsOperation.OP_F_DEL.equals(type)){
+		} else if (BopFsDsOperation.OP_F_DEL.equals(type)) {
 			MtsBopFsDs dbBopFsDs = rootdao.query(MtsBopFsDs.class, bopFsDs.getId());
-			
-			if(!StringUtils.equals(bopFsDs.getRecStatus(), dbBopFsDs.getRecStatus())){
-				ExceptionUtil.throwCommonException("该记录["+bopFsDs.getRptno()+"]已经被其他用户修改");
+
+			if (!StringUtils.equals(bopFsDs.getRecStatus(), dbBopFsDs.getRecStatus())) {
+				ExceptionUtil.throwCommonException("该记录[" + bopFsDs.getRptno() + "]已经被其他用户修改");
 			}
-			
+
 			/**
 			 * 根据账户信息的ID 查询相应申报和管理信息
 			 */
-			Integer count = rootdao.queryByHqlToCount(" SELECT count(model) FROM MtsBopFsDs model WHERE model.filler1 = '" + bopFsDs.getId() + "' ");
-			if (count > 0){
+			Integer count = rootdao.queryByHqlToCount(
+					" SELECT count(model) FROM MtsBopFsDs model WHERE model.filler1 = '" + bopFsDs.getId() + "' ");
+			if (count > 0) {
 				ExceptionUtil.throwCommonException("已存在相关的申报信息或者管理信息不能删除！");
 			}
 			dbBopFsDs.setLstUpdTlr(gi.getTlrno());
@@ -359,14 +364,15 @@ public class BopFsDsService {
 			dbBopFsDs.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
 			dbBopFsDs.setWorkDate(DateUtil.dateToNumber(gi.getTxdate()));
 
-			//数据处理记录表保存
-			commonService.saveBiDataProcessLog(dbBopFsDs.getApptype(), dbBopFsDs.getCurrentfile(), dbBopFsDs.getId(), dbBopFsDs.getBuscode(),
-					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_DEL, "删除", dbBopFsDs.getActiondesc());
+			// 数据处理记录表保存
+			commonService.saveBiDataProcessLog(dbBopFsDs.getApptype(), dbBopFsDs.getCurrentfile(), dbBopFsDs.getId(),
+					dbBopFsDs.getBuscode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_DEL, "删除",
+					dbBopFsDs.getActiondesc());
 
 			rootdao.saveOrUpdate(dbBopFsDs);
 		} else if (BopFsDsOperation.OP_S_NEW.equals(type)) {
 			MtsBopFsDs newBopFsDs = new MtsBopFsDs();
-			//新增基础信息
+			// 新增基础信息
 			newBopFsDs.setId(ReportUtils.getUUID());
 			newBopFsDs.setCrtTm(new Date());
 			newBopFsDs.setLstUpdTm(new Date());
@@ -380,7 +386,7 @@ public class BopFsDsService {
 			newBopFsDs.setApproveStatus(TopReportConstants.REPORT_APPROVESTATUS_00);
 			newBopFsDs.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
 			newBopFsDs.setSubSuccess(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO);
-			//新增页面信息 
+			// 新增页面信息
 			newBopFsDs.setRptno(bopFsDs.getRptno());
 			newBopFsDs.setIsref(bopFsDs.getIsref());
 			newBopFsDs.setCountry(bopFsDs.getCountry());
@@ -399,18 +405,18 @@ public class BopFsDsService {
 			newBopFsDs.setInptelc(bopFsDs.getInptelc());
 			newBopFsDs.setRptdate(bopFsDs.getRptdate());
 			newBopFsDs.setRegno(bopFsDs.getRegno());
-			if(StringUtils.isEmpty(newBopFsDs.getRegno())){
+			if (StringUtils.isEmpty(newBopFsDs.getRegno())) {
 				newBopFsDs.setRegno("N/A");
 			}
 			newBopFsDs.setFiller1(bopFsDs.getFiller1());
 			newBopFsDs.setFiller2(bopFsDs.getFiller2());
 			newBopFsDs.setBuscode(bopFsDs.getBuscode());
 
-			//其中有一步验证需要用到基础的付款金额
+			// 其中有一步验证需要用到基础的付款金额
 			newBopFsDs.setTxamt(bopFsDs.getTxamt());
 			ReportDataVaildUtil.executeVaild(newBopFsDs.getApptype(), newBopFsDs.getCurrentfile(), newBopFsDs);
 			newBopFsDs.setTxamt(null);
-			//数据处理记录表保存
+			// 数据处理记录表保存
 			commonService.saveBiDataProcessLog(newBopFsDs.getApptype(), newBopFsDs.getCurrentfile(), newBopFsDs.getId(),
 					newBopFsDs.getBuscode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "新增", "新增");
 
@@ -421,8 +427,8 @@ public class BopFsDsService {
 			/**
 			 * 校验当前数据是否已经被其他用户更新
 			 */
-			if(!StringUtils.equals(dbBopFsDs.getRecStatus(), bopFsDs.getRecStatus())){
-				ExceptionUtil.throwCommonException("该记录["+bopFsDs.getRptno()+"]已经被其他用户修改");
+			if (!StringUtils.equals(dbBopFsDs.getRecStatus(), bopFsDs.getRecStatus())) {
+				ExceptionUtil.throwCommonException("该记录[" + bopFsDs.getRptno() + "]已经被其他用户修改");
 			}
 
 			dbBopFsDs.setRptno(bopFsDs.getRptno());
@@ -444,7 +450,7 @@ public class BopFsDsService {
 			dbBopFsDs.setRptdate(bopFsDs.getRptdate());
 			dbBopFsDs.setRegno(bopFsDs.getRegno());
 			dbBopFsDs.setActiondesc(bopFsDs.getActiondesc());
-			if(StringUtils.isEmpty(dbBopFsDs.getRegno())){
+			if (StringUtils.isEmpty(dbBopFsDs.getRegno())) {
 				dbBopFsDs.setRegno("N/A");
 			}
 			dbBopFsDs.setLstUpdTlr(gi.getTlrno());
@@ -459,14 +465,14 @@ public class BopFsDsService {
 			dbBopFsDs.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
 			dbBopFsDs.setWorkDate(DateUtil.dateToNumber(gi.getTxdate()));
 
-			//其中有一步验证需要用到基础的付款金额
+			// 其中有一步验证需要用到基础的付款金额
 			dbBopFsDs.setTxamt(bopFsDs.getTxamt());
 			ReportDataVaildUtil.executeVaild(dbBopFsDs.getApptype(), dbBopFsDs.getCurrentfile(), dbBopFsDs);
 			dbBopFsDs.setTxamt(null);
-			
-			//数据处理记录表保存
-			commonService.saveBiDataProcessLog(dbBopFsDs.getApptype(), dbBopFsDs.getCurrentfile(), dbBopFsDs.getId(), dbBopFsDs.getBuscode(),
-					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "修改", "修改");
+
+			// 数据处理记录表保存
+			commonService.saveBiDataProcessLog(dbBopFsDs.getApptype(), dbBopFsDs.getCurrentfile(), dbBopFsDs.getId(),
+					dbBopFsDs.getBuscode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_EDIT, "修改", "修改");
 
 			rootdao.saveOrUpdate(dbBopFsDs);
 		} else if (BopFsDsOperation.OP_S_DEL.equals(type)) {
@@ -475,8 +481,8 @@ public class BopFsDsService {
 			/**
 			 * 校验当前数据是否已经被其他用户更新
 			 */
-			if(!StringUtils.equals(bopFsDs.getRecStatus(), dbBopFsDs.getRecStatus())){
-				ExceptionUtil.throwCommonException("该记录["+bopFsDs.getRptno()+"]已经被其他用户修改");
+			if (!StringUtils.equals(bopFsDs.getRecStatus(), dbBopFsDs.getRecStatus())) {
+				ExceptionUtil.throwCommonException("该记录[" + bopFsDs.getRptno() + "]已经被其他用户修改");
 			}
 
 			dbBopFsDs.setLstUpdTlr(gi.getTlrno());
@@ -488,24 +494,26 @@ public class BopFsDsService {
 			dbBopFsDs.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
 			dbBopFsDs.setWorkDate(DateUtil.dateToNumber(gi.getTxdate()));
 
-			//数据处理记录表保存
-			commonService.saveBiDataProcessLog(dbBopFsDs.getApptype(), dbBopFsDs.getCurrentfile(), dbBopFsDs.getId(), dbBopFsDs.getBuscode(),
-					TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_DEL, "删除", dbBopFsDs.getActiondesc());
+			// 数据处理记录表保存
+			commonService.saveBiDataProcessLog(dbBopFsDs.getApptype(), dbBopFsDs.getCurrentfile(), dbBopFsDs.getId(),
+					dbBopFsDs.getBuscode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_DEL, "删除",
+					dbBopFsDs.getActiondesc());
 
 			rootdao.saveOrUpdate(dbBopFsDs);
 		}
 	}
-	
+
 	/**
 	 * 审核方法
+	 * 
 	 * @param approveStatusChoose
 	 * @param approveResultChoose
 	 * @param ids
 	 * @param opSignedAudit
 	 * @throws CommonException
 	 */
-	public void auditBopFsDs(String approveStatusChoose,
-			String approveResultChoose, List<String> ids, String opSignedAudit) throws CommonException {
+	public void auditBopFsDs(String approveStatusChoose, String approveResultChoose, List<String> ids,
+			String opSignedAudit) throws CommonException {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		ReportCommonService commonService = ReportCommonService.getInstance();
@@ -528,14 +536,17 @@ public class BopFsDsService {
 			bopFsDs.setWorkDate(DateUtil.dateToNumber(gi.getTxdate()));
 			rootdao.saveOrUpdate(bopFsDs);
 
-			if(bopFsDs.getActiontype().equals(TopReportConstants.REPORT_ACTIONTYPE_D) && bopFsDs.getSubSuccess().equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_YES)){
-				//数据处理记录表保存
-				commonService.saveBiDataProcessLog(bopFsDs.getApptype(), bopFsDs.getCurrentfile(), bopFsDs.getId(), bopFsDs.getBuscode(),
-						TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, approveStatusChooseName, bopFsDs.getActiondesc());
+			if (bopFsDs.getActiontype().equals(TopReportConstants.REPORT_ACTIONTYPE_D)
+					&& bopFsDs.getSubSuccess().equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_YES)) {
+				// 数据处理记录表保存
+				commonService.saveBiDataProcessLog(bopFsDs.getApptype(), bopFsDs.getCurrentfile(), bopFsDs.getId(),
+						bopFsDs.getBuscode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT,
+						approveStatusChooseName, bopFsDs.getActiondesc());
 			} else {
-				//数据处理记录表保存
-				commonService.saveBiDataProcessLog(bopFsDs.getApptype(), bopFsDs.getCurrentfile(), bopFsDs.getId(), bopFsDs.getBuscode(),
-						TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT, approveStatusChooseName, approveResultChoose);
+				// 数据处理记录表保存
+				commonService.saveBiDataProcessLog(bopFsDs.getApptype(), bopFsDs.getCurrentfile(), bopFsDs.getId(),
+						bopFsDs.getBuscode(), TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT,
+						approveStatusChooseName, approveResultChoose);
 			}
 		}
 	}

@@ -7,14 +7,6 @@
  */
 package com.huateng.ebank.business.parammng.operation;
 
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
-import resource.bean.pub.TlrInfo;
-import resource.dao.pub.TlrInfoDAO;
-import resource.dao.pub.TlrRoleRelDAO;
-
 import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.SystemConstant;
@@ -26,6 +18,13 @@ import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.util.ExceptionUtil;
+import resource.bean.pub.TlrInfo;
+import resource.dao.pub.TlrInfoDAO;
+import resource.dao.pub.TlrRoleRelDAO;
+
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author wuguangjie 审批权限设置 TODO To change the template for this generated type

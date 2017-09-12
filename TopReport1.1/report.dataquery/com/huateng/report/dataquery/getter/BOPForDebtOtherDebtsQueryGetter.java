@@ -18,9 +18,7 @@ import com.huateng.exception.AppException;
 import com.huateng.report.constants.TopReportConstants;
 
 @SuppressWarnings("unchecked")
-public class BOPForDebtOtherDebtsQueryGetter extends BaseGetter{
-
-
+public class BOPForDebtOtherDebtsQueryGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
@@ -29,20 +27,16 @@ public class BOPForDebtOtherDebtsQueryGetter extends BaseGetter{
 
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外债-其他外债补录信息查询-签约信息查询");
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
-			result.getPage().setTotalPage(
-					queryResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -88,7 +82,8 @@ public class BOPForDebtOtherDebtsQueryGetter extends BaseGetter{
 		// 只查询文件类型 为 其他外债
 		hql.append(" AND bds.currentfile = '" + TopReportConstants.REPORT_FILE_TYPE_CFA_AQ + "'");
 
-//		hql.append(" ORDER BY bds.workDate,bds.approveStatus,bds.actiontype DESC ");
+		// hql.append(" ORDER BY bds.workDate,bds.approveStatus,bds.actiontype
+		// DESC ");
 		hql.append(" ORDER BY bds.lstUpdTm DESC ");
 
 		// 分页大小

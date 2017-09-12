@@ -23,10 +23,9 @@ import com.huateng.report.bop.audit.operation.BopBhnDsAuditOperation;
 public class BopBhnDsReportAuditUpdate extends BaseUpdate {
 
 	public static final String DATA_SET_REPORT_ID = "BopBhnDsReportAudit";
-	
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
 		// TODO Auto-generated method stub
 		try {
@@ -34,7 +33,7 @@ public class BopBhnDsReportAuditUpdate extends BaseUpdate {
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATA_SET_REPORT_ID);
 			OperationContext context = new OperationContext();
 			List<MtsBopBhnDs> list = new ArrayList<MtsBopBhnDs>();
-			while(updateResultBean.hasNext()) {
+			while (updateResultBean.hasNext()) {
 				Map map = updateResultBean.next();
 				MtsBopBhnDs ds = new MtsBopBhnDs();
 				mapToObject(ds, map);
@@ -42,7 +41,7 @@ public class BopBhnDsReportAuditUpdate extends BaseUpdate {
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
 			String approveResultChoose = updateResultBean.getParameter("approveResultChoose");
-			context.setAttribute(BopBhnDsAuditOperation.REPORT_AUDIT_LIST_IN_PARAM,list);
+			context.setAttribute(BopBhnDsAuditOperation.REPORT_AUDIT_LIST_IN_PARAM, list);
 			context.setAttribute(BopBhnDsAuditOperation.AUDIT_STATUS, approveStatusChoose);
 			context.setAttribute(BopBhnDsAuditOperation.AUDIT_RESULT, approveResultChoose);
 			context.setAttribute(BopBhnDsAuditOperation.CMD, BopBhnDsAuditOperation.CMD_REPORT_AUDIT);
@@ -51,7 +50,7 @@ public class BopBhnDsReportAuditUpdate extends BaseUpdate {
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
-			throw new AppException(Module.SYSTEM_MODULE,Rescode.DEFAULT_RESCODE,e.getMessage(),e);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
 	}
 

@@ -1,5 +1,6 @@
 package com.huateng.report.imports.common;
 
+
 public interface Constants {
 	String YES = "1";// 是
 	String NO = "0"; // 否
@@ -24,9 +25,9 @@ public interface Constants {
 
 	String MOD_FLG_FINISH = "1";
 	String MOD_FLG_IMPORT = "2";
-	
+
 	String PROGRESS = "IMP_PROGRESS";
-	
+
 	String STR_SQL = "strSql";
 
 }

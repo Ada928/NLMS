@@ -1,18 +1,5 @@
 package com.huateng.ebank.business.management.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import resource.bean.pub.RoleInfo;
-import resource.bean.pub.TlrInfo;
-import resource.bean.pub.TlrRoleRel;
-import resource.dao.pub.BctlDAO;
-import resource.dao.pub.DepartmentInfoDAO;
-import resource.dao.pub.RoleInfoDAO;
-import resource.dao.pub.TlrInfoDAO;
-import resource.dao.pub.TlrRoleRelDAO;
-import resource.dao.pub.TlrWorkloadDAO;
-
 import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.SystemConstant;
@@ -24,6 +11,13 @@ import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.util.DateUtil;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.view.pub.TlrRoleRelationView;
+import resource.bean.pub.RoleInfo;
+import resource.bean.pub.TlrInfo;
+import resource.bean.pub.TlrRoleRel;
+import resource.dao.pub.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Title: com.huateng.ebank.business.management.service.TlrInfoExService.java

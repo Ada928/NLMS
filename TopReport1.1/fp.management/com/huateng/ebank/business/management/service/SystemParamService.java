@@ -1,12 +1,11 @@
 package com.huateng.ebank.business.management.service;
 
-import org.apache.log4j.Logger;
-
 import com.huateng.ebank.business.management.common.DAOUtils;
 import com.huateng.ebank.entity.dao.mng.PfSysParamDAO;
 import com.huateng.ebank.entity.data.mng.PfSysParam;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
+import org.apache.log4j.Logger;
 
 public class SystemParamService {
 	private static final Logger logger = Logger

@@ -69,77 +69,69 @@ function changeValue(){
 </head>
 
 <body onload="initForm()">
-<p><br />
-</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<html:form action="/custlogin.do" target="_top" focus="brCode">
-<table width="774" border="0" align="center" cellpadding="0"
-	cellspacing="0">
-	<tr>
-		<td height="326" background="<%=request.getContextPath()%>/images/index.jpg">
-		<table width="65%" border="0" cellspacing="0" cellpadding="0">
+	<p>
+		<br />
+	</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<html:form action="/custlogin.do" target="_top" focus="brCode">
+		<table width="774" border="0" align="center" cellpadding="0" cellspacing="0">
 			<tr>
-				<td>
-				<p><br />
-				<br />
-				<br />
-				</p>
-				<table width="42%" border="0" align="right" cellpadding="0"
-					cellspacing="2" class="font">
-					<tbody>
-						<tr>
-						   <td width="31%"> 客户类型:&nbsp;&nbsp;</td>
-						   <td><html:select property="brCode" onchange="changeValue();">
-		                        <option value="1">企业客户</option>
-		                        <option value="2">银行客户</option>
-		                      </html:select>
-		                 </td>
-						</tr>
-						<tr>
-						   <td></td>
-						</tr>
-						<tr>
-							<td width="31%"> <font id="desc"> 企业组织机构代码 </font> </td>
-							<td width="69%"><font color="#336600" size="2"><font
-								color="#336600" size="2"><font color="#336600" size="2"><font
-								color="#336600" size="2"> <html:text property="userName"
-								size="20"
-								style="BORDER-RIGHT: #666666 1px solid; BORDER-TOP: #666666 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: #666666 1px solid; WIDTH: 88px; BORDER-BOTTOM: #666666 1px solid; BACKGROUND-COLOR: #f4faff"
-								 /> </font></font></font></font></td>
-						</tr>
-						<tr>
-						   <td></td>
-						</tr>
-						<tr>
-							<td height="32" valign="bottom" >&nbsp;</td>
-							<td ><html:link href="#" onclick="submitForm()" ><img src="<%=request.getContextPath()%>/images/icon01.jpg"
-								width="45" height="18" border="0" /></html:link>
-
-							</td>
-						</tr>
-
+				<td height="326" background="<%=request.getContextPath()%>/images/index.jpg">
+					<table width="65%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
 							<td>
-							   <div align="center"></div>
-							</td>
-							<td>
-							<font id="mistake" color="#FF0000">
-							     <%= (session.getAttribute("RET_ERRMSG") == null)?" ":((String)session.getAttribute("RET_ERRMSG"))%>
-							</font>
+								<p>
+									<br /> <br /> <br />
+								</p>
+								<table width="42%" border="0" align="right" cellpadding="0" cellspacing="2" class="font">
+									<tbody>
+										<tr>
+											<td width="31%">客户类型:&nbsp;&nbsp;</td>
+											<td><html:select property="brCode" onchange="changeValue();">
+													<option value="1">企业客户</option>
+													<option value="2">银行客户</option>
+												</html:select></td>
+										</tr>
+										<tr>
+											<td></td>
+										</tr>
+										<tr>
+											<td width="31%"><font id="desc"> 企业组织机构代码 </font></td>
+											<td width="69%"><font color="#336600" size="2"><font color="#336600" size="2"><font
+														color="#336600" size="2"><font color="#336600" size="2"> <html:text property="userName"
+																	size="20"
+																	style="BORDER-RIGHT: #666666 1px solid; BORDER-TOP: #666666 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: #666666 1px solid; WIDTH: 88px; BORDER-BOTTOM: #666666 1px solid; BACKGROUND-COLOR: #f4faff" />
+														</font></font></font></font></td>
+										</tr>
+										<tr>
+											<td></td>
+										</tr>
+										<tr>
+											<td height="32" valign="bottom">&nbsp;</td>
+											<td><html:link href="#" onclick="submitForm()">
+													<img src="<%=request.getContextPath()%>/images/icon01.jpg" width="45" height="18" border="0" />
+												</html:link></td>
+										</tr>
+
+										<tr>
+											<td>
+												<div align="center"></div>
+											</td>
+											<td><font id="mistake" color="#FF0000"> <%= (session.getAttribute("RET_ERRMSG") == null)?" ":((String)session.getAttribute("RET_ERRMSG"))%>
+											</font></td>
+										</tr>
+									</tbody>
+								</table>
 							</td>
 						</tr>
-					</tbody>
-				</table>
+
+					</table>
 				</td>
 			</tr>
 
 		</table>
-		</td>
-	</tr>
-
-</table>
-</html:form>
+	</html:form>
 </body>
 </html:html>

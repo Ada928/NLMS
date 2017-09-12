@@ -1,13 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import resource.bean.pub.Bctl;
-import resource.bean.pub.DataDic;
-
 import com.huateng.common.DataFormat;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
@@ -21,6 +13,13 @@ import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.report.utils.ReportEnum;
+import resource.bean.pub.Bctl;
+import resource.bean.pub.DataDic;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class BranchManageQueryGetter extends BaseGetter {
 

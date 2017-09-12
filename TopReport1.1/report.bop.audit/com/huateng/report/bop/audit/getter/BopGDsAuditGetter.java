@@ -30,25 +30,22 @@ public class BopGDsAuditGetter extends BaseGetter {
 
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "国际收支审核信息查询-涉外收入申报单申报信息查询");
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
-	public PageQueryResult getData() throws CommonException{
+	public PageQueryResult getData() throws CommonException {
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		Map<String, String> map = getCommQueryServletRequest().getParameterMap();
@@ -60,6 +57,7 @@ public class BopGDsAuditGetter extends BaseGetter {
 		String qrepStatus = map.get("qrepStatus");
 		String qfiller2 = map.get("qfiller2");
 		BopAgDsAuditService bopAgDsAuditService = BopAgDsAuditService.getInstance();
-		return bopAgDsAuditService.queryBOPAgAudit(TopReportConstants.REPORT_FILE_TYPE_BOP_G, pageIndex, pageSize, qworkDateStart, qworkDateEnd, qactiontype, qrecStatus, qapproveStatus, qrepStatus, qfiller2);
+		return bopAgDsAuditService.queryBOPAgAudit(TopReportConstants.REPORT_FILE_TYPE_BOP_G, pageIndex, pageSize,
+				qworkDateStart, qworkDateEnd, qactiontype, qrecStatus, qapproveStatus, qrepStatus, qfiller2);
 	}
 }

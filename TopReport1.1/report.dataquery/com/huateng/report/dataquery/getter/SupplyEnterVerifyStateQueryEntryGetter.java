@@ -22,9 +22,8 @@ public class SupplyEnterVerifyStateQueryEntryGetter extends BaseGetter {
 		try {
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
@@ -33,21 +32,19 @@ public class SupplyEnterVerifyStateQueryEntryGetter extends BaseGetter {
 
 			return result;
 
-
-//			ResultMng.fillResultByList(
-//				getCommonQueryBean(),
-//				getCommQueryServletRequest(),
-//				list,
-//				getResult());
-//			result.setContent(list);
-//			result.getPage().setTotalPage(list.size());
-//			result.init();
-//			return result;
-		}catch(AppException appEx){
+			// ResultMng.fillResultByList(
+			// getCommonQueryBean(),
+			// getCommQueryServletRequest(),
+			// list,
+			// getResult());
+			// result.setContent(list);
+			// result.getPage().setTotalPage(list.size());
+			// result.init();
+			// return result;
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -64,14 +61,15 @@ public class SupplyEnterVerifyStateQueryEntryGetter extends BaseGetter {
 		String apptype = getCommQueryServletRequest().getParameter("qappType");
 		String filetype = getCommQueryServletRequest().getParameter("qfileType");
 
-		List<SupplyEnterVerifyStateQueryBean> list = SupplyEntryVerifyStateQueryService.getInstance().pageQueryByHql(workDateStart, workDateEnd, brno, busitype, apptype, filetype);
+		List<SupplyEnterVerifyStateQueryBean> list = SupplyEntryVerifyStateQueryService.getInstance()
+				.pageQueryByHql(workDateStart, workDateEnd, brno, busitype, apptype, filetype);
 		PageQueryResult queryResult = getPageQueryResult(pageSize, pageIndex, list);
 		return queryResult;
 	}
 
 	private PageQueryResult getPageQueryResult(int pageSize, int pageIndex,
 			List<SupplyEnterVerifyStateQueryBean> list) {
-		pageIndex -=  1;
+		pageIndex -= 1;
 		int startRowNum = pageIndex * pageSize;
 		int endRowNum = startRowNum + pageSize > list.size() ? list.size() : startRowNum + pageSize;
 

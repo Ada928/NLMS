@@ -1,7 +1,10 @@
 package com.huateng.ebank.business.remote;
 
-import java.io.IOException;
-import java.util.UUID;
+import com.huateng.ebank.business.common.GlobalInfo;
+import com.huateng.ebank.business.remote.base.RemoteSysMap;
+import com.huateng.ebank.business.remote.base.SessionFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -10,13 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.huateng.ebank.business.common.GlobalInfo;
-import com.huateng.ebank.business.remote.base.RemoteSysMap;
-import com.huateng.ebank.business.remote.base.SessionFactory;
+import java.io.IOException;
+import java.util.UUID;
 
 /**
  * Servlet implementation class PortalMenuServlet

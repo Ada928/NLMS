@@ -58,8 +58,7 @@ import com.huateng.report.imports.service.FileImportService;
 @SuppressWarnings("unchecked")
 public class ImportFile {
 
-	private final static Logger logger = LoggerFactory
-			.getLogger(ImportFile.class);
+	private final static Logger logger = LoggerFactory.getLogger(ImportFile.class);
 
 	private TFileDataInfo curImpFileInfo; // 当前导入文件信息
 
@@ -76,13 +75,12 @@ public class ImportFile {
 	 * @param lcurImpFileInfo当前导入文件信息
 	 * @throws IOException
 	 */
-	public boolean importFile(TFileDataInfo lcurImpFileInfo, String sPath,
-			Constant constant2) throws Exception {
+	public boolean importFile(TFileDataInfo lcurImpFileInfo, String sPath, Constant constant2) throws Exception {
 		constant = constant2;
 		curImpFileInfo = lcurImpFileInfo;
 		constant.id = curImpFileInfo.getGuid();
-		int c1 = FileImportService.getInstance().getMaxSeqNoFromLog(
-				curImpFileInfo.getGuid(), curImpFileInfo.getTradeDate());
+		int c1 = FileImportService.getInstance().getMaxSeqNoFromLog(curImpFileInfo.getGuid(),
+				curImpFileInfo.getTradeDate());
 		constant.sericalNo = c1 + 1;
 		Map logMap = new HashMap();
 		logMap.put("guid", curImpFileInfo.getGuid());
@@ -100,22 +98,17 @@ public class ImportFile {
 		String errorFileName = "";
 		String errorFilePath = "";
 		if (curImpFileInfo.getErrFlg() == 0) {
-			errorFileName = new StringBuffer("[")
-					.append(curImpFileInfo.getFileName()).append("-")
-					.append(curImpFileInfo.getBatchNo()).append("-")
-					.append(constant.sericalNo).append("].txt").toString();
-			errorFilePath = new StringBuffer(sPath).append("error")
-					.append(File.separator).toString();
+			errorFileName = new StringBuffer("[").append(curImpFileInfo.getFileName()).append("-")
+					.append(curImpFileInfo.getBatchNo()).append("-").append(constant.sericalNo).append("].txt")
+					.toString();
+			errorFilePath = new StringBuffer(sPath).append("error").append(File.separator).toString();
 		} else {
 			String tmpFileName = curImpFileInfo.getFileName();
-			tmpFileName = tmpFileName.substring(0,
-					tmpFileName.lastIndexOf("-") + 1);
-			errorFileName = new StringBuffer(tmpFileName)
-					.append(constant.sericalNo).append("].txt").toString();
+			tmpFileName = tmpFileName.substring(0, tmpFileName.lastIndexOf("-") + 1);
+			errorFileName = new StringBuffer(tmpFileName).append(constant.sericalNo).append("].txt").toString();
 			errorFilePath = sPath;
 		}
-		ReadWriteFile readWriteFile = new ReadWriteFile(errorFilePath,
-				errorFileName);
+		ReadWriteFile readWriteFile = new ReadWriteFile(errorFilePath, errorFileName);
 		TOutValue osMessage = new TOutValue(); // 系统运行信息
 		// 初始化内部变量
 		curImpFileInfo = lcurImpFileInfo;
@@ -124,11 +117,9 @@ public class ImportFile {
 		TOutValue existCount = new TOutValue();
 
 		StringBuffer strLog = new StringBuffer();
-		strLog.append("表名").append(curImpFileInfo.getTableName())
-				.append(",路径:").append(sPath);
+		strLog.append("表名").append(curImpFileInfo.getTableName()).append(",路径:").append(sPath);
 		logger.debug(strLog.toString());
-		if (!FileImportService.getInstance().isTableExist(
-				curImpFileInfo.getTableName())) {
+		if (!FileImportService.getInstance().isTableExist(curImpFileInfo.getTableName())) {
 			logger.debug("数据库中目的表不存在!");
 			constant.errorMessage = "数据库中目的表不存在";
 			logMap.put("importStatus", ImportFileVar.IMPORT_STATUS_FALSE);
@@ -150,14 +141,11 @@ public class ImportFile {
 		}
 
 		// 读取Excel文件
-		if (Constants.FILEDATA_FORMATTYPE_EXCEL.equals(curImpFileInfo
-				.getFormatType())) {
+		if (Constants.FILEDATA_FORMATTYPE_EXCEL.equals(curImpFileInfo.getFormatType())) {
 			ExcelOp excelOp = new ExcelOp();
-			if (!excelOp.readFileContent(curImpFileInfo, sPath, sPath
-					+ curImpFileInfo.getFileName(), constant)) {
+			if (!excelOp.readFileContent(curImpFileInfo, sPath, sPath + curImpFileInfo.getFileName(), constant)) {
 				strLog.delete(0, strLog.length());
-				strLog.append("读取Excel文件:")
-						.append(curImpFileInfo.getFileName()).append("内容出错");
+				strLog.append("读取Excel文件:").append(curImpFileInfo.getFileName()).append("内容出错");
 				logger.debug(strLog.toString());
 				constant.errorMessage = strLog.toString();
 				logMap.put("importStatus", ImportFileVar.IMPORT_STATUS_FALSE);
@@ -171,14 +159,11 @@ public class ImportFile {
 			constant.sumRow = impFileContentList.size();
 
 			// 读取DBF文件
-		} else if (Constants.FILEDATA_FORMATTYPE_DBF.equals(curImpFileInfo
-				.getFormatType())) {
+		} else if (Constants.FILEDATA_FORMATTYPE_DBF.equals(curImpFileInfo.getFormatType())) {
 			DbfOp dbfOp = new DbfOp();
-			if (!dbfOp.readFileContent(sPath + curImpFileInfo.getFileName(),
-					constant)) {
+			if (!dbfOp.readFileContent(sPath + curImpFileInfo.getFileName(), constant)) {
 				strLog.delete(0, strLog.length());
-				strLog.append("读取DBF文件:").append(curImpFileInfo.getFileName())
-						.append("内容出错");
+				strLog.append("读取DBF文件:").append(curImpFileInfo.getFileName()).append("内容出错");
 				constant.errorMessage = strLog.toString();
 				logMap.put("importStatus", ImportFileVar.IMPORT_STATUS_FALSE);
 				logMap.put("errorMessage", strLog.toString());
@@ -191,13 +176,11 @@ public class ImportFile {
 			constant.sumRow = impFileContentList.size();
 
 			// 读取XML文件
-		} else if (Constants.FILEDATA_FORMATTYPE_XML.equals(curImpFileInfo
-				.getFormatType())) {
+		} else if (Constants.FILEDATA_FORMATTYPE_XML.equals(curImpFileInfo.getFormatType())) {
 			XmlOp xmlOp = new XmlOp();
 			if (!xmlOp.init(curImpFileInfo, sPath) || !xmlOp.readXml()) {
 				strLog.delete(0, strLog.length());
-				strLog.append("读取XML文件:").append(curImpFileInfo.getFileName())
-						.append("内容出错");
+				strLog.append("读取XML文件:").append(curImpFileInfo.getFileName()).append("内容出错");
 				constant.errorMessage = strLog.toString();
 				logMap.put("importStatus", ImportFileVar.IMPORT_STATUS_FALSE);
 				logMap.put("errorMessage", strLog.toString());
@@ -212,19 +195,15 @@ public class ImportFile {
 			// 读取文本文件
 		} else {
 			try {
-				curImpFileInfo.fileContentList = curImpFileInfo
-						.readFileContent(curImpFileInfo.getStartRow(), sPath
-								+ curImpFileInfo.getFileName(),
-								curImpFileInfo.getListSeparator());
+				curImpFileInfo.fileContentList = curImpFileInfo.readFileContent(curImpFileInfo.getStartRow(),
+						sPath + curImpFileInfo.getFileName(), curImpFileInfo.getListSeparator());
 
-				if ("|".equals(curImpFileInfo.getListSeparator())
-						|| ",".equals(curImpFileInfo.getListSeparator())) {
+				if ("|".equals(curImpFileInfo.getListSeparator()) || ",".equals(curImpFileInfo.getListSeparator())) {
 					curImpFileInfo.setListSeparator("\\|");
 				}
 			} catch (Exception e) {
 				strLog.delete(0, strLog.length());
-				strLog.append("读取文本文件:").append(curImpFileInfo.getFileName())
-						.append("内容出错");
+				strLog.append("读取文本文件:").append(curImpFileInfo.getFileName()).append("内容出错");
 				constant.errorMessage = strLog.toString();
 				logMap.put("importStatus", ImportFileVar.IMPORT_STATUS_FALSE);
 				logMap.put("errorMessage", strLog.toString());
@@ -242,8 +221,7 @@ public class ImportFile {
 
 		int N = 10000;
 		for (int i = constant.startRow; i < constant.sumRow; i++) {
-			constant.progress = (int) (100 * (float) (i + 1) / (float) constant.sumRow)
-					+ "%";
+			constant.progress = (int) (100 * (float) (i + 1) / (float) constant.sumRow) + "%";
 			Map logDtlMap = new HashMap();
 			logDtlMap.put("guid", curImpFileInfo.getGuid());
 			logDtlMap.put("fileName", curImpFileInfo.getFileName());// 添加文件名称
@@ -279,8 +257,7 @@ public class ImportFile {
 			// 定义临时数组变量存储个字段值
 			String tmpArr[] = null;
 			// TAB键分隔
-			if (ImportFileVar.FILEDATA_FORMATTYPE_TAB.equals(curImpFileInfo
-					.getSplitType())) {
+			if (ImportFileVar.FILEDATA_FORMATTYPE_TAB.equals(curImpFileInfo.getSplitType())) {
 				tmpArr = sLine.split("\t", -1);// -1
 												// 是为了防止行数据后几个项目为空时，用split方法无法取得数据。
 				for (int j = 0; j < tmpArr.length; j++) {
@@ -288,8 +265,7 @@ public class ImportFile {
 				}
 			}
 			// 固定长度分隔
-			else if (ImportFileVar.FILEDATA_FORMATTYPE_FIXED
-					.equals(curImpFileInfo.getSplitType())) {
+			else if (ImportFileVar.FILEDATA_FORMATTYPE_FIXED.equals(curImpFileInfo.getSplitType())) {
 				curImpFileInfo.getFRowValue().add(sLine);
 			}
 			// 指定字符分隔
@@ -308,8 +284,7 @@ public class ImportFile {
 			int liRet = this.CheckFilter(i, existCount, osMessage);
 			if (liRet == -1) { // 错误
 				strLog.delete(0, strLog.length());
-				strLog.append("行号=[").append(i).append("] 过滤:")
-						.append(osMessage.outvalue);
+				strLog.append("行号=[").append(i).append("] 过滤:").append(osMessage.outvalue);
 				logger.error(strLog.toString());
 				logDtlMap.put("endTime", FileImportUtil.getCurTime());
 				logDtlMap.put("errFileName", curImpFileInfo.getFileName());
@@ -324,8 +299,7 @@ public class ImportFile {
 				continue;
 			} else if (liRet == 0) { // 过滤
 				strLog.delete(0, strLog.length());
-				strLog.append("行号=[").append(i).append("] ")
-						.append(osMessage.outvalue);
+				strLog.append("行号=[").append(i).append("] ").append(osMessage.outvalue);
 				logger.debug(strLog.toString());
 				constant.filterRow++;
 				continue;
@@ -335,8 +309,7 @@ public class ImportFile {
 			liRet = this.checkKeyFlag(i, osMessage);
 			if (liRet == -1) { // 错误
 				strLog.delete(0, strLog.length());
-				strLog.append("行号=[").append(i).append("] 主键:")
-						.append(osMessage.outvalue);
+				strLog.append("行号=[").append(i).append("] 主键:").append(osMessage.outvalue);
 				logger.error(strLog.toString());
 				logDtlMap.put("endTime", FileImportUtil.getCurTime());
 				logDtlMap.put("errFileName", curImpFileInfo.getFileName());
@@ -351,8 +324,7 @@ public class ImportFile {
 				continue;
 			} else if (liRet == 0) { // 过滤
 				strLog.delete(0, strLog.length());
-				strLog.append("行号=[").append(i).append("] ")
-						.append(osMessage.outvalue);
+				strLog.append("行号=[").append(i).append("] ").append(osMessage.outvalue);
 				logger.debug(strLog.toString());
 				constant.filterRow++;
 				continue;
@@ -361,8 +333,7 @@ public class ImportFile {
 			// 计算入库字段值
 			if (!CalcUpdateFieldsValue(i, osMessage)) {
 				strLog.delete(0, strLog.length());
-				strLog.append("行号=[").append(i).append("] 计算字段值:")
-						.append(osMessage.outvalue);
+				strLog.append("行号=[").append(i).append("] 计算字段值:").append(osMessage.outvalue);
 				logger.error(strLog.toString());
 				logDtlMap.put("endTime", FileImportUtil.getCurTime());
 				logDtlMap.put("errFileName", curImpFileInfo.getFileName());
@@ -377,12 +348,9 @@ public class ImportFile {
 				continue;
 			}
 			// 导入一行数据
-			this.importRowData(osMessage, i, logDtlMap, readWriteFile,
-					errorFileName, impFileContentList, sLine);
+			this.importRowData(osMessage, i, logDtlMap, readWriteFile, errorFileName, impFileContentList, sLine);
 
-
-
-			if(i>0 && i%N==0) {
+			if (i > 0 && i % N == 0) {
 				// ======================批处理开始====================================================//
 				boolean batchFlag = excuteBatchSql();
 				Iterator iterator = sqlList.iterator();
@@ -399,12 +367,11 @@ public class ImportFile {
 					while (iterator.hasNext()) {
 						SqlInfo sqlInfo = (SqlInfo) iterator.next();
 						Map logDtlMap2 = sqlInfo.getLogDtlMap();
-						int tmpFlg = FileImportService.getInstance().updateOne(
-								(String) sqlInfo.getParamMap().get(Constants.STR_SQL));
+						int tmpFlg = FileImportService.getInstance()
+								.updateOne((String) sqlInfo.getParamMap().get(Constants.STR_SQL));
 						if (tmpFlg == 0) {
 							strLog.delete(0, strLog.length());
-							strLog = new StringBuffer("第" + sqlInfo.getRowNumber()
-									+ "行执行入库sql出错");
+							strLog = new StringBuffer("第" + sqlInfo.getRowNumber() + "行执行入库sql出错");
 							logger.error("执行入库sql出错");
 							logDtlMap2.put("endTime", FileImportUtil.getCurTime());
 							logDtlMap2.put("errFileName", curImpFileInfo.getFileName());
@@ -413,13 +380,11 @@ public class ImportFile {
 							logDtlMap2.put("errFileName", errorFileName);
 							saveDtlLog(logDtlMap2);
 							readWriteFile.creatTxtFile();
-							readWriteFile.writeTxtFile((String) impFileContentList
-									.get(tmpNum));
+							readWriteFile.writeTxtFile((String) impFileContentList.get(tmpNum));
 							constant.errorNumber++;
 						} else if (tmpFlg == -1) {
 							strLog.delete(0, strLog.length());
-							strLog = new StringBuffer("第" + sqlInfo.getRowNumber()
-									+ "行执行入库sql出错");
+							strLog = new StringBuffer("第" + sqlInfo.getRowNumber() + "行执行入库sql出错");
 							logger.error("执行入库sql出错");
 							logDtlMap2.put("endTime", FileImportUtil.getCurTime());
 							logDtlMap2.put("errFileName", curImpFileInfo.getFileName());
@@ -428,8 +393,7 @@ public class ImportFile {
 							logDtlMap2.put("errFileName", errorFileName);
 							saveDtlLog(logDtlMap2);
 							readWriteFile.creatTxtFile();
-							readWriteFile.writeTxtFile((String) impFileContentList
-									.get(tmpNum));
+							readWriteFile.writeTxtFile((String) impFileContentList.get(tmpNum));
 							constant.errorNumber++;
 						} else {
 							logDtlMap2.put("endTime", FileImportUtil.getCurTime());
@@ -443,7 +407,7 @@ public class ImportFile {
 				sqlList.clear();
 			}
 		}
-		if (sqlList.size()>0) {
+		if (sqlList.size() > 0) {
 			// ======================批处理开始====================================================//
 			boolean batchFlag = excuteBatchSql();
 			Iterator iterator = sqlList.iterator();
@@ -460,12 +424,11 @@ public class ImportFile {
 				while (iterator.hasNext()) {
 					SqlInfo sqlInfo = (SqlInfo) iterator.next();
 					Map logDtlMap2 = sqlInfo.getLogDtlMap();
-					int tmpFlg = FileImportService.getInstance().updateOne(
-							(String) sqlInfo.getParamMap().get(Constants.STR_SQL));
+					int tmpFlg = FileImportService.getInstance()
+							.updateOne((String) sqlInfo.getParamMap().get(Constants.STR_SQL));
 					if (tmpFlg == 0) {
 						strLog.delete(0, strLog.length());
-						strLog = new StringBuffer("第" + sqlInfo.getRowNumber()
-								+ "行执行入库sql出错");
+						strLog = new StringBuffer("第" + sqlInfo.getRowNumber() + "行执行入库sql出错");
 						logger.error("执行入库sql出错");
 						logDtlMap2.put("endTime", FileImportUtil.getCurTime());
 						logDtlMap2.put("errFileName", curImpFileInfo.getFileName());
@@ -474,13 +437,11 @@ public class ImportFile {
 						logDtlMap2.put("errFileName", errorFileName);
 						saveDtlLog(logDtlMap2);
 						readWriteFile.creatTxtFile();
-						readWriteFile.writeTxtFile((String) impFileContentList
-								.get(tmpNum));
+						readWriteFile.writeTxtFile((String) impFileContentList.get(tmpNum));
 						constant.errorNumber++;
 					} else if (tmpFlg == -1) {
 						strLog.delete(0, strLog.length());
-						strLog = new StringBuffer("第" + sqlInfo.getRowNumber()
-								+ "行执行入库sql出错");
+						strLog = new StringBuffer("第" + sqlInfo.getRowNumber() + "行执行入库sql出错");
 						logger.error("执行入库sql出错");
 						logDtlMap2.put("endTime", FileImportUtil.getCurTime());
 						logDtlMap2.put("errFileName", curImpFileInfo.getFileName());
@@ -489,8 +450,7 @@ public class ImportFile {
 						logDtlMap2.put("errFileName", errorFileName);
 						saveDtlLog(logDtlMap2);
 						readWriteFile.creatTxtFile();
-						readWriteFile.writeTxtFile((String) impFileContentList
-								.get(tmpNum));
+						readWriteFile.writeTxtFile((String) impFileContentList.get(tmpNum));
 						constant.errorNumber++;
 					} else {
 						logDtlMap2.put("endTime", FileImportUtil.getCurTime());
@@ -503,64 +463,66 @@ public class ImportFile {
 			// ==========================批处理结束======================================================//
 			sqlList.clear();
 		}
-//		// ======================批处理开始====================================================//
-//		boolean batchFlag = excuteBatchSql();
-//		Iterator iterator = sqlList.iterator();
-//		if (batchFlag) {
-//			String endTime = FileImportUtil.getCurTime();
-//			while (iterator.hasNext()) {
-//				SqlInfo sqlInfo = (SqlInfo) iterator.next();
-//				Map logDtlMap = sqlInfo.getLogDtlMap();
-//				logDtlMap.put("endTime", endTime);
-//				// saveDtlLog(logDtlMap);
-//			}
-//		} else {
-//			int tmpNum = 0;
-//			while (iterator.hasNext()) {
-//				SqlInfo sqlInfo = (SqlInfo) iterator.next();
-//				Map logDtlMap = sqlInfo.getLogDtlMap();
-//				int tmpFlg = FileImportService.getInstance().updateOne(
-//						(String) sqlInfo.getParamMap().get(Constants.STR_SQL));
-//				if (tmpFlg == 0) {
-//					strLog.delete(0, strLog.length());
-//					strLog = new StringBuffer("第" + sqlInfo.getRowNumber()
-//							+ "行执行入库sql出错");
-//					logger.error("执行入库sql出错");
-//					logDtlMap.put("endTime", FileImportUtil.getCurTime());
-//					logDtlMap.put("errFileName", curImpFileInfo.getFileName());
-//					logDtlMap.put("errorMessage", "执行入库sql出错");
-//					logDtlMap.put("posNo", "" + sqlInfo.getRowNumber());
-//					logDtlMap.put("errFileName", errorFileName);
-//					saveDtlLog(logDtlMap);
-//					readWriteFile.creatTxtFile();
-//					readWriteFile.writeTxtFile((String) impFileContentList
-//							.get(tmpNum));
-//					constant.errorNumber++;
-//				} else if (tmpFlg == -1) {
-//					strLog.delete(0, strLog.length());
-//					strLog = new StringBuffer("第" + sqlInfo.getRowNumber()
-//							+ "行执行入库sql出错");
-//					logger.error("执行入库sql出错");
-//					logDtlMap.put("endTime", FileImportUtil.getCurTime());
-//					logDtlMap.put("errFileName", curImpFileInfo.getFileName());
-//					logDtlMap.put("errorMessage", "执行入库sql出错");
-//					logDtlMap.put("posNo", "" + sqlInfo.getRowNumber());
-//					logDtlMap.put("errFileName", errorFileName);
-//					saveDtlLog(logDtlMap);
-//					readWriteFile.creatTxtFile();
-//					readWriteFile.writeTxtFile((String) impFileContentList
-//							.get(tmpNum));
-//					constant.errorNumber++;
-//				} else {
-//					logDtlMap.put("endTime", FileImportUtil.getCurTime());
-//					// saveDtlLog(logDtlMap);
-//					constant.rightRow++;
-//				}
-//				tmpNum++;
-//			}
-//		}
-//		// ==========================批处理结束======================================================//
-//		sqlList.clear();
+		// //
+		// ======================批处理开始====================================================//
+		// boolean batchFlag = excuteBatchSql();
+		// Iterator iterator = sqlList.iterator();
+		// if (batchFlag) {
+		// String endTime = FileImportUtil.getCurTime();
+		// while (iterator.hasNext()) {
+		// SqlInfo sqlInfo = (SqlInfo) iterator.next();
+		// Map logDtlMap = sqlInfo.getLogDtlMap();
+		// logDtlMap.put("endTime", endTime);
+		// // saveDtlLog(logDtlMap);
+		// }
+		// } else {
+		// int tmpNum = 0;
+		// while (iterator.hasNext()) {
+		// SqlInfo sqlInfo = (SqlInfo) iterator.next();
+		// Map logDtlMap = sqlInfo.getLogDtlMap();
+		// int tmpFlg = FileImportService.getInstance().updateOne(
+		// (String) sqlInfo.getParamMap().get(Constants.STR_SQL));
+		// if (tmpFlg == 0) {
+		// strLog.delete(0, strLog.length());
+		// strLog = new StringBuffer("第" + sqlInfo.getRowNumber()
+		// + "行执行入库sql出错");
+		// logger.error("执行入库sql出错");
+		// logDtlMap.put("endTime", FileImportUtil.getCurTime());
+		// logDtlMap.put("errFileName", curImpFileInfo.getFileName());
+		// logDtlMap.put("errorMessage", "执行入库sql出错");
+		// logDtlMap.put("posNo", "" + sqlInfo.getRowNumber());
+		// logDtlMap.put("errFileName", errorFileName);
+		// saveDtlLog(logDtlMap);
+		// readWriteFile.creatTxtFile();
+		// readWriteFile.writeTxtFile((String) impFileContentList
+		// .get(tmpNum));
+		// constant.errorNumber++;
+		// } else if (tmpFlg == -1) {
+		// strLog.delete(0, strLog.length());
+		// strLog = new StringBuffer("第" + sqlInfo.getRowNumber()
+		// + "行执行入库sql出错");
+		// logger.error("执行入库sql出错");
+		// logDtlMap.put("endTime", FileImportUtil.getCurTime());
+		// logDtlMap.put("errFileName", curImpFileInfo.getFileName());
+		// logDtlMap.put("errorMessage", "执行入库sql出错");
+		// logDtlMap.put("posNo", "" + sqlInfo.getRowNumber());
+		// logDtlMap.put("errFileName", errorFileName);
+		// saveDtlLog(logDtlMap);
+		// readWriteFile.creatTxtFile();
+		// readWriteFile.writeTxtFile((String) impFileContentList
+		// .get(tmpNum));
+		// constant.errorNumber++;
+		// } else {
+		// logDtlMap.put("endTime", FileImportUtil.getCurTime());
+		// // saveDtlLog(logDtlMap);
+		// constant.rightRow++;
+		// }
+		// tmpNum++;
+		// }
+		// }
+		// //
+		// ==========================批处理结束======================================================//
+		// sqlList.clear();
 		logMap.put("errorNumber", constant.errorNumber);
 		// 有错误时,记录下产生错误文件的路径和名称
 		if (constant.errorNumber > 0) {
@@ -595,7 +557,7 @@ public class ImportFile {
 			conn = cp.getConnection();
 			conn.setAutoCommit(false);
 			st = conn.createStatement();
-			
+
 			for (SqlInfo sql : sqlList) {
 				exsql = (String) sql.getParamMap().get("strSql");
 				st.addBatch(exsql);
@@ -604,12 +566,12 @@ public class ImportFile {
 			conn.commit();
 			st.clearBatch();
 		} catch (SQLException e1) {
-			ExceptionUtil.throwCommonException(e1.getMessage()+"exsql=["+exsql+"]");
-			//e1.printStackTrace();
-			if (conn!=null) {
+			ExceptionUtil.throwCommonException(e1.getMessage() + "exsql=[" + exsql + "]");
+			// e1.printStackTrace();
+			if (conn != null) {
 				try {
 					conn.rollback();
-					
+
 				} catch (SQLException e) {
 					logger.error(e.getMessage());
 					ExceptionUtil.throwCommonException(e.getMessage());
@@ -632,30 +594,31 @@ public class ImportFile {
 				ExceptionUtil.throwCommonException(e.getMessage());
 			}
 		}
-//		if (sqlNumber!=rows.length) {
-//			ExceptionUtil.throwCommonException("执行成功行数："+rows.length+",总行数："+sqlNumber);
-//		}
+		// if (sqlNumber!=rows.length) {
+		// ExceptionUtil.throwCommonException("执行成功行数："+rows.length+",总行数："+sqlNumber);
+		// }
 
-//		OperationContext context = new OperationContext();
-//		context.setAttribute(ImportFileOP.CMD, ImportFileOP.DO_EXESQL);
-//
-//		context.setAttribute(ImportFileOP.PARAM, sqlList);
-//		try {
-//			SingleOPCaller.call(ImportFileOP.ID, context);
-//		} catch (Exception e) {
-//			logger.error(e.getMessage());
-//			e.printStackTrace();
-//			return false;
-//		}
-//
-//		Object[] object = (Object[]) context.getAttribute(ImportFileOP.RESULT);
-//		for (int obj : rows) {
-//			if (obj<0) {
-//				StringBuffer strLog = new StringBuffer("执行批处理入库sql出错");
-//				logger.error(strLog.toString());
-//				return false;
-//			}
-//		}
+		// OperationContext context = new OperationContext();
+		// context.setAttribute(ImportFileOP.CMD, ImportFileOP.DO_EXESQL);
+		//
+		// context.setAttribute(ImportFileOP.PARAM, sqlList);
+		// try {
+		// SingleOPCaller.call(ImportFileOP.ID, context);
+		// } catch (Exception e) {
+		// logger.error(e.getMessage());
+		// e.printStackTrace();
+		// return false;
+		// }
+		//
+		// Object[] object = (Object[])
+		// context.getAttribute(ImportFileOP.RESULT);
+		// for (int obj : rows) {
+		// if (obj<0) {
+		// StringBuffer strLog = new StringBuffer("执行批处理入库sql出错");
+		// logger.error(strLog.toString());
+		// return false;
+		// }
+		// }
 		// 正确行数
 		constant.rightRow += sqlNumber;
 		return true;
@@ -686,10 +649,8 @@ public class ImportFile {
 			Map mapParam = new HashMap();
 			mapParam.put("guid", curImpFileInfo.getGuid());
 			// 初始化所有字段列表
-			List<Map> rstList = FileImportService.getInstance().getFieldConfig(
-					curImpFileInfo.getGuid());
-			List rstListTemp = FileImportService.getInstance().getColumnMeta(
-					curImpFileInfo.getTableName());
+			List<Map> rstList = FileImportService.getInstance().getFieldConfig(curImpFileInfo.getGuid());
+			List rstListTemp = FileImportService.getInstance().getColumnMeta(curImpFileInfo.getTableName());
 			for (Object obj : rstList) {
 				BiImportFieldConfig rst = (BiImportFieldConfig) obj;
 				int fieldLenth = 0;
@@ -711,8 +672,7 @@ public class ImportFile {
 				lcFieldSetInfo.updateFlag = rst.getFieldUpdateFlag();
 				lcFieldSetInfo.filterFlag = rst.getFilterFlag();
 				lcFieldSetInfo.FieldLength = fieldLenth;
-				curImpFileInfo.getFFieldList().put(lcFieldSetInfo.FieldName,
-						lcFieldSetInfo);// 放入list时要排序，让filter在前面
+				curImpFileInfo.getFFieldList().put(lcFieldSetInfo.FieldName, lcFieldSetInfo);// 放入list时要排序，让filter在前面
 
 				// 初始化过滤字段列表
 				if (Constants.YES.equals(rst.getFilterFlag())) {
@@ -722,15 +682,12 @@ public class ImportFile {
 					lcFilterData.updateflag = rst.getFieldUpdateFlag();
 					lcFilterData.FieldName = rst.getFieldName();
 					lcFilterData.expression = rst.getFilterFunction();
-					curImpFileInfo.getFFilterList().put(lcFilterData.FieldName,
-							lcFilterData);
+					curImpFileInfo.getFFilterList().put(lcFilterData.FieldName, lcFilterData);
 				}
 
 				// 初始化主键字段列表
-				if (ImportFileVar.DBFIELDDEF_UKFLAG_UNIQUEKEY.equals(rst
-						.getUniqueFlag())) {
-					curImpFileInfo.getFKeyFieldList().put(
-							lcFieldSetInfo.FieldName, lcFieldSetInfo);
+				if (ImportFileVar.DBFIELDDEF_UKFLAG_UNIQUEKEY.equals(rst.getUniqueFlag())) {
+					curImpFileInfo.getFKeyFieldList().put(lcFieldSetInfo.FieldName, lcFieldSetInfo);
 				}
 
 				// // 初始化主键取反字段列表
@@ -818,8 +775,7 @@ public class ImportFile {
 		Enumeration en = curImpFileInfo.getFKeyFieldList().keys();
 		while (en.hasMoreElements()) {
 			String key = (String) en.nextElement();
-			TFieldSetInfo lcFieldSetInfo = (TFieldSetInfo) curImpFileInfo
-					.getFKeyFieldList().get(key);
+			TFieldSetInfo lcFieldSetInfo = (TFieldSetInfo) curImpFileInfo.getFKeyFieldList().get(key);
 			if (lcFieldSetInfo == null) {
 				continue;
 			}
@@ -827,42 +783,29 @@ public class ImportFile {
 			lbFilterFlag = lcFieldSetInfo.filterFlag;
 			lcFieldValueInfo = new TFieldValueInfo();
 			// 计算字段值成功
-			if (this.calcFinalFieldValue(lcFieldSetInfo, lcFieldValueInfo,
-					iiLineNum, osMessage)) {
+			if (this.calcFinalFieldValue(lcFieldSetInfo, lcFieldValueInfo, iiLineNum, osMessage)) {
 				// 主关键字为空，则过滤
-				if ((lcFieldValueInfo.FieldValue == null)
-						|| (lcFieldValueInfo.FieldValue.equals(""))) {
+				if ((lcFieldValueInfo.FieldValue == null) || (lcFieldValueInfo.FieldValue.equals(""))) {
 					StringBuffer strLog = new StringBuffer("文件配置中文件名=[");
-					strLog.append(curImpFileInfo.getFileName())
-							.append("] 表名=[")
-							.append(curImpFileInfo.getTableName())
-							.append("] 字段名=[")
-							.append(lcFieldValueInfo.FieldName)
-							.append("]为主关键字，字段值为空，则过滤 。");
+					strLog.append(curImpFileInfo.getFileName()).append("] 表名=[").append(curImpFileInfo.getTableName())
+							.append("] 字段名=[").append(lcFieldValueInfo.FieldName).append("]为主关键字，字段值为空，则过滤 。");
 					logger.debug(strLog.toString());
 					return 0;
 				}
 				// 主键字段值列表
-				curImpFileInfo.getFKeyFieldsValue().put(
-						lcFieldValueInfo.FieldName, lcFieldValueInfo);
+				curImpFileInfo.getFKeyFieldsValue().put(lcFieldValueInfo.FieldName, lcFieldValueInfo);
 
 				// 入库字段值列表
-				if (!ImportFileVar.DBFIELDDEF_UPDFLG_NOTUPDATE
-						.equals(lbUpdFlag)) {
-					if (!curImpFileInfo.getFUpdateFieldsValue().contains(
-							lcFieldValueInfo)) {
-						curImpFileInfo.getFUpdateFieldsValue().put(
-								lcFieldValueInfo.FieldName, lcFieldValueInfo);
+				if (!ImportFileVar.DBFIELDDEF_UPDFLG_NOTUPDATE.equals(lbUpdFlag)) {
+					if (!curImpFileInfo.getFUpdateFieldsValue().contains(lcFieldValueInfo)) {
+						curImpFileInfo.getFUpdateFieldsValue().put(lcFieldValueInfo.FieldName, lcFieldValueInfo);
 					}
 				}
 
 				// 过滤字段列表
-				if (lbFilterFlag
-						.equals(ImportFileVar.DBFIELDDEF_FILTERFLAG_CHECK)) {
-					if (!curImpFileInfo.getFFilterFieldsValue().contains(
-							lcFieldValueInfo)) {
-						curImpFileInfo.getFFilterFieldsValue().put(
-								lcFieldValueInfo.FieldName, lcFieldValueInfo);
+				if (lbFilterFlag.equals(ImportFileVar.DBFIELDDEF_FILTERFLAG_CHECK)) {
+					if (!curImpFileInfo.getFFilterFieldsValue().contains(lcFieldValueInfo)) {
+						curImpFileInfo.getFFilterFieldsValue().put(lcFieldValueInfo.FieldName, lcFieldValueInfo);
 					}
 				}
 			} else {
@@ -880,8 +823,7 @@ public class ImportFile {
 	 * @param osMessage输出错误信息
 	 * @return 1-->不过滤,导入，0-->过滤，不导入，-1-->错误
 	 */
-	private int CheckFilter(int iiLineNum, TOutValue ExistCount,
-			TOutValue osMessage) {
+	private int CheckFilter(int iiLineNum, TOutValue ExistCount, TOutValue osMessage) {
 		String lsUpdFlag;
 		String lsFieldName;
 		String lsFieldValue;
@@ -897,34 +839,27 @@ public class ImportFile {
 		while (en.hasMoreElements()) {
 			String key = (String) en.nextElement();
 			retflg = false;
-			TFilterData lcFilterValue = (TFilterData) curImpFileInfo
-					.getFFilterList().get(key);
+			TFilterData lcFilterValue = (TFilterData) curImpFileInfo.getFFilterList().get(key);
 			if (lcFilterValue == null) {
 				continue;
 			}
 			lsFieldName = lcFilterValue.FieldName;
 			lsUpdFlag = lcFilterValue.updateflag;
 			if (curImpFileInfo.getFKeyFieldsValue().containsKey(lsFieldName)) {
-				lcFieldValueInfo = (TFieldValueInfo) curImpFileInfo
-						.getFKeyFieldsValue().get(lsFieldName);
+				lcFieldValueInfo = (TFieldValueInfo) curImpFileInfo.getFKeyFieldsValue().get(lsFieldName);
 			} else {
 				if (!curImpFileInfo.getFFieldList().containsKey(lsFieldName)) {
-					StringBuffer strLog = new StringBuffer(
-							"字段配置表中没有过滤字段的配置信息，文件名=[");
-					strLog.append(curImpFileInfo.getFileName())
-							.append("] 表名=[")
-							.append(curImpFileInfo.getTableName())
+					StringBuffer strLog = new StringBuffer("字段配置表中没有过滤字段的配置信息，文件名=[");
+					strLog.append(curImpFileInfo.getFileName()).append("] 表名=[").append(curImpFileInfo.getTableName())
 							.append("] 字段名=[").append(lsFieldName).append("]");
 					logger.debug(strLog.toString());
 					return -1;
 				}
 			}
-			lcFieldSetInfo = (TFieldSetInfo) curImpFileInfo.getFFieldList()
-					.get(lsFieldName);
+			lcFieldSetInfo = (TFieldSetInfo) curImpFileInfo.getFFieldList().get(lsFieldName);
 			lcFieldValueInfo = new TFieldValueInfo();
 			// 计算字段值失败
-			if (!this.calcFinalFieldValue(lcFieldSetInfo, lcFieldValueInfo,
-					iiLineNum, osMessage)) {
+			if (!this.calcFinalFieldValue(lcFieldSetInfo, lcFieldValueInfo, iiLineNum, osMessage)) {
 				return -1;
 			}
 			lsDataType = lcFilterValue.datatype;
@@ -960,28 +895,25 @@ public class ImportFile {
 				osMessage.errorNumber = errorNumber(lcFilterValue.expression);
 				return -1;
 			}
-			retflg = (Boolean) result;//Integer.valueOf(result.toString()).intValue();
+			retflg = (Boolean) result;// Integer.valueOf(result.toString()).intValue();
 			// 不导入
 			if (retflg) {
 				return 0;
 			}
 			// 入库字段值列表
 			if (!ImportFileVar.DBFIELDDEF_UPDFLG_NOTUPDATE.equals(lsUpdFlag)) {
-				if (!curImpFileInfo.getFUpdateFieldsValue().contains(
-						lcFieldValueInfo.FieldName)) {
-					curImpFileInfo.getFUpdateFieldsValue().put(
-							lcFieldValueInfo.FieldName, lcFieldValueInfo);
+				if (!curImpFileInfo.getFUpdateFieldsValue().contains(lcFieldValueInfo.FieldName)) {
+					curImpFileInfo.getFUpdateFieldsValue().put(lcFieldValueInfo.FieldName, lcFieldValueInfo);
 				}
 			}
 		}
 
-//		if (!this.getTableData("count(0)", curImpFileInfo.getTableName(), lsql,
-		if (!this.getTableData("count(*)", curImpFileInfo.getTableName(), lsql,
-				osMessage)) {
+		// if (!this.getTableData("count(0)", curImpFileInfo.getTableName(),
+		// lsql,
+		if (!this.getTableData("count(*)", curImpFileInfo.getTableName(), lsql, osMessage)) {
 			StringBuffer strLog = new StringBuffer("过滤配置中的检查方法=");
-			strLog.append("文件名=[").append(curImpFileInfo.getFileName())
-					.append("] 表名=[").append(curImpFileInfo.getTableName())
-					.append("] 字段名=[").append(lcFieldValueInfo.FieldName)
+			strLog.append("文件名=[").append(curImpFileInfo.getFileName()).append("] 表名=[")
+					.append(curImpFileInfo.getTableName()).append("] 字段名=[").append(lcFieldValueInfo.FieldName)
 					.append("] 错误信息=[").append(osMessage.outvalue).append("]");
 			logger.debug(strLog.toString());
 			return -1;
@@ -1000,10 +932,8 @@ public class ImportFile {
 	 * @throws IOException
 	 * @throws CommonException
 	 */
-	private boolean importRowData(TOutValue osMessage, int rowNumber,
-			Map logDtlMap, ReadWriteFile readWriteFile, String errorFileName,
-			List impFileContentList, String sLine) throws IOException,
-			CommonException {
+	private boolean importRowData(TOutValue osMessage, int rowNumber, Map logDtlMap, ReadWriteFile readWriteFile,
+			String errorFileName, List impFileContentList, String sLine) throws IOException, CommonException {
 		String lsWhereSql;
 		TFieldValueInfo lcFieldValueInfo;
 		String lsMessage = "";
@@ -1037,24 +967,20 @@ public class ImportFile {
 		Enumeration en = curImpFileInfo.getFKeyFieldsValue().keys();
 		while (en.hasMoreElements()) {
 			String key = (String) en.nextElement();
-			lcFieldValueInfo = (TFieldValueInfo) curImpFileInfo
-					.getFKeyFieldsValue().get(key);
+			lcFieldValueInfo = (TFieldValueInfo) curImpFileInfo.getFKeyFieldsValue().get(key);
 			StringBuffer temp = new StringBuffer(lsWhereSql);
-			if(ImportFileVar.DBFIELDDEF_POINTERDATATYPE_DATE
-					.equals(lcFieldValueInfo.DataType)){
+			if (ImportFileVar.DBFIELDDEF_POINTERDATATYPE_DATE.equals(lcFieldValueInfo.DataType)) {
 				String value = ConvertMean.conertSql(lcFieldValueInfo.FieldValue);
-				if(value!=null & !"".equals(value)){//日期不为空时才拼接to_date
+				if (value != null & !"".equals(value)) {// 日期不为空时才拼接to_date
 					temp.append(" and ");
 					temp.append(lcFieldValueInfo.FieldName);
 					temp.append(" = to_date('");
-					temp.append(ConvertMean
-							.conertSql(lcFieldValueInfo.FieldValue));
+					temp.append(ConvertMean.conertSql(lcFieldValueInfo.FieldValue));
 					temp.append("','yyyy-mm-dd')");
 					lsWhereSql = temp.toString();
 				}
-				
-			}else if (ImportFileVar.DBFILTER_DATATYPE_NUM
-					.equals(lcFieldValueInfo.DataType)) {
+
+			} else if (ImportFileVar.DBFILTER_DATATYPE_NUM.equals(lcFieldValueInfo.DataType)) {
 				temp.append(" and ");
 				temp.append(lcFieldValueInfo.FieldName);
 				temp.append(" = ");
@@ -1082,10 +1008,8 @@ public class ImportFile {
 			if (flg == null) {
 				Map tmpParam = new HashMap();
 				tmpParam.put(Constants.STR_SQL, lsSql);
-				SqlInfo sqlInfo = new SqlInfo(rowNumber, lsSql, tmpParam, flag,
-						logDtlMap);
-				StringBuffer strLog = new StringBuffer("第"
-						+ sqlInfo.getRowNumber() + "行执行入库sql出错");
+				SqlInfo sqlInfo = new SqlInfo(rowNumber, lsSql, tmpParam, flag, logDtlMap);
+				StringBuffer strLog = new StringBuffer("第" + sqlInfo.getRowNumber() + "行执行入库sql出错");
 				logger.error("查询主键值时出错,类型不匹配");
 				logDtlMap.put("endTime", FileImportUtil.getCurTime());
 				logDtlMap.put("errFileName", curImpFileInfo.getFileName());
@@ -1104,21 +1028,16 @@ public class ImportFile {
 		}
 
 		if ((curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_UPDATE)
-				|| (curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_ALL && flg
-						.intValue() > 0)
-				|| (curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_ONE && flg
-						.intValue() == 1)
-				|| (curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_ZEROONE && flg
-						.intValue() == 1)) {
+				|| (curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_ALL && flg.intValue() > 0)
+				|| (curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_ONE && flg.intValue() == 1)
+				|| (curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_ZEROONE && flg.intValue() == 1)) {
 			Enumeration len = curImpFileInfo.getFUpdateFieldsValue().keys();
 			curImpFileInfo.setModType("U");
 			while (len.hasMoreElements()) {
 				String key = (String) len.nextElement();
-				lcFieldValueInfo = (TFieldValueInfo) curImpFileInfo
-						.getFUpdateFieldsValue().get(key);
+				lcFieldValueInfo = (TFieldValueInfo) curImpFileInfo.getFUpdateFieldsValue().get(key);
 				// 空值不更新
-				if (lcFieldValueInfo.FieldValue == null
-						|| "".equals(lcFieldValueInfo.FieldValue.trim())) {
+				if (lcFieldValueInfo.FieldValue == null || "".equals(lcFieldValueInfo.FieldValue.trim())) {
 					continue;
 				}
 				// 关键字不更新
@@ -1127,36 +1046,30 @@ public class ImportFile {
 				}
 
 				// 只插入不更新
-				if (ImportFileVar.DBFIELDDEF_UPDFLG_NOTUPDATEIN
-						.equals(lcFieldValueInfo.bUpdateFlag)) {
+				if (ImportFileVar.DBFIELDDEF_UPDFLG_NOTUPDATEIN.equals(lcFieldValueInfo.bUpdateFlag)) {
 					continue;
 				}
 				temp = new StringBuffer(lsSql);
-				if(ImportFileVar.DBFIELDDEF_POINTERDATATYPE_DATE
-						.equals(lcFieldValueInfo.DataType)){
+				if (ImportFileVar.DBFIELDDEF_POINTERDATATYPE_DATE.equals(lcFieldValueInfo.DataType)) {
 					String value = ConvertMean.conertSql(lcFieldValueInfo.FieldValue);
-					if(value!=null & !"".equals(value)){//日期不为空时才拼接to_date
+					if (value != null & !"".equals(value)) {// 日期不为空时才拼接to_date
 						temp.append(lcFieldValueInfo.FieldName);
 						temp.append(" = to_date('");
-						temp.append(ConvertMean
-								.conertSql(lcFieldValueInfo.FieldValue));
+						temp.append(ConvertMean.conertSql(lcFieldValueInfo.FieldValue));
 						temp.append("','yyyy-mm-dd'),");
 						lsSql = temp.toString();
 					}
-					
-				}else if (ImportFileVar.DBFIELDDEF_POINTERDATATYPE_CHAR
-						.equals(lcFieldValueInfo.DataType)) {
+
+				} else if (ImportFileVar.DBFIELDDEF_POINTERDATATYPE_CHAR.equals(lcFieldValueInfo.DataType)) {
 					temp.append(lcFieldValueInfo.FieldName);
 					temp.append(" = '");
-					temp.append(ConvertMean
-							.conertSql(lcFieldValueInfo.FieldValue));
+					temp.append(ConvertMean.conertSql(lcFieldValueInfo.FieldValue));
 					temp.append("',");
 					lsSql = temp.toString();
 				} else {
 					temp.append(lcFieldValueInfo.FieldName);
 					temp.append(" = ");
-					temp.append(ConvertMean
-							.conertSql(lcFieldValueInfo.FieldValue));
+					temp.append(ConvertMean.conertSql(lcFieldValueInfo.FieldValue));
 					temp.append(",");
 					lsSql = temp.toString();
 				}
@@ -1165,74 +1078,69 @@ public class ImportFile {
 				if (lsSql.substring(lsSql.length() - 1).equals(",")) {
 					lsSql = lsSql.substring(0, lsSql.length() - 1);
 				}
-				
-				//added by xuhong 2015-3-10 数据不变时更新CHANGE_FLAG为1，有修改时更新CHANGE_FLAG保持为0；
-//				temp = new StringBuffer("select count(*) from ");
-//				temp.append(curImpFileInfo.getTableName());
-//				temp.append(lsWhereSql);
-//				temp.append(" and ");
-//				lsSql = lsSql.replace("','yyyy-mm-dd')", "@");
-//				lsSql = lsSql.replace(",", " and ");
-//				lsSql = lsSql.replace("@", "','yyyy-mm-dd')");
-//				temp.append(lsSql);
-//				int retFlag = FileImportService.getInstance().selectCount(temp.toString());
-//				int retFlag = 0;
-				
+
+				// added by xuhong 2015-3-10
+				// 数据不变时更新CHANGE_FLAG为1，有修改时更新CHANGE_FLAG保持为0；
+				// temp = new StringBuffer("select count(*) from ");
+				// temp.append(curImpFileInfo.getTableName());
+				// temp.append(lsWhereSql);
+				// temp.append(" and ");
+				// lsSql = lsSql.replace("','yyyy-mm-dd')", "@");
+				// lsSql = lsSql.replace(",", " and ");
+				// lsSql = lsSql.replace("@", "','yyyy-mm-dd')");
+				// temp.append(lsSql);
+				// int retFlag =
+				// FileImportService.getInstance().selectCount(temp.toString());
+				// int retFlag = 0;
+
 				temp = new StringBuffer("update ");
 				temp.append(curImpFileInfo.getTableName());
 				temp.append(" set ");
 				temp.append(lsSql.replace("and", ","));
-//				if(retFlag==1){
-//					temp.append(",CHANGE_FLAG='1'");
-//				}else{
-//					temp.append(",CHANGE_FLAG='0'");
-//				}
+				// if(retFlag==1){
+				// temp.append(",CHANGE_FLAG='1'");
+				// }else{
+				// temp.append(",CHANGE_FLAG='0'");
+				// }
 				temp.append(lsWhereSql);
 				lsSql = temp.toString();
 			}
 			flag = 2;
 		} else if ((curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_INSERT)
-				|| (curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_ZEROONE && flg
-						.intValue() == 0)
-				|| (curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_ZEROADD && flg
-						.intValue() == 0)) {
+				|| (curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_ZEROONE && flg.intValue() == 0)
+				|| (curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_ZEROADD && flg.intValue() == 0)) {
 			Enumeration len = curImpFileInfo.getFUpdateFieldsValue().keys();
 			curImpFileInfo.setModType("I");
 			String lsSqlTemp = "";
 			while (len.hasMoreElements()) {
 				String key = (String) len.nextElement();
-				lcFieldValueInfo = (TFieldValueInfo) curImpFileInfo
-						.getFUpdateFieldsValue().get(key);
+				lcFieldValueInfo = (TFieldValueInfo) curImpFileInfo.getFUpdateFieldsValue().get(key);
 				temp = new StringBuffer(lsSql);
 				temp.append(lcFieldValueInfo.FieldName);
 				temp.append(",");
 				lsSql = temp.toString();
 				temp = new StringBuffer(lsSqlTemp);
-				if(ImportFileVar.DBFIELDDEF_POINTERDATATYPE_DATE
-						.equals(lcFieldValueInfo.DataType)){
+				if (ImportFileVar.DBFIELDDEF_POINTERDATATYPE_DATE.equals(lcFieldValueInfo.DataType)) {
 					String value = ConvertMean.conertSql(lcFieldValueInfo.FieldValue);
-					if(value!=null & !"".equals(value)){//日期不为空时才拼接to_date
+					if (value != null & !"".equals(value)) {// 日期不为空时才拼接to_date
 						temp.append(" to_date('");
-						temp.append(ConvertMean
-								.conertSql(lcFieldValueInfo.FieldValue));
+						temp.append(ConvertMean.conertSql(lcFieldValueInfo.FieldValue));
 						temp.append("','yyyy-mm-dd'),");
 						lsSqlTemp = temp.toString();
-					}else{
+					} else {
 						temp.append("'',");
 						lsSqlTemp = temp.toString();
 					}
-					
-				}else if (ImportFileVar.DBFIELDDEF_POINTERDATATYPE_CHAR
-						.equals(lcFieldValueInfo.DataType)) {
+
+				} else if (ImportFileVar.DBFIELDDEF_POINTERDATATYPE_CHAR.equals(lcFieldValueInfo.DataType)) {
 					temp.append("'");
-					temp.append(ConvertMean
-							.conertSql(lcFieldValueInfo.FieldValue));
+					temp.append(ConvertMean.conertSql(lcFieldValueInfo.FieldValue));
 					temp.append("',");
 					lsSqlTemp = temp.toString();
 				} else {
-					//modified by jianxue.zhang
-					temp.append(ConvertMean
-							.conertSql(lcFieldValueInfo.FieldValue.trim().equals("")? "0":lcFieldValueInfo.FieldValue));
+					// modified by jianxue.zhang
+					temp.append(ConvertMean.conertSql(
+							lcFieldValueInfo.FieldValue.trim().equals("") ? "0" : lcFieldValueInfo.FieldValue));
 					temp.append(",");
 					lsSqlTemp = temp.toString();
 				}
@@ -1247,26 +1155,24 @@ public class ImportFile {
 				temp.append(curImpFileInfo.getTableName());
 				temp.append(" (");
 				temp.append(lsSql);
-				//added by xuhong 2015-3-10增加change_flag标志，新增为0 begin
-//				temp.append(",CHANGE_FLAG");
-				//added by xuhong 2015-3-10增加change_flag标志，新增为0 begin
+				// added by xuhong 2015-3-10增加change_flag标志，新增为0 begin
+				// temp.append(",CHANGE_FLAG");
+				// added by xuhong 2015-3-10增加change_flag标志，新增为0 begin
 				temp.append(")");
 				temp.append(" Values ");
 				temp.append("(");
 				temp.append(lsSqlTemp);
-				//added by xuhong 2015-3-10增加change_flag标志，新增为0 begin
-//				temp.append(",0");
-				//added by xuhong 2015-3-10增加change_flag标志，新增为0 begin
+				// added by xuhong 2015-3-10增加change_flag标志，新增为0 begin
+				// temp.append(",0");
+				// added by xuhong 2015-3-10增加change_flag标志，新增为0 begin
 				temp.append(")");
 				lsSql = temp.toString();
 			} else {
 				lsSql = "";
 			}
 			flag = 1;
-		} else if ((curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_ONEDELETE && flg
-				.intValue() == 1)
-				|| (curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_DELETE && flg
-						.intValue() > 0)) {
+		} else if ((curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_ONEDELETE && flg.intValue() == 1)
+				|| (curImpFileInfo.getKeyFlag() == ImportFileVar.FILEDATA_KEYFLG_DELETE && flg.intValue() > 0)) {
 			curImpFileInfo.setModType("D");
 			temp = new StringBuffer("delete from ");
 			temp.append(curImpFileInfo.getTableName());
@@ -1278,8 +1184,7 @@ public class ImportFile {
 		if (!"".equals(lsSql.trim())) {
 			Map tmpParam = new HashMap();
 			tmpParam.put(Constants.STR_SQL, lsSql);
-			SqlInfo sqlInfo = new SqlInfo(rowNumber, lsSql, tmpParam, flag,
-					logDtlMap);
+			SqlInfo sqlInfo = new SqlInfo(rowNumber, lsSql, tmpParam, flag, logDtlMap);
 			// 单行处理
 			// int
 			// tmpFlg=myBatisSessionTemplate.update("com.huateng.report.imports.sqlmap.Import.select13",sqlInfo.getParamMap());
@@ -1338,23 +1243,18 @@ public class ImportFile {
 		Enumeration en = curImpFileInfo.getFFieldList().keys();
 		while (en.hasMoreElements()) {
 			String key = (String) en.nextElement();
-			lcFieldSetInfo = (TFieldSetInfo) curImpFileInfo.getFFieldList()
-					.get(key);
-			if (ImportFileVar.DBFIELDDEF_UPDFLG_NOTUPDATE
-					.equals(lcFieldSetInfo.updateFlag)) {
+			lcFieldSetInfo = (TFieldSetInfo) curImpFileInfo.getFFieldList().get(key);
+			if (ImportFileVar.DBFIELDDEF_UPDFLG_NOTUPDATE.equals(lcFieldSetInfo.updateFlag)) {
 				continue;
 			}
 			lsFieldName = lcFieldSetInfo.FieldName;
-			if (!curImpFileInfo.getFUpdateFieldsValue()
-					.containsKey(lsFieldName)) {
+			if (!curImpFileInfo.getFUpdateFieldsValue().containsKey(lsFieldName)) {
 				lcFieldValueInfo = new TFieldValueInfo();
 				// 计算字段值失败
-				if (!this.calcFinalFieldValue(lcFieldSetInfo, lcFieldValueInfo,
-						iiLineNum, osMessage)) {
+				if (!this.calcFinalFieldValue(lcFieldSetInfo, lcFieldValueInfo, iiLineNum, osMessage)) {
 					return false;
 				} else {
-					curImpFileInfo.getFUpdateFieldsValue().put(lsFieldName,
-							lcFieldValueInfo);
+					curImpFileInfo.getFUpdateFieldsValue().put(lsFieldName, lcFieldValueInfo);
 				}
 			}
 		}
@@ -1370,13 +1270,12 @@ public class ImportFile {
 	 * @param osMessage错误信息
 	 * @return True-->成功，False-->失败
 	 */
-	private boolean calcFinalFieldValue(TFieldSetInfo icFieldSetInfo,
-			TFieldValueInfo ocFieldValue, int iiLineNum, TOutValue osMessage) {
+	private boolean calcFinalFieldValue(TFieldSetInfo icFieldSetInfo, TFieldValueInfo ocFieldValue, int iiLineNum,
+			TOutValue osMessage) {
 		String strExp = icFieldSetInfo.expression;
 		strExp = ConvertMean.replace(strExp, "${value}", "curImpFileInfo");
 		ArrayList<Variable> variables = new ArrayList<Variable>();
-		variables
-				.add(Variable.createVariable("curImpFileInfo", curImpFileInfo));
+		variables.add(Variable.createVariable("curImpFileInfo", curImpFileInfo));
 		Object result = "";
 		try {
 			// 解析表达式
@@ -1393,14 +1292,12 @@ public class ImportFile {
 		ocFieldValue.FieldLength = icFieldSetInfo.FieldLength;
 		ocFieldValue.bUpdateFlag = icFieldSetInfo.updateFlag;
 		ocFieldValue.DataType = icFieldSetInfo.dataType;
-		if (!ImportFileVar.DBFIELDDEF_UPDFLG_NOTUPDATE
-				.equals(icFieldSetInfo.updateFlag)) {
+		if (!ImportFileVar.DBFIELDDEF_UPDFLG_NOTUPDATE.equals(icFieldSetInfo.updateFlag)) {
 			// 根据字段长度，截取数据
-			if (ImportFileVar.DBFIELDDEF_POINTERDATATYPE_CHAR
-					.equals(ocFieldValue.DataType)) {
+			if (ImportFileVar.DBFIELDDEF_POINTERDATATYPE_CHAR.equals(ocFieldValue.DataType)) {
 				if (ocFieldValue.FieldLength > 0) {
-					ocFieldValue.FieldValue = ConvertMean.subStringUTF8(
-							ocFieldValue.FieldValue, ocFieldValue.FieldLength);
+					ocFieldValue.FieldValue = ConvertMean.subStringUTF8(ocFieldValue.FieldValue,
+							ocFieldValue.FieldLength);
 				}
 			}
 		}
@@ -1416,8 +1313,7 @@ public class ImportFile {
 	 * @param osMessage存放错误信息
 	 * @return True-->执行成功，False-->执行失败
 	 */
-	private boolean getTableData(String isFieldStr, String isTableName,
-			TOutValue lsql, TOutValue osMessage) {
+	private boolean getTableData(String isFieldStr, String isTableName, TOutValue lsql, TOutValue osMessage) {
 		String lsWhereSql = " Where 1 = 1 ";
 		TFieldValueInfo lcFieldValueInfo;
 		String lsSql;
@@ -1425,11 +1321,9 @@ public class ImportFile {
 		Enumeration en = curImpFileInfo.getFKeyFieldsValue().keys();
 		while (en.hasMoreElements()) {
 			String key = (String) en.nextElement();
-			lcFieldValueInfo = (TFieldValueInfo) curImpFileInfo
-					.getFKeyFieldsValue().get(key);
+			lcFieldValueInfo = (TFieldValueInfo) curImpFileInfo.getFKeyFieldsValue().get(key);
 			StringBuffer temp = new StringBuffer(lsWhereSql);
-			if (lcFieldValueInfo.DataType
-					.equals(ImportFileVar.DBFILTER_DATATYPE_NUM)) {
+			if (lcFieldValueInfo.DataType.equals(ImportFileVar.DBFILTER_DATATYPE_NUM)) {
 				temp.append("and ");
 				temp.append(lcFieldValueInfo.FieldName);
 				temp.append(" = ");

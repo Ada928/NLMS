@@ -25,29 +25,26 @@ import com.huateng.report.constants.TopReportConstants;
 
 /**
  * 境内收入申报单管理信息审核查询
+ * 
  * @author huangcheng
  */
 @SuppressWarnings("unchecked")
 public class BopRDsAuditGetter extends BaseGetter {
-	
+
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境内收入申报单管理信息审核页面查询");
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -60,9 +57,8 @@ public class BopRDsAuditGetter extends BaseGetter {
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuilder hql = new StringBuilder(
-				" SELECT model FROM MtsBopDrDs model WHERE 1 = 1 ");
-	
+		StringBuilder hql = new StringBuilder(" SELECT model FROM MtsBopDrDs model WHERE 1 = 1 ");
+
 		Map<String, String> map = getCommQueryServletRequest().getParameterMap();
 		String qworkDateStart = map.get("qworkDateStart");
 		String qworkDateEnd = map.get("qworkDateEnd");
@@ -119,6 +115,6 @@ public class BopRDsAuditGetter extends BaseGetter {
 		queryCondition.setObjArray(paramentList.toArray());
 		pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 
-	    return pageQueryResult;
+		return pageQueryResult;
 	}
 }

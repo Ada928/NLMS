@@ -30,7 +30,9 @@ public class RepFileErrOperation extends BaseOperation {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.ebank.framework.operation.OperationContext)
+	 * @see
+	 * com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.
+	 * ebank.framework.operation.OperationContext)
 	 */
 	public void execute(OperationContext context) throws CommonException {
 		String retMsg = null;
@@ -57,7 +59,9 @@ public class RepFileErrOperation extends BaseOperation {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.ebank.framework.operation.OperationContext)
+	 * @see
+	 * com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.
+	 * ebank.framework.operation.OperationContext)
 	 */
 	public void beforeProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
@@ -67,7 +71,9 @@ public class RepFileErrOperation extends BaseOperation {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng.ebank.framework.operation.OperationContext)
+	 * @see
+	 * com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng.
+	 * ebank.framework.operation.OperationContext)
 	 */
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub

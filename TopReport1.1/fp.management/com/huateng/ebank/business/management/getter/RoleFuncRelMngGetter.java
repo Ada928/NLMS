@@ -1,16 +1,15 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import resource.bean.pub.RoleInfo;
-import resource.dao.pub.RoleInfoDAO;
-
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.management.common.DAOUtils;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import resource.bean.pub.RoleInfo;
+import resource.dao.pub.RoleInfoDAO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Description:

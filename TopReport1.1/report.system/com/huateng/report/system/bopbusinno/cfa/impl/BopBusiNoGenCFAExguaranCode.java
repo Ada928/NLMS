@@ -32,18 +32,19 @@ public class BopBusiNoGenCFAExguaranCode implements IGenBopBusinessNo {
 		BopCfaExguDs exgu = (BopCfaExguDs) obj;
 		String code = exgu.getExguarancode();
 
-		if (code.indexOf(paramValue)>=0) {
+		if (code.indexOf(paramValue) >= 0) {
 			// 更新对外担保编号
-			String newcode = ReportUtils.getCfaCode(paramValue, busiType, appType,fileType, workDate, code);
+			String newcode = ReportUtils.getCfaCode(paramValue, busiType, appType, fileType, workDate, code);
 			exgu.setExguarancode(newcode);
 			exgu = (BopCfaExguDs) rootdao.saveOrUpdate(exgu);
 		}
 		// 更新相关责任余额、履约对外担保编号
 		String recId = exgu.getId();
-		List list = rootdao.queryByQL2List(" from BopCfaExguDs where filler1='" + recId + "' and exguarancode<>'"+exgu.getExguarancode()+"'");
+		List list = rootdao.queryByQL2List(
+				" from BopCfaExguDs where filler1='" + recId + "' and exguarancode<>'" + exgu.getExguarancode() + "'");
 		for (int i = 0; i < list.size(); i++) {
 			BopCfaExguDs compExGu = (BopCfaExguDs) list.get(i);
-			if (compExGu.getExguarancode().indexOf(paramValue)<0) {
+			if (compExGu.getExguarancode().indexOf(paramValue) < 0) {
 				continue;
 			}
 			compExGu.setExguarancode(exgu.getExguarancode());
@@ -52,11 +53,13 @@ public class BopBusiNoGenCFAExguaranCode implements IGenBopBusinessNo {
 		// 产生履约序号
 		int seq = 1;
 		String seqTemp = ReportUtils.getTempStr(null, 4);
-		Object maxObj = rootdao.queryByHqlMax("select max(complianceno) from BopCfaExguDs where  filler1='" + recId + "' and  complianceno<>'" + seqTemp + "'");
+		Object maxObj = rootdao.queryByHqlMax("select max(complianceno) from BopCfaExguDs where  filler1='" + recId
+				+ "' and  complianceno<>'" + seqTemp + "'");
 		if (maxObj != null) {
 			seq = Integer.parseInt(maxObj.toString()) + 1;
 		}
-		List seqList = rootdao.queryByQL2List(" from BopCfaExguDs where filler1='" + recId + "' and complianceno='" + seqTemp + "' order by crtTm");
+		List seqList = rootdao.queryByQL2List(
+				" from BopCfaExguDs where filler1='" + recId + "' and complianceno='" + seqTemp + "' order by crtTm");
 		for (int i = 0; i < seqList.size(); i++) {
 			BopCfaExguDs ds = (BopCfaExguDs) seqList.get(i);
 			if (ds.getComplianceno().indexOf(paramValue) < 0) {

@@ -15,11 +15,12 @@ import com.huateng.report.service.BOPForDebtBilLoanService;
 /**
  *
  * 补录查询Getter
+ * 
  * @author wenhao.chen
  * @version 1.0
  * @date 2012-09-08
  *
- * */
+ */
 
 @SuppressWarnings("unchecked")
 public class BOPForDebtOverseaLendingQueryGetter extends BaseGetter {
@@ -29,8 +30,7 @@ public class BOPForDebtOverseaLendingQueryGetter extends BaseGetter {
 
 			PageQueryResult queryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -43,10 +43,10 @@ public class BOPForDebtOverseaLendingQueryGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
+
 	private PageQueryResult getData() throws CommonException {
 		int pageSize = getResult().getPage().getEveryPage();
 		// 页码
@@ -66,10 +66,8 @@ public class BOPForDebtOverseaLendingQueryGetter extends BaseGetter {
 		String qApproveStatus = getCommQueryServletRequest().getParameter("qApproveStatus");
 		String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
 
-		return bopDebtService.queryRecordAD(pageIndex, pageSize,
-				qWorkDateStart, qWorkDateEnd, qActiontype, qBrNo, qFiller2,
-				qApproveStatus, qRecStatus, qRepStatus,
-				TopReportConstants.REPORT_APP_TYPE_CFA,
+		return bopDebtService.queryRecordAD(pageIndex, pageSize, qWorkDateStart, qWorkDateEnd, qActiontype, qBrNo,
+				qFiller2, qApproveStatus, qRecStatus, qRepStatus, TopReportConstants.REPORT_APP_TYPE_CFA,
 				TopReportConstants.REPORT_FILE_TYPE_CFA_AC, "");
 
 	}

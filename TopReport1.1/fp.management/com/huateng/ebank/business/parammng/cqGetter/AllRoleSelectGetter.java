@@ -1,11 +1,5 @@
 package com.huateng.ebank.business.parammng.cqGetter;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import resource.bean.pub.RoleInfo;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Page;
@@ -17,6 +11,11 @@ import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.business.management.common.DAOUtils;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import resource.bean.pub.RoleInfo;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * 操作员增加时 为操作员查询当前所有有效岗位

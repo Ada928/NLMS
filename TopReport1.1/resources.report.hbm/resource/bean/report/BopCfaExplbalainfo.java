@@ -2,27 +2,23 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBopCraExplbalainfo;
 
-
-
-public class BopCfaExplbalainfo extends BaseBopCraExplbalainfo {
+public class BopCfaExplbalainfo extends BaseBopCraExplbalainfo implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public BopCfaExplbalainfo () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public BopCfaExplbalainfo() {
 		super();
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public BopCfaExplbalainfo (
-		java.lang.String explbalainfoId) {
+	public BopCfaExplbalainfo(java.lang.String explbalainfoId) {
 
-		super (
-			explbalainfoId);
+		super(explbalainfoId);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
-
+	/* [CONSTRUCTOR MARKER END] */
 
 }

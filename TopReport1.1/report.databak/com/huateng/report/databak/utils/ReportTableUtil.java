@@ -3,23 +3,21 @@ package com.huateng.report.databak.utils;
 import java.io.File;
 import java.text.DecimalFormat;
 
-
 public class ReportTableUtil {
 
-	public static int getCycNum(int totalCount,int stepCount){
-		int num = totalCount/stepCount;
-		if(totalCount%stepCount>0){
+	public static int getCycNum(int totalCount, int stepCount) {
+		int num = totalCount / stepCount;
+		if (totalCount % stepCount > 0) {
 			num++;
 		}
 		return num;
 	}
 
-
-	public static String getDecimalFormatStr(int pre,int scl,Object tmp){
+	public static String getDecimalFormatStr(int pre, int scl, Object tmp) {
 		StringBuffer fm = new StringBuffer();
-		for (int i = 1; i <=pre; i++) {
+		for (int i = 1; i <= pre; i++) {
 			fm.append("0");
-			if (i==pre-scl) {
+			if (i == pre - scl) {
 				fm.append(".");
 			}
 		}
@@ -27,7 +25,7 @@ public class ReportTableUtil {
 		return dc.format(tmp);
 	}
 
-	public static void createFilePath(String filePath){
+	public static void createFilePath(String filePath) {
 		File file = new File(filePath);
 		if (!file.exists() || !file.isDirectory()) {
 			file.mkdirs();

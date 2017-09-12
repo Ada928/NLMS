@@ -27,7 +27,8 @@ public class BOPCfaLounexguRecordChangeVerGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult list = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list.getQueryResult(), getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list.getQueryResult(),
+					getResult());
 			result.setContent(list.getQueryResult());
 			result.getPage().setTotalPage(list.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
@@ -35,36 +36,35 @@ public class BOPCfaLounexguRecordChangeVerGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
-
-	private PageQueryResult getData() throws AppException{
+	private PageQueryResult getData() throws AppException {
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
 
-		StringBuilder hqlString = new StringBuilder(" SELECT bd FROM BopCfaLounexguDs bd WHERE bd.currentfile = ? AND (bd.recStatus = ? OR  bd.recStatus = ? ) ");
+		StringBuilder hqlString = new StringBuilder(
+				" SELECT bd FROM BopCfaLounexguDs bd WHERE bd.currentfile = ? AND (bd.recStatus = ? OR  bd.recStatus = ? ) ");
 
-		List<Object>paramentList = new ArrayList<Object>();
+		List<Object> paramentList = new ArrayList<Object>();
 		paramentList.add(TopReportConstants.REPORT_FILE_TYPE_CFA_DB);
 		paramentList.add(TopReportConstants.REPORT_RECSTATUS_03);
 		paramentList.add(TopReportConstants.REPORT_RECSTATUS_04);
 
 		PageQueryResult pageQueryResult = new PageQueryResult();
 		String op = getCommQueryServletRequest().getParameter("op");
-		if("new".equals(op)){
-			//业务类型标识
+		if ("new".equals(op)) {
+			// 业务类型标识
 			BopCfaLounexguDs bopCfaLounexguDs = new BopCfaLounexguDs();
-			List<BopCfaLounexguDs>list = new ArrayList<BopCfaLounexguDs>();
+			List<BopCfaLounexguDs> list = new ArrayList<BopCfaLounexguDs>();
 			list.add(bopCfaLounexguDs);
 			pageQueryResult.setQueryResult(list);
 
-		}else if("mod".equals(op) || "del".equals(op)){
-			String  id = getCommQueryServletRequest().getParameter("id");
+		} else if ("mod".equals(op) || "del".equals(op)) {
+			String id = getCommQueryServletRequest().getParameter("id");
 
-			if(StringUtils.isNotBlank(id)){
+			if (StringUtils.isNotBlank(id)) {
 				hqlString.append(" AND id = ? ");
 				paramentList.add(id);
 				PageQueryCondition pc = new PageQueryCondition();
@@ -75,8 +75,7 @@ public class BOPCfaLounexguRecordChangeVerGetter extends BaseGetter {
 				HQLDAO hqlDao = DAOUtils.getHQLDAO();
 				pageQueryResult = hqlDao.pageQueryByQL(pc);
 			}
-		}
-		else{
+		} else {
 			String qworkDate = getCommQueryServletRequest().getParameter("qworkDate");
 			String eworkDate = getCommQueryServletRequest().getParameter("eworkDate");
 			String qactiontype = getCommQueryServletRequest().getParameter("qactiontype");
@@ -86,33 +85,33 @@ public class BOPCfaLounexguRecordChangeVerGetter extends BaseGetter {
 			String qfiller2 = getCommQueryServletRequest().getParameter("qfiller2");
 
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境外担保项下境内贷款信息审核变动及履约信息查询");
-			if(StringUtils.isNotBlank(qworkDate)){
+			if (StringUtils.isNotBlank(qworkDate)) {
 				hqlString.append(" AND bd.workDate >= ? ");
 				paramentList.add(qworkDate);
 			}
-			if(StringUtils.isNotBlank(eworkDate)){
+			if (StringUtils.isNotBlank(eworkDate)) {
 				hqlString.append(" AND bd.workDate <= ? ");
 				paramentList.add(eworkDate);
 			}
-			if(StringUtils.isNotBlank(qactiontype)){
+			if (StringUtils.isNotBlank(qactiontype)) {
 				hqlString.append(" AND bd.actiontype = ? ");
 				paramentList.add(qactiontype);
 			}
-			if(StringUtils.isNotBlank(qrecStatus)){
+			if (StringUtils.isNotBlank(qrecStatus)) {
 				hqlString.append(" AND bd.recStatus = ? ");
 				paramentList.add(qrecStatus);
 			}
-			if(StringUtils.isNotBlank(qapproveStatus)){
+			if (StringUtils.isNotBlank(qapproveStatus)) {
 				hqlString.append(" AND bd.approveStatus = ? ");
 				paramentList.add(qapproveStatus);
 			}
-			if(StringUtils.isNotBlank(qrepStatus)){
+			if (StringUtils.isNotBlank(qrepStatus)) {
 				hqlString.append(" AND bd.repStatus = ? ");
 				paramentList.add(qrepStatus);
 			}
-			if(StringUtils.isNotBlank(qfiller2)){
+			if (StringUtils.isNotBlank(qfiller2)) {
 				hqlString.append(" AND bd.filler2 LIKE ? ");
-				paramentList.add("%"+qfiller2 +"%");
+				paramentList.add("%" + qfiller2 + "%");
 			}
 			GlobalInfo gi = GlobalInfo.getCurrentInstance();
 			if (StringUtils.isNotBlank(gi.getBrno())) {

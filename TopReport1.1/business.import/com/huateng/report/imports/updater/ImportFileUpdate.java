@@ -28,14 +28,11 @@ import com.huateng.report.imports.operation.ImportFileOP;
 
 public class ImportFileUpdate extends BaseUpdate {
 
-	private static Logger logger = Logger.getLogger(ImportFileUpdate.class
-			.getName());
+	private static Logger logger = Logger.getLogger(ImportFileUpdate.class.getName());
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		List<Constant> progress = new ArrayList<Constant>();
 		setSessionObject(Constants.PROGRESS, progress);
 		Constant pv = null;
@@ -51,8 +48,7 @@ public class ImportFileUpdate extends BaseUpdate {
 			setSessionObject(Constants.IS_IMPORTING, Constants.YES);
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("ImportFile");
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("ImportFile");
 
 			ImportFileBean bean = null;
 			while (updateResultBean.hasNext()) {
@@ -65,13 +61,11 @@ public class ImportFileUpdate extends BaseUpdate {
 					progress.add(pv);
 					try {
 						OperationContext oc = new OperationContext();
-						oc.setAttribute(ImportFileOP.CMD,
-								ImportFileOP.DO_IMPORT);
+						oc.setAttribute(ImportFileOP.CMD, ImportFileOP.DO_IMPORT);
 						oc.setAttribute(ImportFileOP.PARAM, bean);
 						oc.setAttribute(ImportFileOP.PROGRESS, pv);
-						//OPCaller.call(ImportFileOP.ID, oc);
-						BaseOperation operation = (BaseOperation) ApplicationContextUtils
-						.getBean(ImportFileOP.ID);
+						// OPCaller.call(ImportFileOP.ID, oc);
+						BaseOperation operation = (BaseOperation) ApplicationContextUtils.getBean(ImportFileOP.ID);
 						operation.execute(oc);
 					} catch (CommonException cEx) {
 						pv.errorMessage = cEx.getMessage();
@@ -85,8 +79,7 @@ public class ImportFileUpdate extends BaseUpdate {
 
 			return updateReturnBean;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		} finally {
 			// 结束导入
 			setSessionObject(Constants.IS_IMPORTING, Constants.NO);

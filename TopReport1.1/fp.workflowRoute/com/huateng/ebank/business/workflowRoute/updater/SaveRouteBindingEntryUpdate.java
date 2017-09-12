@@ -29,63 +29,58 @@ import com.huateng.exception.AppException;
 public class SaveRouteBindingEntryUpdate extends BaseUpdate {
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 
-			String nextUrl = "";
+		String nextUrl = "";
 
-			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("routeBindingEntry");
-//			List<PostloanMngInfo> updateList = new ArrayList<PostloanMngInfo>();
-			List updateList = new ArrayList();
-			List delList = new ArrayList();
-			List insertList = new ArrayList();
+		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
+		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("routeBindingEntry");
+		// List<PostloanMngInfo> updateList = new ArrayList<PostloanMngInfo>();
+		List updateList = new ArrayList();
+		List delList = new ArrayList();
+		List insertList = new ArrayList();
 
-			while (updateResultBean.hasNext()) {
-				RouteBindingView routeBindingView = new RouteBindingView();
+		while (updateResultBean.hasNext()) {
+			RouteBindingView routeBindingView = new RouteBindingView();
 
-				Map map = updateResultBean.next();
-				
-				if(StringUtils.isEmpty(map.get("startBrhid").toString())){
-					map.put("startBrhid", map.get("startBrhLevel"));
-				}
-				
-				String line = (String)map.get("bizType");
-				if(StringUtils.isEmpty(line)){
-					map.put("bizType", "0000");
-				}
-				map.put("bussType", map.get("bussType").toString() + map.get("bizType").toString());
-				
-				mapToObject(routeBindingView, map);
+			Map map = updateResultBean.next();
 
-				switch (updateResultBean.getRecodeState()) {
-				case UpdateResultBean.INSERT:
-					insertList.add(routeBindingView);
-					break;
-				case UpdateResultBean.DELETE:
-					delList.add(routeBindingView);
-					break;
-				case UpdateResultBean.MODIFY:
-					updateList.add(routeBindingView);
-					break;
-				default:
-					break;
-				}
-
+			if (StringUtils.isEmpty(map.get("startBrhid").toString())) {
+				map.put("startBrhid", map.get("startBrhLevel"));
 			}
 
-			OperationContext oc = new OperationContext();
-			oc.setAttribute(SaveRouteBindingEntryOperation.IN_DEL, delList);
-			oc.setAttribute(SaveRouteBindingEntryOperation.IN_INSERT, insertList);
-			oc.setAttribute(SaveRouteBindingEntryOperation.IN_UPDATE, updateList);
+			String line = (String) map.get("bizType");
+			if (StringUtils.isEmpty(line)) {
+				map.put("bizType", "0000");
+			}
+			map.put("bussType", map.get("bussType").toString() + map.get("bizType").toString());
 
-			OPCaller
-					.call("Management.SaveRouteBindingEntryOperation", oc);
-			return updateReturnBean;
+			mapToObject(routeBindingView, map);
 
+			switch (updateResultBean.getRecodeState()) {
+			case UpdateResultBean.INSERT:
+				insertList.add(routeBindingView);
+				break;
+			case UpdateResultBean.DELETE:
+				delList.add(routeBindingView);
+				break;
+			case UpdateResultBean.MODIFY:
+				updateList.add(routeBindingView);
+				break;
+			default:
+				break;
+			}
+
+		}
+
+		OperationContext oc = new OperationContext();
+		oc.setAttribute(SaveRouteBindingEntryOperation.IN_DEL, delList);
+		oc.setAttribute(SaveRouteBindingEntryOperation.IN_INSERT, insertList);
+		oc.setAttribute(SaveRouteBindingEntryOperation.IN_UPDATE, updateList);
+
+		OPCaller.call("Management.SaveRouteBindingEntryOperation", oc);
+		return updateReturnBean;
 
 	}
 

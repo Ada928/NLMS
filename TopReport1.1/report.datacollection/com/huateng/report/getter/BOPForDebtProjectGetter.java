@@ -1,6 +1,5 @@
 package com.huateng.report.getter;
 
-
 import java.util.List;
 
 import resource.report.dao.ROOTDAO;
@@ -17,11 +16,11 @@ import com.huateng.exception.AppException;
 /**
  * 
  * 项目信息表Getter
- * @author wenhao.chen
- * @version 1.0
- * 2012-8-30
  * 
- * */
+ * @author wenhao.chen
+ * @version 1.0 2012-8-30
+ * 
+ */
 
 public class BOPForDebtProjectGetter extends BaseGetter {
 
@@ -36,9 +35,7 @@ public class BOPForDebtProjectGetter extends BaseGetter {
 			// HtLog logger =
 			// HtLogFactory.getLog(BOPForDebtBilLoanGetter.class);
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list,
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 
 			result.setContent(list);
 			result.getPage().setTotalPage(1);
@@ -48,29 +45,28 @@ public class BOPForDebtProjectGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	private List getData() throws CommonException {
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		
-		StringBuffer hql =  new StringBuffer();
+
+		StringBuffer hql = new StringBuffer();
 
 		String id = getCommQueryServletRequest().getParameter("id");
 		String op = getCommQueryServletRequest().getParameter("op");
 
 		if ("new".equals(op)) {
 
-		} else if ("mod".equalsIgnoreCase(op) || "del".equalsIgnoreCase(op)|| "detaile".equalsIgnoreCase(op)) {
-			
-			hql.append( " from BopProjectInfo bpi where 1=1 " );
+		} else if ("mod".equalsIgnoreCase(op) || "del".equalsIgnoreCase(op) || "detaile".equalsIgnoreCase(op)) {
+
+			hql.append(" from BopProjectInfo bpi where 1=1 ");
 			hql.append(" and bpi.recId ='").append(id.trim()).append("'");
-			 
+
 			return rootdao.queryByQL2List(hql.toString());
-			
+
 		}
 
 		return null;

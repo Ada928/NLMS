@@ -20,7 +20,6 @@ import com.huateng.exception.AppException;
 import com.huateng.report.bean.BOPForDebtBilLoanCreditor;
 import com.huateng.report.utils.ReportUtils;
 
-
 @SuppressWarnings("unchecked")
 public class BOPForDebtChangeInfoColGetter extends BaseGetter {
 
@@ -33,8 +32,7 @@ public class BOPForDebtChangeInfoColGetter extends BaseGetter {
 		try {
 			List queryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult, getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult, getResult());
 
 			result.setContent(queryResult);
 			result.getPage().setTotalPage(0);
@@ -44,8 +42,7 @@ public class BOPForDebtChangeInfoColGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -67,9 +64,11 @@ public class BOPForDebtChangeInfoColGetter extends BaseGetter {
 		hql.append("        bds.approve_Result, bds.work_Date,bds.is_sub_Success,bcd.creditor_id,");
 		hql.append("        bcd.creditorcode, bcd.creditorname, bcd.creditornamen,");
 		hql.append("        bcd.creditorca,bcd.creditortype, bcd.crehqcode,");
-		hql.append("        bcd.opercode, bcd.rec_Id,bds.BUSCODE,bds.changeno,bds.changtype,bds.chdate,bds.chcurrency,bds.chamount,bds.fairvalue, ");
+		hql.append(
+				"        bcd.opercode, bcd.rec_Id,bds.BUSCODE,bds.changeno,bds.changtype,bds.chdate,bds.chcurrency,bds.chamount,bds.fairvalue, ");
 		hql.append("   bds.debtyperema,bds.isincode,bds.filler2,bds.inpriamount ");
-		hql.append("   FROM BOP_CFA_EXDEBT_DS bds LEFT JOIN BOP_CFA_CREDITOR_DS bcd ON bds.REC_ID = bcd.REC_ID WHERE 1 = 1 ");
+		hql.append(
+				"   FROM BOP_CFA_EXDEBT_DS bds LEFT JOIN BOP_CFA_CREDITOR_DS bcd ON bds.REC_ID = bcd.REC_ID WHERE 1 = 1 ");
 
 		List<BOPForDebtBilLoanCreditor> list = new ArrayList<BOPForDebtBilLoanCreditor>();
 		String id = getCommQueryServletRequest().getParameter("id");
@@ -84,15 +83,15 @@ public class BOPForDebtChangeInfoColGetter extends BaseGetter {
 
 			return list;
 
-		} else if (DETAILE_CMD.equalsIgnoreCase(op) || DELETE_CMD.equalsIgnoreCase(op) || MOD_CMD.equalsIgnoreCase(op)) {
+		} else if (DETAILE_CMD.equalsIgnoreCase(op) || DELETE_CMD.equalsIgnoreCase(op)
+				|| MOD_CMD.equalsIgnoreCase(op)) {
 
-			//加载变动信息并获取filler1
-			//取得filler1
+			// 加载变动信息并获取filler1
+			// 取得filler1
 			String filler1Id = "";
 			BopCfaExdebtDs bopChangDs = rootdao.query(BopCfaExdebtDs.class, id);
 
-			if(null != bopChangDs)
-			{
+			if (null != bopChangDs) {
 				filler1Id = bopChangDs.getFiller1();
 			}
 
@@ -100,7 +99,7 @@ public class BOPForDebtChangeInfoColGetter extends BaseGetter {
 
 			queryCondition.setQueryString(hql.toString());
 
-			//将变动信息set benan BOPForDebtBilLoanCreditor
+			// 将变动信息set benan BOPForDebtBilLoanCreditor
 			bop.setId(bopChangDs.getId());
 			bop.setApptype(bopChangDs.getApptype());
 			bop.setCurrentfile(bopChangDs.getCurrentfile());
@@ -133,9 +132,11 @@ public class BOPForDebtChangeInfoColGetter extends BaseGetter {
 				Object[] queryArray = (Object[]) it.next();
 
 				// 变动信息由 bopChangDs加载
-				//bop.setId((String) queryArray[0]);
-				/*bop.setApptype((String) queryArray[1]);
-				bop.setCurrentfile((String) queryArray[2]);*/
+				// bop.setId((String) queryArray[0]);
+				/*
+				 * bop.setApptype((String) queryArray[1]);
+				 * bop.setCurrentfile((String) queryArray[2]);
+				 */
 
 				bop.setExdebtcode((String) queryArray[3]);
 				bop.setDebtorcode((String) queryArray[4]);
@@ -155,11 +156,12 @@ public class BOPForDebtChangeInfoColGetter extends BaseGetter {
 				bop.setSpapfeboindex((String) queryArray[15]);
 
 				// 变动信息由 bopChangDs加载
-				//bop.setRemark((String) queryArray[16]);
-				/*bop.setLstUpdTlr((String) queryArray[17]);
-				bop.setLstUpdTm((Date) queryArray[18]);
-				bop.setCrtTm((Date) queryArray[19]);
-				bop.setFiller1((String) queryArray[20]);*/
+				// bop.setRemark((String) queryArray[16]);
+				/*
+				 * bop.setLstUpdTlr((String) queryArray[17]);
+				 * bop.setLstUpdTm((Date) queryArray[18]); bop.setCrtTm((Date)
+				 * queryArray[19]); bop.setFiller1((String) queryArray[20]);
+				 */
 
 				bop.setBrNo((String) queryArray[21]);
 
@@ -171,17 +173,18 @@ public class BOPForDebtChangeInfoColGetter extends BaseGetter {
 				bop.setCreditortype((String) queryArray[35]);
 				bop.setCrehqcode((String) queryArray[36]);
 				bop.setOpercode((String) queryArray[37]);
-				//bop.setRecId((String) queryArray[38]);
+				// bop.setRecId((String) queryArray[38]);
 
 				// 变动信息由 bopChangDs加载
-				/*bop.setBuscode((String) queryArray[39]);
-				bop.setChangeno((String) queryArray[40]);
-				bop.setChangtype((String) queryArray[41]);
-				bop.setChdate((String) queryArray[42]);
-				bop.setChcurrency((String) queryArray[43]);
-				bop.setChamount( (BigDecimal)queryArray[44]);
-				bop.setFairvalue( (BigDecimal)queryArray[45]);
-				*/
+				/*
+				 * bop.setBuscode((String) queryArray[39]);
+				 * bop.setChangeno((String) queryArray[40]);
+				 * bop.setChangtype((String) queryArray[41]);
+				 * bop.setChdate((String) queryArray[42]);
+				 * bop.setChcurrency((String) queryArray[43]); bop.setChamount(
+				 * (BigDecimal)queryArray[44]); bop.setFairvalue(
+				 * (BigDecimal)queryArray[45]);
+				 */
 				bop.setDebtyperema((String) queryArray[46]);
 				bop.setIsincode((String) queryArray[47]);
 				bop.setqFiller2((String) queryArray[48]);

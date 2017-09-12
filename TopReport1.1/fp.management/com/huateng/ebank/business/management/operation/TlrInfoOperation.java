@@ -6,17 +6,16 @@
  */
 package com.huateng.ebank.business.management.operation;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import resource.bean.pub.TlrInfo;
-
 import com.huateng.ebank.business.common.BaseDAOUtils;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.service.pub.TlrInfoService;
 import com.huateng.view.pub.TlrInfoView;
+import resource.bean.pub.TlrInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Title: com.huateng.ebank.business.management.operation.RoleInfoOperation.java

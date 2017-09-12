@@ -5,12 +5,11 @@
 package com.huateng.ebank.business.management.bean;
 
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.huateng.ebank.framework.struts.HTBaseForm;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 
-import com.huateng.ebank.framework.struts.HTBaseForm;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Form bean for the Login main page.  There are two fields on this

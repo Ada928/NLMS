@@ -1,18 +1,5 @@
 package com.huateng.ebank.business.management.action;
 
-import java.util.HashMap;
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.MapUtil;
 import com.huateng.ebank.business.common.TransferConstant;
@@ -20,6 +7,17 @@ import com.huateng.ebank.business.remote.base.RemoteSysMap;
 import com.huateng.ebank.business.remote.base.SessionFactory;
 import com.huateng.ebank.framework.util.encrypt.Base64URLEncode;
 import com.huateng.ebank.framework.web.struts.BaseAction;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class MainContQryAction extends BaseAction{
 

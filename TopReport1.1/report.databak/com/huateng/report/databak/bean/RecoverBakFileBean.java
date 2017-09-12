@@ -1,19 +1,20 @@
 package com.huateng.report.databak.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class RecoverBakFileBean {
+public class RecoverBakFileBean implements Serializable {
 
 	private String filePath;
-	
+
 	private String fileSize;
-	
+
 	private Date lastModifyTime;
 
 	private String exits;
-	
+
 	private String recoverReason;
-	
+
 	public String getExits() {
 		return exits;
 	}
@@ -54,5 +55,4 @@ public class RecoverBakFileBean {
 		this.lastModifyTime = lastModifyTime;
 	}
 
-	
 }

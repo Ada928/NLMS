@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 用于直接生成SQL语句，支持同步和异步提交 -->
+<!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
+	txnlogflag:true记录日志 async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
+<CommQry title="国际黑名单管理" navigate="国际黑名单管理" type="call" interface="false" pagesize="20" async="true" databusid=""
+	transdataactionurl="/trans/TransDataAction.do" txnlogflag="true"
+	getterclassname="com.cibfintech.blacklist.internationblacklist.getter.InternationalBlackListManageGetter">
+	<Include id="BankParam" />
+
+	<Fields>
+		<!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
+		<!-- primary : true-作为表单项记录上传 false-不作为表单项上传 -->
+
+		<Field id="id" desc="黑名单编号" edittype="text" datatype="string" readonly="true" xpath="/id" />
+
+		<Field id="accountType" desc="账户类型" edittype="text" datatype="string" readonly="true" xpath="/accountType" />
+
+		<Field id="certificateType" desc="证件种类" edittype="text" datatype="string" readonly="true" translated="DATA_DIC.21"
+			xpath="/certificateType" />
+
+		<Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" readonly="true" xpath="/certificateNumber" />
+
+		<Field id="clientName" desc="客户名字" edittype="text" datatype="string" readonly="true" xpath="/clientName" />
+
+		<Field id="blacklistType" desc="名单性质" status="N" readonly="true" translated="LIST:0,白名单;1,灰名单;2,黑名单" require="false"
+			edittype="select" width="90" method="None" primary="false" type="String" xpath="/blacklistType" />
+
+		<Field id="valid" desc="有效状态" status="N" readonly="true" translated="LIST:T,有效;F,无效" require="false"
+			edittype="select" width="90" method="None" primary="false" type="String" xpath="/valid" />
+
+		<Field id="validDate" desc="有效期" edittype="text" datatype="date" readonly="true" xpath="/validDate" />
+
+		<Field id="lastModifyOperator" desc="最后修改用户" edittype="text" datatype="string" readonly="true" xpath="/lastModifyOperator" />
+	</Fields>
+	<Operations>
+		<Button id="btClose" name="btClose" desc="返回" operation="submitform"
+			url="/fpages/blacklistManage/ftl/InternationalBlacklist.ftl" txn="" icon="icon-back" />
+	</Operations>
+</CommQry>

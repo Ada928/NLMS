@@ -20,24 +20,22 @@ import javax.servlet.http.HttpServletResponse;
  * @version $Revision: 1.3 $
  * @date 2005-8-5
  *
- * WEB方式下载文件
+ *       WEB方式下载文件
  */
 
 public class WebDownloadFile {
 	public WebDownloadFile() {
 	}
 
-	public static void downloadFile(HttpServletResponse response, File file,
-			String displayName) throws Exception {
+	public static void downloadFile(HttpServletResponse response, File file, String displayName) throws Exception {
 		OutputStream out = null;
 		FileInputStream fis = null;
 		try {
 			response.setContentType("application/octet-stream;charset=utf-8");
 			String urlFileName = URLEncoder.encode(displayName, "utf-8");
 
-			response.setHeader("Content-Disposition", "attachment;filename=\""
-					+ urlFileName);
-			/* add by zhaozhiguo设置IE特殊的扩展头 保证可以直接打开*/
+			response.setHeader("Content-Disposition", "attachment;filename=\"" + urlFileName);
+			/* add by zhaozhiguo设置IE特殊的扩展头 保证可以直接打开 */
 			response.setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
 			long fileLength = file.length();
 			response.setContentLength((int) fileLength);
@@ -46,7 +44,7 @@ public class WebDownloadFile {
 			// read file and write stream
 			fis = new FileInputStream(file);
 
-			//Util.copyStream(fis, out);
+			// Util.copyStream(fis, out);
 			while (true) {
 				int in = fis.read();
 				if (-1 == in) {
@@ -69,7 +67,7 @@ public class WebDownloadFile {
 				}
 			}
 
-		}//--finally
+		} // --finally
 	}
 
 }

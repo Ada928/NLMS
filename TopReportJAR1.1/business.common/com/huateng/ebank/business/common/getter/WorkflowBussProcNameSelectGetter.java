@@ -10,7 +10,6 @@ import com.huateng.ebank.entity.dao.workflow.WorkflowBussTempletRelDAO;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 
-
 /**
  * @author fubo
  * @company huateng
@@ -29,37 +28,40 @@ public class WorkflowBussProcNameSelectGetter extends BaseGetter {
 	public Result call() throws AppException {
 
 		List list = new ArrayList();
-//		HQLDAO dao = BaseDAOUtils.getHQLDAO();
-//
-//		Session session = dao.getHibernateTemplate().getSessionFactory().openSession();
-//
-//
-//		try {
-//			TopBPMConfiguration topbpmConfiguration = TopBPMConfiguration.getInstance();
-//
-//			TopBPMContext topBPMContext= topbpmConfiguration.createTopBPMContext();
-//			topBPMContext.setSession(session);
-//
-//			List proclist = topBPMContext.getGraphSession().findLatestProcessDefinitions();
+		// HQLDAO dao = BaseDAOUtils.getHQLDAO();
+		//
+		// Session session =
+		// dao.getHibernateTemplate().getSessionFactory().openSession();
+		//
+		//
+		// try {
+		// TopBPMConfiguration topbpmConfiguration =
+		// TopBPMConfiguration.getInstance();
+		//
+		// TopBPMContext topBPMContext=
+		// topbpmConfiguration.createTopBPMContext();
+		// topBPMContext.setSession(session);
+		//
+		// List proclist =
+		// topBPMContext.getGraphSession().findLatestProcessDefinitions();
 
-			List resultList = new ArrayList();
+		List resultList = new ArrayList();
 
-			WorkflowBussTempletRelDAO workflowBussTempletRelDAO = DAOUtils.getWorkflowBussTempletRelDAO();
-			resultList = workflowBussTempletRelDAO.queryByCondition("1=1");
+		WorkflowBussTempletRelDAO workflowBussTempletRelDAO = DAOUtils.getWorkflowBussTempletRelDAO();
+		resultList = workflowBussTempletRelDAO.queryByCondition("1=1");
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), resultList, getResult());
-			getResult().setContent(list);
-			getResult().getPage().setTotalPage(1);
-			getResult().init();
-//		} catch (RuntimeException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}finally{
-//			if(session!=null && session.isOpen()){
-//				session.close();
-//			}
-//		}
+		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), resultList, getResult());
+		getResult().setContent(list);
+		getResult().getPage().setTotalPage(1);
+		getResult().init();
+		// } catch (RuntimeException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }finally{
+		// if(session!=null && session.isOpen()){
+		// session.close();
+		// }
+		// }
 		return getResult();
 	}
 

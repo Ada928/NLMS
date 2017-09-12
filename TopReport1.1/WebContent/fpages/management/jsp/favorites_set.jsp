@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=GBK"  pageEncoding="GBK"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@page import="java.util.List"%>
+<%@page import="com.huateng.ebank.business.common.GlobalInfo"%>
 <%@page import="com.huateng.report.common.service.ReportCommonService"%>
 <%@page import="resource.bean.pub.FunctionInfo"%>
-<%@page import="com.huateng.ebank.business.common.GlobalInfo"%>
+<%@page import="java.util.List"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=GBK">

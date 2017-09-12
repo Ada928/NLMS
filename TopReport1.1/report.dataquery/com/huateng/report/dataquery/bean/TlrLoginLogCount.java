@@ -1,8 +1,10 @@
 package com.huateng.report.dataquery.bean;
 
 import java.io.Serializable;
+
 /**
  * 查询登陆情况汇总信息
+ * 
  * @author shao_mying
  *
  */
@@ -17,8 +19,7 @@ public class TlrLoginLogCount implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TlrLoginLogCount(String tlrno, String brno, String startDate,
-			String endate, int count) {
+	public TlrLoginLogCount(String tlrno, String brno, String startDate, String endate, int count) {
 		super();
 		this.tlrno = tlrno;
 		this.brno = brno;

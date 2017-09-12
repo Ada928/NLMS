@@ -24,28 +24,23 @@ import com.huateng.report.constants.TopReportConstants;
 @SuppressWarnings("unchecked")
 public class BOPForDebtBondBillAuditGetter extends BaseGetter {
 
-
 	@Override
 	public Result call() throws AppException {
 		try {
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "债券和票据签约信息查询");
 			PageQueryResult queryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
-			result.getPage().setTotalPage(
-					queryResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -61,7 +56,7 @@ public class BOPForDebtBondBillAuditGetter extends BaseGetter {
 
 		StringBuffer hql = new StringBuffer(" SELECT bds FROM BopCfaExdebtDs bds WHERE 1 = 1 ");
 
-		List<Object>paramentList = new ArrayList<Object>();
+		List<Object> paramentList = new ArrayList<Object>();
 		if (StringUtils.isNotBlank(qWorkDate)) {
 			hql.append(" AND bds.workDate >= ? ");
 			paramentList.add(qWorkDate);
@@ -88,7 +83,7 @@ public class BOPForDebtBondBillAuditGetter extends BaseGetter {
 		}
 		if (StringUtils.isNotBlank(filler2)) {
 			hql.append(" AND bds.filler2 LIKE ? ");
-			paramentList.add("%"+filler2+"%");
+			paramentList.add("%" + filler2 + "%");
 		}
 
 		GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
@@ -107,9 +102,8 @@ public class BOPForDebtBondBillAuditGetter extends BaseGetter {
 
 		hql.append(" ORDER by bds.lstUpdTm DESC,bds.workDate, bds.actiontype, bds.approveStatus DESC ");
 
-
 		int pageSize = getResult().getPage().getEveryPage();
-		//页码
+		// 页码
 		int pageIndex = getResult().getPage().getCurrentPage();
 
 		PageQueryCondition queryCondition = new PageQueryCondition();

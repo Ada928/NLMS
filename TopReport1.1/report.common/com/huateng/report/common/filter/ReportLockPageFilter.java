@@ -34,15 +34,15 @@ public class ReportLockPageFilter implements Filter {
 		this.properties = null;
 	}
 
-	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException,
-			ServletException {
+	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain)
+			throws IOException, ServletException {
 		if (islockpage) {
 			HttpServletRequest request = (HttpServletRequest) req;
 			boolean lock = false;
 			String reqUrl = request.getServletPath();
 			if (properties.containsKey(reqUrl)) {
 				String appType = properties.getProperty(reqUrl);
-				if(appType != null && appType.length() > 0){
+				if (appType != null && appType.length() > 0) {
 					try {
 						HttpSession httpSession = request.getSession(false);
 						if (null != httpSession) {
@@ -72,7 +72,7 @@ public class ReportLockPageFilter implements Filter {
 	public void init(FilterConfig config) throws ServletException {
 		this.filterConfig = config;
 		this.islockpage = Boolean.parseBoolean(this.filterConfig.getInitParameter(LOCK_PAGE));
-		if(islockpage){
+		if (islockpage) {
 			String confPath = this.filterConfig.getInitParameter(LOCK_PAGE_CONFIG);
 			if (confPath != null && confPath.trim().length() > 0) {
 				loadProperties(confPath.trim());
@@ -88,19 +88,21 @@ public class ReportLockPageFilter implements Filter {
 		try {
 			properties = new Properties();
 			properties.load(is);
-//			Set<String> set = new HashSet<String>();
-//			for (Iterator iterator = properties.keySet().iterator(); iterator.hasNext();) {
-//				String name = (String) iterator.next();
-//				int ls = name.lastIndexOf("/")+1;
-//				String t = name.substring(0,ls)+"*";
-//				set.add(t);
-//			}
-//			for (Iterator<String> iterator = set.iterator(); iterator.hasNext();) {
-//				String name = iterator.next();
-//				System.out.println("<filter-mapping>\n<filter-name>lockPageFilter</filter-name>\n<url-pattern>"+name+"</url-pattern>\n</filter-mapping>\n");
-//			}
-//
-//
+			// Set<String> set = new HashSet<String>();
+			// for (Iterator iterator = properties.keySet().iterator();
+			// iterator.hasNext();) {
+			// String name = (String) iterator.next();
+			// int ls = name.lastIndexOf("/")+1;
+			// String t = name.substring(0,ls)+"*";
+			// set.add(t);
+			// }
+			// for (Iterator<String> iterator = set.iterator();
+			// iterator.hasNext();) {
+			// String name = iterator.next();
+			// System.out.println("<filter-mapping>\n<filter-name>lockPageFilter</filter-name>\n<url-pattern>"+name+"</url-pattern>\n</filter-mapping>\n");
+			// }
+			//
+			//
 			logger.info("load properties " + resourcePath);
 
 		} catch (IOException ioe) {

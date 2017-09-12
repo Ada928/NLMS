@@ -12,90 +12,94 @@
 <script language="javascript" src="<%=request.getContextPath() %>/templets/lib/dwr.js"></script>
 <script type='text/javascript' src='<%=request.getContextPath() %>/dwr/interface/ReportFile.js'> </script>
 <style type="text/css">
-	.tablecontent {
-		font-size: 12px;
-		line-height:24px;
-		background-color:#95b3d7;
-		color: #000;
-		font-family: Arial,Verdana,Vrinda,Tahoma;
-	}
+.tablecontent {
+	font-size: 12px;
+	line-height: 24px;
+	background-color: #95b3d7;
+	color: #000;
+	font-family: Arial, Verdana, Vrinda, Tahoma;
+}
 
-	.theadtr{
-		color: #000;
-	}
+.theadtr {
+	color: #000;
+}
 
-	.theadtr td {
-		background-color: #b8cce4;
-		text-align: center;
-	}
-	.theadtd {
-		background-color: #b8cce4;
-		text-align: center;
-	}
-	.tbodytr{
-		color: #000;
-	}
+.theadtr td {
+	background-color: #b8cce4;
+	text-align: center;
+}
 
-	.tdcol {
-		background-color: #e6eff9;
-		text-align: center;
-	}
+.theadtd {
+	background-color: #b8cce4;
+	text-align: center;
+}
 
-	.tdcol2 {
-		background-color: #ffffff;
-		text-align: center;
-	}
+.tbodytr {
+	color: #000;
+}
 
-	button {
-		border: #002D96 1px solid;
-		cursor: pointer;
-		color: #000;
-		font-size: 12px;
-		font-family: Arial,Verdana,Vrinda,Tahoma;
-		height: 23px;
-	}
+.tdcol {
+	background-color: #e6eff9;
+	text-align: center;
+}
+
+.tdcol2 {
+	background-color: #ffffff;
+	text-align: center;
+}
+
+button {
+	border: #002D96 1px solid;
+	cursor: pointer;
+	color: #000;
+	font-size: 12px;
+	font-family: Arial, Verdana, Vrinda, Tahoma;
+	height: 23px;
+}
 </style>
 </head>
 <body>
-<table width="90%">
-	<tr>
-		<td align="left" style="font-size: 12px;" colspan="2">
-		上报文件生成  &gt; 生成信息
-		</td>
-	</tr>
-	<tr>
-		<td width="100%" colspan="2">
-			<hr style="height:1px;border:none;border-top:1px solid #000;"/>
-		</td >
-	</tr>
-	<tr>
-		<td valign="top" width="60%">
-			<table cellpadding="0" cellspacing="1" width="100%" border="0" class="tablecontent" id="resultTable">
-				<tr class="theadtr">
-					<td nowrap="nowrap">文件类型</td>
-					<td nowrap="nowrap">包名称</td>
-					<td nowrap="nowrap">文件名称</td>
-					<td nowrap="nowrap"> 备 注 </td>
-				</tr>
-				<tr class="tdcol2">
-					<td colspan="4">暂无信息</td>
-				</tr>
-			</table>
-			<br/>
-			<table cellpadding="0" cellspacing="0" border="0">
-			<tr>
-				<td>
-				<button type="button" id="btAgain" style="background-image: url(<%=request.getContextPath() %>/login/leftnavg/images/button.gif);" onmouseover="buttonMouseOver(this)" onmouseout="buttonMouseOut(this);" onclick="toFile()"> 重新生成 </button>
-				&nbsp;&nbsp;
-				<button type="button" id="btBack" style="background-image: url(<%=request.getContextPath() %>/login/leftnavg/images/button.gif);" onmouseover="buttonMouseOver(this)" onmouseout="buttonMouseOut(this);" onclick="toback()"> 返回 </button>
-				</td>
-			<tr>
-			</table>
-		</td>
-		<td valign="top" style="height: 24px;line-height: 24px;font-size: 12px;font-family: Arial,Helvetica,sans-serif;padding-left: 8px;" id="execMsg" width="40%">
-		</td>
-	</tr>
-</table>
+	<table width="90%">
+		<tr>
+			<td align="left" style="font-size: 12px;" colspan="2">上报文件生成 &gt; 生成信息</td>
+		</tr>
+		<tr>
+			<td width="100%" colspan="2">
+				<hr style="height:1px;border:none;border-top:1px solid #000;" />
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" width="60%">
+				<table cellpadding="0" cellspacing="1" width="100%" border="0" class="tablecontent" id="resultTable">
+					<tr class="theadtr">
+						<td nowrap="nowrap">文件类型</td>
+						<td nowrap="nowrap">包名称</td>
+						<td nowrap="nowrap">文件名称</td>
+						<td nowrap="nowrap">备 注</td>
+					</tr>
+					<tr class="tdcol2">
+						<td colspan="4">暂无信息</td>
+					</tr>
+				</table> <br />
+				<table cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td>
+							<button type="button" id="btAgain"
+								style="background-image: url(<%=request.getContextPath() %>/login/leftnavg/images/button.gif);"
+								onmouseover="buttonMouseOver(this)" onmouseout="buttonMouseOut(this);" onclick="toFile()">重新生成</button>
+							&nbsp;&nbsp;
+							<button type="button" id="btBack"
+								style="background-image: url(<%=request.getContextPath() %>/login/leftnavg/images/button.gif);"
+								onmouseover="buttonMouseOver(this)" onmouseout="buttonMouseOut(this);" onclick="toback()">返回</button>
+						</td>
+					<tr>
+				</table>
+			</td>
+			<td valign="top"
+				style="height: 24px;line-height: 24px;font-size: 12px;font-family: Arial,Helvetica,sans-serif;padding-left: 8px;"
+				id="execMsg" width="40%"></td>
+		</tr>
+	</table>
 </body>
 <script type="text/javascript">
 	<%

@@ -30,20 +30,18 @@ public class GetContractnoGenerator extends BaseGenerator {
 	 */
 
 	public String gen(Object paramMap) throws CommonException {
-		String brcode = (String) ((Map)paramMap).get("brcode");
-		String lnid = (String) ((Map)paramMap).get("lnid");
+		String brcode = (String) ((Map) paramMap).get("brcode");
+		String lnid = (String) ((Map) paramMap).get("lnid");
 		// TODO Auto-generated method stub
 		// 取外部机构号
 		String extBrno = BctlService.getInstance().getExtBrno(brcode);
-		String year = DataFormat.getYear(GlobalInfo.getCurrentInstance()
-				.getTxdate());
+		String year = DataFormat.getYear(GlobalInfo.getCurrentInstance().getTxdate());
 		String valueIndex = brcode + year;
-		SimpleDateFormat simpleDateFormat =
-			new SimpleDateFormat("yyyyMM");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMM");
 		String txdate = simpleDateFormat.format(GlobalInfo.getCurrentInstance().getTxdate());
 		int seqno = CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_CONTRACTNO, valueIndex);
-		//机构所号4位+年份后两位+05（个贷业务）+贷款品种大类编号3位+4位序号
-		return extBrno + year.substring(2,4) + SystemConstant.BUSINESS_LOAN+ lnid + DataFormat.intToString(seqno, 4);
+		// 机构所号4位+年份后两位+05（个贷业务）+贷款品种大类编号3位+4位序号
+		return extBrno + year.substring(2, 4) + SystemConstant.BUSINESS_LOAN + lnid + DataFormat.intToString(seqno, 4);
 	}
 
 }

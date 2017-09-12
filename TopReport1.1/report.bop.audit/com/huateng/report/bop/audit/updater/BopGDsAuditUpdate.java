@@ -21,14 +21,13 @@ import com.huateng.exception.AppException;
 import com.huateng.report.bop.audit.operation.BopAgDsAuditOperation;
 
 public class BopGDsAuditUpdate extends BaseUpdate {
-	
-	private static final String DATASET_ID="bopGDsAudit";
-	
+
+	private static final String DATASET_ID = "bopGDsAudit";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
-		
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
+
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
@@ -36,25 +35,24 @@ public class BopGDsAuditUpdate extends BaseUpdate {
 			while (updateResultBean.hasNext()) {
 				MtsBopAgDs bopAgDs = new MtsBopAgDs();
 				Map map = updateResultBean.next();
-				mapToObject(bopAgDs,map);
+				mapToObject(bopAgDs, map);
 				bopAgDsList.add(bopAgDs);
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
 			String approveResultChoose = updateResultBean.getParameter("approveResultChoose");
-			
+
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(BopAgDsAuditOperation.CMD, BopAgDsAuditOperation.OP_G_AUDIT);
 			oc.setAttribute(BopAgDsAuditOperation.IN_AUDIT_LIST, bopAgDsList);
 			oc.setAttribute(BopAgDsAuditOperation.IN_AUDIT_STATUS, approveStatusChoose);
 			oc.setAttribute(BopAgDsAuditOperation.IN_AUDIT_RESULT, approveResultChoose);
 			OPCaller.call(BopAgDsAuditOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

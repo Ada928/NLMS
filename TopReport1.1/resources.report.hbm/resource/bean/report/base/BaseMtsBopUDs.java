@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the MTS_BOP_FS_DS table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * This is an object that contains data related to the MTS_BOP_FS_DS table. Do
+ * not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="MTS_BOP_FS_DS"
+ * @hibernate.class table="MTS_BOP_FS_DS"
  */
 
-public abstract class BaseMtsBopUDs  implements Serializable {
+public abstract class BaseMtsBopUDs implements Serializable {
 
 	public static String REF = "BaseMtsBopUDs";
 	public static String PROP_ID = "id";
@@ -49,23 +47,21 @@ public abstract class BaseMtsBopUDs  implements Serializable {
 	public static String PROP_CRT_TM = "crtTm";
 	public static String PROP_BR_NO = "brNo";
 
-
 	// constructors
-	public BaseMtsBopUDs () {
+	public BaseMtsBopUDs() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseMtsBopUDs (java.lang.String id) {
+	public BaseMtsBopUDs(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -105,36 +101,28 @@ public abstract class BaseMtsBopUDs  implements Serializable {
 	private java.util.Date crtTm;
 	private java.lang.String brNo;
 
-
-
-
-	public java.lang.String getId () {
+	public java.lang.String getId() {
 		return id;
 	}
 
-	public void setId (java.lang.String id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
-	public java.lang.String getApptype () {
+	public java.lang.String getApptype() {
 		return apptype;
 	}
 
-	public void setApptype (java.lang.String apptype) {
+	public void setApptype(java.lang.String apptype) {
 		this.apptype = apptype;
 	}
 
-
-
-	public java.lang.String getCurrentfile () {
+	public java.lang.String getCurrentfile() {
 		return currentfile;
 	}
 
-	public void setCurrentfile (java.lang.String currentfile) {
+	public void setCurrentfile(java.lang.String currentfile) {
 		this.currentfile = currentfile;
 	}
 
@@ -250,80 +238,67 @@ public abstract class BaseMtsBopUDs  implements Serializable {
 		this.remarks = remarks;
 	}
 
-	public java.util.Date getLstUpdTm () {
+	public java.util.Date getLstUpdTm() {
 		return lstUpdTm;
 	}
 
-	public void setLstUpdTm (java.util.Date lstUpdTm) {
+	public void setLstUpdTm(java.util.Date lstUpdTm) {
 		this.lstUpdTm = lstUpdTm;
 	}
 
-
-
-	public java.util.Date getCrtTm () {
+	public java.util.Date getCrtTm() {
 		return crtTm;
 	}
 
-	public void setCrtTm (java.util.Date crtTm) {
+	public void setCrtTm(java.util.Date crtTm) {
 		this.crtTm = crtTm;
 	}
 
-
-
-
-	public java.lang.String getRecStatus () {
+	public java.lang.String getRecStatus() {
 		return recStatus;
 	}
 
-	public void setRecStatus (java.lang.String recStatus) {
+	public void setRecStatus(java.lang.String recStatus) {
 		this.recStatus = recStatus;
 	}
 
-
-
-	public java.lang.String getRepStatus () {
+	public java.lang.String getRepStatus() {
 		return repStatus;
 	}
 
-	public void setRepStatus (java.lang.String repStatus) {
+	public void setRepStatus(java.lang.String repStatus) {
 		this.repStatus = repStatus;
 	}
 
-
-
-	public java.lang.String getApproveStatus () {
+	public java.lang.String getApproveStatus() {
 		return approveStatus;
 	}
 
-	public void setApproveStatus (java.lang.String approveStatus) {
+	public void setApproveStatus(java.lang.String approveStatus) {
 		this.approveStatus = approveStatus;
 	}
 
-
-	public java.lang.String getApproveResult () {
+	public java.lang.String getApproveResult() {
 		return approveResult;
 	}
 
-	public void setApproveResult (java.lang.String approveResult) {
+	public void setApproveResult(java.lang.String approveResult) {
 		this.approveResult = approveResult;
 	}
 
-
-
-	public java.lang.String getWorkDate () {
+	public java.lang.String getWorkDate() {
 		return workDate;
 	}
 
-	public void setWorkDate (java.lang.String workDate) {
+	public void setWorkDate(java.lang.String workDate) {
 		this.workDate = workDate;
 	}
 
-
-	public java.lang.String getSubSuccess () {
+	public java.lang.String getSubSuccess() {
 		return subSuccess;
 	}
 
-	public void setSubSuccess (java.lang.String subSuccess) {
+	public void setSubSuccess(java.lang.String subSuccess) {
 		this.subSuccess = subSuccess;
 	}
 
@@ -351,21 +326,24 @@ public abstract class BaseMtsBopUDs  implements Serializable {
 		this.brNo = brNo;
 	}
 
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.MtsBopFsDs)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.MtsBopFsDs))
+			return false;
 		else {
 			resource.bean.report.MtsBopFsDs mtsBopFsDs = (resource.bean.report.MtsBopFsDs) obj;
-			if (null == this.getId() || null == mtsBopFsDs.getId()) return false;
-			else return (this.getId().equals(mtsBopFsDs.getId()));
+			if (null == this.getId() || null == mtsBopFsDs.getId())
+				return false;
+			else
+				return (this.getId().equals(mtsBopFsDs.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -374,10 +352,8 @@ public abstract class BaseMtsBopUDs  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

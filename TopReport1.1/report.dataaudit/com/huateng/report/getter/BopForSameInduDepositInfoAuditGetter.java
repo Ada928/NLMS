@@ -24,11 +24,10 @@ import com.huateng.report.constants.TopReportConstants;
 public class BopForSameInduDepositInfoAuditGetter extends BaseGetter {
 
 	public Result call() throws AppException {
-	try {
+		try {
 			PageQueryResult queryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -38,17 +37,15 @@ public class BopForSameInduDepositInfoAuditGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
-	private PageQueryResult getData() throws AppException
-	{
+	private PageQueryResult getData() throws AppException {
 		setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境外同业存放审核信息签约信息查询");
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		int pageSize = getResult().getPage().getEveryPage();
-		//页码
+		// 页码
 		int pageIndex = getResult().getPage().getCurrentPage();
 
 		PageQueryCondition pc = new PageQueryCondition();
@@ -66,41 +63,36 @@ public class BopForSameInduDepositInfoAuditGetter extends BaseGetter {
 		String qrepStatus = getCommQueryServletRequest().getParameter("qrepStatus");
 		String qfiller2 = getCommQueryServletRequest().getParameter("qfiller2");
 
-		List<Object>paramentList = new ArrayList<Object>();
-		if(StringUtils.isNotBlank(qworkDate) ){
+		List<Object> paramentList = new ArrayList<Object>();
+		if (StringUtils.isNotBlank(qworkDate)) {
 			hql.append(" AND bds.workDate >= ? ");
 			paramentList.add(qworkDate);
 		}
-		if(StringUtils.isNotBlank(eworkDate)){
+		if (StringUtils.isNotBlank(eworkDate)) {
 			hql.append(" AND bds.workDate <= ? ");
 			paramentList.add(eworkDate);
 		}
-		if(StringUtils.isNotBlank(qactiontype))
-		{
+		if (StringUtils.isNotBlank(qactiontype)) {
 			hql.append(" AND bds.actiontype = ? ");
 			paramentList.add(qactiontype);
 		}
-		if(StringUtils.isNotBlank(qrecStatus))
-		{
+		if (StringUtils.isNotBlank(qrecStatus)) {
 			hql.append(" AND bds.recStatus = ? ");
 			paramentList.add(qrecStatus);
 		}
-		if(StringUtils.isNotBlank(qapproveStatus))
-		{
+		if (StringUtils.isNotBlank(qapproveStatus)) {
 			hql.append(" AND bds.approveStatus = ? ");
 			paramentList.add(qapproveStatus);
 		}
-		if(StringUtils.isNotBlank(qrepStatus))
-		{
+		if (StringUtils.isNotBlank(qrepStatus)) {
 			hql.append(" AND bds.repStatus = ? ");
 			paramentList.add(qrepStatus);
 		}
-		if(StringUtils.isNotBlank(qfiller2))
-		{
+		if (StringUtils.isNotBlank(qfiller2)) {
 			hql.append(" AND bds.filler2 LIKE ? ");
-			paramentList.add("%"+qfiller2+"%");
+			paramentList.add("%" + qfiller2 + "%");
 		}
-		hql.append(" AND bds.currentfile = ? "  );
+		hql.append(" AND bds.currentfile = ? ");
 		paramentList.add(TopReportConstants.REPORT_FILE_TYPE_CFA_AL);
 
 		hql.append(" AND (bds.recStatus = ? OR bds.recStatus= ? ) ");
@@ -116,6 +108,6 @@ public class BopForSameInduDepositInfoAuditGetter extends BaseGetter {
 		pc.setPageSize(pageSize);
 		pc.setQueryString(hql.toString());
 		pc.setObjArray(paramentList.toArray());
-		return  rootdao.pageQueryByQL(pc);
+		return rootdao.pageQueryByQL(pc);
 	}
 }

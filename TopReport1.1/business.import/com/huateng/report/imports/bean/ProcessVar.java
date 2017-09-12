@@ -1,9 +1,11 @@
 package com.huateng.report.imports.bean;
 
+import java.io.Serializable;
+
 import com.huateng.report.imports.common.Constants;
 import com.huateng.report.imports.common.Publish;
 
-public class ProcessVar {
+public class ProcessVar implements Serializable {
 
 	public int fileNum = 0;
 	public String currentFile = "";
@@ -36,7 +38,7 @@ public class ProcessVar {
 		if (subject.length == 0) {
 			Publish.push(Constants.IMPORT_SUBJECT, this);
 		}
-		for(String sub : subject) {
+		for (String sub : subject) {
 			Publish.push(sub, this);
 		}
 	}

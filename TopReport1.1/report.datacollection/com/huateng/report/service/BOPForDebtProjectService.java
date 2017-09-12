@@ -1,6 +1,5 @@
 package com.huateng.report.service;
 
-
 import resource.bean.report.BopProjectInfo;
 import resource.dao.base.HQLDAO;
 import resource.report.dao.ROOTDAO;
@@ -14,14 +13,14 @@ import com.huateng.ebank.framework.util.ApplicationContextUtils;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 
 /**
- * BOP_CFA_EXDEBT_DS :外债信息表   增加、删除、查询、更新
+ * BOP_CFA_EXDEBT_DS :外债信息表 增加、删除、查询、更新
+ * 
  * @author cwenao
- * @version 1.0
- * 2012-8-28
- * */
-public class BOPForDebtProjectService  {
+ * @version 1.0 2012-8-28
+ */
+public class BOPForDebtProjectService {
 
-	private static final String DATASET_ID="com.huateng.report.service.BOPForDebtProjectService";
+	private static final String DATASET_ID = "com.huateng.report.service.BOPForDebtProjectService";
 
 	public synchronized static BOPForDebtProjectService getInstance() {
 		return (BOPForDebtProjectService) ApplicationContextUtils.getBean(DATASET_ID);
@@ -38,27 +37,25 @@ public class BOPForDebtProjectService  {
 
 	public BopProjectInfo load(String id) throws CommonException {
 		ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
-		return (BopProjectInfo)rootDao.query(BopProjectInfo.class, id);
+		return (BopProjectInfo) rootDao.query(BopProjectInfo.class, id);
 	}
 
 	public void delete(String id) throws CommonException {
 		ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
 		BopProjectInfo bpInfo = (BopProjectInfo) rootDao.query(BopProjectInfo.class, id);
-		if(null == bpInfo)
-		{
+		if (null == bpInfo) {
 			ExceptionUtil.throwCommonException("当前记录不存在！");
-		}else {
-		    rootDao.delete(bpInfo.getClass(), id);
+		} else {
+			rootDao.delete(bpInfo.getClass(), id);
 		}
 	}
 
 	public void save(BopProjectInfo bpInfo) throws CommonException {
-		ROOTDAO rootDao= ROOTDAOUtils.getROOTDAO();
-		BopProjectInfo bpInfoTemp = (BopProjectInfo) rootDao.query(BopProjectInfo.class, (String)bpInfo.getId());
-		if(null != bpInfoTemp)
-		{
+		ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
+		BopProjectInfo bpInfoTemp = (BopProjectInfo) rootDao.query(BopProjectInfo.class, (String) bpInfo.getId());
+		if (null != bpInfoTemp) {
 			ExceptionUtil.throwCommonException("当前记录已存在！");
-		}else {
+		} else {
 			rootDao.save(bpInfo);
 		}
 	}

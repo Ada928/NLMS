@@ -1,11 +1,10 @@
 package com.huateng.ebank.business.remote.base;
 
-import java.util.Hashtable;
-
-import javax.servlet.http.HttpSession;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import javax.servlet.http.HttpSession;
+import java.util.Hashtable;
 
 public class SessionFactory {
 

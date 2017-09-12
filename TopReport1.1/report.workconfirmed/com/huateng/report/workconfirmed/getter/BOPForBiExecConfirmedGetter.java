@@ -23,20 +23,18 @@ public class BOPForBiExecConfirmedGetter extends BaseGetter {
 		try {
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
-			
+
 			return result;
 
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -44,10 +42,11 @@ public class BOPForBiExecConfirmedGetter extends BaseGetter {
 		GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
 		String busiType = this.getCommQueryServletRequest().getParameter("busiType");
 		String qappType = this.getCommQueryServletRequest().getParameter("qappType");
-		
-		BiExecConfirm biExecConfirm = BiExecConfirmService.getInstance().getBiExecConfirmByPk(busiType, qappType, gInfo.getBrno(), gInfo.getTxdate().toString().replaceAll("-", ""));
-		PageQueryResult queryResult  = new PageQueryResult();
-		if(biExecConfirm != null){
+
+		BiExecConfirm biExecConfirm = BiExecConfirmService.getInstance().getBiExecConfirmByPk(busiType, qappType,
+				gInfo.getBrno(), gInfo.getTxdate().toString().replaceAll("-", ""));
+		PageQueryResult queryResult = new PageQueryResult();
+		if (biExecConfirm != null) {
 			List<BiExecConfirm> biExecConList = new ArrayList<BiExecConfirm>();
 			biExecConList.add(biExecConfirm);
 			queryResult.setQueryResult(biExecConList);
@@ -55,6 +54,5 @@ public class BOPForBiExecConfirmedGetter extends BaseGetter {
 		}
 		return queryResult;
 	}
-
 
 }

@@ -18,22 +18,20 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.system.operation.SysTaskConfigOperation;
+
 //jianxue.zhang
 public class SysTaskConfigUpdater extends BaseUpdate {
 
-	
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("ApproveConfig");
-			
+
 			List updateList = new ArrayList();
 			List insertList = new ArrayList();
-			//List delList = new ArrayList();
-			
+			// List delList = new ArrayList();
+
 			SysTaskConfig bean = new SysTaskConfig();
 			while (updateResultBean.hasNext()) {
 				mapToObject(bean, updateResultBean.next());
@@ -51,14 +49,14 @@ public class SysTaskConfigUpdater extends BaseUpdate {
 			OperationContext context = new OperationContext();
 			context.setAttribute(SysTaskConfigOperation.INSERT_LIST, insertList);
 			context.setAttribute(SysTaskConfigOperation.UPDATE_LIST, updateList);
-			//context.setAttribute(BranchManageUpdateOperation.DEL_LIST, delList);
+			// context.setAttribute(BranchManageUpdateOperation.DEL_LIST,
+			// delList);
 			OPCaller.call("SysTaskConfigOperation", context);
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

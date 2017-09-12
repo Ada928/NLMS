@@ -6,8 +6,8 @@
   response.setDateHeader("Expires",   0);
   %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page import="com.huateng.ebank.business.common.GlobalInfo" %>
-<%@ page import="com.huateng.ebank.business.common.TransferConstant" %>
+<%@ page import="com.huateng.ebank.business.common.GlobalInfo"%>
+<%@ page import="com.huateng.ebank.business.common.TransferConstant"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -33,26 +33,28 @@ System.out.println("appno is:"+info.getAppno());
 </script>
 </head>
 <body onload="send()">
-<form action="<%=request.getAttribute("_sendUrl") %>" method="post">
+	<form action="<%=request.getAttribute("_sendUrl") %>" method="post">
 
-<%-- 公共参数 --%>
-	<input type="hidden" name="_URL" value="<%=request.getAttribute("_URL") %>">
+		<%-- 公共参数 --%>
+		<input type="hidden" name="_URL" value="<%=request.getAttribute("_URL") %>">
 
-<%-- GlobalInfo参数 --%>
-	<input type="hidden" name="tokenId" value="<%=info.getTokenId() %>">
-	<input type="hidden" name="sessionId" value="<%=info.getSessionId() %>">
-	<input type="hidden" name="tlrno_portal" value="<%=info.getTlrno()%>">
-	<input type="hidden" name="brno_portal" value="<%=info.getBrno()%>">
-	<input type="hidden" name="brcode_portal" value="<%=info.getBrcode()%>">
-	<input type="hidden" name="branchBrcode_portal" value="<%=info.getBranchBrcode()==null ? "" :info.getBranchBrcode()%>">
-	<input type="hidden" name="brClass_portal" value="<%=info.getBrClass()==null ? "" :info.getBrClass()%>">
-	<input type="hidden" name="workflowRoleId_portal" value="<%=info.getWorkflowRoleId()==null ? "" :info.getWorkflowRoleId()%>">
-	<input type="hidden" name="funcCode" value="<%=info.getFuncCode()==null ? "" :info.getFuncCode()%>">
-	<input type="hidden" name="language" value="<%=info.getLanguage()==null ? "" :info.getLanguage()%>">
-	<input type="hidden" name="txdate" value="<%=info.getTxdate()==null ? "" :info.getTxdate()%>">
-	<input type="hidden" name="Inflag" value="true">
-<%-- 业务参数 --%>
-	<input type="hidden" name="_<%=TransferConstant.SEND_VALUE_MAP %>" value="<%=request.getAttribute("_"+TransferConstant.SEND_VALUE_MAP)==null ? "" : request.getAttribute("_"+TransferConstant.SEND_VALUE_MAP)%>">
-</form>
+		<%-- GlobalInfo参数 --%>
+		<input type="hidden" name="tokenId" value="<%=info.getTokenId() %>">
+		<input type="hidden" name="sessionId" value="<%=info.getSessionId() %>">
+		<input type="hidden" name="tlrno_portal" value="<%=info.getTlrno()%>">
+		<input type="hidden" name="brno_portal" value="<%=info.getBrno()%>">
+		<input type="hidden" name="brcode_portal" value="<%=info.getBrcode()%>">
+		<input type="hidden" name="branchBrcode_portal" value="<%=info.getBranchBrcode()==null ? "" :info.getBranchBrcode()%>">
+		<input type="hidden" name="brClass_portal" value="<%=info.getBrClass()==null ? "" :info.getBrClass()%>">
+		<input type="hidden" name="workflowRoleId_portal"
+			value="<%=info.getWorkflowRoleId()==null ? "" :info.getWorkflowRoleId()%>">
+		<input type="hidden" name="funcCode" value="<%=info.getFuncCode()==null ? "" :info.getFuncCode()%>">
+		<input type="hidden" name="language" value="<%=info.getLanguage()==null ? "" :info.getLanguage()%>">
+		<input type="hidden" name="txdate" value="<%=info.getTxdate()==null ? "" :info.getTxdate()%>">
+		<input type="hidden" name="Inflag" value="true">
+		<%-- 业务参数 --%>
+		<input type="hidden" name="_<%=TransferConstant.SEND_VALUE_MAP %>"
+			value="<%=request.getAttribute("_"+TransferConstant.SEND_VALUE_MAP)==null ? "" : request.getAttribute("_"+TransferConstant.SEND_VALUE_MAP)%>">
+	</form>
 </body>
 </html>

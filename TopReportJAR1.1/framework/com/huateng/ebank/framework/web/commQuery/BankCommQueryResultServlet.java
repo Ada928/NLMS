@@ -20,44 +20,46 @@ import com.huateng.exception.AppException;
 import com.huateng.exception.DomainException;
 
 /**
- * Title: BankCommQueryResultServlet
- * Description:
- * Copyright: Copyright (c) 2008
+ * Title: BankCommQueryResultServlet Description: Copyright: Copyright (c) 2008
  * Company: Shanghai Huateng Software Systems Co., Ltd.
+ * 
  * @author shen_antonio
  * @version 1.1, 2008-1-1
  */
 public class BankCommQueryResultServlet extends CommQueryResultServlet {
 	private static final Log log = LogFactory.getLog(BankCommQueryResultServlet.class);
 
-	/** memeber variable: long　serialVersionUID. */
+	/** memeber variable: long serialVersionUID. */
 	private static final long serialVersionUID = -7846607176295431141L;
 
 	/**
 	 * pre process
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws DomainException
 	 */
 	@Override
-	protected Object preProcess(HttpServletRequest request,HttpServletResponse response)throws DomainException{
-		try{
+	protected Object preProcess(HttpServletRequest request, HttpServletResponse response) throws DomainException {
+		try {
 			init(request);
-		}catch(CommonException cex){
-			throw new AppException("", cex.getKey(),
-					ErrorCodeUtil.convertErrorMessage(log, cex), cex);
+		} catch (CommonException cex) {
+			throw new AppException("", cex.getKey(), ErrorCodeUtil.convertErrorMessage(log, cex), cex);
 		}
 		super.preProcess(request, response);
 		return null;
 	}
+
 	/**
 	 * post process
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws DomainException
 	 */
 	@Override
-	protected void postProcess(HttpServletRequest request,HttpServletResponse response,Exception ex,Object obj)throws DomainException{
+	protected void postProcess(HttpServletRequest request, HttpServletResponse response, Exception ex, Object obj)
+			throws DomainException {
 	}
 
 	/**
@@ -73,12 +75,10 @@ public class BankCommQueryResultServlet extends CommQueryResultServlet {
 
 	}
 
-	protected GlobalInfo checkGlobalInfo(HttpServletRequest request)
-			throws CommonException {
+	protected GlobalInfo checkGlobalInfo(HttpServletRequest request) throws CommonException {
 		GlobalInfo globalInfo = GlobalInfo.getFromRequest(request);
 		if (null == globalInfo) {
-			ExceptionUtil.throwCommonException("用户没有登录.",
-					ErrorCode.ERROR_CODE_TLRNO_SESSION_INVALID);
+			ExceptionUtil.throwCommonException("用户没有登录.", ErrorCode.ERROR_CODE_TLRNO_SESSION_INVALID);
 		}
 		GlobalInfo.setCurrentInstance(globalInfo);
 		String cqId = request.getParameter(CommonQueryConstants.COMMON_QUERY_ID);
@@ -87,8 +87,7 @@ public class BankCommQueryResultServlet extends CommQueryResultServlet {
 		return globalInfo;
 	}
 
-	protected GlobalInfo initGlobalInfo(HttpServletRequest request)
-			throws CommonException {
+	protected GlobalInfo initGlobalInfo(HttpServletRequest request) throws CommonException {
 		return checkGlobalInfo(request);
 	}
 

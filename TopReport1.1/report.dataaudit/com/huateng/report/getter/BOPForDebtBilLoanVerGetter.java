@@ -1,6 +1,5 @@
 package com.huateng.report.getter;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,11 +24,11 @@ import com.huateng.report.constants.TopReportConstants;
 /**
  *
  * 外债信息表Getter
+ * 
  * @author wenhao.chen
- * @version 1.0
- * 2012-8-30
+ * @version 1.0 2012-8-30
  *
- * */
+ */
 @SuppressWarnings("unchecked")
 public class BOPForDebtBilLoanVerGetter extends BaseGetter {
 
@@ -39,8 +38,7 @@ public class BOPForDebtBilLoanVerGetter extends BaseGetter {
 			PageQueryResult queryResult = getData();
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外债双边贷款签约信息审核查询");
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -50,19 +48,17 @@ public class BOPForDebtBilLoanVerGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
-	private PageQueryResult getData() throws CommonException
-	{
+	private PageQueryResult getData() throws CommonException {
 
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
 		//
 		int pageSize = getResult().getPage().getEveryPage();
-		//页码
+		// 页码
 		int pageIndex = getResult().getPage().getCurrentPage();
 
 		PageQueryCondition queryCondition = new PageQueryCondition();
@@ -80,39 +76,32 @@ public class BOPForDebtBilLoanVerGetter extends BaseGetter {
 		String qRepStatus = getCommQueryServletRequest().getParameter("qRepStatus");
 		String qFiller2 = getCommQueryServletRequest().getParameter("qFiller2");
 
-		List<Object>paramentList = new ArrayList<Object>();
-		if(StringUtils.isNotBlank(qStartDate))
-		{
+		List<Object> paramentList = new ArrayList<Object>();
+		if (StringUtils.isNotBlank(qStartDate)) {
 			hql.append(" AND bds.workDate >= ? ");
 			paramentList.add(qStartDate);
 		}
-		if(StringUtils.isNotBlank(qEndDate))
-		{
+		if (StringUtils.isNotBlank(qEndDate)) {
 			hql.append(" AND bds.workDate <= ? ");
 			paramentList.add(qEndDate);
 		}
-		if(StringUtils.isNotBlank(qActiontype))
-		{
+		if (StringUtils.isNotBlank(qActiontype)) {
 			hql.append(" AND bds.actiontype = ? ");
 			paramentList.add(qActiontype);
 		}
-		if(StringUtils.isNotBlank(qRecStatus))
-		{
+		if (StringUtils.isNotBlank(qRecStatus)) {
 			hql.append(" AND bds.recStatus = ? ");
 			paramentList.add(qRecStatus);
 		}
-		if(StringUtils.isNotBlank(qApproveStatus))
-		{
+		if (StringUtils.isNotBlank(qApproveStatus)) {
 			hql.append(" AND bds.approveStatus = ? ");
 			paramentList.add(qApproveStatus);
 		}
-		if(StringUtils.isNotBlank(qRepStatus))
-		{
+		if (StringUtils.isNotBlank(qRepStatus)) {
 			hql.append(" AND bds.repStatus = ? ");
 			paramentList.add(qRepStatus);
 		}
-		if(StringUtils.isNotBlank(qFiller2))
-		{
+		if (StringUtils.isNotBlank(qFiller2)) {
 			hql.append(" AND bds.filler2 LIKE ? ");
 			paramentList.add("%" + qFiller2 + "%");
 		}
@@ -137,6 +126,6 @@ public class BOPForDebtBilLoanVerGetter extends BaseGetter {
 		queryCondition.setQueryString(hql.toString());
 		queryCondition.setObjArray(paramentList.toArray());
 
-		return  rootdao.pageQueryByQL(queryCondition);
+		return rootdao.pageQueryByQL(queryCondition);
 	}
 }

@@ -1,14 +1,18 @@
 package com.huateng.view.pub;
+
+import java.io.Serializable;
+
 /**
  * ???????
+ * 
  * @author zxj
  *
  */
-public class TlrRoleRelationView {
-	private String tlrno;
+public class TlrRoleRelationView implements Serializable {
+	private boolean selected;
 	private String roleId;
 	private String roleName;
-	private boolean selected;
+	private String tlrno;
 	private String brcode;
 
 	public String getTlrno() {

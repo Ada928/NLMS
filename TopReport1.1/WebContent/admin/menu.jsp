@@ -21,11 +21,11 @@
 }
 </style>
 </head>
-<body style="margin: 0; overflow: hidden ;background-color: #cae1f3;" >
-<div >
-<img src="<%=request.getContextPath()%>/images/tile.jpg" align="middle" width="984" height="83" />
-</div>
-<script language="javascript" >
+<body style="margin: 0; overflow: hidden ;background-color: #cae1f3;">
+	<div>
+		<img src="<%=request.getContextPath()%>/images/tile.jpg" align="middle" width="984" height="83" />
+	</div>
+	<script language="javascript">
 
 Menu.prototype.mouseHoverDisabled = false;
 Menu.prototype.cssFile = "<%=request.getContextPath()%>/css/menu.css";
@@ -44,13 +44,15 @@ function sExit()
 }
 
 </script>
-<div align="right" class="welcome" >
-    <marquee onmouseover="this.stop()" onmouseout="this.start()" scrollamount="1" direction="left" height="20" ;>
-        <div align="right">
-             欢迎：<%=request.getSession().getAttribute("tlrname")+" ["+request.getSession().getAttribute("tlrno")+"]"%> 交易日期：<%=request.getSession().getAttribute("busidate")%> 最后登陆时间：<%=request.getSession().getAttribute("lastlogintime") %>
-        </div>
-    </marquee>
-</div>
+	<div align="right" class="welcome">
+		<marquee onmouseover="this.stop()" onmouseout="this.start()" scrollamount="1" direction="left" height="20";>
+			<div align="right">
+				欢迎：<%=request.getSession().getAttribute("tlrname")+" ["+request.getSession().getAttribute("tlrno")+"]"%>
+				交易日期：<%=request.getSession().getAttribute("busidate")%>
+				最后登陆时间：<%=request.getSession().getAttribute("lastlogintime") %>
+			</div>
+		</marquee>
+	</div>
 
 </body>
 </html>

@@ -22,7 +22,7 @@ import com.huateng.report.constants.TopReportConstants;
 import com.huateng.report.utils.ReportUtils;
 
 public class BopAgDsAuditService {
-	
+
 	protected static final Logger logger = Logger.getLogger(BopAgDsAuditService.class);
 
 	protected BopAgDsAuditService() {
@@ -31,9 +31,10 @@ public class BopAgDsAuditService {
 	public synchronized static BopAgDsAuditService getInstance() {
 		return (BopAgDsAuditService) ApplicationContextUtils.getBean(BopAgDsAuditService.class.getName());
 	}
-	
+
 	/**
 	 * BOP涉外收入申报单 审核查询
+	 * 
 	 * @param pageIndex
 	 * @param pageSize
 	 * @param qstartDate
@@ -46,9 +47,9 @@ public class BopAgDsAuditService {
 	 * @return
 	 * @throws CommonException
 	 */
-	public PageQueryResult queryBOPAgAudit(String queryType, int pageIndex, int pageSize,
-			String qstartDate, String qendDate, String qactiontype, String qrecStatus, String qapproveStatus, 
-			String qrepStatus, String qfiller2) throws CommonException {
+	public PageQueryResult queryBOPAgAudit(String queryType, int pageIndex, int pageSize, String qstartDate,
+			String qendDate, String qactiontype, String qrecStatus, String qapproveStatus, String qrepStatus,
+			String qfiller2) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<Object> objs = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer(" SELECT model FROM MtsBopAgDs model WHERE ");
@@ -56,16 +57,16 @@ public class BopAgDsAuditService {
 		objs.add(TopReportConstants.REPORT_APP_TYPE_BOP);
 		if (queryType.equals("A")) {
 			objs.add(TopReportConstants.REPORT_FILE_TYPE_BOP_A);
-		} else if(queryType.equals("G")) {
+		} else if (queryType.equals("G")) {
 			objs.add(TopReportConstants.REPORT_FILE_TYPE_BOP_G);
-		} 
+		}
 		objs.add(TopReportConstants.REPORT_RECSTATUS_03);
 		objs.add(TopReportConstants.REPORT_RECSTATUS_04);
-		if(!DataFormat.isEmpty(qstartDate)){
+		if (!DataFormat.isEmpty(qstartDate)) {
 			hql.append(" AND model.workDate >= ? ");
 			objs.add(qstartDate);
 		}
-		if(!DataFormat.isEmpty(qendDate)){
+		if (!DataFormat.isEmpty(qendDate)) {
 			hql.append(" AND model.workDate <= ? ");
 			objs.add(qendDate);
 		}
@@ -100,7 +101,7 @@ public class BopAgDsAuditService {
 		queryCondition.setObjArray(objs.toArray());
 		return rootdao.pageQueryByQL(queryCondition);
 	}
-	
+
 	/**
 	 * 审核国际收支BOP涉外收入申报单相关信息
 	 * 
@@ -112,11 +113,11 @@ public class BopAgDsAuditService {
 	 * @throws CommonException
 	 */
 	@SuppressWarnings("unchecked")
-	public void auditBopAgDs(String queryType, List<MtsBopAgDs> bopAgDsList,
-				String approveStatusChoose, String approveResultChoose) throws CommonException {
+	public void auditBopAgDs(String queryType, List<MtsBopAgDs> bopAgDsList, String approveStatusChoose,
+			String approveResultChoose) throws CommonException {
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		List<String> bopAgDsIds = new ArrayList<String>();
-		for(MtsBopAgDs bopAgDs : bopAgDsList){
+		for (MtsBopAgDs bopAgDs : bopAgDsList) {
 			bopAgDsIds.add(bopAgDs.getId());
 		}
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
@@ -125,9 +126,9 @@ public class BopAgDsAuditService {
 		List<MtsBopAgDs> dbBopAgDsList = rootdao.queryByQL2List(hql);
 
 		String approveStatusChooseName = "";
-		if(TopReportConstants.REPORT_APPROVESTATUS_01.equals(approveStatusChoose)) {
+		if (TopReportConstants.REPORT_APPROVESTATUS_01.equals(approveStatusChoose)) {
 			approveStatusChooseName = "通过";
-		} else if(TopReportConstants.REPORT_APPROVESTATUS_02.equals(approveStatusChoose)) {
+		} else if (TopReportConstants.REPORT_APPROVESTATUS_02.equals(approveStatusChoose)) {
 			approveStatusChooseName = "不通过";
 		}
 
@@ -139,10 +140,10 @@ public class BopAgDsAuditService {
 			bopAgDs.setApproveStatus(approveStatusChoose);
 			bopAgDs.setWorkDate(DateUtil.dateToNumber(gi.getTxdate()));
 			rootdao.saveOrUpdate(bopAgDs);
-			//记录到数据处理记录表
+			// 记录到数据处理记录表
 			String appType = TopReportConstants.REPORT_APP_TYPE_BOP;
 			String currentFile = null;
-			if(queryType.equals("A")) {
+			if (queryType.equals("A")) {
 				currentFile = TopReportConstants.REPORT_FILE_TYPE_BOP_A;
 			} else if (queryType.equals("G")) {
 				currentFile = TopReportConstants.REPORT_FILE_TYPE_BOP_G;
@@ -152,12 +153,13 @@ public class BopAgDsAuditService {
 			String execType = TopReportConstants.REPORT_DATAPROCESS_EXECTYPE_AUDIT;
 			String execResult = approveStatusChooseName;
 			String execRemark = null;
-			if(bopAgDs.getActiontype().equals(TopReportConstants.REPORT_ACTIONTYPE_D) && bopAgDs.getSubSuccess().equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_YES)){
+			if (bopAgDs.getActiontype().equals(TopReportConstants.REPORT_ACTIONTYPE_D)
+					&& bopAgDs.getSubSuccess().equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_YES)) {
 				execRemark = "删除成功";
 			} else {
 				execRemark = approveResultChoose;
 			}
-			//数据处理记录表保存
+			// 数据处理记录表保存
 			commonService.saveBiDataProcessLog(appType, currentFile, recId, rptno, execType, execResult, execRemark);
 		}
 	}

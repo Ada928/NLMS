@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DOCUMENT>
-	<SQLDATA>
-		<ID>00101</ID>
-		<TABLE>JGXXB</TABLE>
-		<SQL><![CDATA[
+    <SQLDATA>
+        <ID>00101</ID>
+        <TABLE>JGXXB</TABLE>
+        <SQL><![CDATA[
 select    b.zfhhh as YXJGDM ,b.nbjgh as NBJGH ,b.jrxkzh as JRXKZH ,
 b.jgmc as YXJGMC, case  when j.jgjb='1' then  '总行'
 when j.jgjb='2' then  '总行'
@@ -17,20 +17,20 @@ b.nbjgh as WDH,case when j.jlzt='1' then  '营业' else '被合并' end as YYZT,
 from jgb j left join b_jgb b on  b.nbjgh=j.dqdh||j.jgdh    and j.jlzt='1' and j.sfjywd='1' 
 where   j.jgdh in (select  b.jgdh from b_jgb b) 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00102</ID>
-		<TABLE>YGB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00102</ID>
+        <TABLE>YGB</TABLE>
+        <SQL><![CDATA[
 select GH, YXJGDM, NBJGH, JRXKZH,YXJGMC, XM, SFZH, LXDH, WDH, SSBM, ZW, YGZT, GWBH, ? as CJRQ  from ygb where gh!=' ' and cjrq=?
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00103</ID>
-		<TABLE>GYB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00103</ID>
+        <TABLE>GYB</TABLE>
+        <SQL><![CDATA[
 select gydh as GYH , zddh as GH,zfhhh as YXJGDM,b.nbjgh as NBJGH,
 (select b_jgb.zfhhh from b_jgb where b_jgb.sjjgdh='0') as ZXJGDM ,b.jrxkzh as JRXKZH,b.jgmc as YXJGMC,
 case when  bmz like '01%'  then '前台柜员'  when  bmz like '%02%'  then '前台柜员'    when  bmz like '%03%'  then '前台柜员'  
@@ -42,34 +42,34 @@ from   gyb g
 left join (select * from (select a.*,row_number() over(partition by gh,nbjgh order by cjrq desc) num from ygb a) a where num=1) y on g.gydh=y.gyh
 left join   b_jgb b  on b.nbjgh=g.dqdh||g.jgdh  where  g.jlzt in ('E','1')
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00104</ID>
-		<TABLE>GWXXB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00104</ID>
+        <TABLE>GWXXB</TABLE>
+        <SQL><![CDATA[
 select gwbh as GWBH,yxjgdm as YXJGDM,nbjgh  as NBJGH,
 jrxkzh as JRXKZH,gwzl as GWZL,gwmc as GWMC,
 gwsm as GWSM,case when gwzt='1' then '有效' else '无效' end as GWZT,? as CJRQ 
 from GWXXB where cjrq=?
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00105</ID>
-		<TABLE>JGGXB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00105</ID>
+        <TABLE>JGGXB</TABLE>
+        <SQL><![CDATA[
 select  b.zfhhh  as YHJGDM ,b.nbjgh  as NBJGH ,b.jrxkzh  as JRXKZH ,b.jgmc  as YHJGMC ,b.yzbm as YZBM , 
 b.sjjgdh as SJGLJGDM ,b.sjjgmc as SJGLJGMC ,? as CJRQ  
 from jgb  left join b_jgb b on b.nbjgh=jgb.dqdh||jgb.jgdh 
 where  jgb.jlzt='1' and jgb.sfjywd='1' 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00201</ID>
-		<TABLE>ZZHJQKMB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00201</ID>
+        <TABLE>ZZHJQKMB</TABLE>
+        <SQL><![CDATA[
 select b.jrxkzh  as JRXKZH , b.zfhhh  as YHJGDM,b.nbjgh  as NBJGH,b.jgmc  as YHJGMC , 
 e.kmdh as KMBH ,k.yjkmmc as KMMC ,1 as  KMJC , 
 case when k.kmxz='0' then 1 
@@ -230,12 +230,12 @@ left join  kmdhb k on k.kmdh=e.kmdh
 left join hbb h on h.hbzl=e.hbzl   
 where   e.zzlx='2'
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00203</ID>
-		<TABLE>NBKMDZB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00203</ID>
+        <TABLE>NBKMDZB</TABLE>
+        <SQL><![CDATA[
 select distinct k.kmdh  as KMBH ,k.kmmc as KMMC ,'2' as KJKMJC,y.kmdh1 as SJKMBH,
  y.yjkmmc as SJKMMC , case when k.kmxz='0' then 1 
 when k.kmxz='1' then 2
@@ -289,12 +289,12 @@ end as GSYWZL
  from kmdhb k join yjkmdhb y on (y.kmdh1=substr(k.kmdh,0,4) or (y.kmdh1=substr(k.dykmdh,0,4) and k.kmdh like '000%')))
 where GSYWZL is not null group by SJKMBH) b on y.kmdh1=b.SJKMBH
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00204</ID>
-		<TABLE>GRHQCKFHZ</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00204</ID>
+        <TABLE>GRHQCKFHZ</TABLE>
+        <SQL><![CDATA[
 select distinct  a.zhdh as HQCKZH, b.zjhm as KHTYBH, c.zfhhh  as YXJGDM,c.jrxkzh as JRXKZH,c.nbjgh as NBJGH ,
 a.kmdh as MXKMBH , c.jgmc as YXJGMC, d.kmmc as MXKMMC, ' ' as TJKMBH, f.gjhbfh as BZ, a.khxm as ZHMC,
  case when ( substr(a.flbz, 15,1) = '1' ) then '储蓄户'  else '结算户' end  as GRHQCKZHLX, '借记卡'  as FLZHLX ,
@@ -324,12 +324,12 @@ left join  llb g on a.lldh = g.hbzl||g.llzl||g.ckqx
 where  a.jlzt!='0' and a.khdh=' ' and   d.jlzt = '1' and f.jlzt = '1' and 
 g.sxrq = (select max(sxrq) from  llb t where a.lldh = t.hbzl||t.llzl||t.ckqx and t.jlzt = '1' ) 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00205</ID>
-		<TABLE>GRHQCKFHZMXJL</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00205</ID>
+        <TABLE>GRHQCKFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select  distinct cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as HQCKZH,  
  dsxx.zjhm  as KHTYBH, b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 b.jgmc as YXJGMC ,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ, 
@@ -363,12 +363,12 @@ left join (select zhdh,zhmc as khmc,dqdh||jgdh as jgdh from bwzzwj union all sel
 left join b_jgb bj on bj.nbjgh=u1.jgdh
 where  cp.kmdh in ('211110' ,'211130')   and  ds.khdh=' ' and  cp.bczbz='0' and  cp.cbbz ='0'
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00206</ID>
-		<TABLE>GRDQCKFHZ</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00206</ID>
+        <TABLE>GRDQCKFHZ</TABLE>
+        <SQL><![CDATA[
 select a.zhdh as DQCKZH,  b.zjhm as GRKHTYBH, c.zfhhh  as YXJGDM,c.jrxkzh as JRXKZH,c.nbjgh as NBJGH,
 a.kmdh as MXKMBH, d.kmmc as MXKMMC, c.jgmc as YXJGMC, f.gjhbfh as BZ,' ' as TJKMBH,  a.khmc as ZHMC,
 d.kmmc as GRDQCKZHLX, 
@@ -435,12 +435,12 @@ left join llb g on a.lldh = g.hbzl||g.llzl||g.ckqx
 where a.ywdh in ('292','299','266','270','267','268','274') and a.jlzt<>'0' and  a.khdh=' ' and d.jlzt = '1' and f.jlzt = '1'
 and g.jlzt = '1' and g.sxrq = (select max(sxrq) from  llb t where a.lldh = t.hbzl||t.llzl||t.ckqx and t.sxrq <= a.qxrq and t.jlzt = '1')
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00207</ID>
-		<TABLE>GRDQCKFHZMXJL</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00207</ID>
+        <TABLE>GRDQCKFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select distinct cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as DQCKZH,  
  dsxx.zjhm  as KHTYBH,b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 b.jgmc as YXJGMC ,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ, 
@@ -484,12 +484,12 @@ left join hbb h on h.hbzl=cp.hbzl   left join jylb j on  cp.jydm=j.jydm
 left join zyb z on z.zydh=cp.zydh 
 where substr(cp.kmdh,1,4)='2112' and  cp.bczbz='0' and cp.cbbz ='0'  and dq.khdh=' '  
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00208</ID>
-		<TABLE>DGHQCKFHZ</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00208</ID>
+        <TABLE>DGHQCKFHZ</TABLE>
+        <SQL><![CDATA[
 select a.zhdh as HQCKZH, a.khdh as KHTYBH, c.zfhhh  as YXJGDM,c.jrxkzh as JRXKZH,c.nbjgh as NBJGH, a.kmdh as MXKMBH,
 c.jgmc as YXJGMC, d.kmmc as MXKMMC, ' ' as TJKMBH, e.gjhbfh as BZ, a.khmc as ZHMC,
 case
@@ -539,12 +539,12 @@ and d.jlzt = '1'
 and e.jlzt = '1'
 and g.jlzt = '1' 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00209</ID>
-		<TABLE>DGHQCKFHZMXJL</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00209</ID>
+        <TABLE>DGHQCKFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select  cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as HQCKZH,  
 hq.KHDH  as KHTYBH,b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 b.jgmc as YXJGMC ,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ, 
@@ -568,12 +568,12 @@ left join jylb j on  cp.jydm=j.jydm
 left join zyb z on cp.zydh = z.zydh 
 where  k.kmcc='0' and  cp.BCZBZ='0' and  cp.cbbz='0'
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00210</ID>
-		<TABLE>DGDQCKFHZ</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00210</ID>
+        <TABLE>DGDQCKFHZ</TABLE>
+        <SQL><![CDATA[
 select a.zhdh as DQCKZH, a.khdh as KHTYBH, c.zfhhh  as YXJGDM,c.jrxkzh as JRXKZH,c.nbjgh as NBJGH, a.kmdh as MXKMBH,
 d.kmmc as MXKMMC, c.jgmc as YXJGMC, e.gjhbfh as BZ, ' ' as TJKMBH,  a.khmc as ZHMC,
 (case 
@@ -611,12 +611,12 @@ and d.jlzt = '1'
 and e.jlzt = '1'
 and g.jlzt = '1' 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00211</ID>
-		<TABLE>DGDQCKFHZMXJL</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00211</ID>
+        <TABLE>DGDQCKFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select distinct  cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as DQCKZH,  
 dq.khdh  as KHTYBH,b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 b.jgmc as YXJGMC ,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ, 
@@ -640,12 +640,12 @@ left join zyb z on z.zydh = cp.zydh
 where  k.kmcc='2'  and substr(cp.zhdh,8,3) ='002'  and  cp.BCZBZ='0' and cp.cbbz='0' 
 		
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00212</ID>
-		<TABLE>NBFHZ</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00212</ID>
+        <TABLE>NBFHZ</TABLE>
+        <SQL><![CDATA[
 select   n.zhdh as NBFHZZH,b.zfhhh as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh  as NBJGH,n.kmdh as MXKMBH , 
 k.kmmc as ZHMC ,b.jgmc as YXJGMC,k.kmmc as MXKMMC, 
 case  when n.yefx='0' then '借'  when  n.yefx='1'  then '贷' end as JDBZ,h.gjhbfh as BZ, 
@@ -667,12 +667,12 @@ left join kmdhb k on n.kmdh=k.kmdh
 left join hbb h on n.hbzl=h.hbzl
 where substr(n.kmdh,1,1) in ('1','2') and n.jlzt<>'0' 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00213</ID>
-		<TABLE>NBFHZMXJL</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00213</ID>
+        <TABLE>NBFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select  cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as NBFHZZH,  
 b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 b.jgmc as YXJGMC ,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ, 
@@ -696,12 +696,12 @@ left join zyb z on z.zydh=cp.zydh
 where  k.kmcc='4' 
 and  cp.BCZBZ='0' and  cp.cbbz='0'  and substr(k.kmdh,1,1) in ('1','2')
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00214</ID>
-		<TABLE>GRXDFHZ</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00214</ID>
+        <TABLE>GRXDFHZ</TABLE>
+        <SQL><![CDATA[
 select   tl.coreactno  as DKFHZH , ta.lncino  as XDJJH, ci.idno as KHTYBH, 
  b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,
  tl.subjid as MXKMBH,b.jgmc  as YXJGMC, k.kmmc as MXKMMC,ta.custnm as ZHMC, ta.curcd as BZ, 
@@ -731,12 +731,12 @@ ta.lplanrtnintdt as ZJHKRQ, ' ' as TJKMBH,ta.lnco as DKHTH,t.tlr_name as XDYXM,
  left join tlr_info t on li.tlrno=t.tlrno where tl.actsubtype in ('10','30')  
  and  ta.lnco in (select contractno from loaninfo )
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00215</ID>
-		<TABLE>GRXDFHZMXJL</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00215</ID>
+        <TABLE>GRXDFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select  cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as DKFHZH,  
  nvl(trim(dsxx.zjhm),kz.khdh)  as KHTYBH,b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 d.jjh as XDJJH ,b.jgmc as YXJGMC,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ, 
@@ -756,12 +756,12 @@ left join (select zhdh,zhmc as khmc,dqdh||jgdh as jgdh from bwzzwj union all sel
 left join b_jgb bj on bj.nbjgh=u1.jgdh 
 where  k.kmcc='3' and ( cp.kmdh like '114%' or  cp.kmdh='113110')    
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00216</ID>
-		<TABLE>DGXDFHZ</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00216</ID>
+        <TABLE>DGXDFHZ</TABLE>
+        <SQL><![CDATA[
 select   d.zhdh as DKFHZH , d.jjh  as XDJJH , d.khdh as KHTYBH ,b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,
  d.kmdh as MXKMBH, b.jgmc as YXJGMC, k.kmmc as MXKMMC, d.khmc as ZHMC, h.gjhbfh as BZ , d.jyrq as ZJHKRQ ,
  ' ' as TJKMBH, d.htbh as DKHTH , app.transactorname as XDYXM , 
@@ -786,12 +786,12 @@ left join application app on app.appid = loan.appid
 left join coloanapplication co on app.appid=co.appid 
 where d.jjh in (select  trim( duebillno) from  loanduebill )  and d.dkxz not in ('8','Q')
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00217</ID>
-		<TABLE>DGXDFHZMXJL</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00217</ID>
+        <TABLE>DGXDFHZMXJL</TABLE>
+        <SQL><![CDATA[
 select  cp.gylsh as HXJYLSH ,cp.cpzxh as ZJYLSH,cp.cpznxh as BCXH,cp.zhdh as DKZH,  
 dg.khdh  as KHTYBH,b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH,cp.kmdh as MXKMBH,
 d.jjh as XDJJH ,b.jgmc as YXJGMC,k.kmmc  as MXKMMC,cp.jyrq  as HXJYRQ,cp.jysj as HXJYSJ,
@@ -811,12 +811,12 @@ left join (select zhdh,zhmc as khmc,dqdh||jgdh as jgdh from bwzzwj union all sel
 left join b_jgb bj on bj.nbjgh=u1.jgdh
 where  k.kmcc='3' and  cp.kmdh like '113%'  and  cp.kmdh<>'113110'  
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00301</ID>
-		<TABLE>GRJCXX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00301</ID>
+        <TABLE>GRJCXX</TABLE>
+        <SQL><![CDATA[
 select dk.zjhm as KHTYBH , dk.zjhm  as ZJHM  ,
 b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH ,
 '核心' as LYXT ,dk.zwxm  as KHXM ,DK.ywxm as KHYWXM,
@@ -848,12 +848,12 @@ left join customer_info cu1 on trim(cu1.custcd)=indv.mate_custcd
 left join loaninfo ln on cu.custcd=ln.custcd
 where  dk.zjzl=d.zjzl and dk.zjhm=D.ZJHM
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00302</ID>
-		<TABLE>GRKHGXXX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00302</ID>
+        <TABLE>GRKHGXXX</TABLE>
+        <SQL><![CDATA[
   select  ci.idno  as KHTYBH, 
  b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH , C.IDNO as DYGRKHTYBH,    
 CASE WHEN prelation='1' THEN '配偶' WHEN prelation='2' THEN '父母' WHEN prelation='3' THEN '子女' WHEN prelation='4' THEN '祖父母'
@@ -863,12 +863,12 @@ C.NAME as DYGRKHXM,  ' ' as DYGRKHGZDWMC ,' ' as DYGRKHGZDWDZ,' ' as DYGRKHGZDWD
  left join bctl bc on ci.open_brcode=bc.brcode left join b_jgb b on DECODE(TRIM(bc.brno),'85888','85601','85999','85601',TRIM(BC.BRNO))=B.NBJGH
  LEFT JOIN CUSTOMER_INFO C ON  c.custcd =CL.COCUSTCD
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00303</ID>
-		<TABLE>DGKH</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00303</ID>
+        <TABLE>DGKH</TABLE>
+        <SQL><![CDATA[
 SELECT dg.khdh  as KHTYBH , dg.qydh as ZZJGDM , b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH ,
 dg.khmc as KHMC , NVL(TRIM(DG.YWMC1),TRIM(DG.YWMC2)) as KHYWMC ,NVL(D.LEGALREPRESENTATIVE,DG.FRMC) as FRDB ,case when  dg.frzjzl = '0' OR D.LRCERTIFICATECODE IS NOT NULL then '居民身份证'  when dg.frzjzl = '4' then '军官证'  when dg.frzjzl = '5' then '警官证'  
 when dg.frzjzl in('7','9') then '护照' else '其他有效通行旅行证件' end as FRDBZJLB,  NVL(D.LRCERTIFICATECODE,DG.FRZJHM) as  FRDBZJHM,
@@ -891,20 +891,20 @@ left join b_jgb b1 on   trim(hg.dqdh)|| trim(hg.jgdh)=b1.nbjgh
 left join jtjbqk jt on trim(dg.khdh)=trim(jt.khdmhgylbm)
 where dg.jlzt='1'
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00304</ID>
-		<TABLE>GDXX</TABLE>
-		<SQL><![CDATA[ 
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00304</ID>
+        <TABLE>GDXX</TABLE>
+        <SQL><![CDATA[ 
 select KHTYBH,ZZJGDM,YXJGDM,JRXKZH,NBJGH,GDMC,GDZJLB,GDZJHM,GDZT,? as CJRQ from gdxx where cjrq=?
            ]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00305</ID>
-		<TABLE>GLGX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00305</ID>
+        <TABLE>GLGX</TABLE>
+        <SQL><![CDATA[
 select   c.EXTERNALCUSID  as KHTYBH , 
 b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH ,
 trim(co.LRCERTIFICATECODE) as GLRKHTYBH ,  co.CORPCODE as KHSBM ,
@@ -915,12 +915,12 @@ trim('对私') as GLRLB , '股东' as GXLX ,to_char(c.LastUpdateDate,'yyyymmdd')
 left join zd_hh z on  interbranch=z.hh 
 left join b_jgb b on z.regionno||z.zhjb=b.nbjgh  where c.EXTERNALCUSID is not null and c.EXTERNALCUSID!=' '   	
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00401</ID>
-		<TABLE>XDHTB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00401</ID>
+        <TABLE>XDHTB</TABLE>
+        <SQL><![CDATA[
 select d.htbh as XDHTH,  d.htbh as ZHTH, d.khdh as KHTYBH,                                            
  b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH, d.khmc as KHMC, ' ' as CPMC,                                  
 '流贷' as DKXGZL ,'贷款' as  XDYWZL ,'CNY' as BZ ,d.khje as JE , d.qsrq as HTYDRQ ,
@@ -1004,22 +1004,22 @@ from tla_lncino_base t left join loaninfo l on l.contractno =t.lnco
 left join b_jgb b on b.nbjgh=decode(trim(t.acbrcd),'85888','85601','85999','85601',trim(t.acbrcd))  
 left join  customer_info c on t.custno=c.custcd	
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00402</ID>
-		<TABLE>XMDKXXB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00402</ID>
+        <TABLE>XMDKXXB</TABLE>
+        <SQL><![CDATA[
 select XDHTH, KHTYBH, YXJGDM, JRXKZH, NBJGH, JKRMC, XMMC, XMLX, SFYT, XMZTZ, ZBJ, XMDKJE, 
 XMDKQX, PWWH, LXPW, GHXKZBH, JSYDXKZBH, HPXKZBH, SGXKZBH, QTXKZ, QTXKZBH, KGRQ, CJRQ 
 from XMDKXXB
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00403</ID>
-		<TABLE>PJPMXXB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00403</ID>
+        <TABLE>PJPMXXB</TABLE>
+        <SQL><![CDATA[
 select a.pzdh as PJHM , b.khdh as CPRBH,c.zfhhh as FKXDM, c.zfhhh  as YXJGDM,c.jrxkzh as JRXKZH,c.nbjgh as NBJGH, '银行承兑汇票' as PJLX,
 a.hkrxm as CPRQC, a.zhdh as CPRZH, c.jgmc as FKXMC,  'CNY' as BZ, a.hpje as PMJE, a.hpqfrq as QFRQ, a.dqrq as PJDQRQ,
 a.skdwmc as SKRMC, a.skzh as SKRZH, a.dfhh as skrkhx, ? as CJRQ
@@ -1036,12 +1036,12 @@ from  syhpdjb a
 left join  dkhzwj b on( a.dkzh = b.zhdh ) left join  b_jgb c on   a.dqdh||a.jgdh=c.nbjgh
 where a.jlzt='1'  
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00404</ID>
-		<TABLE>BHYWXXB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00404</ID>
+        <TABLE>BHYWXXB</TABLE>
+        <SQL><![CDATA[
 select l.contractno as XDHTH,b.ZFHHH as YXJGDM, b.JRXKZH as JRXKZH,b.nbjgh as NBJGH, 
 c.externalcusid as KHTYBH, c.cusname as JKRMC,
 case when bg.guaranteeslipkind='1' then '投标保函' 
@@ -1059,12 +1059,12 @@ left join b_jgb b on z.regionno||z.zhjb=b.nbjgh
 left join bgloanapplication bg on bg.appid=l.appid
 where l.loantype=4 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00405</ID>
-		<TABLE>DGBWSXYW</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00405</ID>
+        <TABLE>DGBWSXYW</TABLE>
+        <SQL><![CDATA[
 select a.draftno as XDJJH,b.ZFHHH as YXJGDM, b.JRXKZH as JRXKZH,b.nbjgh as NBJGH,  
 c.externalcusid as KHTYBH,c.cusname as KHMC, l.contractno as XDHTH, b.jgmc  as YXJGMC, 
 '624101' as MXKMBH, '开出银行承兑汇票 ' as MXKMMC, 6 as YWLX, 'CNY' as BZ,
@@ -1127,32 +1127,32 @@ left join term_chg_apply e on l.cino=e.contractno
 left join loaninfo f on a.htbh=f.contractno
 where a.kmdh like '1921%'
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00406</ID>
-		<TABLE>MYRZYWXXB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00406</ID>
+        <TABLE>MYRZYWXXB</TABLE>
+        <SQL><![CDATA[
 select DGXDJJH, XDHTH, KHTYBH, YXJGDM, JRXKZH, NBJGH, JKRMC, ZZJGDM, 
 MYRZPZ, MYHTH, BZ, MYHTZJE,BNYE,BWYE, YXGJYWBH, SYFPHM, SYFPBZ, SYFPJE, XYZCDX, 
 FFTZL, XYZBH, XYZBZ, XYZJE, XYZKZRQ, XYZQXLX, XYZXQ, CJRQ 
 from  myrzywxxb 	
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00407</ID>
-		<TABLE>YTDK</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00407</ID>
+        <TABLE>YTDK</TABLE>
+        <SQL><![CDATA[
 select XDHTH,KHTYBH,YXJGDM,JRXKZH,NBJGH,XYLX,ZBXXH,CDXXH,DLXXH,ZBXXM,CDXXM,DLXXM,DLCDBZ,JKRMC,SQDKZE,
 CDDKJE,SJCDDKJE,YFFDKJE,YFFCDDKJE,CDSYDKJE,JLXYXJGDM,XYQSRQ,XYZZRQ,XYZT,FHGY,? as CJRQ from ytdk where cjrq=?
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00408</ID>
-		<TABLE>WTDK</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00408</ID>
+        <TABLE>WTDK</TABLE>
+        <SQL><![CDATA[
 select  li.cino  as XDJJH, li.contractno as XDHTH , c.idno  as KHTYBH  ,b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH ,
 (select hq.khdh from  hqdgzwj hq where hq.zhdh=li.accum_fund_actno ) as WTRKHTYBH,
 (select corp_name from fund_rtnactno_param where  rtn_ben_actno=li.accum_fund_actno ) as  WTRKHMC,
@@ -1184,12 +1184,12 @@ left join b_jgb b on b.nbjgh=d.dqdh||d.jgdh
 left join coloanapplication co on l.appid=co.appid
   where d.dkxz='7'  and  d.htbh!='11111111111111' 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00409</ID>
-		<TABLE>GRXDYWJJ</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00409</ID>
+        <TABLE>GRXDYWJJ</TABLE>
+        <SQL><![CDATA[
 select ta.lncino as  XDJJH ,(select t.coreactno from tla_ln_acct  t where t.refno=ta.lncino and t.actsubtype in ('10','30') ) as  DKFHZH, 
 ci.idno as  KHTYBH,ci.name as KHMC, ta.lnco as  XDHTH   , b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH , 
 (select t.subjid  from tla_ln_acct  t where refno=ta.lncino and t.actsubtype in ('10','30') ) as MXKMBH, 
@@ -1230,12 +1230,12 @@ tla_lncino_base ta  left join loancino l  on trim(ta.lncino)=trim(l.cino)
   left JOIN GDDKPZ GP ON TA.LNID=GP.DCPZ
 left join b_jgb b on decode(trim(ta.acbrcd),'85888','85601','85999','85601',trim(ta.acbrcd))=B.NBJGH
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00410</ID>
-		<TABLE>DGXDYWJJ</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00410</ID>
+        <TABLE>DGXDYWJJ</TABLE>
+        <SQL><![CDATA[
 select   d.jjh as XDJJH, d.jszh as  DKFHZH, d.khdh as  KHTYBH,d.khmc  as KHMC,d.htbh as  XDHTH,                                      
 b.ZFHHH as YXJGDM, b.JRXKZH as JRXKZH,b.nbjgh as NBJGH,                                                             
 d.kmdh as MXKMBH, b.jgmc as YXJGMC,  k.kmmc as MXKMMC,                                                              
@@ -1327,12 +1327,12 @@ left join b_jgb b on d.dqdh||d.jgdh=b.nbjgh
 left join syhpdjb s on d.zhdh=s.dkzh     
 where d.dkxz ='1'                                                                                                   
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00411</ID>
-		<TABLE>XDYWDBHT</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00411</ID>
+        <TABLE>XDYWDBHT</TABLE>
+        <SQL><![CDATA[
 select   a.assureno  as DBHTH, c.idno  as BZRKHTYBH,
 b.jrxkzh as JRXKZH,  b.zfhhh  as YXJGDM,b.nbjgh as NBJGH ,
 '单人保证' as DBLX,'一般担保合同' as  DBHTLX ,  
@@ -1384,12 +1384,12 @@ left join loan l on s.appid=l.appid left join zd_hh z on l.interbranch=z.hh
 left join b_jgb b on z.regionno||z.zhjb=b.nbjgh  where  s.securitykind='210'  
 and s.appid in (select  loan.appid from loan  )
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00412</ID>
-		<TABLE>DBGX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00412</ID>
+        <TABLE>DBGX</TABLE>
+        <SQL><![CDATA[
 select  a.assureno  as DBHTH,  a.contractno as BDBHTH ,  c.idno as BZRKHTYBH,
  b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH , '单人保证' as DBLX, amount  as  DBJE,
  sdate  as DBQSRQ ,  edate as DBDQRQ  ,case when  a.status='1' then '正常' else '解除'   end as DBZT,
@@ -1408,12 +1408,12 @@ case when s.cancleflag='1' then '解除' when s.cancleflag='0' then '正常' end
 from security s left join customer c on s.assetcusid=c.cusid left join loan l on s.appid=l.appid left join zd_hh z on l.interbranch=z.hh
 left join b_jgb b on z.regionno||z.zhjb=b.nbjgh  where s.cancleflag='0' and s.securitycontractno  is not null 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00413</ID>
-		<TABLE>XDYWZHDYW</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00413</ID>
+        <TABLE>XDYWZHDYW</TABLE>
+        <SQL><![CDATA[
 select  m.mortno as ZHDYWBH, m.contractno as DBHTH,  c.idno  as KHTYBH,
  b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH ,
 CASE
@@ -1548,12 +1548,12 @@ left join asset on s.assetid=asset.assetid
 left join b_jgb b on d.dqdh||d.jgdh=b.nbjgh 	
 where s.securitykind in('22','23') and  d.dkxz not in ('8' ,'Q') 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00501</ID>
-		<TABLE>JJKXX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00501</ID>
+        <TABLE>JJKXX</TABLE>
+        <SQL><![CDATA[
 select a.khdh as KH, a.zhdh as HQCKZH, c.zjhm  as KHTYBH,b.ZFHHH as YXJGDM, b.JRXKZH as JRXKZH, b.nbjgh  as NBJGH, 
 (case when (c.zjzl = '0') then '居民身份证'  when (c.zjzl = '4') then '军官证'  when (c.zjzl = '5') then '警官证'  
 when (c.zjzl in('7','9')) then '护照' else '其他有效通行旅行证件' end ) as ZJLB, 
@@ -1568,12 +1568,12 @@ left join  dspzkzwj d on substr(d.zhdh,1,10)=a.khdh
 left join (select * from (select a.*,row_number() over(partition by gh,nbjgh order by cjrq desc) num from ygb a) a where num=1) yg on trim(c.zjhm)=trim(yg.sfzh) and c.zjzl='0'
 where a.khdh!=' ' and  a.jlzt<>'0'		
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00502</ID>
-		<TABLE>CZXX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00502</ID>
+        <TABLE>CZXX</TABLE>
+        <SQL><![CDATA[
 select a.zhdh as CZH,a.zhdh  as HQCKZH, c.zjhm  as KHTYBH,b.ZFHHH as YXJGDM, b.JRXKZH as JRXKZH, b.nbjgh  as NBJGH,  
 (case when (c.zjzl = '0') then '居民身份证'  when (c.zjzl = '4') then '军官证'  when (c.zjzl = '5') then '警官证'  
 when (c.zjzl in('7','9')) then '护照' else '其他有效通行旅行证件' end ) as ZJLB,  
@@ -1605,12 +1605,12 @@ left join (select * from (select a.*,row_number() over(partition by gh,nbjgh ord
 where  substr(a.kmdh,1,4) in ('2112','2111') and  a.khdh=' ' and  a.jlzt<>'0' 
 and   a.zhdh in (select zhdh  from dskhxxwj ) 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00503</ID>
-		<TABLE>XYKXX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00503</ID>
+        <TABLE>XYKXX</TABLE>
+        <SQL><![CDATA[
 select
     KH,XYKZH,KHTYBH,YXJGDM,JRXKZH,NBJGH,ZJLB,ZJHM,KPMC,KPJB,KPZT,KDQNY,KHZHJYRQ,YGKBZ,
     FSKBZ,ZKH,NFBZ,BBXYED,WBXYED,WBBZ,BBXJZQED,WBXJZQED,ZKRQ,SLRQ,SLYGH,KKRQ,KKYGH,
@@ -1619,12 +1619,12 @@ select
 from
       xykxx	where cjrq=?	
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00504</ID>
-		<TABLE>XYKZHJYMXB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00504</ID>
+        <TABLE>XYKZHJYMXB</TABLE>
+        <SQL><![CDATA[
 select
     KH,XYKZH,YXJGDM,NBJGH,JRXKZH,BZ,JYJZRQ,HXJYLSH,ZJYLSH,BCXH,
     KPJYLX,CHLB,XZBZ,JYPZH,JDBZ,JYJE,KHSXFJE,QKGHCX,
@@ -1633,12 +1633,12 @@ select
 from
      xykzhjymxb	where cjrq=?	
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00601</ID>
-		<TABLE>SXXX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00601</ID>
+        <TABLE>SXXX</TABLE>
+        <SQL><![CDATA[
 select  ci.creditno  as SXXYH , c.idno as KHTYBH , b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH ,
 l.apply_date as FSRQ , c.name as KHMC ,'个人客户授信' as  SXZL ,'个人授信额度' as SXXYMC ,l.totamt as EDJE ,
 l.curcd as BZ , l.isdate as SXRQ , case when l.status='1' then '有效'  else '无效'  end as  SXZT,
@@ -1659,12 +1659,12 @@ from line l left join customer c on l.cusid=c.cusid left join zd_hh z on l.inter
 left join b_jgb b on z.regionno||z.zhjb=b.nbjgh left join application a on l.appid=a.appid
 where trim(c.externalcusid) is not null
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00602</ID>
-		<TABLE>DKHX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00602</ID>
+        <TABLE>DKHX</TABLE>
+        <SQL><![CDATA[
 select  ta.lncino  as XDJJH,ta.lnco  as XDHTH, ci.idno as KHTYBH , 
  b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH ,
 (select t.subjid from tla_ln_acct t where t.actsubtype in ('10','30') and  refno =ta.lncino) as MXKMBH ,
@@ -1683,12 +1683,12 @@ b.nbjgh as KMGSJG , d.srye as SHDKBJ  ,0 as SHBNLX , 0 as SHBWLX , d.jyrq  as HX
 from  dkhzwj d left join b_jgb b on d.dqdh||d.jgdh=b.nbjgh  
 where substr(d.jszh,8,3) in ('229','230','187') 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00603</ID>
-		<TABLE>DKZQ</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00603</ID>
+        <TABLE>DKZQ</TABLE>
+        <SQL><![CDATA[
 select  tc.appno  as DKZQBH , tc.contractno as XDJJH,  ta.lnco as   XDHTH,
 ci.idno as  KHTYBH , b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH ,
 tc.approve_date as ZQRQ ,  tc.new_tedate  as ZQDQRQ , ta.lnbal as ZQJE ,
@@ -1711,34 +1711,34 @@ left join application a on d.loanappid=a.appid
  left join customer c on l.cusid=c.cusid 
  left join b_jgb b on z.regionno||z.zhjb=b.nbjgh 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00604</ID>
-		<TABLE>XDZCZR</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00604</ID>
+        <TABLE>XDZCZR</TABLE>
+        <SQL><![CDATA[
 select  
 ZRHTH,YXJGDM,JRXKZH,NBJGH,JYDSBH,JYDSMC,XDJYLX,JYZCLX,ZRDKBJZE,
 ZRDKLXZE,ZRSXF,ZRZJ,HGLL,ZRJGRQ,HGJZRQ,ZRHTQSRQ,ZRHTDQRQ,
 JYDSZZH,JYDSZZZHHM,JYDSXH,CJRQ 
 from xdzczr
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00605</ID>
-		<TABLE>ZCZRGXB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00605</ID>
+        <TABLE>ZCZRGXB</TABLE>
+        <SQL><![CDATA[
 select
     ZRHTH,  YXJGDM,  XDJJH,  JRXKZH,  NBJGH,  CJRQ 
 from  zczrgxb 	
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00606</ID>
-		<TABLE>DKWJXTBD</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00606</ID>
+        <TABLE>DKWJXTBD</TABLE>
+        <SQL><![CDATA[
 select   lr.txdate   as TZRQ ,  lr.contractno  as XDJJH, ta.lnco as XDHTH,
 ci.idno as KHTYBH , b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH ,
 b.jgmc as YXJGMC,' ' as YMXKMBH , 
@@ -1768,12 +1768,12 @@ from loansort2list ls left join loan l on ls.loanid=l.appid left join   loandueb
  left join zd_hh z on l.interbranch=z.hh left join customer c on l.cusid=c.cusid left join b_jgb b on z.regionno||z.zhjb=b.nbjgh
 where   ld.closeflag='0'
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00607</ID>
-		<TABLE>DHJCB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00607</ID>
+        <TABLE>DHJCB</TABLE>
+        <SQL><![CDATA[
 select  m.txdate  as JCFSRQ,ta.lncino  as XDJJH,m.contractno as XDHTH,ci.idno as KHTYBH,
 b.zfhhh  as YXJGDM, b.jrxkzh as JRXKZH,b.nbjgh as NBJGH ,
 ' '  as   BQCWBBRQ,' '  as   SQCWBBRQ,' '  as   YWPZ,
@@ -1818,12 +1818,12 @@ coloanapplication cl on l.appid=cl.appid
 left join b_jgb b on z.regionno||z.zhjb=b.nbjgh 
 where lc.appid in (select appid from loanduebill )
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00701</ID>
-		<TABLE>JYLS</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00701</ID>
+        <TABLE>JYLS</TABLE>
+        <SQL><![CDATA[
 select cp.gylsh  as  HXJYLSH ,cp.cpzxh  as  ZJYLSH 
 ,cp.cpznxh  as  BCXH ,cp.jyrq  as  JYRQ ,
 b.zfhhh  as YXJGDM, b.nbjgh as NBJGH,b.jrxkzh as JRXKZH,
@@ -1863,52 +1863,52 @@ left join zypzzlb zy on zy.pzzl=substr(cp.pzdh,1,2)
 left join jylb j on  cp.jydm=j.jydm     
 where k.kmcc in ('0','1','2')
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00801</ID>
-		<TABLE>ZCFZKMTJB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00801</ID>
+        <TABLE>ZCFZKMTJB</TABLE>
+        <SQL><![CDATA[
 select
     Z.JRJGDM,Z.JRXKZH,Z.NBJGH,TJKMBH,TJKMMC,TJKMJE,QXLX ,TJRQ,BZ,B.DQMC AS DQMC,B.DQDM AS XZQHDM,? as CJRQ  
 from  zcfzkmtjb z left join b_jgb b on(z.nbjgh=b.nbjgh) 
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00802</ID>
-		<TABLE>SNTJB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00802</ID>
+        <TABLE>SNTJB</TABLE>
+        <SQL><![CDATA[
 select 
  s.JRJGDM as JRJGDM, s.JRXKZH as JRXKZH, s.NBJGH as NBJGH, TJKMBH, TJKMMC, TJKMJE, QXLX, TJRQ, BZ, b.DQMC as DQMC,b.dqdm as XZQHDM, ? as CJRQ
 from  sntjb s left join b_jgb b on s.nbjgh=b.nbjgh 	where s.cjrq=?	
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00901</ID>
-		<TABLE>SXQK</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00901</ID>
+        <TABLE>SXQK</TABLE>
+        <SQL><![CDATA[
 select YXJGDM,JRXKZH,NBJGH,SBJGDM,KHLX,KHMC,KHDM,KHGJDM,SXYHDM,SXYHMC,SXHM,SXED,
 DKSXED,SXQSRQ,SXDQRQ,DKYE,CYZQYE,CYGQYE,QTBNXYFXZCYE,BWYWYE,XYYWYEZYSXED,
 DKYEZYDKSXED,SKSYSXED,SKSYDKSXED,GLFSXBS,? as CJRQ  from 	SXQK	
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00902</ID>
-		<TABLE>JTKHSXCFQK</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00902</ID>
+        <TABLE>JTKHSXCFQK</TABLE>
+        <SQL><![CDATA[
 select YXJGDM, JRXKZH, NBJGH, SBJGDM, KHMC, KHLX, JTKHSXHM, CYDWDKHMC,
 CYDWDKHDM, SXHM, SXED, DKSXED, DKYE, CYZQYE, CYGQYE, QTBNXYFXZCYE, 
 BWYWYE, XYYWYEZYSXED, DKYEZYDKSXED, SKSYSXED, SKSYDKSXED,? as  CJRQ from JTKHSXCFQK 	
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00903</ID>
-		<TABLE>DKMX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00903</ID>
+        <TABLE>DKMX</TABLE>
+        <SQL><![CDATA[
 select YXJGDM, JRXKZH, NBJGH, SBJGDM, DKKHMC, DKKHDM, DKFFXDM, 
 SXHM, DKHTH, JJH, FFRQ, DQRQ, FFJE, DKYE, WJFL, DKLX, 
 DKYWZL, TXXY, BZDM, DBFS, QBYE, QBTS, QXYE, QXTS, BQHK, 
@@ -1916,112 +1916,112 @@ HBFS, HXFS, XQHBRQ, XQHBJE, XQHXRQ, XQHXJE, DKFFLX, JZZB,
 CYJGDZLX, GYZXSJBS, ZLXXCYLX, YTDKBS, ZFFS, ? as CJRQ
  from DKMX
 			]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00904</ID>
-		<TABLE>CYQYZQMX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00904</ID>
+        <TABLE>CYQYZQMX</TABLE>
+        <SQL><![CDATA[
 select YXJGDM, JRXKZH, NBJGH, SBJGDM, YXCZQYMC, YXCZQYDM, CYXJGDM, 
 SXHM, ZQDM, ZQLX, ZQMZ, ZMYE, FXRQ, DQDFRQ, 
 ZHLX, NBPJ, WBPJ,? as  CJRQ
  from CYQYZQMX 
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>00905</ID>
-		<TABLE>CYQYGQMX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00905</ID>
+        <TABLE>CYQYGQMX</TABLE>
+        <SQL><![CDATA[
 select YXJGDM, JRXKZH, NBJGH, SBJGDM, YXCGQYMC,
 YXCGQYDM, CYXJGDM, SXHM, ZMYE,? as  CJRQ from CYQYGQMX 
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>00906</ID>
-		<TABLE>BWYWMX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00906</ID>
+        <TABLE>BWYWMX</TABLE>
+        <SQL><![CDATA[
 select YXJGDM, JRXKZH, NBJGH, SBJGDM, BWYWKHMC, 
 BWYWKHDM, CBYXJGDM, BWYWLX, SXHM, HTH, YWHM, 
 YWYE, BZDM, FSRQ, DQRQ, BZJJE, CYJGDZLX, 
 GYZXSJBS, ZLXXCYLX, ? as CJRQ from BWYWMX 
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>00907</ID>
-		<TABLE>TYKHYWMX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00907</ID>
+        <TABLE>TYKHYWMX</TABLE>
+        <SQL><![CDATA[
 select YXJGDM,  JRXKZH,  NBJGH,  SBJGDM,  KHMC,  KHDM,  
 GBDM,  FXCJGTJJGBM,  ZZJGDM,  KHLB,  NBPJ,  WBPJ,  
 CHFTY,  CFTY,  ZQHG,  GPZYDK,  MRFSZC,  MDSZTX,  CYZQ,  
 GQTZ,  TYDF,  QTBNYW,  MCHGZC,  BKCXDCNJHYFZ,  QTBWYW,? as  CJRQ from TYKHYWMX 
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>00908</ID>
-		<TABLE>JTJBQK</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00908</ID>
+        <TABLE>JTJBQK</TABLE>
+        <SQL><![CDATA[
 select YXJGDM, JRXKZH, NBJGH, SBJGDM, KHMC, KHDMHGYLBM, 
 GSZCBH, JTCYS, SXLX, JTBBZCZE, JTBBFZZE, JTBBZCFZBLX, 
 JTBBZCFZBRQ, FXYJXH, GZSJ, XYPJJG, MGSZCGJHDQ, MGSGBDM, 
 MGSGNZCDZ, MGSXZQHDM, MGSGXZCXXRQ, BGDZ, 
 BGDZXZQHDM, GXGNBGDZRQ,? as CJRQ from JTJBQK 
 		]]>
-		</SQL>
-	</SQLDATA>		
-	<SQLDATA>
-		<ID>00909</ID>
-		<TABLE>GGJZYGLRXX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00909</ID>
+        <TABLE>GGJZYGLRXX</TABLE>
+        <SQL><![CDATA[
 select YXJGDM, JRXKZH, NBJGH, SBJGDM, KHMC, KHDMHGYLBM, 
 GXRLX, XM, GBDM, SFZHM, GXXXRQ,? as CJRQ from GGJZYGLRXX 
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>00910</ID>
-		<TABLE>GGJZYGLRZJB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00910</ID>
+        <TABLE>GGJZYGLRZJB</TABLE>
+        <SQL><![CDATA[
 select SFZHM, ZJLX, ZJHM, QFRQ, DQRQ,? as  CJRQ from GGJZYGLRZJB 
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>00911</ID>
-		<TABLE>CYMD</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00911</ID>
+        <TABLE>CYMD</TABLE>
+        <SQL><![CDATA[
 select YXJGDM, JRXKZH, NBJGH, SBJGDM, KHMC, 
 KHDMHGYLBM, GBDM, CYDWDMC, CYDWDKHDM, 
 ZZJGDM, DJZCDM, CYLX, MGSBS,? as CJRQ from CYMD 
 		]]>
-		</SQL>
-	</SQLDATA>
-	<SQLDATA>
-		<ID>00912</ID>
-		<TABLE>SJKZR</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00912</ID>
+        <TABLE>SJKZR</TABLE>
+        <SQL><![CDATA[
 select YXJGDM, JRXKZH, NBJGH, SBJGDM, KHMC, KHDMHGYLBM, 
 SJKZRLX, GBDM, SJKZRMC, SJKZRDKHDM, SJKZRZJLX, 
 SJKZRZJDM, DJZCDM, ? as CJRQ  from SJKZR 
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>00913</ID>
-		<TABLE>GLJTXX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00913</ID>
+        <TABLE>GLJTXX</TABLE>
+        <SQL><![CDATA[
 select  YXJGDM, JRXKZH, NBJGH, SBJGDM, KHMC, 
 KHDMHGYLBM, GLJTDM, GLJTMC, GLGXLX,? as CJRQ from  	GLJTXX		
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>00914</ID>
-		<TABLE>DYFRJBQK</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00914</ID>
+        <TABLE>DYFRJBQK</TABLE>
+        <SQL><![CDATA[
 select  YXJGDM, JRXKZH, NBJGH, SBJGDM, KHMC, KHDM, 
 ZZJGDM, ZZJGDJHNJHGXRQ, DJZCDM, DJZCRQ, DJNJRQ, 
 DJGXRQ, ZCGJHDQ, GBDM, ZCDZ, XZQHDM, SSGSBZ, SSDGJDM, 
@@ -2030,62 +2030,62 @@ ZYYWSR, CH, YSZK, QTYSK, LDZCHJ, LDFZHJ, CWBBLX,
 CWBBRQ, KHLX, KHSSXYDM, DKKH, HJHSHFXFL,? as CJRQ 
  from  	DYFRJBQK		
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>00915</ID>
-		<TABLE>ZYGDJZYGLQY</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00915</ID>
+        <TABLE>ZYGDJZYGLQY</TABLE>
+        <SQL><![CDATA[
 select YXJGDM, JRXKZH, NBJGH, SBJGDM, KHMC, KHDM, GLLX, GDHGLQYMC, 
 GDHGLQYLX, GDHGLQYZJLX, GDHGLQYZJDM, DJZCDM, 
 GDHGLQYKHDM, 'CN' as GBDM, CGBL, GDJGDYRQ, GXXXRQ, SJKZRBS,? as CJRQ  from  ZYGDJZYGLQY 			
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>00916</ID>
-		<TABLE>DBQKTJB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00916</ID>
+        <TABLE>DBQKTJB</TABLE>
+        <SQL><![CDATA[
 select YXJGDM, JRXKZH, NBJGH, SBJGDM, KHMC, KHDM, YXSFZJLX, ZJHM, 
 DKHBWYWHTH, DBHTH, DBHTLX, YPLX, YPMC, YPDM, YPQSRHBZRMC, 
 YPQSRHBZRLX, YPQSRHBZRZJLX, YPQSRHBZRZJDM, YPPGJZHBZJE, 
 YPQSRSFDSF, SCGZRQ, ZXGZRQ, GZDQRQ, BZRBZNLSX, 
 SPDZYL, SJDZYL, DBGLLX,? as CJRQ  from  DBQKTJB			
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>00917</ID>
-		<TABLE>GRDKWYQKTJB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00917</ID>
+        <TABLE>GRDKWYQKTJB</TABLE>
+        <SQL><![CDATA[
 select YXJGDM, JRXKZH, NBJGH, SBJGDM, JKRXM, YXSFZJLX, ZJHM, 
 DKFFXDM, DKHTH, JJH, DKPZ, DBFS, FFJE, DKYE, FFRQ, DQRQ, 
 WYJE, WYTS, WJFL, HKFS, ZJYCHKJE, ZJYCHKRQ, KHZZ, 
 ZZXZQHDM, XXMC, XXDZ, XXXZQHDM, XSZH, 
 DKSJTZZ, DKSJTZZXZQHDM, ZXDKLX, ? as CJRQ  from  GRDKWYQKTJB			
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>00918</ID>
-		<TABLE>GRDKWYQTZJ</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00918</ID>
+        <TABLE>GRDKWYQTZJ</TABLE>
+        <SQL><![CDATA[
 select SFZHM, KHQTZJLX, KHQTZJHM,? as CJRQ  from GRDKWYQTZJ 			
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>00919</ID>
-		<TABLE>GTZWR</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>00919</ID>
+        <TABLE>GTZWR</TABLE>
+        <SQL><![CDATA[
 select JJH, GTZWRXM, GTZWRZJLX, GTZWRZJHM,? as CJRQ from  GTZWR			
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>01001</ID>
-		<TABLE>ZJJYXXB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>01001</ID>
+        <TABLE>ZJJYXXB</TABLE>
+        <SQL><![CDATA[
 select  b.ZFHHH as YXJGDM, b.JRXKZH as JRXKZH, b.nbjgh as NBJGH , 
 nb.kmdh  as MXKMBH,b.jgmc as YXJGMC,
 (select km.kmmc from kmdhb km where km.kmdh=nb.kmdh) as MXKMMC,ty.cjywbh  as JYBH, 
@@ -2127,12 +2127,12 @@ left join zmdzb zmb on zmb.jydm=zqmr.jydm and trim(zmb.fjzd1)=zqmr.tzlx
 left join zqjbzlb zq on zqmr.zqwbbm=zq.wbbm
 left join b_jgb b  on  b.nbjgh=zqmr.dqdh||zqmr.jgdh  			
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>01002</ID>
-		<TABLE>JRGJXXB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>01002</ID>
+        <TABLE>JRGJXXB</TABLE>
+        <SQL><![CDATA[
 select  b.ZFHHH as YXJGDM, b.JRXKZH as JRXKZH, b.nbjgh as NBJGH ,
 b.jgmc as YXJGMC,zqzl.zqmc as ZQMC, 
 zqzl.wbbm as JRGJBH, '固定收益' as ZCLX,'短期融资券' as ZQLX,'CNY' as BZ,zq.dfhm as FXJG, 
@@ -2145,24 +2145,24 @@ to_date('1990/01/01','yyyy-mm-dd') as PGJGSJ,zq.gyjz as ZJGYJZ,? as CJRQ
 from zqjbzlb  zqzl left join b_jgb b on b.jgdh='100'
 left join (select zqwbbm,dfhm,khdh,sum(gyjz) as gyjz from zqmrdjb group by zqwbbm,dfhm,khdh) zq on zqzl.wbbm=zq.zqwbbm 	
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>01003</ID>
-		<TABLE>HLXXB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>01003</ID>
+        <TABLE>HLXXB</TABLE>
+        <SQL><![CDATA[
 select  b.ZFHHH as YXJGDM, b.JRXKZH as JRXKZH, b.nbjgh as NBJGH , 
 b.jgmc as YXJGMC,hl.dfbz as WB,hl.hbzl as BB,hl.xcmrjg as XCMRJ,
 hl.xhmrjg as XHMRJ,hl.xcmcjg as MCJ,hl.zjjg as ZJJ,hl.xhmcjg as JZJ,
 ' ' as QX,? as CJRQ 
 from hlb hl , b_jgb b where b.jgdh='101'   			
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>01101</ID>
-		<TABLE>LCCPXXB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>01101</ID>
+        <TABLE>LCCPXXB</TABLE>
+        <SQL><![CDATA[
 select distinct b.ZFHHH as YXJGDM, b.JRXKZH as JRXKZH, b.nbjgh as NBJGH ,
 nbz.kmdh as MXKMBH,b.jgmc as YXJGMC, kmb.kmmc as MXKMMC, 
 trim(lccs.lccpmc) as CPMC,lc.lccph as CPDJBM, lccs.lccph as HNBSM, 
@@ -2191,12 +2191,12 @@ left join syfpcsb sy on sy.lccph=lc.lccph
 left join shdjb sh on sh.xybh=lc.xybh and sh.lccph=lc.lccph 
 left join b_jgb b on trim(substr(lccs.grbjgjzh, 1,5))=b.nbjgh 			
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>01102</ID>
-		<TABLE>LCCPZTB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>01102</ID>
+        <TABLE>LCCPZTB</TABLE>
+        <SQL><![CDATA[
 select  b.ZFHHH as YXJGDM, b.JRXKZH as JRXKZH, b.nbjgh as NBJGH ,
 b.jgmc as YXJGMC , lccs.lccpmc as LCCPMC,lccs.lccph as HNBSM, 
 lctj.mjje as SJMJJE, lccs.mjksrq as CPQSRQ,
@@ -2206,12 +2206,12 @@ lccs.dqrq as ZZDJR,? as CJRQ
  from lccpcsb lccs left join lccpywtjb  lctj on  lccs.lccph=lctj.lccph 
  left join b_jgb b on trim(substr(lccs.grbjgjzh, 1,5))=b.nbjgh  			
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>01103</ID>
-		<TABLE>KHLCZHXXB</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>01103</ID>
+        <TABLE>KHLCZHXXB</TABLE>
+        <SQL><![CDATA[
 select  b.ZFHHH as YXJGDM, b.JRXKZH as JRXKZH, b.nbjgh as NBJGH,
 nbz.kmdh as MXKMBH,b.jgmc as YXJGMC, kmb.kmmc as MXKMMC, 
 lc.xgzhdh as LCZH,nvl(trim(lc.xgkhdh),ds.zjhm) as KHTYBH,lc.khmc as KHXM,lc.xgzhdh as GLHQCKZH,
@@ -2224,12 +2224,12 @@ left join nbzzwj nbz on nbz.zhdh=lccs.jgbjgjzh
 left join kmdhb kmb on kmb.kmdh=nbz.kmdh  
 left join b_jgb b on trim(substr(lc.zhdh, 1,5))=b.nbjgh   			
 		]]>
-		</SQL>
-	</SQLDATA>	
-	<SQLDATA>
-		<ID>01104</ID>
-		<TABLE>LCCPXSMX</TABLE>
-		<SQL><![CDATA[
+        </SQL>
+    </SQLDATA>
+    <SQLDATA>
+        <ID>01104</ID>
+        <TABLE>LCCPXSMX</TABLE>
+        <SQL><![CDATA[
 select lcls.xybh as JYH,lcls.lccph as HXJYLSH,lcls.xybh as ZJYLSH,
 lcls.xh as BCXH,b.ZFHHH as YXJGDM, b.JRXKZH as JRXKZH, b.nbjgh as NBJGH,
 '192180' as MXKMBH,b.jgmc as YXJGMC, '委托理财'as MXKMMC, 
@@ -2246,6 +2246,6 @@ left join lccpzwj lc  on lc.xgzhdh=lcls.xgzhdh
 left join shdjb sh on sh.xybh=lc.xybh and sh.lccph=lc.lccph 
 left join b_jgb b on trim(substr(lcls.zhdh, 1,5))=b.nbjgh   		
 		]]>
-		</SQL>
-	</SQLDATA>									
+        </SQL>
+    </SQLDATA>
 </DOCUMENT>

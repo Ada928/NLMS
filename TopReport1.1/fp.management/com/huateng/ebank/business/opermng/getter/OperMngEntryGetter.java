@@ -8,13 +8,6 @@
  */
 package com.huateng.ebank.business.opermng.getter;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import resource.bean.pub.TlrInfo;
-import resource.dao.pub.TlrInfoDAO;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -27,6 +20,12 @@ import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import resource.bean.pub.TlrInfo;
+import resource.dao.pub.TlrInfoDAO;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author zhiguo.zhao

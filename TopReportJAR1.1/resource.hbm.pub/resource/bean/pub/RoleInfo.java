@@ -2,21 +2,20 @@ package resource.bean.pub;
 
 import resource.bean.pub.base.BaseRoleInfo;
 
-
-
-public class RoleInfo extends BaseRoleInfo {
+public class RoleInfo extends BaseRoleInfo implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private String roleList;
 	private String statusModFlag;
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public RoleInfo () {
+
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public RoleInfo() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public RoleInfo (java.lang.Integer id) {
+	public RoleInfo(java.lang.Integer id) {
 		super(id);
 	}
 
@@ -36,9 +35,6 @@ public class RoleInfo extends BaseRoleInfo {
 		this.statusModFlag = statusModFlag;
 	}
 
-
-
-/*[CONSTRUCTOR MARKER END]*/
-
+	/* [CONSTRUCTOR MARKER END] */
 
 }

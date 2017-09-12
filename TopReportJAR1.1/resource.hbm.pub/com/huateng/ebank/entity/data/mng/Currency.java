@@ -9,37 +9,24 @@ public class Currency extends BaseCurrency {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
-	public Currency () {
+	public Currency() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public Currency (java.lang.String id) {
+	public Currency(java.lang.String id) {
 		super(id);
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public Currency (
-		java.lang.String id,
-		java.lang.String curno,
-		java.lang.String cnname,
-		java.lang.String enname,
-		java.lang.Short dratedays,
-		java.lang.String cursymbol,
-		java.lang.String isusd) {
+	public Currency(java.lang.String id, java.lang.String curno, java.lang.String cnname, java.lang.String enname,
+			java.lang.Short dratedays, java.lang.String cursymbol, java.lang.String isusd) {
 
-		super (
-			id,
-			curno,
-			cnname,
-			enname,
-			dratedays,
-			cursymbol,
-			isusd);
+		super(id, curno, cnname, enname, dratedays, cursymbol, isusd);
 	}
 
 	/* [CONSTRUCTOR MARKER END] */

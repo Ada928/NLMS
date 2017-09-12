@@ -27,20 +27,16 @@ public class JshDfDsManageCollGetter extends BaseGetter {
 		try {
 			PageQueryResult pageResult = getData();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外汇账户内结汇补录管理信息查询");
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -55,10 +51,11 @@ public class JshDfDsManageCollGetter extends BaseGetter {
 		String qapproveStatus = (String) paramsMap.get("qapproveStatus");
 		String qrepStatus = (String) paramsMap.get("qrepStatus");
 		String qfiller2 = (String) paramsMap.get("qfiller2");
-		//加上机构号
+		// 加上机构号
 		String brNo = GlobalInfo.getCurrentInstance().getBrno();
-		String hql = getHql(qworkDateStart,qworkDateEnd,qactiontype, qrecStatus, qapproveStatus, qrepStatus, qfiller2,brNo);
-		//查询,返回结果
+		String hql = getHql(qworkDateStart, qworkDateEnd, qactiontype, qrecStatus, qapproveStatus, qrepStatus, qfiller2,
+				brNo);
+		// 查询,返回结果
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		PageQueryCondition pageQueryCondition = new PageQueryCondition();
@@ -68,44 +65,47 @@ public class JshDfDsManageCollGetter extends BaseGetter {
 		return ROOTDAOUtils.getROOTDAO().pageQueryByQL(pageQueryCondition);
 	}
 
-	private String getHql(String qworkDateStart,String qworkDateEnd, String qactiontype,
-			String qrecStatus, String qapproveStatus, String qrepStatus,
-			String qfiller2, String brNo) {
+	private String getHql(String qworkDateStart, String qworkDateEnd, String qactiontype, String qrecStatus,
+			String qapproveStatus, String qrepStatus, String qfiller2, String brNo) {
 		// TODO Auto-generated method stub
 		StringBuffer buff = new StringBuffer();
 		buff.append(" from MtsJshDefgDs ds where 1 = 1 ");
-		if(StringUtils.isNotBlank(qworkDateStart)) {
-			buff.append(" and ds.workDate >= '"+qworkDateStart+"'");
+		if (StringUtils.isNotBlank(qworkDateStart)) {
+			buff.append(" and ds.workDate >= '" + qworkDateStart + "'");
 		}
-		if(StringUtils.isNotBlank(qworkDateEnd)) {
-			buff.append(" and ds.workDate <= '"+qworkDateEnd+"'");
+		if (StringUtils.isNotBlank(qworkDateEnd)) {
+			buff.append(" and ds.workDate <= '" + qworkDateEnd + "'");
 		}
-		if(StringUtils.isNotBlank(qactiontype)) {
-			buff.append(" and ds.actiontype like '"+qactiontype+"'");
+		if (StringUtils.isNotBlank(qactiontype)) {
+			buff.append(" and ds.actiontype like '" + qactiontype + "'");
 		}
-		if(StringUtils.isBlank(qrecStatus)) {
-			buff.append(" and (ds.recStatus = '"+TopReportConstants.REPORT_RECSTATUS_01+"'"+" or "+"ds.recStatus = '"+TopReportConstants.REPORT_RECSTATUS_02+"')");
+		if (StringUtils.isBlank(qrecStatus)) {
+			buff.append(" and (ds.recStatus = '" + TopReportConstants.REPORT_RECSTATUS_01 + "'" + " or "
+					+ "ds.recStatus = '" + TopReportConstants.REPORT_RECSTATUS_02 + "')");
 		} else {
-			if(TopReportConstants.REPORT_RECSTATUS_01.equalsIgnoreCase(qrecStatus) || TopReportConstants.REPORT_RECSTATUS_02.equalsIgnoreCase(qrecStatus)) {
-				buff.append(" and ds.recStatus like '"+qrecStatus+"'");
+			if (TopReportConstants.REPORT_RECSTATUS_01.equalsIgnoreCase(qrecStatus)
+					|| TopReportConstants.REPORT_RECSTATUS_02.equalsIgnoreCase(qrecStatus)) {
+				buff.append(" and ds.recStatus like '" + qrecStatus + "'");
 			} else {
-				buff.append(" and ds.recStatus in ('"+TopReportConstants.REPORT_RECSTATUS_01+"','"+TopReportConstants.REPORT_RECSTATUS_02+"')");
+				buff.append(" and ds.recStatus in ('" + TopReportConstants.REPORT_RECSTATUS_01 + "','"
+						+ TopReportConstants.REPORT_RECSTATUS_02 + "')");
 			}
 		}
-		if(StringUtils.isNotBlank(qapproveStatus)) {
-			buff.append(" and ds.approveStatus like '"+qapproveStatus+"'");
+		if (StringUtils.isNotBlank(qapproveStatus)) {
+			buff.append(" and ds.approveStatus like '" + qapproveStatus + "'");
 		}
-		if(StringUtils.isNotBlank(qrepStatus)) {
-			buff.append(" and ds.repStatus like '"+qrepStatus+"'");
+		if (StringUtils.isNotBlank(qrepStatus)) {
+			buff.append(" and ds.repStatus like '" + qrepStatus + "'");
 		}
-		if(StringUtils.isNotBlank(qfiller2)) {
-			buff.append(" and ds.filler2 like '%"+qfiller2+"%'");
+		if (StringUtils.isNotBlank(qfiller2)) {
+			buff.append(" and ds.filler2 like '%" + qfiller2 + "%'");
 		}
-		buff.append(" and ds.currentfile = '"+TopReportConstants.REPORT_FILE_TYPE_JSH_F+"'");
-		buff.append(" and ds.apptype = '"+TopReportConstants.REPORT_APP_TYPE_JSH+"'");
-		//申报信息是删除的就不能修改了
-//		buff.append(" and ds.actiontype != '"+TopReportConstants.REPORT_ACTIONTYPE_D+"'");
-		buff.append(" and ds.brNo = '"+brNo+"' order by ds.lstUpdTm desc");
+		buff.append(" and ds.currentfile = '" + TopReportConstants.REPORT_FILE_TYPE_JSH_F + "'");
+		buff.append(" and ds.apptype = '" + TopReportConstants.REPORT_APP_TYPE_JSH + "'");
+		// 申报信息是删除的就不能修改了
+		// buff.append(" and ds.actiontype !=
+		// '"+TopReportConstants.REPORT_ACTIONTYPE_D+"'");
+		buff.append(" and ds.brNo = '" + brNo + "' order by ds.lstUpdTm desc");
 		return buff.toString();
 	}
 

@@ -1,12 +1,13 @@
 package com.huateng.report.databak.bean;
 
-public class ReportTableBakBean {
+import java.io.Serializable;
+
+public class ReportTableBakBean implements Serializable {
 	private String tableName;
 	private int batchCount;
 	private String batchCountSql;
 	private String dataSql;
 	private String delSql;
-
 
 	public String getDelSql() {
 		return delSql;

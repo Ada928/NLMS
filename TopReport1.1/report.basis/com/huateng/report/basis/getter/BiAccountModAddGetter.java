@@ -15,19 +15,15 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 
-
-
-public class BiAccountModAddGetter extends BaseGetter{
+public class BiAccountModAddGetter extends BaseGetter {
 
 	@Override
 	public Result call() throws AppException {
 		// TODO Auto-generated method stub
 
 		try {
-			List list  = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), 
-					getCommQueryServletRequest(), 
-					list,getResult());
+			List list = getData();
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);
 			result.getPage().setTotalPage(list.size());
 			result.init();
@@ -36,23 +32,22 @@ public class BiAccountModAddGetter extends BaseGetter{
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-	private List getData() throws CommonException
-		{
+
+	private List getData() throws CommonException {
 
 		List list = new ArrayList();
 		String id = getCommQueryServletRequest().getParameter("id");
 		String op = getCommQueryServletRequest().getParameter("op");
-		if("new".equals(op)){
-			
-		}else if("mod".equalsIgnoreCase(op)){
+		if ("new".equals(op)) {
+
+		} else if ("mod".equalsIgnoreCase(op)) {
 			ROOTDAO rootDao = ROOTDAOUtils.getROOTDAO();
 			list.add(rootDao.query(BiAccount.class, id));
 		}
 		return list;
 
-		}
+	}
 }

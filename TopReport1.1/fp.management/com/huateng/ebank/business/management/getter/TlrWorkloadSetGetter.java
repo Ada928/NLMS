@@ -9,28 +9,22 @@
 package com.huateng.ebank.business.management.getter;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-import resource.bean.pub.TlrInfo;
-import resource.dao.pub.BctlDAO;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
-import com.huateng.ebank.business.common.DAOUtils;
-import com.huateng.ebank.business.common.ErrorCode;
-import com.huateng.ebank.business.common.GlobalInfo;
-import com.huateng.ebank.business.common.PageQueryCondition;
-import com.huateng.ebank.business.common.PageQueryResult;
-import com.huateng.ebank.business.common.SystemConstant;
+import com.huateng.ebank.business.common.*;
 import com.huateng.ebank.business.common.service.BctlService;
 import com.huateng.ebank.entity.data.TlrWorkload;
 import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import resource.bean.pub.TlrInfo;
+import resource.dao.pub.BctlDAO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author kangbyron

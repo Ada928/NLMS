@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-<wb-module deploy-name="TopReport1.1">
-<wb-resource deploy-path="/" source-path="/WebContent"/>
-<wb-resource deploy-path="/WEB-INF/classes" source-path="/business.admin"/>
-<wb-resource deploy-path="/WEB-INF/classes" source-path="/business.custadmin"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="TopReport1.1">
+        <wb-resource deploy-path="/" source-path="/WebContent"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/business.admin"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/business.custadmin"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/business.custtxn"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/framework"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/business.approve"/>
@@ -58,7 +59,9 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/sharefeild"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/topbpm.flow"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/fp.management"/>
-<wb-resource deploy-path="/WEB-INF/classes" source-path="/report.anz"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/report.anz"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/blacklist.manage"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources.blacklist.hbm"/>
         <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/TopReportBatch/lib/batchcore.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -68,7 +71,7 @@
         <dependent-module archiveName="TopReportJAR1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/TopReportJAR1.1/TopReportJAR1.1">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-<property name="java-output-path"/>
+        <property name="java-output-path"/>
         <property name="context-root" value="TopReport1.1"/>
-</wb-module>
+    </wb-module>
 </project-modules>

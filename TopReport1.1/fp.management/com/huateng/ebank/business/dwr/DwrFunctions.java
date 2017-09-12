@@ -1,34 +1,5 @@
 package com.huateng.ebank.business.dwr;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import resource.bean.pub.BranchFuncRel;
-import resource.bean.pub.FunctionInfo;
-import resource.bean.pub.RoleFuncRel;
-import resource.bean.pub.RoleInfo;
-import resource.bean.report.BiWorkdate;
-import resource.bean.report.BiWorkdateConf;
-import resource.bean.report.SysTaskInfo;
-import resource.bean.report.SysTaskLog;
-import resource.dao.pub.BranchFuncRelDAO;
-import resource.dao.pub.RoleFuncRelDAO;
-import resource.report.dao.ROOTDAO;
-import resource.report.dao.ROOTDAOUtils;
-
 import com.huateng.ebank.business.common.CommonFunctions;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryCondition;
@@ -46,8 +17,27 @@ import com.huateng.report.system.service.TaskListService;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
 import com.huateng.service.pub.UserMgrService;
-
 import edu.emory.mathcs.backport.java.util.Arrays;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import resource.bean.pub.BranchFuncRel;
+import resource.bean.pub.FunctionInfo;
+import resource.bean.pub.RoleFuncRel;
+import resource.bean.pub.RoleInfo;
+import resource.bean.report.BiWorkdate;
+import resource.bean.report.BiWorkdateConf;
+import resource.bean.report.SysTaskInfo;
+import resource.bean.report.SysTaskLog;
+import resource.dao.pub.BranchFuncRelDAO;
+import resource.dao.pub.RoleFuncRelDAO;
+import resource.report.dao.ROOTDAO;
+import resource.report.dao.ROOTDAOUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.*;
 
 public class DwrFunctions {
 	private Logger logger = LoggerFactory.getLogger(DwrFunctions.class);

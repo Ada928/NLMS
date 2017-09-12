@@ -22,39 +22,35 @@ import com.huateng.exception.DomainException;
 import com.huateng.mvc.struts.utils.BaseErrorUtils;
 
 /**
- * Title: CommonQueryParamAction
- * Description: 
- * Copyright: Copyright (c) 2007
+ * Title: CommonQueryParamAction Description: Copyright: Copyright (c) 2007
  * Company: Shanghai Huateng Software Systems Co., Ltd.
+ * 
  * @author shen_antonio
  * @version 1.1, 2007-11-14
  */
 public class CommonQueryParamAction extends BaseAction {
-	 @Override
-	public ActionForward execute(ActionMapping actionMapping,
-	            ActionForm actionForm, HttpServletRequest request,
-	            HttpServletResponse response) throws Exception
-	    {
-	        //super.init(request);
-	        try{
-	        	String id = request.getParameter(CommonQueryConstants.COMMON_QUERY_ID);
+	@Override
+	public ActionForward execute(ActionMapping actionMapping, ActionForm actionForm, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		// super.init(request);
+		try {
+			String id = request.getParameter(CommonQueryConstants.COMMON_QUERY_ID);
 
-				ICommonQueryBean commonQueryBean = CommonQueryUtil.getCommonQueryBean(id);
-				Class resultProcessClass = Class.forName(commonQueryBean.getResultProcess());
-				//New Element resultProcess Class
-				IViewProcess process = (IViewProcess)resultProcessClass.newInstance();
-				process.processSync(id, request, response);
+			ICommonQueryBean commonQueryBean = CommonQueryUtil.getCommonQueryBean(id);
+			Class resultProcessClass = Class.forName(commonQueryBean.getResultProcess());
+			// New Element resultProcess Class
+			IViewProcess process = (IViewProcess) resultProcessClass.newInstance();
+			process.processSync(id, request, response);
 
-				return null;
-			}catch(DomainException dEx){
-				BaseErrorUtils.handleError(request, this, dEx, BaseErrorUtils.RT_HISTORY);
-				throw dEx;
-			}catch (Exception ex) {
-				DomainException dex = new DomainException(Module.DEFAULT_MODULE,
-						Rescode.DEFAULT_RESCODE, ex.getMessage(),
-						Constants.COMMON_PAGE, ex);
-				BaseErrorUtils.handleError(request, this, dex, BaseErrorUtils.RT_HISTORY);
-				throw dex;
-			}
-	    }
+			return null;
+		} catch (DomainException dEx) {
+			BaseErrorUtils.handleError(request, this, dEx, BaseErrorUtils.RT_HISTORY);
+			throw dEx;
+		} catch (Exception ex) {
+			DomainException dex = new DomainException(Module.DEFAULT_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(),
+					Constants.COMMON_PAGE, ex);
+			BaseErrorUtils.handleError(request, this, dex, BaseErrorUtils.RT_HISTORY);
+			throw dex;
+		}
+	}
 }

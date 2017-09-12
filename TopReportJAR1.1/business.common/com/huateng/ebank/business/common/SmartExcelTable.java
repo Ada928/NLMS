@@ -18,7 +18,7 @@ public class SmartExcelTable {
 	private Integer rowCount;
 	private Integer columnCount;
 
-	private void loadWorkbook(String filepath){
+	private void loadWorkbook(String filepath) {
 		try {
 			currentWorkbook = Workbook.getWorkbook(new File(filepath));
 		} catch (BiffException e) {
@@ -28,7 +28,7 @@ public class SmartExcelTable {
 		}
 	}
 
-	public void loadWorkbook(InputStream inputStream){
+	public void loadWorkbook(InputStream inputStream) {
 		try {
 			currentWorkbook = Workbook.getWorkbook(inputStream);
 		} catch (BiffException e) {
@@ -38,45 +38,45 @@ public class SmartExcelTable {
 		}
 	}
 
-	public void open(String filepath){
+	public void open(String filepath) {
 		loadWorkbook(filepath);
 		this.loadSheet(currentWorkbook, 0);
 	}
 
-	public void open(InputStream inputStream){
+	public void open(InputStream inputStream) {
 		loadWorkbook(inputStream);
 		this.loadSheet(currentWorkbook, 0);
 	}
 
-	public void open(String filepath,Integer sheetNumber){
+	public void open(String filepath, Integer sheetNumber) {
 		loadWorkbook(filepath);
 		this.loadSheet(currentWorkbook, sheetNumber);
 	}
 
-	public void open(InputStream inputStream, Integer sheetNumber){
+	public void open(InputStream inputStream, Integer sheetNumber) {
 		loadWorkbook(inputStream);
 		this.loadSheet(currentWorkbook, sheetNumber);
 	}
 
-	public void open(String filepath,String sheetName){
+	public void open(String filepath, String sheetName) {
 		loadWorkbook(filepath);
 		this.loadSheet(currentWorkbook, sheetName);
 	}
 
-	public void open(InputStream inputStream, String sheetName){
+	public void open(InputStream inputStream, String sheetName) {
 		loadWorkbook(inputStream);
 		this.loadSheet(currentWorkbook, sheetName);
 	}
 
-	public void loadSheet(Workbook workbook, int sheetNumber){
+	public void loadSheet(Workbook workbook, int sheetNumber) {
 
 		Sheet sheet = workbook.getSheet(sheetNumber);
 		rowCount = sheet.getRows();
 		columnCount = sheet.getColumns();
 
-		for(int i=0; i<rowCount; i++){
+		for (int i = 0; i < rowCount; i++) {
 			List rowList = new ArrayList();
-			for(int j=0; j<columnCount; j++){
+			for (int j = 0; j < columnCount; j++) {
 				Cell cell = sheet.getCell(j, i);
 				String cellContent = cell.getContents().trim();
 				rowList.add(cellContent);
@@ -84,15 +84,16 @@ public class SmartExcelTable {
 			smartTable.add(rowList);
 		}
 	}
-	public void loadSheet(Workbook workbook, String sheetName){
+
+	public void loadSheet(Workbook workbook, String sheetName) {
 
 		Sheet sheet = workbook.getSheet(sheetName);
 		rowCount = sheet.getRows();
 		columnCount = sheet.getColumns();
 
-		for(int i=0; i<rowCount; i++){
+		for (int i = 0; i < rowCount; i++) {
 			List rowList = new ArrayList();
-			for(int j=0; j<columnCount; j++){
+			for (int j = 0; j < columnCount; j++) {
 				Cell cell = sheet.getCell(j, i);
 				String cellContent = cell.getContents().trim();
 				rowList.add(cellContent);
@@ -100,18 +101,18 @@ public class SmartExcelTable {
 			smartTable.add(rowList);
 		}
 	}
-	public void loadSheet(int sheetNumber){
+
+	public void loadSheet(int sheetNumber) {
 		this.loadSheet(currentWorkbook, sheetNumber);
 	}
 
-	public List Row(int rowIdx){
-		return (List)smartTable.get(rowIdx);
+	public List Row(int rowIdx) {
+		return (List) smartTable.get(rowIdx);
 	}
 
-	public String Cell(int rowIdx, int colIdx){
-		return (String)((List)smartTable.get(rowIdx)).get(colIdx);
+	public String Cell(int rowIdx, int colIdx) {
+		return (String) ((List) smartTable.get(rowIdx)).get(colIdx);
 	}
-
 
 	public Workbook getCurrentWorkbook() {
 		return currentWorkbook;

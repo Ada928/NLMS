@@ -25,34 +25,32 @@ public class BopForDebtFeiPerSaveSignedGenGetter extends BaseGetter {
 
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外债-非居民个人存款上报数据查询-签约信息查询");
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
-	public PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException{
-//		int pageSize = this.getResult().getPage().getEveryPage();
-//		int pageIndex = this.getResult().getPage().getCurrentPage();
-//		Map map = getCommQueryServletRequest().getParameterMap();
-//
-//		String qbrNo = (String) map.get("qbrNo");
-//		String qactiontype = (String) map.get("qactiontype");
-//		String qaccountstat = (String) map.get("qaccountstat");
-//		BopAccDsService bopAccDsService = BopAccDsService.getInstance();
-//		return bopAccDsService.queryBopAccDsGen("AD", pageIndex, pageSize, qbrNo, qactiontype, qaccountstat, null);
+	public PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException {
+		// int pageSize = this.getResult().getPage().getEveryPage();
+		// int pageIndex = this.getResult().getPage().getCurrentPage();
+		// Map map = getCommQueryServletRequest().getParameterMap();
+		//
+		// String qbrNo = (String) map.get("qbrNo");
+		// String qactiontype = (String) map.get("qactiontype");
+		// String qaccountstat = (String) map.get("qaccountstat");
+		// BopAccDsService bopAccDsService = BopAccDsService.getInstance();
+		// return bopAccDsService.queryBopAccDsGen("AD", pageIndex, pageSize,
+		// qbrNo, qactiontype, qaccountstat, null);
 
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
@@ -64,7 +62,8 @@ public class BopForDebtFeiPerSaveSignedGenGetter extends BaseGetter {
 
 		BopForDebtYinTuanService debtYinTuanService = BopForDebtYinTuanService.getInstance();
 		return debtYinTuanService.queryFeiPerGen("signed", pageIndex, pageSize, workDate, qactiontype, qFiller2, qbrNo);
-		//OrgSaveGen("signed", pageIndex, pageSize, qbrNo, qactiontype, qFiller2);
+		// OrgSaveGen("signed", pageIndex, pageSize, qbrNo, qactiontype,
+		// qFiller2);
 
 	}
 }

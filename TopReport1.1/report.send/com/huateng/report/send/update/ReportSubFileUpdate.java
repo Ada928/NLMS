@@ -26,6 +26,7 @@ import com.huateng.report.genupreportfile.operation.ReportSendFileOperation;
 
 public class ReportSubFileUpdate extends BaseUpdate {
 	private static final HtLog htlog = HtLogFactory.getLogger(ReportSubFileUpdate.class);
+
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
@@ -43,15 +44,15 @@ public class ReportSubFileUpdate extends BaseUpdate {
 				packName = map.get("packName");
 				appType = map.get("appType");
 			}
-			if (packName!=null) {
+			if (packName != null) {
 				OperationContext context = new OperationContext();
 				context.setAttribute(ReportSendFileOperation.CMD, TopReportConstants.REPORT_SUB_FILE_TYPE_02);
 				context.setAttribute(ReportSendFileOperation.IN_FILE_PACK, packName);
 				OPCaller.call(ReportSendFileOperation.ID, context);
 			}
 			Date endTm = new Date();
-			ReportCommonService.getInstance().saveBiProcessLog(DateUtil.dateToNumber(info.getTxdate()), busiType, appType,
-					brNo, TopReportConstants.REPORT_PROCESS_EXECTYPE_SEND, startTm, endTm,
+			ReportCommonService.getInstance().saveBiProcessLog(DateUtil.dateToNumber(info.getTxdate()), busiType,
+					appType, brNo, TopReportConstants.REPORT_PROCESS_EXECTYPE_SEND, startTm, endTm,
 					TopReportConstants.REPORT_PROCESS_OPERTYPE_MANU);
 
 			info.addBizLog("Updater.log", new String[] { info.getTlrno(), brNo, "上报文件导出报送，业务类型【" + busiType + "】" });

@@ -30,21 +30,25 @@ public class GetProjectnoGenerator extends BaseGenerator {
 
 	public String gen(Object paramMap) throws CommonException {
 		// TODO Auto-generated method stub
-		String brcode = (String) ((Map)paramMap).get("brcode");
-		//机构号
+		String brcode = (String) ((Map) paramMap).get("brcode");
+		// 机构号
 		String extBrno = BctlService.getInstance().getExtBrno(brcode);
-		/*String valueIndex = brcode
-				+ DataFormat.getYear(GlobalInfo.getCurrentInstance()
-						.getTxdate());*/
-//		return valueIndex
-//				+ DataFormat.intToString(CommonService.getInstance().getSeqno(
-//						SystemConstant.VALUE_NO_PROJECTNO, valueIndex), 4);
-		/*DataFormat df = new DataFormat();
-		String txdate = df.getYear(GlobalInfo.getCurrentInstance().getTxdate());*/
-		//2位年份
-		String txdate=DataFormat.getYear(GlobalInfo.getCurrentInstance().getTxdate()).substring(2, 4);
-        /**   4位机构号+2位年份+4位顺序号  **/
-		return extBrno + txdate + DataFormat.intToString(CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_CUSTCD, "0"), 4);
+		/*
+		 * String valueIndex = brcode +
+		 * DataFormat.getYear(GlobalInfo.getCurrentInstance() .getTxdate());
+		 */
+		// return valueIndex
+		// + DataFormat.intToString(CommonService.getInstance().getSeqno(
+		// SystemConstant.VALUE_NO_PROJECTNO, valueIndex), 4);
+		/*
+		 * DataFormat df = new DataFormat(); String txdate =
+		 * df.getYear(GlobalInfo.getCurrentInstance().getTxdate());
+		 */
+		// 2位年份
+		String txdate = DataFormat.getYear(GlobalInfo.getCurrentInstance().getTxdate()).substring(2, 4);
+		/** 4位机构号+2位年份+4位顺序号 **/
+		return extBrno + txdate
+				+ DataFormat.intToString(CommonService.getInstance().getSeqno(SystemConstant.VALUE_NO_CUSTCD, "0"), 4);
 	}
 
 }

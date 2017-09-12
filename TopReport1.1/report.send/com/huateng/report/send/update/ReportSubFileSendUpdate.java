@@ -66,11 +66,12 @@ public class ReportSubFileSendUpdate extends BaseUpdate {
 					ExceptionUtil.throwCommonException("连接服务器异常!");
 				}
 				Date endTm = new Date();
-				ReportCommonService.getInstance().saveBiProcessLog(DateUtil.dateToNumber(info.getTxdate()), busiType, appType,
-						brNo, TopReportConstants.REPORT_PROCESS_EXECTYPE_SEND, startTm, endTm,
+				ReportCommonService.getInstance().saveBiProcessLog(DateUtil.dateToNumber(info.getTxdate()), busiType,
+						appType, brNo, TopReportConstants.REPORT_PROCESS_EXECTYPE_SEND, startTm, endTm,
 						TopReportConstants.REPORT_PROCESS_OPERTYPE_MANU);
 
-				info.addBizLog("Updater.log", new String[] { info.getTlrno(), brNo, "上报文件手工上传，业务类型【" + busiType + "】" });
+				info.addBizLog("Updater.log",
+						new String[] { info.getTlrno(), brNo, "上报文件手工上传，业务类型【" + busiType + "】" });
 				htlog.info("Updater.log", new String[] { info.getTlrno(), brNo, "上报文件手工上传，业务类型【" + busiType + "】" });
 			}
 			return updateReturnBean;

@@ -2,20 +2,21 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseMtsBopOpenAccount;
 
-public class MtsBopOpenAccount extends BaseMtsBopOpenAccount {
+public class MtsBopOpenAccount extends BaseMtsBopOpenAccount implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public MtsBopOpenAccount () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public MtsBopOpenAccount() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public MtsBopOpenAccount (java.lang.String id) {
+	public MtsBopOpenAccount(java.lang.String id) {
 		super(id);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
+	/* [CONSTRUCTOR MARKER END] */
 }

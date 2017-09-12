@@ -1,17 +1,15 @@
 package com.huateng.ebank.business.management.action;
 
-import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.huateng.ebank.framework.util.DataFormat;
+import com.huateng.ebank.framework.web.struts.BaseAction;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import com.huateng.ebank.framework.util.DataFormat;
-import com.huateng.ebank.framework.web.struts.BaseAction;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Locale;
 
 /**  
  * <P>Filename:    SwitchLanuageAction.java  

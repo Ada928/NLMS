@@ -26,7 +26,7 @@ import com.huateng.report.service.BopAccDsService;
  *
  * @author shishu.zhang
  *
- * 2012-8-15上午10:54:59
+ *         2012-8-15上午10:54:59
  */
 @SuppressWarnings("unchecked")
 public class BopAccDsRecordADGetter extends BaseGetter {
@@ -35,26 +35,23 @@ public class BopAccDsRecordADGetter extends BaseGetter {
 		try {
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	@SuppressWarnings("rawtypes")
-	public PageQueryResult getData() throws AppException{
+	public PageQueryResult getData() throws AppException {
 		int pageSize = getResult().getPage().getEveryPage();
 		int pageIndex = getResult().getPage().getCurrentPage();
 		Map map = getCommQueryServletRequest().getParameterMap();
@@ -65,7 +62,7 @@ public class BopAccDsRecordADGetter extends BaseGetter {
 			ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 			BopAccDs bopAccDs = rootdao.query(BopAccDs.class, id);
 
-			if(StringUtils.equals("modify", op)){
+			if (StringUtils.equals("modify", op)) {
 				bopAccDs.setActiondesc(null);
 			}
 
@@ -87,7 +84,8 @@ public class BopAccDsRecordADGetter extends BaseGetter {
 			String qrepStatus = (String) map.get("qrepStatus");
 			String qaccountstat = (String) map.get("qaccountstat");
 			BopAccDsService bopAccDsService = BopAccDsService.getInstance();
-			return bopAccDsService.queryRecordAD(pageIndex, pageSize, qstartDate, qendDate, qactiontype, qapproveStatus, qrepStatus, qaccountstat, qrecStatus);
+			return bopAccDsService.queryRecordAD(pageIndex, pageSize, qstartDate, qendDate, qactiontype, qapproveStatus,
+					qrepStatus, qaccountstat, qrecStatus);
 		}
 	}
 }

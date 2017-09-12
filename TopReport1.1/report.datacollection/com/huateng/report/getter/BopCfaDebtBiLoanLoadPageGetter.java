@@ -30,16 +30,15 @@ public class BopCfaDebtBiLoanLoadPageGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageQueryResult = getData();
-//			ResultMng.fillResultByList(getCommonQueryBean(),
-//					getCommQueryServletRequest(), queryResult, getResult());
-//			result.setContent(queryResult);
-//			result.getPage().setTotalPage(0);
-//			result.init();
-//			return result;
+			// ResultMng.fillResultByList(getCommonQueryBean(),
+			// getCommQueryServletRequest(), queryResult, getResult());
+			// result.setContent(queryResult);
+			// result.getPage().setTotalPage(0);
+			// result.init();
+			// return result;
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
@@ -47,8 +46,7 @@ public class BopCfaDebtBiLoanLoadPageGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -57,7 +55,7 @@ public class BopCfaDebtBiLoanLoadPageGetter extends BaseGetter {
 		int pageSize = getResult().getPage().getEveryPage();
 		int pageIndex = getResult().getPage().getCurrentPage();
 
-		String currentFile =  getCommQueryServletRequest().getParameter("currentFile");
+		String currentFile = getCommQueryServletRequest().getParameter("currentFile");
 		String qActiontype = getCommQueryServletRequest().getParameter("qActiontype");
 
 		String qRecStatus = getCommQueryServletRequest().getParameter("qRecStatus");
@@ -69,7 +67,6 @@ public class BopCfaDebtBiLoanLoadPageGetter extends BaseGetter {
 		String qStartDate = getCommQueryServletRequest().getParameter("qStartDate");
 		String qEndDate = getCommQueryServletRequest().getParameter("qEndDate");
 
-
 		StringBuffer hql = new StringBuffer("");
 		// 获取外债信息表、债权人信息表记录 以外债id left join on
 		hql.append(" SELECT bds.REC_ID,bds.apptype, bds.currentfile,bds.exdebtcode, bds.debtorcode,bds.debtype,");
@@ -80,10 +77,12 @@ public class BopCfaDebtBiLoanLoadPageGetter extends BaseGetter {
 		hql.append("        bds.approve_Result, bds.work_Date,bds.is_sub_Success,bcd.creditor_id,");
 		hql.append("        bcd.creditorcode, bcd.creditorname, bcd.creditornamen,");
 		hql.append("        bcd.creditorca,bcd.creditortype, bcd.crehqcode,");
-		hql.append("        bcd.opercode, bcd.rec_Id,bds.BUSCODE,bds.debtyperema,bds.isincode,bpi.projectname,bpi.proj_id,bds.appname,bds.appcode,bds.filler2,bds.inpriamount ");
-		hql.append(" FROM   BOP_CFA_EXDEBT_DS bds LEFT JOIN BOP_CFA_CREDITOR_DS bcd ON bds.REC_ID = bcd.REC_ID LEFT JOIN BOP_PROJECT_INFO bpi ON bds.REC_ID = bpi.REC_ID WHERE 1 = 1 ");
+		hql.append(
+				"        bcd.opercode, bcd.rec_Id,bds.BUSCODE,bds.debtyperema,bds.isincode,bpi.projectname,bpi.proj_id,bds.appname,bds.appcode,bds.filler2,bds.inpriamount ");
+		hql.append(
+				" FROM   BOP_CFA_EXDEBT_DS bds LEFT JOIN BOP_CFA_CREDITOR_DS bcd ON bds.REC_ID = bcd.REC_ID LEFT JOIN BOP_PROJECT_INFO bpi ON bds.REC_ID = bpi.REC_ID WHERE 1 = 1 ");
 
-		List<Object>paramentList = new ArrayList<Object>();
+		List<Object> paramentList = new ArrayList<Object>();
 		if (StringUtils.isNotBlank(qActiontype)) {
 			hql.append(" AND bds.actiontype = ? ");
 			paramentList.add(qActiontype);
@@ -128,7 +127,6 @@ public class BopCfaDebtBiLoanLoadPageGetter extends BaseGetter {
 
 		hql.append(" ORDER BY bds.REC_ID, bds.work_Date,bds.actiontype, bds.approve_Status DESC");
 
-
 		PageQueryCondition queryCondition = new PageQueryCondition();
 		queryCondition.setPageIndex(pageIndex);
 		queryCondition.setPageSize(pageSize);
@@ -138,16 +136,14 @@ public class BopCfaDebtBiLoanLoadPageGetter extends BaseGetter {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		PageQueryResult result = rootdao.pageQueryBySQL(queryCondition);
 
-
-		String rec_id="";
+		String rec_id = "";
 		BOPForDebtBilLoanCreditor bop = null;
 		List<BOPForDebtBilLoanCreditor> list = new ArrayList<BOPForDebtBilLoanCreditor>();
 		// 将取得的数据放入到 BOPForDebtBilLoanCreditor bean中
-		for (Iterator<Object[]>it = result.getQueryResult().iterator(); it.hasNext();) {
+		for (Iterator<Object[]> it = result.getQueryResult().iterator(); it.hasNext();) {
 			bop = new BOPForDebtBilLoanCreditor();
 			Object[] queryArray = it.next();
-			if(!((String)queryArray[0]).equals(rec_id))
-			{
+			if (!((String) queryArray[0]).equals(rec_id)) {
 				rec_id = (String) queryArray[0];
 				bop.setId((String) queryArray[0]);
 				bop.setApptype((String) queryArray[1]);

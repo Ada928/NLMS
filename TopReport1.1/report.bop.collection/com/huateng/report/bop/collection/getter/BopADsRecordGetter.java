@@ -38,21 +38,18 @@ public class BopADsRecordGetter extends BaseGetter {
 		try {
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -61,7 +58,7 @@ public class BopADsRecordGetter extends BaseGetter {
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		Map<String, String> map = getCommQueryServletRequest().getParameterMap();
 		String op = map.get("op");
-		if(!DataFormat.isEmpty(op)){
+		if (!DataFormat.isEmpty(op)) {
 			PageQueryResult queryResult = new PageQueryResult();
 			String id = map.get("id");
 			MtsBopAgDs bopAgDs = null;
@@ -77,7 +74,7 @@ public class BopADsRecordGetter extends BaseGetter {
 			List<MtsBopAgDs> list = new ArrayList<MtsBopAgDs>();
 			list.add(bopAgDs);
 			queryResult.setQueryResult(list);
-			//页面接收判断
+			// 页面接收判断
 			getCommQueryServletRequest().setParameter("op", op);
 			return queryResult;
 		} else {
@@ -91,11 +88,12 @@ public class BopADsRecordGetter extends BaseGetter {
 			String qapproveStatus = map.get("qapproveStatus");
 			String qrepStatus = map.get("qrepStatus");
 			String qfiller2 = map.get("qfiller2");
-			//只能查当前机构号
+			// 只能查当前机构号
 			GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
 			String qbrNo = globalInfo.getBrno();
 			BopAgDsRecordService bopAgDsService = BopAgDsRecordService.getInstance();
-			return bopAgDsService.queryBOPAgRecord(TopReportConstants.REPORT_FILE_TYPE_BOP_A, pageIndex, pageSize, qworkDateStart, qworkDateEnd, qactiontype, qapproveStatus, qrepStatus, qrecStatus, qfiller2, qbrNo);
+			return bopAgDsService.queryBOPAgRecord(TopReportConstants.REPORT_FILE_TYPE_BOP_A, pageIndex, pageSize,
+					qworkDateStart, qworkDateEnd, qactiontype, qapproveStatus, qrepStatus, qrecStatus, qfiller2, qbrNo);
 		}
 	}
 }

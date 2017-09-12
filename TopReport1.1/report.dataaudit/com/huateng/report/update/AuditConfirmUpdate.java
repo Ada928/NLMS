@@ -1,6 +1,5 @@
 package com.huateng.report.update;
 
-
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,13 +18,14 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.operation.AuditConfirmOperation;
 import com.huateng.report.utils.ReportUtils;
+
 public class AuditConfirmUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "AuditConfirm";
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest arg1, HttpServletResponse arg2)
-	        throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest arg1,
+			HttpServletResponse arg2) throws AppException {
 		try {
 
 			// 返回对象
@@ -43,19 +43,19 @@ public class AuditConfirmUpdate extends BaseUpdate {
 				int noApprove = Integer.parseInt(map.get("noApprove").toString());
 				int approvePass = Integer.parseInt(map.get("approvePass").toString());
 				int approveUnPass = Integer.parseInt(map.get("approveUnPass").toString());
-				noApproveTotal+=noApprove;
-				hashApproveTotal+=approvePass;
-				hashApproveTotal+=approveUnPass;
+				noApproveTotal += noApprove;
+				hashApproveTotal += approvePass;
+				hashApproveTotal += approveUnPass;
 				busiType = (String) map.get("busiType");
 				workDate = (String) map.get("workDate");
 				appType = (String) map.get("apptype");
 			}
-			if (hashApproveTotal==0) {
+			if (hashApproveTotal == 0) {
 				ExceptionUtil.throwCommonException("没有需要审核确认的数据！");
 			}
 
 			String parValue = ReportUtils.getSysParamsValue("100", "0003");
-			if (parValue.equals("0") && noApproveTotal>0) {
+			if (parValue.equals("0") && noApproveTotal > 0) {
 				ExceptionUtil.throwCommonException("审核尚未完成，不能进行审核完成确认操作！");
 			}
 			context.setAttribute(AuditConfirmOperation.BUSI_TYPE, busiType);
@@ -69,8 +69,5 @@ public class AuditConfirmUpdate extends BaseUpdate {
 			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-
-
-
 
 }

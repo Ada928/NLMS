@@ -21,7 +21,8 @@ public class DownloadFileServlet extends javax.servlet.http.HttpServlet implemen
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");
 		String appType = request.getParameter("apptype");
@@ -53,7 +54,8 @@ public class DownloadFileServlet extends javax.servlet.http.HttpServlet implemen
 				zipUtil.createZip(localFilePath, new String[] { packName }, zipPath);
 			} catch (Exception e) {
 				PrintWriter writer = response.getWriter();
-				writer.println("<script type='text/javascript'>alert('" + packName + "打包处理失败:" + e.getMessage()+ "');</script>");
+				writer.println("<script type='text/javascript'>alert('" + packName + "打包处理失败:" + e.getMessage()
+						+ "');</script>");
 				writer.close();
 				return;
 			}
@@ -85,8 +87,8 @@ public class DownloadFileServlet extends javax.servlet.http.HttpServlet implemen
 
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-			IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		this.doGet(request, response);
 	}
 }

@@ -2,17 +2,15 @@ package com.huateng.ebank.entity.data.mng.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the PF_SYS_PARAM table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * This is an object that contains data related to the PF_SYS_PARAM table. Do
+ * not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="PF_SYS_PARAM"
+ * @hibernate.class table="PF_SYS_PARAM"
  */
 
-public abstract class BasePfSysParam  implements Serializable {
+public abstract class BasePfSysParam implements Serializable {
 
 	public static String REF = "PfSysParam";
 	public static String PROP_LAST_UPD_TLR = "lastUpdTlr";
@@ -26,24 +24,23 @@ public abstract class BasePfSysParam  implements Serializable {
 	public static String DESC0 = "desc0";
 	public static String PROP_ST = "st";
 	public static String PROP_LOCK = "lock";
-	public static String PROP_DEL ="del";
+	public static String PROP_DEL = "del";
 
 	// constructors
-	public BasePfSysParam () {
+	public BasePfSysParam() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BasePfSysParam (com.huateng.ebank.entity.data.mng.PfSysParamPK id) {
+	public BasePfSysParam(com.huateng.ebank.entity.data.mng.PfSysParamPK id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -62,7 +59,6 @@ public abstract class BasePfSysParam  implements Serializable {
 	private boolean lock;
 	private java.lang.String st;
 	private boolean del;
-
 
 	public boolean isLock() {
 		return lock;
@@ -98,157 +94,161 @@ public abstract class BasePfSysParam  implements Serializable {
 
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     */
-	public com.huateng.ebank.entity.data.mng.PfSysParamPK getId () {
+	 * 
+	 * @hibernate.id
+	 */
+	public com.huateng.ebank.entity.data.mng.PfSysParamPK getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (com.huateng.ebank.entity.data.mng.PfSysParamPK id) {
+	public void setId(com.huateng.ebank.entity.data.mng.PfSysParamPK id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: PARAM_START_TM
 	 */
-	public java.util.Date getParamStartTm () {
+	public java.util.Date getParamStartTm() {
 		return paramStartTm;
 	}
 
 	/**
 	 * Set the value related to the column: PARAM_START_TM
-	 * @param paramStartTm the PARAM_START_TM value
+	 * 
+	 * @param paramStartTm
+	 *            the PARAM_START_TM value
 	 */
-	public void setParamStartTm (java.util.Date paramStartTm) {
+	public void setParamStartTm(java.util.Date paramStartTm) {
 		this.paramStartTm = paramStartTm;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PARAM_END_TM
 	 */
-	public java.util.Date getParamEndTm () {
+	public java.util.Date getParamEndTm() {
 		return paramEndTm;
 	}
 
 	/**
 	 * Set the value related to the column: PARAM_END_TM
-	 * @param paramEndTm the PARAM_END_TM value
+	 * 
+	 * @param paramEndTm
+	 *            the PARAM_END_TM value
 	 */
-	public void setParamEndTm (java.util.Date paramEndTm) {
+	public void setParamEndTm(java.util.Date paramEndTm) {
 		this.paramEndTm = paramEndTm;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PARAM_CHANG_FLAG
 	 */
-	public java.lang.String getParamChangFlag () {
+	public java.lang.String getParamChangFlag() {
 		return paramChangFlag;
 	}
 
 	/**
 	 * Set the value related to the column: PARAM_CHANG_FLAG
-	 * @param paramChangFlag the PARAM_CHANG_FLAG value
+	 * 
+	 * @param paramChangFlag
+	 *            the PARAM_CHANG_FLAG value
 	 */
-	public void setParamChangFlag (java.lang.String paramChangFlag) {
+	public void setParamChangFlag(java.lang.String paramChangFlag) {
 		this.paramChangFlag = paramChangFlag;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PARAM_VALUE_TX
 	 */
-	public java.lang.String getParamValueTx () {
+	public java.lang.String getParamValueTx() {
 		return paramValueTx;
 	}
 
 	/**
 	 * Set the value related to the column: PARAM_VALUE_TX
-	 * @param paramValueTx the PARAM_VALUE_TX value
+	 * 
+	 * @param paramValueTx
+	 *            the PARAM_VALUE_TX value
 	 */
-	public void setParamValueTx (java.lang.String paramValueTx) {
+	public void setParamValueTx(java.lang.String paramValueTx) {
 		this.paramValueTx = paramValueTx;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LAST_UPD_TLR
 	 */
-	public java.lang.String getLastUpdTlr () {
+	public java.lang.String getLastUpdTlr() {
 		return lastUpdTlr;
 	}
 
 	/**
 	 * Set the value related to the column: LAST_UPD_TLR
-	 * @param lastUpdTlr the LAST_UPD_TLR value
+	 * 
+	 * @param lastUpdTlr
+	 *            the LAST_UPD_TLR value
 	 */
-	public void setLastUpdTlr (java.lang.String lastUpdTlr) {
+	public void setLastUpdTlr(java.lang.String lastUpdTlr) {
 		this.lastUpdTlr = lastUpdTlr;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LAST_UPD_FUNC
 	 */
-	public java.lang.String getLastUpdFunc () {
+	public java.lang.String getLastUpdFunc() {
 		return lastUpdFunc;
 	}
 
 	/**
 	 * Set the value related to the column: LAST_UPD_FUNC
-	 * @param lastUpdFunc the LAST_UPD_FUNC value
+	 * 
+	 * @param lastUpdFunc
+	 *            the LAST_UPD_FUNC value
 	 */
-	public void setLastUpdFunc (java.lang.String lastUpdFunc) {
+	public void setLastUpdFunc(java.lang.String lastUpdFunc) {
 		this.lastUpdFunc = lastUpdFunc;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LAST_UPD_DATE
 	 */
-	public java.util.Date getLastUpdDate () {
+	public java.util.Date getLastUpdDate() {
 		return lastUpdDate;
 	}
 
 	/**
 	 * Set the value related to the column: LAST_UPD_DATE
-	 * @param lastUpdDate the LAST_UPD_DATE value
+	 * 
+	 * @param lastUpdDate
+	 *            the LAST_UPD_DATE value
 	 */
-	public void setLastUpdDate (java.util.Date lastUpdDate) {
+	public void setLastUpdDate(java.util.Date lastUpdDate) {
 		this.lastUpdDate = lastUpdDate;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof com.huateng.ebank.entity.data.mng.PfSysParam)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof com.huateng.ebank.entity.data.mng.PfSysParam))
+			return false;
 		else {
 			com.huateng.ebank.entity.data.mng.PfSysParam pfSysParam = (com.huateng.ebank.entity.data.mng.PfSysParam) obj;
-			if (null == this.getId() || null == pfSysParam.getId()) return false;
-			else return (this.getId().equals(pfSysParam.getId()));
+			if (null == this.getId() || null == pfSysParam.getId())
+				return false;
+			else
+				return (this.getId().equals(pfSysParam.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -257,10 +257,8 @@ public abstract class BasePfSysParam  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

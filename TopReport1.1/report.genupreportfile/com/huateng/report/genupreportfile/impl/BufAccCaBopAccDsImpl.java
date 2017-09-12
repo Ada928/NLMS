@@ -12,10 +12,9 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.report.constants.TopReportConstants;
 import com.huateng.report.system.common.IGetSubFileList;
 
-public class BufAccCaBopAccDsImpl implements IGetSubFileList  {
+public class BufAccCaBopAccDsImpl implements IGetSubFileList {
 
-	public List getSubFileResultList(Map<String, Object> paramMap)
-			throws CommonException {
+	public List getSubFileResultList(Map<String, Object> paramMap) throws CommonException {
 		// TODO Auto-generated method stub
 		ROOTDAO dao = ROOTDAOUtils.getROOTDAO();
 		StringBuffer hqlBuff = new StringBuffer();
@@ -25,17 +24,16 @@ public class BufAccCaBopAccDsImpl implements IGetSubFileList  {
 		String appType = (String) paramMap.get(IGetSubFileList.IN_APP_TYPE);
 		String fileType = (String) paramMap.get(IGetSubFileList.IN_FILE_TYPE);
 
-		hqlBuff.append(" from BopAccDs model ").append(" where model.apptype = '"+appType).append("'")
-		.append(" and model.currentfile = '"+fileType+"'");
-		if (fileDate!=null && fileDate.trim().length()>0) {
-			hqlBuff.append(" and model.workDate = '"+fileDate+"'");
+		hqlBuff.append(" from BopAccDs model ").append(" where model.apptype = '" + appType).append("'")
+				.append(" and model.currentfile = '" + fileType + "'");
+		if (fileDate != null && fileDate.trim().length() > 0) {
+			hqlBuff.append(" and model.workDate = '" + fileDate + "'");
 		}
-		hqlBuff.append(" and model.recStatus = '"+TopReportConstants.REPORT_RECSTATUS_05+"'");
+		hqlBuff.append(" and model.recStatus = '" + TopReportConstants.REPORT_RECSTATUS_05 + "'");
 
 		List<BopAccDs> listDs = dao.queryByQL2List(hqlBuff.toString());
 
-		for(BopAccDs bopDsTemp : listDs)
-		{
+		for (BopAccDs bopDsTemp : listDs) {
 			bopDsTemp.setAccount_cata(bopDsTemp.getAccountCata());
 			bopDsTemp.setAccount_limit(bopDsTemp.getAccountLimit());
 			bopDsTemp.setAccount_type(bopDsTemp.getAccountType());

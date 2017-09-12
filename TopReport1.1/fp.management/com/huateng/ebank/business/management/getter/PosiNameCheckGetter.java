@@ -8,13 +8,6 @@
  */
 package com.huateng.ebank.business.management.getter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-
-import resource.dao.pub.RoleInfoDAO;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -23,6 +16,11 @@ import com.huateng.ebank.business.common.BaseDAOUtils;
 import com.huateng.ebank.business.management.bean.PosiNameCheckBean;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import org.apache.commons.lang.StringUtils;
+import resource.dao.pub.RoleInfoDAO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Title:

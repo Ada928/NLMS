@@ -3,14 +3,13 @@ package test.com.buffer;
 import java.lang.reflect.Field;
 
 /**
- * 自定义的反射工具封装类 cn.iamsese.prj.db.helper 
- * Author: vb2005xu [JAVA菜鸟]
+ * 自定义的反射工具封装类 cn.iamsese.prj.db.helper Author: vb2005xu [JAVA菜鸟]
  */
 public class MyReflectionHelper {
 
 	/**
-	 * 返回指定对象的类全称[包括包名]
-	 * 支持传入这样的参数: JDKLoggerHelper.class
+	 * 返回指定对象的类全称[包括包名] 支持传入这样的参数: JDKLoggerHelper.class
+	 * 
 	 * @param o
 	 * @return className
 	 */
@@ -20,10 +19,9 @@ public class MyReflectionHelper {
 		String className = o.getClass().getName();
 		return className;
 	}
-	
 
-	/* -------- 与 类属性相关的[现在定义的方法只能输出类自身的属性,不包括继承来的属性] --------- **/	
-	
+	/* -------- 与 类属性相关的[现在定义的方法只能输出类自身的属性,不包括继承来的属性] --------- * */
+
 	/**
 	 * 返回指定对象的的指定字段
 	 * 
@@ -45,6 +43,7 @@ public class MyReflectionHelper {
 
 	/**
 	 * 设置指定对象的指定字段的值
+	 * 
 	 * @param owner
 	 * @param tf
 	 * @param value
@@ -58,9 +57,10 @@ public class MyReflectionHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 设置指定对象的指定字段的值
+	 * 
 	 * @param owner
 	 * @param fieldName
 	 * @param value
@@ -69,9 +69,10 @@ public class MyReflectionHelper {
 		Field f = getField(owner, fieldName);
 		setField(owner, f, value);// 调用上边的那个此函数的另一种多态形式
 	}
-	
+
 	/**
 	 * 返回指定对象的指定字段的值
+	 * 
 	 * @param owner
 	 * @param tf
 	 * @return Object
@@ -87,8 +88,10 @@ public class MyReflectionHelper {
 		}
 		return v;
 	}
+
 	/**
 	 * 返回指定对象的指定字段的值
+	 * 
 	 * @param owner
 	 * @param fieldName
 	 * @return Object
@@ -97,24 +100,27 @@ public class MyReflectionHelper {
 		Field f = getField(owner, fieldName);
 		return getFieldValue(owner, f);// 调用上边的那个此函数的另一种多态形式
 	}
-	
+
 	/**
 	 * 命令行输出指定对象,指定属性的值
+	 * 
 	 * @param owner
 	 * @param f
 	 */
 	public static void printFieldValue(Object owner, Field f) {
 		System.out.println(getFieldValue(owner, f));
 	}
+
 	/**
 	 * 命令行输出指定对象,指定属性的值
+	 * 
 	 * @param owner
 	 * @param fieldName
 	 */
 	public static void printFieldValue(Object owner, String fieldName) {
 		System.out.println(getFieldValue(owner, fieldName));
 	}
-	
+
 	public static void printFieldInfo(Object owner, Field f) {
 		StringBuffer sbuf = new StringBuffer();
 		sbuf.append("**当前字段信息 [开始]**\n");

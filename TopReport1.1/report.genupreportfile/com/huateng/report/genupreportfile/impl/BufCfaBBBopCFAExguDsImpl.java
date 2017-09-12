@@ -13,8 +13,7 @@ import com.huateng.report.system.common.IGetSubFileList;
 
 public class BufCfaBBBopCFAExguDsImpl implements IGetSubFileList {
 
-	public List getSubFileResultList(Map<String, Object> paramMap)
-			throws CommonException {
+	public List getSubFileResultList(Map<String, Object> paramMap) throws CommonException {
 		// TODO Auto-generated method stub
 
 		BopCfaExguDs bopCfaExguDs = new BopCfaExguDs();
@@ -22,13 +21,12 @@ public class BufCfaBBBopCFAExguDsImpl implements IGetSubFileList {
 		String appType = (String) paramMap.get(IN_APP_TYPE);
 		String fileType = (String) paramMap.get(IN_FILE_TYPE);
 		String hql = "from BopCfaExguDs model";
-		hql += " where model.recStatus='"
-				+ TopReportConstants.REPORT_RECSTATUS_05 + "'";// 审核已确认
-		if (fileDate!=null && fileDate.trim().length()>0) {
+		hql += " where model.recStatus='" + TopReportConstants.REPORT_RECSTATUS_05 + "'";// 审核已确认
+		if (fileDate != null && fileDate.trim().length() > 0) {
 			hql += " and model.workDate='" + fileDate + "'";
 		}
 		hql += " and model.currentfile='" + fileType + "'";
-		hql += " and model.apptype='"+appType+"'";
+		hql += " and model.apptype='" + appType + "'";
 
 		ROOTDAO dao = ROOTDAOUtils.getROOTDAO();
 

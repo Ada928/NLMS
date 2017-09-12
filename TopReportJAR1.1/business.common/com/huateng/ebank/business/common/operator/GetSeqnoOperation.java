@@ -15,8 +15,8 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 
 /**
  * Title: com.huateng.ebank.business.common.operation.GetSeqnoOperation.java
- * Description: 获取序列号
- * Copyright (c) 2006 Company: Shanghai　Huateng Software Systems Co., Ltd.
+ * Description: 获取序列号 Copyright (c) 2006 Company: Shanghai Huateng Software
+ * Systems Co., Ltd.
  *
  * @author shen_antonio
  * @version v1.0,2008-11-6
@@ -27,8 +27,8 @@ public class GetSeqnoOperation extends BaseOperation {
 
 	public final static String ID = "Common.GetSeqnoOperation";
 	public final static String VALUE_NO = "VALUE_NO";
-	public final static String VALUE_INDEX= "VALUE_INDEX";
-	public final static String SEQNO  = "SEQNO";
+	public final static String VALUE_INDEX = "VALUE_INDEX";
+	public final static String SEQNO = "SEQNO";
 
 	@Override
 	public void afterProc(OperationContext context) throws CommonException {
@@ -45,20 +45,21 @@ public class GetSeqnoOperation extends BaseOperation {
 	@Override
 	public void execute(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
-		try{
-			int valueNo = ((Integer)context.getAttribute(VALUE_NO)).intValue();
-			String valueIndex = (String)context.getAttribute(VALUE_INDEX);
-			GetSeqnoGenerator getSeqnoGenerator = (GetSeqnoGenerator) GeneratorFactory.getGenerator("GetSeqnoGenerator");
+		try {
+			int valueNo = ((Integer) context.getAttribute(VALUE_NO)).intValue();
+			String valueIndex = (String) context.getAttribute(VALUE_INDEX);
+			GetSeqnoGenerator getSeqnoGenerator = (GetSeqnoGenerator) GeneratorFactory
+					.getGenerator("GetSeqnoGenerator");
 			Map paramMap = new HashMap();
 			paramMap.put("valueNo", new Integer(valueNo));
 			paramMap.put("valueIndex", valueIndex);
 			int seqno = Integer.parseInt(getSeqnoGenerator.gen(paramMap));
 			context.setAttribute(SEQNO, new Integer(seqno));
-		}catch(CommonException ex){
+		} catch (CommonException ex) {
 			throw ex;
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			log.error("生成序列号错误", ex);
-			ExceptionUtil.throwCommonException("生成序列号错误",ErrorCode.ERROR_CODE_INTERNAL_ERROR,ex);
+			ExceptionUtil.throwCommonException("生成序列号错误", ErrorCode.ERROR_CODE_INTERNAL_ERROR, ex);
 		}
 	}
 

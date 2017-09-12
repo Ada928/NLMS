@@ -14,8 +14,7 @@ import com.linuxense.javadbf.DBFReader;
 /**
  * @读取DBF文件到内存fileContentList中
  * @author Lrushing
- * @日期 2008-9-8 14：15
- * @最后修改：
+ * @日期 2008-9-8 14：15 @最后修改：
  */
 @SuppressWarnings("unchecked")
 public class DbfOp {
@@ -24,14 +23,13 @@ public class DbfOp {
 	private List<String> fileContentList = new ArrayList<String>();
 
 	/**
-	 * @param constant 
+	 * @param constant
 	 * @function 读取DBF文件，将内同以标准字符串存在数组中
 	 * @param 文件所在路径
 	 *            fpath
 	 * @throws IOException
 	 */
 	public boolean readFileContent(String fpath, Constant constant) throws IOException {
-		
 
 		fileContentList.clear();
 		FileInputStream dbfFile = null;
@@ -57,8 +55,7 @@ public class DbfOp {
 					// 如果字段为日期类型则转化为yyyyMMdd格式
 					if (field instanceof Date) {
 						Date date = (Date) field;
-						String d = (new SimpleDateFormat("yyyyMMdd"))
-								.format(date);
+						String d = (new SimpleDateFormat("yyyyMMdd")).format(date);
 						line.append(d);
 						line.append("|");
 						// 如果字段为数字类型，则分辨是整数还是小数分别储存
@@ -81,7 +78,7 @@ public class DbfOp {
 				}
 				// 将包装好的字符串添加到内存数组中
 				if (line != null && !"".equals(line)) {
-					fileContentList.add(line.toString().substring(0, line.toString().length()-1));	
+					fileContentList.add(line.toString().substring(0, line.toString().length() - 1));
 				}
 
 			}

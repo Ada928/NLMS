@@ -1,10 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import resource.bean.pub.RoleInfo;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -16,6 +11,10 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.view.pub.TlrRoleRelationView;
+import resource.bean.pub.RoleInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 操作员管理中,查询后获得操作员对应岗位

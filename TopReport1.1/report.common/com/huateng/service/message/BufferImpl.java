@@ -29,8 +29,7 @@ public class BufferImpl extends Buffer {
 				if (descriptors[i].getReadMethod() != null) {
 					subBuf = getAbstractBufferByID(key);
 					if (subBuf == null) {
-						logger.warn("Buffer[" + getId() + "]." + sub
-								+ " not found in Buffer");
+						logger.warn("Buffer[" + getId() + "]." + sub + " not found in Buffer");
 					} else {
 						try {
 							sub = pub.getNestedProperty(obj, key);
@@ -44,10 +43,10 @@ public class BufferImpl extends Buffer {
 		}
 
 	}
-	
 
 	/**
 	 * 修改键值为属性ID(原来是XML节点的名称)
+	 * 
 	 * @see com.huateng.service.message.Buffer#printObject()
 	 */
 	public Object printObject() throws AppException {
@@ -58,13 +57,13 @@ public class BufferImpl extends Buffer {
 		Object obj;
 		Object bean = getReflectCls();
 		while (it.hasNext()) {
-			id = (String)it.next();
+			id = (String) it.next();
 			subBuf = this.getAbstractBufferByID(id);
 			obj = subBuf.printObject();
 			bufMap.put(subBuf.getId(), obj);
 		}
-		
-		//TODO
+
+		// TODO
 		if (bean != null) {
 			try {
 				BeanUtils.copyProperties(bean, bufMap);
@@ -72,13 +71,14 @@ public class BufferImpl extends Buffer {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 		}
 		return bufMap;
 	}
-	
+
 	/**
 	 * 获取反射对象类型
+	 * 
 	 * @return
 	 */
 	private Object getReflectCls() {
@@ -90,9 +90,10 @@ public class BufferImpl extends Buffer {
 		}
 		return bean;
 	}
-	
+
 	/**
 	 * 根据KEY值取BUF,忽略大小写
+	 * 
 	 * @see com.huateng.service.message.Buffer#getAbstractBufferByID(java.lang.String)
 	 */
 	@Override

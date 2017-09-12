@@ -31,25 +31,23 @@ import com.huateng.report.service.BopCFAExguDsService;
 import com.huateng.report.service.BopExguTorDsService;
 import com.huateng.report.utils.ReportUtils;
 
-
 /**
-* @author huangcheng
-*
-*/
-public class BopExguBiLoanUpdate extends BaseUpdate  {
+ * @author huangcheng
+ *
+ */
+public class BopExguBiLoanUpdate extends BaseUpdate {
 
-	private static final String DATASET1_ID_Ben="BOPForExguTorDsInfoBen";
-	private static final String DATASET1_ID_Gua="BOPForExguTorDsInfoGua";
-	private static final String DATASET2_ID="BOPForCFAExguDsInfoAdd";
-	private static final String RECORD_DELETE="del";
-	private static final String RECORD_ADD="new";
-	private static final String RECORD_MOD="mod";
-//	private static final String BopExguTorDs="BopExguTorDs";
-//	private static final String BopCfaExguDs="BopCfaExguDs";
+	private static final String DATASET1_ID_Ben = "BOPForExguTorDsInfoBen";
+	private static final String DATASET1_ID_Gua = "BOPForExguTorDsInfoGua";
+	private static final String DATASET2_ID = "BOPForCFAExguDsInfoAdd";
+	private static final String RECORD_DELETE = "del";
+	private static final String RECORD_ADD = "new";
+	private static final String RECORD_MOD = "mod";
+	// private static final String BopExguTorDs="BopExguTorDs";
+	// private static final String BopCfaExguDs="BopCfaExguDs";
 
 	@SuppressWarnings("rawtypes")
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
 
 		// 返回对象
@@ -71,11 +69,11 @@ public class BopExguBiLoanUpdate extends BaseUpdate  {
 		// 受益人/担保人/申请人服务
 		BopExguTorDsService serviceTor = new BopExguTorDsService();
 		OperationContext oc = new OperationContext();
-		//担保受益人
+		// 担保受益人
 		List<BopExguTorDs> delTorBenList = new ArrayList<BopExguTorDs>();
 		List<BopExguTorDs> insertTorBenList = new ArrayList<BopExguTorDs>();
 		List<BopExguTorDs> updateTorBenList = new ArrayList<BopExguTorDs>();
-		//被担保人
+		// 被担保人
 		List<BopExguTorDs> delTorGuaList = new ArrayList<BopExguTorDs>();
 		List<BopExguTorDs> insertTorGuaList = new ArrayList<BopExguTorDs>();
 		List<BopExguTorDs> updateTorGuaList = new ArrayList<BopExguTorDs>();
@@ -95,7 +93,7 @@ public class BopExguBiLoanUpdate extends BaseUpdate  {
 					GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
 					String guid = ReportUtils.getUUID();
 
-					//签约信息
+					// 签约信息
 					bopCfaExguDs.setGuarantorcode(bpETorTemp.getGuarantorcode());
 					bopCfaExguDs.setGuarantype(bpETorTemp.getGuarantype());
 					bopCfaExguDs.setActiontype(bpETorTemp.getActiontype());
@@ -125,7 +123,7 @@ public class BopExguBiLoanUpdate extends BaseUpdate  {
 					bopCfaExguDs.setApproveStatus(TopReportConstants.REPORT_APPROVESTATUS_00);
 					bopCfaExguDs.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
 					bopCfaExguDs.setSubSuccess(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO);
-                    //担保申请人
+					// 担保申请人
 					bopExguTorDs.setTorCode(bpETorTemp.getTorCodeGu());
 					bopExguTorDs.setTorName(bpETorTemp.getTorNameGu());
 					bopExguTorDs.setTorEnname(bpETorTemp.getTorEnnameGu());
@@ -137,19 +135,19 @@ public class BopExguBiLoanUpdate extends BaseUpdate  {
 					bopExguTorDs.setId(guid1);
 					bopExguTorDs.setTorType("03");
 
-					oc.setAttribute(BopExguDsOperation.CMD,BopExguDsOperation.CMD_INSERT);
-					oc.setAttribute(BopExguDsOperation.IN_PARAM_TOR,bopExguTorDs);
+					oc.setAttribute(BopExguDsOperation.CMD, BopExguDsOperation.CMD_INSERT);
+					oc.setAttribute(BopExguDsOperation.IN_PARAM_TOR, bopExguTorDs);
 				} else if (RECORD_MOD.equalsIgnoreCase(op)) {
 					GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
 
 					bopCfaExguDs = serviceCFA.load(id);
 					bopExguTorDs = serviceTor.load(bpETorTemp.getIdGu());
-//					//验证记录是否已经补录确认
-//					String recStatus = bopExguTorDs.getRecStatus();
-//					//记录状态不为01或02的不能进行修改
-//					if(!recStatus.equals(TopReportConstants.REPORT_RECSTATUS_01)&&!recStatus.equals(TopReportConstants.REPORT_RECSTATUS_02)){
-//						ExceptionUtil.throwCommonException("记录状态不为01或02的不能进行修改");
-//					}
+					// //验证记录是否已经补录确认
+					// String recStatus = bopExguTorDs.getRecStatus();
+					// //记录状态不为01或02的不能进行修改
+					// if(!recStatus.equals(TopReportConstants.REPORT_RECSTATUS_01)&&!recStatus.equals(TopReportConstants.REPORT_RECSTATUS_02)){
+					// ExceptionUtil.throwCommonException("记录状态不为01或02的不能进行修改");
+					// }
 
 					bopCfaExguDs.setGuarantorcode(bpETorTemp.getGuarantorcode());
 					bopCfaExguDs.setGuarantype(bpETorTemp.getGuarantype());
@@ -179,8 +177,8 @@ public class BopExguBiLoanUpdate extends BaseUpdate  {
 						bopCfaExguDs.setRecStatus(TopReportConstants.REPORT_RECSTATUS_02);
 						bopCfaExguDs.setApproveStatus(TopReportConstants.REPORT_APPROVESTATUS_00);
 						bopCfaExguDs.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
-					}
-					else if (StringUtils.equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO, bpETorTemp.getSubSuccess())) {
+					} else if (StringUtils.equals(TopReportConstants.REPORT_IS_SUB_SUCCESS_NO,
+							bpETorTemp.getSubSuccess())) {
 						/*
 						 * 上报未成功
 						 *
@@ -193,17 +191,16 @@ public class BopExguBiLoanUpdate extends BaseUpdate  {
 						bopCfaExguDs.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
 					}
 
-
 					bopCfaExguDs.setLstUpdTlr(gInfo.getTlrno());
 					bopCfaExguDs.setLstUpdTm(new Date());
 					bopCfaExguDs.setBrNo(gInfo.getBrno());
-					//担保申请人的信息更改
+					// 担保申请人的信息更改
 					bopExguTorDs.setTorName(bpETorTemp.getTorNameGu());
 					bopExguTorDs.setTorEnname(bpETorTemp.getTorEnnameGu());
 					bopExguTorDs.setTorCode(bpETorTemp.getTorCodeGu());
 
-					oc.setAttribute(BopExguDsOperation.CMD,BopExguDsOperation.CMD_UPDATE);
-					oc.setAttribute(BopExguDsOperation.IN_PARAM_TOR,bopExguTorDs);
+					oc.setAttribute(BopExguDsOperation.CMD, BopExguDsOperation.CMD_UPDATE);
+					oc.setAttribute(BopExguDsOperation.IN_PARAM_TOR, bopExguTorDs);
 				} else if (RECORD_DELETE.equalsIgnoreCase(op)) {
 					/*
 					 * 操作状态=D-删除 记录状态=02-编辑待确认 审核状态=00-未审核 回执状态=00-未返回
@@ -212,7 +209,7 @@ public class BopExguBiLoanUpdate extends BaseUpdate  {
 					GlobalInfo gInfo = GlobalInfo.getCurrentInstance();
 
 					bopCfaExguDs = serviceCFA.load(bpETorTemp.getRecId());
-			        //删除的时间 机构号 和 人员
+					// 删除的时间 机构号 和 人员
 					bopCfaExguDs.setLstUpdTlr(gInfo.getTlrno());
 					bopCfaExguDs.setLstUpdTm(new Date());
 					bopCfaExguDs.setBrNo(gInfo.getBrno());
@@ -221,30 +218,31 @@ public class BopExguBiLoanUpdate extends BaseUpdate  {
 					bopCfaExguDs.setRecStatus(TopReportConstants.REPORT_RECSTATUS_02);
 					bopCfaExguDs.setApproveStatus(TopReportConstants.REPORT_APPROVESTATUS_00);
 					bopCfaExguDs.setRepStatus(TopReportConstants.REPORT_REPSTATUS_00);
-					/**判断签约信息是否绑定了责任余额或履约明细  begin*/
-					String hql = " FROM BopCfaExguDs bd WHERE bd.filler1 = '"+bpETorTemp.getRecId()+"' ";
-					hql += " AND bd.recStatus <> '"+TopReportConstants.REPORT_RECSTATUS_07+"' ";
-//					hql += "AND bd.actiontype <> '"+TopReportConstants.REPORT_ACTIONTYPE_D+"'";
+					/** 判断签约信息是否绑定了责任余额或履约明细 begin */
+					String hql = " FROM BopCfaExguDs bd WHERE bd.filler1 = '" + bpETorTemp.getRecId() + "' ";
+					hql += " AND bd.recStatus <> '" + TopReportConstants.REPORT_RECSTATUS_07 + "' ";
+					// hql += "AND bd.actiontype <>
+					// '"+TopReportConstants.REPORT_ACTIONTYPE_D+"'";
 					ROOTDAO dao = ROOTDAOUtils.getROOTDAO();
 					List list = dao.queryByQL2List(hql);
-					if(list.size()>0){
+					if (list.size() > 0) {
 						ExceptionUtil.throwCommonException("该记录已经绑定了责任余额和履约明细 不能删除");
 					}
-					/**判断签约信息是否绑定了责任余额或履约明细  end*/
+					/** 判断签约信息是否绑定了责任余额或履约明细 end */
 					bopCfaExguDs.setActiondesc(bpETorTemp.getActiondesc());
-					oc.setAttribute(BopExguDsOperation.CMD,BopExguDsOperation.CMD_DELETE);
+					oc.setAttribute(BopExguDsOperation.CMD, BopExguDsOperation.CMD_DELETE);
 				}
 			}
 		}
-		//被担保人 增删改
+		// 被担保人 增删改
 
-		List<BopExguTorDs>checkGuarantorList = new ArrayList<BopExguTorDs>();
+		List<BopExguTorDs> checkGuarantorList = new ArrayList<BopExguTorDs>();
 		while (updateResultBeanTorGua.hasNext()) {
 			BopExguTorDs bopExguTorDsSet = new BopExguTorDs();
 			Map map = updateResultBeanTorGua.next();
 			mapToObject(bopExguTorDsSet, map);
 
-			if(UpdateResultBean.DELETE != updateResultBeanTorGua.getRecodeState()){
+			if (UpdateResultBean.DELETE != updateResultBeanTorGua.getRecodeState()) {
 				checkGuarantorList.add(bopExguTorDsSet);
 			}
 
@@ -259,12 +257,12 @@ public class BopExguBiLoanUpdate extends BaseUpdate  {
 				bopExguTorDsSet.setTorTypeCode((String) map.get("torTypeCodeGua"));
 				bopExguTorDsSet.setCountryCode((String) map.get("countryCodeGua"));
 				insertTorGuaList.add(bopExguTorDsSet);
-				oc.setAttribute(BopExguDsOperation.CMD_Tor_ADD,	BopExguDsOperation.CMD_INSERT);
+				oc.setAttribute(BopExguDsOperation.CMD_Tor_ADD, BopExguDsOperation.CMD_INSERT);
 				break;
 			case UpdateResultBean.DELETE:
 				bopExguTorDsSet = serviceTor.load(bopExguTorDsSet.getId());
 				delTorGuaList.add(bopExguTorDsSet);
-				oc.setAttribute(BopExguDsOperation.CMD_Tor_DEL,BopExguDsOperation.CMD_DELETE);
+				oc.setAttribute(BopExguDsOperation.CMD_Tor_DEL, BopExguDsOperation.CMD_DELETE);
 				break;
 			case UpdateResultBean.MODIFY:
 				bopExguTorDsSet = serviceTor.load(bopExguTorDsSet.getId());
@@ -274,20 +272,20 @@ public class BopExguBiLoanUpdate extends BaseUpdate  {
 				bopExguTorDsSet.setTorName((String) map.get("torName"));
 				bopExguTorDsSet.setTorEnname((String) map.get("torEnname"));
 				updateTorGuaList.add(bopExguTorDsSet);
-				oc.setAttribute(BopExguDsOperation.CMD_Tor_MOD,BopExguDsOperation.CMD_UPDATE);
+				oc.setAttribute(BopExguDsOperation.CMD_Tor_MOD, BopExguDsOperation.CMD_UPDATE);
 				break;
 			default:
 				break;
 			}
 		}
-		//受益人 增删改
-		List<BopExguTorDs>checkBeneficiaryList = new ArrayList<BopExguTorDs>();
+		// 受益人 增删改
+		List<BopExguTorDs> checkBeneficiaryList = new ArrayList<BopExguTorDs>();
 		while (updateResultBeanTorBen.hasNext()) {
 			BopExguTorDs bopExguTorDsSet = new BopExguTorDs();
 			Map map = updateResultBeanTorBen.next();
 			mapToObject(bopExguTorDsSet, map);
 
-			if(UpdateResultBean.DELETE != updateResultBeanTorBen.getRecodeState()) {
+			if (UpdateResultBean.DELETE != updateResultBeanTorBen.getRecodeState()) {
 				checkBeneficiaryList.add(bopExguTorDsSet);
 			}
 			switch (updateResultBeanTorBen.getRecodeState()) {
@@ -301,19 +299,19 @@ public class BopExguBiLoanUpdate extends BaseUpdate  {
 				bopExguTorDsSet.setTorTypeCode((String) map.get("torTypeCodeBen"));
 				bopExguTorDsSet.setCountryCode((String) map.get("countryCodeBen"));
 				insertTorBenList.add(bopExguTorDsSet);
-				oc.setAttribute(BopExguDsOperation.CMD_Tor_ADD,	BopExguDsOperation.CMD_INSERT);
+				oc.setAttribute(BopExguDsOperation.CMD_Tor_ADD, BopExguDsOperation.CMD_INSERT);
 				break;
 			case UpdateResultBean.DELETE:
 				bopExguTorDsSet = serviceTor.load(bopExguTorDsSet.getId());
 				delTorBenList.add(bopExguTorDsSet);
-				oc.setAttribute(BopExguDsOperation.CMD_Tor_DEL,BopExguDsOperation.CMD_DELETE);
+				oc.setAttribute(BopExguDsOperation.CMD_Tor_DEL, BopExguDsOperation.CMD_DELETE);
 				break;
 			case UpdateResultBean.MODIFY:
 				bopExguTorDsSet.setId(bopExguTorDsSet.getId());
 				bopExguTorDsSet.setTorTypeCode((String) map.get("torTypeCodeBen"));
 				bopExguTorDsSet.setCountryCode((String) map.get("countryCodeBen"));
 				updateTorBenList.add(bopExguTorDsSet);
-				oc.setAttribute(BopExguDsOperation.CMD_Tor_MOD,BopExguDsOperation.CMD_UPDATE);
+				oc.setAttribute(BopExguDsOperation.CMD_Tor_MOD, BopExguDsOperation.CMD_UPDATE);
 				break;
 			default:
 				break;
@@ -321,11 +319,11 @@ public class BopExguBiLoanUpdate extends BaseUpdate  {
 		}
 
 		oc.setAttribute(BopExguDsOperation.IN_PARAM_EXGU, bopCfaExguDs);
-		//被担保人list
+		// 被担保人list
 		oc.setAttribute(BopExguDsOperation.IN_PARAM_INSERT_GUA, insertTorGuaList);
 		oc.setAttribute(BopExguDsOperation.IN_PARAM_MOD_GUA, updateTorGuaList);
 		oc.setAttribute(BopExguDsOperation.IN_PARAM_DEL_GUA, delTorGuaList);
-		//受益人List
+		// 受益人List
 		oc.setAttribute(BopExguDsOperation.IN_PARAM_INSERT_BEN, insertTorBenList);
 		oc.setAttribute(BopExguDsOperation.IN_PARAM_MOD_BEN, updateTorBenList);
 		oc.setAttribute(BopExguDsOperation.IN_PARAM_DEL_BEN, delTorBenList);

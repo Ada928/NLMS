@@ -22,8 +22,8 @@ import com.huateng.report.utils.ReportUtils;
 /**
  * 
  * @author shishu.zhang
- *	
- * 2012-10-10下午2:33:28
+ * 
+ *         2012-10-10下午2:33:28
  */
 @SuppressWarnings("unchecked")
 public class RecoverBakFileGetter extends BaseGetter {
@@ -33,33 +33,30 @@ public class RecoverBakFileGetter extends BaseGetter {
 		try {
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
-	public PageQueryResult getData() throws CommonException{
+	public PageQueryResult getData() throws CommonException {
 		PageQueryResult queryRst = new PageQueryResult();
 		queryRst.setTotalCount(1);
-		
+
 		RecoverBakFileBean recoverBakFileBean = new RecoverBakFileBean();
-		
+
 		String filePath = ReportUtils.getSysParamsValue("BAK", "PATH");
 		filePath += ReportConstant.BAK_DATA_FILE_NAME;
-		
+
 		File recoverFile = new File(filePath);
 		if (!recoverFile.exists()) {
 			recoverBakFileBean.setExits("N");

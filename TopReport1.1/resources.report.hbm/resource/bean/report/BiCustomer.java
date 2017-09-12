@@ -2,24 +2,21 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBiCustomer;
 
-
-
-public class BiCustomer extends BaseBiCustomer {
+public class BiCustomer extends BaseBiCustomer implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public BiCustomer () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public BiCustomer() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BiCustomer (java.lang.String id) {
+	public BiCustomer(java.lang.String id) {
 		super(id);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
-
+	/* [CONSTRUCTOR MARKER END] */
 
 }

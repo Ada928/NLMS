@@ -2,11 +2,11 @@ package resource.bean.pub;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.huateng.ebank.framework.util.DataFormat;
-
 import resource.bean.pub.base.BaseBctl;
 
-public class Bctl extends BaseBctl {
+import com.huateng.ebank.framework.util.DataFormat;
+
+public class Bctl extends BaseBctl implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/* [CONSTRUCTOR MARKER BEGIN] */
@@ -36,7 +36,7 @@ public class Bctl extends BaseBctl {
 
 	private String billMailAddrName;
 	private String brclassName;
-	
+
 	private boolean selected;
 
 	public boolean isSelected() {
@@ -48,13 +48,13 @@ public class Bctl extends BaseBctl {
 	}
 
 	public String getBrcodeTypeName() {
-		String brno = DataFormat.trim(super.getBrno());
+		String brcode = DataFormat.trim(super.getBrcode());
 		String brname = DataFormat.trim(super.getBrname());
 
-		if (StringUtils.isEmpty(brno) && StringUtils.isEmpty(brname)) {
+		if (StringUtils.isEmpty(brcode) && StringUtils.isEmpty(brname)) {
 			return "";
 		}
-		return brno + "-" + brname;
+		return brcode + " - " + brname;
 	}
 
 	public void setBrcodeTypeName(String name) {

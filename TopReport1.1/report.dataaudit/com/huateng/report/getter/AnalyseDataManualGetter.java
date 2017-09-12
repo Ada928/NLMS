@@ -15,28 +15,27 @@ import com.huateng.report.imports.bean.ImportFileBean;
 import east.dao.BaseDao;
 
 @SuppressWarnings("unchecked")
-public class AnalyseDataManualGetter extends BaseGetter{
+public class AnalyseDataManualGetter extends BaseGetter {
 	@Override
 	public Result call() throws AppException {
 		try {
-			//获取需要手工分析的表名
-			Map para=this.getCommQueryServletRequest().getParameterMap();
-			String tableName = (String)para.get("tblName");
-			if(tableName!=null && !"".equals(tableName)){
+			// 获取需要手工分析的表名
+			Map para = this.getCommQueryServletRequest().getParameterMap();
+			String tableName = (String) para.get("tblName");
+			if (tableName != null && !"".equals(tableName)) {
 				tableName = tableName.toUpperCase();
 			}
-			
+
 			List dataList = BaseDao.queryFieldInfoTable(tableName);
 			List list = new ArrayList();
-			for(int i=0; i<dataList.size(); i++){
-				String tblName = (String)dataList.get(i);
+			for (int i = 0; i < dataList.size(); i++) {
+				String tblName = (String) dataList.get(i);
 				ImportFileBean bean = new ImportFileBean();
 				bean.setTableName(tblName);
 				list.add(bean);
 			}
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list, getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);
 			result.getPage().setTotalPage(1);
 			result.init();
@@ -44,9 +43,8 @@ public class AnalyseDataManualGetter extends BaseGetter{
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
-	}	
-	
+	}
+
 }

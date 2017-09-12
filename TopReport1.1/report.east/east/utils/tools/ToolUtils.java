@@ -21,8 +21,9 @@ import east.vo.DefautValueVO;
  * 
  */
 public class ToolUtils {
-	static	Md5 objMd5 = new Md5();
-		/**
+	static Md5 objMd5 = new Md5();
+
+	/**
 	 * @return String[]
 	 */
 	public static String[] queryDate() {
@@ -44,7 +45,6 @@ public class ToolUtils {
 		return str;
 	}
 
-	
 	/**
 	 * @return String[]
 	 */
@@ -52,16 +52,16 @@ public class ToolUtils {
 		Connection conn = DBUtil.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<String> list=new ArrayList<String>();
+		List<String> list = new ArrayList<String>();
 		try {
 			pstmt = conn.prepareStatement("select   table_name  from   user_tables ");
 			rs = pstmt.executeQuery();
-			String tablename=null;
+			String tablename = null;
 			while (rs.next()) {
-				tablename=rs.getString("TABLE_NAME").toString().toLowerCase();
+				tablename = rs.getString("TABLE_NAME").toString().toLowerCase();
 				list.add(tablename);
-				if(tablename.equals("b_jgb")||tablename.indexOf("b_g")!=-1||tablename.equals("field_info")){
-					list.remove(tablename);	
+				if (tablename.equals("b_jgb") || tablename.indexOf("b_g") != -1 || tablename.equals("field_info")) {
+					list.remove(tablename);
 				}
 
 			}
@@ -71,7 +71,8 @@ public class ToolUtils {
 			DBUtil.close(conn, pstmt, rs);
 		}
 		return list;
-	}	
+	}
+
 	/**
 	 * 
 	 * @param fieldName
@@ -79,16 +80,16 @@ public class ToolUtils {
 	 * @return
 	 */
 	public static DefautValueVO defautValue() {
-		DefautValueVO defautValueVO=new DefautValueVO();
+		DefautValueVO defautValueVO = new DefautValueVO();
 
 		Connection conn = DBUtil.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<String> list=new ArrayList<String>();
+		List<String> list = new ArrayList<String>();
 		try {
 			pstmt = conn.prepareStatement("select JRXKZH , ZFHHH ,NBJGH ,JGMC from b_jgb where dflag='1' ");
 			rs = pstmt.executeQuery();
-			String tablename=null;
+			String tablename = null;
 			while (rs.next()) {
 				defautValueVO.setJRXKZH(rs.getString("JRXKZH").toString());
 				defautValueVO.setYXJGDM(rs.getString("ZFHHH").toString());
@@ -103,7 +104,6 @@ public class ToolUtils {
 		return defautValueVO;
 	}
 
-	
 	/**
 	 * 
 	 * @param fieldType
@@ -113,14 +113,13 @@ public class ToolUtils {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String formatString(String fieldType, String fieldValue,
-			int fieldLength, String specflag, int fieldLength2,int fieldSetFlag)
-			throws Exception {
-		
+	public static String formatString(String fieldType, String fieldValue, int fieldLength, String specflag,
+			int fieldLength2, int fieldSetFlag) throws Exception {
+
 		if (fieldValue == null || "".equals(fieldValue.trim())) {
 			if (fieldType.startsWith("DECIMAL")) {
 				fieldValue = "0";
-			}else if(fieldType.startsWith("INTEGER")) {
+			} else if (fieldType.startsWith("INTEGER")) {
 				fieldValue = "0";
 			} else {
 				fieldValue = "";
@@ -134,50 +133,50 @@ public class ToolUtils {
 			} else {
 				money = money.setScale(2, BigDecimal.ROUND_HALF_UP);
 			}
-			fieldValue = money.toString()+",";
+			fieldValue = money.toString() + ",";
 			return fieldValue.trim();
-		}else {
-			if(fieldSetFlag!=0&&!"".equals(fieldValue)){// 非金额处理	
-				fieldValue=changData(fieldValue,fieldSetFlag);	
+		} else {
+			if (fieldSetFlag != 0 && !"".equals(fieldValue)) {// 非金额处理
+				fieldValue = changData(fieldValue, fieldSetFlag);
 			}
 		}
-		return fieldValue.trim()+",";
-	}	
+		return fieldValue.trim() + ",";
+	}
 
-	//名称变形,身份证变形 '不变形-0,名称变形-1,身份证变形-2,名称暂时不取-3,身份证暂时不取-4,其他暂不取-5,其他暂时不变形-6'
-	public static String changData(String fieldValue,int fieldSetFlag) {
+	// 名称变形,身份证变形 '不变形-0,名称变形-1,身份证变形-2,名称暂时不取-3,身份证暂时不取-4,其他暂不取-5,其他暂时不变形-6'
+	public static String changData(String fieldValue, int fieldSetFlag) {
 		switch (fieldSetFlag) {
 		case 0:
-			return fieldValue.trim();				
+			return fieldValue.trim();
 		case 1:
-			if(fieldValue.trim().length()==2){
-				fieldValue=fieldValue.trim().substring(1, 2);
-			}else if(fieldValue.trim().length()==3){
-				fieldValue=fieldValue.trim().substring(2, 3);
+			if (fieldValue.trim().length() == 2) {
+				fieldValue = fieldValue.trim().substring(1, 2);
+			} else if (fieldValue.trim().length() == 3) {
+				fieldValue = fieldValue.trim().substring(2, 3);
 			}
-			return fieldValue.trim();		
+			return fieldValue.trim();
 		case 2:
-			if(fieldValue.trim().length()==18||fieldValue.trim().length()==15){
-				fieldValue=objMd5.getMD5ofStr(fieldValue.trim());	
+			if (fieldValue.trim().length() == 18 || fieldValue.trim().length() == 15) {
+				fieldValue = objMd5.getMD5ofStr(fieldValue.trim());
 			}
-			return fieldValue.trim();				
+			return fieldValue.trim();
 		case 3:
-			
-			return fieldValue.trim();	
-			
+
+			return fieldValue.trim();
+
 		case 4:
-			
-			return fieldValue.trim();	
-			
+
+			return fieldValue.trim();
+
 		case 5:
-			
-			return fieldValue.trim();	
-			
+
+			return fieldValue.trim();
+
 		default:
-			return fieldValue.trim();	
-		}	
+			return fieldValue.trim();
+		}
 	}
-		
+
 	/**
 	 * 
 	 * @param fieldType
@@ -193,10 +192,9 @@ public class ToolUtils {
 	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] format(String fieldType, String fieldValue,
-			int fieldLength, String specflag, int fieldLength2)
+	public static byte[] format(String fieldType, String fieldValue, int fieldLength, String specflag, int fieldLength2)
 			throws Exception {
-		
+
 		if (fieldValue == null || "".equals(fieldValue.trim())) {
 			if (fieldType.startsWith("DECIMAL")) {
 				fieldValue = "0";
@@ -208,7 +206,7 @@ public class ToolUtils {
 		for (int i = 0; i < bytes.length; i++) {
 			bytes[i] = (byte) 32;
 		}
-		fieldValue=new String(fieldValue.getBytes(),"GBK");
+		fieldValue = new String(fieldValue.getBytes(), "GBK");
 		// 处理金额
 		if (fieldType.equals("DECIMAL")) {
 			BigDecimal money = new BigDecimal(fieldValue);
@@ -220,21 +218,17 @@ public class ToolUtils {
 			fieldValue = money.toString();
 
 			if (fieldValue.getBytes().length < fieldLength) {
-				System.arraycopy(fieldValue.getBytes(), 0, bytes, 0, fieldValue
-						.getBytes().length);
+				System.arraycopy(fieldValue.getBytes(), 0, bytes, 0, fieldValue.getBytes().length);
 			} else {
-				System.arraycopy(fieldValue.getBytes(), 0, bytes, 0,
-						fieldLength);
+				System.arraycopy(fieldValue.getBytes(), 0, bytes, 0, fieldLength);
 			}
 			return bytes;
 		} else {// 非金额处理
-			
+
 			if (fieldValue.getBytes().length < fieldLength) {
-				System.arraycopy(fieldValue.getBytes(), 0, bytes, 0, fieldValue
-						.getBytes().length);
+				System.arraycopy(fieldValue.getBytes(), 0, bytes, 0, fieldValue.getBytes().length);
 			} else {
-				System.arraycopy(fieldValue.getBytes(), 0, bytes, 0,
-						fieldLength);
+				System.arraycopy(fieldValue.getBytes(), 0, bytes, 0, fieldLength);
 			}
 			return bytes;
 		}
@@ -293,13 +287,14 @@ public class ToolUtils {
 		sdf = new SimpleDateFormat("yyyyMMddhhmmss");
 		return sdf.format(date);
 	}
-	
+
 	/**
 	 * 执行shell
+	 * 
 	 * @param command
 	 * @throws Exception
 	 */
-	public static void exeShell(String command)throws Exception{
+	public static void exeShell(String command) throws Exception {
 		Process process = Runtime.getRuntime().exec(command.toString());
 		StreamGobbler errorGobbler = new StreamGobbler(process.getErrorStream(), "ERROR");
 		errorGobbler.start();

@@ -47,21 +47,17 @@ public class ReportInqPrintDownAction extends BaseAction {
 	private HttpServletRequest request = null;
 
 	@Override
-	public ActionForward execute(ActionMapping mapping,
-			org.apache.struts.action.ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public ActionForward execute(ActionMapping mapping, org.apache.struts.action.ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("GBK");
 
-		String filepath = new String(request.getParameter("file").getBytes(
-				"iso8859-1"), "GBK");
-		String statusTmp = new String(request.getParameter("status").getBytes(
-		"iso8859-1"), "GBK");
+		String filepath = new String(request.getParameter("file").getBytes("iso8859-1"), "GBK");
+		String statusTmp = new String(request.getParameter("status").getBytes("iso8859-1"), "GBK");
 		// filepath = "C:\\2008-07-20\\bh222222222.txt";
-		String path="";
-		if(statusTmp.equalsIgnoreCase("BATCH")){
-		    path = ConfigReader.getProperty("batch.report.file.path");
-		}else
+		String path = "";
+		if (statusTmp.equalsIgnoreCase("BATCH")) {
+			path = ConfigReader.getProperty("batch.report.file.path");
+		} else
 			path = ConfigReader.getProperty("reportGenPath");
 		String newFilepath = path + File.separator + filepath;
 		File file = new File(newFilepath);
@@ -102,9 +98,8 @@ public class ReportInqPrintDownAction extends BaseAction {
 	 *            下载时想要显示给客户端的文件名
 	 * @throws SQLException
 	 */
-	public void downLoadFromField(HttpServletRequest request,
-			HttpServletResponse response, String sqlStr, String fileName)
-			throws SQLException {
+	public void downLoadFromField(HttpServletRequest request, HttpServletResponse response, String sqlStr,
+			String fileName) throws SQLException {
 		this.request = request;
 		this.response = response;
 
@@ -120,8 +115,7 @@ public class ReportInqPrintDownAction extends BaseAction {
 	 * @param file
 	 *            要下载的文件
 	 */
-	public void downloadFormFile(HttpServletRequest request,
-			HttpServletResponse response, File file) {
+	public void downloadFormFile(HttpServletRequest request, HttpServletResponse response, File file) {
 		if (file == null || !file.exists() || file.isDirectory()) {
 			return;
 		}
@@ -153,8 +147,7 @@ public class ReportInqPrintDownAction extends BaseAction {
 	 *            要下载的文件
 	 * @throws MalformedURLException
 	 */
-	public void downloadFormFile(HttpServletRequest request,
-			HttpServletResponse response, String fileHttp)
+	public void downloadFormFile(HttpServletRequest request, HttpServletResponse response, String fileHttp)
 			throws MalformedURLException {
 		this.request = request;
 		this.response = response;

@@ -20,8 +20,7 @@ public class PropertyMessageResourcesExt extends PropertyMessageResources {
 	 * @param config
 	 *            The configuration parameter for this MessageResources
 	 */
-	public PropertyMessageResourcesExt(MessageResourcesFactory factory,
-			String config) {
+	public PropertyMessageResourcesExt(MessageResourcesFactory factory, String config) {
 
 		super(factory, config);
 		log.trace("Initializing, config='" + config + "'");
@@ -39,12 +38,10 @@ public class PropertyMessageResourcesExt extends PropertyMessageResources {
 	 * @param returnNull
 	 *            The returnNull property we should initialize with
 	 */
-	public PropertyMessageResourcesExt(MessageResourcesFactory factory,
-			String config, boolean returnNull) {
+	public PropertyMessageResourcesExt(MessageResourcesFactory factory, String config, boolean returnNull) {
 
 		super(factory, config, returnNull);
-		log.trace("Initializing, config='" + config + "', returnNull="
-				+ returnNull);
+		log.trace("Initializing, config='" + config + "', returnNull=" + returnNull);
 
 	}
 

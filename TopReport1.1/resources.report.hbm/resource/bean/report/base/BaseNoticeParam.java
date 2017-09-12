@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the notice_param table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * This is an object that contains data related to the notice_param table. Do
+ * not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="notice_param"
+ * @hibernate.class table="notice_param"
  */
 
-public abstract class BaseNoticeParam  implements Serializable {
+public abstract class BaseNoticeParam implements Serializable {
 
 	public static String REF = "NoticeParam";
 	public static String PROP_NOTICE_TOTPERI = "noticeTotperi";
@@ -28,23 +26,21 @@ public abstract class BaseNoticeParam  implements Serializable {
 	public static String PROP_NOTICE_NAME = "noticeName";
 	public static String PROP_BRCODE = "brcode";
 
-
 	// constructors
-	public BaseNoticeParam () {
+	public BaseNoticeParam() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseNoticeParam (java.lang.Integer id) {
+	public BaseNoticeParam(java.lang.Integer id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -64,230 +60,231 @@ public abstract class BaseNoticeParam  implements Serializable {
 	private java.lang.String miscTwo;
 	private java.lang.String miscflgs;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  column="id"
-     */
-	public java.lang.Integer getId () {
+	 * 
+	 * @hibernate.id column="id"
+	 */
+	public java.lang.Integer getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.Integer id) {
+	public void setId(java.lang.Integer id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: brcode
 	 */
-	public java.lang.String getBrcode () {
+	public java.lang.String getBrcode() {
 		return brcode;
 	}
 
 	/**
 	 * Set the value related to the column: brcode
-	 * @param brcode the brcode value
+	 * 
+	 * @param brcode
+	 *            the brcode value
 	 */
-	public void setBrcode (java.lang.String brcode) {
+	public void setBrcode(java.lang.String brcode) {
 		this.brcode = brcode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: createdt
 	 */
-	public java.util.Date getCreatedt () {
+	public java.util.Date getCreatedt() {
 		return createdt;
 	}
 
 	/**
 	 * Set the value related to the column: createdt
-	 * @param createdt the createdt value
+	 * 
+	 * @param createdt
+	 *            the createdt value
 	 */
-	public void setCreatedt (java.util.Date createdt) {
+	public void setCreatedt(java.util.Date createdt) {
 		this.createdt = createdt;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: notice_name
 	 */
-	public java.lang.String getNoticeName () {
+	public java.lang.String getNoticeName() {
 		return noticeName;
 	}
 
 	/**
 	 * Set the value related to the column: notice_name
-	 * @param noticeName the notice_name value
+	 * 
+	 * @param noticeName
+	 *            the notice_name value
 	 */
-	public void setNoticeName (java.lang.String noticeName) {
+	public void setNoticeName(java.lang.String noticeName) {
 		this.noticeName = noticeName;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: notice_value
 	 */
-	public java.math.BigDecimal getNoticeValue () {
+	public java.math.BigDecimal getNoticeValue() {
 		return noticeValue;
 	}
 
 	/**
 	 * Set the value related to the column: notice_value
-	 * @param noticeValue the notice_value value
+	 * 
+	 * @param noticeValue
+	 *            the notice_value value
 	 */
-	public void setNoticeValue (java.math.BigDecimal noticeValue) {
+	public void setNoticeValue(java.math.BigDecimal noticeValue) {
 		this.noticeValue = noticeValue;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: notice_amt
 	 */
-	public java.math.BigDecimal getNoticeAmt () {
+	public java.math.BigDecimal getNoticeAmt() {
 		return noticeAmt;
 	}
 
 	/**
 	 * Set the value related to the column: notice_amt
-	 * @param noticeAmt the notice_amt value
+	 * 
+	 * @param noticeAmt
+	 *            the notice_amt value
 	 */
-	public void setNoticeAmt (java.math.BigDecimal noticeAmt) {
+	public void setNoticeAmt(java.math.BigDecimal noticeAmt) {
 		this.noticeAmt = noticeAmt;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: notice_totperi
 	 */
-	public java.lang.Integer getNoticeTotperi () {
+	public java.lang.Integer getNoticeTotperi() {
 		return noticeTotperi;
 	}
 
 	/**
 	 * Set the value related to the column: notice_totperi
-	 * @param noticeTotperi the notice_totperi value
+	 * 
+	 * @param noticeTotperi
+	 *            the notice_totperi value
 	 */
-	public void setNoticeTotperi (java.lang.Integer noticeTotperi) {
+	public void setNoticeTotperi(java.lang.Integer noticeTotperi) {
 		this.noticeTotperi = noticeTotperi;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: notice_flg
 	 */
-	public java.lang.String getNoticeFlg () {
+	public java.lang.String getNoticeFlg() {
 		return noticeFlg;
 	}
 
 	/**
 	 * Set the value related to the column: notice_flg
-	 * @param noticeFlg the notice_flg value
+	 * 
+	 * @param noticeFlg
+	 *            the notice_flg value
 	 */
-	public void setNoticeFlg (java.lang.String noticeFlg) {
+	public void setNoticeFlg(java.lang.String noticeFlg) {
 		this.noticeFlg = noticeFlg;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: updt
 	 */
-	public java.util.Date getUpdt () {
+	public java.util.Date getUpdt() {
 		return updt;
 	}
 
 	/**
 	 * Set the value related to the column: updt
-	 * @param updt the updt value
+	 * 
+	 * @param updt
+	 *            the updt value
 	 */
-	public void setUpdt (java.util.Date updt) {
+	public void setUpdt(java.util.Date updt) {
 		this.updt = updt;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: misc_one
 	 */
-	public java.lang.String getMiscOne () {
+	public java.lang.String getMiscOne() {
 		return miscOne;
 	}
 
 	/**
 	 * Set the value related to the column: misc_one
-	 * @param miscOne the misc_one value
+	 * 
+	 * @param miscOne
+	 *            the misc_one value
 	 */
-	public void setMiscOne (java.lang.String miscOne) {
+	public void setMiscOne(java.lang.String miscOne) {
 		this.miscOne = miscOne;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: misc_two
 	 */
-	public java.lang.String getMiscTwo () {
+	public java.lang.String getMiscTwo() {
 		return miscTwo;
 	}
 
 	/**
 	 * Set the value related to the column: misc_two
-	 * @param miscTwo the misc_two value
+	 * 
+	 * @param miscTwo
+	 *            the misc_two value
 	 */
-	public void setMiscTwo (java.lang.String miscTwo) {
+	public void setMiscTwo(java.lang.String miscTwo) {
 		this.miscTwo = miscTwo;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: miscflgs
 	 */
-	public java.lang.String getMiscflgs () {
+	public java.lang.String getMiscflgs() {
 		return miscflgs;
 	}
 
 	/**
 	 * Set the value related to the column: miscflgs
-	 * @param miscflgs the miscflgs value
+	 * 
+	 * @param miscflgs
+	 *            the miscflgs value
 	 */
-	public void setMiscflgs (java.lang.String miscflgs) {
+	public void setMiscflgs(java.lang.String miscflgs) {
 		this.miscflgs = miscflgs;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.NoticeParam)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.NoticeParam))
+			return false;
 		else {
 			resource.bean.report.NoticeParam noticeParam = (resource.bean.report.NoticeParam) obj;
-			if (null == this.getId() || null == noticeParam.getId()) return false;
-			else return (this.getId().equals(noticeParam.getId()));
+			if (null == this.getId() || null == noticeParam.getId())
+				return false;
+			else
+				return (this.getId().equals(noticeParam.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -296,10 +293,8 @@ public abstract class BaseNoticeParam  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

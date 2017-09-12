@@ -1,16 +1,5 @@
 package com.huateng.ebank.business.opermng.getter;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import resource.bean.pub.RoleInfo;
-import resource.bean.pub.TlrRoleRel;
-import resource.bean.report.SysTaskInfo;
-import resource.bean.report.SysTaskLog;
-import resource.report.dao.ROOTDAO;
-import resource.report.dao.ROOTDAOUtils;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -25,6 +14,16 @@ import com.huateng.report.system.bean.TlrInfoAuditBean;
 import com.huateng.report.utils.ReportTaskUtil;
 import com.huateng.report.utils.ReportUtils;
 import com.huateng.view.pub.TlrRoleRelationView;
+import resource.bean.pub.RoleInfo;
+import resource.bean.pub.TlrRoleRel;
+import resource.bean.report.SysTaskInfo;
+import resource.bean.report.SysTaskLog;
+import resource.report.dao.ROOTDAO;
+import resource.report.dao.ROOTDAOUtils;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author zhiguo.zhao

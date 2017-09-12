@@ -17,7 +17,7 @@ import com.huateng.report.service.BopForDebtYinTuanService;
  *
  * @author shishu.zhang
  *
- * 2012-8-15上午10:54:59
+ *         2012-8-15上午10:54:59
  */
 @SuppressWarnings("unchecked")
 public class BopForDebtYinTuanSignedQueryGetter extends BaseGetter {
@@ -26,27 +26,24 @@ public class BopForDebtYinTuanSignedQueryGetter extends BaseGetter {
 		try {
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "外债信息银团贷款签约信息查询");
 			PageQueryResult pageQueryResult = getData();
-			
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-	
+
 	@SuppressWarnings("rawtypes")
-	public PageQueryResult getData() throws CommonException{
+	public PageQueryResult getData() throws CommonException {
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		Map map = getCommQueryServletRequest().getParameterMap();
@@ -59,6 +56,7 @@ public class BopForDebtYinTuanSignedQueryGetter extends BaseGetter {
 		String qrepStatus = (String) map.get("qrepStatus");
 		String qfiller2 = (String) map.get("qfiller2");
 		BopForDebtYinTuanService debtYinTuanService = BopForDebtYinTuanService.getInstance();
-		return debtYinTuanService.queryYinTuanQueryBetweenDate("signed", pageIndex, pageSize, qbrNo, qactiontype, qrecStatus, qapproveStatus, qrepStatus, qfiller2, qWorkDateBegin, qWorkDateOver);
+		return debtYinTuanService.queryYinTuanQueryBetweenDate("signed", pageIndex, pageSize, qbrNo, qactiontype,
+				qrecStatus, qapproveStatus, qrepStatus, qfiller2, qWorkDateBegin, qWorkDateOver);
 	}
 }

@@ -34,10 +34,8 @@ public class TblCsBizLogService {
 	 * @return
 	 */
 	public synchronized static TblCsBizLogService getInstance() {
-		return (TblCsBizLogService) ApplicationContextUtils
-				.getBean(TblCsBizLogService.class.getName());
+		return (TblCsBizLogService) ApplicationContextUtils.getBean(TblCsBizLogService.class.getName());
 	}
-
 
 	/**
 	 * @param pageSize
@@ -50,26 +48,28 @@ public class TblCsBizLogService {
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-	public PageQueryResult queryBizLOg(int pageIndex, int pageSize, String oprcode, String startDate, String endDate,String brcode)
-			throws CommonException {
+	public PageQueryResult queryBizLOg(int pageIndex, int pageSize, String oprcode, String startDate, String endDate,
+			String brcode) throws CommonException {
 
 		StringBuffer sb = new StringBuffer("");
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		CommonFunctions comm = CommonFunctions.getInstance();
-		List<Object> list=new ArrayList<Object>();
-		sb.append("select new com.huateng.report.dataquery.bean.TblCsBizLogView(tblCsBizLog.id,tblCsBizLog.txnDate,tblCsBizLog.txnStartTime,tblCsBizLog.txnEndTime," +
-				"tblCsBizLog.txnRunTime,tblCsBizLog.brCode,tblCsBizLog.oprCode,tblCsBizLog.ipAdr,tblCsBizLog.funcId,tblCsBizLog.oprTxnCd,tblCsBizLog.txnBizLog1," +
-				"tblCsBizLog.txnBizLog2,tblCsBizLog.txnStatus,tblCsBizLog.txnFailLog,tlrinfo.tlrName) from TblCsBizLog tblCsBizLog, resource.bean.pub.TlrInfo tlrinfo " +
-				" where trim(tblCsBizLog.oprCode)=tlrinfo.tlrno and trim(tblCsBizLog.brCode) ='" + gi.getBrcode() + "'");
-		if(!DataFormat.isEmpty(oprcode)){
+		List<Object> list = new ArrayList<Object>();
+		sb.append(
+				"select new com.huateng.report.dataquery.bean.TblCsBizLogView(tblCsBizLog.id,tblCsBizLog.txnDate,tblCsBizLog.txnStartTime,tblCsBizLog.txnEndTime,"
+						+ "tblCsBizLog.txnRunTime,tblCsBizLog.brCode,tblCsBizLog.oprCode,tblCsBizLog.ipAdr,tblCsBizLog.funcId,tblCsBizLog.oprTxnCd,tblCsBizLog.txnBizLog1,"
+						+ "tblCsBizLog.txnBizLog2,tblCsBizLog.txnStatus,tblCsBizLog.txnFailLog,tlrinfo.tlrName) from TblCsBizLog tblCsBizLog, resource.bean.pub.TlrInfo tlrinfo "
+						+ " where trim(tblCsBizLog.oprCode)=tlrinfo.tlrno and trim(tblCsBizLog.brCode) ='"
+						+ gi.getBrcode() + "'");
+		if (!DataFormat.isEmpty(oprcode)) {
 			sb.append(" and tlrinfo.tlrName like ? ");
-			list.add("%"+oprcode+"%");
+			list.add("%" + oprcode + "%");
 		}
-		if(!DataFormat.isEmpty(startDate)){
+		if (!DataFormat.isEmpty(startDate)) {
 			sb.append(" and tblCsBizLog.txnDate>=? ");
 			list.add(comm.converDate12TO8(startDate));
 		}
-		if(!DataFormat.isEmpty(endDate)){
+		if (!DataFormat.isEmpty(endDate)) {
 			sb.append(" and tblCsBizLog.txnDate<=? ");
 			list.add(comm.converDate12TO8(endDate));
 		}

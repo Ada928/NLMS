@@ -3,21 +3,22 @@
  */
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Title: WorkflowStatusMap
- * Description:
- * Copyright: Copyright (c) 2008
- * Company: Shanghai Huateng Software Systems Co., Ltd.
+ * Title: WorkflowStatusMap Description: Copyright: Copyright (c) 2008 Company:
+ * Shanghai Huateng Software Systems Co., Ltd.
+ * 
  * @author shen_antonio
  * @version 1.1, 2008-4-25
  */
-public class WorkflowStatusMap {
+public class WorkflowStatusMap implements Serializable {
 
 	public static Map statusMap = new HashMap();
-	static{
+
+	static {
 		statusMap.put(new Integer(0), "Agree");
 		statusMap.put(new Integer(1), "ToSubCtr");
 		statusMap.put(new Integer(2), "ToCtr");
@@ -32,10 +33,11 @@ public class WorkflowStatusMap {
 		statusMap.put(new Integer(11), "Submit");
 		statusMap.put(new Integer(12), "Skip");
 		statusMap.put(new Integer(99), "ToEnd");
-		statusMap.put(new Integer(100),"ToNext");
+		statusMap.put(new Integer(100), "ToNext");
 	}
-	public static String getStatus(Integer status){
-		return (String)statusMap.get(status);
+
+	public static String getStatus(Integer status) {
+		return (String) statusMap.get(status);
 	}
 
 }

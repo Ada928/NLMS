@@ -1,6 +1,5 @@
 package com.huateng.ebank.business.workflowRoute.getter;
 
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -17,40 +16,32 @@ import com.huateng.exception.AppException;
 public class RouteTemplateQueryGetter extends BaseGetter {
 
 	@Override
-	public Result call() throws AppException{
-		try
-		{
+	public Result call() throws AppException {
+		try {
 
-		PageQueryResult pageResult = getData();
-		ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
-		result.setContent(pageResult.getQueryResult());
-		result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
-		result.init();
-		return result;
-		}catch(CommonException e){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
-		}catch(AppException appEx){
+			PageQueryResult pageResult = getData();
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
+			result.setContent(pageResult.getQueryResult());
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
+			result.init();
+			return result;
+		} catch (CommonException e) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
 
-	protected PageQueryResult getData() throws CommonException
-    {
+	protected PageQueryResult getData() throws CommonException {
 		OperationContext oc = new OperationContext();
 
-//		PageQueryResult pageQueryResult = new PageQueryResult();
+		// PageQueryResult pageQueryResult = new PageQueryResult();
 
-		String brhClass = (String)getCommQueryServletRequest().getParameterMap().get("brhClass");
-
+		String brhClass = (String) getCommQueryServletRequest().getParameterMap().get("brhClass");
 
 		WorkflowRouteDef workflowRouteDef = new WorkflowRouteDef();
 		workflowRouteDef.setBrhClass(brhClass);
@@ -63,9 +54,8 @@ public class RouteTemplateQueryGetter extends BaseGetter {
 		oc.setAttribute(RouteTemplateQueryOperation.IN_PARAM_PAGEINDEX, PageIndex);
 		OPCaller.call("Management.RouteTemplateQueryOperation", oc);
 
-		PageQueryResult pageResult = (PageQueryResult) oc
-				.getAttribute(RouteTemplateQueryOperation.OUT_PARAM);
+		PageQueryResult pageResult = (PageQueryResult) oc.getAttribute(RouteTemplateQueryOperation.OUT_PARAM);
 		return pageResult;
 
-    }
+	}
 }

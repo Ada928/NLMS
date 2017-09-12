@@ -48,8 +48,8 @@ public class BopTimedScheduler implements ITimedScheduler {
 			logger.info("Init timer start.....");
 			for (ReportJobConfig jobConfig : list) {
 				try {
-					BopTimedScheduler.addJob(jobConfig.getId(), (Job) Class.forName(jobConfig.getJobClassName())
-							.newInstance(), jobConfig.getJobTime());
+					BopTimedScheduler.addJob(jobConfig.getId(),
+							(Job) Class.forName(jobConfig.getJobClassName()).newInstance(), jobConfig.getJobTime());
 				} catch (Exception e) {
 					e.printStackTrace();
 					logger.error(e.getMessage());
@@ -74,7 +74,7 @@ public class BopTimedScheduler implements ITimedScheduler {
 	 * @throws ParseException
 	 */
 	public static void addJob(String jobId, Job job, String time) throws SchedulerException, ParseException {
-		logger.info("add job "+jobId);
+		logger.info("add job " + jobId);
 
 		Scheduler sched = sf.getScheduler();
 		sched.getContext().put("serContext", ctx);
@@ -99,7 +99,7 @@ public class BopTimedScheduler implements ITimedScheduler {
 	 * @throws SchedulerException
 	 */
 	public static void removeJob(String jobId) throws SchedulerException {
-		logger.info("remove job "+jobId);
+		logger.info("remove job " + jobId);
 		Scheduler sched = sf.getScheduler();
 		sched.pauseTrigger(jobId, TRIGGER_GROUP_NAME);// 停止触发器
 		sched.unscheduleJob(jobId, TRIGGER_GROUP_NAME);// 移除触发器

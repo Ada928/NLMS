@@ -23,7 +23,6 @@ import com.huateng.exception.AppException;
 import com.huateng.report.dataquery.bean.TblCsBizLogView;
 import com.huateng.report.dataquery.service.TblCsBizLogService;
 
-
 /**
  * @Description: 日志查询
  * @Package: com.huateng.ebank.business.custadmin.getter
@@ -34,18 +33,21 @@ public class TblCsBizLogGetter extends BaseGetter {
 	@Override
 	public Result call() throws AppException {
 		try {
-			//this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "数据查询-系统日志查询");
-			CommonFunctions comm =CommonFunctions.getInstance();
+			// this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME,
+			// "数据查询-系统日志查询");
+			CommonFunctions comm = CommonFunctions.getInstance();
 			PageQueryResult pageResult = getData();
-			List<TblCsBizLogView > list =pageResult.getQueryResult();
+			List<TblCsBizLogView> list = pageResult.getQueryResult();
 			Map<String, String> map = new HashMap<String, String>();
 			BctlDAO bctlDAO = DAOUtils.getBctlDAO();
 			Iterator it = list.iterator();
-			while(it.hasNext()){
+			while (it.hasNext()) {
 				Object[] obs = (Object[]) it.next();
 				TblCsBizLogView tbl = (TblCsBizLogView) obs[0];
-				tbl.setTxnStartTime(comm.converDate8TO101(tbl.getTxnDate())+" "+comm.converStringTOTime(tbl.getTxnStartTime()));
-				tbl.setTxnEndTime(comm.converDate8TO101(tbl.getTxnDate())+" "+comm.converStringTOTime(tbl.getTxnEndTime()));
+				tbl.setTxnStartTime(
+						comm.converDate8TO101(tbl.getTxnDate()) + " " + comm.converStringTOTime(tbl.getTxnStartTime()));
+				tbl.setTxnEndTime(
+						comm.converDate8TO101(tbl.getTxnDate()) + " " + comm.converStringTOTime(tbl.getTxnEndTime()));
 				if (map.containsKey(tbl.getBrCode())) {
 					tbl.setMisc(map.get(tbl.getBrCode()));
 				} else {
@@ -58,26 +60,21 @@ public class TblCsBizLogGetter extends BaseGetter {
 					}
 				}
 			}
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
 					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
-			
+
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "操作日志查询");
-			
+
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -85,17 +82,13 @@ public class TblCsBizLogGetter extends BaseGetter {
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
 
-
-		String oprcode = (String) getCommQueryServletRequest().getParameterMap()
-				.get("oprcode1");
-		String startDate = (String) getCommQueryServletRequest().getParameterMap()
-				.get("startDate");
-		String endDate = (String) getCommQueryServletRequest().getParameterMap()
-				.get("endDate");
+		String oprcode = (String) getCommQueryServletRequest().getParameterMap().get("oprcode1");
+		String startDate = (String) getCommQueryServletRequest().getParameterMap().get("startDate");
+		String endDate = (String) getCommQueryServletRequest().getParameterMap().get("endDate");
 
 		GlobalInfo info = GlobalInfo.getCurrentInstance();
 		TblCsBizLogService tblcsbizlogservice = TblCsBizLogService.getInstance();
-		return tblcsbizlogservice.queryBizLOg(pageIndex, pageSize,oprcode,startDate,endDate,info.getBrcode());
+		return tblcsbizlogservice.queryBizLOg(pageIndex, pageSize, oprcode, startDate, endDate, info.getBrcode());
 	}
 
 }

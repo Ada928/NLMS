@@ -13,110 +13,111 @@ public class WorkflowConstant {
 	public static final String TASK_NAME_APPROVE = "ApproveTask";// 审批节点
 	public static final String TASK_NAME_CONFIRM = "ConfirmTask";// 客户经理确认节点
 	public static final String TASK_NAME_LAUNCH = "LaunchApplicationTask";// 发送签收
-	//add by GuoFusong begin
+	// add by GuoFusong begin
 	public static final String TASK_NAME_DOFAIL = "FailHandleTask";// 发送失败确认节点
-	//add by GuoFusong end
+	// add by GuoFusong end
 
 	/**
 	 * 实物票据流程
 	 */
-	/*实物票据承兑流程PROCNAME_P_BILLACCEPTENCE=P-BillAcceptance.*/
-	public static final String PROCNAME_P_BILLACCEPTENCE="PROCNAME_P_BILLACCEPTENCE";
-	/*实物转贴现买入流程PROCNAME_P_TRANSDISCOUNTBUY=P-TransDiscountBuy.*/
+	/* 实物票据承兑流程PROCNAME_P_BILLACCEPTENCE=P-BillAcceptance. */
+	public static final String PROCNAME_P_BILLACCEPTENCE = "PROCNAME_P_BILLACCEPTENCE";
+	/* 实物转贴现买入流程PROCNAME_P_TRANSDISCOUNTBUY=P-TransDiscountBuy. */
 	public static final String PROCNAME_P_TRANSDISCOUNTBUY = "PROCNAME_P_TRANSDISCOUNTBUY";
-	/*实物贴现买入流程PROCNAME_P_DISCOUNTBUY=P-DiscountBuy.*/
+	/* 实物贴现买入流程PROCNAME_P_DISCOUNTBUY=P-DiscountBuy. */
 	public static final String PROCNAME_P_DISCOUNTBUY = "PROCNAME_P_DISCOUNTBUY";
-	/*实物转贴现卖出流程/实物再贴现卖出流程PROCNAME_P_REDISCOUNTSELL=P-RediscountSell.*/
+	/* 实物转贴现卖出流程/实物再贴现卖出流程PROCNAME_P_REDISCOUNTSELL=P-RediscountSell. */
 	public static final String PROCNAME_P_REDISCOUNTSELL = "PROCNAME_P_REDISCOUNTSELL";
-	/*查询查复PROCNAME_QUERYCHECK=QueryCheck.*/
+	/* 查询查复PROCNAME_QUERYCHECK=QueryCheck. */
 	public static final String PROCNAME_QUERYCHECK = "PROCNAME_QUERYCHECK";
-	/*超权限利率审批流程PROCNAME_BEYONDPERMISSIONRATE=BeyondPermissionRate.*/
-	public static final String PROCNAME_BEYONDPERMISSIONRATE="PROCNAME_BEYONDPERMISSIONRATE";
-	/*实物未用退回PROCNAME_P_ACCEPTCANCEL=P-AcceptCancel.*/
-	/** 目前不使用，不走流程.*/
+	/* 超权限利率审批流程PROCNAME_BEYONDPERMISSIONRATE=BeyondPermissionRate. */
+	public static final String PROCNAME_BEYONDPERMISSIONRATE = "PROCNAME_BEYONDPERMISSIONRATE";
+	/* 实物未用退回PROCNAME_P_ACCEPTCANCEL=P-AcceptCancel. */
+	/** 目前不使用，不走流程. */
 	public static final String PROCNAME_P_ACCEPTCANCEL = "PROCNAME_P_ACCEPTCANCEL";
-	/*实物到期回购PROCNAME_P_DUETOBUY=P-DueToBuy.*/
+	/* 实物到期回购PROCNAME_P_DUETOBUY=P-DueToBuy. */
 	public static final String PROCNAME_P_DUETOBUY = "PROCNAME_P_DUETOBUY";
-	/*实物到期返售PROCNAME_P_DUETOSELL=P-DueToSell.*/
+	/* 实物到期返售PROCNAME_P_DUETOSELL=P-DueToSell. */
 	public static final String PROCNAME_P_DUETOSELL = "PROCNAME_P_DUETOSELL";
 
 	/** add by farly.yu 20090831 合并福州商行质押模块 */
-	/*实物票据质押查询查复add by weikun.wang*/
+	/* 实物票据质押查询查复add by weikun.wang */
 	public static final String PROCNAME_COLLZTNQUERYCHECK = "PROCNAME_COLLZTNQUERYCHECK";
-	/*实物票据质押审批流程add by weikun.wang*/
+	/* 实物票据质押审批流程add by weikun.wang */
 	public static final String PROCNAME_P_COLLZTNAPPLY = "PROCNAME_P_COLLZTNAPPLY";
-	/*实物票据解除质押审批流程add by weikun.wang*/
+	/* 实物票据解除质押审批流程add by weikun.wang */
 	public static final String PROCNAME_P_UNCOLLZTNAPPLY = "PROCNAME_P_UNCOLLZTNAPPLY";
-	/*福商实物到期回购PROCNAME_P_FSDUETOBUY=P-FsDueToBuy.	|add by weikun.wang*/
+	/* 福商实物到期回购PROCNAME_P_FSDUETOBUY=P-FsDueToBuy. |add by weikun.wang */
 	public static final String PROCNAME_P_FSDUETOBUY = "PROCNAME_P_FSDUETOBUY";
-	/*福商实物到期返售PROCNAME_P_FSDUETOSELL=P-FsDueToSell. |add by weikun.wang*/
+	/* 福商实物到期返售PROCNAME_P_FSDUETOSELL=P-FsDueToSell. |add by weikun.wang */
 	public static final String PROCNAME_P_FSDUETOSELL = "PROCNAME_P_FSDUETOSELL";
 	/** add end 20090831 */
 
 	/**
 	 * 电子票流程
 	 */
-	/** BMSA-88 双重授权 解付受理	by zhiyang.he begin */
-	/*电子票据解付流程PROCNAME_E_BILLDualControlAcceptancePayDealEntry=E-DualControlAcceptancePayDealEntry.*/
+	/** BMSA-88 双重授权 解付受理 by zhiyang.he begin */
+	/*
+	 * 电子票据解付流程PROCNAME_E_BILLDualControlAcceptancePayDealEntry=E-
+	 * DualControlAcceptancePayDealEntry.
+	 */
 	public static final String PROCNAME_E_BILLDualControlAcceptancePayDealEntry = "PROCNAME_E_BILLDualControlAcceptancePayDealEntry";
-	/** BMSA-88 双重授权 解付受理	by zhiyang.he end */
-	/*电子票据承兑流程PROCNAME_E_BILLACCEPTANCE=E-Accept.*/
+	/** BMSA-88 双重授权 解付受理 by zhiyang.he end */
+	/* 电子票据承兑流程PROCNAME_E_BILLACCEPTANCE=E-Accept. */
 	public static final String PROCNAME_E_BILLACCEPTANCE = "PROCNAME_E_BILLACCEPTANCE";
-	/*贴现买入流程PROCNAME_E_DISCOUNTBUY=E-DiscountBuy.*/
+	/* 贴现买入流程PROCNAME_E_DISCOUNTBUY=E-DiscountBuy. */
 	public static final String PROCNAME_E_DISCOUNTBUY = "PROCNAME_E_DISCOUNTBUY";
-	/*转贴现买入PROCNAME_E_REDISCOUNTBUY=E-TransDiscountBuy.*/
+	/* 转贴现买入PROCNAME_E_REDISCOUNTBUY=E-TransDiscountBuy. */
 	public static final String PROCNAME_E_REDISCOUNTBUY = "PROCNAME_E_REDISCOUNTBUY";
-	/*转贴现卖出/再贴现卖出PROCNAME_E_REDISCOUNTSELL=E-RediscountSell.*/
+	/* 转贴现卖出/再贴现卖出PROCNAME_E_REDISCOUNTSELL=E-RediscountSell. */
 	public static final String PROCNAME_E_REDISCOUNTSELL = "PROCNAME_E_REDISCOUNTSELL";
-	/*贴现买入驳回流程PROCNAME_E_DISCOUNTREJECT=E-DiscountReject.*/
+	/* 贴现买入驳回流程PROCNAME_E_DISCOUNTREJECT=E-DiscountReject. */
 	public static final String PROCNAME_E_DISCOUNTREJECT = "PROCNAME_E_DISCOUNTREJECT";
-	/*转贴现买入驳回PROCNAME_E_TRANSDISCOUNTREJECT=E-TransDiscountReject.*/
+	/* 转贴现买入驳回PROCNAME_E_TRANSDISCOUNTREJECT=E-TransDiscountReject. */
 	public static final String PROCNAME_E_TRANSDISCOUNTREJECT = "PROCNAME_E_TRANSDISCOUNTREJECT";
-	/*承兑驳回PROCNAME_E_ACCEPTREJECT=E-AcceptReject.*/
+	/* 承兑驳回PROCNAME_E_ACCEPTREJECT=E-AcceptReject. */
 	public static final String PROCNAME_E_ACCEPTREJECT = "PROCNAME_E_ACCEPTREJECT";
-	/*转贴现到期返售PROCNAME_E_DUETOSELL=E-DueToTransDiscountSell.*/
+	/* 转贴现到期返售PROCNAME_E_DUETOSELL=E-DueToTransDiscountSell. */
 	public static final String PROCNAME_E_DUETOSELL = "PROCNAME_E_DUETOSELL";
-	/*转贴现到期回购PROCNAME_E_DUETOBUY=E-DueToTransDiscountBuy.*/
+	/* 转贴现到期回购PROCNAME_E_DUETOBUY=E-DueToTransDiscountBuy. */
 	public static final String PROCNAME_E_DUETOBUY = "PROCNAME_E_DUETOBUY";
-	/*转贴现到期回购驳回PROCNAME_E_DUETOBUYREJECT=E-DueToTransDiscountBuyReject.*/
+	/* 转贴现到期回购驳回PROCNAME_E_DUETOBUYREJECT=E-DueToTransDiscountBuyReject. */
 	public static final String PROCNAME_E_DUETOBUYREJECT = "PROCNAME_E_DUETOBUYREJECT";
 	/** add by jornezhang 20091119 BMS-2244 电子质押增加协议层改造 begin */
-	/*质押签收PROCNAME_E_COLLZTNAPPLY=E-CollztnApply.*/
+	/* 质押签收PROCNAME_E_COLLZTNAPPLY=E-CollztnApply. */
 	public static final String PROCNAME_E_COLLZTNAPPLY = "PROCNAME_E_COLLZTNAPPLY";
-	/*质押申请PROCNAME_E_COLLZTNAPPLYSEND=E-CollztnApplySend.*/
+	/* 质押申请PROCNAME_E_COLLZTNAPPLYSEND=E-CollztnApplySend. */
 	public static final String PROCNAME_E_COLLZTNAPPLYSEND = "PROCNAME_E_COLLZTNAPPLYSEND";
-	/*解除质押签收PROCNAME_E_UNCOLLZTNAPPLY=E-UnCollztnApply.*/
+	/* 解除质押签收PROCNAME_E_UNCOLLZTNAPPLY=E-UnCollztnApply. */
 	public static final String PROCNAME_E_UNCOLLZTNAPPLY = "PROCNAME_E_UNCOLLZTNAPPLY";
-	/*解除质押申请PROCNAME_E_UNCOLLZTNAPPLYSEND=E-UnCollztnApplySend.*/
+	/* 解除质押申请PROCNAME_E_UNCOLLZTNAPPLYSEND=E-UnCollztnApplySend. */
 	public static final String PROCNAME_E_UNCOLLZTNAPPLYSEND = "PROCNAME_E_UNCOLLZTNAPPLYSEND";
 	/** add by jornezhang 20091119 BMS-2244 电子质押增加协议层改造 end */
-	/** add by weikun.wang 20100701   BMS-2788 电子票据保证增加协议层改造 begin */
-	/*保证申请流程PROCNAME_E_ELCGUARANTSEND=E-ElcGuarantSend.*/
+	/** add by weikun.wang 20100701 BMS-2788 电子票据保证增加协议层改造 begin */
+	/* 保证申请流程PROCNAME_E_ELCGUARANTSEND=E-ElcGuarantSend. */
 	public static final String PROCNAME_E_ELCGUARANTSEND = "PROCNAME_E_ELCGUARANTSEND";
-	/*保证签收流程PROCNAME_E_ELCGUARANTSIGN=E-ElcGuarantSign.*/
+	/* 保证签收流程PROCNAME_E_ELCGUARANTSIGN=E-ElcGuarantSign. */
 	public static final String PROCNAME_E_ELCGUARANTSIGN = "PROCNAME_E_ELCGUARANTSIGN";
-	/** add by weikun.wang 20100701   BMS-2788 电子票据保证增加协议层改造 end */
+	/** add by weikun.wang 20100701 BMS-2788 电子票据保证增加协议层改造 end */
 
-
-	/** add by zhen.huang 20100903  BMS-2832 电子票据保证驳回协议层改造 begin */
-	/*保证协议驳回流程PROCNAME_E_ELCGUARANTSIGNREJECT=E-ElcGuarantSignReject.*/
+	/** add by zhen.huang 20100903 BMS-2832 电子票据保证驳回协议层改造 begin */
+	/* 保证协议驳回流程PROCNAME_E_ELCGUARANTSIGNREJECT=E-ElcGuarantSignReject. */
 	public static final String PROCNAME_E_ELCGUARANTSIGNREJECT = "PROCNAME_E_ELCGUARANTSIGNREJECT";
-	/** add by zhen.huang 20100903  BMS-2832 电子票据保证驳回协议层改造 end */
+	/** add by zhen.huang 20100903 BMS-2832 电子票据保证驳回协议层改造 end */
 
-	//added BMSA-84 4Eye功能—提示付款申请—工作流开发 by yequan.song on 20110915 begin
+	// added BMSA-84 4Eye功能—提示付款申请—工作流开发 by yequan.song on 20110915 begin
 	public static final String PROCNAME_E_ELCCOLLECTIONSEND = "PROCNAME_E_ELCCOLLECTIONSEND";
-	//added BMSA-84 4Eye功能—提示付款申请—工作流开发 by yequan.song on 20110915 end
+	// added BMSA-84 4Eye功能—提示付款申请—工作流开发 by yequan.song on 20110915 end
 
-	/** add by LiChr 票据查验申请增加工作流begin	 */
+	/** add by LiChr 票据查验申请增加工作流begin */
 	public static final String PROCNAME_E_DRAFTSHOWSEND = "PROCNAME_E_DRAFTSHOWSEND";
-	/** add by LiChr 票据查验申请增加工作流end	 */
+	/** add by LiChr 票据查验申请增加工作流end */
 
 	/**
 	 * 代保管/代保管解除流程 add by huangy bms-2199
 	 */
 	public static final String PROCNAME_P_CANCLESTORAGE = "PROCNAME_P_CANCLESTORAGE";
 	public static final String PROCNAME_P_STORAGE = "PROCNAME_P_STORAGE";
-
 
 	/**
 	 * 票据池/票据池解除流程 add by lidi BMSA-126
@@ -130,17 +131,15 @@ public class WorkflowConstant {
 	public static final String PROCNAME_P_WIPE = "PROCNAME_P_WIPE";
 
 	/** add by jornezhang 20100311 BMS-2501 v1.4电子合同BMS交易开发 begin */
-	//电子合同发送
+	// 电子合同发送
 	public static final String PROCNAME_E_ELCCTRCTSEND = "PROCNAME_E_ELCCTRCTSEND";
-	//电子合同签收
+	// 电子合同签收
 	public static final String PROCNAME_E_ELCCTRCTSIGN = "PROCNAME_E_ELCCTRCTSIGN";
-	//电子合同解除发送
+	// 电子合同解除发送
 	public static final String PROCNAME_E_ELCCTRCTCANCELSEND = "PROCNAME_E_ELCCTRCTCANCELSEND";
-	//电子哈同解除签收
+	// 电子哈同解除签收
 	public static final String PROCNAME_E_ELCCTRCTCANCELSIGN = "PROCNAME_E_ELCCTRCTCANCELSIGN";
 	/** add by jornezhang 20100311 BMS-2501 v1.4电子合同BMS交易开发 end */
-
-
 
 	/**
 	 * modify by shen_antonio 20080327 for TlrLvdayService 销假状态
@@ -212,7 +211,6 @@ public class WorkflowConstant {
 	public static final String WORKFLOW_REPLYTRANS_REJECTTOCONFIRM = "3";// 驳回申请去确认
 	public static final String WORKFLOW_REPLYTRANS_DEFAULT = "4";// 无需进行状态校验的默认情况
 
-
 	/**
 	 * 传入流程的业务属性 Added by UU_Wu 2009-8-28
 	 */
@@ -228,27 +226,26 @@ public class WorkflowConstant {
 	public static final String WORKFLOW_ATTRIBUTE_TASKID = "TASKID";// 任务号
 	public static final String WORKFLOW_ATTRIBUTE_CURRBRHID = "CURR_BRHID";// 当前机构
 
-
-
 	public static final String WORKFLOW_ATTRIBUTE_AMOUNT = "AMOUNT";// 申请金额
 	public static final String WORKFLOW_ATTRIBUTE_APPNO = "APPNO";// 申请号
 	public static final String WORKFLOW_ATTRIBUTE_BUSSTYPE = "BUSS_TYPE";// 业务种类(四位码)
 	public static final String WORKFLOW_ATTRIBUTE_CONTRACTID = "CONTRACTID";// 协议ID
 	public static final String WORKFLOW_ATTRIBUTE_CUSTCD = "CUSTCD";// 客户ID
-	public static final String WORKFLOW_ATTRIBUTE_CUSTNAME  = "CUSTNAME";// 客户名称
+	public static final String WORKFLOW_ATTRIBUTE_CUSTNAME = "CUSTNAME";// 客户名称
 	public static final String WORKFLOW_ATTRIBUTE_DRAFTATTR = "DRAFT_ATTR";// 票据属性（1-实物2-电子）
-	public static final String WORKFLOW_ATTRIBUTE_DRAFTTYPE = "DRAFT_TYPE";// 票据类型(1-银票 2-商票)
+	public static final String WORKFLOW_ATTRIBUTE_DRAFTTYPE = "DRAFT_TYPE";// 票据类型(1-银票
+																			// 2-商票)
 	public static final String WORKFLOW_ATTRIBUTE_STARTER = "STARTER";// 发起人ID
 	public static final String WORKFLOW_ATTRIBUTE_STARTBRHID = "START_BRHID";// 发起行ID
 	public static final String WORKFLOW_ATTRIBUTE_STARTBRHNO = "START_BRHNO";// 发起行NO
 	public static final String WORKFLOW_ATTRIBUTE_TRANSNO = "TRANSNO";// 协议NO
-	//兴业需求
+	// 兴业需求
 	public static final String WORKFLOW_ATTRIBUTE_NEEDINNERFLAG = "NEED_INNERFLAG";// 是否需要有系统内外标识
 
 	public static final String WORKFLOW_ATTRIBUTE_LASTAPPROVEROLEID = "LAST_APPROVE_ROLEID";// 最后审批操作员岗位ID
-	//德意志 BMSA-89 add by jian.yu
+	// 德意志 BMSA-89 add by jian.yu
 	public static final String DUALTASKPOOL = "PROCNAME_E_DualTaskPool";
 
-	//add by nirvana.li BMSA-125 20111123
-	public static final String PROCNAME_QUERYCHECKN = "PROCNAME_QUERYCHECKN";//查询查复
+	// add by nirvana.li BMSA-125 20111123
+	public static final String PROCNAME_QUERYCHECKN = "PROCNAME_QUERYCHECKN";// 查询查复
 }

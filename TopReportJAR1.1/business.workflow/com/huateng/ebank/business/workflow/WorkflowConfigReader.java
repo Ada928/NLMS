@@ -19,10 +19,9 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 
 /**
- * Title: ConfigReader
- * Description: 璇诲彇閰岖疆鏂囦欢workflow.properties
- * Copyright: Copyright (c) 2008
- * Company: Shanghai Huateng Software Systems Co., Ltd.
+ * Title: ConfigReader Description: 璇诲彇閰岖疆鏂囦欢workflow.properties Copyright:
+ * Copyright (c) 2008 Company: Shanghai Huateng Software Systems Co., Ltd.
+ * 
  * @author shen_antonio
  * @version 1.1, 2008-5-9
  */
@@ -36,12 +35,13 @@ public class WorkflowConfigReader {
 	private WorkflowConfigReader() {
 	}
 
-	public static String getWorkflowProperty(String key)throws CommonException{
+	public static String getWorkflowProperty(String key) throws CommonException {
 		try {
 			return RESOURCE_BUNDLE.getString(key);
 		} catch (MissingResourceException e) {
 			log.error(e);
-			ExceptionUtil.throwCommonException("宸ヤ綔娴侀厤缃枃浠堕敊璇紝娌℃湁镓惧埌[" + key + "]镄勬祦绋??", ErrorCode.ERROR_CODE_INTERNAL_ERROR);
+			ExceptionUtil.throwCommonException("宸ヤ綔娴侀厤缃枃浠堕敊璇紝娌℃湁镓惧埌[" + key + "]镄勬祦绋??",
+					ErrorCode.ERROR_CODE_INTERNAL_ERROR);
 			return null;
 		}
 	}

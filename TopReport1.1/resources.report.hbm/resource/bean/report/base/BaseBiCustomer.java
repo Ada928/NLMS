@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the BI_CUSTOMER table.
- * Do not modify this class because it will be overwritten if the configuration file
+ * This is an object that contains data related to the BI_CUSTOMER table. Do not
+ * modify this class because it will be overwritten if the configuration file
  * related to this class is modified.
  *
- * @hibernate.class
- *  table="BI_CUSTOMER"
+ * @hibernate.class table="BI_CUSTOMER"
  */
 
-public abstract class BaseBiCustomer  implements Serializable {
+public abstract class BaseBiCustomer implements Serializable {
 
 	public static String REF = "BiCustomer";
 	public static String PROP_CUSTOMER_NATIONALITY = "customerNationality";
@@ -38,23 +36,21 @@ public abstract class BaseBiCustomer  implements Serializable {
 	public static String PROP_STOCK_FLAG = "stockFlag";
 	public static String PROP_PAPER_CODE = "paperCode";
 
-
 	// constructors
-	public BaseBiCustomer () {
+	public BaseBiCustomer() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseBiCustomer (java.lang.String id) {
+	public BaseBiCustomer(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -84,400 +80,401 @@ public abstract class BaseBiCustomer  implements Serializable {
 	private java.lang.String filler2;
 	private java.lang.String filler3;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  column="CUSTOMER_ID"
-     */
-	public java.lang.String getId () {
+	 * 
+	 * @hibernate.id column="CUSTOMER_ID"
+	 */
+	public java.lang.String getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.String id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: ORG_ID
 	 */
-	public java.lang.String getOrgId () {
+	public java.lang.String getOrgId() {
 		return orgId;
 	}
 
 	/**
 	 * Set the value related to the column: ORG_ID
-	 * @param orgId the ORG_ID value
+	 * 
+	 * @param orgId
+	 *            the ORG_ID value
 	 */
-	public void setOrgId (java.lang.String orgId) {
+	public void setOrgId(java.lang.String orgId) {
 		this.orgId = orgId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CUSTOMER_TYPE
 	 */
-	public java.lang.String getCustomerType () {
+	public java.lang.String getCustomerType() {
 		return customerType;
 	}
 
 	/**
 	 * Set the value related to the column: CUSTOMER_TYPE
-	 * @param customerType the CUSTOMER_TYPE value
+	 * 
+	 * @param customerType
+	 *            the CUSTOMER_TYPE value
 	 */
-	public void setCustomerType (java.lang.String customerType) {
+	public void setCustomerType(java.lang.String customerType) {
 		this.customerType = customerType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PAPER_TYPE
 	 */
-	public java.lang.String getPaperType () {
+	public java.lang.String getPaperType() {
 		return paperType;
 	}
 
 	/**
 	 * Set the value related to the column: PAPER_TYPE
-	 * @param paperType the PAPER_TYPE value
+	 * 
+	 * @param paperType
+	 *            the PAPER_TYPE value
 	 */
-	public void setPaperType (java.lang.String paperType) {
+	public void setPaperType(java.lang.String paperType) {
 		this.paperType = paperType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PAPER_TYPE_MEMO
 	 */
-	public java.lang.String getPaperTypeMemo () {
+	public java.lang.String getPaperTypeMemo() {
 		return paperTypeMemo;
 	}
 
 	/**
 	 * Set the value related to the column: PAPER_TYPE_MEMO
-	 * @param paperTypeMemo the PAPER_TYPE_MEMO value
+	 * 
+	 * @param paperTypeMemo
+	 *            the PAPER_TYPE_MEMO value
 	 */
-	public void setPaperTypeMemo (java.lang.String paperTypeMemo) {
+	public void setPaperTypeMemo(java.lang.String paperTypeMemo) {
 		this.paperTypeMemo = paperTypeMemo;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PAPER_CODE
 	 */
-	public java.lang.String getPaperCode () {
+	public java.lang.String getPaperCode() {
 		return paperCode;
 	}
 
 	/**
 	 * Set the value related to the column: PAPER_CODE
-	 * @param paperCode the PAPER_CODE value
+	 * 
+	 * @param paperCode
+	 *            the PAPER_CODE value
 	 */
-	public void setPaperCode (java.lang.String paperCode) {
+	public void setPaperCode(java.lang.String paperCode) {
 		this.paperCode = paperCode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CUSTOMER_NAME
 	 */
-	public java.lang.String getCustomerName () {
+	public java.lang.String getCustomerName() {
 		return customerName;
 	}
 
 	/**
 	 * Set the value related to the column: CUSTOMER_NAME
-	 * @param customerName the CUSTOMER_NAME value
+	 * 
+	 * @param customerName
+	 *            the CUSTOMER_NAME value
 	 */
-	public void setCustomerName (java.lang.String customerName) {
+	public void setCustomerName(java.lang.String customerName) {
 		this.customerName = customerName;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CUSTOMER_ENNAME
 	 */
-	public java.lang.String getCustomerEnname () {
+	public java.lang.String getCustomerEnname() {
 		return customerEnname;
 	}
 
 	/**
 	 * Set the value related to the column: CUSTOMER_ENNAME
-	 * @param customerEnname the CUSTOMER_ENNAME value
+	 * 
+	 * @param customerEnname
+	 *            the CUSTOMER_ENNAME value
 	 */
-	public void setCustomerEnname (java.lang.String customerEnname) {
+	public void setCustomerEnname(java.lang.String customerEnname) {
 		this.customerEnname = customerEnname;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CUSTOMER_NATIONALITY
 	 */
-	public java.lang.String getCustomerNationality () {
+	public java.lang.String getCustomerNationality() {
 		return customerNationality;
 	}
 
 	/**
 	 * Set the value related to the column: CUSTOMER_NATIONALITY
-	 * @param customerNationality the CUSTOMER_NATIONALITY value
+	 * 
+	 * @param customerNationality
+	 *            the CUSTOMER_NATIONALITY value
 	 */
-	public void setCustomerNationality (java.lang.String customerNationality) {
+	public void setCustomerNationality(java.lang.String customerNationality) {
 		this.customerNationality = customerNationality;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TELEPHONE
 	 */
-	public java.lang.String getTelephone () {
+	public java.lang.String getTelephone() {
 		return telephone;
 	}
 
 	/**
 	 * Set the value related to the column: TELEPHONE
-	 * @param telephone the TELEPHONE value
+	 * 
+	 * @param telephone
+	 *            the TELEPHONE value
 	 */
-	public void setTelephone (java.lang.String telephone) {
+	public void setTelephone(java.lang.String telephone) {
 		this.telephone = telephone;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CUSTOMER_ADDRESS
 	 */
-	public java.lang.String getCustomerAddress () {
+	public java.lang.String getCustomerAddress() {
 		return customerAddress;
 	}
 
 	/**
 	 * Set the value related to the column: CUSTOMER_ADDRESS
-	 * @param customerAddress the CUSTOMER_ADDRESS value
+	 * 
+	 * @param customerAddress
+	 *            the CUSTOMER_ADDRESS value
 	 */
-	public void setCustomerAddress (java.lang.String customerAddress) {
+	public void setCustomerAddress(java.lang.String customerAddress) {
 		this.customerAddress = customerAddress;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CUSTOMER_OTHERS
 	 */
-	public java.lang.String getCustomerOthers () {
+	public java.lang.String getCustomerOthers() {
 		return customerOthers;
 	}
 
 	/**
 	 * Set the value related to the column: CUSTOMER_OTHERS
-	 * @param customerOthers the CUSTOMER_OTHERS value
+	 * 
+	 * @param customerOthers
+	 *            the CUSTOMER_OTHERS value
 	 */
-	public void setCustomerOthers (java.lang.String customerOthers) {
+	public void setCustomerOthers(java.lang.String customerOthers) {
 		this.customerOthers = customerOthers;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: VOCATION_TYPE
 	 */
-	public java.lang.String getVocationType () {
+	public java.lang.String getVocationType() {
 		return vocationType;
 	}
 
 	/**
 	 * Set the value related to the column: VOCATION_TYPE
-	 * @param vocationType the VOCATION_TYPE value
+	 * 
+	 * @param vocationType
+	 *            the VOCATION_TYPE value
 	 */
-	public void setVocationType (java.lang.String vocationType) {
+	public void setVocationType(java.lang.String vocationType) {
 		this.vocationType = vocationType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: REGISTRATION_MONEY
 	 */
-	public java.math.BigDecimal getRegistrationMoney () {
+	public java.math.BigDecimal getRegistrationMoney() {
 		return registrationMoney;
 	}
 
 	/**
 	 * Set the value related to the column: REGISTRATION_MONEY
-	 * @param registrationMoney the REGISTRATION_MONEY value
+	 * 
+	 * @param registrationMoney
+	 *            the REGISTRATION_MONEY value
 	 */
-	public void setRegistrationMoney (java.math.BigDecimal registrationMoney) {
+	public void setRegistrationMoney(java.math.BigDecimal registrationMoney) {
 		this.registrationMoney = registrationMoney;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CORPORATION_REPNAME
 	 */
-	public java.lang.String getCorporationRepname () {
+	public java.lang.String getCorporationRepname() {
 		return corporationRepname;
 	}
 
 	/**
 	 * Set the value related to the column: CORPORATION_REPNAME
-	 * @param corporationRepname the CORPORATION_REPNAME value
+	 * 
+	 * @param corporationRepname
+	 *            the CORPORATION_REPNAME value
 	 */
-	public void setCorporationRepname (java.lang.String corporationRepname) {
+	public void setCorporationRepname(java.lang.String corporationRepname) {
 		this.corporationRepname = corporationRepname;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CORPORATION_PAPER_TYPE
 	 */
-	public java.lang.String getCorporationPaperType () {
+	public java.lang.String getCorporationPaperType() {
 		return corporationPaperType;
 	}
 
 	/**
 	 * Set the value related to the column: CORPORATION_PAPER_TYPE
-	 * @param corporationPaperType the CORPORATION_PAPER_TYPE value
+	 * 
+	 * @param corporationPaperType
+	 *            the CORPORATION_PAPER_TYPE value
 	 */
-	public void setCorporationPaperType (java.lang.String corporationPaperType) {
+	public void setCorporationPaperType(java.lang.String corporationPaperType) {
 		this.corporationPaperType = corporationPaperType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CORPORATION_PAPER_ID
 	 */
-	public java.lang.String getCorporationPaperId () {
+	public java.lang.String getCorporationPaperId() {
 		return corporationPaperId;
 	}
 
 	/**
 	 * Set the value related to the column: CORPORATION_PAPER_ID
-	 * @param corporationPaperId the CORPORATION_PAPER_ID value
+	 * 
+	 * @param corporationPaperId
+	 *            the CORPORATION_PAPER_ID value
 	 */
-	public void setCorporationPaperId (java.lang.String corporationPaperId) {
+	public void setCorporationPaperId(java.lang.String corporationPaperId) {
 		this.corporationPaperId = corporationPaperId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FAREN_PAPER_TYPE_MEMO
 	 */
-	public java.lang.String getFarenPaperTypeMemo () {
+	public java.lang.String getFarenPaperTypeMemo() {
 		return farenPaperTypeMemo;
 	}
 
 	/**
 	 * Set the value related to the column: FAREN_PAPER_TYPE_MEMO
-	 * @param farenPaperTypeMemo the FAREN_PAPER_TYPE_MEMO value
+	 * 
+	 * @param farenPaperTypeMemo
+	 *            the FAREN_PAPER_TYPE_MEMO value
 	 */
-	public void setFarenPaperTypeMemo (java.lang.String farenPaperTypeMemo) {
+	public void setFarenPaperTypeMemo(java.lang.String farenPaperTypeMemo) {
 		this.farenPaperTypeMemo = farenPaperTypeMemo;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: STOCK_FLAG
 	 */
-	public java.lang.String getStockFlag () {
+	public java.lang.String getStockFlag() {
 		return stockFlag;
 	}
 
 	/**
 	 * Set the value related to the column: STOCK_FLAG
-	 * @param stockFlag the STOCK_FLAG value
+	 * 
+	 * @param stockFlag
+	 *            the STOCK_FLAG value
 	 */
-	public void setStockFlag (java.lang.String stockFlag) {
+	public void setStockFlag(java.lang.String stockFlag) {
 		this.stockFlag = stockFlag;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER1
 	 */
-	public java.lang.String getFiller1 () {
+	public java.lang.String getFiller1() {
 		return filler1;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER1
-	 * @param filler1 the FILLER1 value
+	 * 
+	 * @param filler1
+	 *            the FILLER1 value
 	 */
-	public void setFiller1 (java.lang.String filler1) {
+	public void setFiller1(java.lang.String filler1) {
 		this.filler1 = filler1;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER2
 	 */
-	public java.lang.String getFiller2 () {
+	public java.lang.String getFiller2() {
 		return filler2;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER2
-	 * @param filler2 the FILLER2 value
+	 * 
+	 * @param filler2
+	 *            the FILLER2 value
 	 */
-	public void setFiller2 (java.lang.String filler2) {
+	public void setFiller2(java.lang.String filler2) {
 		this.filler2 = filler2;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER3
 	 */
-	public java.lang.String getFiller3 () {
+	public java.lang.String getFiller3() {
 		return filler3;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER3
-	 * @param filler3 the FILLER3 value
+	 * 
+	 * @param filler3
+	 *            the FILLER3 value
 	 */
-	public void setFiller3 (java.lang.String filler3) {
+	public void setFiller3(java.lang.String filler3) {
 		this.filler3 = filler3;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.BiCustomer)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.BiCustomer))
+			return false;
 		else {
 			resource.bean.report.BiCustomer biCustomer = (resource.bean.report.BiCustomer) obj;
-			if (null == this.getId() || null == biCustomer.getId()) return false;
-			else return (this.getId().equals(biCustomer.getId()));
+			if (null == this.getId() || null == biCustomer.getId())
+				return false;
+			else
+				return (this.getId().equals(biCustomer.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -486,10 +483,8 @@ public abstract class BaseBiCustomer  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

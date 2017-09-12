@@ -2,24 +2,23 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseBiProcessLog;
 
-
-
-public class BiProcessLog extends BaseBiProcessLog {
+public class BiProcessLog extends BaseBiProcessLog implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public BiProcessLog () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public BiProcessLog() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BiProcessLog (java.lang.String id) {
+	public BiProcessLog(java.lang.String id) {
 		super(id);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
+	/* [CONSTRUCTOR MARKER END] */
 
 	private String brName;
 
@@ -30,6 +29,5 @@ public class BiProcessLog extends BaseBiProcessLog {
 	public void setBrName(String brName) {
 		this.brName = brName;
 	}
-
 
 }

@@ -1,7 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.lang.reflect.InvocationTargetException;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -13,6 +11,8 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.service.pub.RoleInfoService;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * @Description: 企业岗位查询

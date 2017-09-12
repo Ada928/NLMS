@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the BI_DATA_PROCESS_LOG table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * This is an object that contains data related to the BI_DATA_PROCESS_LOG
+ * table. Do not modify this class because it will be overwritten if the
+ * configuration file related to this class is modified.
  *
- * @hibernate.class
- *  table="BI_DATA_PROCESS_LOG"
+ * @hibernate.class table="BI_DATA_PROCESS_LOG"
  */
 
-public abstract class BaseBiDataProcessLog  implements Serializable {
+public abstract class BaseBiDataProcessLog implements Serializable {
 
 	public static String REF = "BiDataProcessLog";
 	public static String PROP_EXEC_RESULT = "execResult";
@@ -29,23 +27,21 @@ public abstract class BaseBiDataProcessLog  implements Serializable {
 	public static String PROP_FILLER3 = "filler3";
 	public static String PROP_FILLER2 = "filler2";
 
-
 	// constructors
-	public BaseBiDataProcessLog () {
+	public BaseBiDataProcessLog() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseBiDataProcessLog (java.lang.String id) {
+	public BaseBiDataProcessLog(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -66,150 +62,144 @@ public abstract class BaseBiDataProcessLog  implements Serializable {
 	private java.lang.String filler2;
 	private java.lang.String filler3;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  column="PROC_ID"
-     */
-	public java.lang.String getId () {
+	 * 
+	 * @hibernate.id column="PROC_ID"
+	 */
+	public java.lang.String getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.String id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: APPTYPE
 	 */
-	public java.lang.String getApptype () {
+	public java.lang.String getApptype() {
 		return apptype;
 	}
 
 	/**
 	 * Set the value related to the column: APPTYPE
-	 * @param apptype the APPTYPE value
+	 * 
+	 * @param apptype
+	 *            the APPTYPE value
 	 */
-	public void setApptype (java.lang.String apptype) {
+	public void setApptype(java.lang.String apptype) {
 		this.apptype = apptype;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CURRENTFILE
 	 */
-	public java.lang.String getCurrentfile () {
+	public java.lang.String getCurrentfile() {
 		return currentfile;
 	}
 
 	/**
 	 * Set the value related to the column: CURRENTFILE
-	 * @param currentfile the CURRENTFILE value
+	 * 
+	 * @param currentfile
+	 *            the CURRENTFILE value
 	 */
-	public void setCurrentfile (java.lang.String currentfile) {
+	public void setCurrentfile(java.lang.String currentfile) {
 		this.currentfile = currentfile;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: REC_ID
 	 */
-	public java.lang.String getRecId () {
+	public java.lang.String getRecId() {
 		return recId;
 	}
 
 	/**
 	 * Set the value related to the column: REC_ID
-	 * @param recId the REC_ID value
+	 * 
+	 * @param recId
+	 *            the REC_ID value
 	 */
-	public void setRecId (java.lang.String recId) {
+	public void setRecId(java.lang.String recId) {
 		this.recId = recId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BUSI_NO
 	 */
-	public java.lang.String getBusiNo () {
+	public java.lang.String getBusiNo() {
 		return busiNo;
 	}
 
 	/**
 	 * Set the value related to the column: BUSI_NO
-	 * @param busiNo the BUSI_NO value
+	 * 
+	 * @param busiNo
+	 *            the BUSI_NO value
 	 */
-	public void setBusiNo (java.lang.String busiNo) {
+	public void setBusiNo(java.lang.String busiNo) {
 		this.busiNo = busiNo;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EXEC_TYPE
 	 */
-	public java.lang.String getExecType () {
+	public java.lang.String getExecType() {
 		return execType;
 	}
 
 	/**
 	 * Set the value related to the column: EXEC_TYPE
-	 * @param execType the EXEC_TYPE value
+	 * 
+	 * @param execType
+	 *            the EXEC_TYPE value
 	 */
-	public void setExecType (java.lang.String execType) {
+	public void setExecType(java.lang.String execType) {
 		this.execType = execType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EXEC_RESULT
 	 */
-	public java.lang.String getExecResult () {
+	public java.lang.String getExecResult() {
 		return execResult;
 	}
 
 	/**
 	 * Set the value related to the column: EXEC_RESULT
-	 * @param execResult the EXEC_RESULT value
+	 * 
+	 * @param execResult
+	 *            the EXEC_RESULT value
 	 */
-	public void setExecResult (java.lang.String execResult) {
+	public void setExecResult(java.lang.String execResult) {
 		this.execResult = execResult;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EXEC_REMARK
 	 */
-	public java.lang.String getExecRemark () {
+	public java.lang.String getExecRemark() {
 		return execRemark;
 	}
 
 	/**
 	 * Set the value related to the column: EXEC_REMARK
-	 * @param execRemark the EXEC_REMARK value
+	 * 
+	 * @param execRemark
+	 *            the EXEC_REMARK value
 	 */
-	public void setExecRemark (java.lang.String execRemark) {
+	public void setExecRemark(java.lang.String execRemark) {
 		this.execRemark = execRemark;
 	}
-
-
-
-
-
 
 	public java.util.Date getExecTm() {
 		return execTm;
@@ -222,85 +212,89 @@ public abstract class BaseBiDataProcessLog  implements Serializable {
 	/**
 	 * Return the value associated with the column: EXEC_TLR
 	 */
-	public java.lang.String getExecTlr () {
+	public java.lang.String getExecTlr() {
 		return execTlr;
 	}
 
 	/**
 	 * Set the value related to the column: EXEC_TLR
-	 * @param execTlr the EXEC_TLR value
+	 * 
+	 * @param execTlr
+	 *            the EXEC_TLR value
 	 */
-	public void setExecTlr (java.lang.String execTlr) {
+	public void setExecTlr(java.lang.String execTlr) {
 		this.execTlr = execTlr;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER1
 	 */
-	public java.lang.String getFiller1 () {
+	public java.lang.String getFiller1() {
 		return filler1;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER1
-	 * @param filler1 the FILLER1 value
+	 * 
+	 * @param filler1
+	 *            the FILLER1 value
 	 */
-	public void setFiller1 (java.lang.String filler1) {
+	public void setFiller1(java.lang.String filler1) {
 		this.filler1 = filler1;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER2
 	 */
-	public java.lang.String getFiller2 () {
+	public java.lang.String getFiller2() {
 		return filler2;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER2
-	 * @param filler2 the FILLER2 value
+	 * 
+	 * @param filler2
+	 *            the FILLER2 value
 	 */
-	public void setFiller2 (java.lang.String filler2) {
+	public void setFiller2(java.lang.String filler2) {
 		this.filler2 = filler2;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FILLER3
 	 */
-	public java.lang.String getFiller3 () {
+	public java.lang.String getFiller3() {
 		return filler3;
 	}
 
 	/**
 	 * Set the value related to the column: FILLER3
-	 * @param filler3 the FILLER3 value
+	 * 
+	 * @param filler3
+	 *            the FILLER3 value
 	 */
-	public void setFiller3 (java.lang.String filler3) {
+	public void setFiller3(java.lang.String filler3) {
 		this.filler3 = filler3;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.BiDataProcessLog)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.BiDataProcessLog))
+			return false;
 		else {
 			resource.bean.report.BiDataProcessLog biDataProcessLog = (resource.bean.report.BiDataProcessLog) obj;
-			if (null == this.getId() || null == biDataProcessLog.getId()) return false;
-			else return (this.getId().equals(biDataProcessLog.getId()));
+			if (null == this.getId() || null == biDataProcessLog.getId())
+				return false;
+			else
+				return (this.getId().equals(biDataProcessLog.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -309,10 +303,8 @@ public abstract class BaseBiDataProcessLog  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

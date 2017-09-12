@@ -11,10 +11,9 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.report.constants.TopReportConstants;
 import com.huateng.report.system.common.IGetSubFileList;
 
-public class BufCfaArBopCfaExdebtDsImpl implements IGetSubFileList{
+public class BufCfaArBopCfaExdebtDsImpl implements IGetSubFileList {
 
-	public List getSubFileResultList(Map<String, Object> paramMap)
-			throws CommonException {
+	public List getSubFileResultList(Map<String, Object> paramMap) throws CommonException {
 		String fileDate = (String) paramMap.get(IN_FILE_DATE);
 		String appType = (String) paramMap.get(IN_APP_TYPE);
 		String fileType = (String) paramMap.get(IN_FILE_TYPE);
@@ -25,13 +24,13 @@ public class BufCfaArBopCfaExdebtDsImpl implements IGetSubFileList{
 
 		querySql.append(" from BopCfaExdebtDs model ");
 		querySql.append(" where model.recStatus='" + TopReportConstants.REPORT_RECSTATUS_05 + "'");// 审核已确认
-		if (fileDate!=null && fileDate.trim().length()>0) {
+		if (fileDate != null && fileDate.trim().length() > 0) {
 			querySql.append(" and model.workDate='" + fileDate + "'");
 		}
-		querySql.append(" and model.apptype='"+appType+"'");
-		querySql.append(" and model.currentfile='"+fileType+"'");
+		querySql.append(" and model.apptype='" + appType + "'");
+		querySql.append(" and model.currentfile='" + fileType + "'");
 
-	    listResult = rootDao.queryByQL2List(querySql.toString());
+		listResult = rootDao.queryByQL2List(querySql.toString());
 
 		return listResult;
 	}

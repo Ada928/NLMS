@@ -9,8 +9,7 @@ import com.huateng.report.system.service.TaskListService;
 
 public class TaskListOperation extends BaseOperation {
 	/**
-	 * @author jianxue.zhang
-	 * op层for获取审批列表和审批操作
+	 * @author jianxue.zhang op层for获取审批列表和审批操作
 	 */
 
 	public static final String ID = "TaskListOperation";
@@ -26,7 +25,7 @@ public class TaskListOperation extends BaseOperation {
 	public static final String APPRESULT = "approveResult";
 	public static final String APPREMARK = "approveRemark";
 	public static final String INTINSID = "intInsId";
-	//public static final String CLASS = "class";
+	// public static final String CLASS = "class";
 
 	/*
 	 * (non-Javadoc)
@@ -49,24 +48,29 @@ public class TaskListOperation extends BaseOperation {
 	 */
 	@SuppressWarnings("unchecked")
 	public void execute(OperationContext context) throws CommonException {
-		TaskListService taskService=TaskListService.getInstance();
+		TaskListService taskService = TaskListService.getInstance();
 		if ("query".equals(context.getAttribute(CMD))) {
-			context.setAttribute(QUERYLIST, taskService.getApproveListByTaskIds((String) context.getAttribute(TASKIDS), (String) context.getAttribute(TYPE)));
-		} 
-		else if("APPROVE".equals(context.getAttribute(CMD))){
-			taskService.approveList((List) context.getAttribute(INSERTLIST), (List) context.getAttribute(UPDATELIST), (List) context.getAttribute(DELLIST), 
-					(String) context.getAttribute(APPRESULT), 
+			context.setAttribute(QUERYLIST, taskService.getApproveListByTaskIds((String) context.getAttribute(TASKIDS),
+					(String) context.getAttribute(TYPE)));
+		} else if ("APPROVE".equals(context.getAttribute(CMD))) {
+			taskService.approveList((List) context.getAttribute(INSERTLIST), (List) context.getAttribute(UPDATELIST),
+					(List) context.getAttribute(DELLIST), (String) context.getAttribute(APPRESULT),
 					(String) context.getAttribute(APPREMARK), (String) context.getAttribute(INTINSID));
-			
-			
+
 		}
-		/*else if("APPROVE".equals(context.getAttribute(CMD))){
-			taskService.approveListNew((Class) context.getAttribute(CLASS),(List) context.getAttribute(INSERTLIST), (List) context.getAttribute(UPDATELIST), (List) context.getAttribute(DELLIST) ,
-					(String) context.getAttribute(APPRESULT), 
-					(String) context.getAttribute(APPREMARK), (String) context.getAttribute(INTINSID));
-			
-			
-		}*/
+		/*
+		 * else if("APPROVE".equals(context.getAttribute(CMD))){
+		 * taskService.approveListNew((Class) context.getAttribute(CLASS),(List)
+		 * context.getAttribute(INSERTLIST), (List)
+		 * context.getAttribute(UPDATELIST), (List)
+		 * context.getAttribute(DELLIST) , (String)
+		 * context.getAttribute(APPRESULT), (String)
+		 * context.getAttribute(APPREMARK), (String)
+		 * context.getAttribute(INTINSID));
+		 * 
+		 * 
+		 * }
+		 */
 	}
 
 	/*

@@ -23,10 +23,8 @@ public class DataDicAddUpdate extends BaseUpdate {
 	private static final String DATASET_ID = "DataDicInfo";
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
@@ -35,7 +33,7 @@ public class DataDicAddUpdate extends BaseUpdate {
 			if (updateResultBean.hasNext()) {
 				Map map = updateResultBean.next();
 				String op = updateResultBean.getParameter("op");
-				if("new".equals(op) || "copynew".equals(op)) {
+				if ("new".equals(op) || "copynew".equals(op)) {
 					dd = new DataDic();
 					oc.setAttribute(DataDicOperation.CMD, DataDicOperation.CMD_INSERT);
 				} else if ("mod".equals(op)) {
@@ -45,7 +43,7 @@ public class DataDicAddUpdate extends BaseUpdate {
 
 				mapToObject(dd, map);
 			}
-			
+
 			oc.setAttribute(DataDicOperation.IN_PARAM, dd);
 			OPCaller.call(DataDicOperation.ID, oc);
 
@@ -53,8 +51,7 @@ public class DataDicAddUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

@@ -20,32 +20,35 @@ public class BizLogQueryService {
 	 */
 	public synchronized static BizLogQueryService getInstance() {
 
-		return (BizLogQueryService) ApplicationContextUtils
-				.getBean(BizLogQueryService.class.getName());
+		return (BizLogQueryService) ApplicationContextUtils.getBean(BizLogQueryService.class.getName());
 	}
 
-	public PageQueryResult getBizLogResult(BizLogQueryBean queryBean, int pageSize, int pageIndex) throws CommonException {
+	public PageQueryResult getBizLogResult(BizLogQueryBean queryBean, int pageSize, int pageIndex)
+			throws CommonException {
 		PageQueryResult result = new PageQueryResult();
 		PageQueryCondition condition = new PageQueryCondition();
 		StringBuffer sb = new StringBuffer();
 		sb.append(" select po from BizLog po, BizFuncInfo bf where 1=1 ");
 		sb.append(" and po.bizFuncCode = bf.id ");
-		if(!DataFormat.isEmpty(queryBean.getBranchId())){
+		if (!DataFormat.isEmpty(queryBean.getBranchId())) {
 			sb.append(" and po.brcode =").append(queryBean.getBranchId());
-			if(!DataFormat.isEmpty(queryBean.getTlrno())){
+			if (!DataFormat.isEmpty(queryBean.getTlrno())) {
 				sb.append(" and po.tlrno =").append(queryBean.getTlrno());
 			}
 		}
-		if(!DataFormat.isEmpty(queryBean.getTxnDate())){
-			sb.append(" and po.txdate = to_date('").append(queryBean.getTxnDate()+"','"+SystemConstant.DATE_PATTERN_2).append("') ");
+		if (!DataFormat.isEmpty(queryBean.getTxnDate())) {
+			sb.append(" and po.txdate = to_date('")
+					.append(queryBean.getTxnDate() + "','" + SystemConstant.DATE_PATTERN_2).append("') ");
 		}
-		if(!DataFormat.isEmpty(queryBean.getTxnDateStart())){
-			sb.append(" and po.txdate >= to_date('").append(queryBean.getTxnDateStart()+"','"+SystemConstant.DATE_PATTERN_2).append("') ");
+		if (!DataFormat.isEmpty(queryBean.getTxnDateStart())) {
+			sb.append(" and po.txdate >= to_date('")
+					.append(queryBean.getTxnDateStart() + "','" + SystemConstant.DATE_PATTERN_2).append("') ");
 		}
-		if(!DataFormat.isEmpty(queryBean.getTxnDateEnd())){
-			sb.append(" and po.txdate <= to_date('").append(queryBean.getTxnDateEnd()+"','"+SystemConstant.DATE_PATTERN_2).append("') ");
+		if (!DataFormat.isEmpty(queryBean.getTxnDateEnd())) {
+			sb.append(" and po.txdate <= to_date('")
+					.append(queryBean.getTxnDateEnd() + "','" + SystemConstant.DATE_PATTERN_2).append("') ");
 		}
-		if(!DataFormat.isEmpty(queryBean.getBizFuncType())){
+		if (!DataFormat.isEmpty(queryBean.getBizFuncType())) {
 			sb.append(" and bf.bizFuncType = ").append(queryBean.getBizFuncType());
 		}
 		sb.append(" order by po.txtime desc");

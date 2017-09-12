@@ -22,36 +22,36 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 public class WorkflowAppInfoDAO extends HibernateDaoSupport {
 
 	public void insert(WorkflowAppInfo po) throws CommonException {
-		try{
+		try {
 			this.getHibernateTemplate().save(po);
-		}catch(Exception e){
+		} catch (Exception e) {
 			ExceptionUtil.throwCommonException("工作流表插入错误", ErrorCode.ERROR_CODE_WORKFLOW_INSERT, e);
 		}
 	}
 
-	public void update(WorkflowAppInfo po) throws CommonException{
-		try{
+	public void update(WorkflowAppInfo po) throws CommonException {
+		try {
 			this.getHibernateTemplate().update(po);
-		}catch(Exception e){
+		} catch (Exception e) {
 			ExceptionUtil.throwCommonException("工作流表更新错误", ErrorCode.ERROR_CODE_WORKFLOW_UPDATE, e);
 		}
 	}
 
-	public WorkflowAppInfo queryById(String appno) throws CommonException{
-		try{
-			WorkflowAppInfo po = (WorkflowAppInfo)this.getHibernateTemplate().get(WorkflowAppInfo.class, appno);
+	public WorkflowAppInfo queryById(String appno) throws CommonException {
+		try {
+			WorkflowAppInfo po = (WorkflowAppInfo) this.getHibernateTemplate().get(WorkflowAppInfo.class, appno);
 			return po;
-		}catch(Exception e){
+		} catch (Exception e) {
 			ExceptionUtil.throwCommonException("工作流表修改错误", ErrorCode.ERROR_CODE_WORKFLOW_SELECT, e);
 			return null;
 		}
 	}
 
-	public List queryByCondition(String whereString, Object[] objList) throws CommonException{
-		try{
+	public List queryByCondition(String whereString, Object[] objList) throws CommonException {
+		try {
 			List list = this.getHibernateTemplate().find("from WorkflowAppInfo po where " + whereString, objList);
 			return list;
-		}catch(Exception e){
+		} catch (Exception e) {
 			ExceptionUtil.throwCommonException("工作流表修改错误", ErrorCode.ERROR_CODE_WORKFLOW_SELECT, e);
 			return null;
 		}
@@ -59,10 +59,10 @@ public class WorkflowAppInfoDAO extends HibernateDaoSupport {
 
 	/**
 	 * 分页查询方法
+	 * 
 	 * @return PageQueryResult
 	 */
-	public PageQueryResult pageQueryByQL(PageQueryCondition queryCondition)
-			throws CommonException {
+	public PageQueryResult pageQueryByQL(PageQueryCondition queryCondition) throws CommonException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("pageQueryByQL(PageQueryCondition) - start"); //$NON-NLS-1$
 		}
@@ -81,8 +81,7 @@ public class WorkflowAppInfoDAO extends HibernateDaoSupport {
 		} catch (Exception e) {
 			logger.error("pageQueryByQL(PageQueryCondition)", e); //$NON-NLS-1$
 
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_DAO, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_DAO, e);
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -94,9 +93,9 @@ public class WorkflowAppInfoDAO extends HibernateDaoSupport {
 }
 
 /**
-*
-* 分页查询的回调类.
-*/
+ *
+ * 分页查询的回调类.
+ */
 class PageQueryCallback implements HibernateCallback {
 	/**
 	 * Logger for this class
@@ -114,16 +113,15 @@ class PageQueryCallback implements HibernateCallback {
 			logger.debug("doInHibernate(Session) - start"); //$NON-NLS-1$
 		}
 
-		Query queryObject = session
-				.createQuery(queryCondition.getQueryString());
+		Query queryObject = session.createQuery(queryCondition.getQueryString());
 		Object[] values = queryCondition.getObjArray();
 		Type[] types = queryCondition.getTypeArray();
 		if (null != values) {
 			for (int i = 0; i < values.length; i++) {
 				if (logger.isDebugEnabled()) {
-					logger.debug("i="+i);
-					logger.debug("values[i]="+values[i]);
-					logger.debug("types[i]="+types[i]);
+					logger.debug("i=" + i);
+					logger.debug("values[i]=" + values[i]);
+					logger.debug("types[i]=" + types[i]);
 				}
 				if (types != null) {
 					queryObject.setParameter(i, values[i], types[i]);

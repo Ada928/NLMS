@@ -29,11 +29,9 @@ public class FunctionInfoDAO extends HibernateDaoSupport {
 	 */
 	public FunctionInfo query(int id) throws CommonException {
 		try {
-			return (FunctionInfo) this.getHibernateTemplate().load(
-					FunctionInfo.class, new Integer(id));
+			return (FunctionInfo) this.getHibernateTemplate().load(FunctionInfo.class, new Integer(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_FUNCTION_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_FUNCTION_INFO_SELECT, e);
 		}
 		return null;
 	}
@@ -54,8 +52,8 @@ public class FunctionInfoDAO extends HibernateDaoSupport {
 	 *             e) { ExceptionUtil.throwCommonException(e.getMessage(),
 	 *             ErrorCode.ERROR_CODE_FUNCTION_INFO_SELECT, e); }
 	 *
-	 * if (list.size() != 1) { return null; } else { return (FunctionInfo)
-	 * list.get(0); } }
+	 *             if (list.size() != 1) { return null; } else { return
+	 *             (FunctionInfo) list.get(0); } }
 	 */
 
 	/**
@@ -67,15 +65,12 @@ public class FunctionInfoDAO extends HibernateDaoSupport {
 	 * @return 包含FunctionInfo对象的List
 	 * @throws CommonException
 	 */
-	public List queryByCondition(String whereString, Object[] objArray,
-			Type[] typeArray) throws CommonException {
+	public List queryByCondition(String whereString, Object[] objArray, Type[] typeArray) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from FunctionInfo po where " + whereString, objArray);
+			List list = this.getHibernateTemplate().find("from FunctionInfo po where " + whereString, objArray);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_FUNCTION_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_FUNCTION_INFO_SELECT, e);
 		}
 		return null;
 	}
@@ -89,12 +84,10 @@ public class FunctionInfoDAO extends HibernateDaoSupport {
 	 */
 	public List queryByCondition(String whereString) throws CommonException {
 		try {
-			List list = this.getHibernateTemplate().find(
-					"from FunctionInfo po where " + whereString);
+			List list = this.getHibernateTemplate().find("from FunctionInfo po where " + whereString);
 			return list;
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_FUNCTION_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_FUNCTION_INFO_SELECT, e);
 		}
 		return null;
 	}
@@ -109,8 +102,7 @@ public class FunctionInfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().update(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_FUNCTION_INFO_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_FUNCTION_INFO_UPDATE, e);
 		}
 	}
 
@@ -124,8 +116,7 @@ public class FunctionInfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().save(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_FUNCTION_INFO_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_FUNCTION_INFO_INSERT, e);
 		}
 	}
 
@@ -139,8 +130,7 @@ public class FunctionInfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_FUNCTION_INFO_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_FUNCTION_INFO_DELETE, e);
 		}
 	}
 
@@ -154,8 +144,7 @@ public class FunctionInfoDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(query(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_FUNCTION_INFO_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_FUNCTION_INFO_DELETE, e);
 		}
 	}
 
@@ -228,12 +217,10 @@ public class FunctionInfoDAO extends HibernateDaoSupport {
 	 * @return List 对象集合
 	 * @throws DAOException
 	 */
-	public List queryByCondition(String whereString, int startPage, int maxRows)
-			throws CommonException {
+	public List queryByCondition(String whereString, int startPage, int maxRows) throws CommonException {
 		List returnValue = new ArrayList();
 		startPage = startPage >= 1 ? startPage : 1;
-		int firstResult = (startPage - 1)
-				* (maxRows > 0 ? maxRows : SystemConstant.MAX_ROWS);
+		int firstResult = (startPage - 1) * (maxRows > 0 ? maxRows : SystemConstant.MAX_ROWS);
 		int rows = maxRows;
 		rows = (rows == 0 ? SystemConstant.MAX_ROWS : rows);
 
@@ -250,8 +237,7 @@ public class FunctionInfoDAO extends HibernateDaoSupport {
 			returnValue = query.list();
 
 		} catch (HibernateException e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_FUNCTION_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_FUNCTION_INFO_SELECT, e);
 		}
 		return returnValue;
 	}
@@ -263,11 +249,11 @@ public class FunctionInfoDAO extends HibernateDaoSupport {
 			list = this.getSession().createQuery(hql).list();
 
 		} catch (HibernateException e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_FUNCTION_INFO_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_FUNCTION_INFO_SELECT, e);
 		}
 		return list;
 	}
+
 	public List findAll() {
 		try {
 			String queryString = "from FunctionInfo";

@@ -1,18 +1,17 @@
 package com.huateng.ebank.business.management.action;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.log4j.Logger;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.remote.base.SessionFactory;
 import com.huateng.ebank.framework.web.struts.BaseAction;
 import com.huateng.service.pub.TlrLoginLogService;
 import com.huateng.service.pub.UserMgrService;
+import org.apache.log4j.Logger;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class LogoutAction extends BaseAction {
 

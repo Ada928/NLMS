@@ -10,7 +10,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.huateng.ebank.entity.data.mng.Holiday;
 
-
 /**
  * A data access object (DAO) providing persistence and search support for
  * Holiday entities. Transaction control of the save(), update() and delete()
@@ -61,8 +60,7 @@ public class HolidayDAO extends HibernateDaoSupport {
 	public Holiday findById(java.lang.Integer id) {
 		log.debug("getting Holiday instance with id: " + id);
 		try {
-			Holiday instance = (Holiday) getHibernateTemplate().get(
-					"com.huateng.ebank.entity.data.mng.Holiday", id);
+			Holiday instance = (Holiday) getHibernateTemplate().get("com.huateng.ebank.entity.data.mng.Holiday", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -74,8 +72,7 @@ public class HolidayDAO extends HibernateDaoSupport {
 		log.debug("finding Holiday instance by example");
 		try {
 			List results = getHibernateTemplate().findByExample(instance);
-			log.debug("find by example successful, result size: "
-					+ results.size());
+			log.debug("find by example successful, result size: " + results.size());
 			return results;
 		} catch (RuntimeException re) {
 			log.error("find by example failed", re);
@@ -84,11 +81,9 @@ public class HolidayDAO extends HibernateDaoSupport {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Holiday instance with property: " + propertyName
-				+ ", value: " + value);
+		log.debug("finding Holiday instance with property: " + propertyName + ", value: " + value);
 		try {
-			String queryString = "from Holiday model where model."
-					+ propertyName + "= ?";
+			String queryString = "from Holiday model where model." + propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
@@ -126,8 +121,7 @@ public class HolidayDAO extends HibernateDaoSupport {
 	public Holiday merge(Holiday detachedInstance) {
 		log.debug("merging Holiday instance");
 		try {
-			Holiday result = (Holiday) getHibernateTemplate().merge(
-					detachedInstance);
+			Holiday result = (Holiday) getHibernateTemplate().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {

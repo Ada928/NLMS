@@ -44,7 +44,7 @@ public class GetTaskListOperation extends BaseOperation {
 		String flowVersion = (String) context.getAttribute(REQ_FLOW_VERSION);
 		String tlrno = (String) context.getAttribute(REQ_TLRNO);
 		String contractno = (String) context.getAttribute(REQ_CONTRACTNO);
-		Page page = (Page)context.getAttribute("Page");
+		Page page = (Page) context.getAttribute("Page");
 		GetTaskRequestBean getTaskRequestBean = new GetTaskRequestBean(tlrno);
 		getTaskRequestBean.setFlowName(flowNm);
 		getTaskRequestBean.setVersion(flowVersion);
@@ -54,52 +54,51 @@ public class GetTaskListOperation extends BaseOperation {
 		getTaskRequestBean.setContractno(contractno);
 
 		WorkFlowService workflowService = WorkFlowService.getInstance();
-		PageQueryResult taskList = workflowService
-				.getUnFinishedTaskList(getTaskRequestBean);
-//		List returnList = new ArrayList();
-//		LoancenterService service = LoancenterService.getInstance();
-//		for (int i = 0; i < taskList.getQueryResult().size(); i++) {
-//			TaskBean taskBean = (TaskBean) taskList.getQueryResult().get(i);
-//			TaskBeanQry bean = new TaskBeanQry();
-//			bean.setTaskBean(taskBean);
-//			List list = service.getContractBusiListById(taskBean.getAppno());
-//			bean.getLoanContInfoBean().setContBaseInfo(new ContBaseInfo());
-//			boolean delFlag = true;
-//			if (list != null && list.size() > 0) {
-//				BusinessRela rela = (BusinessRela) list.get(0);
-//				if (!StringUtils.isEmpty(rela.getCode())) {
-//					ContBaseInfo contBaseInfo = service
-//							.getContBaseInfoById(rela.getCode());
-//					if (contBaseInfo != null) {
-//						delFlag = false;
-//						bean.getLoanContInfoBean()
-//								.setContBaseInfo(contBaseInfo);
-//					}
-//				}
-//			}
-			/**
-			 * 为什么在这里 doTask?为了编译通过而删除.
-			 */
-//			if (delFlag) {
-//
-//				String taskId = taskBean.getTaskId();
-//				String taskState = taskBean.getTaskState();
-//				if (taskState.equals(WorkFlowHelper.STATE_READY)) { // CANCELTASK
-//					workflowService.claimTask(tlrno, taskId);
-//				}
-//				DoTaskRequestBean doTaskRequestBean = new DoTaskRequestBean(
-//						tlrno, WorkFlowHelper.STATUS_CancelProcess, "0",
-//						GlobalInfo.getCurrentInstance().getBrcode(), taskId);
-//				try {
-//					lservice.delApplyInfoByAppno(taskBean.getAppno());
-//					workflowService.doTask(doTaskRequestBean);
-//				} catch (Exception e) {
-//				}
-//				continue;
-//			}
-//			returnList.add(bean);
+		PageQueryResult taskList = workflowService.getUnFinishedTaskList(getTaskRequestBean);
+		// List returnList = new ArrayList();
+		// LoancenterService service = LoancenterService.getInstance();
+		// for (int i = 0; i < taskList.getQueryResult().size(); i++) {
+		// TaskBean taskBean = (TaskBean) taskList.getQueryResult().get(i);
+		// TaskBeanQry bean = new TaskBeanQry();
+		// bean.setTaskBean(taskBean);
+		// List list = service.getContractBusiListById(taskBean.getAppno());
+		// bean.getLoanContInfoBean().setContBaseInfo(new ContBaseInfo());
+		// boolean delFlag = true;
+		// if (list != null && list.size() > 0) {
+		// BusinessRela rela = (BusinessRela) list.get(0);
+		// if (!StringUtils.isEmpty(rela.getCode())) {
+		// ContBaseInfo contBaseInfo = service
+		// .getContBaseInfoById(rela.getCode());
+		// if (contBaseInfo != null) {
+		// delFlag = false;
+		// bean.getLoanContInfoBean()
+		// .setContBaseInfo(contBaseInfo);
+		// }
+		// }
+		// }
+		/**
+		 * 为什么在这里 doTask?为了编译通过而删除.
+		 */
+		// if (delFlag) {
+		//
+		// String taskId = taskBean.getTaskId();
+		// String taskState = taskBean.getTaskState();
+		// if (taskState.equals(WorkFlowHelper.STATE_READY)) { // CANCELTASK
+		// workflowService.claimTask(tlrno, taskId);
+		// }
+		// DoTaskRequestBean doTaskRequestBean = new DoTaskRequestBean(
+		// tlrno, WorkFlowHelper.STATUS_CancelProcess, "0",
+		// GlobalInfo.getCurrentInstance().getBrcode(), taskId);
+		// try {
+		// lservice.delApplyInfoByAppno(taskBean.getAppno());
+		// workflowService.doTask(doTaskRequestBean);
+		// } catch (Exception e) {
+		// }
+		// continue;
+		// }
+		// returnList.add(bean);
 
-//		}
+		// }
 		context.setAttribute(RSP_TASK_LIST, taskList);
 	}
 }

@@ -2,17 +2,15 @@ package resource.bean.pub.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the TLR_ROLE_REL table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * This is an object that contains data related to the TLR_ROLE_REL table. Do
+ * not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="TLR_ROLE_REL"
+ * @hibernate.class table="TLR_ROLE_REL"
  */
 
-public abstract class BaseTlrRoleRel  implements Serializable {
+public abstract class BaseTlrRoleRel implements Serializable {
 
 	public static String REF = "TlrRoleRel";
 	public static String PROP_STATUS = "status";
@@ -20,23 +18,21 @@ public abstract class BaseTlrRoleRel  implements Serializable {
 	public static String PROP_ID = "id";
 	public static String PROP_ROLE_ID = "roleId";
 
-
 	// constructors
-	public BaseTlrRoleRel () {
+	public BaseTlrRoleRel() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseTlrRoleRel (java.lang.Integer id) {
+	public BaseTlrRoleRel(java.lang.Integer id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -48,95 +44,95 @@ public abstract class BaseTlrRoleRel  implements Serializable {
 	private java.lang.Integer roleId;
 	private java.lang.String status;
 
-
-
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="sequence"
-     *  column="ID"
-     */
-	public java.lang.Integer getId () {
+	 * 
+	 * @hibernate.id generator-class="sequence" column="ID"
+	 */
+	public java.lang.Integer getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.Integer id) {
+	public void setId(java.lang.Integer id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: TLRNO
 	 */
-	public java.lang.String getTlrno () {
+	public java.lang.String getTlrno() {
 		return tlrno;
 	}
 
 	/**
 	 * Set the value related to the column: TLRNO
-	 * @param tlrno the TLRNO value
+	 * 
+	 * @param tlrno
+	 *            the TLRNO value
 	 */
-	public void setTlrno (java.lang.String tlrno) {
+	public void setTlrno(java.lang.String tlrno) {
 		this.tlrno = tlrno;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ROLE_ID
 	 */
-	public java.lang.Integer getRoleId () {
+	public java.lang.Integer getRoleId() {
 		return roleId;
 	}
 
 	/**
 	 * Set the value related to the column: ROLE_ID
-	 * @param roleId the ROLE_ID value
+	 * 
+	 * @param roleId
+	 *            the ROLE_ID value
 	 */
-	public void setRoleId (java.lang.Integer roleId) {
+	public void setRoleId(java.lang.Integer roleId) {
 		this.roleId = roleId;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: STATUS
 	 */
-	public java.lang.String getStatus () {
+	public java.lang.String getStatus() {
 		return status;
 	}
 
 	/**
 	 * Set the value related to the column: STATUS
-	 * @param status the STATUS value
+	 * 
+	 * @param status
+	 *            the STATUS value
 	 */
-	public void setStatus (java.lang.String status) {
+	public void setStatus(java.lang.String status) {
 		this.status = status;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.pub.TlrRoleRel)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.pub.TlrRoleRel))
+			return false;
 		else {
 			resource.bean.pub.TlrRoleRel tlrRoleRel = (resource.bean.pub.TlrRoleRel) obj;
-			if (null == this.getId() || null == tlrRoleRel.getId()) return false;
-			else return (this.getId().equals(tlrRoleRel.getId()));
+			if (null == this.getId() || null == tlrRoleRel.getId())
+				return false;
+			else
+				return (this.getId().equals(tlrRoleRel.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -145,10 +141,8 @@ public abstract class BaseTlrRoleRel  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

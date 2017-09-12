@@ -27,8 +27,7 @@ public class CustomerInfoWithZeroGetter extends BaseGetter {
 	@Override
 	public Result call() throws AppException {
 		List list = new ArrayList();
-		String value = DataFormat.trim(getCommQueryServletRequest()
-				.getParameter("value"));
+		String value = DataFormat.trim(getCommQueryServletRequest().getParameter("value"));
 		if (StringUtils.isEmpty(value)) {
 			value = "";
 		}
@@ -38,11 +37,9 @@ public class CustomerInfoWithZeroGetter extends BaseGetter {
 		condition.setPageIndex(1);
 		condition.setPageSize(9999);
 
-		StringBuffer hql = new StringBuffer(
-				"select po from TblEbCustomerInfo po where 1=1");
-		hql.append(" and ( po.custNo like '" + value
-				+ "' or po.custName like '" + value
-				+ "' ) and po.validFlag = '" + SystemConstant.VALID_FLAG_VALID + "'");
+		StringBuffer hql = new StringBuffer("select po from TblEbCustomerInfo po where 1=1");
+		hql.append(" and ( po.custNo like '" + value + "' or po.custName like '" + value + "' ) and po.validFlag = '"
+				+ SystemConstant.VALID_FLAG_VALID + "'");
 
 		condition.setQueryString(hql.toString());
 
@@ -55,8 +52,7 @@ public class CustomerInfoWithZeroGetter extends BaseGetter {
 			list.add(obj[0]);
 		}
 
-		ResultMng.fillResultByList(getCommonQueryBean(),
-				getCommQueryServletRequest(), list, getResult());
+		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 		getResult().setContent(list);
 		getResult().getPage().setTotalPage(1);
 		getResult().init();

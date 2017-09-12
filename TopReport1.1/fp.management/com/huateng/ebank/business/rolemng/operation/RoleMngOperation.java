@@ -1,12 +1,11 @@
 package com.huateng.ebank.business.rolemng.operation;
 
-import resource.bean.pub.RoleInfo;
-import resource.dao.pub.RoleInfoDAO;
-
 import com.huateng.ebank.business.common.DAOUtils;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
+import resource.bean.pub.RoleInfo;
+import resource.dao.pub.RoleInfoDAO;
 
 public class RoleMngOperation extends BaseOperation {
 

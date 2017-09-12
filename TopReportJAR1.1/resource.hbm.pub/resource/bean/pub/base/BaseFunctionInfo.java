@@ -2,17 +2,15 @@ package resource.bean.pub.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the FUNCTION_INFO table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * This is an object that contains data related to the FUNCTION_INFO table. Do
+ * not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="FUNCTION_INFO"
+ * @hibernate.class table="FUNCTION_INFO"
  */
 
-public abstract class BaseFunctionInfo  implements Serializable {
+public abstract class BaseFunctionInfo implements Serializable {
 
 	public static String REF = "FunctionInfo";
 	public static String PROP_TIMESTAMPS = "timestamps";
@@ -35,7 +33,6 @@ public abstract class BaseFunctionInfo  implements Serializable {
 	public static String PROP_LOCATION = "location";
 	public static String PROP_ICON_CLS = "iconCls";
 
-
 	/**
 	 * @return the iconCls
 	 */
@@ -44,28 +41,28 @@ public abstract class BaseFunctionInfo  implements Serializable {
 	}
 
 	/**
-	 * @param iconCls the iconCls to set
+	 * @param iconCls
+	 *            the iconCls to set
 	 */
 	public void setIconCls(java.lang.String iconCls) {
 		this.iconCls = iconCls;
 	}
 
 	// constructors
-	public BaseFunctionInfo () {
+	public BaseFunctionInfo() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseFunctionInfo (java.lang.String id) {
+	public BaseFunctionInfo(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -94,329 +91,331 @@ public abstract class BaseFunctionInfo  implements Serializable {
 
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="sequence"
-     *  column="FUNCID"
-     */
-	public java.lang.String getId () {
+	 * 
+	 * @hibernate.id generator-class="sequence" column="FUNCID"
+	 */
+	public java.lang.String getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.String id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: FUNCNAME
 	 */
-	public java.lang.String getFuncname () {
+	public java.lang.String getFuncname() {
 		return funcname;
 	}
 
 	/**
 	 * Set the value related to the column: FUNCNAME
-	 * @param funcname the FUNCNAME value
+	 * 
+	 * @param funcname
+	 *            the FUNCNAME value
 	 */
-	public void setFuncname (java.lang.String funcname) {
+	public void setFuncname(java.lang.String funcname) {
 		this.funcname = funcname;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: PAGEPATH
 	 */
-	public java.lang.String getPagepath () {
+	public java.lang.String getPagepath() {
 		return pagepath;
 	}
 
 	/**
 	 * Set the value related to the column: PAGEPATH
-	 * @param pagepath the PAGEPATH value
+	 * 
+	 * @param pagepath
+	 *            the PAGEPATH value
 	 */
-	public void setPagepath (java.lang.String pagepath) {
+	public void setPagepath(java.lang.String pagepath) {
 		this.pagepath = pagepath;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LOCATION
 	 */
-	public java.lang.Integer getLocation () {
+	public java.lang.Integer getLocation() {
 		return location;
 	}
 
 	/**
 	 * Set the value related to the column: LOCATION
-	 * @param location the LOCATION value
+	 * 
+	 * @param location
+	 *            the LOCATION value
 	 */
-	public void setLocation (java.lang.Integer location) {
+	public void setLocation(java.lang.Integer location) {
 		this.location = location;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: ISDIRECTORY
 	 */
-	public java.lang.Integer getIsdirectory () {
+	public java.lang.Integer getIsdirectory() {
 		return isdirectory;
 	}
 
 	/**
 	 * Set the value related to the column: ISDIRECTORY
-	 * @param isdirectory the ISDIRECTORY value
+	 * 
+	 * @param isdirectory
+	 *            the ISDIRECTORY value
 	 */
-	public void setIsdirectory (java.lang.Integer isdirectory) {
+	public void setIsdirectory(java.lang.Integer isdirectory) {
 		this.isdirectory = isdirectory;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: LASTDIRECTORY
 	 */
-	public java.lang.String getLastdirectory () {
+	public java.lang.String getLastdirectory() {
 		return lastdirectory;
 	}
 
 	/**
 	 * Set the value related to the column: LASTDIRECTORY
-	 * @param lastdirectory the LASTDIRECTORY value
+	 * 
+	 * @param lastdirectory
+	 *            the LASTDIRECTORY value
 	 */
-	public void setLastdirectory (java.lang.String lastdirectory) {
+	public void setLastdirectory(java.lang.String lastdirectory) {
 		this.lastdirectory = lastdirectory;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: SHOWSEQ
 	 */
-	public java.lang.Integer getShowseq () {
+	public java.lang.Integer getShowseq() {
 		return showseq;
 	}
 
 	/**
 	 * Set the value related to the column: SHOWSEQ
-	 * @param showseq the SHOWSEQ value
+	 * 
+	 * @param showseq
+	 *            the SHOWSEQ value
 	 */
-	public void setShowseq (java.lang.Integer showseq) {
+	public void setShowseq(java.lang.Integer showseq) {
 		this.showseq = showseq;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FUNC_CLASS
 	 */
-	public java.lang.String getFuncClass () {
+	public java.lang.String getFuncClass() {
 		return funcClass;
 	}
 
 	/**
 	 * Set the value related to the column: FUNC_CLASS
-	 * @param funcClass the FUNC_CLASS value
+	 * 
+	 * @param funcClass
+	 *            the FUNC_CLASS value
 	 */
-	public void setFuncClass (java.lang.String funcClass) {
+	public void setFuncClass(java.lang.String funcClass) {
 		this.funcClass = funcClass;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FUNC_TYPE
 	 */
-	public java.lang.String getFuncType () {
+	public java.lang.String getFuncType() {
 		return funcType;
 	}
 
 	/**
 	 * Set the value related to the column: FUNC_TYPE
-	 * @param funcType the FUNC_TYPE value
+	 * 
+	 * @param funcType
+	 *            the FUNC_TYPE value
 	 */
-	public void setFuncType (java.lang.String funcType) {
+	public void setFuncType(java.lang.String funcType) {
 		this.funcType = funcType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: WORKFLOW_FLAG
 	 */
-	public java.lang.String getWorkflowFlag () {
+	public java.lang.String getWorkflowFlag() {
 		return workflowFlag;
 	}
 
 	/**
 	 * Set the value related to the column: WORKFLOW_FLAG
-	 * @param workflowFlag the WORKFLOW_FLAG value
+	 * 
+	 * @param workflowFlag
+	 *            the WORKFLOW_FLAG value
 	 */
-	public void setWorkflowFlag (java.lang.String workflowFlag) {
+	public void setWorkflowFlag(java.lang.String workflowFlag) {
 		this.workflowFlag = workflowFlag;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: UP_FUNC_CODE
 	 */
-	public java.lang.String getUpFuncCode () {
+	public java.lang.String getUpFuncCode() {
 		return upFuncCode;
 	}
 
 	/**
 	 * Set the value related to the column: UP_FUNC_CODE
-	 * @param upFuncCode the UP_FUNC_CODE value
+	 * 
+	 * @param upFuncCode
+	 *            the UP_FUNC_CODE value
 	 */
-	public void setUpFuncCode (java.lang.String upFuncCode) {
+	public void setUpFuncCode(java.lang.String upFuncCode) {
 		this.upFuncCode = upFuncCode;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: FUNC_DESC
 	 */
-	public java.lang.String getFuncDesc () {
+	public java.lang.String getFuncDesc() {
 		return funcDesc;
 	}
 
 	/**
 	 * Set the value related to the column: FUNC_DESC
-	 * @param funcDesc the FUNC_DESC value
+	 * 
+	 * @param funcDesc
+	 *            the FUNC_DESC value
 	 */
-	public void setFuncDesc (java.lang.String funcDesc) {
+	public void setFuncDesc(java.lang.String funcDesc) {
 		this.funcDesc = funcDesc;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: STATUS
 	 */
-	public java.lang.String getStatus () {
+	public java.lang.String getStatus() {
 		return status;
 	}
 
 	/**
 	 * Set the value related to the column: STATUS
-	 * @param status the STATUS value
+	 * 
+	 * @param status
+	 *            the STATUS value
 	 */
-	public void setStatus (java.lang.String status) {
+	public void setStatus(java.lang.String status) {
 		this.status = status;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EFFECT_DATE
 	 */
-	public java.util.Date getEffectDate () {
+	public java.util.Date getEffectDate() {
 		return effectDate;
 	}
 
 	/**
 	 * Set the value related to the column: EFFECT_DATE
-	 * @param effectDate the EFFECT_DATE value
+	 * 
+	 * @param effectDate
+	 *            the EFFECT_DATE value
 	 */
-	public void setEffectDate (java.util.Date effectDate) {
+	public void setEffectDate(java.util.Date effectDate) {
 		this.effectDate = effectDate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: EXPIRE_DATE
 	 */
-	public java.util.Date getExpireDate () {
+	public java.util.Date getExpireDate() {
 		return expireDate;
 	}
 
 	/**
 	 * Set the value related to the column: EXPIRE_DATE
-	 * @param expireDate the EXPIRE_DATE value
+	 * 
+	 * @param expireDate
+	 *            the EXPIRE_DATE value
 	 */
-	public void setExpireDate (java.util.Date expireDate) {
+	public void setExpireDate(java.util.Date expireDate) {
 		this.expireDate = expireDate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: TIMESTAMPS
 	 */
-	public java.lang.String getTimestamps () {
+	public java.lang.String getTimestamps() {
 		return timestamps;
 	}
 
 	/**
 	 * Set the value related to the column: TIMESTAMPS
-	 * @param timestamps the TIMESTAMPS value
+	 * 
+	 * @param timestamps
+	 *            the TIMESTAMPS value
 	 */
-	public void setTimestamps (java.lang.String timestamps) {
+	public void setTimestamps(java.lang.String timestamps) {
 		this.timestamps = timestamps;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MISCFLGS
 	 */
-	public java.lang.String getMiscflgs () {
+	public java.lang.String getMiscflgs() {
 		return miscflgs;
 	}
 
 	/**
 	 * Set the value related to the column: MISCFLGS
-	 * @param miscflgs the MISCFLGS value
+	 * 
+	 * @param miscflgs
+	 *            the MISCFLGS value
 	 */
-	public void setMiscflgs (java.lang.String miscflgs) {
+	public void setMiscflgs(java.lang.String miscflgs) {
 		this.miscflgs = miscflgs;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: MISC
 	 */
-	public java.lang.String getMisc () {
+	public java.lang.String getMisc() {
 		return misc;
 	}
 
 	/**
 	 * Set the value related to the column: MISC
-	 * @param misc the MISC value
+	 * 
+	 * @param misc
+	 *            the MISC value
 	 */
-	public void setMisc (java.lang.String misc) {
+	public void setMisc(java.lang.String misc) {
 		this.misc = misc;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.pub.FunctionInfo)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.pub.FunctionInfo))
+			return false;
 		else {
 			resource.bean.pub.FunctionInfo functionInfo = (resource.bean.pub.FunctionInfo) obj;
-			if (null == this.getId() || null == functionInfo.getId()) return false;
-			else return (this.getId().equals(functionInfo.getId()));
+			if (null == this.getId() || null == functionInfo.getId())
+				return false;
+			else
+				return (this.getId().equals(functionInfo.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -425,10 +424,8 @@ public abstract class BaseFunctionInfo  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

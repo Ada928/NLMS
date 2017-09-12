@@ -30,7 +30,7 @@ public class BopForCorAndAffOrgContactOperation extends BaseOperation {
 	public static final String IN_AUDIT_STATUS = "IN_AUDIT_STATUS";
 	public static final String IN_AUDIT_RESULT = "IN_AUDIT_RESULT";
 	public static final String OP_OVER_AUDIT = "OP_OVER_AUDIT";
-	
+
 	@Override
 	public void beforeProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
@@ -46,52 +46,52 @@ public class BopForCorAndAffOrgContactOperation extends BaseOperation {
 		if (OP_SIGNED_AUDIT.equals(cmd)) {
 			List<BopForDebtFeiOrgSave> list = (List<BopForDebtFeiOrgSave>) context.getAttribute(IN_AUDIT_LIST);
 			List<String> ids = new ArrayList<String>();
-			for(BopForDebtFeiOrgSave feiOrgSave : list){
+			for (BopForDebtFeiOrgSave feiOrgSave : list) {
 				ids.add(feiOrgSave.getId());
 			}
 			String approveStatusChoose = (String) context.getAttribute(IN_AUDIT_STATUS);
 			String approveResultChoose = (String) context.getAttribute(IN_AUDIT_RESULT);
 			bopForDebtYinTuanService.auditFeiOrgSave(approveStatusChoose, approveResultChoose, ids, OP_SIGNED_AUDIT);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构往来信息审核"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构往来信息审核"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构往来信息审核" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构往来信息审核" });
 		} else if (OP_OVER_AUDIT.equals(cmd)) {
 			List<BopForDebtFeiOrgSave> list = (List<BopForDebtFeiOrgSave>) context.getAttribute(IN_AUDIT_LIST);
 			List<String> ids = new ArrayList<String>();
-			for(BopForDebtFeiOrgSave cfaExdebtDs : list){
+			for (BopForDebtFeiOrgSave cfaExdebtDs : list) {
 				ids.add(cfaExdebtDs.getId());
 			}
 			String approveStatusChoose = (String) context.getAttribute(IN_AUDIT_STATUS);
 			String approveResultChoose = (String) context.getAttribute(IN_AUDIT_RESULT);
 			bopForDebtYinTuanService.auditFeiOrgSave(approveStatusChoose, approveResultChoose, ids, OP_SIGNED_AUDIT);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构往来余额信息审核"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构往来余额信息审核"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构往来余额信息审核" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构往来余额信息审核" });
 		} else {
 			BopForDebtFeiOrgSave debtFeiOrgSave = (BopForDebtFeiOrgSave) context.getAttribute(IN_SIGNED_FEIORGSAVE);
 			try {
 				bopForDebtYinTuanService.saveCorOrgContact(cmd, debtFeiOrgSave);
 			} catch (IllegalAccessException e) {
-				ExceptionUtil.throwCommonException("实体属性拷贝错误"); 
+				ExceptionUtil.throwCommonException("实体属性拷贝错误");
 			} catch (InvocationTargetException e) {
-				ExceptionUtil.throwCommonException("实体属性拷贝错误"); 
+				ExceptionUtil.throwCommonException("实体属性拷贝错误");
 			}
 			if (OP_SIGNED_NEW.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构往来信息新增"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构信往来息新增"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构往来信息新增" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构信往来息新增" });
 			} else if (OP_SIGNED_MOD.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构往来信息修改"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构信往来息修改"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构往来信息修改" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构信往来息修改" });
 			} else if (OP_SIGNED_DEL.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构往来信息删除"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构信往来息删除"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构往来信息删除" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构信往来息删除" });
 			} else if (OP_OVER_NEW.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构往来余额信息新增"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构往来余额信息新增"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构往来余额信息新增" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构往来余额信息新增" });
 			} else if (OP_OVER_MOD.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构往来余额信息修改"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构往来余额信息修改"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构往来余额信息修改" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构往来余额信息修改" });
 			} else if (OP_OVER_DEL.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构往来余额信息删除"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"境外联行及附属机构余往来额信息删除"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构往来余额信息删除" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "境外联行及附属机构余往来额信息删除" });
 			}
 		}
 	}

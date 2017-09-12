@@ -30,19 +30,16 @@ public class BOPCfaLounexguRecordGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult list = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list.getQueryResult(),
 					getResult());
 			result.setContent(list.getQueryResult());
-			result.getPage().setTotalPage(
-					list.getPageCount(getResult().getPage().getEveryPage()));
+			result.getPage().setTotalPage(list.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -53,7 +50,7 @@ public class BOPCfaLounexguRecordGetter extends BaseGetter {
 
 		StringBuilder hqlString = new StringBuilder(" SELECT bd FROM BopCfaLounexguDs bd WHERE 1 = 1 ");
 
-		List<Object>paramentList = new ArrayList<Object>();
+		List<Object> paramentList = new ArrayList<Object>();
 		hqlString.append(" AND bd.currentfile = ? ");
 		paramentList.add(TopReportConstants.REPORT_FILE_TYPE_CFA_DA);
 		PageQueryResult pageQueryResult = new PageQueryResult();
@@ -74,7 +71,8 @@ public class BOPCfaLounexguRecordGetter extends BaseGetter {
 			list.add(map);
 			pageQueryResult.setQueryResult(list);
 
-		} else if ("mod".equals(op) || "del".equals(op) || "detail".equalsIgnoreCase(op) || "delInfo".equalsIgnoreCase(op)) {
+		} else if ("mod".equals(op) || "del".equals(op) || "detail".equalsIgnoreCase(op)
+				|| "delInfo".equalsIgnoreCase(op)) {
 			String id = getCommQueryServletRequest().getParameter("id");
 			if (StringUtils.isNotBlank(id)) {
 				hqlString.append(" AND id = ? ");
@@ -89,7 +87,7 @@ public class BOPCfaLounexguRecordGetter extends BaseGetter {
 
 				if (StringUtils.equals("mod", op)) {
 					if (!pageQueryResult.getQueryResult().isEmpty()) {
-						Object[] values = (Object[])pageQueryResult.getQueryResult().get(0);
+						Object[] values = (Object[]) pageQueryResult.getQueryResult().get(0);
 						BopCfaLounexguDs lounexgu = (BopCfaLounexguDs) values[0];
 						lounexgu.setActiondesc(null);
 					}
@@ -104,11 +102,10 @@ public class BOPCfaLounexguRecordGetter extends BaseGetter {
 			String qrepStatus = getCommQueryServletRequest().getParameter("qrepStatus");
 			String qfiller2 = getCommQueryServletRequest().getParameter("qfiller2");
 
-			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME,"境外担保项下境内贷款信息补录签约信息查询");
+			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境外担保项下境内贷款信息补录签约信息查询");
 			hqlString.append(" AND (bd.recStatus = ? OR bd.recStatus = ? ) ");
 			paramentList.add(TopReportConstants.REPORT_RECSTATUS_01);
 			paramentList.add(TopReportConstants.REPORT_RECSTATUS_02);
-
 
 			if (StringUtils.isNotBlank(workDateStart)) {
 				hqlString.append(" AND bd.workDate >= ? ");

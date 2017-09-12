@@ -42,7 +42,7 @@ public class XmlBeanOutput implements BeanOutput {
 			data.clear();
 		}
 		closed = false;
-		String path = getBasePath()+ getSourceSend() + getFilePath() ;
+		String path = getBasePath() + getSourceSend() + getFilePath();
 		bodyContent = new StringBuffer("");
 		File file = new File(path);
 		if (!file.exists() || !file.isDirectory()) {
@@ -59,16 +59,12 @@ public class XmlBeanOutput implements BeanOutput {
 	public String getBodyHead() {
 		ReportBeanIn bean = getBean();
 		if (!"TT".equals(bean.getAppType())) {
-			return "<MSG><APPTYPE>" + bean.getAppType()
-					+ "</APPTYPE><CURRENTFILE>" + bean.getCurrentFile()
-					+ "</CURRENTFILE><INOUT>" + bean.getInOut()
-					+ "</INOUT><TOTALRECORDS>" + CONTENTS
+			return "<MSG><APPTYPE>" + bean.getAppType() + "</APPTYPE><CURRENTFILE>" + bean.getCurrentFile()
+					+ "</CURRENTFILE><INOUT>" + bean.getInOut() + "</INOUT><TOTALRECORDS>" + CONTENTS
 					+ "</TOTALRECORDS><RECORDS>" + LENGTH + "</RECORDS></MSG>";
 		} else {
-			return "<MSG><APPTYPE>" + bean.getAppType()
-					+ "</APPTYPE><CURRENTFILE>" + bean.getCurrentFile()
-					+ "</CURRENTFILE>" + "<INOUT>" + bean.getInOut()
-					+ "</INOUT><TOTALFILES>" + CONTENTS
+			return "<MSG><APPTYPE>" + bean.getAppType() + "</APPTYPE><CURRENTFILE>" + bean.getCurrentFile()
+					+ "</CURRENTFILE>" + "<INOUT>" + bean.getInOut() + "</INOUT><TOTALFILES>" + CONTENTS
 					+ "</TOTALFILES><FILES>" + LENGTH + "</FILES>" + "</MSG>";
 		}
 	}
@@ -93,7 +89,7 @@ public class XmlBeanOutput implements BeanOutput {
 		}
 		fn = fn.substring(0, ind1 - 2) + seqNo + fn.substring(ind1);
 		setValue(FILENAME, fn);
-		String filePathName = getBasePath()+ getSourceSend()+ getFilePath()  + fn;
+		String filePathName = getBasePath() + getSourceSend() + getFilePath() + fn;
 		fw = new FileWriter(new File(filePathName));
 		logger.info("### new filepath:" + filePathName);
 		return fn;
@@ -107,11 +103,8 @@ public class XmlBeanOutput implements BeanOutput {
 	}
 
 	private String getContent() {
-		return "<?xml version=\"1.0\" encoding=\""
-				+ encoding
-				+ "\"?>"
-				+ getBodyHead().replaceAll(CONTENTS, String.valueOf(size))
-						.replaceAll(LENGTH, bodyContent.toString());
+		return "<?xml version=\"1.0\" encoding=\"" + encoding + "\"?>"
+				+ getBodyHead().replaceAll(CONTENTS, String.valueOf(size)).replaceAll(LENGTH, bodyContent.toString());
 	}
 
 	public void close() throws IOException {

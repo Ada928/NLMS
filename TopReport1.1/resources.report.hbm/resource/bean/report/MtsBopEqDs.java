@@ -5,23 +5,22 @@ import java.util.List;
 
 import resource.bean.report.base.BaseMtsBopEqDs;
 
-
-
-public class MtsBopEqDs extends BaseMtsBopEqDs {
+public class MtsBopEqDs extends BaseMtsBopEqDs implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public MtsBopEqDs () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public MtsBopEqDs() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public MtsBopEqDs (java.lang.String id) {
+	public MtsBopEqDs(java.lang.String id) {
 		super(id);
 	}
-/*[CONSTRUCTOR MARKER END]*/
+
+	/* [CONSTRUCTOR MARKER END] */
 	private List<MtsBopCustom> customs = new ArrayList<MtsBopCustom>();
 
 	public List<MtsBopCustom> getCustoms() {
@@ -31,7 +30,5 @@ public class MtsBopEqDs extends BaseMtsBopEqDs {
 	public void setCustoms(List<MtsBopCustom> customs) {
 		this.customs = customs;
 	}
-	
-
 
 }

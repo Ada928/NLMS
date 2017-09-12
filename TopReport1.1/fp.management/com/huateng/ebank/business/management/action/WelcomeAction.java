@@ -1,16 +1,5 @@
 package com.huateng.ebank.business.management.action;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.log4j.Logger;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.business.common.SystemConstant;
@@ -21,6 +10,15 @@ import com.huateng.ebank.business.workflow.bean.GetTaskRequestBean;
 import com.huateng.ebank.business.workflow.service.WorkFlowService;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.web.struts.BaseAction;
+import org.apache.log4j.Logger;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 用于统计首页工作台记录的action

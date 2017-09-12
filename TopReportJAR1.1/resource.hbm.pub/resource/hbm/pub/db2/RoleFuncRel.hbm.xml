@@ -4,36 +4,17 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping package="resource.bean.pub">
-	<class
-		name="RoleFuncRel"
-		table="ROLE_FUNC_REL"
-	>
-		<meta attribute="sync-DAO">false</meta>
-		<id
-			name="id"
-			type="integer"
-			column="ID"
-		>
-			<generator class="assigned">
-				 
-			</generator>
-		</id>
+    <class name="RoleFuncRel" table="ROLE_FUNC_REL">
+        <meta attribute="sync-DAO">false</meta>
+        <id name="id" type="string" column="ID">
+            <generator class="assigned">
 
-		<property
-			name="roleId"
-			column="ROLE_ID"
-			type="integer"
-			not-null="false"
-			length="22"
-		/>
-		<property
-			name="funcid"
-			column="FUNCID"
-			type="string"
-			not-null="false"
-			length="10"
-		/>
+            </generator>
+        </id>
+
+        <property name="roleId" column="ROLE_ID" type="integer" not-null="false" length="22" />
+        <property name="funcid" column="FUNCID" type="string" not-null="false" length="10" />
 
 
-	</class>
+    </class>
 </hibernate-mapping>

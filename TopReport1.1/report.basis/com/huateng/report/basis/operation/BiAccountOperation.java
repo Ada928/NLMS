@@ -32,19 +32,16 @@ public class BiAccountOperation extends BaseOperation {
 	@Override
 	public void execute(OperationContext context) throws CommonException {
 
-		String cmd = (String)context.getAttribute(CMD);
-		BiAccount biAccount  = (BiAccount) context.getAttribute(IN_PARAM);
+		String cmd = (String) context.getAttribute(CMD);
+		BiAccount biAccount = (BiAccount) context.getAttribute(IN_PARAM);
 
 		BiAccountService biAccService = BiAccountService.getInstance();
 
-		if(CMD_INSERT.equalsIgnoreCase(cmd))
-		{
+		if (CMD_INSERT.equalsIgnoreCase(cmd)) {
 			biAccService.save(biAccount);
-		}else if(CMD_UPDATE.equalsIgnoreCase(cmd))
-		{
+		} else if (CMD_UPDATE.equalsIgnoreCase(cmd)) {
 			biAccService.update(biAccount);
-		}else if(CMD_DELETE.equalsIgnoreCase(cmd))
-		{
+		} else if (CMD_DELETE.equalsIgnoreCase(cmd)) {
 			biAccService.delete(biAccount.getId());
 		}
 	}

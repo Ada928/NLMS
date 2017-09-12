@@ -2,24 +2,21 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseTlaLnAcct;
 
-
-
-public class TlaLnAcct extends BaseTlaLnAcct {
+public class TlaLnAcct extends BaseTlaLnAcct implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public TlaLnAcct () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public TlaLnAcct() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public TlaLnAcct (java.lang.String id) {
+	public TlaLnAcct(java.lang.String id) {
 		super(id);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
-
+	/* [CONSTRUCTOR MARKER END] */
 
 }

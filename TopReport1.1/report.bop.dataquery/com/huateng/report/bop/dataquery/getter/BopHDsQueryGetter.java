@@ -28,25 +28,21 @@ public class BopHDsQueryGetter extends BaseGetter {
 		try {
 			PageQueryResult pageResult = getData();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境外汇款信息补录查询申报信息查询");
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	private PageQueryResult getData() throws CommonException {
-		Map<String,String> map = this.getCommQueryServletRequest().getParameterMap();
+		Map<String, String> map = this.getCommQueryServletRequest().getParameterMap();
 		String qbrNo = map.get("qbrNo");
 		String qworkDateStart = map.get("qworkDateStart");
 		String qworkDateEnd = map.get("qworkDateEnd");
@@ -63,37 +59,37 @@ public class BopHDsQueryGetter extends BaseGetter {
 		objs.add(TopReportConstants.REPORT_APP_TYPE_BOP);
 		buff.append(" and model.currentfile= ? ");
 		objs.add(TopReportConstants.REPORT_FILE_TYPE_BOP_H);
-		if(StringUtils.isNotBlank(qbrNo)) {
+		if (StringUtils.isNotBlank(qbrNo)) {
 			buff.append(" and model.brNo = ?");
 			objs.add(qbrNo);
-		} 
-		if(StringUtils.isNotBlank(qworkDateStart)) {
+		}
+		if (StringUtils.isNotBlank(qworkDateStart)) {
 			buff.append(" and model.workDate >= ?");
 			objs.add(qworkDateStart);
 		}
-		if(StringUtils.isNotBlank(qworkDateEnd)) {
+		if (StringUtils.isNotBlank(qworkDateEnd)) {
 			buff.append(" and model.workDate <= ?");
 			objs.add(qworkDateEnd);
 		}
-		if(StringUtils.isNotBlank(qactiontype)) {
+		if (StringUtils.isNotBlank(qactiontype)) {
 			buff.append(" and model.actiontype = ?");
 			objs.add(qactiontype);
 		}
-		if(StringUtils.isNotBlank(qrecStatus)) {
+		if (StringUtils.isNotBlank(qrecStatus)) {
 			buff.append(" and model.recStatus = ?");
 			objs.add(qrecStatus);
 		}
-		if(StringUtils.isNotBlank(qapproveStatus)) {
+		if (StringUtils.isNotBlank(qapproveStatus)) {
 			buff.append(" and model.approveStatus = ?");
 			objs.add(qapproveStatus);
 		}
-		if(StringUtils.isNotBlank(qrepStatus)) {
+		if (StringUtils.isNotBlank(qrepStatus)) {
 			buff.append(" and model.repStatus = ?");
 			objs.add(qrepStatus);
 		}
-		if(StringUtils.isNotBlank(qfiller2)) {
+		if (StringUtils.isNotBlank(qfiller2)) {
 			buff.append(" and model.filler2 like ?");
-			objs.add("%"+qfiller2+"%");
+			objs.add("%" + qfiller2 + "%");
 		}
 		PageQueryCondition queryCondition = new PageQueryCondition();
 		queryCondition.setObjArray(objs.toArray());

@@ -29,7 +29,7 @@ public class BiImportLog implements java.io.Serializable {
 	private String errFilePath;
 	private String errFile;
 	private Set<BiImportLogDtl> logDtls = new HashSet<BiImportLogDtl>();
-	
+
 	private String ip;
 
 	public String getIp() {

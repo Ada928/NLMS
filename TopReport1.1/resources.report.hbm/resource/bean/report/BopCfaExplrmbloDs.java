@@ -4,41 +4,35 @@ import java.util.List;
 
 import resource.bean.report.base.BaseBopCfaExplrmbloDs;
 
-
-
-public class BopCfaExplrmbloDs extends BaseBopCfaExplrmbloDs {
+public class BopCfaExplrmbloDs extends BaseBopCfaExplrmbloDs implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private List<BopCfaExplbalainfo> explcurrinfos;//签约
-	private List<BopCfaExplbalainfo> explbalainfos;//变动
-	
-	private String explcurrinfo;/*add for 补录信息查询的excel导出显示  签约信息*/
-	private String explbalainfo;/*add for 补录信息查询的excel导出显示  变动信息*/
-	
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public BopCfaExplrmbloDs () {
+	private List<BopCfaExplbalainfo> explcurrinfos;// 签约
+	private List<BopCfaExplbalainfo> explbalainfos;// 变动
+
+	private String explcurrinfo;/* add for 补录信息查询的excel导出显示 签约信息 */
+	private String explbalainfo;/* add for 补录信息查询的excel导出显示 变动信息 */
+
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public BopCfaExplrmbloDs() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BopCfaExplrmbloDs (java.lang.String id) {
+	public BopCfaExplrmbloDs(java.lang.String id) {
 		super(id);
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public BopCfaExplrmbloDs (
-		java.lang.String id,
-		java.lang.String apptype,
-		java.lang.String currentfile) {
+	public BopCfaExplrmbloDs(java.lang.String id, java.lang.String apptype,
+			java.lang.String currentfile) {
 
-		super (
-			id,
-			apptype,
-			currentfile);
+		super(id, apptype, currentfile);
 	}
 
 	public List<BopCfaExplbalainfo> getExplcurrinfos() {
@@ -73,8 +67,6 @@ public class BopCfaExplrmbloDs extends BaseBopCfaExplrmbloDs {
 		this.explbalainfo = explbalainfo;
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
-	
-	
+	/* [CONSTRUCTOR MARKER END] */
 
 }

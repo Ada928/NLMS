@@ -14,25 +14,25 @@ import org.springframework.core.io.Resource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class DBUtil {
-	
-	public static Connection getConnection(){
+
+	public static Connection getConnection() {
 		Connection conn = null;
-		DBUtil dbUtil=new DBUtil();
-		StringBuffer filePath=new StringBuffer();
+		DBUtil dbUtil = new DBUtil();
+		StringBuffer filePath = new StringBuffer();
 		filePath.append(dbUtil.getClass().getClassLoader().getResource("").getPath());
-		//delete by xuhong 2015-4-2 begin
-//		filePath.deleteCharAt(0);
-		//delete by xuhong 2015-4-2 
+		// delete by xuhong 2015-4-2 begin
+		// filePath.deleteCharAt(0);
+		// delete by xuhong 2015-4-2
 		filePath.append("resources/SQLContext.xml");
 
 		Resource rs = new FileSystemResource(filePath.toString());
-		System.out.println("SQLContext.xml filePath = ["+filePath.toString()+"]");
-		BeanFactory factory = new XmlBeanFactory(rs);    
-		ComboPooledDataSource dataSource=(ComboPooledDataSource)factory.getBean("bmsdataSource");
-		String username =dataSource.getUser();
+		System.out.println("SQLContext.xml filePath = [" + filePath.toString() + "]");
+		BeanFactory factory = new XmlBeanFactory(rs);
+		ComboPooledDataSource dataSource = (ComboPooledDataSource) factory.getBean("bmsdataSource");
+		String username = dataSource.getUser();
 		String password = dataSource.getPassword();
-		String driver=dataSource.getDriverClass();
-		String url=dataSource.getJdbcUrl();
+		String driver = dataSource.getDriverClass();
+		String url = dataSource.getJdbcUrl();
 		try {
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, username, password);
@@ -45,26 +45,26 @@ public class DBUtil {
 		}
 		return conn;
 	}
-	
-	public static void close(Connection conn, Statement stmt, ResultSet rs){
+
+	public static void close(Connection conn, Statement stmt, ResultSet rs) {
 		try {
-			if(rs!=null){
+			if (rs != null) {
 				rs.close();
 			}
-			if(stmt!=null){
+			if (stmt != null) {
 				stmt.close();
 			}
-			if(conn!=null){
+			if (conn != null) {
 				conn.close();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		Connection conn = getConnection();
 		close(conn, null, null);
 	}
-	
+
 }

@@ -21,32 +21,31 @@ import com.huateng.exception.AppException;
  */
 public class WfpprocNameSelectGetter extends BaseGetter {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.huateng.commquery.process.call._CallGetter#call()
 	 */
-	
+
 	public Result call() throws AppException {
 		// TODO Auto-generated method stub
 		try {
 
-		    List resultlist = new ArrayList();
+			List resultlist = new ArrayList();
 
-		    
-            String[] templateName=WorkFlowConfig.getValue("templateName").split(",");
-            String[] processName = WorkFlowConfig.getValue("processName").split(",");
-            for(int i=0;i<templateName.length;i++){
-            	WorkFlowParamSelectBean wfpSelectBean=new WorkFlowParamSelectBean();
-            	if(templateName[i].trim().equals("")){
-            		continue;
-            	}
-            	wfpSelectBean.setProcName(processName[i].trim());
-            	wfpSelectBean.setProcNameName(templateName[i].trim());
-            	resultlist.add(wfpSelectBean);
-            }
+			String[] templateName = WorkFlowConfig.getValue("templateName").split(",");
+			String[] processName = WorkFlowConfig.getValue("processName").split(",");
+			for (int i = 0; i < templateName.length; i++) {
+				WorkFlowParamSelectBean wfpSelectBean = new WorkFlowParamSelectBean();
+				if (templateName[i].trim().equals("")) {
+					continue;
+				}
+				wfpSelectBean.setProcName(processName[i].trim());
+				wfpSelectBean.setProcNameName(templateName[i].trim());
+				resultlist.add(wfpSelectBean);
+			}
 
-
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), resultlist, getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), resultlist, getResult());
 			result.setContent(resultlist);
 			result.getPage().setTotalPage(1);
 			result.init();
@@ -54,8 +53,7 @@ public class WfpprocNameSelectGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}

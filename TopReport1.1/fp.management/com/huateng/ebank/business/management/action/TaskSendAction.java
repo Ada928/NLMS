@@ -1,18 +1,16 @@
 package com.huateng.ebank.business.management.action;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.huateng.ebank.business.common.TransferConstant;
+import com.huateng.ebank.business.workflow.bean.WorkFlowHelper;
+import com.huateng.ebank.framework.web.struts.BaseAction;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import com.huateng.ebank.business.common.TransferConstant;
-import com.huateng.ebank.business.workflow.bean.WorkFlowHelper;
-import com.huateng.ebank.framework.web.struts.BaseAction;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TaskSendAction extends BaseAction{
 

@@ -19,43 +19,36 @@ import com.huateng.exception.AppException;
 public class RouteDetailQueryGetter extends BaseGetter {
 
 	@Override
-	public Result call() throws AppException{
-		try
-		{
+	public Result call() throws AppException {
+		try {
 
-		PageQueryResult pageResult = getData();
-		ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
-		result.setContent(pageResult.getQueryResult());
-		result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
-		result.init();
-		return result;
-		}catch(CommonException e){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
-		}catch(AppException appEx){
+			PageQueryResult pageResult = getData();
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
+			result.setContent(pageResult.getQueryResult());
+			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
+			result.init();
+			return result;
+		} catch (CommonException e) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
 
-	protected PageQueryResult getData() throws CommonException
-    {
+	protected PageQueryResult getData() throws CommonException {
 		OperationContext oc = new OperationContext();
 
-//		PageQueryResult pageQueryResult = new PageQueryResult();
+		// PageQueryResult pageQueryResult = new PageQueryResult();
 
-		String id = (String)getCommQueryServletRequest().getParameterMap().get("id");
-		if(id ==null){
-			id = (String)getCommQueryServletRequest().getParameterMap().get("routeId");
+		String id = (String) getCommQueryServletRequest().getParameterMap().get("id");
+		if (id == null) {
+			id = (String) getCommQueryServletRequest().getParameterMap().get("routeId");
 		}
-		if(id.equals("")){
+		if (id.equals("")) {
 			ExceptionUtil.throwCommonException("请先保存审批路线模板");
 		}
 		WorkflowRouteParam workflowRouteParam = new WorkflowRouteParam();
@@ -69,20 +62,19 @@ public class RouteDetailQueryGetter extends BaseGetter {
 		oc.setAttribute(RouteDetailQueryOperation.IN_PARAM_PAGEINDEX, PageIndex);
 		OPCaller.call("Management.RouteDetailQueryOperation", oc);
 
-		PageQueryResult pageResult = (PageQueryResult) oc
-				.getAttribute(RouteDetailQueryOperation.OUT_PARAM);
-		List resultlist  = pageResult.getQueryResult();
+		PageQueryResult pageResult = (PageQueryResult) oc.getAttribute(RouteDetailQueryOperation.OUT_PARAM);
+		List resultlist = pageResult.getQueryResult();
 		Integer laststopId = 0;
-		for(int i=0;i<resultlist.size();i++){
+		for (int i = 0; i < resultlist.size(); i++) {
 			WorkflowRouteParam resultwrp = (WorkflowRouteParam) resultlist.get(i);
-			if(resultwrp.getStopId().compareTo(laststopId)>0){
+			if (resultwrp.getStopId().compareTo(laststopId) > 0) {
 				laststopId = resultwrp.getStopId();
-			}else{
+			} else {
 				continue;
 			}
 		}
 		result.setParameter("lastStopId", laststopId.toString());
 		return pageResult;
 
-    }
+	}
 }

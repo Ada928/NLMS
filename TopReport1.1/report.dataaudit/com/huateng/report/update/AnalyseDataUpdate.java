@@ -16,17 +16,17 @@ import com.huateng.report.service.AnalyProService;
 /*
  * 数据分析的逻辑处理
  */
-public class AnalyseDataUpdate extends BaseUpdate{
+public class AnalyseDataUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "analyseDataEntry";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse arg2)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse arg2) throws AppException {
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 
-		//获得业务参数
+		// 获得业务参数
 		Object analyNo = null;
 		String workDate = null;
 		String busiType = null;
@@ -40,9 +40,10 @@ public class AnalyseDataUpdate extends BaseUpdate{
 		}
 		AnalyProService service = AnalyProService.getInstance();
 
-		String newAnalyNo = service.executeAnalyDetail(workDate,busiType,appType,TopReportConstants.REPORT_PROCESS_OPERTYPE_MANU,analyNo);
+		String newAnalyNo = service.executeAnalyDetail(workDate, busiType, appType,
+				TopReportConstants.REPORT_PROCESS_OPERTYPE_MANU, analyNo);
 
-		updateReturnBean.setParameter("analyNo",newAnalyNo);
+		updateReturnBean.setParameter("analyNo", newAnalyNo);
 
 		return updateReturnBean;
 	}

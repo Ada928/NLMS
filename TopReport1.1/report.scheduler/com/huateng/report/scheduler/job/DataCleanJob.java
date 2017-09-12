@@ -24,7 +24,7 @@ import com.huateng.report.dataClean.utils.ReportDataCleanResource;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportUtils;
 
-public class DataCleanJob implements Job{
+public class DataCleanJob implements Job {
 	private Logger log = Logger.getLogger(this.getClass());
 
 	public static final String BOP_DATACLEAN_ISFIN = "BOP_DATACLEAN_ISFIN";
@@ -52,8 +52,8 @@ public class DataCleanJob implements Job{
 					serContext.setAttribute(BOP_DATACLEAN_ISFIN, false);
 					log.info("==定时数据清理异常begin==");
 					String str = doDataClean();
-					if (str.length()>0) {
-						throw new Exception("错误信息："+str);
+					if (str.length() > 0) {
+						throw new Exception("错误信息：" + str);
 					}
 					log.info("==定时数据清理异常end==");
 					endTm = new Date();
@@ -63,31 +63,30 @@ public class DataCleanJob implements Job{
 			} catch (Exception e) {
 				log.error("定时数据清理异常" + e.getMessage());
 				result = ReportEnum.REPORT_RESULT.FAILD.value;
-				remark+= ":定时数据清理异常,"+e.getMessage();
+				remark += ":定时数据清理异常," + e.getMessage();
 				serContext.setAttribute(BOP_DATACLEAN_ISFIN, true);
 			}
 			ReportCommonService.getInstance().saveJobLog(startTm, endTm, jobId, result, jobName, remark);
 		}
 	}
 
-	private String doDataClean(){
+	private String doDataClean() {
 		StringBuffer result = new StringBuffer();
 		List<ReportDataCleanBean> cleanList = ReportDataCleanResource.getInstance().getTableList();
 		for (int i = 0; i < cleanList.size(); i++) {
 			ReportDataCleanBean cleanbean = cleanList.get(i);
-			log.info("clean table "+cleanbean.getTableName()+"=======start======");
+			log.info("clean table " + cleanbean.getTableName() + "=======start======");
 			OperationContext opcontext = new OperationContext();
 			try {
 				opcontext.setAttribute(ReportDataCleanOperation.IN_OBJ, cleanbean);
 				SingleOPCaller.call(ReportDataCleanOperation.ID, opcontext);
 			} catch (CommonException e) {
-				result.append(" ["+cleanbean.getTableName()+":"+e.getMessage()+"]");
-				log.error(cleanbean.getTableName()+"执行数据清理异常："+e.getMessage());
+				result.append(" [" + cleanbean.getTableName() + ":" + e.getMessage() + "]");
+				log.error(cleanbean.getTableName() + "执行数据清理异常：" + e.getMessage());
 			}
-			log.info("clean table "+cleanbean.getTableName()+"=======end======");
+			log.info("clean table " + cleanbean.getTableName() + "=======end======");
 		}
 		return result.toString();
 	}
-
 
 }

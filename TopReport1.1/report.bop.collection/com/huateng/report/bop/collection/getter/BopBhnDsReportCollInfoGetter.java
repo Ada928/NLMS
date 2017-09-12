@@ -19,42 +19,38 @@ import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 
 public class BopBhnDsReportCollInfoGetter extends BaseGetter {
-	
+
 	private static final String ADD = "add";
 	private static final String MOD = "mod";
 	private static final String DEL = "del";
 	private static final String DETAIL = "detail";
-	
+
 	@Override
 	public Result call() throws AppException {
 		// TODO Auto-generated method stub
 		try {
 			PageQueryResult pageResult = getData();
-			//记录日志
+			// 记录日志
 			String op = this.getCommQueryServletRequest().getParameter("op");
 			String message = null;
-			if(ADD.equals(op)) {
+			if (ADD.equals(op)) {
 				message = "新增";
-			} else if(MOD.equals(op)) {
+			} else if (MOD.equals(op)) {
 				message = "修改";
-			} else if(DEL.equals(op)) {
+			} else if (DEL.equals(op)) {
 				message = "删除";
 			}
-			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境外汇款申请书"+message+"补录申报信息查询");
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				pageResult.getQueryResult(),
-				getResult());
+			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "境外汇款申请书" + message + "补录申报信息查询");
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -63,25 +59,26 @@ public class BopBhnDsReportCollInfoGetter extends BaseGetter {
 		ROOTDAO dao = ROOTDAOUtils.getROOTDAO();
 		Map paramsMap = this.getCommQueryServletRequest().getParameterMap();
 		String op = (String) paramsMap.get("op");
-		if(ADD.equals(op)) {
+		if (ADD.equals(op)) {
 			PageQueryResult pageQueryResult = new PageQueryResult();
 			MtsBopBhnDs ds = new MtsBopBhnDs();
 			List list = new ArrayList();
 			list.add(ds);
 			pageQueryResult.setQueryResult(list);
 			return pageQueryResult;
-		} 
-		if(MOD.equals(op) || DEL.equals(op) || DETAIL.equals(op)) {
+		}
+		if (MOD.equals(op) || DEL.equals(op) || DETAIL.equals(op)) {
 			String rec_id = (String) paramsMap.get("id");
 			String hql = " from MtsBopBhnDs ds where 1 = 1 ";
-			hql += " and ds.id = '"+rec_id+"' order by ds.lstUpdTm desc";
+			hql += " and ds.id = '" + rec_id + "' order by ds.lstUpdTm desc";
 			List<MtsBopBhnDs> mtsBopBhnDsInfos = dao.queryByQL2List(hql);
-			for(MtsBopBhnDs ds : mtsBopBhnDsInfos) {
+			for (MtsBopBhnDs ds : mtsBopBhnDsInfos) {
 				String id = ds.getFiller1();
 				MtsBopBhnDs collMtsBopBhnDs = dao.query(MtsBopBhnDs.class, id);
-				if(collMtsBopBhnDs != null) {
-					//rptno custype idcode custcod custnm oppuser txccy 
-					//txamt exrate lcyamt lcyacc fcyamt fcyacc othamt othacc method buscode
+				if (collMtsBopBhnDs != null) {
+					// rptno custype idcode custcod custnm oppuser txccy
+					// txamt exrate lcyamt lcyacc fcyamt fcyacc othamt othacc
+					// method buscode
 					ds.setRptno(collMtsBopBhnDs.getRptno());
 					ds.setCustype(collMtsBopBhnDs.getCustype());
 					ds.setIdcode(collMtsBopBhnDs.getIdcode());

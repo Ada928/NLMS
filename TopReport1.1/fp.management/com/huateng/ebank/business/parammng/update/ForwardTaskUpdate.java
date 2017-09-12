@@ -3,15 +3,6 @@
  */
 package com.huateng.ebank.business.parammng.update;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.log4j.Logger;
-
 import com.huateng.commquery.result.MultiUpdateResultBean;
 import com.huateng.commquery.result.UpdateResultBean;
 import com.huateng.commquery.result.UpdateReturnBean;
@@ -25,6 +16,13 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
+import org.apache.log4j.Logger;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 
 public class ForwardTaskUpdate extends BaseUpdate {

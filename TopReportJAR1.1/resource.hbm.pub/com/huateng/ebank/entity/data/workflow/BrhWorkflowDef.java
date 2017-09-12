@@ -2,45 +2,35 @@ package com.huateng.ebank.entity.data.workflow;
 
 import com.huateng.ebank.entity.data.workflow.base.BaseBrhWorkflowDef;
 
-
-
 public class BrhWorkflowDef extends BaseBrhWorkflowDef {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public BrhWorkflowDef () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public BrhWorkflowDef() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BrhWorkflowDef (long id) {
+	public BrhWorkflowDef(long id) {
 		super(id);
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public BrhWorkflowDef (
-		long id,
-		java.lang.String brcode,
-		java.lang.String apptype,
-		java.lang.String bizSubclass) {
+	public BrhWorkflowDef(long id, java.lang.String brcode, java.lang.String apptype, java.lang.String bizSubclass) {
 
-		super (
-			id,
-			brcode,
-			apptype,
-			bizSubclass);
+		super(id, brcode, apptype, bizSubclass);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
+	/* [CONSTRUCTOR MARKER END] */
 
 	private String brcodeName;
-	private String apptypeName ;
-	private String processTemplateName ;
-	private String bizclassName ;
+	private String apptypeName;
+	private String processTemplateName;
+	private String bizclassName;
 
 	public String getBrcodeName() {
 		return brcodeName;

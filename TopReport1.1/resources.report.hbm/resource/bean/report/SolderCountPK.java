@@ -2,23 +2,19 @@ package resource.bean.report;
 
 import resource.bean.report.base.BaseSolderCountPK;
 
-public class SolderCountPK extends BaseSolderCountPK {
+public class SolderCountPK extends BaseSolderCountPK implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public SolderCountPK () {}
-	
-	public SolderCountPK (
-		java.util.Date updt,
-		java.lang.String solId,
-		java.lang.String cmrm) {
-
-		super (
-			updt,
-			solId,
-			cmrm);
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public SolderCountPK() {
 	}
-/*[CONSTRUCTOR MARKER END]*/
 
+	public SolderCountPK(java.util.Date updt, java.lang.String solId,
+			java.lang.String cmrm) {
+
+		super(updt, solId, cmrm);
+	}
+	/* [CONSTRUCTOR MARKER END] */
 
 }

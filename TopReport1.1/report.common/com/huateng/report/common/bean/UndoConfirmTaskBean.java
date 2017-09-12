@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class UndoConfirmTaskBean implements Serializable {
 
 	private String intInsId;
-	
+
 	private String intInsIdName;
-	
+
 	private Long count;
 
 	public String getIntInsId() {
@@ -34,8 +34,7 @@ public class UndoConfirmTaskBean implements Serializable {
 		this.count = count;
 	}
 
-	public UndoConfirmTaskBean(String intInsId, String intInsIdName,
-			Long count) {
+	public UndoConfirmTaskBean(String intInsId, String intInsIdName, Long count) {
 		super();
 		this.intInsId = intInsId;
 		this.intInsIdName = intInsIdName;
@@ -50,6 +49,5 @@ public class UndoConfirmTaskBean implements Serializable {
 		this.intInsId = intInsId;
 		this.count = count;
 	}
-	
-	
+
 }

@@ -1,8 +1,5 @@
 package com.huateng.report.basis.updater;
 
-
-
-
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,46 +17,45 @@ import com.huateng.exception.AppException;
 import com.huateng.report.basis.operation.BiMonthExchangeRateOperation;
 
 /**
-* @author huangcheng
-*
-*/
+ * @author huangcheng
+ *
+ */
 public class BiMonthExchangeRateUpdate extends BaseUpdate {
-	
-	private static final String DATASET_ID="BiMonthExchangeRate";
+
+	private static final String DATASET_ID = "BiMonthExchangeRate";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
 		// TODO Auto-generated method stub
-		
-		//返回对象
+
+		// 返回对象
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 
-		//返回结果对象
+		// 返回结果对象
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 
-		
-		//返回日牌价对象
+		// 返回日牌价对象
 		BiMonthexchangerate biMonthexchangerate = new BiMonthexchangerate();
-		
+
 		OperationContext oc = new OperationContext();
-		if(updateResultBean.hasNext()) {
-			//属性拷贝
-			Map map = updateResultBean.next();			
+		if (updateResultBean.hasNext()) {
+			// 属性拷贝
+			Map map = updateResultBean.next();
 			BaseUpdate.mapToObject(biMonthexchangerate, map);
-			if(UpdateResultBean.MODIFY==updateResultBean.getRecodeState()) {
+			if (UpdateResultBean.MODIFY == updateResultBean.getRecodeState()) {
 				oc.setAttribute(BiMonthExchangeRateOperation.CMD, BiMonthExchangeRateOperation.CMD_MOD);
 			}
-			if(UpdateResultBean.INSERT==updateResultBean.getRecodeState()) {
+			if (UpdateResultBean.INSERT == updateResultBean.getRecodeState()) {
 				oc.setAttribute(BiMonthExchangeRateOperation.CMD, BiMonthExchangeRateOperation.CMD_ADD);
 			}
 			oc.setAttribute(BiMonthExchangeRateOperation.IN_PARAM, biMonthexchangerate);
-			//call方式开启operation事务
+			// call方式开启operation事务
 			OPCaller.call(BiMonthExchangeRateOperation.ID, oc);
 			return updateReturnBean;
 		}
-	
-	return null;}
-	
-}
 
+		return null;
+	}
+
+}

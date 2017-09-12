@@ -27,23 +27,18 @@ public class BopQDsAuditGetter extends BaseGetter {
 		try {
 			PageQueryResult pageQueryResult = getData();
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "国际收支审核信息查询-境内汇款申请书管理信息查询");
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
 					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
-			result.getPage().setTotalPage(
-					pageQueryResult.getPageCount(getResult().getPage()
-							.getEveryPage()));
+			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -59,6 +54,7 @@ public class BopQDsAuditGetter extends BaseGetter {
 		String qrepStatus = map.get("qrepStatus");
 		String qfiller2 = map.get("qfiller2");
 		BopEqDsAuditService bopEqDsAuditService = BopEqDsAuditService.getInstance();
-		return bopEqDsAuditService.queryBOPEqAudit(TopReportConstants.REPORT_FILE_TYPE_BOP_Q, pageIndex, pageSize, qworkDateStart, qworkDateEnd, qactiontype, qrecStatus, qapproveStatus, qrepStatus, qfiller2);
+		return bopEqDsAuditService.queryBOPEqAudit(TopReportConstants.REPORT_FILE_TYPE_BOP_Q, pageIndex, pageSize,
+				qworkDateStart, qworkDateEnd, qactiontype, qrecStatus, qapproveStatus, qrepStatus, qfiller2);
 	}
 }

@@ -2,17 +2,15 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
- * This is an object that contains data related to the BI_ANALY_CONF table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * This is an object that contains data related to the BI_ANALY_CONF table. Do
+ * not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="BI_ANALY_CONF"
+ * @hibernate.class table="BI_ANALY_CONF"
  */
 
-public abstract class BaseBiAnalyConf  implements Serializable {
+public abstract class BaseBiAnalyConf implements Serializable {
 
 	public static String REF = "BiAnalyConf";
 	public static String PROP_CONF_DATE = "confDate";
@@ -28,22 +26,22 @@ public abstract class BaseBiAnalyConf  implements Serializable {
 	public static String PROP_CONF_RET_CLASS = "confRetClass";
 	public static String PROP_CONF_PARAM_IDS = "confParamIds";
 	public static String PROP_ERR_IS_NEXT = "errIsNext";
+
 	// constructors
-	public BaseBiAnalyConf () {
+	public BaseBiAnalyConf() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseBiAnalyConf (java.lang.String id) {
+	public BaseBiAnalyConf(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -114,142 +112,144 @@ public abstract class BaseBiAnalyConf  implements Serializable {
 
 	/**
 	 * Return the unique identifier of this class
-     * @hibernate.id
-     *  generator-class="sequence"
-     *  column="CONF_ID"
-     */
-	public java.lang.String getId () {
+	 * 
+	 * @hibernate.id generator-class="sequence" column="CONF_ID"
+	 */
+	public java.lang.String getId() {
 		return id;
 	}
 
 	/**
 	 * Set the unique identifier of this class
-	 * @param id the new ID
+	 * 
+	 * @param id
+	 *            the new ID
 	 */
-	public void setId (java.lang.String id) {
+	public void setId(java.lang.String id) {
 		this.id = id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
-
-
-
 	/**
 	 * Return the value associated with the column: CONF_SEQ
 	 */
-	public java.lang.Integer getConfSeq () {
+	public java.lang.Integer getConfSeq() {
 		return confSeq;
 	}
 
 	/**
 	 * Set the value related to the column: CONF_SEQ
-	 * @param confSeq the CONF_SEQ value
+	 * 
+	 * @param confSeq
+	 *            the CONF_SEQ value
 	 */
-	public void setConfSeq (java.lang.Integer confSeq) {
+	public void setConfSeq(java.lang.Integer confSeq) {
 		this.confSeq = confSeq;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CONF_CLASS_PATH
 	 */
-	public java.lang.String getConfClassPath () {
+	public java.lang.String getConfClassPath() {
 		return confClassPath;
 	}
 
 	/**
 	 * Set the value related to the column: CONF_CLASS_PATH
-	 * @param confClassPath the CONF_CLASS_PATH value
+	 * 
+	 * @param confClassPath
+	 *            the CONF_CLASS_PATH value
 	 */
-	public void setConfClassPath (java.lang.String confClassPath) {
+	public void setConfClassPath(java.lang.String confClassPath) {
 		this.confClassPath = confClassPath;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CONF_INFO
 	 */
-	public java.lang.String getConfInfo () {
+	public java.lang.String getConfInfo() {
 		return confInfo;
 	}
 
 	/**
 	 * Set the value related to the column: CONF_INFO
-	 * @param confInfo the CONF_INFO value
+	 * 
+	 * @param confInfo
+	 *            the CONF_INFO value
 	 */
-	public void setConfInfo (java.lang.String confInfo) {
+	public void setConfInfo(java.lang.String confInfo) {
 		this.confInfo = confInfo;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: BUSI_TYPE
 	 */
-	public java.lang.String getBusiType () {
+	public java.lang.String getBusiType() {
 		return busiType;
 	}
 
 	/**
 	 * Set the value related to the column: BUSI_TYPE
-	 * @param busiType the BUSI_TYPE value
+	 * 
+	 * @param busiType
+	 *            the BUSI_TYPE value
 	 */
-	public void setBusiType (java.lang.String busiType) {
+	public void setBusiType(java.lang.String busiType) {
 		this.busiType = busiType;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CONF_DATE
 	 */
-	public java.lang.String getConfDate () {
+	public java.lang.String getConfDate() {
 		return confDate;
 	}
 
 	/**
 	 * Set the value related to the column: CONF_DATE
-	 * @param confDate the CONF_DATE value
+	 * 
+	 * @param confDate
+	 *            the CONF_DATE value
 	 */
-	public void setConfDate (java.lang.String confDate) {
+	public void setConfDate(java.lang.String confDate) {
 		this.confDate = confDate;
 	}
-
-
 
 	/**
 	 * Return the value associated with the column: CONF_VAILD
 	 */
-	public java.lang.String getConfVaild () {
+	public java.lang.String getConfVaild() {
 		return confVaild;
 	}
 
 	/**
 	 * Set the value related to the column: CONF_VAILD
-	 * @param confVaild the CONF_VAILD value
+	 * 
+	 * @param confVaild
+	 *            the CONF_VAILD value
 	 */
-	public void setConfVaild (java.lang.String confVaild) {
+	public void setConfVaild(java.lang.String confVaild) {
 		this.confVaild = confVaild;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.BiAnalyConf)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.BiAnalyConf))
+			return false;
 		else {
 			resource.bean.report.BiAnalyConf biAnalyConf = (resource.bean.report.BiAnalyConf) obj;
-			if (null == this.getId() || null == biAnalyConf.getId()) return false;
-			else return (this.getId().equals(biAnalyConf.getId()));
+			if (null == this.getId() || null == biAnalyConf.getId())
+				return false;
+			else
+				return (this.getId().equals(biAnalyConf.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -258,10 +258,8 @@ public abstract class BaseBiAnalyConf  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

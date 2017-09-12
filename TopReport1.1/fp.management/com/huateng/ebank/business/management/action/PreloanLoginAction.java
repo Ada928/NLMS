@@ -1,14 +1,5 @@
 package com.huateng.ebank.business.management.action;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.huateng.ebank.business.common.ErrorCodeUtil;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.SystemConstant;
@@ -21,6 +12,14 @@ import com.huateng.ebank.framework.operation.OPCaller;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.util.DateUtil;
 import com.huateng.ebank.framework.web.struts.BaseAction;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <strong>TemplateAction</strong> demonstrates how an action class is called

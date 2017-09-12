@@ -46,7 +46,8 @@ public class AuditConfirmGetter extends BaseGetter {
 		String workDateEnd = (String) paramMap.get("workDateEnd");
 		String isShowZero = (String) paramMap.get("isShowZero");
 		String qappType = (String) paramMap.get("qappType");
-		List list = AuditConfirmServices.getInstance().getAuditConfirmList(workDateStart, workDateEnd, busiType, qappType, info.getBrno(),isShowZero);
+		List list = AuditConfirmServices.getInstance().getAuditConfirmList(workDateStart, workDateEnd, busiType,
+				qappType, info.getBrno(), isShowZero);
 		pageQueryResult.setQueryResult(list);
 		return pageQueryResult;
 

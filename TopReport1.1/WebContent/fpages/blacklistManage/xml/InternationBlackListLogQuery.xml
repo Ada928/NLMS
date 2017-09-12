@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CommQry title="日志查询" navigate="主页 &gt; 数据查询&gt; 国际黑名单日志查询" type="call" interface="true" pagesize="10" async="true"
+    databusid="" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.internationblacklist.getter.InternationBLOPLogQueryGetter">
+    <Include id="BankParam" />
+    <PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-国际黑名单日志查询" />
+    <Fields>
+        <!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
+        <!-- primary : true-作为表单项记录上传 false-不作为表单项上传 -->
+        <!-- 日志信息 -->
+        
+        <Field id="id" desc="记录主键" require="" edittype="text" datatype="string" method="None" readonly="false"
+            size="32" status="N" default="" primary="true" xpath="/id" />
+
+        <Field id="tlrno" desc="操作员编号" require="" edittype="text" datatype="string" method="None" readonly="false"
+            size="20" status="F" default="" xpath="/tlrno" />
+            
+        <Field id="tlrIP" desc="操作员IP地址" require="" edittype="text" datatype="string" method="None" readonly="false"
+            size="32" status="F" default="" xpath="/tlrIP" />    
+
+        <Field id="brcode" desc="机构编号" require="" edittype="text" datatype="string" method="None" readonly="false"
+            size="20" status="F" default="" xpath="/brcode" />
+
+        <Field id="operateType" desc="操作类型" status="F" edittype="select" require="false" method="None" primary=""
+			type="String" default="false" xpath="/operateType" tip="审核类型" translated="DATA_DIC.3004" />
+
+        <Field id="queryType" desc="查询类型" require="" edittype="textarea" datatype="string" method="None"
+            readonly="false" size="256" status="F" default="" xpath="/queryType" />
+
+        <Field id="queryRecordNumber" desc="结果数量" require="" edittype="text" datatype="string" method="None" readonly="false"
+            size="32" status="F" default="" xpath="/queryRecordNumber" />
+
+        <Field id="message" desc="消息记录" require="" edittype="text" datatype="string" method="None" readonly="false"
+            size="32" status="F" default="" xpath="/message" />
+
+        <Field id="createDate" desc="创建时间" require="" edittype="text" datatype="timestamp" method="None" readonly="false"
+            size="32" status="F" default="" xpath="/createDate" />
+    </Fields>
+    <Where>
+        <TextBox id="qtlrNo" type="String" operation="EQ" size="8" desc="操作员编号" tip="操作员编号" index="0" />
+        <Option id="qbrcode" operation="EQ" size="" desc="所属银行" tip="机构号" type="string" translated="CQ:BctlAllSelect"
+            fieldmap="qbrNo=brno;qbrNoName=brcodeTypeName" viewField="brcodeTypeName" dropdowntype="dynamic" init="true"
+            require="false" readOnly="" index="1" />
+
+        <DateTextBox id="startDate" desc="开始日期" tip="开始日期" require="false" status="F" datatype="date"
+            method="None" size="150" width="" primary="false" index="2" type="String" />
+        <DateTextBox id="endDate" desc="结束日期" tip="结束日期" require="false" status="F" datatype="date" method="None"
+            size="150" width="" primary="false" index="3" type="String" />
+        <TextBox id="qtlrIP" type="String" operation="EQ" size="30" desc="操作员IP" tip="操作员IP" index="4" />
+    </Where>
+    <Operations>
+
+
+    </Operations>
+</CommQry>

@@ -1,8 +1,6 @@
 
 package com.huateng.ebank.business.management.getter;
 
-import java.util.List;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -11,6 +9,8 @@ import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.service.BctlService;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+
+import java.util.List;
 
 public class AllDownBrnoSelectGetter extends BaseGetter
 {

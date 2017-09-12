@@ -6,17 +6,11 @@
  */
 package com.huateng.ebank.business.management.operation;
 
-import java.util.List;
-
-import resource.bean.pub.RoleInfo;
-import resource.dao.pub.RoleInfoDAO;
-
 import com.huateng.ebank.business.common.DAOUtils;
 import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.business.common.service.BctlService;
-import resource.bean.pub.RoleFuncRel;
 import com.huateng.ebank.entity.data.mng.RoleReportParam;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
@@ -24,6 +18,11 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.view.pub.FunctionInfoView;
 import com.huateng.view.pub.ReportInfoView;
+import resource.bean.pub.RoleFuncRel;
+import resource.bean.pub.RoleInfo;
+import resource.dao.pub.RoleInfoDAO;
+
+import java.util.List;
 
 /**
  * @author wuguangjie

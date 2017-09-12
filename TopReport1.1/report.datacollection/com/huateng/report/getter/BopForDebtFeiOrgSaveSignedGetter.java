@@ -32,7 +32,7 @@ import com.huateng.report.utils.ReportUtils;
  *
  * @author shishu.zhang
  *
- * 2012-8-15上午10:54:59
+ *         2012-8-15上午10:54:59
  */
 @SuppressWarnings("unchecked")
 public class BopForDebtFeiOrgSaveSignedGetter extends BaseGetter {
@@ -44,34 +44,31 @@ public class BopForDebtFeiOrgSaveSignedGetter extends BaseGetter {
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "非居民机构存款签约信息查询");
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	@SuppressWarnings("rawtypes")
-	public PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException{
+	public PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException {
 		int pageSize = getResult().getPage().getEveryPage();
 		int pageIndex = getResult().getPage().getCurrentPage();
 		Map map = getCommQueryServletRequest().getParameterMap();
 		String op = (String) map.get("op");
-		if(!DataFormat.isEmpty(op)){
+		if (!DataFormat.isEmpty(op)) {
 			List<BopForDebtFeiOrgSave> list = new ArrayList<BopForDebtFeiOrgSave>();
 			PageQueryResult queryResult = new PageQueryResult();
-			if(op.equals("new")) {
+			if (op.equals("new")) {
 				BopForDebtFeiOrgSave feiOrgSaveBean = new BopForDebtFeiOrgSave();
 				feiOrgSaveBean.setExdebtcode(ReportUtils.getBussinessNo(TopReportConstants.REPORT_FILE_TYPE_CFA_AN));
 				GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
@@ -84,23 +81,27 @@ public class BopForDebtFeiOrgSaveSignedGetter extends BaseGetter {
 				String id = (String) map.get("id");
 				ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 				BopCfaExdebtDs bopCfaExdebtDs = rootdao.query(BopCfaExdebtDs.class, id);
-//				String creHql = " FROM BopCfaCreditorDs model WHERE model.recId = '" + bopCfaExdebtDs.getId() + "' ";
-				BopCfaCreditorDs cfaCreditorDs = (BopCfaCreditorDs) rootdao.queryByQL2List(SEARCH_BOPCFACREDITORDS_BY_RECID, new Object[]{bopCfaExdebtDs.getId()}, null).get(0);
+				// String creHql = " FROM BopCfaCreditorDs model WHERE
+				// model.recId = '" + bopCfaExdebtDs.getId() + "' ";
+				BopCfaCreditorDs cfaCreditorDs = (BopCfaCreditorDs) rootdao
+						.queryByQL2List(SEARCH_BOPCFACREDITORDS_BY_RECID, new Object[] { bopCfaExdebtDs.getId() }, null)
+						.get(0);
 				BopForDebtFeiOrgSave feiOrgSaveBean = new BopForDebtFeiOrgSave();
-//				BeanUtils.copyProperties(feiOrgSaveBean, cfaCreditorDs); //先拷贝债权人不然会覆盖主信息中的id
+				// BeanUtils.copyProperties(feiOrgSaveBean, cfaCreditorDs);
+				// //先拷贝债权人不然会覆盖主信息中的id
 				BeanUtils.copyProperties(feiOrgSaveBean, bopCfaExdebtDs);
 				feiOrgSaveBean.setRecId(cfaCreditorDs.getRecId());
 				feiOrgSaveBean.setCreditorca(cfaCreditorDs.getCreditorca());
-				feiOrgSaveBean.setCreditorcode(cfaCreditorDs.getCreditorcode()); //债权人代码
-				feiOrgSaveBean.setCreditorname(cfaCreditorDs.getCreditorname());//债权人中文名称
-				feiOrgSaveBean.setCreditornamen(cfaCreditorDs.getCreditornamen());//债权人英文名称
-				feiOrgSaveBean.setCreditortype(cfaCreditorDs.getCreditortype());//债权人类型代码
-				feiOrgSaveBean.setCrehqcode(cfaCreditorDs.getCrehqcode());//债权人总部所在国家（地区）代码
-				feiOrgSaveBean.setOpercode(cfaCreditorDs.getOpercode());//债权人经营地所在国家（地区）代码
+				feiOrgSaveBean.setCreditorcode(cfaCreditorDs.getCreditorcode()); // 债权人代码
+				feiOrgSaveBean.setCreditorname(cfaCreditorDs.getCreditorname());// 债权人中文名称
+				feiOrgSaveBean.setCreditornamen(cfaCreditorDs.getCreditornamen());// 债权人英文名称
+				feiOrgSaveBean.setCreditortype(cfaCreditorDs.getCreditortype());// 债权人类型代码
+				feiOrgSaveBean.setCrehqcode(cfaCreditorDs.getCrehqcode());// 债权人总部所在国家（地区）代码
+				feiOrgSaveBean.setOpercode(cfaCreditorDs.getOpercode());// 债权人经营地所在国家（地区）代码
 				list.add(feiOrgSaveBean);
 			}
 			queryResult.setQueryResult(list);
-			//页面接收判断
+			// 页面接收判断
 			getCommQueryServletRequest().setParameter("op", op);
 			return queryResult;
 		} else {
@@ -114,7 +115,8 @@ public class BopForDebtFeiOrgSaveSignedGetter extends BaseGetter {
 			String qRecStatus = (String) map.get("qRecStatus");
 
 			BopForDebtYinTuanService debtYinTuanService = BopForDebtYinTuanService.getInstance();
-			return debtYinTuanService.queryRecordFeiOrgSave("signed", pageIndex, pageSize, qworkDateStart,qworkDateEnd,qactiontype, qapproveStatus, qrepStatus,qFiller2, qRecStatus);
+			return debtYinTuanService.queryRecordFeiOrgSave("signed", pageIndex, pageSize, qworkDateStart, qworkDateEnd,
+					qactiontype, qapproveStatus, qrepStatus, qFiller2, qRecStatus);
 		}
 	}
 }

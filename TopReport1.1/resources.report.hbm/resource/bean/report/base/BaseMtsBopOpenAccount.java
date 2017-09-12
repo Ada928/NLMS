@@ -13,21 +13,20 @@ public class BaseMtsBopOpenAccount implements Serializable {
 	public static String PROP_REC_ID = "recId";
 
 	// constructors
-	public BaseMtsBopOpenAccount () {
+	public BaseMtsBopOpenAccount() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseMtsBopOpenAccount (java.lang.String id) {
+	public BaseMtsBopOpenAccount(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 	// primary key
@@ -38,7 +37,6 @@ public class BaseMtsBopOpenAccount implements Serializable {
 	private java.lang.String tel;
 	private java.lang.String fax;
 	private java.lang.String recId;
-
 
 	public java.lang.String getId() {
 		return id;
@@ -88,20 +86,24 @@ public class BaseMtsBopOpenAccount implements Serializable {
 		this.recId = recId;
 	}
 
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.MtsBopFsDs)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.MtsBopFsDs))
+			return false;
 		else {
 			resource.bean.report.MtsBopFsDs mtsBopFsDs = (resource.bean.report.MtsBopFsDs) obj;
-			if (null == this.getId() || null == mtsBopFsDs.getId()) return false;
-			else return (this.getId().equals(mtsBopFsDs.getId()));
+			if (null == this.getId() || null == mtsBopFsDs.getId())
+				return false;
+			else
+				return (this.getId().equals(mtsBopFsDs.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -110,8 +112,7 @@ public class BaseMtsBopOpenAccount implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
 }

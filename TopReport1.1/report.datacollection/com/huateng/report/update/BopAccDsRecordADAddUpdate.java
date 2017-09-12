@@ -18,22 +18,20 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.operation.BopAccDsOperation;
 
-public class BopAccDsRecordADAddUpdate extends BaseUpdate{
+public class BopAccDsRecordADAddUpdate extends BaseUpdate {
 
 	@SuppressWarnings("rawtypes")
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
 
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("bopAccDsRecordADAdd");
-			BopAccDs bopAccDs = null ;
-			while (updateResultBean.hasNext())
-			{
+			BopAccDs bopAccDs = null;
+			while (updateResultBean.hasNext()) {
 				bopAccDs = new BopAccDs();
 				Map map = updateResultBean.next();
-				mapToObject(bopAccDs,map);
+				mapToObject(bopAccDs, map);
 			}
 
 			OperationContext oc = new OperationContext();
@@ -45,8 +43,7 @@ public class BopAccDsRecordADAddUpdate extends BaseUpdate{
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

@@ -1,8 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.List;
-import java.util.Map;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -12,6 +9,9 @@ import com.huateng.ebank.business.common.service.DepartmentInfoService;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+
+import java.util.List;
+import java.util.Map;
 
 public class DepartmentInfoManageQueryGetter extends BaseGetter {
 

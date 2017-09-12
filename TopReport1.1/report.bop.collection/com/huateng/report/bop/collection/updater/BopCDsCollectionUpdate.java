@@ -17,19 +17,18 @@ import com.huateng.exception.AppException;
 import com.huateng.report.bop.collection.operation.BopCkpDsOperation;
 
 public class BopCDsCollectionUpdate extends BaseUpdate {
-	
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
-		//返回对象
+		// 返回对象
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-		//结果集对象
+		// 结果集对象
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("BopCDsCollection");
-		//更新对象
+		// 更新对象
 		MtsBopCkpDs bopCkpDs = new MtsBopCkpDs();
-		//Operation参数
-		if(updateResultBean.hasNext()) {
+		// Operation参数
+		if (updateResultBean.hasNext()) {
 			Map map = updateResultBean.next();
 			mapToObject(bopCkpDs, map);
 			OperationContext context = new OperationContext();
@@ -37,10 +36,10 @@ public class BopCDsCollectionUpdate extends BaseUpdate {
 			if ("new".equals(op)) {
 				context.setAttribute(BopCkpDsOperation.CMD, BopCkpDsOperation.OP_C_NEW);
 				context.setAttribute(BopCkpDsOperation.IN_C_NEW, bopCkpDs);
-			} else if ("modify".equals(op)){
+			} else if ("modify".equals(op)) {
 				context.setAttribute(BopCkpDsOperation.CMD, BopCkpDsOperation.OP_C_MOD);
 				context.setAttribute(BopCkpDsOperation.IN_C_MOD, bopCkpDs);
-			} else if ("delete".equals(op)){
+			} else if ("delete".equals(op)) {
 				context.setAttribute(BopCkpDsOperation.CMD, BopCkpDsOperation.OP_C_DEL);
 				context.setAttribute(BopCkpDsOperation.IN_C_DEL, bopCkpDs);
 			}
@@ -48,5 +47,5 @@ public class BopCDsCollectionUpdate extends BaseUpdate {
 		}
 		return updateReturnBean;
 	}
-	
+
 }

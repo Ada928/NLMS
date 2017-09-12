@@ -1,9 +1,10 @@
 package com.huateng.report.send.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportFeedBackInfo {
+public class ReportFeedBackInfo implements Serializable {
 	public static final String ID = "BUF_TT_FEEDBACK_DTLS";
 	private String appType;
 	private String currentFile;
@@ -24,7 +25,7 @@ public class ReportFeedBackInfo {
 	}
 
 	public String getCurrentFile() {
-		if (this.currentFile!=null) {
+		if (this.currentFile != null) {
 			return currentFile.replaceAll(this.appType, "");
 		}
 		return currentFile;

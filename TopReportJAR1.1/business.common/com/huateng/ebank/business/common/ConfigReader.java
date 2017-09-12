@@ -18,10 +18,9 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 
 /**
- * Title: ConfigReader
- * Description: 读取配置文件gd.properties。
- * Copyright: Copyright (c) 2008
- * Company: Shanghai Huateng Software Systems Co., Ltd.
+ * Title: ConfigReader Description: 读取配置文件gd.properties。 Copyright: Copyright
+ * (c) 2008 Company: Shanghai Huateng Software Systems Co., Ltd.
+ * 
  * @author shen_antonio
  * @version 1.1, 2008-5-9
  */
@@ -34,11 +33,10 @@ public class ConfigReader {
 
 	private static final String GZBUNDLE_NAME = SystemConstant.GZCONFFILENAME;
 
-
 	private ConfigReader() {
 	}
 
-	public static String getProperty(String key)throws CommonException{
+	public static String getProperty(String key) throws CommonException {
 		try {
 			return RESOURCE_BUNDLE.getString(key);
 		} catch (MissingResourceException e) {
@@ -46,9 +44,10 @@ public class ConfigReader {
 			return null;
 		}
 	}
-	public static String getGProperty(String key)throws CommonException{
+
+	public static String getGProperty(String key) throws CommonException {
 		try {
-			 ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(GZBUNDLE_NAME);
+			ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(GZBUNDLE_NAME);
 			return RESOURCE_BUNDLE.getString(key);
 		} catch (MissingResourceException e) {
 			ExceptionUtil.throwCommonException("配置文件错误，没有找到[" + key + "]属性参数", ErrorCode.ERROR_CODE_INTERNAL_ERROR);

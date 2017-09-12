@@ -34,11 +34,9 @@ public class TblBizLogDAO extends HibernateDaoSupport {
 	 */
 	public TblCsBizLog query(long id) throws CommonException {
 		try {
-			return (TblCsBizLog) this.getHibernateTemplate().load(TblCsBizLog.class,
-					new Long(id));
+			return (TblCsBizLog) this.getHibernateTemplate().load(TblCsBizLog.class, new Long(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e);
 		}
 		return null;
 	}
@@ -52,35 +50,35 @@ public class TblBizLogDAO extends HibernateDaoSupport {
 	 * @return ��BizLog�����List
 	 * @throws CommonException
 	 */
-//	public List queryByCondition(String whereString, Object[] objArray,
-//			Type[] typeArray) throws CommonException {
-//		try {
-//			List list = this.getHibernateTemplate().find(
-//					"from TblBizLog po where " + whereString, objArray);
-//			return list;
-//		} catch (Exception e) {
-//			ExceptionUtil.throwCommonException(e.getMessage(),
-//					ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e);
-//		}
-//		return null;
-//	}
+	// public List queryByCondition(String whereString, Object[] objArray,
+	// Type[] typeArray) throws CommonException {
+	// try {
+	// List list = this.getHibernateTemplate().find(
+	// "from TblBizLog po where " + whereString, objArray);
+	// return list;
+	// } catch (Exception e) {
+	// ExceptionUtil.throwCommonException(e.getMessage(),
+	// ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e);
+	// }
+	// return null;
+	// }
 
 	/**
 	 *
 	 * @param whereString
 	 * @throws CommonException
 	 */
-//	public List queryByCondition(String whereString) throws CommonException {
-//		try {
-//			List list = this.getHibernateTemplate().find(
-//					"from TblBizLog po where " + whereString);
-//			return list;
-//		} catch (Exception e) {
-//			ExceptionUtil.throwCommonException(e.getMessage(),
-//					ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e);
-//		}
-//		return null;
-//	}
+	// public List queryByCondition(String whereString) throws CommonException {
+	// try {
+	// List list = this.getHibernateTemplate().find(
+	// "from TblBizLog po where " + whereString);
+	// return list;
+	// } catch (Exception e) {
+	// ExceptionUtil.throwCommonException(e.getMessage(),
+	// ErrorCode.ERROR_CODE_BIZ_LOG_SELECT, e);
+	// }
+	// return null;
+	// }
 
 	/**
 	 *
@@ -91,8 +89,7 @@ public class TblBizLogDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().update(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BIZ_LOG_UPDATE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BIZ_LOG_UPDATE, e);
 		}
 	}
 
@@ -105,8 +102,7 @@ public class TblBizLogDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().save(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BIZ_LOG_INSERT, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BIZ_LOG_INSERT, e);
 		}
 	}
 
@@ -119,8 +115,7 @@ public class TblBizLogDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(po);
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BIZ_LOG_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BIZ_LOG_DELETE, e);
 		}
 	}
 
@@ -133,8 +128,7 @@ public class TblBizLogDAO extends HibernateDaoSupport {
 		try {
 			this.getHibernateTemplate().delete(query(id));
 		} catch (Exception e) {
-			ExceptionUtil.throwCommonException(e.getMessage(),
-					ErrorCode.ERROR_CODE_BIZ_LOG_DELETE, e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_BIZ_LOG_DELETE, e);
 		}
 	}
 }

@@ -23,11 +23,11 @@ import com.huateng.report.constants.TopReportConstants;
 /**
  *
  * 外债信息表Getter
+ * 
  * @author wenhao.chen
- * @version 1.0
- * 2012-8-30
+ * @version 1.0 2012-8-30
  *
- * */
+ */
 @SuppressWarnings("unchecked")
 public class BOPForDebtCurrMarketToolsGetter extends BaseGetter {
 
@@ -36,8 +36,7 @@ public class BOPForDebtCurrMarketToolsGetter extends BaseGetter {
 
 			PageQueryResult queryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), queryResult.getQueryResult(),
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryResult.getQueryResult(),
 					getResult());
 			result.setContent(queryResult.getQueryResult());
 			result.getPage().setTotalPage(queryResult.getPageCount(getResult().getPage().getEveryPage()));
@@ -47,8 +46,7 @@ public class BOPForDebtCurrMarketToolsGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

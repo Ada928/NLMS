@@ -1,10 +1,5 @@
 package com.huateng.ebank.business.parammng.cqGetter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hibernate.type.Type;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -16,6 +11,10 @@ import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import org.hibernate.type.Type;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author liu_yxun

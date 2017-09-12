@@ -17,40 +17,34 @@ import com.huateng.report.system.operation.TaskListOperation;
 
 public class TaskListBeanGetter extends BaseGetter {
 	/**
-	 * @author jianxue.zhang
-	 * 用于获取选中的待审批列表
+	 * @author jianxue.zhang 用于获取选中的待审批列表
 	 */
 	@Override
 	public Result call() throws AppException {
 		try {
 			List list = getData();
-			ResultMng.fillResultByList(
-				getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				list,
-				getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);
 			result.getPage().setTotalPage(1);
 			result.init();
 			return result;
-		}catch(AppException appEx){
+		} catch (AppException appEx) {
 			throw appEx;
-		}catch(Exception ex){
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
 	private List getData() throws CommonException, IOException, ClassNotFoundException {
-		//获取参数集合
+		// 获取参数集合
 		Map paramMap = this.getCommQueryServletRequest().getParameterMap();
-		//获取参数
+		// 获取参数
 		OperationContext oc = new OperationContext();
-		oc.setAttribute(TaskListOperation.CMD,"query" );
-		oc.setAttribute(TaskListOperation.TYPE, (String)paramMap.get("type"));
-		oc.setAttribute(TaskListOperation.TASKIDS,(String)paramMap.get("taskIds"));
+		oc.setAttribute(TaskListOperation.CMD, "query");
+		oc.setAttribute(TaskListOperation.TYPE, (String) paramMap.get("type"));
+		oc.setAttribute(TaskListOperation.TASKIDS, (String) paramMap.get("taskIds"));
 		OPCaller.call(TaskListOperation.ID, oc);
-		//TaskListService  tls= new TaskListService();
+		// TaskListService tls= new TaskListService();
 		return (List) oc.getAttribute(TaskListOperation.QUERYLIST);
 	}
 }

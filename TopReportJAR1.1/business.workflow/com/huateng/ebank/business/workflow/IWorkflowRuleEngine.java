@@ -4,10 +4,9 @@
 package com.huateng.ebank.business.workflow;
 
 /**
- * Title: IWorkflowRuleEngine
- * Description:
- * Copyright: Copyright (c) 2008
+ * Title: IWorkflowRuleEngine Description: Copyright: Copyright (c) 2008
  * Company: Shanghai Huateng Software Systems Co., Ltd.
+ * 
  * @author shen_antonio
  * @version 1.1, 2008-4-3
  */
@@ -35,13 +34,13 @@ public interface IWorkflowRuleEngine {
 	public final static String LOAN_ALTER1_WORKFLOW = "LoanAlter1WorkflowRule";
 	public final static String LOAN_ALTER2_WORKFLOW = "LoanAlter2WorkflowRule";
 	public final static String LOAN_ALTER3_WORKFLOW = "LoanAlter3WorkflowRule";
-//	public final static String LOAN_ALTER3_APPROVE_TASK_RULE = "LoanAlter3ApproveTaskRule";
+	// public final static String LOAN_ALTER3_APPROVE_TASK_RULE =
+	// "LoanAlter3ApproveTaskRule";
 	public final static String LOAN_ALTER4_WORKFLOW = "LoanAlter4WorkflowRule";
 	public final static String LOAN_ALTER5_WORKFLOW = "LoanAlter5WorkflowRule";
 	public final static String LOAN_ALTER6_WORKFLOW = "LoanAlter6WorkflowRule";
 	public final static String LOAN_ALTER7_WORKFLOW = "LoanAlter7WorkflowRule";
 
 	public final static String POST_LOAN_MNG1_WORKFLOW = "PostLoanMng1WorkflowRule";
-
 
 }

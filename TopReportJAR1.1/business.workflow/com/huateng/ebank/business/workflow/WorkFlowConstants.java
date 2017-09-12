@@ -2,30 +2,29 @@ package com.huateng.ebank.business.workflow;
 
 public class WorkFlowConstants {
 	/**
-	 * modify by shen_antonio 20080328 for TaskAssignService
-	 * 工作类型、工作分配描述
+	 * modify by shen_antonio 20080328 for TaskAssignService 工作类型、工作分配描述
 	 */
-	/** memeber variable: String　TASK_ASSIGN_TYPE_0 工作安排方式:自动分配. */
+	/** memeber variable: String TASK_ASSIGN_TYPE_0 工作安排方式:自动分配. */
 	public static final String TASK_ASSIGN_TYPE_0 = "0";
-	/** memeber variable: String　TASK_ASSIGN_TYPE_1 工作安排方式:人工分配. */
+	/** memeber variable: String TASK_ASSIGN_TYPE_1 工作安排方式:人工分配. */
 	public static final String TASK_ASSIGN_TYPE_1 = "1";
-	/** memeber variable: String　TASK_ASSIGN_MODE_O 分配到岗位(强件模式). */
+	/** memeber variable: String TASK_ASSIGN_MODE_O 分配到岗位(强件模式). */
 	public static final String TASK_ASSIGN_MODE_O = "0";
-	/** memeber variable: String　TASK_ASSIGN_MODE_1 分配到指定人（按工作量分配). */
+	/** memeber variable: String TASK_ASSIGN_MODE_1 分配到指定人（按工作量分配). */
 	public static final String TASK_ASSIGN_MODE_1 = "1";
-	/** memeber variable: String　TASK_ASSIGN_MODE_2 分配到人（随机分配）. */
+	/** memeber variable: String TASK_ASSIGN_MODE_2 分配到人（随机分配）. */
 	public static final String TASK_ASSIGN_MODE_2 = "2";
-	/** memeber variable: String　TASK_WORK_TYPE_99 全部工作. */
+	/** memeber variable: String TASK_WORK_TYPE_99 全部工作. */
 	public static final String TASK_WORK_TYPE_99 = "99";
-	/** memeber variable: String　TASK_WORK_TYPE_01 贷前工作. */
+	/** memeber variable: String TASK_WORK_TYPE_01 贷前工作. */
 	public static final String TASK_WORK_TYPE_01 = "01";
-	/** memeber variable: String　TASK_WORK_TYPE_02 贷后工作. */
+	/** memeber variable: String TASK_WORK_TYPE_02 贷后工作. */
 	public static final String TASK_WORK_TYPE_02 = "02";
-	/** memeber variable: String　TASK_ASSIGN_STATUS_0 分配工作有效标志:有效. */
+	/** memeber variable: String TASK_ASSIGN_STATUS_0 分配工作有效标志:有效. */
 	public static final String TASK_ASSIGN_STATUS_0 = "0";
-	/** memeber variable: String　TASK_ASSGIN_STATUS_1 分配工作有效标志:无效,任务任务被移交. */
+	/** memeber variable: String TASK_ASSGIN_STATUS_1 分配工作有效标志:无效,任务任务被移交. */
 	public static final String TASK_ASSGIN_STATUS_1 = "1";
-	/** memeber variable: String　TASK_ASSGIN_STATUS_2 分配工作有效标志:无效，任务被删除. */
+	/** memeber variable: String TASK_ASSGIN_STATUS_2 分配工作有效标志:无效，任务被删除. */
 	public static final String TASK_ASSGIN_STATUS_2 = "2";
 
 	/*
@@ -34,28 +33,27 @@ public class WorkFlowConstants {
 	public static final int ROLE_ID_LOAN_INPUT = 100; // 资料录入/客户经理岗
 	public static final int ROLE_ID_LOAN_AUDIT = 102; // 贷款审查
 	public static final int ROLE_ID_LOAN_MEETING = 103; // 贷审会意见录入岗
-	public static final int ROLE_ID_LOAN_APPROVE = 105; //贷款审批
-	public static final int ROLE_ID_LOAN_SUPERVISE = 110; //放款监督
-	public static final int ROLE_ID_LOAN_SAVE = 114; //资产保全
+	public static final int ROLE_ID_LOAN_APPROVE = 105; // 贷款审批
+	public static final int ROLE_ID_LOAN_SUPERVISE = 110; // 放款监督
+	public static final int ROLE_ID_LOAN_SAVE = 114; // 资产保全
 	public static final int ROLE_ID_PROJECT_AUDIT = 119; // 项目审查
 	public static final int ROLE_ID_PROJECT_APPROVE = 120; // 项目审批
 	public static final int ROLE_ID_LOAN_UP_APPROVE = 121; // 贷款高级审批
 
 	public static final int ROLE_ID_LEAVE_APPROVE = 140; // 请假审批
 
-    /**
-     * 工作流人员分配默认值
-     */
-    public static final String ROLE_DEFINFE_TLRNO="XXXXXXXX" ;  //默认值分配
+	/**
+	 * 工作流人员分配默认值
+	 */
+	public static final String ROLE_DEFINFE_TLRNO = "XXXXXXXX"; // 默认值分配
 
-    /**
-     * 经受任务查询 各流程的业务主键
-     * add by UU_Wu 2008-10-15
-     */
-    public static final int CHECK_ISERROR = 0;  //未能找到业务主键
-    public static final int CHECK_ISCON = 1;  //合同号为业务主键
-    public static final int CHECK_ISJJ = 2;  //借据号为业务主键
-    public static final int CHECK_ISPROJ = 3;  //合作项目编号为业务主键
+	/**
+	 * 经受任务查询 各流程的业务主键 add by UU_Wu 2008-10-15
+	 */
+	public static final int CHECK_ISERROR = 0; // 未能找到业务主键
+	public static final int CHECK_ISCON = 1; // 合同号为业务主键
+	public static final int CHECK_ISJJ = 2; // 借据号为业务主键
+	public static final int CHECK_ISPROJ = 3; // 合作项目编号为业务主键
 
 	/**
 	 * 审批状态/流程状态
@@ -114,7 +112,6 @@ public class WorkFlowConstants {
 	public static final String WF_ROLE_TYPE_ROLE115 = "ROLE115"; // 贷审会秘书
 	public static final String WF_ROLE_TYPE_ROLE116 = "ROLE116"; // 贷后管理岗
 
-
 	// 流程状态
 	public static final String FLOW_STATUS_NOTUPLOAD = "0"; // 未上传
 	public static final String FLOW_STATUS_INPROCESS = "1"; // 审批中
@@ -132,7 +129,7 @@ public class WorkFlowConstants {
 	public static final String INVOKE_KEY_FLOWSEL = "flowsel"; // 流程选择规则
 	public static final String INVOKE_KEY_AUTOAPPROVE = "autoapprove"; // 自动审批规则
 	public static final String INVOKE_KEY_APPROVEAUTH = "approveauth"; // 授信授权规则
-	public static final String INVOKE_KEY_LOANINT = "loanint"; //放款完整性规则
+	public static final String INVOKE_KEY_LOANINT = "loanint"; // 放款完整性规则
 
 	/**
 	 * modify by shen_antonio 20080327 for TlrLvdayService 销假状态
@@ -144,8 +141,7 @@ public class WorkFlowConstants {
 	 */
 	public static final String TLR_NO_STATE_LVDAY = "3";// 休假
 
-
-	/** 合并票据工作流到信贷系统 by zhouxuejing 20101026 begin*/
+	/** 合并票据工作流到信贷系统 by zhouxuejing 20101026 begin */
 	/**
 	 * 工作流分配情况 Added by UU_Wu 2009-7-4
 	 */
@@ -184,16 +180,15 @@ public class WorkFlowConstants {
 	public static final String WORKFLOW_ATTRIBUTE_TASKID = "TASKID";// 任务号
 	public static final String WORKFLOW_ATTRIBUTE_CURRBRHID = "CURR_BRHID";// 当前机构
 
-
-
 	public static final String WORKFLOW_ATTRIBUTE_AMOUNT = "AMOUNT";// 申请金额
 	public static final String WORKFLOW_ATTRIBUTE_APPNO = "APPNO";// 申请号
 	public static final String WORKFLOW_ATTRIBUTE_BUSSTYPE = "BUSS_TYPE";// 业务种类(四位码)
 	public static final String WORKFLOW_ATTRIBUTE_CONTRACTID = "CONTRACTID";// 协议ID
 	public static final String WORKFLOW_ATTRIBUTE_CUSTCD = "CUSTCD";// 客户ID
-	public static final String WORKFLOW_ATTRIBUTE_CUSTNAME  = "CUSTNAME";// 客户名称
+	public static final String WORKFLOW_ATTRIBUTE_CUSTNAME = "CUSTNAME";// 客户名称
 	public static final String WORKFLOW_ATTRIBUTE_DRAFTATTR = "DRAFT_ATTR";// 票据属性（1-实物2-电子）
-	public static final String WORKFLOW_ATTRIBUTE_DRAFTTYPE = "DRAFT_TYPE";// 票据类型(1-银票 2-商票)
+	public static final String WORKFLOW_ATTRIBUTE_DRAFTTYPE = "DRAFT_TYPE";// 票据类型(1-银票
+																			// 2-商票)
 	public static final String WORKFLOW_ATTRIBUTE_STARTER = "STARTER";// 发起人ID
 	public static final String WORKFLOW_ATTRIBUTE_STARTBRHID = "START_BRHID";// 发起行ID
 	public static final String WORKFLOW_ATTRIBUTE_STARTBRHNO = "START_BRHNO";// 发起行NO
@@ -201,15 +196,15 @@ public class WorkFlowConstants {
 
 	public static final String WORKFLOW_ATTRIBUTE_LASTAPPROVEROLEID = "LAST_APPROVE_ROLEID";// 最后审批操作员岗位ID
 
-	/*超权限利率审批流程PROCNAME_BEYONDPERMISSIONRATE=BeyondPermissionRate.*/
-	public static final String PROCNAME_BEYONDPERMISSIONRATE="PROCNAME_BEYONDPERMISSIONRATE";
+	/* 超权限利率审批流程PROCNAME_BEYONDPERMISSIONRATE=BeyondPermissionRate. */
+	public static final String PROCNAME_BEYONDPERMISSIONRATE = "PROCNAME_BEYONDPERMISSIONRATE";
 
 	/**
 	 * 工作流配置文件名
 	 */
 	public static final String WORKFLOW_PROPERTIES = "workflow";
-	/** 合并票据工作流到信贷系统 by zhouxuejing 20101026 end*/
-	//合同上传TASK_NAME
+	/** 合并票据工作流到信贷系统 by zhouxuejing 20101026 end */
+	// 合同上传TASK_NAME
 	public static final String WORKFLOW_TASK_NAME_LOANUPLOAD = "LoanUpload";
 
 }

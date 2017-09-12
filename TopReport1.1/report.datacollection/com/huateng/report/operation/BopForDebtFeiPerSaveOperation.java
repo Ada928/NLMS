@@ -32,7 +32,7 @@ public class BopForDebtFeiPerSaveOperation extends BaseOperation {
 	public static final String IN_AUDIT_STATUS = "IN_AUDIT_STATUS";
 	public static final String IN_AUDIT_RESULT = "IN_AUDIT_RESULT";
 	public static final String OP_OVER_AUDIT = "OP_OVER_AUDIT";
-	
+
 	@Override
 	public void beforeProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
@@ -48,52 +48,52 @@ public class BopForDebtFeiPerSaveOperation extends BaseOperation {
 		if (OP_SIGNED_AUDIT.equals(cmd)) {
 			List<BopForDebtFeiPerSave> list = (List<BopForDebtFeiPerSave>) context.getAttribute(IN_AUDIT_LIST);
 			List<String> ids = new ArrayList<String>();
-			for(BopForDebtFeiPerSave feiOrgSave : list){
+			for (BopForDebtFeiPerSave feiOrgSave : list) {
 				ids.add(feiOrgSave.getId());
 			}
 			String approveStatusChoose = (String) context.getAttribute(IN_AUDIT_STATUS);
 			String approveResultChoose = (String) context.getAttribute(IN_AUDIT_RESULT);
 			bopForDebtYinTuanService.auditFeiOrgSave(approveStatusChoose, approveResultChoose, ids, OP_SIGNED_AUDIT);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款信息审核"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款信息审核"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款信息审核" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款信息审核" });
 		} else if (OP_OVER_AUDIT.equals(cmd)) {
 			List<BopCfaExdebtDs> list = (List<BopCfaExdebtDs>) context.getAttribute(IN_AUDIT_LIST);
 			List<String> ids = new ArrayList<String>();
-			for(BopCfaExdebtDs cfaExdebtDs : list){
+			for (BopCfaExdebtDs cfaExdebtDs : list) {
 				ids.add(cfaExdebtDs.getId());
 			}
 			String approveStatusChoose = (String) context.getAttribute(IN_AUDIT_STATUS);
 			String approveResultChoose = (String) context.getAttribute(IN_AUDIT_RESULT);
 			bopForDebtYinTuanService.auditFeiOrgSave(approveStatusChoose, approveResultChoose, ids, OP_SIGNED_AUDIT);
-			gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款余额信息审核"});
-			htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款余额信息审核"});
+			gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款余额信息审核" });
+			htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款余额信息审核" });
 		} else {
 			BopForDebtFeiPerSave debtFeiPerSave = (BopForDebtFeiPerSave) context.getAttribute(IN_SIGNED_FEIPERSAVE);
 			try {
 				bopForDebtYinTuanService.saveDebtFeiPerSave(cmd, debtFeiPerSave);
 			} catch (IllegalAccessException e) {
-				ExceptionUtil.throwCommonException("实体属性拷贝错误"); 
+				ExceptionUtil.throwCommonException("实体属性拷贝错误");
 			} catch (InvocationTargetException e) {
-				ExceptionUtil.throwCommonException("实体属性拷贝错误"); 
+				ExceptionUtil.throwCommonException("实体属性拷贝错误");
 			}
 			if (OP_SIGNED_NEW.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款信息新增"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款信息新增"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款信息新增" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款信息新增" });
 			} else if (OP_SIGNED_MOD.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款信息修改"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款信息修改"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款信息修改" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款信息修改" });
 			} else if (OP_SIGNED_DEL.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款信息删除"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款信息删除"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款信息删除" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款信息删除" });
 			} else if (OP_OVER_NEW.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款余额信息新增"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款余额信息新增"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款余额信息新增" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款余额信息新增" });
 			} else if (OP_OVER_MOD.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款余额信息修改"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款余额信息修改"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款余额信息修改" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款余额信息修改" });
 			} else if (OP_OVER_DEL.equals(cmd)) {
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款余额信息删除"});
-				htlog.info("Updater.log", new String[]{gi.getTlrno(),gi.getBrno(),"非居民个人存款余额信息删除"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款余额信息删除" });
+				htlog.info("Updater.log", new String[] { gi.getTlrno(), gi.getBrno(), "非居民个人存款余额信息删除" });
 			}
 		}
 	}

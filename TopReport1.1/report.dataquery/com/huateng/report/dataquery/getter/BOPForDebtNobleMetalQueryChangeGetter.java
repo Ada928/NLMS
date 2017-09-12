@@ -24,7 +24,7 @@ import com.huateng.report.constants.TopReportConstants;
  *
  * @author shishu.zhang
  *
- * 2012-8-15上午10:54:59
+ *         2012-8-15上午10:54:59
  */
 @SuppressWarnings("unchecked")
 public class BOPForDebtNobleMetalQueryChangeGetter extends BaseGetter {
@@ -34,30 +34,27 @@ public class BOPForDebtNobleMetalQueryChangeGetter extends BaseGetter {
 		try {
 			PageQueryResult pageQueryResult = getData();
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
-	public PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException{
+	public PageQueryResult getData() throws CommonException, IllegalAccessException, InvocationTargetException {
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		Map map = getCommQueryServletRequest().getParameterMap();
 		String qbrNo = (String) map.get("qbrNo");
-		String qworkDate = (String)map.get("qworkDate");
+		String qworkDate = (String) map.get("qworkDate");
 		String qactiontype = (String) map.get("qactiontype");
 		String qrecStatus = (String) map.get("qrecStatus");
 		String qapproveStatus = (String) map.get("qapproveStatus");
@@ -69,11 +66,11 @@ public class BOPForDebtNobleMetalQueryChangeGetter extends BaseGetter {
 
 		hql.append(" model.apptype=? AND model.currentfile=? AND model.changeFileType = ? ");
 		objs.add(TopReportConstants.REPORT_APP_TYPE_CFA);
-//		objs.add(TopReportConstants.REPORT_FILE_TYPE_CFA_AS);//文件类型
+		// objs.add(TopReportConstants.REPORT_FILE_TYPE_CFA_AS);//文件类型
 		objs.add(TopReportConstants.REPORT_FILE_TYPE_CFA_AR);
-		objs.add(TopReportConstants.REPORT_FILE_TYPE_CFA_AH);//变动对于的签约的文件类型
+		objs.add(TopReportConstants.REPORT_FILE_TYPE_CFA_AH);// 变动对于的签约的文件类型
 
-		if(!DataFormat.isEmpty(qbrNo)){
+		if (!DataFormat.isEmpty(qbrNo)) {
 			hql.append(" AND model.brNo = ? ");
 			objs.add(qbrNo);
 		}
@@ -112,8 +109,10 @@ public class BOPForDebtNobleMetalQueryChangeGetter extends BaseGetter {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		return rootdao.pageQueryByQL(queryCondition);
 
-
-//		BopForDebtYinTuanService debtYinTuanService = BopForDebtYinTuanService.getInstance();
-//		return debtYinTuanService.queryFeiOrgSaveQuery("oversQuery", pageIndex, pageSize, qbrNo, qrecStatus, qactiontype, qapproveStatus, qrepStatus, qFiller2, qworkDate);
+		// BopForDebtYinTuanService debtYinTuanService =
+		// BopForDebtYinTuanService.getInstance();
+		// return debtYinTuanService.queryFeiOrgSaveQuery("oversQuery",
+		// pageIndex, pageSize, qbrNo, qrecStatus, qactiontype, qapproveStatus,
+		// qrepStatus, qFiller2, qworkDate);
 	}
 }

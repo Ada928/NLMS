@@ -21,16 +21,13 @@ import com.huateng.report.constants.TopReportConstants;
 import com.huateng.report.utils.ReportUtils;
 
 @SuppressWarnings("unchecked")
-public class BopForSameInduDepositInfoColGetter  extends BaseGetter{
+public class BopForSameInduDepositInfoColGetter extends BaseGetter {
 
 	@SuppressWarnings("rawtypes")
 	public Result call() throws AppException {
 		List queryList = getList();
 
-		ResultMng.fillResultByList(getCommonQueryBean(),
-				getCommQueryServletRequest(),
-				queryList,
-				getResult());
+		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), queryList, getResult());
 		result.setContent(queryList);
 		result.getPage().setTotalPage(0);
 		result.init();
@@ -39,30 +36,30 @@ public class BopForSameInduDepositInfoColGetter  extends BaseGetter{
 	}
 
 	@SuppressWarnings("rawtypes")
-	private List getList() throws CommonException{
+	private List getList() throws CommonException {
 		String op = getCommQueryServletRequest().getParameter("op");
 		String id = getCommQueryServletRequest().getParameter("id");
 
 		BopForSameInduDepositBean bop = new BopForSameInduDepositBean();
 		List<BopForSameInduDepositBean> list = new ArrayList<BopForSameInduDepositBean>();
-		if("new".equalsIgnoreCase(op)){
-			//机构号
+		if ("new".equalsIgnoreCase(op)) {
+			// 机构号
 			GlobalInfo gb = GlobalInfo.getCurrentInstance();
-			//外债编号
+			// 外债编号
 			bop.setExdebtcode(ReportUtils.getBussinessNo(TopReportConstants.REPORT_FILE_TYPE_CFA_AL));
 			ReportUtils.setObjectPro(bop, TopReportConstants.REPORT_FILE_TYPE_CFA_AL);
-			//债务人代码
+			// 债务人代码
 			bop.setDebtorcode(gb.getBrno());
 			list.add(bop);
-		}else if("mod".equalsIgnoreCase(op)  || "del".equalsIgnoreCase(op) || "detail".equalsIgnoreCase(op)){
+		} else if ("mod".equalsIgnoreCase(op) || "del".equalsIgnoreCase(op) || "detail".equalsIgnoreCase(op)) {
 
 			ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 			BopCfaExdebtDs exdebtds = rootdao.query(BopCfaExdebtDs.class, id);
 
 			StringBuilder query = new StringBuilder(" FROM BopCfaCreditorDs WHERE recId = ? ");
-			List<BopCfaCreditorDs>creditorList = rootdao.queryByQL2List(query.toString(), new Object[]{id}, null);
+			List<BopCfaCreditorDs> creditorList = rootdao.queryByQL2List(query.toString(), new Object[] { id }, null);
 
-			if(null != exdebtds){
+			if (null != exdebtds) {
 				bop.setId(exdebtds.getId());
 				bop.setApptype(exdebtds.getApptype());
 				bop.setCurrentfile(exdebtds.getCurrentfile());
@@ -97,7 +94,7 @@ public class BopForSameInduDepositInfoColGetter  extends BaseGetter{
 				bop.setFiller2(exdebtds.getFiller2());
 
 			}
-			if(!creditorList.isEmpty()){
+			if (!creditorList.isEmpty()) {
 				BopCfaCreditorDs creditor = creditorList.get(0);
 				bop.setCreditorid(creditor.getId());
 				bop.setCreditorcode(creditor.getCreditorcode());

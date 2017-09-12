@@ -27,21 +27,18 @@ public class BopUDsCollectionGetter extends BaseGetter {
 		try {
 			setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "单位基本情况表管理查询");
 			PageQueryResult pageQueryResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), pageQueryResult.getQueryResult(),
-					getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(), getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -56,14 +53,13 @@ public class BopUDsCollectionGetter extends BaseGetter {
 			queryResult.setQueryResult(Collections.emptyList());
 			queryResult.setTotalCount(Collections.emptyList().size());
 			return queryResult;
-		} else if (StringUtils.equals(BopUDsOperation.CMD_MOD, op)
-				|| StringUtils.equals(BopUDsOperation.CMD_DEL, op)
+		} else if (StringUtils.equals(BopUDsOperation.CMD_MOD, op) || StringUtils.equals(BopUDsOperation.CMD_DEL, op)
 				|| StringUtils.equals(BopUDsOperation.CMD_DETAIL, op)) {
 			String id = (String) map.get("id");
 			BopUDsService service = BopUDsService.getInstance();
 			MtsBopUDs bopu = service.loadBopU(id);
 
-			List<MtsBopUDs>bopuList = new ArrayList<MtsBopUDs>(1);
+			List<MtsBopUDs> bopuList = new ArrayList<MtsBopUDs>(1);
 			bopuList.add(bopu);
 			PageQueryResult queryResult = new PageQueryResult();
 			queryResult.setQueryResult(bopuList);
@@ -78,7 +74,8 @@ public class BopUDsCollectionGetter extends BaseGetter {
 			String qcustcode = (String) map.get("qcustcode");
 
 			BopUDsService service = BopUDsService.getInstance();
-			return service.queryBopUCollection(pageIndex, pageSize, qworkDateStart, qworkDateEnd, qapproveStatus, qrepStatus, qrecStatus, qcustcode);
+			return service.queryBopUCollection(pageIndex, pageSize, qworkDateStart, qworkDateEnd, qapproveStatus,
+					qrepStatus, qrecStatus, qcustcode);
 		}
 	}
 

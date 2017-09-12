@@ -20,7 +20,7 @@ public class BopAgDsRecordService {
 	protected static final Logger logger = Logger.getLogger(BopAgDsRecordService.class);
 
 	protected BopAgDsRecordService() {
-		
+
 	}
 
 	public synchronized static BopAgDsRecordService getInstance() {
@@ -29,6 +29,7 @@ public class BopAgDsRecordService {
 
 	/**
 	 * BOP涉外收入申报单记录查询
+	 * 
 	 * @param pageIndex
 	 * @param pageSize
 	 * @param qstartDate
@@ -42,8 +43,9 @@ public class BopAgDsRecordService {
 	 * @return
 	 * @throws CommonException
 	 */
-	public PageQueryResult queryBOPAgRecord(String queryType, int pageIndex, int pageSize, String qstartDate, String qendDate, String qactiontype,
-			String qapproveStatus, String qrepStatus, String qrecStatus, String qfiller2, String brNo) throws CommonException {
+	public PageQueryResult queryBOPAgRecord(String queryType, int pageIndex, int pageSize, String qstartDate,
+			String qendDate, String qactiontype, String qapproveStatus, String qrepStatus, String qrecStatus,
+			String qfiller2, String brNo) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<Object> objs = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer(" SELECT model FROM MtsBopAgDs model WHERE ");
@@ -51,16 +53,16 @@ public class BopAgDsRecordService {
 		objs.add(TopReportConstants.REPORT_APP_TYPE_BOP);
 		if (queryType.equals("A")) {
 			objs.add(TopReportConstants.REPORT_FILE_TYPE_BOP_A);
-		} else if(queryType.equals("G")) {
+		} else if (queryType.equals("G")) {
 			objs.add(TopReportConstants.REPORT_FILE_TYPE_BOP_G);
 		}
- 		objs.add(TopReportConstants.REPORT_RECSTATUS_01);
+		objs.add(TopReportConstants.REPORT_RECSTATUS_01);
 		objs.add(TopReportConstants.REPORT_RECSTATUS_02);
-		if(!DataFormat.isEmpty(qstartDate)){
+		if (!DataFormat.isEmpty(qstartDate)) {
 			hql.append(" AND model.workDate >= ? ");
 			objs.add(qstartDate);
 		}
-		if(!DataFormat.isEmpty(qendDate)){
+		if (!DataFormat.isEmpty(qendDate)) {
 			hql.append(" AND model.workDate <= ? ");
 			objs.add(qendDate);
 		}
@@ -80,7 +82,7 @@ public class BopAgDsRecordService {
 			hql.append(" AND model.repStatus = ? ");
 			objs.add(qrepStatus);
 		}
-		if(!DataFormat.isEmpty(qfiller2)){
+		if (!DataFormat.isEmpty(qfiller2)) {
 			hql.append(" AND model.filler2 like '%" + qfiller2 + "%'");
 		}
 		hql.append(" AND model.brNo = ? ORDER BY model.lstUpdTm DESC ");
@@ -93,9 +95,10 @@ public class BopAgDsRecordService {
 		queryCondition.setObjArray(objs.toArray());
 		return rootdao.pageQueryByQL(queryCondition);
 	}
-	
+
 	/**
 	 * BOP涉外收入申报单拾取记录查询
+	 * 
 	 * @param pageIndex
 	 * @param pageSize
 	 * @param qstartDate
@@ -106,8 +109,8 @@ public class BopAgDsRecordService {
 	 * @return
 	 * @throws CommonException
 	 */
-	public PageQueryResult queryBOPAForG(int pageIndex, int pageSize, String qworkDateStart, String qworkDateEnd, String qrptno, String qfiller2,
-			String qbrNo) throws CommonException {
+	public PageQueryResult queryBOPAForG(int pageIndex, int pageSize, String qworkDateStart, String qworkDateEnd,
+			String qrptno, String qfiller2, String qbrNo) throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<Object> objs = new ArrayList<Object>();
 		StringBuffer hql = new StringBuffer(" SELECT model FROM MtsBopAgDs model WHERE ");

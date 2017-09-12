@@ -13,5 +13,5 @@ import org.topexpression.format.ExpressionReader;
  * @version 1.0
  */
 public interface ElementReader {
-	Element read(ExpressionReader sr) throws IllegalExpressionException,IOException;
+	Element read(ExpressionReader sr) throws IllegalExpressionException, IOException;
 }

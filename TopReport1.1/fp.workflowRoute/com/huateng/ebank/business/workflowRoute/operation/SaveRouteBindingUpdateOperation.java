@@ -24,56 +24,64 @@ import com.huateng.ebank.framework.operation.OperationContext;
  * @desc 审批路线绑定
  */
 public class SaveRouteBindingUpdateOperation extends BaseOperation {
-    private static Log log = LogFactory
-            .getLog(SaveRouteDetailUpdateOperation.class);
+	private static Log log = LogFactory.getLog(SaveRouteDetailUpdateOperation.class);
 
-    public static final String IN_LIST = "IN_LIST";
-    public static final String IN_PARAM = "IN_PARAM";
+	public static final String IN_LIST = "IN_LIST";
+	public static final String IN_PARAM = "IN_PARAM";
 
-
-    /* (non-Javadoc)
-     * @see com.huateng.ebank.framework.operation.BaseOperation#beforeProc(com.huateng.ebank.framework.operation.OperationContext)
-     */
-    @Override
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.huateng.ebank.framework.operation.BaseOperation#beforeProc(com.
+	 * huateng.ebank.framework.operation.OperationContext)
+	 */
+	@Override
 	public void beforeProc(OperationContext context) throws CommonException {
-        // TODO Auto-generated method stub
-    }
+		// TODO Auto-generated method stub
+	}
 
-    /* (non-Javadoc)
-     * @see com.huateng.ebank.framework.operation.BaseOperation#execute(com.huateng.ebank.framework.operation.OperationContext)
-     */
-    @Override
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.huateng.ebank.framework.operation.BaseOperation#execute(com.huateng.
+	 * ebank.framework.operation.OperationContext)
+	 */
+	@Override
 	public void execute(OperationContext context) throws CommonException {
-        if (log.isDebugEnabled()) {
-            log.debug("enter into execute");
-        }
-//        /** add by jornezhang 20100108 BMS-2362  增加交易流水记录 begin */
-//        TxtNumRecordUtil.getInstance().resetGlobalDataAllBlank();
-//        /** add by jornezhang 20100108 BMS-2362  增加交易流水记录 end */
-        List inList = (List) context.getAttribute(IN_LIST);
-//        RouteBindingView routeBindingView = (RouteBindingView) context.getAttribute(IN_PARAM);
+		if (log.isDebugEnabled()) {
+			log.debug("enter into execute");
+		}
+		// /** add by jornezhang 20100108 BMS-2362 增加交易流水记录 begin */
+		// TxtNumRecordUtil.getInstance().resetGlobalDataAllBlank();
+		// /** add by jornezhang 20100108 BMS-2362 增加交易流水记录 end */
+		List inList = (List) context.getAttribute(IN_LIST);
+		// RouteBindingView routeBindingView = (RouteBindingView)
+		// context.getAttribute(IN_PARAM);
 
+		// String routeId = (String) context.getAttribute(IN_ROUTEID);
+		RouteService routeService = RouteService.getInstance();
 
+		// routeService.saveRouteBinding(routeBindingView);
+		routeService.saveRouteBinding(inList);
 
-//        String routeId =  (String) context.getAttribute(IN_ROUTEID);
-        RouteService routeService = RouteService.getInstance();
+		// context.setAttribute(OUT_PARAM_All_RESULT,result);
 
-//        routeService.saveRouteBinding(routeBindingView);
-        routeService.saveRouteBinding(inList);
+		if (log.isDebugEnabled()) {
+			log.debug("Exit execute");
+		}
+	}
 
-//        context.setAttribute(OUT_PARAM_All_RESULT,result);
-
-        if (log.isDebugEnabled()) {
-            log.debug("Exit execute");
-        }
-    }
-
-    /* (non-Javadoc)
-     * @see com.huateng.ebank.framework.operation.BaseOperation#afterProc(com.huateng.ebank.framework.operation.OperationContext)
-     */
-    @Override
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.huateng.ebank.framework.operation.BaseOperation#afterProc(com.huateng
+	 * .ebank.framework.operation.OperationContext)
+	 */
+	@Override
 	public void afterProc(OperationContext context) throws CommonException {
-        // TODO Auto-generated method stub
-    }
+		// TODO Auto-generated method stub
+	}
 
 }

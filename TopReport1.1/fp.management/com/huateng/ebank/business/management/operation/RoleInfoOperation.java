@@ -6,13 +6,13 @@
  */
 package com.huateng.ebank.business.management.operation;
 
-import java.util.List;
-
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.service.pub.RoleInfoService;
 import com.huateng.view.pub.RoleInfoView;
+
+import java.util.List;
 
 /**
  * Title: com.huateng.ebank.business.management.operation.RoleInfoOperation.java

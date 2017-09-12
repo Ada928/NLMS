@@ -20,23 +20,22 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.operation.BopCfaDofoexloDsChangeInfoOperation;
 
-public class BopCfaDofoexloDsChangeInfoAuditUpdate extends BaseUpdate  {
+public class BopCfaDofoexloDsChangeInfoAuditUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "BopCfaDofoexloDsChangeInfoAudit";
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 
 		try {
-			//返回对象
+			// 返回对象
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			//结果集对象
+			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 
-			List<BopCfaDofoexloDs>approveList = new ArrayList<BopCfaDofoexloDs>();
+			List<BopCfaDofoexloDs> approveList = new ArrayList<BopCfaDofoexloDs>();
 			BopCfaDofoexloDs bopcfa = null;
 			while (updateResultBean.hasNext()) {
 				// 属性拷贝
@@ -52,23 +51,23 @@ public class BopCfaDofoexloDsChangeInfoAuditUpdate extends BaseUpdate  {
 			}
 			String approveStatus = updateResultBean.getParameter("approveStatusChoose");
 			String approveResult = updateResultBean.getParameter("approveResultChoose");
-			for(BopCfaDofoexloDs dofoexlods : approveList){
+			for (BopCfaDofoexloDs dofoexlods : approveList) {
 				dofoexlods.setApproveStatus(approveStatus);
 				dofoexlods.setApproveResult(approveResult);
 			}
 
-
-			//Operation参数
+			// Operation参数
 			OperationContext context = new OperationContext();
-			context.setAttribute(BopCfaDofoexloDsChangeInfoOperation.CMD, BopCfaDofoexloDsChangeInfoOperation.CMD_APPROVED);
+			context.setAttribute(BopCfaDofoexloDsChangeInfoOperation.CMD,
+					BopCfaDofoexloDsChangeInfoOperation.CMD_APPROVED);
 			context.setAttribute(BopCfaDofoexloDsChangeInfoOperation.IN_PARAM, approveList);
-			//call方式开启operation事务
+			// call方式开启operation事务
 			OPCaller.call(BopCfaDofoexloDsChangeInfoOperation.ID, context);
 			return updateReturnBean;
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
-			throw new AppException(Module.SYSTEM_MODULE,Rescode.DEFAULT_RESCODE,e.getMessage(),e);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
 	}
 

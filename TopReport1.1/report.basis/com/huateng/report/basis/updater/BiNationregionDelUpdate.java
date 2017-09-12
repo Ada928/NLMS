@@ -25,25 +25,25 @@ import com.huateng.report.basis.operation.BiNationregionOperation;
 public class BiNationregionDelUpdate extends BaseUpdate {
 
 	private static final String DATASET_ID = "BiNationregionEntry";
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
-			//返回对象
+			// 返回对象
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			//结果集对象
+			// 结果集对象
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
-			//更新对象
+			// 更新对象
 			BiNationregion biNationregion = new BiNationregion();
-			//Operation参数
+			// Operation参数
 			OperationContext context = new OperationContext();
-			if(updateResultBean.hasNext()) {
-				//属性拷贝
+			if (updateResultBean.hasNext()) {
+				// 属性拷贝
 				Map map = updateResultBean.next();
-				context.setAttribute(BiNationregionOperation.CMD,BiNationregionOperation.CMD_DEL);
+				context.setAttribute(BiNationregionOperation.CMD, BiNationregionOperation.CMD_DEL);
 				BaseUpdate.mapToObject(biNationregion, map);
-				//call方式开启operation事务
+				// call方式开启operation事务
 				context.setAttribute(BiNationregionOperation.IN_PARAM, biNationregion);
 				OPCaller.call(BiNationregionOperation.ID, context);
 				return updateReturnBean;
@@ -51,9 +51,9 @@ public class BiNationregionDelUpdate extends BaseUpdate {
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
-			throw new AppException(Module.SYSTEM_MODULE,Rescode.DEFAULT_RESCODE,e.getMessage(),e);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
 		return null;
 	}
-	
+
 }

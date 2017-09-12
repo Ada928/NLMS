@@ -14,13 +14,13 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 
 public class BiAccountService {
 
-	private static final String DATASET_ID="com.huateng.report.basis.service.BiAccountService";
+	private static final String DATASET_ID = "com.huateng.report.basis.service.BiAccountService";
 
-	private ROOTDAO rootDao ;
+	private ROOTDAO rootDao;
 
 	public synchronized static BiAccountService getInstance() {
 		return (BiAccountService) ApplicationContextUtils.getBean(DATASET_ID);
-		}
+	}
 
 	public PageQueryResult list(int pageIndex, int pageSize, String hql) throws CommonException {
 		PageQueryCondition queryCondition = new PageQueryCondition();
@@ -33,39 +33,37 @@ public class BiAccountService {
 
 	public BiAccount load(Integer id) throws CommonException {
 
-		rootDao= ROOTDAOUtils.getROOTDAO();
+		rootDao = ROOTDAOUtils.getROOTDAO();
 
-		return (BiAccount)rootDao.query(BiAccount.class, id);
+		return (BiAccount) rootDao.query(BiAccount.class, id);
 	}
 
 	public void delete(String id) throws CommonException {
 
-		rootDao= ROOTDAOUtils.getROOTDAO();
+		rootDao = ROOTDAOUtils.getROOTDAO();
 		BiAccount biAccount = (BiAccount) rootDao.query(BiAccount.class, id);
 
-		if(null == biAccount)
-		{
+		if (null == biAccount) {
 			ExceptionUtil.throwCommonException("当前记录不存在！");
-		}else
-		    rootDao.delete(biAccount.getClass(), id);
+		} else
+			rootDao.delete(biAccount.getClass(), id);
 	}
 
 	public void save(BiAccount biAccount) throws CommonException {
 
-		rootDao= ROOTDAOUtils.getROOTDAO();
-		BiAccount eAccount = (BiAccount) rootDao.query(BiAccount.class, (String)biAccount.getId());
+		rootDao = ROOTDAOUtils.getROOTDAO();
+		BiAccount eAccount = (BiAccount) rootDao.query(BiAccount.class, (String) biAccount.getId());
 
-		if(null != eAccount)
-		{
+		if (null != eAccount) {
 			ExceptionUtil.throwCommonException("当前记录已存在！");
-		}else
+		} else
 			rootDao.save(biAccount);
 
 	}
 
 	public void update(BiAccount biAccount) throws CommonException {
 
-		rootDao= ROOTDAOUtils.getROOTDAO();
+		rootDao = ROOTDAOUtils.getROOTDAO();
 
 		rootDao.saveOrUpdate(biAccount);
 

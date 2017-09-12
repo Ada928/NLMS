@@ -21,10 +21,9 @@ public class SubFileInfoErrGetter extends BaseGetter {
 	public Result call() throws AppException {
 		// TODO Auto-generated method stub
 		try {
-			PageQueryResult pageResult  = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), 
-					getCommQueryServletRequest(), 
-					pageResult.getQueryResult(),getResult());
+			PageQueryResult pageResult = getData();
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
@@ -32,25 +31,24 @@ public class SubFileInfoErrGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
-	} 
-	
-	private PageQueryResult getData() throws CommonException{
+	}
+
+	private PageQueryResult getData() throws CommonException {
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
 		String fileName = getCommQueryServletRequest().getParameter("fileName");
 		String hql = "select sf,rf from SubFileInfo sf,RepFileErrDet rf  where sf.id = rf.repFileName";
-		 if(StringUtils.isNotBlank(fileName)){
-			 hql +=" and sf.id = '"+fileName+"'";
-		 }
-		PageQueryCondition pc =new PageQueryCondition();
+		if (StringUtils.isNotBlank(fileName)) {
+			hql += " and sf.id = '" + fileName + "'";
+		}
+		PageQueryCondition pc = new PageQueryCondition();
 		pc.setPageIndex(pageIndex);
 		pc.setPageSize(pageSize);
 		pc.setQueryString(hql);
 		HQLDAO hqlDao = DAOUtils.getHQLDAO();
 		return hqlDao.pageQueryByQL(pc);
-		
+
 	}
 }

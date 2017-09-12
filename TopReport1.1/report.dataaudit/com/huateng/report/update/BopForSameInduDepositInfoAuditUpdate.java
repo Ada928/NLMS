@@ -24,38 +24,36 @@ public class BopForSameInduDepositInfoAuditUpdate extends BaseUpdate {
 
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
-			throws AppException {
+			HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AppException {
 		// TODO Auto-generated method stub
 
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("BopForSameInduDepositInfoAudit");
+			UpdateResultBean updateResultBean = multiUpdateResultBean
+					.getUpdateResultBeanByID("BopForSameInduDepositInfoAudit");
 			List<BopCfaExdebtDs> bopCfaExDsList = new ArrayList<BopCfaExdebtDs>();
-			while (updateResultBean.hasNext())
-			{
+			while (updateResultBean.hasNext()) {
 				BopCfaExdebtDs bopCfaExdebtDs = new BopCfaExdebtDs();
 				Map map = updateResultBean.next();
-				mapToObject(bopCfaExdebtDs,map);
+				mapToObject(bopCfaExdebtDs, map);
 				bopCfaExDsList.add(bopCfaExdebtDs);
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
 			String approveResultChoose = updateResultBean.getParameter("approveResultChoose");
-			
+
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(BopForSameInduDepositOperation.CMD, BopForSameInduDepositOperation.CMD_SIGN_AUDIT);
 			oc.setAttribute(BopForSameInduDepositOperation.SIGN_IN_LIST, bopCfaExDsList);
 			oc.setAttribute(BopForSameInduDepositOperation.IN_AUDIT_STATUS, approveStatusChoose);
 			oc.setAttribute(BopForSameInduDepositOperation.IN_AUDIT_RESULT, approveResultChoose);
 			OPCaller.call(BopForSameInduDepositOperation.ID, oc);
-			
+
 			return updateReturnBean;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
-	} 
+	}
 
 }

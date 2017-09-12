@@ -18,40 +18,38 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.basis.operation.CustomerReaOperation;
 
-public class CustomerReaDelUpdate extends BaseUpdate{
-	
+public class CustomerReaDelUpdate extends BaseUpdate {
+
 	private static final String DATASET_ID = "CustomerReaEntry";
-	
+
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
-			throws AppException {
+			HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AppException {
 		// TODO Auto-generated method stub
-	
+
 		try {
 			UpdateReturnBean updateRetrunBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATASET_ID);
 			BiCustomer bi = new BiCustomer();
-			//Operation 的参数
+			// Operation 的参数
 			OperationContext oc = new OperationContext();
-			
-			if(updateResultBean.hasNext()){
+
+			if (updateResultBean.hasNext()) {
 				Map map = updateResultBean.next();
 				oc.setAttribute(CustomerReaOperation.CMD, CustomerReaOperation.CMD_DELETE);
-				//属性拷贝
+				// 属性拷贝
 				mapToObject(bi, map);
 			}
 			oc.setAttribute(CustomerReaOperation.IN_PARAM, bi);
 			OPCaller.call(CustomerReaOperation.ID, oc);
 			return updateRetrunBean;
-			
+
 		} catch (AppException Ae) {
 			// TODO: handle exception
 			throw Ae;
-		}catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+		} catch (Exception ex) {
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
-	
+
 }

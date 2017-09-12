@@ -5,56 +5,43 @@ import com.huateng.ebank.entity.data.workflow.base.BaseWorkflowParam;
 public class WorkflowParam extends BaseWorkflowParam {
 	private static final long serialVersionUID = 1L;
 
-/*[CONSTRUCTOR MARKER BEGIN]*/
-	public WorkflowParam () {
+	/* [CONSTRUCTOR MARKER BEGIN] */
+	public WorkflowParam() {
 		super();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public WorkflowParam (long id) {
+	public WorkflowParam(long id) {
 		super(id);
 	}
 
 	/**
 	 * Constructor for required fields
 	 */
-	public WorkflowParam (
-		long id,
-		java.lang.String processTemplate,
-		java.lang.String taskName,
-		java.lang.String apptype,
-		java.lang.String brclass,
-		java.lang.String bizClass,
-		java.lang.String bizSubclass) {
+	public WorkflowParam(long id, java.lang.String processTemplate, java.lang.String taskName, java.lang.String apptype,
+			java.lang.String brclass, java.lang.String bizClass, java.lang.String bizSubclass) {
 
-		super (
-			id,
-			processTemplate,
-			taskName,
-			apptype,
-			brclass,
-			bizClass,
-			bizSubclass);
+		super(id, processTemplate, taskName, apptype, brclass, bizClass, bizSubclass);
 	}
 
-/*[CONSTRUCTOR MARKER END]*/
-	/*工作流模板名 */
+	/* [CONSTRUCTOR MARKER END] */
+	/* 工作流模板名 */
 	private String processTemplateName;
-	/* 任务名*/
+	/* 任务名 */
 	private String taskNameLable;
 	/* 贷款品种类型 */
 	private String bizSubclassName;
-	/*申请类型*/
+	/* 申请类型 */
 	private String appTypeName;
-	/* 审批类型*/
+	/* 审批类型 */
 	private String bizClassName;
 
 	private String taskNameName;
 
 	private String brclassName;
-	
+
 	private String workflowRoleName;
 
 	public String getProcessTemplateName() {
@@ -120,7 +107,5 @@ public class WorkflowParam extends BaseWorkflowParam {
 	public void setWorkflowRoleName(String workflowRoleName) {
 		this.workflowRoleName = workflowRoleName;
 	}
-	
-	
 
 }

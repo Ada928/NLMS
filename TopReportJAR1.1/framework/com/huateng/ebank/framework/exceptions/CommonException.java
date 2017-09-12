@@ -18,14 +18,15 @@ import com.huateng.exception.AppException;
  * @author liu_wen@huateng.com
  * @version $Revision: 1.2 $
  *
- * 应用异常的基类。 可以使用 <code>com.huateng.ebank.framework.util.ExceptionUtil</code>
- * 类方便的掷出此异常。 可以和STRUTS中的ApplicationResources结合使用。
+ *          应用异常的基类。 可以使用
+ *          <code>com.huateng.ebank.framework.util.ExceptionUtil</code>
+ *          类方便的掷出此异常。 可以和STRUTS中的ApplicationResources结合使用。
  *
- * 例如： 在ApplicationResources中定义 errors.required={0}不能为空, 错误代码{1}。
+ *          例如： 在ApplicationResources中定义 errors.required={0}不能为空, 错误代码{1}。
  *
- * 我们可以相对应的构造异常： key="errors.required"; objs={"帐号","E00001"};
+ *          我们可以相对应的构造异常： key="errors.required"; objs={"帐号","E00001"};
  *
- * 错误信息会被替换为: 帐号不能为空，错误代码E00001。
+ *          错误信息会被替换为: 帐号不能为空，错误代码E00001。
  */
 public class CommonException extends AppException {
 	/**
@@ -48,8 +49,8 @@ public class CommonException extends AppException {
 		this.errMessage = errorMsg;
 	}
 
-	public CommonException(String key,String errorMsg){
-		super("",key,errorMsg);
+	public CommonException(String key, String errorMsg) {
+		super("", key, errorMsg);
 		this.errMessage = errorMsg;
 		this.key = key;
 	}
@@ -80,9 +81,8 @@ public class CommonException extends AppException {
 	}
 
 	@Override
-	public String toString(){
+	public String toString() {
 		return message();
 	}
-
 
 }

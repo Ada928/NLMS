@@ -20,13 +20,12 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.jsh.audit.operation.JshDfDsAuditOperation;
 
-public class JshDfDsManageAuditUpdate extends BaseUpdate{
+public class JshDfDsManageAuditUpdate extends BaseUpdate {
 
 	public static final String DATA_SET_MANAGE_ID = "JshDfDsManageAudit";
-	
+
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
 		// TODO Auto-generated method stub
 		try {
@@ -34,7 +33,7 @@ public class JshDfDsManageAuditUpdate extends BaseUpdate{
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(DATA_SET_MANAGE_ID);
 			OperationContext context = new OperationContext();
 			List<MtsJshDefgDs> list = new ArrayList<MtsJshDefgDs>();
-			while(updateResultBean.hasNext()) {
+			while (updateResultBean.hasNext()) {
 				Map map = updateResultBean.next();
 				MtsJshDefgDs ds = new MtsJshDefgDs();
 				mapToObject(ds, map);
@@ -42,7 +41,7 @@ public class JshDfDsManageAuditUpdate extends BaseUpdate{
 			}
 			String approveStatusChoose = updateResultBean.getParameter("approveStatusChoose");
 			String approveResultChoose = updateResultBean.getParameter("approveResultChoose");
-			context.setAttribute(JshDfDsAuditOperation.MANAGE_AUDIT_LIST_IN_PARAM,list);
+			context.setAttribute(JshDfDsAuditOperation.MANAGE_AUDIT_LIST_IN_PARAM, list);
 			context.setAttribute(JshDfDsAuditOperation.AUDIT_STATUS, approveStatusChoose);
 			context.setAttribute(JshDfDsAuditOperation.AUDIT_RESULT, approveResultChoose);
 			context.setAttribute(JshDfDsAuditOperation.CMD, JshDfDsAuditOperation.CMD_MANAGE_AUDIT);
@@ -51,7 +50,7 @@ public class JshDfDsManageAuditUpdate extends BaseUpdate{
 		} catch (AppException appe) {
 			throw appe;
 		} catch (Exception e) {
-			throw new AppException(Module.SYSTEM_MODULE,Rescode.DEFAULT_RESCODE,e.getMessage(),e);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage(), e);
 		}
 	}
 }

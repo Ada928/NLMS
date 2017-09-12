@@ -9,23 +9,20 @@
 	  			<FIELDSET name='group6' style="padding: 6px;">
 					<LEGEND>外汇月牌价维护详细信息</LEGEND>
 					<table frame=void width="100%" class="grouptable" id="detailTable">
-					<tr>
-					             
+						<tr>
 		                  <td nowrap class="labeltd" colspan=2>修改前</td>
-						          
-						   <td nowrap class="labeltd" colspan=2>修改后</td>
-						 
+						  <td nowrap class="labeltd" colspan=2>修改后</td>
 						</tr>
 		            	<tr>
 		                  <td nowrap class="labeltd">币种</td>
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_id"/></td>
-						   <td nowrap class="labeltd">币种</td>
+						  <td nowrap class="labeltd">币种</td>
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="id"/></td>
 						</tr>
 		            	<tr>
 		                  <td nowrap class="labeltd">单位</td>
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_rateUnit"/></td>
-						   <td nowrap class="labeltd">单位</td>
+						  <td nowrap class="labeltd">单位</td>
 						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="rateUnit"/></td>
 						</tr>
 						<tr>
@@ -37,7 +34,7 @@
 		                <tr>
 		                  <td nowrap class="labeltd">中间价</td>
 		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_rateMidprice"/></td>
-		                   <td nowrap class="labeltd">中间价</td>
+		                  <td nowrap class="labeltd">中间价</td>
 						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="rateMidprice"/></td>
 		                </tr>        
 					</table>

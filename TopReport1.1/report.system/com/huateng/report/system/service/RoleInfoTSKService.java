@@ -13,12 +13,13 @@ import resource.report.dao.ROOTDAOUtils;
 
 import com.huateng.ebank.business.common.BaseDAOUtils;
 import com.huateng.ebank.business.common.GlobalInfo;
+import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
 import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.report.utils.ReportEnum;
-import com.huateng.report.utils.ReportTaskUtil;
 import com.huateng.report.utils.ReportEnum.REPORT_TASK_FUNCID;
+import com.huateng.report.utils.ReportTaskUtil;
 
 /**
  * @author jianxue.zhang
@@ -37,8 +38,7 @@ public class RoleInfoTSKService {
 	 * @return
 	 */
 	public synchronized static RoleInfoTSKService getInstance() {
-		return (RoleInfoTSKService) ApplicationContextUtils
-				.getBean("RoleInfoTSKService");
+		return (RoleInfoTSKService) ApplicationContextUtils.getBean("RoleInfoTSKService");
 	}
 
 	/**
@@ -49,30 +49,29 @@ public class RoleInfoTSKService {
 	 * @param updateList
 	 * @throws CommonException
 	 */
-	public void saveCustRole(List<RoleInfo> insertList, 
-			List<RoleInfo> updateList) throws CommonException {
+	public void saveCustRole(List<RoleInfo> insertList, List<RoleInfo> updateList) throws CommonException {
 		RoleInfoDAO roleInfoDAO = BaseDAOUtils.getRoleInfoDAO();
-		ROOTDAO rootdao=ROOTDAOUtils.getROOTDAO();
-		//新增岗位
-		TaskListService tls= TaskListService.getInstance();
-		//不审核
-		GlobalInfo  gi=GlobalInfo.getCurrentInstance();
-		if(!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100299.value)){
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		// 新增岗位
+		TaskListService tls = TaskListService.getInstance();
+		// 不审核
+		GlobalInfo gi = GlobalInfo.getCurrentInstance();
+		if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100299.value)) {
 
 			for (RoleInfo bean : insertList) {
-				bean.setIsLock("0");
+				bean.setLock(SystemConstant.FALSE);
 				bean.setSt(ReportEnum.REPORT__FH_ST.YES.value);
 				roleInfoDAO.save(bean);
-				//取出rolelist执行插入;
-				String roleList=bean.getRoleList();
+				// 取出rolelist执行插入;
+				String roleList = bean.getRoleList();
 				tls.updateRoleFunc(bean.getId(), roleList);
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrcode(),"角色的新增"});
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "角色的新增" });
 			}
 
-			//更新新岗位
+			// 更新新岗位
 			for (RoleInfo bean : updateList) {
-				//先将数据库中的那条数据的状态更新:
-				bean.setIsLock("0");
+				// 先将数据库中的那条数据的状态更新:
+				bean.setLock(SystemConstant.FALSE);
 				bean.setSt(ReportEnum.REPORT__FH_ST.YES.value);
 				roleInfoDAO.update(bean);
 				String roleListNew = bean.getRoleList();
@@ -81,45 +80,44 @@ public class RoleInfoTSKService {
 					roleListNew = "";
 				}
 				tls.updateRoleFunc(bean.getId(), roleListNew);
-				gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrcode(),"角色的修改"});
-				}
-			
-			
-			
-		}
-		else{
-		for (RoleInfo bean : insertList) {
-			roleInfoDAO.save(bean);
-			//取出rolelist执行插入;
-			String roleList=bean.getRoleList();
-			tls.updateRoleFunc(bean.getId(), roleList);
-			//先保存
-			String updCd= "01";
-			String oldst="1";
-			try {
-				SysTaskInfo syst=ReportTaskUtil.getSysTaskInfoBean(REPORT_TASK_FUNCID.TASK_100299.value, updCd, bean, String.valueOf(bean.getId()), oldst);
-				rootdao.saveOrUpdate(syst);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				gi.addBizLog("Updater.log", new String[] { gi.getTlrno(), gi.getBrcode(), "角色的修改" });
 			}
-		}
 
-		//更新新岗位
-		for (RoleInfo bean : updateList) {
-			//先将数据库中的那条数据的状态更新:
-			RoleInfo roleInfo = null;
-			roleInfo= roleInfoDAO.findById(bean.getId());
-			//设为修改
-			roleInfo.setSt("2");
-			//设为锁定
-			roleInfo.setIsLock("1");
-			roleInfoDAO.update(roleInfo);
-				String updCd= "02";
-				String oldst="2";
-				
+		} else {
+			for (RoleInfo bean : insertList) {
+				roleInfoDAO.save(bean);
+				// 取出rolelist执行插入;
+				String roleList = bean.getRoleList();
+				tls.updateRoleFunc(bean.getId(), roleList);
+				// 先保存
+				String updCd = "01";
+				String oldst = "1";
 				try {
-					SysTaskInfo syst=ReportTaskUtil.getSysTaskInfoBean(REPORT_TASK_FUNCID.TASK_100299.value, updCd, bean, String.valueOf(bean.getId()), oldst);
+					SysTaskInfo syst = ReportTaskUtil
+							.getSysTaskInfoBean(REPORT_TASK_FUNCID.TASK_100299.value, updCd, bean, String.valueOf(bean.getId()), oldst);
+					rootdao.saveOrUpdate(syst);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			// 更新新岗位
+			for (RoleInfo bean : updateList) {
+				// 先将数据库中的那条数据的状态更新:
+				RoleInfo roleInfo = null;
+				roleInfo = roleInfoDAO.findById(bean.getId());
+				// 设为修改
+				roleInfo.setSt("2");
+				// 设为锁定
+				roleInfo.setLock(SystemConstant.TRUE);
+				roleInfoDAO.update(roleInfo);
+				String updCd = "02";
+				String oldst = "2";
+
+				try {
+					SysTaskInfo syst = ReportTaskUtil
+							.getSysTaskInfoBean(REPORT_TASK_FUNCID.TASK_100299.value, updCd, bean, String.valueOf(bean.getId()), oldst);
 					rootdao.saveOrUpdate(syst);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -128,8 +126,4 @@ public class RoleInfoTSKService {
 			}
 		}
 	}
-	}
-
-
-
-
+}

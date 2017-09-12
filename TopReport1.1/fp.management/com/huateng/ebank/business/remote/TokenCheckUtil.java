@@ -1,12 +1,11 @@
 package com.huateng.ebank.business.remote;
 
-import javax.servlet.http.HttpSession;
-
+import com.huateng.ebank.business.common.GlobalInfo;
+import com.huateng.ebank.business.remote.base.SessionFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.huateng.ebank.business.common.GlobalInfo;
-import com.huateng.ebank.business.remote.base.SessionFactory;
+import javax.servlet.http.HttpSession;
 
 public class TokenCheckUtil {
 	private static Log log = LogFactory.getLog(TokenCheckUtil.class);  

@@ -21,7 +21,6 @@ import com.huateng.topbpm.TopBPMConfiguration;
 import com.huateng.topbpm.TopBPMContext;
 import com.huateng.topbpm.graph.def.ProcessDefinition;
 
-
 /**
  * @author fubo
  * @company huateng
@@ -50,16 +49,16 @@ public class WorkflowTempletNameSelectGetter extends BaseGetter {
 		try {
 
 			WorkflowBussTempletRelDAO WorkflowBussTempletRelDAO = DAOUtils.getWorkflowBussTempletRelDAO();
-			relList = WorkflowBussTempletRelDAO.queryByCondition("bussProc = '"+bussProc+"'");
-			if(relList!=null&&relList.size()!=0){
+			relList = WorkflowBussTempletRelDAO.queryByCondition("bussProc = '" + bussProc + "'");
+			if (relList != null && relList.size() != 0) {
 				WorkflowBussTempletRel workflowBussTempletRel = new WorkflowBussTempletRel();
-				workflowBussTempletRel = (WorkflowBussTempletRel)relList.get(0);
+				workflowBussTempletRel = (WorkflowBussTempletRel) relList.get(0);
 				templetName = workflowBussTempletRel.getTempletName();
 			}
 
 			TopBPMConfiguration topbpmConfiguration = TopBPMConfiguration.getInstance();
 
-			TopBPMContext topBPMContext= topbpmConfiguration.createTopBPMContext();
+			TopBPMContext topBPMContext = topbpmConfiguration.createTopBPMContext();
 			topBPMContext.setSession(session);
 
 			List proclist = topBPMContext.getGraphSession().findLatestProcessDefinitions();
@@ -67,35 +66,34 @@ public class WorkflowTempletNameSelectGetter extends BaseGetter {
 			List resultList = new ArrayList();
 			Iterator iter = proclist.iterator();
 
-			while(iter.hasNext()){
+			while (iter.hasNext()) {
 				WorkflowTempletBean outBean = new WorkflowTempletBean();
 				ProcessDefinition processDefinition = new ProcessDefinition();
-				processDefinition = (ProcessDefinition)iter.next();
+				processDefinition = (ProcessDefinition) iter.next();
 				outBean.setId(processDefinition.getId());
 				outBean.setName(processDefinition.getName());
 				outBean.setDescription(processDefinition.getDescription());
-				if(templetName==null){
+				if (templetName == null) {
 					outBean.setSelect(false);
-				}else{
-					if(templetName.equals(processDefinition.getName())){
+				} else {
+					if (templetName.equals(processDefinition.getName())) {
 						outBean.setSelect(true);
-					}else{
+					} else {
 						outBean.setSelect(false);
 					}
 				}
 				resultList.add(outBean);
 			}
 
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), resultList, getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), resultList, getResult());
 			getResult().setContent(list);
 			getResult().getPage().setTotalPage(1);
 			getResult().init();
 		} catch (RuntimeException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
-			if(session!=null && session.isOpen()){
+		} finally {
+			if (session != null && session.isOpen()) {
 				session.close();
 			}
 		}

@@ -34,21 +34,22 @@ import com.huateng.report.utils.ReportUtils;
 
 /**
  * operation for save query delete add
+ * 
  * @author cwenao
  * @date 2012-09-20
- * */
+ */
 
 public class BopForWorkConfirmedService {
-	private static final String DATASET_ID="com.huateng.report.workconfirmed.service.BopForWorkConfirmedService";
+	private static final String DATASET_ID = "com.huateng.report.workconfirmed.service.BopForWorkConfirmedService";
 	private static final String HQL_TABLENAME = "TABLENAME";
 	private static final String SEARCH_ALL_BCTL = " SELECT brno FROM Bctl ORDER BY brno ";
 
-	private ROOTDAO rootDao ;
+	private ROOTDAO rootDao;
 	private HtLog htLog = HtLogFactory.getLogger(BopForWorkConfirmedService.class);
 
 	public synchronized static BopForWorkConfirmedService getInstance() {
 		return (BopForWorkConfirmedService) ApplicationContextUtils.getBean(DATASET_ID);
-		}
+	}
 
 	public PageQueryResult list(int pageIndex, int pageSize, String hql) throws CommonException {
 		PageQueryCondition queryCondition = new PageQueryCondition();
@@ -61,19 +62,18 @@ public class BopForWorkConfirmedService {
 
 	public BiExecConfirm load(BiExecConfirmPK id) throws CommonException {
 
-		rootDao= ROOTDAOUtils.getROOTDAO();
+		rootDao = ROOTDAOUtils.getROOTDAO();
 
-		return (BiExecConfirm)rootDao.query(BiExecConfirm.class, id);
+		return (BiExecConfirm) rootDao.query(BiExecConfirm.class, id);
 	}
 
 	public void doConfirmed(BiExecConfirm biExecCon) throws CommonException {
 
-		rootDao= ROOTDAOUtils.getROOTDAO();
+		rootDao = ROOTDAOUtils.getROOTDAO();
 
 		BiExecConfirm biExecConTemp = (BiExecConfirm) rootDao.query(BiExecConfirm.class, biExecCon.getId());
 
-		if(TopReportConstants.REPORT_SUBFILE_STATUS_01.equalsIgnoreCase(biExecConTemp.getSubfileStatus()))
-		{
+		if (TopReportConstants.REPORT_SUBFILE_STATUS_01.equalsIgnoreCase(biExecConTemp.getSubfileStatus())) {
 			ExceptionUtil.throwCommonException("工作完成上报状态为【已锁定】,工作完成确认状态为不能更改为【已确认】");
 		}
 
@@ -83,12 +83,10 @@ public class BopForWorkConfirmedService {
 
 	public void doCancel(BiExecConfirm biExecCon) throws CommonException {
 
-
-		rootDao= ROOTDAOUtils.getROOTDAO();
+		rootDao = ROOTDAOUtils.getROOTDAO();
 		BiExecConfirm biExecConTemp = (BiExecConfirm) rootDao.query(BiExecConfirm.class, biExecCon.getId());
 
-		if(TopReportConstants.REPORT_SUBFILE_STATUS_01.equalsIgnoreCase(biExecConTemp.getSubfileStatus()))
-		{
+		if (TopReportConstants.REPORT_SUBFILE_STATUS_01.equalsIgnoreCase(biExecConTemp.getSubfileStatus())) {
 			ExceptionUtil.throwCommonException("工作完成上报状态为【已锁定】,工作完成确认状态不能更改为【已确认】");
 		}
 
@@ -97,21 +95,23 @@ public class BopForWorkConfirmedService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<SupplyEnterVerifyStateQueryBean> pageQueryByHql(String workdate, String brno,String busiType, String apptype,String currentfile, String isShowZero) throws CommonException {
+	public List<SupplyEnterVerifyStateQueryBean> pageQueryByHql(String workdate, String brno, String busiType,
+			String apptype, String currentfile, String isShowZero) throws CommonException {
 
 		/**
 		 * 并接SQL语句，按照BRNO, APPTYPE, CURRENTFILE, RECSTATUS进行分组，然后取每组的记录数
 		 */
 		StringBuilder countHql = new StringBuilder();
-		countHql.append(" SELECT brNo, apptype, currentfile, recStatus, count(*) AS stacount FROM ").append(HQL_TABLENAME).append(" WHERE workDate = ? AND repStatus <> ? ");
-		List<Object>paralist = new ArrayList<Object>();
+		countHql.append(" SELECT brNo, apptype, currentfile, recStatus, count(*) AS stacount FROM ")
+				.append(HQL_TABLENAME).append(" WHERE workDate = ? AND repStatus <> ? ");
+		List<Object> paralist = new ArrayList<Object>();
 		paralist.add(workdate);
 		paralist.add(TopReportConstants.REPORT_REPSTATUS_01);
-		if (StringUtils.isNotEmpty(brno)){
+		if (StringUtils.isNotEmpty(brno)) {
 			countHql.append(" AND brNo = ? ");
 			paralist.add(brno);
 		}
-		if (StringUtils.isNotEmpty(currentfile)){
+		if (StringUtils.isNotEmpty(currentfile)) {
 			countHql.append(" AND currentfile = ? ");
 			paralist.add(currentfile);
 		}
@@ -120,20 +120,19 @@ public class BopForWorkConfirmedService {
 		ReportCommonService reportCommonService = ReportCommonService.getInstance();
 		Map<String, List<DataDic>> map = reportCommonService.getAppAndFileTypeByDataDic(busiType, apptype, currentfile);
 
-		Set<String> tablenameSet = ReportUtils.getTableName(map);//获取表名
+		Set<String> tablenameSet = ReportUtils.getTableName(map);// 获取表名
 
 		List<SupplyEnterVerifyStateQueryBean> list = new ArrayList<SupplyEnterVerifyStateQueryBean>();
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		for (String tablename : tablenameSet) {
 			String hql = countHql.toString().replaceAll(HQL_TABLENAME, StringUtils.trim(tablename));
-			List<Object[]>groupList = rootdao.queryByQL2List(hql, paralist.toArray(), null);
+			List<Object[]> groupList = rootdao.queryByQL2List(hql, paralist.toArray(), null);
 			for (Object[] obj : groupList) {
 				list.add(createQueryBean(workdate, groupList, obj));
 			}
 		}
 
 		Map<String, SupplyEnterVerifyStateQueryBean> querymap = assembleQueryBean(list);
-
 
 		querymap = generateEmptyRecord(workdate, brno, isShowZero, map, querymap);
 		list = new ArrayList(querymap.size());
@@ -142,13 +141,12 @@ public class BopForWorkConfirmedService {
 		/**
 		 * 按照BRNO,APPTYPE, CURRENTFILE依次对集合进行排序
 		 */
-		Collections.sort(list, new Comparator<SupplyEnterVerifyStateQueryBean>(){
-			public int compare(SupplyEnterVerifyStateQueryBean o1,
-					SupplyEnterVerifyStateQueryBean o2) {
+		Collections.sort(list, new Comparator<SupplyEnterVerifyStateQueryBean>() {
+			public int compare(SupplyEnterVerifyStateQueryBean o1, SupplyEnterVerifyStateQueryBean o2) {
 				int result = o1.getBrNo().compareTo(o2.getBrNo());
-				if(0 == result){
+				if (0 == result) {
 					result = o1.getApptype().compareTo(o2.getApptype());
-					if(0 == result){
+					if (0 == result) {
 						return o1.getCurrentfile().compareTo(o2.getCurrentfile());
 					}
 					return result;
@@ -160,7 +158,6 @@ public class BopForWorkConfirmedService {
 		return list;
 
 	}
-
 
 	@SuppressWarnings("unchecked")
 	private SupplyEnterVerifyStateQueryBean createQueryBean(String workdate, List groupList, Object[] obj) {
@@ -190,11 +187,11 @@ public class BopForWorkConfirmedService {
 
 	/**
 	 * 将查询出的数据进行统计，将同一brno,apptype,currentfile的记录组合成一条记录
+	 * 
 	 * @param list
 	 * @return
 	 */
-	private Map<String, SupplyEnterVerifyStateQueryBean> assembleQueryBean(
-			List<SupplyEnterVerifyStateQueryBean> list) {
+	private Map<String, SupplyEnterVerifyStateQueryBean> assembleQueryBean(List<SupplyEnterVerifyStateQueryBean> list) {
 		Map<String, SupplyEnterVerifyStateQueryBean> querymap = new HashMap<String, SupplyEnterVerifyStateQueryBean>();
 		SupplyEnterVerifyStateQueryBean beanInMap = null;
 		for (SupplyEnterVerifyStateQueryBean bean : list) {
@@ -212,8 +209,10 @@ public class BopForWorkConfirmedService {
 		}
 		return querymap;
 	}
+
 	/**
 	 * 如果 是否显示审核为0的数据 选择了是 ，则按照BCTL的机构号码对没有查询出的机构组成新的记录数位0的记录
+	 * 
 	 * @param workdate
 	 * @param brno
 	 * @param isShowZero
@@ -222,9 +221,9 @@ public class BopForWorkConfirmedService {
 	 * @return
 	 * @throws CommonException
 	 */
-	private Map<String, SupplyEnterVerifyStateQueryBean> generateEmptyRecord(String workdate,
-			String brno, String isShowZero, Map<String, List<DataDic>> map,
-			Map<String, SupplyEnterVerifyStateQueryBean> querymap) throws CommonException {
+	private Map<String, SupplyEnterVerifyStateQueryBean> generateEmptyRecord(String workdate, String brno,
+			String isShowZero, Map<String, List<DataDic>> map, Map<String, SupplyEnterVerifyStateQueryBean> querymap)
+					throws CommonException {
 		if (StringUtils.equals(isShowZero, "1")) {
 			List<String> branchList = getBranchcodeList(brno);
 			for (Iterator<Entry<String, List<DataDic>>> iter = map.entrySet().iterator(); iter.hasNext();) {
@@ -247,8 +246,10 @@ public class BopForWorkConfirmedService {
 		}
 		return querymap;
 	}
+
 	/**
 	 * 如果 已经选择了 所属机构 ，则按照 用户在页面上选的机构号查询，否则，查询所有机构
+	 * 
 	 * @param brno
 	 * @param rootdao
 	 * @return

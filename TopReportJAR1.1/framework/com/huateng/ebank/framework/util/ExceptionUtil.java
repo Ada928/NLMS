@@ -33,46 +33,57 @@ import com.huateng.ebank.framework.exceptions.CommonException;
  * @author liu_wen@huateng.com
  * @version $$Revision: 1.2 $$
  *
- * 异常工具类.
+ *          异常工具类.
  * @see com.huateng.ebank.framework.exceptions.CommonException.
  */
 public class ExceptionUtil {
 
-	/** modify by shen_antonio 20111221 JIRA: FPP-3 i18n 
-	 * <P>throwCommonException:
-	 * <P>适用条件: 国际化环境使用
-	 * <P>执行流程: (这里描述这个方法的执行流程 – 可选)
-	 * <P>使用方法: (这里描述这个方法的使用方法 – 可选)
-	 * <P>注意事项: (这里描述这个方法的注意事项 – 可选)
+	/**
+	 * modify by shen_antonio 20111221 JIRA: FPP-3 i18n
+	 * <P>
+	 * throwCommonException:
+	 * <P>
+	 * 适用条件: 国际化环境使用
+	 * <P>
+	 * 执行流程: (这里描述这个方法的执行流程 – 可选)
+	 * <P>
+	 * 使用方法: (这里描述这个方法的使用方法 – 可选)
+	 * <P>
+	 * 注意事项: (这里描述这个方法的注意事项 – 可选)
 	 *
 	 * @param key
 	 * @param t
 	 * @param objs
 	 * @throws CommonException
-	 * @throws 
-	 * @since  ExceptionUtil Ver1.1
+	 * @throws @since
+	 *             ExceptionUtil Ver1.1
 	 */
-	public static void throwCommonException( String key, Throwable t, Object[] objs) throws CommonException {
-		CommonException ce = new CommonException(MessageResourceUtil.getErrorMessage("OPER_FAILED") + key,t);
+	public static void throwCommonException(String key, Throwable t, Object[] objs) throws CommonException {
+		CommonException ce = new CommonException(MessageResourceUtil.getErrorMessage("OPER_FAILED") + key, t);
 		ce.setKey(key);
 		ce.setObjs(objs);
 		throw ce;
 	}
-	
+
 	/**
-	 * <P>throwCommonException:
-	 * <P>适用条件: 国际化环境使用
-	 * <P>执行流程: (这里描述这个方法的执行流程 – 可选)
-	 * <P>使用方法: (这里描述这个方法的使用方法 – 可选)
-	 * <P>注意事项: (这里描述这个方法的注意事项 – 可选)
+	 * <P>
+	 * throwCommonException:
+	 * <P>
+	 * 适用条件: 国际化环境使用
+	 * <P>
+	 * 执行流程: (这里描述这个方法的执行流程 – 可选)
+	 * <P>
+	 * 使用方法: (这里描述这个方法的使用方法 – 可选)
+	 * <P>
+	 * 注意事项: (这里描述这个方法的注意事项 – 可选)
 	 *
 	 * @param key
 	 * @param objs
 	 * @throws CommonException
-	 * @throws 
-	 * @since  ExceptionUtil Ver1.1
+	 * @throws @since
+	 *             ExceptionUtil Ver1.1
 	 */
-	public static void throwCommonException( String key, Object[] objs) throws CommonException {
+	public static void throwCommonException(String key, Object[] objs) throws CommonException {
 		CommonException ce = new CommonException(MessageResourceUtil.getErrorMessage("OPER_FAILED") + key);
 		ce.setKey(key);
 		ce.setObjs(objs);
@@ -80,18 +91,23 @@ public class ExceptionUtil {
 	}
 
 	/**
-	 * <P>throwCommonException:(这里用一句话描述这个方法的作用)
-	 * <P>适用条件: 非国际化环境下使用 
-	 * <P>执行流程: (这里描述这个方法的执行流程 – 可选)
-	 * <P>使用方法: (这里描述这个方法的使用方法 – 可选)
-	 * <P>注意事项: (这里描述这个方法的注意事项 – 可选)
+	 * <P>
+	 * throwCommonException:(这里用一句话描述这个方法的作用)
+	 * <P>
+	 * 适用条件: 非国际化环境下使用
+	 * <P>
+	 * 执行流程: (这里描述这个方法的执行流程 – 可选)
+	 * <P>
+	 * 使用方法: (这里描述这个方法的使用方法 – 可选)
+	 * <P>
+	 * 注意事项: (这里描述这个方法的注意事项 – 可选)
 	 *
 	 * @param msg
 	 * @param key
 	 * @param t
 	 * @throws CommonException
-	 * @throws 
-	 * @since  ExceptionUtil Ver1.1
+	 * @throws @since
+	 *             ExceptionUtil Ver1.1
 	 * @deprecated since FlowPower 1.1
 	 */
 	public static void throwCommonException(String msg, String key, Throwable t) throws CommonException {
@@ -101,17 +117,22 @@ public class ExceptionUtil {
 	}
 
 	/**
-	 * <P>throwCommonException:(这里用一句话描述这个方法的作用)
-	 * <P>适用条件: 非国际化环境下使用 
-	 * <P>执行流程: (这里描述这个方法的执行流程 – 可选)
-	 * <P>使用方法: (这里描述这个方法的使用方法 – 可选)
-	 * <P>注意事项: (这里描述这个方法的注意事项 – 可选)
+	 * <P>
+	 * throwCommonException:(这里用一句话描述这个方法的作用)
+	 * <P>
+	 * 适用条件: 非国际化环境下使用
+	 * <P>
+	 * 执行流程: (这里描述这个方法的执行流程 – 可选)
+	 * <P>
+	 * 使用方法: (这里描述这个方法的使用方法 – 可选)
+	 * <P>
+	 * 注意事项: (这里描述这个方法的注意事项 – 可选)
 	 *
 	 * @param msg
 	 * @param key
 	 * @throws CommonException
-	 * @throws 
-	 * @since  ExceptionUtil Ver1.1
+	 * @throws @since
+	 *             ExceptionUtil Ver1.1
 	 * @deprecated since FlowPower 1.1
 	 */
 	public static void throwCommonException(String msg, String key) throws CommonException {
@@ -121,29 +142,35 @@ public class ExceptionUtil {
 	}
 
 	public static void throwCommonException(String key) throws CommonException {
-		/* modify by zhiguo.zhao JIRA: FPP-3 2011-12-16 begin .*/
-		/* old code  
-		   //CommonException ce = new CommonException("异常中的key值为:" + key);
+		/* modify by zhiguo.zhao JIRA: FPP-3 2011-12-16 begin . */
+		/*
+		 * old code //CommonException ce = new CommonException("异常中的key值为:" +
+		 * key);
 		 * 
 		 */
 		CommonException ce = new CommonException(MessageResourceUtil.getErrorMessage("OPER_FAILED") + key);
-		/* modify by zhiguo.zhao JIRA: FPP-3 2011-12-16 end .*/
+		/* modify by zhiguo.zhao JIRA: FPP-3 2011-12-16 end . */
 		ce.setKey(key);
 		throw ce;
 	}
 
 	/**
-	 * <P>throwAppException:(这里用一句话描述这个方法的作用)
-	 * <P>适用条件: 非国际化环境下使用 
-	 * <P>执行流程: (这里描述这个方法的执行流程 – 可选)
-	 * <P>使用方法: (这里描述这个方法的使用方法 – 可选)
-	 * <P>注意事项: (这里描述这个方法的注意事项 – 可选)
+	 * <P>
+	 * throwAppException:(这里用一句话描述这个方法的作用)
+	 * <P>
+	 * 适用条件: 非国际化环境下使用
+	 * <P>
+	 * 执行流程: (这里描述这个方法的执行流程 – 可选)
+	 * <P>
+	 * 使用方法: (这里描述这个方法的使用方法 – 可选)
+	 * <P>
+	 * 注意事项: (这里描述这个方法的注意事项 – 可选)
 	 *
 	 * @param msg
 	 * @param key
 	 * @throws CommonException
-	 * @throws 
-	 * @since  ExceptionUtil Ver1.1
+	 * @throws @since
+	 *             ExceptionUtil Ver1.1
 	 * @deprecated since FlowPower 1.1
 	 */
 	public static void throwAppException(String msg, String key) throws CommonException {

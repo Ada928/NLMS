@@ -22,41 +22,37 @@ public class QueryExportForm {
 	public static final String P_ENCODE = "encoding";
 	public static final String P_FILE_NAME = "fileName";
 	public static final String P_COL_SORT_NAME = "expElements";
-	public static final String P_ZIP_FLAG = "complex";//1 0
+	public static final String P_ZIP_FLAG = "complex";// 1 0
 	public static final String P_START_PAGE = "startPage";
 	public static final String P_END_PAGE = "endPage";
 	public static final String P_ALL_PAGE = "allPage";
-	public static final String P_PAGE_COUNT= "pageCount";
+	public static final String P_PAGE_COUNT = "pageCount";
 	public static final String P_EXP_ALL = "expAll";
 	public static final String P_EXP_DESC = "desc";
-	
-	
-	
 
 	/**
 	 * request,response
+	 * 
 	 * @param request
 	 * @param response
 	 */
-	public QueryExportForm(HttpServletRequest request,HttpServletResponse response){
+	public QueryExportForm(HttpServletRequest request, HttpServletResponse response) {
 		this.setRequest(request);
 		this.setResponse(response);
 	}
-	
+
 	/**
 	 * XML ID
 	 */
 	private String cqId;
 
 	/**
-	 * export type
-	 * CVS,EXL,PDF
+	 * export type CVS,EXL,PDF
 	 */
 	private String exportType;
 
 	/**
-	 * encoding
-	 * default GBK
+	 * encoding default GBK
 	 */
 	private String fileEnCode;
 
@@ -74,7 +70,7 @@ public class QueryExportForm {
 	 *
 	 * eg: keyparam Map<number,desc>;
 	 */
-//	private Map<String, Map<String,String>> relationshop;
+	// private Map<String, Map<String,String>> relationshop;
 
 	/**
 	 * sorted file names
@@ -112,6 +108,7 @@ public class QueryExportForm {
 	private String startPage;
 	/** page element every page. */
 	public String everyPage;
+
 	public String getStartPage() {
 		return startPage;
 	}
@@ -141,7 +138,6 @@ public class QueryExportForm {
 	 * ??
 	 */
 	private boolean expAll;
-
 
 	public String getExportType() {
 		return exportType;
@@ -231,7 +227,6 @@ public class QueryExportForm {
 		this.cqId = cqId;
 	}
 
-	
 	private String maxpage;
 	private String perfetch;
 
@@ -250,7 +245,5 @@ public class QueryExportForm {
 	public void setPerfetch(String perfetch) {
 		this.perfetch = perfetch;
 	}
-	
-	
+
 }
-

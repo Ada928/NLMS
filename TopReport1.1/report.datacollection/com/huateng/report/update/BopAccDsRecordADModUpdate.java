@@ -18,23 +18,21 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.operation.BopAccDsOperation;
 
-public class BopAccDsRecordADModUpdate extends BaseUpdate{
+public class BopAccDsRecordADModUpdate extends BaseUpdate {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse respone)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse respone) throws AppException {
 
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("bopAccDsRecordADInfo");
-			BopAccDs bopAccDs = null ;
-			while (updateResultBean.hasNext())
-			{
+			BopAccDs bopAccDs = null;
+			while (updateResultBean.hasNext()) {
 				bopAccDs = new BopAccDs();
 				Map map = updateResultBean.next();
-				mapToObject(bopAccDs,map);
+				mapToObject(bopAccDs, map);
 			}
 
 			String op = updateResultBean.getParameter("op");
@@ -55,8 +53,7 @@ public class BopAccDsRecordADModUpdate extends BaseUpdate{
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

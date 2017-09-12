@@ -6,7 +6,7 @@
 <title>cols</title>
 </head>
 <body style="margin: 0; overflow: hidden" bgcolor=#EDF2F6>
-<script langauge=javascript>
+	<script langauge=javascript>
 var cols="20%,80%";
 var isShow=true;
 function hidden()
@@ -28,20 +28,10 @@ function hidden()
 
 </script>
 
-<div id='mnuMain' style='left:0;top:100px;width:3%;height:100%' align="middle" background-color: #EDF2F6;>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<img id="direct" src="<%=request.getContextPath()%>/images/rightbar_btn_1.gif" onclick="hidden()"/>
-</div>
+	<div id='mnuMain' style='left:0;top:100px;width:3%;height:100%' align="middle"background-color: #EDF2F6;>
+		<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <img
+			id="direct" src="<%=request.getContextPath()%>/images/rightbar_btn_1.gif" onclick="hidden()" />
+	</div>
 
 </body>
 </html>

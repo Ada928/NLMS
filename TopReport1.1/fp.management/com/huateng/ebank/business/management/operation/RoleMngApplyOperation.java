@@ -18,8 +18,13 @@ import com.huateng.report.system.service.RoleInfoTSKService;
 public class RoleMngApplyOperation extends BaseOperation {
 
 	public static final String ID = "management.RoleMngApplyOperation";
+	public static final String CMD = "cmd";
+	public static final String CMD_DEL = "cmd_del";
+	public static final String IN_PARAM = "IN_PARAM";
+	public static final String IN_BRHID = "IN_BRHID";
 	public static final String IN_INSERT = "IN_INSERT";
 	public static final String IN_UPDATE = "IN_UPDATE";
+
 	@Override
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub

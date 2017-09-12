@@ -2,20 +2,18 @@ package resource.bean.report.base;
 
 import java.io.Serializable;
 
-
 /**
  * This is an object that contains data related to the RBS_DS_BI_ACCOUNT table.
- * Do not modify this class because it will be overwritten if the configuration file
- * related to this class is modified.
+ * Do not modify this class because it will be overwritten if the configuration
+ * file related to this class is modified.
  *
- * @hibernate.class
- *  table="RBS_DS_BI_ACCOUNT"
+ * @hibernate.class table="RBS_DS_BI_ACCOUNT"
  */
 
-public abstract class BaseRbsDsBiBalance  implements Serializable {
+public abstract class BaseRbsDsBiBalance implements Serializable {
 
 	public static String REF = "RbsDsBiBalance";
-	
+
 	public static String PROP_BRANCHCODE = "branchcode";
 	public static String PROP_PARTYNUMBER = "partynumber";
 	public static String PROP_CURRENCYCODE = "currencycode";
@@ -24,17 +22,17 @@ public abstract class BaseRbsDsBiBalance  implements Serializable {
 	public static String PROP_VALUEBAL = "valuebal";
 	public static String PROP_DEALDATE = "dealdate";
 	public static String PROP_ID = "id";
-	public static String PROP_WORKDATE="workdate";
+	public static String PROP_WORKDATE = "workdate";
 
 	// constructors
-	public BaseRbsDsBiBalance () {
+	public BaseRbsDsBiBalance() {
 		initialize();
 	}
 
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseRbsDsBiBalance (java.lang.String id) {
+	public BaseRbsDsBiBalance(java.lang.String id) {
 		this.setId(id);
 		initialize();
 	}
@@ -42,11 +40,8 @@ public abstract class BaseRbsDsBiBalance  implements Serializable {
 	/**
 	 * Constructor for required fields
 	 */
-	public BaseRbsDsBiBalance (
-		java.lang.String id,
-		java.lang.String branchcode,
-		java.lang.String partynumber,
-		java.lang.String currencycode) {
+	public BaseRbsDsBiBalance(java.lang.String id, java.lang.String branchcode, java.lang.String partynumber,
+			java.lang.String currencycode) {
 
 		this.setId(id);
 		this.setBranchcode(branchcode);
@@ -55,9 +50,8 @@ public abstract class BaseRbsDsBiBalance  implements Serializable {
 		initialize();
 	}
 
-	protected void initialize () {}
-
-
+	protected void initialize() {
+	}
 
 	private int hashCode = Integer.MIN_VALUE;
 
@@ -66,19 +60,16 @@ public abstract class BaseRbsDsBiBalance  implements Serializable {
 
 	// fields
 	private java.lang.String branchcode;
-	
+
 	private java.lang.String partynumber;
 	private java.lang.String currencycode;
-	
+
 	private java.math.BigDecimal totaldtbal;
 	private java.math.BigDecimal totalcrbal;
 	private java.math.BigDecimal valuebal;
 	private java.lang.String dealdate;
 	private java.lang.String workdate;
 
-
-	
-	
 	public java.lang.String getWorkdate() {
 		return workdate;
 	}
@@ -159,22 +150,24 @@ public abstract class BaseRbsDsBiBalance  implements Serializable {
 		this.dealdate = dealdate;
 	}
 
-
-
-
-	public boolean equals (Object obj) {
-		if (null == obj) return false;
-		if (!(obj instanceof resource.bean.report.RbsDsBiAccount)) return false;
+	public boolean equals(Object obj) {
+		if (null == obj)
+			return false;
+		if (!(obj instanceof resource.bean.report.RbsDsBiAccount))
+			return false;
 		else {
 			resource.bean.report.RbsDsBiAccount rbsDsBiAccount = (resource.bean.report.RbsDsBiAccount) obj;
-			if (null == this.getId() || null == rbsDsBiAccount.getId()) return false;
-			else return (this.getId().equals(rbsDsBiAccount.getId()));
+			if (null == this.getId() || null == rbsDsBiAccount.getId())
+				return false;
+			else
+				return (this.getId().equals(rbsDsBiAccount.getId()));
 		}
 	}
 
-	public int hashCode () {
+	public int hashCode() {
 		if (Integer.MIN_VALUE == this.hashCode) {
-			if (null == this.getId()) return super.hashCode();
+			if (null == this.getId())
+				return super.hashCode();
 			else {
 				String hashStr = this.getClass().getName() + ":" + this.getId().hashCode();
 				this.hashCode = hashStr.hashCode();
@@ -183,10 +176,8 @@ public abstract class BaseRbsDsBiBalance  implements Serializable {
 		return this.hashCode;
 	}
 
-
-	public String toString () {
+	public String toString() {
 		return super.toString();
 	}
-
 
 }

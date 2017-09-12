@@ -25,23 +25,20 @@ import com.huateng.report.imports.operation.ImportFileOP;
 public class ImportFileModImportUpdate extends BaseUpdate {
 
 	@Override
-	public UpdateReturnBean saveOrUpdate(
-			MultiUpdateResultBean multiUpdateResultBean,
-			HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("ImportFileLog");
-			
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("ImportFileLog");
+
 			Constant constant = new Constant();
 			BiImportLog bean = null;
 			while (updateResultBean.hasNext()) {
 				Map<String, String> map = updateResultBean.next();
 				bean = new BiImportLog();
 				mapToObject(bean, map);
-//				bean.setBeginTime(null);
-//				bean.setEndTime(null);
+				// bean.setBeginTime(null);
+				// bean.setEndTime(null);
 				bean = ROOTDAOUtils.getROOTDAO().query(BiImportLog.class, bean.getId());
 				OperationContext oc = new OperationContext();
 				oc.setAttribute(ImportFileOP.CMD, ImportFileOP.DO_MOD_IMPORT);
@@ -56,8 +53,7 @@ public class ImportFileModImportUpdate extends BaseUpdate {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		} finally {
 			// 结束导入
 			setSessionObject(Constants.IS_IMPORTING, Constants.NO);

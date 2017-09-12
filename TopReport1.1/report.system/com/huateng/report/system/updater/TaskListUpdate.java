@@ -25,29 +25,25 @@ import com.huateng.report.utils.ReportEnum.REPORT_TASK_TRANS_CD;
 
 public class TaskListUpdate extends BaseUpdate {
 	/**
-	 * @author jianxue.zhang
-	 * 审批操作的update
+	 * @author jianxue.zhang 审批操作的update
 	 */
 	private final static String COMMON_DATASET_ID = "approve_common";
 	private String dataset_id = null;
 
 	// private final static String TaskListOperation
 	@Override
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0,
-			HttpServletRequest arg1, HttpServletResponse arg2)
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2)
 			throws AppException {
 		try {
 
-			
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			// 先从commondataset种获取数据;
-			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID(COMMON_DATASET_ID);
+			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID(COMMON_DATASET_ID);
 			String approveResult = null;
 			String approveRemark = null;
 			String intInsId = null;
-			//Class cls=null;
-			//String beanName=null;
+			// Class cls=null;
+			// String beanName=null;
 			if (updateResultBean.hasNext()) {
 				Map map = updateResultBean.next();
 				approveResult = (String) map.get("approveResult");
@@ -57,13 +53,12 @@ public class TaskListUpdate extends BaseUpdate {
 			if ((intInsId != null)) {
 				if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100199.value)) {
 					dataset_id = "approve_bctl";
-					
+
 				}
 
 				else if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100299.value)) {
 					dataset_id = "approve_role";
-				} else if (intInsId
-						.equals(REPORT_TASK_FUNCID.TASK_100399.value)) {
+				} else if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100399.value)) {
 					dataset_id = "approve_tlrInfo";
 				}
 
@@ -73,42 +68,35 @@ public class TaskListUpdate extends BaseUpdate {
 
 				else if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100799.value)) {
 					dataset_id = "approve_SysParamsEntry";
-				} 
-				else if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100899.value)) {
+				} else if (intInsId.equals(REPORT_TASK_FUNCID.TASK_100899.value)) {
 					dataset_id = "approve_pfSysParams";
-				}
-				else if (intInsId
-						.equals(REPORT_TASK_FUNCID.TASK_110199.value)) {
+				} else if (intInsId.equals(REPORT_TASK_FUNCID.TASK_110199.value)) {
 					dataset_id = "approve_currency";
-				} else if (intInsId
-						.equals(REPORT_TASK_FUNCID.TASK_110499.value)) {
+				} else if (intInsId.equals(REPORT_TASK_FUNCID.TASK_110499.value)) {
 					dataset_id = "approve_biNation";
-				} else if (intInsId
-						.equals(REPORT_TASK_FUNCID.TASK_110599.value)) {
+				} else if (intInsId.equals(REPORT_TASK_FUNCID.TASK_110599.value)) {
 					dataset_id = "approve_biMonth";
-				} else if (intInsId
-						.equals(REPORT_TASK_FUNCID.TASK_110699.value)) {
+				} else if (intInsId.equals(REPORT_TASK_FUNCID.TASK_110699.value)) {
 					dataset_id = "approve_biDay";
 				}
 
 			}
-			UpdateResultBean updateRecodeBean = multiUpdateResultBean
-					.getUpdateResultBeanByID(dataset_id);
+			UpdateResultBean updateRecodeBean = multiUpdateResultBean.getUpdateResultBeanByID(dataset_id);
 
 			List updateList = new ArrayList();
 			List insertList = new ArrayList();
 			List delList = new ArrayList();
-			//List setList = new ArrayList();
-			//List otherList = new ArrayList();
-			SysTaskInfo bean=new SysTaskInfo();
-			UndoConfirmService ucs=UndoConfirmService.getInstance();
-			String id=null;
+			// List setList = new ArrayList();
+			// List otherList = new ArrayList();
+			SysTaskInfo bean = new SysTaskInfo();
+			UndoConfirmService ucs = UndoConfirmService.getInstance();
+			String id = null;
 			String ss = null;
 			Map map;
 			while (updateRecodeBean.hasNext()) {
 				map = updateRecodeBean.next();
-				id=(String) map.get("id");
-				 ss=(String) map.get("updTransCd");
+				id = (String) map.get("id");
+				ss = (String) map.get("updTransCd");
 				bean = ucs.load(id);
 				if (ss.equals(REPORT_TASK_TRANS_CD.NEW.value)) {
 					insertList.add(bean);
@@ -118,38 +106,34 @@ public class TaskListUpdate extends BaseUpdate {
 					updateList.add(bean);
 				}
 
-				/*else if (ss.equals(REPORT_TASK_TRANS_CD.SET.value)) {
-					//setList.add(bean);
-				}
-
-				else if (ss.equals(REPORT_TASK_TRANS_CD.OTHER.value)) {
-					//otherList.add(bean);
-				}
-*/
+				/*
+				 * else if (ss.equals(REPORT_TASK_TRANS_CD.SET.value)) {
+				 * //setList.add(bean); }
+				 * 
+				 * else if (ss.equals(REPORT_TASK_TRANS_CD.OTHER.value)) {
+				 * //otherList.add(bean); }
+				 */
 			}
 			OperationContext context = new OperationContext();
-			//new
-			//context.setAttribute(TaskListOperation.CLASS,
-			//		cls);
-			context.setAttribute(TaskListOperation.INSERTLIST,
-					insertList);
-			context.setAttribute(TaskListOperation.UPDATELIST,
-					updateList);
+			// new
+			// context.setAttribute(TaskListOperation.CLASS,
+			// cls);
+			context.setAttribute(TaskListOperation.INSERTLIST, insertList);
+			context.setAttribute(TaskListOperation.UPDATELIST, updateList);
 			context.setAttribute(TaskListOperation.DELLIST, delList);
-			//context.setAttribute(TaskListOperation.SETLIST, setList);
-			//context.setAttribute(TaskListOperation.OTHERLIST, otherList);
+			// context.setAttribute(TaskListOperation.SETLIST, setList);
+			// context.setAttribute(TaskListOperation.OTHERLIST, otherList);
 			context.setAttribute(TaskListOperation.CMD, "APPROVE");
 			context.setAttribute(TaskListOperation.APPREMARK, approveRemark);
 			context.setAttribute(TaskListOperation.APPRESULT, approveResult);
 			context.setAttribute(TaskListOperation.INTINSID, intInsId);
 			OPCaller.call(TaskListOperation.ID, context);
 			return updateReturnBean;
-			
+
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE,
-					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 }

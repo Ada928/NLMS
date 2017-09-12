@@ -1,7 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.List;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -10,6 +8,8 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.service.pub.RoleInfoService;
+
+import java.util.List;
 
 /**
  * @Description:
