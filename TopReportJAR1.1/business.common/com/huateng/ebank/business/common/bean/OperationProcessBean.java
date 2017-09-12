@@ -2,6 +2,7 @@ package com.huateng.ebank.business.common.bean;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.DocumentBuilder;
@@ -21,7 +22,7 @@ import org.xml.sax.SAXException;
  * @author lizh
  *
  */
-public class OperationProcessBean {
+public class OperationProcessBean implements Serializable {
 
 	public static final String FILE_URL_PATH = "/WEB-INF/Reindeer-Config/";
 
@@ -125,9 +126,8 @@ public class OperationProcessBean {
 
 	}
 
-	public OperationProcessBean(Integer operatorId, String operatorIp, String operateType, String operateName,
-			String operateStatus, String operateDate, String operateTime, Integer operateObjectId,
-			String businessType) {
+	public OperationProcessBean(Integer operatorId, String operatorIp, String operateType, String operateName, String operateStatus, String operateDate,
+			String operateTime, Integer operateObjectId, String businessType) {
 		this.operatorId = operatorId;
 		this.operatorIp = operatorIp;
 		this.operateType = operateType;
@@ -286,11 +286,11 @@ public class OperationProcessBean {
 	}
 
 	/**
-	 * 通过解析XML获得状态中文值 只适用于commonEnum.xml的解析 例
-	 * <enum id="blankVoucher.voucherState"> <keyValuePair key="0" value="未使用">
+	 * 通过解析XML获得状态中文值 只适用于commonEnum.xml的解析 例 <enum
+	 * id="blankVoucher.voucherState"> <keyValuePair key="0" value="未使用">
 	 * </keyValuePair> <keyValuePair key="1" value="已使用"></keyValuePair>
-	 * <keyValuePair key="2" value="已作废"></keyValuePair>
-	 * <keyValuePair key="3" value="未领用"></keyValuePair> </enum>
+	 * <keyValuePair key="2" value="已作废"></keyValuePair> <keyValuePair key="3"
+	 * value="未领用"></keyValuePair> </enum>
 	 * 
 	 * @param fileName
 	 *            XML文件名
@@ -301,8 +301,7 @@ public class OperationProcessBean {
 	 * @return
 	 */
 
-	public static String getStatusName(HttpServletRequest request, String fileName, String nodeAttributeName,
-			String AttributeValue) {
+	public static String getStatusName(HttpServletRequest request, String fileName, String nodeAttributeName, String AttributeValue) {
 		String path = request.getRealPath("/");
 		try {
 			Document doc = getDocument(path + FILE_URL_PATH + fileName);

@@ -1,8 +1,10 @@
 package com.huateng.report.system.bean;
 
+import java.io.Serializable;
+
 import com.huateng.ebank.entity.data.mng.PfSysParam;
 
-public class SysParamsSecDetailBean {
+public class SysParamsSecDetailBean implements Serializable {
 
 	private PfSysParam pfsysparam;
 	private PfSysParam old_pfsysparam;

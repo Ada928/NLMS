@@ -27,10 +27,11 @@ public class TlrView {
 	private Date expireDate;
 	private String defRoleid;
 
-	// 部门信息 add by tanyang
+	//部门信息 add by tanyang
 
 	private long departmentCode;
 	private String departmentName;
+
 
 	public String getDefRoleid() {
 		return defRoleid;
@@ -160,7 +161,7 @@ public class TlrView {
 		this.flag = flag;
 	}
 
-	// 部门信息 add by tanyang
+	//部门信息 add by tanyang
 	public long getDepartmentCode() {
 		return departmentCode;
 	}
@@ -176,5 +177,7 @@ public class TlrView {
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
+
+
 
 }

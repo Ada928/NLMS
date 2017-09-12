@@ -1,14 +1,5 @@
 package com.huateng.ebank.business.management.updater;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import resource.bean.pub.TlrInfo;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -19,6 +10,13 @@ import com.huateng.ebank.framework.operation.OPCaller;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
+import resource.bean.pub.TlrInfo;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 操作员增加EX
@@ -28,8 +26,8 @@ import com.huateng.exception.AppException;
  */
 public class TlrWorkloadSetUpdater extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			UpdateResultBean bean = multiUpdateResultBean.getUpdateResultBeanByID("Management_TlrWorkloadSet");
 			List updateList = new ArrayList();
@@ -50,24 +48,21 @@ public class TlrWorkloadSetUpdater extends BaseUpdate {
 		}
 	}
 
-	/**
-	 * 只有支行级别的机构可以增加客户经理和支行行长的操作员
-	 * 
+	/**只有支行级别的机构可以增加客户经理和支行行长的操作员
 	 * @param brcode
 	 * @param roleId
-	 *            return boolean
+	 * return boolean
 	 */
-	// public boolean isProBranchRoleAddCustManageAndSubBranch(String brcode,
-	// String roleId) throws CommonException {
-	// int roleIdInt = Integer.valueOf(roleId).intValue();
-	// if ( SystemConstant.ROLE_CUST_MANAGER == roleIdInt ||
-	// roleIdInt==SystemConstant.SUB_BRANCH_MANAGER) {
-	// if (BctlService.getInstance().isSubBrcode(brcode)) {
-	// return true;
-	// } else
-	// return false;
-	// }
-	// return true;
-	// }
+//	public boolean isProBranchRoleAddCustManageAndSubBranch(String brcode,
+//				String roleId) throws CommonException {
+//		int roleIdInt = Integer.valueOf(roleId).intValue();
+//		if ( SystemConstant.ROLE_CUST_MANAGER == roleIdInt || roleIdInt==SystemConstant.SUB_BRANCH_MANAGER) {
+//			if (BctlService.getInstance().isSubBrcode(brcode)) {
+//				return true;
+//			} else
+//				return false;
+//		}
+//		return true;
+//	}
 
 }

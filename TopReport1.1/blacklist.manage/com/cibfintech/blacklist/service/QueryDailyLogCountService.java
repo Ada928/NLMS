@@ -6,14 +6,14 @@
  */
 package com.cibfintech.blacklist.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
-import resource.bean.blacklist.QueryDailyLogCount;
+import resource.bean.blacklist.NsQueryDailyLogCount;
+import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
 import resource.dao.base.HQLDAO;
@@ -24,7 +24,6 @@ import com.huateng.ebank.business.common.PageQueryCondition;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
-import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.util.DateUtil;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 
@@ -53,11 +52,11 @@ public class QueryDailyLogCountService {
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	public void saveQueryDailyLogCount(String operateType, String brNo, String queryTable, String sumQueryRecord, Date countDay) throws CommonException {
+	public void saveQueryDailyLogCount(String operateType, String brcode, String queryTable, String sumQueryRecord, Date countDay) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-		QueryDailyLogCount queryDailyLogCount = new QueryDailyLogCount();
+		NsQueryDailyLogCount queryDailyLogCount = new NsQueryDailyLogCount();
 		queryDailyLogCount.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
-		queryDailyLogCount.setBrNo(brNo);
+		queryDailyLogCount.setBrcode(brcode);
 		queryDailyLogCount.setOperateType(operateType);
 		queryDailyLogCount.setQueryTable(queryTable);
 		queryDailyLogCount.setSumQueryRecord(sumQueryRecord);
@@ -71,35 +70,127 @@ public class QueryDailyLogCountService {
 		}
 	}
 
-	public PageQueryResult queryQueryDailyLogCountDetail(int pageIndex, int pageSize, String qbrNo, String stdate, String endate) throws CommonException {
-		StringBuffer sb = new StringBuffer("");
-		List<Object> list = new ArrayList<Object>();
-		// sb.append("select log from QueryDailyLogCount log where 1=1");
-		sb.append("select cont from QueryDailyLogCount cont where 1=1 ");
-
-		if (!DataFormat.isEmpty(qbrNo)) {
-			sb.append(" and cont.brNo = ? ");
-			list.add(qbrNo);
-		}
-
-		if (!DataFormat.isEmpty(stdate)) {
-			sb.append(" and cont.countDate>=? ");
-			list.add(DateUtil.stringToDate2(stdate));
-		}
-		if (!DataFormat.isEmpty(endate)) {
-			sb.append(" and cont.countDate<? ");
-			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endate), -1));
-		}
-		sb.append(" order by cont.brNo");
-
+	@SuppressWarnings("unchecked")
+	public PageQueryResult pageQueryByHql(int pageSize, int pageIndex, String hql, List list) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
-
+		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
-		queryCondition.setQueryString(sb.toString());
-		queryCondition.setPageIndex(pageIndex);
-		queryCondition.setPageSize(pageSize);
-		queryCondition.setObjArray(list.toArray());
-		PageQueryResult pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
+
+		try {
+			queryCondition.setPageIndex(pageIndex);
+			queryCondition.setPageSize(pageSize);
+			queryCondition.setQueryString(hql.toString());
+			queryCondition.setObjArray(list.toArray());
+			pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
+		} catch (CommonException e) {
+			e.printStackTrace();
+		}
 		return pageQueryResult;
 	}
+
+	/*
+	 * 查询
+	 * 
+	 * @param paramgroupId 参数段编号
+	 */
+	public List getAllRole() throws CommonException {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		List list = rootDAO.queryByQL2List("1=1");
+		for (int i = 0; i < list.size(); i++) {
+			NsQueryDailyLogCount bean = (NsQueryDailyLogCount) list.get(i);
+			list.set(i, bean);
+		}
+		return list;
+	}
+
+	/*
+	 * 删除实体
+	 * 
+	 * @param biNationregion
+	 */
+	public void removeEntity(NsQueryDailyLogCount bean) {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		try {
+			rootDAO.delete(bean);
+			System.out.println("已删除");
+		} catch (CommonException e) {
+			System.out.println("删除实体出错！ ");
+			e.printStackTrace();
+		}
+	}
+
+	/*
+	 * 插入或者更新实体
+	 * 
+	 * @param biNationregion
+	 */
+	public void modOrAddEntity(NsQueryDailyLogCount bean) {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		try {
+			rootDAO.saveOrUpdate(bean);
+			System.out.println(this.getClass().getName() + " 已插入或更新");
+		} catch (CommonException e) {
+			System.out.println(this.getClass().getName() + " 插入或更新出错！ ");
+			e.printStackTrace();
+		}
+	}
+
+	public void addEntity(NsQueryDailyLogCount bean) throws CommonException {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		if (isExists(bean.getId().toString())) {
+			ExceptionUtil.throwCommonException(" 角色信息重复");
+		}
+		try {
+			rootDAO.save(bean);
+			System.out.println(this.getClass().getName() + " 已插入或更新实体");
+		} catch (CommonException e) {
+			System.out.println(this.getClass().getName() + " 插入或更新实体！ ");
+		}
+	}
+
+	public boolean isExists(String id) {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		try {
+			NsQueryDailyLogCount bean = (NsQueryDailyLogCount) rootDAO.query(NsQueryDailyLogCount.class, id);
+			if (bean == null) {
+				return false;
+			}
+		} catch (CommonException e) {
+			System.out.println("判断实体是否重复出错");
+		}
+		return true;
+	}
+
+	public void modEntity(NsQueryDailyLogCount bean) {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		try {
+			rootDAO.update(bean);
+			System.out.println(this.getClass().getName() + " 已插入或更新实体");
+		} catch (CommonException e) {
+			System.out.println(this.getClass().getName() + " 插入或更新实体出错！ ");
+			e.printStackTrace();
+		}
+	}
+
+	public void addTosystaskinfo(SysTaskInfo systackinfo) {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		try {
+			rootDAO.saveOrUpdate(systackinfo);
+		} catch (CommonException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// 通过id来获取实体类
+	public NsQueryDailyLogCount selectById(Integer id) {
+		BlackListDAO rootdao = BlackListDAOUtils.getBlackListDAO();
+		NsQueryDailyLogCount bean = null;
+		try {
+			bean = (NsQueryDailyLogCount) rootdao.query(NsQueryDailyLogCount.class, id);
+		} catch (CommonException e) {
+			e.printStackTrace();
+		}
+		return bean;
+	}
+
 }

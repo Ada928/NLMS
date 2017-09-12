@@ -1,10 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import resource.bean.pub.RoleInfo;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -18,6 +13,10 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.view.pub.TlrRoleRelationView;
+import resource.bean.pub.RoleInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 操作员增加时 为操作员查询当前所有有效岗位
@@ -30,7 +29,9 @@ public class AllRoleGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(),
+					getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult().size() == 0) {
 				result.getPage().setTotalPage(0);
@@ -42,7 +43,8 @@ public class AllRoleGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
@@ -58,7 +60,7 @@ public class AllRoleGetter extends BaseGetter {
 		for (int i = 0; i < allList.size(); i++) {
 			RoleInfo roleInfo = (RoleInfo) allList.get(i);
 			// 过滤无效的岗位信息
-			if (roleInfo.getStatus().equals(SystemConstant.FLAG_OFF) == true) {
+			if ( roleInfo.getStatus().equals(SystemConstant.FLAG_OFF) == true ){
 				continue;
 			}
 			TlrRoleRelationView tlrRoleView = new TlrRoleRelationView();

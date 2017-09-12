@@ -1,7 +1,9 @@
 package com.huateng.report.dataquery.bean;
 
+import java.io.Serializable;
+
 //用于销售主管管理销售人员
-public class TlrMngRelBean {
+public class TlrMngRelBean implements Serializable {
 
 	private String manageId;
 	private boolean selected;

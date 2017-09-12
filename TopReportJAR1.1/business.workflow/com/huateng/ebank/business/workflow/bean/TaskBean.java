@@ -1,6 +1,8 @@
 package com.huateng.ebank.business.workflow.bean;
 
-public class TaskBean {
+import java.io.Serializable;
+
+public class TaskBean implements Serializable {
 
 	/** 当前节点处理机构号. */
 	private String brcode;
@@ -49,6 +51,7 @@ public class TaskBean {
 	private String owner;
 
 	private String systype;
+
 	/*
 	 * author:yangyong end data:20100722 工作流拥有者
 	 */

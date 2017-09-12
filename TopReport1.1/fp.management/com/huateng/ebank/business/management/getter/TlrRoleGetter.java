@@ -1,10 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import resource.bean.pub.RoleInfo;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -16,6 +11,10 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.view.pub.TlrRoleRelationView;
+import resource.bean.pub.RoleInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 操作员管理中,查询后获得操作员对应岗位
@@ -28,7 +27,9 @@ public class TlrRoleGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(),
+					getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult().size() == 0) {
 				result.getPage().setTotalPage(0);
@@ -40,13 +41,14 @@ public class TlrRoleGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
 
 	private PageQueryResult getData() throws Exception {
-		// String tlrno = this.commQueryServletRequest.getParameter("tlrno");
+		//String tlrno = this.commQueryServletRequest.getParameter("tlrno");
 		String tlrno = getValueFromDataBus("extTlrno");
 		setValue2DataBus("extTlrno", tlrno);
 		PageQueryResult pageQueryResult = new PageQueryResult();
@@ -72,7 +74,8 @@ public class TlrRoleGetter extends BaseGetter {
 			tlrRoleRelationViewList.add(tlrRoleView);
 		}
 
-		if (tlrRoleRelationViewList != null && tlrRoleRelationViewList.size() > 0) {
+		if (tlrRoleRelationViewList != null
+				&& tlrRoleRelationViewList.size() > 0) {
 			pageQueryResult.setTotalCount(tlrRoleRelationViewList.size());
 		} else {
 			pageQueryResult.setTotalCount(0);

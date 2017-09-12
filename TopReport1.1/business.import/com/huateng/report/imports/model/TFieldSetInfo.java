@@ -3,11 +3,13 @@
  */
 package com.huateng.report.imports.model;
 
+import java.io.Serializable;
+
 /**
  * @author chl_seu
  * 
  */
-public class TFieldSetInfo {
+public class TFieldSetInfo implements Serializable {
 
 	public String guid;
 	public String FieldName;

@@ -3,8 +3,9 @@
  */
 package com.huateng.report.imports.model;
 
-import java.util.Hashtable;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**
  * 每条记录的结构体，即转换为txt后的1行数据
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  * 
  */
 @SuppressWarnings("unchecked")
-public class TNodeInfoList {
+public class TNodeInfoList implements Serializable {
 
 	public Hashtable nl = new Hashtable(); // 节点列表，快查
 

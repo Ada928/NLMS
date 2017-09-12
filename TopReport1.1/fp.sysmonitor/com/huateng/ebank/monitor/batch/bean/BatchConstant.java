@@ -9,6 +9,8 @@
 
 package com.huateng.ebank.monitor.batch.bean;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Title: 交通银行个人贷款管理系统
@@ -21,7 +23,7 @@ package com.huateng.ebank.monitor.batch.bean;
  * @version: 2004-12-18 15:20:41
  */
 
-public class BatchConstant {
+public class BatchConstant implements Serializable {
 
 	public static final String BATCH_PROPERTY_FILE = "batch.properties";
 	public static final String BATCH_PROPERTY_LOADFILE_SHELL = "LoadFileShell";

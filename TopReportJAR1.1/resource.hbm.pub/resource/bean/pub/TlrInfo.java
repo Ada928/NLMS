@@ -1,6 +1,6 @@
 package resource.bean.pub;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import resource.bean.pub.base.BaseTlrInfo;
@@ -32,9 +32,8 @@ public class TlrInfo extends BaseTlrInfo implements java.io.Serializable {
 	}
 
 	/** add by zhaozhiguo 2011-6-20 BMS-3153 begin */
-	private String lastPwdUpdTime;
-	private Timestamp lastfailedtm;
-	private String isLock;
+	private java.util.Date lastPwdUpdTime;
+	private Date lastfailedtm;
 	private String lockReason;
 	private List roleList;
 	private String newFlag;
@@ -50,20 +49,12 @@ public class TlrInfo extends BaseTlrInfo implements java.io.Serializable {
 		this.reset = reset;
 	}
 
-	public Timestamp getLastfailedtm() {
+	public Date getLastfailedtm() {
 		return lastfailedtm;
 	}
 
-	public void setLastfailedtm(Timestamp lastfailedtm) {
+	public void setLastfailedtm(Date lastfailedtm) {
 		this.lastfailedtm = lastfailedtm;
-	}
-
-	public String getIsLock() {
-		return isLock;
-	}
-
-	public void setIsLock(String isLock) {
-		this.isLock = isLock;
 	}
 
 	public String getLockReason() {
@@ -74,11 +65,11 @@ public class TlrInfo extends BaseTlrInfo implements java.io.Serializable {
 		this.lockReason = lockReason;
 	}
 
-	public String getLastPwdUpdTime() {
+	public java.util.Date getLastPwdUpdTime() {
 		return lastPwdUpdTime;
 	}
 
-	public void setLastPwdUpdTime(String lastPwdUpdTime) {
+	public void setLastPwdUpdTime(java.util.Date lastPwdUpdTime) {
 		this.lastPwdUpdTime = lastPwdUpdTime;
 	}
 

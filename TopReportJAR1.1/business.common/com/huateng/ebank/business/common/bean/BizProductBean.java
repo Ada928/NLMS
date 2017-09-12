@@ -1,12 +1,14 @@
 package com.huateng.ebank.business.common.bean;
 
+import java.io.Serializable;
+
 /**
  * 下拉产品列表
  * 
  * @author jason.mao
  *
  */
-public class BizProductBean {
+public class BizProductBean implements Serializable {
 	private String productCode;// 产品代码
 	private String productName;// 产品名称
 	private String centralBankFlag;// 贴现标志

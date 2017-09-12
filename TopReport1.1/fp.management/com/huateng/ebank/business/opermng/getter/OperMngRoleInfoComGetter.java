@@ -1,14 +1,5 @@
 package com.huateng.ebank.business.opermng.getter;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import resource.bean.pub.RoleInfo;
-import resource.bean.pub.TlrRoleRel;
-import resource.bean.report.SysTaskLog;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -23,6 +14,14 @@ import com.huateng.report.system.bean.TlrInfoAuditBean;
 import com.huateng.report.utils.ReportTaskUtil;
 import com.huateng.report.utils.ReportUtils;
 import com.huateng.view.pub.TlrRoleRelationView;
+import resource.bean.pub.RoleInfo;
+import resource.bean.pub.TlrRoleRel;
+import resource.bean.report.SysTaskLog;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author zhiguo.zhao
@@ -33,15 +32,20 @@ public class OperMngRoleInfoComGetter extends BaseGetter {
 	public Result call() throws AppException {
 		try {
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(),
+					getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
+			result.getPage().setTotalPage(
+					pageResult.getPageCount(getResult().getPage()
+							.getEveryPage()));
 			result.init();
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}
@@ -53,7 +57,7 @@ public class OperMngRoleInfoComGetter extends BaseGetter {
 		String flag = (String) getCommQueryServletRequest().getParameterMap().get("flag");
 		String tskId = (String) getCommQueryServletRequest().getParameter("tskId");
 		String st = (String) getCommQueryServletRequest().getParameter("st");
-
+		
 		List tlrRoleViewList = new ArrayList();
 		List<Integer> roleIds = new ArrayList<Integer>();
 		if (flag.equals("0")) {
@@ -78,15 +82,15 @@ public class OperMngRoleInfoComGetter extends BaseGetter {
 				pageQueryResult.setTotalCount(0);
 			}
 			pageQueryResult.setQueryResult(tlrRoleViewList);
-		}
-		if (flag.equals("1")) {
-			ReportTaskUtil rt = new ReportTaskUtil();
-			SysTaskLog systasklog = ReportShowDetailService.getInstance().selectTaskLog(tskId);
+		} 
+		if(flag.equals("1")) {
+			ReportTaskUtil rt=new ReportTaskUtil();
+			SysTaskLog  systasklog=ReportShowDetailService.getInstance().selectTaskLog(tskId);
 			TlrInfoAuditBean OldValue = null;
-			if (systasklog.getOldVal1() != null) {
-				OldValue = (TlrInfoAuditBean) rt.getOldObjectByTaskLog(systasklog);
+			if(systasklog.getOldVal1()!=null){
+				OldValue=(TlrInfoAuditBean)rt.getOldObjectByTaskLog(systasklog);	  
 			}
-			if (OldValue != null) {
+			if(OldValue != null){
 				for (TlrRoleRel rr : OldValue.getRoleRellist()) {
 					roleIds.add(rr.getRoleId());
 				}

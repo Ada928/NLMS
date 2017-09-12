@@ -21,6 +21,7 @@ import com.huateng.commquery.result.UpdateReturnBean;
 import com.huateng.ebank.business.common.BaseDAOUtils;
 import com.huateng.ebank.business.common.DAOUtils;
 import com.huateng.ebank.business.common.GlobalInfo;
+import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.business.management.operation.RoleMngApplyOperation;
 import com.huateng.ebank.framework.operation.OPCaller;
 import com.huateng.ebank.framework.operation.OperationContext;
@@ -98,7 +99,7 @@ public class CustRoleSaveUpdater extends BaseUpdate {
 				insertBean.setMiscflgs("");
 				insertBean.setTimestamps(new Timestamp(System.currentTimeMillis()));
 				insertBean.setSt("1");
-				insertBean.setLock(true);
+				insertBean.setLock(SystemConstant.TRUE);
 				insertBean.setRoleList(bean.getRoleList());
 				insertList.add(insertBean);
 				break;
@@ -124,7 +125,7 @@ public class CustRoleSaveUpdater extends BaseUpdate {
 				updateBean.setLastUpdTlr(gi.getTlrno());
 				updateBean.setRoleList(bean.getRoleList());
 				updateBean.setSt("2");
-				updateBean.setLock(true);
+				updateBean.setLock(SystemConstant.TRUE);
 				updateList.add(updateBean);
 				break;
 			default:

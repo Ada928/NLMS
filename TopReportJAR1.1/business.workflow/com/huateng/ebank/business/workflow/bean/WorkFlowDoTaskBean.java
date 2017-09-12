@@ -3,6 +3,7 @@
  */
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import java.util.Map;
  * @author shen_antonio
  * @version 1.1, 2008-3-31
  */
-public class WorkFlowDoTaskBean extends BaseWorkFlowTaskAssignBean {
+public class WorkFlowDoTaskBean extends BaseWorkFlowTaskAssignBean implements Serializable {
 
 	/** memeber variable: String tlrno. */
 	private String tlrno;
@@ -56,8 +57,8 @@ public class WorkFlowDoTaskBean extends BaseWorkFlowTaskAssignBean {
 	 * @param comment
 	 *            执行任务留言(允许为NULL) 2008-3-31
 	 */
-	public WorkFlowDoTaskBean(List tlrnoList, String brcode, String workType, String assignMode, boolean isWorkType,
-			boolean isLv, String tlrno, String procInsId, String taskId, Map attribute, String status, String comment) {
+	public WorkFlowDoTaskBean(List tlrnoList, String brcode, String workType, String assignMode, boolean isWorkType, boolean isLv, String tlrno,
+			String procInsId, String taskId, Map attribute, String status, String comment) {
 		super(tlrnoList, brcode, workType, assignMode, isWorkType, isLv);
 		this.tlrno = tlrno;
 		this.procInsId = procInsId;

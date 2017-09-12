@@ -105,8 +105,7 @@ public class LoginAction extends BaseAction {
 			}
 			actionForward = mapping.findForward("success");
 			if (logger.isDebugEnabled()) {
-				logger.debug("execute(ActionMapping, ActionForm, HttpServletRequest, HttpServletResponse) - actionForward.getPath()" //$NON-NLS-1$
-						+ actionForward.getPath());
+				logger.debug("execute(ActionMapping, ActionForm, HttpServletRequest, HttpServletResponse) - actionForward.getPath()" + actionForward.getPath()); //$NON-NLS-1$
 			}
 
 			// 记录登录日志

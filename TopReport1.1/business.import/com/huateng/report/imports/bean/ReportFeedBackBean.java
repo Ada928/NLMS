@@ -1,8 +1,9 @@
 package com.huateng.report.imports.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ReportFeedBackBean {
+public class ReportFeedBackBean implements Serializable {
 	private String busiType;
 	private String appType;
 	private String packName;
@@ -108,8 +109,7 @@ public class ReportFeedBackBean {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReportFeedBackBean(String busiType, String appType, String packName, String isHashFeedBack,
-			Date feedBackDate, String feedBackMsg, int fileCount) {
+	public ReportFeedBackBean(String busiType, String appType, String packName, String isHashFeedBack, Date feedBackDate, String feedBackMsg, int fileCount) {
 		super();
 		this.busiType = busiType;
 		this.appType = appType;

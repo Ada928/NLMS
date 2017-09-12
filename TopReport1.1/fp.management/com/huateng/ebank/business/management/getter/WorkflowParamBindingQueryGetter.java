@@ -13,26 +13,32 @@ import com.huateng.exception.AppException;
 public class WorkflowParamBindingQueryGetter extends BaseGetter {
 
 	@Override
-	public Result call() throws AppException {
-		try {
+	public Result call() throws AppException{
+		try
+		{
 			String procName = this.getCommQueryServletRequest().getParameter("templetName");
 			String taskName = this.getCommQueryServletRequest().getParameter("nodeName");
 			PageQueryCondition con = new PageQueryCondition();
 			con.setPageIndex(result.getPage().getCurrentPage());
 			con.setPageSize(result.getPage().getEveryPage());
 			con.setQueryString("from WorkflowParamBinding po where po.processTemplate = '" + procName + "' and taskName = '" + taskName + "'");
-
+			
 			PageQueryResult pageQueryResult = BaseDAOUtils.getHQLDAO().pageQueryByQL(con);
 
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageQueryResult.getQueryResult(), getResult());
+			ResultMng.fillResultByList(
+					getCommonQueryBean(),
+					getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(),
+					getResult());
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
 			return result;
-		} catch (AppException appEx) {
+		}catch(AppException appEx){
 			throw appEx;
-		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+		}catch(Exception ex){
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
 		}
 
 	}

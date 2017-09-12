@@ -15,13 +15,11 @@ import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryResult;
-import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.business.common.service.BctlService;
 import com.huateng.ebank.business.management.common.DAOUtils;
 import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
-import com.huateng.service.pub.BctlOperateLogService;
 
 public class BranchEntryQueryGetter extends BaseGetter {
 
@@ -72,9 +70,6 @@ public class BranchEntryQueryGetter extends BaseGetter {
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "机构管理查询");
 
-			BctlOperateLogService bctlOperateLogService = BctlOperateLogService.getInstance();
-			String message = "brno=" + brno + ",brname=" + brname;
-			bctlOperateLogService.saveBctlOperateLog(SystemConstant.LOG_QUERY, "", String.valueOf(list.size()), "查询银行信息 " + message);
 			return result;
 		} catch (AppException appEx) {
 			throw appEx;

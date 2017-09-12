@@ -1,8 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.util.List;
-import java.util.Map;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -13,11 +10,14 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 
+import java.util.List;
+import java.util.Map;
+
 public class DepartmentInfoManageQueryGetter extends BaseGetter {
 
 	public Result call() throws AppException {
-		try {
-			/** 获取查询条件 */
+		try{
+			/** 获取查询条件*/
 			Map param = this.getCommQueryServletRequest().getParameterMap();
 
 			/** 获取everyPage：每页包含的记录数 */
@@ -29,8 +29,8 @@ public class DepartmentInfoManageQueryGetter extends BaseGetter {
 			/** 获取所有查询结果 */
 			List list = DepartmentInfoService.getInstance().getAllEnableDepartment();
 
-			if (list.size() == 0) {
-				ExceptionUtil.throwCommonException("没有找到符合条件的记录", ErrorCode.ERROR_CODE_RECORD_NOTFOUND);
+			if (list.size()==0) {
+				ExceptionUtil.throwCommonException("没有找到符合条件的记录",ErrorCode.ERROR_CODE_RECORD_NOTFOUND);
 			}
 			int maxIndex = nextpage * everypage;
 
@@ -39,7 +39,8 @@ public class DepartmentInfoManageQueryGetter extends BaseGetter {
 				maxIndex = list.size();
 			}
 			List resultList = list.subList((nextpage - 1) * everypage, maxIndex);
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), resultList, getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(),
+					getCommQueryServletRequest(), resultList, getResult());
 
 			result.setContent(resultList);
 
@@ -48,10 +49,11 @@ public class DepartmentInfoManageQueryGetter extends BaseGetter {
 
 			return result;
 
-		} catch (AppException appEx) {
+		}catch(AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 

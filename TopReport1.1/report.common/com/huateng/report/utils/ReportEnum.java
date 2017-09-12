@@ -292,11 +292,52 @@ public class ReportEnum {
 	}
 
 	public static enum BANK_BLACKLIST_OPERATE_STATE {
-		ED("1", "编辑中"), VR("2", "审核中"), AP("3", "审批中"), PB("4", "发布中"), N("5", "无效");
+		EDING("1", "編輯中..."), EDED("2", "編輯完成，待审核"), EDVRED("3", "编辑审核完成，待审批"), EDAPED("4", "审批完成，已发布"), N("0", "无效");
 		public String value;
 		public String name;
 
 		private BANK_BLACKLIST_OPERATE_STATE(String value, String name) {
+			this.value = value;
+			this.name = name;
+		}
+
+		public static String valueof(String value) {
+			for (int i = 0; i < values().length; i++) {
+				if (values()[i].value.equals(value)) {
+					return values()[i].name;
+				}
+			}
+			return value;
+		}
+	}
+
+	public static enum BANK_BLACKLIST_AUDIT_TYPE {
+		ADD("1", "添加黑名单"), EDIT("2", "編輯黑名单"), SHARE("3", "分享黑名单"), CANCELSHARE("4", "取消分享黑名单"), VALID("5", "设置黑名单有效"), INVALID("6", "设置黑名单无效"), DELETE("7",
+				"删除黑名单");
+		public String value;
+		public String name;
+
+		private BANK_BLACKLIST_AUDIT_TYPE(String value, String name) {
+			this.value = value;
+			this.name = name;
+		}
+
+		public static String valueof(String value) {
+			for (int i = 0; i < values().length; i++) {
+				if (values()[i].value.equals(value)) {
+					return values()[i].name;
+				}
+			}
+			return value;
+		}
+	}
+
+	public static enum BANK_BLACKLIST_AUDIT_STATE {
+		EDING("1", "編輯中..."), EDED("2", "編輯完成，提交审核"), VRED("3", "审核完成，待审批"), APED("4", "审批完成，已发布"), N("0", "无效");
+		public String value;
+		public String name;
+
+		private BANK_BLACKLIST_AUDIT_STATE(String value, String name) {
 			this.value = value;
 			this.name = name;
 		}
@@ -400,7 +441,8 @@ public class ReportEnum {
 	public static enum REPORT_TASK_FUNCID {
 		TASK_100899("100899", "安全参数设置"), TASK_100199("100199", "机构管理"), TASK_100299("100299", "角色管理"), TASK_100399("100399", "用户管理"), TASK_100599("100599",
 				"工作日期维护"), TASK_100799("100799", "系统参数设置"), TASK_110199("110199", "币种信息维护"), TASK_110499("110499", "国家/地区代码维护"), TASK_110599("110599",
-				"外汇月牌价维护"), TASK_110699("110699", "外汇日牌价维护"), TASK_200399("200399", "商行黑名单维护");
+				"外汇月牌价维护"), TASK_110699("110699", "外汇日牌价维护"), TASK_200399("200399", "商行黑名单维护"), TASK_200499("200499", "公安部黑名单维护"), TASK_200599("200699",
+				"国际黑名单维护");
 		public String value;
 		public String name;
 

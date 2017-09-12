@@ -1,8 +1,9 @@
 package com.huateng.report.databak.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class RecoverBakFileBean {
+public class RecoverBakFileBean implements Serializable {
 
 	private String filePath;
 

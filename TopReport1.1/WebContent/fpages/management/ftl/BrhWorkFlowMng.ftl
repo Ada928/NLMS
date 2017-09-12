@@ -2,45 +2,46 @@
 
 <@CommonQueryMacro.page title="贷款品种流程设置">
 <table align="left">
-	<tr>
-		<td valign="top" rowspan="1"  valign="top">
-			<@CommonQueryMacro.CommonQuery id="Management_BrhWorkFlowMng" >
-			<table align="left">
-				<tr>
-	       			<td valign="top" rowspan="2"  valign="top">
-	          			<@CommonQueryMacro.DataTable id ="datatable1" fieldStr="brcodeName,processTemplateName,bizclassName,apptypeName" readonly="true"/>
-	        		</td>
-	        		<td align="left" valign="top" width="200">
-	        			<table align="center">
-	        				<tr>
-		       					<td>
-		       					<#-- fieldStr="brcode,processTemplate,lnid,apptype" -->
-		        					<@CommonQueryMacro.Group id="group1" label="贷款品种流程设置" fieldStr="brcode,processTemplate,bizClass,apptype" colNm=2/>
-		
-		        					<table id="tableNature" style="display: none">
-											<tr>
-												<td align="left" width = "100">
-												<#--<@CommonQueryMacro.Group id="group1" label="" fieldStr="nature" colNm=4/>-->
-												</td>
-											</tr>
-									</table>
-		        				</td>
-							</tr>
-	
-							<tr align="center">
-		       					<td >
-		       						<@CommonQueryMacro.Button id= "btNew"/>
-		
-									<@CommonQueryMacro.Button id= "btDelete"/>
-		
-									<@CommonQueryMacro.Button id= "btSave"/>
-								</td>
-							</tr>
-						</table>
-	        		</td>
-	
-	      		</tr>
-   			</table>
+
+<tr>
+<td valign="top" rowspan="1"  valign="top">
+<@CommonQueryMacro.CommonQuery id="Management_BrhWorkFlowMng" >
+	<table align="left">
+			<tr>
+       			<td valign="top" rowspan="2"  valign="top">
+          			<@CommonQueryMacro.DataTable id ="datatable1" fieldStr="brcodeName,processTemplateName,bizclassName,apptypeName" readonly="true"/>
+        		</td>
+        		<td align="left" valign="top" width="200">
+        			<table align="center">
+        				<tr>
+       					<td>
+       					<#-- fieldStr="brcode,processTemplate,lnid,apptype" -->
+        					<@CommonQueryMacro.Group id="group1" label="贷款品种流程设置" fieldStr="brcode,processTemplate,bizClass,apptype" colNm=2/>
+
+        					<table id="tableNature" style="display: none">
+									<tr>
+										<td align="left" width = "100">
+										<#--<@CommonQueryMacro.Group id="group1" label="" fieldStr="nature" colNm=4/>-->
+										</td>
+									</tr>
+							</table>
+        				</td>
+						</tr>
+
+						<tr align="center">
+       					<td >
+       						<@CommonQueryMacro.Button id= "btNew"/>
+
+							<@CommonQueryMacro.Button id= "btDelete"/>
+
+							<@CommonQueryMacro.Button id= "btSave"/>
+						</td>
+						</tr>
+					</table>
+        		</td>
+
+      		</tr>
+   </table>
  <script language="javascript" src="${contextPath}/js/check.js"></script>
  <script language="JavaScript">
 
@@ -136,9 +137,12 @@
 // 		Management_BrhWorkFlowMng_dataset.submitData="allchange";
 		Management_BrhWorkFlowMng_dataset.flushData(0);
 	}
-</script>
+			</script>
 </@CommonQueryMacro.CommonQuery>
 </td>
 </tr>
+
+
+
 </table>
 </@CommonQueryMacro.page>

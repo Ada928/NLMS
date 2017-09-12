@@ -3,6 +3,7 @@
  */
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  * @author shen_antonio
  * @version 1.1, 2008-3-31
  */
-public abstract class BaseWorkFlowTaskAssignBean {
+public abstract class BaseWorkFlowTaskAssignBean implements Serializable {
 
 	/** memeber variable: List<String> tlrnoList. */
 	private List tlrnoList;
@@ -27,8 +28,7 @@ public abstract class BaseWorkFlowTaskAssignBean {
 	/** memeber variable: boolean isLv. */
 	private boolean isLv;
 
-	public BaseWorkFlowTaskAssignBean(List tlrnoList, String brcode, String workType, String assignMode,
-			boolean isWorkType, boolean isLv) {
+	public BaseWorkFlowTaskAssignBean(List tlrnoList, String brcode, String workType, String assignMode, boolean isWorkType, boolean isLv) {
 		super();
 		this.tlrnoList = tlrnoList;
 		this.brcode = brcode;

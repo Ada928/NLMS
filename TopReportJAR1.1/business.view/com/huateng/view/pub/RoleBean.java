@@ -1,6 +1,8 @@
 package com.huateng.view.pub;
 
-public class RoleBean {
+import java.io.Serializable;
+
+public class RoleBean implements Serializable {
 	private Integer roleid;
 	private String rolename;
 	private String status;

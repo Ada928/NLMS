@@ -3,13 +3,15 @@
  */
 package com.huateng.report.imports.model;
 
+import java.io.Serializable;
+
 /**
  * 节点标识
  * 
  * @author chl_seu
  * 
  */
-public class TNodeKeyInfo {
+public class TNodeKeyInfo implements Serializable {
 	public String uid;
 	public String fuid;
 

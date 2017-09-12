@@ -12,7 +12,7 @@
             </generator>
         </id>
 
-        <property name="tlrNo" column="TLR_NO" type="string" not-null="false" length="20" />
+        <property name="tlrno" column="TLR_NO" type="string" not-null="false" length="20" />
         <property name="brcode" column="BRCODE" type="string" not-null="false" length="20" />
 
 

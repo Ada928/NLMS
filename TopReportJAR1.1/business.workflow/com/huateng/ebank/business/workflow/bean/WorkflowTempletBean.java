@@ -1,6 +1,8 @@
 package com.huateng.ebank.business.workflow.bean;
 
-public class WorkflowTempletBean {
+import java.io.Serializable;
+
+public class WorkflowTempletBean implements Serializable {
 
 	private long id;
 	private String name;

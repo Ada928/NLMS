@@ -16,13 +16,22 @@
 	<tr>
 		<td>
 			<@CommonQueryMacro.DataTable id ="datatable1" 
-			fieldStr="tlrNo,brNo,tlrIP,operateType,queryType,queryRecordNumber,message,createDate" readonly="true" width="100%"/></br>
+			fieldStr="tlrno,brcode,tlrIP,operateType,queryType,queryRecordNumber,message,createDate" readonly="true" width="100%"/></br>
 		</td>
 	</tr>
 </table>
 </@CommonQueryMacro.CommonQuery>
 <script language="JavaScript">
-
-
+	function initCallGetter_post(dataset) {
+		var brcode = BankBlackListLogQuery_dataset.getValue("brcode");
+		if (brcode == null || brcode == "99999") {
+			BankBlackListLogQuery_dataset.setFieldReadOnly("brcode", false);
+			//alert(brcode);
+			//document.getElementById("qbrcode").style.disabled = "none";
+			//document.getElementById("btResetPwd").style.disabled = "none"; qbrcode
+		} else {
+			BankBlackListLogQuery_dataset.setFieldReadOnly("brcode", true);
+		}
+	}
 </script>
 </@CommonQueryMacro.page>

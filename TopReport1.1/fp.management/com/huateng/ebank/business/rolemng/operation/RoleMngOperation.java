@@ -1,12 +1,11 @@
 package com.huateng.ebank.business.rolemng.operation;
 
-import resource.bean.pub.RoleInfo;
-import resource.dao.pub.RoleInfoDAO;
-
 import com.huateng.ebank.business.common.DAOUtils;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
+import resource.bean.pub.RoleInfo;
+import resource.dao.pub.RoleInfoDAO;
 
 public class RoleMngOperation extends BaseOperation {
 
@@ -40,12 +39,12 @@ public class RoleMngOperation extends BaseOperation {
 		if ("status".equals(context.getAttribute(CMD))) {
 			String roleid = (String) context.getAttribute(IN_ROLEID);
 			String status = (String) context.getAttribute(IN_PARAM);
-
+			
 			RoleInfo role = roleDao.query(Integer.valueOf(roleid));
 			role.setStatus(status);
-
+			
 			roleDao.getHibernateTemplate().saveOrUpdate(role);
-		}
+		} 
 	}
 
 	/*

@@ -1,5 +1,6 @@
 package com.huateng.ebank.business.common.bean;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -7,7 +8,7 @@ import java.math.BigDecimal;
  * 
  * @author jason.mao
  */
-public class Draft4ClsCreditBean {
+public class Draft4ClsCreditBean implements Serializable {
 	private Integer draftId;
 	private Integer brId;
 	private String draftClass;

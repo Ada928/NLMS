@@ -1,11 +1,5 @@
 package com.huateng.ebank.business.parammng.cqGetter;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import resource.bean.pub.RoleInfo;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Page;
@@ -17,6 +11,11 @@ import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.business.management.common.DAOUtils;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import resource.bean.pub.RoleInfo;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * 操作员增加时 为操作员查询当前所有有效岗位
@@ -32,23 +31,24 @@ public class AllRoleSelectGetter extends BaseGetter {
 			PageQueryCondition pqc = new PageQueryCondition();
 			pqc.setPageIndex(page.getCurrentPage());
 			pqc.setPageSize(page.getEveryPage());
-			pqc.setQueryString(" from RoleInfo po where po.status = '" + SystemConstant.FLAG_ON + "' order by po.id");
+			pqc.setQueryString(" from RoleInfo po where po.status = '"+SystemConstant.FLAG_ON+"' order by po.id");
 			PageQueryResult pageResult = DAOUtils.getHQLDAO().pageQueryByQL(pqc);
-
+			
 			List list = new ArrayList();
 			Iterator it = pageResult.getQueryResult().iterator();
-
+			
 			for (; it.hasNext();) {
 				Object[] resultsObj = (Object[]) it.next();
-				RoleInfo bean = (RoleInfo) resultsObj[0];
-				bean.setRoleName(bean.getId() + "-" + bean.getRoleName());
+				RoleInfo bean = (RoleInfo)resultsObj[0];
+				bean.setRoleName(bean.getId()+"-"+bean.getRoleName());
 				list.add(bean);
 			}
-
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
+			
+			ResultMng.fillResultByList(getCommonQueryBean(),
+					getCommQueryServletRequest(),pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
 			if (pageResult.getQueryResult().size() == 0) {
-				result.getPage().setTotalPage(0);
+					result.getPage().setTotalPage(0);
 			} else {
 				result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			}
@@ -57,7 +57,8 @@ public class AllRoleSelectGetter extends BaseGetter {
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 
 	}

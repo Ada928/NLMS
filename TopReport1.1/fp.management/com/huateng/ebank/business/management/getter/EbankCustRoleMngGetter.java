@@ -1,7 +1,5 @@
 package com.huateng.ebank.business.management.getter;
 
-import java.lang.reflect.InvocationTargetException;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -13,6 +11,8 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.service.pub.RoleInfoService;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * @Description: 企业岗位查询
@@ -27,23 +27,29 @@ public class EbankCustRoleMngGetter extends BaseGetter {
 	@Override
 	public Result call() throws AppException {
 		try {
-
+			
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "角色管理查询");
-
+			
 			PageQueryResult pageResult = getData();
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
+			ResultMng.fillResultByList(getCommonQueryBean(),
+					getCommQueryServletRequest(), pageResult.getQueryResult(),
+					getResult());
 			result.setContent(pageResult.getQueryResult());
-			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
+			result.getPage().setTotalPage(
+					pageResult.getPageCount(getResult().getPage()
+							.getEveryPage()));
 			result.init();
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "角色管理查询");
 
 			return result;
 		} catch (CommonException e) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, e.getMessage());
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, e.getMessage());
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
+			throw new AppException(Module.SYSTEM_MODULE,
+					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
 
@@ -61,6 +67,7 @@ public class EbankCustRoleMngGetter extends BaseGetter {
 			ExceptionUtil.throwCommonException("岗位查询失败!");
 			e.printStackTrace();
 		}
+
 		return list;
 	}
 

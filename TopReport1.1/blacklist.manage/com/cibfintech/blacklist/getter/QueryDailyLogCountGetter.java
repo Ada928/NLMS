@@ -1,7 +1,9 @@
 package com.cibfintech.blacklist.getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.cibfintech.blacklist.service.QueryDailyLogCountService;
-import com.huateng.common.DateUtil;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
@@ -11,6 +13,8 @@ import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.report.common.ReportConstant;
+import com.huateng.ebank.framework.util.DataFormat;
+import com.huateng.ebank.framework.util.DateUtil;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
@@ -48,17 +52,36 @@ public class QueryDailyLogCountGetter extends BaseGetter {
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
 
-		String qbrNo = (String) getCommQueryServletRequest().getParameterMap().get("qbrNo");
+		String qbrcode = (String) getCommQueryServletRequest().getParameterMap().get("qbrcode");
 		String startDate = (String) getCommQueryServletRequest().getParameterMap().get("startDate");
 		String endDate = (String) getCommQueryServletRequest().getParameterMap().get("endDate");
 		if (startDate != null && endDate != null) {
-			if (DateUtil.comparaDate(endDate, startDate)) {
+			if (com.huateng.common.DateUtil.comparaDate(endDate, startDate)) {
 				ExceptionUtil.throwCommonException("开始日期大于结束日期！", ErrorCode.ERROR_CODE_OVER_HEAD);
 			}
-
 		}
+
+		StringBuffer sb = new StringBuffer("");
+		List<Object> list = new ArrayList<Object>();
+		sb.append(" from NsQueryDailyLogCount cont where 1=1 ");
+
+		if (!DataFormat.isEmpty(qbrcode)) {
+			sb.append(" and cont.brcode = ? ");
+			list.add(qbrcode);
+		}
+
+		if (!DataFormat.isEmpty(startDate)) {
+			sb.append(" and cont.countDate>=? ");
+			list.add(DateUtil.stringToDate2(startDate));
+		}
+		if (!DataFormat.isEmpty(endDate)) {
+			sb.append(" and cont.countDate<? ");
+			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endDate), -1));
+		}
+		sb.append(" order by cont.brcode, cont.createDate desc");
+
 		QueryDailyLogCountService service = QueryDailyLogCountService.getInstance();
-		return service.queryQueryDailyLogCountDetail(pageIndex, pageSize, qbrNo, startDate, endDate);
+		return service.pageQueryByHql(pageSize, pageIndex, sb.toString(), list);
 	}
 
 }

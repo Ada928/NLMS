@@ -1,11 +1,12 @@
 package com.huateng.report.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import resource.bean.report.BopCfaExguDs;
 import resource.bean.report.BopExguTorDs;
 
-public class BopCFAExguTorAll {
+public class BopCFAExguTorAll implements Serializable {
 	// 担保申请人
 	BopExguTorDs bopExguTorDs;
 	// 对外担保信息

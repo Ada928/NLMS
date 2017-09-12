@@ -1,10 +1,5 @@
 package com.huateng.ebank.business.management.updater;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.huateng.commquery.result.MultiUpdateResultBean;
 import com.huateng.commquery.result.UpdateResultBean;
 import com.huateng.commquery.result.UpdateReturnBean;
@@ -14,6 +9,10 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
+
 /**
  * 操作员被删除后的激活操作员
  *
@@ -22,7 +21,9 @@ import com.huateng.exception.AppException;
  */
 public class TlrInfoExActivation extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
+	public UpdateReturnBean saveOrUpdate(
+			MultiUpdateResultBean multiUpdateResultBean,
+			HttpServletRequest request, HttpServletResponse response)
 			throws AppException {
 		UpdateResultBean bean = multiUpdateResultBean.getUpdateResultBeanByID("Management_TlrInfoEx");
 		Map map = bean.next();

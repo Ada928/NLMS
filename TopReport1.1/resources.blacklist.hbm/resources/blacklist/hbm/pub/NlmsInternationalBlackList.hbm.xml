@@ -3,10 +3,10 @@
 	"-//Hibernate/Hibernate Mapping DTD//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping package="resource.bean.blacklist">
-    <class name="InternationalBlackList" table="nlms_internationalblacklist">
+    <class name="NsInternationalBlackList" table="nlms_internationalblacklist">
         <meta attribute="sync-DAO">false</meta>
 
-        <id name="id" type="string" column="party_id" />
+        <id name="id" type="string" column="blacklist_id" />
         <property name="blacklistType" type="string" column="blacklist_type" length="1" />
         <property name="sanCode" type="string" column="san_code" length="32" not-null="false" />
         <property name="sanName" type="string" column="san_name" length="32" not-null="false" />
@@ -21,9 +21,9 @@
         <property name="gender" type="string" column="gender" length="1" not-null="false" />     
         <property name="lastOccupation" type="string" column="last_occupation" length="200" not-null="false" />
         <property name="residenceCountry" type="string" column="residence_country" length="200" not-null="false" />     
-        <property name="politicians" type="true_false" column="is_politicians" length="1" not-null="false" />      
-        <property name="valid" type="true_false" column="is_valid" length="1" not-null="false" />
-        <property name="del" type="true_false" column="is_del" length="1" not-null="false" />
+        <property name="politicians" type="string" column="is_politicians" length="1" not-null="false" />      
+        <property name="valid" type="string" column="is_valid" length="1" not-null="false" />
+        <property name="del" type="string" column="is_del" length="1" not-null="false" />
         <property name="operateState" type="string" column="operate_state" length="2" not-null="false" />
         <property name="validDate" type="java.util.Date" column="valid_date" length="7" not-null="false" />    
         <property name="filler1" type="string" column="filler1" length="32" not-null="false" />

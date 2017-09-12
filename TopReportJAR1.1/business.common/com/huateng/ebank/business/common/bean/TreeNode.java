@@ -1,9 +1,10 @@
 package com.huateng.ebank.business.common.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TreeNode {
+public class TreeNode implements Serializable {
 
 	/** 必须属性 */
 	private String id; // ID,唯一标识,必须

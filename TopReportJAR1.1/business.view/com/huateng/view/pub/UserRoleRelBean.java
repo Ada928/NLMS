@@ -6,13 +6,15 @@
  */
 package com.huateng.view.pub;
 
+import java.io.Serializable;
+
 /**
  * @author Administrator
  *
  *         TODO To change the template for this generated type comment go to
  *         Window - Preferences - Java - Code Style - Code Templates
  */
-public class UserRoleRelBean {
+public class UserRoleRelBean implements Serializable {
 
 	// private static Set set;
 	// static {

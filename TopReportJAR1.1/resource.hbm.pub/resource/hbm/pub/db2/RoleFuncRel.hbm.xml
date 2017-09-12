@@ -6,7 +6,7 @@
 <hibernate-mapping package="resource.bean.pub">
     <class name="RoleFuncRel" table="ROLE_FUNC_REL">
         <meta attribute="sync-DAO">false</meta>
-        <id name="id" type="integer" column="ID">
+        <id name="id" type="string" column="ID">
             <generator class="assigned">
 
             </generator>

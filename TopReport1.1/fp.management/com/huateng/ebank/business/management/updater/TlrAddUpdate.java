@@ -1,14 +1,5 @@
 package com.huateng.ebank.business.management.updater;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import resource.bean.pub.TlrInfo;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -25,6 +16,13 @@ import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.service.pub.PasswordService;
 import com.huateng.view.pub.TlrRoleRelationView;
+import resource.bean.pub.TlrInfo;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 操作员增加EX
@@ -34,8 +32,8 @@ import com.huateng.view.pub.TlrRoleRelationView;
  */
 public class TlrAddUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			UpdateResultBean tlrRoleBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_AllRole");
 			UpdateResultBean tlrInfoBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_TlrAdd");
@@ -46,24 +44,20 @@ public class TlrAddUpdate extends BaseUpdate {
 				Map map = tlrInfoBean.next();
 				tlrInfo.setBrcode((String) map.get("brcode"));
 				tlrInfo.setTlrno((String) map.get("tlrno"));// 暂时将操作员内部操作员号和外部操作员号设置成一样
-				// tlrInfo.setExtTlrno((String) map.get("extTlrno"));
+//				tlrInfo.setExtTlrno((String) map.get("extTlrno"));
 				tlrInfo.setTlrName((String) map.get("tlrName"));
 				tlrInfo.setRoleid(Integer.valueOf(String.valueOf(map.get("defRoleid"))));
-				// tlrInfo.setDepartmentCode(Long.valueOf((String)map.get("departmentCode")));
-				// tlrInfo.setEffectDate(new
-				// SimpleDateFormat("yyyy-MM-dd").parse(map.get("effectDate").toString()));
-				// tlrInfo.setExpireDate(new
-				// SimpleDateFormat("yyyy-MM-dd").parse(map.get("expireDate").toString()));
-				// tlrInfo.setCurRoleid(tlrInfo.getDefRoleid());//
-				// 设置操作员当前岗位就为操作员默认岗位
+//				tlrInfo.setDepartmentCode(Long.valueOf((String)map.get("departmentCode")));
+//				tlrInfo.setEffectDate(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("effectDate").toString()));
+//				tlrInfo.setExpireDate(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("expireDate").toString()));
+//				tlrInfo.setCurRoleid(tlrInfo.getDefRoleid());// 设置操作员当前岗位就为操作员默认岗位
 				tlrInfo.setLoginIp((String) map.get("loginIp"));
 				/* modify by shen_antonio 20081010. */
 				// 设置默认操作员签退状态
 				tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
 				// 设置有效标志
 				tlrInfo.setFlag(SystemConstant.FLAG_ON);
-				// tlrInfo.setCreatDate(new
-				// Date(GlobalInfo.getCurrentInstance().getTxtime().getTime()));
+//				tlrInfo.setCreatDate(new Date(GlobalInfo.getCurrentInstance().getTxtime().getTime()));
 				String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
 				String encMethod = CommonService.getInstance().getSysParamDef("PSWD", "ENC_MODE", "AES128");
 				String pwd = PasswordService.getInstance().EncryptPassword(sysDefaultPwd, encMethod);
@@ -82,14 +76,11 @@ public class TlrAddUpdate extends BaseUpdate {
 				tlrRoleView.setTlrno(tlrInfo.getTlrno());
 
 				if (tlrRoleView.isSelected()) {
-					// if
-					// (isProBranchRoleAddCustManageAndSubBranch(tlrInfo.getBrcode(),
-					// tlrRoleView.getRoleId())) {
-					insertRoleList.add(tlrRoleView);
-					// } else{
-					// ExceptionUtil.throwCommonException("只有支行级别的机构可以增加操作员为客户经理或支行行长",
-					// ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
-					// }
+//					if (isProBranchRoleAddCustManageAndSubBranch(tlrInfo.getBrcode(), tlrRoleView.getRoleId())) {
+						insertRoleList.add(tlrRoleView);
+//					} else{
+//						ExceptionUtil.throwCommonException("只有支行级别的机构可以增加操作员为客户经理或支行行长", ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
+//					}
 				}
 			}
 			OperationContext oc = new OperationContext();
@@ -105,24 +96,21 @@ public class TlrAddUpdate extends BaseUpdate {
 		}
 	}
 
-	/**
-	 * 只有支行级别的机构可以增加客户经理和支行行长的操作员
-	 * 
+	/**只有支行级别的机构可以增加客户经理和支行行长的操作员
 	 * @param brcode
 	 * @param roleId
-	 *            return boolean
+	 * return boolean
 	 */
-	// public boolean isProBranchRoleAddCustManageAndSubBranch(String brcode,
-	// String roleId) throws CommonException {
-	// int roleIdInt = Integer.valueOf(roleId).intValue();
-	// if ( SystemConstant.ROLE_CUST_MANAGER == roleIdInt ||
-	// roleIdInt==SystemConstant.SUB_BRANCH_MANAGER) {
-	// if (BctlService.getInstance().isSubBrcode(brcode)) {
-	// return true;
-	// } else
-	// return false;
-	// }
-	// return true;
-	// }
+//	public boolean isProBranchRoleAddCustManageAndSubBranch(String brcode,
+//				String roleId) throws CommonException {
+//		int roleIdInt = Integer.valueOf(roleId).intValue();
+//		if ( SystemConstant.ROLE_CUST_MANAGER == roleIdInt || roleIdInt==SystemConstant.SUB_BRANCH_MANAGER) {
+//			if (BctlService.getInstance().isSubBrcode(brcode)) {
+//				return true;
+//			} else
+//				return false;
+//		}
+//		return true;
+//	}
 
 }

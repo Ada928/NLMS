@@ -6,15 +6,6 @@
  */
 package com.huateng.ebank.business.parammng.operation;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import resource.bean.pub.Bctl;
-import resource.bean.pub.TlrInfo;
-import resource.bean.pub.TlrRoleRel;
-import resource.dao.pub.TlrInfoDAO;
-import resource.dao.pub.TlrRoleRelDAO;
-
 import com.huateng.ebank.business.common.DAOUtils;
 import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.common.GlobalInfo;
@@ -27,12 +18,20 @@ import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.service.pub.PasswordService;
+import resource.bean.pub.Bctl;
+import resource.bean.pub.TlrInfo;
+import resource.bean.pub.TlrRoleRel;
+import resource.dao.pub.TlrInfoDAO;
+import resource.dao.pub.TlrRoleRelDAO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author wuguangjie
  *
- *         TODO To change the template for this generated type comment go to
- *         Window - Preferences - Java - Code Style - Code Templates
+ * TODO To change the template for this generated type comment go to Window -
+ * Preferences - Java - Code Style - Code Templates
  */
 public class TlrInfoOperation extends BaseOperation {
 
@@ -41,10 +40,8 @@ public class TlrInfoOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.
-	 * ebank.framework.operation.OperationContext)
+	 *
+	 * @see com.huateng.ebank.framework.operation.IOperation#beforeProc(com.huateng.ebank.framework.operation.OperationContext)
 	 */
 	public void beforeProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
@@ -53,16 +50,15 @@ public class TlrInfoOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.
-	 * ebank.framework.operation.OperationContext)
+	 *
+	 * @see com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.ebank.framework.operation.OperationContext)
 	 */
 	public void execute(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
-		// GlobalInfo就相当于一个session
+		//GlobalInfo就相当于一个session
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
-		TlrInfo tlrInfo = (TlrInfo) context.getAttribute(TlrInfoOperation.IN_TLRINFO);
+		TlrInfo tlrInfo = (TlrInfo) context
+				.getAttribute(TlrInfoOperation.IN_TLRINFO);
 		List list = (List) context.getAttribute(TlrInfoOperation.IN_LIST);
 		TlrInfoDAO tlrInfoDAO = DAOUtils.getTlrInfoDAO();
 		TlrRoleRelDAO relationDao = DAOUtils.getTlrRoleRelDAO();
@@ -87,15 +83,19 @@ public class TlrInfoOperation extends BaseOperation {
 			try {
 				Bctl bctl = DAOUtils.getBctlDAO().query(brcode);
 			} catch (Exception e) {
-				ExceptionUtil.throwCommonException("输入机构号不存在", ErrorCode.ERROR_CODE_BCTL_SELECT);
+				ExceptionUtil.throwCommonException("输入机构号不存在",
+						ErrorCode.ERROR_CODE_BCTL_SELECT);
 			}
 
-			String bctlList = BctlService.getInstance().getAllBlnBrcodeStr(globalInfo.getBrcode());
+			String bctlList = BctlService.getInstance().getAllBlnBrcodeStr(
+					globalInfo.getBrcode());
 			if (bctlList.indexOf(brcode) < 0) {
-				ExceptionUtil.throwCommonException("输入机构号不为本机构或者下属机构", ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
+				ExceptionUtil.throwCommonException("输入机构号不为本机构或者下属机构",
+						ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
 			}
 			if (temp == 0) {
-				ExceptionUtil.throwCommonException("请至少选择一个岗位。", ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
+				ExceptionUtil.throwCommonException("请至少选择一个岗位。",
+						ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
 			}
 			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
 			String encMethod = CommonService.getInstance().getSysParamDef("PSWD", "ENC_MODE", "AES128");
@@ -106,10 +106,11 @@ public class TlrInfoOperation extends BaseOperation {
 		}
 		// 更改操作员信息
 		else {
-			// if (temp == 0 ) {
-			// ExceptionUtil.throwCommonException("请至少选择一个岗位。",
-			// ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
-			// }
+//			if (temp == 0 ) {
+//				ExceptionUtil.throwCommonException("请至少选择一个岗位。",
+//						ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
+//			}
+
 
 			tmpTlrInfo.setTlrName(tlrInfo.getTlrName());
 			tmpTlrInfo.setEffectDate(tlrInfo.getEffectDate());
@@ -130,17 +131,16 @@ public class TlrInfoOperation extends BaseOperation {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng.
-	 * ebank.framework.operation.OperationContext)
+	 *
+	 * @see com.huateng.ebank.framework.operation.IOperation#afterProc(com.huateng.ebank.framework.operation.OperationContext)
 	 */
 	public void afterProc(OperationContext context) throws CommonException {
 		// TODO Auto-generated method stub
 
 	}
 
-	private void updateTlrRoleRelation(String brcode, List list, TlrRoleRelDAO relationDao) throws CommonException {
+	private void updateTlrRoleRelation(String brcode, List list,
+			TlrRoleRelDAO relationDao) throws CommonException {
 		String tlrno = "";
 		for (int i = 0; i < list.size(); i++) {
 			TlrRoleInfoView bean = (TlrRoleInfoView) list.get(i);
@@ -148,20 +148,24 @@ public class TlrInfoOperation extends BaseOperation {
 			if (bean.isSelect1()) { // 选中的岗位
 				List relationList = null;
 				try {
-					relationList = relationDao.queryByCondition("po.tlrno='" + bean.getTlrno() + "' and po.roleId=" + bean.getRoleid());
+					relationList = relationDao.queryByCondition("po.tlrno='"
+							+ bean.getTlrno() + "' and po.roleId="
+							+ bean.getRoleid());
 				} catch (Exception e) {
 				}
 				if (relationList == null || relationList.size() == 0) { // 若原来没有这个岗位
 					TlrRoleRel relation = new TlrRoleRel();
 					relation.setTlrno(bean.getTlrno());
 					relation.setRoleId(bean.getRoleid());
-					// relation.setBrcode(brcode);
+					//relation.setBrcode(brcode);
 					relationDao.insert(relation);
 				}
 			} else { // 没有选中的岗位
 				List relationList = null;
 				try {
-					relationList = relationDao.queryByCondition("po.tlrno='" + bean.getTlrno() + "' and po.roleId=" + bean.getRoleid());
+					relationList = relationDao.queryByCondition("po.tlrno='"
+							+ bean.getTlrno() + "' and po.roleId="
+							+ bean.getRoleid());
 				} catch (Exception e) {
 				}
 				if (relationList != null && relationList.size() > 0) { // 若原来有这个岗位则删除
@@ -174,24 +178,27 @@ public class TlrInfoOperation extends BaseOperation {
 		if (!tlrno.equals("")) {
 			List relationList1 = new ArrayList();
 			try {
-				relationList1 = relationDao.queryByCondition("po.tlrno='" + tlrno + "'");
+				relationList1 = relationDao.queryByCondition("po.tlrno='"
+						+ tlrno + "'");
 			} catch (Exception e) {
 			}
 			if (relationList1.size() == 0) {
-				ExceptionUtil.throwCommonException("请至少保留一个岗位。", ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
+				ExceptionUtil.throwCommonException("请至少保留一个岗位。",
+						ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
 			}
 		}
 
 	}
 
-	private void insertTlrRoleRelation(String brcode, List list, TlrRoleRelDAO relationDao) throws CommonException {
+	private void insertTlrRoleRelation(String brcode, List list,
+			TlrRoleRelDAO relationDao) throws CommonException {
 		for (int i = 0; i < list.size(); i++) {
 			TlrRoleInfoView bean = (TlrRoleInfoView) list.get(i);
 			if (bean.isSelect1()) {
 				TlrRoleRel relation = new TlrRoleRel();
 				relation.setTlrno(bean.getTlrno());
 				relation.setRoleId(bean.getRoleid());
-				// relation.setBrcode(brcode);
+				//relation.setBrcode(brcode);
 				relationDao.insert(relation);
 			}
 		}

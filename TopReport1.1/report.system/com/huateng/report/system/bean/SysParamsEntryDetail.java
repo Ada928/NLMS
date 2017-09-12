@@ -1,12 +1,14 @@
 package com.huateng.report.system.bean;
 
+import java.io.Serializable;
+
 import resource.bean.report.SysParams;
 
 /**
  * 
  * author by 计翔 2012.9.5 系统参数新旧信息对比的bean
  */
-public class SysParamsEntryDetail {
+public class SysParamsEntryDetail implements Serializable {
 	private SysParams sysparams;
 	private SysParams old_sysparams;
 

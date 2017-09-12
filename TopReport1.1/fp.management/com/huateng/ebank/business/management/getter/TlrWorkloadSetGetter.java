@@ -8,28 +8,23 @@
  */
 package com.huateng.ebank.business.management.getter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import resource.bean.pub.TlrInfo;
-import resource.dao.pub.BctlDAO;
 
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
-import com.huateng.ebank.business.common.DAOUtils;
-import com.huateng.ebank.business.common.ErrorCode;
-import com.huateng.ebank.business.common.GlobalInfo;
-import com.huateng.ebank.business.common.PageQueryCondition;
-import com.huateng.ebank.business.common.PageQueryResult;
-import com.huateng.ebank.business.common.SystemConstant;
+import com.huateng.ebank.business.common.*;
 import com.huateng.ebank.business.common.service.BctlService;
 import com.huateng.ebank.entity.data.TlrWorkload;
 import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import resource.bean.pub.TlrInfo;
+import resource.dao.pub.BctlDAO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author kangbyron
@@ -38,18 +33,19 @@ import com.huateng.exception.AppException;
  */
 public class TlrWorkloadSetGetter extends BaseGetter {
 
+
 	public Result call() throws AppException {
 		// TODO Auto-generated method stub
-		try {
+		try{
 
 			String brcode = (String) getCommQueryServletRequest().getParameterMap().get("brcode1");
-			String tlrno = (String) getCommQueryServletRequest().getParameterMap().get("tlrno1");
+			String tlrno =  (String) getCommQueryServletRequest().getParameterMap().get("tlrno1");
 			PageQueryResult pageQueryResult = new PageQueryResult();
-			GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
-			if (DataFormat.isEmpty(brcode) && DataFormat.isEmpty(tlrno)) {
+	    	GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
+			if(DataFormat.isEmpty(brcode) && DataFormat.isEmpty(tlrno)) {
 				ExceptionUtil.throwCommonException("机构号与操作员号必输其一", ErrorCode.ERROR_CODE_CANNOT_SUBMIT);
 			}
-			if (!DataFormat.isEmpty(brcode)) {
+			if(!DataFormat.isEmpty(brcode)){
 				BctlDAO bctlDao = DAOUtils.getBctlDAO();
 				try {
 					bctlDao.query(brcode);
@@ -63,12 +59,12 @@ public class TlrWorkloadSetGetter extends BaseGetter {
 
 			StringBuffer queryString = new StringBuffer();
 			queryString.append("select po,load from TlrInfo po,TlrWorkload load where po.tlrno=load.tlrno and po.status <> '"
-					+ SystemConstant.TLR_NO_STATE_QUIT + "' ");
+						+ SystemConstant.TLR_NO_STATE_QUIT + "' ");
 			if (!DataFormat.isEmpty(brcode)) {
-				queryString.append(" and po.brcode='" + brcode + "'");
+				queryString.append(" and po.brcode='"+brcode+"'");
 			}
 			if (!DataFormat.isEmpty(tlrno)) {
-				queryString.append(" and po.tlrno='" + tlrno + "'");
+				queryString.append(" and po.tlrno='"+tlrno+"'");
 			}
 
 			PageQueryCondition queryCondition = new PageQueryCondition();
@@ -78,26 +74,38 @@ public class TlrWorkloadSetGetter extends BaseGetter {
 			pageQueryResult = DAOUtils.getHQLDAO().pageQueryByQL(queryCondition);
 			List resultList = new ArrayList();
 			for (int i = 0; i < pageQueryResult.getQueryResult().size(); i++) {
-				Object[] obj = (Object[]) pageQueryResult.getQueryResult().get(i);
-				TlrInfo tlrInfo = (TlrInfo) obj[0];
-				TlrWorkload tlrWorkload = (TlrWorkload) obj[1];
+				Object[] obj = (Object[])pageQueryResult.getQueryResult().get(i);
+				TlrInfo tlrInfo = (TlrInfo)obj[0];
+				TlrWorkload tlrWorkload = (TlrWorkload)obj[1];
 				tlrInfo.setMaxWl(tlrWorkload.getMaxWl());
 				resultList.add(tlrInfo);
 			}
 			pageQueryResult.setQueryResult(resultList);
 
-			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageQueryResult.getQueryResult(), getResult());
+
+
+			ResultMng.fillResultByList(
+					getCommonQueryBean(),
+					getCommQueryServletRequest(),
+					pageQueryResult.getQueryResult(),
+					getResult());
 
 			result.setContent(pageQueryResult.getQueryResult());
 			result.getPage().setTotalPage(pageQueryResult.getPageCount(result.getPage().getEveryPage()));
 			result.init();
-			return result;
+		return result;
 
-		} catch (AppException appEx) {
-			throw appEx;
-		} catch (Exception ex) {
-			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
-		}
+
+
+	}catch(AppException appEx){
+		throw appEx;
+	}catch(Exception ex){
+		throw new AppException(Module.SYSTEM_MODULE,
+				Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
+	}
+
 
 	}
 }
+
+

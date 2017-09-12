@@ -3,6 +3,7 @@
  */
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
  * @author shen_antonio
  * @version 1.1, 2008-3-31
  */
-public class WorkFlowStartBean extends BaseWorkFlowTaskAssignBean {
+public class WorkFlowStartBean extends BaseWorkFlowTaskAssignBean implements Serializable {
 
 	/** memeber variable: String flowName. */
 	private String flowName;
@@ -53,8 +54,8 @@ public class WorkFlowStartBean extends BaseWorkFlowTaskAssignBean {
 	 * @param isLv
 	 *            是否有请假制度 2008-3-31
 	 */
-	public WorkFlowStartBean(List tlrnoList, String brcode, String flowName, String version, Map attribute, String key,
-			String status, String workType, String assignMode, boolean isWorkType, boolean isLv) {
+	public WorkFlowStartBean(List tlrnoList, String brcode, String flowName, String version, Map attribute, String key, String status, String workType,
+			String assignMode, boolean isWorkType, boolean isLv) {
 		super(tlrnoList, brcode, workType, assignMode, isWorkType, isLv);
 		this.flowName = flowName;
 		this.version = version;
@@ -87,8 +88,8 @@ public class WorkFlowStartBean extends BaseWorkFlowTaskAssignBean {
 		this.attribute = attribute;
 	}
 
-	public void setAttribute(String contractno, String appno, double amount, String custcd, String starter,
-			String bizSubclass, String bizClass, String startBrcode, String mgrno, String lastTlrno, String appType) {
+	public void setAttribute(String contractno, String appno, double amount, String custcd, String starter, String bizSubclass, String bizClass,
+			String startBrcode, String mgrno, String lastTlrno, String appType) {
 		Map attribute = new HashMap();
 		attribute.put("CONTRACTNO", contractno == null ? "" : contractno);
 		attribute.put("APPNO", appno == null ? "" : appno);
@@ -104,9 +105,8 @@ public class WorkFlowStartBean extends BaseWorkFlowTaskAssignBean {
 		this.attribute = attribute;
 	}
 
-	public void setAttribute(String contractno, String appno, double amount, String custcd, String starter,
-			String bizSubclass, String bizClass, String startBrcode, String mgrno, String lastTlrno, String appType,
-			String systype) {
+	public void setAttribute(String contractno, String appno, double amount, String custcd, String starter, String bizSubclass, String bizClass,
+			String startBrcode, String mgrno, String lastTlrno, String appType, String systype) {
 		Map attribute = new HashMap();
 		attribute.put("CONTRACTNO", contractno == null ? "" : contractno);
 		attribute.put("APPNO", appno == null ? "" : appno);
@@ -150,9 +150,8 @@ public class WorkFlowStartBean extends BaseWorkFlowTaskAssignBean {
 	 * @param sysType
 	 *            模块类型
 	 */
-	public void setAttribute(String contractno, String appno, double amount, String custcd, String starter,
-			String bizSubclass, String bizClass, String startBrcode, String mgrno, String lastTlrno, String appType,
-			String lastTask, String sysType) {
+	public void setAttribute(String contractno, String appno, double amount, String custcd, String starter, String bizSubclass, String bizClass,
+			String startBrcode, String mgrno, String lastTlrno, String appType, String lastTask, String sysType) {
 		Map attribute = new HashMap();
 		attribute.put("CONTRACTNO", contractno == null ? "" : contractno);
 		attribute.put("APPNO", appno == null ? "" : appno);

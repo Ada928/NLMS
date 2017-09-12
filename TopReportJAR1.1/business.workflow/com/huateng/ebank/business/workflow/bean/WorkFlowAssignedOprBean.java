@@ -8,13 +8,15 @@
  */
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
+
 /**
  * @author UU_Wu 2010-11-20
  * @version $Revision: 1.1 $
  *
  *          宸ヤ綔娴佹疮涓换锷″垎閰崭汉锻榖ean
  */
-public class WorkFlowAssignedOprBean {
+public class WorkFlowAssignedOprBean implements Serializable {
 
 	private String piid;// 娴佺▼瀹炰緥鍙??
 	private String[] oprId;// 鎿崭綔锻榠d

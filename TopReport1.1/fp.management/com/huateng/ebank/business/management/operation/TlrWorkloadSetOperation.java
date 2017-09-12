@@ -1,11 +1,11 @@
 package com.huateng.ebank.business.management.operation;
 
-import java.util.List;
-
 import com.huateng.ebank.business.management.service.TlrInfoExService;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
+
+import java.util.List;
 
 /**
  * Title:
@@ -30,7 +30,7 @@ public class TlrWorkloadSetOperation extends BaseOperation {
 	}
 
 	public void execute(OperationContext context) throws CommonException {
-		List updateList = (List) context.getAttribute(UPDATE_LIST);
+		List updateList = (List)context.getAttribute(UPDATE_LIST);
 		TlrInfoExService service = TlrInfoExService.getInstance();
 		service.updateMaxWl(updateList);
 	}

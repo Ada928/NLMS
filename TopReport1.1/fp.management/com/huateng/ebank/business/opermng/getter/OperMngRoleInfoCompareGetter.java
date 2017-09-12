@@ -1,9 +1,5 @@
 package com.huateng.ebank.business.opermng.getter;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import resource.bean.report.SysTaskInfo;
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.management.common.DAOUtils;
@@ -13,18 +9,23 @@ import com.huateng.exception.AppException;
 import com.huateng.report.system.bean.TlrInfoBean;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
+import resource.bean.report.SysTaskInfo;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OperMngRoleInfoCompareGetter extends BaseGetter {
 
 	public Result call() throws AppException {
 
 		String adtRcdPk = getCommQueryServletRequest().getParameter("adtRcdPk");
-		SysTaskInfo sysTaskInfo = (SysTaskInfo) getSysTaskInfo(adtRcdPk).get(0);// 获取SysTaskInfo
-		List<TlrInfoBean> tlrInfoList = new ArrayList();
+		SysTaskInfo sysTaskInfo = (SysTaskInfo)getSysTaskInfo(adtRcdPk).get(0);//获取SysTaskInfo
+		List <TlrInfoBean>tlrInfoList = new ArrayList();
 		ReportTaskUtil reportTaskUtil = new ReportTaskUtil();
-		TlrInfoBean tlrInfoBean = new TlrInfoBean();
+		TlrInfoBean tlrInfoBean =new TlrInfoBean();
 		try {
-			tlrInfoBean = (TlrInfoBean) reportTaskUtil.getObjctBySysTaskInfo(sysTaskInfo);// 获取修改的bean
+			tlrInfoBean = (TlrInfoBean) reportTaskUtil.getObjctBySysTaskInfo(sysTaskInfo);//获取修改的bean
 			tlrInfoList = tlrInfoBean.getRolelist();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -34,7 +35,7 @@ public class OperMngRoleInfoCompareGetter extends BaseGetter {
 			e.printStackTrace();
 		}
 
-		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), tlrInfoList, getResult());
+		ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), tlrInfoList,getResult());
 
 		result.setContent(tlrInfoList);
 		result.getPage().setTotalPage(1);
@@ -43,8 +44,7 @@ public class OperMngRoleInfoCompareGetter extends BaseGetter {
 	}
 
 	public List getSysTaskInfo(String adtRcdPk) throws CommonException {
-		String str = "from SysTaskInfo sti where sti.adtRcdPk = '" + adtRcdPk + "' and sti.intInsId = '" + ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value
-				+ "'";
+		String str = "from SysTaskInfo sti where sti.adtRcdPk = '" + adtRcdPk +"' and sti.intInsId = '" + ReportEnum.REPORT_TASK_FUNCID.TASK_100399.value+"'" ;
 		List fl = DAOUtils.getHQLDAO().queryByQL2List(str);
 		return fl;
 	}

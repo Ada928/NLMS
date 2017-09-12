@@ -1,12 +1,14 @@
 package com.huateng.ebank.business.bizlog.bean;
 
+import java.io.Serializable;
+
 /**
  * 交易流水查询过滤条件
  * 
  * @author JorneZhang
  * @version 创建时间：2010-1-5 下午03:13:19
  */
-public class BizLogQueryBean {
+public class BizLogQueryBean implements Serializable {
 	private String tlrno;// 操作员号
 	private String branchId;// 机构id
 	private String txnDate;// 操作时间

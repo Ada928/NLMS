@@ -1,6 +1,8 @@
 package com.huateng.view.pub;
 
-public class TlrRoleChangeView {
+import java.io.Serializable;
+
+public class TlrRoleChangeView implements Serializable {
 	private String tlrno;
 	private String brname;
 	private String rolename;

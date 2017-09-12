@@ -1,28 +1,28 @@
 package com.huateng.ebank.monitor.batch.bean;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  * <p>
+ * 
  * @Title: 交通银行个人贷款管理系统
- * </p>
- * <p>
- * @Description:
- * </p>
- * <p>
+ *         </p>
+ *         <p>
+ * @Description: </p>
+ *               <p>
  * @Created time: Jun 16, 2005 4:29:07 PM
- * </p>
- * <p>
- * @Company:上海华腾软件系统有限公司
- * </p>
- * <p>
+ *          </p>
+ *          <p>
+ * @Company:上海华腾软件系统有限公司 </p>
+ *                       <p>
  * @author Ranger.Mao
- * </p>
+ *         </p>
  */
 
-public class Holiday {
+public class Holiday implements Serializable {
 	private String date = null;
 	private int day_of_week = 0;
 	private int day_of_month = 0;
@@ -76,8 +76,8 @@ public class Holiday {
 
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("Date[").append(this.date).append("]Week Day[").append(day_of_week).append("]Day Of Month[")
-				.append(day_of_month).append("] End Day Of Month[").append(end_day_of_month).append("]");
+		sb.append("Date[").append(this.date).append("]Week Day[").append(day_of_week).append("]Day Of Month[").append(day_of_month)
+				.append("] End Day Of Month[").append(end_day_of_month).append("]");
 		if (this.isWeekEnd())
 			sb.append(" [Week End]");
 		if (this.isaPeriodOfTenDays())
@@ -117,8 +117,7 @@ public class Holiday {
 		/*
 		 * 季末
 		 */
-		if (day_of_month == end_day_of_month
-				&& (month_of_year == 3 || month_of_year == 6 || month_of_year == 9 || month_of_year == 12))
+		if (day_of_month == end_day_of_month && (month_of_year == 3 || month_of_year == 6 || month_of_year == 9 || month_of_year == 12))
 			return true;
 		else
 			return false;

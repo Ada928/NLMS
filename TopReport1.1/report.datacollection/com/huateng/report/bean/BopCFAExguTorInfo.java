@@ -1,6 +1,8 @@
 package com.huateng.report.bean;
 
-public class BopCFAExguTorInfo {
+import java.io.Serializable;
+
+public class BopCFAExguTorInfo implements Serializable {
 
 	// 担保申请人
 	private java.lang.String torCodeGu;

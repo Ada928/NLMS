@@ -1,11 +1,5 @@
 package com.huateng.ebank.business.management.updater;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.MultiUpdateResultBean;
@@ -17,6 +11,11 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Map;
+
 /**
  * 操作员增加EX
  *
@@ -25,14 +24,14 @@ import com.huateng.exception.AppException;
  */
 public class SelectTlrAddUpdate extends BaseUpdate {
 
-	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request, HttpServletResponse response)
-			throws AppException {
+	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
+			HttpServletResponse response) throws AppException {
 		try {
 			UpdateResultBean tlrRoleBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_SelectTlrAdd");
 			Map map = tlrRoleBean.next();
-			String brcode = (String) map.get("brcode");
+			String brcode = (String)map.get("brcode");
 			String departmentCode = "3000";
-			String extTlrno = (String) map.get("extTlrno");
+			String extTlrno = (String)map.get("extTlrno");
 
 			setValue2DataBus("brcode", brcode);
 			setValue2DataBus("departmentCode", departmentCode);
@@ -52,5 +51,6 @@ public class SelectTlrAddUpdate extends BaseUpdate {
 			throw new AppException(Module.SYSTEM_MODULE, Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}
+
 
 }

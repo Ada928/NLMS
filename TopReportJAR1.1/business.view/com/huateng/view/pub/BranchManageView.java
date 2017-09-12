@@ -1,6 +1,8 @@
 package com.huateng.view.pub;
 
-public class BranchManageView {
+import java.io.Serializable;
+
+public class BranchManageView implements Serializable {
 
 	private String brhNo;
 

@@ -1,34 +1,5 @@
 package com.huateng.ebank.business.dwr;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import resource.bean.pub.BranchFuncRel;
-import resource.bean.pub.FunctionInfo;
-import resource.bean.pub.RoleFuncRel;
-import resource.bean.pub.RoleInfo;
-import resource.bean.report.BiWorkdate;
-import resource.bean.report.BiWorkdateConf;
-import resource.bean.report.SysTaskInfo;
-import resource.bean.report.SysTaskLog;
-import resource.dao.pub.BranchFuncRelDAO;
-import resource.dao.pub.RoleFuncRelDAO;
-import resource.report.dao.ROOTDAO;
-import resource.report.dao.ROOTDAOUtils;
-
 import com.huateng.ebank.business.common.CommonFunctions;
 import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryCondition;
@@ -46,12 +17,30 @@ import com.huateng.report.system.service.TaskListService;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
 import com.huateng.service.pub.UserMgrService;
-
 import edu.emory.mathcs.backport.java.util.Arrays;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import resource.bean.pub.BranchFuncRel;
+import resource.bean.pub.FunctionInfo;
+import resource.bean.pub.RoleFuncRel;
+import resource.bean.pub.RoleInfo;
+import resource.bean.report.BiWorkdate;
+import resource.bean.report.BiWorkdateConf;
+import resource.bean.report.SysTaskInfo;
+import resource.bean.report.SysTaskLog;
+import resource.dao.pub.BranchFuncRelDAO;
+import resource.dao.pub.RoleFuncRelDAO;
+import resource.report.dao.ROOTDAO;
+import resource.report.dao.ROOTDAOUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.*;
 
 public class DwrFunctions {
 	private Logger logger = LoggerFactory.getLogger(DwrFunctions.class);
-
 	private void setGlobalInfo(HttpServletRequest request) {
 		HttpSession httpSession = request.getSession(false);
 		if (null != httpSession) {
@@ -62,14 +51,14 @@ public class DwrFunctions {
 			}
 		}
 	}
-
 	/**
 	 * 通过所有获得权限
 	 */
 	public List<String> getFuncArray(HttpServletRequest request) {
 		try {
 			String str = "from FunctionInfo func";
-			List<String> list = CommonFunctions.getFunctionList(DAOUtils.getHQLDAO().queryByQL2List(str));
+			List<String> list = CommonFunctions.getFunctionList(DAOUtils
+					.getHQLDAO().queryByQL2List(str));
 			// for(int i=0;i<list.size();i++){
 			// System.out.println(list.get(i).toString());
 			// }
@@ -83,7 +72,8 @@ public class DwrFunctions {
 	public List<String> getFuncArrayCopram(HttpServletRequest request) {
 		try {
 			String str = "from FunctionInfo func";
-			List<String> list = CommonFunctions.getFunctionListCompar(DAOUtils.getHQLDAO().queryByQL2List(str));
+			List<String> list = CommonFunctions.getFunctionListCompar(DAOUtils
+					.getHQLDAO().queryByQL2List(str));
 			// for(int i=0;i<list.size();i++){
 			// System.out.println(list.get(i).toString());
 			// }
@@ -95,7 +85,7 @@ public class DwrFunctions {
 	}
 
 	/**
-	 * 查询机构ID的权限
+	 *查询机构ID的权限
 	 */
 	public List<FunctionInfo> getFunctionByBranchId(String brcode) {
 
@@ -157,7 +147,8 @@ public class DwrFunctions {
 	 * @return
 	 * @throws CommonException
 	 */
-	public List<FunctionInfo> getRoleFuncByid(String roleId) throws CommonException {
+	public List<FunctionInfo> getRoleFuncByid(String roleId)
+			throws CommonException {
 
 		String str = "select trim(funInfo.id) from FunctionInfo funInfo,RoleFuncRel rolefun where funInfo.id= rolefun.funcid and funInfo.isdirectory=0"
 				+ "and rolefun.roleId = " + roleId;
@@ -167,7 +158,6 @@ public class DwrFunctions {
 
 	/**
 	 * 角色信息对比
-	 * 
 	 * @param roleId
 	 * @param st
 	 * @param flag
@@ -177,21 +167,21 @@ public class DwrFunctions {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public List<String> getRoleFuncByIdCom(String roleId, String st, String flag, String tskId) throws CommonException, IOException, ClassNotFoundException {
+	public List<String> getRoleFuncByIdCom(String roleId, String st, String flag, String tskId) throws CommonException, IOException, ClassNotFoundException{
 		List<String> list = new ArrayList<String>();
-		if (flag.equals("0")) {
+		if(flag.equals("0")){
 			String str = "select trim(funInfo.id) from FunctionInfo funInfo,RoleFuncRel rolefun where funInfo.id= rolefun.funcid and funInfo.isdirectory=0"
 					+ "and rolefun.roleId = " + roleId;
 			list = DAOUtils.getHQLDAO().queryByQL2List(str);
 		}
-		if (flag.equals("1")) {
-			ReportTaskUtil rt = new ReportTaskUtil();
-			SysTaskLog systasklog = ReportShowDetailService.getInstance().selectTaskLog(tskId);
+		if(flag.equals("1")){
+			ReportTaskUtil rt=new ReportTaskUtil();
+			SysTaskLog  systasklog=ReportShowDetailService.getInstance().selectTaskLog(tskId);
 			RoleInfo oldValue = null;
-			if (systasklog.getOldVal1() != null) {
-				oldValue = (RoleInfo) rt.getOldObjectByTaskLog(systasklog);
+			if(systasklog.getOldVal1()!=null){
+				oldValue=(RoleInfo)rt.getOldObjectByTaskLog(systasklog);
 			}
-			if (oldValue != null && oldValue.getRoleList() != null && oldValue.getRoleList().length() > 0) {
+			if(oldValue != null && oldValue.getRoleList() != null && oldValue.getRoleList().length() > 0){
 				list = Arrays.asList(oldValue.getRoleList().split(","));
 			}
 		}
@@ -200,7 +190,6 @@ public class DwrFunctions {
 
 	/**
 	 * 序列化角色信息新内容
-	 * 
 	 * @param roleId
 	 * @param st
 	 * @param flag
@@ -210,28 +199,28 @@ public class DwrFunctions {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public List<String> getRoleFuncByIdComSeri(String roleId, String st, String flag, String tskId) throws CommonException, IOException, ClassNotFoundException {
+	public List<String> getRoleFuncByIdComSeri(String roleId, String st, String flag, String tskId) throws CommonException, IOException, ClassNotFoundException{
 		List<String> list = new ArrayList<String>();
-		if (flag.equals("0")) {
+		if(flag.equals("0")){
 			if (st.equals("2")) {
 				ReportTaskUtil rt = new ReportTaskUtil();
 				List<SysTaskInfo> taskList = ROOTDAOUtils.getROOTDAO().queryByQL2List("from SysTaskInfo where intInsId='100299' and adtRcdPk='" + roleId + "'");
 				if (taskList.size() > 0) {
 					RoleInfo roleInfoSeri = (RoleInfo) rt.getObjctBySysTaskInfo(taskList.get(0));
-					if (roleInfoSeri != null && roleInfoSeri.getRoleList() != null && roleInfoSeri.getRoleList().length() > 0) {
+					if(roleInfoSeri != null && roleInfoSeri.getRoleList() != null && roleInfoSeri.getRoleList().length() > 0){
 						list = Arrays.asList(roleInfoSeri.getRoleList().split(","));
 					}
 				}
 			}
 		}
-		if (flag.equals("1")) {
-			ReportTaskUtil rt = new ReportTaskUtil();
-			SysTaskLog systasklog = ReportShowDetailService.getInstance().selectTaskLog(tskId);
+		if(flag.equals("1")){
+			ReportTaskUtil rt=new ReportTaskUtil();
+			SysTaskLog  systasklog=ReportShowDetailService.getInstance().selectTaskLog(tskId);
 			RoleInfo newValue = null;
-			if (systasklog.getNewVal1() != null) {
-				newValue = (RoleInfo) rt.getNewObjectByTaskLog(systasklog);
+			if(systasklog.getNewVal1()!=null){
+				newValue=(RoleInfo)rt.getNewObjectByTaskLog(systasklog);
 			}
-			if (newValue != null && newValue.getRoleList() != null && newValue.getRoleList().length() > 0) {
+			if(newValue != null && newValue.getRoleList() != null && newValue.getRoleList().length() > 0){
 				list = Arrays.asList(newValue.getRoleList().split(","));
 			}
 		}
@@ -297,7 +286,8 @@ public class DwrFunctions {
 	 */
 	public List<String> getWorkDateByYear(String year) throws CommonException {
 		List<String> list = new ArrayList<String>();
-		List<BiWorkdate> biwds = BiWorkDateService.getInstance().getWorkDateByYear(year);
+		List<BiWorkdate> biwds = BiWorkDateService.getInstance()
+				.getWorkDateByYear(year);
 		for (BiWorkdate bi : biwds) {
 			list.add(bi.getId());
 		}
@@ -312,7 +302,8 @@ public class DwrFunctions {
 	 * @return
 	 * @throws CommonException
 	 */
-	public int saveOrUpdateWorkDate(HttpServletRequest request, String year, List<String> workDates) throws CommonException {
+	public int saveOrUpdateWorkDate(HttpServletRequest request,String year, List<String> workDates)
+			throws CommonException {
 		setGlobalInfo(request);
 
 		OperationContext oc = new OperationContext();
@@ -320,16 +311,18 @@ public class DwrFunctions {
 		oc.setAttribute(BiWorkDateOperation.IN_YEAE, year);
 		oc.setAttribute(BiWorkDateOperation.IN_WORKDATE, workDates);
 		OPCaller.call(BiWorkDateOperation.ID, oc);
-		TaskListService tls = TaskListService.getInstance();
-		if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100599.value)) {
+TaskListService tls = TaskListService.getInstance();
+		if(!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100599.value)){
 			return 2;
-		} else {
-			return 0;
+		}
+		else{
+		return 0;
 		}
 	}
 
 	public List<Constant> getProgress(HttpServletRequest request) {
-		List<Constant> list = (List<Constant>) request.getSession().getAttribute(Constants.PROGRESS);
+		List<Constant> list = (List<Constant>) request.getSession()
+				.getAttribute(Constants.PROGRESS);
 		for (Constant c : list) {
 			if (c.stopFlag) {
 				request.getSession().removeAttribute(Constants.PROGRESS);
@@ -339,16 +332,20 @@ public class DwrFunctions {
 		return list;
 	}
 
-	public String getcurrentFileType(String appType, String currentFileType) throws CommonException {
+	public String getcurrentFileType(String appType, String currentFileType)
+			throws CommonException {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		String fileTypeId = "";
 
 		PageQueryCondition queryCondition = new PageQueryCondition();
 
-		StringBuffer hql = new StringBuffer("select dd.id from DataDic dd where 1=1 ");
+		StringBuffer hql = new StringBuffer(
+				"select dd.id from DataDic dd where 1=1 ");
 
-		if (StringUtils.isNotBlank(appType) && StringUtils.isNotBlank(currentFileType)) {
-			hql.append(" and dd.dataNo ='").append(appType).append("' and dd.dataTypeNo= 17");
+		if (StringUtils.isNotBlank(appType)
+				&& StringUtils.isNotBlank(currentFileType)) {
+			hql.append(" and dd.dataNo ='").append(appType)
+					.append("' and dd.dataTypeNo= 17");
 		} else
 			return currentFileType;
 
@@ -359,10 +356,13 @@ public class DwrFunctions {
 		} else
 			return currentFileType;
 
-		if (!StringUtils.isEmpty(fileTypeId) && !StringUtils.isEmpty(currentFileType)) {
-			StringBuffer hql1 = new StringBuffer("select dd.dataName from DataDic dd where 1=1 ");
+		if (!StringUtils.isEmpty(fileTypeId)
+				&& !StringUtils.isEmpty(currentFileType)) {
+			StringBuffer hql1 = new StringBuffer(
+					"select dd.dataName from DataDic dd where 1=1 ");
 			hql1.append(" and dd.miscflgs = '").append(fileTypeId).append("'");
-			hql1.append(" and dd.dataNo = '").append(currentFileType).append("'");
+			hql1.append(" and dd.dataNo = '").append(currentFileType)
+					.append("'");
 			list = rootdao.queryByQL2List(hql1.toString());
 
 			if (!list.isEmpty()) {
@@ -375,70 +375,69 @@ public class DwrFunctions {
 
 	// jianxue.zhang
 	// 工作日期检查是否锁定
-	// jianxue.zhang
-	// 工作日期检查是否锁定
-	public int checkWorkdateLock(String yr) throws CommonException {
-		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		BiWorkdateConf bc = null;
-		StringBuffer hql = new StringBuffer("select dd from BiWorkdateConf dd where 1=1 and dd.id='" + yr + "'");
+	//jianxue.zhang
+	//工作日期检查是否锁定
+	public int checkWorkdateLock(String yr) throws CommonException{
+		  ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		  BiWorkdateConf bc=null;
+		  StringBuffer hql = new StringBuffer("select dd from BiWorkdateConf dd where 1=1 and dd.id='"+yr+"'");
 
-		Iterator it = rootdao.queryByQL(hql.toString());
-		while (it.hasNext()) {
-			bc = (BiWorkdateConf) it.next();
-			// System.out.println("workdateLock?:"+bc.isLock());
-			if (bc.isLock())
-				return 1;
-		}
+			Iterator it=rootdao.queryByQL(hql.toString());
+			while(it.hasNext()){
+				bc=(BiWorkdateConf)it.next();
+				//System.out.println("workdateLock?:"+bc.isLock());
+				if(bc.isLock())
+					return 1;
+			}
 
 		return 0;
 
 	}
 
-	public List<String[]> getWorkDateByDetail(String year, String type, String taskId, String flag, String st) throws CommonException, IOException,
-			ClassNotFoundException {
+	public List<String[]> getWorkDateByDetail(String year,String type,String taskId,String flag,String st) throws CommonException, IOException, ClassNotFoundException{
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<String[]> list = new ArrayList<String[]>();
 		ReportShowDetailService service = ReportShowDetailService.getInstance();
-		if ("0".equals(flag)) {// 主管确认页面
+		if ("0".equals(flag)) {//主管确认页面
 			List<BiWorkdate> wdlist = BiWorkDateService.getInstance().getWorkDateByYear(year);
 			String[] oldstrs = new String[wdlist.size()];
 			for (int i = 0; i < wdlist.size(); i++) {
 				BiWorkdate wd = wdlist.get(i);
-				oldstrs[i] = wd.getId();
+				oldstrs[i]=wd.getId();
 			}
 			list.add(oldstrs);
-			if (ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value.equals(st)) {// 编辑
-				SysTaskInfo tskInf = service.getSysTaskInfo(type, year);
-				if (tskInf != null) {
+			if (ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value.equals(st)) {//编辑
+				SysTaskInfo tskInf =  service.getSysTaskInfo(type, year);
+				if(tskInf!=null){
 					BiWorkdateConf conf = (BiWorkdateConf) ReportTaskUtil.getObjctBySysTaskInfo(tskInf);
 					Object[] objs = conf.getWorkDateList().toArray();
 					String[] newstrs = new String[objs.length];
 					for (int i = 0; i < objs.length; i++) {
-						newstrs[i] = objs[i].toString().trim();
+						newstrs[i]=objs[i].toString().trim();
 					}
 					list.add(newstrs);
 				}
 			}
-		} else if ("1".equals(flag)) {// 已办理
+		}else if ("1".equals(flag)) {//已办理
 			SysTaskLog tlog = service.selectTaskLog(taskId);
-			if (ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value.equals(st)) {// 编辑
+			if (ReportEnum.REPORT_TASK_TRANS_CD.EDIT.value.equals(st)) {//编辑
 				BiWorkdateConf confold = (BiWorkdateConf) ReportTaskUtil.getOldObjectByTaskLog(tlog);
 				String[] oldstrs = service.getTaskToWorkDateConf(confold);
 				list.add(oldstrs);
-				System.out.println("old=" + oldstrs.toString());
+				System.out.println("old="+oldstrs.toString());
 			}
+
 
 			BiWorkdateConf conf = (BiWorkdateConf) ReportTaskUtil.getNewObjectByTaskLog(tlog);
 			String[] newstrs = service.getTaskToWorkDateConf(conf);
 			list.add(newstrs);
-			System.out.println("new=" + newstrs.toString());
+			System.out.println("new="+newstrs.toString());
 		}
 		return list;
 	}
 
 	/**
-	 * 通过个人用户权限
-	 * 
+	 *通过个人用户权限
 	 * @throws CommonException
 	 */
 	public List<String> getFuncArrayByFavt(HttpServletRequest request) throws CommonException {
@@ -448,18 +447,20 @@ public class DwrFunctions {
 		Map funmap = globalInfo.getAllFunctions();
 		List<FunctionInfo> funcInfoList = new ArrayList<FunctionInfo>();
 		UserMgrService.getInstance().getUserFunctionsByMenuType(globalInfo.getTlrno(), globalInfo.getMenuCode(), funcInfoList);
-		/*
-		 * for (Iterator iterator = funmap.keySet().iterator();
-		 * iterator.hasNext();) { String funcId = (String) iterator.next();
-		 * 
-		 * FunctionInfo fun = (FunctionInfo)funmap.get(funcId);
-		 * 
-		 * //调整主管确认 if
-		 * (ReportConstant.FILTER_FUNC_ID_SET.contains(fun.getId().trim())) {
-		 * fun.setIsdirectory(0);//调整为不是目录 } if (fun.getLastdirectory()!=null &&
-		 * ReportConstant.FILTER_FUNC_ID_SET.contains(fun.getLastdirectory().
-		 * toString())) { continue; } funcInfoList.add(fun); }
-		 */
+/*		for (Iterator iterator = funmap.keySet().iterator(); iterator.hasNext();) {
+			String funcId = (String) iterator.next();
+
+			FunctionInfo fun = (FunctionInfo)funmap.get(funcId);
+
+			//调整主管确认
+			if (ReportConstant.FILTER_FUNC_ID_SET.contains(fun.getId().trim())) {
+				fun.setIsdirectory(0);//调整为不是目录
+			}
+			if (fun.getLastdirectory()!=null && ReportConstant.FILTER_FUNC_ID_SET.contains(fun.getLastdirectory().toString())) {
+				continue;
+			}
+			funcInfoList.add(fun);
+		}*/
 		List<String> list = CommonFunctions.getFunctionList(funcInfoList);
 		return list;
 	}
@@ -474,7 +475,7 @@ public class DwrFunctions {
 		return selList;
 	}
 
-	public void saveFavt(HttpServletRequest request, List<String> funcIds) throws CommonException {
+	public void saveFavt(HttpServletRequest request,List<String> funcIds) throws CommonException {
 		setGlobalInfo(request);
 
 		OperationContext oc = new OperationContext();
@@ -482,5 +483,6 @@ public class DwrFunctions {
 		oc.setAttribute(BiWorkDateOperation.IN_FAVT, funcIds);
 		OPCaller.call(BiWorkDateOperation.ID, oc);
 	}
+
 
 }

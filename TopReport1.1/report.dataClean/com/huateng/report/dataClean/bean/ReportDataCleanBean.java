@@ -1,9 +1,10 @@
 package com.huateng.report.dataClean.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportDataCleanBean {
+public class ReportDataCleanBean implements Serializable {
 	private String tableName;
 	private int reservesDay;
 	private String dateFormate;

@@ -13,6 +13,7 @@ import resource.report.dao.ROOTDAOUtils;
 
 import com.huateng.ebank.business.common.BaseDAOUtils;
 import com.huateng.ebank.business.common.GlobalInfo;
+import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
 import com.huateng.ebank.framework.util.DataFormat;
@@ -58,7 +59,7 @@ public class RoleInfoTSKService {
 		if (!tls.isNeedApprove(ReportEnum.REPORT_TASK_FUNCID.TASK_100299.value)) {
 
 			for (RoleInfo bean : insertList) {
-				bean.setLock(false);
+				bean.setLock(SystemConstant.FALSE);
 				bean.setSt(ReportEnum.REPORT__FH_ST.YES.value);
 				roleInfoDAO.save(bean);
 				// 取出rolelist执行插入;
@@ -70,7 +71,7 @@ public class RoleInfoTSKService {
 			// 更新新岗位
 			for (RoleInfo bean : updateList) {
 				// 先将数据库中的那条数据的状态更新:
-				bean.setLock(false);
+				bean.setLock(SystemConstant.FALSE);
 				bean.setSt(ReportEnum.REPORT__FH_ST.YES.value);
 				roleInfoDAO.update(bean);
 				String roleListNew = bean.getRoleList();
@@ -109,7 +110,7 @@ public class RoleInfoTSKService {
 				// 设为修改
 				roleInfo.setSt("2");
 				// 设为锁定
-				roleInfo.setLock(true);
+				roleInfo.setLock(SystemConstant.TRUE);
 				roleInfoDAO.update(roleInfo);
 				String updCd = "02";
 				String oldst = "2";

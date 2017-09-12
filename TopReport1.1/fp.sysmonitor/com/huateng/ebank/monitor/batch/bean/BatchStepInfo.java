@@ -1,12 +1,14 @@
 package com.huateng.ebank.monitor.batch.bean;
 
+import java.io.Serializable;
+
 /**
  * 批量步骤信息
  * 
  * @author wangpeng
  *
  */
-public class BatchStepInfo {
+public class BatchStepInfo implements Serializable {
 
 	private int jobNo;// 作业号
 	private int stepNo;// 步骤号

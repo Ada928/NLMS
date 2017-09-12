@@ -1,12 +1,14 @@
 package com.huateng.report.imports.model;
 
+import java.io.Serializable;
+
 /**
  * 文件导入日志־
  * 
  * @author Administrator
  * 
  */
-public class TImportLog {
+public class TImportLog implements Serializable {
 
 	private String workDate;
 	private String departCode;

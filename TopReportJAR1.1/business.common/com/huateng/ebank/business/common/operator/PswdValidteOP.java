@@ -21,8 +21,8 @@ public class PswdValidteOP extends BaseOperation {
 
 	public final static String IN_OPER = "IN_OPER";
 	public final static String ID = "Management.PswdValidteOP";
-	public final static String NOT_LOCKED = "0";
-	public final static String LOCKED = "1";
+	public final static Boolean NOT_LOCKED = false;
+	public final static Boolean LOCKED = true;
 
 	/*
 	 * (non-Javadoc)

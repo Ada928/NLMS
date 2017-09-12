@@ -3,11 +3,13 @@
  */
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
+
 /**
  * @author user
  *
  */
-public class WorkFlowParamSelectBean {
+public class WorkFlowParamSelectBean implements Serializable {
 
 	/* 工作流模板名 */
 	private String processTemplate;
@@ -45,6 +47,7 @@ public class WorkFlowParamSelectBean {
 	private String procName;
 
 	private String procNameName;
+
 	// =========================================
 
 	public String getProcessTemplate() {

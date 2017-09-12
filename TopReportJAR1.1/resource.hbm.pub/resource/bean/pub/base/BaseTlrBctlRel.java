@@ -13,7 +13,7 @@ import java.io.Serializable;
 public abstract class BaseTlrBctlRel implements Serializable {
 
 	public static String REF = "TlrBctlRel";
-	public static String PROP_TLR_NO = "tlrNo";
+	public static String PROP_TLR_NO = "tlrno";
 	public static String PROP_ID = "id";
 	public static String PROP_BR_NO = "brcode";
 
@@ -39,7 +39,7 @@ public abstract class BaseTlrBctlRel implements Serializable {
 	private java.lang.Integer id;
 
 	// fields
-	private java.lang.String tlrNo;
+	private java.lang.String tlrno;
 	private java.lang.String brcode;
 
 	/**
@@ -65,8 +65,8 @@ public abstract class BaseTlrBctlRel implements Serializable {
 	/**
 	 * Return the value associated with the column: TLR_NO
 	 */
-	public java.lang.String getTlrNo() {
-		return tlrNo;
+	public java.lang.String getTlrno() {
+		return tlrno;
 	}
 
 	/**
@@ -75,8 +75,8 @@ public abstract class BaseTlrBctlRel implements Serializable {
 	 * @param tlrNo
 	 *            the TLR_NO value
 	 */
-	public void setTlrNo(java.lang.String tlrNo) {
-		this.tlrNo = tlrNo;
+	public void setTlrno(java.lang.String tlrNo) {
+		this.tlrno = tlrNo;
 	}
 
 	/**

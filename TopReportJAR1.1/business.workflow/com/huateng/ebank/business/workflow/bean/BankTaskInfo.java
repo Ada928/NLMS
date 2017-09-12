@@ -1,6 +1,8 @@
 package com.huateng.ebank.business.workflow.bean;
 
-public class BankTaskInfo {
+import java.io.Serializable;
+
+public class BankTaskInfo implements Serializable {
 	/** memeber variable: String contractno. 合同号 */
 	public String contractno;
 	/** memeber variable: String appno. 申请号 */

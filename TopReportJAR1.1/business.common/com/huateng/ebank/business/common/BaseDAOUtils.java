@@ -19,6 +19,7 @@ import resource.dao.pub.FunctionInfoDAO;
 import resource.dao.pub.GlobalinfoDAO;
 import resource.dao.pub.RoleFuncRelDAO;
 import resource.dao.pub.RoleInfoDAO;
+import resource.dao.pub.TlrBctlRelDAO;
 import resource.dao.pub.TlrInfoDAO;
 import resource.dao.pub.TlrRoleRelDAO;
 import resource.dao.pub.TlrWorkloadDAO;
@@ -153,6 +154,10 @@ public class BaseDAOUtils {
 		return (TlrRoleRelDAO) ApplicationContextUtils.getBean("TlrRoleRelDAO");
 	}
 
+	final public static TlrBctlRelDAO getTlrBctlRelDAO() {
+		return (TlrBctlRelDAO) ApplicationContextUtils.getBean("TlrBctlRelDAO");
+	}
+
 	final public static WorkflowAppInfoDAO getWorkflowAppInfoDAO() {
 		return (WorkflowAppInfoDAO) ApplicationContextUtils.getBean("WorkflowAppInfoDAO");
 	}
@@ -207,6 +212,7 @@ public class BaseDAOUtils {
 	public static WorkflowTaskPoolDAO getWorkflowTaskPoolDAO() {
 		return (WorkflowTaskPoolDAO) ApplicationContextUtils.getBean("WorkflowTaskPoolDAO");
 	}
+
 	/* add by kangbyron 2011-2-25 工作流任务池 end */
 
 	public static WorkflowBussTempletRelDAO getWorkflowBussTempletRelDAO() {

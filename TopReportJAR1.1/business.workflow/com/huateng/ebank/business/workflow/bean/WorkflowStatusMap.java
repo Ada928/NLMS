@@ -3,6 +3,7 @@
  */
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import java.util.Map;
  * @author shen_antonio
  * @version 1.1, 2008-4-25
  */
-public class WorkflowStatusMap {
+public class WorkflowStatusMap implements Serializable {
 
 	public static Map statusMap = new HashMap();
 

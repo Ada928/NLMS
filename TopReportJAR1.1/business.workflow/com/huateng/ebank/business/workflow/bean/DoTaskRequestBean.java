@@ -1,6 +1,8 @@
 package com.huateng.ebank.business.workflow.bean;
 
-public class DoTaskRequestBean {
+import java.io.Serializable;
+
+public class DoTaskRequestBean implements Serializable {
 
 	private String tlrno;
 	private String status;

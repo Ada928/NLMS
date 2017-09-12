@@ -3,6 +3,8 @@
  */
 package com.huateng.ebank.business.taskassign.bean;
 
+import java.io.Serializable;
+
 import com.huateng.ebank.business.workflow.WorkFlowConstants;
 import com.huateng.ebank.entity.data.workflow.TaskAssignInfo;
 
@@ -13,7 +15,7 @@ import com.huateng.ebank.entity.data.workflow.TaskAssignInfo;
  * @author shen_antonio
  * @version 1.1, 2008-3-28
  */
-public class TaskAssignInfoBean extends TaskAssignInfo {
+public class TaskAssignInfoBean extends TaskAssignInfo implements Serializable {
 
 	/** memeber variable: long serialVersionUID. */
 	private static final long serialVersionUID = 7835979669081519646L;
@@ -38,8 +40,7 @@ public class TaskAssignInfoBean extends TaskAssignInfo {
 	 * @param brcode
 	 *            2008-3-29
 	 */
-	public TaskAssignInfoBean(String procInsId, String taskId, String tlrno, String taskDesc, String assignMode,
-			String assign, String workType, String brcode) {
+	public TaskAssignInfoBean(String procInsId, String taskId, String tlrno, String taskDesc, String assignMode, String assign, String workType, String brcode) {
 		super();
 		this.setProcInsId(procInsId);
 		this.setTaskId(taskId);

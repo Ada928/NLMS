@@ -1,5 +1,7 @@
 package com.huateng.ebank.business.workflow.bean;
 
+import java.io.Serializable;
+
 /**
  * Title: com.huateng.ebank.business.workflow.beanWorkFlowHelper.java
  * Description: TODO Copyright (c) 2006 Company: Shanghai Huateng Software
@@ -8,7 +10,7 @@ package com.huateng.ebank.business.workflow.bean;
  * @author shen_antonio
  * @version v1.0,2008-7-17
  */
-public class WorkFlowHelper {
+public class WorkFlowHelper implements Serializable {
 
 	public final static String STATE_CLAIMED = "STATE_CLAIMED";
 	public final static String STATE_EXPIRED = "STATE_EXPIRED";

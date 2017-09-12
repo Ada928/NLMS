@@ -1,6 +1,8 @@
 package com.huateng.report.imports.bean;
 
-public class ImportFileModBean {
+import java.io.Serializable;
+
+public class ImportFileModBean implements Serializable {
 	private String id;
 	private String description;
 
