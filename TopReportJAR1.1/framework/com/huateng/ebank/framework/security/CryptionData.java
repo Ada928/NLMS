@@ -1,4 +1,4 @@
-﻿package com.huateng.ebank.framework.security;
+package com.huateng.ebank.framework.security;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;

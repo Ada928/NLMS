@@ -1,4 +1,4 @@
-﻿package com.huateng.report.system.bean;
+package com.huateng.report.system.bean;
 
 import java.io.Serializable;
 import java.util.Date;
