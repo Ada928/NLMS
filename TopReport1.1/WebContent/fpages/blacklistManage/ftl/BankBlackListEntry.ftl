@@ -58,7 +58,7 @@
 	}
 
 	function showDetail(id) {
-		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=entry&blacklistid="+id;
+		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=entry&blacklistid="+id;
 	}
 
 	//ˢ�µ�ǰҳ

@@ -22,16 +22,16 @@
 </@CommonQueryMacro.CommonQuery>
  <script language="javascript">
  	var reType = "${reType}";
- 	alert(reType);
+ 	//alert(reType);
  	function btClose_onClick(button){
  		if(reType == "entry"){
-			window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEntry.ftl";
+			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEntry.ftl";
 		} else if(reType == "approve"){
-			window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistApprove.ftl";
+			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistApprove.ftl";
 		} else if(reType == "verify"){
-			window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistVerify.ftl";
+			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistVerify.ftl";
 		} else if(reType == "edit"){
-			window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEdit.ftl";
+			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEdit.ftl";
 		}
  	}
 </script>

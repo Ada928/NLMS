@@ -248,7 +248,9 @@ button {
 	}
 
 	function toback(){
-		window.setTimeout("window.location.href = '<%=request.getContextPath()%>/fpages/workconfirmed/ftl/GenReportFile.ftl'",0);
+		<%-- yyxyz 2017-09-13  修改成  --%>
+		window.setTimeout("window.location = '<%=request.getContextPath()%>/fpages/workconfirmed/ftl/GenReportFile.ftl'",0);
+		<%-- window.setTimeout("window.location.href = '<%=request.getContextPath()%>/fpages/workconfirmed/ftl/GenReportFile.ftl'",0); --%>
 	}
 
 	function toFile(){

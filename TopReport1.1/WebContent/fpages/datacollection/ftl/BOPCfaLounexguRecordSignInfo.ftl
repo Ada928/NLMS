@@ -71,7 +71,7 @@
 	}
 	function doModify(id){
 		
-			//window.location.href = "${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordEdit.ftl?id=" + id+"&op=mod";
+			//window.location = "${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordEdit.ftl?id=" + id+"&op=mod";
 			showWin("签约信息修改","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordEdit.ftl?id=" + id+"&op=mod","report","flushPage()");
 	}
 	
@@ -80,7 +80,7 @@
 	function btNewClick(){
 	
 		showWin("签约信息新增","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordEdit.ftl?op=new","report","flushPage()");
-		//window.location.href = "${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordEdit.ftl?op=new";
+		//window.location = "${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordEdit.ftl?op=new";
 	}
 	
 		//刷新数据

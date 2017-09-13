@@ -73,7 +73,7 @@ public class BankBlackListEditGetter extends BaseGetter {
 		}
 		hql.append(" or po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDING.value).append("'");
 		hql.append(" or po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDED.value).append("'");
-		hql.append(" and order by po.editDate desc");
+		hql.append(" order by po.editDate desc");
 
 		BankBlackListService service = BankBlackListService.getInstance();
 		BankBlackListAuditStateService auditStateService = BankBlackListAuditStateService.getInstance();

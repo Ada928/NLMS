@@ -17,7 +17,7 @@
   		<tr>
       		<td colspan="2">
           		<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="btAdd,-,btStatus" 
-          			fieldStr="brno,brname,lock,opr" width="100%"/><br/>
+          			fieldStr="brno,brname,lock,opr" width="100%" pageCache="true" remeberCheck="true" pkid="brno"/><br/>
         	</td>
         </tr>
   		<tr align="center" style="display:none">

@@ -36,7 +36,7 @@ public class BankManageQueryGetter extends BaseGetter {
 	protected PageQueryResult getData() throws Exception {
 		PageQueryResult result = new PageQueryResult();
 		String brcode = this.getCommQueryServletRequest().getParameter("brcode");
-		String opType = this.getCommQueryServletRequest().getParameter("opType");
+		String opType = this.getCommQueryServletRequest().getParameter("op");
 		if (!opType.equals("add")) {
 			List list = new ArrayList();
 			Bctl bctl = BankInfoService.getInstance().selectById(brcode);

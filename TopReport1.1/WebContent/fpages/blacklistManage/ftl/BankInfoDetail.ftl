@@ -18,6 +18,9 @@
 
 
 <script language="javascript">
-	
+	function btClose_onClickCheck(button) {
+		//window.history.go(-1);
+		 //window.history.back(-1);
+	}
 </script>
 </@CommonQueryMacro.page>

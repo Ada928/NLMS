@@ -3,6 +3,7 @@ package com.huateng.ebank.business.common.service;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
 import com.huateng.common.CommonFunction;
 import com.huateng.ebank.business.common.BaseGlobalData;
 
@@ -42,13 +43,12 @@ public class BizLogThreadPoolExecutor {
 	public static void initThreadPool() {
 		// 构造一个线程池
 		if (producerPool == null) {
-			producerPool = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.SECONDS,
-					new ArrayBlockingQueue(waitingQueue), new ThreadPoolExecutor.CallerRunsPolicy());
+			producerPool = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.SECONDS, new ArrayBlockingQueue(waitingQueue),
+					new ThreadPoolExecutor.CallerRunsPolicy());
 		}
 	}
 
-	public static void addTask(BaseGlobalData globalInfo, String sequence, String s, String txnLogFlag, String uuId,
-			String oprTxnCd) {
+	public static void addTask(BaseGlobalData globalInfo, String sequence, String s, String txnLogFlag, String uuId, String oprTxnCd) {
 		try {
 			// System.out.println("...."+producerPool.getCorePoolSize()+producerPool.getMaximumPoolSize()+producerPool.getQueue().remainingCapacity());
 			if (producerPool == null) {
@@ -68,8 +68,7 @@ public class BizLogThreadPoolExecutor {
 	 * @param maximumPoolSize
 	 * @param keepAliveTime
 	 */
-	public static void setProducerPool(String corePoolSize, String maximumPoolSize, String keepAliveTime,
-			String waitingQueue) {
+	public static void setProducerPool(String corePoolSize, String maximumPoolSize, String keepAliveTime, String waitingQueue) {
 
 		try {
 			Integer corePoolSize1 = Integer.parseInt(CommonFunction.getAnyValueDefault(corePoolSize, "1"));
@@ -77,8 +76,8 @@ public class BizLogThreadPoolExecutor {
 			Long keepAliveTime1 = Long.parseLong(CommonFunction.getAnyValueDefault(keepAliveTime, "0"));
 			Integer waitingQueue1 = Integer.parseInt(CommonFunction.getAnyValueDefault(waitingQueue, "100"));
 			if (producerPool == null) {
-				producerPool = new ThreadPoolExecutor(corePoolSize1, maximumPoolSize1, keepAliveTime1, TimeUnit.SECONDS,
-						new ArrayBlockingQueue(waitingQueue1), new ThreadPoolExecutor.CallerRunsPolicy());
+				producerPool = new ThreadPoolExecutor(corePoolSize1, maximumPoolSize1, keepAliveTime1, TimeUnit.SECONDS, new ArrayBlockingQueue(waitingQueue1),
+						new ThreadPoolExecutor.CallerRunsPolicy());
 			} else {
 				producerPool.setCorePoolSize(corePoolSize1);
 				producerPool.setMaximumPoolSize(maximumPoolSize1);

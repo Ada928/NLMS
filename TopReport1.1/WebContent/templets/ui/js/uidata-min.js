@@ -3068,7 +3068,8 @@ function _button_onclick_new(id) {
 				}
 				break;
 			case "refreshpage":
-				window.open(window.location.href, "_self");
+				window.open(window.location, "_self");
+				//window.open(window.location.href, "_self");
 				break;
 			case "submitform":
 				var dataset = getDatasetByID(button.componentDataset);
@@ -3287,7 +3288,8 @@ function _button_onclick_new(id) {
 							: button.targetFrame;
 					var path = megerURL(_application_root, button.url);
 					if (targetFrame == "_self") {
-						window.location.href = path;
+						window.location = path;
+						//window.location.href = path;
 					} else {
 						window.open(path, targetFrame);
 					}
