@@ -160,8 +160,8 @@ insertOnEmpty           空数据集时是否插入空记录(允许为空,默认为"false"    "true
 <#assign CommonQueryConfig = statics["com.huateng.commquery.config.CommonQueryUtil"].getCommonQueryBean(id)>
 <#assign type = CommonQueryConfig.getAnyValueDefault("type","call")>
 <script type="text/javascript">
-var _transDataActionURL = "${CommonQueryConfig.getAnyValue('transdataactionurl')}";
-var _common_query_id = "${CommonQueryConfig.getId()}";
+	var _transDataActionURL = "${CommonQueryConfig.getAnyValue('transdataactionurl')}";
+	var _common_query_id = "${CommonQueryConfig.getId()}";
 </script>
 ${CommonQueryConfig.script?default('')}
 
@@ -560,10 +560,10 @@ insertOnEmpty             空数据集时是否插入空记录(允许为空,默认为"false"    "tr
 	pageCache           页面缓冲标志，默认为"false"  "true"-使用页面缓冲;即页面获取所有的数据记录后在页面进行分页
 -->
 <#macro PagePilot id width="100%" backgroundColor="#efefef" border="1px" maxpagelink="9" showArrow="true" pageCache="false">
-<#--<div extra="pagination" componentDataset="${CommonQueryConfig.getId()}_dataset" name="${id}">
-<div id="${id}" style="background:${backgroundColor};border:${border} solid #ccc;width:${width}" ></div>
-</div>
--->
+	<#--<div extra="pagination" componentDataset="${CommonQueryConfig.getId()}_dataset" name="${id}">
+	<div id="${id}" style="background:${backgroundColor};border:${border} solid #ccc;width:${width}" ></div>
+	</div>
+	-->
 </#macro>
 
 
@@ -804,6 +804,7 @@ ${CommonQueryConfig.getId()}_dataset.ExpFileDiv=${CommonQueryConfig.getId()}_dat
           </#if>
       </#if>
 </#macro>
+
 <#--建立DataTable栏-->
 <#--
 	id                 页面视图ID(不允许为空)
@@ -1638,7 +1639,7 @@ btnInFrame						  按钮是否位于框内(缺省为"false")
 		-->
 		var InterfaceFields=new Array();
 		var ${CommonQueryConfig.getId()}_interface_dataset=createDataset("${CommonQueryConfig.getId()}_interface_dataset","","");
-		_initDataset(${CommonQueryConfig.getId()}_interface_dataset,"${CommonQueryConfig.getId()}",${CommonQueryConfig.getAnyValue("pagesize")?default("10")},""
+		_initDataset(${CommonQueryConfig.getId()}_interface_dataset,"${CommonQueryConfig.getId()}",${CommonQueryConfig.getAnyValue('pagesize')?default("10")},""
 		,"","","allchange",false,"dd","${paramString}","","interface");
 		<#--
 		${CommonQueryConfig.getId()}_interface_dataset.flushData=dataset_flushData_new;
@@ -2136,18 +2137,18 @@ drag                               是否可拖动 true;false(default);
 	<script type="text/javascript">
 		var subwindow_${id} = {};
 	</script>
-	</#macro>
-	<#--added by wangpeng 20091118 BMS-2274 新增宏子窗体   end-->
-	<#--modified by wangpeng 20091208 增加浮动式和排它属性支持 end-->
+</#macro>
+<#--added by wangpeng 20091118 BMS-2274 新增宏子窗体   end-->
+<#--modified by wangpeng 20091208 增加浮动式和排它属性支持 end-->
 	
-	<#--modified by wangpeng 2009/11/04 BMS-2179 begin-->
-	<#--modified by wangpeng 2009/11/01 BMS-2171 begin-->
-	<#--added by wangpeng 2009/09/21 BMS-1990 begin-->
-	<#--
-	报表Applet
-	objectName                  对象名，允许为空，默认为PrintApplet
-	-->
-	<#macro reportApplet objectName="PrintApplet">
+<#--modified by wangpeng 2009/11/04 BMS-2179 begin-->
+<#--modified by wangpeng 2009/11/01 BMS-2171 begin-->
+<#--added by wangpeng 2009/09/21 BMS-1990 begin-->
+<#--
+报表Applet
+objectName                  对象名，允许为空，默认为PrintApplet
+-->
+<#macro reportApplet objectName="PrintApplet">
 	    <OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93" width="0px" height="0px" style="" id="${objectName}" name="${objectName}" codebase="http://java.sun.com/update/1.5.0/jinstall-1_5-windows-i586.cab#Version=1,5,0,0">
 	        <PARAM NAME = CODE VALUE  = "ReporterApplet.class" >
 	        <PARAM NAME = CODEBASE VALUE  = "${contextPath}/applets/report" >

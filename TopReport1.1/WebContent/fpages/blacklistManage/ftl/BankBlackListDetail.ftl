@@ -21,8 +21,8 @@
 	</table>
 </@CommonQueryMacro.CommonQuery>
  <script language="javascript">
+
  	var reType = "${reType}";
- 	//alert(reType);
  	function btClose_onClick(button){
  		if(reType == "entry"){
 			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEntry.ftl";
@@ -34,6 +34,10 @@
 			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEdit.ftl";
 		}
  	}
+
+	//alert("hahha  " + _t1.pageSize);
+	//alert("hehe " + _t1.pageIndex);
+ 	//alert(reType);
 </script>
 
 </@CommonQueryMacro.page>

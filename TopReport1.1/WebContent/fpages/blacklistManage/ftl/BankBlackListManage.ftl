@@ -24,6 +24,8 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="JavaScript">
+	alert("hahha  " + _t1.pageSize);
+	alert("hehe " + _t1.pageIndex);
 
     function btSave_onClickCheck(button) {
         var id = BankBlackListManage_dataset.getValue("id");

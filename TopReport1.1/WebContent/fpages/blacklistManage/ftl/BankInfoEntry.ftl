@@ -30,7 +30,9 @@
 
 <script language="javascript">
 	var roleType = "${info.roleTypeList}";
-	
+	//alert("hahha  " + _t1.pageSize);
+	//alert("hehe " + _t1.pageIndex);nextPage
+	//_t1.setParameter("nextPage",2);
 	//定位一条记录
 	function locate(id) {
 		var record = BankInfoEntry_dataset.find(["brcode"], [id]);
