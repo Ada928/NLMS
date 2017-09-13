@@ -6,7 +6,7 @@
 	<table width="100%" align="left">
 		<tr>
    			<td valign="top" colspan="2">
-   				<@CommonQueryMacro.Interface id="intface" label="银行机构查询" colNm=4 />
+   				<@CommonQueryMacro.Interface id="intface" label="请输入查询条件" colNm=4 />
         	</td>
         </tr>
 		<tr>

@@ -10,7 +10,7 @@
 		</tr>
 	  	<tr>
 	  		<td valign="top">
-				<@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9" showArrow="true" />
+				<@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9" />
 			</td>
 		 </tr>
 		 <tr>
