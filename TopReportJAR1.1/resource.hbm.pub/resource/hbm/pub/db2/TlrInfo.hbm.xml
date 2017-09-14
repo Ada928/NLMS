@@ -6,7 +6,7 @@
 <hibernate-mapping package="resource.bean.pub">
     <class name="TlrInfo" table="TLR_INFO" lazy="false">
         <meta attribute="sync-DAO">false</meta>
-
+    	<cache usage="read-write"></cache>
         <id name="tlrno" column="TLRNO" type="string">
             <generator class="assigned" />
         </id>

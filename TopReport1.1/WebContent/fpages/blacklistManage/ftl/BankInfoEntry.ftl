@@ -16,8 +16,8 @@
   		</tr>
   		<tr>
       		<td colspan="2">
-          		<@CommonQueryMacro.DataTable id ="datatable1" paginationbar="btAdd,-,btStatus" 
-          			fieldStr="brno,brname,lock,opr" width="100%" pageCache="true" remeberCheck="true" pkid="brno"/><br/>
+          		<@CommonQueryMacro.DataTable id ="BankInfoEntryDatatable" paginationbar="btAdd,-,btStatus" 
+          			fieldStr="brno,brname,lock,opr" width="100%"/><br/>
         	</td>
         </tr>
   		<tr align="center" style="display:none">
@@ -41,7 +41,7 @@
 		}
 	}
 	
-	function datatable1_opr_onRefresh(cell, value, record) {
+	function BankInfoEntryDatatable_opr_onRefresh(cell, value, record) {
 		if (record) {//当存在记录时
 			var lock = record.getValue("lock");
 			var id = record.getValue("brcode");
@@ -105,7 +105,7 @@
 	}
 	
 	//展示对比功能的js
-	function datatable1_brno_onRefresh(cell, value, record) {
+	function BankInfoEntryDatatable_brno_onRefresh(cell, value, record) {
 		if (record != null) {
 			var sta = record.getValue("st");
 			var id = record.getValue("brcode");

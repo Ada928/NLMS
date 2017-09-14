@@ -12,7 +12,7 @@
 	body  是否显示body(允许为空，默认为"true")，对于页面片段就是外部框是否要显示
 -->
 <#macro page  title id="master" body="true">
-	<#assign _mpf_ = RequestParameters["_mpf_"]?default("true")>
+	<#local _mpf_ = RequestParameters["_mpf_"]?default("true")>
 	<#if _mpf_ == "true">
 		<@pageMaster title=title body=body>
 			<#nested>
@@ -30,7 +30,7 @@
 	body    是否显示body(允许为空，默认为"true")
 -->
 <#macro pageMaster title body="true">
-	<#assign globalinfo = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstanceWithoutException()>
+	<#local globalinfo = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstanceWithoutException()>
 	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 	<html>
 	  <head>
@@ -47,10 +47,10 @@
 			 visibility: hidden;
 		}
 	    </style>
-	    <#assign language=(globalinfo.getLocale().toString())?default('')>
-	    <#assign _local = "zh_CN">
+	    <#local language=(globalinfo.getLocale().toString())?default('')>
+	    <#local _local = "zh_CN">
 		<#if language=="en_US" || language=="zh_TW">
-			<#assign _local = language>
+			<#local _local = language>
 		</#if>
 	    <script type="text/javascript" src="${contextPath}/templets/ui/js/jquery-1.8.2.min.js"></script>
 	    <script type="text/javascript" src="${contextPath}/templets/ui/js/uicore-min.js"></script>
@@ -77,7 +77,6 @@
 		  //document.oncontextmenu=new function(){event.returnValue=false;return false;}
 	    </script>
 	    <script type="text/javascript">
-			<!---->
 			var _extra_library="${contextPath}/templets/lib";
 			var _theme_root="${contextPath}/templets/ui/themes/blue/images";
 			var _application_root="${contextPath}";
@@ -89,7 +88,7 @@
 			var _enableClientDebug=false;
 			var _supportsDatasetMultiSelect=true;
 			var _paramMap = new Map();//用于设置默认值
-			<#assign defaultBusiType = statics["com.huateng.report.constants.TopReportConstants"].REPORT_BUSITYPE_BOP/>
+			<#local defaultBusiType = statics["com.huateng.report.constants.TopReportConstants"].REPORT_BUSITYPE_BOP/>
 			var defaultType = "${defaultBusiType}";
 			<#if globalinfo?exists>
 				var _today_date = new Date("${globalinfo.getTxdate()?string('yyyy/MM/dd HH:mm:ss')}");//当前会计日期
@@ -98,7 +97,6 @@
 				var _today_date = new Date();//当前会计日期
 				var _current_user = "";
 			</#if>
-			<!---->
 		</script>
 	  </head>
 	  <#if body=="true">
@@ -127,93 +125,93 @@
 </#macro>
 
 <#macro pagelet id title body="true">
-<#if body == "true">
-<FIELDSET name='${title}' style="padding: 6px;">
-	<LEGEND><@bean.message key="${title}"/></LEGEND>
-	<#nested>
-</FIELDSET>
-<#else>
-	<#nested>
-</#if>
-<script type="text/javascript">
-	function documentlet_afterInit(){
-		initLetCallGetter("${id}");
-	}
-</script>
+	<#if body == "true">
+		<FIELDSET name='${title}' style="padding: 6px;">
+			<LEGEND><@bean.message key="${title}"/></LEGEND>
+			<#nested>
+		</FIELDSET>
+	<#else>
+		<#nested>
+	</#if>
+	<script type="text/javascript">
+		function documentlet_afterInit(){
+			initLetCallGetter("${id}");
+		}
+	</script>
 </#macro>
 
 <#--通用查询头模板-->
 <#--
-id                      通用查询id号(不允许为空)
-init                    是否初始化标志(允许为空，默认为"false"           "true"-初始化;"false"-不初始化)
-navigate　                导航标题是否显示标志(允许为空，默认为"true"        "true"-显示;"false"-不显示)
-mode　                     模式标志(允许为空，默认为"0"                     0-生成结果Dataset,1-不生成结果Dataset)
-submitMode              数据提交方式(允许为空,默认为"allchange"          all-全部提交,allchange-提交修改部分,current-提交当前的纪录, selected - 只提交所有被选择的纪录 )
-paramerters             格外提交参数(允许为空,                          格式为 paramNm=paramVal;...)
-readOnly                只读标志(允许为口空,默认为"false"                "true"-只读;"false"-非只读)
-masterDataset           主dataset名称(允许为空,默认没有主dataset)
-references              相关字段(允许为空,                             只有在设置了maseterDataset参数后才有效，表示于主dataset相关的字段     格式为sFieldName=mFieldName1;....)
-show                    是否显示中间内容(允许为空,默认为"true"            "true"-显示;"false"-不显示)
-insertOnEmpty           空数据集时是否插入空记录(允许为空,默认为"false"    "true"-插入空记录;"false"-不插入空记录)
+	id                      通用查询id号(不允许为空)
+	init                    是否初始化标志(允许为空，默认为"false"           "true"-初始化;"false"-不初始化)
+	navigate　                导航标题是否显示标志(允许为空，默认为"true"        "true"-显示;"false"-不显示)
+	mode　                     模式标志(允许为空，默认为"0"                     0-生成结果Dataset,1-不生成结果Dataset)
+	submitMode              数据提交方式(允许为空,默认为"allchange"          all-全部提交,allchange-提交修改部分,current-提交当前的纪录, selected - 只提交所有被选择的纪录 )
+	paramerters             格外提交参数(允许为空,                          格式为 paramNm=paramVal;...)
+	readOnly                只读标志(允许为口空,默认为"false"                "true"-只读;"false"-非只读)
+	masterDataset           主dataset名称(允许为空,默认没有主dataset)
+	references              相关字段(允许为空,                             只有在设置了maseterDataset参数后才有效，表示于主dataset相关的字段     格式为sFieldName=mFieldName1;....)
+	show                    是否显示中间内容(允许为空,默认为"true"            "true"-显示;"false"-不显示)
+	insertOnEmpty           空数据集时是否插入空记录(允许为空,默认为"false"    "true"-插入空记录;"false"-不插入空记录)
 -->
 <#macro CommonQuery id init="false" navigate="true" mode="0" submitMode="allchange" parameters="" readOnly="false" masterDataset="" references="" show="true" insertOnEmpty="false">
-<#assign CommonQueryConfig = statics["com.huateng.commquery.config.CommonQueryUtil"].getCommonQueryBean(id)>
-<#assign type = CommonQueryConfig.getAnyValueDefault("type","call")>
-<script type="text/javascript">
-	var _transDataActionURL = "${CommonQueryConfig.getAnyValue('transdataactionurl')}";
-	var _common_query_id = "${CommonQueryConfig.getId()}";
-</script>
-${CommonQueryConfig.script?default('')}
+	<#assign CommonQueryConfig = statics["com.huateng.commquery.config.CommonQueryUtil"].getCommonQueryBean(id)>
+	<#assign type = CommonQueryConfig.getAnyValueDefault("type","call")>
+	<script type="text/javascript">
+		var _transDataActionURL = "${CommonQueryConfig.getAnyValue('transdataactionurl')}";
+		var _common_query_id = "${CommonQueryConfig.getId()}";
+	</script>
+	${CommonQueryConfig.script?default('')}
+	
+	<#-- shen_antonio 20080118-->
+	<#if show=="false">
+		<@Dataset init=init submitMode=submitMode parameters=parameters readOnly=readOnly masterDataset=masterDataset references=references insertOnEmpty=insertOnEmpty/>
+		<#return>
+	</#if>
+		<#nested>
+	<#if mode!="1">
+		<@Dataset init=init submitMode=submitMode parameters=parameters readOnly=readOnly masterDataset=masterDataset references=references insertOnEmpty=insertOnEmpty/>
+	</#if>
+	<#-- yjw add  , fill the dataset -->
+	<#if mode=="0" && init=="false" &&  type!="form">
+		<#if CommonQueryResult?exists && CommonQueryResult.getCqId()==id>
+			<script type="text/javascript">
+				function ${id}_dataset_requestInit(){
+					var _tmp = getDatasetByID("${id}_dataset");
+					_tmp.disableControls();
+					appendFromDataString(_tmp, "${CommonQueryConfig.toFieldString()}","${CommonQueryResult.getResultOprStr()}", true);
+					_tmp.pageIndex=${CommonQueryResult.getPage().getCurrentPage()};
+					_tmp.pageCount=${CommonQueryResult.getPage().getTotalPage()};
+					/** set param .*/
+					//converStr2DataSetParameter("${CommonQueryResult.getParamStr()}",_tmp);
+					_tmp.enableControls();
+					//_tmp.refreshControls();
+					_tmp.loadDetail();
+				}
+			</script>
+		</#if>
+	</#if>
+</#macro>
 
-<#-- shen_antonio 20080118-->
-<#if show=="false">
-	<@Dataset init=init submitMode=submitMode parameters=parameters readOnly=readOnly masterDataset=masterDataset references=references insertOnEmpty=insertOnEmpty/>
-	<#return>
-</#if>
-	<#nested>
-<#if mode!="1">
-	<@Dataset init=init submitMode=submitMode parameters=parameters readOnly=readOnly masterDataset=masterDataset references=references insertOnEmpty=insertOnEmpty/>
-</#if>
-<#-- yjw add  , fill the dataset -->
-<#if mode=="0" && init=="false" &&  type!="form">
-<#if CommonQueryResult?exists && CommonQueryResult.getCqId()==id>
-<script type="text/javascript">
-	function ${id}_dataset_requestInit(){
-		var _tmp = getDatasetByID("${id}_dataset");
+<#macro CommonQueryForRequest id=CQId navigate="true" submitMode="allchange" parameters="" show="true">
+	<@CommonQuery id=id init="false" navigate=navigate mode="0" submitMode=submitMode parameters=parameters show=show>
+			<#nested>
+	</@CommonQuery>
+	<#--
+	<script type="text/javascript">
+		var _tmp = getDatasetByID("${CQId}_dataset");
 		_tmp.disableControls();
 		appendFromDataString(_tmp, "${CommonQueryConfig.toFieldString()}","${CommonQueryResult.getResultOprStr()}", true);
 		_tmp.pageIndex=${CommonQueryResult.getPage().getCurrentPage()};
 		_tmp.pageCount=${CommonQueryResult.getPage().getTotalPage()};
 		/** set param .*/
 		//converStr2DataSetParameter("${CommonQueryResult.getParamStr()}",_tmp);
+		/* shen_antonio .*/
 		_tmp.enableControls();
 		//_tmp.refreshControls();
 		_tmp.loadDetail();
-	}
-</script>
-</#if>
-</#if>
-</#macro>
-
-<#macro CommonQueryForRequest id=CQId navigate="true" submitMode="allchange" parameters="" show="true">
-<@CommonQuery id=id init="false" navigate=navigate mode="0" submitMode=submitMode parameters=parameters show=show>
-		<#nested>
-</@CommonQuery>
-<#--
-<script type="text/javascript">
-	var _tmp = getDatasetByID("${CQId}_dataset");
-	_tmp.disableControls();
-	appendFromDataString(_tmp, "${CommonQueryConfig.toFieldString()}","${CommonQueryResult.getResultOprStr()}", true);
-	_tmp.pageIndex=${CommonQueryResult.getPage().getCurrentPage()};
-	_tmp.pageCount=${CommonQueryResult.getPage().getTotalPage()};
-	/** set param .*/
-	//converStr2DataSetParameter("${CommonQueryResult.getParamStr()}",_tmp);
-	/* shen_antonio .*/
-	_tmp.enableControls();
-	//_tmp.refreshControls();
-	_tmp.loadDetail();
-</script>
--->
+	</script>
+	-->
 </#macro>
 
 <#macro Navigate>
@@ -230,327 +228,327 @@ ${CommonQueryConfig.script?default('')}
 	height                        高度(允许为空，默认为"100%")
 -->
 <#macro CommonQueryTab id currentTab   navigate="true" currentUrl="" width="" height="" >
-<#assign CommonQueryConfig = statics["com.huateng.commquery.config.CommonQueryUtil"].getCommonQueryBean(id)>
-<#assign _tab_ = RequestParameters["_tab_"]?default("")>
-<#if _tab_ == "">
-<#assign _w=px(width)>
-<#assign _h=px(height)>
-<#if width == "100%">
-<#assign _w="">
-</#if>
-<#if height == "100%">
-<#assign height="">
-</#if>
-<#if _h == "">
-<#assign _h="500px">
-</#if>
-<script type="text/javascript">
-var v_currentTab = "${currentTab}";
-var v_curretnTabId = "";
-var v_curretnTabTitle = "";
-_init_flag = false;
-</script>
-${CommonQueryConfig.script?default('')}
-<#--
-<@Dataset init=init/>
--->
-<#assign tabs ="" >
-<#assign befDivString = "">
-<#assign aftDivString = "">
-<#assign operationsMap = CommonQueryConfig.getOperations()>
-<#assign operationsKeys = operationsMap.keySet()>
-<#assign befFlag=true>
-<#assign tabsCtl="tabsCtl">
-<#assign _tabsCtl = RequestParameters[tabsCtl]?default('')>
-<#assign _show = true>
-<#if navigate == "true">
-	<table  width="100%"><tr><td><@Navigate/><hr></td></tr></table>
-</#if>
-
-<div id="${id}_tabset" extra="tabset" style="width:${_w};height:${_h}; ">
-<#list operationsKeys as key>
-	<#assign button = operationsMap.get(key)>
-	<#assign desc = button.attributes["desc"]?default("")>
-	<#assign tid = button.attributes["id"]?default("")>
-	<#assign url  = contextPath + button.attributes["url"]?default("")>
-	<#if currentUrl!="">
-		<#assign url = currentUrl>
- 	</#if>
- 	<#-- 判断是否显示该 tab  -->
- 	<#if _tabsCtl!="" && (_tabsCtl?length >= (key_index+1)) >
-		<#if _tabsCtl?substring(key_index,key_index+1)=="1">
-			<#assign _show = true>
-		<#else>
-			<#assign _show = false>
-		</#if>
- 	</#if>
-	<#if url?contains("?")>
-		<#assign url = url + "&_tab_=${tid}">
-		<#else>
-		<#assign url = url + "?_tab_=${tid}">
- 	</#if>
-	<#if tid!=currentTab && _show==true>
-		<#assign tabs = tabs + desc + "," + tid + ";">
-		<#if befFlag>
- 			<#assign befDivString = befDivString + "<div id=\"${id}_tabset_${tid}\"></div>">
- 		<#else>
- 			<#assign aftDivString = aftDivString + "<div id=\"${id}_tabset_${tid}\"></div>">
- 		</#if>
- 		<div id="${id}_tabset_${tid}" tabId="${tid}" title="${desc}" style="overflow:hidden">
-			<iframe scrolling="yes" frameborder="0"  src="" url="${url}" style="width:100%;height:100%;"></iframe>
-		</div>
- 	<#elseif _show==true>
- 		<#assign befFlag=false>
- 		<#assign tabs = tabs + desc + "," + tid + ";">
- 		<div id="${id}_tabset_${tid}" tabId="${tid}" title="${desc}" selected="true" style="overflow:hidden">
-			<iframe scrolling="yes" frameborder="0"  src="" url="${url}" style="width:100%;height:100%;"></iframe>
-		</div>
- 	</#if>
-</#list>
-</div>
-<script>
-//$("#${id}_tabset").attr("tabs","${currentTab}");
-</script>
-<#elseif _tab_ == "${currentTab}">
-	<#nested>
-	${CommonQueryConfig.script?default('')}
-	<script>
-	var ${id}_tabset = parent.${id}_tabset
-	//${id}_tabset.select=setActiveTab;
-	$(function(){
-		/*
-		var tabset = getJTabSetById("${id}_tabset");
-	    var hisTitle = tabset.tabs('selectHis');
-	    var newTitle = hisTitle[hisTitle.length-1];
-	    var oldTitle = hisTitle.length>1?hisTitle[hisTitle.length-2]:newTitle;
-	    if (newTitle != oldTitle) {
-		    var p = tabset.tabs('getTab', oldTitle);
-			var eventName="${id}_tabset_afterTabChange";
-			try {
-				fireUserEvent(eventName, [${id}_tabset, p.panel("options").id, "${currentTab}"]);
-			} catch(e){}
-		}
-		*/
-	});
+	<#assign CommonQueryConfig = statics["com.huateng.commquery.config.CommonQueryUtil"].getCommonQueryBean(id)>
+	<#local _tab_ = RequestParameters["_tab_"]?default("")>
+	<#if _tab_ == "">
+		<#assign _w=px(width)>
+		<#assign _h=px(height)>
+	<#if width == "100%">
+		<#assign _w="">
+	</#if>
+	<#if height == "100%">
+		<#assign height="">
+	</#if>
+	<#if _h == "">
+		<#assign _h="500px">
+	</#if>
+	<script type="text/javascript">
+		var v_currentTab = "${currentTab}";
+		var v_curretnTabId = "";
+		var v_curretnTabTitle = "";
+		_init_flag = false;
 	</script>
-<#else>
-</#if>
+	${CommonQueryConfig.script?default('')}
+	<#--
+	<@Dataset init=init/>
+	-->
+	<#assign tabs ="" >
+	<#assign befDivString = "">
+	<#assign aftDivString = "">
+	<#assign operationsMap = CommonQueryConfig.getOperations()>
+	<#assign operationsKeys = operationsMap.keySet()>
+	<#assign befFlag=true>
+	<#assign tabsCtl="tabsCtl">
+	<#assign _tabsCtl = RequestParameters[tabsCtl]?default('')>
+	<#assign _show = true>
+	<#if navigate == "true">
+		<table  width="100%"><tr><td><@Navigate/><hr></td></tr></table>
+	</#if>
+	
+	<div id="${id}_tabset" extra="tabset" style="width:${_w};height:${_h}; ">
+	<#list operationsKeys as key>
+		<#assign button = operationsMap.get(key)>
+		<#assign desc = button.attributes["desc"]?default("")>
+		<#assign tid = button.attributes["id"]?default("")>
+		<#assign url  = contextPath + button.attributes["url"]?default("")>
+		<#if currentUrl!="">
+			<#assign url = currentUrl>
+	 	</#if>
+	 	<#-- 判断是否显示该 tab  -->
+	 	<#if _tabsCtl!="" && (_tabsCtl?length >= (key_index+1)) >
+			<#if _tabsCtl?substring(key_index,key_index+1)=="1">
+				<#assign _show = true>
+			<#else>
+				<#assign _show = false>
+			</#if>
+	 	</#if>
+		<#if url?contains("?")>
+			<#assign url = url + "&_tab_=${tid}">
+			<#else>
+			<#assign url = url + "?_tab_=${tid}">
+	 	</#if>
+		<#if tid!=currentTab && _show==true>
+			<#assign tabs = tabs + desc + "," + tid + ";">
+			<#if befFlag>
+	 			<#assign befDivString = befDivString + "<div id=\"${id}_tabset_${tid}\"></div>">
+	 		<#else>
+	 			<#assign aftDivString = aftDivString + "<div id=\"${id}_tabset_${tid}\"></div>">
+	 		</#if>
+	 		<div id="${id}_tabset_${tid}" tabId="${tid}" title="${desc}" style="overflow:hidden">
+				<iframe scrolling="yes" frameborder="0"  src="" url="${url}" style="width:100%;height:100%;"></iframe>
+			</div>
+	 	<#elseif _show==true>
+	 		<#assign befFlag=false>
+	 		<#assign tabs = tabs + desc + "," + tid + ";">
+	 		<div id="${id}_tabset_${tid}" tabId="${tid}" title="${desc}" selected="true" style="overflow:hidden">
+				<iframe scrolling="yes" frameborder="0"  src="" url="${url}" style="width:100%;height:100%;"></iframe>
+			</div>
+	 	</#if>
+	</#list>
+	</div>
+	<script>
+	//$("#${id}_tabset").attr("tabs","${currentTab}");
+	</script>
+	<#elseif _tab_ == "${currentTab}">
+		<#nested>
+		${CommonQueryConfig.script?default('')}
+		<script>
+		var ${id}_tabset = parent.${id}_tabset
+		//${id}_tabset.select=setActiveTab;
+		$(function(){
+			/*
+			var tabset = getJTabSetById("${id}_tabset");
+		    var hisTitle = tabset.tabs('selectHis');
+		    var newTitle = hisTitle[hisTitle.length-1];
+		    var oldTitle = hisTitle.length>1?hisTitle[hisTitle.length-2]:newTitle;
+		    if (newTitle != oldTitle) {
+			    var p = tabset.tabs('getTab', oldTitle);
+				var eventName="${id}_tabset_afterTabChange";
+				try {
+					fireUserEvent(eventName, [${id}_tabset, p.panel("options").id, "${currentTab}"]);
+				} catch(e){}
+			}
+			*/
+		});
+		</script>
+	<#else>
+	</#if>
 </#macro>
 
 <#--建立DataSet模板-->
 <#--
-init                      初始化标志(允许为空,默认为"true"                "true"-初始化;"false"-不初始化)
-submitMode                数据提交方式(允许为空,默认为"allchange"          all-全部提交,allchange-提交修改部分,current-提交当前的纪录, selected - 只提交所有被选择的纪录 )
-paramerters               格外提交参数(允许为空,                          格式为 paramNm=paramVal;...)
-readOnly                  只读标志(允许为口空,默认为"false"                "true"-只读;"false"-非只读)
-masterDataset             主dataset名称(允许为空,默认没有主dataset)
-references                相关字段(允许为空,                             只有在设置了maseterDataset参数后才有效，表示于主dataset相关的字段     格式为sFieldName=mFieldName1;....)
-insertOnEmpty             空数据集时是否插入空记录(允许为空,默认为"false"    "true"-插入空记录;"false"-不插入空记录)
+	init                      初始化标志(允许为空,默认为"true"                "true"-初始化;"false"-不初始化)
+	submitMode                数据提交方式(允许为空,默认为"allchange"          all-全部提交,allchange-提交修改部分,current-提交当前的纪录, selected - 只提交所有被选择的纪录 )
+	paramerters               格外提交参数(允许为空,                          格式为 paramNm=paramVal;...)
+	readOnly                  只读标志(允许为口空,默认为"false"                "true"-只读;"false"-非只读)
+	masterDataset             主dataset名称(允许为空,默认没有主dataset)
+	references                相关字段(允许为空,                             只有在设置了maseterDataset参数后才有效，表示于主dataset相关的字段     格式为sFieldName=mFieldName1;....)
+	insertOnEmpty             空数据集时是否插入空记录(允许为空,默认为"false"    "true"-插入空记录;"false"-不插入空记录)
 -->
 <#macro Dataset init="true" submitMode="allchange" parameters="" readOnly="false" masterDataset="" references="" insertOnEmpty="false">
-<#assign specStr="nextPage|everyPage|pageNm|currentPage|fieldString|recordString|recordOrigString">
-<#--init request param -->
-<#assign paramString = paramConver()>
-<script type="text/javascript">
-	var ${CommonQueryConfig.getId()}_dataset=createDataset("${CommonQueryConfig.getId()}_dataset","","");
-	var _t=${CommonQueryConfig.getId()}_dataset;
-	_initDataset(_t,"${CommonQueryConfig.getId()}","${CommonQueryConfig.getAnyValue('pagesize')?default('10')}","${CommonQueryConfig.getAnyValue('databusid')?default('')}"
-	,"${masterDataset}","${references}","${submitMode}","${insertOnEmpty}","dd","${paramString}","${init}","result");
-	<#assign parameters = "${parameters}">
-	    <#if parameters!="">
-			<#list parameters?split(";")  as key>
-				 <#assign index =key?index_of("=")>
-				 <#assign paraName =key?substring(0,index)>
-				 <#assign paraValue =key?substring(index+1)>
-			 	 _t.setParameter("${paraName}","${paraValue}");
-			</#list>
-		</#if>
-	<#assign fieldMap = CommonQueryConfig.fields>
-			<#assign fields = fieldMap.keySet()>
- 			<#assign field = "">
- 			<#assign fDesc = "",fVal = "",fStat = "">
- 			<#assign columnInx = 0>
- 			<#list fields as fId>
-   				<#assign field = CommonQueryConfig.getField(fId?string)>
-    			<#assign fDesc = getFieldDesc(CommonQueryConfig.getId(),fId)>
-    			<#assign fType = field.getAnyValue("datatype","string")>
-    			<#assign fEidtType = field.getAnyValue("edittype","text")>
-    			<#if fEidtType=="checkbox">
-					<#assign fType = "boolean">
-				</#if>
-      			<#assign fSize = defaultStr(field.getAnyValue("size")?default('10'),"10")>
-      			<#assign readonly = field.getAnyValue("readonly")?default('false')>
-      			<#assign required = defaultStr(field.getAnyValue("require")?default("false"),"false")>
-      			<#assign mask = field.getAnyValue("rules")?default("null")>
-      			<#assign maskErrorMessage = field.getAnyValue("errmsg")?default("")>
-      			<#assign translated = field.getAnyValue("translated")?default("")>
-      			<#assign scale = field.getAnyValue("scale")?default("")>
-      			<#assign multiple = field.getAnyValue("multiple")?default("false")>
-      			<#assign toolTip = field.getAnyValue("tip")?default(fDesc)>
-      			<#assign translated = field.getAnyValue("translated")?default("")>
-			    <#assign viewField = field.getAnyValue("viewfield","")>
-			   	<#if mask?length==0>
-			    	<#assign mask="null">
-			    </#if>
-			    <#--modified by wangpeng 20091126 BMS-2274  添加predate和postdate的数据类型支持  begin-->
-			    <#--added by wangpeng 20091126 BMS-2269 日期型固定10位  begin-->
-			    <#if fType=="date" || fType=="predate" || fType=="postdate">
-			        <#assign fSize="10">
-			    </#if>
-			    <#--added by wangpeng 20091126 BMS-2269 日期型固定10位 end-->
-			    <#--modified by wangpeng 20091126 BMS-2274  添加predate和postdate的数据类型支持  end-->
-			    <#--modified by wangpeng 20091123 BMS-2274  增加金额型框的对齐方式  begin-->
-			    <#assign currencyAlign=field.getAnyValue("currencyalign")?default("right")>
-		      	<#switch fEidtType>
-				     <#case "select">
-				     <#-- 如果是select 先加 fId　字段 ,循环结束后增加带name的字段,为 fId +　name -->
-		      			   <#-- 判断是 该select 是 CQ方式，还是dataDic方式 ，如果是 CQ则要获得相应的 CQId 并且不能直接翻译，要到initdocument后翻译-->
-			      				<#assign isCQ  = "false">
-								<#assign CQid  = "">
-								<#assign ddtype  = "select">
-								<#list translated?split(":")  as key>
-								     <#if key =="CQ">
-										<#assign isCQ  = "true">
-										<#break>
-									</#if>
-								</#list>
-								<#assign dropdowntype = field.getAnyValue("dropdowntype")?default("dynamic")>
-								<#if isCQ ="true">
-									<#assign ddtype  = "selectCQ">
-								    <#list translated?split(":")  as key>
-										<#assign CQid  = key>
+	<#assign specStr="nextPage|everyPage|pageNm|currentPage|fieldString|recordString|recordOrigString">
+	<#--init request param -->
+	<#assign paramString = paramConver()>
+	<script type="text/javascript">
+		var ${CommonQueryConfig.getId()}_dataset=createDataset("${CommonQueryConfig.getId()}_dataset","","");
+		var _t=${CommonQueryConfig.getId()}_dataset;
+		_initDataset(_t,"${CommonQueryConfig.getId()}","${CommonQueryConfig.getAnyValue('pagesize')?default('10')}","${CommonQueryConfig.getAnyValue('databusid')?default('')}"
+		,"${masterDataset}","${references}","${submitMode}","${insertOnEmpty}","dd","${paramString}","${init}","result");
+		<#assign parameters = "${parameters}">
+		    <#if parameters!="">
+				<#list parameters?split(";")  as key>
+					 <#assign index =key?index_of("=")>
+					 <#assign paraName =key?substring(0,index)>
+					 <#assign paraValue =key?substring(index+1)>
+				 	 _t.setParameter("${paraName}","${paraValue}");
+				</#list>
+			</#if>
+		<#assign fieldMap = CommonQueryConfig.fields>
+				<#assign fields = fieldMap.keySet()>
+	 			<#assign field = "">
+	 			<#assign fDesc = "",fVal = "",fStat = "">
+	 			<#assign columnInx = 0>
+	 			<#list fields as fId>
+	   				<#assign field = CommonQueryConfig.getField(fId?string)>
+	    			<#assign fDesc = getFieldDesc(CommonQueryConfig.getId(),fId)>
+	    			<#assign fType = field.getAnyValue("datatype","string")>
+	    			<#assign fEidtType = field.getAnyValue("edittype","text")>
+	    			<#if fEidtType=="checkbox">
+						<#assign fType = "boolean">
+					</#if>
+	      			<#assign fSize = defaultStr(field.getAnyValue("size")?default('10'),"10")>
+	      			<#assign readonly = field.getAnyValue("readonly")?default('false')>
+	      			<#assign required = defaultStr(field.getAnyValue("require")?default("false"),"false")>
+	      			<#assign mask = field.getAnyValue("rules")?default("null")>
+	      			<#assign maskErrorMessage = field.getAnyValue("errmsg")?default("")>
+	      			<#assign translated = field.getAnyValue("translated")?default("")>
+	      			<#assign scale = field.getAnyValue("scale")?default("")>
+	      			<#assign multiple = field.getAnyValue("multiple")?default("false")>
+	      			<#assign toolTip = field.getAnyValue("tip")?default(fDesc)>
+	      			<#assign translated = field.getAnyValue("translated")?default("")>
+				    <#assign viewField = field.getAnyValue("viewfield","")>
+				   	<#if mask?length==0>
+				    	<#assign mask="null">
+				    </#if>
+				    <#--modified by wangpeng 20091126 BMS-2274  添加predate和postdate的数据类型支持  begin-->
+				    <#--added by wangpeng 20091126 BMS-2269 日期型固定10位  begin-->
+				    <#if fType=="date" || fType=="predate" || fType=="postdate">
+				        <#assign fSize="10">
+				    </#if>
+				    <#--added by wangpeng 20091126 BMS-2269 日期型固定10位 end-->
+				    <#--modified by wangpeng 20091126 BMS-2274  添加predate和postdate的数据类型支持  end-->
+				    <#--modified by wangpeng 20091123 BMS-2274  增加金额型框的对齐方式  begin-->
+				    <#assign currencyAlign=field.getAnyValue("currencyalign")?default("right")>
+			      	<#switch fEidtType>
+					     <#case "select">
+					     <#-- 如果是select 先加 fId　字段 ,循环结束后增加带name的字段,为 fId +　name -->
+			      			   <#-- 判断是 该select 是 CQ方式，还是dataDic方式 ，如果是 CQ则要获得相应的 CQId 并且不能直接翻译，要到initdocument后翻译-->
+				      				<#assign isCQ  = "false">
+									<#assign CQid  = "">
+									<#assign ddtype  = "select">
+									<#list translated?split(":")  as key>
+									     <#if key =="CQ">
+											<#assign isCQ  = "true">
+											<#break>
+										</#if>
 									</#list>
-									<#if "dynamictree" == dropdowntype>
-										<#assign ddtype  = "selectTree">
+									<#assign dropdowntype = field.getAnyValue("dropdowntype")?default("dynamic")>
+									<#if isCQ ="true">
+										<#assign ddtype  = "selectCQ">
+									    <#list translated?split(":")  as key>
+											<#assign CQid  = key>
+										</#list>
+										<#if "dynamictree" == dropdowntype>
+											<#assign ddtype  = "selectTree">
+										</#if>
+									<#else>
+										<#if "custom" == dropdowntype>
+											<#assign ddtype  = "selectCustom">
+										<#elseif "dialog" == dropdowntype>
+											<#assign ddtype  = "selectDialog">
+										</#if>
 									</#if>
-								<#else>
-									<#if "custom" == dropdowntype>
-										<#assign ddtype  = "selectCustom">
-									<#elseif "dialog" == dropdowntype>
-										<#assign ddtype  = "selectDialog">
-									</#if>
-								</#if>
-
-								 <#if isCQ ="true">
-		      			  _initField(_t,"${fId}","string","${viewField}","${mask}","${maskErrorMessage}","${toolTip}","${fDesc}",
-		      			  "${fSize}","${scale}",${required},"${readonly}","${currencyAlign}","${ddtype}","${fId}_DropDown","${CQid}_DropDownDataset","","","${fEidtType}","${multiple}");
-				      			   <#else>
-     			 			 _initField(_t,"${fId}","string","","${mask}","${maskErrorMessage}","${toolTip}","${fDesc}",
-		      			  "${fSize}","${scale}",${required},"${readonly}","${currencyAlign}","${ddtype}","${fId}_DropDown","${fId}_DropDownDataset","","","${fEidtType}","${multiple}");
-				      			   </#if>
-		      			  <#break>
-				    <#default>
-     			 			 _initField(_t,"${fId}","${fType}","","${mask}","${maskErrorMessage}","${toolTip}","${fDesc}",
-		      			  "${fSize}","${scale}",${required},"${readonly}","${currencyAlign}","","","","","","${fEidtType}","${multiple}");
-				   	    <#break>
-				</#switch>
-	 		</#list>
-<#-- 循环结束后增加 fId + Name 字段 -->
-	<#assign fieldMap = CommonQueryConfig.fields>
-			<#assign fields = fieldMap.keySet()>
- 			<#assign field = "">
- 			<#assign fDesc = "",fVal = "",fStat = "">
- 			<#assign columnInx = 0>
-	 		<#list fields as fId>
-	 				<#assign field = CommonQueryConfig.getField(fId?string)>
-	 				<#assign fEidtType = field.getAnyValue("edittype","text")>
-	      			<#if fEidtType == "select" >
-	      				    <#assign fDesc = getFieldDesc(CommonQueryConfig.getId(),fId)>
-			    			<#assign fType = field.getAnyValue("type","string")>
-			      			<#assign fSize = defaultStr(field.getAnyValue("size")?default('10'),"10")>
-			      			<#assign readonly = field.getAnyValue("readonly","false")>
-			      			<#assign required = defaultStr(field.getAnyValue("require")?default("false"),"false")>
-			      			<#assign mask = field.getAnyValue("rules","null")>
-			      			<#assign maskErrorMessage = field.getAnyValue("errmsg")?default("")>
-			      			<#assign scale = field.getAnyValue("scale")?default("")>
-			      			<#assign toolTip = field.getAnyValue("tip")?default(fDesc)>
-			      			<#assign translated = field.getAnyValue("translated")?default("")>
-			      			<#assign viewField = field.getAnyValue("viewfield","")>
-			      			<#if mask?length==0>
-			    				<#assign mask="null">
-			     			</#if>
-			      			    <#-- 判断是 该select 是 CQ方式，还是dataDic方式 ，如果是 CQ则要获得相应的 CQId-->
-			      				<#assign isCQ  = "false">
-								<#assign CQid  = "">
-								<#list translated?split(":")  as key>
-								     <#if key =="CQ">
-										<#assign isCQ  = "true">
-										<#break>
-									</#if>
-								</#list>
-								<#if isCQ ="true">
-								    <#list translated?split(":")  as key>
-										<#assign CQid  = key>
-									</#list>
-								</#if>
-				      			   <#if isCQ ="true">
-     			 		 _initField(_t,"${fId}Name","string","${viewField}","${mask}","${maskErrorMessage}","${toolTip}","${fDesc}",
-		      			  "${fSize}","${scale}",${required},"${readonly}","","selectName","${fId}_DropDown","${CQid}_DropDownDataset","","");
-				      			   <#else>
-     			 		 _initField(_t,"${fId}Name","string","","${mask}","${maskErrorMessage}","${toolTip}","${fDesc}",
-		      			  "${fSize}","${scale}",${required},"${readonly}","","selectName","${fId}_DropDown","${fId}_DropDownDataset","","");
-				      			   </#if>
-			 			<#elseif fEidtType == "radio" >
-	      				    <#assign fDesc = getFieldDesc(CommonQueryConfig.getId(),fId)>
-			    			<#assign fType = field.getAnyValue("type","string")>
-			      			<#assign fSize = defaultStr(field.getAnyValue("size")?default('10'),"10")>
-			      			<#assign readonly = field.getAnyValue("readonly","false")>
-			      			<#assign required = defaultStr(field.getAnyValue("require")?default("false"),"false")>
-			      			<#assign mask = field.getAnyValue("rules","null")>
-			      			<#assign maskErrorMessage = field.getAnyValue("errmsg")?default("")>
-			      			<#assign scale = field.getAnyValue("scale")?default("")>
-			      			<#assign toolTip = field.getAnyValue("tip")?default(fDesc)>
-			      			<#assign translated = field.getAnyValue("translated")?default("")>
-			      			<#assign viewField = field.getAnyValue("viewfield","")>
-			      			<#if mask?length==0>
-			    				<#assign mask="null">
-			     			</#if>
-     			 			 _initField(_t,"${fId}Name","string","","${mask}","${maskErrorMessage}","${toolTip}","${fDesc}",
-		      			  "${fSize}","${scale}",${required},"${readonly}","","radioName","","","${fId}_Radio","${fId}_RadioDataset");
-			 		</#if>
+	
+									 <#if isCQ ="true">
+			      			  _initField(_t,"${fId}","string","${viewField}","${mask}","${maskErrorMessage}","${toolTip}","${fDesc}",
+			      			  "${fSize}","${scale}",${required},"${readonly}","${currencyAlign}","${ddtype}","${fId}_DropDown","${CQid}_DropDownDataset","","","${fEidtType}","${multiple}");
+					      			   <#else>
+	     			 			 _initField(_t,"${fId}","string","","${mask}","${maskErrorMessage}","${toolTip}","${fDesc}",
+			      			  "${fSize}","${scale}",${required},"${readonly}","${currencyAlign}","${ddtype}","${fId}_DropDown","${fId}_DropDownDataset","","","${fEidtType}","${multiple}");
+					      			   </#if>
+			      			  <#break>
+					    <#default>
+	     			 			 _initField(_t,"${fId}","${fType}","","${mask}","${maskErrorMessage}","${toolTip}","${fDesc}",
+			      			  "${fSize}","${scale}",${required},"${readonly}","${currencyAlign}","","","","","","${fEidtType}","${multiple}");
+					   	    <#break>
+					</#switch>
 		 		</#list>
-				initDataset(_t);
-			  <#if readOnly ="true">
-  			   	_t.setReadOnly(true);
-  			  </#if>
-			<#--默认值设置-->
-			var  _paramValues = _paramMap.keys();
-			for(var i=0;i<_paramValues.length;i++){
-				_t.setValue(_paramValues[i],_paramMap.get(_paramValues[i]));
-			}
-			_paramMap.clear();
-</script>
-<#-- 导出数据窗口 DIV -- 用于下载CSV,Excel,Pdf文件-->
-<#if CommonQueryConfig.getPageExpConf("url")??>
-	<@ExpFileDiv id ="${CommonQueryConfig.getId()}"/>
-</#if>
+	<#-- 循环结束后增加 fId + Name 字段 -->
+		<#assign fieldMap = CommonQueryConfig.fields>
+				<#assign fields = fieldMap.keySet()>
+	 			<#assign field = "">
+	 			<#assign fDesc = "",fVal = "",fStat = "">
+	 			<#assign columnInx = 0>
+		 		<#list fields as fId>
+		 				<#assign field = CommonQueryConfig.getField(fId?string)>
+		 				<#assign fEidtType = field.getAnyValue("edittype","text")>
+		      			<#if fEidtType == "select" >
+		      				    <#assign fDesc = getFieldDesc(CommonQueryConfig.getId(),fId)>
+				    			<#assign fType = field.getAnyValue("type","string")>
+				      			<#assign fSize = defaultStr(field.getAnyValue("size")?default('10'),"10")>
+				      			<#assign readonly = field.getAnyValue("readonly","false")>
+				      			<#assign required = defaultStr(field.getAnyValue("require")?default("false"),"false")>
+				      			<#assign mask = field.getAnyValue("rules","null")>
+				      			<#assign maskErrorMessage = field.getAnyValue("errmsg")?default("")>
+				      			<#assign scale = field.getAnyValue("scale")?default("")>
+				      			<#assign toolTip = field.getAnyValue("tip")?default(fDesc)>
+				      			<#assign translated = field.getAnyValue("translated")?default("")>
+				      			<#assign viewField = field.getAnyValue("viewfield","")>
+				      			<#if mask?length==0>
+				    				<#assign mask="null">
+				     			</#if>
+				      			    <#-- 判断是 该select 是 CQ方式，还是dataDic方式 ，如果是 CQ则要获得相应的 CQId-->
+				      				<#assign isCQ  = "false">
+									<#assign CQid  = "">
+									<#list translated?split(":")  as key>
+									     <#if key =="CQ">
+											<#assign isCQ  = "true">
+											<#break>
+										</#if>
+									</#list>
+									<#if isCQ ="true">
+									    <#list translated?split(":")  as key>
+											<#assign CQid  = key>
+										</#list>
+									</#if>
+					      			   <#if isCQ ="true">
+	     			 		 _initField(_t,"${fId}Name","string","${viewField}","${mask}","${maskErrorMessage}","${toolTip}","${fDesc}",
+			      			  "${fSize}","${scale}",${required},"${readonly}","","selectName","${fId}_DropDown","${CQid}_DropDownDataset","","");
+					      			   <#else>
+	     			 		 _initField(_t,"${fId}Name","string","","${mask}","${maskErrorMessage}","${toolTip}","${fDesc}",
+			      			  "${fSize}","${scale}",${required},"${readonly}","","selectName","${fId}_DropDown","${fId}_DropDownDataset","","");
+					      			   </#if>
+				 			<#elseif fEidtType == "radio" >
+		      				    <#assign fDesc = getFieldDesc(CommonQueryConfig.getId(),fId)>
+				    			<#assign fType = field.getAnyValue("type","string")>
+				      			<#assign fSize = defaultStr(field.getAnyValue("size")?default('10'),"10")>
+				      			<#assign readonly = field.getAnyValue("readonly","false")>
+				      			<#assign required = defaultStr(field.getAnyValue("require")?default("false"),"false")>
+				      			<#assign mask = field.getAnyValue("rules","null")>
+				      			<#assign maskErrorMessage = field.getAnyValue("errmsg")?default("")>
+				      			<#assign scale = field.getAnyValue("scale")?default("")>
+				      			<#assign toolTip = field.getAnyValue("tip")?default(fDesc)>
+				      			<#assign translated = field.getAnyValue("translated")?default("")>
+				      			<#assign viewField = field.getAnyValue("viewfield","")>
+				      			<#if mask?length==0>
+				    				<#assign mask="null">
+				     			</#if>
+	     			 			 _initField(_t,"${fId}Name","string","","${mask}","${maskErrorMessage}","${toolTip}","${fDesc}",
+			      			  "${fSize}","${scale}",${required},"${readonly}","","radioName","","","${fId}_Radio","${fId}_RadioDataset");
+				 		</#if>
+			 		</#list>
+					initDataset(_t);
+				  <#if readOnly ="true">
+	  			   	_t.setReadOnly(true);
+	  			  </#if>
+				<#--默认值设置-->
+				var  _paramValues = _paramMap.keys();
+				for(var i=0;i<_paramValues.length;i++){
+					_t.setValue(_paramValues[i],_paramMap.get(_paramValues[i]));
+				}
+				_paramMap.clear();
+	</script>
+	<#-- 导出数据窗口 DIV -- 用于下载CSV,Excel,Pdf文件-->
+	<#if CommonQueryConfig.getPageExpConf("url")??>
+		<@ExpFileDiv id ="${CommonQueryConfig.getId()}"/>
+	</#if>
 </#macro>
 
 <#--建立DropDownDataSet模板-->
 <#macro DropDownDataSet init="true">
-<#assign specStr="nextPage|everyPage|pageNm|currentPage|fieldString|recordString|recordOrigString">
-<script type="text/javascript">
-	var ${CommonQueryConfig.getId()}_dataset=createDataset("${CommonQueryConfig.getId()}_DropDownDataset","",";");
-
-	<#--
-	_initDataset(dataset,cqId,pageSize,databusId,masterDataset,references,submitData,insertOnEmpty,sessionKey,paramString,init,type)
-	-->
-	_initDataset(${CommonQueryConfig.getId()}_dataset,"${CommonQueryConfig.getId()}",${CommonQueryConfig.getAnyValue("pagesize")?default("10")},""
-	,"","","allchange",false,"dd","","${init}","dropdown");
-
-	var _dt = ${CommonQueryConfig.getId()}_t,_f;
-   			<#assign fieldMap = CommonQueryConfig.fields>
-			<#assign fields = fieldMap.keySet()>
- 			<#assign field = "">
- 			<#assign fDesc = "",fVal = "",fStat = "">
- 			<#assign columnInx = 0>
- 			<#list fields as fId>
-		    <#--dataset,isCQ,isSelect,fId,fType,viewField,CQid,mask,maskErrMsg,toolTip,fDesc,fSize,scale,required,readonly,currencyAlign,tag,dropDown,dropDownDataset,radio,RadioDataset-->
-     			 			 _initField(_dt,"${fId}","string","","","","","",
-		      			  "","",false,"false","","radioName","","","","");
-	 		</#list>
-	 		initDataset(${CommonQueryConfig.getId()}_t);
-</script>
+	<#assign specStr="nextPage|everyPage|pageNm|currentPage|fieldString|recordString|recordOrigString">
+	<script type="text/javascript">
+		var ${CommonQueryConfig.getId()}_dataset=createDataset("${CommonQueryConfig.getId()}_DropDownDataset","",";");
+	
+		<#--
+		_initDataset(dataset,cqId,pageSize,databusId,masterDataset,references,submitData,insertOnEmpty,sessionKey,paramString,init,type)
+		-->
+		_initDataset(${CommonQueryConfig.getId()}_dataset,"${CommonQueryConfig.getId()}",${CommonQueryConfig.getAnyValue("pagesize")?default("10")},""
+		,"","","allchange",false,"dd","","${init}","dropdown");
+	
+		var _dt = ${CommonQueryConfig.getId()}_t,_f;
+	   			<#assign fieldMap = CommonQueryConfig.fields>
+				<#assign fields = fieldMap.keySet()>
+	 			<#assign field = "">
+	 			<#assign fDesc = "",fVal = "",fStat = "">
+	 			<#assign columnInx = 0>
+	 			<#list fields as fId>
+			    <#--dataset,isCQ,isSelect,fId,fType,viewField,CQid,mask,maskErrMsg,toolTip,fDesc,fSize,scale,required,readonly,currencyAlign,tag,dropDown,dropDownDataset,radio,RadioDataset-->
+	     			 			 _initField(_dt,"${fId}","string","","","","","",
+			      			  "","",false,"false","","radioName","","","","");
+		 		</#list>
+		 		initDataset(${CommonQueryConfig.getId()}_t);
+	</script>
 </#macro>
 
 <#--建立PagePilot栏-->
@@ -569,101 +567,101 @@ insertOnEmpty             空数据集时是否插入空记录(允许为空,默认为"false"    "tr
 
 <#--查询结果 -- 导出弹出层-->
 <#macro ExpFileDiv id fieldStr="${CommonQueryConfig.toFieldString()}"  width="" readonly="">
-<#assign maxpage=CommonQueryConfig.getPageExpConf("maxpage")?default(statics["com.huateng.ebank.business.common.ConfigReader"].getProperty("PageQryExp_maxpage"))>
-<#-- 弹出层元素：id, na(name)-->
-<#assign fs = [ {"id":"s_p", "title":"PageQryExp.start",  "na":"${CommonQueryConfig.getId()}_startPage", "value":"1",  "type":"text",   "defAttr":"","rule":"isNumber","maxChk":"null", "err":"起始页必须是数字,且在有效页码范围内","event":""},
-				{"id":"e_p", "title":"PageQryExp.end",  "na":"${CommonQueryConfig.getId()}_endPage",   "value":maxpage,  "type":"text",    "defAttr":"","rule":"isNumber","maxChk":"null","err":"结束页必须是数字,且在有效页码范围内","event":""},
-				{"id":"a_p", "title":"PageQryExp.all",  "na":"${CommonQueryConfig.getId()}_allPage",   "value":"1", "type":"checkbox","defAttr":"disabled","rule":"null","maxChk":"null","err":"错误，请重新勾选","event":"onclick='checkAllpage(this,s_p,e_p)'"},
-				{"id":"e_a", "title":"PageQryExp.batch","na":"${CommonQueryConfig.getId()}_expAll",   "value":"1", "type":"checkbox","defAttr":"","rule":"null","maxChk":"null","err":"","event":"onclick='checkExpall(this,a_p,s_p,e_p)'"},
-				{"id":"c_x", "title":"PageQryExp.zip","na":"${CommonQueryConfig.getId()}_complex",   "value":"1", "type":"checkbox","defAttr":"","rule":"null","maxChk":"null","err":"错误，请重新勾选","event":""},
-				{"id":"exp_cls", "title":"PageQryExp.columSelected","na":"${CommonQueryConfig.getId()}_expElements",  "value":"", "type":"mulSelect","defAttr":"","rule":"null","maxChk":"null","err":"","event":""}]>
-<#assign fields = fieldStr?split(',')>
-<#assign fsjs = "[">
-<#list fs as f>
-	<#if f_has_next>
-		<#assign fsjs = fsjs + "{\"id\":\""+f.id+"\","+ "\"na\":\""+f.na+"\","+ "\"type\":\""+f.type+"\","+ "\"rule\":"+f.rule+","+ "\"maxChk\":"+f.maxChk+","+ "\"err\":\""+f.err+"\"},">
-	<#else>
-		<#assign fsjs = fsjs + "{\"id\":\""+f.id+"\","+ "\"na\":\""+f.na+"\","+ "\"type\":\""+f.type+"\","+ "\"rule\":"+f.rule+","+ "\"maxChk\":"+f.maxChk+","+ "\"err\":\""+f.err+"\"}">
-	</#if>
-</#list>
-<#assign fsjs = fsjs + "]" >
-<div id="newWinFrame${id}" style="display:none" buttontext="<@bean.message key="PageQryExp.btExport"/>">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-	<tr><td>
-		<table width="100%" border="0" cellspacing="0" cellpadding="0" >
-			<tr>
-				<td class="labeltd" width="20%" align="left" nowrap><@bean.message key="PageQryExp.page" /></td>
-				<td class="datatd" nowrap width="30%">
-					<input class="validatebox-text" id="s_p" type="text" name="${CommonQueryConfig.getId()}_startPage" value="1" style="width:40px" size="10" err="起始页必须是数字,且在有效页码范围内"/>&nbsp;~&nbsp;
-					<input class="validatebox-text" id="e_p" type="text" name="${CommonQueryConfig.getId()}_endPage" value="${maxpage}" style="width:40px" size="10" err="结束页必须是数字,且在有效页码范围"/>
-				</td>
-				<td class="labeltd" width="20%" align="left" nowrap><@bean.message key="PageQryExp.all" /></td>
-				<td class="datatd" nowrap>
-					<input id="a_p" type="checkbox" name="${CommonQueryConfig.getId()}_allPage" disabled err="错误，请重新勾选" onclick='checkAllpage(this,s_p,e_p)'/>
-				</td>
-			</tr>
-			<tr>
-				<td class="labeltd" width="20%" align="left" nowrap><@bean.message key="PageQryExp.batch" /></td>
-				<td class="datatd" nowrap>
-					<input id="e_a" type="checkbox" name="${CommonQueryConfig.getId()}_expAll" value="1" onclick='checkExpall(this,a_p,s_p,e_p)'/>
-				</td>
-				<td class="labeltd" width="20%" align="left" nowrap><@bean.message key="PageQryExp.zip" /></td>
-				<td class="datatd" nowrap>
-					<input id="c_x" type="checkbox" name="${CommonQueryConfig.getId()}_complex" value="1" err="错误，请重新勾选"/>
-				</td>
-			</tr>
-		</table>
-	</td></tr>
-	<tr><td>
-		<div class="exp-mulselect" >
-		<div class="exp-col-title"><@bean.message key="PageQryExp.columExported"/></div>
-		<#list fields as fId>
-	       <#assign field = CommonQueryConfig.getField(fId)>
-	       <#assign fDesc = field.getAnyValue("desc")>
-		   <#assign fStatus = field.getAnyValue("status")?default("N")>
-		   <#if fStatus?upper_case != "N">
-		   		<label class="nock" id="l_WebSite_${fId}"><#t/>
-		   			<input type="checkbox" name="${CommonQueryConfig.getId()}_expElements" id="i_WebSite_${fId}" CHECKED value="${fId}" class="exp-checkbox" onclick="" onpropertychange=""/><#t/>
-		   			<div onclick="mul_move.selectedNode('i_WebSite_${fId}','l_WebSite_${fId}');"><@bean.message key="${fDesc}" /></div><#t/>
-		   		</label><#t/>
-		   </#if>
-		</#list>
-		</div>
-	</td></tr>
-	<tr><td>
-		<div class="exp-tip">
-		<div><@bean.message key="PageQryExp.tip"/></div>
-		<div> <@bean.message key="PageQryExp.tip.1"/>${maxpage}</div>
-		<div> <@bean.message key="PageQryExp.tip.2"/></div>
-		</div>
-	</td></tr>
-</table>
-<div id="expErrDiv${id}" class="exp-warn"></div>
-</div>
-<script type="text/javascript">
-//字段导出选择，左右上下移动
-var mul_move = new mulSelect("${CommonQueryConfig.getId()}_expElements");
-/** 查询结果下载对象 **/
-var ${CommonQueryConfig.getId()}_dataset_exporter = new exporter("${CommonQueryConfig.getPageExpConf("url")!"#"}",${CommonQueryConfig.pageExportLimit()?string("true", "false")});
-/** 设置对象的参数 - Servlet path **/
-${CommonQueryConfig.getId()}_dataset_exporter.setContentPath("${contextPath}");
-/** 是否能导出CSV **/
-${CommonQueryConfig.getId()}_dataset_exporter.setCanExpCsv(${CommonQueryConfig.canExport("CSV")?string("true", "false")},null);
-/** 是否能导出Excel **/
-${CommonQueryConfig.getId()}_dataset_exporter.setCanExpXls(${CommonQueryConfig.canExport("XLS")?string("true", "false")},null);
-/** 是否能导出PDF **/
-${CommonQueryConfig.getId()}_dataset_exporter.setCanExpPdf(${CommonQueryConfig.canExport("PDF")?string("true", "false")},null);
-/** 数据集查询条件的名字 **/
-${CommonQueryConfig.getId()}_dataset_exporter.setDataSetInterface("${CommonQueryConfig.getId()}_interface_dataset");
-/** 数据集的名字 **/
-${CommonQueryConfig.getId()}_dataset_exporter.setDataSet("${CommonQueryConfig.getId()}_dataset");
-//设置显示层的元素集合
-${CommonQueryConfig.getId()}_dataset_exporter.setDivEls(${fsjs});
-//设置脚本中对象的ID
-${CommonQueryConfig.getId()}_dataset_exporter.setExpWinId("#newWinFrame${id}","#expErrDiv${id}");
-//设置弹出层的属性
-${CommonQueryConfig.getId()}_dataset.ExpFileDiv=${CommonQueryConfig.getId()}_dataset_exporter;
-</script>
+	<#assign maxpage=CommonQueryConfig.getPageExpConf("maxpage")?default(statics["com.huateng.ebank.business.common.ConfigReader"].getProperty("PageQryExp_maxpage"))>
+	<#-- 弹出层元素：id, na(name)-->
+	<#assign fs = [ {"id":"s_p", "title":"PageQryExp.start",  "na":"${CommonQueryConfig.getId()}_startPage", "value":"1",  "type":"text",   "defAttr":"","rule":"isNumber","maxChk":"null", "err":"起始页必须是数字,且在有效页码范围内","event":""},
+					{"id":"e_p", "title":"PageQryExp.end",  "na":"${CommonQueryConfig.getId()}_endPage",   "value":maxpage,  "type":"text",    "defAttr":"","rule":"isNumber","maxChk":"null","err":"结束页必须是数字,且在有效页码范围内","event":""},
+					{"id":"a_p", "title":"PageQryExp.all",  "na":"${CommonQueryConfig.getId()}_allPage",   "value":"1", "type":"checkbox","defAttr":"disabled","rule":"null","maxChk":"null","err":"错误，请重新勾选","event":"onclick='checkAllpage(this,s_p,e_p)'"},
+					{"id":"e_a", "title":"PageQryExp.batch","na":"${CommonQueryConfig.getId()}_expAll",   "value":"1", "type":"checkbox","defAttr":"","rule":"null","maxChk":"null","err":"","event":"onclick='checkExpall(this,a_p,s_p,e_p)'"},
+					{"id":"c_x", "title":"PageQryExp.zip","na":"${CommonQueryConfig.getId()}_complex",   "value":"1", "type":"checkbox","defAttr":"","rule":"null","maxChk":"null","err":"错误，请重新勾选","event":""},
+					{"id":"exp_cls", "title":"PageQryExp.columSelected","na":"${CommonQueryConfig.getId()}_expElements",  "value":"", "type":"mulSelect","defAttr":"","rule":"null","maxChk":"null","err":"","event":""}]>
+	<#assign fields = fieldStr?split(',')>
+	<#assign fsjs = "[">
+	<#list fs as f>
+		<#if f_has_next>
+			<#assign fsjs = fsjs + "{\"id\":\""+f.id+"\","+ "\"na\":\""+f.na+"\","+ "\"type\":\""+f.type+"\","+ "\"rule\":"+f.rule+","+ "\"maxChk\":"+f.maxChk+","+ "\"err\":\""+f.err+"\"},">
+		<#else>
+			<#assign fsjs = fsjs + "{\"id\":\""+f.id+"\","+ "\"na\":\""+f.na+"\","+ "\"type\":\""+f.type+"\","+ "\"rule\":"+f.rule+","+ "\"maxChk\":"+f.maxChk+","+ "\"err\":\""+f.err+"\"}">
+		</#if>
+	</#list>
+	<#assign fsjs = fsjs + "]" >
+	<div id="newWinFrame${id}" style="display:none" buttontext="<@bean.message key="PageQryExp.btExport"/>">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr><td>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+				<tr>
+					<td class="labeltd" width="20%" align="left" nowrap><@bean.message key="PageQryExp.page" /></td>
+					<td class="datatd" nowrap width="30%">
+						<input class="validatebox-text" id="s_p" type="text" name="${CommonQueryConfig.getId()}_startPage" value="1" style="width:40px" size="10" err="起始页必须是数字,且在有效页码范围内"/>&nbsp;~&nbsp;
+						<input class="validatebox-text" id="e_p" type="text" name="${CommonQueryConfig.getId()}_endPage" value="${maxpage}" style="width:40px" size="10" err="结束页必须是数字,且在有效页码范围"/>
+					</td>
+					<td class="labeltd" width="20%" align="left" nowrap><@bean.message key="PageQryExp.all" /></td>
+					<td class="datatd" nowrap>
+						<input id="a_p" type="checkbox" name="${CommonQueryConfig.getId()}_allPage" disabled err="错误，请重新勾选" onclick='checkAllpage(this,s_p,e_p)'/>
+					</td>
+				</tr>
+				<tr>
+					<td class="labeltd" width="20%" align="left" nowrap><@bean.message key="PageQryExp.batch" /></td>
+					<td class="datatd" nowrap>
+						<input id="e_a" type="checkbox" name="${CommonQueryConfig.getId()}_expAll" value="1" onclick='checkExpall(this,a_p,s_p,e_p)'/>
+					</td>
+					<td class="labeltd" width="20%" align="left" nowrap><@bean.message key="PageQryExp.zip" /></td>
+					<td class="datatd" nowrap>
+						<input id="c_x" type="checkbox" name="${CommonQueryConfig.getId()}_complex" value="1" err="错误，请重新勾选"/>
+					</td>
+				</tr>
+			</table>
+		</td></tr>
+		<tr><td>
+			<div class="exp-mulselect" >
+			<div class="exp-col-title"><@bean.message key="PageQryExp.columExported"/></div>
+			<#list fields as fId>
+		       <#assign field = CommonQueryConfig.getField(fId)>
+		       <#assign fDesc = field.getAnyValue("desc")>
+			   <#assign fStatus = field.getAnyValue("status")?default("N")>
+			   <#if fStatus?upper_case != "N">
+			   		<label class="nock" id="l_WebSite_${fId}"><#t/>
+			   			<input type="checkbox" name="${CommonQueryConfig.getId()}_expElements" id="i_WebSite_${fId}" CHECKED value="${fId}" class="exp-checkbox" onclick="" onpropertychange=""/><#t/>
+			   			<div onclick="mul_move.selectedNode('i_WebSite_${fId}','l_WebSite_${fId}');"><@bean.message key="${fDesc}" /></div><#t/>
+			   		</label><#t/>
+			   </#if>
+			</#list>
+			</div>
+		</td></tr>
+		<tr><td>
+			<div class="exp-tip">
+			<div><@bean.message key="PageQryExp.tip"/></div>
+			<div> <@bean.message key="PageQryExp.tip.1"/>${maxpage}</div>
+			<div> <@bean.message key="PageQryExp.tip.2"/></div>
+			</div>
+		</td></tr>
+	</table>
+	<div id="expErrDiv${id}" class="exp-warn"></div>
+	</div>
+	<script type="text/javascript">
+	//字段导出选择，左右上下移动
+	var mul_move = new mulSelect("${CommonQueryConfig.getId()}_expElements");
+	/** 查询结果下载对象 **/
+	var ${CommonQueryConfig.getId()}_dataset_exporter = new exporter("${CommonQueryConfig.getPageExpConf("url")!"#"}",${CommonQueryConfig.pageExportLimit()?string("true", "false")});
+	/** 设置对象的参数 - Servlet path **/
+	${CommonQueryConfig.getId()}_dataset_exporter.setContentPath("${contextPath}");
+	/** 是否能导出CSV **/
+	${CommonQueryConfig.getId()}_dataset_exporter.setCanExpCsv(${CommonQueryConfig.canExport("CSV")?string("true", "false")},null);
+	/** 是否能导出Excel **/
+	${CommonQueryConfig.getId()}_dataset_exporter.setCanExpXls(${CommonQueryConfig.canExport("XLS")?string("true", "false")},null);
+	/** 是否能导出PDF **/
+	${CommonQueryConfig.getId()}_dataset_exporter.setCanExpPdf(${CommonQueryConfig.canExport("PDF")?string("true", "false")},null);
+	/** 数据集查询条件的名字 **/
+	${CommonQueryConfig.getId()}_dataset_exporter.setDataSetInterface("${CommonQueryConfig.getId()}_interface_dataset");
+	/** 数据集的名字 **/
+	${CommonQueryConfig.getId()}_dataset_exporter.setDataSet("${CommonQueryConfig.getId()}_dataset");
+	//设置显示层的元素集合
+	${CommonQueryConfig.getId()}_dataset_exporter.setDivEls(${fsjs});
+	//设置脚本中对象的ID
+	${CommonQueryConfig.getId()}_dataset_exporter.setExpWinId("#newWinFrame${id}","#expErrDiv${id}");
+	//设置弹出层的属性
+	${CommonQueryConfig.getId()}_dataset.ExpFileDiv=${CommonQueryConfig.getId()}_dataset_exporter;
+	</script>
 </#macro>
 
 <#macro Thead fId rowspan frozen r=0>
@@ -689,24 +687,24 @@ ${CommonQueryConfig.getId()}_dataset.ExpFileDiv=${CommonQueryConfig.getId()}_dat
        <#assign desc = field.getAnyValue("desc")?default('')>
        <#assign align = field.getAnyValue("align")?default('')>
        <#assign multiple = field.getAnyValue("multiple")?default('')>
-    <#if fedittype != "hidden">
-      <#if frozen>
-	      <#if r==0>
-			<#assign forzenhead = forzenhead + "<th field=\"" + _fId + "\" rowspan=\""+ rowspan+"\" width=\""+ fwidth+"\" align=\""+align+"\" multi=\""+multiple+"\" >" +desc+"</th>">
-		  <#elseif r==1>
-			<#assign forzenhead1 = forzenhead1 + "<th field=\"" + _fId + "\" rowspan=\""+ rowspan+"\" width=\""+ fwidth+"\" align=\""+align+"\" multi=\""+multiple+"\" >" +desc+"</th>">
-		  <#elseif r==2>
-			<#assign forzenhead2 = forzenhead2 + "<th field=\"" + _fId + "\" rowspan=\""+ rowspan+"\" width=\""+ fwidth+"\" align=\""+align+"\" multi=\""+multiple+"\" >" +desc+"</th>">
-		  </#if>
-      <#else>
-	      <#if r==0>
-			<#assign tablehead = tablehead + "<th field=\"" + _fId + "\" rowspan=\""+ rowspan+"\" width=\""+ fwidth+"\" align=\""+align+"\" multi=\""+multiple+"\" >" +desc+"</th>">
-		  <#elseif r==1>
-			<#assign tablehead1 = tablehead1 + "<th field=\"" + _fId + "\" rowspan=\""+ rowspan+"\" width=\""+ fwidth+"\" align=\""+align+"\" multi=\""+multiple+"\" >" +desc+"</th>">
-		  <#elseif r==2>
-			<#assign tablehead2 = tablehead2 + "<th field=\"" + _fId + "\" rowspan=\""+ rowspan+"\" width=\""+ fwidth+"\" align=\""+align+"\" multi=\""+multiple+"\" >" +desc+"</th>">
-		  </#if>
-      </#if>
+	   <#if fedittype != "hidden">
+	      <#if frozen>
+		      <#if r==0>
+				<#assign forzenhead = forzenhead + "<th field=\"" + _fId + "\" rowspan=\""+ rowspan+"\" width=\""+ fwidth+"\" align=\""+align+"\" multi=\""+multiple+"\" >" +desc+"</th>">
+			  <#elseif r==1>
+				<#assign forzenhead1 = forzenhead1 + "<th field=\"" + _fId + "\" rowspan=\""+ rowspan+"\" width=\""+ fwidth+"\" align=\""+align+"\" multi=\""+multiple+"\" >" +desc+"</th>">
+			  <#elseif r==2>
+				<#assign forzenhead2 = forzenhead2 + "<th field=\"" + _fId + "\" rowspan=\""+ rowspan+"\" width=\""+ fwidth+"\" align=\""+align+"\" multi=\""+multiple+"\" >" +desc+"</th>">
+			  </#if>
+	      <#else>
+		      <#if r==0>
+				<#assign tablehead = tablehead + "<th field=\"" + _fId + "\" rowspan=\""+ rowspan+"\" width=\""+ fwidth+"\" align=\""+align+"\" multi=\""+multiple+"\" >" +desc+"</th>">
+			  <#elseif r==1>
+				<#assign tablehead1 = tablehead1 + "<th field=\"" + _fId + "\" rowspan=\""+ rowspan+"\" width=\""+ fwidth+"\" align=\""+align+"\" multi=\""+multiple+"\" >" +desc+"</th>">
+			  <#elseif r==2>
+				<#assign tablehead2 = tablehead2 + "<th field=\"" + _fId + "\" rowspan=\""+ rowspan+"\" width=\""+ fwidth+"\" align=\""+align+"\" multi=\""+multiple+"\" >" +desc+"</th>">
+			  </#if>
+	      </#if>
           <#if fedittype=="select">
       	      <#assign translated = field.getAnyValue("translated")?default('')>
     	      <#assign init = defaultStr(field.getAnyValue("init")?default("true"),"true")>
@@ -723,82 +721,80 @@ ${CommonQueryConfig.getId()}_dataset.ExpFileDiv=${CommonQueryConfig.getId()}_dat
 		      <#else>
 		           <#assign type = "DATA_DIC">
 	          </#if>
-	        <#switch type>
-	         <#case "CQ">
-	         	<#assign CQid = value>
-	         	<#assign viewField = field.getAnyValue("viewfield","")>
-				<#assign fieldMap = field.getAnyValue("fieldmap","")>
-				<#assign dropdowntype = defaultStr(field.getAnyValue("dropdowntype")?default("dynamic"),"dynamic")>
-				<#if dropdowntype=="dynamic">
-					<#assign ddtype = "cq">
-				<#elseif dropdowntype=="dynamictree">
-					<#assign ddtype = "dynamictree">
-				</#if>
-	         	<@htmlEditType.CommonQueryForSelect id="${CQid}" init="false" require="false">
-	         		  <script type="text/javascript">
-					 _initDropDown_cust1("${CQid}_DropDownDataset","${_fId}_DropDown","${ddtype}","${fieldMap}","table","${viewField}","0");
-					 var ${_fId}_DropDown = getDropDownByID("${_fId}_DropDown");
-					 function ${_fId}_cellFormatter(value,rowData,rowIndex,currentField,id,cellJQuery){
-			       		var eventName = id + "_" + currentField.toLowerCase() + "_onRefresh";
-						if (isUserEventDefined(eventName)) {
-							try{fireUserEvent(eventName, [ cellDom, value, record ]);}catch(e){
-								return "cell format error";
+	       <#switch type>
+	         	<#case "CQ">
+		         	<#assign CQid = value>
+		         	<#assign viewField = field.getAnyValue("viewfield","")>
+					<#assign fieldMap = field.getAnyValue("fieldmap","")>
+					<#assign dropdowntype = defaultStr(field.getAnyValue("dropdowntype")?default("dynamic"),"dynamic")>
+					<#if dropdowntype=="dynamic">
+						<#assign ddtype = "cq">
+					<#elseif dropdowntype=="dynamictree">
+						<#assign ddtype = "dynamictree">
+					</#if>
+		         	<@htmlEditType.CommonQueryForSelect id="${CQid}" init="false" require="false">
+		         		  <script type="text/javascript">
+						 _initDropDown_cust1("${CQid}_DropDownDataset","${_fId}_DropDown","${ddtype}","${fieldMap}","table","${viewField}","0");
+						 var ${_fId}_DropDown = getDropDownByID("${_fId}_DropDown");
+						 function ${_fId}_cellFormatter(value,rowData,rowIndex,currentField,id,cellJQuery){
+				       		var eventName = id + "_" + currentField.toLowerCase() + "_onRefresh";
+							if (isUserEventDefined(eventName)) {
+								try{fireUserEvent(eventName, [ cellDom, value, record ]);}catch(e){
+									return "cell format error";
+								}
+								return cellDom.innerHTML;
+							} else {
+			                    return rowData.record.getString(currentField+"Name");
 							}
-							return cellDom.innerHTML;
-						} else {
-		                    return rowData.record.getString(currentField+"Name");
-						}
-                  	 }
-					  </script>
-	         	</@htmlEditType.CommonQueryForSelect>
-                <#break>
-             <#case "LIST">
-             <#case "DATA_DIC">
-             <#if type=="LIST">
-    		     <#assign values = value>
-    		  <#else>
-	    	     <#assign values = sysDicStr(translated)>
-	    	  </#if>
-			     <#assign fMap=_fId + "=" + "data">
-			     <#assign fileMapString = fMap+";${_fId}Name=dataName">
-			     <script>
-
-              	   _initDropDown("${_fId}_DropDownDataset","${_fId}_DropDown","${values}","data,dataName","${lable}","${fileMapString}","dataName","","","${require}");
-			       var ${_fId}_DropDownDataset=getDatasetByID("${_fId}_DropDownDataset");
-			       var ${_fId}_Json;
-			       function ${_fId}_cellFormatter(value,rowData,rowIndex,currentField,id,cellJQuery){
-			       		var valueStr = ""+value;
-			       		var valueArr = valueStr.split(",");
-			       		var result = [];
-			       		if(valueArr) {
-			       			for(var i=0;i<valueArr.length;i++){
-			       				var valueText = "";
-			       				for(var j=0;j<${_fId}_Json.length;j++){
-			       					if(valueArr[i] == (""+${_fId}_Json[j].id)) {
-			       						valueText = ${_fId}_Json[j].text;
-			       						break;
-			       					}
-			       				}
-			       				result.push(valueText?valueText:valueArr[i]);
-			       			}
-			       			value = result.join(",");
-			       		}
-                     return _cellFormatter(value,rowData,rowIndex,currentField,id,cellJQuery);
-                   }
-
-      	         </script>
-      	      <#break>
-             <#default>
-               <#assign targetDataSet = CommonQueryConfig.getId() + "_dataset">
-               <#assign readonly = field.getAnyValue("readonly")?default("false")>
-               <#assign fieldMap = field.getAnyValue("fieldmap","")>
-               <#assign height = field.getAnyValue("height")?default("")>
-               <#assign url = field.getAnyValue("url")?default("")>
-               <script>
-                 _initDropDown_cust2("${_fId}_DropDownDataset","${_fId}_DropDown","${targetDataSet}","${readonly}","custom","${fieldMap}","${height}","${url}","${_fId}");
-               </script>
-
-              <#break>
+	                  	 }
+						  </script>
+		         	</@htmlEditType.CommonQueryForSelect>
+	                <#break>
+             	<#case "LIST">
+             	<#case "DATA_DIC">
+		        	<#if type=="LIST">
+		    			<#assign values = value>
+		    		<#else>
+			    	    <#assign values = sysDicStr(translated)>
+			    	</#if>
+			    	 <#assign fMap=_fId + "=" + "data">
+			     	<#assign fileMapString = fMap+";${_fId}Name=dataName">
+			     	<script>
+	              	   _initDropDown("${_fId}_DropDownDataset","${_fId}_DropDown","${values}","data,dataName","${lable}","${fileMapString}","dataName","","","${require}");
+				       var ${_fId}_DropDownDataset=getDatasetByID("${_fId}_DropDownDataset");
+				       var ${_fId}_Json;
+				       function ${_fId}_cellFormatter(value,rowData,rowIndex,currentField,id,cellJQuery){
+				       		var valueStr = ""+value;
+				       		var valueArr = valueStr.split(",");
+				       		var result = [];
+				       		if(valueArr) {
+				       			for(var i=0;i<valueArr.length;i++){
+				       				var valueText = "";
+				       				for(var j=0;j<${_fId}_Json.length;j++){
+				       					if(valueArr[i] == (""+${_fId}_Json[j].id)) {
+				       						valueText = ${_fId}_Json[j].text;
+				       						break;
+				       					}
+				       				}
+				       				result.push(valueText?valueText:valueArr[i]);
+				       			}
+				       			value = result.join(",");
+				       		}
+	                     return _cellFormatter(value,rowData,rowIndex,currentField,id,cellJQuery);
+	                   }
+      	        	 </script>
+      	      		 <#break>
+             	<#default>
+	               <#assign targetDataSet = CommonQueryConfig.getId() + "_dataset">
+	               <#assign readonly = field.getAnyValue("readonly")?default("false")>
+	               <#assign fieldMap = field.getAnyValue("fieldmap","")>
+	               <#assign height = field.getAnyValue("height")?default("")>
+	               <#assign url = field.getAnyValue("url")?default("")>
+	               <script>
+	                 _initDropDown_cust2("${_fId}_DropDownDataset","${_fId}_DropDown","${targetDataSet}","${readonly}","custom","${fieldMap}","${height}","${url}","${_fId}");
+	               </script>
+	
+	              <#break>
               </#switch>
           <#else>
           </#if>
@@ -833,8 +829,10 @@ ${CommonQueryConfig.getId()}_dataset.ExpFileDiv=${CommonQueryConfig.getId()}_dat
 	remeberCheck       是否记忆已选择列
 	pkid               数据的主键,配合remeberCheck使用
 -->
-<#macro DataTable id  frozens="0"  fieldStr="${CommonQueryConfig.toFieldString()}"  width="" height=""  sumfieldstr="" title=""  paginationbar="" rowStyler="false"  treeGrid="false"  treeField=""
-hasFrame="false" floatwindow="" maxRow="" printabled="true" readonly="true"  pagination="true"  mergeHead="" rownumbers="true"  select="false" remoteSort="false" pageCache="false" pkid="" remeberCheck="false" toolbar="">
+<#macro DataTable id  frozens="0"  fieldStr="${CommonQueryConfig.toFieldString()}"  width="" height=""  sumfieldstr="" title=""  
+	paginationbar="" rowStyler="false"  treeGrid="false"  treeField="" hasFrame="false" floatwindow="" maxRow="" printabled="true" 
+	readonly="true"  pagination="true"  mergeHead="" rownumbers="true"  select="false" remoteSort="false" pageCache="false" pkid="" 
+	remeberCheck="false" toolbar="">
 	<#assign _qutofirst = fieldStr?index_of(",") >
 	<#if _qutofirst == -1>
 		<#assign firstField = fieldStr>
@@ -920,45 +918,54 @@ hasFrame="false" floatwindow="" maxRow="" printabled="true" readonly="true"  pag
 	</#list>
 	
 	<#if treeGrid=="false">
-	   <#assign class="easyui-datagrid">
+	  <#assign class="easyui-datagrid">
 	<#else>
-	   <#assign class="easyui-treegrid">
+	  <#assign class="easyui-treegrid">
 	</#if>
 	<#assign twidth= px(width)>
 	<#assign theight= px(height)>
-	<table id="${id}" title="${title}"  style="display:none;width:${twidth};height:${theight}" <#if _select=="true">selectkey="${firstField}"</#if> autoRowHeight="true"  paginationbar="${paginationbar}" frozens="${frozens}" rowStyler="${rowStyler}"  treeGrid="${treeGrid}" mergeHead="" pageSize="${_maxRow}"
-	     extra="datagrid" rownumbers="${rownumbers}" sumfieldstr="${sumfieldstr}" <#if sumfieldstr!="">showFooter="true"</#if> remoteSort="${remoteSort}" fCount="${fCount}" treeField="${treeField}" componentDataset="${CommonQueryConfig.getId()}_dataset" readonly="${readonly}"  tableName="${id}" pagination="${pagination}" pageCache="${pageCache}"
-	     pkid="${pkid}" remeberCheck="${remeberCheck}" floatwindow="${floatwindow}" toolbar="#ToolBar_${toolbar}">
-			<thead frozen="true">
-				<tr>
-			       ${forzenhead}
-			    </tr>
-			    <#if forzenhead1 != "" || forzenhead2 != "">
+	<table id="${id}" title="${title}"  style="display:none;width:${twidth};height:${theight}" 
+		<#if _select=="true">
+			selectkey="${firstField}"
+		</#if> 
+		autoRowHeight="true" paginationbar="${paginationbar}" frozens="${frozens}" rowStyler="${rowStyler}"  treeGrid="${treeGrid}"
+		mergeHead="" pageSize="${_maxRow}" extra="datagrid" rownumbers="${rownumbers}" sumfieldstr="${sumfieldstr}" 
+		<#if sumfieldstr!="">
+			showFooter="true"
+		</#if> 
+		remoteSort="${remoteSort}" fCount="${fCount}" treeField="${treeField}" componentDataset="${CommonQueryConfig.getId()}_dataset" 
+		readonly="${readonly}"  tableName="${id}" pagination="${pagination}" pageCache="${pageCache}"
+	    pkid="${pkid}" remeberCheck="${remeberCheck}" floatwindow="${floatwindow}" toolbar="#ToolBar_${toolbar}">
+		<thead frozen="true">
+			<tr>
+				${forzenhead}
+			</tr>
+			<#if forzenhead1 != "" || forzenhead2 != "">
 				<tr>
 			       ${forzenhead1}
 			    </tr>
-			    </#if>
-			    <#if forzenhead2 != "">
+			</#if>
+			<#if forzenhead2 != "">
 				<tr>
 			       ${forzenhead2}
 			    </tr>
-			    </#if>
-			</thead>
-			<thead>
-			    <tr>
-			       ${tablehead}
-			    </tr>
-			    <#if tablehead1 != "" || tablehead2 != "">
+			</#if>
+		</thead>
+		<thead>
+			<tr>
+			   ${tablehead}
+			</tr>
+			<#if tablehead1 != "" || tablehead2 != "">
 				<tr>
-			       ${tablehead1}
-			    </tr>
-			    </#if>
-			    <#if tablehead2 != "">
+				   ${tablehead1}
+				</tr>
+			</#if>
+			<#if tablehead2 != "">
 				<tr>
 			       ${tablehead2}
 			    </tr>
-			    </#if>
-			</thead>
+			</#if>
+		</thead>
 	</table>
 	<table id="${id}_paginationbar" style="display:none">
 		<tr>
@@ -1051,224 +1058,223 @@ printabled         是否能够打印(允许为空，默认为false)
 -->
 <#--modified by wangpeng 20091117 BMS-2274 外边框可设置  begin-->
 <#macro Group id label fieldStr colNm="4" showGroupLine="true" printabled="false">
-<#if showGroupLine=="true">
-<div name='${id}' class="search"><h5><@bean.message key="${label}"/></h5>
-</#if>
-
-<div id="${id}"  extra="datagridgroup"  dataset="${CommonQueryConfig.getId()}_dataset"  style="padding:0px;width:100%;height:100%;">
-  <form id="${id}" method="post" novalidate>
-		<table width="100%" class="grouptable" height="100%">
-		<#nested>
-		 	<#assign fieldMap = CommonQueryConfig.fields>
- 		 	<#assign field = "">
-			<#assign fDesc = "",fVal = "",fStat = "">
-			<#assign restCol = colNm>
-		 	<#if fieldStr != "">
-	 		 	<#assign fields = fieldStr?split(",")>
-	 		<#else>
-	 			<#assign fields = fieldMap.keySet()>
-	 		</#if>
-			<#list fields as fId>
-				<#assign _foo1=fId?index_of("{") />
-				<#if _foo1!=-1 >
-					<#-- 新的组合域定义方式 -->
-					<#assign _headlabel=fId?substring(0,_foo1) >
-					<#assign _foo2=fId?last_index_of("}") >
-					<#assign fColSpan=2 >
-					<#if fId?ends_with("]")>
-						<#assign fColSpan=(fId?substring(_foo2+2,fId?length-1))?number >
-						<#if fColSpan gt colNm?number >
-							<#assign fColSpan=colNm?number >
+	<#if showGroupLine=="true">
+		<div name='${id}' class="search"><h5><@bean.message key="${label}"/></h5>
+	</#if>
+	
+	<div id="${id}"  extra="datagridgroup"  dataset="${CommonQueryConfig.getId()}_dataset"  style="padding:0px;width:100%;height:100%;">
+	  <form id="${id}" method="post" novalidate>
+			<table width="100%" class="grouptable" height="100%">
+				<#nested>
+			 	<#assign fieldMap = CommonQueryConfig.fields>
+	 		 	<#assign field = "">
+				<#assign fDesc = "",fVal = "",fStat = "">
+				<#assign restCol = colNm>
+			 	<#if fieldStr != "">
+		 		 	<#assign fields = fieldStr?split(",")>
+		 		<#else>
+		 			<#assign fields = fieldMap.keySet()>
+		 		</#if>
+				<#list fields as fId>
+					<#assign _foo1=fId?index_of("{") />
+					<#if _foo1!=-1 >
+						<#-- 新的组合域定义方式 -->
+						<#assign _headlabel=fId?substring(0,_foo1) >
+						<#assign _foo2=fId?last_index_of("}") >
+						<#assign fColSpan=2 >
+						<#if fId?ends_with("]")>
+							<#assign fColSpan=(fId?substring(_foo2+2,fId?length-1))?number >
+							<#if fColSpan gt colNm?number >
+								<#assign fColSpan=colNm?number >
+							</#if>
 						</#if>
-					</#if>
-					<#if restCol?number lt fColSpan?number >
-						<tr id="${_headlabel}_TR" fieldId="${_headlabel}">
-						<#assign restCol=colNm?number >
-					</#if>
-
-					<#assign _mainpart=fId?substring(_foo1+1,_foo2) >
-					<#assign _allfields=_mainpart?split("|") >
-					<td class="labeltd" valign="center" align="right" style="width: 20%"  nowrap>
-						 <label>${_headlabel}</label>
-					</td>
-					<td colspan="${fColSpan?number - 1}" class="datatd" nowrap valign="center" fieldId="${_headlabel}">
-					<#list _allfields as foo >
-						<#if foo?starts_with("'") && foo?ends_with("'") >
-							<#if require="true">
-								<font color="red">*</font>
-							</#if>
-							<label>${foo?substring(1,foo?length-1)}</label>
-						<#else>
-							<#assign _bar=foo >
-							<#assign _width="" >
-							<#if foo?ends_with("]")>
-								<#assign _index=foo?index_of("[") >
-								<#assign _width=foo?substring(_index+1,foo?length-1) >
-								<#assign _bar=foo?substring(0,_index) >
-							</#if>
-
-							<#assign field = CommonQueryConfig.getField(_bar) >
-							<#assign edittype  = field.getAnyValue("edittype")?default("")>
-							<#assign defaultValue = field.getAnyValue("defaultvalue")?default("")>
-							<#assign targetDataSet = CommonQueryConfig.getId() + "_dataset">
-							<#assign require  = field.getAnyValue("require")?default("false")>
-							<#if edittype == "hidden">
-								<@htmlEditType.hiddenelement id=_bar value=defaultValue targetDataset=targetDataSet componentId=id required=require/>
+						<#if restCol?number lt fColSpan?number >
+							<tr id="${_headlabel}_TR" fieldId="${_headlabel}">
+							<#assign restCol=colNm?number >
+						</#if>
+	
+						<#assign _mainpart=fId?substring(_foo1+1,_foo2) >
+						<#assign _allfields=_mainpart?split("|") >
+						<td class="labeltd" valign="center" align="right" style="width: 20%"  nowrap>
+							 <label>${_headlabel}</label>
+						</td>
+						<td colspan="${fColSpan?number - 1}" class="datatd" nowrap valign="center" fieldId="${_headlabel}">
+						<#list _allfields as foo >
+							<#if foo?starts_with("'") && foo?ends_with("'") >
+								<#if require="true">
+									<font color="red">*</font>
+								</#if>
+								<label>${foo?substring(1,foo?length-1)}</label>
 							<#else>
-								<@SingleField fId=_bar componentId=id _width=_width />
+								<#assign _bar=foo >
+								<#assign _width="" >
+								<#if foo?ends_with("]")>
+									<#assign _index=foo?index_of("[") >
+									<#assign _width=foo?substring(_index+1,foo?length-1) >
+									<#assign _bar=foo?substring(0,_index) >
+								</#if>
+	
+								<#assign field = CommonQueryConfig.getField(_bar) >
+								<#assign edittype  = field.getAnyValue("edittype")?default("")>
+								<#assign defaultValue = field.getAnyValue("defaultvalue")?default("")>
+								<#assign targetDataSet = CommonQueryConfig.getId() + "_dataset">
+								<#assign require  = field.getAnyValue("require")?default("false")>
+								<#if edittype == "hidden">
+									<@htmlEditType.hiddenelement id=_bar value=defaultValue targetDataset=targetDataSet componentId=id required=require/>
+								<#else>
+									<@SingleField fId=_bar componentId=id _width=_width />
+								</#if>
 							</#if>
-						</#if>
-					</#list>
-					</td>
-		    	    <#assign restCol = restCol?number - fColSpan?number >
-				<#else>
-					<#if fId?ends_with("]")>
-						<#assign _index = fId?index_of("[") >
-						<#assign _width = fId?substring(_index+1,fId?length-1) >
-						<#-- TODO width support -->
-						<@SimpleGroupField id=id fId=fId?substring(0,_index) restCol=restCol colNm=colNm hasNext=fId_has_next />
+						</#list>
+						</td>
+			    	    <#assign restCol = restCol?number - fColSpan?number >
 					<#else>
-    	 				<@SimpleGroupField id=id fId=fId restCol=restCol colNm=colNm hasNext=fId_has_next />
+						<#if fId?ends_with("]")>
+							<#assign _index = fId?index_of("[") >
+							<#assign _width = fId?substring(_index+1,fId?length-1) >
+							<#-- TODO width support -->
+							<@SimpleGroupField id=id fId=fId?substring(0,_index) restCol=restCol colNm=colNm hasNext=fId_has_next />
+						<#else>
+	    	 				<@SimpleGroupField id=id fId=fId restCol=restCol colNm=colNm hasNext=fId_has_next />
+						</#if>
 					</#if>
-				</#if>
- 				<#if restCol?number lte 0>
-					<#assign restCol = colNm>
-					</tr>
-				</#if>
-   			</#list>
-		</tr>
-		</table>
-  </form>
-</div>
-<#if showGroupLine=="true">
-</div>
-</#if>
+	 				<#if restCol?number lte 0>
+						<#assign restCol = colNm>
+						</tr>
+					</#if>
+	   			</#list>
+			</tr>
+			</table>
+	  </form>
+	</div>
+	<#if showGroupLine=="true">
+	</div>
+	</#if>
 </#macro>
 <#--modified by wangpeng 20091117 BMS-2274 外边框可设置 end-->
 
-
 <#--建立GroupField栏-->
 <#macro GroupField fId fColSpan="" componentId="">
-<#assign field = CommonQueryConfig.getField(fId)>
-<#assign fEidtType = field.getAnyValue("edittype")?default('text')>
-<#assign label =  getFieldDesc(CommonQueryConfig.getId(),fId)>
-<#assign width = defaultStr(field.getAnyValue("width")?default('150'),'150')>
-<#if fColSpan == "">
-	<#assign colSpan = field.getAnyValue("colspan")?default('2')>
-<#else>
-	<#assign colSpan = fColSpan?string>
-</#if>
-<#assign vAlign = field.getAnyValue("valign")?default('center')>
-<#assign height = field.getAnyValue("height")?default("")>
-<#assign readonly = field.getAnyValue("readonly")?default("false")>
-<#if readonly!="true">
-	<#assign readonly="">
-<#else>
-    <#assign readonly="readonly">
-</#if>
-<#assign defaultValue = field.getAnyValue("defaultvalue")?default("")>
-<#assign targetDataSet = CommonQueryConfig.getId() + "_dataset">
-<#assign translated = field.getAnyValue("translated")?default('')>
-<#assign required = field.getAnyValue("require")?default('false')>
-<#if required!="true">
-	<#assign required="">
-<#else>
-    <#assign required="required">
-</#if>
-<#assign viewField = field.getAnyValue("viewfield","")>
-<#assign fieldMap = field.getAnyValue("fieldmap","")>
-<#assign url = field.getAnyValue("url")?default('')>
-<#assign datatype = field.getAnyValue("datatype")?default('string')>
-<#assign scale = field.getAnyValue("scale")?default('')>
-<#assign prefix = field.getAnyValue("prefix")?default('')>
-<#assign rowSpan = defaultStr(field.getAnyValue("rowspan")?default(1),1)>
-<#assign rowSpan = rowSpan?number>
-<#assign valueField=field.getAnyValue("valueField")?default("")>
-<#assign radioRowLen=field.getAnyValue("radiorowlen")?default("0")>
-<#assign height=field.getAnyValue("height")?default("0")>
-<#assign placeholder=field.getAnyValue("placeholder")?default("")>
-<#assign startyear=field.getAnyValue("startyear")?default("2005")>
-<#assign yearlength=field.getAnyValue("yearlength")?default("10")>
-<#assign editable=field.getAnyValue("editable")?default("false")>
-<#switch fEidtType>
-  	<#case "text">
-  			<#assign comparemode=field.getAnyValue("comparemode")?default("")>
-  			<@htmlEditType.text id=fId componentId=componentId label=label  datatype=datatype targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
-  			   readonly=readonly scale=scale  rowSpan=rowSpan vAlign=vAlign  prefix=prefix placeholder=placeholder comparemode=comparemode/>
-    	<#break>
-    <#case "datalabel">
-  			<@htmlEditType.datalabel id=fId  componentId=componentId label=label targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan
-  			 rowSpan=rowSpan vAlign=vAlign/>
-    	<#break>
-    <#case "date">
-    <#if datatype=="timestamp">
-    	  <@htmlEditType.timestamp id=fId componentId=componentId label=label targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
-  			readonly=readonly  rowSpan=rowSpan vAlign=vAlign placeholder=placeholder editable=editable/>
-    <#else>
-			<#assign comparemode=field.getAnyValue("comparemode")?default("")>
-  			<@htmlEditType.date id=fId componentId=componentId label=label  targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
-  			readonly=readonly rowSpan=rowSpan vAlign=vAlign placeholder=placeholder comparemode=comparemode editable=editable/>
-    </#if>
-    	<#break>
-    <#case "predate">
-			<#assign comparemode=field.getAnyValue("comparemode")?default("")>
-  			<@htmlEditType.predate id=fId componentId=componentId label=label targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
-  			readonly=readonly  rowSpan=rowSpan vAlign=vAlign placeholder=placeholder comparemode=comparemode editable=editable/>
-    	<#break>
-    <#case "postdate">
-			<#assign comparemode=field.getAnyValue("comparemode")?default("")>
-  			<@htmlEditType.postdate id=fId componentId=componentId label=label targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
-  			readonly=readonly  rowSpan=rowSpan vAlign=vAlign placeholder=placeholder comparemode=comparemode editable=editable/>
-    	<#break>
-    <#case "timestamp">
-  			<@htmlEditType.timestamp id=fId componentId=componentId label=label targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
-  			readonly=readonly  rowSpan=rowSpan vAlign=vAlign placeholder=placeholder editable=editable/>
-    	<#break>
-    <#case "select">
-		<#assign isCQ  = "false">
-		<#list translated?split(":")  as key>
-		     <#if key =="CQ">
-				<#assign isCQ  = "true">
-				<#break>
-			</#if>
-		</#list>
-		<#if isCQ = "true">
-			<#assign dropdowntype = defaultStr(field.getAnyValue("dropdowntype")?default("dynamic"),"dynamic")>
-		<#else>
-    		<#assign dropdowntype = defaultStr(field.getAnyValue("dropdowntype")?default("dataset"),"dataset")>
-    	</#if>
-    	<#assign init = defaultStr(field.getAnyValue("init")?default("true"),"true")>
-    	<#assign multiple=field.getAnyValue("multiple")?default("false")>
-    	<@htmlEditType.selectDataDic lable=label id=fId   targetDataset=targetDataSet componentId=componentId startyear=startyear  yearlength=yearlength multiple=multiple editable=editable
-    	            width=width height=height require=required  readOnly=readonly defaultValue=defaultValue translated=translated viewField=viewField fieldMap=fieldMap ddtype=dropdowntype init=init url=url colSpan=colSpan placeholder=placeholder/>
-    	<#break>
-    <#case "textarea">
-    	<@htmlEditType.textarea  id=fId label=label componentId=componentId readonly=readonly required=required targetDataset=targetDataSet defaultValue=defaultValue width=width height=height colSpan=colSpan rowSpan=rowSpan vAlign=vAlign placeholder=placeholder/>
-    	<#break>
-    <#case "checkbox">
-    	<@htmlEditType.checkbox  label=label componentId=componentId id=fId  targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan  rowSpan=rowSpan vAlign=vAlign/>
-    	<#break>
-    <#case "dyselect">
-    	<@htmlEditType.selectDataDic lable=label id=fId   targetDataset=targetDataSet editable=editable
-    	            width=width height=height require=required  readOnly=readonly defaultValue=defaultValue translated=translated viewField=viewField fieldMap=fieldMap  ddtype="dynamic" placeholder=placeholder/>
-    	<#break>
-    <#case "file">
-    	<@htmlEditType.file  lable=label id=fId  targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan  rowSpan=rowSpan vAlign=vAlign/>
-    	<#break>
-      <#case "password">
-    	<@htmlEditType.password label=label id=fId  componentId=componentId targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan  rowSpan=rowSpan vAlign=vAlign readonly=readonly required=required/>
-    	<#break>
-    <#--added by wangpeng 20091203 radio支持 begin-->
-    <#case "radio">
-	    <@htmlEditType.radioDataDic id=fId fId=fId label=label targetDataset=targetDataSet componentId=componentId
-    	            width=width require=required  readOnly=readonly defaultValue=defaultValue translated=translated viewField=viewField valueField=valueField rowLen = radioRowLen colSpan = colSpan/>
+	<#assign field = CommonQueryConfig.getField(fId)>
+	<#assign fEidtType = field.getAnyValue("edittype")?default('text')>
+	<#assign label =  getFieldDesc(CommonQueryConfig.getId(),fId)>
+	<#assign width = defaultStr(field.getAnyValue("width")?default('150'),'150')>
+	<#if fColSpan == "">
+		<#assign colSpan = field.getAnyValue("colspan")?default('2')>
+	<#else>
+		<#assign colSpan = fColSpan?string>
+	</#if>
+	<#assign vAlign = field.getAnyValue("valign")?default('center')>
+	<#assign height = field.getAnyValue("height")?default("")>
+	<#assign readonly = field.getAnyValue("readonly")?default("false")>
+	<#if readonly!="true">
+		<#assign readonly="">
+	<#else>
+	    <#assign readonly="readonly">
+	</#if>
+	<#assign defaultValue = field.getAnyValue("defaultvalue")?default("")>
+	<#assign targetDataSet = CommonQueryConfig.getId() + "_dataset">
+	<#assign translated = field.getAnyValue("translated")?default('')>
+	<#assign required = field.getAnyValue("require")?default('false')>
+	<#if required!="true">
+		<#assign required="">
+	<#else>
+	    <#assign required="required">
+	</#if>
+	<#assign viewField = field.getAnyValue("viewfield","")>
+	<#assign fieldMap = field.getAnyValue("fieldmap","")>
+	<#assign url = field.getAnyValue("url")?default('')>
+	<#assign datatype = field.getAnyValue("datatype")?default('string')>
+	<#assign scale = field.getAnyValue("scale")?default('')>
+	<#assign prefix = field.getAnyValue("prefix")?default('')>
+	<#assign rowSpan = defaultStr(field.getAnyValue("rowspan")?default(1),1)>
+	<#assign rowSpan = rowSpan?number>
+	<#assign valueField=field.getAnyValue("valueField")?default("")>
+	<#assign radioRowLen=field.getAnyValue("radiorowlen")?default("0")>
+	<#assign height=field.getAnyValue("height")?default("0")>
+	<#assign placeholder=field.getAnyValue("placeholder")?default("")>
+	<#assign startyear=field.getAnyValue("startyear")?default("2005")>
+	<#assign yearlength=field.getAnyValue("yearlength")?default("10")>
+	<#assign editable=field.getAnyValue("editable")?default("false")>
+	<#switch fEidtType>
+	  	<#case "text">
+	  			<#assign comparemode=field.getAnyValue("comparemode")?default("")>
+	  			<@htmlEditType.text id=fId componentId=componentId label=label  datatype=datatype targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
+	  			   readonly=readonly scale=scale  rowSpan=rowSpan vAlign=vAlign  prefix=prefix placeholder=placeholder comparemode=comparemode/>
+	    	<#break>
+	    <#case "datalabel">
+	  			<@htmlEditType.datalabel id=fId  componentId=componentId label=label targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan
+	  			 rowSpan=rowSpan vAlign=vAlign/>
+	    	<#break>
+	    <#case "date">
+	    <#if datatype=="timestamp">
+	    	  <@htmlEditType.timestamp id=fId componentId=componentId label=label targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
+	  			readonly=readonly  rowSpan=rowSpan vAlign=vAlign placeholder=placeholder editable=editable/>
+	    <#else>
+				<#assign comparemode=field.getAnyValue("comparemode")?default("")>
+	  			<@htmlEditType.date id=fId componentId=componentId label=label  targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
+	  			readonly=readonly rowSpan=rowSpan vAlign=vAlign placeholder=placeholder comparemode=comparemode editable=editable/>
+	    </#if>
+	    	<#break>
+	    <#case "predate">
+				<#assign comparemode=field.getAnyValue("comparemode")?default("")>
+	  			<@htmlEditType.predate id=fId componentId=componentId label=label targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
+	  			readonly=readonly  rowSpan=rowSpan vAlign=vAlign placeholder=placeholder comparemode=comparemode editable=editable/>
+	    	<#break>
+	    <#case "postdate">
+				<#assign comparemode=field.getAnyValue("comparemode")?default("")>
+	  			<@htmlEditType.postdate id=fId componentId=componentId label=label targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
+	  			readonly=readonly  rowSpan=rowSpan vAlign=vAlign placeholder=placeholder comparemode=comparemode editable=editable/>
+	    	<#break>
+	    <#case "timestamp">
+	  			<@htmlEditType.timestamp id=fId componentId=componentId label=label targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
+	  			readonly=readonly  rowSpan=rowSpan vAlign=vAlign placeholder=placeholder editable=editable/>
+	    	<#break>
+	    <#case "select">
+			<#assign isCQ  = "false">
+			<#list translated?split(":")  as key>
+			     <#if key =="CQ">
+					<#assign isCQ  = "true">
+					<#break>
+				</#if>
+			</#list>
+			<#if isCQ = "true">
+				<#assign dropdowntype = defaultStr(field.getAnyValue("dropdowntype")?default("dynamic"),"dynamic")>
+			<#else>
+	    		<#assign dropdowntype = defaultStr(field.getAnyValue("dropdowntype")?default("dataset"),"dataset")>
+	    	</#if>
+	    	<#assign init = defaultStr(field.getAnyValue("init")?default("true"),"true")>
+	    	<#assign multiple=field.getAnyValue("multiple")?default("false")>
+	    	<@htmlEditType.selectDataDic lable=label id=fId   targetDataset=targetDataSet componentId=componentId startyear=startyear  yearlength=yearlength multiple=multiple editable=editable
+	    	            width=width height=height require=required  readOnly=readonly defaultValue=defaultValue translated=translated viewField=viewField fieldMap=fieldMap ddtype=dropdowntype init=init url=url colSpan=colSpan placeholder=placeholder/>
+	    	<#break>
+	    <#case "textarea">
+	    	<@htmlEditType.textarea  id=fId label=label componentId=componentId readonly=readonly required=required targetDataset=targetDataSet defaultValue=defaultValue width=width height=height colSpan=colSpan rowSpan=rowSpan vAlign=vAlign placeholder=placeholder/>
+	    	<#break>
+	    <#case "checkbox">
+	    	<@htmlEditType.checkbox  label=label componentId=componentId id=fId  targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan  rowSpan=rowSpan vAlign=vAlign/>
+	    	<#break>
+	    <#case "dyselect">
+	    	<@htmlEditType.selectDataDic lable=label id=fId   targetDataset=targetDataSet editable=editable
+	    	            width=width height=height require=required  readOnly=readonly defaultValue=defaultValue translated=translated viewField=viewField fieldMap=fieldMap  ddtype="dynamic" placeholder=placeholder/>
+	    	<#break>
+	    <#case "file">
+	    	<@htmlEditType.file  lable=label id=fId  targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan  rowSpan=rowSpan vAlign=vAlign/>
+	    	<#break>
+	      <#case "password">
+	    	<@htmlEditType.password label=label id=fId  componentId=componentId targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan  rowSpan=rowSpan vAlign=vAlign readonly=readonly required=required/>
+	    	<#break>
+	    <#--added by wangpeng 20091203 radio支持 begin-->
+	    <#case "radio">
+		    <@htmlEditType.radioDataDic id=fId fId=fId label=label targetDataset=targetDataSet componentId=componentId
+	    	            width=width require=required  readOnly=readonly defaultValue=defaultValue translated=translated viewField=viewField valueField=valueField rowLen = radioRowLen colSpan = colSpan/>
+		    <#break>
+		<#--added by wangpeng 20091203 radio支持 end-->
+	    <#default>
+	  		<@htmlEditType.text id=fId componentId=componentId label=label  datatype=datatype targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
+	  			   readonly=readonly scale=scale  rowSpan=rowSpan vAlign=vAlign  prefix=prefix placeholder=placeholder/>
 	    <#break>
-	<#--added by wangpeng 20091203 radio支持 end-->
-    <#default>
-  		<@htmlEditType.text id=fId componentId=componentId label=label  datatype=datatype targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
-  			   readonly=readonly scale=scale  rowSpan=rowSpan vAlign=vAlign  prefix=prefix placeholder=placeholder/>
-    <#break>
-</#switch>
+	</#switch>
 </#macro>
 
 
@@ -1507,15 +1513,15 @@ printabled         是否能够打印(允许为空，默认为false)
 
 <#--建立Interface栏-->
 <#--
-id    							 cqId (不允许为空）
-label　							 Group标题( 允许为空，缺省为XML配置中title参数)
-resultDateset　					 结果集Dataset 目标结果数据集(允许为空，缺省为该通用查询结果数据集)
-colNm 							 列数(2的倍数）(允许为空，缺省为4)
-width　                              宽度 显示宽度(允许为空，缺省为"100%")
-showButton                       显示查询按钮标志(可为空，缺省为"true")
-defaultOperation                 默认提交类型 (可为空，缺省asyncqrysubmitflush)
-btnNm                            按钮名称(可为空，确认为XML配置中btnNm参数，如果该参数为空，缺省为'查询')
-btnInFrame						  按钮是否位于框内(缺省为"false")
+	id    							 cqId (不允许为空）
+	label　							 Group标题( 允许为空，缺省为XML配置中title参数)
+	resultDateset　					 结果集Dataset 目标结果数据集(允许为空，缺省为该通用查询结果数据集)
+	colNm 							 列数(2的倍数）(允许为空，缺省为4)
+	width　                              				  宽度 显示宽度(允许为空，缺省为"100%")
+	showButton                       显示查询按钮标志(可为空，缺省为"true")
+	defaultOperation                 默认提交类型 (可为空，缺省asyncqrysubmitflush)
+	btnNm                            按钮名称(可为空，确认为XML配置中btnNm参数，如果该参数为空，缺省为'查询')
+	btnInFrame						  按钮是否位于框内(缺省为"false")
 -->
 <#--modified by wangpeng 20091117 BMS-2274 外边框可设置是否显示  begin-->
 <#macro Interface
@@ -1599,12 +1605,13 @@ btnInFrame						  按钮是否位于框内(缺省为"false")
 	</div>
 	</#if>
 	<#if  1 < showIndex && showButton == "true" && btnInFrame == "false">
-				<table width="${width}" height="100%" >
-				<tr><td align="center" >
-				<@InterfaceButton defaultOperation=defaultOperation desc=buttonName resultDataset=resultDataset parameters=parameters/>
+		<table width="${width}" height="100%" >
+			<tr>
+				<td align="center" >
+					<@InterfaceButton defaultOperation=defaultOperation desc=buttonName resultDataset=resultDataset parameters=parameters/>
 				</td>
-				</tr>
-				</table>
+			</tr>
+		</table>
 	</#if>
 	<#--
 	</div>
@@ -1615,10 +1622,13 @@ btnInFrame						  按钮是否位于框内(缺省为"false")
 <#macro InterfaceButton desc icon="icon-search" defaultOperation="asyncqrysubmitflush" resultDataset=CommonQueryConfig.getId()+"_dataset" parameters="">
 	<@htmlEditType.button
 		id=CommonQueryConfig.getId()+"_interface_dataset_btnSubmit"
-		defaultOperation=defaultOperation desc=desc
+		defaultOperation=defaultOperation 
+		desc=desc
 		targetDataset=CommonQueryConfig.getId()+"_interface_dataset"
-		url=CommonQueryConfig.getResultViewURL()  icon=icon
-		updateClass="#"  resultDataset=resultDataset/>
+		url=CommonQueryConfig.getResultViewURL()  
+		icon=icon
+		updateClass="#"  
+		resultDataset=resultDataset/>
 </#macro>
 
 <#macro ToolBar id >
@@ -1630,140 +1640,142 @@ btnInFrame						  按钮是否位于框内(缺省为"false")
 
 <#--建立Intface DataSet模板-->
 <#macro IntfaceDataset parameters="">
-	<#assign specStr="nextPage|everyPage|pageNm|currentPage|fieldString|recordString|recordOrigString">
+	<#local specStr="nextPage|everyPage|pageNm|currentPage|fieldString|recordString|recordOrigString">
 	<#--init request param -->
-	<#assign paramString = paramConver()>
+	<#local paramString = paramConver()>
 	<script type="text/javascript">
-		<#--
-		_initDataset(dataset,cqId,pageSize,databusId,masterDataset,references,submitData,insertOnEmpty,sessionKey,paramString,init,type)
-		-->
+	
+		//_initDataset(dataset,cqId,pageSize,databusId,masterDataset,references,submitData,insertOnEmpty,sessionKey,paramString,init,type)
+		
 		var InterfaceFields=new Array();
 		var ${CommonQueryConfig.getId()}_interface_dataset=createDataset("${CommonQueryConfig.getId()}_interface_dataset","","");
 		_initDataset(${CommonQueryConfig.getId()}_interface_dataset,"${CommonQueryConfig.getId()}",${CommonQueryConfig.getAnyValue('pagesize')?default("10")},""
 		,"","","allchange",false,"dd","${paramString}","","interface");
-		<#--
-		${CommonQueryConfig.getId()}_interface_dataset.flushData=dataset_flushData_new;
+		
+			/* ${CommonQueryConfig.getId()}_interface_dataset.flushData=dataset_flushData_new;
+			var _t1=${CommonQueryConfig.getId()}_interface_dataset,_f;
+			_t1.readOnly=false;
+			_t1.pageSize="${CommonQueryConfig.getAnyValue('pagesize')?default('10')}";
+			_t1.databusId="${CommonQueryConfig.getAnyValue('databusid')?default("")}";
+			_t1.pageIndex=1;
+			_t1.pageCount=1;
+			_t1.masterDataset="";
+			_t1.references="";
+			_t1.submitData="allchange";
+			_t1.autoLoadPage=false;
+			_t1.autoLoadDetail=true;
+			_t1.downloadUrl=getDecodeStr("~2fextraservice~2fdownloaddata");
+			_t1.insertOnEmpty=false;
+			_t1.tag="";
+			_t1.type="interface";
+			_t1.sessionKey="dd";
+			_t1.initDocumentFlag = false;
+			converStr2DataSetParameter("${paramString}",_t1);
+			_t1.setParameter("CQId","${CommonQueryConfig.getId()}","string");
+			_t1.setParameter("nextPage",_t1.pageIndex);
+			_t1.setParameter("everyPage",_t1.pageSize);
+			_t1.setParameter("_session_key",_t1.sessionKey);
+			_t1.setParameter("databusId",_t1.databusId);
+			_t1.setParameter("_cds_","0"); */
+
 		var _t1=${CommonQueryConfig.getId()}_interface_dataset,_f;
-		_t1.readOnly=false;
-		_t1.pageSize="${CommonQueryConfig.getAnyValue('pagesize')?default('10')}";
-		_t1.databusId="${CommonQueryConfig.getAnyValue('databusid')?default("")}";
-		_t1.pageIndex=1;
-		_t1.pageCount=1;
-		_t1.masterDataset="";
-		_t1.references="";
-		_t1.submitData="allchange";
-		_t1.autoLoadPage=false;
-		_t1.autoLoadDetail=true;
-		_t1.downloadUrl=getDecodeStr("~2fextraservice~2fdownloaddata");
-		_t1.insertOnEmpty=false;
-		_t1.tag="";
-		_t1.type="interface";
-		_t1.sessionKey="dd";
-		_t1.initDocumentFlag = false;
-		converStr2DataSetParameter("${paramString}",_t1);
-		_t1.setParameter("CQId","${CommonQueryConfig.getId()}","string");
-		_t1.setParameter("nextPage",_t1.pageIndex);
-		_t1.setParameter("everyPage",_t1.pageSize);
-		_t1.setParameter("_session_key",_t1.sessionKey);
-		_t1.setParameter("databusId",_t1.databusId);
-		_t1.setParameter("_cds_","0");
-		-->
-		var _t1=${CommonQueryConfig.getId()}_interface_dataset,_f;
-			<#assign parameters = "${parameters}">
-			<#if parameters!="">
-				<#list parameters?split(";")  as key>
-					 <#assign index =key?index_of("=")>
-					 <#assign paraName =key?substring(0,index)>
-					 <#assign paraValue =key?substring(index+1)>
-				 	 _t1.setParameter("${paraName}","${paraValue}");
-				</#list>
-			</#if>
+		<#local parameters = "${parameters}">
+		<#if parameters!="">
+			<#list parameters?split(";")  as key>
+				<#local index =key?index_of("=")>
+				<#local paraName =key?substring(0,index)>
+				<#local paraValue =key?substring(index+1)>
+				_t1.setParameter("${paraName}","${paraValue}");
+			</#list>
+		</#if>
 	
-		<#assign elements = CommonQueryConfig.elementList>
-	 			<#assign columnInx = 0>
-	 			<#list elements as element>
-	 				<#assign elId = element.getAnyValue("id")>
-	 				InterfaceFields[InterfaceFields.length]="${elId}";
-	    			<#assign elDesc = getElementDesc(CommonQueryConfig.getId(),elId)>
-	    			<#assign elType = element.getAnyValue("datatype","string")>
-	    			<#assign elEidtType = element.type?default("text")>
-	    			<#if elEidtType=="checkbox">
-						<#assign elType = "boolean">
-					</#if>
-	      			<#assign elSize = defaultStr(element.getAnyValue("size")?default('10'),"10")>
-	      			<#assign readonly = element.getAnyValue("readonly")?default('false')>
-	      			<#assign required = defaultStr(element.getAnyValue("require")?default("false"),"false")>
-	      			<#assign mask = element.getAnyValue("rules")?default("null")>
-	      			<#assign maskErrorMessage = element.getAnyValue("errmsg")?default("")>
-	      			<#assign scale = element.getAnyValue("scale")?default("")>
-	      			<#assign toolTip = element.getAnyValue("tip")?default(elDesc)>
-	      			<#assign translated = element.getAnyValue("translated")?default("")>
-				    <#assign viewField = element.getAnyValue("viewfield","")>
-				    <#--added by wangpeng 20091208 radio begin-->
-				    <#assign dropdownType = element.getAnyValue("dropdowntype")?default("dataset")>
-				    <#--added by wangpeng 20091208 radio end-->
-	      			<#if mask?length==0>
-				      	<#assign mask="null">
-				    </#if>
-				    <#--modified by wangpeng 20091126 BMS-2274  添加predate和postdate的数据类型支持  begin-->
-				    <#--added by wangpeng 20091126 BMS-2269 日期型固定10位  begin-->
-				    <#if elType=="date" || elType=="predate" || elType=="postdate">
-				        <#assign elSize="10">
-				    </#if>
-				    <#--added by wangpeng 20091126 BMS-2269 日期型固定10位 end-->
-				    <#--modified by wangpeng 20091126 BMS-2274  添加predate和postdate的数据类型支持  end-->
-	      			<#-- shen_antonio -->
-	      			<#assign defaultValue = element.getAnyValue("default")?default("")>
-			      	<#switch elEidtType>
-					    <#case "Option">
-					          <#--modified by wangpeng 20091208 radio begin-->
-					          <#if dropdownType!="radio">
-					    	  <#-- 如果是select 先加 带fId 的字段,循环结束后增加　 fId +　name　字段-->
-					    	  <#--
-					    	  _f=_t1.addField("${elId}","string"); _f.label="${elDesc}";
-			      			  _f.size="${elSize}"; _f.scale="${scale}"; _f.readOnly="${readonly}";
-			      			  _f.required=${required}; _f.nullable=true; _f.defaultValue=getDecodeStr("${defaultValue}");
-			      			  _f.updatable=true; _f.valueProtected=false; _f.visible=true; _f.autoGenId=false;
-			      			  _f.tableName=""; _f.fieldName="${elId}"; _f.tag="select"; _f.editorType=""; _f.dropDown="";
-			      			  if(typeof(${mask})!="undefined" && "${mask}"!="null")_f.mask="/" + ${mask} + "/";
-			      			 _f.maskErrorMessage="${maskErrorMessage}"; _f.toolTip="${toolTip}";
-			      			  _f.lobDownloadURL=getDecodeStr(""); _f.lobPopupURL=getDecodeStr("");
-			      			  -->
-			      			    <#-- 判断是 该select 是 CQ方式，还是dataDic方式 ，如果是 CQ则要获得相应的 CQId 并且不能直接翻译，要到initdocument后翻译-->
-				      				<#assign isCQ  = "false">
-									<#assign CQid  = "">
-									<#list translated?split(":")  as key>
-									     <#if key =="CQ">
-											<#assign isCQ  = "true">
-											<#break>
-										</#if>
-									</#list>
-									<#if isCQ ="true">
-									    <#list translated?split(":")  as key>
-											<#assign CQid  = key>
-										</#list>
-									</#if>
-									 <#if isCQ ="true">
-									 <#--
+		<#local elements = CommonQueryConfig.elementList>
+	 	<#local columnInx = 0>
+		<#list elements as element>
+	 		<#local elId = element.getAnyValue("id")>
+	 		InterfaceFields[InterfaceFields.length]="${elId}";
+	    	<#local elDesc = getElementDesc(CommonQueryConfig.getId(),elId)>
+	    	<#local elType = element.getAnyValue("datatype","string")>
+	    	<#local elEidtType = element.type?default("text")>
+	    	<#if elEidtType=="checkbox">
+				<#local elType = "boolean">
+			</#if>
+	      	<#local elSize = defaultStr(element.getAnyValue("size")?default('10'),"10")>
+	      	<#local readonly = element.getAnyValue("readonly")?default('false')>
+	      	<#local required = defaultStr(element.getAnyValue("require")?default("false"),"false")>
+	      	<#local mask = element.getAnyValue("rules")?default("null")>
+	      	<#local maskErrorMessage = element.getAnyValue("errmsg")?default("")>
+	      	<#local scale = element.getAnyValue("scale")?default("")>
+	      	<#local toolTip = element.getAnyValue("tip")?default(elDesc)>
+	      	<#local translated = element.getAnyValue("translated")?default("")>
+			<#local viewField = element.getAnyValue("viewfield","")>
+			
+			//<#--added by wangpeng 20091208 radio begin-->
+			<#local dropdownType = element.getAnyValue("dropdowntype")?default("dataset")>
+			//<#--added by wangpeng 20091208 radio end-->
+	      	<#if mask?length==0>
+				 <#local mask="null">
+			</#if>
+			//<#--modified by wangpeng 20091126 BMS-2274  添加predate和postdate的数据类型支持  begin-->
+			//<#--added by wangpeng 20091126 BMS-2269 日期型固定10位  begin-->
+			<#if elType=="date" || elType=="predate" || elType=="postdate">
+				<#local elSize="10">
+			</#if>
+			//<#--added by wangpeng 20091126 BMS-2269 日期型固定10位 end-->
+			//<#--modified by wangpeng 20091126 BMS-2274  添加predate和postdate的数据类型支持  end-->
+	      	//<#-- shen_antonio -->
+	      	<#local defaultValue = element.getAnyValue("default")?default("")>
+			<#switch elEidtType>
+				<#case "Option">
+					//<#--modified by wangpeng 20091208 radio begin-->
+					<#if dropdownType!="radio">
+					//<#-- 如果是select 先加 带fId 的字段,循环结束后增加　 fId +　name　字段-->
+					/*<#--
+					_f=_t1.addField("${elId}","string"); _f.label="${elDesc}";
+			      	_f.size="${elSize}"; _f.scale="${scale}"; _f.readOnly="${readonly}";
+			      	_f.required=${required}; _f.nullable=true; _f.defaultValue=getDecodeStr("${defaultValue}");
+			      	_f.updatable=true; _f.valueProtected=false; _f.visible=true; _f.autoGenId=false;
+			      	_f.tableName=""; _f.fieldName="${elId}"; _f.tag="select"; _f.editorType=""; _f.dropDown="";
+			      	if(typeof(${mask})!="undefined" && "${mask}"!="null")
+			      		_f.mask="/" + ${mask} + "/";
+			      	_f.maskErrorMessage="${maskErrorMessage}"; _f.toolTip="${toolTip}";
+			      	_f.lobDownloadURL=getDecodeStr(""); _f.lobPopupURL=getDecodeStr("");
+			      	-->*/
+			      	//<#-- 判断是 该select 是 CQ方式，还是dataDic方式 ，如果是 CQ则要获得相应的 CQId 并且不能直接翻译，要到initdocument后翻译-->
+				    	<#local isCQ  = "false">
+						<#local CQid  = "">
+						<#list translated?split(":")  as key>
+							<#if key =="CQ">
+								<#local isCQ  = "true">
+								<#break>
+							</#if>
+						</#list>
+						<#if isCQ ="true">
+							<#list translated?split(":")  as key>
+								<#local CQid  = key>
+							</#list>
+						</#if>
+						<#if isCQ ="true">
+									 /*<#--
 					      			   	 _f.tag="selectCQ";
 					      			   	 _f.viewField="${viewField}";
 					      			   	 _f.dropDown="${elId}_DropDown";
 					      			   	 _f.dropDownDataset="${CQid}_DropDownDataset";
-					      			   	 -->
-					      	<#--dataset,isCQ,isSelect,fId,fType,viewField,CQid,mask,maskErrMsg,toolTip,fDesc,fSize,scale,required,readonly,currencyAlign,tag,dropDown,dropDownDataset,radio,RadioDataset-->
+					      			   	 -->*/
+					      	//<#--dataset,isCQ,isSelect,fId,fType,viewField,CQid,mask,maskErrMsg,toolTip,fDesc,fSize,scale,required,readonly,currencyAlign,tag,dropDown,dropDownDataset,radio,RadioDataset-->
 			      			  _initField(_t1,"${elId}","string","${viewField}","${mask}","${maskErrorMessage}","${toolTip}","${elDesc}",
 			      			  "${elSize}","${scale}",${required},"${readonly}","","selectCQ","${elId}_DropDown","${CQid}_DropDownDataset","","");
-					      			   <#else>
-					      			   <#--
+					    <#else>
+					      			   /*<#--
 					      			   	 _f.tag="select";
 					      			   	 _f.viewField="";
 					      			   	 _f.dropDown="";
-					      			   -->
+					      			   -->*/
 					      	 _initField(_t1,"${elId}","string","","${mask}","${maskErrorMessage}","${toolTip}","${elDesc}",
 			      			  "${elSize}","${scale}",${required},"${readonly}","","select","","","","");
-					      			   </#if>
-					      	    <#else>
-					      	    <#--
+					    </#if>
+					<#else>
+					      	    /*<#--
 							      	  _f=_t1.addField("${elId}","${elType}"); _f.label="${elDesc}";
 					      			  _f.size="${elSize}"; _f.scale="${scale}"; _f.readOnly="${readonly}";
 					      			  _f.required=${required}; _f.nullable=true; _f.defaultValue=getDecodeStr("${defaultValue}");
@@ -1772,14 +1784,14 @@ btnInFrame						  按钮是否位于框内(缺省为"false")
 					      			  if(typeof(${mask})!="undefined" && "${mask}"!="null")_f.mask="/" + ${mask} + "/";
 					      			  _f.maskErrorMessage="${maskErrorMessage}"; _f.toolTip="${toolTip}";
 					      			  _f.lobDownloadURL=getDecodeStr(""); _f.lobPopupURL=getDecodeStr("");
-					      			  -->
-					      	_initField(_t1,"${elId}","${elType}","","${mask}","${maskErrorMessage}","${toolTip}","${elDesc}",
+					      			  -->*/
+					      _initField(_t1,"${elId}","${elType}","","${mask}","${maskErrorMessage}","${toolTip}","${elDesc}",
 			      			  "${elSize}","${scale}",${required},"${readonly}","","","","","","");
-					      	    </#if>
-					      	    <#--modified by wangpeng 20091208 radio end-->
-					    	<#break>
-					    <#default>
-					    <#--
+					</#if>
+					      	    //<#--modified by wangpeng 20091208 radio end-->
+				<#break>
+			<#default>
+					    /*<#--
 					    	  _f=_t1.addField("${elId}","${elType}"); _f.label="${elDesc}";
 			      			  _f.size="${elSize}"; _f.scale="${scale}"; _f.readOnly="${readonly}";
 			      			  _f.required=${required}; _f.nullable=true; _f.defaultValue=getDecodeStr("${defaultValue}");
@@ -1788,106 +1800,105 @@ btnInFrame						  按钮是否位于框内(缺省为"false")
 			      			  if(typeof(${mask})!="undefined" && "${mask}"!="null")_f.mask="/" + ${mask} + "/";
 			      			  _f.maskErrorMessage="${maskErrorMessage}"; _f.toolTip="${toolTip}";
 			      			  _f.lobDownloadURL=getDecodeStr(""); _f.lobPopupURL=getDecodeStr("");
-			      			  -->
-			      			_initField(_t1,"${elId}","${elType}","","${mask}","${maskErrorMessage}","${toolTip}","${elDesc}",
-			      			  "${elSize}","${scale}",${required},"${readonly}","","","","","","");
-					   	    <#break>
-					</#switch>
-		 		</#list>
-	<#--循环结束后增加 fId + name 字段 -->
-		<#assign elements = CommonQueryConfig.elementList>
-	 			<#assign columnInx = 0>
-		 		<#list elements as element>
-		 				<#assign elEidtType = element.type?default("text")>
-			 			<#--added by wangpeng 20091208 radio begin-->
-					    <#assign dropdownType = element.getAnyValue("dropdowntype")?default("dataset")>
-					    <#--added by wangpeng 20091208 radio end-->
-		      			<#if elEidtType == "Option" && dropdownType!="radio">
-		      					<#assign elId = element.getAnyValue("id")>
-		      				    <#assign elDesc = getElementDesc(CommonQueryConfig.getId(),elId)>
-				    			<#assign elType = element.getAnyValue("type","string")>
-	      			            <#assign elSize = defaultStr(element.getAnyValue("size")?default('10'),"10")>
-				      			<#assign readonly = element.getAnyValue("readonly","false")>
-				      			<#assign required = defaultStr(element.getAnyValue("require")?default("false"),"false")>
-				      			<#assign mask = element.getAnyValue("rules","null")>
-				      			<#assign maskErrorMessage = element.getAnyValue("errmsg")?default("")>
-				      			<#assign scale = element.getAnyValue("scale")?default("")>
-				      			<#assign toolTip = element.getAnyValue("tip")?default(elDesc)>
-				      			<#if mask?length==0>
-				      				<#assign mask="null">
-				      			</#if>
-				      			<#-- 判断是 该select 是 CQ方式，还是dataDic方式 ，如果是 CQ则要获得相应的 CQId-->
-				      				<#assign isCQ  = "false">
-									<#assign CQid  = "">
-									<#list translated?split(":")  as key>
-									     <#if key =="CQ">
-											<#assign isCQ  = "true">
-											<#break>
-										</#if>
-									</#list>
-									<#if isCQ ="true">
-									    <#list translated?split(":")  as key>
-											<#assign CQid  = key>
-										</#list>
-									</#if>
-									<#--
+			      			  -->*/
+				_initField(_t1,"${elId}","${elType}","","${mask}","${maskErrorMessage}","${toolTip}","${elDesc}",
+					"${elSize}","${scale}",${required},"${readonly}","","","","","","");
+				<#break>
+			</#switch>
+		</#list>
+	//<#--循环结束后增加 fId + name 字段 -->
+		<#local elements = CommonQueryConfig.elementList>
+	 	<#local columnInx = 0>
+		<#list elements as element>
+			<#local elEidtType = element.type?default("text")>
+			//<#--added by wangpeng 20091208 radio begin-->
+			<#local dropdownType = element.getAnyValue("dropdowntype")?default("dataset")>
+			//<#--added by wangpeng 20091208 radio end-->
+		    <#if elEidtType == "Option" && dropdownType!="radio">
+		   		<#local elId = element.getAnyValue("id")>
+		      	<#local elDesc = getElementDesc(CommonQueryConfig.getId(),elId)>
+				<#local elType = element.getAnyValue("type","string")>
+	      		<#local elSize = defaultStr(element.getAnyValue("size")?default('10'),"10")>
+				<#local readonly = element.getAnyValue("readonly","false")>
+				<#local required = defaultStr(element.getAnyValue("require")?default("false"),"false")>
+				<#local mask = element.getAnyValue("rules","null")>
+				<#local maskErrorMessage = element.getAnyValue("errmsg")?default("")>
+				<#local scale = element.getAnyValue("scale")?default("")>
+				<#local toolTip = element.getAnyValue("tip")?default(elDesc)>
+				<#if mask?length==0>
+					<#local mask="null">
+				</#if>
+				//<#-- 判断是 该select 是 CQ方式，还是dataDic方式 ，如果是 CQ则要获得相应的 CQId-->
+				<#local isCQ  = "false">
+				<#local CQid  = "">
+				<#list translated?split(":")  as key>
+					<#if key =="CQ">
+						<#local isCQ  = "true">
+						<#break>
+					</#if>
+				</#list>
+				<#if isCQ ="true">
+					<#list translated?split(":")  as key>
+						<#local CQid  = key>
+					</#list>
+				</#if>
+									/*<#--
 				       				  _f=_t1.addField("${elId}Name","string"); _f.label="${elDesc}";
 					      			  _f.size="${elSize}"; _f.scale="${scale}"; _f.readOnly="${readonly}";
 					      			  _f.required=${required}; _f.nullable=true; _f.defaultValue=getDecodeStr("");
 					      			  _f.updatable=true; _f.valueProtected=false; _f.visible=true; _f.autoGenId=false;
 					      			  _f.tableName=""; _f.fieldName="${elId}Name"; _f.tag="selectName"; _f.editorType=""; _f.dropDown="${elId}_DropDown";
-					      			   -->
-					      			   <#if isCQ ="true">
-					      			   <#--
+					      			   -->*/
+				<#if isCQ ="true">
+					      			   /*<#--
 					      			   	 _f.dropDownDataset="${CQid}_DropDownDataset";
 					      			   	 _f.viewField="${viewField}";
-					      			   	 -->
-					      	_initField(_t1,"${elId}Name","string","${viewField}","${mask}","${maskErrorMessage}","${toolTip}","${elDesc}",
-			      			  "${elSize}","${scale}",${required},"${readonly}","","selectName","${elId}_DropDown","${CQid}_DropDownDataset","","");
-					      			   <#else>
-					      			   <#--
+					      			   	 -->*/
+					_initField(_t1,"${elId}Name","string","${viewField}","${mask}","${maskErrorMessage}","${toolTip}","${elDesc}",
+			      		"${elSize}","${scale}",${required},"${readonly}","","selectName","${elId}_DropDown","${CQid}_DropDownDataset","","");
+				<#else>
+					      			   /*<#--
 					      			   	  _f.dropDownDataset="${elId}_DropDownDataset";
 					      			   	  _f.viewField="";
-					      			   	  -->
-					      	_initField(_t1,"${elId}Name","string","","${mask}","${maskErrorMessage}","${toolTip}","${elDesc}",
-			      			  "${elSize}","${scale}",${required},"${readonly}","","selectName","${elId}_DropDown","${elId}_DropDownDataset","","");
-					      			   </#if>
-					      			   <#--
+					      			   	  -->*/
+					_initField(_t1,"${elId}Name","string","","${mask}","${maskErrorMessage}","${toolTip}","${elDesc}",
+			      		"${elSize}","${scale}",${required},"${readonly}","","selectName","${elId}_DropDown","${elId}_DropDownDataset","","");
+				</#if>
+					      			   /*<#--
 									  if(typeof(${mask})!="undefined" && "${mask}"!="null")_f.mask="/" + ${mask} + "/";
 					      			  _f.maskErrorMessage="${maskErrorMessage}"; _f.toolTip="${toolTip}";
 					      			  _f.lobDownloadURL=getDecodeStr(""); _f.lobPopupURL=getDecodeStr("");
-					      			  -->
-				 		<#elseif elEidtType == "Option" && dropdownType == "radio">
-			      					<#assign elId = element.getAnyValue("id")>
-			      				    <#assign elDesc = getElementDesc(CommonQueryConfig.getId(),elId)>
-					    			<#assign elType = element.getAnyValue("type","string")>
-					      		    <#assign elSize = defaultStr(element.getAnyValue("size")?default('10'),"10")>
-					      			<#assign readonly = element.getAnyValue("readonly","false")>
-					      			<#assign required = defaultStr(element.getAnyValue("require")?default("false"),"false")>
-					      			<#assign mask = element.getAnyValue("rules","null")>
-					      			<#assign maskErrorMessage = element.getAnyValue("errmsg")?default("")>
-					      			<#assign scale = element.getAnyValue("scale")?default("")>
-					      			<#assign toolTip = element.getAnyValue("tip")?default(elDesc)>
-					      			<#if mask?length==0>
-					      				<#assign mask="null">
-					      			</#if>
-					      			<#assign viewField = element.getAnyValue("viewfield","")>
-					      			<#--
+					      			  -->*/
+			<#elseif elEidtType == "Option" && dropdownType == "radio">
+				<#local elId = element.getAnyValue("id")>
+			    <#local elDesc = getElementDesc(CommonQueryConfig.getId(),elId)>
+				<#local elType = element.getAnyValue("type","string")>
+				<#local elSize = defaultStr(element.getAnyValue("size")?default('10'),"10")>
+				<#local readonly = element.getAnyValue("readonly","false")>
+				<#local required = defaultStr(element.getAnyValue("require")?default("false"),"false")>
+				<#local mask = element.getAnyValue("rules","null")>
+				<#local maskErrorMessage = element.getAnyValue("errmsg")?default("")>
+				<#local scale = element.getAnyValue("scale")?default("")>
+				<#local toolTip = element.getAnyValue("tip")?default(elDesc)>
+				<#if mask?length==0>
+					<#local mask="null">
+				</#if>
+					<#local viewField = element.getAnyValue("viewfield","")>
+					      		/*<#--
 			       				  _f=_t1.addField("${elId}Name","string"); _f.label="${elDesc}";
 				      			  _f.size="${elSize}"; _f.scale="${scale}"; _f.readOnly="${readonly}";
 				      			  _f.required=${required}; _f.nullable=true; _f.defaultValue=getDecodeStr("");
 				      			  _f.updatable=true; _f.valueProtected=false; _f.visible=true; _f.autoGenId=false;
 				      			  _f.tableName=""; _f.fieldName="${elId}Name"; _f.tag="radioName"; _f.editorType=""; _f.radio="${elId}_interface_Radio";
 				      			  _f.RadioDataset="${elId}_interface_RadioDataset";
-				      			  -->
-				      		_initField(_t1,"${elId}Name","string","","${mask}","${maskErrorMessage}","${toolTip}","${elDesc}",
-			      			  "${elSize}","${scale}",${required},"${readonly}","","radioName","","","${elId}_interface_Radio","${elId}_interface_RadioDataset");
-				 		</#if>
-			 		</#list>
+				      			  -->*/
+				  	_initField(_t1,"${elId}Name","string","","${mask}","${maskErrorMessage}","${toolTip}","${elDesc}",
+			      		"${elSize}","${scale}",${required},"${readonly}","","radioName","","","${elId}_interface_Radio","${elId}_interface_RadioDataset");
+				</#if>
+		</#list>
 		initDataset(_t1);
 		<#-- shen_antonio -->
 		initDefaultDataset(_t1);
-	//-->
 	</script>
 </#macro>
 

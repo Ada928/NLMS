@@ -5,6 +5,7 @@
 <hibernate-mapping package="resource.bean.blacklist">
     <class name="NsBankBlackList" table="nlms_bankblacklist">
         <meta attribute="sync-DAO">false</meta>
+    	<cache usage="read-write"></cache>
 
         <id name="id" type="string" column="blacklist_id" />
         <property name="bankCode" type="string" column="bank_code" length="32" not-null="false" />

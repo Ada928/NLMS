@@ -6,6 +6,7 @@
 <hibernate-mapping package="resource.bean.pub">
     <class name="RoleInfo" table="ROLE_INFO" lazy="false">
         <meta attribute="sync-DAO">false</meta>
+    	<cache usage="read-write"></cache>
         <id name="id" type="integer" column="ROLE_ID">
             <generator class="assigned" />
 

@@ -70,17 +70,16 @@
                 <prop key="hibernate.dialect">
                     org.hibernate.dialect.SQLServerDialect
                 </prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.cache.use_second_level_cache">
-                    false
-                </prop>
-                <prop key="hibernate.cache.use_query_cache">false</prop>
                 <prop key="hibernate.cache.provider_class">
                     org.hibernate.cache.EhCacheProvider
                 </prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.provider_configuration_file_resource_path">classpath:resources/ehcache.xml</prop>
             </props>
         </property>
-    </bean>
+          </bean>
 
     <!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
     <bean id="bmsTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
@@ -89,8 +88,8 @@
         </property>
     </bean>
     <!-- Operation Caller Target的配置 -->
-    <bean id="CallerTarget" class="com.huateng.ebank.framework.operation.OPCaller">
-    </bean>
+    <bean id="CallerTarget" class="com.huateng.ebank.framework.operation.OPCaller"/>
+
     <!--Operation Caller的配置, 使用transaction对Call方法来进行保护。 -->
     <bean id="operationCaller" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
         <property name="transactionManager">

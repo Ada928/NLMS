@@ -1,7 +1,7 @@
 <ehcache>
     <diskStore path="java.io.tmpdir" />
     <cache name="resource.bean.pub.DataDic" maxElementsInMemory="2000" eternal="false" timeToLiveSeconds="7200"
-        timeToIdleSeconds="3600" overflowToDisk="false" />
+        timeToIdleSeconds="3600" overflowToDisk="false" /> 
     <cache name="com.huateng.ebank.entity.data.Bctl" maxElementsInMemory="2000" eternal="false" timeToLiveSeconds="7200"
         timeToIdleSeconds="3600" overflowToDisk="false" />
     <cache name="resource.bean.pub.Bctl" maxElementsInMemory="2000" eternal="false" timeToLiveSeconds="7200"
