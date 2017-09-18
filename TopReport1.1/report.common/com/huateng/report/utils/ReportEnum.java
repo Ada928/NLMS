@@ -333,7 +333,7 @@ public class ReportEnum {
 	}
 
 	public static enum BANK_BLACKLIST_AUDIT_STATE {
-		EDING("1", "編輯中..."), EDED("2", "編輯完成，提交审核"), VRED("3", "审核完成，待审批"), APED("4", "审批完成，已发布"), N("0", "无效");
+		EDING("1", "編輯中..."), EDED("2", "操作完成，提交审核"), VRED("3", "审核完成，待审批"), APED("4", "审批完成，已发布"), N("0", "无效");
 		public String value;
 		public String name;
 

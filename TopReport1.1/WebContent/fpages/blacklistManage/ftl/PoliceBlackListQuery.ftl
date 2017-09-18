@@ -27,9 +27,13 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="JavaScript">
-
+	
+	function initCallGetter_post(dataset) {
+	}
+	
 	//定位一行记录
 	function locate(id) {
+		PoliceBlackListQuery_dataset.pageIndex = 2;
 		var record = PoliceBlackListQuery_dataset.find([ "id" ], [ id ]);
 		if (record) {
 			PoliceBlackListQuery_dataset.setRecord(record);
@@ -45,6 +49,8 @@
 		} else {
 			cell.innerHTML = "";
 		}
+		//alert(PoliceBlackListQuery_dataset.pageIndex);
+		//alert(record);
 	}
 
 	function showDetail(id) {

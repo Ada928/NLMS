@@ -1,4 +1,5 @@
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">  
 <#-- date with extra js
 	lable 显示的lable
 	id  为date 的id , 在targetDataset中将会自动生成该id对应的field

@@ -54,6 +54,11 @@
 	
 	function initCallGetter_post(dataset) {
 		UserInfoManage_dataset.setParameter("op", op);
+		if(roleType.indexOf("10") > -1){
+			UserInfoManage_dataset.setFieldReadOnly("brcode",false);
+		} else {
+			UserInfoManage_dataset.setFieldReadOnly("brcode",true);
+		}
 	}
 
 	function btSave_onClickCheck() {
@@ -68,7 +73,7 @@
 		var bizArr = new Array();
 		while (record1) {
 			var temp = record1.getValue("select");
-			if (temp) {
+			if (temp=="true") {
 				bizArr[chk] = record1.getValue("roleId");
 				chk++;
 			}
@@ -76,7 +81,12 @@
 		}
 
 		if (chk == 0) {
-			alert("请至少选择一个岗位！");
+			alert("请至少选择一个岗位分配给用户！");
+			flushCurrentPage();
+			return false;
+		} else if (chk > 1) {
+			alert("一个用户最多只能选择一个岗位！");
+			flushCurrentPage();
 			return false;
 		}
 
@@ -86,8 +96,12 @@
 	//保存后刷新当前页
 	function btSave_postSubmit(button) { 
         var retParam = button.returnParam;
-		alert("保存成功 "+ retParam.AddTlrno);
+		alert("保存成功 "+ retParam.SuccessInfo);
 		button.url = "/fpages/blacklistManage/ftl/UserInfoEntry.ftl";
+	}
+	
+	function flushCurrentPage() {
+		UserRoleRelSelect_dataset.flushData(UserRoleRelSelect_dataset.pageIndex);
 	}
 </script>
 </@CommonQueryMacro.page>

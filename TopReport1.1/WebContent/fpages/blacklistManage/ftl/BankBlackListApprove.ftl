@@ -87,8 +87,9 @@
 			alert("请至少选择一条黑名单记录！");
 			return false;
 		} else {
-			confirm("确定审批选中的黑名单？");
-			//return true;
+			if(!confirm("确定审批选中的黑名单？")){
+				return false;
+			}
 		}
 	}
 	

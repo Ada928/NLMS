@@ -79,7 +79,7 @@
 	</Where>
 
 	<Operations>
-		<Button id="btAdd" name="btAdd" desc="新增" operation="href" url="/fpages/blacklistManage/ftl/UserInfoManage.ftl?op=new"
+		<Button id="btAdd" name="btAdd" desc="新增" operation="href" url="/fpages/blacklistManage/ftl/UserInfoManage.ftl?op=add"
 			show="" group="" txn="" icon="icon-add" />
 
 		<Button id="btModify" name="btModify" desc="修改" operation="syncsubmit"

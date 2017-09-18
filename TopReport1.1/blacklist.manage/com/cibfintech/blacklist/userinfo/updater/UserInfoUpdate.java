@@ -45,11 +45,14 @@ public class UserInfoUpdate extends BaseUpdate {
 			while (roleUpdateResultBean.hasNext()) {
 				RoleInfo role = new RoleInfo();
 				Map map = roleUpdateResultBean.next();
-				String roleId = (String) map.get("roleId");
-				String roleName = (String) map.get("roleName");
-				role.setId(Integer.parseInt(roleId));
-				role.setRoleName(roleName);
-				roles.add(role);
+				String isSelect = (String) map.get("select");
+				if (Boolean.parseBoolean(isSelect)) {
+					String roleId = (String) map.get("roleId");
+					String roleName = (String) map.get("roleName");
+					role.setId(Integer.parseInt(roleId));
+					role.setRoleName(roleName);
+					roles.add(role);
+				}
 			}
 
 			String op = updateResultBean.getParameter("op");

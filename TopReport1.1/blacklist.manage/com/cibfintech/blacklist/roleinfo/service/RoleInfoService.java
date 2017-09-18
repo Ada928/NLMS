@@ -92,7 +92,7 @@ public class RoleInfoService {
 
 	public void addEntity(RoleInfo bean) throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
-		if (isExists(bean.getId().toString())) {
+		if (isExists(bean.getId())) {
 			ExceptionUtil.throwCommonException(" 角色信息重复");
 		}
 		try {
@@ -103,7 +103,7 @@ public class RoleInfoService {
 		}
 	}
 
-	public boolean isExists(String id) {
+	public boolean isExists(int id) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		try {
 			RoleInfo bean = (RoleInfo) rootDAO.query(RoleInfo.class, id);

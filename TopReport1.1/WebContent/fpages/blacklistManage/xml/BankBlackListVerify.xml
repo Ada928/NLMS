@@ -62,11 +62,11 @@
 			url="#" txn="" />
 
 		<Button id="btVerify" name="btVerify" desc="通过审核" operation="asysubmit"
-			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListVerify" url="/fpages/blacklistManage/ftl/BankBlackList.ftl"
+			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListVerify" url="/fpages/blacklistManage/ftl/BankBlackListVerify.ftl"
 			icon="icon-ok" />
 
 		<Button id="btCancelVerify" name="btCancelVerify" desc="取消审核，重新编辑" operation="asysubmit"
-			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListVerify" url="/fpages/blacklistManage/ftl/BankBlackList.ftl"
+			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListVerify" url="/fpages/blacklistManage/ftl/BankBlackListVerify.ftl"
 			icon="icon-cancel" />
 	</Operations>
 </CommQry>

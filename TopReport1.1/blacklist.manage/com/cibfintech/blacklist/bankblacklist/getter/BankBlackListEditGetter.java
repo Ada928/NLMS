@@ -67,12 +67,23 @@ public class BankBlackListEditGetter extends BaseGetter {
 			}
 		}
 
-		StringBuffer hql = new StringBuffer(" from NsBankBlackListAuditState po where 1=1");
+		StringBuffer hql = new StringBuffer(" from NsBankBlackListAuditState po where ");
+
+		hql.append(" (po.auditType='").append(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.ADD.value).append("'");
+		hql.append(" and po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDING.value).append("')");
+		hql.append(" or (po.auditType='").append(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.ADD.value).append("'");
+		hql.append(" and po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDED.value).append("')");
+		hql.append(" or( po.auditType='").append(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.EDIT.value).append("'");
+		hql.append(" and po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDING.value).append("')");
+		hql.append(" or( po.auditType='").append(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.EDIT.value).append("'");
+		hql.append(" and po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDED.value).append("')");
+		hql.append(" or( po.auditType='").append(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.ADD.value).append("'");
+		hql.append(" and po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.APED.value).append("')");
+		hql.append(" or( po.auditType='").append(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.EDIT.value).append("'");
+		hql.append(" and po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.APED.value).append("')");
 		if (!isSuperManager) {
 			hql.append(" and po.editUserID='").append(globalinfo.getTlrno()).append("'");
 		}
-		hql.append(" or po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDING.value).append("'");
-		hql.append(" or po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDED.value).append("'");
 		hql.append(" order by po.editDate desc");
 
 		BankBlackListService service = BankBlackListService.getInstance();

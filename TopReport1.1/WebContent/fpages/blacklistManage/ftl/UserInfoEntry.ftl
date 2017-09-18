@@ -93,7 +93,7 @@
 
     function btResetPwd_postSubmit(button) {
         var retParam = button.returnParam;
-       	alert("密码重置成功,初始化为" + retParam.DefaultPWD);
+       	alert(retParam.SuccessInfo);
         flushCurrentPage();
     }
 
@@ -105,15 +105,15 @@
 
     function btDel_onClickCheck(button) {
     	var del = UserInfoEntry_dataset.getValue("del");
-		if (del == false) {
-			if (confirm("确认删除该条记录？")) {
+		if (del == "F") {
+			if (confirm("确认删除该用户？")) {
 				UserInfoEntry_dataset.setParameter("delet", "T");
 				return true;
 			} else {
 				return false;
 			}
 		} else {
-			if (confirm("确认恢复该条记录？")) {
+			if (confirm("确认恢复该用户？")) {
 				UserInfoEntry_dataset.setParameter("delet", "F");
 				return true;
 			} else {
@@ -123,7 +123,7 @@
     }
     
     function btDel_postSubmit(button) {
-        alert("删除记录成功");
+        alert("删除用户成功");
         button.url = "#";
         //刷新当前页
         flushCurrentPage();

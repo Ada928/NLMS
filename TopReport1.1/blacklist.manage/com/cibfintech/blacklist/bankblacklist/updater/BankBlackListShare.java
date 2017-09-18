@@ -23,7 +23,7 @@ import com.huateng.exception.AppException;
  */
 public class BankBlackListShare extends BaseUpdate {
 
-	private static final String DATASET_ID = "BankBlackListEdit";
+	private static final String DATASET_ID = "BankBlackListShare";
 	private final static String PARAM_ACTION = "op";
 
 	@Override
@@ -57,6 +57,21 @@ public class BankBlackListShare extends BaseUpdate {
 
 		return updateReturnBean;
 
+		// BankBlackListAuditStateView bean = new BankBlackListAuditStateView();
+		// OperationContext oc = new OperationContext();
+		// if (updateResultBean.hasNext()) {
+		// // 属性拷贝
+		// Map map = updateResultBean.next();
+		// BaseUpdate.mapToObject(bean, map);
+		// oc.setAttribute(BankBlackListOperation.CMD,
+		// BankBlackListOperation.CMD_SHARE);
+		// oc.setAttribute(BankBlackListOperation.IN_SHARE, share);
+		// oc.setAttribute(BankBlackListOperation.IN_BANK_BLACK_LISTS, bean);
+		// // call方式开启operation事务
+		// OPCaller.call(BankBlackListOperation.ID, oc);
+		//
+		// }
+		// return updateReturnBean;
 	}
 
 }

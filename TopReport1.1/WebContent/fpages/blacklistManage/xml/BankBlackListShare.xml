@@ -3,8 +3,8 @@
 <!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
 	async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
 
-<CommQry title="商行黑名单编辑" navigate="商行黑名单编辑" type="call" interface="true" pagesize="20" async="true" databusid="MANAGEMENTTLR"
-	txnlogflag="true" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.bankblacklist.getter.BankBlackListEditGetter">
+<CommQry title="商行黑名单管理" navigate="商行黑名单管理" type="call" interface="true" pagesize="20" async="true" databusid=""
+	txnlogflag="true" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.bankblacklist.getter.BankBlackListShareGetter">
 
 	<Include id="BankParam" />
 
@@ -51,24 +51,28 @@
 		
 		<Field id="approveDate" desc="审批日期" edittype="text" datatype="string" status="F" xpath="/approveDate" />
 
+		<Field id="statedes" desc="状态说明" status="N" method="None" xpath="" primary="true" type="" default="" tip="操作" require="" />
+		
 		<Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" default="" tip="操作" require="" />
 	</Fields>
 
 	<Where>
+		<Option id="qShareType" default="2" desc="名单性质" type="" tip="" method="None" index="0"
+			translated="LIST:1,已分享;2,未分享" />
 	</Where>
 
 	<Operations>
-		<Button id="btAdd" name="btAdd" desc="新增" operation="href"
-			url="/fpages/blacklistManage/ftl/BankBlacklistManage.ftl?op=add" show="" group="" txn="" icon="icon-add" />
-
-		<Button id="btModify" name="btModify" desc="修改" operation="syncsubmit"
-			url="/fpages/blacklistManage/ftl/BankBlacklistManage.ftl?op=edit" txn="" />
-
-		<Button id="btDetail" name="btDetail" desc="黑名单详细信息" operation=""
+		<Button id="btDetail" name="btDetail" desc="详细信息" operation=""
 			url="#" txn="" />
 
-		<Button id="btDel" name="btDel" desc="删除" operation="asysubmit"
-			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListDEL" url="#" icon="icon-remove" />
+		<Button id="btShare" name="btShare" desc="确认分享" operation="asysubmit"
+			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListShare" 
+			url="/fpages/blacklistManage/ftl/BankBlackListShare.ftl"
+			icon="icon-expout" />
 
+		<Button id="btCancelShare" name="btCancelShare" desc="取消分享" operation="asysubmit"
+			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListShare" 
+			url="/fpages/blacklistManage/ftl/BankBlackListShare.ftl"
+			icon="icon-cancel" />
 	</Operations>
 </CommQry>

@@ -32,6 +32,8 @@
 			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistVerify.ftl";
 		} else if(reType == "edit"){
 			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEdit.ftl";
+		} else if(reType == "share"){
+			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistShare.ftl";
 		}
  	}
 
