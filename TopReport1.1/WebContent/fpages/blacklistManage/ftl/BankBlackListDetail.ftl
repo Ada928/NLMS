@@ -34,12 +34,11 @@
 			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEdit.ftl";
 		} else if(reType == "share"){
 			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistShare.ftl";
+		} else if(reType == "shareAll"){
+			window.location = "${contextPath}/fpages/blacklistManage/ftl/ShareBankBlacklistQuery.ftl";
 		}
  	}
 
-	//alert("hahha  " + _t1.pageSize);
-	//alert("hehe " + _t1.pageIndex);
- 	//alert(reType);
 </script>
 
 </@CommonQueryMacro.page>

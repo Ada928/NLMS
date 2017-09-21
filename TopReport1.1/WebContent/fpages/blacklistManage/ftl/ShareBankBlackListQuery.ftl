@@ -20,27 +20,32 @@
                         <@CommonQueryMacro.Button id="btDetail" /></td>
                 </tr>
             </table>
-        </@CommonQueryMacro.CommonQuery>
-        <script language="JavaScript">//定位一行记录
-            function locate(id) {
-                var record = ShareBankBlackListQuery_dataset.find(["id"], [id]);
-                if (record) {
-                    ShareBankBlackListQuery_dataset.setRecord(record);
-                }
-            }
+</@CommonQueryMacro.CommonQuery>
+<script language="JavaScript">
+	//定位一行记录
+	function locate(id) {
+		var record = ShareBankBlackListQuery_dataset.find([ "id" ], [ id ]);
+		if (record) {
+			ShareBankBlackListQuery_dataset.setRecord(record);
+		}
+	}
 
-            //展示对比功能的js
-            function datatable1_id_onRefresh(cell, value, record) {
-                if (record) {
-                    var id = record.getValue("id");
-                    cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "')\">" + value + "</a>";
-                } else {
-                    cell.innerHTML = "";
-                }
-            }
+	//展示对比功能的js
+	function datatable1_id_onRefresh(cell, value, record) {
+		if (record) {
+			var id = record.getValue("id");
+			cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "')\">"
+					+ value + "</a>";
+		} else {
+			cell.innerHTML = "";
+		}
+	}
 
-            function showDetail(id) {
-                locate(id);
-                btDetail.click();
-            }</script>
-    </@CommonQueryMacro.page>
+	function showDetail(id) {
+		//BankBlackListEdit_dataset.setParameter("blacklistid", id);
+		//btDetail.click();
+		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=shareAll&blacklistid="
+				+ id;
+	}
+</script>
+</@CommonQueryMacro.page>
