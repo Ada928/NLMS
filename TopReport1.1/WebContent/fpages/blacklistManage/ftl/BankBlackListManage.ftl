@@ -41,6 +41,10 @@
             alert("证件号不能为空");
             return false;
         }
+        if (certificateType == "11" || "18" > certificateNumber) {
+            alert("身份证号不能短于18位");
+            return false;
+        }
         return true;
     }
 
@@ -62,6 +66,10 @@
         }
         if (certificateNumber == null || "" == certificateNumber) {
             alert("证件号不能为空");
+            return false;
+        } 
+        if (certificateType == "11" || "18" > certificateNumber) {
+            alert("身份证号不能短于18位");
             return false;
         }
         return true;

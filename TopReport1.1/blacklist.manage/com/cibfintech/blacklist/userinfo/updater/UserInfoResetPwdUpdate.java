@@ -36,7 +36,7 @@ public class UserInfoResetPwdUpdate extends BaseUpdate {
 				ExceptionUtil.throwAppException("请选择一条记录", ErrorCode.ERROR_CODE_NORMAL);
 			}
 			String sysDefaultPwd = CommonService.getInstance().getSysParamDef("PSWD", "DEFAULT_PWD", SystemConstant.DEFAULT_PASSWORD);
-			updateReturnBean.setParameter("DefaultPWD", sysDefaultPwd);
+			updateReturnBean.setParameter("SuccessInfo", sysDefaultPwd);
 
 			return updateReturnBean;
 		} catch (AppException appEx) {

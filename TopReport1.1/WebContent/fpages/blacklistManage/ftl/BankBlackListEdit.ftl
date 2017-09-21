@@ -6,6 +6,14 @@
 <@CommonQueryMacro.CommonQuery id="BankBlackListEdit" init="true"  submitMode="selected"  navigate="false">
 <table align="center" width="100%">
 	<tr>
+      	<td valign="top" colspan="2" >
+			<@CommonQueryMacro.Interface id="intface" label="请输入查询条件" colNm=4  />
+		</td>
+	</tr>
+  	<tr>
+  		<td><@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9" showArrow="true"  pageCache="true"/></td>
+	</tr>
+	<tr>
 		<td width="100%">
 			<@CommonQueryMacro.GroupBox id="BankBlackListEditGuoup" label="选择黑名单信息" expand="true">
 				<table frame=void width="100%">

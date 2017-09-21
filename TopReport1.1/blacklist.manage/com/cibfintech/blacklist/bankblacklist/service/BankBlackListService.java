@@ -1,5 +1,6 @@
 package com.cibfintech.blacklist.bankblacklist.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import resource.bean.blacklist.NsBankBlackList;
@@ -54,14 +55,16 @@ public class BankBlackListService {
 		return pageQueryResult;
 	}
 
-	public List getBankBankListByHql(String hql) throws CommonException {
+	public HashMap<String, NsBankBlackList> getBankBankListByHql(String hql) throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		List list = rootDAO.queryByQL2List(hql);
+		HashMap<String, NsBankBlackList> map = new HashMap<String, NsBankBlackList>();
 		for (int i = 0; i < list.size(); i++) {
 			NsBankBlackList bblt = (NsBankBlackList) list.get(i);
-			list.set(i, bblt);
+			// list.set(i, bblt);
+			map.put(bblt.getId(), bblt);
 		}
-		return list;
+		return map;
 	}
 
 	/*
