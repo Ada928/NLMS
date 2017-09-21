@@ -1,4 +1,4 @@
-﻿package com.huateng.ebank.topbpm.handle;
+package com.huateng.ebank.topbpm.handle;
 
 import java.sql.Statement;
 import java.util.Map;

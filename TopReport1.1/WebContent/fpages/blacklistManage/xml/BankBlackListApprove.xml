@@ -63,12 +63,12 @@
 
 		<Button id="btApprove" name="btApprove" desc="通过审批" operation="asysubmit"
 			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListApprove" 
-			url="/fpages/blacklistManage/ftl/BankBlackList.ftl"
+			url="/fpages/blacklistManage/ftl/BankBlackListApprove.ftl"
 			icon="icon-ok" />
 
 		<Button id="btCancelApprove" name="btCancelApprove" desc="取消审批，重新审核" operation="asysubmit"
 			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListApprove" 
-			url="/fpages/blacklistManage/ftl/BankBlackList.ftl"
+			url="/fpages/blacklistManage/ftl/BankBlackListApprove.ftl"
 			icon="icon-cancel" />
 	</Operations>
 </CommQry>

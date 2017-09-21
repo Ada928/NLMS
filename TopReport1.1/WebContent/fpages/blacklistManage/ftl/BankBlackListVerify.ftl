@@ -59,7 +59,7 @@
 	function showDetail(id) {
 		//BankBlackListVerify_dataset.setParameter("blacklistid", id);
 		//btDetail.click();
-		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=verify&blacklistid="
+		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=verify&blacklistid="
 				+ id;
 	}
 
@@ -81,7 +81,9 @@
 			alert("请至少选择一条黑名单记录！");
 			return false;
 		} else {
-			confirm("确定审核选中的黑名单？");
+			if(!confirm("确定审核选中的黑名单？")){
+				return false;
+			}
 		}
 	}
 

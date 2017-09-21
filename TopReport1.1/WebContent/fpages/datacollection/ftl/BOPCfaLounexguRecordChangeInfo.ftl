@@ -71,12 +71,12 @@
 			btNewClick();
 	}
 	function btNewClick(){
-		 //window.location.href = "${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?op=new";
+		 //window.location = "${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?op=new";
 		 showWin("变动信息新增","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?op=new","report","flushPage()");
 	}
 	
 	function doDel(id){
-			//window.location.href = "${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?id=" + id+"&op=del";
+			//window.location = "${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?id=" + id+"&op=del";
 			showWin("变动信息删除","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?id=" + id+"&op=del","flushPage()");
 	}
 		

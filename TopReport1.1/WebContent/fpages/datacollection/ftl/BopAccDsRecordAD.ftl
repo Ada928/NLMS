@@ -66,7 +66,7 @@
 		//新增
 		function btNewClick(){
 			showWin("开关账户新增","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADAdd.ftl","report","flushPage()");
-			//window.location.href = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADAdd.ftl";
+			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADAdd.ftl";
 		}
 
 		//刷新数据
@@ -76,19 +76,19 @@
 
 		//修改
 		function doCollection(id){
-			//window.location.href = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=modify";
+			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=modify";
 			showWin("开关账户修改","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=modify","report","flushPage()");
 		}
 
 		//删除
 		function doDelete(id){
-			//window.location.href = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=delete";
+			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=delete";
 			showWin("开关账户删除","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=delete","report","flushPage()");
 		}
 
 		//详细信息
 		function doDetail(id){
-			//window.location.href = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=detail";
+			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=detail";
 			showWin("开关账户明细","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=detail");
 		}
 	</script>

@@ -32,7 +32,7 @@ public class DataDicService {
 	 *
 	 * @return
 	 */
-	public synchronized static DataDicService getInstance() {
+	public static DataDicService getInstance() {
 		/*
 		 * if (null == single) { single = new DataDicService(); } return single;
 		 */
@@ -49,8 +49,7 @@ public class DataDicService {
 	 */
 	public String getValueByDataNo(int type, String dataNo) throws CommonException {
 		StringBuffer whereStr = new StringBuffer(64);
-		whereStr.append("po.dataTypeNo = ").append(type).append(" and po.dataNo = '").append(dataNo)
-				.append("' order by po.dataNo");
+		whereStr.append("po.dataTypeNo = ").append(type).append(" and po.dataNo = '").append(dataNo).append("' order by po.dataNo");
 		DataDic dd = new DataDic();
 		dd.setDataTypeNo(type);
 		dd.setDataNo(dataNo);
@@ -74,8 +73,7 @@ public class DataDicService {
 	public String getDataNoByRange(int type, double value) throws CommonException {
 		StringBuffer whereStr = new StringBuffer(64);
 		whereStr.append("po.dataTypeNo = ").append(type).append(" and cast(po.highLimit as long) >= ").append(value)
-				.append(" and cast(po.lowLimit as long) < ").append(value)
-				.append(" and po.limitFlag = '1' order by po.dataNo");
+				.append(" and cast(po.lowLimit as long) < ").append(value).append(" and po.limitFlag = '1' order by po.dataNo");
 		String str = "select po from DataDic po where " + whereStr.toString();
 		List list = BaseDAOUtils.getHQLDAO().queryByQL2List(str);
 		if (list.size() > 0) {

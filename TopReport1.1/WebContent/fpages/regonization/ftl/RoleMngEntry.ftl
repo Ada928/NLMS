@@ -166,7 +166,6 @@
 				return false;
 			}
 		}
-
 	}
 	function ebankCustRoleMng_dataset_afterScroll(dataset){
 

@@ -367,7 +367,8 @@ BrowserHistory = (function() {
                     set: false
                 }
 
-                if ((window.location.hash == initialHash || window.location.href == initialHref) && (bsl == 1)) {
+                //if ((window.location.hash == initialHash || window.location.href == initialHref) && (bsl == 1)) {
+                if ((window.location.hash == initialHash || window.location == initialHref) && (bsl == 1)) {
                     urlActions.back = true;
                     // FIXME: could this ever be a forward button?
                     // we can't clear it because we still need to check for forwards. Ugg.
@@ -517,8 +518,9 @@ BrowserHistory = (function() {
             if (browser.safari) {
                 if (title == "") {
                     try {
-                    var tmp = window.location.href.toString();
-                    title = tmp.substring((tmp.lastIndexOf("/")+1), tmp.lastIndexOf("#"));
+                        var tmp = window.location.toString();
+                       // var tmp = window.location.href.toString();
+                        title = tmp.substring((tmp.lastIndexOf("/")+1), tmp.lastIndexOf("#"));
                     } catch(e) {
                         title = "";
                     }

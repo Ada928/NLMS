@@ -75,7 +75,7 @@
 		return false;
 	}
 
-	<#--function btRoleSave_postSubmit(button){
+	/* function btRoleSave_postSubmit(button){
 		alert("±£´æ³É¹¦");
 		win.close();
 	}
@@ -84,8 +84,8 @@
 	{
 	     unloadPageWindows("userWin");
 	     return false;
-	}
-	-->
+	} */
+	
 	function btResetPwd_onClick(button){
 		var tlrno = operMngMod_dataset.getValue("tlrno");
 		if (tlrno == currentTlrno) {

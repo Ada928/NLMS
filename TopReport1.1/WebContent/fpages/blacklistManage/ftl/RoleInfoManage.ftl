@@ -71,9 +71,9 @@
 				document.getElementById(num).checked = true;
 			}
 		}
-		<#--20110818 BMSA-54 权限树目录菜单可全选 begin -->
+		//<#--20110818 BMSA-54 权限树目录菜单可全选 begin -->
 		pcheck();
-		<#--20110818 BMSA-54 权限树目录菜单可全选 end -->
+		//<#--20110818 BMSA-54 权限树目录菜单可全选 end -->
 	}
 
 	function initCallGetter_post() {
@@ -103,9 +103,9 @@
 				document.getElementsByName("id")[i].checked = true;
 			}
 		}
-		<#--20110818 BMSA-54 权限树目录菜单可全选 begin -->
+		//<#--20110818 BMSA-54 权限树目录菜单可全选 begin -->
 		pcheck(1);
-		<#--20110818 BMSA-54 权限树目录菜单可全选 end -->
+		//<#--20110818 BMSA-54 权限树目录菜单可全选 end -->
 	}
 	
 	
@@ -120,9 +120,9 @@
 				document.getElementsByName("id")[i].checked = false;
 			}
 		}
-		<#--20110818 BMSA-54 权限树目录菜单可全选 begin -->
+		//<#--20110818 BMSA-54 权限树目录菜单可全选 begin -->
 		pcheck(0);
-		<#--20110818 BMSA-54 权限树目录菜单可全选 end -->
+		//<#--20110818 BMSA-54 权限树目录菜单可全选 end -->
 	}
 	
 	//得到所选的权限

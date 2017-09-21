@@ -2,7 +2,10 @@ package com.cibfintech.blacklist.bankblacklist.getter;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 
 import resource.bean.blacklist.NsBankBLOperateLog;
 import resource.bean.blacklist.NsBankBlackList;
@@ -53,9 +56,11 @@ public class BankBlackListEditGetter extends BaseGetter {
 	}
 
 	protected PageQueryResult getData() throws Exception {
-		String qPartyId = getCommQueryServletRequest().getParameter("qPartyId");
+		String qClientName = getCommQueryServletRequest().getParameter("qClientName");
 		String qCertificateType = getCommQueryServletRequest().getParameter("qCertificateType");
 		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
+		// int pageSize = this.getResult().getPage().getEveryPage();
+		// int pageIndex = this.getResult().getPage().getCurrentPage();
 
 		GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
 		List<RoleInfo> roleInfos = UserMgrService.getInstance().getUserRoles(globalinfo.getTlrno());
@@ -67,23 +72,50 @@ public class BankBlackListEditGetter extends BaseGetter {
 			}
 		}
 
-		StringBuffer hql = new StringBuffer(" from NsBankBlackListAuditState po where 1=1");
-		if (!isSuperManager) {
-			hql.append(" and po.editUserID='").append(globalinfo.getTlrno()).append("'");
-		}
-		hql.append(" or po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDING.value).append("'");
-		hql.append(" or po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDED.value).append("'");
-		hql.append(" and order by po.editDate desc");
+		StringBuffer hql = new StringBuffer(" from NsBankBlackListAuditState po where ");
 
-		BankBlackListService service = BankBlackListService.getInstance();
+		hql.append(" (po.auditType='").append(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.ADD.value).append("'");
+		hql.append(" and po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDING.value).append("')");
+		hql.append(" or (po.auditType='").append(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.ADD.value).append("'");
+		hql.append(" and po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDED.value).append("')");
+		hql.append(" or( po.auditType='").append(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.EDIT.value).append("'");
+		hql.append(" and po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDING.value).append("')");
+		hql.append(" or( po.auditType='").append(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.EDIT.value).append("'");
+		hql.append(" and po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDED.value).append("')");
+		hql.append(" or po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.APED.value).append("')");
+		if (!isSuperManager) {
+			hql.append(" and po.brcode='").append(globalinfo.getBrcode()).append("'");
+		}
+
+		hql.append(" order by po.editDate desc");
+
+		StringBuffer hql2 = new StringBuffer(" from NsBankBlackList bblt where 1=1");
+		hql2.append(" and bblt.del= 'F'");
+
+		if (StringUtils.isNotBlank(qClientName)) {
+			hql2.append(" and bblt.clientName like '%").append(qClientName.trim()).append("%'");
+		}
+		if (StringUtils.isNotBlank(qCertificateType)) {
+			hql2.append(" and bblt.certificateType = '").append(qCertificateType.trim()).append("'");
+		}
+		if (StringUtils.isNotBlank(qCertificateNumber)) {
+			hql2.append(" and bblt.certificateNumber like '%").append(qCertificateNumber.trim()).append("%'");
+		}
+
+		HashMap<String, NsBankBlackList> blacklistMap = BankBlackListService.getInstance().getBankBankListByHql(hql2.toString());
+
 		BankBlackListAuditStateService auditStateService = BankBlackListAuditStateService.getInstance();
 
 		List<NsBankBlackListAuditState> auditStates = auditStateService.getBankBankListAuditStateByHql(hql.toString());
 
 		List<BankBlackListAuditStateView> auditStateViews = new ArrayList<BankBlackListAuditStateView>();
+
 		for (NsBankBlackListAuditState auditState : auditStates) {
 			BankBlackListAuditStateView view = new BankBlackListAuditStateView();
-			NsBankBlackList blackList = service.selectById(auditState.getBlacklistID());
+
+			NsBankBlackList blackList = blacklistMap.get(auditState.getBlacklistID());
+			if (null == blackList)
+				break;
 			view.setId(auditState.getId());
 			view.setAuditState(auditState.getAuditState());
 			view.setAuditType(auditState.getAuditType());
@@ -100,7 +132,6 @@ public class BankBlackListEditGetter extends BaseGetter {
 			view.setCertificateType(blackList.getCertificateType());
 			view.setClientName(blackList.getClientName());
 			view.setClientEnglishName(blackList.getClientEnglishName());
-
 			auditStateViews.add(view);
 		}
 
@@ -112,7 +143,7 @@ public class BankBlackListEditGetter extends BaseGetter {
 		}
 		pageQueryResult.setQueryResult(auditStateViews);
 
-		String message = "商行黑名单编辑时查询:partyId=" + qPartyId + ",certificateType=" + qCertificateType + ",certificateNumber=" + qCertificateNumber;
+		String message = "商行黑名单编辑时查询:qClientName=" + qClientName + ",certificateType=" + qCertificateType + ",certificateNumber=" + qCertificateNumber;
 		recordOperateLog(globalinfo, pageQueryResult.getTotalCount(), message);
 
 		return pageQueryResult;

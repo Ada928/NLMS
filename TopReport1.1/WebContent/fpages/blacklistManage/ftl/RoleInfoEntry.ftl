@@ -107,7 +107,7 @@
 
     function btDel_onClickCheck(button) {
     	var delet = RoleInfoEntry_dataset.getValue("del");
-		if (delet == 'false') {
+		if (delet == 'F') {
 			if (confirm("确认删除该岗位?")) {
 				return true;
 			} else {

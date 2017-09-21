@@ -14,7 +14,8 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/templets/easyui/themes/blue/easyui.css">
 <title>业绩考核指标</title>
 <%
-List noticeBeans = ReportCommonService.getInstance().getNoticeParam();
+	List noticeBeans = ReportCommonService.getInstance()
+			.getNoticeParam();
 %>
 </head>
 <body bgcolor="white" style="margin: 0px;">
@@ -33,37 +34,42 @@ List noticeBeans = ReportCommonService.getInstance().getNoticeParam();
 					</tr>
 				</thead>
 				<%
-		if(noticeBeans!=null && noticeBeans.size()>0){
-		String bgcolor = "#ffffff";
-		for(int i = 0; i < noticeBeans.size(); i++){
-			NoticeParam bean = (NoticeParam)noticeBeans.get(i);
-			if(i%2==0){
-				bgcolor = "#ffffff";
-			}else{
-				bgcolor = "#f7f7fe";
-			}
-	%>
+					if (noticeBeans != null && noticeBeans.size() > 0) {
+						String bgcolor = "#ffffff";
+						for (int i = 0; i < noticeBeans.size(); i++) {
+							NoticeParam bean = (NoticeParam) noticeBeans.get(i);
+							if (i % 2 == 0) {
+								bgcolor = "#ffffff";
+							} else {
+								bgcolor = "#f7f7fe";
+							}
+				%>
 				<tr style="line-height: 22px;">
-					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getNoticeName() %></td>
-					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getNoticeValue() %></td>
-					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getNoticeAmt() %></td>
-					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getNoticeTotperi() %></td>
-					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getCreatedt() %></td>
-					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getUpdt()%></td>
-					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getNoticeFlg()%></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor%>"><%=bean.getNoticeName()%></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor%>"><%=bean.getNoticeValue()%></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor%>"><%=bean.getNoticeAmt()%></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor%>"><%=bean.getNoticeTotperi()%></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor%>"><%=bean.getCreatedt()%></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor%>"><%=bean.getUpdt()%></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor%>"><%=bean.getNoticeFlg()%></td>
 
 				</tr>
-				<%}}else{ %>
+				<%
+					}
+					} else {
+				%>
 				<tr bgcolor="#ffffff">
 					<td colspan="3" align="center" class="datatd">没有业绩考核信息</td>
 				</tr>
-				<%} %>
+				<%
+					}
+				%>
 			</table>
 	</center>
 	</div>
 </body>
 
 <script type="text/javascript">
-
+	
 </script>
 </html>

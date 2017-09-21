@@ -5,6 +5,7 @@
 <hibernate-mapping package="resource.bean.blacklist">
     <class name="NsInternationalBlackList" table="nlms_internationalblacklist">
         <meta attribute="sync-DAO">false</meta>
+    	<cache usage="read-write"></cache>
 
         <id name="id" type="string" column="blacklist_id" />
         <property name="blacklistType" type="string" column="blacklist_type" length="1" />

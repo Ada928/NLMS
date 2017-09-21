@@ -23,7 +23,7 @@
         <Field id="jobTime" desc="执行时间参数(秒，分，时，日，月，年)" require="" edittype="text" datatype="string" method="None" readonly="false"
             size="64" status="F" default="" xpath="/jobTime" />
 
-        <Field id="jobStauts" desc="任务状态" require="" edittype="select" datatype="string" method="None" readonly="true"
+        <Field id="jobStauts" desc="任务状态" require="" edittype="select" datatype="string" method="None" readonly="false"
             size="1" translated="DATA_DIC.71" status="N" default="" xpath="/jobStauts" />
 
         <Field id="justWorkdateRun" desc="是否只工作日执行" require="" edittype="select" datatype="string" method="None"

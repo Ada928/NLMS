@@ -21,19 +21,25 @@
 	</table>
 </@CommonQueryMacro.CommonQuery>
  <script language="javascript">
+
  	var reType = "${reType}";
- 	alert(reType);
  	function btClose_onClick(button){
  		if(reType == "entry"){
-			window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEntry.ftl";
+			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEntry.ftl";
 		} else if(reType == "approve"){
-			window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistApprove.ftl";
+			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistApprove.ftl";
 		} else if(reType == "verify"){
-			window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistVerify.ftl";
+			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistVerify.ftl";
 		} else if(reType == "edit"){
-			window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEdit.ftl";
+			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEdit.ftl";
+		} else if(reType == "share"){
+			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistShare.ftl";
 		}
  	}
+
+	//alert("hahha  " + _t1.pageSize);
+	//alert("hehe " + _t1.pageIndex);
+ 	//alert(reType);
 </script>
 
 </@CommonQueryMacro.page>

@@ -26,29 +26,43 @@
 					</tr>
 				</thead>
 				<%
-		List quartzJobLogBeans = ReportCommonService.getInstance().getQuartzJobLog();
-		String bgcolor = "#ffffff";
-		for(int i = 0; i < quartzJobLogBeans.size(); i++){
-			BiQuartzJobLog bean = (BiQuartzJobLog)quartzJobLogBeans.get(i);
-			if(i%2==0){
-				bgcolor = "#ffffff";
-			}else{
-				bgcolor = "#f7f7fe";
-			}
-	%>
+					List quartzJobLogBeans = ReportCommonService.getInstance().getQuartzJobLog();
+					String bgcolor = "#ffffff";
+					for (int i = 0; i < quartzJobLogBeans.size(); i++) {
+						BiQuartzJobLog bean = (BiQuartzJobLog) quartzJobLogBeans.get(i);
+						if (i % 2 == 0) {
+							bgcolor = "#ffffff";
+						} else {
+							bgcolor = "#f7f7fe";
+						}
+				%>
 				<tr style="line-height: 22px;">
-					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getQuartzName() %></td>
-					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=DateUtil.Time14ToString2(bean.getExecTm())%>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor%>"><%=bean.getQuartzName()%></td>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor%>"><%=DateUtil.Time14ToString2(bean.getExecTm())%>
 					</td>
-					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>"><%=bean.getEndTm()==null?"":DateUtil.Time14ToString2(bean.getEndTm())%>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor%>"><%=bean.getEndTm() == null ? "" : DateUtil.Time14ToString2(bean.getEndTm())%>
 					</td>
-					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-						<%if (bean.getQuartzResult().equals("01")){%>成功 <%} else {%>失败<%} %>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor%>">
+						<%
+							if (bean.getQuartzResult().equals("01")) {
+						%>成功 <%
+							} else {
+						%>失败<%
+							}
+						%>
 					</td>
-					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor %>">
-						<% if (bean.getRemark()==null){%>&nbsp; <% }else { %><%=bean.getRemark() %> <%} %>
+					<td class="datatd" valign=center align="left" nowrap bgcolor="<%=bgcolor%>">
+						<%
+							if (bean.getRemark() == null) {
+						%>&nbsp; <%
+						 	} else {
+						 %><%=bean.getRemark()%> <%
+						 	}
+						 %>
 					</td>
-					<%} %>
+					<%
+						}
+					%>
 				
 			</table>
 	</center>

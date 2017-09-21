@@ -24,32 +24,40 @@
 					</tr>
 				</thead>
 				<%
-		List<BiExecConfirm> biExecs = ReportCommonService.getInstance().getAllBrNoBiExecConfirm();
-		String bgcolor = "#ffffff";
-		for(int i = 0; i < biExecs.size(); i++){
-			BiExecConfirm biExec = (BiExecConfirm)biExecs.get(i);
-			if(i%2==0){
-				bgcolor = "#ffffff";
-			}else{
-				bgcolor = "#f7f7fe";
-			}
-	%>
+					List<BiExecConfirm> biExecs = ReportCommonService.getInstance().getAllBrNoBiExecConfirm();
+						String bgcolor = "#ffffff";
+						for(int i = 0; i < biExecs.size(); i++){
+					BiExecConfirm biExec = (BiExecConfirm)biExecs.get(i);
+					if(i%2==0){
+						bgcolor = "#ffffff";
+					}else{
+						bgcolor = "#f7f7fe";
+					}
+				%>
 				<tr style="line-height: 22px;">
-					<td class="datatd" valign=center align="left" nowrap width="25%" bgcolor="<%=bgcolor %>"><%=biExec.getId().getBrNo() %>
+					<td class="datatd" valign=center align="left" nowrap width="25%" bgcolor="<%=bgcolor%>"><%=biExec.getId().getBrNo()%>
 					</td>
-					<td class="datatd" valign=center align="left" nowrap width="25%" bgcolor="<%=bgcolor %>"><%=biExec.getBrNoName() %>
+					<td class="datatd" valign=center align="left" nowrap width="25%" bgcolor="<%=bgcolor%>"><%=biExec.getBrNoName()%>
 					</td>
-					<td class="datatd" valign=center align="left" nowrap width="25%" bgcolor="<%=bgcolor %>">
-						<%if(biExec.getFinishStatus().equals("02")){ %>未完成 <%} else { %>完成<%} %>
+					<td class="datatd" valign=center align="left" nowrap width="25%" bgcolor="<%=bgcolor%>">
+						<%
+							if(biExec.getFinishStatus().equals("02")){
+						%>未完成 <%
+							} else {
+						%>完成<%
+							}
+						%>
 					</td>
 				</tr>
-				<%}%>
+				<%
+					}
+				%>
 			</table>
 	</center>
 	</div>
 </body>
 
 <script type="text/javascript">
-
+	
 </script>
 </html>

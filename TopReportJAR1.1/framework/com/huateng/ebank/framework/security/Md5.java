@@ -1,4 +1,4 @@
-﻿package com.huateng.ebank.framework.security;
+package com.huateng.ebank.framework.security;
 
 /**
  * Description: 数据加密

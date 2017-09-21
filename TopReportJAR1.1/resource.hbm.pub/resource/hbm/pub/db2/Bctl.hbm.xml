@@ -6,6 +6,7 @@
 <hibernate-mapping package="resource.bean.pub">
     <class name="Bctl" table="BCTL" lazy="false">
         <meta attribute="sync-DAO">false</meta>
+    	<cache usage="read-write"></cache>
         <id name="brcode" type="string" column="BRCODE">
             <generator class="assigned" />
         </id>

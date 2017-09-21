@@ -23,7 +23,9 @@
 <script type="text/javascript">
 	function sendToFile(){
 		//开始进行生成文件处理
-		window.setTimeout("window.location.href = '<%=request.getContextPath()%>/fpages/genupreportfile/jsp/createSubFileInfo.jsp'",0);
+		window.setTimeout("window.location = '<%=request.getContextPath()%>/fpages/genupreportfile/jsp/createSubFileInfo.jsp'",0);
+		<%--window.setTimeout("window.location.href = '<%=request.getContextPath()%>/fpages/genupreportfile/jsp/createSubFileInfo.jsp'",0);
+	--%>
 	}
 	<%
 	if(ReportSubUtils.IS_CREATE_FILE_BOP.equals("1")){//文件正在生成
