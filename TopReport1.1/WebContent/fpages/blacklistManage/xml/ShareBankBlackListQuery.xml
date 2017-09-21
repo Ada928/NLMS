@@ -9,6 +9,9 @@
 
 	<Fields>
 
+		<!-- id,bankCode, bankName, accountType, brattr, certificateType, blacklistType, share, valid, del, approve, certificateNumber, 
+			clientName, clientEnglishName, validDate, blacklistedDate, blacklistedOperator, blacklistedReason, unblacklistedDate, unblacklistedOperator, 
+			unblacklistedReason, createDate, lastModifyDate, lastModifyOperator, remarks -->
 		<Field id="select" desc="选择" status="N" method="None" datetype="checkbox" edittype="checkbox" readonly="true"
 			primary="true" type="String" size="20" default="false" xpath="/selected" />
 
@@ -40,8 +43,8 @@
 		<Field id="del" desc="是否删除" status="F" edittype="select" require="false" method="None" primary="" type="String"
 			default="false" xpath="/del" readonly="true" tip="是否删除" translated="LIST:F,不删除;T,删除" />
 
-		<Field id="operateState" desc="操作状态" status="F" edittype="select" require="false" method="None" primary="" type="String"
-			default="false" xpath="/operateState" readonly="true" tip="操作状态" translated="DATA_DIC.3001" />
+		<Field id="approve" desc="是否审批通过" status="F" edittype="select" require="false" method="None" primary="" type="String"
+			default="false" xpath="/approve" readonly="true" tip="是否审批通过" translated="LIST:F,未通过;T,通过" />
 
 		<Field id="certificateNumber" desc="证件号码" readonly="true" edittype="text" datatype="string" status="F"
 			xpath="/certificateNumber" />

@@ -11,6 +11,9 @@
 	<PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-公安部黑名单列表" perfetch="15" />
 
 	<Fields>
+		<!-- id,blacklistType,accountType,certificateType,certificateNumber,clientName,clientEnglishName,bankCode,blackListOrganization,valid,
+		del,validDate,operateState,createDate,lastModifyDate,lastModifyOperator,remarks
+		-->
 		<Field id="id" desc="黑名单编号" edittype="text" datatype="string" status="F" xpath="/id" readonly="true" />
 
 		<Field id="blacklistType" desc="名单性质" status="F" readonly="true" translated="LIST:0,白名单;1,灰名单;2,黑名单" require="false"

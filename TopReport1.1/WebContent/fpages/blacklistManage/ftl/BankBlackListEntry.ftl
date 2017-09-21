@@ -36,10 +36,10 @@
 					maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 	      		<div align="center">
 	      			<@CommonQueryMacro.Group id="group1" label="银行黑名单信息详情" width="100%" height="100%"
-	        			  fieldStr="id,accountType,brattr,certificateType,blacklistType,"+
+	        			  fieldStr="id,bankCode,bankName,accountType,brattr,certificateType,blacklistType,"+ 
 	        			  "share,valid,del,approve,certificateNumber,clientName,clientEnglishName,validDate,"+
 	        			  "blacklistedDate,blacklistedOperator,blacklistedReason,unblacklistedDate,unblacklistedOperator,"+
-	        			  "unblacklistedReason,createDate,lastModifyDate,lastModifyOperator" colNm=4/>
+	        			  "unblacklistedReason,createDate,lastModifyDate,lastModifyOperator,remarks" colNm=4/>
 	      		</div>
 	     	</@CommonQueryMacro.FloatWindow>	
 	  	</td>
