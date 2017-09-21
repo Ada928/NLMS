@@ -47,7 +47,7 @@ public class BankBlackListVerifyGetter extends BaseGetter {
 
 		StringBuffer hql = new StringBuffer(" from NsBankBlackListAuditState po where 1=1");
 		hql.append(" and po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDED.value).append("'");
-		hql.append(" and order by po.editDate desc");
+		hql.append(" order by po.editDate desc");
 
 		BankBlackListService service = BankBlackListService.getInstance();
 		BankBlackListAuditStateService auditStateService = BankBlackListAuditStateService.getInstance();

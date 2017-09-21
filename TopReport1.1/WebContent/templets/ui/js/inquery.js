@@ -42,12 +42,12 @@ function openBuyContract(value){
 	window.open(path,"_blank","resizable=1,location=0,scrollbars=1, width=1024,height=768 ");
 }
 
-/*---ÒµÎñÌáÐÑÏêÇéÖÐ´ò¿ª´°¿ÚÓÐÎó-modified by HuangWeijing 2009-09-23 jira:BMS-1992 begin---------------*/
+/*---Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ò¿ª´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-modified by HuangWeijing 2009-09-23 jira:BMS-1992 begin---------------*/
 function openEntityBuyContract(value){
 	path = _application_root + "/fpages/entitydiscounted/ftl/DiscountInfoQuery.ftl?contractId=" + value;
 	window.open(path,"_blank","resizable=1,location=0,scrollbars=1, width=1024,height=768 ");
 }
-/*---ÒµÎñÌáÐÑÏêÇéÖÐ´ò¿ª´°¿ÚÓÐÎó-modified by HuangWeijing 2009-09-23 jira:BMS-1992 end----------------*/
+/*---Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ò¿ª´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-modified by HuangWeijing 2009-09-23 jira:BMS-1992 end----------------*/
 
 function openCustomer(value){
 	path = _application_root + "/fpages/custindv/ftl/CustInfoTypeIn.ftl";
@@ -63,99 +63,99 @@ function openScoreInfo(value){
     window.open(path,"_blank","resizable=1,location=0,scrollbars=1, width=1024,height=768 ");
 }
 /**
- * ¸ù¾ÝºËÐÄ¿Í»§ºÅÏÔÊ¾¿Í»§µÄÐÅÏ¢£¬ÏµÍ³»áÅÐ¶Ï¸Ã¿Í»§ÊÇ·¨ÈË»¹ÊÇ×ÔÈ»ÈË
- * @param custno ºËÐÄ¿Í»§ºÅ
- * @param type ÀàÐÍ£¬±£ÁôÄ¿Ç°²»Æð×÷ÓÃ
+ * ï¿½ï¿½Ýºï¿½ï¿½Ä¿Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½Ð¶Ï¸Ã¿Í»ï¿½ï¿½Ç·ï¿½ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½È»ï¿½ï¿½
+ * @param custno ï¿½ï¿½ï¿½Ä¿Í»ï¿½ï¿½ï¿½
+ * @param type ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 function showCustInfoByCustno(custno,type) {
 
 
 	var path = _application_root + "/customerInfoQuery.do";
 
-	path += "?actionType=2";//2´ú±íÍ¨¹ýcustno²éÑ¯¿Í»§ÐÅÏ¢
-	path += "&custno="+custno;//ºËÐÄ¿Í»§ºÅ
-	path += "&type="+type;//Ä¿Ç°type²ÎÊý»¹²»ÆðÈÎºÎ×÷ÓÃ
+	path += "?actionType=2";//2ï¿½ï¿½ï¿½Í¨ï¿½ï¿½custnoï¿½ï¿½Ñ¯ï¿½Í»ï¿½ï¿½ï¿½Ï¢
+	path += "&custno="+custno;//ï¿½ï¿½ï¿½Ä¿Í»ï¿½ï¿½ï¿½
+	path += "&type="+type;//Ä¿Ç°typeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½
 
 	window.open(path,"_SEMS_WINDOW","fullscreen=no,toolbar=no,scrollbars=yes,resizable=yes,location=no,status=no,menubar=no,top=0,left=0");
 }
 
 /**
- * ¸ù¾ÝÄÚ²¿¿Í»§ºÅÏÔÊ¾¿Í»§µÄÐÅÏ¢£¬ÏµÍ³»áÅÐ¶Ï¸Ã¿Í»§ÊÇ·¨ÈË»¹ÊÇ×ÔÈ»ÈË
- * @param custcd ÄÚ²¿¿Í»§ºÅ
- * @param type ÀàÐÍ£¬±£ÁôÄ¿Ç°²»Æð×÷ÓÃ
+ * ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½Ð¶Ï¸Ã¿Í»ï¿½ï¿½Ç·ï¿½ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½È»ï¿½ï¿½
+ * @param custcd ï¿½Ú²ï¿½ï¿½Í»ï¿½ï¿½ï¿½
+ * @param type ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 function showCustInfoByCustcd(custcd,type) {
 
 	var path = _application_root + "/customerInfoQuery.do";
 
-	path += "?actionType=1";//1´ú±íÍ¨¹ýcustcd²éÑ¯¿Í»§ÐÅÏ¢
-	path += "&custcd="+custcd;//ÄÚ²¿¿Í»§ºÅ
-	path += "&type="+type;//Ä¿Ç°type²ÎÊý»¹²»ÆðÈÎºÎ×÷ÓÃ
+	path += "?actionType=1";//1ï¿½ï¿½ï¿½Í¨ï¿½ï¿½custcdï¿½ï¿½Ñ¯ï¿½Í»ï¿½ï¿½ï¿½Ï¢
+	path += "&custcd="+custcd;//ï¿½Ú²ï¿½ï¿½Í»ï¿½ï¿½ï¿½
+	path += "&type="+type;//Ä¿Ç°typeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½
 
 	window.open(path,"_SEMS_WINDOW","fullscreen=no,toolbar=no,scrollbars=yes,resizable=yes,location=no,status=no,menubar=no,top=0,left=0");
 }
 
 /**
- * ¸ù¾Ý²úÆ·ÊÚÐÅ±àºÅÏÔÊ¾ÊÚÐÅÐÅÏ¢
- * @param productCreditNo ²úÆ·ÊÚÐÅ±àºÅ
- * @param type ÀàÐÍ£¬±£ÁôÄ¿Ç°²»Æð×÷ÓÃ
+ * ï¿½ï¿½Ý²ï¿½Æ·ï¿½ï¿½ï¿½Å±ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+ * @param productCreditNo ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Å±ï¿½ï¿½
+ * @param type ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 function showProductCreditInfoByProductCreditNo(productCreditNo,type) {
 
 	var path = _application_root + "/productCreditInfoQuery.do";
 
-	path += "?productCreditNo="+productCreditNo;//²úÆ·ÊÚÐÅ±àºÅ
-	path += "&type="+type;//Ä¿Ç°type²ÎÊý»¹²»ÆðÈÎºÎ×÷ÓÃ
+	path += "?productCreditNo="+productCreditNo;//ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Å±ï¿½ï¿½
+	path += "&type="+type;//Ä¿Ç°typeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½
 	window.open(path,"_SEMS_WINDOW","fullscreen=no,toolbar=no,scrollbars=yes,resizable=yes,location=no,status=no,menubar=no,top=0,left=0");
 }
 
 /**
- * ¸ù¾ÝAPPNOÏÔÊ¾ÉóÅúÒâ¼û
- * @param appno ÉêÇëºÅ
- * @param type ÀàÐÍ£¬1:ÏÔÊ¾ËùÓÐµÄÉóÅúÒâ¼û   2:ÏÔÊ¾ÉóÅú¸ÚµÄÉóÅúÒâ¼û
+ * ï¿½ï¿½ï¿½APPNOï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param appno ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param type ï¿½ï¿½ï¿½Í£ï¿½1:ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   2:ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 function showApplyDtlByAppno(appno,type) {
 
 	var path = _application_root + "/fpages/credit/ftl/CreditCustApplyDtlQry.ftl";
 
-	path += "?appno="+appno;//ÉêÇë±àºÅ
-	path += "&type="+type;//Ä¿Ç°type²ÎÊý»¹²»ÆðÈÎºÎ×÷ÓÃ
+	path += "?appno="+appno;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	path += "&type="+type;//Ä¿Ç°typeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½
 
 	window.open(path,"_SEMS_WINDOW","fullscreen=no,toolbar=no,scrollbars=yes,resizable=yes,location=no,status=no,menubar=no,top=0,left=0");
 }
 
 /**
- * ¸ù¾ÝAPPNOÀúÊ·¼à¿ØÏêÏ¸ÐÅÏ¢
- * @param appno ÉêÇëºÅ
- * @param monitorClass ¼à¿ØÀàÐÍ
+ * ï¿½ï¿½ï¿½APPNOï¿½ï¿½Ê·ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ï¢
+ * @param appno ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param monitorClass ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 function showMonitorHistoryDtl(appno,monitorClass) {
 
 	var path = _application_root + "/MonitorHist.do";
 
-	path += "?appno="+appno;//ÉêÇëºÅ
-	path += "&monitorClass="+monitorClass;//¼à¿ØÀàÐÍ
+	path += "?appno="+appno;//ï¿½ï¿½ï¿½ï¿½ï¿½
+	path += "&monitorClass="+monitorClass;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	window.open(path,"_SEMS_WINDOW","fullscreen=no,toolbar=no,scrollbars=yes,resizable=yes,location=no,status=no,menubar=no,top=0,left=0");
 }
 function openDraftInfo(draftId,srcType){
 
-    if(srcType=="01"){//³Ð¶ÒÒµÎñ
+    if(srcType=="01"){//ï¿½Ð¶ï¿½Òµï¿½ï¿½
     	path = _application_root + "/fpages/draftquery/ftl/AcceptDraftInfo.ftl?DRAFTID="+draftId ;
 	}
-	else if(srcType=="02"||srcType=="03"){//ÌùÏÖÒµÎñ
+	else if(srcType=="02"||srcType=="03"){//ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½
 		path = _application_root + "/fpages/draftquery/ftl/DisountDraftInfo.ftl?DRAFTID="+draftId ;
 	}
-	else if(srcType=="04"){//±£¹ÜÒµÎñ
+	else if(srcType=="04"){//ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½
 		path = _application_root + "/fpages/draftquery/ftl/DraftQuery.ftl?DRAFTID="+draftId ;
 	}
-	else if(srcType=="05"){//±£Ö¤ÒµÎñ
+	else if(srcType=="05"){//ï¿½ï¿½Ö¤Òµï¿½ï¿½
 		path = _application_root + "/fpages/draftquery/ftl/GuaranteDraftInfo.ftl?DRAFTID="+draftId ;
 	}
-	else if(srcType=="06"){//ÖÊÑºÒµÎñ
+	else if(srcType=="06"){//ï¿½ï¿½ÑºÒµï¿½ï¿½
 		path = _application_root + "/fpages/draftquery/ftl/CollztnDraftInfo.ftl?DRAFTID="+draftId ;
 	}
-	else if(srcType=="06"){//ÖÊÑºÒµÎñ
+	else if(srcType=="06"){//ï¿½ï¿½ÑºÒµï¿½ï¿½
 		path = _application_root + "/fpages/draftquery/ftl/CollztnDraftInfo.ftl?DRAFTID="+draftId ;
 	}
 	else{
@@ -165,21 +165,21 @@ function openDraftInfo(draftId,srcType){
 }
 
 /**
- * Ñ¡Ôñ¶Ô¹«¿Í»§
- * ·µ»ØÖµ:ÊÇÒ»¸öÊý×é»òÕßnull
- * ·µ»ØÖµµÚ0Î»£ºcustcd
- * ·µ»ØÖµµÚ1Î»£ºcustno
- * ·µ»ØÖµµÚ2Î»£ºregionNo
- * ·µ»ØÖµµÚ3Î»£ºregionNoName
- * ·µ»ØÖµµÚ4Î»£ºcustType
- * ·µ»ØÖµµÚ5Î»£ºcname
- * ·µ»ØÖµµÚ6Î»£ºename
- * ·µ»ØÖµµÚ7Î»£ºorgCode
- * ·µ»ØÖµµÚ8Î»£ºdirectorCreditBrno
- * ·µ»ØÖµµÚ9Î»£ºdirectorCreditBrnoName
- * ·µ»ØÖµµÚ10Î»£ºdirectorManagerNo
- * ·µ»ØÖµµÚ11Î»£ºdirectorManagerNoName
- * ·µ»ØÖµµÚ12Î»£ºcustStatus
+ * Ñ¡ï¿½ï¿½Ô¹ï¿½ï¿½Í»ï¿½
+ * ï¿½ï¿½ï¿½ï¿½Öµ:ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½null
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½0Î»ï¿½ï¿½custcd
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½1Î»ï¿½ï¿½custno
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½2Î»ï¿½ï¿½regionNo
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½3Î»ï¿½ï¿½regionNoName
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½4Î»ï¿½ï¿½custType
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½5Î»ï¿½ï¿½cname
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½6Î»ï¿½ï¿½ename
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½7Î»ï¿½ï¿½orgCode
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½8Î»ï¿½ï¿½directorCreditBrno
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½9Î»ï¿½ï¿½directorCreditBrnoName
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½10Î»ï¿½ï¿½directorManagerNo
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½11Î»ï¿½ï¿½directorManagerNoName
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½12Î»ï¿½ï¿½custStatus
  */
 function selectCorpCustomer() {
 	var path = _application_root + "/fpages/customer/ftl/SelectCorpCustomer.ftl";
@@ -187,22 +187,22 @@ function selectCorpCustomer() {
 }
 
 /**
- * Ñ¡Ôñ×ÔÈ»ÈË¿Í»§
- * ·µ»ØÖµ:ÊÇÒ»¸öÊý×é»òÕßnull
- * ·µ»ØÖµµÚ0Î»£ºcustcd
- * ·µ»ØÖµµÚ1Î»£ºcustno
- * ·µ»ØÖµµÚ2Î»£ºregionNo
- * ·µ»ØÖµµÚ3Î»£ºregionNoName
- * ·µ»ØÖµµÚ4Î»£ºcustType
- * ·µ»ØÖµµÚ5Î»£ºcname
- * ·µ»ØÖµµÚ6Î»£ºename
- * ·µ»ØÖµµÚ7Î»£ºidtype
- * ·µ»ØÖµµÚ8Î»£ºidno
- * ·µ»ØÖµµÚ9Î»£ºdirectorCreditBrno
- * ·µ»ØÖµµÚ10Î»£ºdirectorCreditBrnoName
- * ·µ»ØÖµµÚ11Î»£ºdirectorManagerNo
- * ·µ»ØÖµµÚ12Î»£ºdirectorManagerNoName
- * ·µ»ØÖµµÚ13Î»£ºcustStatus
+ * Ñ¡ï¿½ï¿½ï¿½ï¿½È»ï¿½Ë¿Í»ï¿½
+ * ï¿½ï¿½ï¿½ï¿½Öµ:ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½null
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½0Î»ï¿½ï¿½custcd
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½1Î»ï¿½ï¿½custno
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½2Î»ï¿½ï¿½regionNo
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½3Î»ï¿½ï¿½regionNoName
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½4Î»ï¿½ï¿½custType
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½5Î»ï¿½ï¿½cname
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½6Î»ï¿½ï¿½ename
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½7Î»ï¿½ï¿½idtype
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½8Î»ï¿½ï¿½idno
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½9Î»ï¿½ï¿½directorCreditBrno
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½10Î»ï¿½ï¿½directorCreditBrnoName
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½11Î»ï¿½ï¿½directorManagerNo
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½12Î»ï¿½ï¿½directorManagerNoName
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½13Î»ï¿½ï¿½custStatus
  */
 function selectIndvCustomer() {
 	var path = _application_root + "/fpages/customer/ftl/SelectIndvCustomer.ftl";
@@ -210,22 +210,22 @@ function selectIndvCustomer() {
 }
 
 /**
- * Ñ¡Ôñ¿Í»§
- * ·µ»ØÖµ:ÊÇÒ»¸öÊý×é»òÕßnull
- * ·µ»ØÖµµÚ0Î»£ºcustcd
- * ·µ»ØÖµµÚ1Î»£ºcustno
- * ·µ»ØÖµµÚ2Î»£ºregionNo
- * ·µ»ØÖµµÚ3Î»£ºregionNoName
- * ·µ»ØÖµµÚ4Î»£ºcustType
- * ·µ»ØÖµµÚ5Î»£ºcname
- * ·µ»ØÖµµÚ6Î»£ºename
- * ·µ»ØÖµµÚ7Î»£ºidtype
- * ·µ»ØÖµµÚ8Î»£ºidno
- * ·µ»ØÖµµÚ9Î»£ºdirectorCreditBrno
- * ·µ»ØÖµµÚ10Î»£ºdirectorCreditBrnoName
- * ·µ»ØÖµµÚ11Î»£ºdirectorManagerNo
- * ·µ»ØÖµµÚ12Î»£ºdirectorManagerNoName
- * ·µ»ØÖµµÚ13Î»£ºcustStatus
+ * Ñ¡ï¿½ï¿½Í»ï¿½
+ * ï¿½ï¿½ï¿½ï¿½Öµ:ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½null
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½0Î»ï¿½ï¿½custcd
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½1Î»ï¿½ï¿½custno
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½2Î»ï¿½ï¿½regionNo
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½3Î»ï¿½ï¿½regionNoName
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½4Î»ï¿½ï¿½custType
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½5Î»ï¿½ï¿½cname
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½6Î»ï¿½ï¿½ename
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½7Î»ï¿½ï¿½idtype
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½8Î»ï¿½ï¿½idno
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½9Î»ï¿½ï¿½directorCreditBrno
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½10Î»ï¿½ï¿½directorCreditBrnoName
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½11Î»ï¿½ï¿½directorManagerNo
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½12Î»ï¿½ï¿½directorManagerNoName
+ * ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½13Î»ï¿½ï¿½custStatus
  */
 function selectCustomer() {
 	var path = _application_root + "/fpages/customer/ftl/SelectCustomer.ftl";
@@ -434,7 +434,7 @@ function openUnCollztnContract(id){//entity uncollztn query
 }
 /** add by jornezhang 20100707 BMS-2797 end */
 
-/** add by weikun.wang 20100701   BMS-2788 ï¿½ï¿½ï¿½ï¿½Æ±ï¿½Ý±ï¿½Ö¤ï¿½ï¿½ï¿½Ð­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?1?7 begin */
+/** add by weikun.wang 20100701   BMS-2788 ï¿½ï¿½ï¿½ï¿½Æ±ï¿½Ý±ï¿½Ö¤ï¿½ï¿½ï¿½Ð­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?1?7 begin */
 function openElcGuarContractSendInfo(id){
 	var path=_application_root+"/fpages/elcguarcont/ftl/ElcGuarApplyContNewQry.ftl?contractId=" + id;
 	window.open(path,"_blank","resizable=1,location=0,scrollbars=1,width=1024,height=700");
@@ -443,7 +443,7 @@ function openElcGuarContractSignInfo(id){
 	var path=_application_root+"/fpages/elcguarcont/ftl/ElcGuarSignContNewQry.ftl?contractId=" + id;
 	window.open(path,"_blank","resizable=1,location=0,scrollbars=1,width=1024,height=700");
 }
-/** add by weikun.wang 20100701   BMS-2788 ï¿½ï¿½ï¿½ï¿½Æ±ï¿½Ý±ï¿½Ö¤ï¿½ï¿½ï¿½Ð­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?1?7 end */
+/** add by weikun.wang 20100701   BMS-2788 ï¿½ï¿½ï¿½ï¿½Æ±ï¿½Ý±ï¿½Ö¤ï¿½ï¿½ï¿½Ð­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?1?7 end */
 /** add by fanrong 20101117 BMS-2885 begin */
 function openEntityRegisterAcceptance(value1,value2,value3){
 	path = _application_root + "/fpages/entityRegister/ftl/acceptanceRegister.ftl?_cds_=0&stdbusstyp=01&txtype=1&txnDate=" + value1+"&sendStatus="+value2+"&srcType="+value3;
@@ -495,7 +495,8 @@ function openEntityRegisterDrawBack(value1,value2,value3){
 }
 function openHref(url){
 	path = megerURL(_application_root,url);
-	window.location.href = path;
+	window.location = path;
+	//window.location.href = path;
 }
 /** add by fanrong 20101117 BMS-2885 end */
 

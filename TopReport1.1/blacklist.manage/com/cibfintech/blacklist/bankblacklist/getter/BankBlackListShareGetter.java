@@ -1,24 +1,19 @@
 package com.cibfintech.blacklist.bankblacklist.getter;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import resource.bean.blacklist.NsBankBlackList;
+import resource.bean.blacklist.NsBankBlackListAuditState;
 
-import resource.bean.blacklist.NsBankBLOperateLog;
-
-import com.cibfintech.blacklist.bankblacklist.service.BankBlackListOperateLogService;
+import com.cibfintech.blacklist.bankblacklist.service.BankBlackListAuditStateService;
 import com.cibfintech.blacklist.bankblacklist.service.BankBlackListService;
-import com.cibfintech.blacklist.util.GenerateID;
+import com.cibfintech.view.pub.BankBlackListAuditStateView;
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
-import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryResult;
-import com.huateng.ebank.business.common.SystemConstant;
-import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.report.common.ReportConstant;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
@@ -28,12 +23,12 @@ public class BankBlackListShareGetter extends BaseGetter {
 	/*
 	 * 获取商行黑名单
 	 * 
-	 * @author huangcheng
+	 * @author
 	 */
 	@Override
 	public Result call() throws AppException {
 		try {
-			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "商行黑名单管理查询");
+			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "商行黑名单分享");
 			PageQueryResult pageResult = getData();
 			ResultMng.fillResultByList(getCommonQueryBean(), getCommQueryServletRequest(), pageResult.getQueryResult(), getResult());
 			result.setContent(pageResult.getQueryResult());
@@ -48,58 +43,49 @@ public class BankBlackListShareGetter extends BaseGetter {
 	}
 
 	protected PageQueryResult getData() throws Exception {
-		String partyId = getCommQueryServletRequest().getParameter("qPartyId");
-		String qCertificateType = getCommQueryServletRequest().getParameter("qCertificateType");
-		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
-		int pageSize = this.getResult().getPage().getEveryPage();
-		int pageIndex = this.getResult().getPage().getCurrentPage();
-		GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
+		String qShare = getCommQueryServletRequest().getParameter("qShareType");
+		qShare = qShare == null ? "" : qShare;
+		StringBuffer hql = new StringBuffer(" from NsBankBlackListAuditState po where 1=1");
 
-		StringBuffer hql = new StringBuffer(" from NsBankBlackList bblt where bblt.del='F'");
-		List<Object> list = new ArrayList<Object>();
-		if (StringUtils.isNotBlank(partyId)) {
-			hql.append(" and bblt.id = ?");
-			list.add(partyId.trim());
+		hql.append(" order by po.auditType desc, po.auditState desc, po.editDate desc");
+
+		BankBlackListService service = BankBlackListService.getInstance();
+		BankBlackListAuditStateService auditStateService = BankBlackListAuditStateService.getInstance();
+
+		List<NsBankBlackListAuditState> auditStates = auditStateService.getBankBankListAuditStateByHql(hql.toString());
+
+		List<BankBlackListAuditStateView> auditStateViews = new ArrayList<BankBlackListAuditStateView>();
+		for (NsBankBlackListAuditState auditState : auditStates) {
+			BankBlackListAuditStateView view = new BankBlackListAuditStateView();
+			NsBankBlackList blackList = service.selectById(auditState.getBlacklistID());
+			view.setId(auditState.getId());
+			view.setAuditState(auditState.getAuditState());
+			view.setAuditType(auditState.getAuditType());
+			view.setBlacklistID(auditState.getBlacklistID());
+			view.setBrcode(auditState.getBrcode());
+			view.setEditUserID((auditState.getEditUserID()));
+			view.setVerifyUserID(auditState.getVerifyUserID());
+			view.setApproveUserID(auditState.getApproveUserID());
+			view.setEditDate(auditState.getEditDate());
+			view.setVerifyDate(auditState.getVerifyDate());
+			view.setApproveDate(auditState.getApproveDate());
+			view.setBlacklistType(blackList.getBlacklistType());
+			view.setCertificateNumber(blackList.getCertificateNumber());
+			view.setCertificateType(blackList.getCertificateType());
+			view.setClientName(blackList.getClientName());
+			view.setClientEnglishName(blackList.getClientEnglishName());
+
+			auditStateViews.add(view);
 		}
-		if (StringUtils.isNotBlank(qCertificateType)) {
-			hql.append(" and bblt.certificateType = ?");
-			list.add(qCertificateType.trim());
+
+		PageQueryResult pageQueryResult = new PageQueryResult();
+		if (auditStateViews != null && auditStateViews.size() > 0) {
+			pageQueryResult.setTotalCount(auditStateViews.size());
+		} else {
+			pageQueryResult.setTotalCount(0);
 		}
-		if (StringUtils.isNotBlank(qCertificateNumber)) {
-			hql.append(" and bblt.certificateNumber like ?");
-			list.add("%" + qCertificateNumber.trim() + "%");
-		}
+		pageQueryResult.setQueryResult(auditStateViews);
 
-		hql.append(" and bblt.share=?");
-		list.add("T");
-		hql.append(" and bblt.approve=?");
-		list.add("T");
-		hql.append(" and order by bblt.createDate desc");
-
-		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageSize, pageIndex, hql.toString(), list);
-
-		String message = "国际黑名单的查询:partyId=" + partyId + ",certificateType=" + qCertificateType + ",certificateNumber=" + qCertificateNumber;
-		recordOperateLog(globalinfo, pqr.getTotalCount(), message);
-		return pqr;
-	}
-
-	// 记录查询日志
-	private void recordOperateLog(GlobalInfo globalinfo, int count, String message) {
-		BankBlackListOperateLogService service = BankBlackListOperateLogService.getInstance();
-		NsBankBLOperateLog bean = new NsBankBLOperateLog();
-		bean.setBrcode(globalinfo.getBrcode());
-		bean.setId(String.valueOf(GenerateID.getId()));
-		bean.setQueryType("share");
-		bean.setQueryRecordNumber(String.valueOf(count));
-		bean.setTlrIP(globalinfo.getIp());
-		bean.setTlrno(globalinfo.getTlrno());
-		bean.setOperateType(SystemConstant.LOG_QUERY);
-		bean.setMessage(message);
-		bean.setCreateDate(new Date());
-		try {
-			service.addEntity(bean);
-		} catch (CommonException e) {
-			e.printStackTrace();
-		}
+		return pageQueryResult;
 	}
 }

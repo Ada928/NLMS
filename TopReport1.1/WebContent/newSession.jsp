@@ -18,11 +18,13 @@
 						+ "那么请调整IE的安全级别(安全级 - 低)。\n\n具体操作：\n\n"
 						+ "工具 → Internet选项 → 安全 → 受信任的站点 → 拉动安全级至(低) \n\n"
 						+ "然后把本网址添加到受信任的站点中，保存后退出系统，再次登陆。");
-				window.location.href  = "";
+				window.location  = "";
+				//window.location.href  = "";
 				return false;
 			}
 		} else {
-		 	window.location.href  = "<%=distURL%>";
+		 	window.location  = "<%=distURL%>";
+		 	<%--window.location.href  = "<%=distURL%>";--%>
 		}
 	}
 

@@ -24,6 +24,8 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="JavaScript">
+	alert("hahha  " + _t1.pageSize);
+	alert("hehe " + _t1.pageIndex);
 
     function btSave_onClickCheck(button) {
         var id = BankBlackListManage_dataset.getValue("id");
@@ -37,6 +39,10 @@
         }
         if (certificateNumber == null || "" == certificateNumber) {
             alert("证件号不能为空");
+            return false;
+        }
+        if (certificateType == "11" || "18" > certificateNumber) {
+            alert("身份证号不能短于18位");
             return false;
         }
         return true;
@@ -60,6 +66,10 @@
         }
         if (certificateNumber == null || "" == certificateNumber) {
             alert("证件号不能为空");
+            return false;
+        } 
+        if (certificateType == "11" || "18" > certificateNumber) {
+            alert("身份证号不能短于18位");
             return false;
         }
         return true;

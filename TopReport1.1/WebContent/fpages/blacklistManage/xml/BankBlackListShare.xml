@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 用于直接生成SQL语句，支持同步和异步提交 -->
+<!-- title:标题 navigate:导航信息 type:方式（sql|call) interface:是否显示输入条件页面(true|false) databusid:数据总线编号 transdataactionurl:数据整理URL 
+	async:异步提交标志 pagesize:页面显示记录数(缺省为10) -->
+
+<CommQry title="商行黑名单管理" navigate="商行黑名单管理" type="call" interface="true" pagesize="20" async="true" databusid=""
+	txnlogflag="true" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.bankblacklist.getter.BankBlackListShareGetter">
+
+	<Include id="BankParam" />
+
+	<Fields>
+		<Field id="select" desc="选择" status="N" method="None" datetype="checkbox" edittype="checkbox" readonly="false"
+			primary="true" type="String" size="20" default="false" xpath="/selected" />
+
+		<Field id="id" desc="黑名单权限管理 ID" edittype="text" datatype="string" status="F" xpath="/id" />
+		
+		<Field id="blacklistid" desc="黑名单 ID" edittype="text" datatype="string" status="F" xpath="/blacklistID" />
+		
+		<Field id="editUserID" desc="编辑用户 ID" edittype="text" datatype="string" status="N" xpath="/editUserID" />
+		
+		<Field id="verifyUserID" desc="审核用户 ID" edittype="text" datatype="string" status="N" xpath="/verifyUserID" />
+		
+		<Field id="approveUserID" desc="审批用户 ID" edittype="text" datatype="string" status="N" xpath="/approveUserID" />
+		
+		<Field id="brcode" desc="银行代码" edittype="text" datatype="string" status="F" xpath="/brcode" />
+
+		<Field id="bankName" desc="银行名称" status="N" method="com.huateng.ebank.business.common.CQMethod.getBrhName"
+			readonly="true" primary="false" type="String" size="20" default="" xpath="/brcode" />
+			
+		<Field id="auditType" desc="审核类型" status="F" edittype="select" require="false" method="None" primary=""
+			type="String" default="false" xpath="/auditType" tip="审核类型" translated="DATA_DIC.3002" />
+			
+		<Field id="auditState" desc="审核状态" status="F" edittype="select" require="false" method="None" primary=""
+			type="String" default="false" xpath="/auditState" tip="审核状态" translated="DATA_DIC.3003" />
+			
+		<Field id="blacklistType" desc="名单性质" status="F" edittype="select" require="false" method="None" primary=""
+			type="String" default="false" xpath="/blacklistType" tip="名单性质" translated="LIST:0,白名单;1,灰名单;2,黑名单" />
+
+		<Field id="certificateType" desc="证件种类" status="F" edittype="select" require="false" method="None" primary=""
+			type="String" default="false" xpath="/certificateType" tip="证件种类" translated="DATA_DIC.21" />
+
+		<Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" status="F" xpath="/certificateNumber" />
+
+		<Field id="clientName" desc="客户名字" edittype="text" datatype="string" status="F" xpath="/clientName" />
+		
+		<Field id="clientEnglishName" desc="客户名字" edittype="text" datatype="string" status="F" xpath="/clientEnglishName" />
+
+		<Field id="editDate" desc="编辑日期" edittype="text" datatype="string" status="F" xpath="/editDate" />
+		
+		<Field id="verifyDate" desc="审核日期" edittype="text" datatype="string" status="F" xpath="/verifyDate" />
+		
+		<Field id="approveDate" desc="审批日期" edittype="text" datatype="string" status="F" xpath="/approveDate" />
+
+		<Field id="statedes" desc="状态说明" status="N" method="None" xpath="" primary="true" type="" default="" tip="操作" require="" />
+		
+		<Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" default="" tip="操作" require="" />
+	</Fields>
+
+	<Where>
+		<Option id="qShareType" default="2" desc="名单性质" type="" tip="" method="None" index="0"
+			translated="LIST:1,已分享;2,未分享" />
+	</Where>
+
+	<Operations>
+		<Button id="btDetail" name="btDetail" desc="详细信息" operation=""
+			url="#" txn="" />
+
+		<Button id="btShare" name="btShare" desc="确认分享" operation="asysubmit"
+			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListShare" 
+			url="/fpages/blacklistManage/ftl/BankBlackListShare.ftl"
+			icon="icon-expout" />
+
+		<Button id="btCancelShare" name="btCancelShare" desc="取消分享" operation="asysubmit"
+			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListShare" 
+			url="/fpages/blacklistManage/ftl/BankBlackListShare.ftl"
+			icon="icon-cancel" />
+	</Operations>
+</CommQry>

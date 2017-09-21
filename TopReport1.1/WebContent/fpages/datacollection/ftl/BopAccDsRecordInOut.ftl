@@ -66,7 +66,7 @@
 		//新增
 		function btNewClick(){
 			showWin("账户收支余新增","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutAdd.ftl","report","flushPage()");
-			//window.location.href = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutAdd.ftl";
+			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutAdd.ftl";
 		}
 	
 		//刷新数据
@@ -76,19 +76,19 @@
 	
 		//修改
 		function doCollection(id){
-			//window.location.href = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=modify";
+			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=modify";
 			showWin("账户收支余修改","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=modify","report","flushPage()");
 		}
 	
 		//删除
 		function doDelete(id){
-			//window.location.href = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=delete";
+			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=delete";
 			showWin("账户收支余删除","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=delete","report","flushPage()");
 		}
 	
 		//详细信息
 		function doDetail(id){
-			//window.location.href = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=detail";
+			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=detail";
 			showWin("账户收支余明细","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=detail","report","flushPage()");
 		}
 	</script>

@@ -100,44 +100,44 @@ function calendarChange(inputEleNm,hidEleNm){
 
 <#---------------- 日历输入框_只能输入今天之前日期（包含今天） -------------------->
 <#macro calendarOnlyBefore calendarlabel name value rules errMsg>
-<script language="javascript" src="${contextPath}/page/resources/script/calendar.js"></script>
-<script language="javascript" src="${contextPath}/page/resources/script/calendar-setup.js"></script>
-<script language="javascript" src="${contextPath}/page/resources/script/calendar-zh.js"></script>
-<link rel="stylesheet" type="text/css" href="${contextPath}/page/resources/style/calendar-win2k-cold-1.css"/>
-<SCRIPT LANGUAGE="JAVASCRIPT">
-function calendarChange(inputEleNm,hidEleNm){
-	 	var inputEle = document.getElementById(inputEleNm);
-	 	var hidEle = document.getElementById(hidEleNm);
-		var cls = inputEle.value.split("-");
-		hidEle.value = cls[0]+cls[1]+cls[2];
-}
-</SCRIPT>
-<TR>
-<TD WIDTH="10%" CLASS="unnamed2">
-<DIV ALIGN="center"><IMG SRC="${contextPath}/page/resources/image/common/sub_bulet04.gif"
-WIDTH="7" HEIGHT="9"></DIV></TD>
-<TD WIDTH="25%" CLASS="unnamed2">${calendarlabel}</TD>
-<TD WIDTH="65%" CLASS="unnamed1">
-<table WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="0">
-<tr><td width="25%">
-<input type="hidden" id="${name}" name="${name}"/>
-<input type="text" id="${name}_calendar" onpropertyChange="calendarChange('${name}_calendar','${name}')" CLASS="unnamed0" size=10 name="${name}_calendar"></td>
-<td>
-<a onClick="return showCalendarOnlyBefore('${name}_calendar');">
-<img id=dimg2 height=21 src="${contextPath}/page/resources/image/calendar/calendar.gif" width=34 align=absMiddle border=0></img></a>
-</td>
-<td><font size="1" color="#999999">(y-mm-dd)</font></td>
-</tr>
-</table>
-</TD>
-</TR>
-<TR>
-<TD COLSPAN="3" CLASS="unnamed3">
-<IMG SRC="${contextPath}/page/resources/image/common/line-blue.gif" WIDTH="400" HEIGHT="5"></TD></TR>
-<script language='JavaScript'>
-	fieldRules['${name}_calendar'] = new Array(isValidDateFormat);
-	errMsgs['${name}_calendar']    = '请输入正确的${calendarlabel}！';
-</script>
+	<script language="javascript" src="${contextPath}/page/resources/script/calendar.js"></script>
+	<script language="javascript" src="${contextPath}/page/resources/script/calendar-setup.js"></script>
+	<script language="javascript" src="${contextPath}/page/resources/script/calendar-zh.js"></script>
+	<link rel="stylesheet" type="text/css" href="${contextPath}/page/resources/style/calendar-win2k-cold-1.css"/>
+	<SCRIPT LANGUAGE="JAVASCRIPT">
+	function calendarChange(inputEleNm,hidEleNm){
+		 	var inputEle = document.getElementById(inputEleNm);
+		 	var hidEle = document.getElementById(hidEleNm);
+			var cls = inputEle.value.split("-");
+			hidEle.value = cls[0]+cls[1]+cls[2];
+	}
+	</SCRIPT>
+	<TR>
+	<TD WIDTH="10%" CLASS="unnamed2">
+	<DIV ALIGN="center"><IMG SRC="${contextPath}/page/resources/image/common/sub_bulet04.gif"
+	WIDTH="7" HEIGHT="9"></DIV></TD>
+	<TD WIDTH="25%" CLASS="unnamed2">${calendarlabel}</TD>
+	<TD WIDTH="65%" CLASS="unnamed1">
+	<table WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="0">
+	<tr><td width="25%">
+	<input type="hidden" id="${name}" name="${name}"/>
+	<input type="text" id="${name}_calendar" onpropertyChange="calendarChange('${name}_calendar','${name}')" CLASS="unnamed0" size=10 name="${name}_calendar"></td>
+	<td>
+	<a onClick="return showCalendarOnlyBefore('${name}_calendar');">
+	<img id=dimg2 height=21 src="${contextPath}/page/resources/image/calendar/calendar.gif" width=34 align=absMiddle border=0></img></a>
+	</td>
+	<td><font size="1" color="#999999">(y-mm-dd)</font></td>
+	</tr>
+	</table>
+	</TD>
+	</TR>
+	<TR>
+	<TD COLSPAN="3" CLASS="unnamed3">
+	<IMG SRC="${contextPath}/page/resources/image/common/line-blue.gif" WIDTH="400" HEIGHT="5"></TD></TR>
+	<script language='JavaScript'>
+		fieldRules['${name}_calendar'] = new Array(isValidDateFormat);
+		errMsgs['${name}_calendar']    = '请输入正确的${calendarlabel}！';
+	</script>
 </#macro>
 
 <#--------------- 密码输入框 ------------------>

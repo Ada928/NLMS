@@ -129,7 +129,8 @@
 		var busiType = genReportFile_dataset.getValue("busiType");
 		var appType = genReportFile_dataset.getValue("appType");
 		//开始进行生成文件处理
-		window.setTimeout("window.location.href = '${contextPath}/fpages/genupreportfile/jsp/createSubFileInfo.jsp?busiType="+busiType+"&appType="+appType+"'",0);
+		window.setTimeout("window.location = '${contextPath}/fpages/genupreportfile/jsp/createSubFileInfo.jsp?busiType="+busiType+"&appType="+appType+"'",0);
+		//window.setTimeout("window.location.href = '${contextPath}/fpages/genupreportfile/jsp/createSubFileInfo.jsp?busiType="+busiType+"&appType="+appType+"'",0);
 	}
 
 	function btCancell_onClickCheck(){

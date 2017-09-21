@@ -233,6 +233,8 @@ public class UserInfoOperation extends BaseOperation {
 			// 更新用户和银行的依赖
 			updateTlrBctlRels(userInfo.getBrcode(), userInfo.getTlrno());
 
+			setSuccessInfo("编辑 " + userInfo.getTlrName() + " 成功 。");
+
 			operateType = SystemConstant.LOG_EDIT;
 			message = "用户信息的编辑";
 			recordRunningLog("Updater.log", message, userInfo, service);

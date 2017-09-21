@@ -154,11 +154,11 @@
 	<script type="text/javascript">
 		function setBrCode(name, code) {
 			var sel = document.getElementById("brCode").value;
-			document.getElementById("bctl_" + code).style.backgroundColor = "highlight";
-			document.getElementById("bctl_" + code).style.color = "#ffffff";
+			//document.getElementById("bctl_" + code).style.background = "highlight";
+			//document.getElementById("bctl_" + code).style.color = "#ffffff";
 			if (sel != null && sel.length > 0 && sel != code) {
-				document.getElementById("bctl_" + sel).style.backgroundColor = "";
-				document.getElementById("bctl_" + sel).style.color = "";
+				//document.getElementById("bctl_" + sel).style.background = "";
+				//document.getElementById("bctl_" + sel).style.color = "";
 			}
 			document.getElementById("brCodeName").value = name;
 			document.getElementById("brCode").value = code;

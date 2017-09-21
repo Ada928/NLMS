@@ -118,7 +118,7 @@
 		}
 		
 		function doDetail(id){
-			//window.location.href = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=detail";
+			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=detail";
 			showWin("账户收支余明细","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=detail");
 		}
 	</script>

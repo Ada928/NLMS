@@ -10,7 +10,7 @@
 		<!-- primary : true-作为表单项记录上传 false-不作为表单项上传 -->
 
 		<Field id="tlrno" desc="操作员号" status="N" require="false" rules="isTlrno" readonly="false" errmsg="错误的操作员号"
-			primary="true" type="String" size="10" xpath="/tlrno" edittyep="text" />
+			primary="true" type="String" size="20" xpath="/tlrno" edittyep="text" />
 
 		<Field id="tlrName" desc="操作员名称" status="N" require="true" readonly="" primary="true" type="String" size="30"
 			xpath="/tlrName" />

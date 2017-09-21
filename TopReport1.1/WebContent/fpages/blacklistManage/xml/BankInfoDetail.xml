@@ -26,7 +26,7 @@
 			default="" xpath="/status" tip="有效标志" translated="LIST:T,有效;F,无效" />
 	</Fields>
 	<Operations>
-		<Button id="btClose" name="btClose" desc="返回" operation="syncsubmit" url="/fpages/blacklistManage/ftl/BankInfoEntry.ftl"
+		<Button id="btClose" name="btClose" desc="返回" operation="href" url="/fpages/blacklistManage/ftl/BankInfoEntry.ftl"
 			txn="" icon="icon-back" />
 	</Operations>
 </CommQry>

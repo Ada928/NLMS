@@ -47,8 +47,10 @@ String type = request.getParameter("type");
     		var ct = <%=count%>;
     		var span = document.getElementById("countspane");
     		function backApprove(){
-    			window.location.href="<%=path %>/fpages/system/ftl/DirectorConfirm.ftl";
-    		}
+    			<%--yyxyz 2017-09-13  ÐÞ¸Ä³É  --%>
+    			window.location="<%=path %>/fpages/system/ftl/DirectorConfirm.ftl";
+				<%--window.location.href="<%=path %>/fpages/system/ftl/DirectorConfirm.ftl"; --%> 
+   		}
     		var t = window.setInterval(function(){
     		try{
 	    		if(ct<=1){

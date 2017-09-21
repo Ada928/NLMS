@@ -3,7 +3,7 @@
 <@CommonQueryMacro.CommonQueryTab id="tlrLoginLogQueryTabs" navigate="false" currentTab="TlrLoginLogCountQuery">
 <@CommonQueryMacro.CommonQuery id="TlrLoginLogCountQuery" init="true" submitMode="selected" navigate="false">
 
-<table align="left" width="80%">
+<table align="left" width="100%">
     <tr>
 		<td>
 			<@CommonQueryMacro.Interface id="intface" label="请输入查询条件" colNm=4 />

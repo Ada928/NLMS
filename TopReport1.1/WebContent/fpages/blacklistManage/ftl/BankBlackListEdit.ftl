@@ -6,23 +6,29 @@
 <@CommonQueryMacro.CommonQuery id="BankBlackListEdit" init="true"  submitMode="selected"  navigate="false">
 <table align="center" width="100%">
 	<tr>
+      	<td valign="top" colspan="2" >
+			<@CommonQueryMacro.Interface id="intface" label="请输入查询条件" colNm=4  />
+		</td>
+	</tr>
+  	<tr>
+  		<td><@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9" showArrow="true"  pageCache="true"/></td>
+	</tr>
+	<tr>
 		<td width="100%">
 			<@CommonQueryMacro.GroupBox id="BankBlackListEditGuoup" label="选择黑名单信息" expand="true">
 				<table frame=void width="100%">
 					<tr>
 						<td colspan="2">
 							<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btDel" 
-									fieldStr="select,blacklistid,brcode,auditType,certificateNumber,"+
+									fieldStr="select,blacklistid,brcode,certificateType,certificateNumber,"+
 										"clientName,clientEnglishName,blacklistType,editUserID,verifyUserID,approveUserID,editDate,"+
-										"verifyDate,approveDate,auditState,certificateType,opr"  
+										"verifyDate,approveDate,auditType,auditState,opr"  
 									width="100%" hasFrame="true"/><br/>
 						</td>
 					</tr>
 					<tr align="center" style="display:none">
 						<td><@CommonQueryMacro.Button id="btModify" /></td>
 						<td><@CommonQueryMacro.Button id="btDetail" /></td>
-						<td><@CommonQueryMacro.Button id="btShare" /></td>
-						<td><@CommonQueryMacro.Button id="btCancelShare" /></td>
 					</tr>
 				</table>
 		 	</@CommonQueryMacro.GroupBox>
@@ -49,19 +55,15 @@
 	//系统刷新单元格
 	function datatable1_opr_onRefresh(cell, value, record) {
 		if (record) {
-			var share = record.getValue("auditType");
-			var shareState = record.getValue("auditState");
+			var auditType = record.getValue("auditType");
+			var auditState = record.getValue("auditState");
 			var id = record.getValue("blacklistid");
+			var select = record.getValue("select");
 			var tempHtml = "<center>";
-			tempHtml += "<a href=\"JavaScript:openModifyWindow('" + id
-					+ "')\">修改</a> ";
-			if (share != "3" && shareState == "4") {
-				tempHtml += "<a href=\"JavaScript:doShare('" + id
-						+ "')\">分享</a> ";
-			} else if (share == "3" && shareState == "4") {
-				tempHtml += "<a href=\"JavaScript:doCancelShare('" + id
-						+ "')\">取消分享</a> ";
-			}
+			//if(auditType == "1" || auditType == "2"){
+				tempHtml += "<a href=\"JavaScript:openModifyWindow('" + id
+						+ "')\">修改</a> ";
+			//}
 			cell.innerHTML = tempHtml + "</center>";
 		} else {
 			cell.innerHTML = "";
@@ -82,41 +84,13 @@
 	function showDetail(id) {
 		//BankBlackListEdit_dataset.setParameter("blacklistid", id);
 		//btDetail.click();
-		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=edit&blacklistid="+id;
+		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=edit&blacklistid="+id;
 	}
 
 	//修改功能
 	function openModifyWindow(id) {
 		BankBlackListEdit_dataset.setParameter("blacklistid", id);
 		btModify.click();
-	}
-
-	function doShare(id) {
-		locate(id);
-		confirm("确定分享选中的黑名单？");
-		BankBlackListEdit_dataset.setParameter("op", "shareT");
-		btShare.click();
-	}
-
-	function doCancelShare(id) {
-		locate(id);
-		confirm("确定取消分享选中的黑名单？");
-		BankBlackListEdit_dataset.setParameter("op", "shareF");
-		btCancelShare.click();
-	}
-
-	function btShare_postSubmit(button) {
-		alert("分享黑名单申请提交成功，请等待审核。");
-		button.url = "#";
-		//刷新当前页
-		flushCurrentPage();
-	}
-
-	function btCancelShare_postSubmit(button) {
-		alert("取消分享黑名单申请提交成功，请等待审核。");
-		button.url = "#";
-		//刷新当前页
-		flushCurrentPage();
 	}
 
 	function btDel_onClickCheck(button) {
@@ -156,5 +130,43 @@
 		BankBlackListEdit_dataset
 				.flushData(BankBlackListEdit_dataset.pageIndex);
 	}
+	
+
+	/* function doShare(id, select) {
+		locate(id);
+		if(!confirm("确定分享选中的黑名单？")){
+			return;
+		} else {
+			BankBlackListEdit_dataset.setParameter("op", "shareT");
+			btShare.click();
+		}
+		
+	}
+
+	function doCancelShare(id, select) {
+		locate(id);
+		if(!confirm("确定取消分享选中的黑名单？")){
+			return;
+		} else {
+			BankBlackListEdit_dataset.setParameter("op", "shareF");
+			btCancelShare.click();
+		}
+		
+	}
+
+	function btShare_postSubmit(button) {
+		alert("分享黑名单申请提交成功，请等待审核。");
+		button.url = "#";
+		//刷新当前页
+		flushCurrentPage();
+	}
+
+	function btCancelShare_postSubmit(button) {
+		alert("取消分享黑名单申请提交成功，请等待审核。");
+		button.url = "#";
+		//刷新当前页
+		flushCurrentPage();
+	}
+ */
 </script>
 </@CommonQueryMacro.page>

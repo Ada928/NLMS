@@ -6,10 +6,9 @@
 <hibernate-mapping package="resource.bean.pub">
     <class name="DataDic" table="DATA_DIC">
         <meta attribute="sync-DAO">false</meta>
+    	<cache usage="read-write"></cache>
         <id name="id" type="integer" column="ID">
-            <generator class="native">
-
-            </generator>
+            <generator class="native"/>
         </id>
 
         <property name="dataTypeNo" column="DATA_TYPE_NO" type="integer" not-null="true" length="22" />
@@ -25,6 +24,8 @@
         <property name="timestamps" column="TIMESTAMPS" type="date" not-null="false" length="11" />
         <property name="miscflgs" column="MISCFLGS" type="string" not-null="false" length="20" />
 
-
+     	
+     	<!--<cache usage="read-only" />也可读写  
+     	<cache usage="read-only" />  -->
     </class>
 </hibernate-mapping>

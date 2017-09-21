@@ -42,11 +42,11 @@
 		<Field id="approve" desc="是否审批通过" status="F" edittype="select" require="false" method="None" primary="" type="String"
 			default="false" xpath="/approve" tip="是否审批通过" translated="LIST:F,未通过;T,通过" />
 
-		<Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" status="F" xpath="/certificateNumber" />
+		<Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" size="20" status="F" xpath="/certificateNumber" />
 		
-		<Field id="clientName" desc="客户名字" edittype="text" datatype="string" status="F" xpath="/clientName" />
+		<Field id="clientName" desc="客户名字" edittype="text" datatype="string" size="40" status="F" xpath="/clientName" />
 		
-		<Field id="clientEnglishName" desc="英文名字" edittype="text" datatype="string" status="F" xpath="/clientEnglishName" />
+		<Field id="clientEnglishName" desc="英文名字" edittype="text" datatype="string" size="40" status="F" xpath="/clientEnglishName" />
 		
 		<Field id="validDate" desc="有效期" edittype="text" status="F" datatype="date" xpath="/validDate" />
 		
@@ -54,13 +54,13 @@
 		
 		<Field id="blacklistedOperator" desc="拉黑操作员" edittype="text" datatype="string" status="N" xpath="/blacklistedOperator" />
 		
-		<Field id="blacklistedReason" desc="拉黑原因" edittype="textarea" datatype="string" status="F" xpath="/blacklistedReason" />
+		<Field id="blacklistedReason" desc="拉黑原因" edittype="textarea" size="500" datatype="string" status="F" xpath="/blacklistedReason" />
 		
 		<Field id="unblacklistedDate" desc="解除时间" edittype="text" datatype="date" status="F" xpath="/unblacklistedDate" />
 		
 		<Field id="unblacklistedOperator" desc="解除操作员" edittype="text" datatype="string" status="N" xpath="/unblacklistedOperator" />
 		
-		<Field id="unblacklistedReason" desc="解除原因" edittype="textarea" datatype="string" status="F" xpath="/unblacklistedReason" />
+		<Field id="unblacklistedReason" desc="解除原因" edittype="textarea" size="500"  datatype="string" status="F" xpath="/unblacklistedReason" />
 		
 		<Field id="filler1" desc="备用字段1" edittype="text" datatype="string" status="N" xpath="/filler1" />
 		<Field id="filler2" desc="备用字段2" edittype="text" datatype="string" status="N" xpath="/filler2" />

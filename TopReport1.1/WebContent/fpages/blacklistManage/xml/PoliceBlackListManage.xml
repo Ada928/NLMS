@@ -17,9 +17,9 @@
 			edittype="select" method="None" primary="true" type="String" xpath="/accountType" />
 		<Field id="certificateType" desc="证件种类" status="F" readonly="false" translated="DATA_DIC.21" require="false"
 			edittype="select" method="None" primary="true" type="String" xpath="/certificateType" />
-		<Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" status="F" xpath="/certificateNumber" />
-		<Field id="clientName" desc="客户名字" edittype="text" datatype="string" status="F" xpath="/clientName" />
-		<Field id="clientEnglishName" desc="英文名字" edittype="text" datatype="string" status="F" xpath="/clientEnglishName" />
+		<Field id="certificateNumber" desc="证件号码" edittype="text"  size="20" datatype="string" status="F" xpath="/certificateNumber" />
+		<Field id="clientName" desc="客户名字" edittype="text" datatype="string" size="40" status="F" xpath="/clientName" />
+		<Field id="clientEnglishName" desc="英文名字" edittype="text" datatype="string"  size="40" status="F" xpath="/clientEnglishName" />
 		<Field id="bankCode" desc="银行代码" edittype="text" datatype="string" status="F" xpath="/bankCode" />
 		<Field id="blackListOrganization" desc="银行代码" edittype="text" datatype="string" status="F" xpath="/blackListOrganization" />
 

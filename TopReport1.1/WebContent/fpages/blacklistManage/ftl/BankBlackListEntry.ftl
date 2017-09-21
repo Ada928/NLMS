@@ -19,7 +19,7 @@
 						<td colspan="2">
 							<@CommonQueryMacro.DataTable id="datatable1" paginationbar="" 
 									fieldStr="id[100],blacklistType,accountType[60],certificateType,certificateNumber[100],clientName[200],"+
-										"clientEnglishName[200],approve"  
+										"clientEnglishName[200],approve,share"  
 									width="100%" hasFrame="true"/><br/>
 						</td>
 					</tr>
@@ -58,7 +58,7 @@
 	}
 
 	function showDetail(id) {
-		window.location.href = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=entry&blacklistid="+id;
+		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=entry&blacklistid="+id;
 	}
 
 	//ˢ�µ�ǰҳ

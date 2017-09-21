@@ -10,7 +10,7 @@
 		</tr>
 	  	<tr>
 	  		<td valign="top">
-				<@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9" showArrow="true" />
+				<@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9" />
 			</td>
 		 </tr>
 		 <tr>
@@ -67,7 +67,7 @@
     }
     
     function btModifyShow(tlrno) {
-        window.location.href = "${contextPath}/fpages/regonization/ftl/OperMngRoleInfo.ftl?op=modify&tlrno=" + tlrno;
+        window.location = "${contextPath}/fpages/regonization/ftl/OperMngRoleInfo.ftl?op=modify&tlrno=" + tlrno;
     }
     
     function resetPwd(tlrno) {
@@ -166,7 +166,7 @@
 
     //新增
     function btAdd_onClick(buttton) {
-        window.location.href = "${contextPath}/fpages/regonization/ftl/OperMngRoleInfo.ftl?op=new";
+        window.location = "${contextPath}/fpages/regonization/ftl/OperMngRoleInfo.ftl?op=new";
     }
 
     //刷新数据

@@ -11,4 +11,13 @@
             <ref bean="mySessionFactory" />
         </property>
     </bean>
+    
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">  
+    	<property name="sessionFactory">  
+       		<ref bean="mySessionFactory" />  
+    	</property>  
+    	<property name="cacheQueries">  
+        	<value>true</value>  
+    	</property>  
+	</bean>  
 </beans>

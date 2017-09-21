@@ -94,12 +94,12 @@
 	function openModifyWindow(id) {
 		locate(id);
 		BranchEntry_dataset.setParameter("brcode", id);
-		window.location.href = "${contextPath}/fpages/regonization/ftl/BranchManage.ftl?opType=edit&brcode="+id;
+		window.location = "${contextPath}/fpages/regonization/ftl/BranchManage.ftl?opType=edit&brcode="+id;
 	}
 
 	function btAdd_onClick(button) {
 		BranchEntry_dataset.insertRecord();
-		window.location.href = "${contextPath}/fpages/regonization/ftl/BranchManage.ftl?opType=add";
+		window.location = "${contextPath}/fpages/regonization/ftl/BranchManage.ftl?opType=add";
 	}
 	//展示对比功能的js
 	function datatable1_brno_onRefresh(cell, value, record) {
