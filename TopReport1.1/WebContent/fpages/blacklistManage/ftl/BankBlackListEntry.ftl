@@ -35,9 +35,11 @@
 	      	<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="100%" resize="true" defaultZoom="normal" minimize="false"
 					maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 	      		<div align="center">
-	      			<@CommonQueryMacro.Group id="group1" label="银行信息详情" width="100%" height="100%"
-	        			  fieldStr="id,blacklistType,accountType,certificateType,certificateNumber,clientName,"+
-										"clientEnglishName,approve,share" colNm=4/>
+	      			<@CommonQueryMacro.Group id="group1" label="银行黑名单信息详情" width="100%" height="100%"
+	        			  fieldStr="id,accountType,brattr,certificateType,blacklistType,"+
+	        			  "share,valid,del,approve,certificateNumber,clientName,clientEnglishName,validDate,"+
+	        			  "blacklistedDate,blacklistedOperator,blacklistedReason,unblacklistedDate,unblacklistedOperator,"+
+	        			  "unblacklistedReason,createDate,lastModifyDate,lastModifyOperator" colNm=4/>
 	      		</div>
 	     	</@CommonQueryMacro.FloatWindow>	
 	  	</td>

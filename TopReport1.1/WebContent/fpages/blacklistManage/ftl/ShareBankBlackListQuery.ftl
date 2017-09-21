@@ -23,8 +23,10 @@
 					maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 					<div align="center">
 						<@CommonQueryMacro.Group id="group1" label="商行黑名单详情" width="100%" height="100%"
-							fieldStr="id,accountType,certificateType,certificateNumber,clientName," 
-                        	+ "clientEnglishName,bankName,share" colNm=4/>
+							 fieldStr="id,bankCode,bankName,accountType,brattr,certificateType,blacklistType,"+ 
+	        			  "share,valid,del,approve,certificateNumber,clientName,clientEnglishName,validDate,"+
+	        			  "blacklistedDate,blacklistedOperator,blacklistedReason,unblacklistedDate,unblacklistedOperator,"+
+	        			  "unblacklistedReason,createDate,lastModifyDate,lastModifyOperator,remarks" colNm=4/>
 					</div>
 				</@CommonQueryMacro.FloatWindow>	
 			</td>

@@ -11,44 +11,77 @@
 	<PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-国际黑名单列表" perfetch="15" />
 
 	<Fields>
-		<Field id="id" desc="黑名单编号" edittype="text" datatype="string" status="F" xpath="/id" />
+		<Field id="id" desc="黑名单编号" edittype="text" datatype="string" status="F" xpath="/id" readonly="true" />
+
 		<Field id="blacklistType" desc="名单性质" status="F" readonly="true" translated="LIST:0,白名单;1,灰名单;2,黑名单" require="false"
 			edittype="select" method="None" primary="false" type="String" xpath="/blacklistType" />
-		<Field id="sanCode" desc="制裁/官方名单关联的编码值'" edittype="text" datatype="string" status="F" xpath="/sanCode" />
-		<Field id="sanName" desc="制裁/官方名单名称" edittype="text" datatype="string" status="F" xpath="/sanName" />
+
+		<Field id="sanCode" desc="制裁/官方名单关联的编码值'" edittype="text" datatype="string" status="F" xpath="/sanCode"
+			readonly="true" />
+
+		<Field id="sanName" desc="制裁/官方名单名称" edittype="text" datatype="string" status="F" xpath="/sanName" readonly="true" />
+
 		<Field id="accountType" desc="账户代号" status="F" readonly="true" translated="LIST:I,对公客户;C,对私客户;" require="false"
 			edittype="select" method="None" primary="true" type="String" xpath="accountType" />
+
 		<Field id="certificateType" desc="证件种类" status="F" readonly="true" translated="DATA_DIC.21" require="false"
 			edittype="select" method="None" primary="true" type="String" xpath="/certificateType" />
-		<Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" status="F" xpath="/certificateNumber" />
-		<Field id="clientName" desc="客户名字" edittype="text" datatype="string" status="F" xpath="/clientName" />
-		<Field id="clientEnglishName" desc="英文名字" edittype="text" datatype="string" status="F" xpath="/clientEnglishName" />
 
-		<Field id="nationality" desc="国籍" edittype="text" datatype="string" status="F" xpath="/nationality" />
-		<Field id="birthday" desc="出生日期" edittype="text" status="F" datatype="date" xpath="/birthday" />
-		<Field id="birthCountry" desc="出生地" edittype="text" datatype="string" status="F" xpath="/birthCountry" />
+		<Field id="certificateNumber" desc="证件号码" edittype="text" datatype="string" status="F" xpath="/certificateNumber"
+			readonly="true" />
+
+		<Field id="clientName" desc="客户名字" edittype="text" datatype="string" status="F" xpath="/clientName" readonly="true" />
+
+		<Field id="clientEnglishName" desc="英文名字" edittype="text" datatype="string" status="F" xpath="/clientEnglishName"
+			readonly="true" />
+
+		<Field id="nationality" desc="国籍" edittype="text" datatype="string" status="F" xpath="/nationality" readonly="true" />
+
+		<Field id="birthday" desc="出生日期" edittype="text" status="F" datatype="date" xpath="/birthday" readonly="true" />
+
+		<Field id="birthCountry" desc="出生地" edittype="text" datatype="string" status="F" xpath="/birthCountry" readonly="true" />
+
 		<Field id="gender" desc="性别" status="N" readonly="true" translated="LIST:1,男;2,女" require="false" edittype="select"
 			method="None" primary="false" type="String" xpath="/gender" />
-		<Field id="lastOccupation" desc="职业" edittype="text" datatype="string" status="F" xpath="/lastOccupation" />
-		<Field id="residenceCountry" desc="居住地" edittype="text" datatype="string" status="F" xpath="/residenceCountry" />
+
+		<Field id="lastOccupation" desc="职业" edittype="text" datatype="string" status="F" xpath="/lastOccupation"
+			readonly="true" />
+
+		<Field id="residenceCountry" desc="居住地" edittype="text" datatype="string" status="F" xpath="/residenceCountry"
+			readonly="true" />
+
 		<Field id="politicians" desc="是否外国政要" status="N" edittype="select" method="None" primary="false" type="String"
-			default="" tip="是否外国政要" translated="LIST:T,是;F,否" xpath="/politicians" />
+			default="" tip="是否外国政要" translated="LIST:T,是;F,否" xpath="/politicians" readonly="true" />
 
 		<Field id="valid" desc="有效状态" status="N" readonly="true" translated="LIST:T,有效;F,无效" require="false" edittype="select"
-			method="None" primary="false" type="String" xpath="/valid" />
+			method="None" primary="false" type="String" xpath="/valid" readonly="true" />
+
 		<Field id="del" desc="是否删除" status="N" edittype="select" method="None" primary="false" type="String" default=""
-			tip="是否删除" translated="LIST:T,不删除;F,删除" xpath="/del" />
-		<Field id="validDate" desc="有效期" edittype="text" status="F" datatype="date" xpath="/validDate" />
+			tip="是否删除" translated="LIST:T,不删除;F,删除" xpath="/del" readonly="true" />
+
+		<Field id="validDate" desc="有效期" edittype="text" status="F" datatype="date" xpath="/validDate" readonly="true" />
+
 		<Field id="operateState" desc="操作状态" status="N" require="false" edittype="select" datatype="string" method="None"
-			readonly="true" primary="true" type="st" translated="DATA_DIC.3001" default="" xpath="/operateState" tip="" />
-		<Field id="filler1" desc="备用字段1" edittype="text" datatype="string" status="N" xpath="/filler1" />
-		<Field id="filler2" desc="备用字段2" edittype="text" datatype="string" status="N" xpath="/filler2" />
-		<Field id="filler3" desc="备用字段3" edittype="text" datatype="string" status="N" xpath="/filler3" />
-		<Field id="filler4" desc="备用字段4" edittype="text" datatype="string" status="N" xpath="/filler4" />
-		<Field id="createDate" desc="建立日期" edittype="text" datatype="date" status="N" xpath="/createDate" />
-		<Field id="lastModifyDate" desc="最后修改时间" edittype="text" datatype="date" status="N" xpath="/lastModifyDate" />
-		<Field id="lastModifyOperator" desc="最后修改用户" edittype="text" datatype="string" status="N" xpath="/lastModifyOperator" />
-		<Field id="remarks" desc="备注" edittype="textarea" datatype="string" status="N" xpath="/remarks" />
+			readonly="true" primary="true" type="st" translated="DATA_DIC.3001" default="" xpath="/operateState" tip="" readonly="true" />
+
+		<Field id="filler1" desc="备用字段1" edittype="text" datatype="string" status="N" xpath="/filler1" readonly="true" />
+
+		<Field id="filler2" desc="备用字段2" edittype="text" datatype="string" status="N" xpath="/filler2" readonly="true" />
+
+		<Field id="filler3" desc="备用字段3" edittype="text" datatype="string" status="N" xpath="/filler3" readonly="true" />
+
+		<Field id="filler4" desc="备用字段4" edittype="text" datatype="string" status="N" xpath="/filler4" readonly="true" />
+
+		<Field id="createDate" desc="建立日期" edittype="text" datatype="date" status="N" xpath="/createDate" readonly="true" />
+
+		<Field id="lastModifyDate" desc="最后修改时间" edittype="text" datatype="date" status="N" xpath="/lastModifyDate"
+			readonly="true" />
+
+		<Field id="lastModifyOperator" desc="最后修改用户" edittype="text" datatype="string" status="N" xpath="/lastModifyOperator"
+			readonly="true" />
+
+		<Field id="remarks" desc="备注" edittype="textarea" datatype="string" status="N" xpath="/remarks" readonly="true" />
+
 		<Field id="opr" desc="操作" status="N" method="None" xpath="" primary="true" type="" default="" tip="操作" require="" />
 	</Fields>
 
