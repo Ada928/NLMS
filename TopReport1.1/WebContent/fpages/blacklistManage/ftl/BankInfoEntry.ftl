@@ -15,6 +15,17 @@
 				fieldStr="brno,brname,lock,opr" width="100%"/><br />
 			</td>
 		</tr>
+		<tr>
+	      	<td colspan="2">
+	      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="100%" resize="true" defaultZoom="normal" minimize="false"
+					maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
+	      			<div align="center">
+	      				<@CommonQueryMacro.Group id="group1" label="银行信息详情" width="100%" height="100%"
+	        			  fieldStr="brno,brname,lock" colNm=4/>
+	      			</div>
+	     		</@CommonQueryMacro.FloatWindow>	
+	  		</td>
+  		</tr>
 		<tr align="center" style="display: none">
 			<td><@CommonQueryMacro.Button id= "btDel" /></td>
 			<td><@CommonQueryMacro.Button id= "btModify" /></td>
@@ -102,7 +113,7 @@
 
 	//展示对比功能的js
 	function datatable1_brno_onRefresh(cell, value, record) {
-		if (record != null) {
+		 if (record != null) {
 			var sta = record.getValue("st");
 			var id = record.getValue("brcode");
 			var brno = record.getValue("brno");
@@ -110,12 +121,14 @@
 					+ sta + "')\">" + brno + "</a>";
 		} else {
 			cell.innerHTML = ""
-		}
+		} 
 	}
 	function showDetail(id, sta) {
-		locate(id);
-		btDetail.click();
+		//locate(id);
+		//btDetail.click();
+		subwindow_signWindow.show();
 	}
+	
 	function btStatus_onClickCheck(button) {
 		var status = BankInfoEntry_dataset.getValue("status");
 		if (status == '0') {
@@ -135,6 +148,15 @@
 	function btStatus_postSubmit(button) {
 		alert("设置成功");
 		flushCurrentPage();
+	}
+	
+	//关浮动窗口,释放dataset
+	function signWindow_floatWindow_beforeClose(subwindow) {
+		BankInfoEntry_dataset.cancelRecord();
+		return true;
+	}
+	function signWindow_floatWindow_beforeHide(subwindow) {
+		return signWindow_floatWindow_beforeClose(subwindow);
 	}
 
 	//刷新当前页

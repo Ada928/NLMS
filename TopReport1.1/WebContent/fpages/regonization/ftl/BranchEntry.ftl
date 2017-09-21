@@ -121,7 +121,7 @@
 		paramMap.put("action", "detail");
 		paramMap.put("flag", "0");
 		loadPageWindows("partWin", "机构管理",
-				"/fpages/regonization/ftl/branchManageDetail.ftl", paramMap,
+				"/fpages/regonization/ftl/BranchManageDetail.ftl", paramMap,
 				"winZone");
 	}
 

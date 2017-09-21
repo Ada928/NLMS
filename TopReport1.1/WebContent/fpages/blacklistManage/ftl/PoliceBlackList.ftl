@@ -19,6 +19,17 @@
 				width="100%" hasFrame="true"/>
 		</td>
 	</tr>
+	<tr>
+	    <td colspan="2">
+	      	<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="100%" resize="true" defaultZoom="normal" minimize="false"
+					maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
+	      		<div align="center">
+	      			<@CommonQueryMacro.Group id="group1" label="公安部黑名单详情" width="100%" height="100%"
+	        			  fieldStr="id,accountType,certificateType,certificateNumber,clientName,clientEnglishName,lastModifyOperator" colNm=4/>
+	      		</div>
+	     	</@CommonQueryMacro.FloatWindow>	
+	  	</td>
+  	</tr>
 	<tr align="center" style="display:none">
 		<td><@CommonQueryMacro.Button id="btDel" /></td>
 		<td><@CommonQueryMacro.Button id="btModify" /></td>
@@ -74,10 +85,23 @@
         }
     }
 
-    function showDetail(id) {
+   /*  function showDetail(id) {
        //locate(id);
        btDetail.click();
-    }
+    } */
+    function showDetail(id) {
+		//locate(id);
+		//btDetail.click();
+		subwindow_signWindow.show();
+	}
+	//关浮动窗口,释放dataset
+	function signWindow_floatWindow_beforeClose(subwindow) {
+		PoliceBlackList_dataset.cancelRecord();
+		return true;
+	}
+	function signWindow_floatWindow_beforeHide(subwindow) {
+		return signWindow_floatWindow_beforeClose(subwindow);
+	}
 
     function btAdd_onClick(id) {
 		//locate(id);

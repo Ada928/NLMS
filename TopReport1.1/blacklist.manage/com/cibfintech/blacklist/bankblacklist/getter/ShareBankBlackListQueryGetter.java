@@ -76,7 +76,7 @@ public class ShareBankBlackListQueryGetter extends BaseGetter {
 		list.add("T");
 		hql.append(" order by bblt.createDate desc");
 
-		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageSize, pageIndex, hql.toString(), list);
+		PageQueryResult pqr = BankBlackListService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString(), list);
 
 		String message = "国际黑名单的查询:partyId=" + partyId + ",certificateType=" + qCertificateType + ",certificateNumber=" + qCertificateNumber;
 		recordOperateLog(globalinfo, pqr.getTotalCount(), message);

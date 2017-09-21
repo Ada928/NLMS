@@ -1053,18 +1053,18 @@
 id                 页面视图ID(不允许为空)
 label              group显示标题(不允许为空)
 fieldStr           显示字段(不允许为空                  值格式为：field1_id,field2_id,...)
-colNm              显示烈数(允许为空  默认为4          值格式为：2*n)
+colNm              显示列数(允许为空  默认为4          值格式为：2*n)
 printabled         是否能够打印(允许为空，默认为false)
 -->
 <#--modified by wangpeng 20091117 BMS-2274 外边框可设置  begin-->
-<#macro Group id label fieldStr colNm="4" showGroupLine="true" printabled="false">
+<#macro Group id label fieldStr colNm="4" showGroupLine="true" printabled="false" width="" height="">
 	<#if showGroupLine=="true">
 		<div name='${id}' class="search"><h5><@bean.message key="${label}"/></h5>
 	</#if>
 	
-	<div id="${id}"  extra="datagridgroup"  dataset="${CommonQueryConfig.getId()}_dataset"  style="padding:0px;width:100%;height:100%;">
+	<div id="${id}"  extra="datagridgroup"  dataset="${CommonQueryConfig.getId()}_dataset" style="padding:0px;width:${width};height:${height}">
 	  <form id="${id}" method="post" novalidate>
-			<table width="100%" class="grouptable" height="100%">
+			<table width="100%" class="grouptable" height="">
 				<#nested>
 			 	<#assign fieldMap = CommonQueryConfig.fields>
 	 		 	<#assign field = "">
@@ -1088,8 +1088,9 @@ printabled         是否能够打印(允许为空，默认为false)
 								<#assign fColSpan=colNm?number >
 							</#if>
 						</#if>
+						
 						<#if restCol?number lt fColSpan?number >
-							<tr id="${_headlabel}_TR" fieldId="${_headlabel}">
+					<tr id="${_headlabel}_TR" fieldId="${_headlabel}">
 							<#assign restCol=colNm?number >
 						</#if>
 	
@@ -1099,33 +1100,33 @@ printabled         是否能够打印(允许为空，默认为false)
 							 <label>${_headlabel}</label>
 						</td>
 						<td colspan="${fColSpan?number - 1}" class="datatd" nowrap valign="center" fieldId="${_headlabel}">
-						<#list _allfields as foo >
-							<#if foo?starts_with("'") && foo?ends_with("'") >
-								<#if require="true">
-									<font color="red">*</font>
-								</#if>
-								<label>${foo?substring(1,foo?length-1)}</label>
-							<#else>
-								<#assign _bar=foo >
-								<#assign _width="" >
-								<#if foo?ends_with("]")>
-									<#assign _index=foo?index_of("[") >
-									<#assign _width=foo?substring(_index+1,foo?length-1) >
-									<#assign _bar=foo?substring(0,_index) >
-								</#if>
-	
-								<#assign field = CommonQueryConfig.getField(_bar) >
-								<#assign edittype  = field.getAnyValue("edittype")?default("")>
-								<#assign defaultValue = field.getAnyValue("defaultvalue")?default("")>
-								<#assign targetDataSet = CommonQueryConfig.getId() + "_dataset">
-								<#assign require  = field.getAnyValue("require")?default("false")>
-								<#if edittype == "hidden">
-									<@htmlEditType.hiddenelement id=_bar value=defaultValue targetDataset=targetDataSet componentId=id required=require/>
+							<#list _allfields as foo >
+								<#if foo?starts_with("'") && foo?ends_with("'") >
+									<#if require="true">
+										<font color="red">*</font>
+									</#if>
+									<label>${foo?substring(1,foo?length-1)}</label>
 								<#else>
-									<@SingleField fId=_bar componentId=id _width=_width />
+									<#assign _bar=foo >
+									<#assign _width="" >
+									<#if foo?ends_with("]")>
+										<#assign _index=foo?index_of("[") >
+										<#assign _width=foo?substring(_index+1,foo?length-1) >
+										<#assign _bar=foo?substring(0,_index) >
+									</#if>
+		
+									<#assign field = CommonQueryConfig.getField(_bar) >
+									<#assign edittype  = field.getAnyValue("edittype")?default("")>
+									<#assign defaultValue = field.getAnyValue("defaultvalue")?default("")>
+									<#assign targetDataSet = CommonQueryConfig.getId() + "_dataset">
+									<#assign require  = field.getAnyValue("require")?default("false")>
+									<#if edittype == "hidden">
+										<@htmlEditType.hiddenelement id=_bar value=defaultValue targetDataset=targetDataSet componentId=id required=require/>
+									<#else>
+										<@SingleField fId=_bar componentId=id _width=_width />
+									</#if>
 								</#if>
-							</#if>
-						</#list>
+							</#list>
 						</td>
 			    	    <#assign restCol = restCol?number - fColSpan?number >
 					<#else>
@@ -1207,14 +1208,14 @@ printabled         是否能够打印(允许为空，默认为false)
 	  			 rowSpan=rowSpan vAlign=vAlign/>
 	    	<#break>
 	    <#case "date">
-	    <#if datatype=="timestamp">
-	    	  <@htmlEditType.timestamp id=fId componentId=componentId label=label targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
-	  			readonly=readonly  rowSpan=rowSpan vAlign=vAlign placeholder=placeholder editable=editable/>
-	    <#else>
-				<#assign comparemode=field.getAnyValue("comparemode")?default("")>
-	  			<@htmlEditType.date id=fId componentId=componentId label=label  targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
-	  			readonly=readonly rowSpan=rowSpan vAlign=vAlign placeholder=placeholder comparemode=comparemode editable=editable/>
-	    </#if>
+		    <#if datatype=="timestamp">
+		    	  <@htmlEditType.timestamp id=fId componentId=componentId label=label targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
+		  			readonly=readonly  rowSpan=rowSpan vAlign=vAlign placeholder=placeholder editable=editable/>
+		    <#else>
+					<#assign comparemode=field.getAnyValue("comparemode")?default("")>
+		  			<@htmlEditType.date id=fId componentId=componentId label=label  targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
+		  			readonly=readonly rowSpan=rowSpan vAlign=vAlign placeholder=placeholder comparemode=comparemode editable=editable/>
+		    </#if>
 	    	<#break>
 	    <#case "predate">
 				<#assign comparemode=field.getAnyValue("comparemode")?default("")>
@@ -1261,7 +1262,7 @@ printabled         是否能够打印(允许为空，默认为false)
 	    <#case "file">
 	    	<@htmlEditType.file  lable=label id=fId  targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan  rowSpan=rowSpan vAlign=vAlign/>
 	    	<#break>
-	      <#case "password">
+	    <#case "password">
 	    	<@htmlEditType.password label=label id=fId  componentId=componentId targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan  rowSpan=rowSpan vAlign=vAlign readonly=readonly required=required/>
 	    	<#break>
 	    <#--added by wangpeng 20091203 radio支持 begin-->
@@ -2142,7 +2143,8 @@ drag                               是否可拖动 true;false(default);
 	<#if label=="" >
 		<#assign title = "&nbsp;">
 	</#if>
-	<div id="${id}" extra="floatwindow" title="${title}" style="width:${twidth};height:${theight}" shadow="true" resizable="${resize}" minimizable="${minimize}" maximizable="${maximize}" collapsible="${collapsible}" inline="${inline}" draggable="${drag}" show="${show}">
+	<div id="${id}" extra="floatwindow" title="${title}" style="width:${twidth};height:${theight}" shadow="true" resizable="${resize}" 
+		minimizable="${minimize}" maximizable="${maximize}" collapsible="${collapsible}" inline="${inline}" draggable="${drag}" show="${show}">
 		<#nested>
 	</div>
 	<script type="text/javascript">

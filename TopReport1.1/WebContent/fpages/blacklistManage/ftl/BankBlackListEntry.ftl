@@ -30,6 +30,18 @@
 		 	</@CommonQueryMacro.GroupBox>
 		 </td>
 	</tr>
+  	<tr>
+	    <td colspan="2">
+	      	<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="100%" resize="true" defaultZoom="normal" minimize="false"
+					maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
+	      		<div align="center">
+	      			<@CommonQueryMacro.Group id="group1" label="银行信息详情" width="100%" height="100%"
+	        			  fieldStr="id,blacklistType,accountType,certificateType,certificateNumber,clientName,"+
+										"clientEnglishName,approve,share" colNm=4/>
+	      		</div>
+	     	</@CommonQueryMacro.FloatWindow>	
+	  	</td>
+  	</tr>
 </table>
 </@CommonQueryMacro.CommonQuery>
 
@@ -57,8 +69,22 @@
 		}
 	}
 
-	function showDetail(id) {
+	/* function showDetail(id) {
 		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=entry&blacklistid="+id;
+	} */
+	
+	function showDetail(id) {
+		//locate(id);
+		//btDetail.click();
+		subwindow_signWindow.show();
+	}
+	//关浮动窗口,释放dataset
+	function signWindow_floatWindow_beforeClose(subwindow) {
+		BankBlackListEntry_dataset.cancelRecord();
+		return true;
+	}
+	function signWindow_floatWindow_beforeHide(subwindow) {
+		return signWindow_floatWindow_beforeClose(subwindow);
 	}
 
 	//刷新当前页
