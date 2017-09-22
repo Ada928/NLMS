@@ -41,7 +41,7 @@ public class BankBlackListAutoValidChange {
 				NsBankBlackListAuditState auditState = auditStates.get(0);
 				auditState.setEditUserID(SystemConstant.AUTO_OPERATER);
 				auditState.setAuditType(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.EDIT.value);
-				auditState.setAuditState(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDED.value);
+				auditState.setAuditState(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDING.value);
 				auditState.setEditDate(new Date());
 
 				blacklistService.modOrAddEntity(bblt);
