@@ -27,12 +27,13 @@
 }
 </style>
 <%
-	List funcList = ReportCommonService.getInstance().getFunctionInfoListByFavt(session);
+	List funcList = ReportCommonService.getInstance()
+			.getFunctionInfoListByFavt(session);
 %>
 </head>
 <body bgcolor="white" style="margin: 0px;">
 	<center>
-		<div style="padding: 3px;text-align: center;">
+		<div style="padding: 3px; text-align: center;">
 			<%
 				if (funcList.size() > 0) {
 					for (int i = 0; i < funcList.size(); i++) {
@@ -46,7 +47,8 @@
 				}
 				} else {
 			%>
-			<div style="font-size: 12px;color: green;padding: 5px;text-align: center;border: 1px solid #ededed;cursor: default;"
+			<div
+				style="font-size: 12px; color: green; padding: 5px; text-align: center; border: 1px solid #ededed; cursor: default;"
 				onmouseover="this.style.backgroundColor='#ffffbe'" onmouseout="this.style.backgroundColor=''" id="msg"
 				onclick="window.parent.maxFrm(0)">«Îµ„ª˜…Ë÷√ ’≤ÿº–</div>
 			<%

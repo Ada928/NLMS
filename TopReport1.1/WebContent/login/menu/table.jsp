@@ -6,7 +6,7 @@
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <title>无标题文档</title>
 </head>
-<body style="background:#eaf1f6">
+<body style="background: #eaf1f6">
 	<form id="form1" name="form1" method="post" action="">
 		<table border="0" cellpadding="0" cellspacing="0" class="ftable_cnt">
 			<tr class="title">
@@ -20,10 +20,9 @@
 			</tr>
 			<tr class="forms">
 				<td class="rgt">交易类型</td>
-				<td><label>
-						<select name="select">
-						</select>
-					</label></td>
+				<td><label> <select name="select">
+					</select>
+				</label></td>
 				<td>&nbsp;</td>
 				<td><img src="images/btn_search.gif" class="hand" alt="" /></td>
 			</tr>

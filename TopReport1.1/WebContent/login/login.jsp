@@ -21,19 +21,22 @@
 	function func_check()
 	{
 		<%if (request.getAttribute("REQ_MSG") != null) {
-			String errMsg = ((String) request.getAttribute("REQ_MSG")).replace("\n", "[n]");
-		%>
-			var errMsg = "<%=errMsg%>";
-			alert(errMsg.replace("[n]", "\n"));
-		<%}%>
+					String errMsg = ((String) request.getAttribute("REQ_MSG"))
+							.replace("\n", "[n]");%>
+			var errMsg = "<%=errMsg%>
+	";
+		alert(errMsg.replace("[n]", "\n"));
+<%}%>
 	
-		<%UserSessionInfo userInfo = (UserSessionInfo) session.getAttribute("USER_SESSION_INFO");
-		if (userInfo != null) {
-			out.println("document.loginForm.userName.value = \""+ userInfo.getTlrNo() + "\";");
-			out.println("document.loginForm.userName.readOnly=true;");
-			out.println("focus(document.loginForm.passWord);");
-		}%>
-		return;
+<%UserSessionInfo userInfo = (UserSessionInfo) session
+						.getAttribute("USER_SESSION_INFO");
+				if (userInfo != null) {
+					out.println("document.loginForm.userName.value = \""
+							+ userInfo.getTlrNo() + "\";");
+					out.println("document.loginForm.userName.readOnly=true;");
+					out.println("focus(document.loginForm.passWord);");
+				}%>
+	return;
 	}
 
 	function submitForm() {
@@ -48,7 +51,8 @@
 			document.getElementById("mistake").innerHTML = "密码不能为空，请再次输入！";
 			return false;
 		}
-		document.loginForm.passWord.value = new _B().encode(document.loginForm.passWord.value);
+		document.loginForm.passWord.value = new _B()
+				.encode(document.loginForm.passWord.value);
 		document.loginForm.submit();
 	}
 	//modify by chenjinghui 2010-5-20 HTEBANK-11 begin
@@ -67,7 +71,8 @@
 	}
 </script>
 </head>
-<body onload="func_check()" style="background: #2a6fa6 url('<%=request.getContextPath()%>/login/images/bg.gif');height:100%; margin:0 auto; width:100%;">
+<body onload="func_check()"
+	style="background: #2a6fa6 url('<%=request.getContextPath()%>/login/images/bg.gif');height:100%; margin:0 auto; width:100%;">
 	<table cellpadding="0" cellspacing="0" border="0" height="100%" width="100%">
 		<tr style="line-height: 26px; height: 26px">
 			<td align="right"
@@ -80,11 +85,10 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td  align="center"><div id="mistake" style="text-align: left; width: 360px; color: red"/> </td>
+			<td align="center"><div id="mistake" style="text-align: left; width: 360px; color: red" /></td>
 		</tr>
 		<tr height="100%">
-			<td valign="top" align="center">
-				<html:form action="/custlogin.do" target="_top" focus="brCodeName">
+			<td valign="top" align="center"><html:form action="/custlogin.do" target="_top" focus="brCodeName">
 					<input type="hidden" name="brCode" id="brCode" />
 					<table cellpadding="0" cellspacing="0" border="0" width="595px" height="210xp"
 						background="<%=request.getContextPath()%>/login/images/bg_panel_login.png">
@@ -117,7 +121,7 @@
 									</tr>
 									<tr height="35px">
 										<td width="37px"><img src="<%=request.getContextPath()%>/login/images/icon_user.gif" alt="" /></td>
-										<td width="100%"><input type="text" name="userName" id="userName" value="" placeholder="请输入登录用户名"
+										<td width="100%"><input type="text" name="userName" id="userName" value="" placeholder="请输入登录帐号"
 											onkeypress="nextEvent('password');" class="inputcls" /></td>
 										<td width="9px;"><img src="<%=request.getContextPath()%>/login/images/corner_ipt_login.gif" alt="" /></td>
 									</tr>
@@ -144,8 +148,7 @@
 							</td>
 						</tr>
 					</table>
-				</html:form>
-			</td>
+				</html:form></td>
 		</tr>
 		<tr height="30px">
 			<td></td>
@@ -189,7 +192,7 @@
 		}
 
 		window.onload = function() {
-			setBrCode("","");
+			setBrCode("", "");
 			func_check();
 		}
 	</script>

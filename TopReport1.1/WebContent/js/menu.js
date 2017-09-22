@@ -11,9 +11,9 @@
 ////////////////////////////////////////////////////////////////////////////////////
 // menuCache
 //
-/* add by zhaozhiguo ÊÇ·ñÒÔpost·½Ê½½«funcid´«µ½ºóÌ¨ begin*/
+/* add by zhaozhiguo ï¿½Ç·ï¿½ï¿½ï¿½postï¿½ï¿½Ê½ï¿½ï¿½funcidï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ begin*/
 var Menu_postFuncId = true;
-/* add by zhaozhiguo ÊÇ·ñÒÔpost·½Ê½½«funcid´«µ½ºóÌ¨ end*/
+/* add by zhaozhiguo ï¿½Ç·ï¿½ï¿½ï¿½postï¿½ï¿½Ê½ï¿½ï¿½funcidï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ end*/
 var menuCache = {
 	_count:		0,
 	_idPrefix:	"-menu-cache-",
@@ -1201,7 +1201,7 @@ MenuItem.prototype.dispatchAction = function () {
 				winFeatures+="top=0,left=0,height=" +winHeight + ",width=" + winWidth ;				
 				blank = window.open( this.action, this.target, winFeatures);
 			} else {
-				/* add by zhaozhiguo ÊÇ·ñÒÔpost·½Ê½½«funcid´«µ½ºóÌ¨ begin*/
+				/* add by zhaozhiguo ï¿½Ç·ï¿½ï¿½ï¿½postï¿½ï¿½Ê½ï¿½ï¿½funcidï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ begin*/
 				if (Menu_postFuncId) {
 					try {
 //						var form = document.getElementById("Menu_Form");
@@ -1227,11 +1227,11 @@ MenuItem.prototype.dispatchAction = function () {
 				} else {
 					blank = window.open( this.action, this.target );
 				}
-				/* add by zhaozhiguo ÊÇ·ñÒÔpost·½Ê½½«funcid´«µ½ºóÌ¨ begin*/
+				/* add by zhaozhiguo ï¿½Ç·ï¿½ï¿½ï¿½postï¿½ï¿½Ê½ï¿½ï¿½funcidï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ begin*/
 			}
 		}
 		else
-			//±¾ÏµÍ³Ä¬ÈÏÒ³Ãæ
+			//ï¿½ï¿½ÏµÍ³Ä¬ï¿½ï¿½Ò³ï¿½ï¿½
 			//parent.frames[1].main.location=this.action;
 			document.location.href = this.action;
 	}
@@ -1606,6 +1606,11 @@ MenuBar.prototype.detachEvents = function () {
 	this._htmlElement.detachEvent( "onmousedown", this.eventListeners.onmousedown );
 	this._document.detachEvent( "onkeydown", this.eventListeners.onkeydown );
 	window.detachEvent( "onunload", this.eventListeners.onunload );
+//	this._htmlElement.detachEventListener( "onmouseover",	this.eventListeners.onmouseover,false );
+//	this._htmlElement.detachEventListener( "onmouseout", this.eventListeners.onmouseout,false );
+//	this._htmlElement.detachEventListener( "onmousedown", this.eventListeners.onmousedown,false );
+//	this._document.detachEventListener( "onkeydown", this.eventListeners.onkeydown,false );
+//	window.detachEventListener( "onunload", this.eventListeners.onunload,false );
 }
 
 MenuBar.prototype.hookupMenu = function ( element ) {
@@ -1632,8 +1637,14 @@ MenuBar.prototype.hookupMenu = function ( element ) {
 	element.attachEvent( "onmouseover",	this.eventListeners.onmouseover );
 	element.attachEvent( "onmouseout", this.eventListeners.onmouseout );
 	element.attachEvent( "onmousedown", this.eventListeners.onmousedown );
-	this._document.attachEvent( "onkeydown", this.eventListeners.onkeydown );
+	element.attachEvent( "onkeydown", this.eventListeners.onunload );
 	window.attachEvent( "onunload", this.eventListeners.onunload );
+	
+//	this._document.addEventListener( "onmouseover",	this.eventListeners.onmouseover, false );
+//	this._document.addEventListener( "onmouseout", this.eventListeners.onmouseout, false );
+//	this._document.addEventListener( "onmousedown", this.eventListeners.onmousedown, false );
+//	this._document.addEventListener( "onkeydown", this.eventListeners.onkeydown, false );
+//	window.addEventListener( "onunload", this.eventListeners.onunload, false );
 };
 
 function getMenuItemElement( el ) {

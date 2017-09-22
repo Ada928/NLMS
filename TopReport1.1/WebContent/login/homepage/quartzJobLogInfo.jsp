@@ -55,10 +55,10 @@
 						<%
 							if (bean.getRemark() == null) {
 						%>&nbsp; <%
-						 	} else {
-						 %><%=bean.getRemark()%> <%
-						 	}
-						 %>
+ 	} else {
+ %><%=bean.getRemark()%> <%
+ 	}
+ %>
 					</td>
 					<%
 						}

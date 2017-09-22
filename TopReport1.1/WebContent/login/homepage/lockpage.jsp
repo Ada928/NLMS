@@ -33,7 +33,7 @@
 					<tr>
 						<td valign="top" align="center" style="padding: 15px"><img src="<%=path%>/login/homepage/image/info.gif"
 							border="0" /></td>
-						<td style="padding-left: 10px;line-height: 28px;font-size: 12px;">
+						<td style="padding-left: 10px; line-height: 28px; font-size: 12px;">
 							<div>
 								工作日期：<%=DateUtil.dateToString(globalInfo.getTxdate())%></div>
 							<div style="color: green">当前工作日期已执行‘数据处理完成确认’操作，业务已被锁定，将于下一工作日开启！</div>

@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<title>统一申报平台TopReport</title>
+<title>黑名单管理系统</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/templets/ui/themes/blue/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/templets/ui/themes/icon.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/templets/ui/js/jquery-1.8.2.min.js"></script>
@@ -20,44 +20,32 @@
 </style>
 </head>
 
-<body scroll="no" style="overflow:hidden;padding:0px;marggin:0px;">
+<body scroll="no" style="overflow: hidden; padding: 0px; marggin: 0px;">
 	<div id="northDiv" region="north" class="index-north" border="false">
 		<table id="headtbl" cellpadding="0" cellspacing="0" width="100%" height="0px" border="0">
 			<tr valign="top" id="topIndex">
 				<td class="banner-left" rowspan=2></td>
 				<td class="banner-right" nowrap="nowrap">
 					<ul class="small-tool">
-						<li id="li1">
-							<a href="javascript:void(0)" title="返回主页" onclick="showHome()"></a>
-						</li>
+						<li id="li1"><a href="javascript:void(0)" title="返回主页" onclick="showHome()"></a></li>
 						<!-- <li id="li2" addtr="navg">
 							<a href="javascript:void(0)" title="功能切换" onclick="changNavg()" addtr="navg"></a>
 						</li> -->
-						<li id="li5">
-							<a href="javascript:void(0)" title="个人密码修改" onclick="goChangePwd()"></a>
-						</li>
-						<li id="li3">
-							<a href="javascript:void(0)" title="精简菜单" onclick="topHidden()"></a>
-						</li>
-						<li id="li4">
-							<a href="javascript:void(0)" title="退出" onclick="JavaScript:sExit()"></a>
-						</li>
+						<li id="li5"><a href="javascript:void(0)" title="个人密码修改" onclick="goChangePwd()"></a></li>
+						<li id="li3"><a href="javascript:void(0)" title="精简菜单" onclick="topHidden()"></a></li>
+						<li id="li4"><a href="javascript:void(0)" title="退出" onclick="JavaScript:sExit()"></a></li>
 					</ul>
 				</td>
 			</tr>
 			<tr>
 				<td><%@include file="menu/easymenu.jsp"%></td>
-				<td id="topMenu" style="display:none;white-space:nowrap;" nowrap="nowrap">
+				<td id="topMenu" style="display: none; white-space: nowrap;" nowrap="nowrap">
 					<ul class="small-tool">
 						<!-- <li id="li2">
 							<a href="javascript:void(0)" title="功能切换" onclick="changNavg()" addtr="navg"></a>
 						</li> -->
-						<li id="li3">
-							<a href="javascript:void(0)" title="还原" onclick="topShow()"></a>
-						</li>
-						<li id="li4">
-							<a href="javascript:void(0)" title="退出" onclick="JavaScript:sExit()"></a>
-						</li>
+						<li id="li3"><a href="javascript:void(0)" title="还原" onclick="topShow()"></a></li>
+						<li id="li4"><a href="javascript:void(0)" title="退出" onclick="JavaScript:sExit()"></a></li>
 					</ul>
 				</td>
 			</tr>
@@ -122,12 +110,12 @@
 		function sExit() {
 			var bl = window.confirm("确定要退出系统吗?");
 			if (bl) {
-				window.open("<%=request.getContextPath()%>/custlogout.do", "_top");
+				window.open("<%=request.getContextPath()%>/custlogout.do","_top");
 			} else {
 				return false;
 			}
 		}
-	
+
 		function doWork(funId, title, url) {
 			if (url == 'null') {
 				dts.add({
@@ -145,16 +133,14 @@
 				});
 			}
 		}
-	
+
 		$(function() {
-			$("#_MenuBar a").hover(
-				function(e) {
-					var src = e.target || window.event.srcElement;
-					var rName = src.outerText || src.textContent;
-					_rootName = rName;
-				},
-				function() {}
-			);
+			$("#_MenuBar a").hover(function(e) {
+				var src = e.target || window.event.srcElement;
+				var rName = src.outerText || src.textContent;
+				_rootName = rName;
+			}, function() {
+			});
 			$('#northDiv').css('overflow', 'visible');
 			$('#northDiv').parent().css('overflow', 'visible');
 			dts.add({
@@ -166,7 +152,7 @@
 			dts.setClosable('home', false);
 			_resize();
 		});
-	
+
 		function _resize() {
 			$('#northDiv').width($(this)._outerWidth());
 			$('#northDiv').height($("#headtbl").height());

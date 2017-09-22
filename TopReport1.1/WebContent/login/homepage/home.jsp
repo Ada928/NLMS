@@ -73,14 +73,15 @@
 	response.setHeader("Cache-Control", "no-cache");
 	response.setHeader("Pragma", "no-cache");
 	response.setDateHeader("Expires", 0);
-	GlobalInfo globalInfo = (GlobalInfo) session.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
+	GlobalInfo globalInfo = (GlobalInfo) session
+			.getAttribute(GlobalInfo.KEY_GLOBAL_INFO);
 	GlobalInfo.setCurrentInstance(globalInfo);
 	String txdate = DateUtil.dateToNumber(globalInfo.getTxdate());
 %>
 </head>
 
 <body scroll="no" class="bodycls" bgcolor="#ffffff">
-	<div id="maxWin" style="border: 1px solid #aed0ea;display: none;"></div>
+	<div id="maxWin" style="border: 1px solid #aed0ea; display: none;"></div>
 	<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
 		<tr height="100%">
 			<td width="15%">
@@ -221,19 +222,23 @@
 	</table>
 	<script type="text/javascript">
 		function refFrm(frmnm) {
-			window.setTimeout("document.getElementById('" + frmnm + "').contentWindow.location.reload()", 0);
+			window.setTimeout("document.getElementById('" + frmnm
+					+ "').contentWindow.location.reload()", 0);
 		}
-	
+
 		function maxFrm(seq) {
 			var mw = document.getElementById("maxWin");
 			if (mw.style.display == "none") {
 				var tmp = document.getElementById("td_frame" + seq).innerHTML;
 				if (tmp != null && tmp.length > 0) {
-					tmp = tmp.replace("home_max.gif", "home_min.gif").replace("最大化", "还原");
+					tmp = tmp.replace("home_max.gif", "home_min.gif").replace(
+							"最大化", "还原");
 					if (seq == 0) {
-						tmp = tmp.replace("/login/homepage/home_favorites.jsp", "/fpages/management/jsp/favorites_set.jsp");
+						tmp = tmp.replace("/login/homepage/home_favorites.jsp",
+								"/fpages/management/jsp/favorites_set.jsp");
 					}
-					var str = "<table cellpadding='0' cellspacing='0' border='0' width='100%' height='100%'><tr>" + tmp + "</tr></table>";
+					var str = "<table cellpadding='0' cellspacing='0' border='0' width='100%' height='100%'><tr>"
+							+ tmp + "</tr></table>";
 					mw.innerHTML = str;
 					mw.style.display = "";
 				}
@@ -245,14 +250,13 @@
 				}
 			}
 		}
-	
+
 		function SaveAs(url) {
 			var a = document.getElementById("filedownloadfrm");
 			a.src = url;
 			return false;
 		}
-	
-	
+
 		function changeSel(obj, idx, url) {
 			var nodes = obj.parentNode.childNodes;
 			for (var i = 0; i < nodes.length; i++) {
@@ -261,7 +265,7 @@
 				}
 			}
 			obj.className = "tabletoptd1div";
-	
+
 			document.getElementById("frame" + idx).src = url;
 		}
 	</script>

@@ -19,10 +19,11 @@ GlobalInfo.setCurrentInstance(globalInfo);
 String startNode = globalInfo.getMenuCode();
 
 %>
-<script language="javascript" src="<%=path %>/templets/lib/salert.js"></script>
+<%-- <script language="javascript" src="<%=path %>/templets/lib/salert.js"></script>
+<script language="javascript" src="<%=path %>/templets/lib/dwr.js"></script>
+ --%>
 <script type='text/javascript' src='<%=path %>/dwr/util.js'> </script>
 <script type='text/javascript' src='<%=path %>/dwr/engine.js'> </script>
-<script language="javascript" src="<%=path %>/templets/lib/dwr.js"></script>
 <script type="text/javascript" src="<%=path%>/js/xmlUtil.js"></script>
 <script type="text/javascript" src="<%=path%>/js/tree.js"></script>
 <script type="text/javascript" src="<%=path%>/js/xtree.js"></script>
