@@ -69,6 +69,12 @@ public class SystemConstant {
 	public static final String BLACKLIST_YES = "1"; // 是黑名单
 	public static final String BLACKLIST_NO = "0"; // 不是黑名单
 
+	public static final String BLACKLIST_TYPE_WHITE = "0"; // 白名单
+	public static final String BLACKLIST_TYPE_GREY = "1"; // 灰名单
+	public static final String BLACKLIST_TYPE_BLACK = "2"; // 黑名单
+
+	public static final String AUTO_OPERATER = "00000000"; // 自动更新用户 ID
+
 	/**
 	 * 大事记状态
 	 */
