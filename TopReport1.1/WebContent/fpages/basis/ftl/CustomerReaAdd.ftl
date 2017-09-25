@@ -1,87 +1,87 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="�ͻ���Ϣ">
+<@CommonQueryMacro.page title="客户信息">
 <@CommonQueryMacro.CommonQuery id="CustomerReaInfo" init="true" insertOnEmpty="true">
 <table>
 	<tr><#--MOD  BY HUANGCHENG   2012-8-22 BEGIN-->
-		<td><@CommonQueryMacro.GroupBox id="CustomerReaInfo" label="�ͻ���Ϣ����" expand="true">
+		<td><@CommonQueryMacro.GroupBox id="CustomerReaInfo" label="客户信息增加" expand="true">
 			<table frame=void class="grouptable" width="900px">
                <tr>
-                   <td colspan="2" align="center" nowrap class="labeltd" >�ͻ��� </td>
+                   <td colspan="2" align="center" nowrap class="labeltd" >客户号 </td>
                    <td class="datatd" ><@CommonQueryMacro.SingleField fId="id"/> </td>
   
 	                	
-                   <td rowspan="3" align="right" nowrap class="labeltd" > ֤<br>��<br>��<br>Ϣ </td>
-                   <td colspan="1" align="center" nowrap class="labeltd" >֤������ </td>
+                   <td rowspan="3" align="right" nowrap class="labeltd" > 证<br>件<br>信<br>息 </td>
+                   <td colspan="1" align="center" nowrap class="labeltd" >证件号码 </td>
                    <td class="datatd"><@CommonQueryMacro.SingleField fId="paperCode"/>  </td>
  
                </tr>
                <tr>
-                   <td colspan="2" align="center" nowrap class="labeltd" >�ͻ����� </td> 
+                   <td colspan="2" align="center" nowrap class="labeltd" >客户类型 </td> 
                    <td class="datatd"><@CommonQueryMacro.SingleField fId="customerType"/> </td>
     
-	               <td colspan="1"  align="center" nowrap class="labeltd" >֤������ </td>
+	               <td colspan="1"  align="center" nowrap class="labeltd" >证件类型 </td>
 		           <td class="datatd"><@CommonQueryMacro.SingleField fId="paperType"/></td>
    
                </tr>
                <tr>
-                   <td colspan="2" align="center" nowrap class="labeltd" >�ͻ����� </td>
+                   <td colspan="2" align="center" nowrap class="labeltd" >客户名称 </td>
                    <td class="datatd" ><@CommonQueryMacro.SingleField fId="customerName"/> </td>
     
-		           <td colspan="1"  align="center" nowrap class="labeltd" >֤�����ͱ�ע </td>
+		           <td colspan="1"  align="center" nowrap class="labeltd" >证件类型备注 </td>
 		           <td class="datatd" ><@CommonQueryMacro.SingleField fId="paperTypeMemo"/> </td>
     
                </tr>
                <tr>
-                   <td colspan="2" align="center" nowrap class="labeltd" >Ӣ������</td>
+                   <td colspan="2" align="center" nowrap class="labeltd" >英文名称</td>
                    <td class="datatd" ><@CommonQueryMacro.SingleField fId="customerEnname"/> </td>
     
-		           <td rowspan="3" align="center" nowrap class="labeltd" >�Թ�<br>�ͻ�<br>����<br>��Ϣ </td>
-		           <td align="center" nowrap class="labeltd" >�Թ��ͻ��������������� </td>
+		           <td rowspan="3" align="center" nowrap class="labeltd" >对公<br>客户<br>法人<br>信息 </td>
+		           <td align="center" nowrap class="labeltd" >对公客户法定代表人姓名 </td>
 		           <td class="datatd" ><@CommonQueryMacro.SingleField fId="corporationRepname"/>  </td>
     
                </tr>
                <tr>
-                   <td colspan="2" align="center" nowrap class="labeltd" >��ϵ�绰 </td>
+                   <td colspan="2" align="center" nowrap class="labeltd" >联系电话 </td>
                    <td class="datatd" ><@CommonQueryMacro.SingleField fId="telephone"/> </td>
 
-		           <td align="center" nowrap class="labeltd" >�Թ��ͻ���������������֤������ </td>
+		           <td align="center" nowrap class="labeltd" >对公客户法定代表人身份证件号码 </td>
 		           <td class="datatd" ><@CommonQueryMacro.SingleField fId="corporationPaperId"/>  </td>
     
               </tr>
                <tr>
-                   <td colspan="2" align="center" nowrap class="labeltd" >������ϵ��ʽ </td>
+                   <td colspan="2" align="center" nowrap class="labeltd" >其他联系方式 </td>
                    <td class="datatd" ><@CommonQueryMacro.SingleField fId="customerOthers"/> </td>
     
-		           <td align="center" nowrap class="labeltd" >�Թ��ͻ���������������֤������</td>
+		           <td align="center" nowrap class="labeltd" >对公客户法定代表人身份证件类型</td>
 		           <td class="datatd" ><@CommonQueryMacro.SingleField fId="corporationPaperType"/>   </td>
    
               </tr>
                <tr>
-                   <td colspan="2" align="center" nowrap class="labeltd" > �ͻ����� </td>
+                   <td colspan="2" align="center" nowrap class="labeltd" > 客户国籍 </td>
                    <td class="datatd" ><@CommonQueryMacro.SingleField fId="customerNationality"/> </td>
     
-		           <td colspan="2" align="center" nowrap class="labeltd" >�Թ��ͻ�ע���ʽ�</td>
+		           <td colspan="2" align="center" nowrap class="labeltd" >对公客户注册资金</td>
 		           <td class="datatd" ><@CommonQueryMacro.SingleField fId="registrationMoney"/> </td>
     
               </tr>
                <tr>
-                   <td colspan="2" align="center" nowrap class="labeltd" >�ͻ���ַ </td>
+                   <td colspan="2" align="center" nowrap class="labeltd" >客户地址 </td>
                    <td class="datatd" ><@CommonQueryMacro.SingleField fId="customerAddress"/> </td>
    
-		           <td colspan="2" align="center" nowrap class="labeltd" >��˽ְҵ�Թ���ҵ���� </td>
+		           <td colspan="2" align="center" nowrap class="labeltd" >对私职业对公行业类型 </td>
 		           <td class="datatd" ><@CommonQueryMacro.SingleField fId="vocationType"/>   </td>
    
               </tr>
                <tr>
-                   <td colspan="2"  align="center" nowrap class="labeltd" >���� </td>
+                   <td colspan="2"  align="center" nowrap class="labeltd" >机构 </td>
                    <td class="datatd" ><@CommonQueryMacro.SingleField fId="orgId"/> </td>
    
-		           <td colspan="2"  align="center" nowrap class="labeltd" >֤ȯ�����ջ�����־ </td>
+		           <td colspan="2"  align="center" nowrap class="labeltd" >证券、保险机构标志 </td>
 		           <td class="datatd" ><@CommonQueryMacro.SingleField fId="stockFlag"/>  </td>
     
               </tr>
                <tr>
-                   <td colspan="2"  align="center" nowrap class="labeltd" >����֤�����ͱ�ע </td>
+                   <td colspan="2"  align="center" nowrap class="labeltd" >法人证件类型备注 </td>
                    <td class="datatd" ><@CommonQueryMacro.SingleField fId="farenPaperTypeMemo"/></td>
               </tr>
            </table>
@@ -98,7 +98,7 @@
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript"> 
 var op = "${RequestParameters["op"]?default('')}";
-//��ҳ���ʼ����֮����Ե��ø÷���ִ����Ҫ�����Ĳ�
+//当页面初始化完之后可以调用该方法执行需要处理的操
 function initCallGetter_post(dataset) {
 	if ("new" == op) {
 	} else {
@@ -157,18 +157,18 @@ function btSave_onClickCheck(button) {
 	var vocationTypeToInt = parseInt(CustomerReaInfo_dataset.getValue("vocationType").substring(0,1));
 	if(customerTypeToInt ==2){
 		if(paperTypeToInt+1 != customerTypeToInt ){
-			alert("��˽���͵Ŀͻ�����ƥ��Թ��ͻ�֤������");
+			alert("对私类型的客户不能匹配对公客户证件类型");
 			return false;
 		}else if(vocationTypeToInt+1 !=customerTypeToInt ){
-			alert("��˽ְҵ�Թ���ҵ������ͻ�����["+customerType+"]��ƥ��");
+			alert("对私职业对公行业类型与客户类型["+customerType+"]不匹配");
 			return false;
 		}
 	}else{
 		if(paperTypeToInt ==1){
-			alert("�Թ����͵Ŀͻ�����ƥ���˽�ͻ�֤������");
+			alert("对公类型的客户不能匹配对私客户证件类型");
 			return false;
 		}else if(vocationTypeToInt ==1){
-			alert("��˽ְҵ�Թ���ҵ������ͻ�����["+customerType+"]��ƥ��");
+			alert("对私职业对公行业类型与客户类型["+customerType+"]不匹配");
 			return false;
 		} 
 	}

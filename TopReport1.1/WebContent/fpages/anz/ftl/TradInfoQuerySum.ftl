@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro >
-<@CommonQueryMacro.page title="交易信息概要查询">
+<@CommonQueryMacro.page title="浜ゆ槗淇℃伅姒傝鏌ヨ">
 <@CommonQueryMacro.CommonQueryTab id="TradInfoQueryTabs" navigate="true" currentTab="Button2">
    <table align="left">
    <tr>
@@ -10,7 +10,7 @@
 
 			<tr>
    			<td valign="top" colspan="2">
-   			<@CommonQueryMacro.Interface id="interface" label="交易信息概要查询" colNm=4 showButton="true" />
+   			<@CommonQueryMacro.Interface id="interface" label="浜ゆ槗淇℃伅姒傝鏌ヨ" colNm=4 showButton="true" />
         	</td>
        		 </tr>
       			<tr>
@@ -19,7 +19,7 @@
       			    <@CommonQueryMacro.PagePilot id="pagePilot1" maxpagelink="9" pageCache="false" showArrow="true"/>
       			  </td>
 					<td align="right" style="display:none">
-	    				<a href="javascript:btNewClick();"> 新增</a>
+	    				<a href="javascript:btNewClick();"> 鏂板</a>
 	       			</td>
 
       			</tr>

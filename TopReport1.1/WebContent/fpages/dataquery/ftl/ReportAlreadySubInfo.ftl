@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="»ØÖ´´íÎóÐÅÏ¢">
+<@CommonQueryMacro.page title="å›žæ‰§é”™è¯¯ä¿¡æ¯">
 <table width="900px" align="left">
 	<tr>
 		<td width="100%">
 			<@CommonQueryMacro.CommonQuery id="ReportDataPackageDetailEntryErr" init="true" submitMode="current" navigate="false">
-				<@CommonQueryMacro.Group id="group1" label="±¨ËÍÎÄ¼þÐÅÏ¢" fieldStr="apptype,currentFileName1,repTm,repErrType"/>
+				<@CommonQueryMacro.Group id="group1" label="æŠ¥é€æ–‡ä»¶ä¿¡æ¯" fieldStr="apptype,currentFileName1,repTm,repErrType"/>
 			</@CommonQueryMacro.CommonQuery>
 		</td>
 	</tr>

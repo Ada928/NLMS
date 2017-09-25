@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="Ñ¡Ôñ">
+<@CommonQueryMacro.page title="é€‰æ‹©">
 	<@CommonQueryMacro.CommonQuery id="JshDfDsLoadPage" init="false" submitMode="selected" navigate="false" >
 		<table align="left">
 			<tr>
 				<td>
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -56,13 +56,13 @@
 		}
 
 	}
-	/*ÉèÖÃ»ù´¡ĞÅÏ¢*/
+	/*è®¾ç½®åŸºç¡€ä¿¡æ¯*/
 	function setBasicValueToParent(localDs,parentDs) {
-		//ÉèÖÃfiller1Îª¼ÇÂ¼±àºÅÒÔ¼°ÆäËûÇ©Ô¼ĞÅÏ¢×Ö¶Î
+		//è®¾ç½®filler1ä¸ºè®°å½•ç¼–å·ä»¥åŠå…¶ä»–ç­¾çº¦ä¿¡æ¯å­—æ®µ
 		parentDs.setValue("filler1",localDs.getValue("id"));
 		parentDs.setValue("rptno",localDs.getValue("rptno"));
 		parentDs.setValue("buscode",localDs.getValue("buscode"));
-		//ÏÂÀ­¿ò
+		//ä¸‹æ‹‰æ¡†
 		parentDs.setValue2("custype",localDs.getValue("custype"));
 		parentDs.setValue("custcod",localDs.getValue("custcod"));
 		parentDs.setValue("idcode",localDs.getValue("idcode"));
@@ -72,7 +72,7 @@
 		parentDs.setValue("oppuser",localDs.getValue("oppuser"));
 		parentDs.setValue("oppbank",localDs.getValue("oppbank"));
 		parentDs.setValue("fcyamt",localDs.getValue("fcyamt"));
-		//ÏÂÀ­¿ò
+		//ä¸‹æ‹‰æ¡†
 		parentDs.setValue2("fcyccy",localDs.getValue("fcyccy"));
 		parentDs.setValue("fcyccyName",localDs.getValue("fcyccyName"));
 		

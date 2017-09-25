@@ -1,4 +1,4 @@
-<#--Ìá½»Ò³Ãæ²âÊÔ-->
+<#--æäº¤é¡µé¢æµ‹è¯•-->
 <#import "/templets/common/common.ftl" as com>
 <#import "/templets/commonQuery/CommonQueryMacro.ftl" as CQMaco>
 <#import "/templets/commonQuery/CQElement.ftl" as htmlelement>
@@ -108,7 +108,7 @@ _t.tag="";
 				<td align="center">
 				<#if CommonQueryConfig.getAnyValue("async")?default('') == "true">
 					<button extra="button" type="button" id="btnSubmit" autoForm="autoformCustomerInfo"
-					defaultOperation="asyncSubmit" submitManager="sm1">²éÑ¯</button>
+					defaultOperation="asyncSubmit" submitManager="sm1">æŸ¥è¯¢</button>
 					<script language="javascript">
 					<!--
 						var element = document.getElementById("btnSubmit");
@@ -119,7 +119,7 @@ _t.tag="";
                     </script>
 				<#else>
 				<button extra="button" type="button" id="btnSubmit" autoForm="autoformCustomerInfo"
-					defaultOperation="submitform" submitManager="sm1">²éÑ¯</button>
+					defaultOperation="submitform" submitManager="sm1">æŸ¥è¯¢</button>
 					<script language="javascript">
 					<!--
 						var sm1=_createSubmitManager("sm1");
@@ -146,5 +146,5 @@ _t.tag="";
 </#escape>
 ${CommonQueryConfig.script?default('')}
 <script language="javascript">
-	wrnAlert("Ã»ÓĞ·ûºÏ²éÑ¯Ìõ¼şµÄ¼ÇÂ¼");
+	wrnAlert("æ²¡æœ‰ç¬¦åˆæŸ¥è¯¢æ¡ä»¶çš„è®°å½•");
 </script>

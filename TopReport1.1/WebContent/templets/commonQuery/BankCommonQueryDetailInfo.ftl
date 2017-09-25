@@ -1,11 +1,11 @@
-<#--提交页面测试-->
+<#--鎻愪氦椤甸潰娴嬭瘯-->
 <#import "/templets/commonQuery/CommonQueryMacroNew.ftl" as CommonQuery>
 
 <@CommonQuery.CommonQuery>
 		<table align="left">
 			<tr>
         		<td align="left" valign="top">
-        			<@CommonQuery.Group id="group1" label="基本信息" fieldStr=""  colNm=4/>
+        			<@CommonQuery.Group id="group1" label="鍩烘湰淇℃伅" fieldStr=""  colNm=4/>
         		</td>
       		</tr>
       		<tr>

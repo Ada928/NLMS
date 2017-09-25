@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="Ã¿ÈÕºÚÃûµ¥²éÑ¯Í³¼Æ">
+<@CommonQueryMacro.page title="æ¯æ—¥é»‘åå•æŸ¥è¯¢ç»Ÿè®¡">
 <@CommonQueryMacro.CommonQuery id="QueryDailyLogCount" init="true" submitMode="selected" navigate="false">
 <table align="left" width="80%">
     <tr>
 		<td>
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" colNm=4 />
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4 />
 		</td>
 	</tr>
     <tr>

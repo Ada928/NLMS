@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="审核路线绑定">
+<@CommonQueryMacro.page title="瀹℃牳璺嚎缁戝畾">
 <table>
 <tr>
 <td>
@@ -13,13 +13,13 @@
 			</td>
       		<td valign="top">
 				<FIELDSET style="width:200">
-					<LEGEND>判断条件</LEGEND>
+					<LEGEND>鍒ゆ柇鏉′欢</LEGEND>
 					<@CommonQueryMacro.Group id="group1" showGroupLine="false" label=" " fieldStr="typeClassName,maxAmt" colNm=2/>
 					<table>
 						<tr>
 							<td align="left">
-								<input type="radio" name="type" id="rd_brclass" checked="true" value="1" onclick="freshData()">指定机构级别&nbsp;&nbsp;
-								<input type="radio" name="type" id="rd_brcode" value="2" onclick="freshData()">指定机构
+								<input type="radio" name="type" id="rd_brclass" checked="true" value="1" onclick="freshData()">鎸囧畾鏈烘瀯绾у埆&nbsp;&nbsp;
+								<input type="radio" name="type" id="rd_brcode" value="2" onclick="freshData()">鎸囧畾鏈烘瀯
 							</td>
 						</tr>
 						<tr>
@@ -37,7 +37,7 @@
 		  		<table>
 		        	<tr>
 		  				 <td>
-							<@CommonQueryMacro.Group id ="group2" label="绑定" showGroupLine="true" fieldStr="brhClass,workflowRoleName" colNm=2/>
+							<@CommonQueryMacro.Group id ="group2" label="缁戝畾" showGroupLine="true" fieldStr="brhClass,workflowRoleName" colNm=2/>
 	      				</td>
       				</tr>
 	        		<tr>
@@ -173,7 +173,7 @@ function workflowParamBinding_dataset_flushDataPost(dataset){
 	SelectTempCreditinfo_dataset.flushData();
 	typeClassName_DropDownDataset.insertRecord();
 	typeClassName_DropDownDataset.setValue("data", "0000");
-	typeClassName_DropDownDataset.setValue("dataName", "不限");
+	typeClassName_DropDownDataset.setValue("dataName", "涓嶉檺");
 	var v_rec = SelectTempCreditinfo_dataset.firstUnit;
 	while(v_rec){
 		typeClassName_DropDownDataset.insertRecord();
@@ -212,7 +212,7 @@ function freshData(){
 }
 
 function btnSave_postSubmit(){
-	alert("配置成功");
+	alert("閰嶇疆鎴愬姛");
 	workflowParamBinding_dataset.flushData(workflowParamBinding_dataset.pageIndex);
 }
 

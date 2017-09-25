@@ -7,66 +7,66 @@
 <table>
 	<tr>
 		<td>
-		<@CommonQueryMacro.GroupBox id="BiAccountModAdd" label="¿Í»§ÕË»§ÐÅÏ¢Î¬»¤" expand="true">
+		<@CommonQueryMacro.GroupBox id="BiAccountModAdd" label="å®¢æˆ·è´¦æˆ·ä¿¡æ¯ç»´æŠ¤" expand="true">
 			<table frame=void class="grouptable" width="900px">
 				<tr>
-					<td rowspan="5"  align="center" nowrap class="labeltd" >¿Í<br>»§<br>ÕË<br>»§<br>ÐÅ<br>Ï¢</td>
-					<td align="center" nowrap class="labeltd" >¿Í»§ÕËºÅ </td>
+					<td rowspan="5"  align="center" nowrap class="labeltd" >å®¢<br>æˆ·<br>è´¦<br>æˆ·<br>ä¿¡<br>æ¯</td>
+					<td align="center" nowrap class="labeltd" >å®¢æˆ·è´¦å· </td>
                     <td class="datatd" ><@CommonQueryMacro.SingleField fId="id"/> </td>
                     
-                    <td rowspan="5"  align="center" nowrap class="labeltd" >¿Í<br>»§<br>ÕË<br>»§<br>ÐÅ<br>Ï¢</td>
+                    <td rowspan="5"  align="center" nowrap class="labeltd" >å®¢<br>æˆ·<br>è´¦<br>æˆ·<br>ä¿¡<br>æ¯</td>
                     
-                    <td align="center" nowrap class="labeltd" >¿ª»§Ê±¼ä </td>
+                    <td align="center" nowrap class="labeltd" >å¼€æˆ·æ—¶é—´ </td>
                     <td class="datatd" ><@CommonQueryMacro.SingleField fId="openTime"/> </td>
                    
 				</tr>
 				<tr>
-				    <td align="center" nowrap class="labeltd" >¿Í»§ºÅ </td>
+				    <td align="center" nowrap class="labeltd" >å®¢æˆ·å· </td>
                     <td class="datatd" ><@CommonQueryMacro.SingleField fId="customerId"/> </td>
                     
 				   
-                     <td align="center" nowrap class="labeltd" >Ïú»§Ê±¼ä </td>
+                     <td align="center" nowrap class="labeltd" >é”€æˆ·æ—¶é—´ </td>
                     <td class="datatd" ><@CommonQueryMacro.SingleField fId="closeTime"/> </td>
                    
 				</tr>
 				<tr>
 				
-                     <td align="center" nowrap class="labeltd" >ÕËºÅÀàÐÍ </td>
+                     <td align="center" nowrap class="labeltd" >è´¦å·ç±»åž‹ </td>
                     <td class="datatd" ><@CommonQueryMacro.SingleField fId="accountType"/> </td>
                     
-                      <td align="center" nowrap class="labeltd" >¿ª»§µ¥Î»´úÂë </td>
+                      <td align="center" nowrap class="labeltd" >å¼€æˆ·å•ä½ä»£ç  </td>
                     <td class="datatd" ><@CommonQueryMacro.SingleField fId="enCode"/> </td>
                    
 				</tr>
 				<tr>
 				
-				    <td align="center" nowrap class="labeltd" >±ÒÖÖ </td>
+				    <td align="center" nowrap class="labeltd" >å¸ç§ </td>
                     <td class="datatd" ><@CommonQueryMacro.SingleField fId="accountCur"/> </td>
                     
                     
 				  
                     
-                    <td align="center" nowrap class="labeltd" >¿ª»§µ¥Î»Ãû³Æ </td>
+                    <td align="center" nowrap class="labeltd" >å¼€æˆ·å•ä½åç§° </td>
                     <td class="datatd" ><@CommonQueryMacro.SingleField fId="chineseName"/> </td>
 				</tr>
 				<tr>
-				    <td align="center" nowrap class="labeltd" >ÊÇ·ñNRAÕË»§</td>
+				    <td align="center" nowrap class="labeltd" >æ˜¯å¦NRAè´¦æˆ·</td>
                     <td class="datatd" ><@CommonQueryMacro.SingleField fId="isnraFlag"/> </td>
-				    <td align="center" nowrap class="labeltd" >±ä¸üºË×¼¼þ±àºÅ </td>
+				    <td align="center" nowrap class="labeltd" >å˜æ›´æ ¸å‡†ä»¶ç¼–å· </td>
                     <td class="datatd" ><@CommonQueryMacro.SingleField fId="fileNumber"/> </td>
                     
                    
 				</tr>
 				
 				<tr>
-                   <td colspan="2"  align="center" nowrap class="labeltd" >´û·½·¢Éú¶î </td>
+                   <td colspan="2"  align="center" nowrap class="labeltd" >è´·æ–¹å‘ç”Ÿé¢ </td>
                    <td class="datatd" ><@CommonQueryMacro.SingleField fId="debits"/> </td>
    
-		           <td  colspan="2"   align="center" nowrap class="labeltd" >½è·½·¢Éú¶î </td>
+		           <td  colspan="2"   align="center" nowrap class="labeltd" >å€Ÿæ–¹å‘ç”Ÿé¢ </td>
 		           <td class="datatd" ><@CommonQueryMacro.SingleField fId="credits"/>  </td>
                 </tr>
                 <tr>
-                   <td colspan="2"  align="center" nowrap class="labeltd" >Óà¶î </td>
+                   <td colspan="2"  align="center" nowrap class="labeltd" >ä½™é¢ </td>
                    <td class="datatd" ><@CommonQueryMacro.SingleField fId="balance"/> </td>
                 </tr>
 			</table>
@@ -83,7 +83,7 @@
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript">
 var op = "${RequestParameters["op"]?default('')}";
-//µ±Ò³Ãæ³õÊ¼»¯ÍêÖ®ºó¿ÉÒÔµ÷ÓÃ¸Ã·½·¨Ö´ÐÐÐèÒª´¦ÀíµÄ²Ù×÷
+//å½“é¡µé¢åˆå§‹åŒ–å®Œä¹‹åŽå¯ä»¥è°ƒç”¨è¯¥æ–¹æ³•æ‰§è¡Œéœ€è¦å¤„ç†çš„æ“ä½œ
 	function initCallGetter_post(dataset) {
 	if ("new" == op) {
 	} else {

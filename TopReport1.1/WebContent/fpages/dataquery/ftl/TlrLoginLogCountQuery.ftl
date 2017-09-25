@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÓÃ»§µÇÂ¼ÈÕÖ¾´ÎÊýÊ±¼ä¶Î²éÑ¯">
+<@CommonQueryMacro.page title="ç”¨æˆ·ç™»å½•æ—¥å¿—æ¬¡æ•°æ—¶é—´æ®µæŸ¥è¯¢">
 <@CommonQueryMacro.CommonQueryTab id="tlrLoginLogQueryTabs" navigate="false" currentTab="TlrLoginLogCountQuery">
 <@CommonQueryMacro.CommonQuery id="TlrLoginLogCountQuery" init="true" submitMode="selected" navigate="false">
 
 <table align="left" width="100%">
     <tr>
 		<td>
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" colNm=4 />
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4 />
 		</td>
 	</tr>
 

@@ -1,41 +1,41 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign op=RequestParameters["op"]?default("")>
-<@CommonQueryMacro.page title="ÕË»§ÊÕÖ§ÓàĞÅÏ¢">
+<@CommonQueryMacro.page title="è´¦æˆ·æ”¶æ”¯ä½™ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQuery id="bopAccDsRecordInOutAdd" init="false" submitMode="all" navigate="false" >
 		<table width="800px">
 			<tr>
 				<td>
-					<@CommonQueryMacro.GroupBox id="guoup1" label="»ù´¡ĞÅÏ¢" expand="true">
+					<@CommonQueryMacro.GroupBox id="guoup1" label="åŸºç¡€ä¿¡æ¯" expand="true">
 						<table frame=void class="grouptable" width="100%">
 							<tr>
-								<td align="center" nowrap class="labeltd"> ÕÊºÅ </td>
+								<td align="center" nowrap class="labeltd"> å¸å· </td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="accountno"/><input extra="button" style='width=25px;height=17px;' onclick="loadAccount();" type='button' value='...'/></td>
-								<td rowspan="3" align="center" nowrap class="labeltd" >¿ª»§Ö÷Ìå</td>
-								<td align="center" nowrap class="labeltd"> ÀàĞÍ </td>
+								<td rowspan="3" align="center" nowrap class="labeltd" >å¼€æˆ·ä¸»ä½“</td>
+								<td align="center" nowrap class="labeltd"> ç±»å‹ </td>
 								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="amtype" /></td>
 							</tr>
 							<tr>
-								<td align="center" nowrap class="labeltd" > ±ÒÖÖ </td>
+								<td align="center" nowrap class="labeltd" > å¸ç§ </td>
 								<td nowrap class="datatd" > <@CommonQueryMacro.SingleField fId="currencyCode" /></td>
-								<td align="center" nowrap class="labeltd" > ´úÂë </td>
+								<td align="center" nowrap class="labeltd" > ä»£ç  </td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="enCode" /></td>
 							</tr>
 							<tr>
-								<td align="center" nowrap class="labeltd" > ÕË»§ĞÔÖÊ´úÂë </td>
+								<td align="center" nowrap class="labeltd" > è´¦æˆ·æ€§è´¨ä»£ç  </td>
 								<td nowrap class="datatd" > <@CommonQueryMacro.SingleField fId="accountType" /></td>
-								<td align="center" nowrap class="labeltd" > Ãû³Æ </td>
+								<td align="center" nowrap class="labeltd" > åç§° </td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="enName" /></td>
 							</tr>
 							<tr>
-								<td align="center" nowrap class="labeltd" > ÕË»§Àà±ğ </td>
+								<td align="center" nowrap class="labeltd" > è´¦æˆ·ç±»åˆ« </td>
 								<td nowrap class="datatd" > <@CommonQueryMacro.SingleField fId="accountCata" /></td>
-								<td colspan="2" align="center" nowrap class="labeltd" > Íâ»ã¾ÖÅú¼şºÅ/±¸°¸±íºÅ/ÒµÎñ±àºÅ  </td>
+								<td colspan="2" align="center" nowrap class="labeltd" > å¤–æ±‡å±€æ‰¹ä»¶å·/å¤‡æ¡ˆè¡¨å·/ä¸šåŠ¡ç¼–å·  </td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="fileNumber" /></td>
 							</tr>
 							<tr>
-								<td align="center" nowrap class="labeltd" width="25%"> ÏŞ¶îÀàĞÍ  </td>
+								<td align="center" nowrap class="labeltd" width="25%"> é™é¢ç±»å‹  </td>
 								<td class="datatd"  width="25%"> <@CommonQueryMacro.SingleField fId="limitType" /></td>
-								<td colspan="2" align="center" nowrap class="labeltd"  width="25%"> ÕË»§ÏŞ¶î </td>
+								<td colspan="2" align="center" nowrap class="labeltd"  width="25%"> è´¦æˆ·é™é¢ </td>
 								<td class="datatd"  width="25%"> <@CommonQueryMacro.SingleField fId="accountLimit" /></td>
 							</tr>
 						</table>
@@ -44,22 +44,22 @@
 			</tr>
 			<tr>
 				<td>
-					<@CommonQueryMacro.GroupBox id="guoup2" label="±ä¶¯ĞÅÏ¢" expand="true">
+					<@CommonQueryMacro.GroupBox id="guoup2" label="å˜åŠ¨ä¿¡æ¯" expand="true">
 						<table frame=void class="grouptable" width="100%">
 							<tr>
-								<td  align="center" nowrap class="labeltd"  width="25%"> ÒµÎñ·¢ÉúÈÕÆÚ  </td>
+								<td  align="center" nowrap class="labeltd"  width="25%"> ä¸šåŠ¡å‘ç”Ÿæ—¥æœŸ  </td>
 								<td class="datatd"  width="25%"> <@CommonQueryMacro.SingleField fId="dealDate" /></td>
-								<td align="center" nowrap class="labeltd"  width="25%"> ÕË»§Óà¶î </td>
+								<td align="center" nowrap class="labeltd"  width="25%"> è´¦æˆ·ä½™é¢ </td>
 								<td nowrap class="datatd"  width="25%"> <@CommonQueryMacro.SingleField fId="balance" /></td>
 							</tr>
 							<tr>
-								<td  align="center" nowrap class="labeltd"> µ±ÈÕ´û·½·¢Éú¶î  </td>
+								<td  align="center" nowrap class="labeltd"> å½“æ—¥è´·æ–¹å‘ç”Ÿé¢  </td>
 								<td class="datatd"> <@CommonQueryMacro.SingleField fId="credit" /></td>
-								<td align="center" nowrap class="labeltd"> µ±ÈÕ½è·½·¢Éú¶î </td>
+								<td align="center" nowrap class="labeltd"> å½“æ—¥å€Ÿæ–¹å‘ç”Ÿé¢ </td>
 								<td nowrap class="datatd"> <@CommonQueryMacro.SingleField fId="debit" /></td>
 							</tr>
 							<tr>
-								<td align="center" nowrap class="labeltd" width="25%"> ±¸×¢ </td>
+								<td align="center" nowrap class="labeltd" width="25%"> å¤‡æ³¨ </td>
 								<td class="datatd" colspan="3"> <@CommonQueryMacro.SingleField fId="remark2" /></td>
 							</tr>
 						</table>
@@ -85,15 +85,15 @@
 			bopAccDsRecordInOutAdd_dataset.setValue("dealDate", currentDate);
 		}
 
-		//µ¯³öÕË»§ĞÅÏ¢Ñ¡Ôñ¿ò
+		//å¼¹å‡ºè´¦æˆ·ä¿¡æ¯é€‰æ‹©æ¡†
 		function loadAccount(){
-			showPickup("ÕË»§ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/winloadpage/BopAccDsAccountLoadPage.ftl");
+			showPickup("è´¦æˆ·ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/winloadpage/BopAccDsAccountLoadPage.ftl");
 		}
 
 		function btSave_onClickCheck(button){
 			var accountno = bopAccDsRecordInOutAdd_dataset.getValue("accountno");
 			if (accountno.length == 0) {
-				alert("×Ö¶Î[ ÕÊºÅ ]µÄÄÚÈİ²»ÄÜÎª¿Õ£¡");
+				alert("å­—æ®µ[ å¸å· ]çš„å†…å®¹ä¸èƒ½ä¸ºç©ºï¼");
 				return false;
 			}
 			bopAccDsRecordInOutAdd_dataset.setParameter("op",op);
@@ -101,7 +101,7 @@
 		}
 
 		function btSave_postSubmit(button){
-			alert("±£´æ³É¹¦£¡");
+			alert("ä¿å­˜æˆåŠŸï¼");
 			closeWin(true);
 		}
 

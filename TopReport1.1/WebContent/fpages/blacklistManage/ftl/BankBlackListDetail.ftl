@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign reType="${RequestParameters['reType']?default('')}" />
-<@CommonQueryMacro.page title="ÉÌÐÐºÚÃûµ¥¹ÜÀí">
+<@CommonQueryMacro.page title="å•†è¡Œé»‘åå•ç®¡ç†">
 <@CommonQueryMacro.CommonQuery id="BankBlackListDetail" init="true" submitMode="all"  navigate="false">
 	<table align="left" width="100%">
       	<tr valign="top">
   			<td valign="center">
-  				<@CommonQueryMacro.Group id="group1" label="ÉÌÐÐºÚÃûµ¥¹ÜÀíÏêÏ¸ÐÅÏ¢" 
+  				<@CommonQueryMacro.Group id="group1" label="å•†è¡Œé»‘åå•ç®¡ç†è¯¦ç»†ä¿¡æ¯" 
   					fieldStr="id,bankCode,bankName,accountType,brattr,certificateType,blacklistType,share,valid,del,"+
 						"approve,certificateNumber,clientName,clientEnglishName,validDate,blacklistedDate,"+
 						"blacklistedOperator,blacklistedReason,unblacklistedDate,unblacklistedOperator,"+
@@ -34,12 +34,11 @@
 			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistEdit.ftl";
 		} else if(reType == "share"){
 			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistShare.ftl";
+		} else if(reType == "shareAll"){
+			window.location = "${contextPath}/fpages/blacklistManage/ftl/ShareBankBlacklistQuery.ftl";
 		}
  	}
 
-	//alert("hahha  " + _t1.pageSize);
-	//alert("hehe " + _t1.pageIndex);
- 	//alert(reType);
 </script>
 
 </@CommonQueryMacro.page>

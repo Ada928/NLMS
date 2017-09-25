@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro >
-<@CommonQueryMacro.page title="°ÄĞÂ·ÖÎö±¨±íÏÂÔØ">
+<@CommonQueryMacro.page title="æ¾³æ–°åˆ†ææŠ¥è¡¨ä¸‹è½½">
    <table align="left">
    <tr>
       <td>
@@ -9,7 +9,7 @@
 
 			<tr>
    			<td valign="top" colspan="2">
-   			<@CommonQueryMacro.Interface id="interface" label="±¨±í²éÑ¯ÏÂÔØ" colNm=4 showButton="true" />
+   			<@CommonQueryMacro.Interface id="interface" label="æŠ¥è¡¨æŸ¥è¯¢ä¸‹è½½" colNm=4 showButton="true" />
         	</td>
        		 </tr>
       			<tr>
@@ -29,17 +29,17 @@
    </table>
 <script language="javascript">
 
-//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function datatable1_opr_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			
-				cell.innerHTML="<center><a href=\"JavaScript:doDownload('"+value+"')\">ÏÂÔØ</a></center>";
+				cell.innerHTML="<center><a href=\"JavaScript:doDownload('"+value+"')\">ä¸‹è½½</a></center>";
 			
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 cell.innerHTML="&nbsp;";
 		}
 	}
-	//ÏÂÔØÎÄ¼ş
+	//ä¸‹è½½æ–‡ä»¶
 
 	function doDownload(id){
 		var path=_application_root + "/fileDownload.do?flag=0&filePath="+id;

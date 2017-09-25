@@ -75,7 +75,7 @@
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
-			<param-value>GBK</param-value>
+			<param-value>UTF-8</param-value>
 		</init-param>
 		<init-param>
 			<param-name>forceEncoding</param-name>
@@ -261,7 +261,7 @@
 		</init-param>
 		<init-param>
 			<param-name>default_encoding</param-name>
-			<param-value>GBK</param-value>
+			<param-value>UTF-8</param-value>
 		</init-param>
 		<init-param>
 			<param-name>number_format</param-name>

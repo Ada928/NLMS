@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="选择工作日期">
+<@CommonQueryMacro.page title="閫夋嫨宸ヤ綔鏃ユ湡">
 <@CommonQueryMacro.CommonQuery id="subfileworkdate" init="true" submitMode="allchange">
 	<table align="left">
       <tr valign="top">
   			<td valign="center">
-  			<@CommonQueryMacro.Group id ="group1" label="选择日期" fieldStr="newFileDate" colNm=2/>
+  			<@CommonQueryMacro.Group id ="group1" label="閫夋嫨鏃ユ湡" fieldStr="newFileDate" colNm=2/>
   			</td>
   		</tr>
   		<tr valign="top">

@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ÉóÅúÈ¨ÏŞÉèÖÃ">
+<@CommonQueryMacro.page title="å®¡æ‰¹æƒé™è®¾ç½®">
 <@CommonQueryMacro.CommonQuery id="parammng_AuthoritySet3" init="true" navigate="true" parameters="action=query">
 <table align="left">
 <tr>
@@ -18,7 +18,7 @@
 	<table align="left">
 			<tr>
        			<td rowspan="1"  valign="top"  width="500">
-        		<@CommonQueryMacro.Group id="group1" label="²Ù×÷Ô±ĞÅÏ¢" fieldStr="tlrno,bussType,bizTypeName,limitMaxamount" colNm=4/>
+        		<@CommonQueryMacro.Group id="group1" label="æ“ä½œå‘˜ä¿¡æ¯" fieldStr="tlrno,bussType,bizTypeName,limitMaxamount" colNm=4/>
         		</td>
       		</tr>
       		<tr>
@@ -85,12 +85,12 @@ function parammng_AuthoritySet3_dataset_afterScroll(dataset){
 	}
 }
 function btDelete_onClickcheck(button){
-	 	alert("Çë×¢Òâ±£´æÊı¾İ");
+	 	alert("è¯·æ³¨æ„ä¿å­˜æ•°æ®");
 }
 
 function btSave_postSubmit(button){
 		parammng_AuthoritySet3_dataset.flushData(parammng_AuthoritySet3_dataset.pageIndex);
-	 	alert("±£´æ³É¹¦");
+	 	alert("ä¿å­˜æˆåŠŸ");
 }
 
 function bizTypeName_DropDown_beforeOpen(dropdown){
@@ -99,7 +99,7 @@ function bizTypeName_DropDown_beforeOpen(dropdown){
 	SelectTempCreditinfo_DropDownDataset.flushData(0);
 	SelectTempCreditinfo_DropDownDataset.insertRecord("begin");
 	SelectTempCreditinfo_DropDownDataset.firstUnit.setValue("code", "0000");
-	SelectTempCreditinfo_DropDownDataset.firstUnit.setValue("name", "²»ÏŞ");
+	SelectTempCreditinfo_DropDownDataset.firstUnit.setValue("name", "ä¸é™");
 }
 </script>
 

@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="数据分析详细">
+<@CommonQueryMacro.page title="鏁版嵁鍒嗘瀽璇︾粏">
 <table width="95%" align="left">
 <tr>
 <td>
@@ -8,7 +8,7 @@
 	<table width="100%">
 		<tr>
 			<td valign="top" colspan="2">
-				<@CommonQueryMacro.Group id ="group1" label="数据分析明细信息" fieldStr="workDate,operTm,busiType,appType,detailRemark" colNm=4/>
+				<@CommonQueryMacro.Group id ="group1" label="鏁版嵁鍒嗘瀽鏄庣粏淇℃伅" fieldStr="workDate,operTm,busiType,appType,detailRemark" colNm=4/>
 			</td>
 		</tr>
 	</table>
@@ -18,7 +18,7 @@
 <tr>
 <td>
 <@CommonQueryMacro.CommonQuery id="executeResultDetail" init="true" submitMode="current" navigate="false">
-<FIELDSET name='interface2' style="padding:6px;"><LEGEND>&nbsp;分析记录详细&nbsp;</LEGEND>
+<FIELDSET name='interface2' style="padding:6px;"><LEGEND>&nbsp;鍒嗘瀽璁板綍璇︾粏&nbsp;</LEGEND>
 <table width="100%">
 	<tr>
     	<td><@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="10"/></td>

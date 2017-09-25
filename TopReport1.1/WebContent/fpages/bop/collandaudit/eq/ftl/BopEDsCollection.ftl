@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="¾³ÄÚ»ã¿îÉêÇëÊé-»ù´¡ĞÅÏ¢">
+<@CommonQueryMacro.page title="å¢ƒå†…æ±‡æ¬¾ç”³è¯·ä¹¦-åŸºç¡€ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="BopEQDsCollectionTabs" navigate="false" currentTab="BopEDsCollection">
 		<@CommonQueryMacro.CommonQuery id="BopEDsCollection" init="false" submitMode="all" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -25,14 +25,14 @@
 	</@CommonQueryMacro.CommonQueryTab>
 
 	<script language="JavaScript">
-		//¹¤×÷ÈÕÆÚ
+		//å·¥ä½œæ—¥æœŸ
 		function initCallGetter_post() {
 			var currentDate = "${statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstanceWithoutException().getTxdate()}";
 			BopEDsCollection_interface_dataset.setValue("qworkDateStart",currentDate);
 			BopEDsCollection_interface_dataset.setValue("qworkDateEnd",currentDate);
 		}
 	    function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var filler2 = record.getValue("filler2");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a></center>"
@@ -40,21 +40,21 @@
 				cell.innerHTML="&nbsp;";
 			}
 		}
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function datatable1_opr_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var recStatus = record.getValue("recStatus");
 				var innerStr = "<center>";
 				if (recStatus == "01" || recStatus == "02") {
-					innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">É¾³ı</a>"
+					innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">åˆ é™¤</a>"
 				} else {
-					innerStr = innerStr + "<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉĞŞ¸Ä' style='color:#999999'>ĞŞ¸Ä</a>&nbsp;&nbsp;<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉÉ¾³ı' style='color:#999999'>É¾³ı</a>";
+					innerStr = innerStr + "<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯ä¿®æ”¹' style='color:#999999'>ä¿®æ”¹</a>&nbsp;&nbsp;<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯åˆ é™¤' style='color:#999999'>åˆ é™¤</a>";
 				}
 				innerStr = innerStr + "</center>";
 
 				cell.innerHTML =innerStr;
-			} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+			} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 			 	cell.innerHTML="&nbsp;";
 			}
 		}
@@ -62,7 +62,7 @@
 			btNewClick();
 		}
 		
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 		function flushPage(){
 			BopEDsCollection_dataset.flushData(1);
 		}
@@ -73,19 +73,19 @@
 			}
 		}
 		function btNewClick(){
-			showWin("¾³ÄÚ»ã¿îÉêÇëÊé-»ù´¡ĞÅÏ¢Ôö¼Ó","${contextPath}/fpages/bop/collandaudit/eq/ftl/BopEDsCollectionInfo.ftl?op=add","window","flushPage()",window);
+			showWin("å¢ƒå†…æ±‡æ¬¾ç”³è¯·ä¹¦-åŸºç¡€ä¿¡æ¯å¢åŠ ","${contextPath}/fpages/bop/collandaudit/eq/ftl/BopEDsCollectionInfo.ftl?op=add","window","flushPage()",window);
 		}
-		//ĞŞ¸Ä
+		//ä¿®æ”¹
 		function doCollection(id){
-			showWin("¾³ÄÚ»ã¿îÉêÇëÊé-»ù´¡ĞÅÏ¢ĞŞ¸Ä","${contextPath}/fpages/bop/collandaudit/eq/ftl/BopEDsCollectionInfo.ftl?id=" + id + "&op=mod","window","flushPage()",window);
+			showWin("å¢ƒå†…æ±‡æ¬¾ç”³è¯·ä¹¦-åŸºç¡€ä¿¡æ¯ä¿®æ”¹","${contextPath}/fpages/bop/collandaudit/eq/ftl/BopEDsCollectionInfo.ftl?id=" + id + "&op=mod","window","flushPage()",window);
 		}
-		//É¾³ı
+		//åˆ é™¤
 		function doDelete(id){
-			showWin("¾³ÄÚ»ã¿îÉêÇëÊé-»ù´¡ĞÅÏ¢É¾³ı","${contextPath}/fpages/bop/collandaudit/eq/ftl/BopEDsCollectionInfo.ftl?id=" + id + "&op=del","window","flushPage()",window);
+			showWin("å¢ƒå†…æ±‡æ¬¾ç”³è¯·ä¹¦-åŸºç¡€ä¿¡æ¯åˆ é™¤","${contextPath}/fpages/bop/collandaudit/eq/ftl/BopEDsCollectionInfo.ftl?id=" + id + "&op=del","window","flushPage()",window);
 		}
-		//ÏêÏ¸ĞÅÏ¢
+		//è¯¦ç»†ä¿¡æ¯
 		function doDetail(id){
-			showWin("¾³ÄÚ»ã¿îÉêÇëÊé-»ù´¡ĞÅÏ¢Ã÷Ï¸","${contextPath}/fpages/bop/collandaudit/eq/ftl/BopEDsCollectionInfo.ftl?id=" + id + "&op=det","window","flushPage()",window);
+			showWin("å¢ƒå†…æ±‡æ¬¾ç”³è¯·ä¹¦-åŸºç¡€ä¿¡æ¯æ˜ç»†","${contextPath}/fpages/bop/collandaudit/eq/ftl/BopEDsCollectionInfo.ftl?id=" + id + "&op=det","window","flushPage()",window);
 		}
 	</script>
 </@CommonQueryMacro.page>

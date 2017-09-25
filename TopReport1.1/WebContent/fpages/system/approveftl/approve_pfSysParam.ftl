@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#--jianxue.zhang-->
-<@CommonQueryMacro.page title="ÏµÍ³°²È«²ÎÊýÉóÅú">
+<@CommonQueryMacro.page title="ç³»ç»Ÿå®‰å…¨å‚æ•°å®¡æ‰¹">
 <table width="800px" align="left">
  <tr>
  <td>
 <@CommonQueryMacro.CommonQuery id="approve_pfSysParams" init="true"  navigate="true" submitMode="all">
- <FIELDSET name='intface' style="padding: 8px;"><LEGEND>&nbsp;´ýÉóÅúÏµÍ³°²È«²ÎÊýÁÐ±í&nbsp;</LEGEND>
+ <FIELDSET name='intface' style="padding: 8px;"><LEGEND>&nbsp;å¾…å®¡æ‰¹ç³»ç»Ÿå®‰å…¨å‚æ•°åˆ—è¡¨&nbsp;</LEGEND>
 <@CommonQueryMacro.DataTable id ="datatable1" fieldStr="id,magicId,paramValueTx,crtDt,updTransCd" width="100%" readonly="true" hasFrame="true" />	
  </FIELDSET>
 </@CommonQueryMacro.CommonQuery>
@@ -18,7 +18,7 @@
  <table>
  <tr>
  <td>
-  <@CommonQueryMacro.Group id ="group1" label="ÉóÅúÒâ¼û" fieldStr="approveResult,approveRemark" colNm=2/>
+  <@CommonQueryMacro.Group id ="group1" label="å®¡æ‰¹æ„è§" fieldStr="approveResult,approveRemark" colNm=2/>
   </td>
   </tr>
   <tr>

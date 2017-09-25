@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="¾³ÄÚ»ã¿îÉêÇëÊé-¹ÜÀíĞÅÏ¢">
+<@CommonQueryMacro.page title="å¢ƒå†…æ±‡æ¬¾ç”³è¯·ä¹¦-ç®¡ç†ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="BopEQDsQueryTabs" navigate="false" currentTab="BopQDsQuery">
 		<@CommonQueryMacro.CommonQuery id="BopQDsQuery" init="false" submitMode="current" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 				<tr>
@@ -31,24 +31,24 @@
 			
 		}
 	
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var recStatus = record.getValue("recStatus");
 				cell.innerHTML = "<center><a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">"+value+"</a></center>";
 			} else {
-				//µ±²»´æÔÚ¼ÇÂ¼Ê±
+				//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 			 	cell.innerHTML="&nbsp;";
 			}
 		}
 
-		//ÏêÏ¸
+		//è¯¦ç»†
 		function doDetail(id) {
-			showWin("¾³ÄÚ»ã¿îÉêÇëÊé-¹ÜÀíĞÅÏ¢ÏêÏ¸","${contextPath}/fpages/bop/collandaudit/eq/ftl/BopQDsCollectionInfo.ftl?id="+id+"&op=det","window","flushPage()",window);
+			showWin("å¢ƒå†…æ±‡æ¬¾ç”³è¯·ä¹¦-ç®¡ç†ä¿¡æ¯è¯¦ç»†","${contextPath}/fpages/bop/collandaudit/eq/ftl/BopQDsCollectionInfo.ftl?id="+id+"&op=det","window","flushPage()",window);
 		}
 
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 		function flushPage(){
 			BopQDsQuery_dataset.flushData();
 		}

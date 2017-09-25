@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="¶î¶ÈÊÚÐÅÆÀ·ÖÌõ¼þÉèÖÃ ">
+<@CommonQueryMacro.page title="é¢åº¦æŽˆä¿¡è¯„åˆ†æ¡ä»¶è®¾ç½® ">
 <@CommonQueryMacro.CommonQuery id="CreditGradeSwitch" init="true" submitMode="all">
 <table align="top" >
   		<tr>
   		<td align="left">
-      		<@CommonQueryMacro.Group id="group1" label="ÊÚÐÅÆÀ¼¶¿ØÖÆ¿ª¹Ø" fieldStr="switch" colNm=2/>
+      		<@CommonQueryMacro.Group id="group1" label="æŽˆä¿¡è¯„çº§æŽ§åˆ¶å¼€å…³" fieldStr="switch" colNm=2/>
 		</td>
   	  	</tr>
 

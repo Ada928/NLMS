@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="��ԱȨ�޲�ѯ">
+<@CommonQueryMacro.page title="人员权限查询">
 <table align="left" width="800px">
 <tr>
 <td valign="top" rowspan="1"  valign="top">
@@ -8,11 +8,11 @@
 	  <table align="center" width="100%">
 	        <tr>
 		       <td colspan="2">
-			    <@CommonQueryMacro.Interface id="interface" label="�������ѯ����" />
+			    <@CommonQueryMacro.Interface id="interface" label="请输入查询条件" />
 		       </td>
 	        </tr>
 	        <tr>
-	           <td>�û���Ϣ�б�</td>
+	           <td>用户信息列表</td>
 	        </tr>
 			<tr>
        			<td valign="top" rowspan="2"  valign="top">

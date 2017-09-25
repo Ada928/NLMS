@@ -1,13 +1,13 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign create = statics["com.huateng.ebank.framework.report.common.ReportConstant"].CREATE_SUB_FILE_IS_WORKDATE>
-<@CommonQueryMacro.page title="生成上报文件确认">
+<@CommonQueryMacro.page title="鐢熸垚涓婃姤鏂囦欢纭">
 <@CommonQueryMacro.CommonQuery id="bopToSubFileConfirm" init="true" submitMode="all">
 <table width="800px">
    <#if create == true>
    <tr>
       	<td>
-      	   <@CommonQueryMacro.Group id ="group1" label="统计日期" fieldStr="fileDate" colNm=2/>
+      	   <@CommonQueryMacro.Group id ="group1" label="缁熻鏃ユ湡" fieldStr="fileDate" colNm=2/>
       	</td>
 	</tr>
 	</#if>

@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Ç©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="BOPForDebtBondBillTabs" navigate="false" currentTab="BOPForDebtBondBill">
 		<@CommonQueryMacro.CommonQuery id="BOPForDebtBondBill" init="false" submitMode="current" navigate="false">
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface"  label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface"  label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -30,34 +30,34 @@
 	<script language="JavaScript">
 		
 		function initCallGetter_post() {
-			//¹¤×÷ÈÕÆÚ
+			//å·¥ä½œæ—¥æœŸ
 			<#assign workdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 			BOPForDebtBondBill_interface_dataset.setValue("qWorkDateStart","${workdate}");
 			BOPForDebtBondBill_interface_dataset.setValue("qWorkDateEnd","${workdate}");
 		}
 		
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function datatable1_opr_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var recStatus = record.getValue("recStatus");
 				var innerStr = "<center>";
 				var actiontype = record.getValue("actiontype");
 				var repStatus = record.getValue("repStatus");
 				if (("01" == recStatus || "02" == recStatus) && ("D" != actiontype || ("D" == actiontype && "01" != repStatus))) {
-					innerStr = innerStr + "<a href=\"JavaScript:doModify('"+id+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">É¾³ı</a>"
+					innerStr = innerStr + "<a href=\"JavaScript:doModify('"+id+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">åˆ é™¤</a>"
 				} else {
-					innerStr = innerStr + "<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉĞŞ¸Ä' style='color:#999999'>ĞŞ¸Ä</a>&nbsp;&nbsp;<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉÉ¾³ı' style='color:#999999'>É¾³ı</a>";
+					innerStr = innerStr + "<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯ä¿®æ”¹' style='color:#999999'>ä¿®æ”¹</a>&nbsp;&nbsp;<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯åˆ é™¤' style='color:#999999'>åˆ é™¤</a>";
 				}
 				innerStr = innerStr + "</center>";
 				cell.innerHTML =innerStr;
-			} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+			} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 				cell.innerHTML="&nbsp;";
 			}
 		}
 
 		function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var filler2 = record.getValue("filler2");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -69,23 +69,23 @@
 		function btAdd_onClick(button) {
 			btNewClick();
 		}
-		//ĞÂÔö
+		//æ–°å¢
 		function btNewClick(){
-			showWin("Õ®È¯ºÍÆ±¾İÇ©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtBondBillCol.ftl?op=new","report","flushPage()");
+			showWin("å€ºåˆ¸å’Œç¥¨æ®ç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtBondBillCol.ftl?op=new","report","flushPage()");
 		}
-		//ÏêÏ¸
+		//è¯¦ç»†
 		function doDetail(id) {
-			showWin("Õ®È¯ºÍÆ±¾İÇ©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtBondBillCol.ftl?op=detaile&id="+id,"report","flushPage()");
+			showWin("å€ºåˆ¸å’Œç¥¨æ®ç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtBondBillCol.ftl?op=detaile&id="+id,"report","flushPage()");
 		}
-		//ĞŞ¸Ä
+		//ä¿®æ”¹
 		function doModify(id) {
-			showWin("Õ®È¯ºÍÆ±¾İÇ©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtBondBillCol.ftl?op=mod&id="+id,"report","flushPage()");
+			showWin("å€ºåˆ¸å’Œç¥¨æ®ç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtBondBillCol.ftl?op=mod&id="+id,"report","flushPage()");
 		}
-		//É¾³ı
+		//åˆ é™¤
 		function doDelete(id) {
-			showWin("Õ®È¯ºÍÆ±¾İÇ©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtBondBillCol.ftl?op=del&id="+id,"report","flushPage()");
+			showWin("å€ºåˆ¸å’Œç¥¨æ®ç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtBondBillCol.ftl?op=del&id="+id,"report","flushPage()");
 		}
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 		function flushPage(){
 			BOPForDebtBondBill_dataset.flushData(1);
 		}

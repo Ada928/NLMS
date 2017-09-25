@@ -6,7 +6,7 @@
 <table width="800px">
     <tr>
         <td>
- <span>ÎÄ¼şÃûÎª£º¡¾${RequestParameters["fileName"]}¡¿,±íÃûÎª:¡¾${RequestParameters["tableName"]}¡¿,Æä±»ÅäÖÃµÄ×Ö¶ÎÈçÏÂ: </span>
+ <span>æ–‡ä»¶åä¸ºï¼šã€${RequestParameters["fileName"]}ã€‘,è¡¨åä¸º:ã€${RequestParameters["tableName"]}ã€‘,å…¶è¢«é…ç½®çš„å­—æ®µå¦‚ä¸‹: </span>
         </td>  
     </tr>
     <tr>
@@ -26,7 +26,7 @@
 	</tr>
 	<tr>
 		<td>		
-	<@CommonQueryMacro.Group id ="group2" label="¾ßÌå×Ö¶ÎÅäÖÃ" fieldStr="fieldName,fieldDesc,uniqueFlag,fieldType,fieldUpdateFlag,fieldUpdateType,mapFunction,filterFlag,filterFunction" colNm=4/>
+	<@CommonQueryMacro.Group id ="group2" label="å…·ä½“å­—æ®µé…ç½®" fieldStr="fieldName,fieldDesc,uniqueFlag,fieldType,fieldUpdateFlag,fieldUpdateType,mapFunction,filterFlag,filterFunction" colNm=4/>
 		</td>
 	</tr>
 </table>

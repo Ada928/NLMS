@@ -1,13 +1,13 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
-<@CommonQueryMacro.page title="±ä¶¯ĞÅÏ¢">
+<@CommonQueryMacro.page title="å˜åŠ¨ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="BOPCfaLounexguDataQueryTabs" navigate="false" currentTab="BOPCfaLounexguChangeDataQuery">
 		<@CommonQueryMacro.CommonQuery id="BOPCfaLounexguChangeDataQuery" init="false" submitMode="all" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -30,14 +30,14 @@
 	
 	        function initCallGetter_post(){
 	        	<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
-				//interfaceÀï²éÑ¯µÄÉèÖÃ¹¤×÷ÈÕÆÚÄ¬ÈÏµ±Ìì
+				//interfaceé‡ŒæŸ¥è¯¢çš„è®¾ç½®å·¥ä½œæ—¥æœŸé»˜è®¤å½“å¤©
 				BOPCfaLounexguChangeDataQuery_interface_dataset.setValue("qworkDate","${v_txdate}");
 				BOPCfaLounexguChangeDataQuery_interface_dataset.setValue("eworkDate","${v_txdate}");        	
 	        }
 			
 
 			function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var filler2 = record.getValue("filler2");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -46,9 +46,9 @@
 			}
 		}
 
-		//ÏêÏ¸ĞÅÏ¢
+		//è¯¦ç»†ä¿¡æ¯
 		function doDetail(id){
-			showWin("±ä¶¯ĞÅÏ¢Ã÷Ï¸","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?id=" + id + "&op=detail");
+			showWin("å˜åŠ¨ä¿¡æ¯æ˜ç»†","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?id=" + id + "&op=detail");
 		}
 	</script>
 </@CommonQueryMacro.page>

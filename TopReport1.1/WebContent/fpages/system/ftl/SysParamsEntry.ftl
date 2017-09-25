@@ -34,17 +34,17 @@
 </td></tr>
 </table>
 <script language="JavaScript">
-	//ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñÊÇ´¥·¢
+	//ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼æ˜¯è§¦å‘
 	function datatable1_operation_onRefresh(cell,value,record) {
-		//¼ÇÂ¼¼¯´æÔÚ
+		//è®°å½•é›†å­˜åœ¨
 		if(record) {
 			var paramgroupId = record.getValue("paramgroupId");
 			var paramId = record.getValue("paramId");
-			//·ÀÖ¹ÀàĞÍ×Ô¶¯×ª»»£¬ËùÒÔ´«Ò»¸öÖµ
+			//é˜²æ­¢ç±»å‹è‡ªåŠ¨è½¬æ¢ï¼Œæ‰€ä»¥ä¼ ä¸€ä¸ªå€¼
 			var par = "p"+paramgroupId+"p"+paramId+"p";
 			var lock=record.getValue("lock");
 			if(isTrue(lock)){
-				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\"><@bean.message key="SysParamsEntry.button.btMod" /></a> </center>";
+				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\"><@bean.message key="SysParamsEntry.button.btMod" /></a> </center>";
 			}else{
 				cell.innerHTML="<center><a href=\"JavaScript:openModifyWindow('"+par+"')\"><@bean.message key='SysParamsEntry.button.btMod'/></a></center>";
 
@@ -55,7 +55,7 @@
 
 
 	}
-	//Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+	//å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
 	function datatable1_paramgroupid_onRefresh(cell, value, record){
 	if(record!=null){
 		var st = record.getValue("st");
@@ -81,7 +81,7 @@ function showDetail(id,st){
 	paramMap.put("st",st);
 	paramMap.put("flag","0");
 	paramMap.put("action","detail");
-	loadPageWindows("partWin", "ÏµÍ³²ÎÊı","/fpages/system/ftl/SysParamsEntryDetail.ftl", paramMap, "winZone");
+	loadPageWindows("partWin", "ç³»ç»Ÿå‚æ•°","/fpages/system/ftl/SysParamsEntryDetail.ftl", paramMap, "winZone");
 }
 
 
@@ -102,7 +102,7 @@ function showDetail(id,st){
 	}
 
 
-	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+	//å®šä½ä¸€æ¡è®°å½•
 	function locate(paramgroupId,paramId) {
 		var record = sysParamsEntry_dataset.find(["paramgroupId","paramId"],[paramgroupId,paramId]);
 		if(record) {
@@ -110,10 +110,10 @@ function showDetail(id,st){
 		}
 	}
 	function btCancel_onClickCheck(button) {
-		//¹Ø±Õ¸¡¶¯´°¿Ú
+		//å…³é—­æµ®åŠ¨çª—å£
 		subwindow_signWindow.close();
 	}
-	//¹Ø¸¡¶¯´°¿Ú,ÊÍ·Ådataset
+	//å…³æµ®åŠ¨çª—å£,é‡Šæ”¾dataset
 	function signWindow_floatWindow_beforeClose(subwindow) {
 		sysParamsEntry_dataset.cancelRecord();
 		return true;
@@ -122,7 +122,7 @@ function showDetail(id,st){
 		return signWindow_floatWindow_beforeClose(subwindow);
 	}
 	
-	//È·ÈÏ°´Å¥²¢Ë¢ĞÂµ±Ç°Ò³
+	//ç¡®è®¤æŒ‰é’®å¹¶åˆ·æ–°å½“å‰é¡µ
 	function btMod_postSubmit(button) {
 	    button.url="#";
 		subwindow_signWindow.close();

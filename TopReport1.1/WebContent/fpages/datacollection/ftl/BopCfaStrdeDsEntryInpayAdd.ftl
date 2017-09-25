@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#global contextPath = contextPath>
-<@CommonQueryMacro.page title="ÀûÏ¢¸ø¸¶ĞÅÏ¢ĞÂÔö">
+<@CommonQueryMacro.page title="åˆ©æ¯ç»™ä»˜ä¿¡æ¯æ–°å¢">
 <@CommonQueryMacro.CommonQuery id="bopCfaStrdeDsEntryInpayAdd" navigate="false" init="true" insertOnEmpty="true">
 <table width="70%">
 	<tr>
@@ -8,57 +8,57 @@
 			<table width="100%" cellpadding="0" cellspacing="0">
 				<tr>
 					<td>
-						<@CommonQueryMacro.GroupBox id="groupbox1" label="Ç©Ô¼ĞÅÏ¢" expand="true">
+						<@CommonQueryMacro.GroupBox id="groupbox1" label="ç­¾çº¦ä¿¡æ¯" expand="true">
 							<table frame="void" class="grouptable" width="100%">
 								<tr>
-									<td colspan="1" align="center" nowrap class="labeltd">ÈËÃñ±Ò½á¹¹ĞÔ´æ¿î±àºÅ</td>
+									<td colspan="1" align="center" nowrap class="labeltd">äººæ°‘å¸ç»“æ„æ€§å­˜æ¬¾ç¼–å·</td>
 									<td class="datatd">
 										<@CommonQueryMacro.SingleField fId="strdecode"/>
 										<input extra="button" style='width=25px;height=17px;' onclick="loadAccount();" type='button' value='...'/>
 									</td>
-									<td rowspan="1" align="right" nowrap class="labeltd">½ğÈÚ»ú¹¹±êÊ¶Âë</td>
+									<td rowspan="1" align="right" nowrap class="labeltd">é‡‘èæœºæ„æ ‡è¯†ç </td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="branchcode"/></td>
 								</tr>
 
 								<tr>
-									<td colspan="1" align="center" nowrap class="labeltd">¿Í»§´úÂë</td>
+									<td colspan="1" align="center" nowrap class="labeltd">å®¢æˆ·ä»£ç </td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="clientcode"/></td>
-									<td colspan="1" align="center" nowrap class="labeltd">¿Í»§Ãû³Æ</td>
+									<td colspan="1" align="center" nowrap class="labeltd">å®¢æˆ·åç§°</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="clientname"/></td>
 								</tr>
 
 								<tr>
-									<td colspan="1" align="center" nowrap class="labeltd">Ç©Ô¼ÈÕÆÚ</td>
+									<td colspan="1" align="center" nowrap class="labeltd">ç­¾çº¦æ—¥æœŸ</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="contractdate"/></td>
-									<td colspan="1" align="center" nowrap class="labeltd">ºÏÍ¬ºÅ</td>
+									<td colspan="1" align="center" nowrap class="labeltd">åˆåŒå·</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="contract"/></td>
 								</tr>
 
 								<tr>
-									<td colspan="1" align="center" nowrap class="labeltd">Ç©Ô¼½ğ¶î</td>
+									<td colspan="1" align="center" nowrap class="labeltd">ç­¾çº¦é‡‘é¢</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="contractamount"/></td>
-									<td rowspan="1" align="center" nowrap class="labeltd">µ½ÆÚÈÕ</td>
+									<td rowspan="1" align="center" nowrap class="labeltd">åˆ°æœŸæ—¥</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="maturity"/></td>
 								</tr>
 
 								<tr>
-									<td colspan="1" align="center" nowrap class="labeltd">¹Ò¹³Ö¸±ê</td>
+									<td colspan="1" align="center" nowrap class="labeltd">æŒ‚é’©æŒ‡æ ‡</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="lincame"/></td>
-									<td align="center" nowrap class="labeltd">¹Ò¹³Ö¸±ê¼ÆËã·½·¨</td>
+									<td align="center" nowrap class="labeltd">æŒ‚é’©æŒ‡æ ‡è®¡ç®—æ–¹æ³•</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="lincamethod"/></td>
 								</tr>
 
 								<tr>
-									<td colspan="1" align="center" nowrap class="labeltd">Ô¼¶¨µÄÀûÂÊÉÏÏŞ</td>
+									<td colspan="1" align="center" nowrap class="labeltd">çº¦å®šçš„åˆ©ç‡ä¸Šé™</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="aginraup"/></td>
-									<td align="center" nowrap class="labeltd">Ô¼¶¨µÄÀûÂÊÏÂÏŞ</td>
+									<td align="center" nowrap class="labeltd">çº¦å®šçš„åˆ©ç‡ä¸‹é™</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="aginralo"/></td>
 								</tr>
 
 								<tr>
-									<td colspan="1" align="center" nowrap class="labeltd">ÀûÏ¢¸ø¸¶·½Ê½</td>
+									<td colspan="1" align="center" nowrap class="labeltd">åˆ©æ¯ç»™ä»˜æ–¹å¼</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="aginraloinpay"/></td>
-									<td colspan="1" align="center" nowrap class="labeltd">±¸×¢</td>
+									<td colspan="1" align="center" nowrap class="labeltd">å¤‡æ³¨</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="remark"/></td>
 								</tr>
 							</table>
@@ -73,33 +73,33 @@
 			<table width="100%" cellpadding="0" cellspacing="0" style="display:none">
 				<tr>
 					<td>
-						<@CommonQueryMacro.GroupBox id="groupbox2" label="ÏµÍ³ĞÅÏ¢" expand="true">
+						<@CommonQueryMacro.GroupBox id="groupbox2" label="ç³»ç»Ÿä¿¡æ¯" expand="true">
 							<table frame=void class="grouptable" width="100%">
 								<tr>
-									<td colspan="1" align="center" nowrap class="labeltd">²Ù×÷ÀàĞÍ</td>
+									<td colspan="1" align="center" nowrap class="labeltd">æ“ä½œç±»å‹</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="actiontype"/></td>
 								</tr>
 								<tr>
-									<td rowspan="1" align="right" nowrap class="labeltd">¼ÇÂ¼×´Ì¬</td>
+									<td rowspan="1" align="right" nowrap class="labeltd">è®°å½•çŠ¶æ€</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="recStatus"/></td>
 								</tr>
 								<tr>
-									<td colspan="1" align="center" nowrap class="labeltd">ÉóÅú×´Ì¬</td>
+									<td colspan="1" align="center" nowrap class="labeltd">å®¡æ‰¹çŠ¶æ€</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="approveStatus"/></td>
 								</tr>
 								<tr>
-									<td colspan="1" align="center" nowrap class="labeltd">ÉóÅúËµÃ÷</td>
+									<td colspan="1" align="center" nowrap class="labeltd">å®¡æ‰¹è¯´æ˜</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="approveResult"/></td>
 								</tr>
 								<tr>
-									<td colspan="1" align="center" nowrap class="labeltd">»ØÖ´×´Ì¬</td>
+									<td colspan="1" align="center" nowrap class="labeltd">å›æ‰§çŠ¶æ€</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="repStatus"/></td>
 								</tr>
 								<tr>
-									<td colspan="1" align="center" nowrap class="labeltd">´´½¨Ê±¼ä</td>
+									<td colspan="1" align="center" nowrap class="labeltd">åˆ›å»ºæ—¶é—´</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="crtTm"/></td>
 								</tr>
-									<td colspan="1" align="center" nowrap class="labeltd">×îºóĞŞ¸ÄÊ±¼ä</td>
+									<td colspan="1" align="center" nowrap class="labeltd">æœ€åä¿®æ”¹æ—¶é—´</td>
 									<td class="datatd" 	><@CommonQueryMacro.SingleField fId="lstUpdTm"/></td>
 								</tr>
 							</table>
@@ -112,7 +112,7 @@
 
 	<tr><#--MOD  BY HUANGCHENG   2012-8-22 BEGIN-->
 		<td>
-			<@CommonQueryMacro.Group id ="groupbox1" label="ÀûÏ¢¸ø¸¶ĞÅÏ¢"
+			<@CommonQueryMacro.Group id ="groupbox1" label="åˆ©æ¯ç»™ä»˜ä¿¡æ¯"
 				fieldStr="inpaycode,inpaymonth,inpayrmbam,inpaycurr,inpaycurram,filler2,remark1" colNm=4/>
        </td>
    </tr>
@@ -127,7 +127,7 @@
 <script language="javascript">
 	var op = "${RequestParameters["op"]?default('')}";
 	var ds = bopCfaStrdeDsEntryInpayAdd_dataset;
-	//¸¶Ï¢±àºÅÓÃ"****"Ìæ´ú
+	//ä»˜æ¯ç¼–å·ç”¨"****"æ›¿ä»£
 	<#assign v_inpaycode = statics["com.huateng.report.utils.ReportUtils"].getTempStr(null,4)>
 	function initCallGetter_post(){
 		if (bopCfaStrdeDsEntryInpayAdd_dataset.length == 0) {
@@ -137,7 +137,7 @@
 		ds.setFieldReadOnly("inpaycode",true);
 	}
 
-	//Ç©Ô¼ĞÅÏ¢Ö»¶Á
+	//ç­¾çº¦ä¿¡æ¯åªè¯»
 	ds.setFieldReadOnly("strdecode",true);
 	ds.setFieldReadOnly("branchcode",true);
 	ds.setFieldReadOnly("clientcode",true);
@@ -157,50 +157,50 @@
 		closeWin();
 	}
 
-	//µ¯³öÇ©Ô¼ĞÅÏ¢Ñ¡Ôñ¿ò
+	//å¼¹å‡ºç­¾çº¦ä¿¡æ¯é€‰æ‹©æ¡†
 	function loadAccount(){
-		showPickup("Ç©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/winloadpage/BopCfaStrdeDsLoadPage.ftl?type=inpay");
+		showPickup("ç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/winloadpage/BopCfaStrdeDsLoadPage.ftl?type=inpay");
 	}
 
-	//±£´æ°´Å¥Ìá½»Ç°¼ì²éÍ³Ò»ÉèÖÃ
+	//ä¿å­˜æŒ‰é’®æäº¤å‰æ£€æŸ¥ç»Ÿä¸€è®¾ç½®
 	function btSave_onClickCheck(button) {
 		return addClickCheck();
 	}
 
-	//ÀûÏ¢¸ø¸¶ĞÅÏ¢±£´æ°´Å¥¼ì²é
+	//åˆ©æ¯ç»™ä»˜ä¿¡æ¯ä¿å­˜æŒ‰é’®æ£€æŸ¥
 	function addClickCheck() {
 		var strdecode = ds.getValue("strdecode");
-		var inpaymonth = ds.getValue("inpaymonth");//¸¶Ï¢ÄêÔÂ
-		var inpaycode = ds.getValue("inpaycode");//¸¶Ï¢±àºÅ
-		var inpayrmbam = ds.getString("inpayrmbam");//¸¶Ï¢ÈËÃñ±ÒÖ§¸¶½ğ¶î
-		var inpaycurram = ds.getString("inpaycurram");//¸¶Ï¢Íâ±ÒÖ§¸¶½ğ¶î
-		var inpaycurr = ds.getValue("inpaycurr");//¸¶Ï¢Íâ±ÒÖ§¸¶±ÒÖÖ
+		var inpaymonth = ds.getValue("inpaymonth");//ä»˜æ¯å¹´æœˆ
+		var inpaycode = ds.getValue("inpaycode");//ä»˜æ¯ç¼–å·
+		var inpayrmbam = ds.getString("inpayrmbam");//ä»˜æ¯äººæ°‘å¸æ”¯ä»˜é‡‘é¢
+		var inpaycurram = ds.getString("inpaycurram");//ä»˜æ¯å¤–å¸æ”¯ä»˜é‡‘é¢
+		var inpaycurr = ds.getValue("inpaycurr");//ä»˜æ¯å¤–å¸æ”¯ä»˜å¸ç§
 		if(strdecode == null || strdecode == "") {
-			alert("ÇëÏÈÑ¡ÔñÈËÃñ±Ò½á¹¹ĞÔ´æ¿î±àºÅ");
+			alert("è¯·å…ˆé€‰æ‹©äººæ°‘å¸ç»“æ„æ€§å­˜æ¬¾ç¼–å·");
 			return false;
 		}
 		if(inpaycode.length != 4) {
-			alert("×Ö¶Î[¸¶Ï¢±àºÅ]±ØĞëÊÇ4Î»×Ö·û");
+			alert("å­—æ®µ[ä»˜æ¯ç¼–å·]å¿…é¡»æ˜¯4ä½å­—ç¬¦");
 			return false;
 		}
 		if(inpaymonth == null || inpaymonth == "") {
-			alert("ÇëÑ¡Ôñ¸¶Ï¢ÄêÔÂ");
+			alert("è¯·é€‰æ‹©ä»˜æ¯å¹´æœˆ");
 			return false;
 		}
 		if(inpayrmbam.length == 0 && inpaycurram.length == 0) {
-			alert("¸¶Ï¢ÈËÃñ±ÒÖ§¸¶½ğ¶îÓë¸¶Ï¢Íâ±ÒÖ§¸¶½ğ¶îÖÁÉÙÌîÒ»¸ö¡£");
+			alert("ä»˜æ¯äººæ°‘å¸æ”¯ä»˜é‡‘é¢ä¸ä»˜æ¯å¤–å¸æ”¯ä»˜é‡‘é¢è‡³å°‘å¡«ä¸€ä¸ªã€‚");
 			return false;
 		}
-		//ÖÕÖ¹Íâ±ÒÖ§¸¶±ÒÖÖºÍÖÕÖ¹Íâ±ÒÖ§¸¶½ğ¶îÎªÒ»×éÊı¾İ£¬Á½ÕßÍ¬Ê±Îª¿Õ»òÕß²»Îª¿Õ¡£ inpaycurr inpaycurr
+		//ç»ˆæ­¢å¤–å¸æ”¯ä»˜å¸ç§å’Œç»ˆæ­¢å¤–å¸æ”¯ä»˜é‡‘é¢ä¸ºä¸€ç»„æ•°æ®ï¼Œä¸¤è€…åŒæ—¶ä¸ºç©ºæˆ–è€…ä¸ä¸ºç©ºã€‚ inpaycurr inpaycurr
 		if((inpaycurr.length == 0 && inpaycurram.length != 0) || (inpaycurr.length != 0 && inpaycurram.length == 0)) {
-			alert("¸¶Ï¢ÈËÃñ±ÒÖ§¸¶½ğ¶îÓë¸¶Ï¢Íâ±ÒÖ§¸¶½ğ¶î±ØĞëÍ¬Ê±Îª¿Õ»òÕß²»Îª¿Õ");
+			alert("ä»˜æ¯äººæ°‘å¸æ”¯ä»˜é‡‘é¢ä¸ä»˜æ¯å¤–å¸æ”¯ä»˜é‡‘é¢å¿…é¡»åŒæ—¶ä¸ºç©ºæˆ–è€…ä¸ä¸ºç©º");
 			return false;
 		}
 		return true;
 	}
 
 	function btSave_postSubmit(button) {
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 		closeWin(true);
 	}
 

@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <script type='text/javascript' src='${contextPath}/dwr/interface/ReportFile.js'> </script>
-<@CommonQueryMacro.page title="¹¤×÷ÈÕÆÚÇĞ»»">
+<@CommonQueryMacro.page title="å·¥ä½œæ—¥æœŸåˆ‡æ¢">
 <table align="left" width="100%">
 	<tr>
 		<td width="100%">
-			Ö÷Ò³ &gt; ÏµÍ³Î¬»¤ &gt; ¹¤×÷ÈÕÆÚÇĞ»»
+			ä¸»é¡µ &gt; ç³»ç»Ÿç»´æŠ¤ &gt; å·¥ä½œæ—¥æœŸåˆ‡æ¢
 		</td>
 	</tr>
 	<tr>
@@ -18,11 +18,11 @@
 				<tr>
 					<td width="400">
 						<@CommonQueryMacro.CommonQuery id="cutoverWorkDate" init="true" navigate="false" submitMode="current">
-							<FIELDSET><LEGEND>&nbsp;ÇĞ»»¹¤×÷ÈÕÆÚ&nbsp;</LEGEND>
+							<FIELDSET><LEGEND>&nbsp;åˆ‡æ¢å·¥ä½œæ—¥æœŸ&nbsp;</LEGEND>
 							<table class="grouptable" width="100%">
 								<tr>
 									<td class="labeltd">
-									&nbsp;&nbsp;ÉÏÒ»¹¤×÷ÈÕ&nbsp;&nbsp;
+									&nbsp;&nbsp;ä¸Šä¸€å·¥ä½œæ—¥&nbsp;&nbsp;
 									</td>
 									<td class="datatd">
 										<@CommonQueryMacro.SingleField fId="lastDate"/>
@@ -33,7 +33,7 @@
 								<tr><td colspan="4"><br></td></tr>
 								<tr>
 									<td class="labeltd">
-									&nbsp;&nbsp;µ±Ç°¹¤×÷ÈÕ&nbsp;&nbsp;
+									&nbsp;&nbsp;å½“å‰å·¥ä½œæ—¥&nbsp;&nbsp;
 									</td>
 									<td class="datatd">
 										<@CommonQueryMacro.SingleField fId="currentDate"/>
@@ -44,7 +44,7 @@
 								<tr><td colspan="4"><br></td></tr>
 								<tr>
 									<td class="labeltd">
-									&nbsp;&nbsp;ÏÂÒ»¹¤×÷ÈÕ&nbsp;&nbsp;
+									&nbsp;&nbsp;ä¸‹ä¸€å·¥ä½œæ—¥&nbsp;&nbsp;
 									</td>
 									<td class="datatd">
 										<@CommonQueryMacro.SingleField fId="nextDate"/>
@@ -66,7 +66,7 @@
 					</td>
 					<td width="10"></td>
 					<td valign="top" align="left" width="340">
-					<FIELDSET><LEGEND>&nbsp;¹¤×÷Íê³ÉÇé¿ö&nbsp;</LEGEND>
+					<FIELDSET><LEGEND>&nbsp;å·¥ä½œå®Œæˆæƒ…å†µ&nbsp;</LEGEND>
 						<@CommonQueryMacro.CommonQuery id="biExecConfirmed" init="true" submitMode="current" navigate="false">
 							<@CommonQueryMacro.DataTable id="datatable1" fieldStr="brNo,brName,finishStatus" width="100%" hasFrame="true"/>
 						</@CommonQueryMacro.CommonQuery>
@@ -74,7 +74,7 @@
 					</td>
 					<td width="10"></td>
 					<td valign="top" align="left" width="500">
-						<FIELDSET><LEGEND>&nbsp;¹¤×÷Íê³ÉÏêÇé&nbsp;</LEGEND>
+						<FIELDSET><LEGEND>&nbsp;å·¥ä½œå®Œæˆè¯¦æƒ…&nbsp;</LEGEND>
 						<@CommonQueryMacro.CommonQuery id="biExecConfirmedDetail" init="true" submitMode="current" navigate="false">
 							<@CommonQueryMacro.DataTable id="datatable1" fieldStr="busiType,apptype,confirmStatus,subfileStatus" width="100%" hasFrame="true"/>
 						</@CommonQueryMacro.CommonQuery>
@@ -97,19 +97,19 @@
 
 	function dayStr(day){
 		if (day == 0) {
-			return "&nbsp;ĞÇÆÚÌì&nbsp;&nbsp;&nbsp;"
+			return "&nbsp;æ˜ŸæœŸå¤©&nbsp;&nbsp;&nbsp;"
 		} else if (day == 1) {
-			return "&nbsp;ĞÇÆÚÒ»&nbsp;&nbsp;&nbsp;"
+			return "&nbsp;æ˜ŸæœŸä¸€&nbsp;&nbsp;&nbsp;"
 		}else if (day == 2) {
-			return "&nbsp;ĞÇÆÚ¶ş&nbsp;&nbsp;&nbsp;"
+			return "&nbsp;æ˜ŸæœŸäºŒ&nbsp;&nbsp;&nbsp;"
 		}else if (day == 3) {
-			return "&nbsp;ĞÇÆÚÈı&nbsp;&nbsp;&nbsp;"
+			return "&nbsp;æ˜ŸæœŸä¸‰&nbsp;&nbsp;&nbsp;"
 		}else if (day == 4) {
-			return "&nbsp;ĞÇÆÚËÄ&nbsp;&nbsp;&nbsp;"
+			return "&nbsp;æ˜ŸæœŸå››&nbsp;&nbsp;&nbsp;"
 		}else if (day == 5) {
-			return "&nbsp;ĞÇÆÚÎå&nbsp;&nbsp;&nbsp;"
+			return "&nbsp;æ˜ŸæœŸäº”&nbsp;&nbsp;&nbsp;"
 		}else if (day == 6) {
-			return "&nbsp;ĞÇÆÚÁù&nbsp;&nbsp;&nbsp;"
+			return "&nbsp;æ˜ŸæœŸå…­&nbsp;&nbsp;&nbsp;"
 		}
 	}
 
@@ -125,7 +125,7 @@
 		});
 		dwr.engine.setAsync(true);
 		if(!flag){
-			if(confirm('²»ÊÇËùÓĞµÄ»ú¹¹¹¤×÷Íê³ÉËø¶¨£¬ÊÇ·ñÈ·ÈÏÒªÇĞ»»¹¤×÷ÈÕÆÚ£¿')){
+			if(confirm('ä¸æ˜¯æ‰€æœ‰çš„æœºæ„å·¥ä½œå®Œæˆé”å®šï¼Œæ˜¯å¦ç¡®è®¤è¦åˆ‡æ¢å·¥ä½œæ—¥æœŸï¼Ÿ')){
 				return true;
 			} else {
 				return false;
@@ -136,7 +136,7 @@
 		//var record = biExecConfirmed_dataset.getFirstRecord();
 		//while(record){
 		//	var v_finishStatus = record.getValue("finishStatus");
-		//	//ÅĞ¶ÏÊÇ·ñÊı¾İ´¦ÀíÍê³É
+		//	//åˆ¤æ–­æ˜¯å¦æ•°æ®å¤„ç†å®Œæˆ
 		//	if(v_finishStatus == "02"){
 		//		flag = true;
 		//		break;
@@ -144,7 +144,7 @@
 		//	record=record.getNextRecord();
 	   	//}
 	   	//if(flag){
-	   	//	alert("µ±Ç°¹¤×÷ÈÕÆÚµÄÊı¾İ´¦ÀíÎ´Íê³É²»ÄÜÇĞ»»¹¤×÷ÈÕÆÚ£¡");
+	   	//	alert("å½“å‰å·¥ä½œæ—¥æœŸçš„æ•°æ®å¤„ç†æœªå®Œæˆä¸èƒ½åˆ‡æ¢å·¥ä½œæ—¥æœŸï¼");
 	   	//	return false;
 	   	//}
 	   	//return true;

@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="ĞÅÏ¢²¹Â¼²éÑ¯">
+<@CommonQueryMacro.page title="ä¿¡æ¯è¡¥å½•æŸ¥è¯¢">
 <@CommonQueryMacro.CommonQueryTab id="bopForDebtFeiPerSaveQueryTabs" navigate="false" currentTab="BopForDebtFeiPerSaveSignedQuery">
 	<@CommonQueryMacro.CommonQuery id="bopForDebtFeiPerSaveSignedQuery" init="false" submitMode="selected" navigate="false" >
 		<table align="left">
 			<tr>
 				<td>
-					<@CommonQueryMacro.Interface id="interface"  label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface"  label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -32,7 +32,7 @@
 	}
 
 	function datatable1_filler2_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			var filler2 = record.getValue("filler2");
 			cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -41,9 +41,9 @@
 		}
 	}
 
-	//ÏêÏ¸ĞÅÏ¢
+	//è¯¦ç»†ä¿¡æ¯
 	function doDetail(id){
-		showWin("·Ç¾ÓÃñ»ú¹¹´æ¿îÇ©Ô¼ĞÅÏ¢Ã÷Ï¸","${contextPath}/fpages/datacollection/ftl/BopForDebtFeiPerSaveSignedInfo.ftl?id=" + id + "&op=detail");
+		showWin("éå±…æ°‘æœºæ„å­˜æ¬¾ç­¾çº¦ä¿¡æ¯æ˜ç»†","${contextPath}/fpages/datacollection/ftl/BopForDebtFeiPerSaveSignedInfo.ftl?id=" + id + "&op=detail");
 	}
 </script>
 </@CommonQueryMacro.page>

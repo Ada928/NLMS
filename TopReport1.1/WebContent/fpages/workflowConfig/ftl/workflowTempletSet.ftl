@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ÒµÎñÁ÷³ÌÅäÖÃ">
+<@CommonQueryMacro.page title="ä¸šåŠ¡æµç¨‹é…ç½®">
 <@CommonQueryMacro.CommonQueryTab id="WORKFLOWCONFIG_TAB" navigate="false" width="1000" height="900" currentTab="tabTempletSet">
 
 <table align="left">
@@ -10,7 +10,7 @@
 	<table align="left">
 		<tr>
       		<td valign="top">
-					<@CommonQueryMacro.Group id ="group1" label="ÒµÎñÁ÷³Ì" fieldStr="bussProc" colNm=4/>
+					<@CommonQueryMacro.Group id ="group1" label="ä¸šåŠ¡æµç¨‹" fieldStr="bussProc" colNm=4/>
       		</td>
 		 </tr>
 
@@ -26,7 +26,7 @@
 <tr>
 <td valign="top">
 <@CommonQueryMacro.CommonQuery id="workflowTempletSet" init="true" submitMode="all" navigate="false">
-	<FIELDSET name="fifsfasd" style="padding: 6px;"><LEGEND>&nbsp;Á÷³ÌÄ£°å&nbsp;</LEGEND>
+	<FIELDSET name="fifsfasd" style="padding: 6px;"><LEGEND>&nbsp;æµç¨‹æ¨¡æ¿&nbsp;</LEGEND>
 	<table align="left">
       		<tr>
       		<td valign="top">
@@ -51,7 +51,7 @@
 <td valign="top" rowspan="1"  valign="top" width="100%" height="700px">
  <table align="left" width="100%">
        <tr>
-			<td align="left">Á÷³ÌÉè¼ÆÍ¼</td>
+			<td align="left">æµç¨‹è®¾è®¡å›¾</td>
 	   </tr>
 
 
@@ -77,13 +77,13 @@ function WORKFLOWCONFIG_TAB_tabset_beforeTabChange(tabset,oldName,newName){
  	if ( "tabTempletSet" == oldName){
  		var v_bussProc = workflowProcSet_dataset.getValue("bussProc");
 		if(!v_bussProc){
-			return "Äú»¹Ã»ÓĞÑ¡ÔñÒµÎñÁ÷³Ì£¡";
+			return "æ‚¨è¿˜æ²¡æœ‰é€‰æ‹©ä¸šåŠ¡æµç¨‹ï¼";
 		}
 		
 		v_templetName = getTempletName(workflowTempletSet_dataset);
 
 		if(!v_templetName){
-			return "Äú»¹Ã»ÓĞÑ¡ÔñÁ÷³ÌÄ£°å£¡";
+			return "æ‚¨è¿˜æ²¡æœ‰é€‰æ‹©æµç¨‹æ¨¡æ¿ï¼";
 		}
  		addParams2TabsUrl(WORKFLOWCONFIG_TAB_tabset, 
  						  "bussProc,templetName", 
@@ -140,13 +140,13 @@ function bussProc_DropDown_onSelect(dropDown,record,editor){
 function btSave_onClickCheck(button){
 	var v_bussProc = workflowProcSet_dataset.getValue("bussProc");
 	if(!v_bussProc){
-		alert("Äú»¹Ã»ÓĞÑ¡ÔñÒµÎñÁ÷³Ì£¡");
+		alert("æ‚¨è¿˜æ²¡æœ‰é€‰æ‹©ä¸šåŠ¡æµç¨‹ï¼");
 		return false;
 	}
 	v_templetName = getTempletName(workflowTempletSet_dataset);
 
 	if(!v_templetName){
-		return "Äú»¹Ã»ÓĞÑ¡ÔñÁ÷³ÌÄ£°å£¡";
+		return "æ‚¨è¿˜æ²¡æœ‰é€‰æ‹©æµç¨‹æ¨¡æ¿ï¼";
 	}
 	return true;
 }

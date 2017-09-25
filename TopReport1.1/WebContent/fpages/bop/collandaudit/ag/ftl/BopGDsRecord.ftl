@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÉæÍâÊÕÈëÉê±¨µ¥-Éê±¨ĞÅÏ¢">
+<@CommonQueryMacro.page title="æ¶‰å¤–æ”¶å…¥ç”³æŠ¥å•-ç”³æŠ¥ä¿¡æ¯">
 <@CommonQueryMacro.CommonQueryTab id="bopAGDsRecordTabs" navigate="false" currentTab="bopGDsRecord">
 	<@CommonQueryMacro.CommonQuery id="bopGDsRecord" init="false" submitMode="all" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -30,21 +30,21 @@
 		bopGDsRecord_interface_dataset.setValue("qworkDateEnd", currentDate);
 	}
 
-	//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+	//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function datatable1_opr_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			var recStatus = record.getValue("recStatus");
 			var innerStr = "<center>";
 			if (recStatus == "01" || recStatus == "02") {
-				innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">É¾³ı</a>"
+				innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">åˆ é™¤</a>"
 			} else {
-				innerStr = innerStr + "<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉĞŞ¸Ä' style='color:#999999'>ĞŞ¸Ä</a>&nbsp;&nbsp;<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉÉ¾³ı' style='color:#999999'>É¾³ı</a>";
+				innerStr = innerStr + "<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯ä¿®æ”¹' style='color:#999999'>ä¿®æ”¹</a>&nbsp;&nbsp;<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯åˆ é™¤' style='color:#999999'>åˆ é™¤</a>";
 			}
 			innerStr = innerStr + "</center>";
 			 
 			cell.innerHTML =innerStr;
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 	cell.innerHTML="&nbsp;";
 		}
 	}
@@ -62,29 +62,29 @@
 		btNewClick();
 	}
 	
-	//Ë¢ĞÂÊı¾İ
+	//åˆ·æ–°æ•°æ®
 	function flushPage(){
 		bopGDsRecord_dataset.flushData(1);
 	}
 	
-	//ĞÂÔö
+	//æ–°å¢
 	function btNewClick(){
-		showWin("ÉæÍâÊÕÈëÉê±¨µ¥-Éê±¨ĞÅÏ¢ĞÂÔö","${contextPath}/fpages/bop/collandaudit/ag/ftl/BopGDsRecordInfo.ftl?op=add","window","flushPage()",window);
+		showWin("æ¶‰å¤–æ”¶å…¥ç”³æŠ¥å•-ç”³æŠ¥ä¿¡æ¯æ–°å¢","${contextPath}/fpages/bop/collandaudit/ag/ftl/BopGDsRecordInfo.ftl?op=add","window","flushPage()",window);
 	}
 	
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	function doCollection(id){
-		showWin("ÉæÍâÊÕÈëÉê±¨µ¥-Éê±¨ĞÅÏ¢ĞŞ¸Ä","${contextPath}/fpages/bop/collandaudit/ag/ftl/BopGDsRecordInfo.ftl?id=" + id + "&op=mod","window","flushPage()",window);
+		showWin("æ¶‰å¤–æ”¶å…¥ç”³æŠ¥å•-ç”³æŠ¥ä¿¡æ¯ä¿®æ”¹","${contextPath}/fpages/bop/collandaudit/ag/ftl/BopGDsRecordInfo.ftl?id=" + id + "&op=mod","window","flushPage()",window);
 	}
 	
-	//É¾³ı
+	//åˆ é™¤
 	function doDelete(id){
-		showWin("ÉæÍâÊÕÈëÉê±¨µ¥-Éê±¨ĞÅÏ¢É¾³ı","${contextPath}/fpages/bop/collandaudit/ag/ftl/BopGDsRecordInfo.ftl?id=" + id + "&op=del","window","flushPage()",window);
+		showWin("æ¶‰å¤–æ”¶å…¥ç”³æŠ¥å•-ç”³æŠ¥ä¿¡æ¯åˆ é™¤","${contextPath}/fpages/bop/collandaudit/ag/ftl/BopGDsRecordInfo.ftl?id=" + id + "&op=del","window","flushPage()",window);
 	}
 	
-	//ÏêÏ¸ĞÅÏ¢
+	//è¯¦ç»†ä¿¡æ¯
 	function doDetail(id){
-		showWin("ÉæÍâÊÕÈëÉê±¨µ¥-Éê±¨ĞÅÏ¢Ã÷Ï¸","${contextPath}/fpages/bop/collandaudit/ag/ftl/BopGDsRecordInfo.ftl?id=" + id + "&op=det","window","flushPage()",window);
+		showWin("æ¶‰å¤–æ”¶å…¥ç”³æŠ¥å•-ç”³æŠ¥ä¿¡æ¯æ˜ç»†","${contextPath}/fpages/bop/collandaudit/ag/ftl/BopGDsRecordInfo.ftl?id=" + id + "&op=det","window","flushPage()",window);
 	}
 </script>
 </@CommonQueryMacro.page>

@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="¾³ÄÚÊÕÈëÉê±¨µ¥¹ÜÀíĞÅÏ¢">
+<@CommonQueryMacro.page title="å¢ƒå†…æ”¶å…¥ç”³æŠ¥å•ç®¡ç†ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="BopDRDsTabs" navigate="false" currentTab="BopRDs">
 		<@CommonQueryMacro.CommonQuery id="BopRDs" init="false" submitMode="all" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -25,14 +25,14 @@
 	</@CommonQueryMacro.CommonQueryTab>
 
 	<script language="JavaScript">
-		//¹¤×÷ÈÕÆÚ
+		//å·¥ä½œæ—¥æœŸ
 		function initCallGetter_post() {
 			<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 			BopRDs_interface_dataset.setValue("qworkDateStart","${v_txdate}");
 			BopRDs_interface_dataset.setValue("qworkDateEnd","${v_txdate}");
 		}
 	    function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var filler2 = record.getValue("filler2");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -40,21 +40,21 @@
 				cell.innerHTML="&nbsp;";
 			}
 		}
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function datatable1_opr_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var recStatus = record.getValue("recStatus");
 				var innerStr = "<center>";
 				if (recStatus == "01" || recStatus == "02") {
-					innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">É¾³ı</a>"
+					innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">åˆ é™¤</a>"
 				} else {
-					innerStr = innerStr + "<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉĞŞ¸Ä' style='color:#999999'>ĞŞ¸Ä</a>&nbsp;&nbsp;<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉÉ¾³ı' style='color:#999999'>É¾³ı</a>";
+					innerStr = innerStr + "<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯ä¿®æ”¹' style='color:#999999'>ä¿®æ”¹</a>&nbsp;&nbsp;<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯åˆ é™¤' style='color:#999999'>åˆ é™¤</a>";
 				}
 				innerStr = innerStr + "</center>";
 
 				cell.innerHTML =innerStr;
-			} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+			} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 			 	cell.innerHTML="&nbsp;";
 			}
 		}
@@ -62,7 +62,7 @@
 		function btAdd_onClick(button) {
 			btNewClick();
 		}
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 		function flushPage(){
 			BopRDs_dataset.flushData(1);
 		}
@@ -73,19 +73,19 @@
 			}
 		}
 		function btNewClick(){
-			showWin("¾³ÄÚÊÕÈëÉê±¨µ¥¹ÜÀíĞÅÏ¢","${contextPath}/fpages/bop/collandaudit/dr/ftl/BopRDsAdd.ftl?op=new","window","flushPage()",window);
+			showWin("å¢ƒå†…æ”¶å…¥ç”³æŠ¥å•ç®¡ç†ä¿¡æ¯","${contextPath}/fpages/bop/collandaudit/dr/ftl/BopRDsAdd.ftl?op=new","window","flushPage()",window);
 		}
-		//ĞŞ¸Ä
+		//ä¿®æ”¹
 		function doCollection(id){
-			showWin("¾³ÄÚÊÕÈëÉê±¨µ¥¹ÜÀíĞÅÏ¢ĞŞ¸Ä","${contextPath}/fpages/bop/collandaudit/dr/ftl/BopRDsAdd.ftl?id=" + id + "&op=mod","window","flushPage()",window);
+			showWin("å¢ƒå†…æ”¶å…¥ç”³æŠ¥å•ç®¡ç†ä¿¡æ¯ä¿®æ”¹","${contextPath}/fpages/bop/collandaudit/dr/ftl/BopRDsAdd.ftl?id=" + id + "&op=mod","window","flushPage()",window);
 		}
-		//É¾³ı
+		//åˆ é™¤
 		function doDelete(id){
-			showWin("¾³ÄÚÊÕÈëÉê±¨µ¥¹ÜÀíĞÅÏ¢É¾³ı","${contextPath}/fpages/bop/collandaudit/dr/ftl/BopRDsAdd.ftl?id=" + id + "&op=del","window","flushPage()",window);
+			showWin("å¢ƒå†…æ”¶å…¥ç”³æŠ¥å•ç®¡ç†ä¿¡æ¯åˆ é™¤","${contextPath}/fpages/bop/collandaudit/dr/ftl/BopRDsAdd.ftl?id=" + id + "&op=del","window","flushPage()",window);
 		}
-		//ÏêÏ¸ĞÅÏ¢
+		//è¯¦ç»†ä¿¡æ¯
 		function doDetail(id){
-			showWin("¾³ÄÚÊÕÈëÉê±¨µ¥¹ÜÀíĞÅÏ¢Ã÷Ï¸","${contextPath}/fpages/bop/collandaudit/dr/ftl/BopRDsAdd.ftl?id=" + id + "&op=detail","window","flushPage()",window);
+			showWin("å¢ƒå†…æ”¶å…¥ç”³æŠ¥å•ç®¡ç†ä¿¡æ¯æ˜ç»†","${contextPath}/fpages/bop/collandaudit/dr/ftl/BopRDsAdd.ftl?id=" + id + "&op=detail","window","flushPage()",window);
 		}
 	</script>
 </@CommonQueryMacro.page>

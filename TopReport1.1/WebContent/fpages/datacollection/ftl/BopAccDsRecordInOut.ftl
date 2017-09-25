@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÕË»§ÊÕÖ§ÓàĞÅÏ¢">
+<@CommonQueryMacro.page title="è´¦æˆ·æ”¶æ”¯ä½™ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="bopAccDsRecordTabs" navigate="false" currentTab="BopAccDsRecordInOut">
 		<@CommonQueryMacro.CommonQuery id="bopAccDsRecordInOut" init="false" submitMode="all" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 				
@@ -31,27 +31,27 @@
 			bopAccDsRecordInOut_interface_dataset.setValue("qendDate", currentDate);
 		}
 	
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function datatable1_opr_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var recStatus = record.getValue("recStatus");
 				var innerStr = "<center>";
 				if (recStatus == "01" || recStatus == "02") {
-					innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">É¾³ı</a>"
+					innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">åˆ é™¤</a>"
 				} else {
-					innerStr = innerStr + "<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉĞŞ¸Ä' style='color:#999999'>ĞŞ¸Ä</a>&nbsp;&nbsp;<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉÉ¾³ı' style='color:#999999'>É¾³ı</a>";
+					innerStr = innerStr + "<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯ä¿®æ”¹' style='color:#999999'>ä¿®æ”¹</a>&nbsp;&nbsp;<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯åˆ é™¤' style='color:#999999'>åˆ é™¤</a>";
 				}
 				innerStr = innerStr + "</center>";
 	
 				cell.innerHTML =innerStr;
-			} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+			} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 			 	cell.innerHTML="&nbsp;";
 			}
 		}
 	
 		function datatable1_accountno_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var accountno = record.getValue("accountno");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + accountno + "</a>"
@@ -63,33 +63,33 @@
 		function btAdd_onClick(button) {
 			btNewClick();
 		}
-		//ĞÂÔö
+		//æ–°å¢
 		function btNewClick(){
-			showWin("ÕË»§ÊÕÖ§ÓàĞÂÔö","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutAdd.ftl","report","flushPage()");
+			showWin("è´¦æˆ·æ”¶æ”¯ä½™æ–°å¢","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutAdd.ftl","report","flushPage()");
 			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutAdd.ftl";
 		}
 	
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 		function flushPage(){
 			bopAccDsRecordInOut_dataset.flushData(1);
 		}
 	
-		//ĞŞ¸Ä
+		//ä¿®æ”¹
 		function doCollection(id){
 			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=modify";
-			showWin("ÕË»§ÊÕÖ§ÓàĞŞ¸Ä","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=modify","report","flushPage()");
+			showWin("è´¦æˆ·æ”¶æ”¯ä½™ä¿®æ”¹","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=modify","report","flushPage()");
 		}
 	
-		//É¾³ı
+		//åˆ é™¤
 		function doDelete(id){
 			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=delete";
-			showWin("ÕË»§ÊÕÖ§ÓàÉ¾³ı","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=delete","report","flushPage()");
+			showWin("è´¦æˆ·æ”¶æ”¯ä½™åˆ é™¤","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=delete","report","flushPage()");
 		}
 	
-		//ÏêÏ¸ĞÅÏ¢
+		//è¯¦ç»†ä¿¡æ¯
 		function doDetail(id){
 			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=detail";
-			showWin("ÕË»§ÊÕÖ§ÓàÃ÷Ï¸","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=detail","report","flushPage()");
+			showWin("è´¦æˆ·æ”¶æ”¯ä½™æ˜ç»†","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=detail","report","flushPage()");
 		}
 	</script>
 </@CommonQueryMacro.page>

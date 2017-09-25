@@ -1,7 +1,7 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<@CommonQueryMacro.page title="╦зн╩х╗оч╧эюМ">
+<@CommonQueryMacro.page title="Е╡≈Д╫█Ф²┐И≥░Г╝║Г░├">
 <script type="text/javascript" src="${contextPath}/js/xmlUtil.js"></script>
 <script type='text/javascript' src='${contextPath}/dwr/interface/PrivAction.js'> </script>
 <table align="left" border="0" width="900">
@@ -12,12 +12,12 @@
 			<@CommonQueryMacro.CommonQuery id="RoleFuncMngComp" mode="1" init="true" navigate="false">
 				<table class="grouptable" width="100%">
 					<tr>
-						<td id="oldHead" nowrap colspan="4" style="BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #d6e5f8; HEIGHT: 25px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid" align="center"> пч╦дг╟ </td>
+						<td id="oldHead" nowrap colspan="4" style="BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #d6e5f8; HEIGHT: 25px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid" align="center"> Д©╝Ф■╧Е┴█ </td>
 					</tr>
 					<tr>
-						<td align="center" nowrap class="labeltd" width="25%"> ╦зн╩╠Ю╨е </td>
+						<td align="center" nowrap class="labeltd" width="25%"> Е╡≈Д╫█Г╪√Е▐╥ </td>
 						<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="idOld"/></td>
-						<td align="center" nowrap class="labeltd"  width="25%"> ╦зн╩цШЁф </td>
+						<td align="center" nowrap class="labeltd"  width="25%"> Е╡≈Д╫█Е░█Г╖╟ </td>
 						<td  class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="roleNameOld" /></td>
 					</tr>
 				</table>
@@ -34,12 +34,12 @@
 			<@CommonQueryMacro.CommonQuery id="RoleFuncMngComp"  init="true" navigate="false">
 				<table class="grouptable" width="100%">
 					<tr>
-						<td nowrap colspan="4" style="BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #d6e5f8; HEIGHT: 25px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid" align="center"> пч╦д╨С </td>
+						<td nowrap colspan="4" style="BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #d6e5f8; HEIGHT: 25px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid" align="center"> Д©╝Ф■╧Е░▌ </td>
 					</tr>
 					<tr>
-						<td align="center" nowrap class="labeltd" width="25%"> ╦зн╩╠Ю╨е </td>
+						<td align="center" nowrap class="labeltd" width="25%"> Е╡≈Д╫█Г╪√Е▐╥ </td>
 						<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="id"/></td>
-						<td align="center" nowrap class="labeltd"  width="25%"> ╦зн╩цШЁф </td>
+						<td align="center" nowrap class="labeltd"  width="25%"> Е╡≈Д╫█Е░█Г╖╟ </td>
 						<td  class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="roleName" /></td>
 					</tr>
 				</table>

@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="²Ù×÷Ô±Ôö¼Ó">
+<@CommonQueryMacro.page title="æ“ä½œå‘˜å¢žåŠ ">
 <table align="left" >
 	<tr>
 		<td valign="top">
@@ -12,7 +12,7 @@
 				<table align="left" >
 						<tr>
 			       			<td valign="top">
-			        		<@CommonQueryMacro.Group id="group1" label="²Ù×÷Ô±ÐÅÏ¢" fieldStr="brno,tlrno,tlrName,defRoleid" colNm=2/>
+			        		<@CommonQueryMacro.Group id="group1" label="æ“ä½œå‘˜ä¿¡æ¯" fieldStr="brno,tlrno,tlrName,defRoleid" colNm=2/>
 			        		</td>
 			      		</tr>
 			      		<tr>

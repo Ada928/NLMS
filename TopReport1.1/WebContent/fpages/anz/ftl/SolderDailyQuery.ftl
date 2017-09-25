@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro >
-<@CommonQueryMacro.page title="¿Í»§¾­ÀíÈÕÏúÊÛÒµ¼¨²éÑ¯">
+<@CommonQueryMacro.page title="å®¢æˆ·ç»ç†æ—¥é”€å”®ä¸šç»©æŸ¥è¯¢">
    <table align="left">
    <tr>
       <td>
@@ -9,7 +9,7 @@
 
 			<tr>
    			<td valign="top" colspan="2">
-   			<@CommonQueryMacro.Interface id="interface" label="¿Í»§¾­ÀíÈÕÏúÊÛÒµ¼¨²éÑ¯" colNm=4 showButton="true" />
+   			<@CommonQueryMacro.Interface id="interface" label="å®¢æˆ·ç»ç†æ—¥é”€å”®ä¸šç»©æŸ¥è¯¢" colNm=4 showButton="true" />
         	</td>
        		 </tr>
       			<tr>
@@ -47,11 +47,11 @@ function locate(id) {
 		}
 	}
 	function datatable1_opr_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			
-				cell.innerHTML="<center><a href=\"JavaScript:doSee('"+value+"')\">²úÆ·½»Ò×Ã÷Ï¸</a></center>";
+				cell.innerHTML="<center><a href=\"JavaScript:doSee('"+value+"')\">äº§å“äº¤æ˜“æ˜ç»†</a></center>";
 			
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 cell.innerHTML="&nbsp;";
 		}
 	}

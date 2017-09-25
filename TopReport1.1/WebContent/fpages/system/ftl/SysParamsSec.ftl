@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="°²È«²ÎÊı">
+<@CommonQueryMacro.page title="å®‰å…¨å‚æ•°">
 	<@CommonQueryMacro.CommonQuery id="SysParamsSec" init="false" submitMode="current">
 		<table width="80%">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -20,7 +20,7 @@
 				<td valign="top" colspan="2">
 					<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 						<div align="center">
-							<@CommonQueryMacro.Group id="group1" label="°²È«²ÎÊıÎ¬»¤" fieldStr="magicId,paramValueTx,desc0" colNm=2/>
+							<@CommonQueryMacro.Group id="group1" label="å®‰å…¨å‚æ•°ç»´æŠ¤" fieldStr="magicId,paramValueTx,desc0" colNm=2/>
 							</br>
 							<@CommonQueryMacro.Button id= "btSubmit"/>
 						</div>
@@ -32,7 +32,7 @@
 
 	<script language="JavaScript">
 
-		//¶¨Î»Ò»Ìõ¼ÇÂ¼
+		//å®šä½ä¸€æ¡è®°å½•
 		function locate(magicId) {
 			var record = SysParamsSec_dataset.find(["magicId"],[magicId]);
 			if (record) {
@@ -41,7 +41,7 @@
 		}
 
 		function btSubmit_postSubmit(button){
-			alert('±£´æ³É¹¦£¡');
+			alert('ä¿å­˜æˆåŠŸï¼');
 			subwindow_signWindow.hide();
 			SysParamsSec_dataset.flushData(SysParamsSec_dataset.pageIndex);
 		}
@@ -61,9 +61,9 @@
 				var magicId = record.getValue("magicId");
 				var lock=record.getValue("lock");
 				if(isTrue(lock)){
-					cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\">ĞŞ¸Ä</a> </center>";
+					cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\">ä¿®æ”¹</a> </center>";
 				} else {
-					cell.innerHTML ="<center><a href=\"JavaScript:paModClick('"+magicId+"')\">ĞŞ¸Ä</a></center>";
+					cell.innerHTML ="<center><a href=\"JavaScript:paModClick('"+magicId+"')\">ä¿®æ”¹</a></center>";
 				}
 			}
 		}
@@ -85,7 +85,7 @@
 			paramMap.put("st",st);
 			paramMap.put("action","detail");
 			paramMap.put("flag","0");
-			loadPageWindows("partWin", "¹¦ÄÜÏµÍ³²ÎÊı","/fpages/system/ftl/SysParamsSecDetail.ftl", paramMap, "winZone");
+			loadPageWindows("partWin", "åŠŸèƒ½ç³»ç»Ÿå‚æ•°","/fpages/system/ftl/SysParamsSecDetail.ftl", paramMap, "winZone");
 		}
 	</script>
 </@CommonQueryMacro.page>

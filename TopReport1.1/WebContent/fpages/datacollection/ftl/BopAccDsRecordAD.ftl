@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÕË»§¿ª¹ØĞÅÏ¢">
+<@CommonQueryMacro.page title="è´¦æˆ·å¼€å…³ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="bopAccDsRecordTabs" navigate="false" currentTab="BopAccDsRecordAD">
 		<@CommonQueryMacro.CommonQuery id="bopAccDsRecordAD" init="false" submitMode="all" navigate="false">
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -31,27 +31,27 @@
 			bopAccDsRecordAD_interface_dataset.setValue("qendDate", currentDate);
 		}
 
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function datatable1_opr_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var recStatus = record.getValue("recStatus");
 				var innerStr = "<center>";
 				if (recStatus == "01" || recStatus == "02") {
-					innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">É¾³ı</a>"
+					innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">åˆ é™¤</a>"
 				} else {
-					innerStr = innerStr + "<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉĞŞ¸Ä' style='color:#999999'>ĞŞ¸Ä</a>&nbsp;&nbsp;<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉÉ¾³ı' style='color:#999999'>É¾³ı</a>";
+					innerStr = innerStr + "<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯ä¿®æ”¹' style='color:#999999'>ä¿®æ”¹</a>&nbsp;&nbsp;<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯åˆ é™¤' style='color:#999999'>åˆ é™¤</a>";
 				}
 				innerStr = innerStr + "</center>";
 
 				cell.innerHTML =innerStr;
-			} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+			} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 			 	cell.innerHTML="&nbsp;";
 			}
 		}
 
 		function datatable1_accountno_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var accountno = record.getValue("accountno");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + accountno + "</a>"
@@ -63,33 +63,33 @@
 		function btAdd_onClick(button) {
 			btNewClick();
 		}
-		//ĞÂÔö
+		//æ–°å¢
 		function btNewClick(){
-			showWin("¿ª¹ØÕË»§ĞÂÔö","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADAdd.ftl","report","flushPage()");
+			showWin("å¼€å…³è´¦æˆ·æ–°å¢","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADAdd.ftl","report","flushPage()");
 			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADAdd.ftl";
 		}
 
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 		function flushPage(){
 			bopAccDsRecordAD_dataset.flushData(1);
 		}
 
-		//ĞŞ¸Ä
+		//ä¿®æ”¹
 		function doCollection(id){
 			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=modify";
-			showWin("¿ª¹ØÕË»§ĞŞ¸Ä","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=modify","report","flushPage()");
+			showWin("å¼€å…³è´¦æˆ·ä¿®æ”¹","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=modify","report","flushPage()");
 		}
 
-		//É¾³ı
+		//åˆ é™¤
 		function doDelete(id){
 			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=delete";
-			showWin("¿ª¹ØÕË»§É¾³ı","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=delete","report","flushPage()");
+			showWin("å¼€å…³è´¦æˆ·åˆ é™¤","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=delete","report","flushPage()");
 		}
 
-		//ÏêÏ¸ĞÅÏ¢
+		//è¯¦ç»†ä¿¡æ¯
 		function doDetail(id){
 			//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=detail";
-			showWin("¿ª¹ØÕË»§Ã÷Ï¸","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=detail");
+			showWin("å¼€å…³è´¦æˆ·æ˜ç»†","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=detail");
 		}
 	</script>
 </@CommonQueryMacro.page>

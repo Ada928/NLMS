@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÕË»§ÊÕÖ§ÓàĞÅÏ¢">
+<@CommonQueryMacro.page title="è´¦æˆ·æ”¶æ”¯ä½™ä¿¡æ¯">
 
 <@CommonQueryMacro.CommonQueryTab id="bopAccDsQueryTabs" navigate="false" currentTab="BopAccDsInOutQuery">
 	<@CommonQueryMacro.CommonQuery id="bopAccDsInOutQuery" init="false" submitMode="all" navigate="false" >
 		<table align="left">
 			<tr>
 				<td >
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -31,7 +31,7 @@
 	}
 
 	function datatable1_accountno_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			var accountno = record.getValue("accountno");
 			cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + accountno + "</a>"
@@ -40,9 +40,9 @@
 		}
 	}
 
-	//ÏêÏ¸ĞÅÏ¢
+	//è¯¦ç»†ä¿¡æ¯
 	function doDetail(id){
-		showWin("ÕË»§ÊÕÖ§ÓàÃ÷Ï¸","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=detail","report","flushPage()");
+		showWin("è´¦æˆ·æ”¶æ”¯ä½™æ˜ç»†","${contextPath}/fpages/datacollection/ftl/BopAccDsRecordInOutInfo.ftl?id=" + id + "&op=detail","report","flushPage()");
 	}
 </script>
 </@CommonQueryMacro.page>

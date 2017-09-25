@@ -3,7 +3,7 @@
 <#--global value-->
 <#global contextPath = contextPath>
 
-<#--Í¨ÓÃ²éÑ¯Í·Ä£°å-->
+<#--é€šç”¨æŸ¥è¯¢å¤´æ¨¡æ¿-->
 <#macro CommonQuery>
 <#assign CommonQueryConfig = statics["com.huateng.commquery.config.CommonQueryUtil"].getCommonQueryBean(CQId)>
 <@CommonQueryMacro.page title=CommonQueryConfig.getAnyValue("title")>
@@ -13,22 +13,22 @@
 </@CommonQueryMacro.page>
 </#macro>
 
-<#--½¨Á¢PagePilotÀ¸-->
+<#--å»ºç«‹PagePilotæ -->
 <#macro PagePilot id maxpagelink="9" showArrow="true">
 <@CommonQueryMacro.PagePilot id=id maxpagelink=maxpagelink showArrow=showArrow/>
 </#macro>
 
-<#--½¨Á¢DataTableÀ¸-->
+<#--å»ºç«‹DataTableæ -->
 <#macro DataTable id fieldStr=CommonQueryConfig.toFieldString() width="" readonly="true">
 <@CommonQueryMacro.DataTable id=id fieldStr=fieldStr width=width readonly=readonly/>
 </#macro>
 
-<#--½¨Á¢GroupÀ¸-->
+<#--å»ºç«‹Groupæ -->
 <#macro Group id label fieldStr colNm=4>
 <@CommonQueryMacro.Group id=id label=label fieldStr=fieldStr colNm=colNm/>
 </#macro>
 
-<#--½¨Á¢ButtonÀ¸-->
+<#--å»ºç«‹Buttonæ -->
 <#macro Button id>
 <@CommonQueryMacro.Button id=id/>
 </#macro>

@@ -3,12 +3,12 @@
 <#assign opType="${RequestParameters['opType']?default('')}" />
 <#assign op="${RequestParameters['op']?default('')}" />
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="ÉÌĞĞºÚÃûµ¥ÉóÅú">
+<@CommonQueryMacro.page title="å•†è¡Œé»‘åå•å®¡æ‰¹">
 <@CommonQueryMacro.CommonQuery id="BankBlackListApprove" init="true"  submitMode="selected"  navigate="false">
 <table align="center" width="100%">
 	<tr>
 		<td width="100%">
-			<@CommonQueryMacro.GroupBox id="BankBlackListApproveGuoup" label="Ñ¡ÔñºÚÃûµ¥ĞÅÏ¢" expand="true">
+			<@CommonQueryMacro.GroupBox id="BankBlackListApproveGuoup" label="é€‰æ‹©é»‘åå•ä¿¡æ¯" expand="true">
 				<table frame=void width="100%">
 					<tr>
 						<td colspan="2">
@@ -45,7 +45,7 @@
 		BankBlackListApprove_dataset.setParameter("op", op);
 	}
 	
-	//¶¨Î»Ò»ĞĞ¼ÇÂ¼
+	//å®šä½ä¸€è¡Œè®°å½•
 	function locate(id) {
 		var record = BankBlackListApprove_dataset.find([ "id" ], [ id ]);
 		if (record) {
@@ -53,7 +53,7 @@
 		}
 	}
 
-	//Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+	//å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
 	function datatable1_blacklistid_onRefresh(cell, value, record) {
 		if (record) {
 			var id = record.getValue("blacklistid");
@@ -84,19 +84,19 @@
 		}
 
 		if (chk == 0) {
-			alert("ÇëÖÁÉÙÑ¡ÔñÒ»ÌõºÚÃûµ¥¼ÇÂ¼£¡");
+			alert("è¯·è‡³å°‘é€‰æ‹©ä¸€æ¡é»‘åå•è®°å½•ï¼");
 			return false;
 		} else {
-			if(!confirm("È·¶¨ÉóÅúÑ¡ÖĞµÄºÚÃûµ¥£¿")){
+			if(!confirm("ç¡®å®šå®¡æ‰¹é€‰ä¸­çš„é»‘åå•ï¼Ÿ")){
 				return false;
 			}
 		}
 	}
 	
 	function btApprove_postSubmit(button) {
-		alert("ÉóÅú²Ù×÷³É¹¦¡£");
+		alert("å®¡æ‰¹æ“ä½œæˆåŠŸã€‚");
 		button.url = "#";
-		//Ë¢ĞÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		flushCurrentPage();
 	}
 	
@@ -115,21 +115,21 @@
 		}
 
 		if (chk == 0) {
-			alert("ÇëÖÁÉÙÑ¡ÔñÒ»ÌõºÚÃûµ¥¼ÇÂ¼£¡");
+			alert("è¯·è‡³å°‘é€‰æ‹©ä¸€æ¡é»‘åå•è®°å½•ï¼");
 			return false;
 		}
-		confirm("È·¶¨È¡ÏûÉóÅúÑ¡ÖĞµÄºÚÃûµ¥£¿");
+		confirm("ç¡®å®šå–æ¶ˆå®¡æ‰¹é€‰ä¸­çš„é»‘åå•ï¼Ÿ");
 		//return true;
 	}
 	
 	function btCancelApprove_postSubmit(button) {
-		alert("È¡ÏûÉóÅú²Ù×÷³É¹¦¡£");
+		alert("å–æ¶ˆå®¡æ‰¹æ“ä½œæˆåŠŸã€‚");
 		button.url = "#";
-		//Ë¢ĞÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		flushCurrentPage();
 	}
 
-	//Ë¢ĞÂµ±Ç°Ò³
+	//åˆ·æ–°å½“å‰é¡µ
 	function flushCurrentPage() {
 		BankBlackListApprove_dataset.flushData(BankBlackListApprove_dataset.pageIndex);
 	}

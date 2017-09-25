@@ -3,7 +3,7 @@
 <#assign errCd = ERR_ERRCODE>
 <html>
 <head>
-	<title>·¢Éú´íÎó</title>
+	<title>å‘ç”Ÿé”™è¯¯</title>
 	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
 	<META HTTP-EQUIV="Cache-Control" CONTENT="must-revalidate">
 	<MEAT HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=GBK">
@@ -11,11 +11,11 @@
 	<script language="javascript" src="${contextPath}/templets/lib/salert.js"></script>
 	<script language="JavaScript" type="text/javascript">
 			if("${errCd}" == "GD0101"){
-				//GD0101=²Ù×÷Ô±ÎŞ´Ë¹¦ÄÜÈ¨ÏŞ
+				//GD0101=æ“ä½œå‘˜æ— æ­¤åŠŸèƒ½æƒé™
 				errAlert("${detail}");
 				window.open("${contextPath}", "_self");
 			}else if("${errCd}" ==  "GD0102"){
-				//GD0102=²Ù×÷Ô±»á»°ÎŞĞ§
+				//GD0102=æ“ä½œå‘˜ä¼šè¯æ— æ•ˆ
 				errAlert("${detail}");
 				window.open("${contextPath}", "_self");
 			}else{

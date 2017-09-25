@@ -29,8 +29,8 @@
 	</table>
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript">
-	//¸ù¾İ´«¹ıÀ´µÄloadFromTypeÅĞ¶ÏÊÇÄÇ¸öÒ³Ãæµ÷ÓÃ
-	//È·¶¨Ê±ÉèÖÃÑ¡ÔñµÄÏàÓ¦µÄ¼ÇÂ¼Êı¾İ³õÊ¼»¯µ÷ÓÃÒ³ÃæµÄÏàÓ¦datasetµÄÏàÓ¦field
+	//æ ¹æ®ä¼ è¿‡æ¥çš„loadFromTypeåˆ¤æ–­æ˜¯é‚£ä¸ªé¡µé¢è°ƒç”¨
+	//ç¡®å®šæ—¶è®¾ç½®é€‰æ‹©çš„ç›¸åº”çš„è®°å½•æ•°æ®åˆå§‹åŒ–è°ƒç”¨é¡µé¢çš„ç›¸åº”datasetçš„ç›¸åº”field
 	function btSure_onClick(button){
 		var loadFromType = "${RequestParameters["loadFromType"]?default('')}";
 		if (loadFromType == "A") {

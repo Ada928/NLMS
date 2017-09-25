@@ -1,4 +1,4 @@
-<#--信息提交-->
+<#--淇℃伅鎻愪氦-->
 <#import "/templets/commonQuery/CQElement.ftl" as htmlelement>
 <#import "/templets/commonQuery/CommonQueryMacro.ftl" as CQMaco>
 
@@ -59,10 +59,10 @@
 			</SCRIPT>
 				<TR>
 					<TD align="center">
-         	           <@htmlelement.commonbutton  id="__queryButton" onclick="JavaScript:confrimForm();" value="查询"/>
+         	           <@htmlelement.commonbutton  id="__queryButton" onclick="JavaScript:confrimForm();" value="鏌ヨ"/>
                     </TD>
                     <TD align="center">
-					   <@htmlelement.commonbutton  id="__resetButton" onclick="JavaScript:document.all.${name}.reset();" value="重载"/>
+					   <@htmlelement.commonbutton  id="__resetButton" onclick="JavaScript:document.all.${name}.reset();" value="閲嶈浇"/>
 					</TD>
 				</TR>
 			</TABLE>
@@ -172,7 +172,7 @@ _t.tag="";
 			<tr>
 				<td align="center">
 				<button extra="button" type="button" id="btnSubmit" autoForm="autoformCustomerInfo"
-					defaultOperation="submitform" submitManager="sm1">查询</button>
+					defaultOperation="submitform" submitManager="sm1">鏌ヨ</button>
 
 
 <script language="javascript">

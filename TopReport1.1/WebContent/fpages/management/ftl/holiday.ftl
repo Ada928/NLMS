@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="½Ú¼ÙÈÕÎ¬»¤">
+<@CommonQueryMacro.page title="èŠ‚å‡æ—¥ç»´æŠ¤">
 
 <@CommonQueryMacro.CommonQuery id="parammng_Holiday" init="true" >
 	<table align="left">
@@ -32,12 +32,12 @@ function btDetail_onClick(button){
 	var _year = parammng_Holiday_dataset.getString("year");
 	var paramMap = new Map();
   	paramMap.put("year",_year);
-  	loadPageWindows("userWin", "½Ú¼ÙÈÕÎ¬»¤", "/fpages/management/ftl/holidayDetail.ftl", paramMap, "winZone");
+  	loadPageWindows("userWin", "èŠ‚å‡æ—¥ç»´æŠ¤", "/fpages/management/ftl/holidayDetail.ftl", paramMap, "winZone");
 }
 function btAddHoliday_onClick(button){
 	unloadFunction();
 	var paramMap = new Map();
-	loadPageWindows("userWin", "½Ú¼ÙÈÕĞÂÔö", "/fpages/management/ftl/holidayAdd.ftl", paramMap, "winZone");
+	loadPageWindows("userWin", "èŠ‚å‡æ—¥æ–°å¢", "/fpages/management/ftl/holidayAdd.ftl", paramMap, "winZone");
 }
 </script>
 </@CommonQueryMacro.page>

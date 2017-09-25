@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ĞŞ¸Ä²Ù×÷Ô±">
+<@CommonQueryMacro.page title="ä¿®æ”¹æ“ä½œå‘˜">
 <@CommonQueryMacro.CommonQuery id="operMngMod" init="true" mode="current" navigate="false">
 	<table align="left">
 		<tr align="center">
 			<td >
-				<@CommonQueryMacro.Group id ="table1" label="ÏêÏ¸ĞÅÏ¢" fieldStr="tlrno,tlrName,branchName"colNm=4/>
+				<@CommonQueryMacro.Group id ="table1" label="è¯¦ç»†ä¿¡æ¯" fieldStr="tlrno,tlrName,branchName"colNm=4/>
 			</td>
 		</tr>
       	<tr align="left">
@@ -23,12 +23,12 @@
 	var isChanged = false;
 	function btModSave_onClickCheck(button) {
 		if (!isChanged) {
-			alert("ÇëĞŞ¸Ä");
+			alert("è¯·ä¿®æ”¹");
 		}
 		return isChanged;
 	}
 	function btModSave_postSubmit(button) {
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 	}
 	function operMngMod_dataset_afterChange(dataset) {
 		isChanged = true;
@@ -41,7 +41,7 @@
 	  	paramMap.put("tlrno",tlrno);
 	  	paramMap.put("op",op);
 	  	win.close();
-	  	loadPageWindows("userWin", "½ÇÉ«Éè¶¨", "/fpages/regonization/ftl/OperMngRoleInfo.ftl", paramMap, "winZone");
+	  	loadPageWindows("userWin", "è§’è‰²è®¾å®š", "/fpages/regonization/ftl/OperMngRoleInfo.ftl", paramMap, "winZone");
 	}
 	function btCancel_onClickCheck(button) {
 	     unloadPageWindows("userWin");

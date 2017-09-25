@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="²Ù×÷Ô±Ôö¼Ó">
+<@CommonQueryMacro.page title="æ“ä½œå‘˜å¢žåŠ ">
 <table align="left" width="100%">
 	<@CommonQueryMacro.CommonQuery id="Management_SelectTlrAdd" init="false" navigate="true">
 	<tr>
 		<td align="center" rowspan="1"  valign="top" width="450">
-				<@CommonQueryMacro.Group id="group1" label="²Ù×÷Ô±Ôö¼Ó" fieldStr="brcode,extTlrno" colNm=6/>
+				<@CommonQueryMacro.Group id="group1" label="æ“ä½œå‘˜å¢žåŠ " fieldStr="brcode,extTlrno" colNm=6/>
 			<@CommonQueryMacro.Button id= "btSave"/>
 		</td>
 	</tr>

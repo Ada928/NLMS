@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ĞÅÏ¢²¹Â¼²éÑ¯">
+<@CommonQueryMacro.page title="ä¿¡æ¯è¡¥å½•æŸ¥è¯¢">
 	<@CommonQueryMacro.CommonQueryTab id="BopCfaExplrmbloDsQueryTabs" navigate="false" currentTab="BopCfaExplrmbloDsQuery">
 		<@CommonQueryMacro.CommonQuery id="BopCfaExplrmbloDsQuery" init="false" submitMode="current" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 				<tr>
@@ -25,29 +25,29 @@
 	</@CommonQueryMacro.CommonQueryTab>
 	<script language="JavaScript">
 		function initCallGetter_post() {
-			//ÆğÊ¼¹¤×÷ÈÕÆÚÄ¬ÈÏµ±Ç°ÈÕÆÚ
+			//èµ·å§‹å·¥ä½œæ—¥æœŸé»˜è®¤å½“å‰æ—¥æœŸ
 			<#assign v_date = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 			BopCfaExplrmbloDsQuery_interface_dataset.setValue("workDateStart","${v_date}");
 			BopCfaExplrmbloDsQuery_interface_dataset.setValue("workDateEnd","${v_date}");
 		}
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function BopCfaExplrmbloDsQueryTable_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var filler2 = record.getValue("filler2");
 				cell.innerHTML = "<center><a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">"+filler2+"</a></center>";
 			} else {
-				//µ±²»´æÔÚ¼ÇÂ¼Ê±
+				//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 			 	cell.innerHTML="&nbsp;";
 			}
 		}
 
-		//²éÑ¯
+		//æŸ¥è¯¢
 		function doDetail(id){
-			showWin("Ç©Ô¼ĞÅÏ¢²éÑ¯","${contextPath}/fpages/datacollection/ftl/BopCfaExplrmbloDsAdd.ftl?op=detail&id="+id,"report1","flushPage()");
+			showWin("ç­¾çº¦ä¿¡æ¯æŸ¥è¯¢","${contextPath}/fpages/datacollection/ftl/BopCfaExplrmbloDsAdd.ftl?op=detail&id="+id,"report1","flushPage()");
 		}
 
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 		function flushPage(){
 			BopCfaExplrmbloDsQuery_dataset.flushData();
 		}

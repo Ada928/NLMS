@@ -32,7 +32,7 @@
 	/*
 	  document.oncontextmenu=new function{event.returnValue=false;return false;}
 	  */
-	  //ÆÁ±ÎÊó±êÓÒ¼ü
+	  //å±è”½é¼ æ ‡å³é”®
     </script>
   </head>
   <body>
@@ -64,7 +64,7 @@
 	/*
 	  document.oncontextmenu=new function{event.returnValue=false;return false;}
 	  */
-	  //ÆÁ±ÎÊó±êÓÒ¼ü
+	  //å±è”½é¼ æ ‡å³é”®
     </script>
   </head>
   <body class="${bodyclass}" id="${bodyid}">
@@ -136,7 +136,7 @@
 	/*
 	  document.oncontextmenu=new function{event.returnValue=false;return false;}
 	  */
-	  //ÆÁ±ÎÊó±êÓÒ¼ü
+	  //å±è”½é¼ æ ‡å³é”®
     </script>
   </head>
   <body>
@@ -179,7 +179,7 @@
 	/*
 	  document.oncontextmenu=new function{event.returnValue=false;return false;}
 	  */
-	  //ÆÁ±ÎÊó±êÓÒ¼ü
+	  //å±è”½é¼ æ ‡å³é”®
     </script>
   </head>
   <body onload=${onloadfunction}>
@@ -210,8 +210,8 @@ BORDER-BOTTOM: 1px solid; HEIGHT: 8px
 			<P></P>
 			<P align=center><FONT class=fontbig></FONT></P>
 			<SPAN
-				style="FONT-WEIGHT: bold; FONT-SIZE:9pt; FONT-FAMILY: ËÎÌå; font-color: black">
-				ÕıÔÚ´¦ÀíÖĞ,ÇëÉÔºò...
+				style="FONT-WEIGHT: bold; FONT-SIZE:9pt; FONT-FAMILY: å®‹ä½“; font-color: black">
+				æ­£åœ¨å¤„ç†ä¸­,è¯·ç¨å€™...
 			</SPAN>
 			<BR>
 			<SPAN style="FONT-SIZE: 9pt; FONT-FAMILY: Tahoma, Arial; font-color: black">
@@ -324,7 +324,7 @@ function hasSubmit(){
 	/*
 	 // document.oncontextmenu=new function{event.returnValue=false;return false;}
 	  */
-	  //ÆÁ±ÎÊó±êÓÒ¼ü
+	  //å±è”½é¼ æ ‡å³é”®
     </script>
     <script language="javascript">
 <!--
@@ -341,25 +341,25 @@ var _supportsDatasetMultiSelect=true;
 var _paramMap = new Map();//use to set  defaults in dataset
 
 var timer;
-var text="ÕıÔÚÔØÈë";i=0;
+var text="æ­£åœ¨è½½å…¥";i=0;
 function load() {
-¡¡¡¡if(i<6) {
-¡¡¡¡		text+=".";
-¡¡¡¡		document.getElementById("Waiting").innerText=text;
-¡¡¡¡		i++;
+ã€€ã€€if(i<6) {
+ã€€ã€€		text+=".";
+ã€€ã€€		document.getElementById("Waiting").innerText=text;
+ã€€ã€€		i++;
     }
-¡¡¡¡else {
-		text="ÕıÔÚÔØÈëÎÄµµ";i=0;
+ã€€ã€€else {
+		text="æ­£åœ¨è½½å…¥æ–‡æ¡£";i=0;
 	}
 }
-¡¡¡¡timer=window.setInterval("load()",300);
+ã€€ã€€timer=window.setInterval("load()",300);
 //-->
 </script>
   </head>
   <body bgcolor="#FFFFFF" onload='clearInterval(timer);document.getElementById("Loading").style.display="none";'>
 
   <div id="Loading" style="position:absolute;width:100%; height:100%; z-index:100;background:white;">
-¡¡<div id="Waiting" style="position:absolute;left:50%;top:50%;"></div></div>
+ã€€<div id="Waiting" style="position:absolute;left:50%;top:50%;"></div></div>
     <#nested>
   </body>
 </html>

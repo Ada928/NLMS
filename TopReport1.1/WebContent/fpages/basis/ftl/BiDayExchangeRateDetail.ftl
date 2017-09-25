@@ -1,40 +1,40 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign st="${RequestParameters['st']}" />
-<@CommonQueryMacro.page title="хуеф╪шн╛╩╓">
+<@CommonQueryMacro.page title="Ф≈╔Г┴▄Д╩╥Г╩╢Ф┼╓">
 <#if st=="2">
 	<@CommonQueryMacro.CommonQuery id="BiDayExchangeRateDetail" init="true" submitMode="all" navigate="false">
 	<table align="left">
 	      <tr valign="top">
 	  			<td valign="top">
 	  			<FIELDSET name='group6' style="padding: 6px;">
-					<LEGEND>хуеф╪шн╛╩╓оЙо╦пео╒</LEGEND>
+					<LEGEND>Ф≈╔Г┴▄Д╩╥Г╩╢Ф┼╓Х╞╕Г╩├Д©║Ф│╞</LEGEND>
 					<table frame=void width="100%" class="grouptable" id="detailTable">
 						<tr>      
-		                  <td nowrap class="labeltd" colspan=2>пч╦дг╟</td>      
-						  <td nowrap class="labeltd" colspan=2>пч╦д╨С</td>
+		                  <td nowrap class="labeltd" colspan=2>Д©╝Ф■╧Е┴█</td>      
+						  <td nowrap class="labeltd" colspan=2>Д©╝Ф■╧Е░▌</td>
 						</tr>
 		            	<tr>
-		                  <td nowrap class="labeltd">╠ржж</td>
+		                  <td nowrap class="labeltd">Е╦│Г╖█</td>
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_id"/></td>
-						   <td nowrap class="labeltd">╠ржж</td>
+						   <td nowrap class="labeltd">Е╦│Г╖█</td>
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="id"/></td>
 						</tr>
 		            	<tr>
-		                  <td nowrap class="labeltd">╣╔н╩</td>
+		                  <td nowrap class="labeltd">Е█∙Д╫█</td>
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_rateUnit"/></td>
-						   <td nowrap class="labeltd">╣╔н╩</td>
+						   <td nowrap class="labeltd">Е█∙Д╫█</td>
 						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="rateUnit"/></td>
 						</tr>
 						<tr>
-		                  <td nowrap class="labeltd">хуфз</td>
+		                  <td nowrap class="labeltd">Ф≈╔Ф°÷</td>
 		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_rateDate"/></td>
-		                  <td nowrap class="labeltd">хуфз</td>
+		                  <td nowrap class="labeltd">Ф≈╔Ф°÷</td>
 		                  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="rateDate"/></td>
 		                </tr>
 		                <tr>
-		                  <td nowrap class="labeltd">жп╪Д╪ш</td>
+		                  <td nowrap class="labeltd">Д╦╜И≈╢Д╩╥</td>
 		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_rateMidprice"/></td>
-		                   <td nowrap class="labeltd">жп╪Д╪ш</td>
+		                   <td nowrap class="labeltd">Д╦╜И≈╢Д╩╥</td>
 						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="rateMidprice"/></td>
 		                </tr>	
 					</table>
@@ -54,7 +54,7 @@
 	<table align="left">
       <tr valign="top">
   			<td valign="center">
-  			<@CommonQueryMacro.Group id ="group1" label="хуеф╪шн╛╩╓оЙо╦пео╒" fieldStr="old_id,old_rateUnit,old_rateDate,old_rateMidprice" colNm=2/>
+  			<@CommonQueryMacro.Group id ="group1" label="Ф≈╔Г┴▄Д╩╥Г╩╢Ф┼╓Х╞╕Г╩├Д©║Ф│╞" fieldStr="old_id,old_rateUnit,old_rateDate,old_rateMidprice" colNm=2/>
   			</td>
   		</tr>
   	 <tr valign="top">

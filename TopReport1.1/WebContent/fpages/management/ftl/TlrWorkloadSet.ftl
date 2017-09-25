@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="²Ù×÷Ô±ÉóÅú·§ÖµÉèÖÃ">
+<@CommonQueryMacro.page title="æ“ä½œå‘˜å®¡æ‰¹é˜€å€¼è®¾ç½®">
 <table align="left" width="100%">
 	<tr>
 		<td valign="top" rowspan="1"  valign="top">
@@ -24,7 +24,7 @@
 <script language="javascript">
 function btSave_postSubmit(button){
 	Management_TlrWorkloadSet_dataset.flushData();
-	alert("±£´æ³É¹¦");
+	alert("ä¿å­˜æˆåŠŸ");
 }
 </script>
 </@CommonQueryMacro.page>

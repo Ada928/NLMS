@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="¶¨Ê±ÈÎÎñĞÅÏ¢">
+<@CommonQueryMacro.page title="å®šæ—¶ä»»åŠ¡ä¿¡æ¯">
 <@CommonQueryMacro.CommonQuery id="bopTimedScheduler" init="true" submitMode="current">
 <table width="90%">
   	<tr>
@@ -17,7 +17,7 @@
 	 	<td>
 	 		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
       			<div align="center">
-      				<@CommonQueryMacro.Group id="group1" label="¶¨Ê±ÈÎÎñĞÅÏ¢ĞŞ¸Ä"
+      				<@CommonQueryMacro.Group id="group1" label="å®šæ—¶ä»»åŠ¡ä¿¡æ¯ä¿®æ”¹"
         			  fieldStr="jobName,jobTime,jobStauts,justWorkdateRun,jobRemark" colNm=4/>
         			<br/>
         			<@CommonQueryMacro.Button id="btSave" />
@@ -37,7 +37,7 @@
 </table>
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript">
-	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+	//å®šä½ä¸€æ¡è®°å½•
 	function locate(id) {
 		var record = bopTimedScheduler_dataset.find(["id"],[id]);
 		if (record) {
@@ -50,14 +50,14 @@
 		if(record&&record!=null){
 			var id = record.getValue("id");
 			var jobStauts = record.getValue("jobStauts");
-			var innerStr = "<center><a href=\"JavaScript:doModifyShow('"+id+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;";
-			//ÓĞĞ§
+			var innerStr = "<center><a href=\"JavaScript:doModifyShow('"+id+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;";
+			//æœ‰æ•ˆ
 			if (jobStauts == "1") {
-				innerStr = innerStr + "<a style=\"color:#666666\" title=\"µ÷¶ÈÆ÷ÒÑÆô¶¯£¬²»ÄÜ²Ù×÷\">Æô¶¯</a>&nbsp;&nbsp;" +
-		    		" <a href=\"JavaScript:doJobStatus('"+id+"','0')\">Í£Ö¹</a></center>";
+				innerStr = innerStr + "<a style=\"color:#666666\" title=\"è°ƒåº¦å™¨å·²å¯åŠ¨ï¼Œä¸èƒ½æ“ä½œ\">å¯åŠ¨</a>&nbsp;&nbsp;" +
+		    		" <a href=\"JavaScript:doJobStatus('"+id+"','0')\">åœæ­¢</a></center>";
 		    } else {
-		    	innerStr = innerStr + " <a href=\"JavaScript:doJobStatus('"+id+"','1')\">Æô¶¯</a>&nbsp;&nbsp;" +
-		    		"<a style=\"color:#666666\" title=\"µ÷¶ÈÆ÷ÒÑÍ£Ö¹£¬²»ÄÜ²Ù×÷\">Í£Ö¹</a></center>";
+		    	innerStr = innerStr + " <a href=\"JavaScript:doJobStatus('"+id+"','1')\">å¯åŠ¨</a>&nbsp;&nbsp;" +
+		    		"<a style=\"color:#666666\" title=\"è°ƒåº¦å™¨å·²åœæ­¢ï¼Œä¸èƒ½æ“ä½œ\">åœæ­¢</a></center>";
 		    }
 		    cell.innerHTML = innerStr;
 		}else{
@@ -79,20 +79,20 @@
 
 	function btSave_onClickCheck(){
 		if (!bopTimedScheduler_dataset.modified) {
-			alert("ÇëÏÈĞŞ¸ÄºóÔÙ±£´æ£¡");
+			alert("è¯·å…ˆä¿®æ”¹åå†ä¿å­˜ï¼");
 			return false;
 		}
 		return true;
 	}
 
 	function btSave_postSubmit(){
-		alert("±£´æ³É¹¦£¡");
+		alert("ä¿å­˜æˆåŠŸï¼");
 		subwindow_signWindow.hide();
 		bopTimedScheduler_dataset.flushData(bopTimedScheduler_dataset.pageIndex);
 	}
 
 	function btJobStatus_postSubmit(){
-		alert("±£´æ³É¹¦£¡");
+		alert("ä¿å­˜æˆåŠŸï¼");
 		bopTimedScheduler_dataset.flushData(bopTimedScheduler_dataset.pageIndex);
 	}
 

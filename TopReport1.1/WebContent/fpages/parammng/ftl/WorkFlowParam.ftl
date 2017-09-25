@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="¹¤×÷Á÷²ÎÊıÅäÖÃ">
+<@CommonQueryMacro.page title="å·¥ä½œæµå‚æ•°é…ç½®">
 <table align="left">
 
 <tr>
@@ -20,7 +20,7 @@
         			<table align="center">
         				<tr>
        					<td  ><#-- processTemplate,taskName,appType,brclass,bizClass,bizSubclass,brcodeType,actBrcode,brcodeList,assignType,amtType,tlrnoList,roleType,pass -->
-        					<@CommonQueryMacro.Group id="group1" label="¹¤×÷Á÷²ÎÊıÅäÖÃ" fieldStr="processTemplate,taskName,apptype,brclass,bizClass,bizSubclass,brcodeType,actBrcode,brcodeList,assignType,amtType,tlrnoList,workflowRole,pass" colNm=2/>
+        					<@CommonQueryMacro.Group id="group1" label="å·¥ä½œæµå‚æ•°é…ç½®" fieldStr="processTemplate,taskName,apptype,brclass,bizClass,bizSubclass,brcodeType,actBrcode,brcodeList,assignType,amtType,tlrnoList,workflowRole,pass" colNm=2/>
 
         				</td>
 						<tr align="center">
@@ -49,13 +49,13 @@
 // add by wuzhiwei
 function brcodeType_DropDown_onSelect(dropDown,record,editor){
   // var brcodeTypeValus = parammng_WorkFlowParam_dataset.getParameter("brcodeType");
-   if(record.getValue("data").trim()==1)//Ö¸¶¨»ú¹¹
+   if(record.getValue("data").trim()==1)//æŒ‡å®šæœºæ„
    {
    		parammng_WorkFlowParam_dataset.setFieldReadOnly("actBrcode",false);
 		parammng_WorkFlowParam_dataset.setFieldReadOnly("brcodeList",false);
 	    //brcodeList.readOnly=true;
    }
-   else//²»Ö¸¶¨»ú¹¹
+   else//ä¸æŒ‡å®šæœºæ„
    {
    		 parammng_WorkFlowParam_dataset.setValue2("brcodeList","");
    		 parammng_WorkFlowParam_dataset.setValue2("actBrcode","");
@@ -72,9 +72,9 @@ function editor_actBrcode_onSetValue(editor,value)
    {
    	  return true;
    }
-   var actBrcode='' ; 	//¼ÇÂ¼ËùÑ¡brcode   Íâ²¿5Î»
-   var temp=''; 		//ÁÙÊ±´æ´¢±äÁ¿
-   for(var i=0; i<value.length; i++)   //´Ó"brcode-brname"  ÖĞ»ñÈ¡brcode
+   var actBrcode='' ; 	//è®°å½•æ‰€é€‰brcode   å¤–éƒ¨5ä½
+   var temp=''; 		//ä¸´æ—¶å­˜å‚¨å˜é‡
+   for(var i=0; i<value.length; i++)   //ä»"brcode-brname"  ä¸­è·å–brcode
    {
 	temp = value.charAt(i);
 	if(temp != '-')
@@ -83,20 +83,20 @@ function editor_actBrcode_onSetValue(editor,value)
 		break;
    }
 
-	var oldBrcode = parammng_WorkFlowParam_dataset.getValue("brcodeList");//Ô­¶àĞĞÎÄ±¾¿òÖĞµÄÖµ
+	var oldBrcode = parammng_WorkFlowParam_dataset.getValue("brcodeList");//åŸå¤šè¡Œæ–‡æœ¬æ¡†ä¸­çš„å€¼
 	var newBrcode ='';
 	if(oldBrcode.length==0||oldBrcode==' ')
 	{
 	 newBrcode=actBrcode;
 	}else
 	{
-	 newBrcode = oldBrcode+','+actBrcode //ĞÂ¼ÓºóµÄÖµ
+	 newBrcode = oldBrcode+','+actBrcode //æ–°åŠ åçš„å€¼
 	}
-	if(oldBrcode.indexOf(actBrcode)==-1)  //ÅĞ¶ÏËùÑ¡ÖĞµÄbrcodeÊÇ·ñ´æÔÚ£¬´æÔÚÔòÌø¹ı£¬²»¼ÇÂ¼
+	if(oldBrcode.indexOf(actBrcode)==-1)  //åˆ¤æ–­æ‰€é€‰ä¸­çš„brcodeæ˜¯å¦å­˜åœ¨ï¼Œå­˜åœ¨åˆ™è·³è¿‡ï¼Œä¸è®°å½•
 	{
 	     parammng_WorkFlowParam_dataset.setValue("brcodeList",newBrcode);
 	}
-	else //·ñÔòËµÃ÷²»´æÔÚ£¬Ôò¼ÇÂ¼ ¡£ ĞÂÔö
+	else //å¦åˆ™è¯´æ˜ä¸å­˜åœ¨ï¼Œåˆ™è®°å½• ã€‚ æ–°å¢
 	{
 		return true ;
 	}
@@ -208,7 +208,7 @@ function editor_actBrcode_onSetValue(editor,value)
 	}
 
 
- 	function bizClass_DropDown_beforeOpen(dropDown){//ÉóÅúÀàĞÍ
+ 	function bizClass_DropDown_beforeOpen(dropDown){//å®¡æ‰¹ç±»å‹
     	var o_selectTemplate=WfpbizClassNameSelect_DropDownDataset.getParameter("selectTemplate");
  		if(o_selectTemplate==""){
   			 WfpbizClassNameSelect_DropDownDataset.setParameter("selectTemplate",parammng_WorkFlowParam_dataset.getValue("processTemplate"));
@@ -280,14 +280,14 @@ function checkNeedValue(){
 	v_tlrnoList = parammng_WorkFlowParam_dataset.getValue("tlrnoList");
 	if(v_brcodeType == "1"){
 		if(v_brcodeList == ""){
-			v_errorMessage = "×Ö¶Î[Ö¸¶¨»ú¹¹ºÅÁĞ±í]²»Ó¦Îª¿Õ¡£";
+			v_errorMessage = "å­—æ®µ[æŒ‡å®šæœºæ„å·åˆ—è¡¨]ä¸åº”ä¸ºç©ºã€‚";
 			alert(v_errorMessage);
 			return false ;
 		}
 	}
 	if(v_assignType == "0"){
 		if(v_tlrnoList == ""){
-			v_errorMessage = "×Ö¶Î[²Ù×÷Ô±ÁĞ±í]²»Ó¦Îª¿Õ¡£";
+			v_errorMessage = "å­—æ®µ[æ“ä½œå‘˜åˆ—è¡¨]ä¸åº”ä¸ºç©ºã€‚";
 			alert(v_errorMessage);
 			return false ;
 		}
@@ -308,7 +308,7 @@ function checkValue(){
 			|| v_apptype == " " || v_brclass == " "
 			|| v_bizClass == " " || v_bizSubclass == " "	)
 		{
-			v_errorMessage = "´ø¡¾*¡¿×Ö¶Î²»Ó¦Îª¿Õ¡£";
+			v_errorMessage = "å¸¦ã€*ã€‘å­—æ®µä¸åº”ä¸ºç©ºã€‚";
 				alert(v_errorMessage);
 				return false ;
 		}
@@ -326,7 +326,7 @@ function btNew_onClick(button){
 }
 
 function parammng_WorkFlowParam_dataset_afterScroll(dataset){
-	//±ä¸üËùÑ¡¼ÇÂ¼Ê±ÖØĞÂ¸³Öµ£¬Ê¹ÏÂÀ­¿ò¿ÉÒÔÕıÈ·ÖØÔØ
+	//å˜æ›´æ‰€é€‰è®°å½•æ—¶é‡æ–°èµ‹å€¼ï¼Œä½¿ä¸‹æ‹‰æ¡†å¯ä»¥æ­£ç¡®é‡è½½
 	v_selectTemplate = parammng_WorkFlowParam_dataset.getValue("processTemplate");
 	v_selectbizClass = parammng_WorkFlowParam_dataset.getValue("bizClass");
 	v_selecttaskName = parammng_WorkFlowParam_dataset.getValue("taskName");
@@ -341,7 +341,7 @@ function parammng_WorkFlowParam_dataset_afterScroll(dataset){
 		btDelete.disable(false);
 	}
 
-	//±ä¸üËùÑ¡¼ÇÂ¼Ê±½ûÖ¹ĞŞ¸Ä²»¿É±ä¸üÏî
+	//å˜æ›´æ‰€é€‰è®°å½•æ—¶ç¦æ­¢ä¿®æ”¹ä¸å¯å˜æ›´é¡¹
 
 	var v_id = parammng_WorkFlowParam_dataset.getValue("id");
 	if (!isNaN(v_id)&& v_id > 0){
@@ -352,11 +352,11 @@ function parammng_WorkFlowParam_dataset_afterScroll(dataset){
 	}
 
 	var v_brcodeType = parammng_WorkFlowParam_dataset.getValue("brcodeType");
-   if(v_brcodeType==1)//Ö¸¶¨»ú¹¹
+   if(v_brcodeType==1)//æŒ‡å®šæœºæ„
    {
    		parammng_WorkFlowParam_dataset.setFieldReadOnly("actBrcode",false);
 		parammng_WorkFlowParam_dataset.setFieldReadOnly("brcodeList",false);
-   }else //²»Ö¸¶¨»ú¹¹
+   }else //ä¸æŒ‡å®šæœºæ„
    {
    		 parammng_WorkFlowParam_dataset.setFieldReadOnly("actBrcode",true);
 		 parammng_WorkFlowParam_dataset.setFieldReadOnly("brcodeList",true);
@@ -394,7 +394,7 @@ function btSave_onClickCheck(button){
   function btSave_postSubmit(button)
       {
 
-        	alert("±£´æ³É¹¦");
+        	alert("ä¿å­˜æˆåŠŸ");
         	parammng_WorkFlowParam_dataset.flushData(0);
       }
  </script>

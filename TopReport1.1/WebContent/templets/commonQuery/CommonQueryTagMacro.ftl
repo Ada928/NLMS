@@ -4,12 +4,12 @@
 <#global contextPath = contextPath>
 <#---->
 
-<#--Ò³Ãæºê¶¨Òå-->
+<#--é¡µé¢å®å®šä¹‰-->
 <#--
-	¸ù¾İÅĞ¶Ï_mpf_À´ÅĞ¶ÏÊÇ·ñÎªÖ÷Ò³Ãæ£¬»¹ÊÇÒ³ÃæÆ¬¶Î
-	id    Ò³ÃæID(Ö÷Ò³ÃæÎªmaster,Ò³ÃæÆ¬¶ÎµÄID
-	title Ò³Ãæ±êÌâ(²»ÔÊĞíÎª¿Õ)£¬¶ÔÓÚÒ³ÃæÆ¬¶ÎÎªÍâ²¿¿òµÄ±êÌâ
-	body  ÊÇ·ñÏÔÊ¾body(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎª"true")£¬¶ÔÓÚÒ³ÃæÆ¬¶Î¾ÍÊÇÍâ²¿¿òÊÇ·ñÒªÏÔÊ¾
+	æ ¹æ®åˆ¤æ–­_mpf_æ¥åˆ¤æ–­æ˜¯å¦ä¸ºä¸»é¡µé¢ï¼Œè¿˜æ˜¯é¡µé¢ç‰‡æ®µ
+	id    é¡µé¢ID(ä¸»é¡µé¢ä¸ºmaster,é¡µé¢ç‰‡æ®µçš„ID
+	title é¡µé¢æ ‡é¢˜(ä¸å…è®¸ä¸ºç©º)ï¼Œå¯¹äºé¡µé¢ç‰‡æ®µä¸ºå¤–éƒ¨æ¡†çš„æ ‡é¢˜
+	body  æ˜¯å¦æ˜¾ç¤ºbody(å…è®¸ä¸ºç©ºï¼Œé»˜è®¤ä¸º"true")ï¼Œå¯¹äºé¡µé¢ç‰‡æ®µå°±æ˜¯å¤–éƒ¨æ¡†æ˜¯å¦è¦æ˜¾ç¤º
 -->
 <#macro page  title id="master" body="true">
 	<#local _mpf_ = RequestParameters["_mpf_"]?default("true")>
@@ -24,10 +24,10 @@
 	</#if>
 </#macro>
 
-<#--Ö÷Ò³Ãæºê¶¨Òå-->
+<#--ä¸»é¡µé¢å®å®šä¹‰-->
 <#--
-	title   Ò³Ãæ±êÌâ(²»ÔÊĞíÎª¿Õ)
-	body    ÊÇ·ñÏÔÊ¾body(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎª"true")
+	title   é¡µé¢æ ‡é¢˜(ä¸å…è®¸ä¸ºç©º)
+	body    æ˜¯å¦æ˜¾ç¤ºbody(å…è®¸ä¸ºç©ºï¼Œé»˜è®¤ä¸º"true")
 -->
 <#macro pageMaster title body="true">
 	<#local globalinfo = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstanceWithoutException()>
@@ -73,7 +73,7 @@
 		<script type="text/javascript" src='${contextPath}/dwr/interface/PrivAction.js'> </script>
 		<script type='text/javascript' src='${contextPath}/js/report.js'> </script>
 		<script type="text/javascript">
-		  //ÆÁ±ÎÊó±êÓÒ¼ü
+		  //å±è”½é¼ æ ‡å³é”®
 		  //document.oncontextmenu=new function(){event.returnValue=false;return false;}
 	    </script>
 	    <script type="text/javascript">
@@ -87,14 +87,14 @@
 			var _processEnterAsTab=true;
 			var _enableClientDebug=false;
 			var _supportsDatasetMultiSelect=true;
-			var _paramMap = new Map();//ÓÃÓÚÉèÖÃÄ¬ÈÏÖµ
+			var _paramMap = new Map();//ç”¨äºè®¾ç½®é»˜è®¤å€¼
 			<#local defaultBusiType = statics["com.huateng.report.constants.TopReportConstants"].REPORT_BUSITYPE_BOP/>
 			var defaultType = "${defaultBusiType}";
 			<#if globalinfo?exists>
-				var _today_date = new Date("${globalinfo.getTxdate()?string('yyyy/MM/dd HH:mm:ss')}");//µ±Ç°»á¼ÆÈÕÆÚ
+				var _today_date = new Date("${globalinfo.getTxdate()?string('yyyy/MM/dd HH:mm:ss')}");//å½“å‰ä¼šè®¡æ—¥æœŸ
 				var _current_user = "${globalinfo.getTlrno()?default("")}";
 			<#else>
-				var _today_date = new Date();//µ±Ç°»á¼ÆÈÕÆÚ
+				var _today_date = new Date();//å½“å‰ä¼šè®¡æ—¥æœŸ
 				var _current_user = "";
 			</#if>
 		</script>
@@ -118,7 +118,7 @@
 		    }
 		};
 	
-		//yyxyz 2017-09-13  ĞŞ¸Ä³É 
+		//yyxyz 2017-09-13  ä¿®æ”¹æˆ 
 		tabNavigate("<@bean.message key="${title}" />",window.location);
 		//tabNavigate("<@bean.message key="${title}" />",window.location.href);
 	</script>
@@ -140,19 +140,19 @@
 	</script>
 </#macro>
 
-<#--Í¨ÓÃ²éÑ¯Í·Ä£°å-->
+<#--é€šç”¨æŸ¥è¯¢å¤´æ¨¡æ¿-->
 <#--
-	id                      Í¨ÓÃ²éÑ¯idºÅ(²»ÔÊĞíÎª¿Õ)
-	init                    ÊÇ·ñ³õÊ¼»¯±êÖ¾(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎª"false"           "true"-³õÊ¼»¯;"false"-²»³õÊ¼»¯)
-	navigate¡¡                µ¼º½±êÌâÊÇ·ñÏÔÊ¾±êÖ¾(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎª"true"        "true"-ÏÔÊ¾;"false"-²»ÏÔÊ¾)
-	mode¡¡                     Ä£Ê½±êÖ¾(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎª"0"                     0-Éú³É½á¹ûDataset,1-²»Éú³É½á¹ûDataset)
-	submitMode              Êı¾İÌá½»·½Ê½(ÔÊĞíÎª¿Õ,Ä¬ÈÏÎª"allchange"          all-È«²¿Ìá½»,allchange-Ìá½»ĞŞ¸Ä²¿·Ö,current-Ìá½»µ±Ç°µÄ¼ÍÂ¼, selected - Ö»Ìá½»ËùÓĞ±»Ñ¡ÔñµÄ¼ÍÂ¼ )
-	paramerters             ¸ñÍâÌá½»²ÎÊı(ÔÊĞíÎª¿Õ,                          ¸ñÊ½Îª paramNm=paramVal;...)
-	readOnly                Ö»¶Á±êÖ¾(ÔÊĞíÎª¿Ú¿Õ,Ä¬ÈÏÎª"false"                "true"-Ö»¶Á;"false"-·ÇÖ»¶Á)
-	masterDataset           Ö÷datasetÃû³Æ(ÔÊĞíÎª¿Õ,Ä¬ÈÏÃ»ÓĞÖ÷dataset)
-	references              Ïà¹Ø×Ö¶Î(ÔÊĞíÎª¿Õ,                             Ö»ÓĞÔÚÉèÖÃÁËmaseterDataset²ÎÊıºó²ÅÓĞĞ§£¬±íÊ¾ÓÚÖ÷datasetÏà¹ØµÄ×Ö¶Î     ¸ñÊ½ÎªsFieldName=mFieldName1;....)
-	show                    ÊÇ·ñÏÔÊ¾ÖĞ¼äÄÚÈİ(ÔÊĞíÎª¿Õ,Ä¬ÈÏÎª"true"            "true"-ÏÔÊ¾;"false"-²»ÏÔÊ¾)
-	insertOnEmpty           ¿ÕÊı¾İ¼¯Ê±ÊÇ·ñ²åÈë¿Õ¼ÇÂ¼(ÔÊĞíÎª¿Õ,Ä¬ÈÏÎª"false"    "true"-²åÈë¿Õ¼ÇÂ¼;"false"-²»²åÈë¿Õ¼ÇÂ¼)
+	id                      é€šç”¨æŸ¥è¯¢idå·(ä¸å…è®¸ä¸ºç©º)
+	init                    æ˜¯å¦åˆå§‹åŒ–æ ‡å¿—(å…è®¸ä¸ºç©ºï¼Œé»˜è®¤ä¸º"false"           "true"-åˆå§‹åŒ–;"false"-ä¸åˆå§‹åŒ–)
+	navigateã€€                å¯¼èˆªæ ‡é¢˜æ˜¯å¦æ˜¾ç¤ºæ ‡å¿—(å…è®¸ä¸ºç©ºï¼Œé»˜è®¤ä¸º"true"        "true"-æ˜¾ç¤º;"false"-ä¸æ˜¾ç¤º)
+	modeã€€                     æ¨¡å¼æ ‡å¿—(å…è®¸ä¸ºç©ºï¼Œé»˜è®¤ä¸º"0"                     0-ç”Ÿæˆç»“æœDataset,1-ä¸ç”Ÿæˆç»“æœDataset)
+	submitMode              æ•°æ®æäº¤æ–¹å¼(å…è®¸ä¸ºç©º,é»˜è®¤ä¸º"allchange"          all-å…¨éƒ¨æäº¤,allchange-æäº¤ä¿®æ”¹éƒ¨åˆ†,current-æäº¤å½“å‰çš„çºªå½•, selected - åªæäº¤æ‰€æœ‰è¢«é€‰æ‹©çš„çºªå½• )
+	paramerters             æ ¼å¤–æäº¤å‚æ•°(å…è®¸ä¸ºç©º,                          æ ¼å¼ä¸º paramNm=paramVal;...)
+	readOnly                åªè¯»æ ‡å¿—(å…è®¸ä¸ºå£ç©º,é»˜è®¤ä¸º"false"                "true"-åªè¯»;"false"-éåªè¯»)
+	masterDataset           ä¸»datasetåç§°(å…è®¸ä¸ºç©º,é»˜è®¤æ²¡æœ‰ä¸»dataset)
+	references              ç›¸å…³å­—æ®µ(å…è®¸ä¸ºç©º,                             åªæœ‰åœ¨è®¾ç½®äº†maseterDatasetå‚æ•°åæ‰æœ‰æ•ˆï¼Œè¡¨ç¤ºäºä¸»datasetç›¸å…³çš„å­—æ®µ     æ ¼å¼ä¸ºsFieldName=mFieldName1;....)
+	show                    æ˜¯å¦æ˜¾ç¤ºä¸­é—´å†…å®¹(å…è®¸ä¸ºç©º,é»˜è®¤ä¸º"true"            "true"-æ˜¾ç¤º;"false"-ä¸æ˜¾ç¤º)
+	insertOnEmpty           ç©ºæ•°æ®é›†æ—¶æ˜¯å¦æ’å…¥ç©ºè®°å½•(å…è®¸ä¸ºç©º,é»˜è®¤ä¸º"false"    "true"-æ’å…¥ç©ºè®°å½•;"false"-ä¸æ’å…¥ç©ºè®°å½•)
 -->
 <#macro CommonQuery id init="false" navigate="true" mode="0" submitMode="allchange" parameters="" readOnly="false" masterDataset="" references="" show="true" insertOnEmpty="false">
 	<#assign CommonQueryConfig = statics["com.huateng.commquery.config.CommonQueryUtil"].getCommonQueryBean(id)>
@@ -218,14 +218,14 @@
 	${CommonQueryConfig.getAnyValueDefault("navigate","")}
 </#macro>
 
-<#--Í¨ÓÃTabsÄ£°å-->
+<#--é€šç”¨Tabsæ¨¡æ¿-->
 <#--
-	id                            Í¨ÓÃ²éÑ¯CQID(²»ÔÊĞíÎª¿Õ)
-	currentTab                    µ±Ç°tabÀ¸CQID(²»ÔÊĞíÎª¿Õ)
-	navigate                      ÏÔÊ¾µ¼º½À¸±êÖ¾(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎª"true"        "true" ÏÔÊ¾;"false" ²»ÏÔÊ¾)
-	currentUrl                    µ±Ç°tabÀ¸µÄURL(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªbutton¶ÔÓ¦url)
-	width                         ¿í¶È(ÔÊĞíÎª¿Õ,Ä¬ÈÏÎª"100%")
-	height                        ¸ß¶È(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎª"100%")
+	id                            é€šç”¨æŸ¥è¯¢CQID(ä¸å…è®¸ä¸ºç©º)
+	currentTab                    å½“å‰tabæ CQID(ä¸å…è®¸ä¸ºç©º)
+	navigate                      æ˜¾ç¤ºå¯¼èˆªæ æ ‡å¿—(å…è®¸ä¸ºç©ºï¼Œé»˜è®¤ä¸º"true"        "true" æ˜¾ç¤º;"false" ä¸æ˜¾ç¤º)
+	currentUrl                    å½“å‰tabæ çš„URL(å…è®¸ä¸ºç©ºï¼Œé»˜è®¤ä¸ºbuttonå¯¹åº”url)
+	width                         å®½åº¦(å…è®¸ä¸ºç©º,é»˜è®¤ä¸º"100%")
+	height                        é«˜åº¦(å…è®¸ä¸ºç©ºï¼Œé»˜è®¤ä¸º"100%")
 -->
 <#macro CommonQueryTab id currentTab   navigate="true" currentUrl="" width="" height="" >
 	<#assign CommonQueryConfig = statics["com.huateng.commquery.config.CommonQueryUtil"].getCommonQueryBean(id)>
@@ -274,7 +274,7 @@
 		<#if currentUrl!="">
 			<#assign url = currentUrl>
 	 	</#if>
-	 	<#-- ÅĞ¶ÏÊÇ·ñÏÔÊ¾¸Ã tab  -->
+	 	<#-- åˆ¤æ–­æ˜¯å¦æ˜¾ç¤ºè¯¥ tab  -->
 	 	<#if _tabsCtl!="" && (_tabsCtl?length >= (key_index+1)) >
 			<#if _tabsCtl?substring(key_index,key_index+1)=="1">
 				<#assign _show = true>
@@ -335,15 +335,15 @@
 	</#if>
 </#macro>
 
-<#--½¨Á¢DataSetÄ£°å-->
+<#--å»ºç«‹DataSetæ¨¡æ¿-->
 <#--
-	init                      ³õÊ¼»¯±êÖ¾(ÔÊĞíÎª¿Õ,Ä¬ÈÏÎª"true"                "true"-³õÊ¼»¯;"false"-²»³õÊ¼»¯)
-	submitMode                Êı¾İÌá½»·½Ê½(ÔÊĞíÎª¿Õ,Ä¬ÈÏÎª"allchange"          all-È«²¿Ìá½»,allchange-Ìá½»ĞŞ¸Ä²¿·Ö,current-Ìá½»µ±Ç°µÄ¼ÍÂ¼, selected - Ö»Ìá½»ËùÓĞ±»Ñ¡ÔñµÄ¼ÍÂ¼ )
-	paramerters               ¸ñÍâÌá½»²ÎÊı(ÔÊĞíÎª¿Õ,                          ¸ñÊ½Îª paramNm=paramVal;...)
-	readOnly                  Ö»¶Á±êÖ¾(ÔÊĞíÎª¿Ú¿Õ,Ä¬ÈÏÎª"false"                "true"-Ö»¶Á;"false"-·ÇÖ»¶Á)
-	masterDataset             Ö÷datasetÃû³Æ(ÔÊĞíÎª¿Õ,Ä¬ÈÏÃ»ÓĞÖ÷dataset)
-	references                Ïà¹Ø×Ö¶Î(ÔÊĞíÎª¿Õ,                             Ö»ÓĞÔÚÉèÖÃÁËmaseterDataset²ÎÊıºó²ÅÓĞĞ§£¬±íÊ¾ÓÚÖ÷datasetÏà¹ØµÄ×Ö¶Î     ¸ñÊ½ÎªsFieldName=mFieldName1;....)
-	insertOnEmpty             ¿ÕÊı¾İ¼¯Ê±ÊÇ·ñ²åÈë¿Õ¼ÇÂ¼(ÔÊĞíÎª¿Õ,Ä¬ÈÏÎª"false"    "true"-²åÈë¿Õ¼ÇÂ¼;"false"-²»²åÈë¿Õ¼ÇÂ¼)
+	init                      åˆå§‹åŒ–æ ‡å¿—(å…è®¸ä¸ºç©º,é»˜è®¤ä¸º"true"                "true"-åˆå§‹åŒ–;"false"-ä¸åˆå§‹åŒ–)
+	submitMode                æ•°æ®æäº¤æ–¹å¼(å…è®¸ä¸ºç©º,é»˜è®¤ä¸º"allchange"          all-å…¨éƒ¨æäº¤,allchange-æäº¤ä¿®æ”¹éƒ¨åˆ†,current-æäº¤å½“å‰çš„çºªå½•, selected - åªæäº¤æ‰€æœ‰è¢«é€‰æ‹©çš„çºªå½• )
+	paramerters               æ ¼å¤–æäº¤å‚æ•°(å…è®¸ä¸ºç©º,                          æ ¼å¼ä¸º paramNm=paramVal;...)
+	readOnly                  åªè¯»æ ‡å¿—(å…è®¸ä¸ºå£ç©º,é»˜è®¤ä¸º"false"                "true"-åªè¯»;"false"-éåªè¯»)
+	masterDataset             ä¸»datasetåç§°(å…è®¸ä¸ºç©º,é»˜è®¤æ²¡æœ‰ä¸»dataset)
+	references                ç›¸å…³å­—æ®µ(å…è®¸ä¸ºç©º,                             åªæœ‰åœ¨è®¾ç½®äº†maseterDatasetå‚æ•°åæ‰æœ‰æ•ˆï¼Œè¡¨ç¤ºäºä¸»datasetç›¸å…³çš„å­—æ®µ     æ ¼å¼ä¸ºsFieldName=mFieldName1;....)
+	insertOnEmpty             ç©ºæ•°æ®é›†æ—¶æ˜¯å¦æ’å…¥ç©ºè®°å½•(å…è®¸ä¸ºç©º,é»˜è®¤ä¸º"false"    "true"-æ’å…¥ç©ºè®°å½•;"false"-ä¸æ’å…¥ç©ºè®°å½•)
 -->
 <#macro Dataset init="true" submitMode="allchange" parameters="" readOnly="false" masterDataset="" references="" insertOnEmpty="false">
 	<#assign specStr="nextPage|everyPage|pageNm|currentPage|fieldString|recordString|recordOrigString">
@@ -390,19 +390,19 @@
 				   	<#if mask?length==0>
 				    	<#assign mask="null">
 				    </#if>
-				    <#--modified by wangpeng 20091126 BMS-2274  Ìí¼ÓpredateºÍpostdateµÄÊı¾İÀàĞÍÖ§³Ö  begin-->
-				    <#--added by wangpeng 20091126 BMS-2269 ÈÕÆÚĞÍ¹Ì¶¨10Î»  begin-->
+				    <#--modified by wangpeng 20091126 BMS-2274  æ·»åŠ predateå’Œpostdateçš„æ•°æ®ç±»å‹æ”¯æŒ  begin-->
+				    <#--added by wangpeng 20091126 BMS-2269 æ—¥æœŸå‹å›ºå®š10ä½  begin-->
 				    <#if fType=="date" || fType=="predate" || fType=="postdate">
 				        <#assign fSize="10">
 				    </#if>
-				    <#--added by wangpeng 20091126 BMS-2269 ÈÕÆÚĞÍ¹Ì¶¨10Î» end-->
-				    <#--modified by wangpeng 20091126 BMS-2274  Ìí¼ÓpredateºÍpostdateµÄÊı¾İÀàĞÍÖ§³Ö  end-->
-				    <#--modified by wangpeng 20091123 BMS-2274  Ôö¼Ó½ğ¶îĞÍ¿òµÄ¶ÔÆë·½Ê½  begin-->
+				    <#--added by wangpeng 20091126 BMS-2269 æ—¥æœŸå‹å›ºå®š10ä½ end-->
+				    <#--modified by wangpeng 20091126 BMS-2274  æ·»åŠ predateå’Œpostdateçš„æ•°æ®ç±»å‹æ”¯æŒ  end-->
+				    <#--modified by wangpeng 20091123 BMS-2274  å¢åŠ é‡‘é¢å‹æ¡†çš„å¯¹é½æ–¹å¼  begin-->
 				    <#assign currencyAlign=field.getAnyValue("currencyalign")?default("right")>
 			      	<#switch fEidtType>
 					     <#case "select">
-					     <#-- Èç¹ûÊÇselect ÏÈ¼Ó fId¡¡×Ö¶Î ,Ñ­»·½áÊøºóÔö¼Ó´ønameµÄ×Ö¶Î,Îª fId +¡¡name -->
-			      			   <#-- ÅĞ¶ÏÊÇ ¸Ãselect ÊÇ CQ·½Ê½£¬»¹ÊÇdataDic·½Ê½ £¬Èç¹ûÊÇ CQÔòÒª»ñµÃÏàÓ¦µÄ CQId ²¢ÇÒ²»ÄÜÖ±½Ó·­Òë£¬Òªµ½initdocumentºó·­Òë-->
+					     <#-- å¦‚æœæ˜¯select å…ˆåŠ  fIdã€€å­—æ®µ ,å¾ªç¯ç»“æŸåå¢åŠ å¸¦nameçš„å­—æ®µ,ä¸º fId +ã€€name -->
+			      			   <#-- åˆ¤æ–­æ˜¯ è¯¥select æ˜¯ CQæ–¹å¼ï¼Œè¿˜æ˜¯dataDicæ–¹å¼ ï¼Œå¦‚æœæ˜¯ CQåˆ™è¦è·å¾—ç›¸åº”çš„ CQId å¹¶ä¸”ä¸èƒ½ç›´æ¥ç¿»è¯‘ï¼Œè¦åˆ°initdocumentåç¿»è¯‘-->
 				      				<#assign isCQ  = "false">
 									<#assign CQid  = "">
 									<#assign ddtype  = "select">
@@ -443,7 +443,7 @@
 					   	    <#break>
 					</#switch>
 		 		</#list>
-	<#-- Ñ­»·½áÊøºóÔö¼Ó fId + Name ×Ö¶Î -->
+	<#-- å¾ªç¯ç»“æŸåå¢åŠ  fId + Name å­—æ®µ -->
 		<#assign fieldMap = CommonQueryConfig.fields>
 				<#assign fields = fieldMap.keySet()>
 	 			<#assign field = "">
@@ -467,7 +467,7 @@
 				      			<#if mask?length==0>
 				    				<#assign mask="null">
 				     			</#if>
-				      			    <#-- ÅĞ¶ÏÊÇ ¸Ãselect ÊÇ CQ·½Ê½£¬»¹ÊÇdataDic·½Ê½ £¬Èç¹ûÊÇ CQÔòÒª»ñµÃÏàÓ¦µÄ CQId-->
+				      			    <#-- åˆ¤æ–­æ˜¯ è¯¥select æ˜¯ CQæ–¹å¼ï¼Œè¿˜æ˜¯dataDicæ–¹å¼ ï¼Œå¦‚æœæ˜¯ CQåˆ™è¦è·å¾—ç›¸åº”çš„ CQId-->
 				      				<#assign isCQ  = "false">
 									<#assign CQid  = "">
 									<#list translated?split(":")  as key>
@@ -511,20 +511,20 @@
 				  <#if readOnly ="true">
 	  			   	_t.setReadOnly(true);
 	  			  </#if>
-				<#--Ä¬ÈÏÖµÉèÖÃ-->
+				<#--é»˜è®¤å€¼è®¾ç½®-->
 				var  _paramValues = _paramMap.keys();
 				for(var i=0;i<_paramValues.length;i++){
 					_t.setValue(_paramValues[i],_paramMap.get(_paramValues[i]));
 				}
 				_paramMap.clear();
 	</script>
-	<#-- µ¼³öÊı¾İ´°¿Ú DIV -- ÓÃÓÚÏÂÔØCSV,Excel,PdfÎÄ¼ş-->
+	<#-- å¯¼å‡ºæ•°æ®çª—å£ DIV -- ç”¨äºä¸‹è½½CSV,Excel,Pdfæ–‡ä»¶-->
 	<#if CommonQueryConfig.getPageExpConf("url")??>
 		<@ExpFileDiv id ="${CommonQueryConfig.getId()}"/>
 	</#if>
 </#macro>
 
-<#--½¨Á¢DropDownDataSetÄ£°å-->
+<#--å»ºç«‹DropDownDataSetæ¨¡æ¿-->
 <#macro DropDownDataSet init="true">
 	<#assign specStr="nextPage|everyPage|pageNm|currentPage|fieldString|recordString|recordOrigString">
 	<script type="text/javascript">
@@ -551,11 +551,11 @@
 	</script>
 </#macro>
 
-<#--½¨Á¢PagePilotÀ¸-->
+<#--å»ºç«‹PagePilotæ -->
 <#--
-	id                  Ò³ÃæÊÓÍ¼ID(²»ÔÊĞíÎª¿Õ)
-	maxpagelink         Ò³ÃæÏÔÊ¾¼ıÍ·±êÖ¾(ÔÊĞíÎª¿Õ,Ä¬ÈÏÎª"true"            "true"-ÏÔÊ¾;"false"-²»ÏÔÊ¾)
-	pageCache           Ò³Ãæ»º³å±êÖ¾£¬Ä¬ÈÏÎª"false"  "true"-Ê¹ÓÃÒ³Ãæ»º³å;¼´Ò³Ãæ»ñÈ¡ËùÓĞµÄÊı¾İ¼ÇÂ¼ºóÔÚÒ³Ãæ½øĞĞ·ÖÒ³
+	id                  é¡µé¢è§†å›¾ID(ä¸å…è®¸ä¸ºç©º)
+	maxpagelink         é¡µé¢æ˜¾ç¤ºç®­å¤´æ ‡å¿—(å…è®¸ä¸ºç©º,é»˜è®¤ä¸º"true"            "true"-æ˜¾ç¤º;"false"-ä¸æ˜¾ç¤º)
+	pageCache           é¡µé¢ç¼“å†²æ ‡å¿—ï¼Œé»˜è®¤ä¸º"false"  "true"-ä½¿ç”¨é¡µé¢ç¼“å†²;å³é¡µé¢è·å–æ‰€æœ‰çš„æ•°æ®è®°å½•ååœ¨é¡µé¢è¿›è¡Œåˆ†é¡µ
 -->
 <#macro PagePilot id width="100%" backgroundColor="#efefef" border="1px" maxpagelink="9" showArrow="true" pageCache="false">
 	<#--<div extra="pagination" componentDataset="${CommonQueryConfig.getId()}_dataset" name="${id}">
@@ -565,15 +565,15 @@
 </#macro>
 
 
-<#--²éÑ¯½á¹û -- µ¼³öµ¯³ö²ã-->
+<#--æŸ¥è¯¢ç»“æœ -- å¯¼å‡ºå¼¹å‡ºå±‚-->
 <#macro ExpFileDiv id fieldStr="${CommonQueryConfig.toFieldString()}"  width="" readonly="">
 	<#assign maxpage=CommonQueryConfig.getPageExpConf("maxpage")?default(statics["com.huateng.ebank.business.common.ConfigReader"].getProperty("PageQryExp_maxpage"))>
-	<#-- µ¯³ö²ãÔªËØ£ºid, na(name)-->
-	<#assign fs = [ {"id":"s_p", "title":"PageQryExp.start",  "na":"${CommonQueryConfig.getId()}_startPage", "value":"1",  "type":"text",   "defAttr":"","rule":"isNumber","maxChk":"null", "err":"ÆğÊ¼Ò³±ØĞëÊÇÊı×Ö,ÇÒÔÚÓĞĞ§Ò³Âë·¶Î§ÄÚ","event":""},
-					{"id":"e_p", "title":"PageQryExp.end",  "na":"${CommonQueryConfig.getId()}_endPage",   "value":maxpage,  "type":"text",    "defAttr":"","rule":"isNumber","maxChk":"null","err":"½áÊøÒ³±ØĞëÊÇÊı×Ö,ÇÒÔÚÓĞĞ§Ò³Âë·¶Î§ÄÚ","event":""},
-					{"id":"a_p", "title":"PageQryExp.all",  "na":"${CommonQueryConfig.getId()}_allPage",   "value":"1", "type":"checkbox","defAttr":"disabled","rule":"null","maxChk":"null","err":"´íÎó£¬ÇëÖØĞÂ¹´Ñ¡","event":"onclick='checkAllpage(this,s_p,e_p)'"},
+	<#-- å¼¹å‡ºå±‚å…ƒç´ ï¼šid, na(name)-->
+	<#assign fs = [ {"id":"s_p", "title":"PageQryExp.start",  "na":"${CommonQueryConfig.getId()}_startPage", "value":"1",  "type":"text",   "defAttr":"","rule":"isNumber","maxChk":"null", "err":"èµ·å§‹é¡µå¿…é¡»æ˜¯æ•°å­—,ä¸”åœ¨æœ‰æ•ˆé¡µç èŒƒå›´å†…","event":""},
+					{"id":"e_p", "title":"PageQryExp.end",  "na":"${CommonQueryConfig.getId()}_endPage",   "value":maxpage,  "type":"text",    "defAttr":"","rule":"isNumber","maxChk":"null","err":"ç»“æŸé¡µå¿…é¡»æ˜¯æ•°å­—,ä¸”åœ¨æœ‰æ•ˆé¡µç èŒƒå›´å†…","event":""},
+					{"id":"a_p", "title":"PageQryExp.all",  "na":"${CommonQueryConfig.getId()}_allPage",   "value":"1", "type":"checkbox","defAttr":"disabled","rule":"null","maxChk":"null","err":"é”™è¯¯ï¼Œè¯·é‡æ–°å‹¾é€‰","event":"onclick='checkAllpage(this,s_p,e_p)'"},
 					{"id":"e_a", "title":"PageQryExp.batch","na":"${CommonQueryConfig.getId()}_expAll",   "value":"1", "type":"checkbox","defAttr":"","rule":"null","maxChk":"null","err":"","event":"onclick='checkExpall(this,a_p,s_p,e_p)'"},
-					{"id":"c_x", "title":"PageQryExp.zip","na":"${CommonQueryConfig.getId()}_complex",   "value":"1", "type":"checkbox","defAttr":"","rule":"null","maxChk":"null","err":"´íÎó£¬ÇëÖØĞÂ¹´Ñ¡","event":""},
+					{"id":"c_x", "title":"PageQryExp.zip","na":"${CommonQueryConfig.getId()}_complex",   "value":"1", "type":"checkbox","defAttr":"","rule":"null","maxChk":"null","err":"é”™è¯¯ï¼Œè¯·é‡æ–°å‹¾é€‰","event":""},
 					{"id":"exp_cls", "title":"PageQryExp.columSelected","na":"${CommonQueryConfig.getId()}_expElements",  "value":"", "type":"mulSelect","defAttr":"","rule":"null","maxChk":"null","err":"","event":""}]>
 	<#assign fields = fieldStr?split(',')>
 	<#assign fsjs = "[">
@@ -592,12 +592,12 @@
 				<tr>
 					<td class="labeltd" width="20%" align="left" nowrap><@bean.message key="PageQryExp.page" /></td>
 					<td class="datatd" nowrap width="30%">
-						<input class="validatebox-text" id="s_p" type="text" name="${CommonQueryConfig.getId()}_startPage" value="1" style="width:40px" size="10" err="ÆğÊ¼Ò³±ØĞëÊÇÊı×Ö,ÇÒÔÚÓĞĞ§Ò³Âë·¶Î§ÄÚ"/>&nbsp;~&nbsp;
-						<input class="validatebox-text" id="e_p" type="text" name="${CommonQueryConfig.getId()}_endPage" value="${maxpage}" style="width:40px" size="10" err="½áÊøÒ³±ØĞëÊÇÊı×Ö,ÇÒÔÚÓĞĞ§Ò³Âë·¶Î§"/>
+						<input class="validatebox-text" id="s_p" type="text" name="${CommonQueryConfig.getId()}_startPage" value="1" style="width:40px" size="10" err="èµ·å§‹é¡µå¿…é¡»æ˜¯æ•°å­—,ä¸”åœ¨æœ‰æ•ˆé¡µç èŒƒå›´å†…"/>&nbsp;~&nbsp;
+						<input class="validatebox-text" id="e_p" type="text" name="${CommonQueryConfig.getId()}_endPage" value="${maxpage}" style="width:40px" size="10" err="ç»“æŸé¡µå¿…é¡»æ˜¯æ•°å­—,ä¸”åœ¨æœ‰æ•ˆé¡µç èŒƒå›´"/>
 					</td>
 					<td class="labeltd" width="20%" align="left" nowrap><@bean.message key="PageQryExp.all" /></td>
 					<td class="datatd" nowrap>
-						<input id="a_p" type="checkbox" name="${CommonQueryConfig.getId()}_allPage" disabled err="´íÎó£¬ÇëÖØĞÂ¹´Ñ¡" onclick='checkAllpage(this,s_p,e_p)'/>
+						<input id="a_p" type="checkbox" name="${CommonQueryConfig.getId()}_allPage" disabled err="é”™è¯¯ï¼Œè¯·é‡æ–°å‹¾é€‰" onclick='checkAllpage(this,s_p,e_p)'/>
 					</td>
 				</tr>
 				<tr>
@@ -607,7 +607,7 @@
 					</td>
 					<td class="labeltd" width="20%" align="left" nowrap><@bean.message key="PageQryExp.zip" /></td>
 					<td class="datatd" nowrap>
-						<input id="c_x" type="checkbox" name="${CommonQueryConfig.getId()}_complex" value="1" err="´íÎó£¬ÇëÖØĞÂ¹´Ñ¡"/>
+						<input id="c_x" type="checkbox" name="${CommonQueryConfig.getId()}_complex" value="1" err="é”™è¯¯ï¼Œè¯·é‡æ–°å‹¾é€‰"/>
 					</td>
 				</tr>
 			</table>
@@ -639,27 +639,27 @@
 	<div id="expErrDiv${id}" class="exp-warn"></div>
 	</div>
 	<script type="text/javascript">
-	//×Ö¶Îµ¼³öÑ¡Ôñ£¬×óÓÒÉÏÏÂÒÆ¶¯
+	//å­—æ®µå¯¼å‡ºé€‰æ‹©ï¼Œå·¦å³ä¸Šä¸‹ç§»åŠ¨
 	var mul_move = new mulSelect("${CommonQueryConfig.getId()}_expElements");
-	/** ²éÑ¯½á¹ûÏÂÔØ¶ÔÏó **/
+	/** æŸ¥è¯¢ç»“æœä¸‹è½½å¯¹è±¡ **/
 	var ${CommonQueryConfig.getId()}_dataset_exporter = new exporter("${CommonQueryConfig.getPageExpConf("url")!"#"}",${CommonQueryConfig.pageExportLimit()?string("true", "false")});
-	/** ÉèÖÃ¶ÔÏóµÄ²ÎÊı - Servlet path **/
+	/** è®¾ç½®å¯¹è±¡çš„å‚æ•° - Servlet path **/
 	${CommonQueryConfig.getId()}_dataset_exporter.setContentPath("${contextPath}");
-	/** ÊÇ·ñÄÜµ¼³öCSV **/
+	/** æ˜¯å¦èƒ½å¯¼å‡ºCSV **/
 	${CommonQueryConfig.getId()}_dataset_exporter.setCanExpCsv(${CommonQueryConfig.canExport("CSV")?string("true", "false")},null);
-	/** ÊÇ·ñÄÜµ¼³öExcel **/
+	/** æ˜¯å¦èƒ½å¯¼å‡ºExcel **/
 	${CommonQueryConfig.getId()}_dataset_exporter.setCanExpXls(${CommonQueryConfig.canExport("XLS")?string("true", "false")},null);
-	/** ÊÇ·ñÄÜµ¼³öPDF **/
+	/** æ˜¯å¦èƒ½å¯¼å‡ºPDF **/
 	${CommonQueryConfig.getId()}_dataset_exporter.setCanExpPdf(${CommonQueryConfig.canExport("PDF")?string("true", "false")},null);
-	/** Êı¾İ¼¯²éÑ¯Ìõ¼şµÄÃû×Ö **/
+	/** æ•°æ®é›†æŸ¥è¯¢æ¡ä»¶çš„åå­— **/
 	${CommonQueryConfig.getId()}_dataset_exporter.setDataSetInterface("${CommonQueryConfig.getId()}_interface_dataset");
-	/** Êı¾İ¼¯µÄÃû×Ö **/
+	/** æ•°æ®é›†çš„åå­— **/
 	${CommonQueryConfig.getId()}_dataset_exporter.setDataSet("${CommonQueryConfig.getId()}_dataset");
-	//ÉèÖÃÏÔÊ¾²ãµÄÔªËØ¼¯ºÏ
+	//è®¾ç½®æ˜¾ç¤ºå±‚çš„å…ƒç´ é›†åˆ
 	${CommonQueryConfig.getId()}_dataset_exporter.setDivEls(${fsjs});
-	//ÉèÖÃ½Å±¾ÖĞ¶ÔÏóµÄID
+	//è®¾ç½®è„šæœ¬ä¸­å¯¹è±¡çš„ID
 	${CommonQueryConfig.getId()}_dataset_exporter.setExpWinId("#newWinFrame${id}","#expErrDiv${id}");
-	//ÉèÖÃµ¯³ö²ãµÄÊôĞÔ
+	//è®¾ç½®å¼¹å‡ºå±‚çš„å±æ€§
 	${CommonQueryConfig.getId()}_dataset.ExpFileDiv=${CommonQueryConfig.getId()}_dataset_exporter;
 	</script>
 </#macro>
@@ -801,33 +801,33 @@
       </#if>
 </#macro>
 
-<#--½¨Á¢DataTableÀ¸-->
+<#--å»ºç«‹DataTableæ -->
 <#--
-	id                 Ò³ÃæÊÓÍ¼ID(²»ÔÊĞíÎª¿Õ)
-	frozens            Ö¸¶¨¹Ì¶¨ÁĞµÄÊıÁ¿£¬´Ó×ó±ß¿ªÊ¼Êı
-	fieldStr           ÏÔÊ¾×Ö¶ÎÊôĞÔ(ÔÊĞíÎª¿Õ,Ä¬ÈÏÎªÏÔÊ¾FieldsÖĞËùÓĞ×Ö¶Î        Öµ¸ñÊ½Îª£ºfield1_id,field2_id,...)
-	                   modify by shen_antonio 20100520 Ö§³ÖÃ¿¸öfieldÔö¼Ó[width]×Ö¶Î
-	                                                 Öµ¸ñÊ½ĞŞ¸ÄÎªfield1_id[width],field2_id[width]......
-	width              ±í¸ñ¿í¶È(ÔÊĞíÎª¿Õ,Ä¬ÈÏ×ÔÊÊÓ¦)
-	height             ±í¸ñ¸ß¶È(ÔÊĞíÎª¿Õ,Ä¬ÈÏ×ÔÊÊÓ¦)
-	sumfieldstr        »ã×Ü×Ö¶Î£¬´ïµ½Ò³ÃæĞ¡¼ÆĞ§¹û,¿ÉÎª¿Õ
-	paginationbar      ·ÖÒ³À¸Àï¹¤¾ßÀ¸°´Å¥ ¸ñÊ½Îª£º°´Å¥ID,°´Å¥ID2,-,°´Å¥ID3  ÆäÖĞ-±íÊ¾·Ö¸ôÊúÏß
-	treeGrid           ¿ªÆôÊ÷ĞÎgrid Ä¬ÈÏÎªfalse
-	treeField          Ö¸¶¨Ê÷ĞÎgridÖĞµÄ¸ùÄ¿Â¼£¬±»Ö¸¶¨µÄ ¿ÉÒÔµã»÷ Õ¹¿ª»òÕßºÏ²¢
+	id                 é¡µé¢è§†å›¾ID(ä¸å…è®¸ä¸ºç©º)
+	frozens            æŒ‡å®šå›ºå®šåˆ—çš„æ•°é‡ï¼Œä»å·¦è¾¹å¼€å§‹æ•°
+	fieldStr           æ˜¾ç¤ºå­—æ®µå±æ€§(å…è®¸ä¸ºç©º,é»˜è®¤ä¸ºæ˜¾ç¤ºFieldsä¸­æ‰€æœ‰å­—æ®µ        å€¼æ ¼å¼ä¸ºï¼šfield1_id,field2_id,...)
+	                   modify by shen_antonio 20100520 æ”¯æŒæ¯ä¸ªfieldå¢åŠ [width]å­—æ®µ
+	                                                 å€¼æ ¼å¼ä¿®æ”¹ä¸ºfield1_id[width],field2_id[width]......
+	width              è¡¨æ ¼å®½åº¦(å…è®¸ä¸ºç©º,é»˜è®¤è‡ªé€‚åº”)
+	height             è¡¨æ ¼é«˜åº¦(å…è®¸ä¸ºç©º,é»˜è®¤è‡ªé€‚åº”)
+	sumfieldstr        æ±‡æ€»å­—æ®µï¼Œè¾¾åˆ°é¡µé¢å°è®¡æ•ˆæœ,å¯ä¸ºç©º
+	paginationbar      åˆ†é¡µæ é‡Œå·¥å…·æ æŒ‰é’® æ ¼å¼ä¸ºï¼šæŒ‰é’®ID,æŒ‰é’®ID2,-,æŒ‰é’®ID3  å…¶ä¸­-è¡¨ç¤ºåˆ†éš”ç«–çº¿
+	treeGrid           å¼€å¯æ ‘å½¢grid é»˜è®¤ä¸ºfalse
+	treeField          æŒ‡å®šæ ‘å½¢gridä¸­çš„æ ¹ç›®å½•ï¼Œè¢«æŒ‡å®šçš„ å¯ä»¥ç‚¹å‡» å±•å¼€æˆ–è€…åˆå¹¶
 	idField
 	hasFrame           
-	floatwindow        //µ¯³öÊ½windowµÄid,¶ÔÓ¦ÓÚmacro SubWindow
-	pageCache          ÊÇ·ñ¿ªÆôÇ°Ì¨·ÖÒ³
-	maxRow             ×î´óÏÔÊ¾ĞĞÊı£¨ÓÃÓÚpageCache·½Ê½Ê±£¬ÉèÖÃµ±Ç°±í¸ñ×î´óÏÔÊ¾µÄĞĞÊı£¬ÔÚ²»Ê¹ÓÃpagecache·½Ê½Ê±£¬Çë²»ÒªÊ¹ÓÃ¸Ã×Ö¶Î)
-	printabled         //ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
-	readonly           Ö»¶Á±êÖ¾(ÔÊĞíÎª¿Õ,Ä¬ÈÏÎª"false"                     "true"-Ö»¶Á;"false"-¿É±à¼­)
-	pagination         ÊÇ·ñÏÔÊ¾·ÖÒ³À¸,Ä¬ÈÏÏÔÊ¾
-	mergeHead          ¶à±íÍ·ÅäÖÃ(×î¶àÖ§³ÖÈı²ã,×îµÍ²ã×Ö¶ÎÖ®¼äÓÃ|·Ö¸ô,µÚ¶ş²ãÓÃ;·Ö¸ô)  ²Î¿¼¸ñÊ½: ×éºÏÁĞ{data1;ÁĞ2{textString3|dialog}}  
-	rownumbers         ÊÇ·ñÔÚµÚÒ»ÁĞ ÏÔÊ¾ĞòÁĞºÅ Ä¬ÈÏtrue
-	select             ÊÇ·ñ¿ªÆôµÚÒ»ÁĞµÄÑ¡Ôñ¿ò
-	remoteSort         ÊÇ·ñ¿ªÆôÔ¶³ÌÅÅĞò
-	remeberCheck       ÊÇ·ñ¼ÇÒäÒÑÑ¡ÔñÁĞ
-	pkid               Êı¾İµÄÖ÷¼ü,ÅäºÏremeberCheckÊ¹ÓÃ
+	floatwindow        //å¼¹å‡ºå¼windowçš„id,å¯¹åº”äºmacro SubWindow
+	pageCache          æ˜¯å¦å¼€å¯å‰å°åˆ†é¡µ
+	maxRow             æœ€å¤§æ˜¾ç¤ºè¡Œæ•°ï¼ˆç”¨äºpageCacheæ–¹å¼æ—¶ï¼Œè®¾ç½®å½“å‰è¡¨æ ¼æœ€å¤§æ˜¾ç¤ºçš„è¡Œæ•°ï¼Œåœ¨ä¸ä½¿ç”¨pagecacheæ–¹å¼æ—¶ï¼Œè¯·ä¸è¦ä½¿ç”¨è¯¥å­—æ®µ)
+	printabled         //æ˜¯å¦èƒ½å¤Ÿæ‰“å°(å…è®¸ä¸ºç©ºï¼Œé»˜è®¤ä¸ºfalse)
+	readonly           åªè¯»æ ‡å¿—(å…è®¸ä¸ºç©º,é»˜è®¤ä¸º"false"                     "true"-åªè¯»;"false"-å¯ç¼–è¾‘)
+	pagination         æ˜¯å¦æ˜¾ç¤ºåˆ†é¡µæ ,é»˜è®¤æ˜¾ç¤º
+	mergeHead          å¤šè¡¨å¤´é…ç½®(æœ€å¤šæ”¯æŒä¸‰å±‚,æœ€ä½å±‚å­—æ®µä¹‹é—´ç”¨|åˆ†éš”,ç¬¬äºŒå±‚ç”¨;åˆ†éš”)  å‚è€ƒæ ¼å¼: ç»„åˆåˆ—{data1;åˆ—2{textString3|dialog}}  
+	rownumbers         æ˜¯å¦åœ¨ç¬¬ä¸€åˆ— æ˜¾ç¤ºåºåˆ—å· é»˜è®¤true
+	select             æ˜¯å¦å¼€å¯ç¬¬ä¸€åˆ—çš„é€‰æ‹©æ¡†
+	remoteSort         æ˜¯å¦å¼€å¯è¿œç¨‹æ’åº
+	remeberCheck       æ˜¯å¦è®°å¿†å·²é€‰æ‹©åˆ—
+	pkid               æ•°æ®çš„ä¸»é”®,é…åˆremeberCheckä½¿ç”¨
 -->
 <#macro DataTable id  frozens="0"  fieldStr="${CommonQueryConfig.toFieldString()}"  width="" height=""  sumfieldstr="" title=""  
 	paginationbar="" rowStyler="false"  treeGrid="false"  treeField="" hasFrame="false" floatwindow="" maxRow="" printabled="true" 
@@ -1020,7 +1020,7 @@
 				<@GroupField componentId=id fId=fId />
 			</#if>
 		<#else>
-			<#-- ¼æÈİÒÔÇ°µÄ¶¨Òå×éºÏÓò·½Ê½ -->
+			<#-- å…¼å®¹ä»¥å‰çš„å®šä¹‰ç»„åˆåŸŸæ–¹å¼ -->
 			<#if compositeIndex=="start">
 				<td class="labeltd" valign="center" align="right" style="width: 20%"  nowrap>
 					<#if require=="true">
@@ -1048,15 +1048,15 @@
 </#macro>
 
 
-<#--½¨Á¢GroupÀ¸-->
+<#--å»ºç«‹Groupæ -->
 <#--
-id                 Ò³ÃæÊÓÍ¼ID(²»ÔÊĞíÎª¿Õ)
-label              groupÏÔÊ¾±êÌâ(²»ÔÊĞíÎª¿Õ)
-fieldStr           ÏÔÊ¾×Ö¶Î(²»ÔÊĞíÎª¿Õ                  Öµ¸ñÊ½Îª£ºfield1_id,field2_id,...)
-colNm              ÏÔÊ¾ÁÒÊı(ÔÊĞíÎª¿Õ  Ä¬ÈÏÎª4          Öµ¸ñÊ½Îª£º2*n)
-printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
+id                 é¡µé¢è§†å›¾ID(ä¸å…è®¸ä¸ºç©º)
+label              groupæ˜¾ç¤ºæ ‡é¢˜(ä¸å…è®¸ä¸ºç©º)
+fieldStr           æ˜¾ç¤ºå­—æ®µ(ä¸å…è®¸ä¸ºç©º                  å€¼æ ¼å¼ä¸ºï¼šfield1_id,field2_id,...)
+colNm              æ˜¾ç¤ºçƒˆæ•°(å…è®¸ä¸ºç©º  é»˜è®¤ä¸º4          å€¼æ ¼å¼ä¸ºï¼š2*n)
+printabled         æ˜¯å¦èƒ½å¤Ÿæ‰“å°(å…è®¸ä¸ºç©ºï¼Œé»˜è®¤ä¸ºfalse)
 -->
-<#--modified by wangpeng 20091117 BMS-2274 Íâ±ß¿ò¿ÉÉèÖÃ  begin-->
+<#--modified by wangpeng 20091117 BMS-2274 å¤–è¾¹æ¡†å¯è®¾ç½®  begin-->
 <#macro Group id label fieldStr colNm="4" showGroupLine="true" printabled="false">
 	<#if showGroupLine=="true">
 		<div name='${id}' class="search"><h5><@bean.message key="${label}"/></h5>
@@ -1078,7 +1078,7 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 				<#list fields as fId>
 					<#assign _foo1=fId?index_of("{") />
 					<#if _foo1!=-1 >
-						<#-- ĞÂµÄ×éºÏÓò¶¨Òå·½Ê½ -->
+						<#-- æ–°çš„ç»„åˆåŸŸå®šä¹‰æ–¹å¼ -->
 						<#assign _headlabel=fId?substring(0,_foo1) >
 						<#assign _foo2=fId?last_index_of("}") >
 						<#assign fColSpan=2 >
@@ -1151,9 +1151,9 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 	</div>
 	</#if>
 </#macro>
-<#--modified by wangpeng 20091117 BMS-2274 Íâ±ß¿ò¿ÉÉèÖÃ end-->
+<#--modified by wangpeng 20091117 BMS-2274 å¤–è¾¹æ¡†å¯è®¾ç½® end-->
 
-<#--½¨Á¢GroupFieldÀ¸-->
+<#--å»ºç«‹GroupFieldæ -->
 <#macro GroupField fId fColSpan="" componentId="">
 	<#assign field = CommonQueryConfig.getField(fId)>
 	<#assign fEidtType = field.getAnyValue("edittype")?default('text')>
@@ -1264,12 +1264,12 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 	      <#case "password">
 	    	<@htmlEditType.password label=label id=fId  componentId=componentId targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan  rowSpan=rowSpan vAlign=vAlign readonly=readonly required=required/>
 	    	<#break>
-	    <#--added by wangpeng 20091203 radioÖ§³Ö begin-->
+	    <#--added by wangpeng 20091203 radioæ”¯æŒ begin-->
 	    <#case "radio">
 		    <@htmlEditType.radioDataDic id=fId fId=fId label=label targetDataset=targetDataSet componentId=componentId
 	    	            width=width require=required  readOnly=readonly defaultValue=defaultValue translated=translated viewField=viewField valueField=valueField rowLen = radioRowLen colSpan = colSpan/>
 		    <#break>
-		<#--added by wangpeng 20091203 radioÖ§³Ö end-->
+		<#--added by wangpeng 20091203 radioæ”¯æŒ end-->
 	    <#default>
 	  		<@htmlEditType.text id=fId componentId=componentId label=label  datatype=datatype targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
 	  			   readonly=readonly scale=scale  rowSpan=rowSpan vAlign=vAlign  prefix=prefix placeholder=placeholder/>
@@ -1278,7 +1278,7 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 </#macro>
 
 
-<#--½¨Á¢GroupFieldÀ¸,²»°üº¬td-->
+<#--å»ºç«‹GroupFieldæ ,ä¸åŒ…å«td-->
 <#macro SingleField fId componentId="" _width="" >
 	<#assign field = CommonQueryConfig.getField(fId)>
 	<#assign fEidtType = field.getAnyValue("edittype")?default('text')>
@@ -1382,7 +1382,7 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 	   <@htmlEditType.selectDataDic2 lable=label id=fId   targetDataset=targetDataSet editable=editable
 	    	            width=width height=height require=required  readOnly=readonly defaultValue=defaultValue translated=translated viewField=viewField fieldMap=fieldMap  ddtype="dynamic"/>
 	    	<#break>
-	    <#--added by wangpeng 20091203 radioÖ§³Ö begin-->
+	    <#--added by wangpeng 20091203 radioæ”¯æŒ begin-->
 	    <#case "radio">
 		    <@htmlEditType.radioDataDic id=fId fId=fId label=label targetDataset=targetDataSet componentId=componentId isSingle=true
 	    	            width=width require=required  readOnly=readonly defaultValue=defaultValue translated=translated viewField=viewField valueField=valueField rowLen = radioRowLen colSpan = colSpan/>
@@ -1390,7 +1390,7 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 		<#case "password">
 	    	<@htmlEditType.password2 label=label id=fId  componentId=componentId targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan  rowSpan=rowSpan vAlign=vAlign readonly=readonly required=required/>
 	    	<#break>
-		<#--added by wangpeng 20091203 radioÖ§³Ö end-->
+		<#--added by wangpeng 20091203 radioæ”¯æŒ end-->
 	    <#default>
 	  			<@htmlEditType.text2 id=fId componentId=componentId label=label  datatype=datatype targetDataset=targetDataSet defaultValue=defaultValue width=width colSpan=colSpan required=required
 	  			   readonly=readonly scale=scale  rowSpan=rowSpan vAlign=vAlign  prefix=prefix placeholder=placeholder/>
@@ -1408,7 +1408,7 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 	<a id="${id}" extra="button" plain="${plain}" href="javascript:void(0)" iconCls="${icon}"><@bean.message key="${desc}"/></a>
 	<script type="text/javascript">_initButton("${id}");</script>
 	</#macro>
-	<#--½¨Á¢ButtonÀ¸-->
+	<#--å»ºç«‹Buttonæ -->
 	<#macro Button id targetDataset=CommonQueryConfig.getId()+"_dataset"   plain="false">
 	<#assign button = CommonQueryConfig.getOperationsElement(id)>
 	<#assign desc = button.getAnyValue("desc")?default("")>
@@ -1511,19 +1511,19 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 
 
 
-<#--½¨Á¢InterfaceÀ¸-->
+<#--å»ºç«‹Interfaceæ -->
 <#--
-	id    							 cqId (²»ÔÊĞíÎª¿Õ£©
-	label¡¡							 Group±êÌâ( ÔÊĞíÎª¿Õ£¬È±Ê¡ÎªXMLÅäÖÃÖĞtitle²ÎÊı)
-	resultDateset¡¡					 ½á¹û¼¯Dataset Ä¿±ê½á¹ûÊı¾İ¼¯(ÔÊĞíÎª¿Õ£¬È±Ê¡Îª¸ÃÍ¨ÓÃ²éÑ¯½á¹ûÊı¾İ¼¯)
-	colNm 							 ÁĞÊı(2µÄ±¶Êı£©(ÔÊĞíÎª¿Õ£¬È±Ê¡Îª4)
-	width¡¡                              				  ¿í¶È ÏÔÊ¾¿í¶È(ÔÊĞíÎª¿Õ£¬È±Ê¡Îª"100%")
-	showButton                       ÏÔÊ¾²éÑ¯°´Å¥±êÖ¾(¿ÉÎª¿Õ£¬È±Ê¡Îª"true")
-	defaultOperation                 Ä¬ÈÏÌá½»ÀàĞÍ (¿ÉÎª¿Õ£¬È±Ê¡asyncqrysubmitflush)
-	btnNm                            °´Å¥Ãû³Æ(¿ÉÎª¿Õ£¬È·ÈÏÎªXMLÅäÖÃÖĞbtnNm²ÎÊı£¬Èç¹û¸Ã²ÎÊıÎª¿Õ£¬È±Ê¡Îª'²éÑ¯')
-	btnInFrame						  °´Å¥ÊÇ·ñÎ»ÓÚ¿òÄÚ(È±Ê¡Îª"false")
+	id    							 cqId (ä¸å…è®¸ä¸ºç©ºï¼‰
+	labelã€€							 Groupæ ‡é¢˜( å…è®¸ä¸ºç©ºï¼Œç¼ºçœä¸ºXMLé…ç½®ä¸­titleå‚æ•°)
+	resultDatesetã€€					 ç»“æœé›†Dataset ç›®æ ‡ç»“æœæ•°æ®é›†(å…è®¸ä¸ºç©ºï¼Œç¼ºçœä¸ºè¯¥é€šç”¨æŸ¥è¯¢ç»“æœæ•°æ®é›†)
+	colNm 							 åˆ—æ•°(2çš„å€æ•°ï¼‰(å…è®¸ä¸ºç©ºï¼Œç¼ºçœä¸º4)
+	widthã€€                              				  å®½åº¦ æ˜¾ç¤ºå®½åº¦(å…è®¸ä¸ºç©ºï¼Œç¼ºçœä¸º"100%")
+	showButton                       æ˜¾ç¤ºæŸ¥è¯¢æŒ‰é’®æ ‡å¿—(å¯ä¸ºç©ºï¼Œç¼ºçœä¸º"true")
+	defaultOperation                 é»˜è®¤æäº¤ç±»å‹ (å¯ä¸ºç©ºï¼Œç¼ºçœasyncqrysubmitflush)
+	btnNm                            æŒ‰é’®åç§°(å¯ä¸ºç©ºï¼Œç¡®è®¤ä¸ºXMLé…ç½®ä¸­btnNmå‚æ•°ï¼Œå¦‚æœè¯¥å‚æ•°ä¸ºç©ºï¼Œç¼ºçœä¸º'æŸ¥è¯¢')
+	btnInFrame						  æŒ‰é’®æ˜¯å¦ä½äºæ¡†å†…(ç¼ºçœä¸º"false")
 -->
-<#--modified by wangpeng 20091117 BMS-2274 Íâ±ß¿ò¿ÉÉèÖÃÊÇ·ñÏÔÊ¾  begin-->
+<#--modified by wangpeng 20091117 BMS-2274 å¤–è¾¹æ¡†å¯è®¾ç½®æ˜¯å¦æ˜¾ç¤º  begin-->
 <#macro Interface
 	id
 	label=CommonQueryConfig.getAnyValueDefault("title","")
@@ -1617,7 +1617,7 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 	</div>
 	-->
 </#macro>
-<#--modified by wangpeng 20091117 BMS-2274 Íâ±ß¿ò¿ÉÉèÖÃÊÇ·ñÏÔÊ¾  end-->
+<#--modified by wangpeng 20091117 BMS-2274 å¤–è¾¹æ¡†å¯è®¾ç½®æ˜¯å¦æ˜¾ç¤º  end-->
 
 <#macro InterfaceButton desc icon="icon-search" defaultOperation="asyncqrysubmitflush" resultDataset=CommonQueryConfig.getId()+"_dataset" parameters="">
 	<@htmlEditType.button
@@ -1638,7 +1638,7 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 	</div>
 </#macro>
 
-<#--½¨Á¢Intface DataSetÄ£°å-->
+<#--å»ºç«‹Intface DataSetæ¨¡æ¿-->
 <#macro IntfaceDataset parameters="">
 	<#local specStr="nextPage|everyPage|pageNm|currentPage|fieldString|recordString|recordOrigString">
 	<#--init request param -->
@@ -1716,20 +1716,20 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 	      	<#if mask?length==0>
 				 <#local mask="null">
 			</#if>
-			//<#--modified by wangpeng 20091126 BMS-2274  Ìí¼ÓpredateºÍpostdateµÄÊı¾İÀàĞÍÖ§³Ö  begin-->
-			//<#--added by wangpeng 20091126 BMS-2269 ÈÕÆÚĞÍ¹Ì¶¨10Î»  begin-->
+			//<#--modified by wangpeng 20091126 BMS-2274  æ·»åŠ predateå’Œpostdateçš„æ•°æ®ç±»å‹æ”¯æŒ  begin-->
+			//<#--added by wangpeng 20091126 BMS-2269 æ—¥æœŸå‹å›ºå®š10ä½  begin-->
 			<#if elType=="date" || elType=="predate" || elType=="postdate">
 				<#local elSize="10">
 			</#if>
-			//<#--added by wangpeng 20091126 BMS-2269 ÈÕÆÚĞÍ¹Ì¶¨10Î» end-->
-			//<#--modified by wangpeng 20091126 BMS-2274  Ìí¼ÓpredateºÍpostdateµÄÊı¾İÀàĞÍÖ§³Ö  end-->
+			//<#--added by wangpeng 20091126 BMS-2269 æ—¥æœŸå‹å›ºå®š10ä½ end-->
+			//<#--modified by wangpeng 20091126 BMS-2274  æ·»åŠ predateå’Œpostdateçš„æ•°æ®ç±»å‹æ”¯æŒ  end-->
 	      	//<#-- shen_antonio -->
 	      	<#local defaultValue = element.getAnyValue("default")?default("")>
 			<#switch elEidtType>
 				<#case "Option">
 					//<#--modified by wangpeng 20091208 radio begin-->
 					<#if dropdownType!="radio">
-					//<#-- Èç¹ûÊÇselect ÏÈ¼Ó ´øfId µÄ×Ö¶Î,Ñ­»·½áÊøºóÔö¼Ó¡¡ fId +¡¡name¡¡×Ö¶Î-->
+					//<#-- å¦‚æœæ˜¯select å…ˆåŠ  å¸¦fId çš„å­—æ®µ,å¾ªç¯ç»“æŸåå¢åŠ ã€€ fId +ã€€nameã€€å­—æ®µ-->
 					/*<#--
 					_f=_t1.addField("${elId}","string"); _f.label="${elDesc}";
 			      	_f.size="${elSize}"; _f.scale="${scale}"; _f.readOnly="${readonly}";
@@ -1741,7 +1741,7 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 			      	_f.maskErrorMessage="${maskErrorMessage}"; _f.toolTip="${toolTip}";
 			      	_f.lobDownloadURL=getDecodeStr(""); _f.lobPopupURL=getDecodeStr("");
 			      	-->*/
-			      	//<#-- ÅĞ¶ÏÊÇ ¸Ãselect ÊÇ CQ·½Ê½£¬»¹ÊÇdataDic·½Ê½ £¬Èç¹ûÊÇ CQÔòÒª»ñµÃÏàÓ¦µÄ CQId ²¢ÇÒ²»ÄÜÖ±½Ó·­Òë£¬Òªµ½initdocumentºó·­Òë-->
+			      	//<#-- åˆ¤æ–­æ˜¯ è¯¥select æ˜¯ CQæ–¹å¼ï¼Œè¿˜æ˜¯dataDicæ–¹å¼ ï¼Œå¦‚æœæ˜¯ CQåˆ™è¦è·å¾—ç›¸åº”çš„ CQId å¹¶ä¸”ä¸èƒ½ç›´æ¥ç¿»è¯‘ï¼Œè¦åˆ°initdocumentåç¿»è¯‘-->
 				    	<#local isCQ  = "false">
 						<#local CQid  = "">
 						<#list translated?split(":")  as key>
@@ -1806,7 +1806,7 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 				<#break>
 			</#switch>
 		</#list>
-	//<#--Ñ­»·½áÊøºóÔö¼Ó fId + name ×Ö¶Î -->
+	//<#--å¾ªç¯ç»“æŸåå¢åŠ  fId + name å­—æ®µ -->
 		<#local elements = CommonQueryConfig.elementList>
 	 	<#local columnInx = 0>
 		<#list elements as element>
@@ -1828,7 +1828,7 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 				<#if mask?length==0>
 					<#local mask="null">
 				</#if>
-				//<#-- ÅĞ¶ÏÊÇ ¸Ãselect ÊÇ CQ·½Ê½£¬»¹ÊÇdataDic·½Ê½ £¬Èç¹ûÊÇ CQÔòÒª»ñµÃÏàÓ¦µÄ CQId-->
+				//<#-- åˆ¤æ–­æ˜¯ è¯¥select æ˜¯ CQæ–¹å¼ï¼Œè¿˜æ˜¯dataDicæ–¹å¼ ï¼Œå¦‚æœæ˜¯ CQåˆ™è¦è·å¾—ç›¸åº”çš„ CQId-->
 				<#local isCQ  = "false">
 				<#local CQid  = "">
 				<#list translated?split(":")  as key>
@@ -1902,7 +1902,7 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 	</script>
 </#macro>
 
-<#--½¨Á¢GroupFieldÀ¸-->
+<#--å»ºç«‹GroupFieldæ -->
 <#macro InterfaceElement elId eColSpan="" componentId="" isSingle="false">
 	<#assign element = CommonQueryConfig.getWhereElement(elId) >
 	<#assign elEidtType = element.type?default('text')>
@@ -2005,8 +2005,8 @@ printabled         ÊÇ·ñÄÜ¹»´òÓ¡(ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªfalse)
 </#macro>
 
 <#--
-Window½¨Á¢
-skin : window´°¿ÚÆ¤·ô,¿ÉÎª¿Õ,Ä¬ÈÏÎªstandard
+Windowå»ºç«‹
+skin : windowçª—å£çš®è‚¤,å¯ä¸ºç©º,é»˜è®¤ä¸ºstandard
 -->
 <#macro WindowElement skin="standard">
 	<link rel="stylesheet" type="text/css" href="${contextPath}/templets/lib/themes/xwindows/skins/dhtmlxwindows_${skin}.css">
@@ -2025,12 +2025,12 @@ skin : window´°¿ÚÆ¤·ô,¿ÉÎª¿Õ,Ä¬ÈÏÎªstandard
 </#macro>
 
 <#--
-´òÓ¡°´Å¥
-id    							 id (²»ÔÊĞíÎª¿Õ,±£³Ö½çÃæ£©
-title                            ÎÄ¼ş±êÌâ
-datasetId                        Ö¸¶¨´òÓ¡datasetId
-fieldStr                         field ´®£¬ÓÃ¶ººÅ·Ö¸ô
-name                             °´Å¥Ãû
+æ‰“å°æŒ‰é’®
+id    							 id (ä¸å…è®¸ä¸ºç©º,ä¿æŒç•Œé¢ï¼‰
+title                            æ–‡ä»¶æ ‡é¢˜
+datasetId                        æŒ‡å®šæ‰“å°datasetId
+fieldStr                         field ä¸²ï¼Œç”¨é€—å·åˆ†éš”
+name                             æŒ‰é’®å
 -->
 <#macro printButton id title datasetId fieldStr name="Print">
 	<button extra="button" dataset="${datasetId}"  type="button" id="${id}" submitManager="" autoForm="dtResult" > ${name} </button>
@@ -2049,10 +2049,10 @@ name                             °´Å¥Ãû
 	</script>
 </#macro>
 
-<#--added by wangpeng 20091117 BMS-2274 ĞÂÔöºêgroupbox begin-->
+<#--added by wangpeng 20091117 BMS-2274 æ–°å¢å®groupbox begin-->
 <#--
-lable                              groupbox±êÌâ
-expand                             ÊÇ·ñÕ¹¿ª£¬ true-Õ¹¿ª£»false-ÕÛµş£»
+lable                              groupboxæ ‡é¢˜
+expand                             æ˜¯å¦å±•å¼€ï¼Œ true-å±•å¼€ï¼›false-æŠ˜å ï¼›
 -->
 <#macro GroupBox id label="" expand="true">
 	<FIELDSET name='${id}' style="padding: 6px;" extra="groupbox" expand="${expand}">
@@ -2064,22 +2064,22 @@ expand                             ÊÇ·ñÕ¹¿ª£¬ true-Õ¹¿ª£»false-ÕÛµş£»
 			</div>
 	</FIELDSET>
 </#macro>
-<#--added by wangpeng 20091117 BMS-2274 ĞÂÔöºêgroupbox end-->
+<#--added by wangpeng 20091117 BMS-2274 æ–°å¢å®groupbox end-->
 
-<#--modified by wangpeng 20091208 Ôö¼Ó¸¡¶¯Ê½ºÍÅÅËüÊôĞÔÖ§³Ö begin-->
-<#--added by wangpeng 20091118 BMS-2274 ĞÂÔöºê×Ó´°Ìå   begin-->
+<#--modified by wangpeng 20091208 å¢åŠ æµ®åŠ¨å¼å’Œæ’å®ƒå±æ€§æ”¯æŒ begin-->
+<#--added by wangpeng 20091118 BMS-2274 æ–°å¢å®å­çª—ä½“   begin-->
 <#--
-label                              ×Ó´°Ìå±êÌâ
-defaultZoom                        Ä¬ÈÏËõ·ÅÄ£Ê½   normal-Ò»°ãÄ£Ê½;min-×îĞ¡»¯;max-×î´ó»¯(ÔİÎ´Ö§³Ö)
-width                              zoom=normal¡¢minÇé¿öÏÂµÄ¿í¶È
-height                             zoom=normalÇé¿öÏÂµÄ¸ß¶È
-minimize                           ÊÇ·ñ¿É×îĞ¡»¯  true;false
-maximize                           ÊÇ·ñ¿É×î´ó»¯  true;false
-resize                             ÊÇ·ñ¿ÉÍÏ¶¯±ß¿òµ÷Õû´óĞ¡ true;false(ÔİÎ´Ö§³Ö)
-float                              ÊÇ·ñ¸¡¶¯ true;false(default);
-exclusive                          ÊÇ·ñÅÅËû true;false(default);
-position                           ÏÔÊ¾Î»ÖÃ  current-µ±Ç°Î»ÖÃ;center-¾ÓÖĞ
-show                               Ä¬ÈÏÊÇ·ñÏÔÊ¾ true(default);false;
+label                              å­çª—ä½“æ ‡é¢˜
+defaultZoom                        é»˜è®¤ç¼©æ”¾æ¨¡å¼   normal-ä¸€èˆ¬æ¨¡å¼;min-æœ€å°åŒ–;max-æœ€å¤§åŒ–(æš‚æœªæ”¯æŒ)
+width                              zoom=normalã€minæƒ…å†µä¸‹çš„å®½åº¦
+height                             zoom=normalæƒ…å†µä¸‹çš„é«˜åº¦
+minimize                           æ˜¯å¦å¯æœ€å°åŒ–  true;false
+maximize                           æ˜¯å¦å¯æœ€å¤§åŒ–  true;false
+resize                             æ˜¯å¦å¯æ‹–åŠ¨è¾¹æ¡†è°ƒæ•´å¤§å° true;false(æš‚æœªæ”¯æŒ)
+float                              æ˜¯å¦æµ®åŠ¨ true;false(default);
+exclusive                          æ˜¯å¦æ’ä»– true;false(default);
+position                           æ˜¾ç¤ºä½ç½®  current-å½“å‰ä½ç½®;center-å±…ä¸­
+show                               é»˜è®¤æ˜¯å¦æ˜¾ç¤º true(default);false;
 -->
 <#macro SubWindow id width="" height="" label="" resize="false" defaultZoom="normal" minimize="true" maximize="false">
 	<#--
@@ -2115,25 +2115,25 @@ show                               Ä¬ÈÏÊÇ·ñÏÔÊ¾ true(default);false;
 	<#nested>
 	</@FloatWindow>
 </#macro>
-<#--added by wangpeng 20091118 BMS-2274 ĞÂÔöºê×Ó´°Ìå   end-->
-<#--modified by wangpeng 20091208 Ôö¼Ó¸¡¶¯Ê½ºÍÅÅËüÊôĞÔÖ§³Ö end-->
+<#--added by wangpeng 20091118 BMS-2274 æ–°å¢å®å­çª—ä½“   end-->
+<#--modified by wangpeng 20091208 å¢åŠ æµ®åŠ¨å¼å’Œæ’å®ƒå±æ€§æ”¯æŒ end-->
 
-<#--modified by wangpeng 20091208 Ôö¼Ó¸¡¶¯Ê½ºÍÅÅËüÊôĞÔÖ§³Ö begin-->
-<#--added by wangpeng 20091118 BMS-2274 ĞÂÔöºê×Ó´°Ìå   begin-->
+<#--modified by wangpeng 20091208 å¢åŠ æµ®åŠ¨å¼å’Œæ’å®ƒå±æ€§æ”¯æŒ begin-->
+<#--added by wangpeng 20091118 BMS-2274 æ–°å¢å®å­çª—ä½“   begin-->
 <#--
-label                              ×Ó´°Ìå±êÌâ
-defaultZoom                        Ä¬ÈÏËõ·ÅÄ£Ê½   normal-Ò»°ãÄ£Ê½;min-×îĞ¡»¯;max-×î´ó»¯(ÔİÎ´Ö§³Ö)
-width                              zoom=normal¡¢minÇé¿öÏÂµÄ¿í¶È
-height                             zoom=normalÇé¿öÏÂµÄ¸ß¶È
-minimize                           ÊÇ·ñ¿É×îĞ¡»¯  true(default);false
-maximize                           ÊÇ·ñ¿É×î´ó»¯  true;false(default)
-closure                            ÊÇ·ñ¿É¹Ø±Õ       true;false(default)
-resize                             ÊÇ·ñ¿ÉÍÏ¶¯±ß¿òµ÷Õû´óĞ¡ true;false(ÔİÎ´Ö§³Ö)
-float                              ÊÇ·ñ¸¡¶¯ true;false(default);
-exclusive                          ÊÇ·ñÅÅËû true;false(default);
-position                           ÏÔÊ¾Î»ÖÃ  current-µ±Ç°Î»ÖÃ;center-¾ÓÖĞ
-show                               Ä¬ÈÏÊÇ·ñÏÔÊ¾ true(default);false;
-drag                               ÊÇ·ñ¿ÉÍÏ¶¯ true;false(default);
+label                              å­çª—ä½“æ ‡é¢˜
+defaultZoom                        é»˜è®¤ç¼©æ”¾æ¨¡å¼   normal-ä¸€èˆ¬æ¨¡å¼;min-æœ€å°åŒ–;max-æœ€å¤§åŒ–(æš‚æœªæ”¯æŒ)
+width                              zoom=normalã€minæƒ…å†µä¸‹çš„å®½åº¦
+height                             zoom=normalæƒ…å†µä¸‹çš„é«˜åº¦
+minimize                           æ˜¯å¦å¯æœ€å°åŒ–  true(default);false
+maximize                           æ˜¯å¦å¯æœ€å¤§åŒ–  true;false(default)
+closure                            æ˜¯å¦å¯å…³é—­       true;false(default)
+resize                             æ˜¯å¦å¯æ‹–åŠ¨è¾¹æ¡†è°ƒæ•´å¤§å° true;false(æš‚æœªæ”¯æŒ)
+float                              æ˜¯å¦æµ®åŠ¨ true;false(default);
+exclusive                          æ˜¯å¦æ’ä»– true;false(default);
+position                           æ˜¾ç¤ºä½ç½®  current-å½“å‰ä½ç½®;center-å±…ä¸­
+show                               é»˜è®¤æ˜¯å¦æ˜¾ç¤º true(default);false;
+drag                               æ˜¯å¦å¯æ‹–åŠ¨ true;false(default);
 -->
 <#macro FloatWindow id width="" height="" label="" resize="false" defaultZoom="normal" minimize="false" maximize="false" closure="false" float="false" exclusive="false" position="current" show="true" collapsible="true" inline="false" drag="true" >
 	<#assign title = label >
@@ -2149,15 +2149,15 @@ drag                               ÊÇ·ñ¿ÉÍÏ¶¯ true;false(default);
 		var subwindow_${id} = {};
 	</script>
 </#macro>
-<#--added by wangpeng 20091118 BMS-2274 ĞÂÔöºê×Ó´°Ìå   end-->
-<#--modified by wangpeng 20091208 Ôö¼Ó¸¡¶¯Ê½ºÍÅÅËüÊôĞÔÖ§³Ö end-->
+<#--added by wangpeng 20091118 BMS-2274 æ–°å¢å®å­çª—ä½“   end-->
+<#--modified by wangpeng 20091208 å¢åŠ æµ®åŠ¨å¼å’Œæ’å®ƒå±æ€§æ”¯æŒ end-->
 	
 <#--modified by wangpeng 2009/11/04 BMS-2179 begin-->
 <#--modified by wangpeng 2009/11/01 BMS-2171 begin-->
 <#--added by wangpeng 2009/09/21 BMS-1990 begin-->
 <#--
-±¨±íApplet
-objectName                  ¶ÔÏóÃû£¬ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªPrintApplet
+æŠ¥è¡¨Applet
+objectName                  å¯¹è±¡åï¼Œå…è®¸ä¸ºç©ºï¼Œé»˜è®¤ä¸ºPrintApplet
 -->
 <#macro reportApplet objectName="PrintApplet">
 	    <OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93" width="0px" height="0px" style="" id="${objectName}" name="${objectName}" codebase="http://java.sun.com/update/1.5.0/jinstall-1_5-windows-i586.cab#Version=1,5,0,0">
@@ -2208,7 +2208,7 @@ objectName                  ¶ÔÏóÃû£¬ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªPrintApplet
 </#macro>
 
 <#--
-<#macro GroupButton id buttons json="" default="" tip="ÇëÑ¡Ôñ" width="100px" plain="false">
+<#macro GroupButton id buttons json="" default="" tip="è¯·é€‰æ‹©" width="100px" plain="false">
 	<#if json=="">
 	<#assign bts = buttons?split(",")>
 
@@ -2489,9 +2489,9 @@ objectName                  ¶ÔÏóÃû£¬ÔÊĞíÎª¿Õ£¬Ä¬ÈÏÎªPrintApplet
 </#macro>
 
 <#--
-×é¼şÒıÓÃºê
-showLine        ÊÇ·ñÏÔÊ¾±ß¿ò£¬Ä¬ÈÏÎªfalse
-label               ±ß¿ò±êÌâ£¬Ä¬ÈÏÎª¿Õ
+ç»„ä»¶å¼•ç”¨å®
+showLine        æ˜¯å¦æ˜¾ç¤ºè¾¹æ¡†ï¼Œé»˜è®¤ä¸ºfalse
+label               è¾¹æ¡†æ ‡é¢˜ï¼Œé»˜è®¤ä¸ºç©º
 -->
 <#macro Component id showLine="false" label="">
 	<#assign CommonQueryComponent = statics["com.huateng.commquery.config.CommonQueryUtil"].getCommonQueryComponent(id)>

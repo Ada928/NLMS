@@ -5,7 +5,7 @@
 			<tr>
        			<td valign="top" rowspan="1"  valign="center">
        				<@CommonQuery.PagePilot id="ddresult" maxpagelink="9"/>
-   					<@CommonQuery.Group id="group1" label="¸ÚÎ»ÐÅÏ¢" fieldStr="roleid,rolename" colNm=4/>
+   					<@CommonQuery.Group id="group1" label="å²—ä½ä¿¡æ¯" fieldStr="roleid,rolename" colNm=4/>
           			<@CommonQuery.DataTable id ="datatable1" fieldStr="select,reporttype,reportname" readonly="false" />
         		</td>
       		</tr>

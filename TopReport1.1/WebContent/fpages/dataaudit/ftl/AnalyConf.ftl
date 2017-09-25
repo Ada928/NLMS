@@ -1,7 +1,7 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign lntypeStr = statics["com.huateng.report.dataAnaly.util.ReportDataAnalyUtil"].getConfAnalyParamIds().trim()>
-<@CommonQueryMacro.page title="Êý¾Ý·ÖÎö">
+<@CommonQueryMacro.page title="æ•°æ®åˆ†æž">
 <table width="98%" align="left">
 <tr>
 <td>
@@ -9,76 +9,76 @@
 	<table width="100%" cellpadding="5" cellspacing="1">
 		<tr>
 			<td valign="top" colspan="2" width="100%">
-				<@CommonQueryMacro.Interface id="interface" label="Êý¾Ý·ÖÎöÅäÖÃ²éÑ¯" colNm=4 showButton="true"/>
+				<@CommonQueryMacro.Interface id="interface" label="æ•°æ®åˆ†æžé…ç½®æŸ¥è¯¢" colNm=4 showButton="true"/>
 			</td>
 		</tr>
 		<tr>
 			<td valign="top" width="50%">
 				<FIELDSET name='group' style="padding: 6px;">
-				<LEGEND>ÅäÖÃÐÅÏ¢</LEGEND>
+				<LEGEND>é…ç½®ä¿¡æ¯</LEGEND>
 				<@CommonQueryMacro.PagePilot id="pagePilot"  maxpagelink="9" showArrow="true" pageCache="false"/>
 				<@CommonQueryMacro.DataTable id="dataTable1" fieldStr="id,busiType,appType,confSeq,confVaild,confType,confIsRet,errIsNext"  width="640" hasFrame="true"  />
 				</FIELDSET>
 			</td>
 			<td width="50%">
 			<FIELDSET name='group6' style="padding: 6px;">
-				<LEGEND>·ÖÎöÅäÖÃÏêÏ¸ÐÅÏ¢</LEGEND>
+				<LEGEND>åˆ†æžé…ç½®è¯¦ç»†ä¿¡æ¯</LEGEND>
 				<table frame=void width="100%" class="grouptable">
 	            	<tr>
-	                  <td nowrap class="labeltd">ÅäÖÃ±àºÅ</td>
+	                  <td nowrap class="labeltd">é…ç½®ç¼–å·</td>
 					  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="id"/></td>
-					  <td nowrap class="labeltd">ÓÐÐ§ÐÔ</td>
+					  <td nowrap class="labeltd">æœ‰æ•ˆæ€§</td>
 					  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="confVaild"/></td>
 	                </tr>
 	                <tr>
-	                  <td nowrap class="labeltd">ÒµÎñÀàÐÍ</td>
+	                  <td nowrap class="labeltd">ä¸šåŠ¡ç±»åž‹</td>
 	                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="busiType"/></td>
-	                  <td nowrap class="labeltd">Ó¦ÓÃÀàÐÍ</td>
+	                  <td nowrap class="labeltd">åº”ç”¨ç±»åž‹</td>
 	                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="appType"/></td>
 	                </tr>
 					<tr>
-					  <td nowrap class="labeltd">Ö´ÐÐË³Ðò</td>
+					  <td nowrap class="labeltd">æ‰§è¡Œé¡ºåº</td>
 					  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="confSeq"/></td>
-					  <td nowrap class="labeltd">³ö´í¼ÌÐøÊÇ·ñÏòÏÂÖ´ÐÐ</td>
+					  <td nowrap class="labeltd">å‡ºé”™ç»§ç»­æ˜¯å¦å‘ä¸‹æ‰§è¡Œ</td>
 					  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="errIsNext"/></td>
 	                </tr>
 	                <tr>
-	                  <td nowrap class="labeltd">Ö´ÐÐÀàÐÍ</td>
+	                  <td nowrap class="labeltd">æ‰§è¡Œç±»åž‹</td>
 					  <td class="datatd" nowrap colspan="3"><@CommonQueryMacro.SingleField fId="confType"/>
 					  </td>
 					</tr>
 					<tr>
-	                  <td nowrap class="labeltd">Ö´ÐÐÃüÁî</td>
+	                  <td nowrap class="labeltd">æ‰§è¡Œå‘½ä»¤</td>
 					  <td class="datatd" nowrap colspan="3"><@CommonQueryMacro.SingleField fId="confClassPath"/>
-					  <br/>Ö´ÐÐÀàÐÍÎª£ºjavaÀà£¬ÇëÊäÈëÀàÂ·¾¶¼°·½·¨Ãû³Æ£¬ÖÐ¼äÒÔ£º·Ö¸ô;
-					  <br/>Ö´ÐÐÀàÐÍÎª£º´æ´¢¹ý³Ì£¬ÇëÊäÈë´æ´¢¹ý³ÌÃû³Æ(·µ»ØÖµoutÇë·ÅÓÚ×îºó1¸ö²ÎÊýÁÐ).
-					  <br/>Ö´ÐÐÀàÐÍÎª£ºÅú´¦Àí£¬ÇëÊäÈëÅúÁ¿ÈÎÎñºÅ£¨JOBNOÊýÖµÐÍ).
+					  <br/>æ‰§è¡Œç±»åž‹ä¸ºï¼šjavaç±»ï¼Œè¯·è¾“å…¥ç±»è·¯å¾„åŠæ–¹æ³•åç§°ï¼Œä¸­é—´ä»¥ï¼šåˆ†éš”;
+					  <br/>æ‰§è¡Œç±»åž‹ä¸ºï¼šå­˜å‚¨è¿‡ç¨‹ï¼Œè¯·è¾“å…¥å­˜å‚¨è¿‡ç¨‹åç§°(è¿”å›žå€¼outè¯·æ”¾äºŽæœ€åŽ1ä¸ªå‚æ•°åˆ—).
+					  <br/>æ‰§è¡Œç±»åž‹ä¸ºï¼šæ‰¹å¤„ç†ï¼Œè¯·è¾“å…¥æ‰¹é‡ä»»åŠ¡å·ï¼ˆJOBNOæ•°å€¼åž‹).
 					  </td>
 					</tr>
 	                <tr>
-	                  <td nowrap class="labeltd">ÃüÁî²ÎÊý</td>
+	                  <td nowrap class="labeltd">å‘½ä»¤å‚æ•°</td>
 					  <td class="datatd" nowrap id="confParamIdsTd"></td>
 					  <td class="labeltd" colspan="2">
-					  ÏµÍ³¿ÉÌá¹©²ÎÊý£¬Í¬Ê±ÇëÊäÈë²ÎÊý´«ÈëË³Ðò¡£
+					  ç³»ç»Ÿå¯æä¾›å‚æ•°ï¼ŒåŒæ—¶è¯·è¾“å…¥å‚æ•°ä¼ å…¥é¡ºåºã€‚
 					  </td>
 					</tr>
 					<tr>
-	                  <td nowrap class="labeltd">·µ»ØÖµ</td>
+	                  <td nowrap class="labeltd">è¿”å›žå€¼</td>
 					  <td class="datatd" nowrap colspan="3"><@CommonQueryMacro.SingleField fId="confIsRet"/>
-					  <li>Ö´ÐÐÀàÐÍÎªjavaÀà£¬·µ»ØÖµÖ»Ö§³Ö·µ»Øjava¶ÔÏó;</li>
-					  <li>Ö´ÐÐÀàÐÍÎª´æ´¢¹ý³Ì£¬¸ù¾ÝÊý¾Ý¿âÑ¡Ôñ,Èç£ºoracleÎªout²ÎÊý,sqlserverÎªselectÐÎÊ½£»</li>
-					  <li>Ö´ÐÐÀàÐÍÎªÅú´¦Àí£¬ÎÞ·µ»ØÖµ£»</li>
+					  <li>æ‰§è¡Œç±»åž‹ä¸ºjavaç±»ï¼Œè¿”å›žå€¼åªæ”¯æŒè¿”å›žjavaå¯¹è±¡;</li>
+					  <li>æ‰§è¡Œç±»åž‹ä¸ºå­˜å‚¨è¿‡ç¨‹ï¼Œæ ¹æ®æ•°æ®åº“é€‰æ‹©,å¦‚ï¼šoracleä¸ºoutå‚æ•°,sqlserverä¸ºselectå½¢å¼ï¼›</li>
+					  <li>æ‰§è¡Œç±»åž‹ä¸ºæ‰¹å¤„ç†ï¼Œæ— è¿”å›žå€¼ï¼›</li>
 					  </td>
 					</tr>
 					<tr>
-	                  <td nowrap class="labeltd">·µ»ØÖµ´¦ÀíÀà</td>
+	                  <td nowrap class="labeltd">è¿”å›žå€¼å¤„ç†ç±»</td>
 					  <td class="datatd" nowrap colspan="3"><@CommonQueryMacro.SingleField fId="confRetClass"/>
-					  <br/>ÈçÖ´ÐÐ°üº¬·µ»ØÖµ£¬ÇëÊäÈëÀàÂ·¾¶¼°·½·¨Ãû³Æ£¬ÖÐ¼äÒÔ£º·Ö¸ô£»
-					  <br/>·µ»ØÖµ´¦ÀíÀà·½·¨×îºóÒ»Î»ÎªBiAnalyDetail¶ÔÏó(ÏµÍ³Ä¬ÈÏ)£»
+					  <br/>å¦‚æ‰§è¡ŒåŒ…å«è¿”å›žå€¼ï¼Œè¯·è¾“å…¥ç±»è·¯å¾„åŠæ–¹æ³•åç§°ï¼Œä¸­é—´ä»¥ï¼šåˆ†éš”ï¼›
+					  <br/>è¿”å›žå€¼å¤„ç†ç±»æ–¹æ³•æœ€åŽä¸€ä½ä¸ºBiAnalyDetailå¯¹è±¡(ç³»ç»Ÿé»˜è®¤)ï¼›
 					  </td>
 					</tr>
 					<tr>
-	                  <td nowrap class="labeltd">ÅäÖÃËµÃ÷</td>
+	                  <td nowrap class="labeltd">é…ç½®è¯´æ˜Ž</td>
 					  <td class="datatd" nowrap colspan="3"><@CommonQueryMacro.SingleField fId="confInfo"/></td>
 					</tr>
                 </table>
@@ -99,8 +99,8 @@
 	}
 
 	function btStatus_postSubmit(button) {
-		alert("±£´æ³É¹¦");
-		//Ë¢ÐÂµ±Ç°Ò³
+		alert("ä¿å­˜æˆåŠŸ");
+		//åˆ·æ–°å½“å‰é¡µ
 		analyConfEntry_dataset.flushData(analyConfEntry_dataset.pageIndex);
 	}
 

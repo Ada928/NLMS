@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="¸ÚÎ»È¨ÏŞÉèÖÃ">
+<@CommonQueryMacro.page title="å²—ä½æƒé™è®¾ç½®">
 <table align="left">
 
 <tr>
@@ -18,7 +18,7 @@
         			<table align="center">
         				<tr>
        					<td>
-        					<@CommonQueryMacro.Group id="group1" label="¸ÚÎ»È¨ÏŞÉèÖÃ" fieldStr="roleid,rolename,roletype,status,effectDate,expireDate" colNm=2/>
+        					<@CommonQueryMacro.Group id="group1" label="å²—ä½æƒé™è®¾ç½®" fieldStr="roleid,rolename,roletype,status,effectDate,expireDate" colNm=2/>
         				</td>
 						</tr>
 						<tr align="center">
@@ -52,7 +52,7 @@
       <script language="javascript">
       function parammng_RoleInfo_dataset_afterScroll(dataset){
 		  v_id = parammng_RoleInfo_dataset.getValue("v_id");
-		  //Êı¾İ¿âÖĞµÄ¼ÇÂ¼¡£
+		  //æ•°æ®åº“ä¸­çš„è®°å½•ã€‚
 		  if ( !isNaN(v_id ) ){
 		    parammng_RoleInfo_dataset.setReadOnly(true);
 		  }else{
@@ -63,13 +63,13 @@
 
 		function btNew_onClick(button){
 			  v_id = parammng_RoleInfo_dataset.getValue("v_id");
-			  //Êı¾İ¿âÖĞµÄ¼ÇÂ¼¡£
+			  //æ•°æ®åº“ä¸­çš„è®°å½•ã€‚
 			  if (!isNaN(v_id ) ){
 			    parammng_RoleInfo_dataset.setAllFieldsReadOnly(true);
 			  }else{
 			    parammng_RoleInfo_dataset.setAllFieldsReadOnly(false);
 			  }
-			  alert("ÊäÈëĞÂÔö¸ÚÎ»ºó,°´±£´æÈ·¶¨");
+			  alert("è¾“å…¥æ–°å¢å²—ä½å,æŒ‰ä¿å­˜ç¡®å®š");
 	//		  btDelete.disabled=true;
 			  RoleInfo1.disable(true);
 			  RoleInfo2.disable(true);
@@ -79,7 +79,7 @@
        //  	btDelete.disabled=false;
 			  RoleInfo1.disable(false);
 			  RoleInfo2.disable(false);
-         alert('±£´æ³É¹¦');
+         alert('ä¿å­˜æˆåŠŸ');
          }
 
 			</script>

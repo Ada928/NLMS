@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="´û¿îÆ·ÖÖÁ÷³ÌÉèÖÃ">
+<@CommonQueryMacro.page title="è´·æ¬¾å“ç§æµç¨‹è®¾ç½®">
 <table align="left">
 
 <tr>
@@ -16,7 +16,7 @@
         				<tr>
        					<td>
        					<#-- fieldStr="brcode,processTemplate,lnid,apptype" -->
-        					<@CommonQueryMacro.Group id="group1" label="´û¿îÆ·ÖÖÁ÷³ÌÉèÖÃ" fieldStr="brcode,processTemplate,bizClass,apptype" colNm=2/>
+        					<@CommonQueryMacro.Group id="group1" label="è´·æ¬¾å“ç§æµç¨‹è®¾ç½®" fieldStr="brcode,processTemplate,bizClass,apptype" colNm=2/>
 
         					<table id="tableNature" style="display: none">
 									<tr>
@@ -55,7 +55,7 @@
 
 		v_id = Management_BrhWorkFlowMng_dataset.getValue("id");
 
-		//Êı¾İ¿âÖĞµÄ¼ÇÂ¼¡£
+		//æ•°æ®åº“ä¸­çš„è®°å½•ã€‚
 		if ( v_id.trim()!="" && v_id.trim()!="0"){
 			Management_BrhWorkFlowMng_dataset.setFieldReadOnly("brcode", true);
 			Management_BrhWorkFlowMng_dataset.setFieldReadOnly("bizclass", true);
@@ -118,7 +118,7 @@
 //		var _recordState = _record.recordState;
 //		var id = Management_BrhWorkFlowMng_dataset.getValue("id");
 //		if(id != "" && (_recordState == "none" || _recordState == "modify")){
-//			if(confirm("È·¶¨É¾³ıÌõ¼ÇÂ¼£¿")){
+//			if(confirm("ç¡®å®šåˆ é™¤æ¡è®°å½•ï¼Ÿ")){
 //				Management_BrhWorkFlowMng_dataset.submitData="current";
 //				Management_BrhWorkFlowMng_dataset.flushData(0);
 //				return true;
@@ -133,7 +133,7 @@
 
 	function btSave_postSubmit()
 	{
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 // 		Management_BrhWorkFlowMng_dataset.submitData="allchange";
 		Management_BrhWorkFlowMng_dataset.flushData(0);
 	}

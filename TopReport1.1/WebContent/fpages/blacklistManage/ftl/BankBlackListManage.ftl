@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign op=RequestParameters["op"]?default("")>
-<@CommonQueryMacro.page title="ÉÌĞĞºÚÃûµ¥¾İ‹">
+<@CommonQueryMacro.page title="å•†è¡Œé»‘åå•ç·¨è¼¯">
 <@CommonQueryMacro.CommonQuery id="BankBlackListManage" init="true">
 <table align="center" width="100%">
 	<tr>
 		<td  align="left">
-				<@CommonQueryMacro.Group id ="bankBlackListManageGroup" label="ÒøĞĞºÚÃûµ¥ĞÅÏ¢" 
+				<@CommonQueryMacro.Group id ="bankBlackListManageGroup" label="é“¶è¡Œé»‘åå•ä¿¡æ¯" 
 				fieldStr="bankCode,bankName,accountType,blacklistType,certificateType,certificateNumber,clientName,"+
 					"clientEnglishName,valid,validDate,blacklistedReason,unblacklistedReason" 
         	    colNm=4/>
@@ -34,23 +34,23 @@
         BankBlackListManage_dataset.setParameter("opSave", "save");
     
         if (certificateType == null || "" == certificateType) {
-            alert("Ö¤¼şÀàĞÍ²»ÄÜÎª¿Õ");
+            alert("è¯ä»¶ç±»å‹ä¸èƒ½ä¸ºç©º");
             return false;
         }
         if (certificateNumber == null || "" == certificateNumber) {
-            alert("Ö¤¼şºÅ²»ÄÜÎª¿Õ");
+            alert("è¯ä»¶å·ä¸èƒ½ä¸ºç©º");
             return false;
         }
         if (certificateType == "11" || "18" > certificateNumber) {
-            alert("Éí·İÖ¤ºÅ²»ÄÜ¶ÌÓÚ18Î»");
+            alert("èº«ä»½è¯å·ä¸èƒ½çŸ­äº18ä½");
             return false;
         }
         return true;
     }
 
-    //±£´æºóË¢ĞÂµ±Ç°Ò³
+    //ä¿å­˜ååˆ·æ–°å½“å‰é¡µ
     function btSave_postSubmit(button) {
-    	alert("±£´æ³É¹¦¡£");
+    	alert("ä¿å­˜æˆåŠŸã€‚");
     }
     
     
@@ -61,23 +61,23 @@
         BankBlackListManage_dataset.setParameter("opSave", "queryVerify");
    
         if (certificateType == null || "" == certificateType) {
-            alert("Ö¤¼şÀàĞÍ²»ÄÜÎª¿Õ");
+            alert("è¯ä»¶ç±»å‹ä¸èƒ½ä¸ºç©º");
             return false;
         }
         if (certificateNumber == null || "" == certificateNumber) {
-            alert("Ö¤¼şºÅ²»ÄÜÎª¿Õ");
+            alert("è¯ä»¶å·ä¸èƒ½ä¸ºç©º");
             return false;
         } 
         if (certificateType == "11" || "18" > certificateNumber) {
-            alert("Éí·İÖ¤ºÅ²»ÄÜ¶ÌÓÚ18Î»");
+            alert("èº«ä»½è¯å·ä¸èƒ½çŸ­äº18ä½");
             return false;
         }
         return true;
     }
 
-    //±£´æºóË¢ĞÂµ±Ç°Ò³
+    //ä¿å­˜ååˆ·æ–°å½“å‰é¡µ
     function btQueryVerify_postSubmit(button) {
-    	alert("Ìá½»ÉóºË³É¹¦£¬ÇëµÈ´ıÉóºËÍ¨¹ı¡£");
+    	alert("æäº¤å®¡æ ¸æˆåŠŸï¼Œè¯·ç­‰å¾…å®¡æ ¸é€šè¿‡ã€‚");
     }
 
 </script>
