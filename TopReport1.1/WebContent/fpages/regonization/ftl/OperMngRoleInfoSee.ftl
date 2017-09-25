@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="²Ù×÷Ô±½ÇÉ«¹ÜÀí">
+<@CommonQueryMacro.page title="æ“ä½œå‘˜è§’è‰²ç®¡ç†">
 	<table align="left">
 		<tr align="center">
 			<td>
@@ -7,7 +7,7 @@
 	<table align="left">
 		 <tr align="center"  width="100%">
 			<td>
-				<@CommonQueryMacro.Group id ="group1" label="²Ù×÷Ô±ĞÅÏ¢" fieldStr="tlrno,tlrName,branchName,flag,isLock"colNm=4/>
+				<@CommonQueryMacro.Group id ="group1" label="æ“ä½œå‘˜ä¿¡æ¯" fieldStr="tlrno,tlrName,branchName,flag,isLock"colNm=4/>
         	</td>
         </tr>
    </table>
@@ -76,7 +76,7 @@
 	}
 
 	/* function btRoleSave_postSubmit(button){
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 		win.close();
 	}
 
@@ -89,9 +89,9 @@
 	function btResetPwd_onClick(button){
 		var tlrno = operMngMod_dataset.getValue("tlrno");
 		if (tlrno == currentTlrno) {
-				alert("²»ÄÜÖØÖÃ×Ô¼ºµÄÃÜÂë");
+				alert("ä¸èƒ½é‡ç½®è‡ªå·±çš„å¯†ç ");
 			} else {
-				if(!confirm("È·ÈÏÒªÖØÖÃ¸Ã²Ù×÷Ô±Âğ?")){
+				if(!confirm("ç¡®è®¤è¦é‡ç½®è¯¥æ“ä½œå‘˜å—?")){
 					return;
 				}
 				operMngMod_dataset.setValue("restFlg","1");

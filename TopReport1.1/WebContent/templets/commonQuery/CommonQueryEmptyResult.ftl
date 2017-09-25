@@ -1,4 +1,4 @@
-<#--ฬแฝปาณรๆฒโสิ-->
+<#--ๆไบค้กต้ขๆต่ฏ•-->
 <#import "/templets/common/common.ftl" as com>
 <#import "/templets/commonQuery/CQInterfaceFormSubmit.ftl" as formSubmit>
 <#import "/templets/commonQuery/CommonQueryMacroI.ftl" as CQMaco>
@@ -15,7 +15,7 @@
 <#list elementList as element>
 	<@CQMaco.showElement element=element requestParam=RequestParam/>
 </#list>
-<#-- าณย๋ะลฯข -->
+<#-- ้กต็ ไฟกๆฏ -->
 <input type="hidden" name="CQId" value="${CommonQueryConfig.id}"/>
 <input type="hidden" name="nextPage" value="1"/>
 <input type="hidden" name="everyPage" value="10"/>
@@ -26,7 +26,7 @@
 					<TD CLASS="unnamed1" ALIGN="center">
 						<DIV ALIGN="CENTER"><B><FONT SIZE="2" COLOR="#88B8EF">
 						<FONT>
-							รปำะท๛บฯฬ๕ผþตฤผวยผ
+							ๆฒกๆ็ฌฆๅๆกไปถ็่ฎฐๅฝ•
 						</FONT>
 						</B>
 						</DIV>

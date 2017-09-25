@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="Æ±¾İĞÅÏ¢">
+<@CommonQueryMacro.page title="ç¥¨æ®ä¿¡æ¯">
 <CENTER><H1 id="draftTitle"></H1></CENTER>
 <table align="center" class="grouptable">
 <tr>
@@ -10,47 +10,47 @@
           <tr>
             <td colspan="2"><table frame=void class="grouptable">
                <tr>
-                  <td colspan="2" align="center" nowrap class="labeltd"> ³öÆ±ÈÕ </td>
+                  <td colspan="2" align="center" nowrap class="labeltd"> å‡ºç¥¨æ—¥ </td>
 				  <td class="datatd" >${RequestParameters["stdissdate"]}</td>
-                  <td colspan="2" align="center" nowrap class="labeltd"> Æ±¾İÀàĞÍ </td>
+                  <td colspan="2" align="center" nowrap class="labeltd"> ç¥¨æ®ç±»å‹ </td>
                  <td class="datatd">${RequestParameters["stdbilltypName"]}</td>
                 </tr>
                <tr>
-                  <td colspan="2" align="center" nowrap class="labeltd"> »ãÆ±µ½ÆÚÈÕ </td>
+                  <td colspan="2" align="center" nowrap class="labeltd"> æ±‡ç¥¨åˆ°æœŸæ—¥ </td>
  			      <td class="datatd">${RequestParameters["stdduedate"]}</td>
-                  <td colspan="2" align="center" nowrap class="labeltd"> Æ±¾İºÅÂë </td>
+                  <td colspan="2" align="center" nowrap class="labeltd"> ç¥¨æ®å·ç  </td>
                    <td class="datatd">${RequestParameters["stdbillnum"]}</td>
                 </tr>
 
                 <tr>
-                  <td width="4%" rowspan="4" align="center" nowrap class="labeltd"> ³ö <br> Æ± <br> ÈË </td>
-                  <td width="7%" align="center" nowrap class="labeltd" > È«&nbsp;&nbsp;³Æ </td>
+                  <td width="4%" rowspan="4" align="center" nowrap class="labeltd"> å‡º <br> ç¥¨ <br> äºº </td>
+                  <td width="7%" align="center" nowrap class="labeltd" > å…¨&nbsp;&nbsp;ç§° </td>
                   <td width="39%" class="datatd">${RequestParameters["stddrwrnam"]}</td>
-                  <td width="4%" rowspan="4" align="center" nowrap class="labeltd"> ÊÕ <br> ¿î <br> ÈË </td>
-                  <td width="10%" align="center" nowrap class="labeltd"> È«&nbsp;&nbsp;³Æ </td>
+                  <td width="4%" rowspan="4" align="center" nowrap class="labeltd"> æ”¶ <br> æ¬¾ <br> äºº </td>
+                  <td width="10%" align="center" nowrap class="labeltd"> å…¨&nbsp;&nbsp;ç§° </td>
                   <td width="36%" class="datatd">
                   	${RequestParameters["stdpyeenam"]}
                   </td>
                 </tr>
                 <tr>
-                  <td align="center" nowrap class="labeltd" > ÕÊ&nbsp;&nbsp;ºÅ </td>
+                  <td align="center" nowrap class="labeltd" > å¸&nbsp;&nbsp;å· </td>
                   <td class="datatd">${RequestParameters["stddrwracc"]}</td>
-                  <td align="center" nowrap class="labeltd" > ÕÊ&nbsp;&nbsp;ºÅ </td>
+                  <td align="center" nowrap class="labeltd" > å¸&nbsp;&nbsp;å· </td>
                   <td class="datatd">${RequestParameters["stdpyeeacc"]}</tr>
                 <tr>
-                  <td align="center" nowrap class="labeltd" > ĞĞ&nbsp;&nbsp;ºÅ </td>
+                  <td align="center" nowrap class="labeltd" > è¡Œ&nbsp;&nbsp;å· </td>
                   <td class="datatd" nowrap>${RequestParameters["stddrwrbnm"]}</tr>
-                  <td align="center" nowrap class="labeltd"> ĞĞ&nbsp;&nbsp;ºÅ </td>
+                  <td align="center" nowrap class="labeltd"> è¡Œ&nbsp;&nbsp;å· </td>
  				  <td class="datatd" nowrap>${RequestParameters["stdpyeebnm"]}</tr>
                 </tr>
 
                 <tr>
-                  <td align="center" nowrap class="labeltd"> ¿ª»§ĞĞ </td>
+                  <td align="center" nowrap class="labeltd"> å¼€æˆ·è¡Œ </td>
                   <td class="datatd" nowrap>
 						<#assign drwrUBankName = getUBankName(RequestParameters["stddrwrbnm"])>
 						${drwrUBankName}
                     </tr>
-                   <td align="center" nowrap class="labeltd"> ¿ª»§ĞĞ </td>
+                   <td align="center" nowrap class="labeltd"> å¼€æˆ·è¡Œ </td>
                    <td class="datatd" nowrap>
 						<#assign pyeeUBankName = getUBankName(RequestParameters["stdpyeebnm"])>
 						${pyeeUBankName}
@@ -58,26 +58,26 @@
                 </tr>
 
                 <tr height="50">
-				  <td colspan="2" align="center" nowrap class="labeltd"> Æ±¾İ½ğ¶î </td>
- 				  <td colspan="1" class="datatd" >ÈËÃñ±Ò (´óĞ´) &nbsp; &nbsp;${RequestParameters["stdpmmoneyCH"]}</td>
+				  <td colspan="2" align="center" nowrap class="labeltd"> ç¥¨æ®é‡‘é¢ </td>
+ 				  <td colspan="1" class="datatd" >äººæ°‘å¸ (å¤§å†™) &nbsp; &nbsp;${RequestParameters["stdpmmoneyCH"]}</td>
  				  <td colspan="3" class="datatd" ><div align="center">${RequestParameters["stdpmmoney"]}</div></td>
                 </tr>
 
 
                 <tr>
-                  <td width="4%" rowspan="2" align="center" nowrap class="labeltd"> ³Ğ <br> ¶Ò <br> ÈË <br> ĞÅ <br> Ï¢ </td>
-                  <td align="center" nowrap class="labeltd" >È«&nbsp;&nbsp;³Æ</td>
+                  <td width="4%" rowspan="2" align="center" nowrap class="labeltd"> æ‰¿ <br> å…‘ <br> äºº <br> ä¿¡ <br> æ¯ </td>
+                  <td align="center" nowrap class="labeltd" >å…¨&nbsp;&nbsp;ç§°</td>
                   <td class="datatd">
                   	${RequestParameters["stdaccpnam"]}
                   </td>
-                  <td colspan="2" align="center" nowrap class="labeltd"> ¿ª»§ĞĞĞĞºÅ </td>
+                  <td colspan="2" align="center" nowrap class="labeltd"> å¼€æˆ·è¡Œè¡Œå· </td>
   				  <td class="datatd">${RequestParameters["stdaccpbnm"]}</td>
                 </tr>
 
                 <tr>
-				  <td align="center" nowrap class="labeltd" >ÕÊ&nbsp;&nbsp;ºÅ</td>
+				  <td align="center" nowrap class="labeltd" >å¸&nbsp;&nbsp;å·</td>
  				  <td class="datatd">${RequestParameters["stdaccpacc"]}</td>
-                  <td colspan="2" align="center" nowrap class="labeltd">¿ª»§ĞĞÃû³Æ </td>
+                  <td colspan="2" align="center" nowrap class="labeltd">å¼€æˆ·è¡Œåç§° </td>
 				  <td class="datatd">
 						<#assign accpUBankName = getUBankName(RequestParameters["stdaccpbnm"])>
 						${accpUBankName}
@@ -86,11 +86,11 @@
 
                 <tr>
 
-                  <td colspan="2" align="center" nowrap class="labeltd" >ÔÊĞí±³Êé </td>
+                  <td colspan="2" align="center" nowrap class="labeltd" >å…è®¸èƒŒä¹¦ </td>
                  <td class="datatd">${RequestParameters["stdendormkName"]}</td>
                 </tr>
                  <tr>
-				  <td colspan="2" align="center" nowrap class="labeltd"> ³öÆ±±¸×¢ </td>
+				  <td colspan="2" align="center" nowrap class="labeltd"> å‡ºç¥¨å¤‡æ³¨ </td>
  				  <td colspan="4" class="datatd">${RequestParameters["std400memo"]}</td>
                 </tr>
 
@@ -105,18 +105,18 @@
 <br/>
 <br/>
 <CENTER>
-	<input type="button" extra="button" value="ÀúÊ·ĞÅÏ¢" id="btChange" onClick="changeView();"/>
+	<input type="button" extra="button" value="å†å²ä¿¡æ¯" id="btChange" onClick="changeView();"/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="button" extra="button"  value="¹Ø±Õ" id="btBack1" onClick="window.close();"/>
+	<input type="button" extra="button"  value="å…³é—­" id="btBack1" onClick="window.close();"/>
 </CENTER>
 <script type='text/javascript' src='${contextPath}/dwr/interface/GetDraftShowDetailInfo.js'></script>
 <script language="javascript">
 	var stdbilltyp = "${RequestParameters["stdbilltyp"]}";
 	function initCallGetter_post() {
 		if(stdbilltyp == "AC01"){
-			document.getElementById('draftTitle').innerHTML = 'µç×ÓÒøĞĞ³Ğ¶Ò»ãÆ±';
+			document.getElementById('draftTitle').innerHTML = 'ç”µå­é“¶è¡Œæ‰¿å…‘æ±‡ç¥¨';
 		}else if(stdbilltyp == "AC02"){
-			document.getElementById('draftTitle').innerHTML = 'µç×ÓÉÌÒµ³Ğ¶Ò»ãÆ±';
+			document.getElementById('draftTitle').innerHTML = 'ç”µå­å•†ä¸šæ‰¿å…‘æ±‡ç¥¨';
 		}
 		ChangeTableRowEvent();
 	}
@@ -135,11 +135,11 @@
    		if (infoDiv.style.display == "none") {
    			infoDiv.style.display = "";
    			draftDiv.style.display = "none";
-   			btChange.value = "Æ±¾İĞÅÏ¢";
+   			btChange.value = "ç¥¨æ®ä¿¡æ¯";
    		} else {
    			infoDiv.style.display = "none";
    			draftDiv.style.display = "";
-   			btChange.value = "ÀúÊ·ĞÅÏ¢";
+   			btChange.value = "å†å²ä¿¡æ¯";
    		}
    	}
 </script>

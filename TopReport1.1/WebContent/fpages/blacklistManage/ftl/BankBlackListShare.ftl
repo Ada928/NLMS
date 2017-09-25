@@ -3,12 +3,12 @@
 <#assign opType="${RequestParameters['opType']?default('')}" />
 <#assign op="${RequestParameters['op']?default('')}" />
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="ÉÌĞĞºÚÃûµ¥·ÖÏí">
+<@CommonQueryMacro.page title="å•†è¡Œé»‘åå•åˆ†äº«">
 <@CommonQueryMacro.CommonQuery id="BankBlackListShare" init="true"  submitMode="current"  navigate="false">
 <table align="center" width="100%">
 	<tr>
       	<td valign="top" colspan="2" >
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=4  />
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4  />
 		</td>
 	</tr>
   	<tr>
@@ -16,7 +16,7 @@
 	</tr>
 	<tr>
 		<td width="100%">
-			<@CommonQueryMacro.GroupBox id="BankBlackListShareGuoup" label="Ñ¡ÔñºÚÃûµ¥ĞÅÏ¢" expand="true">
+			<@CommonQueryMacro.GroupBox id="BankBlackListShareGuoup" label="é€‰æ‹©é»‘åå•ä¿¡æ¯" expand="true">
 				<table frame=void width="100%">
 					<tr>
 						<td colspan="2">
@@ -49,7 +49,7 @@
 		BankBlackListShare_dataset.setParameter("op", op);
 	}
 	
-	//¶¨Î»Ò»ĞĞ¼ÇÂ¼
+	//å®šä½ä¸€è¡Œè®°å½•
 	function locate(id) {
 		var record = BankBlackListShare_dataset.find([ "id" ], [ id ]);
 		if (record) {
@@ -57,7 +57,7 @@
 		}
 	}
 
-	//ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñ
+	//ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼
 	function datatable1_statedes_onRefresh(cell, value, record) {
 		if (record) {
 			var auditType = record.getValue("auditType");
@@ -67,25 +67,25 @@
 		
 			var tempHtml = "<center>";
 			if(auditType == "3" && auditState == "1"){
-				tempHtml += "·ÖÏíÎ´Í¨¹ıÉóºË";
+				tempHtml += "åˆ†äº«æœªé€šè¿‡å®¡æ ¸";
 			} else if(auditType == "3" && auditState == "2"){
-				tempHtml += "·ÖÏíÌá½»ÖĞ£¬´ıÉóºË";
+				tempHtml += "åˆ†äº«æäº¤ä¸­ï¼Œå¾…å®¡æ ¸";
 			} else if(auditType == "3" && auditState == "3"){
-				tempHtml += "·ÖÏíÉóºËÍ¨¹ı£¬´ıÉóÅú";
+				tempHtml += "åˆ†äº«å®¡æ ¸é€šè¿‡ï¼Œå¾…å®¡æ‰¹";
 			} else if(auditType == "3" && auditState == "4"){
-				tempHtml += "ÉóÅúÍ¨¹ı£¬·ÖÏí³É¹¦";
+				tempHtml += "å®¡æ‰¹é€šè¿‡ï¼Œåˆ†äº«æˆåŠŸ";
 			} else if(auditType == "4" && auditState == "1"){
-				tempHtml += "È¡Ïû·ÖÏíÎ´Í¨¹ıÉóºË";
+				tempHtml += "å–æ¶ˆåˆ†äº«æœªé€šè¿‡å®¡æ ¸";
 			} else if(auditType == "4" && auditState == "2"){
-				tempHtml += "È¡Ïû·ÖÏíÌá½»ÖĞ£¬´ıÉóºË";
+				tempHtml += "å–æ¶ˆåˆ†äº«æäº¤ä¸­ï¼Œå¾…å®¡æ ¸";
 			} else if(auditType == "4" && auditState == "3"){
-				tempHtml += "È¡Ïû·ÖÏíÉóºËÍ¨¹ı£¬´ıÉóÅú";
+				tempHtml += "å–æ¶ˆåˆ†äº«å®¡æ ¸é€šè¿‡ï¼Œå¾…å®¡æ‰¹";
 			} else if(auditType == "4" && auditState == "4"){
-				tempHtml += "È¡Ïû·ÖÏíÉóÅúÍ¨¹ı£¬ÖØĞÂ·ÖÏí";
+				tempHtml += "å–æ¶ˆåˆ†äº«å®¡æ‰¹é€šè¿‡ï¼Œé‡æ–°åˆ†äº«";
 			} else if(auditType == "1" && auditState == "4"){
-				tempHtml += "±à¼­ÉóÅúÍê³É£¬¿ÉÒÔ·ÖÏí";
+				tempHtml += "ç¼–è¾‘å®¡æ‰¹å®Œæˆï¼Œå¯ä»¥åˆ†äº«";
 			} else if(auditType == "2" && auditState == "4"){
-				tempHtml += "±à¼­ÉóÅúÍê³É£¬¿ÉÒÔ·ÖÏí";
+				tempHtml += "ç¼–è¾‘å®¡æ‰¹å®Œæˆï¼Œå¯ä»¥åˆ†äº«";
 			} 
 			cell.innerHTML = tempHtml + "</center>";
 		} else {
@@ -93,7 +93,7 @@
 		}
 	}
 	
-	//ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñ
+	//ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼
 	function datatable1_opr_onRefresh(cell, value, record) {
 		if (record) {
 			var auditType = record.getValue("auditType");
@@ -105,22 +105,22 @@
 			
 			if(auditType == "3" && auditState == "1"){
 				tempHtml += "<a href=\"JavaScript:shareRecord('" + id
-				+ "')\">ÖØĞÂ·ÖÏí</a> ";
+				+ "')\">é‡æ–°åˆ†äº«</a> ";
 			} else if(auditType == "3" && auditState == "4"){
 				tempHtml += "<a href=\"JavaScript:cancelShareRecord('" + id
-				+ "')\">È¡Ïû·ÖÏí</a> ";
+				+ "')\">å–æ¶ˆåˆ†äº«</a> ";
 			} else if(auditType == "4" && auditState == "1"){
 				tempHtml += "<a href=\"JavaScript:cancelShareRecord('" + id
-				+ "')\">ÖØĞÂÈ¡Ïû·ÖÏí</a> ";
+				+ "')\">é‡æ–°å–æ¶ˆåˆ†äº«</a> ";
 			} else if(auditType == "4" && auditState == "4"){
 				tempHtml += "<a href=\"JavaScript:shareRecord('" + id
-				+ "')\">ÖØĞÂ·ÖÏí</a> ";
+				+ "')\">é‡æ–°åˆ†äº«</a> ";
 			} else if(auditType == "1" && auditState == "4"){
 				tempHtml += "<a href=\"JavaScript:shareRecord('" + id
-				+ "')\">·ÖÏí¸ÃÃûµ¥</a> ";
+				+ "')\">åˆ†äº«è¯¥åå•</a> ";
 			} else if(auditType == "2" && auditState == "4"){
 				tempHtml += "<a href=\"JavaScript:shareRecord('" + id
-				+ "')\">·ÖÏí¸ÃÃûµ¥</a> ";
+				+ "')\">åˆ†äº«è¯¥åå•</a> ";
 			} 
 			cell.innerHTML = tempHtml + "</center>";
 		} else {
@@ -128,17 +128,17 @@
 		}
 	}
 	
-	//ĞŞ¸Ä¹¦ÄÜ
+	//ä¿®æ”¹åŠŸèƒ½
 	function shareRecord(id) {
 		btShare.click();
 	}
 	
-	//ĞŞ¸Ä¹¦ÄÜ
+	//ä¿®æ”¹åŠŸèƒ½
 	function cancelShareRecord(id) {
 		btCancelShare.click();
 	}
 	
-	//Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+	//å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
 	function datatable1_blacklistid_onRefresh(cell, value, record) {
 		if (record) {
 			var id = record.getValue("blacklistid");
@@ -156,34 +156,34 @@
 
 	function btShare_onClickCheck() {
 		BankBlackListShare_dataset.setParameter("op", "shareT");
-		if(!confirm("È·¶¨·ÖÏíÑ¡ÖĞµÄºÚÃûµ¥£¿")){
+		if(!confirm("ç¡®å®šåˆ†äº«é€‰ä¸­çš„é»‘åå•ï¼Ÿ")){
 			return false;
 		}
 	}
 	
 	function btShare_postSubmit(button) {
-		alert("·ÖÏíºÚÃûµ¥ÉêÇëÌá½»³É¹¦£¬ÇëµÈ´ıÉóºË¡£");
+		alert("åˆ†äº«é»‘åå•ç”³è¯·æäº¤æˆåŠŸï¼Œè¯·ç­‰å¾…å®¡æ ¸ã€‚");
 		button.url = "#";
-		//Ë¢ĞÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		flushCurrentPage();
 	}
 	
 	function btCancelShare_onClickCheck() {
 		BankBlackListShare_dataset.setParameter("op", "shareF");
-		if(!confirm("È·¶¨È¡ÏûÉóÅúÑ¡ÖĞµÄºÚÃûµ¥£¿")){
+		if(!confirm("ç¡®å®šå–æ¶ˆå®¡æ‰¹é€‰ä¸­çš„é»‘åå•ï¼Ÿ")){
 			return false;
 		}
 		//return true;
 	}
 	
 	function btCancelShare_postSubmit(button) {
-		alert("È¡Ïû·ÖÏíºÚÃûµ¥ÉêÇëÌá½»³É¹¦£¬ÇëµÈ´ıÉóºË¡£");
+		alert("å–æ¶ˆåˆ†äº«é»‘åå•ç”³è¯·æäº¤æˆåŠŸï¼Œè¯·ç­‰å¾…å®¡æ ¸ã€‚");
 		button.url = "#";
-		//Ë¢ĞÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		flushCurrentPage();
 	}
 
-	//Ë¢ĞÂµ±Ç°Ò³
+	//åˆ·æ–°å½“å‰é¡µ
 	function flushCurrentPage() {
 		BankBlackListShare_dataset.flushData(BankBlackListShare_dataset.pageIndex);
 	}

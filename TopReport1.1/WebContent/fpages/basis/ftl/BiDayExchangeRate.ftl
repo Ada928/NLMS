@@ -5,7 +5,7 @@
 <table align="left" width="800px">
    <tr>
       	<td colspan="2">
-      	   <@CommonQueryMacro.Interface id="interface" label="Íâ»ãÈÕÅÆ¼ÛÎ¬»¤²éÑ¯" />
+      	   <@CommonQueryMacro.Interface id="interface" label="å¤–æ±‡æ—¥ç‰Œä»·ç»´æŠ¤æŸ¥è¯¢" />
       	</td>
 	</tr>
 	<tr>
@@ -20,7 +20,7 @@
       	<td colspan="2">
       		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
       			<div align="center">
-      				<@CommonQueryMacro.Group id="group1" label="ÈÕÅÆ¼ÛÎ¬»¤"
+      				<@CommonQueryMacro.Group id="group1" label="æ—¥ç‰Œä»·ç»´æŠ¤"
         			  fieldStr="id,rateUnit,rateDate,rateMidprice" colNm=4/>
         			<br/>
         			<@CommonQueryMacro.Button id="btModOrAdd" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -36,20 +36,20 @@
 </table>
 </@CommonQueryMacro.CommonQuery>
 <script language="JavaScript">
-	//¶¨Î»Ò»ĞĞ¼ÇÂ¼
+	//å®šä½ä¸€è¡Œè®°å½•
 	function locate(id) {
 		var record = BiDayExchangeRate_dataset.find(["id"],[id]);
 		if(record) {
 			BiDayExchangeRate_dataset.setRecord(record);
 		}
 	}
-	//ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñ
+	//ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼
 	function datatable1_opr_onRefresh(cell,value,record) {
 		if(record) {
 			var id = record.getValue("id");
 			var lock = record.getValue("lock");
 			if(isTrue(lock)){
-				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\"><@bean.message key="BiDayExchangeRate.button.btMod" /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\"><@bean.message key="BiDayExchangeRate.button.btDel" /></a></center>";
+				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\"><@bean.message key="BiDayExchangeRate.button.btMod" /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\"><@bean.message key="BiDayExchangeRate.button.btDel" /></a></center>";
 			} else {
 				cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('"+id+"')\"><@bean.message key='BiDayExchangeRate.button.btMod' /></a> &nbsp; <a href=\"JavaScript:doDel('"+id+"')\"><@bean.message key='BiDayExchangeRate.button.btDel'/></a></center>";
 			}
@@ -62,13 +62,13 @@
 			btNewClick();
 	}
 	
-	//È¡Ïû¹¦ÄÜ
+	//å–æ¶ˆåŠŸèƒ½
 	function btCancel_onClickCheck(button) {
-		//¹Ø±Õ¸¡¶¯´°¿Ú
+		//å…³é—­æµ®åŠ¨çª—å£
 		subwindow_signWindow.close();
 	}
 	
-	//¹Ø¸¡¶¯´°¿Ú,ÊÍ·Ådataset
+	//å…³æµ®åŠ¨çª—å£,é‡Šæ”¾dataset
 	function signWindow_floatWindow_beforeClose(subwindow) {
 		BiDayExchangeRate_dataset.cancelRecord();
 		return true;
@@ -78,17 +78,17 @@
 		return signWindow_floatWindow_beforeClose(subwindow);
 	}
 	
-	//±£´æÈ·ÈÏ
+	//ä¿å­˜ç¡®è®¤
 	function btModOrAdd_onClickCheck(button){
 		var id = BiDayExchangeRate_dataset.getValue("id");
 		if(id == null || "" == id ) {
-				alert("±ÒÖÖ²»ÄÜÎª¿Õ");
+				alert("å¸ç§ä¸èƒ½ä¸ºç©º");
 				return false;
 			}
 		return true;
 	}
 	
-	//Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+	//å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
 	function datatable1_id_onRefresh(cell, value, record){
 		if(record!=null){
 			var sta = record.getValue("st");
@@ -105,10 +105,10 @@
 		paramMap.put("st",sta);
 		paramMap.put("action","detail");
 		paramMap.put("flag","0");
-		loadPageWindows("partWin", "Íâ»ãÈÕÅÆ¼ÛÏêÏ¸ĞÅÏ¢","/fpages/basis/ftl/BiDayExchangeRateDetail.ftl", paramMap, "winZone");
+		loadPageWindows("partWin", "å¤–æ±‡æ—¥ç‰Œä»·è¯¦ç»†ä¿¡æ¯","/fpages/basis/ftl/BiDayExchangeRateDetail.ftl", paramMap, "winZone");
 	}
 
-	//ĞÂÔö¹¦ÄÜ
+	//æ–°å¢åŠŸèƒ½
 	function btNewClick() {
 	    BiDayExchangeRate_dataset.insertRecord("end");
 		BiDayExchangeRate_dataset.setValue("id","");
@@ -118,7 +118,7 @@
 		subwindow_signWindow.show();
 	}
 	
-	//ĞŞ¸Ä¹¦ÄÜ
+	//ä¿®æ”¹åŠŸèƒ½
 	function openModifyWindow(id) {
 		locate(id);
 		BiDayExchangeRate_dataset.setFieldReadOnly("id",true);
@@ -135,22 +135,22 @@
 	}
 
 	function btDel_onClickCheck(button) {
-		return confirm("È·ÈÏÉ¾³ı¸ÃÌõ¼ÇÂ¼£¿");
+		return confirm("ç¡®è®¤åˆ é™¤è¯¥æ¡è®°å½•ï¼Ÿ");
 	}
 	function btDel_postSubmit(button) {
-			alert("É¾³ı¼ÇÂ¼³É¹¦");
+			alert("åˆ é™¤è®°å½•æˆåŠŸ");
 		button.url="#";
-		//Ë¢ĞÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		flushCurrentPage();
 	}
-	//±£´æºóË¢ĞÂµ±Ç°Ò³
+	//ä¿å­˜ååˆ·æ–°å½“å‰é¡µ
 	function btModOrAdd_postSubmit(button) {
 		button.url="#";
 		subwindow_signWindow.close();
 		flushCurrentPage();
 	}
 	
-	//Ë¢ĞÂµ±Ç°Ò³
+	//åˆ·æ–°å½“å‰é¡µ
 	function flushCurrentPage() {
 		BiDayExchangeRate_dataset.flushData(BiDayExchangeRate_dataset.pageIndex);
 	}

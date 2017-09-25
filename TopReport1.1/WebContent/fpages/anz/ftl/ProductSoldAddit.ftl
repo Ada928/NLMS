@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro >
-<@CommonQueryMacro.page title="¿Í»§¾­Àí²úÆ·ÏúÊÛĞÅÏ¢²¹Â¼">
+<@CommonQueryMacro.page title="å®¢æˆ·ç»ç†äº§å“é”€å”®ä¿¡æ¯è¡¥å½•">
    <table align="left">
    <tr>
       <td>
@@ -9,7 +9,7 @@
 
 			<tr>
    			<td valign="top" colspan="2">
-   			<@CommonQueryMacro.Interface id="interface" label="²úÆ·ÏúÊÛĞÅÏ¢²¹Â¼²éÑ¯" colNm=4 showButton="true" />
+   			<@CommonQueryMacro.Interface id="interface" label="äº§å“é”€å”®ä¿¡æ¯è¡¥å½•æŸ¥è¯¢" colNm=4 showButton="true" />
         	</td>
        		 </tr>
       			<tr>
@@ -28,7 +28,7 @@
 		      		<td colspan="2">
 		      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 		      			<div align="center">
-		      				<@CommonQueryMacro.Group id="group1" label="¿Í»§¾­Àí²úÆ·ÏúÊÛĞÅÏ¢²¹Â¼"
+		      				<@CommonQueryMacro.Group id="group1" label="å®¢æˆ·ç»ç†äº§å“é”€å”®ä¿¡æ¯è¡¥å½•"
 		        			  fieldStr="brcode,moths,cmrm,dtyp,amt" colNm=4/>
 		        			 </br>
 		      				<@CommonQueryMacro.Button id= "btSave"/>
@@ -59,22 +59,22 @@
 	}
 
 	function btSave_postSubmit(button){
-		alert("±£´æ³É¹¦£¡");
+		alert("ä¿å­˜æˆåŠŸï¼");
 	}
 
 	function datatable1_opr_onRefresh(cell,value,record) {
-		//¼ÇÂ¼¼¯´æÔÚ
+		//è®°å½•é›†å­˜åœ¨
 		if(record) {
 			var months = record.getValue("moths");
 			var cmrm = record.getValue("cmrm");
 			var dtyp = record.getValue("dtyp");
-			//·ÀÖ¹ÀàĞÍ×Ô¶¯×ª»»£¬ËùÒÔ´«Ò»¸öÖµ
+			//é˜²æ­¢ç±»å‹è‡ªåŠ¨è½¬æ¢ï¼Œæ‰€ä»¥ä¼ ä¸€ä¸ªå€¼
 			var par = ","+months+","+cmrm+","+dtyp+",";
 			var lock=record.getValue("lock");
 			if(isTrue(lock)){
-				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\">ĞŞ¸Ä</a><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\">É¾³ı</a> </center>";
+				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\">ä¿®æ”¹</a><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\">åˆ é™¤</a> </center>";
 			}else{
-				cell.innerHTML="<center><a href=\"JavaScript:doModify('"+par+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+par+"')\">É¾³ı</a></center>";
+				cell.innerHTML="<center><a href=\"JavaScript:doModify('"+par+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+par+"')\">åˆ é™¤</a></center>";
 
 			}
 		}else{
@@ -92,7 +92,7 @@ function locate(moths,cmrm,dtyp) {
 	}
 	
 
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	function doModify(id) {
 	
 	var parArra = id.split(",");
@@ -106,7 +106,7 @@ function locate(moths,cmrm,dtyp) {
 		ProductSoldAddit_dataset.setFieldReadOnly("dtyp", true);
 	}
 
-	//É¾³ı
+	//åˆ é™¤
 	function doDelete(id) {
 		var parArra = id.split(",");
 		var aaa = parArra[1];
@@ -114,19 +114,19 @@ function locate(moths,cmrm,dtyp) {
 		var ccc = parArra[3];
 		locate(aaa,bbb,ccc);
 
-		if(confirm('ÊÇ·ñÉ¾³ıµ±Ç°¼ÇÂ¼'))
+		if(confirm('æ˜¯å¦åˆ é™¤å½“å‰è®°å½•'))
 		{
 			btDel.click();
 		}
 	}
 
 function btSave_postSubmit(button) {
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 		subwindow_signWindow.close();
 		ProductSoldAddit_dataset.flushData(ProductSoldAddit_dataset.pageIndex);
 	}
 function btDel_postSubmit(button) {
-		alert("É¾³ı³É¹¦");
+		alert("åˆ é™¤æˆåŠŸ");
 		ProductSoldAddit_dataset.flushData(ProductSoldAddit_dataset.pageIndex);
 	}
 

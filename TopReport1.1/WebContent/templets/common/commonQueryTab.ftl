@@ -31,7 +31,7 @@ ${CommonQueryConfig.script?default('')}
 		<#assign tid = button.attributes["id"]?default("")>
 		<#assign url  = button.attributes["url"]?default("")>
 	
-	 	<#-- ÅÐ¶ÏÊÇ·ñÏÔÊ¾¸Ã tab  -->
+	 	<#-- åˆ¤æ–­æ˜¯å¦æ˜¾ç¤ºè¯¥ tab  -->
 	 	<#if _tabsCtl!="" && (_tabsCtl?length >= (key_index+1)) >
 			<#if _tabsCtl?substring(key_index,key_index+1)=="1">
 				<#assign _show = true>

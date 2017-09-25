@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Ç©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 <@CommonQueryMacro.CommonQuery id="BopForSameInduDepositInfoCol" init="true" submitMode="all" navigate="true">
 <table  width="95%" cellpadding="2">
 	<tr>
@@ -8,66 +8,66 @@
 			<table width="100%" cellpadding="0" cellspacing="0">
 				<tr>
 					<td>
-						<@CommonQueryMacro.GroupBox id="guoup1" label="Ç©Ô¼ĞÅÏ¢"  expand="true">
+						<@CommonQueryMacro.GroupBox id="guoup1" label="ç­¾çº¦ä¿¡æ¯"  expand="true">
 						<table frame=void class="grouptable" width="100%">
 							<tr>
-								<td colspan="2" align="center" nowrap class="labeltd">ÍâÕ®±àºÅ</td>
+								<td colspan="2" align="center" nowrap class="labeltd">å¤–å€ºç¼–å·</td>
 								<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="exdebtcode"/></td>
 
-								<td rowspan="6" align="center" nowrap class="labeltd">Õ®<br>È¨<br>ÈË<br>ĞÅ<br>Ï¢</td>
-								<td align="center" nowrap class="labeltd">´úÂë</td>
+								<td rowspan="6" align="center" nowrap class="labeltd">å€º<br>æƒ<br>äºº<br>ä¿¡<br>æ¯</td>
+								<td align="center" nowrap class="labeltd">ä»£ç </td>
 								<td class="datatd" width="25%"><@CommonQueryMacro.SingleField  fId="creditorcode"/></td>
 							</tr>
 							<tr>
-								<td colspan="2" align="center" nowrap class="labeltd">Õ®ÎñÈË´úÂë</td>
+								<td colspan="2" align="center" nowrap class="labeltd">å€ºåŠ¡äººä»£ç </td>
 								<td class="datatd"><@CommonQueryMacro.SingleField  fId="debtorcode"/></td>
 
-								<td align="center" nowrap class="labeltd">ÖĞÎÄÃû³Æ</td>
+								<td align="center" nowrap class="labeltd">ä¸­æ–‡åç§°</td>
 								<td class="datatd"><@CommonQueryMacro.SingleField  fId="creditorname"/></td>
 							</tr>
 
 							<tr>
-								<td colspan="2" align="center" nowrap class="labeltd">Õ®ÎñÀàĞÍ</td>
+								<td colspan="2" align="center" nowrap class="labeltd">å€ºåŠ¡ç±»å‹</td>
 								<td class="datatd" ><@CommonQueryMacro.SingleField  fId="debtype"/></td>
 
-								<td align="center" nowrap class="labeltd">Ó¢ÎÄÃû³Æ</td>
+								<td align="center" nowrap class="labeltd">è‹±æ–‡åç§°</td>
 								<td class="datatd"><@CommonQueryMacro.SingleField  fId="creditornamen"/></td>
 							</tr>
 							<tr>
-								<td colspan="2"  align="center" nowrap class="labeltd">ÆğÏ¢ÈÕ</td>
+								<td colspan="2"  align="center" nowrap class="labeltd">èµ·æ¯æ—¥</td>
 								<td class="datatd"><@CommonQueryMacro.SingleField  fId="valuedate"/></td>
 
-								<td align="center" nowrap class="labeltd">ÀàĞÍ´úÂë</td>
+								<td align="center" nowrap class="labeltd">ç±»å‹ä»£ç </td>
 								<td class="datatd"><@CommonQueryMacro.SingleField fId="creditortype"/></td>
 							</tr>
 							<tr>
-								<td colspan="2"  align="center" nowrap class="labeltd">Ç©Ô¼±ÒÖÖ</td>
+								<td colspan="2"  align="center" nowrap class="labeltd">ç­¾çº¦å¸ç§</td>
 								<td class="datatd"><@CommonQueryMacro.SingleField	fId="contractcurr"/></td>
 
-								<td align="center" nowrap class="labeltd">×Ü²¿ËùÔÚ¹ú¼Ò£¨µØÇø£©´úÂë</td>
+								<td align="center" nowrap class="labeltd">æ€»éƒ¨æ‰€åœ¨å›½å®¶ï¼ˆåœ°åŒºï¼‰ä»£ç </td>
 								<td class="datatd"><@CommonQueryMacro.SingleField	fId="crehqcode"/></td>
 							</tr>
 							<tr>
-								<td colspan="2"  align="center" nowrap class="labeltd">ÊÇ·ñ¸¡¶¯ÀûÂÊ</td>
+								<td colspan="2"  align="center" nowrap class="labeltd">æ˜¯å¦æµ®åŠ¨åˆ©ç‡</td>
 								<td class="datatd"><@CommonQueryMacro.SingleField  fId="floatrate"/></td>
 
-								<td align="center" nowrap class="labeltd">¾­ÓªµØËùÔÚ¹ú¼Ò£¨µØÇø£©´úÂë</td>
+								<td align="center" nowrap class="labeltd">ç»è¥åœ°æ‰€åœ¨å›½å®¶ï¼ˆåœ°åŒºï¼‰ä»£ç </td>
 								<td class="datatd"><@CommonQueryMacro.SingleField	fId="opercode"/></td>
 							</tr>
 
 							<tr>
-								<td colspan="2" align="center" nowrap class="labeltd">Äê»¯ÀûÂÊÖµ</td>
+								<td colspan="2" align="center" nowrap class="labeltd">å¹´åŒ–åˆ©ç‡å€¼</td>
 								<td class="datatd"><@CommonQueryMacro.SingleField  fId="anninrate"/></td>
 
-								<td colspan="2" align="center" nowrap class="labeltd">ÊÇ·ñ¾­Íâ»ã¾ÖÌØÅú²»ĞèÕ¼ÓÃÖ¸±ê</td>
+								<td colspan="2" align="center" nowrap class="labeltd">æ˜¯å¦ç»å¤–æ±‡å±€ç‰¹æ‰¹ä¸éœ€å ç”¨æŒ‡æ ‡</td>
 								<td class="datatd"><@CommonQueryMacro.SingleField	fId="spapfeboindex"/></td>
 							</tr>
 
 							<tr>
-								<td colspan="2" align="center" nowrap class="labeltd">±¸×¢</td>
+								<td colspan="2" align="center" nowrap class="labeltd">å¤‡æ³¨</td>
 								<td  class="datatd"><@CommonQueryMacro.SingleField fId="remark"/></td>
 
-								<td colspan="2" align="center" nowrap class="labeltd">ÒµÎñÁ÷Ë®ºÅ</td>
+								<td colspan="2" align="center" nowrap class="labeltd">ä¸šåŠ¡æµæ°´å·</td>
 								<td  class="datatd"><@CommonQueryMacro.SingleField fId="filler2"/></td>
 							</tr>
 						</table>
@@ -82,33 +82,33 @@
 			<table width="100%" cellpadding="0" cellspacing="0">
 				<tr>
 					<td>
-					  <@CommonQueryMacro.GroupBox id="BOPCfaLounexguRecordAD1" label="ÏµÍ³ĞÅÏ¢"  expand="true">
+					  <@CommonQueryMacro.GroupBox id="BOPCfaLounexguRecordAD1" label="ç³»ç»Ÿä¿¡æ¯"  expand="true">
 						<table frame=void class="grouptable" width="100%">
 							<tr>
-								<td  align="center" nowrap class="labeltd" width="25%">²Ù×÷ÀàĞÍ</td>
+								<td  align="center" nowrap class="labeltd" width="25%">æ“ä½œç±»å‹</td>
 								<td class="datatd" width="25%"><@CommonQueryMacro.SingleField fId="actiontype"/></td>
 							</tr>
 							<tr>
 
-								<td  align="center" nowrap class="labeltd" width="25%">¼ÇÂ¼×´Ì¬</td>
+								<td  align="center" nowrap class="labeltd" width="25%">è®°å½•çŠ¶æ€</td>
 								<td class="datatd" width="25%"><@CommonQueryMacro.SingleField fId="recStatus"/></td>
 							</tr>
 							<tr>
-								<td align="center" nowrap class="labeltd" > ÉóÅú×´Ì¬ </td>
+								<td align="center" nowrap class="labeltd" > å®¡æ‰¹çŠ¶æ€ </td>
 								<td nowrap class="datatd" > <@CommonQueryMacro.SingleField fId="approveStatus" /></td>
 							</tr>
 							<tr>
 
-								<td align="center" nowrap class="labeltd" > »ØÖ´×´Ì¬ </td>
-								<td nowrap class="datatd" > <@CommonQueryMacro.SingleField fId="repStatus" /><a id="repHerf" href="javascript:doRepDet()">»ØÖ´½á¹û</a></td>
+								<td align="center" nowrap class="labeltd" > å›æ‰§çŠ¶æ€ </td>
+								<td nowrap class="datatd" > <@CommonQueryMacro.SingleField fId="repStatus" /><a id="repHerf" href="javascript:doRepDet()">å›æ‰§ç»“æœ</a></td>
 							</tr>
 
 							<tr>
-								<td  align="center" nowrap class="labeltd">´´½¨Ê±¼ä</td>
+								<td  align="center" nowrap class="labeltd">åˆ›å»ºæ—¶é—´</td>
 								<td class="datatd"><@CommonQueryMacro.SingleField fId="crtTm"/></td>
 							</tr>
 							<tr>
-								<td  align="center" nowrap class="labeltd">×îºó¸üĞÂÊ±¼ä</td>
+								<td  align="center" nowrap class="labeltd">æœ€åæ›´æ–°æ—¶é—´</td>
 								<td class="datatd"><@CommonQueryMacro.SingleField fId="lstUpdTm"/></td>
 							</tr>
 
@@ -119,10 +119,10 @@
 
 					<tr>
 						<td>
-						  <@CommonQueryMacro.GroupBox id="BOPCfaLounexguRecordAD2" label="É¾³ıĞÅÏ¢"   expand="true">
+						  <@CommonQueryMacro.GroupBox id="BOPCfaLounexguRecordAD2" label="åˆ é™¤ä¿¡æ¯"   expand="true">
 							<table frame=void class="grouptable" width="100%" >
 								<tr>
-									<td  align="center" nowrap class="labeltd" width="25%">É¾³ıÔ­Òò</td>
+									<td  align="center" nowrap class="labeltd" width="25%">åˆ é™¤åŸå› </td>
 									<td class="datatd"  colspan="3" width="75%"><@CommonQueryMacro.SingleField fId="actiondesc"/></td>
 								</tr>
 							</table>
@@ -143,7 +143,7 @@
 <script language="javascript">
  	  var op = "${RequestParameters["op"]?default('')}";
 
-    //µ±Ò³Ãæ³õÊ¼»¯ÍêÖ®ºó¿ÉÒÔµ÷ÓÃ¸Ã·½·¨Ö´ĞĞĞèÒª´¦ÀíµÄ²Ù
+    //å½“é¡µé¢åˆå§‹åŒ–å®Œä¹‹åå¯ä»¥è°ƒç”¨è¯¥æ–¹æ³•æ‰§è¡Œéœ€è¦å¤„ç†çš„æ“
     function initCallGetter_post(dataset) {
 		BopForSameInduDepositInfoCol_dataset.setFieldReadOnly("actiontype",true);
 		BopForSameInduDepositInfoCol_dataset.setFieldReadOnly("recStatus",true);
@@ -217,7 +217,7 @@
     		if(field.fieldName =="anninrate"){
 				var anninrate  = parseFloat(BopForSameInduDepositInfoCol_dataset.getValue("anninrate"));
 				if(anninrate <0){
-					alert("Äê»¯ÀûÂÊÖµ²»ÄÜĞ¡ÓÚÁã!");
+					alert("å¹´åŒ–åˆ©ç‡å€¼ä¸èƒ½å°äºé›¶!");
 					BopForSameInduDepositInfoCol_dataset.setValue("anninrate","");
 					return false;
 				}
@@ -229,20 +229,20 @@
 				var creditorname = BopForSameInduDepositInfoCol_dataset.getValue("creditorname");
 				var creditornamen = BopForSameInduDepositInfoCol_dataset.getValue("creditornamen");
 				if(creditorname =="" &&  creditornamen ==""){
-					alert("ÖĞÎÄÃû³ÆºÍÓ¢ÎÄÃû³ÆÖÁÉÙÌîÒ»¸ö!");
+					alert("ä¸­æ–‡åç§°å’Œè‹±æ–‡åç§°è‡³å°‘å¡«ä¸€ä¸ª!");
 					return false;
 				}
 
-				var anninrate = BopForSameInduDepositInfoCol_dataset.getValue("anninrate");//Äê»¯ÀûÂÊÖµ
+				var anninrate = BopForSameInduDepositInfoCol_dataset.getValue("anninrate");//å¹´åŒ–åˆ©ç‡å€¼
 				if (!isNaN(anninrate) && parseFloat(anninrate) >= 1) {
-					alert("[Äê»¯ÀûÂÊÖµ]±ØĞëÎªĞ¡Êı");
+					alert("[å¹´åŒ–åˆ©ç‡å€¼]å¿…é¡»ä¸ºå°æ•°");
 					return false;
 				}
 
 				if(op =="del"){
 					var actiondesc = BopForSameInduDepositInfoCol_dataset.getValue("actiondesc");
 					if (actiondesc.length == 0) {
-						alert("ÇëÌîĞ´É¾³ıÔ­Òò£¡");
+						alert("è¯·å¡«å†™åˆ é™¤åŸå› ï¼");
 						return false;
 					}
 				}
@@ -253,7 +253,7 @@
 
 
 		function btSave_postSubmit(button){
-			alert("±£´æ³É¹¦£¡");
+			alert("ä¿å­˜æˆåŠŸï¼");
 			closeWin(true);
 		}
 
@@ -262,7 +262,7 @@
 			var appType = BopForSameInduDepositInfoCol_dataset.getValue("appType");
 			var currentfile = BopForSameInduDepositInfoCol_dataset.getValue("currentfile");
 			//var busiCode = BopForSameInduDepositInfoCol_dataset.getValue("fileNumber");
-			showPickup("»ØÖ´½á¹û","${contextPath}/fpages/commonloadpage/ftl/ReportApproveResult.ftl?id=" + id + "&appType=" + appType + "&currentfile=" + currentfile );
+			showPickup("å›æ‰§ç»“æœ","${contextPath}/fpages/commonloadpage/ftl/ReportApproveResult.ftl?id=" + id + "&appType=" + appType + "&currentfile=" + currentfile );
 		}
 
    	function debtype_DropDown_beforeOpen(dropDown){

@@ -54,9 +54,9 @@ public class BankBlackListAuditStateService {
 		return pageQueryResult;
 	}
 
-	public List getBankBankListAuditStateByHql(String hql) throws CommonException {
+	public List<NsBankBlackListAuditState> getBankBankListAuditStateByHql(String hql) throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
-		List list = rootDAO.queryByQL2List(hql);
+		List<NsBankBlackListAuditState> list = rootDAO.queryByQL2List(hql);
 		for (int i = 0; i < list.size(); i++) {
 			NsBankBlackListAuditState bblt = (NsBankBlackListAuditState) list.get(i);
 			list.set(i, bblt);

@@ -1,7 +1,7 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro> 
 <#assign st=RequestParameters["st"]?default("")>
 <#assign flag=RequestParameters["flag"]?default("")>
-<@CommonQueryMacro.page title="�û���ϸ��Ϣ">
+<@CommonQueryMacro.page title="用户详细信息">
 	<table width="100%" align="left">
 		<tr>
 			<td width="50%" valign="top">
@@ -11,21 +11,21 @@
 							<@CommonQueryMacro.CommonQuery id="UserInfoDetail" init="true" navigate="false" submitMode="all">
 									<table frame=void class="grouptable" width="100%">
 										<tr>
-											<td align="center" nowrap class="labeltd" width="25%">����Ա�� </td>
+											<td align="center" nowrap class="labeltd" width="25%">操作员号 </td>
 											<td class="datatd" width="25%"><@CommonQueryMacro.SingleField fId="tlrno"/></td>
-											<td align="center" nowrap class="labeltd"  width="25%">����Ա���� </td>
+											<td align="center" nowrap class="labeltd"  width="25%">操作员名称 </td>
 											<td class="datatd" width="25%"><@CommonQueryMacro.SingleField fId="tlrName" /></td>
 										</tr>
 										<tr>
-						                    <td align="center" nowrap class="labeltd" width="25%">��Ч״̬</td>
+						                    <td align="center" nowrap class="labeltd" width="25%">有效状态</td>
 										    <td class="datatd" width="25%"><@CommonQueryMacro.SingleField fId="flag"/></td>
-										    <td align="center" nowrap class="labeltd" width="25%">����״̬</td>
+										    <td align="center" nowrap class="labeltd" width="25%">锁定状态</td>
 										    <td class="datatd" width="25%"><@CommonQueryMacro.SingleField fId="lock"/></td>
 										</tr>
 										<tr>
-						                    <td align="center" nowrap class="labeltd" width="25%">��¼״̬</td>
+						                    <td align="center" nowrap class="labeltd" width="25%">登录状态</td>
 										    <td class="datatd" width="25%"><@CommonQueryMacro.SingleField fId="status"/></td>
-						                    <td align="center" nowrap class="labeltd" width="25%">��Ч����</td>
+						                    <td align="center" nowrap class="labeltd" width="25%">生效日期</td>
 										    <td class="datatd" width="25%"><@CommonQueryMacro.SingleField fId="effectDate"/></td>
 										</tr>
 								   </table>
@@ -35,7 +35,7 @@
 					<tr>
 						<td width="100%">
 							<@CommonQueryMacro.CommonQuery id="UserInfoDetailRoleRel" init="true" submitMode="selected" navigate="false">
-								<@CommonQueryMacro.GroupBox id="guoup2" label="��λ��Ϣ" expand="true">
+								<@CommonQueryMacro.GroupBox id="guoup2" label="岗位信息" expand="true">
 									<table frame=void width="100%">
 								      	<tr>
 								      		<td valign="top">

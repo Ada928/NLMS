@@ -5,7 +5,7 @@
 			<table align="left">
 				<tr>
 					<td>
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -25,7 +25,7 @@
 			    	<td>
 			    		<@CommonQueryMacro.FloatWindow id="aditADSubWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 			      			<div align="center">
-			      				<@CommonQueryMacro.Group id="group1" label="ÉóºËĞÅÏ¢"  fieldStr="approveStatusChoose,approveResultChoose" colNm=2/>
+			      				<@CommonQueryMacro.Group id="group1" label="å®¡æ ¸ä¿¡æ¯"  fieldStr="approveStatusChoose,approveResultChoose" colNm=2/>
 			        			</br>
 			      				<center>
 			      					<@CommonQueryMacro.Button id= "btAuditSave"/>&nbsp;&nbsp;
@@ -41,20 +41,20 @@
 
 	<script language="JavaScript">
 
-		//¹¤×÷ÈÕÆÚ
+		//å·¥ä½œæ—¥æœŸ
 		function initCallGetter_post(){
 			<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 			BOPForDebtUsanceLeOfCreditAD_interface_dataset.setValue("qStartDate","${v_txdate}");
 			BOPForDebtUsanceLeOfCreditAD_interface_dataset.setValue("qEndDate","${v_txdate}");			
 		}
 		
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var filler2 = record.getValue("filler2");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>";
-			} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+			} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 			 	cell.innerHTML="&nbsp;";
 			}
 		}
@@ -64,11 +64,11 @@
 		   	var approveStatusChoose = BOPForDebtUsanceLeOfCreditAD_dataset.getValue("approveStatusChoose");
 		   	var approveResultChoose = BOPForDebtUsanceLeOfCreditAD_dataset.getValue("approveResultChoose");
 		   	if (!approveStatusChoose.length > 0) {
-		   		alert("ÇëÑ¡ÔñÉóºË½á¹û£¡");
+		   		alert("è¯·é€‰æ‹©å®¡æ ¸ç»“æœï¼");
 		   		return false;
 		   	}
 		   	if (approveStatusChoose == "02" && approveResultChoose.length < 1) {
-		   		alert("ÉóºË½á¹û²»Í¨¹ı£¬ÉóºËËµÃ÷±ØĞëÌîĞ´£¡");
+		   		alert("å®¡æ ¸ç»“æœä¸é€šè¿‡ï¼Œå®¡æ ¸è¯´æ˜å¿…é¡»å¡«å†™ï¼");
 		   		return false;
 		   	}
 		   	BOPForDebtUsanceLeOfCreditAD_dataset.setParameter("approveStatusChoose",approveStatusChoose);
@@ -77,7 +77,7 @@
 		}
 
 		function btAuditSave_postSubmit(button){
-			alert("±£´æ³É¹¦");
+			alert("ä¿å­˜æˆåŠŸ");
 			BOPForDebtUsanceLeOfCreditAD_dataset.flushData(1);
 		}
 
@@ -97,11 +97,11 @@
 				record=record.getNextRecord();
 		   	}
 		   	if (!hasSelected) {
-		   		alert("ÇëÑ¡ÔñÏàÓ¦µÄ¼ÇÂ¼£¡");
+		   		alert("è¯·é€‰æ‹©ç›¸åº”çš„è®°å½•ï¼");
 		   		return false;
 		   	}
 		   	if (hasAudit) {
-		   		if(!confirm("ËùÑ¡¼ÇÂ¼°üº¬ÒÑÉóºË¼ÇÂ¼£¬È·¶¨ĞèÖØĞÂÉóºËÂğ£¿"))
+		   		if(!confirm("æ‰€é€‰è®°å½•åŒ…å«å·²å®¡æ ¸è®°å½•ï¼Œç¡®å®šéœ€é‡æ–°å®¡æ ¸å—ï¼Ÿ"))
 				{
 					return false;
 				}
@@ -114,7 +114,7 @@
 		}
 
 		function doDetail(id){
-			showWin("Ô¶ÆÚĞÅÓÃÖ¤Ç©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtUsanceLeOfCreditCol.ftl?id=" + id + "&op=detaile");
+			showWin("è¿œæœŸä¿¡ç”¨è¯ç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtUsanceLeOfCreditCol.ftl?id=" + id + "&op=detaile");
 		}
 	</script>
 </@CommonQueryMacro.page>

@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Ç©Ô¼ÐÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 <@CommonQueryMacro.CommonQuery id="BOPCfaLounexguRecordLoadPage" init="false" submitMode="current" navigate="false">
 	<table width="800px">
 		<tr>
 			<td valign="top">
-				<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" colNm=4 showButton="true"/>
+				<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4 showButton="true"/>
 			</td>
 		</tr>
 		<tr>
@@ -30,7 +30,7 @@
 
     function initCallGetter_post(){
 
-		//¹¤×÷ÈÕÆÚ
+		//å·¥ä½œæ—¥æœŸ
 	<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 	BOPCfaLounexguRecordLoadPage_interface_dataset.setValue("workDate","${v_txdate}");
     	

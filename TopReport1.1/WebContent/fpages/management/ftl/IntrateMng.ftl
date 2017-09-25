@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="»ãÂÊÎ¬»¤">
+<@CommonQueryMacro.page title="æ±‡ç‡ç»´æŠ¤">
 <table align="left">
 <tr>
 <td valign="top" rowspan="1"  valign="top">
@@ -10,7 +10,7 @@
             <table align="left">
                 <tr>
                    <td valign="top" rowspan="2"  valign="top">
-                       <@CommonQueryMacro.Interface id="intface" label="²éÑ¯Ìõ¼ş" colNm=4  />
+                       <@CommonQueryMacro.Interface id="intface" label="æŸ¥è¯¢æ¡ä»¶" colNm=4  />
                 </td>
                   </tr>
             </table>
@@ -27,7 +27,7 @@
             <table>
             <tr>
             <td align="left" valign="top" width="300">
-                <@CommonQueryMacro.Group id="group1" label="ÀûÂÊÊÖ¹¤Â¼Èë" fieldStr="curcd,intratecd,intrate,brcode,effectDate" colNm=2/>
+                <@CommonQueryMacro.Group id="group1" label="åˆ©ç‡æ‰‹å·¥å½•å…¥" fieldStr="curcd,intratecd,intrate,brcode,effectDate" colNm=2/>
             </td>
             </tr>
             
@@ -58,13 +58,13 @@
 <script language="javascript">
     
     function dateCheck(effectDate,currDate){
-        if(effectDate == ""){//Ã»ÓĞÉúĞ§ÈÕÆÚ£¬¿ÉĞŞ¸Ä
+        if(effectDate == ""){//æ²¡æœ‰ç”Ÿæ•ˆæ—¥æœŸï¼Œå¯ä¿®æ”¹
             return false;
         }
-        if(currDate == ""){//Ã»ÓĞµ±Ç°ÈÕÆÚ£¬¿ÉĞŞ¸Ä
+        if(currDate == ""){//æ²¡æœ‰å½“å‰æ—¥æœŸï¼Œå¯ä¿®æ”¹
             return false;
         }
-        if(effectDate < currDate){//ÉúĞ§ÈÕÆÚĞ¡ÓÚµ±Ç°ÈÕÆÚ£¬²»¿ÉĞŞ¸Ä
+        if(effectDate < currDate){//ç”Ÿæ•ˆæ—¥æœŸå°äºå½“å‰æ—¥æœŸï¼Œä¸å¯ä¿®æ”¹
             return true;
         }else{
             return false;
@@ -96,14 +96,14 @@
         var effectDate = Management_IntrateMng_dataset.getValue("effectDate");
         var currDate = Management_IntrateMng_dataset.getValue("currDate");
         if(dateCheck(effectDate,currDate)){
-            alert("ÒÑÉúĞ§ÀûÂÊ²»ÄÜÉ¾³ı¡£");
+            alert("å·²ç”Ÿæ•ˆåˆ©ç‡ä¸èƒ½åˆ é™¤ã€‚");
             return false;
         }
     }
     
     function btSave_postSubmit()
     {
-        alert("±£´æ³É¹¦");
+        alert("ä¿å­˜æˆåŠŸ");
         Management_IntrateMng_dataset.flushData(0);
     }
     
@@ -122,14 +122,14 @@
     //}
     
     function Management_IntrateMng_dataset_beforeUpdate(dataset){
-        //ÊäÈëÊı¾İÓĞĞ§ĞÔ¼ì²é
+        //è¾“å…¥æ•°æ®æœ‰æ•ˆæ€§æ£€æŸ¥
     
-        //ÊäÈëµÄÓĞĞ§ÈÕÆÚ±ØĞë´óÓÚ½ñÈÕ
+        //è¾“å…¥çš„æœ‰æ•ˆæ—¥æœŸå¿…é¡»å¤§äºä»Šæ—¥
         if(dataset==null) return;
         var effectDate = dataset.getValue("effectDate");
         var currDate = new Date();
           if(effectDate!=null && effectDate < currDate){
-            return ("ÊäÈëµÄÉúĞ§ÈÕÆÚ±ØĞë´óÓÚµ±Ç°ÈÕÆÚ");
+            return ("è¾“å…¥çš„ç”Ÿæ•ˆæ—¥æœŸå¿…é¡»å¤§äºå½“å‰æ—¥æœŸ");
           }
     }
 

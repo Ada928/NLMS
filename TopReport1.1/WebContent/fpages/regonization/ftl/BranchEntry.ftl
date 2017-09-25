@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="ÒøĞĞ»ú¹¹ĞÅÏ¢Î¬»¤">
+<@CommonQueryMacro.page title="é“¶è¡Œæœºæ„ä¿¡æ¯ç»´æŠ¤">
 <@CommonQueryMacro.CommonQuery id="BranchEntry" init="true" submitMode="current">
 	<table width="100%" align="left">
 		<tr>
    			<td valign="top" colspan="2">
-   				<@CommonQueryMacro.Interface id="intface" label="ÒøĞĞ»ú¹¹²éÑ¯" colNm=4 showButton="true" />
+   				<@CommonQueryMacro.Interface id="intface" label="é“¶è¡Œæœºæ„æŸ¥è¯¢" colNm=4 showButton="true" />
         	</td>
         </tr>
 		<tr>
@@ -28,7 +28,7 @@
 
 <script language="javascript">
 	var roleType = "${info.roleTypeList}";
-	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+	//å®šä½ä¸€æ¡è®°å½•
 	function locate(id) {
 		var record = BranchEntry_dataset.find(["brcode"], [id]);
 		if (record) {
@@ -37,19 +37,19 @@
 	}
 	
 	function datatable1_opr_onRefresh(cell, value, record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var lock = record.getValue("lock");
 			var id = record.getValue("brcode");
 			if (roleType.indexOf("12") > -1 || roleType.indexOf("13") > -1
 					|| roleType.indexOf("14") > -1
 					|| roleType.indexOf("15") > -1) {
-				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\">ĞŞ¸Ä</a></center>";
+				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\">ä¿®æ”¹</a></center>";
 			} else {
 				cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('" + id
-						+ "')\">ĞŞ¸Ä</a>" + " <a href=\"JavaScript:doDel('" + id
-						+ "')\">É¾³ı</a></center>";
+						+ "')\">ä¿®æ”¹</a>" + " <a href=\"JavaScript:doDel('" + id
+						+ "')\">åˆ é™¤</a></center>";
 			}
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 			cell.innerHTML = "&nbsp;";
 		}
 	}
@@ -62,14 +62,14 @@
 	function btDel_onClickCheck(button) {
 		var del = BranchEntry_dataset.getValue("del");
 		if (del == 'false') {
-			if (confirm("È·ÈÏÉ¾³ı¸ÃÌõ¼ÇÂ¼£¿")) {
+			if (confirm("ç¡®è®¤åˆ é™¤è¯¥æ¡è®°å½•ï¼Ÿ")) {
 				BranchEntry_dataset.setParameter("delet", "T");
 				return true;
 			} else {
 				return false;
 			}
 		} else {
-			if (confirm("È·ÈÏ»Ö¸´¸ÃÌõ¼ÇÂ¼£¿")) {
+			if (confirm("ç¡®è®¤æ¢å¤è¯¥æ¡è®°å½•ï¼Ÿ")) {
 				BranchEntry_dataset.setParameter("delet", "F");
 				return true;
 			} else {
@@ -81,16 +81,16 @@
 	function btDel_postSubmit(button) {
 		var del = BranchEntry_dataset.getValue("del");
 		if (del == 'false') {
-			alert("É¾³ı¼ÇÂ¼³É¹¦ !");
+			alert("åˆ é™¤è®°å½•æˆåŠŸ !");
 		} else {
-			alert("É¾³ı¼ÇÂ¼Ê§°Ü !");
+			alert("åˆ é™¤è®°å½•å¤±è´¥ !");
 		}
 		button.url = "#";
-		//Ë¢ĞÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		flushCurrentPage();
 	}
 	
-	//ĞŞ¸Ä¹¦ÄÜ
+	//ä¿®æ”¹åŠŸèƒ½
 	function openModifyWindow(id) {
 		locate(id);
 		BranchEntry_dataset.setParameter("brcode", id);
@@ -101,7 +101,7 @@
 		BranchEntry_dataset.insertRecord();
 		window.location = "${contextPath}/fpages/regonization/ftl/BranchManage.ftl?opType=add";
 	}
-	//Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+	//å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
 	function datatable1_brno_onRefresh(cell, value, record) {
 		if (record != null) {
 			var sta = record.getValue("st");
@@ -120,7 +120,7 @@
 		paramMap.put("st", sta);
 		paramMap.put("action", "detail");
 		paramMap.put("flag", "0");
-		loadPageWindows("partWin", "»ú¹¹¹ÜÀí",
+		loadPageWindows("partWin", "é“¶è¡Œæœºæ„ä¿¡æ¯",
 				"/fpages/regonization/ftl/BranchManageDetail.ftl", paramMap,
 				"winZone");
 	}
@@ -128,14 +128,14 @@
 	function btStatus_onClickCheck(button) {
 		var status = BranchEntry_dataset.getValue("status");
 		if (status == '0') {
-			if (confirm("È·ÈÏ½«¸Ã»ú¹¹ÉèÖÃÎªÓĞĞ§?")) {
+			if (confirm("ç¡®è®¤å°†è¯¥æœºæ„è®¾ç½®ä¸ºæœ‰æ•ˆ?")) {
 				BranchEntry_dataset.setParameter("statu", "1");
 				return true;
 			} else {
 				return false;
 			}
 		} else {
-			if (confirm("È·ÈÏ½«¸Ã»ú¹¹ÉèÖÃÎªÎŞĞ§?")) {
+			if (confirm("ç¡®è®¤å°†è¯¥æœºæ„è®¾ç½®ä¸ºæ— æ•ˆ?")) {
 				BranchEntry_dataset.setParameter("statu", "0");
 				return true;
 			} else {
@@ -145,7 +145,7 @@
 	}
 
 	function btStatus_postSubmit(button) {
-		alert("ÉèÖÃ³É¹¦");
+		alert("è®¾ç½®æˆåŠŸ");
 		flushCurrentPage();
 	}
 
@@ -162,15 +162,15 @@
 		if (field.name == "postno") {
 			v_postno = BranchEntry_dataset.getValue("postno");
 			if (isNaN(v_postno)) {
-				alert("×Ö¶Î¡¾ÓÊÕş±àÂë¡¿±ØĞëÎªÊı×Ö");
+				alert("å­—æ®µã€é‚®æ”¿ç¼–ç ã€‘å¿…é¡»ä¸ºæ•°å­—");
 				BranchEntry_dataset.setValue2("postno", "");
 				return false;
 			} else if (v_postno.indexOf('-') != -1) {
-				alert("×Ö¶Î¡¾ÓÊÕş±àÂë¡¿±ØĞëÎªÊı×Ö");
+				alert("å­—æ®µã€é‚®æ”¿ç¼–ç ã€‘å¿…é¡»ä¸ºæ•°å­—");
 				BranchEntry_dataset.setValue2("postno", "");
 				return false;
 			} else if (v_postno.length < 6 && v_postno.length != 0) {
-				alert("×Ö¶Î¡¾ÓÊÕş±àÂë¡¿±ØĞëÎª6Î»");
+				alert("å­—æ®µã€é‚®æ”¿ç¼–ç ã€‘å¿…é¡»ä¸º6ä½");
 				BranchEntry_dataset.setValue2("postno", "");
 				return false;
 			}
@@ -182,7 +182,7 @@
 			for (var i = 0; i < v_teleno.length; i++) {
 				var c = v_teleno.charAt(i);
 				if (validChar.indexOf(c) == -1) {
-					alert("×Ö¶Î¡¾ÁªÏµµç»°¡¿Ö»ÄÜ°üº¬-ºÍÊı×Ö");
+					alert("å­—æ®µã€è”ç³»ç”µè¯ã€‘åªèƒ½åŒ…å«-å’Œæ•°å­—");
 					BranchEntry_dataset.setValue2("teleno", "");
 					return false;
 				}
@@ -203,7 +203,7 @@
 		BranchEntry_dataset.setValue2("status", "1");
 	}
 
-	//Ë¢ĞÂµ±Ç°Ò³
+	//åˆ·æ–°å½“å‰é¡µ
 	function flushCurrentPage() {
 		BranchEntry_dataset
 				.flushData(BranchEntry_dataset.pageIndex);

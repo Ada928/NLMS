@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="¿Í»§ĞÅÏ¢">
+<@CommonQueryMacro.page title="å®¢æˆ·ä¿¡æ¯">
 <@CommonQueryMacro.CommonQuery id="customerLoadPage" init="true" submitMode="current" navigate="false">
 	<table width="800px">
 		<tr>
 			<td valign="top">
-				<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=4 showButton="true"/>
+				<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4 showButton="true"/>
 			</td>
 		</tr>
 		<tr>
@@ -28,13 +28,13 @@
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript">
 	
-	//¸ù¾İ´«¹ıÀ´µÄloadFromTypeÅĞ¶ÏÊÇÄÇ¸öÒ³Ãæµ÷ÓÃ
-	//È·¶¨Ê±ÉèÖÃÑ¡ÔñµÄÏàÓ¦µÄ¼ÇÂ¼Êı¾İ³õÊ¼»¯µ÷ÓÃÒ³ÃæµÄÏàÓ¦datasetµÄÏàÓ¦field
+	//æ ¹æ®ä¼ è¿‡æ¥çš„loadFromTypeåˆ¤æ–­æ˜¯é‚£ä¸ªé¡µé¢è°ƒç”¨
+	//ç¡®å®šæ—¶è®¾ç½®é€‰æ‹©çš„ç›¸åº”çš„è®°å½•æ•°æ®åˆå§‹åŒ–è°ƒç”¨é¡µé¢çš„ç›¸åº”datasetçš„ç›¸åº”field
 	function btConfirm_onClick(button){
 		var loadFromType = "${RequestParameters["loadFromType"]?default('')}";
 		//if (loadFromType == "A") {
 		//	//TODO
-		//	A_dataset.setVlaue("AÒ³ÃæµÄField", customerLoadPage_dataset.getValue("customerName"));
+		//	A_dataset.setVlaue("Aé¡µé¢çš„Field", customerLoadPage_dataset.getValue("customerName"));
 		//}
 		win.close();
 	}

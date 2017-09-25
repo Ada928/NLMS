@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="ÉÏ±¨ÎÄ¼şÉú³É">
+<@CommonQueryMacro.page title="ä¸ŠæŠ¥æ–‡ä»¶ç”Ÿæˆ">
 <script type='text/javascript' src='${contextPath}/dwr/interface/ReportFile.js'> </script>
 <table width="80%" align="left">
 	<tr>
 		<td width="100%">
-			Ö÷Ò³ &gt; Éú³ÉÉÏ±¨ÎÄ¼ş &gt; ÉÏ±¨ÎÄ¼şÉú³É
+			ä¸»é¡µ &gt; ç”Ÿæˆä¸ŠæŠ¥æ–‡ä»¶ &gt; ä¸ŠæŠ¥æ–‡ä»¶ç”Ÿæˆ
 		</td>
 	</tr>
 	<tr>
@@ -18,7 +18,7 @@
 			<@CommonQueryMacro.CommonQuery id="genReportFile" init="false" submitMode="all" navigate="false">
 				<table width="100%">
 				<tr><td>
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td></tr>
 				<tr><td>
 				<br>
@@ -29,7 +29,7 @@
 				<tr><td>
 					<@CommonQueryMacro.FloatWindow id="aditADSubWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 		      			<div align="center">
-		      				<@CommonQueryMacro.Group id="group1" label="È¡ÏûËø¶¨Ô­Òò"
+		      				<@CommonQueryMacro.Group id="group1" label="å–æ¶ˆé”å®šåŸå› "
 		        			  fieldStr="subfileRemark" colNm=2/>
 		        			 </br>
 		      				<center><@CommonQueryMacro.Button id= "btCancellConfrim"/>
@@ -47,13 +47,13 @@
 	function initCallGetter_post(){
 		genReportFile_interface_dataset.setValue("workDate", _today_date);
 		genReportFile_interface_dataset.setValue("busiType","01");
-		genReportFile_interface_dataset.setValue("busiTypeName","01-½ğºê¹¤³Ì");
+		genReportFile_interface_dataset.setValue("busiTypeName","01-é‡‘å®å·¥ç¨‹");
 		btConfrim.disable(true);
 		btCancell.disable(true);
 		btGenFile.disable(true);
 	}
 
-	//ÎÄ¼şÕıÔÚÉú³É
+	//æ–‡ä»¶æ­£åœ¨ç”Ÿæˆ
 	if(createFileBop == "1"){
 		sendToFile();
 	}
@@ -69,7 +69,7 @@
 			if(v_confirmStatus != "01"){
 				conFlag = true;
 			}
-			//ÅĞ¶ÏÊÇ·ñÊı¾İ´¦ÀíÍê³É
+			//åˆ¤æ–­æ˜¯å¦æ•°æ®å¤„ç†å®Œæˆ
 			if(v_subfileStatus != "01"){
 				flag = true;
 			}
@@ -87,9 +87,9 @@
 	   	}
 	}
 
-	//Éú³ÉĞ£Ñé
+	//ç”Ÿæˆæ ¡éªŒ
 	function btGenFile_onClickCheck(){
-		//ÉÏ±¨ÎÄ¼şÉú³ÉĞ£ÑéÊÇ·ñÓĞÒªÉÏ±¨Éú³ÉµÄÊı¾İ
+		//ä¸ŠæŠ¥æ–‡ä»¶ç”Ÿæˆæ ¡éªŒæ˜¯å¦æœ‰è¦ä¸ŠæŠ¥ç”Ÿæˆçš„æ•°æ®
 		var busiType = genReportFile_dataset.getValue("busiType");
 		var appType = genReportFile_dataset.getValue("appType");
 		ReportFile.getSubFileInfoCount(busiType, appType, fileCallback);
@@ -112,23 +112,23 @@
 				record=record.getNextRecord();
 		   	}
 		   	if(!subFlag){
-		   		if (confirm('¹¤×÷Íê³ÉÉÏ±¨×´Ì¬ÒÑÈ«²¿Ëø¶¨£¬ÊÇ·ñÉú³ÉÉÏ±¨ÎÄ¼ş£¿')){
-		   			showWin("ÉÏ±¨ÎÄ¼şÉú³ÉÈ·¶¨","${contextPath}/fpages/genupreportfile/ftl/BopToSubFileConfirm.ftl?busiType=" + busiType + "&appType=" + appType,"window","sendToFile()",window);
+		   		if (confirm('å·¥ä½œå®Œæˆä¸ŠæŠ¥çŠ¶æ€å·²å…¨éƒ¨é”å®šï¼Œæ˜¯å¦ç”Ÿæˆä¸ŠæŠ¥æ–‡ä»¶ï¼Ÿ')){
+		   			showWin("ä¸ŠæŠ¥æ–‡ä»¶ç”Ÿæˆç¡®å®š","${contextPath}/fpages/genupreportfile/ftl/BopToSubFileConfirm.ftl?busiType=" + busiType + "&appType=" + appType,"window","sendToFile()",window);
 		   		} else {
 		   			return false;
 		   		}
 		   	} else {
-		   		showWin("ÉÏ±¨ÎÄ¼şÉú³ÉÈ·¶¨","${contextPath}/fpages/genupreportfile/ftl/BopToSubFileConfirm.ftl?busiType=" + busiType + "&appType=" + appType,"window","sendToFile()",window);
+		   		showWin("ä¸ŠæŠ¥æ–‡ä»¶ç”Ÿæˆç¡®å®š","${contextPath}/fpages/genupreportfile/ftl/BopToSubFileConfirm.ftl?busiType=" + busiType + "&appType=" + appType,"window","sendToFile()",window);
 		   	}
 		}else{
-			alert(appType+"Ã»ÓĞĞèÒªÉÏ±¨µÄÊı¾İ£¡");
+			alert(appType+"æ²¡æœ‰éœ€è¦ä¸ŠæŠ¥çš„æ•°æ®ï¼");
 		}
 	}
 
 	function sendToFile(){
 		var busiType = genReportFile_dataset.getValue("busiType");
 		var appType = genReportFile_dataset.getValue("appType");
-		//¿ªÊ¼½øĞĞÉú³ÉÎÄ¼ş´¦Àí
+		//å¼€å§‹è¿›è¡Œç”Ÿæˆæ–‡ä»¶å¤„ç†
 		window.setTimeout("window.location = '${contextPath}/fpages/genupreportfile/jsp/createSubFileInfo.jsp?busiType="+busiType+"&appType="+appType+"'",0);
 		//window.setTimeout("window.location.href = '${contextPath}/fpages/genupreportfile/jsp/createSubFileInfo.jsp?busiType="+busiType+"&appType="+appType+"'",0);
 	}

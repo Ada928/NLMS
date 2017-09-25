@@ -1,13 +1,13 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Ç©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 
 <@CommonQueryMacro.CommonQueryTab id="BOPForDebtSellRepurchaseGenTabs" navigate="false" currentTab="BOPForDebtSellRepurchaseSignedGen">
 	<@CommonQueryMacro.CommonQuery id="BOPForDebtSellRepurchaseSignedGen" init="false" submitMode="all" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface"  label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface"  label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -26,20 +26,20 @@
 <script language="JavaScript">
 	var ds = BOPForDebtSellRepurchaseSignedGen_dataset;
 	function initCallGetter_post() {
-		//·¢ËÍµ½ºóÌ¨getterÀà£¬È¡µÃÇ©Ô¼µÄĞÅÏ¢
+		//å‘é€åˆ°åå°getterç±»ï¼Œå–å¾—ç­¾çº¦çš„ä¿¡æ¯
 		ds.setParameter("getType","contract");
 	}
     function datatable1_filler2_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + value + "</a>"
 		} else {
 			cell.innerHTML="&nbsp;";
 		}
 	}
-	//ÏêÏ¸
+	//è¯¦ç»†
 	function doDetail(id) {
-		showWin("Âô³ö»Ø¹ºÇ©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtSellRepurchaseCol.ftl?id="+id+"&op=detaile","report","flushPage()");
+		showWin("å–å‡ºå›è´­ç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtSellRepurchaseCol.ftl?id="+id+"&op=detaile","report","flushPage()");
 	}
 </script>
 </@CommonQueryMacro.page>

@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="����Ա��ɫ����">
+<@CommonQueryMacro.page title="操作员角色管理">
 	<table align="left">
 		<tr align="center">
 			<td>
@@ -8,35 +8,35 @@
 		 <tr align="center"  width="100%">
 			<td>
 			<FIELDSET name='group6' style="padding: 6px;">
-				<LEGEND>˫����Ȩ �û�����</LEGEND>
+				<LEGEND>双重授权 用户管理</LEGEND>
 				<table frame=void width="100%" class="grouptable" id="detailTable">
 				    <tr>
 		              <td  class="labeltd"></td>
-					  <td nowrap class="labeltd">�޸�ǰ</td>
-					  <td nowrap class="labeltd">�޸ĺ�</td>
+					  <td nowrap class="labeltd">修改前</td>
+					  <td nowrap class="labeltd">修改后</td>
 					</tr>
 				  	<tr>
-		            <td nowrap class="labeltd">�û���</td>
+		            <td nowrap class="labeltd">用户号</td>
 					  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="tlrnoOld"/></td>
 					  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="tlrno"/></td>
 					</tr>
 	                <tr>
-	                  <td nowrap class="labeltd">�û���</td>
+	                  <td nowrap class="labeltd">用户名</td>
 					  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="tlrNameOld"/></td>
 					  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="tlrName"/></td>
 	                </tr>
 	                <tr>
-	                  <td nowrap class="labeltd">��������</td>
+	                  <td nowrap class="labeltd">机构名称</td>
 	                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="branchNameOld"/></td>
 	                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="branchName"/></td>
 	                </tr>
 	            	<tr>
-	                  <td nowrap class="labeltd">��Ч״̬</td>
+	                  <td nowrap class="labeltd">有效状态</td>
 	                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="flagOld"/></td>
 					  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="flag"/></td>
 	                </tr>
 					<tr>
-					  <td nowrap class="labeltd">����״̬</td>
+					  <td nowrap class="labeltd">锁定状态</td>
 					  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="isLockOld"/></td>
 					  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="isLock"/></td>
 					</tr>
@@ -46,7 +46,7 @@
         </tr>
         <tr>
 	      	<td>
-				<@CommonQueryMacro.Group id ="group1" label="��������" fieldStr="restFlg" colNm=4/>
+				<@CommonQueryMacro.Group id ="group1" label="重置密码" fieldStr="restFlg" colNm=4/>
         	</td>
 		</tr>
    </table>

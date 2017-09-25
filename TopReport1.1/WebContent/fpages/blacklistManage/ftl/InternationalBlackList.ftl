@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="¹ú¼ÊºÚÃûµ¥¹ÜÀí">
+<@CommonQueryMacro.page title="å›½é™…é»‘åå•ç®¡ç†">
 <@CommonQueryMacro.CommonQuery id="InternationalBlackList" init="true" submitMode="current"  navigate="false">
 <table align="center" width="100%">
    	<tr>
       	<td colspan="2" >
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=4/>
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4/>
 		</td>
 	</tr>
   	<tr>
@@ -24,7 +24,7 @@
 	      	<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="100%" resize="true" defaultZoom="normal" minimize="false"
 					maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 	      		<div align="center">
-	      			<@CommonQueryMacro.Group id="group1" label="¹ú¼ÊºÚÃûµ¥ÏêÇé" width="100%" height="100%"
+	      			<@CommonQueryMacro.Group id="group1" label="å›½é™…é»‘åå•è¯¦æƒ…" width="100%" height="100%"
 	        			  fieldStr="id,blacklistType,sanCode,sanName,accountType,certificateType,certificateNumber,"+
 	        			 	"clientName,clientEnglishName,nationality,birthday,birthCountry,gender,lastOccupation,"+
 							"residenceCountry,politicians,valid,del,validDate,operateState,createDate,lastModifyDate,"+
@@ -45,7 +45,7 @@
 <script language="JavaScript">
 	var currentTlrno = "${info.tlrNo}";
 	var roleType = "${info.roleTypeList}";
-    //¶¨Î»Ò»ĞĞ¼ÇÂ¼
+    //å®šä½ä¸€è¡Œè®°å½•
     function locate(id) {
         var record = InternationalBlackList_dataset.find(["id"], [id]);
         if (record) {
@@ -53,7 +53,7 @@
         }
     }
 
-    //ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñ
+    //ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼
     function datatable1_opr_onRefresh(cell, value, record) {
         if (record) {
             //var lock = record.getValue("lock");
@@ -62,22 +62,22 @@
 					|| roleType.indexOf("13") > -1
 					|| roleType.indexOf("14") > -1
 					|| roleType.indexOf("15") > -1) {
-            	cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\"><@bean.message key='ĞŞ¸Ä' /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\"><@bean.message key='É¾³ı' /></a></center>";
+            	cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\"><@bean.message key='ä¿®æ”¹' /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\"><@bean.message key='åˆ é™¤' /></a></center>";
             } else {
-            	cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('" + id + "')\"><@bean.message key='ĞŞ¸Ä'/></a> &nbsp; <a href=\"JavaScript:doDel('" + id + "')\"><@bean.message key='É¾³ı'/></a>";
+            	cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('" + id + "')\"><@bean.message key='ä¿®æ”¹'/></a> &nbsp; <a href=\"JavaScript:doDel('" + id + "')\"><@bean.message key='åˆ é™¤'/></a>";
             }
         } else {
             cell.innerHTML = "";
         }
     }
     
-	//ĞŞ¸Ä¹¦ÄÜ
+	//ä¿®æ”¹åŠŸèƒ½
     function openModifyWindow(id) {
         //locate(id);
         btModify.click();  
     }
 
-    //Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+    //å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
     function datatable1_id_onRefresh(cell, value, record) {
         if (record) {
             var osta = record.getValue("operateState");
@@ -98,7 +98,7 @@
 		//btDetail.click();
 		subwindow_signWindow.show();
 	}
-	//¹Ø¸¡¶¯´°¿Ú,ÊÍ·Ådataset
+	//ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½Í·ï¿½dataset
 	function signWindow_floatWindow_beforeClose(subwindow) {
 		InternationalBlackList_dataset.cancelRecord();
 		return true;
@@ -112,15 +112,15 @@
         var certificateNumber = InternationalBlackList_dataset.getValue("certificateNumber");
         var certificateType = InternationalBlackList_dataset.getValue("certificateType");
         if (id == null || "" == id) {
-            alert("ºÚÃûµ¥²»ÄÜÎª¿Õ");
+            alert("é»‘åå•ä¸èƒ½ä¸ºç©º");
             return false;
         }
         if (certificateType == null || "" == certificateType) {
-            alert("Ö¤¼şÀàĞÍ²»ÄÜÎª¿Õ");
+            alert("è¯ä»¶ç±»å‹ä¸èƒ½ä¸ºç©º");
             return false;
         }
         if (certificateNumber == null || "" == certificateNumber) {
-            alert("Ö¤¼şºÅ²»ÄÜÎª¿Õ");
+            alert("è¯ä»¶å·ä¸èƒ½ä¸ºç©º");
             return false;
         }
         return true;
@@ -135,11 +135,11 @@
         var id = InternationalBlackList_dataset.getValue("id");
         var certificateNumber = InternationalBlackList_dataset.getValue("certificateNumber");
         if (id == null || "" == id) {
-            alert("ºÚÃûµ¥²»ÄÜÎª¿Õ");
+            alert("é»‘åå•ä¸èƒ½ä¸ºç©º");
             return false;
         }
         if (certificateNumber == null || "" == certificateNumber) {
-            alert("Ö¤¼şºÅ²»ÄÜÎª¿Õ");
+            alert("è¯ä»¶å·ä¸èƒ½ä¸ºç©º");
             return false;
         }
         return true;
@@ -151,16 +151,16 @@
     }
 
     function btDel_onClickCheck(button) {
-        return confirm("È·ÈÏÉ¾³ı¸ÃÌõ¼ÇÂ¼£¿");
+        return confirm("ç¡®è®¤åˆ é™¤è¯¥æ¡è®°å½•ï¼Ÿ");
     }
     
     function btDel_postSubmit(button) {
-        alert("É¾³ı¼ÇÂ¼³É¹¦");
+        alert("åˆ é™¤è®°å½•æˆåŠŸ");
         button.url = "#";
         flushCurrentPage();
     }
 
-    //Ë¢ĞÂµ±Ç°Ò³
+    //åˆ·æ–°å½“å‰é¡µ
     function flushCurrentPage() {
         InternationalBlackList_dataset.flushData(InternationalBlackList_dataset.pageIndex);
     }

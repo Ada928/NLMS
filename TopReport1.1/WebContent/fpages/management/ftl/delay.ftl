@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="Ë³ÑÓ·½Ê½ÉèÖÃ ">
+<@CommonQueryMacro.page title="é¡ºå»¶æ–¹å¼è®¾ç½® ">
 <table align="left">
 
 <tr>
@@ -13,13 +13,13 @@
 
       		<tr>
       		<td align="left" valign="top" width="300">
-        			<@CommonQueryMacro.Group id="group1" label="ÉèÖÃË³ÑÓ·½Ê½" fieldStr="delaytype" />
+        			<@CommonQueryMacro.Group id="group1" label="è®¾ç½®é¡ºå»¶æ–¹å¼" fieldStr="delaytype" />
         	</td>
       		</tr>
       		<table id="tableBtQuery">
       		<tr>
       		<td align="left" valign="top" width="800">
-        			<@CommonQueryMacro.Group id="group1" label="ÏµÍ³×Ô¶¯µ÷Õû·½Ê½" fieldStr="check1,check3,check2,delaydays" />
+        			<@CommonQueryMacro.Group id="group1" label="ç³»ç»Ÿè‡ªåŠ¨è°ƒæ•´æ–¹å¼" fieldStr="check1,check3,check2,delaydays" />
         	</td>
       		</tr>
       	   </table>

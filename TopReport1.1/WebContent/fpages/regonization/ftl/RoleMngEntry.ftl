@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="¸ÚÎ»¹ÜÀí">
+<@CommonQueryMacro.page title="å²—ä½ç®¡ç†">
 <@CommonQueryMacro.CommonQuery id="ebankCustRoleMng" init="true" submitMode="current">
 	<table align="left" width="700px">
       <tr>
@@ -20,8 +20,8 @@
       		<td valign="top" colspan="2">
       		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
       			<div align="center">
-      				<@CommonQueryMacro.Group id ="group1" label="ÏêÏ¸ĞÅÏ¢" fieldStr="roleName"/>
-        			<div align="left"><font color="red">*</font>±£´æºó,ÇëÉèÖÃÏà¹ØÈ¨ÏŞĞÅÏ¢.</div>
+      				<@CommonQueryMacro.Group id ="group1" label="è¯¦ç»†ä¿¡æ¯" fieldStr="roleName"/>
+        			<div align="left"><font color="red">*</font>ä¿å­˜å,è¯·è®¾ç½®ç›¸å…³æƒé™ä¿¡æ¯.</div>
       				<@CommonQueryMacro.Button id= "btSave"/>
       			</div>
      		 </@CommonQueryMacro.FloatWindow>
@@ -42,7 +42,7 @@
 </span>
 
 <script language="JavaScript">
-	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+	//å®šä½ä¸€æ¡è®°å½•
 	function locate(id) {
 		var record = ebankCustRoleMng_dataset.find(["id"],[id]);
 		if (record) {
@@ -62,14 +62,14 @@
 	function btStatus_onClickCheck(button) {
 		var status = ebankCustRoleMng_dataset.getValue("status");
 		if(status == '0'){
-			if(confirm("È·ÈÏ½«¸Ã¸ÚÎ»ÉèÖÃÎªÓĞĞ§?")){
+			if(confirm("ç¡®è®¤å°†è¯¥å²—ä½è®¾ç½®ä¸ºæœ‰æ•ˆ?")){
 			    ebankCustRoleMng_dataset.setParameter("statu", "1");
 				return true;
 			}else{
 				return false;
 			}
 		} else {
-			if(confirm("È·ÈÏ½«¸Ã¸ÚÎ»ÉèÖÃÎªÎŞĞ§?")){
+			if(confirm("ç¡®è®¤å°†è¯¥å²—ä½è®¾ç½®ä¸ºæ— æ•ˆ?")){
 				ebankCustRoleMng_dataset.setParameter("statu", "0");
 				return true;
 			}else{
@@ -78,7 +78,7 @@
 		}
 	}
 	function btStatus_postSubmit(button) {
-		alert("ÉèÖÃ³É¹¦");
+		alert("è®¾ç½®æˆåŠŸ");
 		ebankCustRoleMng_dataset.flushData(ebankCustRoleMng_dataset.pageIndex);
 	}
 	function datatable1_opr_onRefresh(cell, value, record)
@@ -88,12 +88,12 @@
 			var Lock =record.getValue("isLock");
 			var innerText="";
 			if (Lock=="1") {
-			innerText= "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\">½ÇÉ«È¨ÏŞÉèÖÃ</a> ";
+			innerText= "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\">è§’è‰²æƒé™è®¾ç½®</a> ";
 		}
 		else{
-		innerText="<center><a href=\"JavaScript:rolePrivShow("+id+")\">½ÇÉ«È¨ÏŞÉèÖÃ</a> "
+		innerText="<center><a href=\"JavaScript:rolePrivShow("+id+")\">è§’è‰²æƒé™è®¾ç½®</a> "
 		}
-			cell.innerHTML = innerText+" <a href=\"JavaScript:btRoleUserShow("+id+")\">²é¿´ÈËÔ±</a></center>";
+			cell.innerHTML = innerText+" <a href=\"JavaScript:btRoleUserShow("+id+")\">æŸ¥çœ‹äººå‘˜</a></center>";
 
 	}
 	else{
@@ -116,20 +116,20 @@
 		//paramMap.put("id",id);
 		//paramMap.put("st",st);
 		//paramMap.put("op","detail");
-		//loadPageWindows("partWin", "½ÇÉ«¹ÜÀíÏêÏ¸ĞÅÏ¢","/fpages/management/ftl/RoleFuncMng.ftl", paramMap, "winZone");
+		//loadPageWindows("partWin", "è§’è‰²ç®¡ç†è¯¦ç»†ä¿¡æ¯","/fpages/management/ftl/RoleFuncMng.ftl", paramMap, "winZone");
     //}
-	//ÏêÏ¸
+	//è¯¦ç»†
 	function showDetail(id,st) {
 
 		locate(id);
-		showWin("½ÇÉ«¹ÜÀíÏêÏ¸ĞÅÏ¢","${contextPath}/fpages/system/ftl/RoleFuncMngWithEdit.ftl?id="+id+"&st="+st+"&flag=0",null,null,window);
+		showWin("è§’è‰²ç®¡ç†è¯¦ç»†ä¿¡æ¯","${contextPath}/fpages/system/ftl/RoleFuncMngWithEdit.ftl?id="+id+"&st="+st+"&flag=0",null,null,window);
 	}
 
 
 	function btRoleUserShow(id){
 		var paramMap = new Map();
 	    paramMap.put("roleId", id);
-	    loadPageWindows("userWin", "²é¿´ÈËÔ±ĞÅÏ¢", "/fpages/management/ftl/ebankCustRoleMngUser.ftl", paramMap, "winZone");
+	    loadPageWindows("userWin", "æŸ¥çœ‹äººå‘˜ä¿¡æ¯", "/fpages/management/ftl/ebankCustRoleMngUser.ftl", paramMap, "winZone");
 	    return;
 	}
 
@@ -140,7 +140,7 @@
 
 
 	function btSave_postSubmit(){
-       //alert('±£´æ³É¹¦£¡');
+       //alert('ä¿å­˜æˆåŠŸï¼');
        subwindow_signWindow.hide();
        ebankCustRoleMng_dataset.flushData(ebankCustRoleMng_dataset.pageIndex);
     }
@@ -161,7 +161,7 @@
 			PosiNameCheck_dataset.flushData(0);
 			var v_flag = PosiNameCheck_dataset.getValue("flag");
 			if(v_flag == "true"){
-				alert("¸Ã¸ÚÎ»Ãû³ÆÒÑ´æÔÚ£¬ÇëÖØĞÂÊäÈë");
+				alert("è¯¥å²—ä½åç§°å·²å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥");
 				ebankCustRoleMng_dataset.setValue("roleName","");
 				return false;
 			}

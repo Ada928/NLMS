@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="±¾ÐÐºÚÃûµ¥²éÑ¯">
+<@CommonQueryMacro.page title="æœ¬è¡Œé»‘åå•æŸ¥è¯¢">
 <@CommonQueryMacro.CommonQuery id="BankBlackListEntry" init="true"  submitMode="selected"  navigate="false">
 <table align="center" width="100%">
    	<tr>
       	<td valign="top" colspan="2" >
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" colNm=4  />
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4  />
 		</td>
 	</tr>
   	<tr>
@@ -13,7 +13,7 @@
 	</tr>
 	<tr>
 		<td width="100%">
-			<@CommonQueryMacro.GroupBox id="BankBlackListEntryGuoup" label="Ñ¡ÔñºÚÃûµ¥ÐÅÏ¢" expand="true">
+			<@CommonQueryMacro.GroupBox id="BankBlackListEntryGuoup" label="é€‰æ‹©é»‘åå•ä¿¡æ¯" expand="true">
 				<table frame=void width="100%">
 					<tr>
 						<td colspan="2">
@@ -35,7 +35,7 @@
 	      	<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="100%" resize="true" defaultZoom="normal" minimize="false"
 					maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 	      		<div align="center">
-	      			<@CommonQueryMacro.Group id="group1" label="ÒøÐÐºÚÃûµ¥ÐÅÏ¢ÏêÇé" width="100%" height="100%"
+	      			<@CommonQueryMacro.Group id="group1" label="æœ¬è¡Œé»‘åå•è¯¦æƒ…" width="100%" height="100%"
 	        			  fieldStr="id,bankCode,bankName,accountType,brattr,certificateType,blacklistType,"+ 
 	        			  "share,valid,del,approve,certificateNumber,clientName,clientEnglishName,validDate,"+
 	        			  "blacklistedDate,blacklistedOperator,blacklistedReason,unblacklistedDate,unblacklistedOperator,"+
@@ -52,7 +52,7 @@
 	//function initCallGetter_post(dataset) {
 	//}
 	
-	//¶¨Î»Ò»ÐÐ¼ÇÂ¼
+	//å®šä½ä¸€è¡Œè®°å½•
 	function locate(id) {
 		var record = BankBlackListEntry_dataset.find([ "id" ], [ id ]);
 		if (record) {
@@ -60,7 +60,7 @@
 		}
 	}
 
-	//Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+	//å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
 	function datatable1_id_onRefresh(cell, value, record) {
 		if (record) {
 			var id = record.getValue("id");
@@ -80,7 +80,7 @@
 		//btDetail.click();
 		subwindow_signWindow.show();
 	}
-	//¹Ø¸¡¶¯´°¿Ú,ÊÍ·Ådataset
+
 	function signWindow_floatWindow_beforeClose(subwindow) {
 		BankBlackListEntry_dataset.cancelRecord();
 		return true;
@@ -89,7 +89,7 @@
 		return signWindow_floatWindow_beforeClose(subwindow);
 	}
 
-	//Ë¢ÐÂµ±Ç°Ò³
+	//åˆ·æ–°å½“å‰é¡µ
 	function flushCurrentPage() {
 		BankBlackListEntry_dataset
 				.flushData(BankBlackListEntry_dataset.pageIndex);

@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="数据分析手工执行">
+<@CommonQueryMacro.page title="鏁版嵁鍒嗘瀽鎵嬪伐鎵ц">
 <@CommonQueryMacro.CommonQuery id="analyseDataManual" init="true" submitMode="all" navigate="false">
 <table width="800px">
 	<tr>
 		<td>
-			<@CommonQueryMacro.Interface id="interface" label="数据分析手工执行" btnNm="查询" colNm=8/>
+			<@CommonQueryMacro.Interface id="interface" label="鏁版嵁鍒嗘瀽鎵嬪伐鎵ц" btnNm="鏌ヨ" colNm=8/>
 		</td>
 	</tr>
 	<tr>
@@ -52,7 +52,7 @@ function btAnalyse_onClickCheck(button) {
 		rec = rec.nextUnit;
 	}
 	if(!f) {
-		alert('请选择要分析的表名');
+		alert('璇烽�夋嫨瑕佸垎鏋愮殑琛ㄥ悕');
 		return false;
 	}
 	//analyseDataManual_dataset.setValue('reImport', reImport.checked);

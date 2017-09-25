@@ -10,12 +10,12 @@
 <table width="800px">
   <tr>
 		<td colspan="2">
-			<@CommonQueryMacro.Interface id="interface" label="ÇëÑ¡ÔñÈÕÆÚ" />
+			<@CommonQueryMacro.Interface id="interface" label="è¯·é€‰æ‹©æ—¥æœŸ" />
 		</td>
 	</tr>
   <tr>
     <td colspan="2">
-		<input type="file" name="uploadify" id="uploadify" /><div style="float:right"><input type="checkbox" name="is" id="isUp"/>ÊÇ·ñÔÊĞíÖØ¸´ÉÏ´«</div>
+		<input type="file" name="uploadify" id="uploadify" /><div style="float:right"><input type="checkbox" name="is" id="isUp"/>æ˜¯å¦å…è®¸é‡å¤ä¸Šä¼ </div>
 	</td>
   </tr>
   <tr>
@@ -42,7 +42,7 @@
              }
 	function UpData_dataset_flushDataPre(dataset) {
 		var chbox = $(":checkbox");
-		//reset [ÖØ¸´µ¼Èë] checkbox
+		//reset [é‡å¤å¯¼å…¥] checkbox
 		for(var i=0;i<chbox.length;i++)
 		{
 			chbox[i].checked=false;
@@ -53,10 +53,10 @@
                    var id=record[1].split('.')[0]+record[1].split('.')[1]+'ishave';   
                    if(value=='true'){
                  //   cell.innerHTML='<input id="'+id+'"  type="checkbox" checked></input>';
-                      cell.innerHTML='<span id="'+id+'">ÒÑ´æÔÚ</span><input id="'+id+'have"  type="hidden" value="'+value+'"/>';
+                      cell.innerHTML='<span id="'+id+'">å·²å­˜åœ¨</span><input id="'+id+'have"  type="hidden" value="'+value+'"/>';
                    }else{
                 //    cell.innerHTML='<input id="'+id+'"  type="checkbox" ></input>';
-                      cell.innerHTML='<span id="'+id+'">²»´æÔÚ</span><input id="'+id+'have"  type="hidden" value="'+value+'"/>';
+                      cell.innerHTML='<span id="'+id+'">ä¸å­˜åœ¨</span><input id="'+id+'have"  type="hidden" value="'+value+'"/>';
                    }                     
               }
              }
@@ -64,7 +64,7 @@
     function uptable_upstatus_onRefresh(cell,value,record){
               if(record){
                    var id=record[1].split('.')[0]+record[1].split('.')[1]+'upstatus';
-                   cell.innerHTML='<span id="'+id+'" >'+"Î´ÉÏ´«"+'</span>';
+                   cell.innerHTML='<span id="'+id+'" >'+"æœªä¸Šä¼ "+'</span>';
               }
              }
      

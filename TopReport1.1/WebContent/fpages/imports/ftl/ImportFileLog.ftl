@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="数据导入日志">
+<@CommonQueryMacro.page title="鏁版嵁瀵煎叆鏃ュ織">
 <table align="left" width="100%">
 <tr><td>
 <@CommonQueryMacro.CommonQuery id="ImportFileLog" init="false" submitMode="current" navigate="false">
 <table width="100%">
 	<tr>
 		<td>
-			<@CommonQueryMacro.Interface id="interface" label="日志查询"  colNm=4/>
+			<@CommonQueryMacro.Interface id="interface" label="鏃ュ織鏌ヨ"  colNm=4/>
 		</td>
 	</tr>
 	<tr>
@@ -56,7 +56,7 @@ function btSave_postSubmit(button) {
 	ImportFileLog_dataset.flushData(ImportFileLog_dataset.pageIndex);
 }
 function btImport_postSubmit(button) {
-	alert('导入成功');
+	alert('瀵煎叆鎴愬姛');
 	ImportFileLog_dataset.flushData(ImportFileLog_dataset.pageIndex);
 }
 </script>

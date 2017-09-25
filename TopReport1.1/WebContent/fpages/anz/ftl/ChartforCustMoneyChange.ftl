@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro >
-<@CommonQueryMacro.page title="¿Í»§×Ê²ú±ä»¯¸Å¿öÍ³¼ÆÍ¼">
+<@CommonQueryMacro.page title="å®¢æˆ·èµ„äº§å˜åŒ–æ¦‚å†µç»Ÿè®¡å›¾">
    <table align="left">
    <tr>
       <td>
@@ -9,7 +9,7 @@
 
 			<tr>
    			<td valign="top" colspan="2">
-   			<@CommonQueryMacro.Interface id="interface" label="¿Í»§×Ê²ú±ä»¯¸Å¿öÍ³¼ÆÍ¼²éÑ¯" colNm=4 showButton="true" />
+   			<@CommonQueryMacro.Interface id="interface" label="å®¢æˆ·èµ„äº§å˜åŒ–æ¦‚å†µç»Ÿè®¡å›¾æŸ¥è¯¢" colNm=4 showButton="true" />
         	</td>
        		 </tr>
       			<tr>

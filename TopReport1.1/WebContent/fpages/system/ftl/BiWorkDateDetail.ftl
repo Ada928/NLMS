@@ -4,7 +4,7 @@
 <#assign st = RequestParameters["st"]?default('') />
 <#assign type = RequestParameters["type"]?default('') />
 <#assign tskId = RequestParameters["tskId"]?default('') />
-<@CommonQueryMacro.page title="¹¤×÷ÈÕÆÚÏêÏ¸">
+<@CommonQueryMacro.page title="å·¥ä½œæ—¥æœŸè¯¦ç»†">
 <script type="text/javascript" src="${contextPath}/js/workdate.js"></script>
 <link rel='stylesheet' type="text/css" href="${contextPath}/css/workdate.css" />
 <table align="left" width="900px"><tr><td>
@@ -12,16 +12,16 @@
 <table align="left" class="grouptable" width="100%">
 	<tr>
 		<td class="labeltd" width="100px">
-		&nbsp;&nbsp;Äê·İ&nbsp;&nbsp;
+		&nbsp;&nbsp;å¹´ä»½&nbsp;&nbsp;
 		</td>
 		<td class="datatd" width="100px">
 			<@CommonQueryMacro.SingleField fId="biYear"/>
 		</td>
 		<td align="right"  nowrap="nowrap">
-			<span style='height:4px;background-color:#c2dcfc;border:1px solid #ddd'>&nbsp;&nbsp;&nbsp;</span>&nbsp;¹¤×÷ÈÕ
-			<span style='height:4px;background-color:#ffffff;border:1px solid #ddd'>&nbsp;&nbsp;&nbsp;</span>&nbsp;·Ç¹¤×÷ÈÕ
-			<span style='height:4px;background-color:#ffffcc;border:1px solid #ddd'>&nbsp;&nbsp;&nbsp;</span>&nbsp;·Ç¹¤×÷ÈÕĞŞ¸ÄÎª¹¤×÷ÈÕ
-			<span style='height:4px;background-color:#abdebe;border:1px solid #ddd'>&nbsp;&nbsp;&nbsp;</span>&nbsp;¹¤×÷ÈÕĞŞ¸ÄÎª·Ç¹¤×÷ÈÕ
+			<span style='height:4px;background-color:#c2dcfc;border:1px solid #ddd'>&nbsp;&nbsp;&nbsp;</span>&nbsp;å·¥ä½œæ—¥
+			<span style='height:4px;background-color:#ffffff;border:1px solid #ddd'>&nbsp;&nbsp;&nbsp;</span>&nbsp;éå·¥ä½œæ—¥
+			<span style='height:4px;background-color:#ffffcc;border:1px solid #ddd'>&nbsp;&nbsp;&nbsp;</span>&nbsp;éå·¥ä½œæ—¥ä¿®æ”¹ä¸ºå·¥ä½œæ—¥
+			<span style='height:4px;background-color:#abdebe;border:1px solid #ddd'>&nbsp;&nbsp;&nbsp;</span>&nbsp;å·¥ä½œæ—¥ä¿®æ”¹ä¸ºéå·¥ä½œæ—¥
 		</td>
 	</tr>
 </table>
@@ -58,7 +58,7 @@
 	PrivAction.getWorkDateByDetail("${year}","${type}","${tskId}","${flag}","${st}",showBiWorkDate);
 
 
-	//ÏÔÊ¾¹¤×÷ÈÕÆÚ ²¢ÇÒ²éÑ¯ÊÇ·ñÒÑÉèÖÃ
+	//æ˜¾ç¤ºå·¥ä½œæ—¥æœŸ å¹¶ä¸”æŸ¥è¯¢æ˜¯å¦å·²è®¾ç½®
 	function showBiWorkDate(data){
 		dwr.engine.setAsync(false);
 		var newset = null;

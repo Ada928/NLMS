@@ -1,4 +1,4 @@
-<#--Interface 模板　适用了Tag方式-->
+<#--Interface 妯℃澘銆�閫傜敤浜員ag鏂瑰紡-->
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <@CommonQueryMacro.page title="">
 <@CommonQueryMacro.CommonQuery id=RequestParameters["CQId"] init="false" mode="1">

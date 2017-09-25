@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="¸ÚÎ»È¨ÏŞ¹ÜÀí¶Ô±È">
+<@CommonQueryMacro.page title="å²—ä½æƒé™ç®¡ç†å¯¹æ¯”">
 <script type="text/javascript" src="${contextPath}/js/xmlUtil.js"></script>
 <script type="text/javascript" src="${contextPath}/js/tree.js"></script>
 <script type="text/javascript" src="${contextPath}/js/xtree.js"></script>
@@ -10,20 +10,20 @@
 	<tr >
 		<td  align="left">
 				<FIELDSET name='group6' style="padding: 6px;">
-				<LEGEND>Ë«ÖØÊÚÈ¨ È¨ÏŞÉèÖÃĞŞ¸Ä²é¿´</LEGEND>
+				<LEGEND>åŒé‡æˆæƒ æƒé™è®¾ç½®ä¿®æ”¹æŸ¥çœ‹</LEGEND>
 				 <table frame=void width="100%" class="grouptable" id="detailTable">
 					 <tr>
 			              <td  class="labeltd"></td>
-						  <td nowrap class="labeltd">ĞŞ¸ÄÇ°</td>
-						  <td nowrap class="labeltd">ĞŞ¸Äºó</td>
+						  <td nowrap class="labeltd">ä¿®æ”¹å‰</td>
+						  <td nowrap class="labeltd">ä¿®æ”¹å</td>
 					</tr>
 					<tr>
-		            	  <td nowrap class="labeltd">¸ÚÎ»Ãû³Æ</td>
+		            	  <td nowrap class="labeltd">å²—ä½åç§°</td>
 						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="roleNameOld"/></td>
 						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="roleName"/></td>
 					</tr>
 					<tr>
-						  <td nowrap class="labeltd">ÓĞĞ§±êÖ¾</td>
+						  <td nowrap class="labeltd">æœ‰æ•ˆæ ‡å¿—</td>
 						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="statusOld"/></td>
 						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="status"/></td>
 					</tr>
@@ -37,8 +37,8 @@
 		 	&nbsp;&nbsp;
 		 	<@CommonQueryMacro.Button id= "btBack" />
 	  	</td>
-	  	<td bgcolor="red" width="20"></td><td>ĞÂÔö</td>
-	  	<td bgcolor="blue" width="20"></td><td>É¾³ı</td>
+	  	<td bgcolor="red" width="20"></td><td>æ–°å¢</td>
+	  	<td bgcolor="blue" width="20"></td><td>åˆ é™¤</td>
 	</tr>
 	<tr >
 		<td  align="left" >
@@ -71,7 +71,7 @@
 	var v_funcList ;
 	_close_flag = true;
 
-	//Õ¹¿ª½ÚµãÊ÷
+	//å±•å¼€èŠ‚ç‚¹æ ‘
 	function viewtree(){
 		if(_close_flag){
 			closeAll(1);
@@ -94,9 +94,9 @@
 	         document.getElementById(num).checked=true;
 	         }
         }
-        <#--20110818 BMSA-54 È¨ÏŞÊ÷Ä¿Â¼²Ëµ¥¿ÉÈ«Ñ¡ begin -->
+        <#--20110818 BMSA-54 æƒé™æ ‘ç›®å½•èœå•å¯å…¨é€‰ begin -->
 		pcheck();
-		<#--20110818 BMSA-54 È¨ÏŞÊ÷Ä¿Â¼²Ëµ¥¿ÉÈ«Ñ¡ end -->
+		<#--20110818 BMSA-54 æƒé™æ ‘ç›®å½•èœå•å¯å…¨é€‰ end -->
 	}
 
 	function initCallGetter_post(){
@@ -112,14 +112,14 @@
 			var tempArray = data[i].split(",");
 		 	var checkId = "id" + tempArray[0];
 		 	var status = tempArray[1];
-		 	var checkObj = document.getElementById(checkId);//½Úµã
+		 	var checkObj = document.getElementById(checkId);//èŠ‚ç‚¹
 		 	if( checkObj != null)
 		 	{
-		 		if(status == "1"){//ĞÂÔö
+		 		if(status == "1"){//æ–°å¢
 		 			checkObj.style.backgroundColor = 'red';
 		 			checkObj.checked=true;
 		 		}
-		 		else if(status == "2"){//È¥³ı
+		 		else if(status == "2"){//å»é™¤
 		 			checkObj.style.backgroundColor = 'blue';
 		 			checkObj.checked=false;
 		 		}

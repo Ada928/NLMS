@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="¹¤×÷Á÷²ÎÊıÅäÖÃ">
+<@CommonQueryMacro.page title="å·¥ä½œæµå‚æ•°é…ç½®">
 
 <@CommonQueryMacro.CommonQuery id="parammng_WorkFlowParam1" init="false">
 	<table align="left">
 			<tr>
        			<td valign="top" align="left">
-       				<@CommonQueryMacro.Group id="intface" fieldStr="processTemplate,taskName,apptype" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=3/>
+       				<@CommonQueryMacro.Group id="intface" fieldStr="processTemplate,taskName,apptype" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=3/>
 				</td>
 			 </tr>
 			 <tr>
@@ -64,7 +64,7 @@
 
     function btSave_onClickCheck(button){
     	if(parammng_WorkFlowParam1_dataset.getValue("processTemplate")==""){
-    		alert("¡¾¹¤×÷Á÷Ä£°åÃû¡¿²»ÄÜÎª¿Õ");
+    		alert("ã€å·¥ä½œæµæ¨¡æ¿åã€‘ä¸èƒ½ä¸ºç©º");
     		return false;
     	}
     }

@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Ç©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="BOPForDebtUsanceLeOfCreditTabs" navigate="false" currentTab="BOPForDebtUsanceLeOfCredit">
 		<@CommonQueryMacro.CommonQuery id="BOPForDebtUsanceLeOfCredit" init="false" submitMode="all" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -35,25 +35,25 @@
 	</@CommonQueryMacro.CommonQueryTab>
 	<script language="JavaScript">
 		function initCallGetter_post() {
-			//¹¤×÷ÈÕÆÚ
+			//å·¥ä½œæ—¥æœŸ
 			<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 			BOPForDebtUsanceLeOfCredit_interface_dataset.setValue("qStartDate","${v_txdate}");
 			BOPForDebtUsanceLeOfCredit_interface_dataset.setValue("qEndDate","${v_txdate}");
 		}
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function datatable1_opr_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var recStatus = record.getValue("recStatus");
 				var innerStr = "<center>";
 				if (recStatus == "01" || recStatus == "02") {
-					innerStr = innerStr + "<a href=\"JavaScript:doModify('"+id+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">É¾³ı</a>"
+					innerStr = innerStr + "<a href=\"JavaScript:doModify('"+id+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">åˆ é™¤</a>"
 				} else {
-					innerStr = innerStr + "<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉĞŞ¸Ä' style='color:#999999'>ĞŞ¸Ä</a>&nbsp;&nbsp;<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉÉ¾³ı' style='color:#999999'>É¾³ı</a>";
+					innerStr = innerStr + "<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯ä¿®æ”¹' style='color:#999999'>ä¿®æ”¹</a>&nbsp;&nbsp;<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯åˆ é™¤' style='color:#999999'>åˆ é™¤</a>";
 				}
 				innerStr = innerStr + "</center>";
 				cell.innerHTML =innerStr;
-			} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+			} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 			 	cell.innerHTML="&nbsp;";
 			}
 		}
@@ -64,7 +64,7 @@
 			}
 		}
 	    function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var filler2 = record.getValue("filler2");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -75,30 +75,30 @@
 		function btAdd_onClick(button) {
 			btNewClick();
 		}
-		//ĞÂÔö
+		//æ–°å¢
 		function btNewClick(){
-			showWin("Ô¶ÆÚĞÅÓÃÖ¤Ç©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtUsanceLeOfCreditCol.ftl?op=new","report","flushPage()");
+			showWin("è¿œæœŸä¿¡ç”¨è¯ç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtUsanceLeOfCreditCol.ftl?op=new","report","flushPage()");
 
 		}
-		//ÏêÏ¸
+		//è¯¦ç»†
 		function doDetail(id) {
 			locate(id);
-			showWin("Ô¶ÆÚĞÅÓÃÖ¤Ç©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtUsanceLeOfCreditCol.ftl?id="+id+"&op=detaile","report","flushPage()");
+			showWin("è¿œæœŸä¿¡ç”¨è¯ç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtUsanceLeOfCreditCol.ftl?id="+id+"&op=detaile","report","flushPage()");
 		}
-	    //Ë¢ĞÂÊı¾İ
+	    //åˆ·æ–°æ•°æ®
 		function flushPage(){
 			BOPForDebtUsanceLeOfCredit_dataset.flushData(1);
 		}
 
-		//ĞŞ¸Ä
+		//ä¿®æ”¹
 		function doModify(id) {
 		    locate(id);
-			showWin("Ô¶ÆÚĞÅÓÃÖ¤Ç©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtUsanceLeOfCreditCol.ftl?id="+id+"&op=mod","report","flushPage()");
+			showWin("è¿œæœŸä¿¡ç”¨è¯ç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtUsanceLeOfCreditCol.ftl?id="+id+"&op=mod","report","flushPage()");
 		}
-		//É¾³ı
+		//åˆ é™¤
 		function doDelete(id) {
 		    locate(id);
-			showWin("Ô¶ÆÚĞÅÓÃÖ¤Ç©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtUsanceLeOfCreditCol.ftl?id="+id+"&op=del","report","flushPage()");
+			showWin("è¿œæœŸä¿¡ç”¨è¯ç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtUsanceLeOfCreditCol.ftl?id="+id+"&op=del","report","flushPage()");
 		}
 	</script>
 </@CommonQueryMacro.page>

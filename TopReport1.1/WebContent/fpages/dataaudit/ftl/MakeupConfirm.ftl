@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="²¹Â¼È·ÈÏ">
+<@CommonQueryMacro.page title="è¡¥å½•ç¡®è®¤">
 <@CommonQueryMacro.CommonQuery id="MakeupConfirm" init="false" submitMode="all">
 <table width="900px">
    <tr>
       	<td>
-      	   <@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+      	   <@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
       	</td>
 	</tr>
 	<tr>
@@ -43,8 +43,8 @@
 	}
 
 	function btConfirm_postSubmit(button){
-		alert("²¹Â¼Íê³ÉÈ·ÈÏÖ´ĞĞ³É¹¦£¡");
-		//Ë¢ĞÂµ±Ç°Ò³
+		alert("è¡¥å½•å®Œæˆç¡®è®¤æ‰§è¡ŒæˆåŠŸï¼");
+		//åˆ·æ–°å½“å‰é¡µ
 		MakeupConfirm_dataset.flushData(MakeupConfirm_dataset.pageIndex);
 	}
 </script>

@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="´ı°ìÈÎÎñ²éÑ¯">
+<@CommonQueryMacro.page title="å¾…åŠä»»åŠ¡æŸ¥è¯¢">
 <table align="left">
 <tr>
 <td valign="top" rowspan="1"  valign="top">
@@ -8,7 +8,7 @@
 	<table align="left">
 			<tr>
        			<td valign="left" >
-					<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=4  />
+					<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4  />
 				</td>
 			</tr>
 
@@ -30,10 +30,10 @@
 <script language="javascript" src="${contextPath}/js/inquery.js"></script>
 <script language="javascript">
 
-//Ìá½»Ç°µÄ¼ì²é
+//æäº¤å‰çš„æ£€æŸ¥
 function btApply_onClickCheck(button){
 	if(WaitToHandleTaskEntry_dataset.getValue("transNo")==""){
-		alert("ÁĞ±íÎŞ¼ÇÂ¼£¬²»ÄÜÌá½»");
+		alert("åˆ—è¡¨æ— è®°å½•ï¼Œä¸èƒ½æäº¤");
 		return false;
 		}
 	}

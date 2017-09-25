@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="¹¤×÷Á÷²ÎÊýÅäÖÃ">
+<@CommonQueryMacro.page title="å·¥ä½œæµå‚æ•°é…ç½®">
 
 <@CommonQueryMacro.CommonQuery id="BrhWorkFlowMng1" init="false" mode="2">
 	<table align="left">
 			<tr>
        			<td valign="top" align="left">
-       				<@CommonQueryMacro.Group id="intface" fieldStr="brcode" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" colNm=3/>
+       				<@CommonQueryMacro.Group id="intface" fieldStr="brcode" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=3/>
 				</td>
 			 </tr>
 			 <tr>

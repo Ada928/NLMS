@@ -1,5 +1,5 @@
 <@CommonQueryMacro.CommonQuery id="ImportFileLogDtl" init="true" submitMode="all" navigate="false">
-<@CommonQueryMacro.FloatWindow id="detailFW" label="Ã÷Ï¸" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
+<@CommonQueryMacro.FloatWindow id="detailFW" label="æ˜Žç»†" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 <table width="100%">
 	<tr>
 		<td><@CommonQueryMacro.PagePilot id="pagePilot1" maxpagelink="9" showArrow="true" pageCache="false"/></td>

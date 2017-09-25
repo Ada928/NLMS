@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÂÄÔ¼Ã÷Ï¸ĞÅÏ¢">
+<@CommonQueryMacro.page title="å±¥çº¦æ˜ç»†ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="BopCFAExguQryTabs" navigate="false" currentTab="BOPLiabilityBalanceQry">
 		<@CommonQueryMacro.CommonQuery id="BOPLiabilityBalanceQry" init="false" submitMode="selected" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -26,7 +26,7 @@
 
 	<script language="JavaScript">
 
-	//¹¤×÷ÈÕÆÚ
+	//å·¥ä½œæ—¥æœŸ
 	function initCallGetter_post() {
 		<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 		BOPLiabilityBalanceQry_interface_dataset.setValue("qWorkDateStart","${v_txdate}");
@@ -34,7 +34,7 @@
 	}
 
 	function datatable1_filler2_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			var filler2 = record.getValue("filler2");
 			cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -44,10 +44,10 @@
 	}
 
 
-	//ÏêÏ¸ĞÅÏ¢
+	//è¯¦ç»†ä¿¡æ¯
 	function doDetail(id){
 
-		showWin("ÔğÈÎÓà¶îÃ÷Ï¸","${contextPath}/fpages/datacollection/ftl/BopLiabilityBalanceAdd.ftl?id=" + id + "&op=detail");
+		showWin("è´£ä»»ä½™é¢æ˜ç»†","${contextPath}/fpages/datacollection/ftl/BopLiabilityBalanceAdd.ftl?id=" + id + "&op=detail");
 	}
 	</script>
 </@CommonQueryMacro.page>

@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="¹ú¼ÊºÚÃûµ¥²éÑ¯">
+<@CommonQueryMacro.page title="å›½é™…é»‘åå•æŸ¥è¯¢">
 <@CommonQueryMacro.CommonQuery id="InternationalBlackListQuery" init="true" submitMode="current"  navigate="false">
 <table align="center" width="100%">
    	<tr>
       	<td colspan="2" >
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=4/>
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4/>
 		</td>
 	</tr>
   	<tr>
@@ -24,7 +24,7 @@
 	      	<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="100%" resize="true" defaultZoom="normal" minimize="false"
 					maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 	      		<div align="center">
-	      			<@CommonQueryMacro.Group id="group1" label="¹ú¼ÊºÚÃûµ¥ÏêÇé" width="100%" height="100%"
+	      			<@CommonQueryMacro.Group id="group1" label="å›½é™…é»‘åå•è¯¦æƒ…" width="100%" height="100%"
 	        			  fieldStr="id,blacklistType,sanCode,sanName,accountType,certificateType,certificateNumber,"+
 	        			 	"clientName,clientEnglishName,nationality,birthday,birthCountry,gender,lastOccupation,"+
 							"residenceCountry,politicians,valid,del,validDate,operateState,createDate,lastModifyDate,"+
@@ -41,7 +41,7 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="JavaScript">
-    //¶¨Î»Ò»ĞĞ¼ÇÂ¼
+    //å®šä½ä¸€è¡Œè®°å½•
     function locate(id) {
         var record = InternationalBlackListQuery_dataset.find(["id"], [id]);
         if (record) {
@@ -49,7 +49,7 @@
         }
     }
 
-  //Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+  //å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
 	function datatable1_id_onRefresh(cell, value, record) {
 		if (record) {
 			var id = record.getValue("id");
@@ -68,7 +68,7 @@
 		//btDetail.click();
 		subwindow_signWindow.show();
 	}
-	//¹Ø¸¡¶¯´°¿Ú,ÊÍ·Ådataset
+	//ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½Í·ï¿½dataset
 	function signWindow_floatWindow_beforeClose(subwindow) {
 		InternationalBlackListQuery_dataset.cancelRecord();
 		return true;

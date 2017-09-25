@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="操作日志查询">
+<@CommonQueryMacro.page title="鎿嶄綔鏃ュ織鏌ヨ">
 <@CommonQueryMacro.CommonQuery id="operLoggerQuery" init="false" submitMode="selected">
 	<table align="left">
 		<tr align="left">
 			<td valign="top" rowspan="1"  width="735">
-				<@CommonQueryMacro.Interface id="Interface1" label="查询条件" colNm=4 />
+				<@CommonQueryMacro.Interface id="Interface1" label="鏌ヨ鏉′欢" colNm=4 />
 			</td>
 		</tr>
 		<tr>

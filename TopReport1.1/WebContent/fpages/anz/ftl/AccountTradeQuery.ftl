@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro >
-<@CommonQueryMacro.page title="账户信息查询">
+<@CommonQueryMacro.page title="璐︽埛淇℃伅鏌ヨ">
    <table align="left">
    <tr>
       <td>
@@ -9,7 +9,7 @@
 
 			<tr>
    			<td valign="top" colspan="2">
-   			<@CommonQueryMacro.Interface id="interface" label="澳新银行账户信息查询" colNm=4 showButton="true" />
+   			<@CommonQueryMacro.Interface id="interface" label="婢虫柊閾惰璐︽埛淇℃伅鏌ヨ" colNm=4 showButton="true" />
         	</td>
        		 </tr>
       			<tr>

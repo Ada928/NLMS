@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="»ú¹¹ĞÅÏ¢Î¬»¤">
+<@CommonQueryMacro.page title="æœºæ„ä¿¡æ¯ç»´æŠ¤">
 <table width="800px" align="left">
 <tr>
 <td>
@@ -7,7 +7,7 @@
 	<table width="100%">
 		<tr>
    			<td valign="top" colspan="2">
-   				<@CommonQueryMacro.Interface id="intface" label="»ú¹¹²éÑ¯" colNm=4 showButton="true" />
+   				<@CommonQueryMacro.Interface id="intface" label="æœºæ„æŸ¥è¯¢" colNm=4 showButton="true" />
         	</td>
         </tr>
 		<tr>
@@ -25,7 +25,7 @@
       		<td colspan="2">
       		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
       			<div align="center">
-      				<@CommonQueryMacro.Group id="group1" label="»ú¹¹ĞÅÏ¢Î¬»¤"
+      				<@CommonQueryMacro.Group id="group1" label="æœºæ„ä¿¡æ¯ç»´æŠ¤"
         			  fieldStr="brno,brname,address,postno,teleno,brclass,blnUpBrcode,blnManageBrcode,brattr,otherAreaFlag" colNm=4/>
         			 </br>
       				<@CommonQueryMacro.Button id= "btSave"/>
@@ -38,7 +38,7 @@
       		<td colspan="2">
       		<@CommonQueryMacro.FloatWindow id="signWindowDet" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
       			<div align="center">
-      				<@CommonQueryMacro.Group id="group1" label="»ú¹¹ĞÅÏ¢Î¬»¤"
+      				<@CommonQueryMacro.Group id="group1" label="æœºæ„ä¿¡æ¯ç»´æŠ¤"
         			  fieldStr="brno,brname,address,postno,teleno,brclass,blnUpBrcodeName,blnManageBrcodeName,brattr,otherAreaFlag" colNm=4/>
       			</div>
      		 </@CommonQueryMacro.FloatWindow>
@@ -52,7 +52,7 @@
 </tr>
 </table>
 <script language="javascript">
-	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+	//å®šä½ä¸€æ¡è®°å½•
 	function locate(id) {
 		var record = Management_branchManage_dataset.find(["brcode"],[id]);
 		if (record) {
@@ -98,15 +98,15 @@
 	function datatable1_opr_onRefresh(cell, value, record)
 	{
 	
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var lock = record.getValue("lock");
 			var id = record.getValue("brcode");
 			if(isTrue(lock)){
-				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\">ĞŞ¸Ä</a></center>";
+				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\">ä¿®æ”¹</a></center>";
 			}else{
-				cell.innerHTML="<center><a href=\"JavaScript:openBranchDtl('"+id+"')\">ĞŞ¸Ä</a></center>";
+				cell.innerHTML="<center><a href=\"JavaScript:openBranchDtl('"+id+"')\">ä¿®æ”¹</a></center>";
 			}
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 cell.innerHTML="&nbsp;";
 		}
 	}
@@ -122,7 +122,7 @@
 	function Management_branchManage_dataset_afterInsert(dataset, mode){
 		Management_branchManage_dataset.setValue2("status", "1");
 	}
-	//Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+	//å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
 	function datatable1_brno_onRefresh(cell, value, record){
 	if(record!=null){
 		var sta = record.getValue("st");
@@ -145,13 +145,13 @@ function showDetail(id,sta){
 	paramMap.put("st",sta);
 	paramMap.put("action","detail");
 	paramMap.put("flag","0");
-	loadPageWindows("partWin", "»ú¹¹¹ÜÀí","/fpages/regonization/ftl/branchManageDetail.ftl", paramMap, "winZone");
+	loadPageWindows("partWin", "æœºæ„ç®¡ç†","/fpages/regonization/ftl/branchManageDetail.ftl", paramMap, "winZone");
 }
 	function btStatus_onClickCheck(button) {
 		var status = Management_branchManage_dataset.getValue("status");
 		 var lock = Management_branchManage_dataset.getValue("lock");
 		if(status == '0'){
-			if(confirm("È·ÈÏ½«¸Ã»ú¹¹ÉèÖÃÎªÓĞĞ§?")){
+			if(confirm("ç¡®è®¤å°†è¯¥æœºæ„è®¾ç½®ä¸ºæœ‰æ•ˆ?")){
 			    Management_branchManage_dataset.setParameter("statu", "1");
 			      
 				return true;
@@ -159,7 +159,7 @@ function showDetail(id,sta){
 				return false;
 			}
 		} else {
-			if(confirm("È·ÈÏ½«¸Ã»ú¹¹ÉèÖÃÎªÎŞĞ§?")){
+			if(confirm("ç¡®è®¤å°†è¯¥æœºæ„è®¾ç½®ä¸ºæ— æ•ˆ?")){
 			
 				Management_branchManage_dataset.setParameter("statu", "0");
 				
@@ -170,7 +170,7 @@ function showDetail(id,sta){
 		}
 	}
 	function btStatus_postSubmit(button) {
-		alert("ÉèÖÃ³É¹¦");
+		alert("è®¾ç½®æˆåŠŸ");
         Management_branchManage_dataset.flushData(Management_branchManage_dataset.pageIndex);
 	}
     function Management_branchManage_dataset_afterScroll(dataset){
@@ -179,7 +179,7 @@ function showDetail(id,sta){
 		 <#--
 		 var  v_brcode = Management_branchManage_dataset.getValue("brcode");
 		 var  v_brclass = Management_branchManage_dataset.getValue("brclass");
-		  //Êı¾İ¿âÖĞµÄ¼ÇÂ¼¡£
+		  //æ•°æ®åº“ä¸­çš„è®°å½•ã€‚
 		  if ( v_brcode!="" ){
 		    Management_branchManage_dataset.setFieldReadOnly("brno",true);
 		    Management_branchManage_dataset.setFieldReadOnly("brname",false);
@@ -206,15 +206,15 @@ function showDetail(id,sta){
 			if(field.name=="postno"){
 			v_postno=Management_branchManage_dataset.getValue("postno");
 				if(isNaN(v_postno)){
-					alert("×Ö¶Î¡¾ÓÊÕş±àÂë¡¿±ØĞëÎªÊı×Ö");
+					alert("å­—æ®µã€é‚®æ”¿ç¼–ç ã€‘å¿…é¡»ä¸ºæ•°å­—");
 					Management_branchManage_dataset.setValue2("postno","");
 					return false;
 				}else if( v_postno.indexOf('-') != -1){
-					alert("×Ö¶Î¡¾ÓÊÕş±àÂë¡¿±ØĞëÎªÊı×Ö");
+					alert("å­—æ®µã€é‚®æ”¿ç¼–ç ã€‘å¿…é¡»ä¸ºæ•°å­—");
 					Management_branchManage_dataset.setValue2("postno","");
 					return false;
 				}else if(v_postno.length<6&&v_postno.length!=0){
-					alert("×Ö¶Î¡¾ÓÊÕş±àÂë¡¿±ØĞëÎª6Î»");
+					alert("å­—æ®µã€é‚®æ”¿ç¼–ç ã€‘å¿…é¡»ä¸º6ä½");
 					Management_branchManage_dataset.setValue2("postno","");
 					return false;
 				}
@@ -226,7 +226,7 @@ function showDetail(id,sta){
  				for (var i = 0; i < v_teleno.length; i++){
   				var c = v_teleno.charAt(i);
   				if ( validChar.indexOf(c) == -1){
-  				alert("×Ö¶Î¡¾ÁªÏµµç»°¡¿Ö»ÄÜ°üº¬-ºÍÊı×Ö");
+  				alert("å­—æ®µã€è”ç³»ç”µè¯ã€‘åªèƒ½åŒ…å«-å’Œæ•°å­—");
   				Management_branchManage_dataset.setValue2("teleno","");
   				return false;
   			}
@@ -236,7 +236,7 @@ function showDetail(id,sta){
 
 	function btnAdd_onClick(button){
 		var  v_brcode = Management_branchManage_dataset.getValue("brcode");
-		//Êı¾İ¿âÖĞµÄ¼ÇÂ¼¡£
+		//æ•°æ®åº“ä¸­çš„è®°å½•ã€‚
 		if (v_brcode!=""  ){
 			Management_branchManage_dataset.setFieldReadOnly("brno",true);
 			Management_branchManage_dataset.setFieldReadOnly("brname",false);
@@ -263,7 +263,7 @@ function showDetail(id,sta){
       function btSave_postSubmit(button)
       {
 			button.url="#";
-        	//alert("±£´æ³É¹¦");
+        	//alert("ä¿å­˜æˆåŠŸ");
         	subwindow_signWindow.hide();
         	Management_branchManage_dataset.flushData(Management_branchManage_dataset.pageIndex);
       }
@@ -277,13 +277,13 @@ function showDetail(id,sta){
 		{
 			if(Management_branchManage_dataset.getValue("blnUpBrcode")==""&&Management_branchManage_dataset.getValue("brclass")!="1")
 			{
-				alert("×Ö¶Î[ÉÏ¼¶»ú¹¹]²»Ó¦Îª¿Õ¡£");
+				alert("å­—æ®µ[ä¸Šçº§æœºæ„]ä¸åº”ä¸ºç©ºã€‚");
 	 	 		return false;
 			}
 
 			if(Management_branchManage_dataset.getValue("brclass")=="")
 			{
-				alert("×Ö¶Î[»ú¹¹¼¶±ğ]²»Ó¦Îª¿Õ¡£");
+				alert("å­—æ®µ[æœºæ„çº§åˆ«]ä¸åº”ä¸ºç©ºã€‚");
 	 	 		return false;
 			}
 			return true;
@@ -295,7 +295,7 @@ function showDetail(id,sta){
 	   var length  = Management_branchManage_dataset.length;
 		var flag = true;
 	   if(length>1&&brclass=="1"){
-	   		alert("Ö»ÄÜÓĞÒ»¸ö×ÜĞĞ!");
+	   		alert("åªèƒ½æœ‰ä¸€ä¸ªæ€»è¡Œ!");
 	   		flag = false;
 	   }
 		if(!flag){
@@ -304,7 +304,7 @@ function showDetail(id,sta){
 
 	   return true;
 	}
-	//È¥µôÒ³Ãæ¡°¹éÊô·ÖĞĞ¡±×Ö¶Î£¬µ«µ±Ñ¡ÖĞ¡°ÉÏ¼¶»ú¹¹¡±×Ö¶ÎÊ±£¬×Ô¶¯¸ø¡°¹éÊô·ÖĞĞ¡±¸³Öµ
+	//å»æ‰é¡µé¢â€œå½’å±åˆ†è¡Œâ€å­—æ®µï¼Œä½†å½“é€‰ä¸­â€œä¸Šçº§æœºæ„â€å­—æ®µæ—¶ï¼Œè‡ªåŠ¨ç»™â€œå½’å±åˆ†è¡Œâ€èµ‹å€¼
 	function blnUpBrcode_DropDown_onSelect(dropDown,record,editor)
 	{
 	   var blnUpBrcode  = record.getValue("brcode").trim();

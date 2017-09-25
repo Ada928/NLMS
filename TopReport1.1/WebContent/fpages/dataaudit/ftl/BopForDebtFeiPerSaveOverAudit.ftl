@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Óà¶îĞÅÏ¢">
+<@CommonQueryMacro.page title="ä½™é¢ä¿¡æ¯">
 <@CommonQueryMacro.CommonQueryTab id="bopForDebtFeiPerSaveAuditTabs" navigate="false" currentTab="BopForDebtFeiPerSaveOverAudit">
 	<@CommonQueryMacro.CommonQuery id="bopForDebtFeiPerSaveOverAudit" init="false" submitMode="selected" navigate="false" >
 		<table align="left">
 			<tr>
 				<td>
-					<@CommonQueryMacro.Interface id="interface"  label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface"  label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -28,7 +28,7 @@
 		    	<td>
 		    		<@CommonQueryMacro.FloatWindow id="aditADSubWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 		      			<div align="center">
-		      				<@CommonQueryMacro.Group id="group1" label="ÉóºËĞÅÏ¢"
+		      				<@CommonQueryMacro.Group id="group1" label="å®¡æ ¸ä¿¡æ¯"
 		        			  fieldStr="approveStatusChoose,approveResultChoose" colNm=2/>
 		        			 </br>
 		      				<center><@CommonQueryMacro.Button id= "btAuditSave"/>&nbsp;&nbsp;
@@ -48,13 +48,13 @@
 		bopForDebtFeiPerSaveOverAudit_interface_dataset.setValue("enddate", currentDate);
 	}
 
-	//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+	//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function datatable1_filler2_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			var filler2 = record.getValue("filler2");
 			cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>";
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 	cell.innerHTML="&nbsp;";
 		}
 	}
@@ -64,11 +64,11 @@
 	   	var approveStatusChoose = bopForDebtFeiPerSaveOverAudit_dataset.getValue("approveStatusChoose");
 	   	var approveResultChoose = bopForDebtFeiPerSaveOverAudit_dataset.getValue("approveResultChoose");
 	   	if (!approveStatusChoose.length > 0) {
-	   		alert("ÇëÑ¡ÔñÉóºË½á¹û£¡");
+	   		alert("è¯·é€‰æ‹©å®¡æ ¸ç»“æœï¼");
 	   		return false;
 	   	}
 	   	if (approveStatusChoose == "02" && approveResultChoose.length < 1) {
-	   		alert("ÉóºË½á¹û²»Í¨¹ı£¬ÉóºËËµÃ÷±ØĞëÌîĞ´£¡");
+	   		alert("å®¡æ ¸ç»“æœä¸é€šè¿‡ï¼Œå®¡æ ¸è¯´æ˜å¿…é¡»å¡«å†™ï¼");
 	   		return false;
 	   	}
 	   	bopForDebtFeiPerSaveOverAudit_dataset.setParameter("approveStatusChoose",approveStatusChoose);
@@ -77,7 +77,7 @@
 	}
 	
 	function btAuditSave_postSubmit(button){
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 		bopForDebtFeiPerSaveOverAudit_dataset.flushData();
 	}
 	
@@ -97,11 +97,11 @@
 			record=record.getNextRecord();
 	   	}
 	   	if (!hasSelected) {
-	   		alert("ÇëÑ¡ÔñÏàÓ¦µÄ¼ÇÂ¼£¡");
+	   		alert("è¯·é€‰æ‹©ç›¸åº”çš„è®°å½•ï¼");
 	   		return false;
 	   	}
 	   	if (hasAudit) {
-	   		if(!confirm("ËùÑ¡¼ÇÂ¼°üº¬ÒÑÉóºË¼ÇÂ¼£¬È·¶¨ĞèÖØĞÂÉóºËÂğ£¿"))
+	   		if(!confirm("æ‰€é€‰è®°å½•åŒ…å«å·²å®¡æ ¸è®°å½•ï¼Œç¡®å®šéœ€é‡æ–°å®¡æ ¸å—ï¼Ÿ"))
 			{
 				return false;
 			}
@@ -113,9 +113,9 @@
 		subwindow_aditADSubWindow.hide();
 	}
 	
-	//ÏêÏ¸ĞÅÏ¢
+	//è¯¦ç»†ä¿¡æ¯
 	function doDetail(id){
-		showWin("·Ç¾ÓÃñ»ú¹¹´æ¿îÓà¶îĞÅÏ¢Ã÷Ï¸","${contextPath}/fpages/datacollection/ftl/BopForDebtFeiPerSaveOverInfo.ftl?id=" + id + "&op=detail");
+		showWin("éå±…æ°‘æœºæ„å­˜æ¬¾ä½™é¢ä¿¡æ¯æ˜ç»†","${contextPath}/fpages/datacollection/ftl/BopForDebtFeiPerSaveOverInfo.ftl?id=" + id + "&op=detail");
 	}
 </script>
 </@CommonQueryMacro.page>

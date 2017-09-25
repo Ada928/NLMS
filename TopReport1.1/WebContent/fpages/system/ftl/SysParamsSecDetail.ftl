@@ -1,34 +1,34 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign st="${RequestParameters['st']}" />
-<@CommonQueryMacro.page title="°²È«²ÎÊýÉèÖÃ">
+<@CommonQueryMacro.page title="å®‰å…¨å‚æ•°è®¾ç½®">
 <#if st=="2">
 	<@CommonQueryMacro.CommonQuery id="SysParamsSecDetail" init="true" submitMode="all" navigate="false">
 	<table align="left">
 	      <tr valign="top">
 	  			<td valign="top">
 	  			<FIELDSET name='group6' style="padding: 6px;">
-					<LEGEND>°²È«²ÎÊýÉèÖÃ</LEGEND>
+					<LEGEND>å®‰å…¨å‚æ•°è®¾ç½®</LEGEND>
 					<table frame=void width="100%" class="grouptable" id="detailTable">
 					<tr>       
-		                  <td nowrap class="labeltd" colspan=2>ÐÞ¸ÄÇ°</td>       
-						   <td nowrap class="labeltd" colspan=2>ÐÞ¸Äºó</td>				 
+		                  <td nowrap class="labeltd" colspan=2>ä¿®æ”¹å‰</td>       
+						   <td nowrap class="labeltd" colspan=2>ä¿®æ”¹åŽ</td>				 
 						</tr>
 		            	<tr>
-		                  <td nowrap class="labeltd">²ÎÊý±êÊ¶</td>
+		                  <td nowrap class="labeltd">å‚æ•°æ ‡è¯†</td>
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_magicId"/></td>
-						   <td nowrap class="labeltd">²ÎÊý±êÊ¶</td>
+						   <td nowrap class="labeltd">å‚æ•°æ ‡è¯†</td>
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="magicId"/></td>
 						</tr>
 		            	<tr>
-		                  <td nowrap class="labeltd">ÏµÍ³²ÎÊý</td>
+		                  <td nowrap class="labeltd">ç³»ç»Ÿå‚æ•°</td>
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_paramValueTx"/></td>
-						   <td nowrap class="labeltd">ÏµÍ³²ÎÊý</td>
+						   <td nowrap class="labeltd">ç³»ç»Ÿå‚æ•°</td>
 						  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="paramValueTx"/></td>
 						</tr>
 						<tr>
-		                  <td nowrap class="labeltd">²ÎÊýËµÃ÷</td>
+		                  <td nowrap class="labeltd">å‚æ•°è¯´æ˜Ž</td>
 		                  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="old_desc0"/></td>
-		                  <td nowrap class="labeltd">²ÎÊýËµÃ÷</td>
+		                  <td nowrap class="labeltd">å‚æ•°è¯´æ˜Ž</td>
 		                  <td class="datatd" nowrap ><@CommonQueryMacro.SingleField fId="desc0"/></td>
 		                </tr>
 		                
@@ -49,7 +49,7 @@
 	<table align="left">
       <tr valign="top">
   			<td valign="center">
-  			<@CommonQueryMacro.Group id ="group1" label="°²È«²ÎÊýÉèÖÃ" fieldStr="old_magicId,old_paramValueTx,old_desc0" colNm=2/>
+  			<@CommonQueryMacro.Group id ="group1" label="å®‰å…¨å‚æ•°è®¾ç½®" fieldStr="old_magicId,old_paramValueTx,old_desc0" colNm=2/>
   			</td>
   		</tr>
 

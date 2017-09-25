@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="»ù´¡ĞÅÏ¢">
+<@CommonQueryMacro.page title="åŸºç¡€ä¿¡æ¯">
 <@CommonQueryMacro.CommonQueryTab id="BopBhnDsAuditTabs" navigate="false" currentTab="BopBhnDsReportAudit">
 <table width=""><tr><td>
 	<@CommonQueryMacro.CommonQuery id="BopBhnDsReportAudit" init="false" submitMode="selected" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -23,7 +23,7 @@
 		    	<td>
 		    		<@CommonQueryMacro.FloatWindow id="contractAuditSubWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 		      			<div align="center">
-		      				<@CommonQueryMacro.Group id="group1" label="ÉóºËĞÅÏ¢"
+		      				<@CommonQueryMacro.Group id="group1" label="å®¡æ ¸ä¿¡æ¯"
 		        			  fieldStr="approveStatusChoose,approveResultChoose" colNm=2/>
 		        			 </br>
 		      				<center><@CommonQueryMacro.Button id="btAuditSave"/>&nbsp;&nbsp;
@@ -39,7 +39,7 @@
 <script language="JavaScript">
 	var ds = BopBhnDsReportAudit_dataset;
 	function initCallGetter_post() {
-		//¹¤×÷ÈÕÆÚ
+		//å·¥ä½œæ—¥æœŸ
 		<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 		BopBhnDsReportAudit_interface_dataset.setValue("qworkDateStart","${v_txdate}");
 		BopBhnDsReportAudit_interface_dataset.setValue("qworkDateEnd","${v_txdate}");
@@ -53,11 +53,11 @@
 			cell.innerHTML = "&nbsp;";
 		}
 	}
-	//ÏêÏ¸
+	//è¯¦ç»†
 	function doDetail(id) {
-		showWin("Éê±¨ĞÅÏ¢ÏêÏ¸","${contextPath}/fpages/bop/collandaudit/bhn/ftl/BopBhnDsReportCollInfo.ftl?id="+id+"&op="+"detail","window","",window);
+		showWin("ç”³æŠ¥ä¿¡æ¯è¯¦ç»†","${contextPath}/fpages/bop/collandaudit/bhn/ftl/BopBhnDsReportCollInfo.ftl?id="+id+"&op="+"detail","window","",window);
 	}
-	//Ë¢ĞÂÒ³Ãæ
+	//åˆ·æ–°é¡µé¢
 	function flushPage() {
 		ds.flushData(1);
 	}
@@ -78,11 +78,11 @@
 			record = record.getNextRecord();
 		}
 		if(!hasSelect) {
-			alert("ÇëÑ¡ÔñÏàÓ¦µÄ¼ÇÂ¼£¡");
+			alert("è¯·é€‰æ‹©ç›¸åº”çš„è®°å½•ï¼");
 			return false;
 		}
 		if(hasAudit) {
-			if(!confirm("ËùÑ¡¼ÇÂ¼°üº¬ÒÑÉóºË¼ÇÂ¼£¬È·¶¨ÒªÖØĞÂÉóºËÂğ?")) {
+			if(!confirm("æ‰€é€‰è®°å½•åŒ…å«å·²å®¡æ ¸è®°å½•ï¼Œç¡®å®šè¦é‡æ–°å®¡æ ¸å—?")) {
 				return false;
 			}
 		}
@@ -93,12 +93,12 @@
 		var approveStatusChoose = ds.getValue("approveStatusChoose");
 		var approveResultChoose = ds.getValue("approveResultChoose");
 		if(!approveStatusChoose.length > 0) {
-			alert("ÇëÑ¡ÔñÉóºË½á¹û£¡");
+			alert("è¯·é€‰æ‹©å®¡æ ¸ç»“æœï¼");
 	   		return false;
 		}
 		if (approveStatusChoose == "02" && approveResultChoose.length < 1)
 		   	{
-		   		alert("ÉóºË½á¹û²»Í¨¹ı£¬ÉóºËËµÃ÷±ØĞëÌîĞ´£¡");
+		   		alert("å®¡æ ¸ç»“æœä¸é€šè¿‡ï¼Œå®¡æ ¸è¯´æ˜å¿…é¡»å¡«å†™ï¼");
 		   		return false;
 		   	}
 		ds.setParameter("approveStatusChoose",approveStatusChoose);
@@ -106,13 +106,13 @@
 		subwindow_contractAuditSubWindow.hide();
 		return true;
 	}
-	//·µ»Ø
+	//è¿”å›
 	function btBack_onClick() {
 		subwindow_contractAuditSubWindow.hide();
 	}
 
 	function btAuditSave_postSubmit(button){
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 		flushPage();
 	}
 </script>

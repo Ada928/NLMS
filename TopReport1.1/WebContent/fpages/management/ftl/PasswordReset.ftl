@@ -1,13 +1,13 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="²Ù×÷Ô±ÃÜÂëÖØÖÃ">
+<@CommonQueryMacro.page title="æ“ä½œå‘˜å¯†ç é‡ç½®">
 
 <@CommonQueryMacro.CommonQuery id="passwordReset" >
 
 <table width="">
 <tr>
 <td>
-			<@CommonQueryMacro.Group id="group1" label="²Ù×÷Ô±ÃÜÂëÖÃ" fieldStr="tlrno" colNm=2/>
+			<@CommonQueryMacro.Group id="group1" label="æ“ä½œå‘˜å¯†ç ç½®" fieldStr="tlrno" colNm=2/>
 </td>
 </tr>
 <tr>

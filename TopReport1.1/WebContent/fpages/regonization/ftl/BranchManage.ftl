@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign opType=RequestParameters["opType"]?default("")>
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="ÒøĞĞ»ú¹¹ĞÅÏ¢Î¬»¤">
+<@CommonQueryMacro.page title="é“¶è¡Œæœºæ„ä¿¡æ¯ç»´æŠ¤">
 <@CommonQueryMacro.CommonQuery id="BranchManage" init="true" submitMode="current">
    <table align="center" width="100%">
 	<tr>
 		<td  align="left">
-				<@CommonQueryMacro.Group id="BranchManageGroup" label="ÒøĞĞ»ú¹¹ĞÅÏ¢Î¬»¤"
+				<@CommonQueryMacro.Group id="BranchManageGroup" label="é“¶è¡Œæœºæ„ä¿¡æ¯ç»´æŠ¤"
 	        			  fieldStr="brcode,brno,brname,address,postno,teleno" colNm=4/>
 		</td>
 	</tr>
@@ -43,20 +43,20 @@
 	function checkValue() {
 		if (BranchManage_dataset.getValue("blnUpBrcode") == ""
 				&& BranchManage_dataset.getValue("brclass") != "1") {
-			alert("×Ö¶Î[ÉÏ¼¶»ú¹¹]²»Ó¦Îª¿Õ¡£");
+			alert("å­—æ®µ[ä¸Šçº§æœºæ„]ä¸åº”ä¸ºç©ºã€‚");
 			return false;
 		}
 
 		if (BranchManage_dataset.getValue("brclass") == "") {
-			alert("×Ö¶Î[»ú¹¹¼¶±ğ]²»Ó¦Îª¿Õ¡£");
+			alert("å­—æ®µ[æœºæ„çº§åˆ«]ä¸åº”ä¸ºç©ºã€‚");
 			return false;
 		}
 		return true;
 	}
 	
-	//±£´æºóË¢ĞÂµ±Ç°Ò³
+	//ä¿å­˜ååˆ·æ–°å½“å‰é¡µ
 	function btSave_postSubmit(button) {
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 		button.url = "/fpages/regonization/ftl/BranchEntry.ftl";
 	}
 </script>

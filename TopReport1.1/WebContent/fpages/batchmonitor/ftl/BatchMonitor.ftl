@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="批量监控">
+<@CommonQueryMacro.page title="鎵归噺鐩戞帶">
 <@CommonQueryMacro.CommonQuery id="BatchStepList"  init="true" navigate="true">
 	           <table align="left">
 	           		 <tr align="left">
 			       			<td valign="top" rowspan="1"  width="350">
-			       				<@CommonQueryMacro.Interface id="Interface1" label="查询条件" colNm=4 />
+			       				<@CommonQueryMacro.Interface id="Interface1" label="鏌ヨ鏉′欢" colNm=4 />
 			        		</td>
       				 </tr>
       				 <tr height="10">
@@ -13,7 +13,7 @@
       				 </tr>
 			         <tr>
 				          <td valign="top">
-				                                         批量运行信息
+				                                         鎵归噺杩愯淇℃伅
 	                      	    <@CommonQueryMacro.DataTable id ="datatable2" fieldStr="batchstatus,batchcurrentstep,batchsubstepcount,successstepcount,failstepcount" maxRow="1" readonly="true" width="780"/></br>
 				          </td>
 				     </tr>
@@ -50,7 +50,7 @@ for(var index=1;index<=BatchStepList_dataset.pageCount;index++){
   BatchStepList_dataset.flushData(index);
   var findRunning=false;
   for(var rowIndex=1;rowIndex<=BatchStepList_dataset.pageSize;rowIndex++){
-    if(BatchStepList_dataset.getValue("status")=='运行'){
+    if(BatchStepList_dataset.getValue("status")=='杩愯'){
       findRunning=true;
       break;
     }
@@ -86,11 +86,11 @@ function datatable2_failstepcount_onRefresh(cell, value, record)
 }
 
 function datatable1_status_onRefresh(cell, value, record){
-if(value=='异常中断'){
+if(value=='寮傚父涓柇'){
  cell.style.color="red";
-}else if(value=='运行'){
+}else if(value=='杩愯'){
 cell.style.color='orange';
-}else if(value=='结束'){
+}else if(value=='缁撴潫'){
 cell.style.color='green';
 }else{
 cell.style.color='blue';

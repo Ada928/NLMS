@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs[ "/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="ÉÌÐÐ¹²ÏíºÚÃûµ¥²éÑ¯">
+<@CommonQueryMacro.page title="ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯">
 <@CommonQueryMacro.CommonQuery id="ShareBankBlackListQuery" init="true" submitMode="current" navigate="false">
 	<table align="center" width="100%">
 		<tr>
 			<td colspan="2">
-				<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" colNm=4/></td>
+				<@CommonQueryMacro.Interface id="intface" label="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½" colNm=4/></td>
 		</tr>
 		<tr>
 			<td>
@@ -22,7 +22,7 @@
 				<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="100%" resize="true" defaultZoom="normal" minimize="false"
 					maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 					<div align="center">
-						<@CommonQueryMacro.Group id="group1" label="ÉÌÐÐºÚÃûµ¥ÏêÇé" width="100%" height="100%"
+						<@CommonQueryMacro.Group id="group1" label="ï¿½ï¿½ï¿½Ðºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" width="100%" height="100%"
 							 fieldStr="id,bankCode,bankName,accountType,brattr,certificateType,blacklistType,"+ 
 	        			  "share,valid,del,approve,certificateNumber,clientName,clientEnglishName,validDate,"+
 	        			  "blacklistedDate,blacklistedOperator,blacklistedReason,unblacklistedDate,unblacklistedOperator,"+
@@ -37,7 +37,7 @@
 		</tr>
 	</table>
 </@CommonQueryMacro.CommonQuery>
-<script language="JavaScript">//¶¨Î»Ò»ÐÐ¼ÇÂ¼
+<script language="JavaScript">//ï¿½ï¿½Î»Ò»ï¿½Ð¼ï¿½Â¼
 
 	function locate(id) {
 		var record = ShareBankBlackListQuery_dataset.find([ "id" ], [ id ]);
@@ -46,7 +46,7 @@
 		}
 	}
 
-	//Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+	//Õ¹Ê¾ï¿½Ô±È¹ï¿½ï¿½Üµï¿½js
 	function datatable1_id_onRefresh(cell, value, record) {
 		if (record) {
 			var id = record.getValue("id");
@@ -66,7 +66,7 @@
 		//btDetail.click();
 		subwindow_signWindow.show();
 	}
-	//¹Ø¸¡¶¯´°¿Ú,ÊÍ·Ådataset
+	//ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½Í·ï¿½dataset
 	function signWindow_floatWindow_beforeClose(subwindow) {
 		ShareBankBlackListQuery_dataset.cancelRecord();
 		return true;

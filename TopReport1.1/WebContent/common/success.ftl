@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="Ёи╧╕">
+<@CommonQueryMacro.page title="Ф┬░Е┼÷">
 <table align="left">
 
 <tr>
@@ -18,7 +18,7 @@
   <#if (workflowTlrno == 'XXXXXXXX')>
    <tr>
     <td height="71" valign="top" background="${contextPath}/images/info_f6.gif"><img src="${contextPath}/images/info_f5.gif" width="56" height="30"></td>
-    <td align="center" class="errors"><font face="arial" color="red"> дЗ╣д╡ывВнч╥╗╫Ьппобх╔ё╛х╥хойг╥ЯспиХжцоЮс╕х╗оч╣деДжцё║${workflowTlrno} нчхкдэ╡ывВ</font>
+    <td align="center" class="errors"><font face="arial" color="red"> Ф┌╗Г └Ф⌠█Д╫°Ф≈═ФЁ∙Х©⌡Х║▄Д╦▀Е▌╩О╪▄Г║╝Х╝╓Ф≤╞Е░╕Ф°┴Х╝╬Г╫╝Г⌡╦Е╨■Ф²┐И≥░Г └И┘█Г╫╝О╪│${workflowTlrno} Ф≈═Д╨╨Х┐╫Ф⌠█Д╫°</font>
     </td>
     <td width="26" background="${contextPath}/images/info_f11.gif">&nbsp;</td>
   </tr>
@@ -26,14 +26,14 @@
   <#if (workflowTlrno == '')>
   <tr>
     <td height="71" valign="top" background="${contextPath}/images/info_f6.gif"><img src="${contextPath}/images/info_f5.gif" width="56" height="30"></td>
-    <td align="center" class="errors"><font color="red">дЗ╣д╡ывВряЁи╧╕ё║ </font></td>
+    <td align="center" class="errors"><font color="red">Ф┌╗Г └Ф⌠█Д╫°Е╥╡Ф┬░Е┼÷О╪│ </font></td>
     <td width="26" background="${contextPath}/images/info_f11.gif">&nbsp;</td>
   </tr>
   </#if>
   <#if (workflowTlrno != 'XXXXXXXX') && (workflowTlrno != '')>
   <tr>
     <td height="71" valign="top" background="${contextPath}/images/info_f6.gif"><img src="${contextPath}/images/info_f5.gif" width="56" height="30"></td>
-    <td align="center" class="errors">дЗ╣д╡ывВряЁи╧╕ё║обр╩хннЯря╬╜╥жеД╦Ь║╬${workflowTlrno}║©╡ывВт╠</td>
+    <td align="center" class="errors">Ф┌╗Г └Ф⌠█Д╫°Е╥╡Ф┬░Е┼÷О╪│Д╦▀Д╦─Д╩╩Е┼║Е╥╡Г╩▐Е┬├И┘█Г╩≥Ц─░${workflowTlrno}Ц─▒Ф⌠█Д╫°Е▒≤</td>
     <td width="26" background="${contextPath}/images/info_f11.gif">&nbsp;</td>
   </tr>
   </#if>

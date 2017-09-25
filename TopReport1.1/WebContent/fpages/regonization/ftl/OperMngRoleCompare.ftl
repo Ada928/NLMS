@@ -1,7 +1,7 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign st=RequestParameters["st"]?default("")>
 <#assign flag=RequestParameters["flag"]?default("")>
-<@CommonQueryMacro.page title="����Ա��ɫ����">
+<@CommonQueryMacro.page title="操作员角色管理">
 <table width="100%" align="left">
 <tr>
 <td width="50%" valign="top">
@@ -11,22 +11,22 @@
 				<@CommonQueryMacro.CommonQuery id="operMngModCom" init="true" navigate="false" submitMode="all" >
 						<table frame=void class="grouptable" width="100%">
 						<tr>
-							<td id="oldHead" nowrap colspan="4" style="BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #d6e5f8; HEIGHT: 25px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid" align="center"> �޸�ǰ </td>
+							<td id="oldHead" nowrap colspan="4" style="BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #d6e5f8; HEIGHT: 25px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid" align="center"> 修改前 </td>
 						</tr>
 						<tr>
-							<td align="center" nowrap class="labeltd" width="25%"> ����Ա�� </td>
+							<td align="center" nowrap class="labeltd" width="25%"> 操作员号 </td>
 							<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrno"/></td>
-							<td align="center" nowrap class="labeltd"  width="25%"> ����Ա���� </td>
+							<td align="center" nowrap class="labeltd"  width="25%"> 操作员名称 </td>
 							<td  class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrName" /></td>
 						</tr>
 						<tr>
-		                  <td nowrap class="labeltd">��Ч״̬</td>
+		                  <td nowrap class="labeltd">有效状态</td>
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="flag"/></td>
-						  <td nowrap class="labeltd">����״̬</td>
+						  <td nowrap class="labeltd">锁定状态</td>
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="isLock"/></td>
 						</tr>
 						<tr>
-		                  <td nowrap class="labeltd">��¼״̬</td>
+		                  <td nowrap class="labeltd">登录状态</td>
 						  <td class="datatd" nowrap colspan="3"><@CommonQueryMacro.SingleField fId="status"/></td>
 						</tr>
 					   </table>
@@ -36,7 +36,7 @@
 		<tr>
 			<td>
 				<@CommonQueryMacro.CommonQuery id="bctlMngEntryCom" init="true" submitMode="all" navigate="false">
-					<@CommonQueryMacro.GroupBox id="guoup1" label="��Ȩ������Ϣ" expand="true">
+					<@CommonQueryMacro.GroupBox id="guoup1" label="授权机构信息" expand="true">
 						<table frame=void width="100%">
 					      	<tr>
 					      		<td valign="top">
@@ -52,7 +52,7 @@
 		<tr>
 			<td width="100%">
 				<@CommonQueryMacro.CommonQuery id="operMngRoleInfoCom" init="true" submitMode="selected" navigate="false">
-					<@CommonQueryMacro.GroupBox id="guoup2" label="��λ��Ϣ" expand="true">
+					<@CommonQueryMacro.GroupBox id="guoup2" label="岗位信息" expand="true">
 						<table frame=void width="100%">
 					      	<tr>
 					      		<td valign="top">
@@ -74,10 +74,10 @@
 			<td width="100%">
 				<table class="grouptable" width="100%">
 					<tr>
-						<td nowrap style="BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #d6e5f8; HEIGHT: 25px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid" align="center"> �޸ĺ� </td>
+						<td nowrap style="BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #d6e5f8; HEIGHT: 25px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid" align="center"> 修改后 </td>
 					</tr>
 					<tr>
-						<td nowrap style="BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-LEFT: 10px; HEIGHT: 25px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid" align="center"> �������� </td>
+						<td nowrap style="BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-LEFT: 10px; HEIGHT: 25px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid" align="center"> 重置密码 </td>
 					</tr>
 				</table>
 			</td>
@@ -87,22 +87,22 @@
 				<@CommonQueryMacro.CommonQuery id="operMngModComSeri" init="true" navigate="false" submitMode="all" >
 						<table frame=void class="grouptable" width="100%">
 						<tr>
-							<td nowrap colspan="4" style="BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #d6e5f8; HEIGHT: 25px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid" align="center"> �޸ĺ� </td>
+							<td nowrap colspan="4" style="BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-LEFT: 10px; BACKGROUND: #d6e5f8; HEIGHT: 25px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid" align="center"> 修改后 </td>
 						</tr>
 						<tr>
-							<td align="center" nowrap class="labeltd" width="25%"> ����Ա�� </td>
+							<td align="center" nowrap class="labeltd" width="25%"> 操作员号 </td>
 							<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrno"/></td>
-							<td align="center" nowrap class="labeltd"  width="25%"> ����Ա���� </td>
+							<td align="center" nowrap class="labeltd"  width="25%"> 操作员名称 </td>
 							<td  class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrName" /></td>
 						</tr>
 						<tr>
-		                  <td nowrap class="labeltd">��Ч״̬</td>
+		                  <td nowrap class="labeltd">有效状态</td>
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="flag"/></td>
-						  <td nowrap class="labeltd">����״̬</td>
+						  <td nowrap class="labeltd">锁定状态</td>
 						  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="isLock"/></td>
 						</tr>
 						<tr>
-		                  <td nowrap class="labeltd">��¼״̬</td>
+		                  <td nowrap class="labeltd">登录状态</td>
 						  <td class="datatd" nowrap colspan="3"><@CommonQueryMacro.SingleField fId="status"/></td>
 						</tr>
 					   </table>
@@ -112,7 +112,7 @@
 		<tr id="ComSeri2">
 			<td>
 				<@CommonQueryMacro.CommonQuery id="bctlMngEntryComSeri" init="true" submitMode="all" navigate="false">
-					<@CommonQueryMacro.GroupBox id="guoup1" label="��Ȩ������Ϣ" expand="true">
+					<@CommonQueryMacro.GroupBox id="guoup1" label="授权机构信息" expand="true">
 						<table frame=void width="100%">
 					      	<tr>
 					      		<td valign="top">
@@ -128,7 +128,7 @@
 		<tr id="ComSeri3">
 			<td width="100%">
 				<@CommonQueryMacro.CommonQuery id="operMngRoleInfoComSeri" init="true" submitMode="selected" navigate="false">
-					<@CommonQueryMacro.GroupBox id="guoup2" label="��λ��Ϣ" expand="true">
+					<@CommonQueryMacro.GroupBox id="guoup2" label="岗位信息" expand="true">
 						<table frame=void width="100%">
 					      	<tr>
 					      		<td valign="top">

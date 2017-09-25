@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign opType=RequestParameters["opType"]?default("")>
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="¹«°²²¿ºÚÃûµ¥Î¬»¤">
+<@CommonQueryMacro.page title="å…¬å®‰éƒ¨é»‘åå•ç»´æŠ¤">
 <@CommonQueryMacro.CommonQuery id="PoliceBlacklistManage" init="true" submitMode="current">
    <table align="center" width="100%">
 	<tr>
 		<td align="left">
-	       <@CommonQueryMacro.Group id="PoliceBlacklistManageGroup" label="¹«°²²¿ºÚÃûµ¥Î¬»¤"
+	       <@CommonQueryMacro.Group id="PoliceBlacklistManageGroup" label="å…¬å®‰éƒ¨é»‘åå•ç»´æŠ¤"
         		fieldStr="id,blacklistType,accountType,certificateType,certificateNumber,clientName,clientEnglishName,valid,validDate" colNm=4/>
         	<br/>
 		</td>
@@ -43,23 +43,23 @@
         var certificateNumber = PoliceBlacklistManage_dataset.getValue("certificateNumber");
         var certificateType = PoliceBlacklistManage_dataset.getValue("certificateType");
         if (id == null || "" == id) {
-            alert("ºÚÃûµ¥²»ÄÜÎª¿Õ");
+            alert("é»‘åå•ä¸èƒ½ä¸ºç©º");
             return false;
         }
         if (certificateType == null || "" == certificateType) {
-            alert("Ö¤¼şÀàĞÍ²»ÄÜÎª¿Õ");
+            alert("è¯ä»¶ç±»å‹ä¸èƒ½ä¸ºç©º");
             return false;
         }
         if (certificateNumber == null || "" == certificateNumber) {
-            alert("Ö¤¼şºÅ²»ÄÜÎª¿Õ");
+            alert("è¯ä»¶å·ä¸èƒ½ä¸ºç©º");
             return false;
         }
         return true;
 	}
 	
-	//±£´æºóË¢ĞÂµ±Ç°Ò³
+	//ä¿å­˜ååˆ·æ–°å½“å‰é¡µ
 	function btSave_postSubmit(button) {
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 		//button.url = "/fpages/blacklistManage/ftl/PoliceBlacklist.ftl";
 		flushCurrentPage();
 	}

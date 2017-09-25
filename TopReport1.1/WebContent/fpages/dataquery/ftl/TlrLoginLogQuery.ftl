@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÓÃ»§µÇÂ¼ÈÕÖ¾²éÑ¯">
+<@CommonQueryMacro.page title="ç”¨æˆ·ç™»å½•æ—¥å¿—æŸ¥è¯¢">
 
 <@CommonQueryMacro.CommonQueryTab id="tlrLoginLogQueryTabs" navigate="false" currentTab="TlrLoginLogQuery">
 <@CommonQueryMacro.CommonQuery id="TlrLoginLogQuery" init="true" submitMode="selected" navigate="false">
@@ -9,7 +9,7 @@
 <table align="left" width="100%">
     <tr>
 		<td>
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" colNm=4 />
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4 />
 		</td>
 	</tr>
   

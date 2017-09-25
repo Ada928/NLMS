@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="¶¨Ê±ÈÎÎñÈÕÖ¾²éÑ¯">
+<@CommonQueryMacro.page title="å®šæ—¶ä»»åŠ¡æ—¥å¿—æŸ¥è¯¢">
 <table align="left" width="90%">
 	<tr>
 		<td>
@@ -8,7 +8,7 @@
 			<table width="100%">
 				<tr>
 					<td colspan="2" valign="top">
-						<@CommonQueryMacro.Interface id="interface1" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm="6"/>
+						<@CommonQueryMacro.Interface id="interface1" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm="6"/>
 					</td>
 				</tr>
 				<tr>
@@ -25,7 +25,7 @@
 					<td colspan="2">
 						<@CommonQueryMacro.FloatWindow id="logdetail" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 							<div align="center">
-								<@CommonQueryMacro.Group id="group1" label="ÏêÏ¸" fieldStr="quartzName,execTm,endTm,quartzResult,remark" colNm=4/>
+								<@CommonQueryMacro.Group id="group1" label="è¯¦ç»†" fieldStr="quartzName,execTm,endTm,quartzResult,remark" colNm=4/>
 								<br/>
 							</div>
 						</@CommonQueryMacro.FloatWindow>
@@ -37,18 +37,18 @@
 	</tr>
 </table>
 <script language="JavaScript">
-	//¹¤×÷Ê±¼äÄ¬ÈÏµ±ÌìÊ±¼ä
+	//å·¥ä½œæ—¶é—´é»˜è®¤å½“å¤©æ—¶é—´
 
 	function datatable1_opr_onRefresh(cell,value,record) {
 		if(null != record) {
 			var id = record.getValue("id");
-			cell.innerHTML="<center><a href=\"javascript:onLogDetail('"+id+"')\">ÏêÏ¸</a></center>";
+			cell.innerHTML="<center><a href=\"javascript:onLogDetail('"+id+"')\">è¯¦ç»†</a></center>";
 		} else {
 			cell.innerHTML = "";
 		}
 	}
 
-	//¶¨Î»Ò»ĞĞ¼ÇÂ¼
+	//å®šä½ä¸€è¡Œè®°å½•
 	function locate(id) {
 		var record = BiQuartzJobLog_dataset.find(["id"],[id]);
 		if(record) {

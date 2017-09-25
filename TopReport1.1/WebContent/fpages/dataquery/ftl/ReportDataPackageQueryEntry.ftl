@@ -4,7 +4,7 @@
 <table  width="1000px" align="left">
 <tr >
 	<td align="left" colspan="2">
-	Êı¾İ²éÑ¯ &gt; ÉÏ±¨Êı¾İ°ü²éÑ¯
+	æ•°æ®æŸ¥è¯¢ &gt; ä¸ŠæŠ¥æ•°æ®åŒ…æŸ¥è¯¢
 	</td>
 </tr>
 <tr>
@@ -18,7 +18,7 @@
 <table width="100%">
   <tr>
 		<td>
-			<@CommonQueryMacro.Interface id="interface" label="ÉÏ±¨Êı¾İ°ü²éÑ¯" colNm="4"/>
+			<@CommonQueryMacro.Interface id="interface" label="ä¸ŠæŠ¥æ•°æ®åŒ…æŸ¥è¯¢" colNm="4"/>
 		</td>
 </tr>
 </table>
@@ -55,7 +55,7 @@
   	<td>
 	<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 		<div align="center">
-			<@CommonQueryMacro.Group id="group1" label="ÉÏ±¨Êı¾İ°ü²éÑ¯ÏêÏ¸"
+			<@CommonQueryMacro.Group id="group1" label="ä¸ŠæŠ¥æ•°æ®åŒ…æŸ¥è¯¢è¯¦ç»†"
 			  fieldStr="id,apptype,currentFileName1,brNo,workdate,crtTm,repFileName,repTm,filePack,repErrType,totalrecords,sucrecords,falrecords,isImpRep" colNm=4/>
 			 </br>
 		</div>
@@ -70,7 +70,7 @@
 <script type="text/javascript">
 	
 	function initCallGetter_post(){
-		//interfaceÀï²éÑ¯µÄÉèÖÃ¹¤×÷ÈÕÆÚÄ¬ÈÏµ±Ìì
+		//interfaceé‡ŒæŸ¥è¯¢çš„è®¾ç½®å·¥ä½œæ—¥æœŸé»˜è®¤å½“å¤©
 		btErr.disable(true);
 		btExpSubFile.disable(true);
 		btExpRepFile.disable(true);
@@ -79,7 +79,7 @@
 		ReportDataPackageQueryEntry_interface_dataset.setValue("qbusiType",defaultType);
 	}
 
-     	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+     	//å®šä½ä¸€æ¡è®°å½•
 	function locate(id) {
 		var record = ReportDataPackageDetailEntry_dataset.find(["id"],[id]);
 		if (record) {
@@ -104,13 +104,13 @@
 	}
 
 
-     //µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+     //å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function receiptFile_id_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			cell.innerHTML = "<center><a href=\"JavaScript:showDetail('"+id+"')\">"+value+"</a></center>";
 		}else{
-			//¼ÇÂ¼²»´æÔÚµÄÊ±ºò
+			//è®°å½•ä¸å­˜åœ¨çš„æ—¶å€™
 			cell.innerHTML = "&nbsp;";
 		}
 	}
@@ -140,7 +140,7 @@
 	   	ReportDataPackageDetailEntry_dataset.setFieldReadOnly("isImpRep",true);
 	   	subwindow_signWindow.show();
 	}
-    		//¹Ø¸¡¶¯´°¿Ú,ÊÍ·Ådataset
+    		//å…³æµ®åŠ¨çª—å£,é‡Šæ”¾dataset
 	function signWindow_floatWindow_beforeClose(subwindow) {
 		ReportDataPackageDetailEntry_dataset.cancelRecord();
 		return true;
@@ -184,11 +184,11 @@
 		if (repErrType == "01") {
 			var paramMap = new Map();
 		   	paramMap.put("recId", id);
-		   	loadPageWindows("userWin", "»ØÖ´ÎÄ¼şĞÅÏ¢", "/fpages/dataquery/ftl/ReportAlreadySubInfo.ftl", paramMap, "winZone");
+		   	loadPageWindows("userWin", "å›æ‰§æ–‡ä»¶ä¿¡æ¯", "/fpages/dataquery/ftl/ReportAlreadySubInfo.ftl", paramMap, "winZone");
 		} else {
 			var paramMap = new Map();
 		   	paramMap.put("recId", id);
-		   	loadPageWindows("userWin", "»ØÖ´ÎÄ¼şĞÅÏ¢", "/fpages/dataquery/ftl/ReportAlreadySubInfoRecordErr.ftl", paramMap, "winZone");
+		   	loadPageWindows("userWin", "å›æ‰§æ–‡ä»¶ä¿¡æ¯", "/fpages/dataquery/ftl/ReportAlreadySubInfoRecordErr.ftl", paramMap, "winZone");
 		}
 	}
 

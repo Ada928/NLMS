@@ -1,4 +1,4 @@
-<#--Result 模板　适用了Tag方式-->
+<#--Result 妯℃澘銆�閫傜敤浜員ag鏂瑰紡-->
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <@CommonQueryMacro.page title="">
 <@CommonQueryMacro.CommonQueryForRequest>

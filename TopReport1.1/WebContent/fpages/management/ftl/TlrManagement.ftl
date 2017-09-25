@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="²Ù×÷Ô±¹ÜÀí">
+<@CommonQueryMacro.page title="æ“ä½œå‘˜ç®¡ç†">
 <table align="left" width="100%">
 	<tr>
 		<td valign="top" rowspan="1"  valign="top">
@@ -19,7 +19,7 @@
 			<table align="left">
 					<tr>
 		       			<td rowspan="1"  valign="top"  width="500">
-		        		<@CommonQueryMacro.Group id="group1" label="²Ù×÷Ô±ĞÅÏ¢" fieldStr="brno,tlrno,tlrName,defRoleid,status,creatDate,latelyLoginTime,latelyLogoutTime,loginIp,flag" colNm=4/>
+		        		<@CommonQueryMacro.Group id="group1" label="æ“ä½œå‘˜ä¿¡æ¯" fieldStr="brno,tlrno,tlrName,defRoleid,status,creatDate,latelyLoginTime,latelyLogoutTime,loginIp,flag" colNm=4/>
 		        		</td>
 		      		</tr>
 		      		<tr>
@@ -70,14 +70,14 @@
 	function btdel_onClickCheck(button) {
 		var tlrno = Management_TlrInfoEx_dataset.getValue("tlrno");
 		var tlrnoname = Management_TlrInfoEx_dataset.getValue("tlrnoName");
-		var msg = "É¾³ı²Ù×÷Ô±£º" + tlrno + "-" + tlrnoname + "¼°ÆäËùÓĞ¸ÚÎ»ĞÅÏ¢£¬ÇëÈ·ÈÏ£¿";
+		var msg = "åˆ é™¤æ“ä½œå‘˜ï¼š" + tlrno + "-" + tlrnoname + "åŠå…¶æ‰€æœ‰å²—ä½ä¿¡æ¯ï¼Œè¯·ç¡®è®¤ï¼Ÿ";
 		if(confirm(msg)) {
 			return true;
 		}else{
 			return false;
 		}
 	}
-	<!-- ³õÊ¼»¯Ò³Ãæ²ÎÊı -->
+	<!-- åˆå§‹åŒ–é¡µé¢å‚æ•° -->
 	function initCallGetter_post(){
 		var record = Management_TlrRole_dataset.firstUnit;
 		defRoleid_DropDownDataset.clearData();

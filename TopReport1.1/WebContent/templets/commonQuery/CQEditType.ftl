@@ -1,13 +1,13 @@
 
 <#-- date with extra js
-	lable ÏÔÊ¾µÄlable
-	id  Îªdate µÄid , ÔÚtargetDatasetÖÐ½«»á×Ô¶¯Éú³É¸Ãid¶ÔÓ¦µÄfield
-	targetDataset  Ö÷datasetµÄid
-	defaultValue   Ä¬ÈÏÖµ
-	width      text¿òµÄ¿í¶È,Ò»°ãÄ¬ÈÏ²»Ìî
-	require    ÊÇ·ñ±ØÊäµÄ,±ØÊäÎª "true"
-	maxLength  ¿ÉÒÔÊäÈëµÄ×î¶àÎ»Êý
-	readOnly   ÊÇ·ñÊÇÖ»¶ÁµÄ, Ö»¶ÁÎª"true"
+	lable æ˜¾ç¤ºçš„lable
+	id  ä¸ºdate çš„id , åœ¨targetDatasetä¸­å°†ä¼šè‡ªåŠ¨ç”Ÿæˆè¯¥idå¯¹åº”çš„field
+	targetDataset  ä¸»datasetçš„id
+	defaultValue   é»˜è®¤å€¼
+	width      textæ¡†çš„å®½åº¦,ä¸€èˆ¬é»˜è®¤ä¸å¡«
+	require    æ˜¯å¦å¿…è¾“çš„,å¿…è¾“ä¸º "true"
+	maxLength  å¯ä»¥è¾“å…¥çš„æœ€å¤šä½æ•°
+	readOnly   æ˜¯å¦æ˜¯åªè¯»çš„, åªè¯»ä¸º"true"
  -->
 <#macro date lable id  targetDataset defaultValue maxLength width require readOnly >
 		<td  valign=center align="right" style="width: 20%" nowrap>
@@ -40,7 +40,7 @@
 </#macro>
 
 
-<#-- checkbox ´«ÈëµÄ²ÎÊýÎªcheckboxµÄË³Ðò,ÈçÒªµÚÒ»ºÍµÚÈý¸öreadonly ´«ÈëµÄ²ÎÊýÎª"0,2" , Èç¹ûÈ«²¿Îªreadonly Ôò´«ÈëÎª"all"  readOnlyIndex -->
+<#-- checkbox ä¼ å…¥çš„å‚æ•°ä¸ºcheckboxçš„é¡ºåº,å¦‚è¦ç¬¬ä¸€å’Œç¬¬ä¸‰ä¸ªreadonly ä¼ å…¥çš„å‚æ•°ä¸º"0,2" , å¦‚æžœå…¨éƒ¨ä¸ºreadonly åˆ™ä¼ å…¥ä¸º"all"  readOnlyIndex -->
 <#macro checkbox lable checkboxpras  targetDataset defaultValues require readOnlyIndex>
 	<#assign index ="">
 	<#assign lableString ="">
@@ -130,18 +130,18 @@
 </#macro>
 
 <#--text  with extra js
-	lable               ÏÔÊ¾µÄlable
-	id  				Îªtextarea µÄid , ÔÚtargetDatasetÖÐ½«»á×Ô¶¯Éú³É¸Ãid¶ÔÓ¦µÄfield
-	targetDataset  		Ö÷datasetµÄid
-	defaultValue   		Ä¬ÈÏÖµ
-	maxLength		    ¿ÉÒÔÊäÈëµÄ×î´óÎ»Êý
-	width               text¿òµÄ¿í¶È,Ò»°ãÄ¬ÈÏ²»Ìî
-	textType            ¸ÃtextµÄÀàÐÍ,Ö§³ÖµÄÀàÐÍÓÐ string,int,float,double
-	scale               Ð¡ÊýÎ»µÄÎ»Êý,Èç¹ûtextTypeÎªfloat,double,¿ÉÒÔÖ¸¶¨¸ÃÎ»Êý
-	require        		ÊÇ·ñ±ØÊäµÄ,±ØÊäÎª "true"
-	readOnly            ÊÇ·ñÖ»¶Á , Ö»¶ÁÎª"true"
-	mask                Ð£Ñé¹æÔò, ²ÉÓÃÕýÔò±í´ïÊ½ ,²Î¿¼rule.js
-	maskErrorMes        Ð£Ñé³ö´íºóµ¯³öÀ´µÄÐ£ÑéÐÅÏ¢
+	lable               æ˜¾ç¤ºçš„lable
+	id  				ä¸ºtextarea çš„id , åœ¨targetDatasetä¸­å°†ä¼šè‡ªåŠ¨ç”Ÿæˆè¯¥idå¯¹åº”çš„field
+	targetDataset  		ä¸»datasetçš„id
+	defaultValue   		é»˜è®¤å€¼
+	maxLength		    å¯ä»¥è¾“å…¥çš„æœ€å¤§ä½æ•°
+	width               textæ¡†çš„å®½åº¦,ä¸€èˆ¬é»˜è®¤ä¸å¡«
+	textType            è¯¥textçš„ç±»åž‹,æ”¯æŒçš„ç±»åž‹æœ‰ string,int,float,double
+	scale               å°æ•°ä½çš„ä½æ•°,å¦‚æžœtextTypeä¸ºfloat,double,å¯ä»¥æŒ‡å®šè¯¥ä½æ•°
+	require        		æ˜¯å¦å¿…è¾“çš„,å¿…è¾“ä¸º "true"
+	readOnly            æ˜¯å¦åªè¯» , åªè¯»ä¸º"true"
+	mask                æ ¡éªŒè§„åˆ™, é‡‡ç”¨æ­£åˆ™è¡¨è¾¾å¼ ,å‚è€ƒrule.js
+	maskErrorMes        æ ¡éªŒå‡ºé”™åŽå¼¹å‡ºæ¥çš„æ ¡éªŒä¿¡æ¯
  -->
 <#macro text lable id targetDataset defaultValue maxLength width textType scale  require readOnly mask maskErrorMes>
 	 <td  valign=center align="right" style="width: 20%" nowrap>
@@ -166,18 +166,18 @@
 </#macro>
 
 <#-- select with extra js
-	lable  ÏÔÊ¾µÄlable
-	id     Îªselect µÄid , ÒªÇófileMap ÖÐ±ØÐë°üº¬¸ÃidµÄÖµÓ³Éä , ÕâÑùÔÚtargetDatasetÖÐ½«»á×Ô¶¯Éú³É¸Ãid¶ÔÓ¦µÄfield
-	selsetValues   Îªselect µÄËùÓÐÑ¡Ïî
-	targetDataset  Ö÷datasetµÄid
-	defaultValue   ÏÂÀ­¿òµÄÄ¬ÈÏÖµ
-	fileMap  ÖµÓ³Éä ,¸ñÊ½Èç"contactmanidtype=datano;contactmanidtypename=dataname"  ÆäÖÐ±ØÐë°üº¬idµÄÓ³Éä,Ö÷datasetµÄ×Ö¶Î·Å=×ó±ß,selectµÄÖµ·Å=ÓÒ±ß
-	ddsfiles ÏÂÀ­Ñ¡Ïî¶ÔÓ¦µÄdatasetµÄËùÓÐÓò
-	field    ÏÂÀ­Ñ¡Ïî¶ÔÓ¦µÄdatasetÖÐÒªÏÔÊ¾³öÀ´µÄÖµ
-	width    ÏÂÀ­¿òµÄ¿í¶È,Ò»°ãÄ¬ÈÏ²»Ìî,ÏÂÀ­¿òµÄ¿í¶È»á±»Ñ¡ÏîÖµ×Ô¶¯³Å¿ª
-	height   ÏÂÀ­¿òµÄ¸ß¶È,¿ÉÒÔÖ¸¶¨¸ÃÖµ,ÕâÑùÏÂÀ­¿ò¿ÉÒÔÏÔÊ¾¸ü¶àµÄÏÂÀ­Ñ¡Ïî
-	require  ¸ÃÏÂÀ­Ñ¡ÏîÊÇ·ñ±ØÊä ,±ØÊäÎª "true"
-	readOnly ÊÇ·ñÊÇ¿É¶ÁµÄ
+	lable  æ˜¾ç¤ºçš„lable
+	id     ä¸ºselect çš„id , è¦æ±‚fileMap ä¸­å¿…é¡»åŒ…å«è¯¥idçš„å€¼æ˜ å°„ , è¿™æ ·åœ¨targetDatasetä¸­å°†ä¼šè‡ªåŠ¨ç”Ÿæˆè¯¥idå¯¹åº”çš„field
+	selsetValues   ä¸ºselect çš„æ‰€æœ‰é€‰é¡¹
+	targetDataset  ä¸»datasetçš„id
+	defaultValue   ä¸‹æ‹‰æ¡†çš„é»˜è®¤å€¼
+	fileMap  å€¼æ˜ å°„ ,æ ¼å¼å¦‚"contactmanidtype=datano;contactmanidtypename=dataname"  å…¶ä¸­å¿…é¡»åŒ…å«idçš„æ˜ å°„,ä¸»datasetçš„å­—æ®µæ”¾=å·¦è¾¹,selectçš„å€¼æ”¾=å³è¾¹
+	ddsfiles ä¸‹æ‹‰é€‰é¡¹å¯¹åº”çš„datasetçš„æ‰€æœ‰åŸŸ
+	field    ä¸‹æ‹‰é€‰é¡¹å¯¹åº”çš„datasetä¸­è¦æ˜¾ç¤ºå‡ºæ¥çš„å€¼
+	width    ä¸‹æ‹‰æ¡†çš„å®½åº¦,ä¸€èˆ¬é»˜è®¤ä¸å¡«,ä¸‹æ‹‰æ¡†çš„å®½åº¦ä¼šè¢«é€‰é¡¹å€¼è‡ªåŠ¨æ’‘å¼€
+	height   ä¸‹æ‹‰æ¡†çš„é«˜åº¦,å¯ä»¥æŒ‡å®šè¯¥å€¼,è¿™æ ·ä¸‹æ‹‰æ¡†å¯ä»¥æ˜¾ç¤ºæ›´å¤šçš„ä¸‹æ‹‰é€‰é¡¹
+	require  è¯¥ä¸‹æ‹‰é€‰é¡¹æ˜¯å¦å¿…è¾“ ,å¿…è¾“ä¸º "true"
+	readOnly æ˜¯å¦æ˜¯å¯è¯»çš„
  -->
 <#macro select lable id  selsetValues  targetDataset defaultValue fileMap ddsfiles field width height require readOnly>
 	<#assign fileMapString ="${fileMap}">
@@ -253,7 +253,7 @@
 
 	  </script>
 </#macro>
-<#-- ´¦ÀíÓÃ»§×Ô¶¨Òå Éú³ÉµÄselect -->
+<#-- å¤„ç†ç”¨æˆ·è‡ªå®šä¹‰ ç”Ÿæˆçš„select -->
 <#macro select2 lable id  CQid  targetDataset defaultValue fileMap  field width height require readOnly>
 	<td  valign=center align="right" style="width: 20%" nowrap>
     	<label extra="fieldlabel" id="fldlabel_${id}" dataset="${targetDataset}" dataField="${id}name" ></label>
@@ -300,15 +300,15 @@
 </#macro>
 
 <#-- staticSelect with extra js
-	lable ÏÔÊ¾µÄlable
-	id  Îªselect µÄid , ÔÚtargetDatasetÖÐ½«»á×Ô¶¯Éú³É¸Ãid¶ÔÓ¦µÄfield
-	selsetValues  Îªselect µÄËùÓÐÑ¡Ïî,Æä¸ñÊ½Îª"0-·ñ;1-ÊÇ",ÕâÑùÈç¹ûÑ¡ÖÐÁË"1-ÊÇ"¾Í»á°Ñ"1"¸³¸øtargetDatasetµÄid
-	targetDataset  Ö÷datasetµÄid
-	defaultValue  ÏÂÀ­¿òµÄÄ¬ÈÏÖµ
-	width  ÏÂÀ­¿òµÄ¿í¶È,Ò»°ãÄ¬ÈÏ²»Ìî,ÏÂÀ­¿òµÄ¿í¶È»á±»Ñ¡ÏîÖµ×Ô¶¯³Å¿ª
-	height ÏÂÀ­¿òµÄ¸ß¶È,¿ÉÒÔÖ¸¶¨¸ÃÖµ,ÕâÑùÏÂÀ­¿ò¿ÉÒÔÏÔÊ¾¸ü¶àµÄÏÂÀ­Ñ¡Ïî
-	require  ¸ÃÏÂÀ­Ñ¡ÏîÊÇ·ñ±ØÊä ,±ØÊäÎª "true"
-	readOnly ÊÇ·ñÊÇÖ»¶ÁµÄ, Ö»¶ÁÎª"true"
+	lable æ˜¾ç¤ºçš„lable
+	id  ä¸ºselect çš„id , åœ¨targetDatasetä¸­å°†ä¼šè‡ªåŠ¨ç”Ÿæˆè¯¥idå¯¹åº”çš„field
+	selsetValues  ä¸ºselect çš„æ‰€æœ‰é€‰é¡¹,å…¶æ ¼å¼ä¸º"0-å¦;1-æ˜¯",è¿™æ ·å¦‚æžœé€‰ä¸­äº†"1-æ˜¯"å°±ä¼šæŠŠ"1"èµ‹ç»™targetDatasetçš„id
+	targetDataset  ä¸»datasetçš„id
+	defaultValue  ä¸‹æ‹‰æ¡†çš„é»˜è®¤å€¼
+	width  ä¸‹æ‹‰æ¡†çš„å®½åº¦,ä¸€èˆ¬é»˜è®¤ä¸å¡«,ä¸‹æ‹‰æ¡†çš„å®½åº¦ä¼šè¢«é€‰é¡¹å€¼è‡ªåŠ¨æ’‘å¼€
+	height ä¸‹æ‹‰æ¡†çš„é«˜åº¦,å¯ä»¥æŒ‡å®šè¯¥å€¼,è¿™æ ·ä¸‹æ‹‰æ¡†å¯ä»¥æ˜¾ç¤ºæ›´å¤šçš„ä¸‹æ‹‰é€‰é¡¹
+	require  è¯¥ä¸‹æ‹‰é€‰é¡¹æ˜¯å¦å¿…è¾“ ,å¿…è¾“ä¸º "true"
+	readOnly æ˜¯å¦æ˜¯åªè¯»çš„, åªè¯»ä¸º"true"
  -->
 <#macro staticSelect lable id  selsetValues  targetDataset  defaultValue width height require readOnly defaultValue>
 	<td  valign=center align="right" style="width: 20%" nowrap>
@@ -346,19 +346,19 @@
 	  </script>
 </#macro>
 
-<#--DataDic Êý¾ÝÏÂÀ­ ÓÃÓÚ½âÎöwhereÀïÃæµÄoption -->
+<#--DataDic æ•°æ®ä¸‹æ‹‰ ç”¨äºŽè§£æžwhereé‡Œé¢çš„option -->
 <#macro selectDataDic lable id targetDataset width height require readOnly defaultValue translated>
 <#assign values = sysDicStr(translated)>
 <#assign fMap=id + "=" + "datano">
 <@select lable=lable id=id  selsetValues=values targetDataset=targetDataset fileMap=fMap ddsfiles="datano,dataname" defaultValue=defaultValue field="dataname"   width=width height=height require=require readOnly=readOnly />
 </#macro>
 
-<#--×Ô¶¨ÒåÊý¾ÝÏÂÀ­ , ²ÉÓÃgetter·½·¨  -->
+<#--è‡ªå®šä¹‰æ•°æ®ä¸‹æ‹‰ , é‡‡ç”¨getteræ–¹æ³•  -->
 <#macro selectGetter lable id targetDataset width height require readOnly defaultValue CQid fieldmap filed>
 <@select2 lable=lable id=id  targetDataset=targetDataset fileMap=fieldmap CQid=CQid  defaultValue=defaultValue field=filed   width=width height=height require=require readOnly=readOnly />
 </#macro>
 
-<#--DataDic Êý¾ÝÏÂÀ­ ÓÃÓÚ½âÎöfiledÀïÃæµÄselect -->
+<#--DataDic æ•°æ®ä¸‹æ‹‰ ç”¨äºŽè§£æžfiledé‡Œé¢çš„select -->
 <#macro selectDataDic2 lable id  translated targetDataset width height require readOnly defaultValue>
 <#assign values = sysDicStr(translated)>
 <#assign fMap=id + "=" + "datano">

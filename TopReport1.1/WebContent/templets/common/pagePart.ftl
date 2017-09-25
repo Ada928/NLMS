@@ -1,9 +1,9 @@
-<#-- ´òÓ¡°´Å¥ -->
+<#-- æ‰“å°æŒ‰é’® -->
 <#macro print>
-<input type=button name=print value="´òÓ¡" onClick="javascript:window.print()" />
+<input type=button name=print value="æ‰“å°" onClick="javascript:window.print()" />
 </#macro>
 
-<#--ÎÄ×ÖÀ¸-->
+<#--æ–‡å­—æ -->
 <#macro bulletin bulletintitle name id>
 <TABLE  id="${id}" name="${name}" WIDTH="99%" BORDER="0" CELLSPACING="1" CELLPADDING="3">
 	<TR><TD>
@@ -27,12 +27,12 @@
 </TABLE>
 </#macro>
 
-<#--»¶Ó­À¸-->
+<#--æ¬¢è¿æ -->
 <#macro welcomepanel OprID>
 <DIV class=main style="WIDTH: 80%">
   <DIV class=panel>
-    <P>µ±Ç°µÇÂ¼¹ñÔ±£º<STRONG style="COLOR: #d3646d">${OprID}</STRONG> 
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÏÖÔÚÊ±¼ä£º
+    <P>å½“å‰ç™»å½•æŸœå‘˜ï¼š<STRONG style="COLOR: #d3646d">${OprID}</STRONG> 
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ç°åœ¨æ—¶é—´ï¼š
       <script language=JavaScript>         
        today=new Date();
        function initArray()
@@ -43,19 +43,19 @@
        }
        
        var d=new initArray(
-       "ĞÇÆÚÈÕ",
-       "ĞÇÆÚÒ»",
-       "ĞÇÆÚ¶ş",
-       "ĞÇÆÚÈı",
-       "ĞÇÆÚËÄ",
-       "ĞÇÆÚÎå",
-       "ĞÇÆÚÁù");
+       "æ˜ŸæœŸæ—¥",
+       "æ˜ŸæœŸä¸€",
+       "æ˜ŸæœŸäºŒ",
+       "æ˜ŸæœŸä¸‰",
+       "æ˜ŸæœŸå››",
+       "æ˜ŸæœŸäº”",
+       "æ˜ŸæœŸå…­");
        
        document.write(
-          "<font color=##000000 style='font-size:9pt;font-family: ËÎÌå'> ",
-          today.getYear(),"Äê",
-          today.getMonth()+1,"ÔÂ",
-          today.getDate(),"ÈÕ   ",
+          "<font color=##000000 style='font-size:9pt;font-family: å®‹ä½“'> ",
+          today.getYear(),"å¹´",
+          today.getMonth()+1,"æœˆ",
+          today.getDate(),"æ—¥   ",
           d[today.getDay()+1],
           "</font>" ); 
       </script>

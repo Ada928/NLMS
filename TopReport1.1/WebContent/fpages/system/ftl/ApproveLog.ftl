@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#--jianxue.zhang-->
-<@CommonQueryMacro.page title="Ö÷¹ÜÈ·ÈÏ">
+<@CommonQueryMacro.page title="ä¸»ç®¡ç¡®è®¤">
 <table width="90%" align="left">
 <tr>
 <td>
@@ -39,14 +39,14 @@
 <script language="javascript" src="${contextPath}/js/topTsk.js"></script>
 <script language="javascript">
 
-		//¶¨Î»Ò»Ìõ¼ÇÂ¼
+		//å®šä½ä¸€æ¡è®°å½•
 		function locate(id) {
 			var record = UndoConfirm_dataset.find([ "id" ], [ id ]);
 			if (record) {
 				UndoConfirm_dataset.setRecord(record);
 			}
 		}
-		//¸øid¼ÓÁ´½Ó
+		//ç»™idåŠ é“¾æ¥
 		function datatable1_id_onRefresh(cell, value, record) {
 			if (record) {
 				var type = record.getValue("intInsId");

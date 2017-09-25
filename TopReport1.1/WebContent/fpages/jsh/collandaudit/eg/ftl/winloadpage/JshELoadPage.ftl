@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="Íâ»ãÕË»§ÄÚ¹º»ã»ù´¡ÐÅÏ¢">
+<@CommonQueryMacro.page title="å¤–æ±‡è´¦æˆ·å†…è´­æ±‡åŸºç¡€ä¿¡æ¯">
 		<@CommonQueryMacro.CommonQuery id="JshEDsLoadPage" init="false" submitMode="all" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -32,7 +32,7 @@
 
 	<script language="JavaScript">
 	
-		//¹¤×÷ÈÕÆÚ
+		//å·¥ä½œæ—¥æœŸ
 		function initCallGetter_post() {
 			<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 			JshEDsLoadPage_interface_dataset.setValue("qworkDateStart","${v_txdate}");

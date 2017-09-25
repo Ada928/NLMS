@@ -2,12 +2,12 @@
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign op="${RequestParameters['op']?default('')}" />
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="ÉÌĞĞºÚÃûµ¥±à¼­">
+<@CommonQueryMacro.page title="å•†è¡Œé»‘åå•ç¼–è¾‘">
 <@CommonQueryMacro.CommonQuery id="BankBlackListEdit" init="true"  submitMode="selected"  navigate="false">
 <table align="center" width="100%">
 	<tr>
       	<td valign="top" colspan="2" >
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=4  />
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4  />
 		</td>
 	</tr>
   	<tr>
@@ -15,7 +15,7 @@
 	</tr>
 	<tr>
 		<td width="100%">
-			<@CommonQueryMacro.GroupBox id="BankBlackListEditGuoup" label="Ñ¡ÔñºÚÃûµ¥ĞÅÏ¢" expand="true">
+			<@CommonQueryMacro.GroupBox id="BankBlackListEditGuoup" label="é€‰æ‹©é»‘åå•ä¿¡æ¯" expand="true">
 				<table frame=void width="100%">
 					<tr>
 						<td colspan="2">
@@ -44,7 +44,7 @@
 		BankBlackListEdit_dataset.setParameter("op", op);
 	}
 	
-	//¶¨Î»Ò»ĞĞ¼ÇÂ¼
+	//å®šä½ä¸€è¡Œè®°å½•
 	function locate(id) {
 		var record = BankBlackListEdit_dataset.find([ "id" ], [ id ]);
 		if (record) {
@@ -52,7 +52,7 @@
 		}
 	}
 
-	//ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñ
+	//ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼
 	function datatable1_opr_onRefresh(cell, value, record) {
 		if (record) {
 			var auditType = record.getValue("auditType");
@@ -62,7 +62,7 @@
 			var tempHtml = "<center>";
 			//if(auditType == "1" || auditType == "2"){
 				tempHtml += "<a href=\"JavaScript:openModifyWindow('" + id
-						+ "')\">ĞŞ¸Ä</a> ";
+						+ "')\">ä¿®æ”¹</a> ";
 			//}
 			cell.innerHTML = tempHtml + "</center>";
 		} else {
@@ -70,7 +70,7 @@
 		}
 	}
 	
-	//Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+	//å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
 	function datatable1_blacklistid_onRefresh(cell, value, record) {
 		if (record) {
 			var id = record.getValue("blacklistid");
@@ -87,7 +87,7 @@
 		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=edit&blacklistid="+id;
 	}
 
-	//ĞŞ¸Ä¹¦ÄÜ
+	//ä¿®æ”¹åŠŸèƒ½
 	function openModifyWindow(id) {
 		BankBlackListEdit_dataset.setParameter("blacklistid", id);
 		btModify.click();
@@ -108,15 +108,15 @@
 		}
 
 		if (chk == 0) {
-			alert("ÇëÖÁÉÙÑ¡ÔñÒ»ÌõºÚÃûµ¥¼ÇÂ¼£¡");
+			alert("è¯·è‡³å°‘é€‰æ‹©ä¸€æ¡é»‘åå•è®°å½•ï¼");
 			return false;
 		} else {
-			confirm("È·¶¨É¾³ıÑ¡ÖĞµÄºÚÃûµ¥£¿");
+			confirm("ç¡®å®šåˆ é™¤é€‰ä¸­çš„é»‘åå•ï¼Ÿ");
 		}
 	}
 
 	function btDel_postSubmit(button) {
-		alert("É¾³ıºÚÃûµ¥ÉêÇëÌá½»³É¹¦£¬ÇëµÈ´ıÉóºË¡£");
+		alert("åˆ é™¤é»‘åå•ç”³è¯·æäº¤æˆåŠŸï¼Œè¯·ç­‰å¾…å®¡æ ¸ã€‚");
 		button.url = "#";
 		flushCurrentPage();
 	}
@@ -125,7 +125,7 @@
 		BankBlackListEdit_dataset.insertRecord();
 	}
 
-	//Ë¢ĞÂµ±Ç°Ò³
+	//åˆ·æ–°å½“å‰é¡µ
 	function flushCurrentPage() {
 		BankBlackListEdit_dataset
 				.flushData(BankBlackListEdit_dataset.pageIndex);
@@ -134,7 +134,7 @@
 
 	/* function doShare(id, select) {
 		locate(id);
-		if(!confirm("È·¶¨·ÖÏíÑ¡ÖĞµÄºÚÃûµ¥£¿")){
+		if(!confirm("ç¡®å®šåˆ†äº«é€‰ä¸­çš„é»‘åå•ï¼Ÿ")){
 			return;
 		} else {
 			BankBlackListEdit_dataset.setParameter("op", "shareT");
@@ -145,7 +145,7 @@
 
 	function doCancelShare(id, select) {
 		locate(id);
-		if(!confirm("È·¶¨È¡Ïû·ÖÏíÑ¡ÖĞµÄºÚÃûµ¥£¿")){
+		if(!confirm("ç¡®å®šå–æ¶ˆåˆ†äº«é€‰ä¸­çš„é»‘åå•ï¼Ÿ")){
 			return;
 		} else {
 			BankBlackListEdit_dataset.setParameter("op", "shareF");
@@ -155,16 +155,16 @@
 	}
 
 	function btShare_postSubmit(button) {
-		alert("·ÖÏíºÚÃûµ¥ÉêÇëÌá½»³É¹¦£¬ÇëµÈ´ıÉóºË¡£");
+		alert("åˆ†äº«é»‘åå•ç”³è¯·æäº¤æˆåŠŸï¼Œè¯·ç­‰å¾…å®¡æ ¸ã€‚");
 		button.url = "#";
-		//Ë¢ĞÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		flushCurrentPage();
 	}
 
 	function btCancelShare_postSubmit(button) {
-		alert("È¡Ïû·ÖÏíºÚÃûµ¥ÉêÇëÌá½»³É¹¦£¬ÇëµÈ´ıÉóºË¡£");
+		alert("å–æ¶ˆåˆ†äº«é»‘åå•ç”³è¯·æäº¤æˆåŠŸï¼Œè¯·ç­‰å¾…å®¡æ ¸ã€‚");
 		button.url = "#";
-		//Ë¢ĞÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		flushCurrentPage();
 	}
  */
