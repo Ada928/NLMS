@@ -1,7 +1,7 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 
-<@CommonQueryMacro.page title="¸ÚÎ»È¨ÏÞ¹ÜÀí">
+<@CommonQueryMacro.page title="å²—ä½æƒé™ç®¡ç†">
 <script type="text/javascript" src="${contextPath}/js/xmlUtil.js"></script>
 <script type="text/javascript" src="${contextPath}/js/tree.js"></script>
 <script type="text/javascript" src="${contextPath}/js/xtree.js"></script>
@@ -53,9 +53,9 @@
 	         document.getElementById(num).checked=true;
 	        }
         }
-        <#--20110818 BMSA-54 È¨ÏÞÊ÷Ä¿Â¼²Ëµ¥¿ÉÈ«Ñ¡ begin -->
+        <#--20110818 BMSA-54 æƒé™æ ‘ç›®å½•èœå•å¯å…¨é€‰ begin -->
 		pcheck();
-		<#--20110818 BMSA-54 È¨ÏÞÊ÷Ä¿Â¼²Ëµ¥¿ÉÈ«Ñ¡ end -->
+		<#--20110818 BMSA-54 æƒé™æ ‘ç›®å½•èœå•å¯å…¨é€‰ end -->
 	}
 	
 </script>

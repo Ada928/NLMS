@@ -21,22 +21,22 @@
 		<TABLE WIDTH=100% CELLSPACING=1 CELLPADDING=0>
 			<TR>
 				<TD align=right><INPUT type=button 
-					title="ÉÏÒ»Äê" class="ymd-prevyear" 
+					title="ä¸Šä¸€å¹´" class="ymd-prevyear" 
 					onclick="newChangeCalendarDate(_new_calendarControl.year-1,_new_calendarControl.month)"></TD>
 				<TD width=1><INPUT id="_calender_year" type=text 
 					maxlength=4 class="ymd-year"
 					onpropertychange="return _new_calendar_year_onpropertychange()"></TD>
 				<TD align=left width=20px><INPUT type=button 
-					title="ÏÂÒ»Äê"  class="ymd-nextyear" 
+					title="ä¸‹ä¸€å¹´"  class="ymd-nextyear" 
 					onclick="newChangeCalendarDate(_new_calendarControl.year+1,_new_calendarControl.month)"></TD>
 				<TD align=right width=20px><INPUT type=button 
-					title="ÉÏ¸öÔÂ"  class="ymd-prevmonth" 
+					title="ä¸Šä¸ªæœˆ"  class="ymd-prevmonth" 
 					onclick="newChangeCalendarDate(_new_calendarControl.preYear,_new_calendarControl.preMonth)"></TD>
 				<TD width=1><INPUT id="_calender_month" type=text 
 					size=2 maxlength=2 class="ymd-month"
 					onpropertychange="return _new_calendar_month_onpropertychange()"></TD>
 				<TD align=left><INPUT type=button 
-					title="ÏÂ¸öÔÂ" class="ymd-nextmonth" 
+					title="ä¸‹ä¸ªæœˆ" class="ymd-nextmonth" 
 					onclick="newChangeCalendarDate(_new_calendarControl.nextYear,_new_calendarControl.nextMonth)"></TD>
 			</TR>
 		</TABLE>
@@ -47,7 +47,7 @@
 			<TABLE><TR><TD>
 			<INPUT type=button id="button_today" value="" class="ymd-today" onclick="_new_calendar_today_onclick()">
 			</TD><TD>
-			<INPUT type=button id="selectBtn" class="ymd-yes" value="È·¶¨" onclick="_selectCalender()">
+			<INPUT type=button id="selectBtn" class="ymd-yes" value="ç¡®å®š" onclick="_selectCalender()">
 			</TD></TR></TABLE>
 		</TD>
 	</TR>
@@ -77,7 +77,7 @@ var _fieldId = "${fieldId}";
 		_calendar_days=new Array(constSunday, constMonday, constTuesday, constWednesday, constThursday, constFriday, constSaturday);
 		_new_calendarControl=new calendar();
 		initElements(CalendarTable);
-		document.getElementById("button_today").value= "±¾ÔÂ"+_new_calendarControl.todayYear+"-"+(_new_calendarControl.todayMonth+1);
+		document.getElementById("button_today").value= "æœ¬æœˆ"+_new_calendarControl.todayYear+"-"+(_new_calendarControl.todayMonth+1);
 		initDropDownBox("custom");
 		initYYYYMMDataset();
 		initValue();

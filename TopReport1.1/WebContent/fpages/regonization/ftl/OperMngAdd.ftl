@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ĞÂÔö²Ù×÷Ô±">
+<@CommonQueryMacro.page title="æ–°å¢æ“ä½œå‘˜">
 <@CommonQueryMacro.CommonQuery id="operMngAdd" init="true" mode="current" navigate="false">
 	<table align="left">
 		<tr align="center">
 			<td >
-				<@CommonQueryMacro.Group id ="table1" label="ÏêÏ¸ĞÅÏ¢" fieldStr="tlrno,tlrName,brcode"colNm=4/>
+				<@CommonQueryMacro.Group id ="table1" label="è¯¦ç»†ä¿¡æ¯" fieldStr="tlrno,tlrName,brcode"colNm=4/>
 			</td>
 		</tr>
       	<tr align="left">
@@ -24,19 +24,19 @@
 	
 	function btAddSave_onClickCheck(button){
 		if (operMngAdd_dataset.length == 0) {
-			alert("ÇëÌîĞ´²Ù×÷Ô±ĞÅÏ¢");
+			alert("è¯·å¡«å†™æ“ä½œå‘˜ä¿¡æ¯");
 			return false;
 		}
 		return true;
 	}
 	function btAddSave_postSubmit(button){
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 		isNew = false;
 		btAddSave.disable(true);
 	}
 	function btAddAuth_onClick(button){
 		if(isNew){
-			alert("ÇëÏÈ±£´æ£¬²ÅÄÜ½øĞĞ½ÇÉ«Éè¶¨");
+			alert("è¯·å…ˆä¿å­˜ï¼Œæ‰èƒ½è¿›è¡Œè§’è‰²è®¾å®š");
 			return;
 		}
 		unfireUserEvent("btSave_postSubmit");
@@ -46,7 +46,7 @@
 	  	paramMap.put("tlrno",tlrno);
 	  	paramMap.put("op",op);
 	  	win.close();
-	  	loadPageWindows("userWin", "½ÇÉ«Éè¶¨", "/fpages/regonization/ftl/OperMngRoleInfo.ftl", paramMap, "winZone");
+	  	loadPageWindows("userWin", "è§’è‰²è®¾å®š", "/fpages/regonization/ftl/OperMngRoleInfo.ftl", paramMap, "winZone");
 	}
 	function btCancel_onClickCheck(button) {
 	     unloadPageWindows("userWin");

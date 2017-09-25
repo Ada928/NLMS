@@ -1,13 +1,13 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Ç©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 
 <@CommonQueryMacro.CommonQueryTab id="BOPForDebtGenTabs" navigate="false" currentTab="BOPForDebtChangInfoGen">
 	<@CommonQueryMacro.CommonQuery id="BOPForDebtChangeInfoGen" init="false" submitMode="all" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface"  label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface"  label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -40,7 +40,7 @@
 	}
 	
     function datatable1_filler2_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			var filler2 = record.getValue("filler2");
 			cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -50,13 +50,13 @@
 	}
 	
 	
-	//ÏêÏ¸
+	//è¯¦ç»†
 	function doDetail(id) {
 		locate(id);
-		showWin("Ë«±ß´û¿î±ä¶¯ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtChangeInfoCol.ftl?id="+id+"&op=detaile&model=gen","report","flushPage()");
+		showWin("åŒè¾¹è´·æ¬¾å˜åŠ¨ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtChangeInfoCol.ftl?id="+id+"&op=detaile&model=gen","report","flushPage()");
 	}
 	
-    //Ë¢ĞÂÊı¾İ
+    //åˆ·æ–°æ•°æ®
 	function flushPage(){
 		
 		BOPForDebtChangeInfoGen_dataset.flushData();

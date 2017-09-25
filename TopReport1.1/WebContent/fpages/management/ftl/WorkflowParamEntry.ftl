@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="¹¤×÷Á÷²ÎÊıÅäÖÃ">
+<@CommonQueryMacro.page title="å·¥ä½œæµå‚æ•°é…ç½®">
 <@CommonQueryMacro.CommonQuery id="workflowParamEntry" init="false" submitMode="all" >
 	<table align="left">
 			<tr valign="center">
        			<td valign="top">
-					<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=4  width="200"/>
+					<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4  width="200"/>
 				</td>
       		</tr>
       	<tr>
@@ -16,7 +16,7 @@
 			<td>&nbsp</td></tr><tr>
       		<td valign="top">
 
-					<@CommonQueryMacro.Group id ="group1" label="ÏêÏ¸ĞÅÏ¢" fieldStr="procName,nodeName,brclass,nodeType1,bizClass,assignType,roleId" colNm=4/>
+					<@CommonQueryMacro.Group id ="group1" label="è¯¦ç»†ä¿¡æ¯" fieldStr="procName,nodeName,brclass,nodeType1,bizClass,assignType,roleId" colNm=4/>
 
 	  		<table>
         		<tr align="left">
@@ -47,7 +47,7 @@
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript">
 var v_procName = "";
-//Á÷³ÌÃûÏÂÀ­¿ò
+//æµç¨‹åä¸‹æ‹‰æ¡†
 function procName_DropDown_onSelect(dropDown,record,editor)
 {
 	v_procName = record.getValue("name");
@@ -57,7 +57,7 @@ function procName_DropDown_onSelect(dropDown,record,editor)
 	}
 	return true;
 }
-//½ÚµãÃûÏÂÀ­¿ò´ò¿ªÇ°
+//èŠ‚ç‚¹åä¸‹æ‹‰æ¡†æ‰“å¼€å‰
 function nodeName_DropDown_beforeOpen(dropDown)
 {
 	v_procName = workflowParamEntry_dataset.getValue("procName");
@@ -73,10 +73,10 @@ function nodeName_DropDown_beforeOpen(dropDown)
 }
 
 function btSave_postSubmit(button){
-	alert("±£´æ³É¹¦");
+	alert("ä¿å­˜æˆåŠŸ");
 	workflowParamEntry_dataset.flushData(0);
 }
-//ADDED BY¡¡HENRY 20110621 BEGIN
+//ADDED BYã€€HENRY 20110621 BEGIN
 function workflowParamEntry_dataset_afterScroll(dataset){
 	var _nodeType1 = dataset.getValue("nodeType1");
 	if("3"==_nodeType1){
@@ -94,6 +94,6 @@ function workflowParamEntry_dataset_afterScroll(dataset){
 	}
 
 }
-//ADDED BY¡¡HENRY 20110621 END
+//ADDED BYã€€HENRY 20110621 END
 </script>
 </@CommonQueryMacro.page>

@@ -2,19 +2,19 @@
 <@CommonQueryMacro.page title="home">
 <@CommonQueryMacro.PortalWin id="poralwin1" cookied="true">
    <@CommonQueryMacro.PortalGroup width="70%">
-	   <@CommonQueryMacro.Portal id="a0" title="°Ù¶ÈÒ»ÏÂ1" height="340" url="/login/welcome.jsp">
+	   <@CommonQueryMacro.Portal id="a0" title="ç™¾åº¦ä¸€ä¸‹1" height="340" url="/login/welcome.jsp">
 	   </@CommonQueryMacro.Portal>
    </@CommonQueryMacro.PortalGroup>
    <@CommonQueryMacro.PortalGroup width="30%">
-	   <@CommonQueryMacro.Portal id="a1" title="»¶Ó­2" height="200" url="/login/welcome.jsp">
+	   <@CommonQueryMacro.Portal id="a1" title="æ¬¢è¿Ž2" height="200" url="/login/welcome.jsp">
 	   </@CommonQueryMacro.Portal>
-	   <@CommonQueryMacro.Portal id="a2" title="ÐÂÎÅ3" height="200" include="true" collapsible="false" url="/login/welcome.jsp">
+	   <@CommonQueryMacro.Portal id="a2" title="æ–°é—»3" height="200" include="true" collapsible="false" url="/login/welcome.jsp">
 	   </@CommonQueryMacro.Portal>
    </@CommonQueryMacro.PortalGroup>
    <@CommonQueryMacro.PortalGroup width="30%">
-	   <@CommonQueryMacro.Portal id="a3" title="»¶Ó­4" height="200" url="/login/welcome.jsp">
+	   <@CommonQueryMacro.Portal id="a3" title="æ¬¢è¿Ž4" height="200" url="/login/welcome.jsp">
 	   </@CommonQueryMacro.Portal>
-	   <@CommonQueryMacro.Portal id="a4" title="ÐÂÎÅ5" height="200" include="true" collapsible="false" url="/login/welcome.jsp">
+	   <@CommonQueryMacro.Portal id="a4" title="æ–°é—»5" height="200" include="true" collapsible="false" url="/login/welcome.jsp">
 	   </@CommonQueryMacro.Portal>
    </@CommonQueryMacro.PortalGroup>
 </@CommonQueryMacro.PortalWin>

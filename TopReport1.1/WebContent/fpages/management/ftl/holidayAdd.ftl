@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="½Ú¼ÙÈÕĞÂÔö">
+<@CommonQueryMacro.page title="èŠ‚å‡æ—¥æ–°å¢">
 
 <@CommonQueryMacro.CommonQuery id="parammng_HolidayDetail" init="false" >
 <table>
@@ -8,7 +8,7 @@
 	<table align="left">
 	      <tr>
       		<td valign="top">
-      			<@CommonQueryMacro.Group id ="groupDetail" label="½Ú¼ÙÈÕĞÂÔö" fieldStr="year" /></br>
+      			<@CommonQueryMacro.Group id ="groupDetail" label="èŠ‚å‡æ—¥æ–°å¢" fieldStr="year" /></br>
       		</td>
       	  </tr>
       	  <tr>
@@ -23,35 +23,35 @@
 <tr><td>
 	<table align="left">
 	<tr>
-		<td id="Ò»ÔÂ">
+		<td id="ä¸€æœˆ">
 		</td>
-		<td id="¶şÔÂ">
+		<td id="äºŒæœˆ">
 		</td>
-		<td id="ÈıÔÂ">
-		</td>
-	</tr>
-	<tr>
-		<td id="ËÄÔÂ">
-		</td>
-		<td id="ÎåÔÂ">
-		</td>
-		<td id="ÁùÔÂ">
+		<td id="ä¸‰æœˆ">
 		</td>
 	</tr>
 	<tr>
-		<td id="ÆßÔÂ">
+		<td id="å››æœˆ">
 		</td>
-		<td id="°ËÔÂ">
+		<td id="äº”æœˆ">
 		</td>
-		<td id="¾ÅÔÂ">
+		<td id="å…­æœˆ">
 		</td>
 	</tr>
 	<tr>
-		<td id="Ê®ÔÂ">
+		<td id="ä¸ƒæœˆ">
 		</td>
-		<td id="Ê®Ò»ÔÂ">
+		<td id="å…«æœˆ">
 		</td>
-		<td id="Ê®¶şÔÂ">
+		<td id="ä¹æœˆ">
+		</td>
+	</tr>
+	<tr>
+		<td id="åæœˆ">
+		</td>
+		<td id="åä¸€æœˆ">
+		</td>
+		<td id="åäºŒæœˆ">
 		</td>
 	</tr>
 </table>
@@ -65,7 +65,7 @@ var saved = true;
 
 
 function btSave_postSubmit(button){
-	alert("±£´æ³É¹¦!");
+	alert("ä¿å­˜æˆåŠŸ!");
 	win.close();
 	parammng_Holiday_dataset.flushData(parammng_Holiday_dataset.pageIndex);
 }
@@ -106,8 +106,8 @@ function genCalendar(year)
 function genOneMonth(year,month,startSunDay)
 {
 	var date = new Date(year,month,1,0,0,0,0);
-	var monthTable = ["Ò»ÔÂ","¶şÔÂ","ÈıÔÂ","ËÄÔÂ","ÎåÔÂ","ÁùÔÂ","ÆßÔÂ","°ËÔÂ","¾ÅÔÂ","Ê®ÔÂ","Ê®Ò»ÔÂ","Ê®¶şÔÂ"];
-	var day = ["ÈÕ ","Ò» ","¶ş ","Èı ","ËÄ ","Îå ","Áù "];
+	var monthTable = ["ä¸€æœˆ","äºŒæœˆ","ä¸‰æœˆ","å››æœˆ","äº”æœˆ","å…­æœˆ","ä¸ƒæœˆ","å…«æœˆ","ä¹æœˆ","åæœˆ","åä¸€æœˆ","åäºŒæœˆ"];
+	var day = ["æ—¥ ","ä¸€ ","äºŒ ","ä¸‰ ","å›› ","äº” ","å…­ "];
 	var container = document.getElementById(monthTable[month]);
 	container.vAlign="top";
 	var table = document.createElement("table");
@@ -174,7 +174,7 @@ function btSave_onClickCheck(button){
 }
 function confrimSave()
 {
-	if(confirm("ÉèÖÃÉĞÎ´±£´æ£¬ĞèÒª±£´æµ±Ç°½Ú¼ÙÈÕÉèÖÃÃ´£¿"))
+	if(confirm("è®¾ç½®å°šæœªä¿å­˜ï¼Œéœ€è¦ä¿å­˜å½“å‰èŠ‚å‡æ—¥è®¾ç½®ä¹ˆï¼Ÿ"))
 	{
 		return saveHoliday(parammng_HolidayDetail_dataset.getValue("year"));
 	}else{

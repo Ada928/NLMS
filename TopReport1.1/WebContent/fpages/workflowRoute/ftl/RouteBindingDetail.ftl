@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ÉóÅúÂ·Ïß°ó¶¨">
+<@CommonQueryMacro.page title="å®¡æ‰¹è·¯çº¿ç»‘å®š">
 <table align="left">
 
 <tr>
@@ -9,7 +9,7 @@
 	<table align="left">
 			<tr>
        		<td valign="top"  valign="top">
-      <@CommonQueryMacro.Group id ="group2" label="ÏêÏ¸ĞÅÏ¢" fieldStr="bussType,startBrhid,brhClass,maxAmt,isBand"colNm=4/>
+      <@CommonQueryMacro.Group id ="group2" label="è¯¦ç»†ä¿¡æ¯" fieldStr="bussType,startBrhid,brhClass,maxAmt,isBand"colNm=4/>
        		</td>
       		</tr>
 
@@ -70,11 +70,11 @@ function btSave2_onClickCheck(button){
 	if(record){
 		var routeId = record.getValue("routeId");
 		if(routeId == null ||routeId ==""){
-		alert("ÎŞ¼ÇÂ¼²»ÄÜ±£´æ");
+		alert("æ— è®°å½•ä¸èƒ½ä¿å­˜");
 		return false;
 		}
 	}else{
-		alert("ÎŞ¼ÇÂ¼²»ÄÜ±£´æ");
+		alert("æ— è®°å½•ä¸èƒ½ä¿å­˜");
 		return false;
 	}
 

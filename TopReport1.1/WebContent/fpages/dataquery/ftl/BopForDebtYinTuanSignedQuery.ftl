@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Ç©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="bopForDebtYinTuanQueryTabs" navigate="false" currentTab="BopForDebtYinTuanSignedQuery">
 		<@CommonQueryMacro.CommonQuery id="bopForDebtYinTuanSignedQuery" init="false" submitMode="current" navigate="false" >
 			<table align="left">
 				<tr>
 					<td>
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 				<tr>
@@ -32,7 +32,7 @@
 		}
 
 		function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var exdebtcode = record.getValue("exdebtcode");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + value + "</a>"
@@ -41,9 +41,9 @@
 			}
 		}
 
-		//ÏêÏ¸ĞÅÏ¢
+		//è¯¦ç»†ä¿¡æ¯
 		function doDetail(id){
-			showWin("ÒøÍÅ´û¿îÇ©Ô¼ĞÅÏ¢Ã÷Ï¸","${contextPath}/fpages/datacollection/ftl/BopForDebtYinTuanSignedInfo.ftl?id=" + id + "&op=detail");
+			showWin("é“¶å›¢è´·æ¬¾ç­¾çº¦ä¿¡æ¯æ˜ç»†","${contextPath}/fpages/datacollection/ftl/BopForDebtYinTuanSignedInfo.ftl?id=" + id + "&op=detail");
 		}
 	</script>
 </@CommonQueryMacro.page>

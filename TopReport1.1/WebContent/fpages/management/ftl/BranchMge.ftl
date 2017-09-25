@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="»ú¹¹ĞÅÏ¢Î¬»¤">
+<@CommonQueryMacro.page title="æœºæ„ä¿¡æ¯ç»´æŠ¤">
 <table align="left">
 
 <tr>
@@ -20,7 +20,7 @@
       		<table>
       		<tr>
       			 <td align="left" valign="top" width="200">
-        			<@CommonQueryMacro.Group id="group1" label="»ú¹¹ĞÅÏ¢Î¬»¤"
+        			<@CommonQueryMacro.Group id="group1" label="æœºæ„ä¿¡æ¯ç»´æŠ¤"
         			<#--
         			 fieldStr="brno,brname,billMailAddr,address,postno,teleno,brclass,blnBranchBrcode,blnUpBrcode,blnManageBrcode,plBrcode,brattr,otherAreaFlag,brManageType" colNm=4/>
         		-->
@@ -55,7 +55,7 @@
         function Management_branchManage_dataset_afterScroll(dataset){
 		 var  v_brcode = Management_branchManage_dataset.getValue("brcode");
 		 var  v_brclass = Management_branchManage_dataset.getValue("brclass");
-		  //Êı¾İ¿âÖĞµÄ¼ÇÂ¼¡£
+		  //æ•°æ®åº“ä¸­çš„è®°å½•ã€‚
 		  if ( v_brcode!="" ){
 		    Management_branchManage_dataset.setFieldReadOnly("brno",true);
 		    Management_branchManage_dataset.setFieldReadOnly("brname",false);
@@ -74,15 +74,15 @@
 			if(field.name=="postno"){
 			v_postno=Management_branchManage_dataset.getValue("postno");
 				if(isNaN(v_postno)){
-					alert("×Ö¶Î¡¾ÓÊÕş±àÂë¡¿±ØĞëÎªÊı×Ö");
+					alert("å­—æ®µã€é‚®æ”¿ç¼–ç ã€‘å¿…é¡»ä¸ºæ•°å­—");
 					Management_branchManage_dataset.setValue2("postno","");
 					return false;
 				}else if( v_postno.indexOf('-') != -1){
-					alert("×Ö¶Î¡¾ÓÊÕş±àÂë¡¿±ØĞëÎªÊı×Ö");
+					alert("å­—æ®µã€é‚®æ”¿ç¼–ç ã€‘å¿…é¡»ä¸ºæ•°å­—");
 					Management_branchManage_dataset.setValue2("postno","");
 					return false;
 				}else if(v_postno.length<6&&v_postno.length!=0){
-					alert("×Ö¶Î¡¾ÓÊÕş±àÂë¡¿±ØĞëÎª6Î»");
+					alert("å­—æ®µã€é‚®æ”¿ç¼–ç ã€‘å¿…é¡»ä¸º6ä½");
 					Management_branchManage_dataset.setValue2("postno","");
 					return false;
 				}
@@ -94,7 +94,7 @@
  				for (var i = 0; i < v_teleno.length; i++){
   				var c = v_teleno.charAt(i);
   				if ( validChar.indexOf(c) == -1){
-  				alert("×Ö¶Î¡¾ÁªÏµµç»°¡¿Ö»ÄÜ°üº¬-ºÍÊı×Ö");
+  				alert("å­—æ®µã€è”ç³»ç”µè¯ã€‘åªèƒ½åŒ…å«-å’Œæ•°å­—");
   				Management_branchManage_dataset.setValue2("teleno","");
   				return false;
   			}
@@ -104,7 +104,7 @@
 
 		function btnAdd_onClick(button){
 			var  v_brcode = Management_branchManage_dataset.getValue("brcode");
-			  //Êı¾İ¿âÖĞµÄ¼ÇÂ¼¡£
+			  //æ•°æ®åº“ä¸­çš„è®°å½•ã€‚
 			  if (v_brcode!=""  ){
 			    Management_branchManage_dataset.setFieldReadOnly("brno",true);
 			     Management_branchManage_dataset.setFieldReadOnly("brname",false);
@@ -117,7 +117,7 @@
 	  function btnAdd_onClickCheck(button)
       {
       	//btnDel.disabled=true;
-  //      alert("Â¼ÈëĞÂÔö¼ÇÂ¼Íêºó£¬°´±£´æÈ·¶¨£¡");
+  //      alert("å½•å…¥æ–°å¢è®°å½•å®Œåï¼ŒæŒ‰ä¿å­˜ç¡®å®šï¼");
         return checkValue();
        }
 
@@ -126,7 +126,7 @@
       		//btnDel.disabled=false;
       		Management_branchManage_dataset.setFieldReadOnly("brno",true);
 			Management_branchManage_dataset.setFieldReadOnly("brname",false);
-        	alert("±£´æ³É¹¦");
+        	alert("ä¿å­˜æˆåŠŸ");
       }
 
       function btSave_onClickCheck(button)
@@ -138,20 +138,20 @@
 		{
 			if(Management_branchManage_dataset.getValue("blnUpBrcode")==""&&Management_branchManage_dataset.getValue("brclass")!="1")
 			{
-				alert("×Ö¶Î[ÉÏ¼¶»ú¹¹]²»Ó¦Îª¿Õ¡£");
+				alert("å­—æ®µ[ä¸Šçº§æœºæ„]ä¸åº”ä¸ºç©ºã€‚");
 	 	 		return false;
 			}
 
 			if(Management_branchManage_dataset.getValue("brclass")=="")
 			{
-				alert("×Ö¶Î[»ú¹¹¼¶±ğ]²»Ó¦Îª¿Õ¡£");
+				alert("å­—æ®µ[æœºæ„çº§åˆ«]ä¸åº”ä¸ºç©ºã€‚");
 	 	 		return false;
 			}
 			return true;
 		}
       //  function btnDel_onClickCheck(button)
      //{
-    //	 alert("Çë°´±£´æÈ·¶¨£¡");
+    //	 alert("è¯·æŒ‰ä¿å­˜ç¡®å®šï¼");
    //  }
 
 	function brclass_DropDown_onSelect(dropDown,record,editor)
@@ -160,7 +160,7 @@
 	   var length  = Management_branchManage_dataset.length;
 		var flag = true;
 	   if(length>1&&brclass=="1"){
-	   		alert("Ö»ÄÜÓĞÒ»¸ö×ÜĞĞ!");
+	   		alert("åªèƒ½æœ‰ä¸€ä¸ªæ€»è¡Œ!");
 	   		flag = false;
 	   }
 		if(!flag){
@@ -169,7 +169,7 @@
 
 	   return true;
 	}
-//È¥µôÒ³Ãæ¡°¹éÊô·ÖĞĞ¡±×Ö¶Î£¬µ«µ±Ñ¡ÖĞ¡°ÉÏ¼¶»ú¹¹¡±×Ö¶ÎÊ±£¬×Ô¶¯¸ø¡°¹éÊô·ÖĞĞ¡±¸³Öµ
+//å»æ‰é¡µé¢â€œå½’å±åˆ†è¡Œâ€å­—æ®µï¼Œä½†å½“é€‰ä¸­â€œä¸Šçº§æœºæ„â€å­—æ®µæ—¶ï¼Œè‡ªåŠ¨ç»™â€œå½’å±åˆ†è¡Œâ€èµ‹å€¼
 	function blnUpBrcode_DropDown_onSelect(dropDown,record,editor)
 	{
 	   var blnUpBrcode  = record.getValue("brcode").trim();

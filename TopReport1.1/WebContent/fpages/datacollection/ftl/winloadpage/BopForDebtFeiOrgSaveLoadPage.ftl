@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Ç©Ô¼ÐÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 <@CommonQueryMacro.CommonQuery id="bopForDebtFeiOrgSaveLoadPage" init="false" submitMode="current" navigate="false" >
 	<table align="left">
 		<tr>
 			<td>
-				<@CommonQueryMacro.Interface id="interface"  label="ÇëÊäÈë²éÑ¯Ìõ¼þ" />
+				<@CommonQueryMacro.Interface id="interface"  label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 			</td>
 		</tr>
 		<tr>

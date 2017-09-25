@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="¸ÚÎ»¹ÜÀí">
+<@CommonQueryMacro.page title="å²—ä½ç®¡ç†">
 <@CommonQueryMacro.CommonQuery id="ebankCustRoleMng" init="true" submitMode="all">
 	<table align="left">
       <tr>
@@ -13,7 +13,7 @@
 
       <tr>
       		<td valign="top">
-      			<@CommonQueryMacro.Group id ="Qgroup1" label="ÏêÏ¸ĞÅÏ¢" fieldStr="id,roleName,status,effectDate,expireDate"/>
+      			<@CommonQueryMacro.Group id ="Qgroup1" label="è¯¦ç»†ä¿¡æ¯" fieldStr="id,roleName,status,effectDate,expireDate"/>
       		</td>
       </tr>
 
@@ -58,7 +58,7 @@
 	}
 
 	function btSave_postSubmit(){
-       alert('±£´æ³É¹¦£¡');
+       alert('ä¿å­˜æˆåŠŸï¼');
        isSave=true;
        ebankCustRoleMng_dataset.flushData(ebankCustRoleMng.pageIndex);
     }
@@ -100,11 +100,11 @@
 	   var paramMap = new Map();
 	   var id = ebankCustRoleMng_dataset.getValue("id");
        if(isNaN(id) || isSave == false) {
-    	alert("ÇëÏÈ½øĞĞ±£´æ£¡");
+    	alert("è¯·å…ˆè¿›è¡Œä¿å­˜ï¼");
    	 	return false;
    	   }
 	   paramMap.put("roleId", id);
-	   loadPageWindows("userWin", "²é¿´ÈËÔ±ĞÅÏ¢", "/fpages/management/ftl/ebankCustRoleMngUser.ftl", paramMap, "winZone");
+	   loadPageWindows("userWin", "æŸ¥çœ‹äººå‘˜ä¿¡æ¯", "/fpages/management/ftl/ebankCustRoleMngUser.ftl", paramMap, "winZone");
 	   return false;
 	}
 
@@ -112,7 +112,7 @@
 
 		var id = ebankCustRoleMng_dataset.getValue("id");
 	    if(isNaN(id) || isSave == false) {
-    		alert("ÇëÏÈ½øĞĞ±£´æ£¡");
+    		alert("è¯·å…ˆè¿›è¡Œä¿å­˜ï¼");
    	 		return false;
    	   }
 	}
@@ -128,25 +128,25 @@
 			var expire = ebankCustRoleMng_dataset.getValue("expireDate");
 			if(effect!="" && expire!="") {
 				if(effect>=expire) {
-					alert("ÉúĞ§ÈÕÆÚÓ¦¸ÃĞ¡ÓÚÊ§Ğ§ÈÕÆÚ");
+					alert("ç”Ÿæ•ˆæ—¥æœŸåº”è¯¥å°äºå¤±æ•ˆæ—¥æœŸ");
 					//ebankCustRoleMng_dataset.setValue2("effectDate","");
 					ebankCustRoleMng_dataset.setValue2("expireDate","");
 					return false;
 				}
 			}
 		}
-/*add by haizhou.li 20101120 ¶Ô¸ÚÎ»Ãû³Æ½øĞĞÊµÊ±¡°Î¨Ò»ĞÔĞ£Ñé¡± begin*/
+/*add by haizhou.li 20101120 å¯¹å²—ä½åç§°è¿›è¡Œå®æ—¶â€œå”¯ä¸€æ€§æ ¡éªŒâ€ begin*/
 		if(field.fieldName == "roleName"){
 			PosiNameCheck_dataset.setParameter("roleName",ebankCustRoleMng_dataset.getValue("roleName"));
 			PosiNameCheck_dataset.flushData(0);
 			var v_flag = PosiNameCheck_dataset.getValue("flag");
 			if(v_flag == "true"){
-				alert("¸Ã¸ÚÎ»Ãû³ÆÒÑ´æÔÚ£¬ÇëÖØĞÂÊäÈë");
+				alert("è¯¥å²—ä½åç§°å·²å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥");
 				ebankCustRoleMng_dataset.setValue("roleName","");
 				return false;
 			}
 		}
-/*add by haizhou.li 20101120 ¶Ô×éÖ¯»ú¹¹´úÂëÖ¤½øĞĞÊµÊ±¡°Î¨Ò»ĞÔĞ£Ñé¡± end*/
+/*add by haizhou.li 20101120 å¯¹ç»„ç»‡æœºæ„ä»£ç è¯è¿›è¡Œå®æ—¶â€œå”¯ä¸€æ€§æ ¡éªŒâ€ end*/
 
 	}
 

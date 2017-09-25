@@ -1,13 +1,13 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
-<@CommonQueryMacro.page title="Ç©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 <@CommonQueryMacro.CommonQueryTab id="BOPCfaLounexguRecordTabs" navigate="false" currentTab="BOPCfaLounexguRecordChangeInfo">
 	<@CommonQueryMacro.CommonQuery id="BOPCfaLounexguRecordChangeInfo" init="false" submitMode="all" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -26,20 +26,20 @@
 </td></tr></table>
 <script language="JavaScript">
 	function initCallGetter_post() {
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		BOPCfaLounexguRecordChangeInfo_interface_dataset.setValue("workDateStart","${v_txdate}");
 		BOPCfaLounexguRecordChangeInfo_interface_dataset.setValue("workDateEnd","${v_txdate}");
 	}
 	function datatable1_opr_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
-			cell.innerHTML = "<center><a href=\"JavaScript:doModify('"+id+"')\"><@bean.message key="ĞŞ¸Ä"/></a>&nbsp;<a href=\"JavaScript:doDel('"+id+"')\">É¾³ı</a></center>";
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+			cell.innerHTML = "<center><a href=\"JavaScript:doModify('"+id+"')\"><@bean.message key="ä¿®æ”¹"/></a>&nbsp;<a href=\"JavaScript:doDel('"+id+"')\">åˆ é™¤</a></center>";
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 	cell.innerHTML="&nbsp;";
 		}
 	}
 	function datatable1_filler2_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			var filler2 = record.getValue("filler2");
 			cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -48,21 +48,21 @@
 		}
 	}
 	
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function datatable1_opr_onRefresh(cell,value,record) {
-	if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+	if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			var innerStr = "";
 			var recStatus = record.getValue("recStatus");
 			if (recStatus == "01" || recStatus == "02"   ) {
-				innerStr = innerStr + "<a href=\"JavaScript:doModify('"+id+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDel('"+id+"')\">É¾³ı</a>"
+				innerStr = innerStr + "<a href=\"JavaScript:doModify('"+id+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDel('"+id+"')\">åˆ é™¤</a>"
 			} else {
-				innerStr = innerStr + "<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉĞŞ¸Ä' style='color:#999999'>ĞŞ¸Ä</a>&nbsp;&nbsp;<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉÉ¾³ı' style='color:#999999'>É¾³ı</a>";
+				innerStr = innerStr + "<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯ä¿®æ”¹' style='color:#999999'>ä¿®æ”¹</a>&nbsp;&nbsp;<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯åˆ é™¤' style='color:#999999'>åˆ é™¤</a>";
 			}
 			innerStr = innerStr + "</center>";
 			 
 			cell.innerHTML =innerStr;
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 	cell.innerHTML="&nbsp;";
 		}
 	}
@@ -72,25 +72,25 @@
 	}
 	function btNewClick(){
 		 //window.location = "${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?op=new";
-		 showWin("±ä¶¯ĞÅÏ¢ĞÂÔö","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?op=new","report","flushPage()");
+		 showWin("å˜åŠ¨ä¿¡æ¯æ–°å¢","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?op=new","report","flushPage()");
 	}
 	
 	function doDel(id){
 			//window.location = "${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?id=" + id+"&op=del";
-			showWin("±ä¶¯ĞÅÏ¢É¾³ı","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?id=" + id+"&op=del","flushPage()");
+			showWin("å˜åŠ¨ä¿¡æ¯åˆ é™¤","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?id=" + id+"&op=del","flushPage()");
 	}
 		
 	function doModify(id){
-		showWin("±ä¶¯ĞÅÏ¢ĞÂĞŞ¸Ä","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?id=" + id+"&op=mod","flushPage()");
+		showWin("å˜åŠ¨ä¿¡æ¯æ–°ä¿®æ”¹","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?id=" + id+"&op=mod","flushPage()");
 	}
 	
-	//ÏêÏ¸ĞÅÏ¢
+	//è¯¦ç»†ä¿¡æ¯
 	function doDetail(id){
-		showWin("±ä¶¯ĞÅÏ¢Ã÷Ï¸","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?id=" + id + "&op=detail");
+		showWin("å˜åŠ¨ä¿¡æ¯æ˜ç»†","${contextPath}/fpages/datacollection/ftl/BOPCfaLounexguRecordChangeInfoEdit.ftl?id=" + id + "&op=detail");
 	}
 	
 		
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 	function flushPage(){
 		BOPCfaLounexguRecordChangeInfo_dataset.flushData(1);
 	}

@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="¾³ÄÚ»ã¿îÉê±¨µ¥¹ÜÀíĞÅÏ¢ÉóºË">
+<@CommonQueryMacro.page title="å¢ƒå†…æ±‡æ¬¾ç”³æŠ¥å•ç®¡ç†ä¿¡æ¯å®¡æ ¸">
 	<@CommonQueryMacro.CommonQueryTab id="BopEQDsAuditTabs" navigate="false" currentTab="BopQDsAudit">
 		<@CommonQueryMacro.CommonQuery id="BopQDsAudit" init="false" submitMode="selected" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -25,7 +25,7 @@
 		    		<td>
 		    			<@CommonQueryMacro.FloatWindow id="aditADSubWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 		      				<div align="center">
-		      					<@CommonQueryMacro.Group id="group1" label="ÉóºËĞÅÏ¢"  fieldStr="approveStatusChoose,approveResultChoose" colNm=2/>
+		      					<@CommonQueryMacro.Group id="group1" label="å®¡æ ¸ä¿¡æ¯"  fieldStr="approveStatusChoose,approveResultChoose" colNm=2/>
 		        			 	</br>
 		      					<center>
 		      						<@CommonQueryMacro.Button id= "btAuditSave"/>&nbsp;&nbsp;
@@ -39,7 +39,7 @@
 		</@CommonQueryMacro.CommonQuery>
 	</@CommonQueryMacro.CommonQueryTab>
 	<script language="JavaScript">
-		//¹¤×÷ÈÕÆÚ
+		//å·¥ä½œæ—¥æœŸ
 		function initCallGetter_post() {
 			<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 			BopQDsAudit_interface_dataset.setValue("qworkDateStart","${v_txdate}");
@@ -54,7 +54,7 @@
 	}
 
 	    function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var filler2 = record.getValue("filler2");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -62,7 +62,7 @@
 				cell.innerHTML="&nbsp;";
 			}
 		}
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 		function flushPage(){
 			BopQDsAudit_dataset.flushData(1);
 		}
@@ -70,11 +70,11 @@
 		   	var approveStatusChoose = BopQDsAudit_dataset.getValue("approveStatusChoose");
 		   	var approveResultChoose = BopQDsAudit_dataset.getValue("approveResultChoose");
 		   	if (!approveStatusChoose.length > 0) {
-		   		alert("ÇëÑ¡ÔñÉóºË½á¹û£¡");
+		   		alert("è¯·é€‰æ‹©å®¡æ ¸ç»“æœï¼");
 		   		return false;
 		   	}
 		   	if (approveStatusChoose == "02" && approveResultChoose.length < 1) {
-		   		alert("ÉóºË½á¹û²»Í¨¹ı£¬ÉóºËËµÃ÷±ØĞëÌîĞ´£¡");
+		   		alert("å®¡æ ¸ç»“æœä¸é€šè¿‡ï¼Œå®¡æ ¸è¯´æ˜å¿…é¡»å¡«å†™ï¼");
 		   		return false;
 		   	}
 		   	BopQDsAudit_dataset.setParameter("approveStatusChoose",approveStatusChoose);
@@ -82,7 +82,7 @@
 			subwindow_aditADSubWindow.hide();
 		}
 		function btAuditSave_postSubmit(button){
-			alert("±£´æ³É¹¦");
+			alert("ä¿å­˜æˆåŠŸ");
 			BopQDsAudit_dataset.flushData();
 		}
 		function btAudit_onClick(){
@@ -101,11 +101,11 @@
 				record=record.getNextRecord();
 		   	}
 		   	if (!hasSelected) {
-		   		alert("ÇëÑ¡ÔñÏàÓ¦µÄ¼ÇÂ¼£¡");
+		   		alert("è¯·é€‰æ‹©ç›¸åº”çš„è®°å½•ï¼");
 		   		return false;
 		   	}
 		   	if (hasAudit) {
-		   		if(!confirm("ËùÑ¡¼ÇÂ¼°üº¬ÒÑÉóºË¼ÇÂ¼£¬È·¶¨ĞèÖØĞÂÉóºËÂğ£¿"))
+		   		if(!confirm("æ‰€é€‰è®°å½•åŒ…å«å·²å®¡æ ¸è®°å½•ï¼Œç¡®å®šéœ€é‡æ–°å®¡æ ¸å—ï¼Ÿ"))
 				{
 					return false;
 				}
@@ -115,10 +115,10 @@
 		function btBack_onClick(){
 			subwindow_aditADSubWindow.hide();
 		}
-		//ÏêÏ¸ĞÅÏ¢
+		//è¯¦ç»†ä¿¡æ¯
 		function doDetail(id){
 			locate(id);
-			showWin("¾³ÄÚ»ã¿î¹ÜÀíĞÅÏ¢ÏêÏ¸","${contextPath}/fpages/bop/collandaudit/eq/ftl/BopQDsCollectionInfo.ftl?id="+id+"&op=det","window","flushPage()",window);
+			showWin("å¢ƒå†…æ±‡æ¬¾ç®¡ç†ä¿¡æ¯è¯¦ç»†","${contextPath}/fpages/bop/collandaudit/eq/ftl/BopQDsCollectionInfo.ftl?id="+id+"&op=det","window","flushPage()",window);
 		}
 	</script>
 </@CommonQueryMacro.page>

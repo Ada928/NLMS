@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="汇率查询">
+<@CommonQueryMacro.page title="姹囩巼鏌ヨ">
 <table align="left">
 
 <tr>
@@ -9,7 +9,7 @@
 <table align="left">
 			<tr>
        			<td valign="top" rowspan="2"  valign="top">
-       				<@CommonQueryMacro.Interface id="intface" label="查询条件" colNm="6"  />
+       				<@CommonQueryMacro.Interface id="intface" label="鏌ヨ鏉′欢" colNm="6"  />
         		</td>
       	  	</tr>
    </table>
@@ -43,7 +43,7 @@
 			var expireDate = Management_IntrateQuery_interface_dataset.getValue("expireDate");
 			if(effectDate!="" && expireDate!="") {
 				if(effectDate>=expireDate) {
-					alert("生效日期应该小于失效日期");
+					alert("鐢熸晥鏃ユ湡搴旇灏忎簬澶辨晥鏃ユ湡");
 					Management_IntrateQuery_interface_dataset.setValue2("expireDate","effectDate");
 					return false;
 				}

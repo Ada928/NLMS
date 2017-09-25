@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÒøÐÐ²Ù×÷ÈÕÖ¾²éÑ¯">
+<@CommonQueryMacro.page title="é“¶è¡Œæ“ä½œæ—¥å¿—æŸ¥è¯¢">
 
 <@CommonQueryMacro.CommonQuery id="BankOperateLogQuery" init="true" submitMode="selected" navigate="false">
 <table align="left" width="100%">
     <tr>
 		<td>
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" colNm=4 />
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4 />
 		</td>
 	</tr>
     <tr>

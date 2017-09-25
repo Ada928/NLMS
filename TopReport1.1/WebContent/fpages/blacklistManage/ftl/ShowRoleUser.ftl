@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="岗位人员信息">
+<@CommonQueryMacro.page title="宀椾綅浜哄憳淇℃伅">
 <@CommonQueryMacro.CommonQuery id="ShowRoleUser" init="true" mode="0" submitMode="all">
 <table align="left" width="100%">
       		<tr valign="top">
       			<td valign="center">
-      			<@CommonQueryMacro.Group id ="group1" label="岗位人员信息" fieldStr="roleName" colNm=4/>
+      			<@CommonQueryMacro.Group id ="group1" label="宀椾綅浜哄憳淇℃伅" fieldStr="roleName" colNm=4/>
       			</td>
       		</tr>
       		<tr valign="top">

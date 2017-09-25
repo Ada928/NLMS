@@ -1,13 +1,13 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="±ä¶¯ĞÅÏ¢">
+<@CommonQueryMacro.page title="å˜åŠ¨ä¿¡æ¯">
 
 <@CommonQueryMacro.CommonQueryTab id="BOPForDebtOverseaLendingQueryTabs" navigate="false" currentTab="BOPForDebtOverseaLendingChangeInfoQuery">
 	<@CommonQueryMacro.CommonQuery id="BOPForDebtChangeInfoQuery" init="false" submitMode="all" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface"  label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface"  label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -45,7 +45,7 @@
 //	}
 
     function datatable1_filler2_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + value + "</a>"
 		} else {
@@ -53,19 +53,19 @@
 		}
 	}
 
-	//ÏêÏ¸
+	//è¯¦ç»†
 	//function doDetail(id) {
 	//	locate(id);
-	//	showWin("¾³ÍâÍ¬Òµ²ğ½è±ä¶¯ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtOverseaLendingChangeInfoCol.ftl?id="+id+"&op=detaile&model=Query","report","flushPage()");
+	//	showWin("å¢ƒå¤–åŒä¸šæ‹†å€Ÿå˜åŠ¨ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtOverseaLendingChangeInfoCol.ftl?id="+id+"&op=detaile&model=Query","report","flushPage()");
 	//}
 
-	//ÏêÏ¸
+	//è¯¦ç»†
 	function doDetail(id) {
 		var changFileType = "AC";
-		showWin("¾³ÍâÍ¬Òµ²ğ½è±ä¶¯ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtOverseaLendingChangeInfoCol.ftl?id="+id+"&op=detaile&changFileType="+changFileType,"report","flushPage()");
+		showWin("å¢ƒå¤–åŒä¸šæ‹†å€Ÿå˜åŠ¨ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtOverseaLendingChangeInfoCol.ftl?id="+id+"&op=detaile&changFileType="+changFileType,"report","flushPage()");
 	}
 
-    //Ë¢ĞÂÊı¾İ
+    //åˆ·æ–°æ•°æ®
 	function flushPage(){
 		BOPForDebtChangeInfoQuery_dataset.flushData();
 	}

@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="»ãÂÊÊÖ¹¤Â¼Èë">
+<@CommonQueryMacro.page title="æ±‡ç‡æ‰‹å·¥å½•å…¥">
 <table align="left">
 
 <tr>
@@ -17,7 +17,7 @@
       		<table>
       		<tr>
       		<td align="left" valign="top" width="800">
-        			<@CommonQueryMacro.Group id="group2" label="»ãÂÊÊÖ¹¤Â¼Èë" fieldStr="curcd,currrate" />
+        			<@CommonQueryMacro.Group id="group2" label="æ±‡ç‡æ‰‹å·¥å½•å…¥" fieldStr="curcd,currrate" />
         	</td>
       		</tr>
       		<tr>
@@ -56,7 +56,7 @@
 		function btDel_onClickCheck(button)
 		{
 			if(exchangeRateManualInput_dataset.getValue("deleteflag")=="true"){
-				alert("ÏÖÓĞµÄ»ãÂÊ²»ÄÜÉ¾³ı¡£");
+				alert("ç°æœ‰çš„æ±‡ç‡ä¸èƒ½åˆ é™¤ã€‚");
 				return false;
 			}
 		}
@@ -64,35 +64,35 @@
 		function curcd_DropDown_onSelect(dropDown, record, editor){
 		    var v_curcd = record.getValue("data");
 		    if(v_curcd == "CNY"){
-		       	alert("±ÒÖÖ²»ÄÜÑ¡ÔñÈËÃñ±Ò£¬ÇëÖØĞÂÊäÈë");
+		       	alert("å¸ç§ä¸èƒ½é€‰æ‹©äººæ°‘å¸ï¼Œè¯·é‡æ–°è¾“å…¥");
 			    exchangeRateManualInput_dataset.setValue2("curcd","");
 			    return false;
 		    }
 		    return true;
         }
-		//ÀûÂÊÖµÊäÈëÁ½±éÕıÈ·ĞÔĞ£Ñé
+		//åˆ©ç‡å€¼è¾“å…¥ä¸¤éæ­£ç¡®æ€§æ ¡éªŒ
 		function exchangeRateManualInput_dataset_afterChange(dataset, field){
 			if(field.name == "currrate"){
 				if(v_flag==0){
 					v_currrate = exchangeRateManualInput_dataset.getValue("currrate");
 					if(v_currrate<=0){
-						alert("»ãÂÊ²»ÄÜÎªÁã»ò¸ºÊı£¬ÇëÖØĞÂÊäÈë");
+						alert("æ±‡ç‡ä¸èƒ½ä¸ºé›¶æˆ–è´Ÿæ•°ï¼Œè¯·é‡æ–°è¾“å…¥");
 						return false;
 					}
 					v_flag = 1;
 					exchangeRateManualInput_dataset.setValue2("currrate","");
-					alert("ÇëÔÙ´ÎÊäÈëĞÂÀûÂÊÖµ¡£");
+					alert("è¯·å†æ¬¡è¾“å…¥æ–°åˆ©ç‡å€¼ã€‚");
 					v_flag = 2;
 				}
 				else if(v_flag==2){
 					if(exchangeRateManualInput_dataset.getValue("currrate")<=0){
-						alert("»ãÂÊ²»ÄÜÎªÁã»ò¸ºÊı£¬ÇëÖØĞÂÊäÈë");
+						alert("æ±‡ç‡ä¸èƒ½ä¸ºé›¶æˆ–è´Ÿæ•°ï¼Œè¯·é‡æ–°è¾“å…¥");
 						return false;
 					}
 					if(v_currrate!=exchangeRateManualInput_dataset.getValue("currrate")){
 						v_flag = 1;
 						exchangeRateManualInput_dataset.setValue2("currrate","");
-						alert("Á½´ÎÊäÈëÀûÂÊÖµ²»Ò»ÖÂ£¬ÇëÖØĞÂÊäÈë¡£");
+						alert("ä¸¤æ¬¡è¾“å…¥åˆ©ç‡å€¼ä¸ä¸€è‡´ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚");
 					}
 					v_flag = 0;
 				}

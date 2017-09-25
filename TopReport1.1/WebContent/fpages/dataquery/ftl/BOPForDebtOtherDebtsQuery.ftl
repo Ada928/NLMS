@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Ç©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="BOPForDebtOtherDebtsQueryTabs" navigate="false" currentTab="BOPForDebtOtherDebtsQuery">
 		<@CommonQueryMacro.CommonQuery id="BOPForDebtOtherDebtsQuery" init="false" submitMode="current" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -35,7 +35,7 @@
 	    }
 		
 	    function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var filler2 = record.getValue("filler2");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -44,12 +44,12 @@
 			}
 		}
 
-		//ÏêÏ¸
+		//è¯¦ç»†
 		function doDetail(id) {
-			showWin("ÆäËûÍâÕ®Ç©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtOtherDebtsCol.ftl?id="+id+"&op=detaile","report","flushPage()");
+			showWin("å…¶ä»–å¤–å€ºç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtOtherDebtsCol.ftl?id="+id+"&op=detaile","report","flushPage()");
 		}
 
-	    //Ë¢ĞÂÊı¾İ
+	    //åˆ·æ–°æ•°æ®
 		function flushPage(){
 			BOPForDebtOtherDebtsQuery_dataset.flushData();
 		}

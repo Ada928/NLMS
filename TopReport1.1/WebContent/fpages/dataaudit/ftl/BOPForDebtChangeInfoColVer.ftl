@@ -18,7 +18,7 @@
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript">
 var op = "${RequestParameters["op"]?default('')}";
-//��ҳ���ʼ����֮����Ե��ø÷���ִ����Ҫ�����Ĳ�
+//当页面初始化完之后可以调用该方法执行需要处理的操
 
 </script>
 </@CommonQueryMacro.page>

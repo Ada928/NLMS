@@ -4,7 +4,7 @@
 <table>
 	<tr>
 		<td>
-			<@CommonQueryMacro.Group id ="group1" label="Êı¾İ×ÖµäĞÅÏ¢" fieldStr="dataTypeNo,dataTypeName,dataNo,dataName,dataNoLen" colNm=4/>
+			<@CommonQueryMacro.Group id ="group1" label="æ•°æ®å­—å…¸ä¿¡æ¯" fieldStr="dataTypeNo,dataTypeName,dataNo,dataName,dataNoLen" colNm=4/>
 		</td>
 	</tr>
 	<tr>
@@ -16,7 +16,7 @@
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript"> 
 var op = "${RequestParameters["op"]?default('')}";
-//µ±Ò³Ãæ³õÊ¼»¯ÍêÖ®ºó¿ÉÒÔµ÷ÓÃ¸Ã·½·¨Ö´ĞĞĞèÒª´¦ÀíµÄ²Ù
+//å½“é¡µé¢åˆå§‹åŒ–å®Œä¹‹åå¯ä»¥è°ƒç”¨è¯¥æ–¹æ³•æ‰§è¡Œéœ€è¦å¤„ç†çš„æ“
 function initCallGetter_post(dataset) {
 	if ("new" == op) {
 		
@@ -30,7 +30,7 @@ function btSave_onClickCheck(button) {
 	var dataNoLen = DataDicInfo_dataset.getValue("dataNoLen");
 	var len = DataDicInfo_dataset.getValue("dataNo").length;
 	if(len != dataNoLen) {
-		alert('[×ÖµäÂë]³¤¶ÈºÍ[×Öµä³¤¶È]Öµ²»·û');
+		alert('[å­—å…¸ç ]é•¿åº¦å’Œ[å­—å…¸é•¿åº¦]å€¼ä¸ç¬¦');
 		return false;
 	}
 	return true;

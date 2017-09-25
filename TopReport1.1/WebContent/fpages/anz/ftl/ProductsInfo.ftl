@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro >
-<@CommonQueryMacro.page title="°ÄĞÂ²úÆ·ĞÅÏ¢Î¬»¤">
+<@CommonQueryMacro.page title="æ¾³æ–°äº§å“ä¿¡æ¯ç»´æŠ¤">
    <table align="left">
    <tr>
       <td>
@@ -9,7 +9,7 @@
 
 			<tr>
    			<td valign="top" colspan="2">
-   			<@CommonQueryMacro.Interface id="interface" label="°ÄĞÂ²úÆ·ĞÅÏ¢²éÑ¯" colNm=4 showButton="true" />
+   			<@CommonQueryMacro.Interface id="interface" label="æ¾³æ–°äº§å“ä¿¡æ¯æŸ¥è¯¢" colNm=4 showButton="true" />
         	</td>
        		 </tr>
       			<tr>
@@ -29,7 +29,7 @@
 		      		<td colspan="2">
 		      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 		      			<div align="center">
-		      				<@CommonQueryMacro.Group id="group1" label="²úÆ·ĞÅÏ¢Î¬»¤"
+		      				<@CommonQueryMacro.Group id="group1" label="äº§å“ä¿¡æ¯ç»´æŠ¤"
 		        			  fieldStr="id,pname,termType,term,lowLimit,highLimit,status,effectDate" colNm=4/>
 		        			 </br>
 		      				<@CommonQueryMacro.Button id= "btSave"/>
@@ -58,21 +58,21 @@
 	}
 
 	function btSave_postSubmit(button){
-		alert("±£´æ³É¹¦£¡");
+		alert("ä¿å­˜æˆåŠŸï¼");
 	}
 
-	//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+	//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function datatable1_opr_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			
-				cell.innerHTML="<center><a href=\"JavaScript:doModify('"+value+"')\">ĞŞ¸Ä</a> &nbsp; <a href=\"JavaScript:doDelete('"+value+"')\">É¾³ı</a></center>";
+				cell.innerHTML="<center><a href=\"JavaScript:doModify('"+value+"')\">ä¿®æ”¹</a> &nbsp; <a href=\"JavaScript:doDelete('"+value+"')\">åˆ é™¤</a></center>";
 			
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 cell.innerHTML="&nbsp;";
 		}
 	}
 
-	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+	//å®šä½ä¸€æ¡è®°å½•
 	function locate(id) {
 
 		var record = ProductsInfo_dataset.find(["id"],[id]);
@@ -81,30 +81,30 @@
 		}
 	}
 
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	function doModify(id) {
 		locate(id);
 	ProductsInfo_dataset.setFieldReadOnly("id", true);
 		subwindow_signWindow.show();
 	}
 
-	//É¾³ı
+	//åˆ é™¤
 	function doDelete(id) {
 		locate(id);
 
-		if(confirm('ÊÇ·ñÉ¾³ıµ±Ç°¼ÇÂ¼'))
+		if(confirm('æ˜¯å¦åˆ é™¤å½“å‰è®°å½•'))
 		{
 			btDel.click();
 		}
 	}
 
 function btSave_postSubmit(button) {
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 		subwindow_signWindow.close();
 		ProductsInfo_dataset.flushData(ProductsInfo_dataset.pageIndex);
 	}
 function btDel_postSubmit(button) {
-		alert("É¾³ı³É¹¦");
+		alert("åˆ é™¤æˆåŠŸ");
 		ProductsInfo_dataset.flushData(ProductsInfo_dataset.pageIndex);
 	}
 

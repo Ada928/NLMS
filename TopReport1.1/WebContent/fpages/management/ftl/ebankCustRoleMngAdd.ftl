@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="¸ÚÎ»È¨ÏŞ¹ÜÀí">
+<@CommonQueryMacro.page title="å²—ä½æƒé™ç®¡ç†">
 <script type="text/javascript" src="${contextPath}/js/xmlUtil.js"></script>
 <script type="text/javascript" src="${contextPath}/js/tree.js"></script>
 <script type="text/javascript" src="${contextPath}/js/xtree.js"></script>
@@ -9,7 +9,7 @@
 <table align="left">
 	<tr >
 		<td  align="left">
-				<@CommonQueryMacro.Group id ="branchFuncGroup" label="¸ÚÎ»ĞÅÏ¢" fieldStr="id,roleName" colNm=4/>
+				<@CommonQueryMacro.Group id ="branchFuncGroup" label="å²—ä½ä¿¡æ¯" fieldStr="id,roleName" colNm=4/>
 		</td>
 	</tr>
 	<tr >
@@ -60,7 +60,7 @@
 		load();
 	}
 
-	//È«Ñ¡
+	//å…¨é€‰
 	function funSelectAll(){
 		var len = document.getElementsByName("id").length;
 		for(i=0;i<len;i++){
@@ -68,11 +68,11 @@
 				document.getElementsByName("id")[i].checked = true;
 			}
 		}
-		<#--20110818 BMSA-54 È¨ÏŞÊ÷Ä¿Â¼²Ëµ¥¿ÉÈ«Ñ¡ begin -->
+		<#--20110818 BMSA-54 æƒé™æ ‘ç›®å½•èœå•å¯å…¨é€‰ begin -->
 		pcheck(1);
-		<#--20110818 BMSA-54 È¨ÏŞÊ÷Ä¿Â¼²Ëµ¥¿ÉÈ«Ñ¡ end -->
+		<#--20110818 BMSA-54 æƒé™æ ‘ç›®å½•èœå•å¯å…¨é€‰ end -->
 	}
-	//È«²»Ñ¡
+	//å…¨ä¸é€‰
 	function funSelectNo(){
 		var len = document.getElementsByName("id").length;
 		for(i=0;i<len;i++){
@@ -80,11 +80,11 @@
 				document.getElementsByName("id")[i].checked = false;
 			}
 		}
-		<#--20110818 BMSA-54 È¨ÏŞÊ÷Ä¿Â¼²Ëµ¥¿ÉÈ«Ñ¡ begin -->
+		<#--20110818 BMSA-54 æƒé™æ ‘ç›®å½•èœå•å¯å…¨é€‰ begin -->
 		pcheck(0);
-		<#--20110818 BMSA-54 È¨ÏŞÊ÷Ä¿Â¼²Ëµ¥¿ÉÈ«Ñ¡ end -->
+		<#--20110818 BMSA-54 æƒé™æ ‘ç›®å½•èœå•å¯å…¨é€‰ end -->
 	}
-	//µÃµ½ËùÑ¡µÄÈ¨ÏŞ
+	//å¾—åˆ°æ‰€é€‰çš„æƒé™
 	function getCheckDatas(){
 		var len = document.getElementsByName("id").length;
 		var s = "";
@@ -100,7 +100,7 @@
 
 	}
 
-	//Õ¹¿ª½ÚµãÊ÷
+	//å±•å¼€èŠ‚ç‚¹æ ‘
 	function viewtree(){
 		if(_close_flag){
 			closeAll(1);
@@ -115,7 +115,7 @@
 		var roleName = RoleFuncMng_dataset.getString("id");
 		if(roleName == null || roleName == "")
 		{
-			alert("ÇëÑ¡Ôñ¸ÚÎ»");
+			alert("è¯·é€‰æ‹©å²—ä½");
 			return false;
 		}
 		var s = getCheckDatas();
@@ -125,11 +125,11 @@
 	{
 		if(data == 0)
 		{
-			alert("±£´æ³É¹¦£¡");
+			alert("ä¿å­˜æˆåŠŸï¼");
 		}
 		else
 		{
-			alert("±£´æÊ§°Ü£¡");
+			alert("ä¿å­˜å¤±è´¥ï¼");
 		}
 	}
 
@@ -155,9 +155,9 @@
 	         document.getElementById(num).checked=true;
 	         }
         }
-        <#--20110818 BMSA-54 È¨ÏŞÊ÷Ä¿Â¼²Ëµ¥¿ÉÈ«Ñ¡ begin -->
+        <#--20110818 BMSA-54 æƒé™æ ‘ç›®å½•èœå•å¯å…¨é€‰ begin -->
 		pcheck();
-		<#--20110818 BMSA-54 È¨ÏŞÊ÷Ä¿Â¼²Ëµ¥¿ÉÈ«Ñ¡ end -->
+		<#--20110818 BMSA-54 æƒé™æ ‘ç›®å½•èœå•å¯å…¨é€‰ end -->
 	}
 	function btSave_needCheck(button) {
 	return false;

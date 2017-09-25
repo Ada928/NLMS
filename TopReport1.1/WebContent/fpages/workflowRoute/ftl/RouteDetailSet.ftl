@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ÉóÅúÂ·ÏßÉèÖÃ">
+<@CommonQueryMacro.page title="å®¡æ‰¹è·¯çº¿è®¾ç½®">
 <table align="left">
 
 <tr>
@@ -14,9 +14,9 @@
 			</td>
 				<td align="right">
 
-	    	<a href="javascript:window.document.getElementById('btNew2').click();">ĞÂÔö</a>
+	    	<a href="javascript:window.document.getElementById('btNew2').click();">æ–°å¢</a>
 	    	<!--
-	    	<a href="javascript:window.document.getElementById('btDelete2').click();">É¾³ı</a>
+	    	<a href="javascript:window.document.getElementById('btDelete2').click();">åˆ é™¤</a>
 	       -->
 	       </td>
 		</tr>
@@ -28,7 +28,7 @@
 
 <tr>
       		<td valign="top" colspan="2">
-					<@CommonQueryMacro.Group id ="groupRoute" label="ÏêÏ¸ĞÅÏ¢" fieldStr="stopId,brhClass1,need,pass,amtType,approveAmt,roleId"colNm=4/>
+					<@CommonQueryMacro.Group id ="groupRoute" label="è¯¦ç»†ä¿¡æ¯" fieldStr="stopId,brhClass1,need,pass,amtType,approveAmt,roleId"colNm=4/>
 
 	  			<table>
         		<tr align="left">
@@ -57,7 +57,7 @@
 var routeId = routeDetailSet_dataset.getParameter("routeId");
 var v_stopId = 1;
 var temp = 0 ;
-//Ä¬ÈÏ²»¿ÉÊäÈë£¬ĞÂÔöºó¿ÉÊäÈë
+//é»˜è®¤ä¸å¯è¾“å…¥ï¼Œæ–°å¢åå¯è¾“å…¥
 function routeDetailSet_dataset_flushDataPost(dataset){
 	v_stopId = routeDetailSet_dataset.length;
 	if(v_stopId ==0){
@@ -81,7 +81,7 @@ function routeDetailSet_dataset_flushDataPost(dataset){
 
 }
 
-//ĞÂÔö¼ÇÂ¼Ê±¸øÃ¿Ìõ¼ÇÂ¼¸³ÉóÅúÂ·ÏßID(routeId)µÄÖµ
+//æ–°å¢è®°å½•æ—¶ç»™æ¯æ¡è®°å½•èµ‹å®¡æ‰¹è·¯çº¿ID(routeId)çš„å€¼
 	function btNew2_onClick(button){
 		v_stopId = getstopId();
 //		routeDetailSet_dataset.setFieldReadOnly("stopId",false);
@@ -96,7 +96,7 @@ function routeDetailSet_dataset_flushDataPost(dataset){
 	}
 
 
-//³õÊ¼»¯stopId×Ö¶Î,±£Ö¤Ã¿´ÎÔö¼Ó¶¼ÊÇ°´Ë³ĞòµÄ
+//åˆå§‹åŒ–stopIdå­—æ®µ,ä¿è¯æ¯æ¬¡å¢åŠ éƒ½æ˜¯æŒ‰é¡ºåºçš„
 var array={};
 var tempValue ="" ;
 var count = 0 ;
@@ -124,12 +124,12 @@ function getstopId()
     return temp ;
 }
 
-//ÊÇ·ñÌø¹ıÓëÊÇ·ñ±Ø¾­²»ÄÜÍ¬Îª"ÊÇ"
+//æ˜¯å¦è·³è¿‡ä¸æ˜¯å¦å¿…ç»ä¸èƒ½åŒä¸º"æ˜¯"
 function need_DropDown_onSelect(dropDown,record,editor)
 {
    if(record.getValue("data").trim()=="1"&&routeDetailSet_dataset.getValue("pass")=="1")
    {
-		alert("Ìø¹ıºÍ±Ø¾­Ö»ÄÜÑ¡ÆäÒ»");
+		alert("è·³è¿‡å’Œå¿…ç»åªèƒ½é€‰å…¶ä¸€");
    	  	routeDetailSet_dataset.setValue2("pass","0");
    }
    return true;
@@ -138,13 +138,13 @@ function pass_DropDown_onSelect(dropDown,record,editor)
 {
    if(record.getValue("data").trim()=="1"&&routeDetailSet_dataset.getValue("need")=="1")
    {
-		alert("Ìø¹ıºÍ±Ø¾­Ö»ÄÜÑ¡ÆäÒ»");
+		alert("è·³è¿‡å’Œå¿…ç»åªèƒ½é€‰å…¶ä¸€");
    	  	routeDetailSet_dataset.setValue2("need","0");
    }
    return true;
 }
 
-//½ğ¶î²ßÂÔ²»ÆôÓÃÔòÉóÅú½ğ¶î²»ÄÜÊäÈë
+//é‡‘é¢ç­–ç•¥ä¸å¯ç”¨åˆ™å®¡æ‰¹é‡‘é¢ä¸èƒ½è¾“å…¥
 function amtType_DropDown_onSelect(dropDown,record,editor)
 {
    if(record.getValue("data").trim()=="0")
@@ -159,7 +159,7 @@ function amtType_DropDown_onSelect(dropDown,record,editor)
 }
 
 
- //Ìá½»Ç°µÄ¼ì²é
+ //æäº¤å‰çš„æ£€æŸ¥
 function btSave2_onClickCheck(button){
 
 //	var _nextUrl = "/fpages/workflowRoute/ftl/RouteDetailSet.ftl?routeId="+ routeId;
@@ -177,7 +177,7 @@ function datatableRoute_opr2_onRefresh(cell, value, record)
 {
 	if(record&&record!=null){
 		var id = record.getValue("id");
-		cell.innerHTML = "<center><a href=\"JavaScript:contractDel2("+id+")\">É¾³ı</a></center>";
+		cell.innerHTML = "<center><a href=\"JavaScript:contractDel2("+id+")\">åˆ é™¤</a></center>";
 	}else{
 		cell.innerHTML = "";
 	}

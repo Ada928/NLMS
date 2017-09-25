@@ -1,17 +1,17 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign op=RequestParameters["op"]?default("")>
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="ÓÃ»§½ÇÉ«¹ÜÀí">
+<@CommonQueryMacro.page title="ç”¨æˆ·è§’è‰²ç®¡ç†">
 	<table align="left" width="90%">
 		<tr align="center">
 			<td width="100%">
 				<@CommonQueryMacro.CommonQuery id="UserInfoManage" init="true" navigate="false" submitMode="all" >
-					<@CommonQueryMacro.GroupBox id="guoup1" label="²Ù×÷Ô±ĞÅÏ¢" expand="true">
+					<@CommonQueryMacro.GroupBox id="guoup1" label="æ“ä½œå‘˜ä¿¡æ¯" expand="true">
 						<table frame=void class="grouptable" width="100%">
 							<tr>
-								<td align="center" nowrap class="labeltd"  width="25%"> ÓÃ»§ĞÕÃû </td>
+								<td align="center" nowrap class="labeltd"  width="25%"> ç”¨æˆ·å§“å </td>
 								<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrName" /></td>
-								<td align="center" nowrap class="labeltd"  width="25%"> ËùÊôÒøĞĞ </td>
+								<td align="center" nowrap class="labeltd"  width="25%"> æ‰€å±é“¶è¡Œ </td>
 								<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="brcode" /></td>
 							</tr>
 					   </table>
@@ -25,7 +25,7 @@
 					<table width="100%">
 						<tr>
 							<td width="100%">
-								<@CommonQueryMacro.GroupBox id="guoup2" label="Ñ¡Ôñ¸ÚÎ»" expand="true">
+								<@CommonQueryMacro.GroupBox id="guoup2" label="é€‰æ‹©å²—ä½" expand="true">
 									<table frame=void width="100%">
 								      	<tr>
 								      		<td valign="top">
@@ -64,7 +64,7 @@
 	function btSave_onClickCheck() {
 		var tlrName = UserInfoManage_dataset.getValue("tlrName");
 		if (tlrName.length == 0) {
-			alert("ÓÃ»§ĞÕÃû±ØĞëÌîĞ´£¡");
+			alert("ç”¨æˆ·å§“åå¿…é¡»å¡«å†™ï¼");
 			return false;
 		}
 
@@ -81,11 +81,11 @@
 		}
 
 		if (chk == 0) {
-			alert("ÇëÖÁÉÙÑ¡ÔñÒ»¸ö¸ÚÎ»·ÖÅä¸øÓÃ»§£¡");
+			alert("è¯·è‡³å°‘é€‰æ‹©ä¸€ä¸ªå²—ä½åˆ†é…ç»™ç”¨æˆ·ï¼");
 			flushCurrentPage();
 			return false;
 		} else if (chk > 1) {
-			alert("Ò»¸öÓÃ»§×î¶àÖ»ÄÜÑ¡ÔñÒ»¸ö¸ÚÎ»£¡");
+			alert("ä¸€ä¸ªç”¨æˆ·æœ€å¤šåªèƒ½é€‰æ‹©ä¸€ä¸ªå²—ä½ï¼");
 			flushCurrentPage();
 			return false;
 		}
@@ -93,10 +93,10 @@
 		return true;
 	}
 
-	//±£´æºóË¢ĞÂµ±Ç°Ò³
+	//ä¿å­˜ååˆ·æ–°å½“å‰é¡µ
 	function btSave_postSubmit(button) { 
         var retParam = button.returnParam;
-		alert("±£´æ³É¹¦ "+ retParam.SuccessInfo);
+		alert("ä¿å­˜æˆåŠŸ "+ retParam.SuccessInfo);
 		button.url = "/fpages/blacklistManage/ftl/UserInfoEntry.ftl";
 	}
 	

@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="¹«°²²¿ºÚÃûµ¥¹ÜÀí">
+<@CommonQueryMacro.page title="å…¬å®‰éƒ¨é»‘åå•ç®¡ç†">
 <@CommonQueryMacro.CommonQuery id="PoliceBlackList" init="true" submitMode="current" navigate="false">
 <table align="center" width="100%">
    	<tr>
       	<td colspan="2" >
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=4/>
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4/>
 		</td>
 	</tr>
   	<tr>
@@ -31,7 +31,7 @@
 <script language="JavaScript">
 	var currentTlrno = "${info.tlrNo}";
 	var roleType = "${info.roleTypeList}";
-    //¶¨Î»Ò»ĞĞ¼ÇÂ¼
+    //å®šä½ä¸€è¡Œè®°å½•
     function locate(id) {
         var record = PoliceBlackList_dataset.find(["id"], [id]);
         if (record) {
@@ -39,7 +39,7 @@
         }
     }
 
-    //ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñ
+    //ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼
     function datatable1_opr_onRefresh(cell, value, record) {
         if (record) {
             //var lock = record.getValue("lock");
@@ -48,22 +48,22 @@
 					|| roleType.indexOf("13") > -1
 					|| roleType.indexOf("14") > -1
 					|| roleType.indexOf("15") > -1) {
-            	cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\"><@bean.message key='ĞŞ¸Ä' /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\"><@bean.message key='É¾³ı' /></a></center>";
+            	cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\"><@bean.message key='ä¿®æ”¹' /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\"><@bean.message key='åˆ é™¤' /></a></center>";
             } else {
-            	cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('" + id + "')\"><@bean.message key='ĞŞ¸Ä'/></a> &nbsp; <a href=\"JavaScript:doDel('" + id + "')\"><@bean.message key='É¾³ı'/></a>";
+            	cell.innerHTML = "<center><a href=\"JavaScript:openModifyWindow('" + id + "')\"><@bean.message key='ä¿®æ”¹'/></a> &nbsp; <a href=\"JavaScript:doDel('" + id + "')\"><@bean.message key='åˆ é™¤'/></a>";
             }
         } else {
             cell.innerHTML = "";
         }
     }
     
-	//ĞŞ¸Ä¹¦ÄÜ
+	//ä¿®æ”¹åŠŸèƒ½
     function openModifyWindow(id) {
         //locate(id);
         btModify.click();
     }
 
-    //Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+    //å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
     function datatable1_id_onRefresh(cell, value, record) {
         if (record) {
             var osta = record.getValue("operateState");
@@ -91,16 +91,16 @@
     }
 
     function btDel_onClickCheck(button) {
-        return confirm("È·ÈÏÉ¾³ı¸ÃÌõ¼ÇÂ¼£¿");
+        return confirm("ç¡®è®¤åˆ é™¤è¯¥æ¡è®°å½•ï¼Ÿ");
     }
     
     function btDel_postSubmit(button) {
-        alert("É¾³ı¼ÇÂ¼³É¹¦");
+        alert("åˆ é™¤è®°å½•æˆåŠŸ");
         button.url = "#";
         flushCurrentPage();
     }
 
-    //Ë¢ĞÂµ±Ç°Ò³
+    //åˆ·æ–°å½“å‰é¡µ
     function flushCurrentPage() {
         PoliceBlackList_dataset.flushData(PoliceBlackList_dataset.pageIndex);
     }

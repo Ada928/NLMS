@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="¹ú¼ÊºÚÃûµ¥²éÑ¯">
+<@CommonQueryMacro.page title="å›½é™…é»‘åå•æŸ¥è¯¢">
 <@CommonQueryMacro.CommonQuery id="InternationalBlackListQuery" init="true" submitMode="current"  navigate="false">
 <table align="center" width="100%">
    	<tr>
       	<td colspan="2" >
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=4/>
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4/>
 		</td>
 	</tr>
   	<tr>
@@ -27,7 +27,7 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="JavaScript">
-    //¶¨Î»Ò»ĞĞ¼ÇÂ¼
+    //å®šä½ä¸€è¡Œè®°å½•
     function locate(id) {
         var record = InternationalBlackListQuery_dataset.find(["id"], [id]);
         if (record) {
@@ -35,7 +35,7 @@
         }
     }
 
-  //Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+  //å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
 	function datatable1_id_onRefresh(cell, value, record) {
 		if (record) {
 			var id = record.getValue("id");

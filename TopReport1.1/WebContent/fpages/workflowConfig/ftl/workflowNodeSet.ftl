@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="业务流程配置">
+<@CommonQueryMacro.page title="涓氬姟娴佺▼閰嶇疆">
 
 <@CommonQueryMacro.CommonQueryTab id="WORKFLOWCONFIG_TAB" navigate="false" width="1000" height="900" currentTab="tabTaskNodeSet">
 
@@ -8,7 +8,7 @@
 	<tr>
 		<td valign="top" width="300">
 			<FIELDSET style="width:250">
-				<LEGEND>流程信息</LEGEND>
+				<LEGEND>娴佺▼淇℃伅</LEGEND>
 				<table align="left">
 					<tr>
 						<td valign="top">

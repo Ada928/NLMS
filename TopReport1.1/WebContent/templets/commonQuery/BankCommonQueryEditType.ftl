@@ -1,20 +1,20 @@
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
 <#-- date with extra js
-	lable ÏÔÊ¾µÄlable
-	id  Îªdate µÄid , ÔÚtargetDatasetÖÐ½«»á×Ô¶¯Éú³É¸Ãid¶ÔÓ¦µÄfield
-	targetDataset  Ö÷datasetµÄid
-	defaultValue   Ä¬ÈÏÖµ
-	width      text¿òµÄ¿í¶È,Ò»°ãÄ¬ÈÏ²»Ìî
-	require    ÊÇ·ñ±ØÊäµÄ,±ØÊäÎª "true"
-	maxLength  ¿ÉÒÔÊäÈëµÄ×î¶àÎ»Êý
-	readOnly   ÊÇ·ñÊÇÖ»¶ÁµÄ, Ö»¶ÁÎª"true"
+	lable æ˜¾ç¤ºçš„lable
+	id  ä¸ºdate çš„id , åœ¨targetDatasetä¸­å°†ä¼šè‡ªåŠ¨ç”Ÿæˆè¯¥idå¯¹åº”çš„field
+	targetDataset  ä¸»datasetçš„id
+	defaultValue   é»˜è®¤å€¼
+	width      textæ¡†çš„å®½åº¦,ä¸€èˆ¬é»˜è®¤ä¸å¡«
+	require    æ˜¯å¦å¿…è¾“çš„,å¿…è¾“ä¸º "true"
+	maxLength  å¯ä»¥è¾“å…¥çš„æœ€å¤šä½æ•°
+	readOnly   æ˜¯å¦æ˜¯åªè¯»çš„, åªè¯»ä¸º"true"
  -->
  
  <#--
-   month ÀàÐÍ ÎªÄêÔÂÀàÐÍ
-   ÆäÖÐÐÂÔö2¸ö²ÎÊý yearlength   ÎªÖ¸¶¨µÄÄêµÄ·¶Î§³¤¶È
-                startyear    ÎªÖ¸¶¨µÄÆðÊ¼Äê 
+   month ç±»åž‹ ä¸ºå¹´æœˆç±»åž‹
+   å…¶ä¸­æ–°å¢ž2ä¸ªå‚æ•° yearlength   ä¸ºæŒ‡å®šçš„å¹´çš„èŒƒå›´é•¿åº¦
+                startyear    ä¸ºæŒ‡å®šçš„èµ·å§‹å¹´ 
 
 <#macro month id componentId label startyear yearlength targetDataset defaultValue  width  colSpan="2" rowSpan=1  vAlign="center" required="" readonly="" placeholder="" comparemode="" editable="false" >
     <td class="labeltd" valign=${vAlign} align="right" style="width: 20%" nowrap>
@@ -42,7 +42,7 @@
 	<input extra="editor" id="editor_${id}" componentDataset="${targetDataset}"  dataField="${id}"  componentId="${componentId}" editType="datebox" dateType="date" comparemode="${comparemode}" type="text"  editable="${editable}" ${required}  ${readonly} name="${id}"   style="width:${width}px;" placeholder="${placeholder}">
 </#macro>
 
-<#--added by wangpeng 20091126 Ìí¼ÓpredateºÍpostdateµÄÊý¾ÝÀàÐÍÖ§³Ö  begin-->
+<#--added by wangpeng 20091126 æ·»åŠ predateå’Œpostdateçš„æ•°æ®ç±»åž‹æ”¯æŒ  begin-->
 <#macro predate  id componentId label targetDataset defaultValue  width  colSpan="2" rowSpan=1  vAlign="center" required="" readonly="" placeholder="" comparemode="" editable="false" >
 		<td class="labeltd" valign=${vAlign} align="right" style="width: 20%" nowrap>
 			<label extra="fieldlabel" id="fldlabel_${id}" componentDataset="${targetDataset}" dataField="${id}"  label="${label}"></label>
@@ -89,9 +89,9 @@
 	<input extra="editor" id="editor_${id}" componentDataset="${targetDataset}" dataField="${id}" componentId="${componentId}"  editType="text" dateType="validatebox"   type="text"   ${required}  ${readonly} name="${id}"   style="width:${width}px;">
   </td>
 </#macro>
-<#--added by wangpeng 20091126 Ìí¼ÓpredateºÍpostdateµÄÊý¾ÝÀàÐÍÖ§³Ö  end-->
+<#--added by wangpeng 20091126 æ·»åŠ predateå’Œpostdateçš„æ•°æ®ç±»åž‹æ”¯æŒ  end-->
 
-<#--added by wangpeng 20091202 Ìí¼Óradio begin-->
+<#--added by wangpeng 20091202 æ·»åŠ radio begin-->
 <#--
 -->
 <#macro radioDataDic id fId label colSpan targetDataset width require readOnly defaultValue translated viewField valueField rowLen componentId isSingle=false>
@@ -115,19 +115,19 @@
 </#macro>
 
 <#--
-	id     			Îªradio µÄid , ÒªÇófileMap ÖÐ±ØÐë°üº¬¸ÃidµÄÖµÓ³Éä , ÕâÑùÔÚtargetDatasetÖÐ½«»á×Ô¶¯Éú³É¸Ãid¶ÔÓ¦µÄfield
-	fId             Ö÷datasetµÄfId
-	selsetValues    Îªradio µÄËùÓÐÑ¡Ïî
-	targetDataset   Ö÷datasetµÄid
-	defaultValue    ÏÂÀ­¿òµÄÄ¬ÈÏÖµ
-	fileMap  		ÖµÓ³Éä ,¸ñÊ½Èç"contactmanidtype=datano;contactmanidtypename=dataname"  ÆäÖÐ±ØÐë°üº¬idµÄÓ³Éä,Ö÷datasetµÄ×Ö¶Î·Å=×ó±ß,selectµÄÖµ·Å=ÓÒ±ß
-	ddsfiles 		ÏÂÀ­Ñ¡Ïî¶ÔÓ¦µÄdatasetµÄËùÓÐÓò
-	field    		ÏÂÀ­Ñ¡Ïî¶ÔÓ¦µÄdatasetÖÐÒªÏÔÊ¾³öÀ´µÄÖµ
-	width    		ÏÂÀ­¿òµÄ¿í¶È,Ò»°ãÄ¬ÈÏ²»Ìî,ÏÂÀ­¿òµÄ¿í¶È»á±»Ñ¡ÏîÖµ×Ô¶¯³Å¿ª
-	height   		ÏÂÀ­¿òµÄ¸ß¶È,¿ÉÒÔÖ¸¶¨¸ÃÖµ,ÕâÑùÏÂÀ­¿ò¿ÉÒÔÏÔÊ¾¸ü¶àµÄÏÂÀ­Ñ¡Ïî
-	require  		¸ÃÏÂÀ­Ñ¡ÏîÊÇ·ñ±ØÊä ,±ØÊäÎª "true"
-	readOnly 		ÊÇ·ñÊÇ¿É¶ÁµÄ
-	rowLen          Ò»ÐÐ°üº¬µÄÑ¡ÏîÊý
+	id     			ä¸ºradio çš„id , è¦æ±‚fileMap ä¸­å¿…é¡»åŒ…å«è¯¥idçš„å€¼æ˜ å°„ , è¿™æ ·åœ¨targetDatasetä¸­å°†ä¼šè‡ªåŠ¨ç”Ÿæˆè¯¥idå¯¹åº”çš„field
+	fId             ä¸»datasetçš„fId
+	selsetValues    ä¸ºradio çš„æ‰€æœ‰é€‰é¡¹
+	targetDataset   ä¸»datasetçš„id
+	defaultValue    ä¸‹æ‹‰æ¡†çš„é»˜è®¤å€¼
+	fileMap  		å€¼æ˜ å°„ ,æ ¼å¼å¦‚"contactmanidtype=datano;contactmanidtypename=dataname"  å…¶ä¸­å¿…é¡»åŒ…å«idçš„æ˜ å°„,ä¸»datasetçš„å­—æ®µæ”¾=å·¦è¾¹,selectçš„å€¼æ”¾=å³è¾¹
+	ddsfiles 		ä¸‹æ‹‰é€‰é¡¹å¯¹åº”çš„datasetçš„æ‰€æœ‰åŸŸ
+	field    		ä¸‹æ‹‰é€‰é¡¹å¯¹åº”çš„datasetä¸­è¦æ˜¾ç¤ºå‡ºæ¥çš„å€¼
+	width    		ä¸‹æ‹‰æ¡†çš„å®½åº¦,ä¸€èˆ¬é»˜è®¤ä¸å¡«,ä¸‹æ‹‰æ¡†çš„å®½åº¦ä¼šè¢«é€‰é¡¹å€¼è‡ªåŠ¨æ’‘å¼€
+	height   		ä¸‹æ‹‰æ¡†çš„é«˜åº¦,å¯ä»¥æŒ‡å®šè¯¥å€¼,è¿™æ ·ä¸‹æ‹‰æ¡†å¯ä»¥æ˜¾ç¤ºæ›´å¤šçš„ä¸‹æ‹‰é€‰é¡¹
+	require  		è¯¥ä¸‹æ‹‰é€‰é¡¹æ˜¯å¦å¿…è¾“ ,å¿…è¾“ä¸º "true"
+	readOnly 		æ˜¯å¦æ˜¯å¯è¯»çš„
+	rowLen          ä¸€è¡ŒåŒ…å«çš„é€‰é¡¹æ•°
  -->
 <#macro radio id fId colSpan label selsetValues  targetDataset defaultValue fileMap ddsfiles field width require readOnly rowLen componentId isSingle=false>
 	<#assign fileMapString ="${fileMap}">
@@ -173,17 +173,17 @@
 </#macro>
 
 <#--
-	id     			Îªradio µÄid , ÒªÇófileMap ÖÐ±ØÐë°üº¬¸ÃidµÄÖµÓ³Éä , ÕâÑùÔÚtargetDatasetÖÐ½«»á×Ô¶¯Éú³É¸Ãid¶ÔÓ¦µÄfield
-	selsetValues    Îªradio µÄËùÓÐÑ¡Ïî
-	targetDataset   Ö÷datasetµÄid
-	defaultValue    ÏÂÀ­¿òµÄÄ¬ÈÏÖµ
-	fileMap  		ÖµÓ³Éä ,¸ñÊ½Èç"contactmanidtype=datano;contactmanidtypename=dataname"  ÆäÖÐ±ØÐë°üº¬idµÄÓ³Éä,Ö÷datasetµÄ×Ö¶Î·Å=×ó±ß,selectµÄÖµ·Å=ÓÒ±ß
-	ddsfiles 		ÏÂÀ­Ñ¡Ïî¶ÔÓ¦µÄdatasetµÄËùÓÐÓò
-	field    		ÏÂÀ­Ñ¡Ïî¶ÔÓ¦µÄdatasetÖÐÒªÏÔÊ¾³öÀ´µÄÖµ
-	width    		ÏÂÀ­¿òµÄ¿í¶È,Ò»°ãÄ¬ÈÏ²»Ìî,ÏÂÀ­¿òµÄ¿í¶È»á±»Ñ¡ÏîÖµ×Ô¶¯³Å¿ª
-	height   		ÏÂÀ­¿òµÄ¸ß¶È,¿ÉÒÔÖ¸¶¨¸ÃÖµ,ÕâÑùÏÂÀ­¿ò¿ÉÒÔÏÔÊ¾¸ü¶àµÄÏÂÀ­Ñ¡Ïî
-	require  		¸ÃÏÂÀ­Ñ¡ÏîÊÇ·ñ±ØÊä ,±ØÊäÎª "true"
-	readOnly 		ÊÇ·ñÊÇ¿É¶ÁµÄ
+	id     			ä¸ºradio çš„id , è¦æ±‚fileMap ä¸­å¿…é¡»åŒ…å«è¯¥idçš„å€¼æ˜ å°„ , è¿™æ ·åœ¨targetDatasetä¸­å°†ä¼šè‡ªåŠ¨ç”Ÿæˆè¯¥idå¯¹åº”çš„field
+	selsetValues    ä¸ºradio çš„æ‰€æœ‰é€‰é¡¹
+	targetDataset   ä¸»datasetçš„id
+	defaultValue    ä¸‹æ‹‰æ¡†çš„é»˜è®¤å€¼
+	fileMap  		å€¼æ˜ å°„ ,æ ¼å¼å¦‚"contactmanidtype=datano;contactmanidtypename=dataname"  å…¶ä¸­å¿…é¡»åŒ…å«idçš„æ˜ å°„,ä¸»datasetçš„å­—æ®µæ”¾=å·¦è¾¹,selectçš„å€¼æ”¾=å³è¾¹
+	ddsfiles 		ä¸‹æ‹‰é€‰é¡¹å¯¹åº”çš„datasetçš„æ‰€æœ‰åŸŸ
+	field    		ä¸‹æ‹‰é€‰é¡¹å¯¹åº”çš„datasetä¸­è¦æ˜¾ç¤ºå‡ºæ¥çš„å€¼
+	width    		ä¸‹æ‹‰æ¡†çš„å®½åº¦,ä¸€èˆ¬é»˜è®¤ä¸å¡«,ä¸‹æ‹‰æ¡†çš„å®½åº¦ä¼šè¢«é€‰é¡¹å€¼è‡ªåŠ¨æ’‘å¼€
+	height   		ä¸‹æ‹‰æ¡†çš„é«˜åº¦,å¯ä»¥æŒ‡å®šè¯¥å€¼,è¿™æ ·ä¸‹æ‹‰æ¡†å¯ä»¥æ˜¾ç¤ºæ›´å¤šçš„ä¸‹æ‹‰é€‰é¡¹
+	require  		è¯¥ä¸‹æ‹‰é€‰é¡¹æ˜¯å¦å¿…è¾“ ,å¿…è¾“ä¸º "true"
+	readOnly 		æ˜¯å¦æ˜¯å¯è¯»çš„
  -->
 <#macro radioHidden id label  selsetValues  targetDataset defaultValue fileMap ddsfiles field width require readOnly rowLen>
 	<#assign fileMapString ="${fileMap}">
@@ -240,7 +240,7 @@
 	  	 var ${id}_Radio = RadioRender.getRadioById("${id}_Radio");
 	  </script>
 </#macro>
-<#--added by wangpeng 20091202 Ìí¼Óradio end-->
+<#--added by wangpeng 20091202 æ·»åŠ radio end-->
 
 <#-- checkbox      -->
 <#macro checkbox  label id  targetDataset defaultValue width colSpan=colSpan rowSpan=1 vAlign=vAlign componentId=componentId>
@@ -261,19 +261,19 @@
 </#macro>
 
 <#--textarea with extra js
-	lable               ÏÔÊ¾µÄlable
-	id  				Îªtextarea µÄid , ÔÚtargetDatasetÖÐ½«»á×Ô¶¯Éú³É¸Ãid¶ÔÓ¦µÄfield
-	targetDataset  		Ö÷datasetµÄid
-	defaultValue   		Ä¬ÈÏÖµ
-	size				Ö¸¶¨sizeµÄ´óÐ¡Ö®ºó¿ÉÒÔ
-	width               text¿òµÄ¿í¶È,Ò»°ãÄ¬ÈÏ²»Ìî
-	require        		ÊÇ·ñ±ØÊäµÄ,±ØÊäÎª "true"
-	readOnly            ÊÇ·ñÖ»¶Á , Ö»¶ÁÎª"true"
-	mask                Ð£Ñé¹æÔò, ²ÉÓÃÕýÔò±í´ïÊ½ ,²Î¿¼rule.js
-	maskErrorMes        Ð£Ñé³ö´íºóµ¯³öÀ´µÄÐ£ÑéÐÅÏ¢
+	lable               æ˜¾ç¤ºçš„lable
+	id  				ä¸ºtextarea çš„id , åœ¨targetDatasetä¸­å°†ä¼šè‡ªåŠ¨ç”Ÿæˆè¯¥idå¯¹åº”çš„field
+	targetDataset  		ä¸»datasetçš„id
+	defaultValue   		é»˜è®¤å€¼
+	size				æŒ‡å®šsizeçš„å¤§å°ä¹‹åŽå¯ä»¥
+	width               textæ¡†çš„å®½åº¦,ä¸€èˆ¬é»˜è®¤ä¸å¡«
+	require        		æ˜¯å¦å¿…è¾“çš„,å¿…è¾“ä¸º "true"
+	readOnly            æ˜¯å¦åªè¯» , åªè¯»ä¸º"true"
+	mask                æ ¡éªŒè§„åˆ™, é‡‡ç”¨æ­£åˆ™è¡¨è¾¾å¼ ,å‚è€ƒrule.js
+	maskErrorMes        æ ¡éªŒå‡ºé”™åŽå¼¹å‡ºæ¥çš„æ ¡éªŒä¿¡æ¯
  -->
 <#macro textarea  id label componentId targetDataset defaultValue  width height colSpan="2" rowSpan=1  vAlign="center" required="" readonly="" placeholder="">
-	 <#-- Èç¹û¸ß¶ÈÉèÖÃÎª0 ÔòÊ¹ÓÃÄ¬ÈÏµÄ50 -->
+	 <#-- å¦‚æžœé«˜åº¦è®¾ç½®ä¸º0 åˆ™ä½¿ç”¨é»˜è®¤çš„50 -->
 	 <#assign _height = 50 >
 	 <#if height?exists && height!="">
 	 <#if height?number gt 0 >
@@ -289,7 +289,7 @@
 </#macro>
 
 <#macro textarea2  id label componentId targetDataset defaultValue  width height colSpan="2" rowSpan=1  vAlign="center" required="" readonly="" placeholder="">
-	 <#-- Èç¹û¸ß¶ÈÉèÖÃÎª0 ÔòÊ¹ÓÃÄ¬ÈÏµÄ50 -->
+	 <#-- å¦‚æžœé«˜åº¦è®¾ç½®ä¸º0 åˆ™ä½¿ç”¨é»˜è®¤çš„50 -->
 	 <#assign _height = 50 >
 	 <#if height?exists && height!="">
 	 <#if height?number gt 0 >
@@ -303,20 +303,20 @@
 </#macro>
 
 <#--text  with extra js
-	lable               ÏÔÊ¾µÄlable
-	id  				Îªtextarea µÄid , ÔÚtargetDatasetÖÐ½«»á×Ô¶¯Éú³É¸Ãid¶ÔÓ¦µÄfield
-	targetDataset  		Ö÷datasetµÄid
-	defaultValue   		Ä¬ÈÏÖµ
-	maxLength		    ¿ÉÒÔÊäÈëµÄ×î´óÎ»Êý
-	width               text¿òµÄ¿í¶È,Ò»°ãÄ¬ÈÏ²»Ìî
-	type            ¸ÃtextµÄÀàÐÍ,Ö§³ÖµÄÀàÐÍÓÐ string,int,float,double
-	scale               Ð¡ÊýÎ»µÄÎ»Êý,Èç¹ûtextTypeÎªfloat,double,¿ÉÒÔÖ¸¶¨¸ÃÎ»Êý
-	require        		ÊÇ·ñ±ØÊäµÄ,±ØÊäÎª "true"
-	readOnly            ÊÇ·ñÖ»¶Á , Ö»¶ÁÎª"true"
-	mask                Ð£Ñé¹æÔò, ²ÉÓÃÕýÔò±í´ïÊ½ ,²Î¿¼rule.js
-	maskErrorMes        Ð£Ñé³ö´íºóµ¯³öÀ´µÄÐ£ÑéÐÅÏ¢
+	lable               æ˜¾ç¤ºçš„lable
+	id  				ä¸ºtextarea çš„id , åœ¨targetDatasetä¸­å°†ä¼šè‡ªåŠ¨ç”Ÿæˆè¯¥idå¯¹åº”çš„field
+	targetDataset  		ä¸»datasetçš„id
+	defaultValue   		é»˜è®¤å€¼
+	maxLength		    å¯ä»¥è¾“å…¥çš„æœ€å¤§ä½æ•°
+	width               textæ¡†çš„å®½åº¦,ä¸€èˆ¬é»˜è®¤ä¸å¡«
+	type            è¯¥textçš„ç±»åž‹,æ”¯æŒçš„ç±»åž‹æœ‰ string,int,float,double
+	scale               å°æ•°ä½çš„ä½æ•°,å¦‚æžœtextTypeä¸ºfloat,double,å¯ä»¥æŒ‡å®šè¯¥ä½æ•°
+	require        		æ˜¯å¦å¿…è¾“çš„,å¿…è¾“ä¸º "true"
+	readOnly            æ˜¯å¦åªè¯» , åªè¯»ä¸º"true"
+	mask                æ ¡éªŒè§„åˆ™, é‡‡ç”¨æ­£åˆ™è¡¨è¾¾å¼ ,å‚è€ƒrule.js
+	maskErrorMes        æ ¡éªŒå‡ºé”™åŽå¼¹å‡ºæ¥çš„æ ¡éªŒä¿¡æ¯
  -->
- <#--½¨Á¢Field-->
+ <#--å»ºç«‹Field-->
 <#macro text id label componentId targetDataset defaultValue  width  colSpan=colSpan rowSpan=1 scale=""  vAlign="center" required="" readonly="" datatype="string"  prefix="" placeholder="" comparemode="" isSingle="false">
 <#assign _et = "validatebox">
 <#assign _dt = datatype>
@@ -375,7 +375,7 @@
 </#macro>
 
 
- <#--½¨Á¢Field-->
+ <#--å»ºç«‹Field-->
 <#macro text2 id label componentId targetDataset defaultValue  width  colSpan=colSpan rowSpan=1 scale=""  vAlign="center" required="" readonly="" datatype="string"  prefix="" placeholder="" comparemode="">
 <#assign _et = "validatebox">
 <#assign _dt = datatype>
@@ -424,7 +424,7 @@
 </#if>
 </#macro>
 
- <#--½¨Á¢password-->
+ <#--å»ºç«‹password-->
 <#macro password id componentId label targetDataset defaultValue  width  colSpan=colSpan rowSpan=1  vAlign="center"  required="" readonly="">
 	 <td class="labeltd"  valign=${vAlign} align="right" style="width: 20%" nowrap>
 	 		<label extra="fieldlabel" id="fldlabel_${id}" componentDataset="${targetDataset}" dataField="${id}"  label="${label}"></label>
@@ -439,7 +439,7 @@
 </#macro>
 
 
- <#--½¨Á¢datalabel-->
+ <#--å»ºç«‹datalabel-->
 <#macro datalabel id label componentId targetDataset defaultValue  width  colSpan=colSpan rowSpan=1  vAlign="center">
 	 <td  class="labeltd" valign=${vAlign} align="right" nowrap style="width: 20%">
 	        <label extra="fieldlabel" id="fldlabel_${id}" componentDataset="${targetDataset}" dataField="${id}"  label="${label}"></label>	
@@ -448,25 +448,25 @@
 	 		<label extra="datalabel" id="editor_${id}"  componentDataset="${targetDataset}" dataField="${id}" componentId="${componentId}"></label>
 	 </td>
 </#macro>
- <#--½¨Á¢datalabel ,²»°üº¬td-->
+ <#--å»ºç«‹datalabel ,ä¸åŒ…å«td-->
 <#macro datalabel2 id label componentId targetDataset defaultValue  width  colSpan=colSpan rowSpan=1  vAlign="center">
 	 		<label extra="datalabel" id="editor_${id}"  componentDataset="${targetDataset}" dataField="${id}" componentId="${componentId}"></label>
 </#macro>
 
 <#--  with extra js
-	lable  ÏÔÊ¾µÄlable
-	id     Îªselect µÄid , ÒªÇófileMap ÖÐ±ØÐë°üº¬¸ÃidµÄÖµÓ³Éä , ÕâÑùÔÚtargetDatasetÖÐ½«»á×Ô¶¯Éú³É¸Ãid¶ÔÓ¦µÄfield
-	selsetValues   Îªselect µÄËùÓÐÑ¡Ïî
-	targetDataset  Ö÷datasetµÄid
-	defaultValue   ÏÂÀ­¿òµÄÄ¬ÈÏÖµ
-	fileMap  ÖµÓ³Éä ,¸ñÊ½Èç"contactmanidtype=datano;contactmanidtypename=dataname"  ÆäÖÐ±ØÐë°üº¬idµÄÓ³Éä,Ö÷datasetµÄ×Ö¶Î·Å=×ó±ß,selectµÄÖµ·Å=ÓÒ±ß
-	ddsfiles ÏÂÀ­Ñ¡Ïî¶ÔÓ¦µÄdatasetµÄËùÓÐÓò
-	field    ÏÂÀ­Ñ¡Ïî¶ÔÓ¦µÄdatasetÖÐÒªÏÔÊ¾³öÀ´µÄÖµ
-	width    ÏÂÀ­¿òµÄ¿í¶È,Ò»°ãÄ¬ÈÏ²»Ìî,ÏÂÀ­¿òµÄ¿í¶È»á±»Ñ¡ÏîÖµ×Ô¶¯³Å¿ª
-	height   ÏÂÀ­¿òµÄ¸ß¶È,¿ÉÒÔÖ¸¶¨¸ÃÖµ,ÕâÑùÏÂÀ­¿ò¿ÉÒÔÏÔÊ¾¸ü¶àµÄÏÂÀ­Ñ¡Ïî
-	require  ¸ÃÏÂÀ­Ñ¡ÏîÊÇ·ñ±ØÊä ,±ØÊäÎª "true"
-	readOnly ÊÇ·ñÊÇ¿É¶ÁµÄ
-	colSpan  ±í¸ñÁÐ
+	lable  æ˜¾ç¤ºçš„lable
+	id     ä¸ºselect çš„id , è¦æ±‚fileMap ä¸­å¿…é¡»åŒ…å«è¯¥idçš„å€¼æ˜ å°„ , è¿™æ ·åœ¨targetDatasetä¸­å°†ä¼šè‡ªåŠ¨ç”Ÿæˆè¯¥idå¯¹åº”çš„field
+	selsetValues   ä¸ºselect çš„æ‰€æœ‰é€‰é¡¹
+	targetDataset  ä¸»datasetçš„id
+	defaultValue   ä¸‹æ‹‰æ¡†çš„é»˜è®¤å€¼
+	fileMap  å€¼æ˜ å°„ ,æ ¼å¼å¦‚"contactmanidtype=datano;contactmanidtypename=dataname"  å…¶ä¸­å¿…é¡»åŒ…å«idçš„æ˜ å°„,ä¸»datasetçš„å­—æ®µæ”¾=å·¦è¾¹,selectçš„å€¼æ”¾=å³è¾¹
+	ddsfiles ä¸‹æ‹‰é€‰é¡¹å¯¹åº”çš„datasetçš„æ‰€æœ‰åŸŸ
+	field    ä¸‹æ‹‰é€‰é¡¹å¯¹åº”çš„datasetä¸­è¦æ˜¾ç¤ºå‡ºæ¥çš„å€¼
+	width    ä¸‹æ‹‰æ¡†çš„å®½åº¦,ä¸€èˆ¬é»˜è®¤ä¸å¡«,ä¸‹æ‹‰æ¡†çš„å®½åº¦ä¼šè¢«é€‰é¡¹å€¼è‡ªåŠ¨æ’‘å¼€
+	height   ä¸‹æ‹‰æ¡†çš„é«˜åº¦,å¯ä»¥æŒ‡å®šè¯¥å€¼,è¿™æ ·ä¸‹æ‹‰æ¡†å¯ä»¥æ˜¾ç¤ºæ›´å¤šçš„ä¸‹æ‹‰é€‰é¡¹
+	require  è¯¥ä¸‹æ‹‰é€‰é¡¹æ˜¯å¦å¿…è¾“ ,å¿…è¾“ä¸º "true"
+	readOnly æ˜¯å¦æ˜¯å¯è¯»çš„
+	colSpan  è¡¨æ ¼åˆ—
  -->
 <#macro select lable id type selsetValues  componentId CQid targetDataset defaultValue fileMap ddsfiles field width height require readOnly colSpan="2" placeholder="" multiple="false" editable="false" >
 	<#assign fileMapString ="${fileMap}">
@@ -494,7 +494,7 @@
 	    
 	  </script>
 </#macro>
- <#--²»°üº¬td-->
+ <#--ä¸åŒ…å«td-->
 <#macro select_2  multiple lable id type selsetValues  componentId CQid targetDataset defaultValue fileMap ddsfiles field width height require readOnly colSpan="2" placeholder="" editable="false" >
 	<#assign fileMapString ="${fileMap}">
 	<#assign fileMapString = fileMapString+";${id}Name=${field}">
@@ -514,7 +514,7 @@
 	  </script>
 </#macro>
 
-<#-- ´¦ÀíÓÃ»§×Ô¶¨Òå Éú³ÉµÄselect -->
+<#-- å¤„ç†ç”¨æˆ·è‡ªå®šä¹‰ ç”Ÿæˆçš„select -->
 <#macro select2 lable id  CQid componentId targetDataset defaultValue fileMap  field width height require readOnly type colSpan="2" placeholder="" multiple="false"  editable="false">
 <#--	
         <#if type=="dynamic"||type=="dataset">
@@ -546,7 +546,7 @@
 	  </script>
 </#macro>
 
-<#-- ´¦ÀíÓÃ»§×Ô¶¨Òå Éú³ÉµÄselect -->
+<#-- å¤„ç†ç”¨æˆ·è‡ªå®šä¹‰ ç”Ÿæˆçš„select -->
 <#macro selectCustom lable id type  componentId targetDataset defaultValue fileMap  field width height require readOnly colSpan="2" placeholder="" url="" editable="false">
 	<td class="labeltd" valign=center align="right" style="width: 20%" nowrap>
     	<label extra="fieldlabel" id="fldlabel_${id}" componentDataset="${targetDataset}" dataField="${id}Name" ></label>
@@ -562,7 +562,7 @@
 	  </script>
 </#macro>
 
-<#-- ´¦ÀíÓÃ»§×Ô¶¨Òå Éú³ÉµÄselect ²»º¬TR-->
+<#-- å¤„ç†ç”¨æˆ·è‡ªå®šä¹‰ ç”Ÿæˆçš„select ä¸å«TR-->
 <#macro selectCustom2 lable id type  componentId targetDataset defaultValue fileMap  field width height require readOnly colSpan="2" placeholder="" url="" editable="false">
       <label extra="fieldlabel" id="fldlabel_${id}" componentDataset="${targetDataset}" dataField="${id}Name" ></label>
       <input extra="dropDownSelect"  editType="dropDownSelect" id="editor_${id}"   componentId="${componentId}"  datasetName="${CQid}_DropDownDataset"  editable="${editable}" panelHeight="auto" valueField="text"  textField="text"
@@ -575,7 +575,7 @@
 	  </script>
 </#macro>
 
-<#-- ´¦ÀíÓÃ»§×Ô¶¨Òå Éú³ÉµÄselect ²»°üº¬td -->
+<#-- å¤„ç†ç”¨æˆ·è‡ªå®šä¹‰ ç”Ÿæˆçš„select ä¸åŒ…å«td -->
 <#macro select2_2 lable id editable CQid componentId targetDataset defaultValue fileMap  field width height require readOnly type colSpan="2" placeholder="" multiple="false">
   <#if multiple=="false">
     <#assign multi="">
@@ -593,7 +593,7 @@
 	  </script>
 </#macro>
 
-<#-- ´¦ÀíÓÃ»§×Ô¶¨Òå Éú³ÉµÄselect ¸Ã select Òþ²Ø  -->
+<#-- å¤„ç†ç”¨æˆ·è‡ªå®šä¹‰ ç”Ÿæˆçš„select è¯¥ select éšè—  -->
 <#macro selectGetterHidden lable id targetDataset  width height require readOnly defaultValue CQid   fileMap=""  field="" ddtype="dataset">
 	  <input type="hidden" extra="editor" id="editor_${id}"
 					name="${id}" componentDataset="${targetDataset}" dataField="${id}Name" dropDown="${id}_DropDown" style="width:${width}">
@@ -636,7 +636,7 @@
 	 </#if>
 </#macro>
 
-<#--selectHidden Êý¾ÝÏÂÀ­,ÓÃÓÚ´¦Àí°üº¬dataTable,µ«ÊÇ²»°üº¬group,²¢ÇÒdataTableµÄselectÊÇ´¦ÓÚ¿É±à¼­×´Ì¬µÄÇé¿ö -->
+<#--selectHidden æ•°æ®ä¸‹æ‹‰,ç”¨äºŽå¤„ç†åŒ…å«dataTable,ä½†æ˜¯ä¸åŒ…å«group,å¹¶ä¸”dataTableçš„selectæ˜¯å¤„äºŽå¯ç¼–è¾‘çŠ¶æ€çš„æƒ…å†µ -->
 <#macro selectDataHidden lable id  selsetValues targetDataset fileMap  ddsfiles defaultValue  field width height require readOnly >
 	<#assign values = selsetValues>
 	<#assign fileMapString ="${fileMap}">
@@ -654,13 +654,13 @@
 
 </#macro>
 
-<#--selectDataDicHidden Êý¾ÝÏÂÀ­,ÓÃÓÚ´¦Àí°üº¬dataTable,µ«ÊÇ²»°üº¬group,²¢ÇÒdataTableµÄselectÊÇ´¦ÓÚ¿É±à¼­×´Ì¬µÄÇé¿ö -->
+<#--selectDataDicHidden æ•°æ®ä¸‹æ‹‰,ç”¨äºŽå¤„ç†åŒ…å«dataTable,ä½†æ˜¯ä¸åŒ…å«group,å¹¶ä¸”dataTableçš„selectæ˜¯å¤„äºŽå¯ç¼–è¾‘çŠ¶æ€çš„æƒ…å†µ -->
 <#macro selectDataDicHidden lable id  translated targetDataset fileMap  ddsfiles defaultValue  field width height require readOnly >
 	<#assign values = sysDicStr(translated)>
 	<@selectDataHidden lable=lable id=id  selsetValues=values targetDataset=targetDataset fileMap=fileMap ddsfiles=ddsfiles defaultValue=defaultValue field=field  width=width height=height require=require readOnly=readOnly />
 </#macro>
 
-<#--DataDic Êý¾ÝÏÂÀ­  -->
+<#--DataDic æ•°æ®ä¸‹æ‹‰  -->
 <#macro selectDataDic lable id componentId targetDataset width height require readOnly defaultValue translated multiple="false" viewField="" fieldMap="" ddtype="dataset" init="true" url="" colSpan="2" placeholder="" startyear="2007" yearlength="10" editable="false">
 <#-- modify by shen_antonio 20080121 -->
 	<#assign type = "">
@@ -718,7 +718,7 @@
      </#if>
 </#macro>
 
-<#--DataDic Êý¾ÝÏÂÀ­  Éú³ÉµÄselect²»°üº¬td-->
+<#--DataDic æ•°æ®ä¸‹æ‹‰  ç”Ÿæˆçš„selectä¸åŒ…å«td-->
 <#macro selectDataDic2 lable id  componentId  targetDataset width height require readOnly defaultValue translated viewField="" fieldMap="" ddtype="dataset" init="true" url="" colSpan="2" placeholder="" startyear="2007" yearlength="10" multiple="false" editable="false">
 <#-- modify by shen_antonio 20080121 -->
 	<#assign type = "">
@@ -778,11 +778,11 @@
      </#if>
 </#macro>
 
-<#--×Ô¶¨ÒåÊý¾ÝÏÂÀ­ , ²ÉÓÃgetter·½·¨  -->
+<#--è‡ªå®šä¹‰æ•°æ®ä¸‹æ‹‰ , é‡‡ç”¨getteræ–¹æ³•  -->
 <#macro selectGetter lable id multiple componentId targetDataset width height require readOnly defaultValue CQid fieldmap field type="dataset" colSpan="2" placeholder="" editable="false" >
 	<@select2 lable=lable id=id multiple=multiple  componentId= componentId   targetDataset=targetDataset fileMap=fieldmap CQid=CQid  defaultValue=defaultValue field=field   width=width height=height require=require readOnly=readOnly type=type colSpan=colSpan placeholder=placeholder editable=editable/>
 </#macro>
-<#--×Ô¶¨ÒåÊý¾ÝÏÂÀ­ , ²ÉÓÃgetter·½·¨  ²»°üº¬td -->
+<#--è‡ªå®šä¹‰æ•°æ®ä¸‹æ‹‰ , é‡‡ç”¨getteræ–¹æ³•  ä¸åŒ…å«td -->
 <#macro selectGetter2 lable id  componentId targetDataset width height require readOnly defaultValue CQid fieldmap field type="dataset" colSpan="2" placeholder="" multiple="false" editable="false">
 	<@select2_2 lable=lable id=id  multiple=multiple componentId= componentId   targetDataset=targetDataset fileMap=fieldmap CQid=CQid  defaultValue=defaultValue field=field   width=width height=height require=require readOnly=readOnly type=type colSpan=colSpan placeholder=placeholder editable=editable/>
 </#macro>
@@ -830,7 +830,7 @@
 <input type="hidden" extra="editor" editType="hidden" id="editor_${id}" name="${id}" componentDataset="${targetDataset}" dataField="${id}"  ${required}>
 </#macro>
 
-<#--°´Å¥
+<#--æŒ‰é’®
 	id
 	targetDataset
 	desc
@@ -861,14 +861,14 @@
 </script>
 </#macro>
 
-<#--Í¨ÓÃ²éÑ¯Í·Ä£°å ÓÃÓÚÓÃ»§×Ô¶¨ÒåÉú³ÉµÄselect-->
+<#--é€šç”¨æŸ¥è¯¢å¤´æ¨¡æ¿ ç”¨äºŽç”¨æˆ·è‡ªå®šä¹‰ç”Ÿæˆçš„select-->
 <#macro CommonQueryForSelect id init="true" require="false">
 <#assign DropDownCommonQueryConfig = statics["com.huateng.commquery.config.CommonQueryUtil"].getCommonQueryBean(id)>
 <@DropDownDataSet init=init require=require/>
 <#nested>
 </#macro>
 
-<#--½¨Á¢DropDownDataSetÄ£°å-->
+<#--å»ºç«‹DropDownDataSetæ¨¡æ¿-->
 <#macro DropDownDataSet init="true" require="false">
 <#assign specStr="nextPage|everyPage|pageNm|currentPage|fieldString|recordString|recordOrigString">
 <script language="javascript">
@@ -881,7 +881,7 @@
       var pKey=new Array();
       <#list parametersKeys as key>
         <#assign parameter=parametersMap.get(key)>
-        <#assign pDesc = parameter.getAnyValue("desc")?default("Öµ")>
+        <#assign pDesc = parameter.getAnyValue("desc")?default("å€¼")>
         <#assign pRequire = parameter.getAnyValue("require")?default("false")>
         <#assign pWidth = parameter.getAnyValue("width")?default("")>
         <#assign pHeight = parameter.getAnyValue("height")?default("")>

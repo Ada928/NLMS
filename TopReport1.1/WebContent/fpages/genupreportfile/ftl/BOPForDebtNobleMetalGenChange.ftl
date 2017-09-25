@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÕË»§¿ª¹ØĞÅÏ¢">
+<@CommonQueryMacro.page title="è´¦æˆ·å¼€å…³ä¿¡æ¯">
 
 <@CommonQueryMacro.CommonQueryTab id="BOPForDebtNobleMetalGenTabs" navigate="false" currentTab="BOPForDebtNobleMetalGenChange">
 	<@CommonQueryMacro.CommonQuery id="BOPForDebtNobleMetalGenChange" init="false" submitMode="selected" navigate="false" >
 		<table align="left">
 			<tr>
 				<td>
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -26,18 +26,18 @@
 </@CommonQueryMacro.CommonQueryTab>
 <script language="JavaScript">
 	
-	//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+	//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function datatable1_filler2_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + value + "</a>";
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 	cell.innerHTML="&nbsp;";
 		}
 	}
 
 	function doDetail(id){
-		showWin("¹ó½ğÊô²ğ½èÇ©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtNobleMetalLendingChangeInfoCol.ftl?id=" + id + "&op=detaile");
+		showWin("è´µé‡‘å±æ‹†å€Ÿç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtNobleMetalLendingChangeInfoCol.ftl?id=" + id + "&op=detaile");
 	}
 </script>
 </@CommonQueryMacro.page>

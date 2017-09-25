@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="汇率查询">
+<@CommonQueryMacro.page title="姹囩巼鏌ヨ">
 <table align="left">
 
 <tr>
@@ -9,7 +9,7 @@
 <table align="left">
 			<tr>
        			<td valign="top" rowspan="2"  valign="top">
-       				<@CommonQueryMacro.Interface id="intface" label="查询条件" colNm=4  />
+       				<@CommonQueryMacro.Interface id="intface" label="鏌ヨ鏉′欢" colNm=4  />
         		</td>
       	  	</tr>
    </table>
@@ -43,7 +43,7 @@
 			var edDate = exchangeRateManualQuery_interface_dataset.getValue("edDate");
 			if(bgDate!="" && edDate!="") {
 				if(bgDate>edDate) {
-					alert("起始日期应该小于等于结束日期");
+					alert("璧峰鏃ユ湡搴旇灏忎簬绛変簬缁撴潫鏃ユ湡");
 					exchangeRateManualQuery_interface_dataset.setValue2("edDate","bgDate");
 					return false;
 				}

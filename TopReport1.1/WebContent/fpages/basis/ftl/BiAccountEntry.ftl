@@ -49,17 +49,17 @@
 		btNew.click();
 	}
 
-	//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+	//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function datatable1_opr_onRefresh(cell,value,record) {
 	
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±		
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶		
 			cell.innerHTML="<center><a href=\"JavaScript:doModify('"+value+"')\"><@bean.message key="BiAccountEntry.button.btMod" /></a>  &nbsp; <a href=\"JavaScript:doDelete('"+value+"')\"><@bean.message key="BiAccountEntry.button.btDel" />";
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 cell.innerHTML="&nbsp;";
 		}
 	}
 
-	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+	//å®šä½ä¸€æ¡è®°å½•
 	function locate(id) {
 		
 		var record = BiAccountEntry_dataset.find(["id"],[id]);
@@ -68,18 +68,18 @@
 		}
 	}
 
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	function doModify(id) {
 		
 		locate(id);
 		btMod.click();
 	}
 
-	//É¾³ı
+	//åˆ é™¤
 	function doDelete(id) {
 		locate(id);
 
-		if(confirm('ÊÇ·ñÉ¾³ıµ±Ç°¼ÇÂ¼'))
+		if(confirm('æ˜¯å¦åˆ é™¤å½“å‰è®°å½•'))
 		{
 			btDel.click();
 		}

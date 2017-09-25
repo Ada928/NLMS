@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="²Ù×÷Ô±¹ÜÀí">
+<@CommonQueryMacro.page title="æ“ä½œå‘˜ç®¡ç†">
 <table align="left">
 
 <tr>
@@ -22,7 +22,7 @@
 	<table align="left">
 			<tr>
        			<td rowspan="1"  valign="top"  width="500">
-        		<@CommonQueryMacro.Group id="group1" label="²Ù×÷Ô±ĞÅÏ¢" fieldStr="brcode,tlrno,tlrName,defRoleid,status,effectDate,expireDate,email" colNm=4/>
+        		<@CommonQueryMacro.Group id="group1" label="æ“ä½œå‘˜ä¿¡æ¯" fieldStr="brcode,tlrno,tlrName,defRoleid,status,effectDate,expireDate,email" colNm=4/>
         		</td>
       		</tr>
       		<tr>
@@ -59,7 +59,7 @@
 		function btdel_onClickCheck(button) {
 			var tlrno = parammng_TlrInfo3_dataset.getValue("tlrno");
 			var tlrnoname = parammng_TlrInfo3_dataset.getValue("tlrName");
-			var msg = "É¾³ı²Ù×÷Ô±£º" + tlrno + "-" + tlrnoname + "¼°ÆäËùÓĞ¸ÚÎ»ĞÅÏ¢£¬ÇëÈ·ÈÏ£¿";
+			var msg = "åˆ é™¤æ“ä½œå‘˜ï¼š" + tlrno + "-" + tlrnoname + "åŠå…¶æ‰€æœ‰å²—ä½ä¿¡æ¯ï¼Œè¯·ç¡®è®¤ï¼Ÿ";
 			if(confirm(msg)) {
 				parammng_TlrInfo3_dataset.setParameter("cmd","del");
 				return true;
@@ -70,7 +70,7 @@
 
 		function btSave_postSubmit()
 		{
-        alert('±£´æ³É¹¦');
+        alert('ä¿å­˜æˆåŠŸ');
         }
 
         function parammng_TlrInfo2_dataset_afterChange(dataset,field){
@@ -109,7 +109,7 @@ function unLock_onClickCheck(button) {
 	parammng_TlrInfo3_dataset.setParameter("cmd","unlock");
 }
 function unLock_postSubmit(button) {
-	alert("½âËø³É¹¦£¡");
+	alert("è§£é”æˆåŠŸï¼");
 	parammng_TlrInfo3_dataset.flushData(parammng_TlrInfo3_dataset.pageIndex);
 }
 

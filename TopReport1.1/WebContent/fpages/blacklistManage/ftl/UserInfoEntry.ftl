@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="ÓÃ»§¹ÜÀí">
+<@CommonQueryMacro.page title="ç”¨æˆ·ç®¡ç†">
 <@CommonQueryMacro.CommonQuery id="UserInfoEntry" init="true" submitMode="current">
 	<table width="100%" align="left">
 		<tr valign="center">
 			<td valign="top" colspan="2">
-				<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=6 />
+				<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=6 />
 			</td>
 		</tr>
 	  	<tr>
@@ -37,7 +37,7 @@
     var currentTlrno = "${info.tlrNo}";
     var roleType = "${info.roleTypeList}";
     
-    //¶¨Î»Ò»Ìõ¼ÇÂ¼
+    //å®šä½ä¸€æ¡è®°å½•
     function locate(id) {
         var record = UserInfoEntry_dataset.find(["tlrno"], [id]);
         if (record) {
@@ -53,12 +53,12 @@
             var innerStr = "<PRE>";
             //if (st == "1" || st == "2" || st == "3") {
             if (roleType.indexOf("12") >- 1 || roleType.indexOf("13") >- 1  || roleType.indexOf("14") >- 1 || roleType.indexOf("15") >- 1 ) {
-                innerStr = innerStr + "<a style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\">ĞŞ¸Ä</a> " +
-                    " <a style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\">ÃÜÂëÖØÖÃ</a> " + "<a style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\">É¾³ı</a>" + "</PRE>";
+                innerStr = innerStr + "<a style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\">ä¿®æ”¹</a> " +
+                    " <a style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\">å¯†ç é‡ç½®</a> " + "<a style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\">åˆ é™¤</a>" + "</PRE>";
             } else {
-                innerStr = innerStr + " <a href=\"JavaScript:btModifyShow('" + id + "')\">ĞŞ¸Ä</a>" +
-                    " <a href=\"JavaScript:resetPwd('" + id + "')\">ÃÜÂëÖØÖÃ</a>"  + 
-                    " <a href=\"JavaScript:doDel('" + id + "')\">É¾³ı</a> "  + "</PRE>";
+                innerStr = innerStr + " <a href=\"JavaScript:btModifyShow('" + id + "')\">ä¿®æ”¹</a>" +
+                    " <a href=\"JavaScript:resetPwd('" + id + "')\">å¯†ç é‡ç½®</a>"  + 
+                    " <a href=\"JavaScript:doDel('" + id + "')\">åˆ é™¤</a> "  + "</PRE>";
             }
             cell.innerHTML = innerStr;
         } else {
@@ -81,9 +81,9 @@
     
     function resetPwd(tlrno) {
         if (tlrno == currentTlrno) {
-            alert("²»ÄÜÖØÖÃ×Ô¼ºµÄÃÜÂë");
+            alert("ä¸èƒ½é‡ç½®è‡ªå·±çš„å¯†ç ");
         } else {
-            if (!confirm("È·ÈÏÒªÖØÖÃ¸ÃÓÃ»§µÄÃÜÂëÂğ?")) {
+            if (!confirm("ç¡®è®¤è¦é‡ç½®è¯¥ç”¨æˆ·çš„å¯†ç å—?")) {
                 return;
             }
             locate(tlrno);
@@ -106,14 +106,14 @@
     function btDel_onClickCheck(button) {
     	var del = UserInfoEntry_dataset.getValue("del");
 		if (del == "F") {
-			if (confirm("È·ÈÏÉ¾³ı¸ÃÓÃ»§£¿")) {
+			if (confirm("ç¡®è®¤åˆ é™¤è¯¥ç”¨æˆ·ï¼Ÿ")) {
 				UserInfoEntry_dataset.setParameter("delet", "T");
 				return true;
 			} else {
 				return false;
 			}
 		} else {
-			if (confirm("È·ÈÏ»Ö¸´¸ÃÓÃ»§£¿")) {
+			if (confirm("ç¡®è®¤æ¢å¤è¯¥ç”¨æˆ·ï¼Ÿ")) {
 				UserInfoEntry_dataset.setParameter("delet", "F");
 				return true;
 			} else {
@@ -123,13 +123,13 @@
     }
     
     function btDel_postSubmit(button) {
-        alert("É¾³ıÓÃ»§³É¹¦");
+        alert("åˆ é™¤ç”¨æˆ·æˆåŠŸ");
         button.url = "#";
-        //Ë¢ĞÂµ±Ç°Ò³
+        //åˆ·æ–°å½“å‰é¡µ
         flushCurrentPage();
     }
 
-    //Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+    //å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
     function datatable1_tlrno_onRefresh(cell, value, record) {
         if (record != null) {
             var sta = record.getValue("st");
@@ -143,10 +143,10 @@
     function showDetail(id) {
 		locate(id);
 		btDetail.click();
-        //showWin("ÓÃ»§ÏêÏ¸ĞÅÏ¢", "${contextPath}/fpages/blacklistManage/ftl/UserInfoDetail.ftl?op=detail&tlrno=" + id, "", "", window);
+        //showWin("ç”¨æˆ·è¯¦ç»†ä¿¡æ¯", "${contextPath}/fpages/blacklistManage/ftl/UserInfoDetail.ftl?op=detail&tlrno=" + id, "", "", window);
     }
 
-    //Ë¢ĞÂµ±Ç°Ò³
+    //åˆ·æ–°å½“å‰é¡µ
     function flushCurrentPage() {
     	UserInfoEntry_dataset.flushData(UserInfoEntry_dataset.pageIndex);
     }
@@ -154,14 +154,14 @@
     /* function btStatus_onClickCheck(button) {
         var status = UserInfoEntry_dataset.getValue("flag");
         if (status == '0') {
-            if (confirm("È·ÈÏ½«¸ÃÓÃ»§ÉèÖÃÎªÓĞĞ§?")) {
+            if (confirm("ç¡®è®¤å°†è¯¥ç”¨æˆ·è®¾ç½®ä¸ºæœ‰æ•ˆ?")) {
                 UserInfoEntry_dataset.setParameter("statu", "1");
                 return true;
             } else {
                 return false;
             }
         } else {
-            if (confirm("È·ÈÏ½«¸ÃÓÃ»§ÉèÖÃÎªÎŞĞ§?")) {
+            if (confirm("ç¡®è®¤å°†è¯¥ç”¨æˆ·è®¾ç½®ä¸ºæ— æ•ˆ?")) {
                 UserInfoEntry_dataset.setParameter("statu", "0");
                 return true;
             } else {
@@ -171,12 +171,12 @@
     }
     
     function btStatus_postSubmit(button) {
-        alert("ÉèÖÃ³É¹¦");
+        alert("è®¾ç½®æˆåŠŸ");
         flushCurrentPage();
     }
 
     function btLoginStatus_onClickCheck(button) {
-        if (confirm("È·ÈÏ½«¸ÃÓÃ»§Ç¿ĞĞÇ©ÍË?")) {
+        if (confirm("ç¡®è®¤å°†è¯¥ç”¨æˆ·å¼ºè¡Œç­¾é€€?")) {
             UserInfoEntry_dataset.setParameter("statu", "logout");
             return true;
         } else {
@@ -185,7 +185,7 @@
     }
     
     function btLoginStatus_postSubmit(button) {
-        alert("Ç©ÍË³É¹¦");
+        alert("ç­¾é€€æˆåŠŸ");
         flushCurrentPage();
     }
 
@@ -193,7 +193,7 @@
         unLock.disable(dataset.getValue("lock") != 'true' || dataset.getValue("tlrno") == currentTlrno);
     }
 
-    //Ë¢ĞÂÊı¾İ
+    //åˆ·æ–°æ•°æ®
     function flushPage() {
         bopAccDsRecordAD_dataset.flushData();
     }
@@ -208,7 +208,7 @@
         var op = "auth";
         paramMap.put("tlrno", tlrno);
         paramMap.put("op", op);
-        loadPageWindows("userWin", "½ÇÉ«Éè¶¨", "/fpages/regonization/ftl/OperMngRoleInfo.ftl", paramMap, "winZone");
+        loadPageWindows("userWin", "è§’è‰²è®¾å®š", "/fpages/regonization/ftl/OperMngRoleInfo.ftl", paramMap, "winZone");
     }
 
     
@@ -217,7 +217,7 @@
     }
     
     function unLock_postSubmit(button) {
-        alert("½âËø³É¹¦£¡");
+        alert("è§£é”æˆåŠŸï¼");
         flushCurrentPage();
     }*/
 /*

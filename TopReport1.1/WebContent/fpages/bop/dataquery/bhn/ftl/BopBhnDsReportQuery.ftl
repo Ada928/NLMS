@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="Éê±¨ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç”³æŠ¥ä¿¡æ¯">
 <@CommonQueryMacro.CommonQueryTab id="BopBhnDsQueryTabs" navigate="false" currentTab="BopBhnDsReportQuery">
 	<@CommonQueryMacro.CommonQuery id="BopBhnDsReportQuery" init="false" submitMode="all" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -23,14 +23,14 @@
 </@CommonQueryMacro.CommonQueryTab>
 </td></tr></table>
 <script language="JavaScript">
-	//¹¤×÷ÈÕÆÚ
+	//å·¥ä½œæ—¥æœŸ
 	function initCallGetter_post(){
 		<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 		BopBhnDsReportQuery_interface_dataset.setValue("qworkDateStart","${v_txdate}");
 		BopBhnDsReportQuery_interface_dataset.setValue("qworkDateEnd","${v_txdate}");
 	}
 
-	//Ë¢ĞÂ²Ù×÷ÄÚÈİ
+	//åˆ·æ–°æ“ä½œå†…å®¹
 	function datatable1_filler2_onRefresh(cell,value,record) {
 		if(record && record != null) {
 			var id = record.getValue("id");
@@ -39,9 +39,9 @@
 			cell.innerHTML = "&nbsp;";
 		}
 	}
-	//ÏêÏ¸
+	//è¯¦ç»†
 	function doDetail(id) {
-		showWin("Éê±¨ĞÅÏ¢ÏêÏ¸","${contextPath}/fpages/bop/collandaudit/bhn/ftl/BopBhnDsReportCollInfo.ftl?id="+id+"&op="+"detail","window","flushPage()",window);
+		showWin("ç”³æŠ¥ä¿¡æ¯è¯¦ç»†","${contextPath}/fpages/bop/collandaudit/bhn/ftl/BopBhnDsReportCollInfo.ftl?id="+id+"&op="+"detail","window","flushPage()",window);
 	}
 </script>
 </@CommonQueryMacro.page>

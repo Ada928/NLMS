@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="Ñ¡Ôñ">
+<@CommonQueryMacro.page title="é€‰æ‹©">
 	<@CommonQueryMacro.CommonQuery id="BopFDsLoadPage" init="false" submitMode="selected" navigate="false" >
 		<table align="left">
 			<tr>
 				<td>
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -55,7 +55,7 @@
 		setBasicValueToParent(localDs,ds);
 
 	}
-	/*ÉèÖÃ»ù´¡ĞÅÏ¢*/
+	/*è®¾ç½®åŸºç¡€ä¿¡æ¯*/
 	function setBasicValueToParent(localDs,ds) {
 		ds.setValue("filler1",localDs.getValue("id"));
 		ds.setValue("rptno",localDs.getValue("rptno"));

@@ -1,4 +1,4 @@
-<#--Ã·Ωª“≥√Ê≤‚ ‘-->
+<#--Êèê‰∫§È°µÈù¢ÊµãËØï-->
 <#import "/templets/common/common.ftl" as com>
 <#import "/templets/commonQuery/CQResultFormSubmit.ftl" as formSubmit>
 <#import "/templets/commonQuery/CommonQueryMacro.ftl" as CQMaco>
@@ -21,7 +21,7 @@
 <@pagediv Result = CommonQueryResult/>
 </DIV>
 
-<#-- “≥¬Î–≈œ¢ -->
+<#-- È°µÁ†Å‰ø°ÊÅØ -->
 <input type="hidden" name="currentPage" value="${CommonQueryResult.page.currentPage}"/>
 <input type="hidden" name="pageNm" value="${CommonQueryResult.page.totalPage}"/>
 <input type="hidden" name="everyPage" value="${CommonQueryResult.page.everyPage}"/>
@@ -74,7 +74,7 @@
       <#list data as rowData>
        <#assign rowHiddenData = "">
        <#assign rowOprData = "">
-       <#if rownum%2=0><#--±Ìµƒ––∫≈Œ™≈º ˝-->
+       <#if rownum%2=0><#--Ë°®ÁöÑË°åÂè∑‰∏∫ÂÅ∂Êï∞-->
       	  <#assign thClass="spec">
           <#assign trClass="alt1">
        <#else>
@@ -90,9 +90,9 @@
             	<#assign rowHiddenData = rowHiddenData + fieldData.orig + "|">
             	<#if fStat!="n"&&fStat!="d">
             			<#if colnum==0>
-            				<TH SCOPE="row" CLASS="${thClass}">&nbsp;${fieldData.opr}&nbsp;</TH><#--±Ì÷µ-->
+            				<TH SCOPE="row" CLASS="${thClass}">&nbsp;${fieldData.opr}&nbsp;</TH><#--Ë°®ÂÄº-->
       	    			<#else>
-      	    				<TD CLASS="${trClass}">&nbsp;${fieldData.opr}&nbsp;</TD><#--±Ì÷µ-->
+      	    				<TD CLASS="${trClass}">&nbsp;${fieldData.opr}&nbsp;</TD><#--Ë°®ÂÄº-->
       	    			</#if>
       	    		<#assign colnum=colnum+1>
       	   		<#else>
@@ -133,7 +133,7 @@
 <TABLE CLASS="pageNmTable">
 <TR>
     <TD>
-         		<FONT CLASS="pageDiv"> “≥¬Î ${page.currentPage} of ${page.totalPage} </FONT>
+         		<FONT CLASS="pageDiv"> È°µÁ†Å ${page.currentPage} of ${page.totalPage} </FONT>
     </TD>
 </TR>
 </TABLE>
@@ -145,44 +145,44 @@
           <TABLE>
           	<TR>
           	<TD>
-          <button id="firstPageBT" class=btn_2k3 title=" ◊“≥"
+          <button id="firstPageBT" class=btn_2k3 title="È¶ñÈ°µ"
           	onmouseover="this.className='btn3_mouseover'"
 			onmouseout="this.className='btn_2k3'"
 			onmousedown="this.className='btn3_mousedown'"
 			onmouseup="this.className='btn3_mouseup'"
 			onclick="javascript:return firstPage(commonQuery);">
-          	 ◊“≥
+          	È¶ñÈ°µ
           </button>
 
           </TD>
           <TD>
-          <button id="previousPageBT" class=btn_2k3 title="«∞“ª“≥"
+          <button id="previousPageBT" class=btn_2k3 title="Ââç‰∏ÄÈ°µ"
            	onmouseover="this.className='btn3_mouseover'"
 			onmouseout="this.className='btn_2k3'"
 			onmousedown="this.className='btn3_mousedown'"
 			onmouseup="this.className='btn3_mouseup'"
           onclick="javascript:return previousPage(commonQuery);">
-          	«∞“ª“≥
+          	Ââç‰∏ÄÈ°µ
           </button>
           </TD>
           <TD>
-          <button id="nextPageBT" class=btn_2k3 title="∫Û“ª“≥"
+          <button id="nextPageBT" class=btn_2k3 title="Âêé‰∏ÄÈ°µ"
             onmouseover="this.className='btn3_mouseover'"
 			onmouseout="this.className='btn_2k3'"
 			onmousedown="this.className='btn3_mousedown'"
 			onmouseup="this.className='btn3_mouseup'"
           onclick="javascript:return nextPageFunction(commonQuery);">
-          	∫Û“ª“≥
+          	Âêé‰∏ÄÈ°µ
           </button>
           </TD>
           <TD>
-            <button id="lastPageBT" class=btn_2k3 title="ƒ©“≥"
+            <button id="lastPageBT" class=btn_2k3 title="Êú´È°µ"
             onmouseover="this.className='btn3_mouseover'"
 			onmouseout="this.className='btn_2k3'"
 			onmousedown="this.className='btn3_mousedown'"
 			onmouseup="this.className='btn3_mouseup'"
             onclick="javascript:return lastPage(commonQuery);">
-          	ƒ©“≥
+          	Êú´È°µ
           </button>
           </TD>
           </TR>
@@ -216,7 +216,7 @@ ${divString}
 <DIV ID="submenu" STYLE="DISPLAY:none;" >
 <DIV ID="submenu_1">
       <DIV ID="submenu_1_1">
-      <STRONG>${CommonQueryConfig.title}--œÍœ∏–≈œ¢</STRONG>
+      <STRONG>${CommonQueryConfig.title}--ËØ¶ÁªÜ‰ø°ÊÅØ</STRONG>
       </DIV>
       <DIV ID="submenu_1_2" align="LEFT">
        <#assign fieldMap = CommonQueryConfig.fields>
@@ -232,13 +232,13 @@ ${divString}
          	<#if columnInx%2 == 0>
           		<UL ID="submenu_1_2_ul1" onmouseover="document.onmousedown = function(){return true;}" onmouseout="document.onmousedown = function(event){hidenSubmenu(event);hidenMenu(event);}">
          			<LI>
-        	     		<P>${fDesc?right_pad(10,'£≠')}$${columnInx}$
+        	     		<P>${fDesc?right_pad(10,'Ôºç')}$${columnInx}$
          			</LI>
       			</UL>
       		<#else>
       			 <UL ID="submenu_1_2_ul2" onmouseover="document.onmousedown = function(){return true;}" onmouseout="document.onmousedown = function(event){hidenSubmenu(event);hidenMenu(event);}">
           			<LI>
-        	    		<P>${fDesc?right_pad(10,'£≠')}$${columnInx}$
+        	    		<P>${fDesc?right_pad(10,'Ôºç')}$${columnInx}$
           			</LI>
      			</UL>
       		</#if>

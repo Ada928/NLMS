@@ -6,7 +6,7 @@
 <table width="800px">
     <tr>
         <td>
- <span>ÎÄ¼şÃûÎª£º¡¾${RequestParameters["fileName"]}¡¿,±íÃûÎª:¡¾${RequestParameters["tableName"]}¡¿,ÆäXMLµÄÅäÖÃÎª: </span>
+ <span>æ–‡ä»¶åä¸ºï¼šã€${RequestParameters["fileName"]}ã€‘,è¡¨åä¸º:ã€${RequestParameters["tableName"]}ã€‘,å…¶XMLçš„é…ç½®ä¸º: </span>
         </td>  
     </tr>
     <tr>
@@ -27,7 +27,7 @@
 	</tr>
 	<tr>
 		<td>		
-	<@CommonQueryMacro.Group id ="group2" label="¾ßÌå×Ö¶ÎÅäÖÃ" fieldStr="pid,nodeName,pnodeName,nodeOrder,nodeXpath,nodeProperty,nodeGetval,nodeRtval" colNm=4/>
+	<@CommonQueryMacro.Group id ="group2" label="å…·ä½“å­—æ®µé…ç½®" fieldStr="pid,nodeName,pnodeName,nodeOrder,nodeXpath,nodeProperty,nodeGetval,nodeRtval" colNm=4/>
 		</td>
 	</tr>
 </table>
@@ -56,7 +56,7 @@
   	var rec = ImportXmlConfig_dataset.find(['id'],[ImportXmlConfig_dataset.getValue('pid')]);
 	if(rec) {
 		if (ImportXmlConfig_dataset.getValue('nodeOrder') <= rec.getValue('nodeOrder')) {
-			alert('×Ó½Úµã['+ImportXmlConfig_dataset.getField('nodeOrder').label+']µÄÖµ±ØĞë´óÓÚ¸¸½Úµã');
+			alert('å­èŠ‚ç‚¹['+ImportXmlConfig_dataset.getField('nodeOrder').label+']çš„å€¼å¿…é¡»å¤§äºçˆ¶èŠ‚ç‚¹');
 			return false;
 		}
 	}

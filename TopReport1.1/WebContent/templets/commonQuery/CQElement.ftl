@@ -1,4 +1,4 @@
-<#--------------- Œƒ±æ ‰»ÎøÚ ----------------->
+<#--------------- ÊñáÊú¨ËæìÂÖ•Ê°Ü ----------------->
 <#macro textinput textinputlabel inputid name value size rules errMsg>
 
 <td valign=center align="right" style="width: 80px" nowrap>
@@ -50,7 +50,7 @@ _f.lobPopupURL=getDecodeStr("");
 
 
 
-<#---------------- »’¿˙ ‰»ÎøÚ -------------------->
+<#---------------- Êó•ÂéÜËæìÂÖ•Ê°Ü -------------------->
 <#macro calendar calendarlabel name value rules errMsg>
 <script language="javascript" src="${contextPath}/page/resources/script/calendar.js"></script>
 <script language="javascript" src="${contextPath}/page/resources/script/calendar-setup.js"></script>
@@ -98,7 +98,7 @@ function calendarChange(inputEleNm,hidEleNm){
 	    <IMG SRC="${contextPath}/page/resources/image/common/line-blue.gif" WIDTH="100%" HEIGHT="5"></TD></TR>
 </#macro>
 
-<#---------------- »’¿˙ ‰»ÎøÚ_÷ªƒ‹ ‰»ÎΩÒÃÏ÷Æ«∞»’∆⁄£®∞¸∫¨ΩÒÃÏ£© -------------------->
+<#---------------- Êó•ÂéÜËæìÂÖ•Ê°Ü_Âè™ËÉΩËæìÂÖ•‰ªäÂ§©‰πãÂâçÊó•ÊúüÔºàÂåÖÂê´‰ªäÂ§©Ôºâ -------------------->
 <#macro calendarOnlyBefore calendarlabel name value rules errMsg>
 	<script language="javascript" src="${contextPath}/page/resources/script/calendar.js"></script>
 	<script language="javascript" src="${contextPath}/page/resources/script/calendar-setup.js"></script>
@@ -136,11 +136,11 @@ function calendarChange(inputEleNm,hidEleNm){
 	<IMG SRC="${contextPath}/page/resources/image/common/line-blue.gif" WIDTH="400" HEIGHT="5"></TD></TR>
 	<script language='JavaScript'>
 		fieldRules['${name}_calendar'] = new Array(isValidDateFormat);
-		errMsgs['${name}_calendar']    = '«Î ‰»Î’˝»∑µƒ${calendarlabel}£°';
+		errMsgs['${name}_calendar']    = 'ËØ∑ËæìÂÖ•Ê≠£Á°ÆÁöÑ${calendarlabel}ÔºÅ';
 	</script>
 </#macro>
 
-<#--------------- √‹¬Î ‰»ÎøÚ ------------------>
+<#--------------- ÂØÜÁ†ÅËæìÂÖ•Ê°Ü ------------------>
 <#macro password id passwordlabel name inputid value>
 <TR>
 	<TD WIDTH="10%" CLASS="unnamed2">
@@ -151,13 +151,13 @@ function calendarChange(inputEleNm,hidEleNm){
 	<TD WIDTH="70%" CLASS="unnamed1"><INPUT TYPE="password"
 		NAME="${name}" CLASS="unnamed1" value="${value}"></TD>
 </TR>
-<TR id="${id}"><#-- ∑÷∏Ùœﬂ -->
+<TR id="${id}"><#-- ÂàÜÈöîÁ∫ø -->
 	<TD COLSPAN="3" CLASS="unnamed3">
 	    <IMG SRC="${contextPath}/page/resources/image/common/line-blue.gif" WIDTH="100%" HEIGHT="5"></TD>
 </TR>
 </#macro>
 
-<#---------------- œ¬¿≠≤Àµ• ------------------->
+<#---------------- ‰∏ãÊãâËèúÂçï ------------------->
 <#macro select label selectName elements defaultValue size onchange>
 <TR>
 	<TD WIDTH="10%" CLASS="unnamed2">
@@ -182,7 +182,7 @@ function calendarChange(inputEleNm,hidEleNm){
 		</script>
 	</TD>
 </TR>
-<TR><#-- ∑÷∏Ùœﬂ -->
+<TR><#-- ÂàÜÈöîÁ∫ø -->
 	<TD COLSPAN="3" CLASS="unnamed3">
 	    <IMG SRC="${contextPath}/page/resources/image/common/line-blue.gif" WIDTH="100%" HEIGHT="5"></TD>
 </TR>
@@ -195,7 +195,7 @@ function calendarChange(inputEleNm,hidEleNm){
 </#macro>
 -->
 
-<#---------------- Õ®”√∞¥≈• -------------------->
+<#---------------- ÈÄöÁî®ÊåâÈíÆ -------------------->
 <#macro commonbutton id value onclick>
 <input id="${id}" style="BACKGROUND: url(${contextPath}/page/resources/image/common/button.gif;); WIDTH: 51;
        CURSOR: pointer; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none;
@@ -219,7 +219,7 @@ function calendarChange(inputEleNm,hidEleNm){
 	</#if>
 	</TD>
 </TR>
-<TR><#-- ∑÷∏Ùœﬂ -->
+<TR><#-- ÂàÜÈöîÁ∫ø -->
 	<TD COLSPAN="3" CLASS="unnamed3">
 	    <IMG SRC="${contextPath}/page/resources/image/common/line-blue.gif" WIDTH="100%" HEIGHT="5"></TD>
 </TR>

@@ -36,28 +36,28 @@
 </td></tr></table>
 <script language="JavaScript">
 
-//datasetË¢ĞÂÍêÊı¾İºó´¥·¢
+//datasetåˆ·æ–°å®Œæ•°æ®åè§¦å‘
 function DataDicEntry_dataset_flushDataPost(dataset) {
 	//TODO
-	document.getElementById("size").innerHTML="±¾Ò³¼ÇÂ¼Êı:"+dataset.length;
+	document.getElementById("size").innerHTML="æœ¬é¡µè®°å½•æ•°:"+dataset.length;
 }
-//µ±¼ÇÂ¼¼¯¹ö¶¯ºó¡¢¼´µ±Ç°¼ÇÂ¼¸Ä±äºó´¥·¢ 
+//å½“è®°å½•é›†æ»šåŠ¨åã€å³å½“å‰è®°å½•æ”¹å˜åè§¦å‘ 
 function DataDicEntry_dataset_afterScroll(dataset) {
 	//TODO
-	document.getElementById("show").innerHTML="×ÖµäÀàĞÍ±àºÅ:"+dataset.getValue("dataTypeNo");
+	document.getElementById("show").innerHTML="å­—å…¸ç±»å‹ç¼–å·:"+dataset.getValue("dataTypeNo");
 }
-//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢ 
+//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘ 
 function datatable1_opr_onRefresh(cell,value,record) {
-	if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+	if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 		cell.innerHTML="<a href='JavaScript:doModify("+value+")'><@bean.message key="DataDicEntry.button.btMod" /></a> &nbsp; <a href='JavaScript:doDelete("+value+")'><@bean.message key="DataDicEntry.button.btDel" /></a>";
-	} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+	} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		cell.innerHTML="&nbsp;";
 	}
 }
 function datatable1_datatypeno_onRefresh(cell,value,record) {
-	if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+	if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 		cell.innerHTML="<a href='JavaScript:showDetail("+record.getValue('id')+")'>"+value+"</a>";
-	} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+	} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		cell.innerHTML="&nbsp;";
 	}
 }
@@ -70,7 +70,7 @@ function showDetail(id) {
 	subwindow_datadicdetailFW.show();
 	
 }
-//¶¨Î»Ò»Ìõ¼ÇÂ¼
+//å®šä½ä¸€æ¡è®°å½•
 function locate(id) {
 	var record = DataDicEntry_dataset.find(["id"],[id]);
 	if (record) {
@@ -78,7 +78,7 @@ function locate(id) {
 	}
 }
 
-//ĞŞ¸Ä
+//ä¿®æ”¹
 function doModify(id) {
 	locate(id);
 	window.document.getElementById('btMod').click();
@@ -88,23 +88,23 @@ function doModify_postSubmit(button) {
 	DataDicEntry_dataset.flushData(DataDicEntry_dataset.pageIndex);
 }
 
-//É¾³ı
+//åˆ é™¤
 function doDelete(id) {
 	locate(id);
 	window.document.getElementById('btDel').click();
 }
 
 function btDel_onClickCheck(button) {
-	return confirm("È·ÈÏÉ¾³ı¸ÃÊı¾İ£¿");
+	return confirm("ç¡®è®¤åˆ é™¤è¯¥æ•°æ®ï¼Ÿ");
 }
-//É¾³ıºó´¦Àí
+//åˆ é™¤åå¤„ç†
 function btDel_postSubmit(button) {
 	DataDicEntry_dataset.flushData(DataDicEntry_dataset.pageIndex);
 }
 
 function btCopyNew_onClickCheck(button) {
 	if (DataDicEntry_dataset.length==0) {
-		alert("ÎŞ·¨¸´ÖÆ");
+		alert("æ— æ³•å¤åˆ¶");
 		return false;
 	}
 	return true;
@@ -130,7 +130,7 @@ function _dataset_sort(dataset, fields) {
 		ascend = 'asc';
 	}
 	var f = dataset.getField(fields);
-	var column = f.varname;//ÕâÀïÊ¹ÓÃµÄÊÇXMLÖĞfieldµÄvarnameÊôĞÔ,ĞèÒªÔÚCommonQueryTagMacro.ftlÖĞ
+	var column = f.varname;//è¿™é‡Œä½¿ç”¨çš„æ˜¯XMLä¸­fieldçš„varnameå±æ€§,éœ€è¦åœ¨CommonQueryTagMacro.ftlä¸­
 	if (column) {
 		dataset.setParameter('orderby', column);
 		dataset.setParameter('ascend', ascend);

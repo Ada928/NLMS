@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#--jianxue.zhang-->
-<@CommonQueryMacro.page title="Ö÷¹ÜÈ·ÈÏ">
+<@CommonQueryMacro.page title="ä¸»ç®¡ç¡®è®¤">
 <table width="800px" align="left">
 <tr>
 <td>
@@ -8,7 +8,7 @@
 	<table width="100%">
 		<tr>
    			<td valign="top" colspan="2">
-   			<@CommonQueryMacro.Interface id="interface" label="ÏµÍ³¸´ºËÅäÖÃ" colNm=4 showButton="true" />
+   			<@CommonQueryMacro.Interface id="interface" label="ç³»ç»Ÿå¤æ ¸é…ç½®" colNm=4 showButton="true" />
         	</td>
         </tr>
 		<tr>
@@ -16,7 +16,7 @@
    				<@CommonQueryMacro.PagePilot id="PagePilot"/>
    			</td>
    			<td align="right" style="display:none">
-	    		<a href="javascript:btNewClick();">ĞÂÔö</a>
+	    		<a href="javascript:btNewClick();">æ–°å¢</a>
 	        </td>
 
   		</tr>
@@ -29,7 +29,7 @@
       		<td colspan="2">
       		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
       			<div align="center">
-      				<@CommonQueryMacro.Group id="group1" label="¹¦ÄÜ¸´ºËÎ¬»¤"
+      				<@CommonQueryMacro.Group id="group1" label="åŠŸèƒ½å¤æ ¸ç»´æŠ¤"
         			  fieldStr="id,taskname,flag" colNm=4/>
         			 </br>
       				<@CommonQueryMacro.Button id= "btSave"/>
@@ -50,7 +50,7 @@
 
  <script language="javascript">
  
-		//¶¨Î»Ò»Ìõ¼ÇÂ¼
+		//å®šä½ä¸€æ¡è®°å½•
 		function locate(id) {
 			var record = ApproveConfig_dataset.find([ "id" ], [ id ]);
 			if (record) {
@@ -59,11 +59,11 @@
 		}
 		function datatable1_opr_onRefresh(cell, value, record) {
 
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				cell.innerHTML = "<center><a href=\"JavaScript:modDtl('" + id
-						+ "')\">ĞŞ¸Ä</a></center>";
-			} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+						+ "')\">ä¿®æ”¹</a></center>";
+			} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 				cell.innerHTML = "&nbsp;";
 			}
 		}

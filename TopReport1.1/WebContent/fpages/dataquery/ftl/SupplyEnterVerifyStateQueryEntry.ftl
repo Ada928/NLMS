@@ -8,7 +8,7 @@
 					<table width="100%">
 						<tr>
 							<td colspan="2" valign="top">
-								<@CommonQueryMacro.Interface id="interface1" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm="6"/>
+								<@CommonQueryMacro.Interface id="interface1" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm="6"/>
 							</td>
 						</tr>
 
@@ -30,7 +30,7 @@
 	</table>
 	<script language="JavaScript">
 	    function initCallGetter_post(){
-			//¹¤×÷ÈÕÆÚÄ¬ÈÏµ±ÌìÈÕÆÚ
+			//å·¥ä½œæ—¥æœŸé»˜è®¤å½“å¤©æ—¥æœŸ
 			SupplyEnterVerifyStateQueryEntry_interface_dataset.setValue("qworkDateStart", _today_date);
 			SupplyEnterVerifyStateQueryEntry_interface_dataset.setValue("qworkDateEnd", _today_date);
 			SupplyEnterVerifyStateQueryEntry_interface_dataset.setValue("qbusiType",defaultType);

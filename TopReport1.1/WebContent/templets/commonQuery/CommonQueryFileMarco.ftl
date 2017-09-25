@@ -1,59 +1,59 @@
 <#--
-ÃèÊö£º²éÑ¯½á¹ûÉú³ÉÎÄ±¾±í¸ñÄ£°å
-×÷Õß: shen_antonio
-´´½¨ÈÕÆÚ:20080523
+æè¿°ï¼šæŸ¥è¯¢ç»“æžœç”Ÿæˆæ–‡æœ¬è¡¨æ ¼æ¨¡æ¿
+ä½œè€…: shen_antonio
+åˆ›å»ºæ—¥æœŸ:20080523
 -->
 
-<#--ÒýÓÃ²ÎÊý
-¡¡¡¡ RESULT-·µ»Ø½á¹û¼¯ºÏ
-¡¡¡¡ TYPE-ÏÔÊ¾·½Ê½(1-±í¸ñ·½Ê½;2-×é·½Ê½)
+<#--å¼•ç”¨å‚æ•°
+ã€€ã€€ RESULT-è¿”å›žç»“æžœé›†åˆ
+ã€€ã€€ TYPE-æ˜¾ç¤ºæ–¹å¼(1-è¡¨æ ¼æ–¹å¼;2-ç»„æ–¹å¼)
 
-ÏÔÊ¾Ê¾ÀýÈçÏÂ:
-     ¹úÄÚÓÊÕþ»ã¶ÒÒµÎñÊÕÈëÍ³¼Æ×Ü±í
-©³©¥©¥©¥©¥©Ó©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©Ó©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©·
-©§¡¡     £ü                     £ü                          ©§
-©Ä©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ì
-©§       £ü                      £ü                            ©§
-©Ä©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ì
-©§        £ü                      £ü                            ©§
-©Ä©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ì
-©§        £ü                      £ü                            ©§
-©Ä©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ì
-©§        £ü                      £ü                            ©§
-©º©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¾
+æ˜¾ç¤ºç¤ºä¾‹å¦‚ä¸‹:
+     å›½å†…é‚®æ”¿æ±‡å…‘ä¸šåŠ¡æ”¶å…¥ç»Ÿè®¡æ€»è¡¨
+â”â”â”â”â”â”¯â”â”â”â”â”â”â”â”â”â”â”â”¯â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”“
+â”ƒã€€     ï½œ                     ï½œ                          â”ƒ
+â” â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¨
+â”ƒ       ï½œ                      ï½œ                            â”ƒ
+â” â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¨
+â”ƒ        ï½œ                      ï½œ                            â”ƒ
+â” â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¨
+â”ƒ        ï½œ                      ï½œ                            â”ƒ
+â” â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¨
+â”ƒ        ï½œ                      ï½œ                            â”ƒ
+â”–â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”š
 -->
 <#--global value-->
-<#global rowConS = "©Ä">
-<#global rowConE = "©Ì">
-<#global rowStartLineS = "©³">
-<#global rowStartLineE = "©·">
-<#global rowStartLineM = "©¥">
-<#global rowEndLineS = "©º">
-<#global rowEndLineM = "©¤">
-<#global rowEndLineE = "©¾">
-<#global row = "©¤">
-<#global rowSColumn="©§">
-<#global column = "£ü">
+<#global rowConS = "â” ">
+<#global rowConE = "â”¨">
+<#global rowStartLineS = "â”">
+<#global rowStartLineE = "â”“">
+<#global rowStartLineM = "â”">
+<#global rowEndLineS = "â”–">
+<#global rowEndLineM = "â”€">
+<#global rowEndLineE = "â”š">
+<#global row = "â”€">
+<#global rowSColumn="â”ƒ">
+<#global column = "ï½œ">
 <#global space=1>
 <#---->
 
-<#--»ñÈ¡Í¨ÓÃ²éÑ¯ÅäÖÃ-->
+<#--èŽ·å–é€šç”¨æŸ¥è¯¢é…ç½®-->
 <#assign CQId = CommonQueryResult.getCqId()>
 <#assign recordCount = CommonQueryResult.getData()?size>
 <#assign CommonQueryConfig = statics["com.huateng.commquery.config.CommonQueryUtil"].getCommonQueryBean(CQId)>
 <#assign title = CommonQueryConfig.getAnyValueDefault("title","")>
-<#--±äÁ¿-->
-<#assign title = ""> <#--±í¸ñ±êÌâ-->
-<#assign rowLine = ""> <#--±í¸ñÐÐ·Ö¸îÏß-->
-<#assign headLine = ""> <#--±íÍ·ÐÐ-->
-<#assign bodyLine = ""> <#--±íÌåÐÐ-->
-<#assign rowStartLine = ""><#--±í¸ñÆðÊ¼ÐÐÏß-->
+<#--å˜é‡-->
+<#assign title = ""> <#--è¡¨æ ¼æ ‡é¢˜-->
+<#assign rowLine = ""> <#--è¡¨æ ¼è¡Œåˆ†å‰²çº¿-->
+<#assign headLine = ""> <#--è¡¨å¤´è¡Œ-->
+<#assign bodyLine = ""> <#--è¡¨ä½“è¡Œ-->
+<#assign rowStartLine = ""><#--è¡¨æ ¼èµ·å§‹è¡Œçº¿-->
 <#assign groupStr = "">
 <#assign groupTitle="">
 <#assign tableTitle="">
 
-<#--¡¡ÎÄ¼þ²éÑ¯Ò³ÃæÄ£°å¶¨Òå¡¡
-title £º±êÌâÀ¸¡¡,¿ÉÎª¿Õ,È±Ê¡ÎªÍ¨ÓÃ²éÑ¯ÅäÖÃµÄ±êÌâ
+<#--ã€€æ–‡ä»¶æŸ¥è¯¢é¡µé¢æ¨¡æ¿å®šä¹‰ã€€
+title ï¼šæ ‡é¢˜æ ã€€,å¯ä¸ºç©º,ç¼ºçœä¸ºé€šç”¨æŸ¥è¯¢é…ç½®çš„æ ‡é¢˜
 -->
 <#macro page>
 <#if recordCount != 0>
@@ -80,32 +80,32 @@ ${rowLine}
 ${bodyLine?trim}
 </#if>
 <#else>
-Ã»ÓÐ·ûºÏÌõ¼þµÄ¼ÇÂ¼
+æ²¡æœ‰ç¬¦åˆæ¡ä»¶çš„è®°å½•
 </#if>
 </#macro>
 
 
 
 <#--
-²éÑ¯±¨±í:ÓÃÓÚ·µ»Ø¶àÌõ¼ÇÂ¼µÄÐÅÏ¢Õ¹ÏÖ
-Ê¹ÓÃwidth±í±êÊ¶Óò¿í¶È(ÒÔ×Ö½ÚÎªµ¥Î»)
-ÁÐ¿í¶È¡¡£½¡¡max(width , ÓòÃèÊö×Ö½Ú³¤¶È)
-fieldStr : ÐèÒªÏÔÊ¾µÄ×Ö¶Î¼¯ºÏ£¬ÒÔ¶ººÅ×÷Îª·Ö¸î·ûºÅ£¬×Ö¶ÎÃû±ØÐëÔÚÍ¨ÓÃ²éÑ¯ÅäÖÃÖÐ±ØÐëÓÐ¶¨Òå£¬¿ÉÎª¿Õ£¬È±Ê¡ÎªËùÓÐ×Ö¶Î
+æŸ¥è¯¢æŠ¥è¡¨:ç”¨äºŽè¿”å›žå¤šæ¡è®°å½•çš„ä¿¡æ¯å±•çŽ°
+ä½¿ç”¨widthè¡¨æ ‡è¯†åŸŸå®½åº¦(ä»¥å­—èŠ‚ä¸ºå•ä½)
+åˆ—å®½åº¦ã€€ï¼ã€€max(width , åŸŸæè¿°å­—èŠ‚é•¿åº¦)
+fieldStr : éœ€è¦æ˜¾ç¤ºçš„å­—æ®µé›†åˆï¼Œä»¥é€—å·ä½œä¸ºåˆ†å‰²ç¬¦å·ï¼Œå­—æ®µåå¿…é¡»åœ¨é€šç”¨æŸ¥è¯¢é…ç½®ä¸­å¿…é¡»æœ‰å®šä¹‰ï¼Œå¯ä¸ºç©ºï¼Œç¼ºçœä¸ºæ‰€æœ‰å­—æ®µ
 -->
 <#macro DataTable fieldStr="${CommonQueryConfig.toFieldString()}">
 <#assign headLine = rowSColumn>
-<#assign tableWidth = 0> <#--±í¸ñ¿í¶È-->
-<#assign fldCount = 0> <#--ÏÔÊ¾Óò¸öÊý-->
-<#assign rowEndLine=""><#--±í¸ñ½áÊøÐÐÏß-->
-<#--»ñÈ¡±¨±íÍ·-->
+<#assign tableWidth = 0> <#--è¡¨æ ¼å®½åº¦-->
+<#assign fldCount = 0> <#--æ˜¾ç¤ºåŸŸä¸ªæ•°-->
+<#assign rowEndLine=""><#--è¡¨æ ¼ç»“æŸè¡Œçº¿-->
+<#--èŽ·å–æŠ¥è¡¨å¤´-->
 <#assign tableTitle = CommonQueryConfig.getAnyValueDefault("title","")>
-<#--»ñÈ¡×Ö¶Î³¤¶È¼¯ºÏ-->
+<#--èŽ·å–å­—æ®µé•¿åº¦é›†åˆ-->
 <#assign fldLthMap = getFieldLengthMap(CQId,fieldStr)>
 <#assign fieldMap = CommonQueryConfig.fields>
 <#assign fieldSet = fieldMap.keySet()>
 <#assign fieldAry = fieldStr?split(",")>
-<#--¶¨Òå±¨±í¿í¶È-->
-<#--»ñÈ¡±íÍ·ÐÐ-->
+<#--å®šä¹‰æŠ¥è¡¨å®½åº¦-->
+<#--èŽ·å–è¡¨å¤´è¡Œ-->
 <#assign fldLth = 0>
 <#assign fldCount = 0>
 <#assign fldIdSet = fldLthMap?keys>
@@ -141,7 +141,7 @@ fieldStr : ÐèÒªÏÔÊ¾µÄ×Ö¶Î¼¯ºÏ£¬ÒÔ¶ººÅ×÷Îª·Ö¸î·ûºÅ£¬×Ö¶ÎÃû±ØÐëÔÚÍ¨ÓÃ²éÑ¯ÅäÖÃÖÐ±ØÐ
 <#assign po = headLine?last_index_of(column)>
 <#assign headLine = headLine?substring(0,po) + rowSColumn>
 <#assign tableWidth =  tableWidth +  2 * 2 + (fldCount - 1) * 2>
-<#--Éú³É±êÌâÐÐ-->
+<#--ç”Ÿæˆæ ‡é¢˜è¡Œ-->
 <#assign dd = statics["java.lang.String"].valueOf(tableTitle).getBytes()>
 <#assign titleLength = dd?size>
 <#assign c = (tableWidth - titleLength)/2>
@@ -158,13 +158,13 @@ fieldStr : ÐèÒªÏÔÊ¾µÄ×Ö¶Î¼¯ºÏ£¬ÒÔ¶ººÅ×÷Îª·Ö¸î·ûºÅ£¬×Ö¶ÎÃû±ØÐëÔÚÍ¨ÓÃ²éÑ¯ÅäÖÃÖÐ±ØÐ
 	<#assign rwap = ""?left_pad(r," ")>
 	<#assign tableTitle = titleSpace + tableTitle + titleSpace + rwap>
 </#if>
-<#--Éú³ÉÆðÊ¼ÐÐÏß-->
+<#--ç”Ÿæˆèµ·å§‹è¡Œçº¿-->
 <#assign rowStartLine = rowStartLineS + ""?left_pad(tableWidth/2-2,rowStartLineM) + rowStartLineE>
-<#--Éú³ÉÐÐ·Ö¸îÏß-->
+<#--ç”Ÿæˆè¡Œåˆ†å‰²çº¿-->
 <#assign rowLine = rowConS + rowLine?left_pad(tableWidth/2-2,row) + rowConE>
-<#--Éú³É½áÊøÐÐÏß-->
+<#--ç”Ÿæˆç»“æŸè¡Œçº¿-->
 <#assign rowEndLine = rowEndLineS + ""?left_pad(tableWidth/2-2,rowEndLineM) + rowEndLineE>
-<#--Éú³É±íÌåÐÐ-->
+<#--ç”Ÿæˆè¡¨ä½“è¡Œ-->
 <#assign bodySingleLine = column>
 <#list 1..recordCount as i>
 <#assign rowData = CommonQueryResult.getRow( i - 1 )>
@@ -197,20 +197,20 @@ fieldStr : ÐèÒªÏÔÊ¾µÄ×Ö¶Î¼¯ºÏ£¬ÒÔ¶ººÅ×÷Îª·Ö¸î·ûºÅ£¬×Ö¶ÎÃû±ØÐëÔÚÍ¨ÓÃ²éÑ¯ÅäÖÃÖÐ±ØÐ
 		<#assign bodyLine = bodyLine +  rowSColumn +'\n' + rowEndLine>
 	</#if>
 </#list>
-<#--×é×°±í¸ñ-->
+<#--ç»„è£…è¡¨æ ¼-->
 </#macro>
 
 <#--
-×éÏÔÊ¾Ä£°å£ºÓÃÓÚÏÔÊ¾µ¥ÌõÐÅÏ¢
-È±Ê¡ÎªÒ»ÐÐÏÔÊ¾Á½¸öÊý¾ÝÓò
-µ¥¸öÓò¿ÉÒÔ¶ÀÁ¢Õ¼¾ÝÒ»ÐÐ
-Ö§³Ö×éºÏÓò
-fieldStr:ÐèÒªÏÔÊ¾µÄ×Ö¶Î¼¯ºÏ(ÒÔ¶ººÅ·Ö¸î)£¬²»¿ÉÎª¿Õ
-colNm:ÏÔÊ¾µÄÁÐÊý£¬Ò»¶¨ÊÇ£²µÄÕûÊý±¶£¬¿ÉÎª¿Õ£¬Ä¬ÈÏÎª£´
+ç»„æ˜¾ç¤ºæ¨¡æ¿ï¼šç”¨äºŽæ˜¾ç¤ºå•æ¡ä¿¡æ¯
+ç¼ºçœä¸ºä¸€è¡Œæ˜¾ç¤ºä¸¤ä¸ªæ•°æ®åŸŸ
+å•ä¸ªåŸŸå¯ä»¥ç‹¬ç«‹å æ®ä¸€è¡Œ
+æ”¯æŒç»„åˆåŸŸ
+fieldStr:éœ€è¦æ˜¾ç¤ºçš„å­—æ®µé›†åˆ(ä»¥é€—å·åˆ†å‰²)ï¼Œä¸å¯ä¸ºç©º
+colNm:æ˜¾ç¤ºçš„åˆ—æ•°ï¼Œä¸€å®šæ˜¯ï¼’çš„æ•´æ•°å€ï¼Œå¯ä¸ºç©ºï¼Œé»˜è®¤ä¸ºï¼”
 -->
 <#macro Group fieldStr="${CommonQueryConfig.toFieldString()}" colNm="4">
-	<#--¶ÔÓÚGroup£¬Ö»ÄÜ»ñÈ¡¼ÇÂ¼¼¯ºÏÖÐµÚÒ»ÌõµÄÐÅÏ¢-->
-	<#--»ñÈ¡±¨±íÍ·-->
+	<#--å¯¹äºŽGroupï¼Œåªèƒ½èŽ·å–è®°å½•é›†åˆä¸­ç¬¬ä¸€æ¡çš„ä¿¡æ¯-->
+	<#--èŽ·å–æŠ¥è¡¨å¤´-->
 	<#assign groupTitle = CommonQueryConfig.getAnyValueDefault("title","")>
 	<#assign rowData = CommonQueryResult.getRow(0)>
 	<#assign rowDataMap = rowData.getRowMap()>
@@ -253,7 +253,7 @@ colNm:ÏÔÊ¾µÄÁÐÊý£¬Ò»¶¨ÊÇ£²µÄÕûÊý±¶£¬¿ÉÎª¿Õ£¬Ä¬ÈÏÎª£´
 			<#assign groupStr = groupStr + '\n'>
 		</#if>
 	</#list>
-	<#--Éú³É±êÌâÐÐ-->
+	<#--ç”Ÿæˆæ ‡é¢˜è¡Œ-->
 	<#assign dd = statics["java.lang.String"].valueOf(groupTitle).getBytes()>
 	<#assign titleLength = dd?size>
 	<#assign c = (titleWidth - titleLength)/2>
@@ -290,7 +290,7 @@ colNm:ÏÔÊ¾µÄÁÐÊý£¬Ò»¶¨ÊÇ£²µÄÕûÊý±¶£¬¿ÉÎª¿Õ£¬Ä¬ÈÏÎª£´
 
 
 
-<#--Êý¾ÝÖµ×ª»»-->
+<#--æ•°æ®å€¼è½¬æ¢-->
 <#function getFieldValue field fieldVal>
 	<#assign fdatatype = field.getAnyValue("datatype","string")>
 	<#assign feidttype = field.getAnyValue("edittype","text")>

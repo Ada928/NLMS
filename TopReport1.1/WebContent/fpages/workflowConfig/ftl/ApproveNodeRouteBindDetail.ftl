@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ÉóÅúÂ·Ïß°ó¶¨">
+<@CommonQueryMacro.page title="å®¡æ‰¹è·¯çº¿ç»‘å®š">
 <table align="left">
 
 <tr>
@@ -9,7 +9,7 @@
 	<table align="left">
 			<tr>
        		<td valign="top"  valign="top">
-      <@CommonQueryMacro.Group id ="group2" label="ÏêÏ¸ĞÅÏ¢" fieldStr="bizTypeName,startBrhid,brhClass,maxAmt,isBand" colNm=2/>
+      <@CommonQueryMacro.Group id ="group2" label="è¯¦ç»†ä¿¡æ¯" fieldStr="bizTypeName,startBrhid,brhClass,maxAmt,isBand" colNm=2/>
        		</td>
       		</tr>
 
@@ -63,7 +63,7 @@ function btAdd_onClickCheck(button){
 }
 
 function btBack2_onClickCheck(button){
-	//alert("²Ù×÷³É¹¦£¡");
+	//alert("æ“ä½œæˆåŠŸï¼");
 	unloadPageWindows("userWin");
 	return false;
 }
@@ -94,11 +94,11 @@ function btSave2_onClickCheck(button){
 	if(record){
 		var routeId = record.getValue("routeId");
 		if(routeId == null ||routeId ==""){
-		alert("ÎŞ¼ÇÂ¼²»ÄÜ±£´æ");
+		alert("æ— è®°å½•ä¸èƒ½ä¿å­˜");
 		return false;
 		}
 	}else{
-		alert("ÎŞ¼ÇÂ¼²»ÄÜ±£´æ");
+		alert("æ— è®°å½•ä¸èƒ½ä¿å­˜");
 		return false;
 	}
 
@@ -109,7 +109,7 @@ function btSave2_onClickCheck(button){
 }
 
 function btSave2_postSubmit(button){
-	alert("°ó¶¨³É¹¦!");
+	alert("ç»‘å®šæˆåŠŸ!");
 }
 
 function datatable2_routeid_onRefresh(cell, value, record)

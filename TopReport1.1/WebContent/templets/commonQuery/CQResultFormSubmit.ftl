@@ -1,4 +1,4 @@
-<#--信息提交-->
+<#--淇℃伅鎻愪氦-->
 <#import "/templets/commonQuery/CQElement.ftl" as htmlelement>
 
 <#--CSS:${contextPath}/page/resources/style/formSubmitI.css-->

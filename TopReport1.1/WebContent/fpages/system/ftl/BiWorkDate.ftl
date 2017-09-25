@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="¹¤×÷ÈÕÆÚÎ¬»¤">
+<@CommonQueryMacro.page title="å·¥ä½œæ—¥æœŸç»´æŠ¤">
 <script type="text/javascript" src="${contextPath}/js/workdate.js"></script>
 <link rel='stylesheet' type="text/css" href="${contextPath}/css/workdate.css" />
 <table align="left" width="900px"><tr><td>
@@ -8,7 +8,7 @@
 <table align="left" class="grouptable" width="100%">
 	<tr>
 		<td class="labeltd" width="100px">
-		&nbsp;&nbsp;Äê·İ&nbsp;&nbsp;
+		&nbsp;&nbsp;å¹´ä»½&nbsp;&nbsp;
 		</td>
 		<td class="datatd" width="100px">
 			<@CommonQueryMacro.SingleField fId="biYear"/>
@@ -20,8 +20,8 @@
 			<strong id="test"></strong>
 		</td>
 		<td align="right"  nowrap="nowrap">
-			<span style='height:4px;background-color:#c2dcfc;border:1px solid #ddd'>&nbsp;&nbsp;&nbsp;</span>&nbsp;¹¤×÷ÈÕ
-			<span style='height:4px;background-color:#ffffff;border:1px solid #ddd'>&nbsp;&nbsp;&nbsp;</span>&nbsp;·Ç¹¤×÷ÈÕ
+			<span style='height:4px;background-color:#c2dcfc;border:1px solid #ddd'>&nbsp;&nbsp;&nbsp;</span>&nbsp;å·¥ä½œæ—¥
+			<span style='height:4px;background-color:#ffffff;border:1px solid #ddd'>&nbsp;&nbsp;&nbsp;</span>&nbsp;éå·¥ä½œæ—¥
 		</td>
 	</tr>
 </table>
@@ -74,7 +74,7 @@
 	   	return true;
 	}
 
-	//ÏÔÊ¾¹¤×÷ÈÕÆÚ ²¢ÇÒ²éÑ¯ÊÇ·ñÒÑÉèÖÃ
+	//æ˜¾ç¤ºå·¥ä½œæ—¥æœŸ å¹¶ä¸”æŸ¥è¯¢æ˜¯å¦å·²è®¾ç½®
 	function showBiWorkDate(year){
 		var selDays= null;
 		dwr.engine.setAsync(false);
@@ -90,13 +90,13 @@
 		}
 	}
 
-	//¹¤×÷ÈÕÆÚ±£´æ
+	//å·¥ä½œæ—¥æœŸä¿å­˜
 	function btSave_onClick(){
 		var yr = biWorkDate_dataset.getValue("biYear").trim();
 
 		var selDays = workdate.getCheckDate();
 		if (selDays.length==0) {
-			alert("Ã»ÓĞ¹¤×÷ÈÕ²»·ûºÏ");
+			alert("æ²¡æœ‰å·¥ä½œæ—¥ä¸ç¬¦åˆ");
 		}
 
 		PrivAction.saveOrUpdateWorkDate(yr, selDays, checkResult);
@@ -104,7 +104,7 @@
 	//jianxue.zhang
 	function checkflag(data){
 		if(data == 1){
-			document.getElementById("test").innerHTML="Ñ¡ÖĞµÄÄê·İÕıÔÚ¸´ºËÖĞ,ÒÑËø¶¨";
+			document.getElementById("test").innerHTML="é€‰ä¸­çš„å¹´ä»½æ­£åœ¨å¤æ ¸ä¸­,å·²é”å®š";
 			document.getElementById("btSave").disabled="true";
 		}else{
 			document.getElementById("btSave").disabled="";
@@ -114,19 +114,19 @@
 	//jianxue.zhang
 	function checkResult(data){
 		if(data == 0){
-			alert("±£´æ³É¹¦£¡");
+			alert("ä¿å­˜æˆåŠŸï¼");
 			document.getElementById("btSave").disabled="true";
-			document.getElementById("test").innerHTML="Ñ¡ÖĞµÄÄê·İÕıÔÚ¸´ºËÖĞ,ÒÑËø¶¨";
+			document.getElementById("test").innerHTML="é€‰ä¸­çš„å¹´ä»½æ­£åœ¨å¤æ ¸ä¸­,å·²é”å®š";
 				
 		}
 		else if(data == 2){
-		//Õâ¸öÊÇµ±²»ÉóºËµÄÊ±ºò×ßµÄÏßÂ·
-		alert("±£´æ³É¹¦!");
+		//è¿™ä¸ªæ˜¯å½“ä¸å®¡æ ¸çš„æ—¶å€™èµ°çš„çº¿è·¯
+		alert("ä¿å­˜æˆåŠŸ!");
 		document.getElementById("btSave").disabled="";
 			document.getElementById("test").innerHTML="";
 		}
 		else{
-			alert("±£´æÊ§°Ü£¡");
+			alert("ä¿å­˜å¤±è´¥ï¼");
 			document.getElementById("btSave").disabled="";
 			document.getElementById("test").innerHTML="";
 		}

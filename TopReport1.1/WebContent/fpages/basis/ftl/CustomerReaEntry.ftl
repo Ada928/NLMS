@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="¿Í»§ĞÅÏ¢¹ÜÀí">
+<@CommonQueryMacro.page title="å®¢æˆ·ä¿¡æ¯ç®¡ç†">
 <table width="800px" align="left">
 <tr>
 <td>
@@ -8,7 +8,7 @@
 	<table width="100%">
 		<tr>
 			<td valign="top" colspan="2">
-				<@CommonQueryMacro.Interface id="interface" label="»ú¹¹²éÑ¯" colNm=4 showButton="true"/>
+				<@CommonQueryMacro.Interface id="interface" label="æœºæ„æŸ¥è¯¢" colNm=4 showButton="true"/>
 			</td>
 		</tr>
 		<tr>
@@ -16,7 +16,7 @@
 				<@CommonQueryMacro.PagePilot id="pagePilot"  maxpagelink="9" showArrow="true" pageCache="false"/>
 			</td>
 				<td align="right">
-	    				<a href="javascript:btNewClick();">ĞÂÔö</a>
+	    				<a href="javascript:btNewClick();">æ–°å¢</a>
 	       			 </td>
 			
 		</tr>	
@@ -49,16 +49,16 @@
 		btNew.click();
 	}
 	
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢ 
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘ 
 	function dataTable1_opr_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
-			cell.innerHTML="<a href='JavaScript:doModify("+value+")'><@bean.message key="ĞŞ¸Ä" /></a> &nbsp; <a href='JavaScript:doDelete("+value+")'><@bean.message key="É¾³ı" /></a>";
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
+			cell.innerHTML="<a href='JavaScript:doModify("+value+")'><@bean.message key="ä¿®æ”¹" /></a> &nbsp; <a href='JavaScript:doDelete("+value+")'><@bean.message key="åˆ é™¤" /></a>";
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 cell.innerHTML="&nbsp;";
 		}
 	}
 	
-	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+	//å®šä½ä¸€æ¡è®°å½•
 function locate(id) {
 	var record = CustomerReaEntry_dataset.find(["id"],[id]);
 	if (record) {
@@ -66,16 +66,16 @@ function locate(id) {
 	}
 }
 
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 function doModify(id) {
 	locate(id);
 	btMod.click();
 }
 
-//É¾³ı
+//åˆ é™¤
 function doDelete(id) {
 	locate(id);
-	if(confirm('ÊÇ·ñÉ¾³ıµ±Ç°¼ÇÂ¼'))
+	if(confirm('æ˜¯å¦åˆ é™¤å½“å‰è®°å½•'))
 		{
 			btDel.click();
 		}
@@ -83,9 +83,9 @@ function doDelete(id) {
 }
 
 
-//É¾³ıºó´¦Àí
+//åˆ é™¤åå¤„ç†
 function btDel_postSubmit(button) {
-	alert('É¾³ı¼ÇÂ¼³É¹¦');
+	alert('åˆ é™¤è®°å½•æˆåŠŸ');
 	CustomerReaEntry_dataset.flushData(CustomerReaEntry_dataset.pageIndex);
 }
 	

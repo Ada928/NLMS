@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÉæÍâÊÕÈëÉê±¨µ¥»ù´¡ÐÅÏ¢">
+<@CommonQueryMacro.page title="æ¶‰å¤–æ”¶å…¥ç”³æŠ¥å•åŸºç¡€ä¿¡æ¯">
 <@CommonQueryMacro.CommonQuery id="bopAGDsLoadPage" init="false" submitMode="all" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>

@@ -6,7 +6,7 @@
 <table width="800px">
    <tr>
       	<td cospan="2">
-      	   <@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" />
+      	   <@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
       	</td>
       		
 	<tr>
@@ -30,7 +30,7 @@
 <script language="JavaScript">
 function datatable1_opr_onRefresh(cell,value,record) {
 		if(record) {
-			cell.innerHTML="<center><a href=\"ShenHeConfirm.ftl\">ÏêÏ¸</a></center>";
+			cell.innerHTML="<center><a href=\"ShenHeConfirm.ftl\">è¯¦ç»†</a></center>";
 
 		}
 	}

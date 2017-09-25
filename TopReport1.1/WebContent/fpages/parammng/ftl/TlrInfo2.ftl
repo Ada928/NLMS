@@ -9,7 +9,7 @@
           			<@CommonQuery.DataTable id ="datatable1" fieldStr="selected,roleid,rolename" width="200" readonly="false" />
         		</td>
         		<td align="left" valign="top" width="200">
-        			<@CommonQuery.Group id="group1" label="²Ù×÷Ô±ÐÅÏ¢1" fieldStr="brcode,tlrno,tlrnoName,status,latelyLogoutTime,latelyLoginTime,effectDate,expireDate,email,misc,creatDate" colNm=4/>
+        			<@CommonQuery.Group id="group1" label="æ“ä½œå‘˜ä¿¡æ¯1" fieldStr="brcode,tlrno,tlrnoName,status,latelyLogoutTime,latelyLoginTime,effectDate,expireDate,email,misc,creatDate" colNm=4/>
 
         		</td>
 

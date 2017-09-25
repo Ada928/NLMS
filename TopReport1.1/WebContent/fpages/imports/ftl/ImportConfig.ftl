@@ -8,7 +8,7 @@
 		<td><@CommonQueryMacro.PagePilot id="pagePilot1" maxpagelink="9" showArrow="true" pageCache="false"/></td>
 	</tr>
 	<tr>
-		<td><span>ÇëÑ¡ÔñÏàÓ¦µÄÎÄ¼ş½øĞĞÅäÖÃ£º</span></td>
+		<td><span>è¯·é€‰æ‹©ç›¸åº”çš„æ–‡ä»¶è¿›è¡Œé…ç½®ï¼š</span></td>
 	</tr>
 	<tr>
 		<td colspan="2">
@@ -18,7 +18,7 @@
 	
 	 <tr>
 		 <td colspan="2">
-		      <@CommonQueryMacro.Group id="group1" label="ÎÄ¼şÊôĞÔ"
+		      <@CommonQueryMacro.Group id="group1" label="æ–‡ä»¶å±æ€§"
 		        	 fieldStr="fileName,tableName,fileType,splitType,seperator,importTime,updateType,startRow,endrowFlag,startColumn,endColumn,sheetNum,mainFlag,fuid,status,remark" colNm=4/> 			
 		 </td>
   	 </tr>
@@ -68,7 +68,7 @@
      if(filename){
        button.url="fpages/imports/ftl/ImportFieldConfig.ftl?importFileId="+id+"&fileName="+filename+"&tableName="+tablename;
      }else{
-       alert("µ±Ç°ËùÑ¡ĞĞÎª¿Õ£¬Çë²åÈëÖµ£¡");
+       alert("å½“å‰æ‰€é€‰è¡Œä¸ºç©ºï¼Œè¯·æ’å…¥å€¼ï¼");
        return false;
      }    
   }
@@ -80,7 +80,7 @@
      if(id){
        button.url="fpages/imports/ftl/ImportXmlConfig.ftl?guid="+id+"&fileName="+filename+"&tableName="+tablename;
      }else{
-       alert("µ±Ç°ËùÑ¡ĞĞÎª¿Õ£¬Çë²åÈëÖµ£¡");
+       alert("å½“å‰æ‰€é€‰è¡Œä¸ºç©ºï¼Œè¯·æ’å…¥å€¼ï¼");
        return false;
      }
       
@@ -93,19 +93,19 @@
   function btSave_onClickCheck(button) {
   	if (ImportConfig_dataset.getValue('fileType').toLowerCase() == 'xls' ||ImportConfig_dataset.getValue('fileType').toLowerCase() == 'xlx') {
   		if (ImportConfig_dataset.getValue('sheetNum')<1) {
-  			alert("[" + ImportConfig_dataset.getField('sheetNum').label + "] ±ØĞë´óÓÚ0");
+  			alert("[" + ImportConfig_dataset.getField('sheetNum').label + "] å¿…é¡»å¤§äº0");
   			return false;
   		}
   		if (ImportConfig_dataset.getValue('startColumn')<1) {
-  			alert("[" + ImportConfig_dataset.getField('startColumn').label + "] ±ØĞë´óÓÚ0");
+  			alert("[" + ImportConfig_dataset.getField('startColumn').label + "] å¿…é¡»å¤§äº0");
   			return false;
   		}
   		if (ImportConfig_dataset.getValue('endColumn')<1) {
-  			alert("[" + ImportConfig_dataset.getField('endColumn').label + "] ±ØĞë´óÓÚ0");
+  			alert("[" + ImportConfig_dataset.getField('endColumn').label + "] å¿…é¡»å¤§äº0");
   			return false;
   		}
   		if (ImportConfig_dataset.getValue('endColumn') < ImportConfig_dataset.getValue('startColumn')) {
-  			alert("[" + ImportConfig_dataset.getField('endColumn').label + "] ±ØĞë´óÓÚ [" + ImportConfig_dataset.getField('startColumn').label + "]");
+  			alert("[" + ImportConfig_dataset.getField('endColumn').label + "] å¿…é¡»å¤§äº [" + ImportConfig_dataset.getField('startColumn').label + "]");
   			return false;
   		}
   	}

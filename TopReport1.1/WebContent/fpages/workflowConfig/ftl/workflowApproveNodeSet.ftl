@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ÉóºËÂ·Ïß°ó¶¨">
+<@CommonQueryMacro.page title="å®¡æ ¸è·¯çº¿ç»‘å®š">
 <@CommonQueryMacro.CommonQuery id="approveNodeRouteBinding" init="true" mode="2" navigate="false">
 	<table align="left">
 			<tr valign="center">
@@ -9,7 +9,7 @@
        			<table>
         			<tr align="center">
 	  				 	<td align="center">
-							<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=6  width="200"/>
+							<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=6  width="200"/>
 						<td>
 					</tr>
 				</table>
@@ -25,13 +25,13 @@
 			</td>
       		<td valign="top">
 				<fieldset>
-					<legend>ÒµÎñ·¢ÆğÌõ¼ş</legend>
+					<legend>ä¸šåŠ¡å‘èµ·æ¡ä»¶</legend>
 					<@CommonQueryMacro.Group id ="group1" label="" showGroupLine="false" fieldStr="bizTypeName"colNm=2/>
 					<br/>
 					<fieldset>
-						<legend>·¢ÆğĞĞ</legend>
-						<input type="radio" name="type" id="rd_brclass" checked="true" value="1" onclick="freshData()">Ö¸¶¨»ú¹¹¼¶±ğ&nbsp;&nbsp;
-						<input type="radio" name="type" id="rd_brcode" value="2" onclick="freshData()">Ö¸¶¨»ú¹¹
+						<legend>å‘èµ·è¡Œ</legend>
+						<input type="radio" name="type" id="rd_brclass" checked="true" value="1" onclick="freshData()">æŒ‡å®šæœºæ„çº§åˆ«&nbsp;&nbsp;
+						<input type="radio" name="type" id="rd_brcode" value="2" onclick="freshData()">æŒ‡å®šæœºæ„
 						<span id="span_startBrhid" style="display:none">
 						<@CommonQueryMacro.Group id ="group1" label="" showGroupLine="false" fieldStr="startBrhid"colNm=4/>
 						</span>
@@ -40,8 +40,8 @@
 						</span>
 					</fieldset>
 				</fieldset>
-				<@CommonQueryMacro.Group id ="group1" label="ÒµÎñÉúĞ§Ìõ¼ş" fieldStr="brhClass,maxAmt"colNm=2/>
-				<@CommonQueryMacro.Group id ="group1" label="ÊÇ·ñ°ó¶¨Â·Ïß" fieldStr="isBand"colNm=2/>
+				<@CommonQueryMacro.Group id ="group1" label="ä¸šåŠ¡ç”Ÿæ•ˆæ¡ä»¶" fieldStr="brhClass,maxAmt"colNm=2/>
+				<@CommonQueryMacro.Group id ="group1" label="æ˜¯å¦ç»‘å®šè·¯çº¿" fieldStr="isBand"colNm=2/>
 	  		<table>
         		<tr align="center">
 	  				 <td>
@@ -86,7 +86,7 @@ function btBind_onClickCheck(button){
 	var paramMap = new Map();
   	 	paramMap.put("id",id);
   	 	paramMap.put("bussType",biz_type);
-  	 	loadPageWindows("userWin", "ÉóÅúÂ·Ïß°ó¶¨Ã÷Ï¸", "/fpages/workflowConfig/ftl/ApproveNodeRouteBindDetail.ftl", paramMap, "winZone");
+  	 	loadPageWindows("userWin", "å®¡æ‰¹è·¯çº¿ç»‘å®šæ˜ç»†", "/fpages/workflowConfig/ftl/ApproveNodeRouteBindDetail.ftl", paramMap, "winZone");
    	 	return false;
 
 	var  _nextUrl = "/fpages/workflowConfig/ftl/ApproveNodeRouteBindDetail.ftl?id="+ id;
@@ -96,7 +96,7 @@ function btBind_onClickCheck(button){
 <#-- modify by shen_antonio jria: BMS-2334 begin -->
 function btSave_postSubmit(button){
 	approveNodeRouteBinding_dataset.flushData(approveNodeRouteBinding_dataset.pageIndex);
-	alert("±£´æ³É¹¦");
+	alert("ä¿å­˜æˆåŠŸ");
 }
 <#-- modify by shen_antonio jria: BMS-2334 end -->
 
@@ -165,7 +165,7 @@ function bizTypeName_DropDown_beforeOpen(dropdown){
 	SelectTempCreditinfo_DropDownDataset.flushData(0);
 	SelectTempCreditinfo_DropDownDataset.insertRecord("begin");
 	SelectTempCreditinfo_DropDownDataset.firstUnit.setValue("code", "000000");
-	SelectTempCreditinfo_DropDownDataset.firstUnit.setValue("name", "²»ÏŞ");
+	SelectTempCreditinfo_DropDownDataset.firstUnit.setValue("name", "ä¸é™");
 }
 </script>
 </@CommonQueryMacro.page>

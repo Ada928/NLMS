@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="×Ê½ğÁ÷³öÈëºÍ½á¹º»ãĞÅÏ¢">
+<@CommonQueryMacro.page title="èµ„é‡‘æµå‡ºå…¥å’Œç»“è´­æ±‡ä¿¡æ¯">
 <@CommonQueryMacro.CommonQueryTab id="bopCfaStrdeDsGenTabs" navigate="false" currentTab="bopCfaStrdeDsInoutMoGen">
 <table width=""><tr><td>
 	<@CommonQueryMacro.CommonQuery id="bopCfaStrdeDsInoutMoGen" init="false" submitMode="selected" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -26,7 +26,7 @@
 <script language="JavaScript">
 	var ds = bopCfaStrdeDsInoutMoGen_dataset;
 	function initCallGetter_post() {
-		//ÏògetterÀà·¢ËÍ²ÎÊı
+		//å‘getterç±»å‘é€å‚æ•°
 		ds.setParameter("getType","inoutMo");
 	}
 	
@@ -38,9 +38,9 @@
 			cell.innerHTML = "&nbsp;";
 		}
 	}
-	//ÏêÏ¸
+	//è¯¦ç»†
 	function doDetail(id) {
-		showWin("×Ê½ğÁ÷³öÈëºÍ½á¹º»ãĞÅÏ¢ÏêÏ¸","${contextPath}/fpages/datacollection/ftl/BopCfaStrdeDsEntryInoutMoInfo.ftl?id="+id+"&op="+"detail");
+		showWin("èµ„é‡‘æµå‡ºå…¥å’Œç»“è´­æ±‡ä¿¡æ¯è¯¦ç»†","${contextPath}/fpages/datacollection/ftl/BopCfaStrdeDsEntryInoutMoInfo.ftl?id="+id+"&op="+"detail");
 	}
 </script>
 </@CommonQueryMacro.page>

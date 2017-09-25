@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Ç©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 <@CommonQueryMacro.CommonQueryTab id="BopForSameInduDepositDataQueryTabs" navigate="false" currentTab="BopForSameInduDepositDataQuery">
 	<@CommonQueryMacro.CommonQuery id="BopForSameInduDepositDataQuery" init="false" submitMode="all" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface"  label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface"  label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -28,19 +28,19 @@
 <script language="JavaScript">
 	function initCallGetter_post(){
 		<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
-		//interfaceÀï²éÑ¯µÄÉèÖÃ¹¤×÷ÈÕÆÚÄ¬ÈÏµ±Ìì
+		//interfaceé‡ŒæŸ¥è¯¢çš„è®¾ç½®å·¥ä½œæ—¥æœŸé»˜è®¤å½“å¤©
 		BopForSameInduDepositDataQuery_interface_dataset.setValue("qworkDate","${v_txdate}");
 		BopForSameInduDepositDataQuery_interface_dataset.setValue("eworkDate","${v_txdate}");
 	}
 	
 	
-	//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+	//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function datatable1_filler2_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			var filler2 = record.getValue("filler2");
 			cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>";
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 	cell.innerHTML="&nbsp;";
 		}
 	}
@@ -48,7 +48,7 @@
 		
 	function doDetail(id){
 		//window.location = "${contextPath}/fpages/datacollection/ftl/BopAccDsRecordADInfo.ftl?id=" + id + "&op=detail";
-		showWin("¾³ÍâÍ¬Òµ´æ·ÅÇ©Ô¼ĞÅÏ¢ÏêÏ¸","${contextPath}/fpages/datacollection/ftl/BopForSameInduDepositInfoCol.ftl?id="+id+"&op=detail","report","flushPage()");
+		showWin("å¢ƒå¤–åŒä¸šå­˜æ”¾ç­¾çº¦ä¿¡æ¯è¯¦ç»†","${contextPath}/fpages/datacollection/ftl/BopForSameInduDepositInfoCol.ftl?id="+id+"&op=detail","report","flushPage()");
 	}
 </script>
 </@CommonQueryMacro.page>

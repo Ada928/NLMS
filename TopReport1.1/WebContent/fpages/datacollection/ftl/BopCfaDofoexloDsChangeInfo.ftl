@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="±ä¶¯ĞÅÏ¢">
+<@CommonQueryMacro.page title="å˜åŠ¨ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="BopCfaDofoexloDsTabs" navigate="false" currentTab="BopCfaDofoexloDsChangeInfo">
 		<@CommonQueryMacro.CommonQuery id="BopCfaDofoexloDsChangeInfo" init="false" submitMode="current" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 				<tr>
@@ -37,32 +37,32 @@
 			BopCfaDofoexloDsChangeInfo_interface_dataset.setValue("qstartDate", "${workdate}");
 			BopCfaDofoexloDsChangeInfo_interface_dataset.setValue("qendDate", "${workdate}");
 		}
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function BopCfaDofoexloDsChangeInfoTable_opr_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var recStatus = record.getValue("recStatus");
 				var actiontype = record.getValue("actiontype");
 				var repStatus = record.getValue("repStatus");
 				if (("01" == recStatus || "02" == recStatus) && ("D" != actiontype || ("D" == actiontype && "01" != repStatus))) {
-					cell.innerHTML = "<center><a href=\"JavaScript:doModify('"+id+"')\">ĞŞ¸Ä</a>&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">É¾³ı</a></center>";
+					cell.innerHTML = "<center><a href=\"JavaScript:doModify('"+id+"')\">ä¿®æ”¹</a>&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">åˆ é™¤</a></center>";
 				} else {
-					cell.innerHTML ="<center><a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉĞŞ¸Ä' style='color:#999999'>ĞŞ¸Ä</a>&nbsp;<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉÉ¾³ı' style='color:#999999'>É¾³ı</a></center>";
+					cell.innerHTML ="<center><a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯ä¿®æ”¹' style='color:#999999'>ä¿®æ”¹</a>&nbsp;<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯åˆ é™¤' style='color:#999999'>åˆ é™¤</a></center>";
 				}
 			} else {
-				//µ±²»´æÔÚ¼ÇÂ¼Ê±
+				//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 		cell.innerHTML="&nbsp;";
 			}
 		}
 
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function BopCfaDofoexloDsChangeInfoTable_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var recStatus = record.getValue("recStatus");
 				cell.innerHTML = "<center><a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">"+value+"</a></center>";
 			} else {
-				//µ±²»´æÔÚ¼ÇÂ¼Ê±
+				//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 			 	cell.innerHTML="&nbsp;";
 			}
 		}
@@ -70,27 +70,27 @@
 		function btAdd_onClick(button) {
 			btNewClick();
 		}
-		//É¾³ı
+		//åˆ é™¤
 		function doDelete(id){
-			showWin("±ä¶¯ĞÅÏ¢É¾³ı","${contextPath}/fpages/datacollection/ftl/BopCfaDofoexloDsChangeInfoAdd.ftl?op=del&id=" + id,"report","flushPage()");
+			showWin("å˜åŠ¨ä¿¡æ¯åˆ é™¤","${contextPath}/fpages/datacollection/ftl/BopCfaDofoexloDsChangeInfoAdd.ftl?op=del&id=" + id,"report","flushPage()");
 		}
 
-		//ĞÂÔö
+		//æ–°å¢
 		function btNewClick(){
-			showWin("±ä¶¯ĞÅÏ¢ĞÂÔö","${contextPath}/fpages/datacollection/ftl/BopCfaDofoexloDsChangeInfoAdd.ftl?op=new","report","flushPage()");
+			showWin("å˜åŠ¨ä¿¡æ¯æ–°å¢","${contextPath}/fpages/datacollection/ftl/BopCfaDofoexloDsChangeInfoAdd.ftl?op=new","report","flushPage()");
 		}
 
-		//²éÑ¯
+		//æŸ¥è¯¢
 		function doDetail(id){
-			showWin("±ä¶¯ĞÅÏ¢²éÑ¯","${contextPath}/fpages/datacollection/ftl/BopCfaDofoexloDsChangeInfoAdd.ftl?op=detail&id="+id,"report","flushPage()");
+			showWin("å˜åŠ¨ä¿¡æ¯æŸ¥è¯¢","${contextPath}/fpages/datacollection/ftl/BopCfaDofoexloDsChangeInfoAdd.ftl?op=detail&id="+id,"report","flushPage()");
 		}
 
-		//ĞŞ¸Ä
+		//ä¿®æ”¹
 		function doModify(id){
-			showWin("±ä¶¯ĞÅÏ¢ĞŞ¸Ä","${contextPath}/fpages/datacollection/ftl/BopCfaDofoexloDsChangeInfoAdd.ftl?op=mod&id=" + id,"report","flushPage()");
+			showWin("å˜åŠ¨ä¿¡æ¯ä¿®æ”¹","${contextPath}/fpages/datacollection/ftl/BopCfaDofoexloDsChangeInfoAdd.ftl?op=mod&id=" + id,"report","flushPage()");
 		}
 
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 		function flushPage(){
 			BopCfaDofoexloDsChangeInfo_dataset.flushData(1);
 		}

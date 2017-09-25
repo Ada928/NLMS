@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign op=RequestParameters["op"]?default("")>
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="ÒøĞĞ»ú¹¹ĞÅÏ¢Î¬»¤">
+<@CommonQueryMacro.page title="é“¶è¡Œæœºæ„ä¿¡æ¯ç»´æŠ¤">
 <@CommonQueryMacro.CommonQuery id="BankInfoManage" init="true" submitMode="current">
    <table align="center" width="100%">
 	<tr>
 		<td align="left">
-				<@CommonQueryMacro.Group id="BankInfoManageGroup" label="ÒøĞĞ»ú¹¹ĞÅÏ¢Î¬»¤"
+				<@CommonQueryMacro.Group id="BankInfoManageGroup" label="é“¶è¡Œæœºæ„ä¿¡æ¯ç»´æŠ¤"
 	        			  fieldStr="brcode,brno,brname,address,postno,teleno" colNm=4/>
 		</td>
 	</tr>
@@ -43,15 +43,15 @@
 	function checkValue() {
 		v_postno = BankInfoManage_dataset.getValue("postno");
 		if (isNaN(v_postno)) {
-			alert("×Ö¶Î¡¾ÓÊÕş±àÂë¡¿±ØĞëÎªÊı×Ö");
+			alert("å­—æ®µã€é‚®æ”¿ç¼–ç ã€‘å¿…é¡»ä¸ºæ•°å­—");
 			BankInfoManage_dataset.setValue2("postno", "");
 			return false;
 		} else if (v_postno.indexOf('-') != -1) {
-			alert("×Ö¶Î¡¾ÓÊÕş±àÂë¡¿±ØĞëÎªÊı×Ö");
+			alert("å­—æ®µã€é‚®æ”¿ç¼–ç ã€‘å¿…é¡»ä¸ºæ•°å­—");
 			BankInfoManage_dataset.setValue2("postno", "");
 			return false;
 		} else if (v_postno.length < 6 && v_postno.length != 0) {
-			alert("×Ö¶Î¡¾ÓÊÕş±àÂë¡¿±ØĞëÎª6Î»");
+			alert("å­—æ®µã€é‚®æ”¿ç¼–ç ã€‘å¿…é¡»ä¸º6ä½");
 			BankInfoManage_dataset.setValue2("postno", "");
 			return false;
 		}
@@ -60,7 +60,7 @@
 		for (var i = 0; i < v_teleno.length; i++) {
 			var c = v_teleno.charAt(i);
 			if (validChar.indexOf(c) == -1) {
-				alert("×Ö¶Î¡¾ÁªÏµµç»°¡¿Ö»ÄÜ°üº¬-ºÍÊı×Ö");
+				alert("å­—æ®µã€è”ç³»ç”µè¯ã€‘åªèƒ½åŒ…å«-å’Œæ•°å­—");
 				BankInfoManage_dataset.setValue2("teleno", "");
 				return false;
 			}
@@ -68,9 +68,9 @@
 		return true;
 	}
 	
-	//±£´æºóË¢ĞÂµ±Ç°Ò³
+	//ä¿å­˜ååˆ·æ–°å½“å‰é¡µ
 	function btSave_postSubmit(button) {
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 		//button.url = "/fpages/blacklistManage/ftl/BankInfoEntry.ftl";
 		flushCurrentPage();
 	}

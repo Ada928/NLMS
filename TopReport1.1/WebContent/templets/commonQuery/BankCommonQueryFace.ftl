@@ -1,4 +1,4 @@
-<#--提交页面测试-->
+<#--鎻愪氦椤甸潰娴嬭瘯-->
 <#import "/templets/common/common.ftl" as com>
 <#import "/templets/commonQuery/CommonQueryMacro.ftl" as CQMaco>
 <#import "/templets/commonQuery/CQElement.ftl" as htmlelement>
@@ -114,7 +114,7 @@ _t.tag="";
 				<td align="center">
 				<#if CommonQueryConfig.getAnyValue("async")?default('') == "true">
 					<button extra="button" type="button" id="btnSubmit" autoForm="autoformCustomerInfo"
-					defaultOperation="asyncqrysubmit" submitManager="sm1">查询</button>
+					defaultOperation="asyncqrysubmit" submitManager="sm1">鏌ヨ</button>
 					<script language="javascript">
 					<!--
 						var element = document.getElementById("btnSubmit");
@@ -125,7 +125,7 @@ _t.tag="";
                     </script>
 				<#else>
 				<button extra="button" type="button" id="btnSubmit" autoForm="autoformCustomerInfo"
-					defaultOperation="asyncqrysubmit" submitManager="sm1">查询</button>
+					defaultOperation="asyncqrysubmit" submitManager="sm1">鏌ヨ</button>
 					<script language="javascript">
 					<!--
 						var element = document.getElementById("btnSubmit");
