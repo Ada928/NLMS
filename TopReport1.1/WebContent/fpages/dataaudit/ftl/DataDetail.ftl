@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="数据分析详细">
+<@CommonQueryMacro.page title="鏁版嵁鍒嗘瀽璇︾粏">
 <table width="800px" align="left">
 <tr>
 <td>
@@ -8,12 +8,12 @@
 	<table width="1000px">
 		<tr>
 			<td valign="top" colspan="2">
-				<@CommonQueryMacro.Interface id="interface" label="数据分析查询" colNm=4 showButton="true"/>
+				<@CommonQueryMacro.Interface id="interface" label="鏁版嵁鍒嗘瀽鏌ヨ" colNm=4 showButton="true"/>
 			</td>
 		</tr>
 		<tr>
 			<td valign="top" colspan="2">
-				<@CommonQueryMacro.Group id ="group1" label="数据分析详细信息" fieldStr="workDate,busiType,brName,operTlr,operTm" colNm=4/>
+				<@CommonQueryMacro.Group id ="group1" label="鏁版嵁鍒嗘瀽璇︾粏淇℃伅" fieldStr="workDate,busiType,brName,operTlr,operTm" colNm=4/>
 			</td>
 		</tr>
 		<tr>
@@ -36,7 +36,7 @@
 </tr>	 	
 </table>
 <script language="javascript">
-	//当页面初始化完之后可以调用该方法执行需要处理的操作
+	//褰撻〉闈㈠垵濮嬪寲瀹屼箣鍚庡彲浠ヨ皟鐢ㄨ鏂规硶鎵ц闇�瑕佸鐞嗙殑鎿嶄綔
 function initCallGetter_post(dataset) {
 	dataDetailEntry_dataset.setFieldReadOnly("workDate",true);
 	dataDetailEntry_dataset.setFieldReadOnly("busiType",true);

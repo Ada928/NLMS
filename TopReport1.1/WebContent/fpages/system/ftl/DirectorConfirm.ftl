@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#--jianxue.zhang-->
-<@CommonQueryMacro.page title="Ö÷¹ÜÈ·ÈÏ">
+<@CommonQueryMacro.page title="ä¸»ç®¡ç¡®è®¤">
 <table width="90%" align="left">
 <tr>
 <td>
@@ -41,14 +41,14 @@ function initCallGetter_post() {
 	 }
  }
 
-//¶¨Î»Ò»Ìõ¼ÇÂ¼
+//å®šä½ä¸€æ¡è®°å½•
 function locate(id) {
 	var record = UndoConfirm_dataset.find(["id"],[id]);
 	if (record) {
 		UndoConfirm_dataset.setRecord(record);
 	}
 }
-//½«idÁĞ±ä³É³¬Á´½Ó,ĞèÒª¼ÇÂ¼ÀàĞÍ,²Ù×÷ËµÃ÷,Ô­¼ÍÂ¼Ö÷¼ü,¼ÇÂ¼±¾Éí
+//å°†idåˆ—å˜æˆè¶…é“¾æ¥,éœ€è¦è®°å½•ç±»å‹,æ“ä½œè¯´æ˜,åŸçºªå½•ä¸»é”®,è®°å½•æœ¬èº«
 //TODO
  function datatable1_id_onRefresh(cell, value, record){
 	if(record){
@@ -60,7 +60,7 @@ function locate(id) {
 		cell.innerHTML = "";
 	}
 }
-//µã»÷°ìÀí°´Å¥µÄ¼ì²é,ĞèÒªÈÎÎñ±àºÅ,ÒµÎñÀàĞÍ,
+//ç‚¹å‡»åŠç†æŒ‰é’®çš„æ£€æŸ¥,éœ€è¦ä»»åŠ¡ç¼–å·,ä¸šåŠ¡ç±»å‹,
 function btDo_onClickCheck(button){
 	var record = UndoConfirm_dataset.firstUnit;
 	var chk=0;
@@ -76,18 +76,18 @@ function btDo_onClickCheck(button){
 		record=record.nextUnit;
 	}
 	if(chk==0){
-		alert("ÇëÑ¡ÔñÒª°ìÀíµÄ¼ÇÂ¼!");
+		alert("è¯·é€‰æ‹©è¦åŠç†çš„è®°å½•!");
 		return false;
 	}
 
 	var type = bizArr[0];
 	for(var i=1;i<bizArr.length;i++){
 		if(type!=bizArr[i]){
-			alert("ÇëÑ¡ÔñÏàÍ¬ÒµÎñÖÖÀà½øĞĞ°ìÀí!");
+			alert("è¯·é€‰æ‹©ç›¸åŒä¸šåŠ¡ç§ç±»è¿›è¡ŒåŠç†!");
 			return false;
 		}
 	}
-	//½«ÈÎÎñ¼¯ºÏºÍÒµÎñÀàĞÍ´«ÏÂÈ¥
+	//å°†ä»»åŠ¡é›†åˆå’Œä¸šåŠ¡ç±»å‹ä¼ ä¸‹å»
 	button.url = approve.getApprovePage(taskIdArr,type);
 	return true;
 }

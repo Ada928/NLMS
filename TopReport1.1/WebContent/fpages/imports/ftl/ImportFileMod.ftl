@@ -1,5 +1,5 @@
 <@CommonQueryMacro.CommonQuery id="ImportFileMod" init="false" submitMode="all" navigate="false">
-<@CommonQueryMacro.FloatWindow id="detailFW2" label="ÐÞÕý" width="" height="300" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
+<@CommonQueryMacro.FloatWindow id="detailFW2" label="ä¿®æ­£" width="" height="300" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 <table width="100%">
 	<tr>
 		<td>

@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="Éê±¨ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç”³æŠ¥ä¿¡æ¯">
 <@CommonQueryMacro.CommonQueryTab id="BopBhnDsCollTabs" navigate="false" currentTab="BopBhnDsManageColl">
 	<@CommonQueryMacro.CommonQuery id="BopBhnDsManageColl" init="false" submitMode="all" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -25,19 +25,19 @@
 <script language="JavaScript">
 	
 	function initCallGetter_post() {
-		//¹¤×÷ÈÕÆÚ
+		//å·¥ä½œæ—¥æœŸ
 		<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 		BopBhnDsManageColl_interface_dataset.setValue("qworkDateStart","${v_txdate}");
 		BopBhnDsManageColl_interface_dataset.setValue("qworkDateEnd","${v_txdate}");
 	}
-	//Ë¢ĞÂ²Ù×÷ÄÚÈİ
+	//åˆ·æ–°æ“ä½œå†…å®¹
 	function datatable1_operation_onRefresh(cell,value,record) {
 		if(record) {
 			var actiontype = record.getValue("actiontype");
 			if(actiontype == "D") {
-				cell.innerHTML="<center><a href=\"#\" style=\"color:#999999\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDel('"+value+"')\">É¾³ı</a></center>";
+				cell.innerHTML="<center><a href=\"#\" style=\"color:#999999\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDel('"+value+"')\">åˆ é™¤</a></center>";
 			} else {
-				cell.innerHTML="<center><a href=\"JavaScript:doMod('"+value+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDel('"+value+"')\">É¾³ı</a></center>";
+				cell.innerHTML="<center><a href=\"JavaScript:doMod('"+value+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDel('"+value+"')\">åˆ é™¤</a></center>";
 			}
 		} else {
 			cell.innerHTML = "&nbsp;";
@@ -55,23 +55,23 @@
 		btNewClick();
 	}
 	
-	//ÏêÏ¸
+	//è¯¦ç»†
 	function doDetail(id) {
-		showWin("¹ÜÀíĞÅÏ¢ÏêÏ¸","${contextPath}/fpages/bop/collandaudit/bhn/ftl/BopBhnDsManageCollInfo.ftl?id="+id+"&op="+"detail","window","flushPage()",window);
+		showWin("ç®¡ç†ä¿¡æ¯è¯¦ç»†","${contextPath}/fpages/bop/collandaudit/bhn/ftl/BopBhnDsManageCollInfo.ftl?id="+id+"&op="+"detail","window","flushPage()",window);
 	}
-	//ĞÂÔö
+	//æ–°å¢
 	function btNewClick() {
-		showWin("¹ÜÀíĞÅÏ¢ĞÂÔö","${contextPath}/fpages/bop/collandaudit/bhn/ftl/BopBhnDsManageCollInfo.ftl?op=add","window","flushPage()",window);
+		showWin("ç®¡ç†ä¿¡æ¯æ–°å¢","${contextPath}/fpages/bop/collandaudit/bhn/ftl/BopBhnDsManageCollInfo.ftl?op=add","window","flushPage()",window);
 	}
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	function doMod(id) {
-		showWin("¹ÜÀíĞÅÏ¢ĞŞ¸Ä","${contextPath}/fpages/bop/collandaudit/bhn/ftl/BopBhnDsManageCollInfo.ftl?op=mod&id="+id,"window","flushPage()",window);
+		showWin("ç®¡ç†ä¿¡æ¯ä¿®æ”¹","${contextPath}/fpages/bop/collandaudit/bhn/ftl/BopBhnDsManageCollInfo.ftl?op=mod&id="+id,"window","flushPage()",window);
 	}
-	//É¾³ı
+	//åˆ é™¤
 	function doDel(id) {
-		showWin("¹ÜÀíĞÅÏ¢É¾³ı","${contextPath}/fpages/bop/collandaudit/bhn/ftl/BopBhnDsManageCollInfo.ftl?op=del&id="+id,"window","flushPage()",window);
+		showWin("ç®¡ç†ä¿¡æ¯åˆ é™¤","${contextPath}/fpages/bop/collandaudit/bhn/ftl/BopBhnDsManageCollInfo.ftl?op=del&id="+id,"window","flushPage()",window);
 	}
-	//Ë¢ĞÂÒ³Ãæ
+	//åˆ·æ–°é¡µé¢
 	function flushPage() {
 		BopBhnDsManageColl_dataset.flushData(1);
 	}

@@ -1,7 +1,11 @@
 eclipse.preferences.version=1
 encoding//DBA/dmp/readme.txt=GBK
+encoding//WebContent/fpages/basis/ftl/BiAccountEntry.ftl=UTF-8
 encoding//WebContent/fpages/batchmonitor/ftl/BatchMonitor.ftl=GBK
 encoding//WebContent/fpages/batchmonitor/ftl/BatchStepMonitor.ftl=GBK
+encoding//WebContent/fpages/blacklistManage/ftl/BankInfoEntry.ftl=UTF-8
+encoding//WebContent/fpages/blacklistManage/ftl/RoleInfoEntry.ftl=UTF-8
+encoding//WebContent/fpages/blacklistManage/ftl/UserInfoEntry.ftl=UTF-8
 encoding//WebContent/js/topTsk.js=GBK
 encoding//WebContent/js/workdate.js=GBK
 encoding//WebContent/login/index.jsp=UTF-8

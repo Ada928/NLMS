@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="»ù´¡ĞÅÏ¢">
+<@CommonQueryMacro.page title="åŸºç¡€ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="BopFSDsCollectionTabs" navigate="false" currentTab="BopFDsCollection">
 		<@CommonQueryMacro.CommonQuery id="BopFDsCollection" init="false" submitMode="current" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 				<tr>
@@ -30,27 +30,27 @@
 			BopFDsCollection_interface_dataset.setValue("qworkDateEnd", currentDate);
 		}
 
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function datatable1_opr_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var recStatus = record.getValue("recStatus");
 				var innerStr = "<center>";
 				if (recStatus == "01" || recStatus == "02") {
-					innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">É¾³ı</a>"
+					innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">åˆ é™¤</a>"
 				} else {
-					innerStr = innerStr + "<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉĞŞ¸Ä' style='color:#999999'>ĞŞ¸Ä</a>&nbsp;&nbsp;<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉÉ¾³ı' style='color:#999999'>É¾³ı</a>";
+					innerStr = innerStr + "<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯ä¿®æ”¹' style='color:#999999'>ä¿®æ”¹</a>&nbsp;&nbsp;<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯åˆ é™¤' style='color:#999999'>åˆ é™¤</a>";
 				}
 				innerStr = innerStr + "</center>";
 
 				cell.innerHTML =innerStr;
-			} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+			} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 			 	cell.innerHTML="&nbsp;";
 			}
 		}
 
 		function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + value + "</a>"
 			} else {
@@ -61,29 +61,29 @@
 		function btAdd_onClick(button) {
 			btNewClick();
 		}
-		//ĞÂÔö
+		//æ–°å¢
 		function btNewClick(){
-			showWin("»ù´¡ĞÅÏ¢ĞÂÔö","${contextPath}/fpages/bop/collandaudit/fs/ftl/BopFDsCollectionInfo.ftl?op=new","window","flushPage()",window);
+			showWin("åŸºç¡€ä¿¡æ¯æ–°å¢","${contextPath}/fpages/bop/collandaudit/fs/ftl/BopFDsCollectionInfo.ftl?op=new","window","flushPage()",window);
 		}
 
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 		function flushPage(){
 			BopFDsCollection_dataset.flushData(1);
 		}
 
-		//ĞŞ¸Ä
+		//ä¿®æ”¹
 		function doCollection(id){
-			showWin("»ù´¡ĞÅÏ¢ĞŞ¸Ä","${contextPath}/fpages/bop/collandaudit/fs/ftl/BopFDsCollectionInfo.ftl?id=" + id + "&op=modify","window","flushPage()",window);
+			showWin("åŸºç¡€ä¿¡æ¯ä¿®æ”¹","${contextPath}/fpages/bop/collandaudit/fs/ftl/BopFDsCollectionInfo.ftl?id=" + id + "&op=modify","window","flushPage()",window);
 		}
 
-		//É¾³ı
+		//åˆ é™¤
 		function doDelete(id){
-			showWin("»ù´¡ĞÅÏ¢É¾³ı","${contextPath}/fpages/bop/collandaudit/fs/ftl/BopFDsCollectionInfo.ftl?id=" + id + "&op=delete","window","flushPage()",window);
+			showWin("åŸºç¡€ä¿¡æ¯åˆ é™¤","${contextPath}/fpages/bop/collandaudit/fs/ftl/BopFDsCollectionInfo.ftl?id=" + id + "&op=delete","window","flushPage()",window);
 		}
 
-		//ÏêÏ¸ĞÅÏ¢
+		//è¯¦ç»†ä¿¡æ¯
 		function doDetail(id){
-			showWin("»ù´¡ĞÅÏ¢Ã÷Ï¸","${contextPath}/fpages/bop/collandaudit/fs/ftl/BopFDsCollectionInfo.ftl?id=" + id + "&op=detail","window","",window);
+			showWin("åŸºç¡€ä¿¡æ¯æ˜ç»†","${contextPath}/fpages/bop/collandaudit/fs/ftl/BopFDsCollectionInfo.ftl?id=" + id + "&op=detail","window","",window);
 		}
 	</script>
 </@CommonQueryMacro.page>

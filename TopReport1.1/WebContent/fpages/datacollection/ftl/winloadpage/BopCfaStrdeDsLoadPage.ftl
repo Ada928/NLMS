@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="Ñ¡Ôñ">
+<@CommonQueryMacro.page title="é€‰æ‹©">
 	<@CommonQueryMacro.CommonQuery id="bopCfaStrdeDsLoadPage" init="false" submitMode="selected" navigate="false" >
 		<table align="left">
 			<tr>
 				<td>
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -56,7 +56,7 @@
 			if(ds.length == 0 ) {
 				ds.insertRecord("end");
 			}
-			//ÉèÖÃfiller1Îª¼ÇÂ¼±àºÅÒÔ¼°ÆäËûÇ©Ô¼ĞÅÏ¢×Ö¶Î
+			//è®¾ç½®filler1ä¸ºè®°å½•ç¼–å·ä»¥åŠå…¶ä»–ç­¾çº¦ä¿¡æ¯å­—æ®µ
 			ds.setValue("filler1",localDs.getValue("id"));
 			ds.setValue("strdecode",localDs.getValue("strdecode"));
 			ds.setValue("branchcode",localDs.getValue("branchcode"));
@@ -72,7 +72,7 @@
 			ds.setValue("aginralo",localDs.getValue("aginralo"));
 			ds.setValue("aginraloinpay",localDs.getValue("aginraloinpay"));
 			ds.setValue("remark",localDs.getValue("remark"));
-			//ÉèÖÃÖ»¶Á
+			//è®¾ç½®åªè¯»
 			ds.setFieldReadOnly("strdecode",true);
 			ds.setFieldReadOnly("branchcode",true);
 			ds.setFieldReadOnly("clientcode",true);

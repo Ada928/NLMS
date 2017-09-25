@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ÉóºËÂ·Ïß°ó¶¨">
+<@CommonQueryMacro.page title="å®¡æ ¸è·¯çº¿ç»‘å®š">
 <@CommonQueryMacro.CommonQuery id="routeBindingEntry" init="true" mode="2">
 	<table align="left" width="700" >
 			<tr valign="left">
        			<td valign="top" colspan="2">
-					<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=4  />
+					<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4  />
 				</td>
       		</tr>
       	<tr align="right">
@@ -16,8 +16,8 @@
 					<@CommonQueryMacro.PagePilot id="ddresult" maxpagelink="9999"/>
 			</td>
 			<td align="right" >
-	    	<a href="javascript:window.document.getElementById('btNew').click();">ĞÂÔö</a>
-	    	<!--<a href="javascript:window.document.getElementById('btDelete').click();">É¾³ı</a>
+	    	<a href="javascript:window.document.getElementById('btNew').click();">æ–°å¢</a>
+	    	<!--<a href="javascript:window.document.getElementById('btDelete').click();">åˆ é™¤</a>
 	       	-->
 	       	</td>
 			</tr>
@@ -30,7 +30,7 @@
 			</tr>
 			<tr>
       		<td valign="top" colspan="2">
-					<@CommonQueryMacro.Group id ="group1" label="ÏêÏ¸ĞÅÏ¢" fieldStr="bussType,startBrhid,brhClass,maxAmt,isBand"colNm=4/>
+					<@CommonQueryMacro.Group id ="group1" label="è¯¦ç»†ä¿¡æ¯" fieldStr="bussType,startBrhid,brhClass,maxAmt,isBand"colNm=4/>
 
 
 	  		<table>
@@ -54,10 +54,10 @@
 function btDelete_onClickCheck(button){
 	var _isBand = routeBindingEntry_dataset.getValue("isBand");
 	if(_isBand=="1"){
-		alert("Â·ÏßÒÑ°ó¶¨²»¿ÉÉ¾³ı£¡");
+		alert("è·¯çº¿å·²ç»‘å®šä¸å¯åˆ é™¤ï¼");
 		return false;
 	}
-	if(!confirm("È·¶¨É¾³ı")){
+	if(!confirm("ç¡®å®šåˆ é™¤")){
 		return false;
 	}
 }
@@ -66,7 +66,7 @@ function btBind_onClickCheck(button){
 	var id = routeBindingEntry_dataset.getValue("id");
 	var paramMap = new Map();
   	 	paramMap.put("id",id);
-  	 	loadPageWindows("userWin", "ÉóÅúÂ·Ïß°ó¶¨Ã÷Ï¸", "/fpages/workflowRoute/ftl/RouteBindingDetail.ftl", paramMap, "winZone");
+  	 	loadPageWindows("userWin", "å®¡æ‰¹è·¯çº¿ç»‘å®šæ˜ç»†", "/fpages/workflowRoute/ftl/RouteBindingDetail.ftl", paramMap, "winZone");
    	 	return false;
 
 	var  _nextUrl = "/fpages/workflowRoute/ftl/RouteBindingDetail.ftl?id="+ id;
@@ -76,7 +76,7 @@ function btBind_onClickCheck(button){
 <#-- modify by shen_antonio jria: BMS-2334 begin -->
 function btSave_postSubmit(button){
 	routeBindingEntry_dataset.flushData(routeBindingEntry_dataset.pageIndex);
-	alert("±£´æ³É¹¦");
+	alert("ä¿å­˜æˆåŠŸ");
 }
 <#-- modify by shen_antonio jria: BMS-2334 end -->
 
@@ -85,7 +85,7 @@ function datatable1_opr_onRefresh(cell, value, record)
 {
 	if(record&&record!=null){
 		var id = record.getValue("id");
-		cell.innerHTML = "<a href=\"JavaScript:contractDel("+id+")\">É¾³ı</a>";
+		cell.innerHTML = "<a href=\"JavaScript:contractDel("+id+")\">åˆ é™¤</a>";
 	}else{
 		cell.innerHTML = "";
 	}

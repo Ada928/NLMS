@@ -4,7 +4,7 @@
 <table  width="90%" align="left">
 	<tr >
 		<td align="left" colspan="2">
-			ÎÄ¼ş±¨ËÍ &gt; Éú³ÉÎÄ¼ş±¨ËÍ
+			æ–‡ä»¶æŠ¥é€ &gt; ç”Ÿæˆæ–‡ä»¶æŠ¥é€
 		</td>
 	</tr>
 
@@ -20,7 +20,7 @@
 				<table width="100%">
   					<tr>
 						<td>
-							<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm="4"/>
+							<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm="4"/>
 						</td>
 					</tr>
 				</table>
@@ -63,7 +63,7 @@
   						<td colspan="2">
 							<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 								<div align="center">
-									<@CommonQueryMacro.Group id="group1" label="ÉÏ±¨Êı¾İ°ü²éÑ¯ÏêÏ¸" fieldStr="id,apptype,currentFileName1,brNo,workdate,crtTm,repFileName,repTm,filePack,repErrType,totalrecords,sucrecords,falrecords,isImpRep" colNm=4/>
+									<@CommonQueryMacro.Group id="group1" label="ä¸ŠæŠ¥æ•°æ®åŒ…æŸ¥è¯¢è¯¦ç»†" fieldStr="id,apptype,currentFileName1,brNo,workdate,crtTm,repFileName,repTm,filePack,repErrType,totalrecords,sucrecords,falrecords,isImpRep" colNm=4/>
 			 						</br>
 								</div>
 	 						</@CommonQueryMacro.FloatWindow>
@@ -80,14 +80,14 @@
 	function initCallGetter_post(){
 		btExpSubFile.disable(true);
 		btSend.disable(true);
-		//interfaceÀï²éÑ¯µÄÉèÖÃ¹¤×÷ÈÕÆÚÄ¬ÈÏµ±Ìì
+		//interfaceé‡ŒæŸ¥è¯¢çš„è®¾ç½®å·¥ä½œæ—¥æœŸé»˜è®¤å½“å¤©
 		reportSubFile_interface_dataset.setValue("qworkdateStart",_today_date);
 		reportSubFile_interface_dataset.setValue("qworkdateEnd",_today_date);
 		reportSubFile_interface_dataset.setValue("qbusiType",defaultType);
 	}
 	
 
-     	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+     	//å®šä½ä¸€æ¡è®°å½•
 	function locate(id) {
 		var record = reportSubFileDetail_dataset.find(["id"],[id]);
 		if (record) {
@@ -120,13 +120,13 @@
 	   	}
 	    return true;
 	}
-     //µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+     //å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function receiptFile_id_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			cell.innerHTML = "<center><a href=\"JavaScript:showDetail('"+id+"')\">"+value+"</a></center>";
 		}else{
-			//¼ÇÂ¼²»´æÔÚµÄÊ±ºò
+			//è®°å½•ä¸å­˜åœ¨çš„æ—¶å€™
 			cell.innerHTML = "&nbsp;";
 		}
 	}
@@ -157,7 +157,7 @@
 	   	reportSubFileDetail_dataset.setFieldReadOnly("isImpRep",true);
 	   	subwindow_signWindow.show();
 	}
-    		//¹Ø¸¡¶¯´°¿Ú,ÊÍ·Ådataset
+    		//å…³æµ®åŠ¨çª—å£,é‡Šæ”¾dataset
 	function signWindow_floatWindow_beforeClose(subwindow) {
 		reportSubFileDetail_dataset.cancelRecord();
 		return true;
@@ -186,12 +186,12 @@
 
 	function btSend_postSubmit(button){
 		var pack = reportSubFile_dataset.getValue("packName");
-		alert(pack+"±¨ËÍÖ´ĞĞ³É¹¦£¡");
+		alert(pack+"æŠ¥é€æ‰§è¡ŒæˆåŠŸï¼");
 		reportSubFile_dataset.flushData(reportSubFile_dataset.pageIndex);
   	}
 
 	function btExpSubFile_onClickCheck(button){
-		var bl = window.confirm("²ÉÓÃ¡®µ¼³ö±¨ËÍ¡¯ºóÏµÍ³½«¼ÇÂ¼¸ÃÎÄ¼ş°üÒÑ±¨ËÍ£¬\n½«²»ÄÜ²ÉÓÃ¡®ÉÏ´«±¨ËÍ¡¯£¬È·¶¨Âğ?");
+		var bl = window.confirm("é‡‡ç”¨â€˜å¯¼å‡ºæŠ¥é€â€™åç³»ç»Ÿå°†è®°å½•è¯¥æ–‡ä»¶åŒ…å·²æŠ¥é€ï¼Œ\nå°†ä¸èƒ½é‡‡ç”¨â€˜ä¸Šä¼ æŠ¥é€â€™ï¼Œç¡®å®šå—?");
 		if(bl){
 			downloadFile("send");
 		}

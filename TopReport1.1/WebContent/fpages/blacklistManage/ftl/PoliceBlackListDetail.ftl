@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="公安部黑名单管理">
+<@CommonQueryMacro.page title="鍏畨閮ㄩ粦鍚嶅崟绠＄悊">
 <@CommonQueryMacro.CommonQuery id="PoliceBlackListDetail" init="true" submitMode="all"  navigate="false">
 	<table align="left">
       	<tr valign="top">
   			<td valign="center">
-  				<@CommonQueryMacro.Group id="group1" label="公安部黑名单管理详细信息" 
+  				<@CommonQueryMacro.Group id="group1" label="鍏畨閮ㄩ粦鍚嶅崟绠＄悊璇︾粏淇℃伅" 
   					fieldStr="id,accountType,certificateType,certificateNumber,clientName,blacklistType,valid,validDate,lastModifyOperator" colNm=2/>
   			</td>
   		</tr>

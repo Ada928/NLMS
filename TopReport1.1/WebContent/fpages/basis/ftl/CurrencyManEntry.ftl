@@ -60,24 +60,24 @@
 
 
 	function btSave_postSubmit(button){
-		alert("±£´æ³É¹¦£¡");
+		alert("ä¿å­˜æˆåŠŸï¼");
 	}
 
-	//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+	//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function datatable1_opr_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var lock = record.getValue("lock");
 			if(isTrue(lock)){
-				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\"><@bean.message key="CurrencyManEntry.button.btMod" /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\"><@bean.message key="CurrencyManEntry.button.btDel" /></a></center>";
+				cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\"><@bean.message key="CurrencyManEntry.button.btMod" /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\"><@bean.message key="CurrencyManEntry.button.btDel" /></a></center>";
 			}else{
 				cell.innerHTML="<center><a href=\"JavaScript:doModify('"+value+"')\"><@bean.message key="CurrencyManEntry.button.btMod" /></a> &nbsp; <a href=\"JavaScript:doDelete('"+value+"')\"><@bean.message key="CurrencyManEntry.button.btDel" /></a></center>";
 			}
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 cell.innerHTML="&nbsp;";
 		}
 	}
 
-	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+	//å®šä½ä¸€æ¡è®°å½•
 	function locate(id) {
 
 		var record = CurrencyManEntry_dataset.find(["id"],[id]);
@@ -86,7 +86,7 @@
 		}
 	}
 
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	function doModify(id) {
 		locate(id);
 
@@ -97,16 +97,16 @@
 		subwindow_signWindow.show();
 	}
 
-	//É¾³ı
+	//åˆ é™¤
 	function doDelete(id) {
 		locate(id);
 
-		if(confirm('ÊÇ·ñÉ¾³ıµ±Ç°¼ÇÂ¼'))
+		if(confirm('æ˜¯å¦åˆ é™¤å½“å‰è®°å½•'))
 		{
 			btDel.click();
 		}
 	}
-//Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+//å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
 	function datatable1_id_onRefresh(cell, value, record){
 	if(record!=null){
 		var sta = record.getValue("st");
@@ -128,14 +128,14 @@ function showDetail(id,sta){
 	paramMap.put("st",sta);
 	paramMap.put("action","detail");
 	paramMap.put("flag","0");
-	loadPageWindows("partWin", "±ÒÖÖĞÅÏ¢Î¬»¤","/fpages/basis/ftl/CurrencyManEntryDetail.ftl", paramMap, "winZone");
+	loadPageWindows("partWin", "å¸ç§ä¿¡æ¯ç»´æŠ¤","/fpages/basis/ftl/CurrencyManEntryDetail.ftl", paramMap, "winZone");
 }
 
 	function btNew_onClick(button){
 
 		  subwindow_signWindow.show();
 		  var  v_currencyCode = CurrencyManEntry_dataset.getValue("id");
-		  //Êı¾İ¿âÖĞµÄ¼ÇÂ¼¡£
+		  //æ•°æ®åº“ä¸­çš„è®°å½•ã€‚
 
 		  if (v_currencyCode!=""  ){
 		    CurrencyManEntry_dataset.setFieldReadOnly("id",true);

@@ -1,4 +1,4 @@
-<#--Ìá½»Ò³Ãæ²âÊÔ-->
+<#--æäº¤é¡µé¢æµ‹è¯•-->
 <#import "/page/ftl/macro/common.ftl" as com>
 <#import "/page/ftl/templates/commonQuery/CQInterfaceFormSubmit.ftl" as formSubmit>
 <#import "/page/ftl/templates/commonQuery/CommonQueryMacro.ftl" as CQMaco>
@@ -12,7 +12,7 @@
 <#list elementList as element>
 	<@CQMaco.showElement element/>
 </#list>
-<#-- Ò³ÂëÐÅÏ¢ -->
+<#-- é¡µç ä¿¡æ¯ -->
 <input type="hidden" name="CQId" value="${CommonQueryConfig.id}"/>
 <input type="hidden" name="nextPage" value="1"/>
 <input type="hidden" name="everyPage" value="10"/>

@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="×Ê½ğÁ÷³öÈëºÍ½á¹º»ãĞÅÏ¢">
+<@CommonQueryMacro.page title="èµ„é‡‘æµå‡ºå…¥å’Œç»“è´­æ±‡ä¿¡æ¯">
 <@CommonQueryMacro.CommonQueryTab id="bopCfaStrdeDsAuditTabs" navigate="false" currentTab="bopCfaStrdeDsInoutMoEntryAudit">
 	<@CommonQueryMacro.CommonQuery id="bopCfaStrdeDsInoutMoEntryAudit" init="false" submitMode="selected" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -25,7 +25,7 @@
 		    	<td>
 		    		<@CommonQueryMacro.FloatWindow id="auditSubWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 		      			<div align="center">
-		      				<@CommonQueryMacro.Group id="group1" label="ÉóºËĞÅÏ¢"
+		      				<@CommonQueryMacro.Group id="group1" label="å®¡æ ¸ä¿¡æ¯"
 		        			  fieldStr="approveStatusChoose,approveResultChoose" colNm=2/>
 		        			 </br>
 		      				<center><@CommonQueryMacro.Button id="btAuditSave"/>&nbsp;&nbsp;
@@ -39,17 +39,17 @@
 </@CommonQueryMacro.CommonQueryTab>
 </td></tr></table>
 <script language="JavaScript">
-	//¹¤×÷ÈÕÆÚ
+	//å·¥ä½œæ—¥æœŸ
 	var ds = bopCfaStrdeDsInoutMoEntryAudit_dataset;
 	function initCallGetter_post() {
 		<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 		bopCfaStrdeDsInoutMoEntryAudit_interface_dataset.setValue("qworkDateStart","${v_txdate}");
 		bopCfaStrdeDsInoutMoEntryAudit_interface_dataset.setValue("qworkDateEnd","${v_txdate}");
 	}
-	//Ë¢ĞÂ²Ù×÷ÄÚÈİ
+	//åˆ·æ–°æ“ä½œå†…å®¹
 	function datatable1_operation_onRefresh(cell,value,record) {
 		if(record) {
-			cell.innerHTML="<center><a href=\"JavaScript:doMod('"+value+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDel('"+value+"')\">É¾³ı</a></center>";
+			cell.innerHTML="<center><a href=\"JavaScript:doMod('"+value+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDel('"+value+"')\">åˆ é™¤</a></center>";
 		} else {
 			cell.innerHTML = "&nbsp;";
 		}
@@ -78,11 +78,11 @@
 			record = record.getNextRecord();
 		}
 		if(!hasSelect) {
-			alert("ÇëÑ¡ÔñÏàÓ¦µÄ¼ÇÂ¼£¡");
+			alert("è¯·é€‰æ‹©ç›¸åº”çš„è®°å½•ï¼");
 			return false;
 		}
 		if(hasAudit) {
-			if(!confirm("ËùÑ¡¼ÇÂ¼°üº¬ÒÑÉóºË¼ÇÂ¼£¬È·¶¨ÒªÖØĞÂÉóºËÂğ?")) {
+			if(!confirm("æ‰€é€‰è®°å½•åŒ…å«å·²å®¡æ ¸è®°å½•ï¼Œç¡®å®šè¦é‡æ–°å®¡æ ¸å—?")) {
 				return false; 
 			}
 		}
@@ -92,12 +92,12 @@
 		var approveStatusChoose = ds.getValue("approveStatusChoose");
 		var approveResultChoose = ds.getValue("approveResultChoose");
 		if(!approveStatusChoose.length > 0) {
-			alert("ÇëÑ¡ÔñÉóºË½á¹û£¡");
+			alert("è¯·é€‰æ‹©å®¡æ ¸ç»“æœï¼");
 	   		return false;
 		}
 		if (approveStatusChoose == "02" && approveResultChoose.length < 1)
 		   	{
-		   		alert("ÉóºË½á¹û²»Í¨¹ı£¬ÉóºËËµÃ÷±ØĞëÌîĞ´£¡");
+		   		alert("å®¡æ ¸ç»“æœä¸é€šè¿‡ï¼Œå®¡æ ¸è¯´æ˜å¿…é¡»å¡«å†™ï¼");
 		   		return false;
 		   	}
 		ds.setParameter("approveStatusChoose",approveStatusChoose);
@@ -105,18 +105,18 @@
 		subwindow_auditSubWindow.hide();
 		return true;
 	}
-	//ÏêÏ¸
+	//è¯¦ç»†
 	function doDetail(id) {
-		showWin("×Ê½ğÁ÷³öÈëºÍ½á¹º»ãĞÅÏ¢ÏêÏ¸","${contextPath}/fpages/datacollection/ftl/BopCfaStrdeDsEntryInoutMoInfo.ftl?id="+id+"&op="+"detail");
+		showWin("èµ„é‡‘æµå‡ºå…¥å’Œç»“è´­æ±‡ä¿¡æ¯è¯¦ç»†","${contextPath}/fpages/datacollection/ftl/BopCfaStrdeDsEntryInoutMoInfo.ftl?id="+id+"&op="+"detail");
 	}
 	
-	//·µ»Ø
+	//è¿”å›
 	function btBack_onClick() {
 		subwindow_auditSubWindow.hide();
 	}
 	
 	function btAuditSave_postSubmit(button){
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 		ds.flushData(1);
 	}
 </script>

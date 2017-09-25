@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="…Û≈˙»®œﬁ…Ë÷√">
+<@CommonQueryMacro.page title="ÂÆ°ÊâπÊùÉÈôêËÆæÁΩÆ">
 
 <@CommonQueryMacro.CommonQuery id="parammng_AuthoritySet2" init="false" mode="2">
 	<table align="left">
 			<tr>
        			<td valign="top" align="left">
-       				<@CommonQueryMacro.Group id="intface" fieldStr="brcode,tlrno,bussType,bizTypeName" label="«Î ‰»Î≤È—ØÃıº˛" colNm=3/>
+       				<@CommonQueryMacro.Group id="intface" fieldStr="brcode,tlrno,bussType,bizTypeName" label="ËØ∑ËæìÂÖ•Êü•ËØ¢Êù°‰ª∂" colNm=3/>
 				</td>
 			 </tr>
 			 <tr>
@@ -27,7 +27,7 @@ function bizTypeName_DropDown_beforeOpen(dropdown){
 	SelectTempCreditinfo_DropDownDataset.flushData(0);
 	SelectTempCreditinfo_DropDownDataset.insertRecord("begin");
 	SelectTempCreditinfo_DropDownDataset.firstUnit.setValue("code", "0000");
-	SelectTempCreditinfo_DropDownDataset.firstUnit.setValue("name", "≤ªœﬁ");
+	SelectTempCreditinfo_DropDownDataset.firstUnit.setValue("name", "‰∏çÈôê");
 }
 </script>
 </@CommonQueryMacro.page>

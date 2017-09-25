@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="Ç©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 
 <@CommonQueryMacro.CommonQuery id="BopLiabilityBalanceAdd" init="true" submitMode="all" navigate="false" >
 <table width="100%">
@@ -9,49 +9,49 @@
 			<table width="100%" cellpadding="2">
 				<tr>
 				     <td>
-					 <@CommonQueryMacro.GroupBox id="bopForCFAExgu" label="Ç©Ô¼ĞÅÏ¢" expand="true">
+					 <@CommonQueryMacro.GroupBox id="bopForCFAExgu" label="ç­¾çº¦ä¿¡æ¯" expand="true">
                      <table frame=void class="grouptable" width="100%">
 	                 <tr>
-                     <td align="center" nowrap class="labeltd" colspan="2">¶ÔÍâµ£±£±àºÅ</td>
+                     <td align="center" nowrap class="labeltd" colspan="2">å¯¹å¤–æ‹…ä¿ç¼–å·</td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="exguarancode" /><input id="loadLoanButton" extra="button" style='width=25px;height=17px;' onclick="loadLoan();" type='button' value='...'/></td>
-                     <td align="center" nowrap class="labeltd" rowspan="3">µ£±£ÉêÇëÈË</td>
-                     <td align="center" nowrap class="labeltd"">´úÂë</td>
+                     <td align="center" nowrap class="labeltd" rowspan="3">æ‹…ä¿ç”³è¯·äºº</td>
+                     <td align="center" nowrap class="labeltd"">ä»£ç </td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="torCodeGu" /></td>
                      </tr>
                      <tr>
-                     <td align="center" nowrap class="labeltd" colspan="2">µ£±£ÈË´úÂë</td>
+                     <td align="center" nowrap class="labeltd" colspan="2">æ‹…ä¿äººä»£ç </td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="guarantorcode" /></td>
-                     <td align="center" nowrap class="labeltd">ÖĞÎÄÃû³Æ</td>
+                     <td align="center" nowrap class="labeltd">ä¸­æ–‡åç§°</td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="torNameGu"/></td>
                      </tr>
                      <tr>
-                     <td align="center" nowrap class="labeltd" colspan="2">µ£±£ÀàĞÍ</td>
+                     <td align="center" nowrap class="labeltd" colspan="2">æ‹…ä¿ç±»å‹</td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="guarantype" /></td>
-                     <td align="center" nowrap class="labeltd">Ó¢ÎÄÃû³Æ</td>
+                     <td align="center" nowrap class="labeltd">è‹±æ–‡åç§°</td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="torEnnameGu"/></td>
                      </tr>
                      <tr>
-                     <td align="center" nowrap class="labeltd" colspan="2">Ç©Ô¼ÈÕÆÚ</td>
+                     <td align="center" nowrap class="labeltd" colspan="2">ç­¾çº¦æ—¥æœŸ</td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="contractdate" /></td>
-                     <td align="center" nowrap class="labeltd" colspan="2">µ½ÆÚÈÕ</td>
+                     <td align="center" nowrap class="labeltd" colspan="2">åˆ°æœŸæ—¥</td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="maturity" /></td>
                      </tr>
                      <tr>
-                     <td align="center" nowrap class="labeltd" colspan="2">±£º¯±ÒÖÖ</td>
+                     <td align="center" nowrap class="labeltd" colspan="2">ä¿å‡½å¸ç§</td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="guarancurr" /></td>
-                     <td align="center" nowrap class="labeltd" colspan="2">Ö÷Õ®Îñ±ÒÖÖ</td>
+                     <td align="center" nowrap class="labeltd" colspan="2">ä¸»å€ºåŠ¡å¸ç§</td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="maindebtcurr" /></td>
                      </tr>
                      <tr>
-                     <td align="center" nowrap class="labeltd" colspan="2">±£º¯½ğ¶î</td>
+                     <td align="center" nowrap class="labeltd" colspan="2">ä¿å‡½é‡‘é¢</td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="guaranamount" /></td>
-                     <td align="center" nowrap class="labeltd" colspan="2">Ö÷Õ®Îñ½ğ¶î </td>
+                     <td align="center" nowrap class="labeltd" colspan="2">ä¸»å€ºåŠ¡é‡‘é¢ </td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="maindebtamount" /></td>
                      </tr>
                      <tr>
-                      <td colspan="2" align="center" nowrap class="labeltd">ºË×¼ÎÄ¼şºÅ</td>
+                      <td colspan="2" align="center" nowrap class="labeltd">æ ¸å‡†æ–‡ä»¶å·</td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="appdocuno" /></td>
-                     <td colspan="2" align="center" nowrap class="labeltd">±¸×¢</td>
+                     <td colspan="2" align="center" nowrap class="labeltd">å¤‡æ³¨</td>
                      <td class="datatd"><@CommonQueryMacro.SingleField fId="remark" /></td>
                      </tr>
                      </table>
@@ -60,16 +60,16 @@
 				 </tr>
 				 <tr>
 				 	<td>
-				 	<@CommonQueryMacro.GroupBox id="guoup1" label="ÔğÈÎÓà¶îĞÅÏ¢" expand="true">
+				 	<@CommonQueryMacro.GroupBox id="guoup1" label="è´£ä»»ä½™é¢ä¿¡æ¯" expand="true">
 				      <table  frame=void class="grouptable" width="100%">
 						<tr>
-							<td align="center" nowrap class="labeltd">ÒµÎñÁ÷Ë®ºÅ</td>
+							<td align="center" nowrap class="labeltd">ä¸šåŠ¡æµæ°´å·</td>
                             <td class="datatd" colspan="3"><@CommonQueryMacro.SingleField fId="filler2" /></td>
 						</tr>
 						<tr>
-							<td align="center" nowrap class="labeltd">µ£±£ÔğÈÎÓà¶î</td>
+							<td align="center" nowrap class="labeltd">æ‹…ä¿è´£ä»»ä½™é¢</td>
 				            <td class="datatd"><@CommonQueryMacro.SingleField fId="basere"/></td>
-				           <td align="center" nowrap class="labeltd">µ£±£ÔğÈÎÓà¶î±ä¶¯ÈÕÆÚ</td>
+				           <td align="center" nowrap class="labeltd">æ‹…ä¿è´£ä»»ä½™é¢å˜åŠ¨æ—¥æœŸ</td>
 				           <td class="datatd"><@CommonQueryMacro.SingleField fId="wabachandate"/></td>
 						</tr>
 
@@ -99,54 +99,54 @@
 		<td width="25%"valign="top">
 			<table width="100%" cellpadding="0" cellspacing="0">
 				<tr>
-					<td id="xitong"><@CommonQueryMacro.GroupBox id="guoup3" label="ÏµÍ³ĞÅÏ¢"
+					<td id="xitong"><@CommonQueryMacro.GroupBox id="guoup3" label="ç³»ç»Ÿä¿¡æ¯"
 						expand="true">
 			             <table frame=void class="grouptable" width="100%">
 							<tr>
-								<td align="center" nowrap class="labeltd" width="25%">²Ù×÷ÀàĞÍ</td>
+								<td align="center" nowrap class="labeltd" width="25%">æ“ä½œç±»å‹</td>
 								<td nowrap class="datatd" width="25%">
 									<@CommonQueryMacro.SingleField fId="actiontype" /></td>
 							</tr>
 							<tr>
-								<td align="center" nowrap class="labeltd" width="25%">¼ÇÂ¼×´Ì¬</td>
+								<td align="center" nowrap class="labeltd" width="25%">è®°å½•çŠ¶æ€</td>
 								<td class="datatd" width="25%">
 									<@CommonQueryMacro.SingleField fId="recStatus" /></td>
 							</tr>
 							<tr>
-								<td align="center" nowrap class="labeltd">ÉóÅú×´Ì¬</td>
+								<td align="center" nowrap class="labeltd">å®¡æ‰¹çŠ¶æ€</td>
 								<td nowrap class="datatd">
 									<@CommonQueryMacro.SingleField fId="approveStatus" />
 								</td>
 							</tr>
 							<tr>
-								<td align="center" nowrap class="labeltd">ÉóÅú½á¹û</td>
+								<td align="center" nowrap class="labeltd">å®¡æ‰¹ç»“æœ</td>
 								<td nowrap class="datatd">
 									<@CommonQueryMacro.SingleField fId="approveResult" />
 								</td>
 							</tr>
 							<tr>
-								<td align="center" nowrap class="labeltd">»ØÖ´×´Ì¬</td>
+								<td align="center" nowrap class="labeltd">å›æ‰§çŠ¶æ€</td>
 								<td nowrap class="datatd">
 									<@CommonQueryMacro.SingleField fId="repStatus" /><a
-									id="repHerf" href="javascript:doRepDet()">»ØÖ´½á¹û</a>
+									id="repHerf" href="javascript:doRepDet()">å›æ‰§ç»“æœ</a>
 								</td>
 							</tr>
 							<tr>
-								<td align="center" nowrap class="labeltd">´´½¨Ê±¼ä</td>
+								<td align="center" nowrap class="labeltd">åˆ›å»ºæ—¶é—´</td>
 								<td nowrap class="datatd">
 									<@CommonQueryMacro.SingleField fId="crtTm" /></td>
 							</tr>
 							<tr>
-								<td align="center" nowrap class="labeltd">×îºó¸üĞÂÊ±¼ä</td>
+								<td align="center" nowrap class="labeltd">æœ€åæ›´æ–°æ—¶é—´</td>
 								<td class="datatd"><@CommonQueryMacro.SingleField fId="lstUpdTm" /></td>
 							</tr>
 						</table> </@CommonQueryMacro.GroupBox></td>
 				</tr>
 				<tr>
-					<td id="deleteasc"><@CommonQueryMacro.GroupBox id="guoup4" label="É¾³ıÔ­Òò" expand="true">
+					<td id="deleteasc"><@CommonQueryMacro.GroupBox id="guoup4" label="åˆ é™¤åŸå› " expand="true">
 						<table frame=void class="grouptable" width="100%">
 							<tr>
-								<td align="center" nowrap class="labeltd" width="25%">É¾³ıÔ­Òò</td>
+								<td align="center" nowrap class="labeltd" width="25%">åˆ é™¤åŸå› </td>
 								<td class="datatd" width="75%"><@CommonQueryMacro.SingleField fId="actiondesc" /></td>
 							</tr>
 						</table> </@CommonQueryMacro.GroupBox></td>
@@ -164,12 +164,12 @@ function btBack_onClick(){
 	closeWin();
 }
 
-   //µ£±£ÀàĞÍÏÂÀ­¿ò
+   //æ‹…ä¿ç±»å‹ä¸‹æ‹‰æ¡†
   function guarantype_DropDown_beforeOpen(dropDown){
 	DataDicTreeSelectChangType_DropDownDataset.setParameter("headDataTypeNo","39");
    }
 
-	//ĞÂÔö¹¦ÄÜ
+	//æ–°å¢åŠŸèƒ½
 	function btNewClick() {
 		btAdd.click();
 	}
@@ -182,25 +182,25 @@ function btBack_onClick(){
 		var appType = BopLiabilityBalanceAdd_dataset.getValue("appType");
 		var currentfile = BopLiabilityBalanceAdd_dataset.getValue("currentfile");
 		var busiCode = BopLiabilityBalanceAdd_dataset.getValue("exguarancode");
-		showPickup("»ØÖ´½á¹û","${contextPath}/fpages/commonloadpage/jsp/ReportBackErr.jsp?id=" + id + "&appType=" + appType + "&currentfile=" + currentfile + "&busiCode=" + busiCode, 600, 500);
+		showPickup("å›æ‰§ç»“æœ","${contextPath}/fpages/commonloadpage/jsp/ReportBackErr.jsp?id=" + id + "&appType=" + appType + "&currentfile=" + currentfile + "&busiCode=" + busiCode, 600, 500);
 	}
 	function doApproveDet(){
 		var id = BopLiabilityBalanceAdd_dataset.getValue("id");
 		var appType = BopLiabilityBalanceAdd_dataset.getValue("appType");
 		var currentfile = BopLiabilityBalanceAdd_dataset.getValue("currentfile");
-		showPickup("ÉóºË½á¹û","${contextPath}/fpages/commonloadpage/ftl/ReportApproveResult.ftl?id=" + id + "&appType=" + appType + "&currentfile=" + currentfile,440,220);
+		showPickup("å®¡æ ¸ç»“æœ","${contextPath}/fpages/commonloadpage/ftl/ReportApproveResult.ftl?id=" + id + "&appType=" + appType + "&currentfile=" + currentfile,440,220);
 	}
 	function btDel_onClickCheck(button) {
-		return confirm("È·ÈÏÉ¾³ı¸ÃÌõ¼ÇÂ¼£¿");
+		return confirm("ç¡®è®¤åˆ é™¤è¯¥æ¡è®°å½•ï¼Ÿ");
 	}
 	function btDel_postSubmit(button) {
-		alert("É¾³ı¼ÇÂ¼³É¹¦");
+		alert("åˆ é™¤è®°å½•æˆåŠŸ");
 		button.url="#";
-		//Ë¢ĞÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		flushCurrentPage();
 	}
 	function btSave_postSubmit(button){
-		alert("±£´æ³É¹¦£¡");
+		alert("ä¿å­˜æˆåŠŸï¼");
 		closeWin(true);
 	}
 	function initCallGetter_post()
@@ -258,18 +258,18 @@ function btBack_onClick(){
 		}
 	}
 
-	//µ¯³öÕË»§ĞÅÏ¢Ñ¡Ôñ¿ò
+	//å¼¹å‡ºè´¦æˆ·ä¿¡æ¯é€‰æ‹©æ¡†
 	function loadLoan(){
-		showPickup("¶ÔÍâµ£±£Ç©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/winloadpage/BopExguLoadPage.ftl?currentFile=BB");
+		showPickup("å¯¹å¤–æ‹…ä¿ç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/winloadpage/BopExguLoadPage.ftl?currentFile=BB");
 	}
 	function btColSave_postSubmit(button){
-		alert("±£´æ³É¹¦£¡");
+		alert("ä¿å­˜æˆåŠŸï¼");
 		closeWin(true);
 	}
 	function btColSave_onClickCheck(button){
 		var exguarancode = BopLiabilityBalanceAdd_dataset.getValue("exguarancode");
 		if(!exguarancode){
-			alert("¶ÔÍâµ£±£±àºÅ²»Îª¿Õ")
+			alert("å¯¹å¤–æ‹…ä¿ç¼–å·ä¸ä¸ºç©º")
 			return false;
 		}
 	}
@@ -279,14 +279,14 @@ function btBack_onClick(){
 		if (op == "del") {
 			var actiondesc = BopLiabilityBalanceAdd_dataset.getValue("actiondesc");
 			if (actiondesc.length == 0) {
-				alert("ÇëÌîĞ´É¾³ıÔ­Òò£¡");
+				alert("è¯·å¡«å†™åˆ é™¤åŸå› ï¼");
 				return false;
 			}
 			BopLiabilityBalanceAdd_dataset.setParameter("op", op);
 		}
 	}
 	function btColDel_postSubmit(button){
-		alert("É¾³ı³É¹¦");
+		alert("åˆ é™¤æˆåŠŸ");
 		closeWin(true);
 	}
 </script>

@@ -5,7 +5,7 @@
 			<tr>
        			<td valign="top" rowspan="2"  valign="center">
        				<@CommonQuery.PagePilot id="ddresult" maxpagelink="9"/>
-					<@CommonQuery.Group id="group1" label="¸ÚÎ»ĞÅÏ¢" fieldStr="roleid,rolename" colNm=4/>
+					<@CommonQuery.Group id="group1" label="å²—ä½ä¿¡æ¯" fieldStr="roleid,rolename" colNm=4/>
           			<@CommonQuery.DataTable id ="datatable1" fieldStr="select,funccode,funcname,rolename" width="200" readonly="false" />
 
           			<@CommonQuery.Button id= "btSave"/>
@@ -17,7 +17,7 @@
 
     <script language="javascript">
       function btSave_postSubmit(button){
-         alert("ÉèÖÃ³É¹¦£¡");
+         alert("è®¾ç½®æˆåŠŸï¼");
          return true;
       }
 

@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ÅúÁ¿²ÎÊıÉèÖÃ">
+<@CommonQueryMacro.page title="æ‰¹é‡å‚æ•°è®¾ç½®">
 <table align="left" width="90%">
 
 <tr>
@@ -26,7 +26,7 @@
 			<td colspan="2">
 				<@CommonQueryMacro.FloatWindow id="FW_detail" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 					<div align="center">
-						<@CommonQueryMacro.Group id ="group1" label="ÅúÁ¿²ÎÊıÉèÖÃ" fieldStr="jobno,step,sub_step,process_function,process_param,process_tlrno,runtime,sub_flag,report_flag,maxproc,temp_flag,suspend,repeatCnt,desc0,desc1,desc2" colNm=4/>
+						<@CommonQueryMacro.Group id ="group1" label="æ‰¹é‡å‚æ•°è®¾ç½®" fieldStr="jobno,step,sub_step,process_function,process_param,process_tlrno,runtime,sub_flag,report_flag,maxproc,temp_flag,suspend,repeatCnt,desc0,desc1,desc2" colNm=4/>
 						<@CommonQueryMacro.Button id= "btSave"/>
 					</div>
 
@@ -54,11 +54,11 @@
         	}
         }
 
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function datatable1_opr_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
-				cell.innerHTML="<a href='JavaScript:showDetail("+value+")'>ÏêÏ¸</a> &nbsp; <a href='JavaScript:doDelete("+value+")'>É¾³ı</a>";
-			} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
+				cell.innerHTML="<a href='JavaScript:showDetail("+value+")'>è¯¦ç»†</a> &nbsp; <a href='JavaScript:doDelete("+value+")'>åˆ é™¤</a>";
+			} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 				cell.innerHTML="&nbsp;";
 			}
 		}
@@ -74,13 +74,13 @@
         function btDelete_postSubmit(){
         	parammng_BhProcStep_dataset.flushData(parammng_BhProcStep_dataset.pageIndex);
         }
-		//É¾³ı
+		//åˆ é™¤
 		function doDelete(id) {
 			locate(id);
 			parammng_BhProcStep_dataset.deleteRecord();
 			window.document.getElementById('btDelete').click();
 		}
-		//¶¨Î»Ò»Ìõ¼ÇÂ¼
+		//å®šä½ä¸€æ¡è®°å½•
 		function locate(id) {
 			var record = parammng_BhProcStep_dataset.find(["id"],[id]);
 			if (record) {

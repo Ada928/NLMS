@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Ç©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="BOPForDebtBondBillAuditTabs" navigate="false" currentTab="BOPForDebtBondBillAudit">
 		<@CommonQueryMacro.CommonQuery id="BOPForDebtBondBillAudit" init="false" submitMode="selected" navigate="false">
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface"  label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface"  label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 				<tr>
@@ -25,7 +25,7 @@
 					<td width="500">
 						<@CommonQueryMacro.FloatWindow id="aditADSubWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 							<div align="center">
-								<@CommonQueryMacro.Group id="group1" label="ÉóºËĞÅÏ¢"  fieldStr="approveStatusChoose,approveResultChoose" colNm=2/>
+								<@CommonQueryMacro.Group id="group1" label="å®¡æ ¸ä¿¡æ¯"  fieldStr="approveStatusChoose,approveResultChoose" colNm=2/>
 								</br>
 								<center>
 									<@CommonQueryMacro.Button id= "btSave"/>&nbsp;&nbsp;
@@ -42,38 +42,38 @@
 
 	<script language="JavaScript">
 
-		//¹¤×÷ÈÕÆÚ
+		//å·¥ä½œæ—¥æœŸ
 		function initCallGetter_post(){
 			<#assign workdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 			BOPForDebtBondBillAudit_interface_dataset.setValue("qworkDate","${workdate}");
 			BOPForDebtBondBillAudit_interface_dataset.setValue("eworkDate","${workdate}");		
 		}
 	
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function datatable1_opr_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var recStatus = record.getValue("recStatus");
 				var innerStr = "<center>";
 				if (recStatus == "01" || recStatus == "02") {
-					innerStr = innerStr + "<a href=\"JavaScript:doModify('"+id+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">É¾³ı</a>"
+					innerStr = innerStr + "<a href=\"JavaScript:doModify('"+id+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">åˆ é™¤</a>"
 				} else {
-					innerStr = innerStr + "<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉĞŞ¸Ä' style='color:#999999'>ĞŞ¸Ä</a>&nbsp;&nbsp;<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉÉ¾³ı' style='color:#999999'>É¾³ı</a>";
+					innerStr = innerStr + "<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯ä¿®æ”¹' style='color:#999999'>ä¿®æ”¹</a>&nbsp;&nbsp;<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯åˆ é™¤' style='color:#999999'>åˆ é™¤</a>";
 				}
 				innerStr = innerStr + "</center>";
 				cell.innerHTML =innerStr;
-			} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+			} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 				cell.innerHTML="&nbsp;";
 			}
 		}
 
-		//ÏêÏ¸
+		//è¯¦ç»†
 		function doDetail(id) {
-			showWin("Õ®È¯ºÍÆ±¾İÇ©Ô¼ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtBondBillCol.ftl?op=detaile&id="+id,"report","flushCurrentPage()");
+			showWin("å€ºåˆ¸å’Œç¥¨æ®ç­¾çº¦ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtBondBillCol.ftl?op=detaile&id="+id,"report","flushCurrentPage()");
 		}
 
 		function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var filler2 = record.getValue("filler2");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -85,7 +85,7 @@
 		function btSave_postSubmit(buttno) {
 			subwindow_aditADSubWindow.close();
 			flushCurrentPage();
-			alert("±£´æ³É¹¦");
+			alert("ä¿å­˜æˆåŠŸ");
 		}
 
 		function btApproved_onClickCheck(button) {
@@ -105,11 +105,11 @@
 				record=record.getNextRecord();
 	   		}
 	   		if (!hasSelected) {
-	   			alert("ÇëÑ¡ÔñÏàÓ¦µÄ¼ÇÂ¼£¡");
+	   			alert("è¯·é€‰æ‹©ç›¸åº”çš„è®°å½•ï¼");
 	   			return false;
 	  	 	}
 	  	 	if (hasAudit) {
-	   			if(!confirm("ËùÑ¡¼ÇÂ¼°üº¬ÒÑÉóºË¼ÇÂ¼£¬È·¶¨ĞèÖØĞÂÉóºËÂğ£¿")) {
+	   			if(!confirm("æ‰€é€‰è®°å½•åŒ…å«å·²å®¡æ ¸è®°å½•ï¼Œç¡®å®šéœ€é‡æ–°å®¡æ ¸å—ï¼Ÿ")) {
 					return false;
 				}
 	   		}
@@ -120,11 +120,11 @@
 			var status = BOPForDebtBondBillAudit_dataset.getValue("approveStatusChoose");
 			var result = BOPForDebtBondBillAudit_dataset.getValue("approveResultChoose");
 			if (!status.length > 0) {
-	   			alert("ÇëÑ¡ÔñÉóºË½á¹û£¡");
+	   			alert("è¯·é€‰æ‹©å®¡æ ¸ç»“æœï¼");
 	   			return false;
 	   		}
 	   		if (status == "02" && result.length < 1) {
-	   			alert("ÉóºË½á¹û²»Í¨¹ı£¬ÉóºËËµÃ÷±ØĞëÌîĞ´£¡");
+	   			alert("å®¡æ ¸ç»“æœä¸é€šè¿‡ï¼Œå®¡æ ¸è¯´æ˜å¿…é¡»å¡«å†™ï¼");
 	   			return false;
 			}
 			BOPForDebtBondBillAudit_dataset.setParameter("approveStatusChoose",status);
@@ -132,7 +132,7 @@
 			return true;
 		}
 
-		//Ë¢ĞÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		function flushCurrentPage() {
 			BOPForDebtBondBillAudit_dataset.flushData(1);
 		}

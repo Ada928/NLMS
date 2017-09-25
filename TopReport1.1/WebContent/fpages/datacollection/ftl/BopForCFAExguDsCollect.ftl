@@ -1,15 +1,15 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÕË»§ÊÕÖ§ÓàÐÅÏ¢">
+<@CommonQueryMacro.page title="è´¦æˆ·æ”¶æ”¯ä½™ä¿¡æ¯">
 <@CommonQueryMacro.CommonQuery id="bopAccDsRecordInOutCollect" init="true" submitMode="all" navigate="false" >
 <table width="800">
 	<tr>
 		<td>
-			<@CommonQueryMacro.Group id="group1" label="ÕË»§ÐÅÏ¢" fieldStr="actiontype,accountno,accountstat,amtype,enCode,enName,accountType,accountCata,businessDate,fileNumber,limitType,accountLimit" colNm=4 />
+			<@CommonQueryMacro.Group id="group1" label="è´¦æˆ·ä¿¡æ¯" fieldStr="actiontype,accountno,accountstat,amtype,enCode,enName,accountType,accountCata,businessDate,fileNumber,limitType,accountLimit" colNm=4 />
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<@CommonQueryMacro.Group id="group2" label="±ä¶¯ÐÅÏ¢" fieldStr="dealDate,currencyCode,credit,debit,balance,remark2" colNm=4 />
+			<@CommonQueryMacro.Group id="group2" label="å˜åŠ¨ä¿¡æ¯" fieldStr="dealDate,currencyCode,credit,debit,balance,remark2" colNm=4 />
 		</td>
 	</tr>
 	<tr>

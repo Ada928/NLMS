@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Êı¾İ·ÖÎö">
+<@CommonQueryMacro.page title="æ•°æ®åˆ†æ">
 <script type='text/javascript' src='${contextPath}/dwr/interface/ReportFile.js'> </script>
 <table width="95%" align="left">
 <tr>
@@ -9,7 +9,7 @@
 	<table width="100%">
 		<tr>
 			<td valign="top">
-				<@CommonQueryMacro.Interface id="interface" label="Êı¾İ·ÖÎö²éÑ¯" colNm=4 showButton="true"/>
+				<@CommonQueryMacro.Interface id="interface" label="æ•°æ®åˆ†ææŸ¥è¯¢" colNm=4 showButton="true"/>
 			</td>
 		</tr>
 		<tr>
@@ -31,26 +31,26 @@
 <script language="javascript">
 
    function initCallGetter_post(){
-	 //interfaceÀï²éÑ¯µÄÉèÖÃ¹¤×÷ÈÕÆÚÄ¬ÈÏµ±Ìì
+	 //interfaceé‡ŒæŸ¥è¯¢çš„è®¾ç½®å·¥ä½œæ—¥æœŸé»˜è®¤å½“å¤©
 		analyseDataEntry_interface_dataset.setValue("qworkDate",_today_date);
 		analyseDataEntry_interface_dataset.setValue("qbusiType",defaultType);
 	   
    }
 	
-	//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+	//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function dataTable1_opr_onRefresh(cell,value,record) {
-		if(record&&record!=null){//µ±´æÔÚ¼ÇÂ¼Ê±
+		if(record&&record!=null){//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			if(id==null || id.trim().length==0){
-				cell.innerHTML="<center><a href='#' title='Êı¾İ·ÖÎöÉĞÎ´Ö´ĞĞ' style='color:#666666'>ÏêÏ¸</a></center>";
+				cell.innerHTML="<center><a href='#' title='æ•°æ®åˆ†æå°šæœªæ‰§è¡Œ' style='color:#666666'>è¯¦ç»†</a></center>";
 			}else{
-				cell.innerHTML="<center><a href=\"javascript:doDetail('"+id+"')\">ÏêÏ¸</a></center>";
+				cell.innerHTML="<center><a href=\"javascript:doDetail('"+id+"')\">è¯¦ç»†</a></center>";
 			}
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 	cell.innerHTML="&nbsp;";
 		}
 	}
-	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+	//å®šä½ä¸€æ¡è®°å½•
 	function locate(id) {
 		var record = analyseDataEntry_dataset.find(["analyNo"],[id]);
 		if (record) {
@@ -61,7 +61,7 @@
 	function doDetail(id){
 		var paramsMap = new Map();
 		paramsMap.put("analyNo",id);
-		loadPageWindows("detailWindow","ÏêÏ¸","/fpages/dataaudit/ftl/ExecuteResult.ftl",paramsMap,"winZone");
+		loadPageWindows("detailWindow","è¯¦ç»†","/fpages/dataaudit/ftl/ExecuteResult.ftl",paramsMap,"winZone");
 	}
 
 
@@ -83,10 +83,10 @@
 		});
 		dwr.engine.setAsync(true);
 		if(sta=="02"){
-			var t =window.confirm("Î´Ö´ĞĞÊı¾İµ¼Èë£¬È·¶¨ÒªÖ´ĞĞ·ÖÎöÂğ£¿");
+			var t =window.confirm("æœªæ‰§è¡Œæ•°æ®å¯¼å…¥ï¼Œç¡®å®šè¦æ‰§è¡Œåˆ†æå—ï¼Ÿ");
 			return t;
 		}else if(sta=="03"){
-			var t =window.confirm("µ¼ÈëÊı¾İ´æÔÚ´íÎóÎ´ĞŞÕı£¬È·¶¨ÒªÖ´ĞĞ·ÖÎöÂğ£¿");
+			var t =window.confirm("å¯¼å…¥æ•°æ®å­˜åœ¨é”™è¯¯æœªä¿®æ­£ï¼Œç¡®å®šè¦æ‰§è¡Œåˆ†æå—ï¼Ÿ");
 			return t;
 		}else{
 			return true;

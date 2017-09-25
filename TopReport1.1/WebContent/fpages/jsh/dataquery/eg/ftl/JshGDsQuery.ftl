@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="Íâ»ãÕË»§ÄÚ¹º»ã¹ÜÀíĞÅÏ¢">
+<@CommonQueryMacro.page title="å¤–æ±‡è´¦æˆ·å†…è´­æ±‡ç®¡ç†ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="JshEgDsQueryTabs" navigate="false" currentTab="JshGDsQuery">
 		<@CommonQueryMacro.CommonQuery id="JshGDsQuery" init="false" submitMode="all" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -26,14 +26,14 @@
 
 	<script language="JavaScript">
 	
-		//¹¤×÷ÈÕÆÚ
+		//å·¥ä½œæ—¥æœŸ
 		function initCallGetter_post() {
 			<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 			JshGDsQuery_interface_dataset.setValue("qworkDateStart","${v_txdate}");
 			JshGDsQuery_interface_dataset.setValue("qworkDateEnd","${v_txdate}");
 		}
 	    function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var filler2 = record.getValue("filler2");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -42,7 +42,7 @@
 			}
 		}
 		
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 		function flushPage(){
 			JshGDsQuery_dataset.flushData();
 		}
@@ -52,9 +52,9 @@
 				JshGDsQuery_dataset.setRecord(record);
 			}
 		}
-		//ÏêÏ¸ĞÅÏ¢
+		//è¯¦ç»†ä¿¡æ¯
 		function doDetail(id){
-			showWin("Íâ»ãÕË»§ÄÚ¹º»ã¹ÜÀíĞÅÏ¢Ã÷Ï¸","${contextPath}/fpages/jsh/collandaudit/eg/ftl/JshGDsAdd.ftl?id=" + id + "&op=detail","window","flushPage()",window);
+			showWin("å¤–æ±‡è´¦æˆ·å†…è´­æ±‡ç®¡ç†ä¿¡æ¯æ˜ç»†","${contextPath}/fpages/jsh/collandaudit/eg/ftl/JshGDsAdd.ftl?id=" + id + "&op=detail","window","flushPage()",window);
 		}
 	</script>
 </@CommonQueryMacro.page>

@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <#assign info = Session["USER_SESSION_INFO"]>
-<@CommonQueryMacro.page title="¸ÚÎ»¹ÜÀí">
+<@CommonQueryMacro.page title="å²—ä½ç®¡ç†">
 <@CommonQueryMacro.CommonQuery id="RoleInfoEntry" init="true" submitMode="current">
 <table align="left" width="100%">
 	<tr valign="center">
 		<td valign="top" colspan="2">
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=6 />
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=6 />
 		</td>
 	</tr>
 	<tr>
@@ -36,7 +36,7 @@
 
 <script language="JavaScript">
 	var roleType = "${info.roleTypeList}";
-	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+	//å®šä½ä¸€æ¡è®°å½•
 	function locate(id) {
 		var record = RoleInfoEntry_dataset.find([ "id" ], [ id ]);
 		if (record) {
@@ -53,13 +53,13 @@
 	function btStatus_onClickCheck(button) {
 		var status = RoleInfoEntry_dataset.getValue("status");
 		if (status == '0') {
-			if (confirm("È·ÈÏ½«¸Ã¸ÚÎ»ÉèÖÃÎªÓĞĞ§?")) {
+			if (confirm("ç¡®è®¤å°†è¯¥å²—ä½è®¾ç½®ä¸ºæœ‰æ•ˆ?")) {
 				return true;
 			} else {
 				return false;
 			}
 		} else {
-			if (confirm("È·ÈÏ½«¸Ã¸ÚÎ»ÉèÖÃÎªÎŞĞ§?")) {
+			if (confirm("ç¡®è®¤å°†è¯¥å²—ä½è®¾ç½®ä¸ºæ— æ•ˆ?")) {
 				return true;
 			} else {
 				return false;
@@ -68,7 +68,7 @@
 	}
 
 	function btStatus_postSubmit(button) {
-		alert("ÉèÖÃ³É¹¦");
+		alert("è®¾ç½®æˆåŠŸ");
 		flushCurrentPage();
 	}
 
@@ -78,13 +78,13 @@
 			var innerText = "";
 			
 			if (roleType.indexOf("10") >- 1  || roleType.indexOf("11") >- 1) {
-				innerText = "<center><a href=\"JavaScript:rolePrivShow(" + id + ")\">¸ÚÎ»¹¦ÄÜ·ÖÅä</a> "
+				innerText = "<center><a href=\"JavaScript:rolePrivShow(" + id + ")\">å²—ä½åŠŸèƒ½åˆ†é…</a> "
 			} else {
-				innerText = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\">¸ÚÎ»¹¦ÄÜ·ÖÅä</a> ";
+				innerText = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\">å²—ä½åŠŸèƒ½åˆ†é…</a> ";
 			}
 			
-			innerText = innerText + " <a href=\"JavaScript:btRoleUserShow(" + id + ")\">²é¿´ÈËÔ±</a>";
-			cell.innerHTML = innerText + " <a href=\"JavaScript:doDel('" + id + "')\">É¾³ı</a></center>";
+			innerText = innerText + " <a href=\"JavaScript:btRoleUserShow(" + id + ")\">æŸ¥çœ‹äººå‘˜</a>";
+			cell.innerHTML = innerText + " <a href=\"JavaScript:doDel('" + id + "')\">åˆ é™¤</a></center>";
 		} else {
 			cell.innerHTML = "";
 		}
@@ -108,13 +108,13 @@
     function btDel_onClickCheck(button) {
     	var delet = RoleInfoEntry_dataset.getValue("del");
 		if (delet == 'F') {
-			if (confirm("È·ÈÏÉ¾³ı¸Ã¸ÚÎ»?")) {
+			if (confirm("ç¡®è®¤åˆ é™¤è¯¥å²—ä½?")) {
 				return true;
 			} else {
 				return false;
 			}
 		} else {
-			if (confirm("È·ÈÏ»Ö¸´¸Ã¸ÚÎ»?")) {
+			if (confirm("ç¡®è®¤æ¢å¤è¯¥å²—ä½?")) {
 				return true;
 			} else {
 				return false;
@@ -123,9 +123,9 @@
     }
     
     function btDel_postSubmit(button) {
-        alert("É¾³ı¼ÇÂ¼³É¹¦");
+        alert("åˆ é™¤è®°å½•æˆåŠŸ");
         button.url = "#";
-        //Ë¢ĞÂµ±Ç°Ò³
+        //åˆ·æ–°å½“å‰é¡µ
         flushCurrentPage();
     }
 	
@@ -140,7 +140,7 @@
 			PosiNameCheck_dataset.flushData(0);
 			var v_flag = PosiNameCheck_dataset.getValue("flag");
 			if (v_flag == "true") {
-				alert("¸Ã¸ÚÎ»Ãû³ÆÒÑ´æÔÚ£¬ÇëÖØĞÂÊäÈë");
+				alert("è¯¥å²—ä½åç§°å·²å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥");
 				RoleInfoEntry_dataset.setValue("roleName", "");
 				return false;
 			}
@@ -156,7 +156,7 @@
 		}
 	}
 	
-	//Ë¢ĞÂµ±Ç°Ò³
+	//åˆ·æ–°å½“å‰é¡µ
 	function flushCurrentPage() {
 		RoleInfoEntry_dataset.flushData(RoleInfoEntry_dataset.pageIndex);
 	}
@@ -172,10 +172,10 @@
 		}
 	}
 	
-	//ÏêÏ¸
+	//è¯¦ç»†
 	function showDetail(id, st) {
 		locate(id);
-		showWin("½ÇÉ«¹ÜÀíÏêÏ¸ĞÅÏ¢",
+		showWin("è§’è‰²ç®¡ç†è¯¦ç»†ä¿¡æ¯",
 				"${contextPath}/fpages/system/ftl/RoleFuncMngWithEdit.ftl?id="
 						+ id + "&st=" + st + "&flag=0", null, null, window);
 	} */

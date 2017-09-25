@@ -1,4 +1,4 @@
-<#--Ìá½»Ò³Ãæ²âÊÔ-->
+<#--æäº¤é¡µé¢æµ‹è¯•-->
 <#import "/templets/commonQuery/CommonQueryMacroNew.ftl" as CommonQuery>
 
 <@CommonQuery.CommonQuery>

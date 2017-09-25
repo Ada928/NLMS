@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="¶¨Ê±ÈÎÎñÖØĞÂµ¼Èë">
+<@CommonQueryMacro.page title="å®šæ—¶ä»»åŠ¡é‡æ–°å¯¼å…¥">
 <@CommonQueryMacro.CommonQuery id="ImportBadFile" init="false" submitMode="all" navigate="false">
 <table width="800px">
 	<tr>
 		<td>
-			<@CommonQueryMacro.Interface id="interface" label="¶¨Ê±ÈÎÎñ´íÎóÎÄ¼şÖØĞÂµ¼Èë" btnNm="È·¶¨" colNm=8/>
+			<@CommonQueryMacro.Interface id="interface" label="å®šæ—¶ä»»åŠ¡é”™è¯¯æ–‡ä»¶é‡æ–°å¯¼å…¥" btnNm="ç¡®å®š" colNm=8/>
 		</td>
 	</tr>
 	<tr>
@@ -14,11 +14,11 @@
 	</tr>
 	<tr>
 		<td>
-			<span id="message" >×¢Òâ£ºÈç¹û´«Æ±ÎÄ¼ş³ö´í£¬ÇĞÎğÖØĞÂÊÖ¹¤µ¼Èë!ÇëÁªÏµ¿Æ¼¼ÈËÔ±¡£</span>
+			<span id="message" >æ³¨æ„ï¼šå¦‚æœä¼ ç¥¨æ–‡ä»¶å‡ºé”™ï¼Œåˆ‡å‹¿é‡æ–°æ‰‹å·¥å¯¼å…¥!è¯·è”ç³»ç§‘æŠ€äººå‘˜ã€‚</span>
 		</td>
 	</tr>
 </table>
-<span id="button-tools" style="padding-center:10px"><@CommonQueryMacro.Button id= "btImport"/>&nbsp;<span id="message" >ÏÈµã»÷[È·¶¨],¼ì²éÎÄ¼şÁĞ±í</span></span>
+<span id="button-tools" style="padding-center:10px"><@CommonQueryMacro.Button id= "btImport"/>&nbsp;<span id="message" >å…ˆç‚¹å‡»[ç¡®å®š],æ£€æŸ¥æ–‡ä»¶åˆ—è¡¨</span></span>
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript"> 
@@ -53,7 +53,7 @@ function btImport_onClickCheck(button) {
 		rec = rec.nextUnit;
 	}
 	if(!f) {
-		alert('ÇëÑ¡ÔñÒªµ¼ÈëµÄÎÄ¼ş');
+		alert('è¯·é€‰æ‹©è¦å¯¼å…¥çš„æ–‡ä»¶');
 		return false;
 	}
 	//ImportBadFile_dataset.setValue('reImport', reImport.checked);

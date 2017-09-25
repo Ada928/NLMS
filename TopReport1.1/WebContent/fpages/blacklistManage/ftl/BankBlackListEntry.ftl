@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="±¾ĞĞºÚÃûµ¥²éÑ¯">
+<@CommonQueryMacro.page title="æœ¬è¡Œé»‘åå•æŸ¥è¯¢">
 <@CommonQueryMacro.CommonQuery id="BankBlackListEntry" init="true"  submitMode="selected"  navigate="false">
 <table align="center" width="100%">
    	<tr>
       	<td valign="top" colspan="2" >
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" colNm=4  />
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4  />
 		</td>
 	</tr>
   	<tr>
@@ -13,7 +13,7 @@
 	</tr>
 	<tr>
 		<td width="100%">
-			<@CommonQueryMacro.GroupBox id="BankBlackListEntryGuoup" label="Ñ¡ÔñºÚÃûµ¥ĞÅÏ¢" expand="true">
+			<@CommonQueryMacro.GroupBox id="BankBlackListEntryGuoup" label="é€‰æ‹©é»‘åå•ä¿¡æ¯" expand="true">
 				<table frame=void width="100%">
 					<tr>
 						<td colspan="2">
@@ -38,7 +38,7 @@
 	//function initCallGetter_post(dataset) {
 	//}
 	
-	//¶¨Î»Ò»ĞĞ¼ÇÂ¼
+	//å®šä½ä¸€è¡Œè®°å½•
 	function locate(id) {
 		var record = BankBlackListEntry_dataset.find([ "id" ], [ id ]);
 		if (record) {
@@ -46,7 +46,7 @@
 		}
 	}
 
-	//Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+	//å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
 	function datatable1_id_onRefresh(cell, value, record) {
 		if (record) {
 			var id = record.getValue("id");
@@ -61,7 +61,7 @@
 		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=entry&blacklistid="+id;
 	}
 
-	//Ë¢ĞÂµ±Ç°Ò³
+	//åˆ·æ–°å½“å‰é¡µ
 	function flushCurrentPage() {
 		BankBlackListEntry_dataset
 				.flushData(BankBlackListEntry_dataset.pageIndex);

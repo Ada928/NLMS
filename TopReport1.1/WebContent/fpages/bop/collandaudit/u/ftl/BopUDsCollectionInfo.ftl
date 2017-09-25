@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="»ù´¡ĞÅÏ¢">
+<@CommonQueryMacro.page title="åŸºç¡€ä¿¡æ¯">
 <@CommonQueryMacro.CommonQuery id="BopUDsCollectionInfo" init="true" insertOnEmpty="true" submitMode="current" navigate="false">
 <table width="90%" cellpadding="2">
 	<tr>
@@ -7,48 +7,48 @@
 			<table width="100%" cellpadding="0" cellspacing="0">
 				<tr>
 					<td>
-						<@CommonQueryMacro.GroupBox id="groupbox1" label="»ù´¡ĞÅÏ¢" expand="true">
+						<@CommonQueryMacro.GroupBox id="groupbox1" label="åŸºç¡€ä¿¡æ¯" expand="true">
 							<table frame="void" class="grouptable" width="100%">
 								<tr>
-									<td align="center" nowrap class="labeltd">×éÖ¯»ú¹¹´úÂë</td>
+									<td align="center" nowrap class="labeltd">ç»„ç»‡æœºæ„ä»£ç </td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="custcode"/></td>
-									<td align="center" nowrap class="labeltd">×éÖ¯»ú¹¹Ãû³Æ</td>
+									<td align="center" nowrap class="labeltd">ç»„ç»‡æœºæ„åç§°</td>
 									<td><@CommonQueryMacro.SingleField fId="custname"/></td>
 								</tr>
 								<tr>
-									<td align="center" nowrap class="labeltd">×¡Ëù/ÓªÒµ³¡Ëù </td>
+									<td align="center" nowrap class="labeltd">ä½æ‰€/è¥ä¸šåœºæ‰€ </td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="areacode" /></td>
-									<td align="center" nowrap class="labeltd">µ¥Î»µØÖ· </td>
+									<td align="center" nowrap class="labeltd">å•ä½åœ°å€ </td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="custaddr" /></td>
 								</tr>
 								<tr>
-									<td align="center" nowrap class="labeltd">ÓÊÕş±àÂë</td>
+									<td align="center" nowrap class="labeltd">é‚®æ”¿ç¼–ç </td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="postcode"/></td>
-									<td align="center" nowrap class="labeltd">³£×¤¹ú¼Ò´úÂë</td>
+									<td align="center" nowrap class="labeltd">å¸¸é©»å›½å®¶ä»£ç </td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="countrycode" /></td>
 								</tr>
 								<tr>
-									<td align="center" nowrap class="labeltd">ĞĞÒµÊôĞÔ´úÂë </td>
+									<td align="center" nowrap class="labeltd">è¡Œä¸šå±æ€§ä»£ç  </td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="industrycode" /></td>
-									<td align="center" nowrap class="labeltd">¾­¼ÃÀàĞÍ´úÂë</td>
+									<td align="center" nowrap class="labeltd">ç»æµç±»å‹ä»£ç </td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="attrcode" /></td>
 								</tr>
 								<tr>
-									<td align="center" nowrap class="labeltd">ÊÇ·ñÌØÊâ¾­¼ÃÇøÄÚÆóÒµ</td>
+									<td align="center" nowrap class="labeltd">æ˜¯å¦ç‰¹æ®Šç»æµåŒºå†…ä¼ä¸š</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="istaxfree" /></td>
-									<td align="center" nowrap class="labeltd">ÌØÊâ¾­¼ÃÇøÄÚÆóÒµÀàĞÍ</td>
+									<td align="center" nowrap class="labeltd">ç‰¹æ®Šç»æµåŒºå†…ä¼ä¸šç±»å‹</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="taxfreecode" /></td>
 								</tr>
 								<tr>
-									<td align="center" nowrap class="labeltd">Íâ»ã¾ÖÁªÏµÓÃeMail</td>
+									<td align="center" nowrap class="labeltd">å¤–æ±‡å±€è”ç³»ç”¨eMail</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="email" /></td>
-									<td align="center" nowrap class="labeltd">½»Ò×ÓÃeMail</td>
+									<td align="center" nowrap class="labeltd">äº¤æ˜“ç”¨eMail</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="ecexaddr" /></td>
 								</tr>
 								<tr>
-									<td align="center" nowrap class="labeltd">Éê±¨·½Ê½ </td>
+									<td align="center" nowrap class="labeltd">ç”³æŠ¥æ–¹å¼ </td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="rptmethod" /></td>
-									<td align="center" nowrap class="labeltd">±¸×¢</td>
+									<td align="center" nowrap class="labeltd">å¤‡æ³¨</td>
 									<td class="datatd"><@CommonQueryMacro.SingleField fId="remarks" /></td>
 								</tr>
 							</table>
@@ -66,33 +66,33 @@
 			<table id="systemMessageTable" width="100%" cellpadding="0" cellspacing="0" style="">
 				<tr>
 					<td>
-						<@CommonQueryMacro.GroupBox id="groupbox2" label="ÏµÍ³ĞÅÏ¢" expand="true">
+						<@CommonQueryMacro.GroupBox id="groupbox2" label="ç³»ç»Ÿä¿¡æ¯" expand="true">
 							<table frame=void class="grouptable" width="100%">
 								<tr>
-									<td align="center" nowrap class="labeltd" >¼ÇÂ¼×´Ì¬</td>
+									<td align="center" nowrap class="labeltd" >è®°å½•çŠ¶æ€</td>
 									<td class="datatd" ><@CommonQueryMacro.SingleField fId="recStatus" /></td>
 								</tr>
 								<tr>
-									<td align="center" nowrap class="labeltd">ÉóÅú×´Ì¬</td>
+									<td align="center" nowrap class="labeltd">å®¡æ‰¹çŠ¶æ€</td>
 									<td nowrap class="datatd"><@CommonQueryMacro.SingleField fId="approveStatus" /></td>
 								</tr>
 								<tr>
-									<td align="center" nowrap class="labeltd">ÉóÅú½á¹û</td>
+									<td align="center" nowrap class="labeltd">å®¡æ‰¹ç»“æœ</td>
 									<td nowrap class="datatd"><@CommonQueryMacro.SingleField fId="approveResult" /></td>
 								</tr>
 								<tr>
-									<td align="center" nowrap class="labeltd">»ØÖ´×´Ì¬</td>
+									<td align="center" nowrap class="labeltd">å›æ‰§çŠ¶æ€</td>
 									<td class="datatd">
 										<@CommonQueryMacro.SingleField fId="repStatus"/>
-										<a id="repResult" href="JavaScript:doRepDet()">»ØÖ´ËµÃ÷<a/>
+										<a id="repResult" href="JavaScript:doRepDet()">å›æ‰§è¯´æ˜<a/>
 									</td>
 								</tr>
 								<tr>
-									<td align="center" nowrap class="labeltd">´´½¨Ê±¼ä</td>
+									<td align="center" nowrap class="labeltd">åˆ›å»ºæ—¶é—´</td>
 									<td nowrap class="datatd"><@CommonQueryMacro.SingleField fId="crtTm" /></td>
 								</tr>
 								<tr>
-									<td align="center" nowrap class="labeltd">×îºó¸üĞÂÊ±¼ä</td>
+									<td align="center" nowrap class="labeltd">æœ€åæ›´æ–°æ—¶é—´</td>
 									<td nowrap class="datatd"><@CommonQueryMacro.SingleField fId="lstUpdTm" /></td>
 								</tr>
 							</table>
@@ -107,7 +107,7 @@
 	<tr>
 		<td align="left" colspan="3">
 			<@CommonQueryMacro.CommonQuery id="BopInvcountrycode" init="true" submitMode="all" navigate="false" insertOnEmpty="true">
-				<@CommonQueryMacro.GroupBox id="guoup2" label="Íâ·½Í¶×ÊÕß¹ú±ğ" expand="true">
+				<@CommonQueryMacro.GroupBox id="guoup2" label="å¤–æ–¹æŠ•èµ„è€…å›½åˆ«" expand="true">
 					<table frame=void width="100%">
 						<#assign op = RequestParameters["op"]?default("")>
 						<#assign subSuccess = RequestParameters["subSuccess"]?default("0")>
@@ -133,7 +133,7 @@
 	<tr>
 		<td align="left" colspan="3">
 			<@CommonQueryMacro.CommonQuery id="BopOpenDsCollection" init="true" submitMode="all" navigate="false" insertOnEmpty="true">
-				<@CommonQueryMacro.GroupBox id="guoup2" label="¿ª»§ĞÅÏ¢" expand="true">
+				<@CommonQueryMacro.GroupBox id="guoup2" label="å¼€æˆ·ä¿¡æ¯" expand="true">
 					<table frame=void width="100%">
 						<#assign op=RequestParameters["op"]?default("")>
 						<#if op == "new" || op == "modify">
@@ -174,7 +174,7 @@
 
 	function initCallGetter_post() {
 
-		//»ØÖ´ËµÃ÷Á´½ÓÑùÊ½
+		//å›æ‰§è¯´æ˜é“¾æ¥æ ·å¼
 		var repStatus = BopUDsCollectionInfo_dataset.getValue("repStatus");
 		if(repStatus == "00" || repStatus == "01") {
 			document.getElementById("repResult").href = "javascript:void(0)";
@@ -227,7 +227,7 @@
 
 	function checkUnitCode(UnitCode) {
 		if (UnitCode == null || "" == UnitCode || UnitCode.length != 9 || "000000000" == UnitCode) {
-			alert("×éÖ¯»ú¹¹´úÂë²»·ûºÏ¹æ·¶");
+			alert("ç»„ç»‡æœºæ„ä»£ç ä¸ç¬¦åˆè§„èŒƒ");
 			return false;
 		}
 		var one = getNumberFromUnitCode(UnitCode.substring(0, 1));
@@ -240,22 +240,22 @@
 		var eight = getNumberFromUnitCode(UnitCode.substring(7, 8));
 		var tag = 11 - (one * 3 + two * 7 + three * 9 + four * 10 + five * 5 + six * 8 + seven * 4 + eight * 2) % 11;
 		if ("X" != UnitCode.substring(8, 9) && tag == 10) {
-			alert("×éÖ¯»ú¹¹´úÂë²»·ûºÏ¹æ·¶,×îºóÒ»Î»±ØĞëÎªX");
+			alert("ç»„ç»‡æœºæ„ä»£ç ä¸ç¬¦åˆè§„èŒƒ,æœ€åä¸€ä½å¿…é¡»ä¸ºX");
 			return false;
 		} else if ("0" != UnitCode.substring(8, 9) && tag == 11) {
-			alert("×éÖ¯»ú¹¹´úÂë²»·ûºÏ¹æ·¶,×îºóÒ»Î»±ØĞëÎª0");
+			alert("ç»„ç»‡æœºæ„ä»£ç ä¸ç¬¦åˆè§„èŒƒ,æœ€åä¸€ä½å¿…é¡»ä¸º0");
 			return false;
 		} else if (tag != 10 && tag != 11) {
 			var nine = getNumberFromUnitCode(UnitCode.substring(8, 9));
 			if (nine != tag) {
-				alert("×éÖ¯»ú¹¹´úÂë²»·ûºÏ¹æ·¶,×îºóÒ»Î»±ØĞëÎª" + tag);
+				alert("ç»„ç»‡æœºæ„ä»£ç ä¸ç¬¦åˆè§„èŒƒ,æœ€åä¸€ä½å¿…é¡»ä¸º" + tag);
 				return false;
 			}
 		}
 		return true;
 	}
 
-	//±£´æ°´Å¥Ìá½»Ç°¼ì²éÍ³Ò»ÉèÖÃ
+	//ä¿å­˜æŒ‰é’®æäº¤å‰æ£€æŸ¥ç»Ÿä¸€è®¾ç½®
 	function btSave_onClickCheck(button) {
 
 		if (op == "new" || op == "modify") {
@@ -272,16 +272,16 @@
 			}
 			if (countrycode == "CHN") {
 				if (!isChinese(custname)) {
-					alert("[³£×¤¹ú¼Ò´úÂë]ÎªÖĞ¹úÊ±[×éÖ¯»ú¹¹Ãû³Æ]±ØĞëÎªÖĞÎÄ");
+					alert("[å¸¸é©»å›½å®¶ä»£ç ]ä¸ºä¸­å›½æ—¶[ç»„ç»‡æœºæ„åç§°]å¿…é¡»ä¸ºä¸­æ–‡");
 					return false;
 				}
 			}
 			if (areacode == "100000") {
-				alert("[×¡Ëù/ÓªÒµ³¡Ëù]²»ÄÜÑ¡[100000]");
+				alert("[ä½æ‰€/è¥ä¸šåœºæ‰€]ä¸èƒ½é€‰[100000]");
 				return false;
 			}
 			if (attrcode == "100" || attrcode == "140" || attrcode == "150" || attrcode == "170" || attrcode == "200" || attrcode == "300") {
-				alert("[ÄÚ×Ê]¡¢[ÁªÓª]¡¢[ÓĞÏŞÔğÈÎ£¨¹«Ë¾£©]¡¢[Ë½ÓĞ]¡¢[¸Û°ÄÌ¨Í¶×Ê]¡¢[¹úÍâÍ¶×Ê]ÓÉÓÚ²»ÊÇ×îÏ¸·ÖÀà£¬Òò´ËÎª²»¿ÉÑ¡Ïî");
+				alert("[å†…èµ„]ã€[è”è¥]ã€[æœ‰é™è´£ä»»ï¼ˆå…¬å¸ï¼‰]ã€[ç§æœ‰]ã€[æ¸¯æ¾³å°æŠ•èµ„]ã€[å›½å¤–æŠ•èµ„]ç”±äºä¸æ˜¯æœ€ç»†åˆ†ç±»ï¼Œå› æ­¤ä¸ºä¸å¯é€‰é¡¹");
 				return false;
 			}
 			if (attrcode == "110" || attrcode == "120" || attrcode == "130" || attrcode == "210"
@@ -289,31 +289,31 @@
 				|| attrcode == "310" || attrcode == "320" || attrcode == "330" || attrcode == "340"
 				|| attrcode == "390") {
 				if (countrycode != "CHN") {
-					alert("[¾­¼ÃÀàĞÍ´úÂë]Îª[ÄÚ×Ê],[¸Û°ÄÌ¨Í¶×Ê],[¹úÍâÍ¶×Ê]ÏîÏÂ[³£×¤¹ú¼Ò´úÂë]Ó¦Îª[ÖĞ¹ú]");
+					alert("[ç»æµç±»å‹ä»£ç ]ä¸º[å†…èµ„],[æ¸¯æ¾³å°æŠ•èµ„],[å›½å¤–æŠ•èµ„]é¡¹ä¸‹[å¸¸é©»å›½å®¶ä»£ç ]åº”ä¸º[ä¸­å›½]");
 					return false;
 				}
 			}
 			if (attrcode == "400") {
 				if (countrycode == "CHN") {
-					alert("[¾­¼ÃÀàĞÍ´úÂë]Îª[¾³Íâ»ú¹¹],[³£×¤¹ú¼Ò´úÂë]Ó¦Îª[Íâ¹ú»ò¸Û°ÄÌ¨]");
+					alert("[ç»æµç±»å‹ä»£ç ]ä¸º[å¢ƒå¤–æœºæ„],[å¸¸é©»å›½å®¶ä»£ç ]åº”ä¸º[å¤–å›½æˆ–æ¸¯æ¾³å°]");
 				}
 			}
 			if (null != istaxfree && istaxfree == "Y") {
 				if (taxfreecode == "") {
-					alert("[ÊÇ·ñÌØÊâ¾­¼ÃÇøÄÚÆóÒµ]Îª[ÌØÊâ¾­¼ÃÇøÄÚÆóÒµ],[ÌØÊâ¾­¼ÃÇøÄÚÆóÒµÀàĞÍ]²»ÄÜÎª¿Õ");
+					alert("[æ˜¯å¦ç‰¹æ®Šç»æµåŒºå†…ä¼ä¸š]ä¸º[ç‰¹æ®Šç»æµåŒºå†…ä¼ä¸š],[ç‰¹æ®Šç»æµåŒºå†…ä¼ä¸šç±»å‹]ä¸èƒ½ä¸ºç©º");
 					return false;
 				}
 			} else if (null != istaxfree && istaxfree == "N") {
 				if (taxfreecode != "") {
-					alert("[ÊÇ·ñÌØÊâ¾­¼ÃÇøÄÚÆóÒµ]Îª[·ÇÌØÊâ¾­¼ÃÇøÄÚÆóÒµ],[ÌØÊâ¾­¼ÃÇøÄÚÆóÒµÀàĞÍ]ÎŞĞèÌîĞ´");
+					alert("[æ˜¯å¦ç‰¹æ®Šç»æµåŒºå†…ä¼ä¸š]ä¸º[éç‰¹æ®Šç»æµåŒºå†…ä¼ä¸š],[ç‰¹æ®Šç»æµåŒºå†…ä¼ä¸šç±»å‹]æ— éœ€å¡«å†™");
 					return false;
 				}
 			}
-			//Ğ£ÑéÍâ·½Í¶×ÊÕß¹ú±ğ
+			//æ ¡éªŒå¤–æ–¹æŠ•èµ„è€…å›½åˆ«
 			if (attrcode == "400") {
 				var record = BopInvcountrycode_dataset.getFirstRecord();
 				if (null != record) {
-					alert("[¾­¼ÃÀàĞÍ]Îª[¾³Íâ»ú¹¹],[Íâ·½Í¶×ÊÕß¹ú±ğ]±ØĞëÎª¿Õ");
+					alert("[ç»æµç±»å‹]ä¸º[å¢ƒå¤–æœºæ„],[å¤–æ–¹æŠ•èµ„è€…å›½åˆ«]å¿…é¡»ä¸ºç©º");
 					return false;
 				}
 			}
@@ -321,7 +321,7 @@
 				var flag = false;
 				var record = BopInvcountrycode_dataset.getFirstRecord();
 				if (null == record) {
-					alert("[¾­¼ÃÀàĞÍ]Îª[¸Û°ÄÌ¨Í¶×Ê]ÏîÏÂ,[Íâ·½Í¶×ÊÕß¹ú±ğ]²»ÄÜÎª¿Õ");
+					alert("[ç»æµç±»å‹]ä¸º[æ¸¯æ¾³å°æŠ•èµ„]é¡¹ä¸‹,[å¤–æ–¹æŠ•èµ„è€…å›½åˆ«]ä¸èƒ½ä¸ºç©º");
 					return false;
 				}
 				while (record) {
@@ -332,7 +332,7 @@
 					record = record.getNextRecord();
 				}
 				if (!flag) {
-					alert("[¾­¼ÃÀàĞÍ]Îª[¸Û°ÄÌ¨Í¶×Ê]ÏîÏÂ,[Íâ·½Í¶×ÊÕß¹ú±ğ]ÖĞÖÁÉÙÓĞ[¸Û°ÄÌ¨]Ö®Ò»");
+					alert("[ç»æµç±»å‹]ä¸º[æ¸¯æ¾³å°æŠ•èµ„]é¡¹ä¸‹,[å¤–æ–¹æŠ•èµ„è€…å›½åˆ«]ä¸­è‡³å°‘æœ‰[æ¸¯æ¾³å°]ä¹‹ä¸€");
 					return false;
 				}
 			}
@@ -340,7 +340,7 @@
 				var record = BopInvcountrycode_dataset.getFirstRecord();
 				var flag = false;
 				if (null == record) {
-					alert("[¾­¼ÃÀàĞÍ]Îª[¹úÍâÍ¶×Ê]ÏîÏÂ,[Íâ·½Í¶×ÊÕß¹ú±ğ]²»ÄÜÎª¿Õ");
+					alert("[ç»æµç±»å‹]ä¸º[å›½å¤–æŠ•èµ„]é¡¹ä¸‹,[å¤–æ–¹æŠ•èµ„è€…å›½åˆ«]ä¸èƒ½ä¸ºç©º");
 					return false;
 				}
 				while (record) {
@@ -351,7 +351,7 @@
 					record = record.getNextRecord();
 				}
 				if (!flag) {
-					alert("[¾­¼ÃÀàĞÍ]Îª[¸Û°ÄÌ¨Í¶×Ê]ÏîÏÂ,[Íâ·½Í¶×ÊÕß¹ú±ğ]ÖÁÉÙÒ»ÏîÎªÍâ¹ú£¨ÖĞ¹ú´óÂ½¼°¸Û°ÄÌ¨³ıÍâ£©");
+					alert("[ç»æµç±»å‹]ä¸º[æ¸¯æ¾³å°æŠ•èµ„]é¡¹ä¸‹,[å¤–æ–¹æŠ•èµ„è€…å›½åˆ«]è‡³å°‘ä¸€é¡¹ä¸ºå¤–å›½ï¼ˆä¸­å›½å¤§é™†åŠæ¸¯æ¾³å°é™¤å¤–ï¼‰");
 					return false;
 				}
 			}
@@ -360,7 +360,7 @@
 				while (record) {
 					var invcountrycode = record.getValue("invcountrycode");
 					if ("CHN" == invcountrycode) {
-						alert("Íâ·½Í¶×ÊÕß¹ú±ğ²»ÄÜÑ¡ÔñÖĞ¹ú");
+						alert("å¤–æ–¹æŠ•èµ„è€…å›½åˆ«ä¸èƒ½é€‰æ‹©ä¸­å›½");
 						return false;
 					}
 					var count = 0;
@@ -373,7 +373,7 @@
 						countryrRcord = countryrRcord.getNextRecord();
 					}
 					if (1 < count){
-						alert("Í¬Ò»±Ê[µ¥Î»»ù±¾Çé¿ö±í]ÏÂ[Í¶×Ê¹ú±ğ´úÂë]²»ÄÜÖØ¸´");
+						alert("åŒä¸€ç¬”[å•ä½åŸºæœ¬æƒ…å†µè¡¨]ä¸‹[æŠ•èµ„å›½åˆ«ä»£ç ]ä¸èƒ½é‡å¤");
 						return false;
 					}
 					record = record.getNextRecord();
@@ -384,17 +384,17 @@
 			while (record) {
 				count ++;
 				if (count > 5) {
-					alert("Í¬Ò»±Ê[µ¥Î»»ù±¾Çé¿ö±í]ÏÂ[Í¶×Ê¹ú±ğ´úÂë]¸öÊı±ØĞëĞ¡ÓÚµÈÓÚ[5]");
+					alert("åŒä¸€ç¬”[å•ä½åŸºæœ¬æƒ…å†µè¡¨]ä¸‹[æŠ•èµ„å›½åˆ«ä»£ç ]ä¸ªæ•°å¿…é¡»å°äºç­‰äº[5]");
 					return false;
 				}
 				record = record.getNextRecord();
 			}
 
 
-			//¿ª»§ĞÅÏ¢
+			//å¼€æˆ·ä¿¡æ¯
 			var record = BopOpenDsCollection_dataset.getFirstRecord();
 			if (null == record) {
-				alert("Í¬Ò»±Ê[µ¥Î»»ù±¾Çé¿ö±í],[¿ª»§ĞÅÏ¢]¼ÇÂ¼Êı±ØĞë´óÓÚµÈÓÚ[1]");
+				alert("åŒä¸€ç¬”[å•ä½åŸºæœ¬æƒ…å†µè¡¨],[å¼€æˆ·ä¿¡æ¯]è®°å½•æ•°å¿…é¡»å¤§äºç­‰äº[1]");
 				return false;
 			}
 			while (record) {
@@ -408,7 +408,7 @@
 					bankRcord = bankRcord.getNextRecord();
 				}
 				if (1 < count) {
-					alert("Í¬Ò»±Ê[µ¥Î»»ù±¾Çé¿ö±í]ÏÂ[¿ª»§ĞÅÏ¢]µÄ[½ğÈÚ»ú¹¹±êÊ¶Âë]²»ÄÜÖØ¸´");
+					alert("åŒä¸€ç¬”[å•ä½åŸºæœ¬æƒ…å†µè¡¨]ä¸‹[å¼€æˆ·ä¿¡æ¯]çš„[é‡‘èæœºæ„æ ‡è¯†ç ]ä¸èƒ½é‡å¤");
 					return false;
 				}
 				record = record.getNextRecord();
@@ -419,24 +419,24 @@
 
 
 	function isChinese(str){
-		//°ë½Ç
+		//åŠè§’
 		var badChar ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		badChar += "abcdefghijklmnopqrstuvwxyz";
 		badChar += "0123456789";
-		badChar += "`~!@#$%^&()-_=+[]\\|:;\"\\'<,>?/";//²»°üº¬*»ò.µÄÓ¢ÎÄ·ûºÅ
+		badChar += "`~!@#$%^&()-_=+[]\\|:;\"\\'<,>?/";//ä¸åŒ…å«*æˆ–.çš„è‹±æ–‡ç¬¦å·
 		badChar += " ";
 
-		//È«½Ç
-		badChar += "£Á£Â£Ã£Ä£Å£Æ£Ç£È£É£Ê£Ë£Ì£Í£Î£Ï£Ğ£Ñ£Ò£Ó£Ô£Õ£Ö£×£Ø£Ù£Ú";
-		badChar += "£á£â£ã£ä£å£æ£ç£è£é£ê£ë£ì£í£î£ï£ğ£ñ£ò£ó£ô£õ£ö£÷£ø£ù£ú";
-		badChar += "£°£±£²£³£´£µ£¶£·£¸£¹";
-		badChar += "¡¡";
-		badChar += "£à¡«£¡£À££¡ç£¥£Ş£¦£¨£©£­£ß£½£«£Û£İ£Ü£ü£º£»£¢£§£¼£¬£¾£¿£¯";//²»°üº¬*»ò.µÄÓ¢ÎÄ·ûºÅ
+		//å…¨è§’
+		badChar += "ï¼¡ï¼¢ï¼£ï¼¤ï¼¥ï¼¦ï¼§ï¼¨ï¼©ï¼ªï¼«ï¼¬ï¼­ï¼®ï¼¯ï¼°ï¼±ï¼²ï¼³ï¼´ï¼µï¼¶ï¼·ï¼¸ï¼¹ï¼º";
+		badChar += "ï½ï½‚ï½ƒï½„ï½…ï½†ï½‡ï½ˆï½‰ï½Šï½‹ï½Œï½ï½ï½ï½ï½‘ï½’ï½“ï½”ï½•ï½–ï½—ï½˜ï½™ï½š";
+		badChar += "ï¼ï¼‘ï¼’ï¼“ï¼”ï¼•ï¼–ï¼—ï¼˜ï¼™";
+		badChar += "ã€€";
+		badChar += "ï½€ï½ï¼ï¼ ï¼ƒï¼„ï¼…ï¼¾ï¼†ï¼ˆï¼‰ï¼ï¼¿ï¼ï¼‹ï¼»ï¼½ï¼¼ï½œï¼šï¼›ï¼‚ï¼‡ï¼œï¼Œï¼ï¼Ÿï¼";//ä¸åŒ…å«*æˆ–.çš„è‹±æ–‡ç¬¦å·
 		if ("" == str) {
 			return true;
 		}
 		for (var i= 0;i < str.length; i++) {
-			var c = str.charAt(i);//×Ö·û´®strÖĞµÄ×Ö·û
+			var c = str.charAt(i);//å­—ç¬¦ä¸²strä¸­çš„å­—ç¬¦
 			if (badChar.indexOf(c) > -1) {
 				return false;
 			}
@@ -445,7 +445,7 @@
 	}
 
 	function btSave_postSubmit(button) {
-		alert("±£´æ³É¹¦£¡");
+		alert("ä¿å­˜æˆåŠŸï¼");
 		closeWin(true);
 	}
 
@@ -453,7 +453,7 @@
 		var id = BopUDsCollectionInfo_dataset.getValue("id");
 		var appType = BopUDsCollectionInfo_dataset.getValue("appType");
 		var currentfile = BopUDsCollectionInfo_dataset.getValue("currentfile");
-		showPickup("»ØÖ´½á¹û","${contextPath}/fpages/commonloadpage/jsp/ReportBackErr.jsp?id=" + id + "&appType=" + appType + "&currentfile=" + currentfile, 600, 500);
+		showPickup("å›æ‰§ç»“æœ","${contextPath}/fpages/commonloadpage/jsp/ReportBackErr.jsp?id=" + id + "&appType=" + appType + "&currentfile=" + currentfile, 600, 500);
 	}
 
 	function btBack_onClick() {

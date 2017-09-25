@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="¹ú¼ÊºÚÃûµ¥²Ù×÷ÈÕÖ¾²éÑ¯">
+<@CommonQueryMacro.page title="å›½é™…é»‘åå•æ“ä½œæ—¥å¿—æŸ¥è¯¢">
 <@CommonQueryMacro.CommonQuery id="InternationBlackListLogQuery" init="true" submitMode="selected" navigate="false">
 <table align="left" width="80%">
     <tr>
 		<td>
-			<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" colNm=4 />
+			<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4 />
 		</td>
 	</tr>
     <tr>

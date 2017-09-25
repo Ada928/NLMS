@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÖÕÖ¹ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç»ˆæ­¢ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="bopCfaStrdeDsQueryTabs" navigate="false" currentTab="bopCfaStrdeDsTerminateQuery">
 		<@CommonQueryMacro.CommonQuery id="bopCfaStrdeDsTerminateQuery" init="false" submitMode="all" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -26,7 +26,7 @@
 	<script language="JavaScript">
 		var ds = bopCfaStrdeDsTerminateQuery_dataset;
 		function initCallGetter_post() {
-			//ÆğÊ¼¹¤×÷ÈÕÆÚÄ¬ÈÏµ±Ç°ÈÕÆÚ
+			//èµ·å§‹å·¥ä½œæ—¥æœŸé»˜è®¤å½“å‰æ—¥æœŸ
 			<#assign v_date = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 			bopCfaStrdeDsTerminateQuery_interface_dataset.setValue("qworkDateStart","${v_date}");
 			bopCfaStrdeDsTerminateQuery_interface_dataset.setValue("qworkDateEnd","${v_date}");
@@ -40,9 +40,9 @@
 				cell.innerHTML = "&nbsp;";
 			}
 		}
-		//ÏêÏ¸
+		//è¯¦ç»†
 		function doDetail(id) {
-			showWin("ÖÕÖ¹ĞÅÏ¢ÏêÏ¸","${contextPath}/fpages/datacollection/ftl/BopCfaStrdeDsEntryTerminateInfo.ftl?id="+id+"&op="+"detail");
+			showWin("ç»ˆæ­¢ä¿¡æ¯è¯¦ç»†","${contextPath}/fpages/datacollection/ftl/BopCfaStrdeDsEntryTerminateInfo.ftl?id="+id+"&op="+"detail");
 		}
 	</script>
 </@CommonQueryMacro.page>

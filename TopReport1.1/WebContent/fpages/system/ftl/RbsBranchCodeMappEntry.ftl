@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="»ú¹¹ĞÅÏ¢Î¬»¤">
+<@CommonQueryMacro.page title="æœºæ„ä¿¡æ¯ç»´æŠ¤">
 <table width="1000px" align="left">
 <tr>
 <td>
@@ -8,14 +8,14 @@
 	<table width="100%">
 		<tr>
 			<td valign="top" colspan="2">
-				<@CommonQueryMacro.Interface id="interface" label="»ú¹¹ĞÅÏ¢²éÑ¯" colNm=6 showButton="true"/>
+				<@CommonQueryMacro.Interface id="interface" label="æœºæ„ä¿¡æ¯æŸ¥è¯¢" colNm=6 showButton="true"/>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<@CommonQueryMacro.PagePilot id="pagePilot"  maxpagelink="9" showArrow="true" pageCache="false"/>
 			</td>
-			<td align="right"><a href="JavaScript:doAdd()">ĞÂÔö</a></td>
+			<td align="right"><a href="JavaScript:doAdd()">æ–°å¢</a></td>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -52,7 +52,7 @@
 <script language="javascript">
 	var ds = RbsBranchCodeMappEntry_dataset;
 	
-	//¶¨Î»Ò»ĞĞ¼ÇÂ¼
+	//å®šä½ä¸€è¡Œè®°å½•
 	function locate(id) {
 		var record = ds.find(["id"],[id]);
 		if(record) {
@@ -61,14 +61,14 @@
 	}
 	function dataTable1_operation_onRefresh(cell,value,record) {
 		if(record) {
-			var content = "<center><a href=\"JavaScript:doMod('"+value+"')\">ĞŞ¸Ä</a></center>";
+			var content = "<center><a href=\"JavaScript:doMod('"+value+"')\">ä¿®æ”¹</a></center>";
 			cell.innerHTML = content;
 		} else {
 			cell.innerHTML = "&nbsp;";
 		}
 	}
 	
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	function doMod(id) {
 		locate(id);
 		subwindow_addModWindow.show();
@@ -80,17 +80,17 @@
 	}
 	
 	function btModOrAdd_postSubmit(button) {
-		alert("±£´æ³É¹¦£¡");
+		alert("ä¿å­˜æˆåŠŸï¼");
 		subwindow_addModWindow.close();
 		flushCurrentPage();
 	}
 
-	//¸¡¶¯¿òµÄºóÍË
+	//æµ®åŠ¨æ¡†çš„åé€€
 	function btCancel_onClickCheck() {
 		subwindow_addModWindow.close();
 		return true;
 	}
-	//¹Ø¸¡¶¯´°¿Ú,ÊÍ·Ådataset
+	//å…³æµ®åŠ¨çª—å£,é‡Šæ”¾dataset
 	function addModWindow_floatWindow_beforeClose(subwindow) {
 		ds.cancelRecord();
 		return true;
@@ -102,14 +102,14 @@
 		var status = ds.getValue("status");
 		ds.setParameter("valid","valid");
 		if(status == '0'){
-			if(confirm("È·ÈÏ½«¸Ã»ú¹¹ĞÅÏ¢ÉèÖÃÎªÓĞĞ§?")){
+			if(confirm("ç¡®è®¤å°†è¯¥æœºæ„ä¿¡æ¯è®¾ç½®ä¸ºæœ‰æ•ˆ?")){
 			    ds.setValue("status", "1");
 				return true;
 			}else{
 				return false;
 			}
 		} else {
-			if(confirm("È·ÈÏ½«¸Ã»ú¹¹ĞÅÏ¢ÉèÖÃÎªÎŞĞ§?")){
+			if(confirm("ç¡®è®¤å°†è¯¥æœºæ„ä¿¡æ¯è®¾ç½®ä¸ºæ— æ•ˆ?")){
 				ds.setValue("status", "0");
 				return true;
 			}else{
@@ -119,12 +119,12 @@
 	}
 	
 	function btStatus_postSubmit(button) {
-		alert("ÉèÖÃ³É¹¦");
-		//Ë¢ĞÂµ±Ç°Ò³
+		alert("è®¾ç½®æˆåŠŸ");
+		//åˆ·æ–°å½“å‰é¡µ
 		flushCurrentPage();
 	}
 	
-	//Ë¢ĞÂµ±Ç°Ò³
+	//åˆ·æ–°å½“å‰é¡µ
 	function flushCurrentPage() {
 		ds.flushData(ds.pageIndex);
 	}

@@ -38,14 +38,14 @@
 </td></tr>
 </table>
 <script language="JavaScript">
-	//¶¨Î»Ò»ĞĞ¼ÇÂ¼
+	//å®šä½ä¸€è¡Œè®°å½•
 	function locate(id) {
 		var record = BiNationregionEntry_dataset.find(["id"],[id]);
 		if(record) {
 			BiNationregionEntry_dataset.setRecord(record);
 		}
 	}
-	//ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñ
+	//ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼
 	function datatable1_operation_onRefresh(cell,value,record) {
 		if(record) {
 			var id = record.getValue("id");
@@ -56,7 +56,7 @@
 			
 				if(isTrue(lock))
 				{
-					cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\"><@bean.message key="BiNationregionEntry.button.btMod" /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"¼ÇÂ¼ÒÑËø¶¨£¬²»ÄÜ²Ù×÷\"><@bean.message key="BiNationregionEntry.button.btDel" /></a></center>";
+					cell.innerHTML = "<center><a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\"><@bean.message key="BiNationregionEntry.button.btMod" /></a> &nbsp; <a href=\"Javascript:void(0);\" style=\"color:#666666\" title=\"è®°å½•å·²é”å®šï¼Œä¸èƒ½æ“ä½œ\"><@bean.message key="BiNationregionEntry.button.btDel" /></a></center>";
 				}else{
 					cell.innerHTML="<center><a href=\"JavaScript:openModifyWindow('"+id+"')\"><@bean.message key='BiNationregionEntry.button.btMod'/></a> &nbsp; <a href=\"JavaScript:doDel('"+id+"')\"><@bean.message key='BiNationregionEntry.button.btDel'/></a></center>";
 				}
@@ -69,12 +69,12 @@
 	function btAdd_onClick(button) {
 			btNewClick();
 	}
-	//È¡Ïû¹¦ÄÜ
+	//å–æ¶ˆåŠŸèƒ½
 	function btCancel_onClickCheck(button) {
-		//¹Ø±Õ¸¡¶¯´°¿Ú
+		//å…³é—­æµ®åŠ¨çª—å£
 		subwindow_signWindow.close();
 	}
-	//¹Ø¸¡¶¯´°¿Ú,ÊÍ·Ådataset
+	//å…³æµ®åŠ¨çª—å£,é‡Šæ”¾dataset
 	function signWindow_floatWindow_beforeClose(subwindow) {
 		BiNationregionEntry_dataset.cancelRecord();
 		return true;
@@ -83,12 +83,12 @@
 		return signWindow_floatWindow_beforeClose(subwindow);
 	}
 	
-	//ĞÂÔö¹¦ÄÜ
+	//æ–°å¢åŠŸèƒ½
 	function btNewClick() {
 		BiNationregionEntry_dataset.insertRecord("end");
 		subwindow_signWindow.show();
 	}
-	//Õ¹Ê¾¶Ô±È¹¦ÄÜµÄjs
+	//å±•ç¤ºå¯¹æ¯”åŠŸèƒ½çš„js
 	function datatable1_id_onRefresh(cell, value, record){
 	if(record!=null){
 		var sta = record.getValue("st");
@@ -110,13 +110,13 @@ function showDetail(id,sta){
 	paramMap.put("st",sta);
 	paramMap.put("action","detail");
 	paramMap.put("flag","0");
-	loadPageWindows("partWin", "¹ú¼ÒµØÇø´úÂëÏêÏ¸ĞÅÏ¢","/fpages/basis/ftl/BiNationregionEntryDetail.ftl", paramMap, "winZone");
+	loadPageWindows("partWin", "å›½å®¶åœ°åŒºä»£ç è¯¦ç»†ä¿¡æ¯","/fpages/basis/ftl/BiNationregionEntryDetail.ftl", paramMap, "winZone");
 	
 }
 
 
 	
-	//ĞŞ¸Ä¹¦ÄÜ
+	//ä¿®æ”¹åŠŸèƒ½
 	function openModifyWindow(id) {
 		locate(id);
 		BiNationregionEntry_dataset.setFieldReadOnly("id",true);
@@ -135,29 +135,29 @@ function showDetail(id,sta){
 	}
 	
 	function btDel_onClickCheck(button) {
-		return confirm("È·ÈÏÉ¾³ı¸ÃÌõ¼ÇÂ¼£¿");
+		return confirm("ç¡®è®¤åˆ é™¤è¯¥æ¡è®°å½•ï¼Ÿ");
 	}
 	function btDel_postSubmit(button) {
 		
 		button.url="#";
-		//Ë¢ĞÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		flushCurrentPage();
 	}
 	function btModOrAdd_onClickCheck(button) {
 		var id = BiNationregionEntry_dataset.getValue("id");
 		if(id == null || "" == id ) {
-			alert("×Ö¶Î[¹ú¼Ò/µØÇø´úÂë]²»ÄÜÎª¿Õ");
+			alert("å­—æ®µ[å›½å®¶/åœ°åŒºä»£ç ]ä¸èƒ½ä¸ºç©º");
 			return false;
 		}
 		return true;
 	}
-	//±£´æºóË¢ĞÂµ±Ç°Ò³
+	//ä¿å­˜ååˆ·æ–°å½“å‰é¡µ
 	function btModOrAdd_postSubmit(button) {
 		button.url="#";
 		subwindow_signWindow.close();
 		flushCurrentPage();
 	}
-	//Ë¢ĞÂµ±Ç°Ò³
+	//åˆ·æ–°å½“å‰é¡µ
 	function flushCurrentPage() {
 		BiNationregionEntry_dataset.flushData(BiNationregionEntry_dataset.pageIndex);
 	}

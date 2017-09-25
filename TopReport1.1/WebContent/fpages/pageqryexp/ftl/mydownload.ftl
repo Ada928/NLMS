@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÎÒµÄÏÂÔØ" >
+<@CommonQueryMacro.page title="æˆ‘çš„ä¸‹è½½" >
 <@CommonQueryMacro.CommonQuery id="pageqryexp_mydownload" navigate="true" init="true" submitMode= "current" >
 <table align="left" width="850px">
 		<tr>
       		<td>
-      			<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+      			<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
       		</td>
 		</tr>
 		<tr>
@@ -21,22 +21,22 @@
 <iframe name="dfrm"  id="dfrm" height="0" width="0" src=""></iframe>
 </@CommonQueryMacro.CommonQuery >
 <script language="javascript">
-//¶¨Î»Ò»Ìõ¼ÇÂ¼
+//å®šä½ä¸€æ¡è®°å½•
 function locate(id) {
 	var record = pageqryexp_mydownload_dataset.find(["id"],[id]);
 	if (record) {
 		pageqryexp_mydownload_dataset.setRecord(record); 
 	}
 }
-//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢ 
+//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘ 
 function datatable1_op_onRefresh(cell,value,record) {
-	if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+	if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 		if (record.getValue("tskStat")=="3") {
-			cell.innerHTML="<a href='JavaScript:download(\""+value+"\")'>ÏÂÔØ</a> ";
+			cell.innerHTML="<a href='JavaScript:download(\""+value+"\")'>ä¸‹è½½</a> ";
 		} else {
-			cell.innerHTML="<a href='JavaScript:void(0)'>ÎŞ·¨ÏÂÔØ</a> ";
+			cell.innerHTML="<a href='JavaScript:void(0)'>æ— æ³•ä¸‹è½½</a> ";
 		}
-	} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+	} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		cell.innerHTML="&nbsp;";
 	}
 }

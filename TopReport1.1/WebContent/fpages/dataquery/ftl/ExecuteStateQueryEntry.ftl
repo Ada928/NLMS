@@ -8,7 +8,7 @@
 			<table width="1000px">
 				<tr>
 					<td colspan="2" valign="top">
-						<@CommonQueryMacro.Interface id="interface1" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface1" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 				<tr>
@@ -25,7 +25,7 @@
 					<td colspan="2">
 						<@CommonQueryMacro.FloatWindow id="logdetail" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 							<div align="center">
-								<@CommonQueryMacro.Group id="group1" label="ÏêÏ¸" fieldStr="brNo,brName,busiType,appType,workDate,operType,executeType,executeTm,executeId,startTm,endTm,ip" colNm=4/>
+								<@CommonQueryMacro.Group id="group1" label="è¯¦ç»†" fieldStr="brNo,brName,busiType,appType,workDate,operType,executeType,executeTm,executeId,startTm,endTm,ip" colNm=4/>
 								<br/>
 							</div>
 						</@CommonQueryMacro.FloatWindow>
@@ -38,7 +38,7 @@
 </table>
 <script language="JavaScript">
 	function initCallGetter_post(){
-		//¹¤×÷Ê±¼äÄ¬ÈÏµ±ÌìÊ±¼ä
+		//å·¥ä½œæ—¶é—´é»˜è®¤å½“å¤©æ—¶é—´
 		ExecuteStateQueryEntry_interface_dataset.setValue("qworkDateStart",_today_date);
 		ExecuteStateQueryEntry_interface_dataset.setValue("qworkDateEnd",_today_date);
 		ExecuteStateQueryEntry_interface_dataset.setValue("qbusiType",defaultType);
@@ -47,13 +47,13 @@
 	function datatable1_operation_onRefresh(cell,value,record) {
 		if(null != record) {
 			var id = record.getValue("id");
-			cell.innerHTML="<center><a href=\"javascript:onLogDetail('"+id+"')\">ÏêÏ¸</a></center>";
+			cell.innerHTML="<center><a href=\"javascript:onLogDetail('"+id+"')\">è¯¦ç»†</a></center>";
 		} else {
 			cell.innerHTML = "";
 		}
 	}
 
-	//¶¨Î»Ò»ĞĞ¼ÇÂ¼
+	//å®šä½ä¸€è¡Œè®°å½•
 	function locate(id) {
 		var record = ExecuteStateQueryEntry_dataset.find(["id"],[id]);
 		if(record) {

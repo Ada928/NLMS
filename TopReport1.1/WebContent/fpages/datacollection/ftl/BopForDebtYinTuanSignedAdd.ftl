@@ -1,50 +1,50 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÒøÍÅ´û¿îÇ©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="é“¶å›¢è´·æ¬¾ç­¾çº¦ä¿¡æ¯">
 <table width="800px" align="left">
 	<tr>
 		<td>
 			<@CommonQueryMacro.CommonQuery id="bopForDebtYinTuanSigned" init="true" submitMode="current" navigate="false">
-				<@CommonQueryMacro.GroupBox id="guoup1" label="»ù´¡ĞÅÏ¢" expand="true">
+				<@CommonQueryMacro.GroupBox id="guoup1" label="åŸºç¡€ä¿¡æ¯" expand="true">
 					<table frame=void class="grouptable" width="100%">
 						<tr>
-							<td align="center" nowrap class="labeltd" width="25%"> ÍâÕ®±àºÅ </td>
+							<td align="center" nowrap class="labeltd" width="25%"> å¤–å€ºç¼–å· </td>
 							<td class="datatd" width="25%"><@CommonQueryMacro.SingleField fId="exdebtcode"/></td>
-							<td align="center" nowrap class="labeltd" width="25%"> Õ®ÎñÀàĞÍ </td>
+							<td align="center" nowrap class="labeltd" width="25%"> å€ºåŠ¡ç±»å‹ </td>
 							<td class="datatd" width="25%"><@CommonQueryMacro.SingleField fId="debtype"/></td>
 						</tr>
 						<tr>
-							<td align="center" nowrap class="labeltd"> Õ®ÎñÈË´úÂë </td>
+							<td align="center" nowrap class="labeltd"> å€ºåŠ¡äººä»£ç  </td>
 							<td class="datatd"><@CommonQueryMacro.SingleField fId="debtorcode"/></td>
-							<td align="center" nowrap class="labeltd"> Ç©Ô¼±ÒÖÖ </td>
+							<td align="center" nowrap class="labeltd"> ç­¾çº¦å¸ç§ </td>
 							<td class="datatd"><@CommonQueryMacro.SingleField fId="contractcurr"/></td>
 						</tr>
 						<tr>
-							<td align="center" nowrap class="labeltd"> Ç©Ô¼½ğ¶î </td>
+							<td align="center" nowrap class="labeltd"> ç­¾çº¦é‡‘é¢ </td>
 							<td class="datatd"><@CommonQueryMacro.SingleField fId="contractamount"/></td>
-							<td align="center" nowrap class="labeltd"> ÆğÏ¢ÈÕ </td>
+							<td align="center" nowrap class="labeltd"> èµ·æ¯æ—¥ </td>
 							<td class="datatd"><@CommonQueryMacro.SingleField fId="valuedate"/></td>
 						</tr>
 						<tr>
-							<td align="center" nowrap class="labeltd"> µ½ÆÚÈÕ </td>
+							<td align="center" nowrap class="labeltd"> åˆ°æœŸæ—¥ </td>
 							<td class="datatd"><@CommonQueryMacro.SingleField fId="maturity"/></td>
-							<td align="center" nowrap class="labeltd"> ÊÇ·ñ¸¡¶¯ÀûÂÊ </td>
+							<td align="center" nowrap class="labeltd"> æ˜¯å¦æµ®åŠ¨åˆ©ç‡ </td>
 							<td class="datatd"><@CommonQueryMacro.SingleField fId="floatrate"/></td>
 						</tr>
 						<tr>
-							<td align="center" nowrap class="labeltd"> Äê»¯ÀûÂÊÖµ </td>
+							<td align="center" nowrap class="labeltd"> å¹´åŒ–åˆ©ç‡å€¼ </td>
 							<td class="datatd"><@CommonQueryMacro.SingleField fId="anninrate"/></td>
-							<td align="center" nowrap class="labeltd"> ÊÇ·ñÓĞÀûÏ¢±¾½ğ»¯Ìõ¿î </td>
+							<td align="center" nowrap class="labeltd"> æ˜¯å¦æœ‰åˆ©æ¯æœ¬é‡‘åŒ–æ¡æ¬¾ </td>
 							<td class="datatd"><@CommonQueryMacro.SingleField fId="inprterm"/></td>
 						</tr>
 						<tr>
-							<td align="center" nowrap class="labeltd"> ÊÇ·ñ¾­Íâ»ã¾ÖÌØÅú²»ĞèÕ¼ÓÃÖ¸±ê </td>
+							<td align="center" nowrap class="labeltd"> æ˜¯å¦ç»å¤–æ±‡å±€ç‰¹æ‰¹ä¸éœ€å ç”¨æŒ‡æ ‡ </td>
 							<td class="datatd"><@CommonQueryMacro.SingleField fId="spapfeboindex"/></td>
 
-							<td align="center" nowrap class="labeltd"> ÒµÎñÁ÷Ë®ºÅ </td>
+							<td align="center" nowrap class="labeltd"> ä¸šåŠ¡æµæ°´å· </td>
 							<td class="datatd"><@CommonQueryMacro.SingleField fId="filler2"/></td>
 						</tr>
 						<tr>
-							<td align="center" nowrap class="labeltd"> ±¸×¢ </td>
+							<td align="center" nowrap class="labeltd"> å¤‡æ³¨ </td>
 							<td colspan="3" class="datatd"><@CommonQueryMacro.SingleField fId="remark"/></td>
 						</tr>
 					</table>
@@ -56,7 +56,7 @@
 	<tr>
 		<td>
 			<@CommonQueryMacro.CommonQuery id="bopForDebtYinTuanProject" init="true" submitMode="all" navigate="false" insertOnEmpty="true">
-				<@CommonQueryMacro.GroupBox id="guoup2" label="ÏîÄ¿ĞÅÏ¢" expand="true">
+				<@CommonQueryMacro.GroupBox id="guoup2" label="é¡¹ç›®ä¿¡æ¯" expand="true">
 					<table frame=void width="100%">
 						<tr>
 							<td align="right">
@@ -77,7 +77,7 @@
 	<tr>
 		<td>
 			<@CommonQueryMacro.CommonQuery id="bopForDebtYinTuanCreditor" init="true" submitMode="all" navigate="false" insertOnEmpty="true">
-				<@CommonQueryMacro.GroupBox id="guoup3" label="Õ®È¨ÈËĞÅÏ¢" expand="true">
+				<@CommonQueryMacro.GroupBox id="guoup3" label="å€ºæƒäººä¿¡æ¯" expand="true">
 					<table frame=void width="100%">
 						<tr>
 							<td align="right">
@@ -121,14 +121,14 @@
 
 	function btSave_onClickCheck(){
 
-		var anninrate = bopForDebtYinTuanSigned_dataset.getValue("anninrate");//Äê»¯ÀûÂÊÖµ
+		var anninrate = bopForDebtYinTuanSigned_dataset.getValue("anninrate");//å¹´åŒ–åˆ©ç‡å€¼
 		if (!isNaN(anninrate) && parseFloat(anninrate) >= 1) {
-			alert("[Äê»¯ÀûÂÊÖµ]±ØĞëÎªĞ¡Êı");
+			alert("[å¹´åŒ–åˆ©ç‡å€¼]å¿…é¡»ä¸ºå°æ•°");
 			return false;
 		}
 
 		if (bopForDebtYinTuanCreditor_dataset.length == 0) {
-			alert("ÇëÌîĞ´Õ®È¨ÈË£¡");
+			alert("è¯·å¡«å†™å€ºæƒäººï¼");
 			return false;
 		}
 
@@ -142,13 +142,13 @@
 			var v_creditorca = record.getValue("creditorca") - 0;
 			total_creditorca = total_creditorca + v_creditorca;
 			if( v_creditorname == "" && v_creditornamen == "" ){
-				alert("Ã¿¸öÕ®È¨ÈËµÄÖĞÎÄÃû³ÆºÍÓ¢ÎÄÃû³Æ±ØĞëÌîÒ»¸ö£¡");
+				alert("æ¯ä¸ªå€ºæƒäººçš„ä¸­æ–‡åç§°å’Œè‹±æ–‡åç§°å¿…é¡»å¡«ä¸€ä¸ªï¼");
 				return false;
 			}
 			record=record.getNextRecord();
 		}
 		if (total_creditorca != v_contractamount) {
-			alert("Õ®È¨ÈËÇ©Ô¼½ğ¶îÖ»ºÍ²»µÈÓÚÇ©Ô¼½ğ¶î£¡");
+			alert("å€ºæƒäººç­¾çº¦é‡‘é¢åªå’Œä¸ç­‰äºç­¾çº¦é‡‘é¢ï¼");
 			return false;
 		}
 		bopForDebtYinTuanSigned_dataset.setParameter("op", "new");
@@ -175,7 +175,7 @@
 	}
 
 	function btSave_postSubmit(button){
-		alert("±£´æ³É¹¦£¡");
+		alert("ä¿å­˜æˆåŠŸï¼");
 		closeWin(true);
 	}
 </script>

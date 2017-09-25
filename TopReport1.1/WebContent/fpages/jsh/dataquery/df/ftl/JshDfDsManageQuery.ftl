@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="»ù´¡ĞÅÏ¢">
+<@CommonQueryMacro.page title="åŸºç¡€ä¿¡æ¯">
 <@CommonQueryMacro.CommonQueryTab id="JshDfDsQueryTabs" navigate="false" currentTab="JshDfDsManageQuery">
 <table width=""><tr><td>
 	<@CommonQueryMacro.CommonQuery id="JshDfDsManageQuery" init="false" submitMode="all" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -25,7 +25,7 @@
 </@CommonQueryMacro.CommonQueryTab>
 <script language="JavaScript">
 	function initCallGetter_post() {
-		//¹¤×÷ÈÕÆÚ
+		//å·¥ä½œæ—¥æœŸ
 		<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 		JshDfDsManageQuery_interface_dataset.setValue("qworkDateStart","${v_txdate}");
 		JshDfDsManageQuery_interface_dataset.setValue("qworkDateEnd","${v_txdate}");
@@ -39,9 +39,9 @@
 			cell.innerHTML = "&nbsp;";
 		}
 	}
-	//ÏêÏ¸
+	//è¯¦ç»†
 	function doDetail(id) {
-		showWin("¹ÜÀíĞÅÏ¢ÏêÏ¸","${contextPath}/fpages/jsh/collandaudit/df/ftl/JshDfDsManageCollInfo.ftl?id="+id+"&op="+"detail","window","",window);
+		showWin("ç®¡ç†ä¿¡æ¯è¯¦ç»†","${contextPath}/fpages/jsh/collandaudit/df/ftl/JshDfDsManageCollInfo.ftl?id="+id+"&op="+"detail","window","",window);
 	}
 </script>
 </@CommonQueryMacro.page>

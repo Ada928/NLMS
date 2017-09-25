@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="ÂÄÔ¼Ã÷Ï¸ĞÅÏ¢">
+<@CommonQueryMacro.page title="å±¥çº¦æ˜ç»†ä¿¡æ¯">
 <@CommonQueryMacro.CommonQueryTab id="BopCFAExguTabs" navigate="false" currentTab="BOPForGuperDsInfo">
 	<@CommonQueryMacro.CommonQuery id="BOPGuperInfo" init="false" submitMode="all" navigate="false" >
 		<table align="left">
 			<tr>
 				<td colspan="2">
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 				</td>
 			</tr>
 			<tr>
@@ -26,21 +26,21 @@
 <script language="JavaScript">
 
 
-//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 function datatable1_opr_onRefresh(cell,value,record) {
-	if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+	if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 		var id = record.getValue("id");
 		var recStatus = record.getValue("recStatus");
 		var innerStr = "<center>";
 		if (recStatus == "01" || recStatus == "02") {
-			innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">É¾³ı</a>"
+			innerStr = innerStr + "<a href=\"JavaScript:doCollection('"+id+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">åˆ é™¤</a>"
 		} else {
-			innerStr = innerStr + "<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉĞŞ¸Ä' style='color:#999999'>ĞŞ¸Ä</a>&nbsp;&nbsp;<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉÉ¾³ı' style='color:#999999'>É¾³ı</a>";
+			innerStr = innerStr + "<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯ä¿®æ”¹' style='color:#999999'>ä¿®æ”¹</a>&nbsp;&nbsp;<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯åˆ é™¤' style='color:#999999'>åˆ é™¤</a>";
 		}
 		innerStr = innerStr + "</center>";
 		 
 		cell.innerHTML =innerStr;
-	} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+	} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 	 	cell.innerHTML="&nbsp;";
 	}
 }
@@ -53,7 +53,7 @@ function initCallGetter_post() {
 
 
 function datatable1_filler2_onRefresh(cell,value,record) {
-	if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+	if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 		var id = record.getValue("id");
 		var filler2 = record.getValue("filler2");
 		cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -62,7 +62,7 @@ function datatable1_filler2_onRefresh(cell,value,record) {
 	}
 }
 
-//Ë¢ĞÂÊı¾İ
+//åˆ·æ–°æ•°æ®
 function flushPage(){
 	BOPGuperInfo_dataset.flushData(1);
 }
@@ -82,27 +82,27 @@ function btAdd_onClick(button) {
 
 function btNewClick(){
 	
-	showWin("ÂÄÔ¼Ã÷Ï¸ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForGuperDsInfoAdd.ftl?op=new","report","flushPage()");
+	showWin("å±¥çº¦æ˜ç»†ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForGuperDsInfoAdd.ftl?op=new","report","flushPage()");
 
 	
 }
 
-//ĞŞ¸Ä
+//ä¿®æ”¹
 function doCollection(id){
 	
-	showWin("ÂÄÔ¼Ã÷Ï¸ĞÅÏ¢ĞŞ¸Ä","${contextPath}/fpages/datacollection/ftl/BOPForGuperDsInfoAdd.ftl?id=" + id + "&op=mod","report","flushPage()");
+	showWin("å±¥çº¦æ˜ç»†ä¿¡æ¯ä¿®æ”¹","${contextPath}/fpages/datacollection/ftl/BOPForGuperDsInfoAdd.ftl?id=" + id + "&op=mod","report","flushPage()");
 }
 
-//É¾³ı
+//åˆ é™¤
 function doDelete(id){
 	
-	showWin("ÂÄÔ¼Ã÷Ï¸ĞÅÏ¢É¾³ı","${contextPath}/fpages/datacollection/ftl/BOPForGuperDsInfoAdd.ftl?id=" + id + "&op=del","report","flushPage()");
+	showWin("å±¥çº¦æ˜ç»†ä¿¡æ¯åˆ é™¤","${contextPath}/fpages/datacollection/ftl/BOPForGuperDsInfoAdd.ftl?id=" + id + "&op=del","report","flushPage()");
 }
 
-//ÏêÏ¸ĞÅÏ¢
+//è¯¦ç»†ä¿¡æ¯
 function doDetail(id){
 	
-	showWin("ÂÄÔ¼Ã÷Ï¸ĞÅÏ¢Ã÷Ï¸","${contextPath}/fpages/datacollection/ftl/BOPForGuperDsInfoAdd.ftl?id=" + id + "&op=detail");
+	showWin("å±¥çº¦æ˜ç»†ä¿¡æ¯æ˜ç»†","${contextPath}/fpages/datacollection/ftl/BOPForGuperDsInfoAdd.ftl?id=" + id + "&op=detail");
 }
 </script>
 </@CommonQueryMacro.page>

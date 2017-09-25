@@ -1,45 +1,45 @@
-<#-- ÎÄ±¾ÊäÈë¿ò -->
+<#-- æ–‡æœ¬è¾“å…¥æ¡† -->
 <#macro textinput textinputlabel id name value>
     <label>${textinputlabel}:</label>
     <input value="${value}" id="${id}" name="${name}" size="30" type="text" />
 </#macro>
 
-<#-- ÃÜÂëÊäÈë¿ò -->
+<#-- å¯†ç è¾“å…¥æ¡† -->
 <#macro password passwordlabel name id value size maxlength>
-    <label>${passwordlabel}£º</label>
+    <label>${passwordlabel}ï¼š</label>
     <input type="password" name=${name} value="${value}" id="${id}" size="${size}" maxlength="${maxlength}"/>
 </#macro>
 
-<#-- Òþ²ØÊäÈë¿ò -->
+<#-- éšè—è¾“å…¥æ¡† -->
 <#macro texthidden id name value>
 <input type="hidden" name="${name}" value="${value}" id="${id}" class="textinput"/></label>
 </#macro>
 
-<#-- Í¼Æ¬°´Å¥ -->
+<#-- å›¾ç‰‡æŒ‰é’® -->
 <#macro commonbutton id href imgsrc>
     <a href="${href}"><img src="${imgsrc}" id="${id}></a>
 </#macro>
 
-<#-- ÖØÖÃ°´Å¥ -->
+<#-- é‡ç½®æŒ‰é’® -->
 <#macro buttonresetI buttonlabel name id>
     <input type="reset" name="${name}" value="${buttonlabel}" id="${id}" />
 </#macro>
 
-<#-- Ìá½»°´Å¥ -->
+<#-- æäº¤æŒ‰é’® -->
 <#macro buttonsubmitI buttonlabel name id>
     <input type="submit" name="${name}" value="${buttonlabel}" id="${id}" />
 </#macro>
 
-<#-- ±êÌâ -->
+<#-- æ ‡é¢˜ -->
 <#macro label label>        
 <font class="label">${label}</font>
 <hr noshade color="#B9BEC1" size=1 width=98% align="center">
 </#macro>
 
-<#-- ÎÄ±¾ÊäÈëÇøÓò -->
+<#-- æ–‡æœ¬è¾“å…¥åŒºåŸŸ -->
 <#macro textarea textarealabel id name textareaid value colnum rownum>
 <div class="centerlabel" id="${id}">
-${textarealabel}£º
+${textarealabel}ï¼š
 </div>
 <div>
 <textarea name="${name}" value="${value}" id="${textareaid}" class="textarea" cols="${colnum}" rows="${rownum}"/>

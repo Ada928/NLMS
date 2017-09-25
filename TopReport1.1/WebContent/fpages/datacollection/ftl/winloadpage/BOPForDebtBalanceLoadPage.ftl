@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Óà¶îÐÅÏ¢">
+<@CommonQueryMacro.page title="ä½™é¢ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQuery id="BOPForDebtBalanceLoadPage" init="false" submitMode="current" navigate="false">
 		<table width="800px">
 			<tr>
 				<td valign="top">
-					<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" colNm=4 showButton="true"/>
+					<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=4 showButton="true"/>
 				</td>
 			</tr>
 
@@ -30,7 +30,7 @@
 		</table>
 	</@CommonQueryMacro.CommonQuery>
 	<script language="javascript">
-		//¹¤×÷ÈÕÆÚ
+		//å·¥ä½œæ—¥æœŸ
 		<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 		BOPForDebtBalanceLoadPage_interface_dataset.setValue("qworkDate","${v_txdate}");
 		function btConfirm_onClick(button){

@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ÀûÂÊÊÖ¹¤Â¼Èë">
+<@CommonQueryMacro.page title="åˆ©ç‡æ‰‹å·¥å½•å…¥">
 <table align="left">
 
 <tr>
@@ -17,7 +17,7 @@
       		<table>
       		<tr>
       		<td align="left" valign="top" width="800">
-        			<@CommonQueryMacro.Group id="group2" label="ÀûÂÊÊÖ¹¤Â¼Èë" fieldStr="curcd,intratecd,ratetype,ratename,rateunit,ratevalue" />
+        			<@CommonQueryMacro.Group id="group2" label="åˆ©ç‡æ‰‹å·¥å½•å…¥" fieldStr="curcd,intratecd,ratetype,ratename,rateunit,ratevalue" />
         	</td>
       		</tr>
       		<tr>
@@ -68,26 +68,26 @@
 		function btDel_onClickCheck(button)
 		{
 			if(intrateManualInput_dataset.getValue("deleteflag")=="true"){
-				alert("ÏÖÓĞµÄÀûÂÊ²»ÄÜÉ¾³ı¡£");
+				alert("ç°æœ‰çš„åˆ©ç‡ä¸èƒ½åˆ é™¤ã€‚");
 				return false;
 			}
 		}
 
-		//ÀûÂÊÖµÊäÈëÁ½±éÕıÈ·ĞÔĞ£Ñé
+		//åˆ©ç‡å€¼è¾“å…¥ä¸¤éæ­£ç¡®æ€§æ ¡éªŒ
 		function intrateManualInput_dataset_afterChange(dataset, field){
 			if(field.name == "ratevalue"){
 				if(v_flag==0){
 					v_ratevalue = intrateManualInput_dataset.getValue("ratevalue");
 					v_flag = 1;
 					intrateManualInput_dataset.setValue2("ratevalue","");
-					alert("ÇëÔÙ´ÎÊäÈëĞÂÀûÂÊÖµ¡£");
+					alert("è¯·å†æ¬¡è¾“å…¥æ–°åˆ©ç‡å€¼ã€‚");
 					v_flag = 2;
 				}
 				else if(v_flag==2){
 					if(v_ratevalue!=intrateManualInput_dataset.getValue("ratevalue")){
 						v_flag = 1;
 						intrateManualInput_dataset.setValue2("ratevalue","");
-						alert("Á½´ÎÊäÈëÀûÂÊÖµ²»Ò»ÖÂ£¬ÇëÖØĞÂÊäÈë¡£");
+						alert("ä¸¤æ¬¡è¾“å…¥åˆ©ç‡å€¼ä¸ä¸€è‡´ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚");
 					}
 					v_flag = 0;
 				}

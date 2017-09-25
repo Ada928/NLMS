@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="Æ±¾İĞÅÏ¢">
+<@CommonQueryMacro.page title="ç¥¨æ®ä¿¡æ¯">
 <CENTER><H1 id="draftTitle"></H1></CENTER>
 <@CommonQueryMacro.CommonQuery id="EB_DraftInfo" navigate="false" init="true">
 <table align="center" >
@@ -10,82 +10,82 @@
           <tr>
             <td colspan="2"><table frame=void class="grouptable">
                <tr>
-                  <td colspan="2" align="center" nowrap class="labeltd"> ³öÆ±ÈÕ </td>
+                  <td colspan="2" align="center" nowrap class="labeltd"> å‡ºç¥¨æ—¥ </td>
 				  <td class="datatd" ><@CommonQueryMacro.SingleField fId="remitDate"/></td>
-                  <td colspan="2" align="center" nowrap class="labeltd"> Æ±¾İÀàĞÍ </td>
+                  <td colspan="2" align="center" nowrap class="labeltd"> ç¥¨æ®ç±»å‹ </td>
                  <td class="datatd"><@CommonQueryMacro.SingleField fId="draftTypeName"/></td>
                 </tr>
                <tr>
-                  <td colspan="2" align="center" nowrap class="labeltd"> »ãÆ±µ½ÆÚÈÕ </td>
+                  <td colspan="2" align="center" nowrap class="labeltd"> æ±‡ç¥¨åˆ°æœŸæ—¥ </td>
  			      <td class="datatd"><@CommonQueryMacro.SingleField fId="maturityDate"/> </td>
-                  <td colspan="2" align="center" nowrap class="labeltd"> Æ±¾İºÅÂë </td>
+                  <td colspan="2" align="center" nowrap class="labeltd"> ç¥¨æ®å·ç  </td>
                    <td class="datatd"><@CommonQueryMacro.SingleField fId="id"/> </td>
                 </tr>
               
                 <tr>
-                  <td width="4%" rowspan="4" align="center" nowrap class="labeltd"> ³ö <br> Æ± <br> ÈË </td>
-                  <td width="7%" align="center" nowrap class="labeltd" > È«&nbsp;&nbsp;³Æ </td>
+                  <td width="4%" rowspan="4" align="center" nowrap class="labeltd"> å‡º <br> ç¥¨ <br> äºº </td>
+                  <td width="7%" align="center" nowrap class="labeltd" > å…¨&nbsp;&nbsp;ç§° </td>
                   <td width="39%" class="datatd"><@CommonQueryMacro.SingleField fId="remitterName"/></td>
-                  <td width="4%" rowspan="4" align="center" nowrap class="labeltd"> ÊÕ <br> ¿î <br> ÈË </td>
-                  <td width="10%" align="center" nowrap class="labeltd"> È«&nbsp;&nbsp;³Æ </td>
+                  <td width="4%" rowspan="4" align="center" nowrap class="labeltd"> æ”¶ <br> æ¬¾ <br> äºº </td>
+                  <td width="10%" align="center" nowrap class="labeltd"> å…¨&nbsp;&nbsp;ç§° </td>
                   <td width="36%" class="datatd"> 
                   	<@CommonQueryMacro.SingleField fId="payeeName"/> 
                   </td>
                 </tr>
                 <tr>
-                  <td align="center" nowrap class="labeltd" > ÕÊ&nbsp;&nbsp;ºÅ </td>
+                  <td align="center" nowrap class="labeltd" > å¸&nbsp;&nbsp;å· </td>
                   <td class="datatd"><@CommonQueryMacro.SingleField fId="remitterAccount"/></td>
-                  <td align="center" nowrap class="labeltd" > ÕÊ&nbsp;&nbsp;ºÅ </td>
+                  <td align="center" nowrap class="labeltd" > å¸&nbsp;&nbsp;å· </td>
                   <td class="datatd"><@CommonQueryMacro.SingleField fId="payeeAccount"/></tr>
                 <tr>
-                  <td align="center" nowrap class="labeltd" > ĞĞ&nbsp;&nbsp;ºÅ </td>
+                  <td align="center" nowrap class="labeltd" > è¡Œ&nbsp;&nbsp;å· </td>
                   <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="remitterBankId"/></tr>                 
-                  <td align="center" nowrap class="labeltd"> ĞĞ&nbsp;&nbsp;ºÅ </td>
+                  <td align="center" nowrap class="labeltd"> è¡Œ&nbsp;&nbsp;å· </td>
  				  <td class="datatd" nowrap><@CommonQueryMacro.SingleField fId="payeeBankId"/></tr> 
                 </tr>
                 <tr>
-                  <td align="center" nowrap class="labeltd"> ¿ª»§ĞĞ </td>
+                  <td align="center" nowrap class="labeltd"> å¼€æˆ·è¡Œ </td>
                   <td class="datatd" nowrap>
                     <@CommonQueryMacro.SingleField fId="remitterBankName"/>
                     </tr>   
-                   <td align="center" nowrap class="labeltd"> ¿ª»§ĞĞ </td>
+                   <td align="center" nowrap class="labeltd"> å¼€æˆ·è¡Œ </td>
                    <td class="datatd" nowrap>
                    <@CommonQueryMacro.SingleField fId="payeeBankName"/>
                    </tr>   
                 </tr>
                 <tr height="50">
-				  <td colspan="2" align="center" nowrap class="labeltd"> Æ±¾İ½ğ¶î </td>
- 				  <td colspan="1" class="datatd" >ÈËÃñ±Ò (´óĞ´) &nbsp; &nbsp;<@CommonQueryMacro.SingleField fId="draftAmountCH"/></td> 
+				  <td colspan="2" align="center" nowrap class="labeltd"> ç¥¨æ®é‡‘é¢ </td>
+ 				  <td colspan="1" class="datatd" >äººæ°‘å¸ (å¤§å†™) &nbsp; &nbsp;<@CommonQueryMacro.SingleField fId="draftAmountCH"/></td> 
  				  <td colspan="3" class="datatd" ><div align="center"><@CommonQueryMacro.SingleField fId="draftAmount"/></div></td> 
                 </tr>
                 
                 <tr>
-                  <td width="4%" rowspan="2" align="center" nowrap class="labeltd"> ³Ğ <br> ¶Ò <br> ÈË <br> ĞÅ <br> Ï¢ </td>
-                  <td align="center" nowrap class="labeltd" >È« &nbsp;&nbsp;³Æ</td>
+                  <td width="4%" rowspan="2" align="center" nowrap class="labeltd"> æ‰¿ <br> å…‘ <br> äºº <br> ä¿¡ <br> æ¯ </td>
+                  <td align="center" nowrap class="labeltd" >å…¨ &nbsp;&nbsp;ç§°</td>
                   <td class="datatd">
                   	<@CommonQueryMacro.SingleField fId="acceptorName"/>
                   </td>
-                  <td colspan="2" align="center" nowrap class="labeltd"> ¿ª»§ĞĞĞĞºÅ </td>
+                  <td colspan="2" align="center" nowrap class="labeltd"> å¼€æˆ·è¡Œè¡Œå· </td>
   				  <td class="datatd"><@CommonQueryMacro.SingleField fId="acceptorBankId"/></td>
                 </tr>
                 
                 <tr>
-				  <td align="center" nowrap class="labeltd" >ÕÊ&nbsp;&nbsp;ºÅ</td>
+				  <td align="center" nowrap class="labeltd" >å¸&nbsp;&nbsp;å·</td>
  				  <td class="datatd"><@CommonQueryMacro.SingleField fId="acceptorAccount"/></td>
-                  <td colspan="2" align="center" nowrap class="labeltd">¿ª»§ĞĞÃû³Æ </td>
+                  <td colspan="2" align="center" nowrap class="labeltd">å¼€æˆ·è¡Œåç§° </td>
 				  <td class="datatd">
 				  	<@CommonQueryMacro.SingleField fId="acceptorBankName"/>
 				  </td>
                 </tr>
                 
                 <tr>
-                  <td colspan="2" align="center" nowrap class="labeltd" >µ½ÆÚÎŞÌõ¼ş <br>Ö§¸¶Î¯ÍĞ </td>
+                  <td colspan="2" align="center" nowrap class="labeltd" >åˆ°æœŸæ— æ¡ä»¶ <br>æ”¯ä»˜å§”æ‰˜ </td>
 				  <td class="datatd"><@CommonQueryMacro.SingleField fId="consignmentCode"/> </td>
-                  <td colspan="2" align="center" nowrap class="labeltd" >ÔÊĞí±³Êé </td>
+                  <td colspan="2" align="center" nowrap class="labeltd" >å…è®¸èƒŒä¹¦ </td>
                  <td class="datatd"><@CommonQueryMacro.SingleField fId="transferFlag"/></td>
                 </tr>
                  <tr>
-				  <td colspan="2" align="center" nowrap class="labeltd"> ³öÆ±±¸×¢ </td>
+				  <td colspan="2" align="center" nowrap class="labeltd"> å‡ºç¥¨å¤‡æ³¨ </td>
  				  <td colspan="4" class="datatd"><@CommonQueryMacro.SingleField fId="remark"/></td>   
                 </tr>
                
@@ -109,9 +109,9 @@
 function initCallGetter_post(){
 	var draftType = EB_DraftInfo_dataset.getString("draftType");
 	if( draftType == "AC01"){
-		document.getElementById('draftTitle').innerHTML = 'µç×ÓÒøĞĞ³Ğ¶Ò»ãÆ±';
+		document.getElementById('draftTitle').innerHTML = 'ç”µå­é“¶è¡Œæ‰¿å…‘æ±‡ç¥¨';
 	}else if(draftType == "AC02"){
-		document.getElementById('draftTitle').innerHTML = 'µç×ÓÉÌÒµ³Ğ¶Ò»ãÆ±';
+		document.getElementById('draftTitle').innerHTML = 'ç”µå­å•†ä¸šæ‰¿å…‘æ±‡ç¥¨';
 	}
 	
 }

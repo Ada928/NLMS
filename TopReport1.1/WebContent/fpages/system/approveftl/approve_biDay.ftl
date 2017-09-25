@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#--jianxue.zhang-->
-<@CommonQueryMacro.page title="Íâ»ãÈÕÅÆ¼ÛÎ¬»¤ÉóÅú">
+<@CommonQueryMacro.page title="å¤–æ±‡æ—¥ç‰Œä»·ç»´æŠ¤å®¡æ‰¹">
 <table width="800px" align="left">
  <tr>
  <td>
 <@CommonQueryMacro.CommonQuery id="approve_biDay" init="true"  navigate="true" submitMode="all">
- <FIELDSET name='intface' style="padding: 8px;"><LEGEND>&nbsp;´ýÉóÅúÍâ»ãÈÕÅÆ¼ÛÎ¬»¤ÁÐ±í&nbsp;</LEGEND>
+ <FIELDSET name='intface' style="padding: 8px;"><LEGEND>&nbsp;å¾…å®¡æ‰¹å¤–æ±‡æ—¥ç‰Œä»·ç»´æŠ¤åˆ—è¡¨&nbsp;</LEGEND>
 <@CommonQueryMacro.DataTable id ="datatable1" fieldStr="id,dayid,rateUnit,rateDate,rateMidprice,crtDt,updTransCd" width="100%" readonly="true" hasFrame="true" />	
  </FIELDSET>
 </@CommonQueryMacro.CommonQuery>
@@ -18,7 +18,7 @@
  <table>
  <tr>
  <td>
-  <@CommonQueryMacro.Group id ="group1" label="ÉóÅúÒâ¼û" fieldStr="approveResult,approveRemark" colNm=2/>
+  <@CommonQueryMacro.Group id ="group1" label="å®¡æ‰¹æ„è§" fieldStr="approveResult,approveRemark" colNm=2/>
   </td>
   </tr>
   <tr>

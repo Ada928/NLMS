@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro >
-<@CommonQueryMacro.page title="ÏúÊÛ¼¨Ğ§¿¼ºËÎ¬»¤">
+<@CommonQueryMacro.page title="é”€å”®ç»©æ•ˆè€ƒæ ¸ç»´æŠ¤">
    <table align="left">
    <tr>
       <td>
@@ -9,7 +9,7 @@
 
 			<tr>
    			<td valign="top" colspan="2">
-   			<@CommonQueryMacro.Interface id="interface" label="ÏúÊÛ¼¨Ğ§¿¼ºËÎ¬»¤²éÑ¯" colNm=4 showButton="true" />
+   			<@CommonQueryMacro.Interface id="interface" label="é”€å”®ç»©æ•ˆè€ƒæ ¸ç»´æŠ¤æŸ¥è¯¢" colNm=4 showButton="true" />
         	</td>
        		 </tr>
       			<tr>
@@ -18,7 +18,7 @@
       			    <@CommonQueryMacro.PagePilot id="pagePilot1" maxpagelink="9" pageCache="false" showArrow="true"/>
       			  </td>
 					<td align="right">
-	    				<a href="javascript:btNewClick();"> ĞÂÔö</a>
+	    				<a href="javascript:btNewClick();"> æ–°å¢</a>
 	       			</td>
 
       			</tr>
@@ -32,7 +32,7 @@
 		      		<td colspan="2">
 		      		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 		      			<div align="center">
-		      				<@CommonQueryMacro.Group id="group1" label="ÏúÊÛ¼¨Ğ§¿¼ºËÎ¬»¤"
+		      				<@CommonQueryMacro.Group id="group1" label="é”€å”®ç»©æ•ˆè€ƒæ ¸ç»´æŠ¤"
 		        			  fieldStr="noticeName,noticeValue,noticeAmt,noticeTotperi,noticeFlg" colNm=4/>
 		        			 </br>
 		      				<@CommonQueryMacro.Button id= "btSave"/>
@@ -60,7 +60,7 @@
 		subwindow_signWindow.show();
 		btNew.click();
 	}
-	//ÅĞ¶ÏÊÇ·ñ¼ÓÆğÀ´´óÓÚ1ÁË
+	//åˆ¤æ–­æ˜¯å¦åŠ èµ·æ¥å¤§äº1äº†
 	function btSave_onClickCheck(){
    	var record1 = NoticeParam_dataset.getFirstRecord();
 	var chk=0;
@@ -71,22 +71,22 @@
 	}
 
 	if (chk>1) {
-	   		alert("ËùÓĞ¼¨Ğ§ÏîÄ¿±ÈÖØÖ®ºÍ²»ÄÜ³¬¹ı1");
+	   		alert("æ‰€æœ‰ç»©æ•ˆé¡¹ç›®æ¯”é‡ä¹‹å’Œä¸èƒ½è¶…è¿‡1");
 	   		return false;
 	   	}
 }
-	//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+	//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function datatable1_opr_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			
-				cell.innerHTML="<center><a href=\"JavaScript:doModify('"+value+"')\">ĞŞ¸Ä</a> &nbsp; <a href=\"JavaScript:doDelete('"+value+"')\">É¾³ı</a></center>";
+				cell.innerHTML="<center><a href=\"JavaScript:doModify('"+value+"')\">ä¿®æ”¹</a> &nbsp; <a href=\"JavaScript:doDelete('"+value+"')\">åˆ é™¤</a></center>";
 			
-		} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+		} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 		 cell.innerHTML="&nbsp;";
 		}
 	}
 
-	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+	//å®šä½ä¸€æ¡è®°å½•
 	function locate(id) {
 
 		var record = NoticeParam_dataset.find(["id"],[id]);
@@ -95,30 +95,30 @@
 		}
 	}
 
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	function doModify(id) {
 		locate(id);
 
 		subwindow_signWindow.show();
 	}
 
-	//É¾³ı
+	//åˆ é™¤
 	function doDelete(id) {
 		locate(id);
 
-		if(confirm('ÊÇ·ñÉ¾³ıµ±Ç°¼ÇÂ¼'))
+		if(confirm('æ˜¯å¦åˆ é™¤å½“å‰è®°å½•'))
 		{
 			btDel.click();
 		}
 	}
 
 function btSave_postSubmit(button) {
-		alert("±£´æ³É¹¦");
+		alert("ä¿å­˜æˆåŠŸ");
 		subwindow_signWindow.close();
 		NoticeParam_dataset.flushData(NoticeParam_dataset.pageIndex);
 	}
 function btDel_postSubmit(button) {
-		alert("É¾³ı³É¹¦");
+		alert("åˆ é™¤æˆåŠŸ");
 		NoticeParam_dataset.flushData(NoticeParam_dataset.pageIndex);
 	}
 

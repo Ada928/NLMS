@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ÉóÅúÂ·ÏßÉèÖÃ">
+<@CommonQueryMacro.page title="å®¡æ‰¹è·¯çº¿è®¾ç½®">
 <table align="left">
 
 <tr>
@@ -14,7 +14,7 @@
 			</td>
 <td>&nbsp</td></tr><tr>
       		<td valign="top">
-					<@CommonQueryMacro.Group id ="groupRoute" label="ÏêÏ¸ĞÅÏ¢" fieldStr="stopId,brhClass1,need,roleName,pass,approveAmt,amtType"colNm=4/>
+					<@CommonQueryMacro.Group id ="groupRoute" label="è¯¦ç»†ä¿¡æ¯" fieldStr="stopId,brhClass1,need,roleName,pass,approveAmt,amtType"colNm=4/>
 
 	  			<table>
         		<tr align="center">
@@ -36,7 +36,7 @@
 var routeId = routeDetailSet_dataset.getParameter("routeId");
 var v_stopId = 1;
 var temp = 0 ;
-//Ä¬ÈÏ²»¿ÉÊäÈë£¬ĞÂÔöºó¿ÉÊäÈë
+//é»˜è®¤ä¸å¯è¾“å…¥ï¼Œæ–°å¢åå¯è¾“å…¥
 function routeDetailSet_dataset_flushDataPost(dataset){
 		routeDetailSet_dataset.setFieldReadOnly("stopId",true);
 		routeDetailSet_dataset.setFieldReadOnly("brhClass1",true);

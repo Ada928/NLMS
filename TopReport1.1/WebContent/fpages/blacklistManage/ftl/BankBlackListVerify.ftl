@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro> 
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] /> <#assign op="${RequestParameters['op']?default('')}" /> 
 <#assign info = Session["USER_SESSION_INFO"]> 
-<@CommonQueryMacro.page title="ÉÌÐÐºÚÃûµ¥ÉóºË"> 
+<@CommonQueryMacro.page title="å•†è¡Œé»‘åå•å®¡æ ¸"> 
 <@CommonQueryMacro.CommonQuery id="BankBlackListVerify" init="true" submitMode="selected" navigate="false">
 <table align="center" width="100%">
 	<tr>
 		<td width="100%">
-			<@CommonQueryMacro.GroupBox id="BankBlackListVerifyGuoup" label="Ñ¡ÔñºÚÃûµ¥ÐÅÏ¢" expand="true">
+			<@CommonQueryMacro.GroupBox id="BankBlackListVerifyGuoup" label="é€‰æ‹©é»‘åå•ä¿¡æ¯" expand="true">
 				<table frame=void width="100%">
 					<tr>
 						<td colspan="2"><@CommonQueryMacro.DataTable id="datatable1" paginationbar="-"
@@ -37,7 +37,7 @@
 		BankBlackListVerify_dataset.setParameter("op", op);
 	}
 
-	//¶¨Î»Ò»ÐÐ¼ÇÂ¼
+	//å®šä½ä¸€è¡Œè®°å½•
 	function locate(id) {
 		var record = BankBlackListVerify_dataset.find([ "id" ], [ id ]);
 		if (record) {
@@ -45,7 +45,7 @@
 		}
 	}
 
-	//Õ¹Ê¾ÏêÏ¸ÐÅÏ¢µÄjs
+	//å±•ç¤ºè¯¦ç»†ä¿¡æ¯çš„js
 	function datatable1_blacklistid_onRefresh(cell, value, record) {
 		if (record) {
 			var id = record.getValue("blacklistid");
@@ -78,19 +78,19 @@
 		}
 
 		if (chk == 0) {
-			alert("ÇëÖÁÉÙÑ¡ÔñÒ»ÌõºÚÃûµ¥¼ÇÂ¼£¡");
+			alert("è¯·è‡³å°‘é€‰æ‹©ä¸€æ¡é»‘åå•è®°å½•ï¼");
 			return false;
 		} else {
-			if(!confirm("È·¶¨ÉóºËÑ¡ÖÐµÄºÚÃûµ¥£¿")){
+			if(!confirm("ç¡®å®šå®¡æ ¸é€‰ä¸­çš„é»‘åå•ï¼Ÿ")){
 				return false;
 			}
 		}
 	}
 
 	function btVerify_postSubmit(button) {
-		alert("ÉóºËºÚÃûµ¥³É¹¦¡£");
+		alert("å®¡æ ¸é»‘åå•æˆåŠŸã€‚");
 		button.url = "#";
-		//Ë¢ÐÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		flushCurrentPage();
 	}
 
@@ -109,21 +109,21 @@
 		}
 
 		if (chk == 0) {
-			alert("ÇëÖÁÉÙÑ¡ÔñÒ»ÌõºÚÃûµ¥¼ÇÂ¼£¡");
+			alert("è¯·è‡³å°‘é€‰æ‹©ä¸€æ¡é»‘åå•è®°å½•ï¼");
 			return false;
 		} else {
-			confirm("È·¶¨È¡ÏûÉóºËÑ¡ÖÐµÄºÚÃûµ¥£¿");
+			confirm("ç¡®å®šå–æ¶ˆå®¡æ ¸é€‰ä¸­çš„é»‘åå•ï¼Ÿ");
 		}
 	}
 
 	function btCancelVerify_postSubmit(button) {
-		alert("È¡ÏûÉóºËºÚÃûµ¥³É¹¦¡£");
+		alert("å–æ¶ˆå®¡æ ¸é»‘åå•æˆåŠŸã€‚");
 		button.url = "#";
-		//Ë¢ÐÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		flushCurrentPage();
 	}
 
-	//Ë¢ÐÂµ±Ç°Ò³
+	//åˆ·æ–°å½“å‰é¡µ
 	function flushCurrentPage() {
 		BankBlackListVerify_dataset
 				.flushData(BankBlackListVerify_dataset.pageIndex);

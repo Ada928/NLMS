@@ -4,7 +4,7 @@
 
 <#assign requestScope=1>
 
-<#-- where element   ¶ÔwhereÀïÃæµÄÊôÐÔ½øÐÐ½âÎö-->
+<#-- where element   å¯¹whereé‡Œé¢çš„å±žæ€§è¿›è¡Œè§£æž-->
 <#macro showElement element>
 <#switch element.type>
   	<#case "TextBox">

@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="Ç©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="BopCfaDofoexloDsAuditTabs" navigate="false" currentTab="BopCfaDofoexloDsAudit">
 		<@CommonQueryMacro.CommonQuery id="BopCfaDofoexloDsAudit" init="false" submitMode="selected" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface" label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 				<tr>
@@ -22,9 +22,9 @@
 
 	    		<tr>
     				<td>
-						<@CommonQueryMacro.FloatWindow id="aditADSubWindow" label="ÉóºËĞÅÏ¢" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
+						<@CommonQueryMacro.FloatWindow id="aditADSubWindow" label="å®¡æ ¸ä¿¡æ¯" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 							<div align="center">
-								<@CommonQueryMacro.Group id="group1" label="ÉóºËĞÅÏ¢" fieldStr="approveStatusChoose,approveResultChoose" colNm=2/>
+								<@CommonQueryMacro.Group id="group1" label="å®¡æ ¸ä¿¡æ¯" fieldStr="approveStatusChoose,approveResultChoose" colNm=2/>
 								</br>
 								<center>
 									<@CommonQueryMacro.Button id= "btSave"/>&nbsp;&nbsp;
@@ -58,24 +58,24 @@
 		}
 		
 
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function BopCfaDofoexloDsAuditTable_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var recStatus = record.getValue("recStatus");
 				cell.innerHTML = "<center><a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">"+value+"</a></center>";
 			} else {
-				//µ±²»´æÔÚ¼ÇÂ¼Ê±
+				//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 			 	cell.innerHTML="&nbsp;";
 			}
 		}
 
-		//²éÑ¯
+		//æŸ¥è¯¢
 		function doDetail(id){
-			showWin("Ç©Ô¼ĞÅÏ¢²éÑ¯","${contextPath}/fpages/datacollection/ftl/BopCfaDofoexloDsAdd.ftl?op=detail&id="+id,"report","flushPage()");
+			showWin("ç­¾çº¦ä¿¡æ¯æŸ¥è¯¢","${contextPath}/fpages/datacollection/ftl/BopCfaDofoexloDsAdd.ftl?op=detail&id="+id,"report","flushPage()");
 		}
 
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 		function flushPage(){
 			BopCfaDofoexloDsAudit_dataset.flushData(1);
 		}
@@ -83,7 +83,7 @@
 		function btSave_postSubmit(buttno) {
 			subwindow_aditADSubWindow.close();
 			flushCurrentPage();
-			alert("±£´æ³É¹¦");
+			alert("ä¿å­˜æˆåŠŸ");
 		}
 
 		function btApproved_onClickCheck(button) {
@@ -103,11 +103,11 @@
 				record=record.getNextRecord();
 	   		}
 	   		if (!hasSelected) {
-	   			alert("ÇëÑ¡ÔñÏàÓ¦µÄ¼ÇÂ¼£¡");
+	   			alert("è¯·é€‰æ‹©ç›¸åº”çš„è®°å½•ï¼");
 	   			return false;
 	  	 	}
 	  	 	if (hasAudit) {
-	   			if(!confirm("ËùÑ¡¼ÇÂ¼°üº¬ÒÑÉóºË¼ÇÂ¼£¬È·¶¨ĞèÖØĞÂÉóºËÂğ£¿")) {
+	   			if(!confirm("æ‰€é€‰è®°å½•åŒ…å«å·²å®¡æ ¸è®°å½•ï¼Œç¡®å®šéœ€é‡æ–°å®¡æ ¸å—ï¼Ÿ")) {
 					return false;
 				}
 	   		}
@@ -118,11 +118,11 @@
 			var status = BopCfaDofoexloDsAudit_dataset.getValue("approveStatusChoose");
 			var result = BopCfaDofoexloDsAudit_dataset.getValue("approveResultChoose");
 			if (!status.length > 0) {
-	   			alert("ÇëÑ¡ÔñÉóºË½á¹û£¡");
+	   			alert("è¯·é€‰æ‹©å®¡æ ¸ç»“æœï¼");
 	   			return false;
 	   		}
 	   		if (status == "02" && result.length < 1) {
-	   			alert("ÉóºË½á¹û²»Í¨¹ı£¬ÉóºËËµÃ÷±ØĞëÌîĞ´£¡");
+	   			alert("å®¡æ ¸ç»“æœä¸é€šè¿‡ï¼Œå®¡æ ¸è¯´æ˜å¿…é¡»å¡«å†™ï¼");
 	   			return false;
 			}
 			BopCfaDofoexloDsAudit_dataset.setParameter("approveStatusChoose",status);
@@ -130,7 +130,7 @@
 			return true;
 		}
 
-		//Ë¢ĞÂµ±Ç°Ò³
+		//åˆ·æ–°å½“å‰é¡µ
 		function flushCurrentPage() {
 			BopCfaDofoexloDsAudit_dataset.flushData(BopCfaDofoexloDsAudit_dataset.pageIndex);
 		}

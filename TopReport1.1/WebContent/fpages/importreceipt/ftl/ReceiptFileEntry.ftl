@@ -4,7 +4,7 @@
 <table width="1200px" align="left">
 	<tr>
 		<td align="left" colspan="2">
-			»ØÖ´µ¼Èë &gt; »ØÖ´ĞÅÏ¢µ¼Èë
+			å›æ‰§å¯¼å…¥ &gt; å›æ‰§ä¿¡æ¯å¯¼å…¥
 		</td>
 	</tr>
 	<tr>
@@ -18,7 +18,7 @@
 				<table width="100%">
   					<tr>
 						<td>
-							<@CommonQueryMacro.Interface id="interface" label="»ØÖ´ĞÅÏ¢²éÑ¯" />
+							<@CommonQueryMacro.Interface id="interface" label="å›æ‰§ä¿¡æ¯æŸ¥è¯¢" />
 						</td>
 					</tr>
 				</table>
@@ -59,7 +59,7 @@
   						<td colspan="2">
 							<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
 								<div align="center">
-									<@CommonQueryMacro.Group id="group1" label="»ØÖ´ÎÄ¼şµ¼ÈëÏêÏ¸" fieldStr="id,apptype,currentFileName1,brNo,workdate,crtTm,repFileName,repTm,filePack,repErrType,totalrecords,sucrecords,falrecords,isImpRep" colNm=4/>
+									<@CommonQueryMacro.Group id="group1" label="å›æ‰§æ–‡ä»¶å¯¼å…¥è¯¦ç»†" fieldStr="id,apptype,currentFileName1,brNo,workdate,crtTm,repFileName,repTm,filePack,repErrType,totalrecords,sucrecords,falrecords,isImpRep" colNm=4/>
 			 						</br>
 								</div>
 	 						</@CommonQueryMacro.FloatWindow>
@@ -74,13 +74,13 @@
 
 	function initCallGetter_post(){
 		executeImport.disable(true);
-		//interfaceÀï²éÑ¯µÄÉèÖÃ¹¤×÷ÈÕÆÚÄ¬ÈÏµ±Ìì
+		//interfaceé‡ŒæŸ¥è¯¢çš„è®¾ç½®å·¥ä½œæ—¥æœŸé»˜è®¤å½“å¤©
 		receiptPackImport_interface_dataset.setValue("qworkdateStart",_today_date);
 		receiptPackImport_interface_dataset.setValue("qworkdateEnd",_today_date);
 		receiptPackImport_interface_dataset.setValue("qbusiType",defaultType);
 	}
 
-     	//¶¨Î»Ò»Ìõ¼ÇÂ¼
+     	//å®šä½ä¸€æ¡è®°å½•
 	function locate(id) {
 		var record = receiptFileImportEntry_dataset.find(["id"],[id]);
 		if (record) {
@@ -119,20 +119,20 @@
 	}
 
 
-     //µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+     //å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 	function receiptFile_id_onRefresh(cell,value,record) {
-		if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+		if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 			var id = record.getValue("id");
 			cell.innerHTML = "<center><a href=\"JavaScript:showDetail('"+id+"')\">"+value+"</a></center>";
 		}else{
-			//¼ÇÂ¼²»´æÔÚµÄÊ±ºò
+			//è®°å½•ä¸å­˜åœ¨çš„æ—¶å€™
 			cell.innerHTML = "&nbsp;";
 		}
 	}
 
      function executeImport_onClickCheck(button){
      	document.getElementById("importMsg").style.display = "";
-     	document.getElementById("importMsg").innerHTML = "<font color='green'><br/>&nbsp;&nbsp;»ØÖ´µ¼Èë¿ªÊ¼Ö´ĞĞ...</font>";
+     	document.getElementById("importMsg").innerHTML = "<font color='green'><br/>&nbsp;&nbsp;å›æ‰§å¯¼å…¥å¼€å§‹æ‰§è¡Œ...</font>";
      	return true;
      }
 
@@ -162,7 +162,7 @@
 	   	receiptFileImportEntry_dataset.setFieldReadOnly("isImpRep",true);
 	   	subwindow_signWindow.show();
 	}
-    		//¹Ø¸¡¶¯´°¿Ú,ÊÍ·Ådataset
+    		//å…³æµ®åŠ¨çª—å£,é‡Šæ”¾dataset
 	function signWindow_floatWindow_beforeClose(subwindow) {
 		receiptFileImportEntry_dataset.cancelRecord();
 		return true;

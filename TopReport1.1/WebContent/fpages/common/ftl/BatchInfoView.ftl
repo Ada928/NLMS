@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ÉêÇëÐÅÏ¢">
+<@CommonQueryMacro.page title="ç”³è¯·ä¿¡æ¯">
 
 <table align="left">
 	<tr valign="center">
@@ -18,7 +18,7 @@
 		<td valign="top" rowspan="2"  valign="top">
 			<table>
 				<tr><td>
-					<@CommonQueryMacro.Group id="group1" label="ÉêÇëÐÅÏ¢" fieldStr="draftType,draftAmount,remitDate,maturityDate,remitterName,payeeName,remitterAccount,payeeAccount,remitterBankId,payeeBankId,acceptorName,acceptorAccount,acceptorBankId,consignmentCode,transferFlag,remark" colNm=4/>
+					<@CommonQueryMacro.Group id="group1" label="ç”³è¯·ä¿¡æ¯" fieldStr="draftType,draftAmount,remitDate,maturityDate,remitterName,payeeName,remitterAccount,payeeAccount,remitterBankId,payeeBankId,acceptorName,acceptorAccount,acceptorBankId,consignmentCode,transferFlag,remark" colNm=4/>
 			  	</td></tr>
 			  	<tr align="center"><td>
 			  		<@CommonQueryMacro.Button id="btBack"/>

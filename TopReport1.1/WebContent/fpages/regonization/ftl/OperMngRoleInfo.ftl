@@ -1,16 +1,16 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign op=RequestParameters["op"]?default("")>
-<@CommonQueryMacro.page title="²Ù×÷Ô±½ÇÉ«¹ÜÀí">
+<@CommonQueryMacro.page title="æ“ä½œå‘˜è§’è‰²ç®¡ç†">
 	<table align="left" width="700">
 		<tr align="center">
 			<td width="100%">
 				<@CommonQueryMacro.CommonQuery id="operMngMod" init="true" navigate="false" submitMode="all" >
-					<@CommonQueryMacro.GroupBox id="guoup1" label="²Ù×÷Ô±ĞÅÏ¢" expand="true">
+					<@CommonQueryMacro.GroupBox id="guoup1" label="æ“ä½œå‘˜ä¿¡æ¯" expand="true">
 						<table frame=void class="grouptable" width="100%">
 						<tr>
-							<td align="center" nowrap class="labeltd" width="25%"> ²Ù×÷Ô±ºÅ </td>
+							<td align="center" nowrap class="labeltd" width="25%"> æ“ä½œå‘˜å· </td>
 							<td class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrno"/></td>
-							<td align="center" nowrap class="labeltd"  width="25%"> ²Ù×÷Ô±Ãû³Æ </td>
+							<td align="center" nowrap class="labeltd"  width="25%"> æ“ä½œå‘˜åç§° </td>
 							<td  class="datatd"  width="25%"><@CommonQueryMacro.SingleField fId="tlrName" /></td>
 						</tr>
 					   </table>
@@ -23,7 +23,7 @@
 		
 			<td>
 				<@CommonQueryMacro.CommonQuery id="bctlMngEntry" init="true" submitMode="selected" navigate="false">
-					<@CommonQueryMacro.GroupBox id="guoup1" label="ÊÚÈ¨»ú¹¹ĞÅÏ¢" expand="true">
+					<@CommonQueryMacro.GroupBox id="guoup1" label="æˆæƒæœºæ„ä¿¡æ¯" expand="true">
 						<table frame=void width="100%">
 					      	<tr>
 					      		<td valign="top">
@@ -43,7 +43,7 @@
 					<table width="100%">
 					<tr>
 						<td width="100%">
-							<@CommonQueryMacro.GroupBox id="guoup2" label="¸ÚÎ»ĞÅÏ¢" expand="true">
+							<@CommonQueryMacro.GroupBox id="guoup2" label="å²—ä½ä¿¡æ¯" expand="true">
 								<table frame=void width="100%">
 							      	<tr>
 							      		<td valign="top">
@@ -70,7 +70,7 @@
 		
 			<td>
 				<@CommonQueryMacro.CommonQuery id="TlrManageRelMng" init="true" submitMode="selected" navigate="false">
-					<@CommonQueryMacro.GroupBox id="guoup1" label="ÇëÑ¡ÔñÏÂÊôµÄÏúÊÛÈËÔ±" expand="true">
+					<@CommonQueryMacro.GroupBox id="guoup1" label="è¯·é€‰æ‹©ä¸‹å±çš„é”€å”®äººå‘˜" expand="true">
 						<table frame=void width="100%">
 					      	<tr>
 					      		<td valign="top">
@@ -108,7 +108,7 @@
 		var tlrno = operMngMod_dataset.getValue("tlrno");
 		var tlrName = operMngMod_dataset.getValue("tlrName");
 		if (tlrno.length==0 || tlrName.length==0) {
-			alert("²Ù×÷Ô±ºÅºÍ²Ù×÷Ô±Ãû³Æ±ØĞëÌîĞ´£¡");
+			alert("æ“ä½œå‘˜å·å’Œæ“ä½œå‘˜åç§°å¿…é¡»å¡«å†™ï¼");
 			return false;
 		}
 		var hasBctlSelected = false;
@@ -121,7 +121,7 @@
 			bctlRecord=bctlRecord.getNextRecord();
 	   	}
 	   	if (!hasBctlSelected) {
-	   		alert("ÖÁÉÙÑ¡ÔñÒ»¸öÊÚÈ¨»ú¹¹£¡");
+	   		alert("è‡³å°‘é€‰æ‹©ä¸€ä¸ªæˆæƒæœºæ„ï¼");
 	   		return false;
 	   	}
 	   	
@@ -139,14 +139,14 @@
 	}
 
 	if (chk==0) {
-	   		alert("ÇëÖÁÉÙÑ¡ÔñÒ»¸ö¸ÚÎ»£¡");
+	   		alert("è¯·è‡³å°‘é€‰æ‹©ä¸€ä¸ªå²—ä½ï¼");
 	   		return false;
 	   	}
 	  
 	for(var i=0;i<bizArr.length;i++){
 		if( "100"== bizArr[i]){
-			alert("ÇëÑ¡Ôñ¸ÃÏúÊÛÖ÷¹ÜÏÂ±ßµÄÏúÊÛÈËÔ±!");
-			//Õâ¶ùÏÔÊ¾Òş²ØµÄdiv
+			alert("è¯·é€‰æ‹©è¯¥é”€å”®ä¸»ç®¡ä¸‹è¾¹çš„é”€å”®äººå‘˜!");
+			//è¿™å„¿æ˜¾ç¤ºéšè—çš„div
 			document.getElementById("show").style.display="";
 			document.getElementById("buttonHide").style.display="none";
 			return false;
@@ -154,7 +154,7 @@
 	}
 	   	return true;
 	}
-	//µã»÷°ìÀí°´Å¥µÄ¼ì²é,ĞèÒªÈÎÎñ±àºÅ,ÒµÎñÀàĞÍ,
+	//ç‚¹å‡»åŠç†æŒ‰é’®çš„æ£€æŸ¥,éœ€è¦ä»»åŠ¡ç¼–å·,ä¸šåŠ¡ç±»å‹,
 
 </script>
 </@CommonQueryMacro.page>

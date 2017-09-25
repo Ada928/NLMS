@@ -1,12 +1,12 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="Ç©Ô¼ĞÅÏ¢">
+<@CommonQueryMacro.page title="ç­¾çº¦ä¿¡æ¯">
 	<@CommonQueryMacro.CommonQueryTab id="BOPForDebtOtherDebtsTabs" navigate="false" currentTab="BOPForDebtOtherDebtsChangeInfo">
 		<@CommonQueryMacro.CommonQuery id="BOPForDebtChangeInfo" init="false" submitMode="all" navigate="false" >
 			<table align="left">
 				<tr>
 					<td colspan="2">
-						<@CommonQueryMacro.Interface id="interface"  label="ÇëÊäÈë²éÑ¯Ìõ¼ş" />
+						<@CommonQueryMacro.Interface id="interface"  label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" />
 					</td>
 				</tr>
 
@@ -36,7 +36,7 @@
 	<script language="JavaScript">
 		var changFileType ;
 		function initCallGetter_post() {
-			//¹¤×÷ÈÕÆÚ
+			//å·¥ä½œæ—¥æœŸ
 			<#assign v_txdate = statics["com.huateng.ebank.business.common.GlobalInfo"].getCurrentInstance().getTxdate()>
 			BOPForDebtChangeInfo_interface_dataset.setValue("qworkDateStart","${v_txdate}");
 			BOPForDebtChangeInfo_interface_dataset.setValue("qworkDateEnd","${v_txdate}");
@@ -44,9 +44,9 @@
 			BOPForDebtChangeInfo_dataset.setParameter("changFileType","AQ");
 		}
 
-		//µ±ÏµÍ³Ë¢ĞÂµ¥Ôª¸ñµÄÄÚÈİÊ±±»´¥·¢
+		//å½“ç³»ç»Ÿåˆ·æ–°å•å…ƒæ ¼çš„å†…å®¹æ—¶è¢«è§¦å‘
 		function datatable1_opr_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 
 				var innerStr = "<center>";
@@ -55,19 +55,19 @@
 				var actiontype = record.getValue("actiontype");
 				var repStatus = record.getValue("repStatus");
 				if (("01" == recStatus || "02" == recStatus) && ("D" != actiontype || ("D" == actiontype && "01" != repStatus))) {
-					innerStr = innerStr + "<a href=\"JavaScript:doModify('"+id+"')\">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">É¾³ı</a>"
+					innerStr = innerStr + "<a href=\"JavaScript:doModify('"+id+"')\">ä¿®æ”¹</a>&nbsp;&nbsp;<a href=\"JavaScript:doDelete('"+id+"')\">åˆ é™¤</a>"
 				} else {
-					innerStr = innerStr + "<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉĞŞ¸Ä' style='color:#999999'>ĞŞ¸Ä</a>&nbsp;&nbsp;<a title='¸Ã¼ÇÂ¼×´Ì¬²»¿ÉÉ¾³ı' style='color:#999999'>É¾³ı</a>";
+					innerStr = innerStr + "<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯ä¿®æ”¹' style='color:#999999'>ä¿®æ”¹</a>&nbsp;&nbsp;<a title='è¯¥è®°å½•çŠ¶æ€ä¸å¯åˆ é™¤' style='color:#999999'>åˆ é™¤</a>";
 				}
 				innerStr = innerStr + "</center>";
 				cell.innerHTML =innerStr;
-			} else {//µ±²»´æÔÚ¼ÇÂ¼Ê±
+			} else {//å½“ä¸å­˜åœ¨è®°å½•æ—¶
 			 	cell.innerHTML="&nbsp;";
 			}
 		}
 
 	    function datatable1_filler2_onRefresh(cell,value,record) {
-			if (record) {//µ±´æÔÚ¼ÇÂ¼Ê±
+			if (record) {//å½“å­˜åœ¨è®°å½•æ—¶
 				var id = record.getValue("id");
 				var filler2 = record.getValue("filler2");
 				cell.innerHTML = "<a style='text-decoration:none' href=\"JavaScript:doDetail('"+id+"')\">" + filler2 + "</a>"
@@ -79,23 +79,23 @@
 		function btAdd_onClick(button) {
 			btNewClick();
 		}
-		//ĞÂÔö
+		//æ–°å¢
 		function btNewClick(){
-			showWin("ÆäËûÍâÕ®±ä¶¯ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtOtherDebtsChangeInfoCol.ftl?op=new&changFileType="+changFileType,"report","flushPage()");
+			showWin("å…¶ä»–å¤–å€ºå˜åŠ¨ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtOtherDebtsChangeInfoCol.ftl?op=new&changFileType="+changFileType,"report","flushPage()");
 		}
-		//ÏêÏ¸
+		//è¯¦ç»†
 		function doDetail(id) {
-			showWin("ÆäËûÍâÕ®±ä¶¯ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtOtherDebtsChangeInfoCol.ftl?id="+id+"&op=detaile&changFileType="+changFileType,"report","flushPage()");
+			showWin("å…¶ä»–å¤–å€ºå˜åŠ¨ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtOtherDebtsChangeInfoCol.ftl?id="+id+"&op=detaile&changFileType="+changFileType,"report","flushPage()");
 		}
-		//ĞŞ¸Ä
+		//ä¿®æ”¹
 		function doModify(id) {
-			showWin("ÆäËûÍâÕ®±ä¶¯ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtOtherDebtsChangeInfoCol.ftl?id="+id+"&op=mod&changFileType="+changFileType,"report","flushPage()");
+			showWin("å…¶ä»–å¤–å€ºå˜åŠ¨ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtOtherDebtsChangeInfoCol.ftl?id="+id+"&op=mod&changFileType="+changFileType,"report","flushPage()");
 		}
-		//É¾³ı
+		//åˆ é™¤
 		function doDelete(id) {
-			showWin("ÆäËûÍâÕ®±ä¶¯ĞÅÏ¢","${contextPath}/fpages/datacollection/ftl/BOPForDebtOtherDebtsChangeInfoCol.ftl?id="+id+"&op=del&changFileType="+changFileType,"report","flushPage()");
+			showWin("å…¶ä»–å¤–å€ºå˜åŠ¨ä¿¡æ¯","${contextPath}/fpages/datacollection/ftl/BOPForDebtOtherDebtsChangeInfoCol.ftl?id="+id+"&op=del&changFileType="+changFileType,"report","flushPage()");
 		}
-		//Ë¢ĞÂÊı¾İ
+		//åˆ·æ–°æ•°æ®
 		function flushPage(){
 			BOPForDebtChangeInfo_dataset.flushData(1);
 		}

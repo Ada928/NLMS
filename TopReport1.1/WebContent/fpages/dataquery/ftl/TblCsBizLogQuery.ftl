@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="ÈÕÖ¾²éÑ¯">
+<@CommonQueryMacro.page title="æ—¥å¿—æŸ¥è¯¢">
 <@CommonQueryMacro.CommonQuery id="tblCsBizLogQuery" init="false" submitMode="current" navigate="false">
 	<table align="left" width="90%">
      <tr valign="center">
        			<td valign="top" colspan="2">
-					<@CommonQueryMacro.Interface id="intface" label="ÇëÊäÈë²éÑ¯Ìõ¼þ" colNm=6 />
+					<@CommonQueryMacro.Interface id="intface" label="è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶" colNm=6 />
 				</td>
      </tr>
      <tr>

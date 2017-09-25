@@ -72,9 +72,9 @@ public class BankBlackListService {
 	 * 
 	 * @param paramgroupId 参数段编号
 	 */
-	public List getAllBankBlacklist() throws CommonException {
+	public List<NsBankBlackList> getAllBankBlacklist() throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
-		List list = rootDAO.queryByQL2List("1=1");
+		List<NsBankBlackList> list = rootDAO.queryByQL2List("1=1");
 		for (int i = 0; i < list.size(); i++) {
 			NsBankBlackList bblt = (NsBankBlackList) list.get(i);
 			list.set(i, bblt);

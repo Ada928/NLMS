@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 
-<@CommonQueryMacro.page title="Æô¶¯¹¤×÷Á÷²âÊÔ½»Ò×">
+<@CommonQueryMacro.page title="å¯åŠ¨å·¥ä½œæµæµ‹è¯•äº¤æ˜“">
 <table align="left">
 <tr>
 	<td valign="top"  valign="top" width="1000">
-<#-- modify by lizh 2010/09/13 ´¦ÀíTLS-410 begin: -->
+<#-- modify by lizh 2010/09/13 å¤„ç†TLS-410 begin: -->
 				<@CommonQueryMacro.CommonQuery id="ForwardTask" init="false" navigate="true" mode="0" >
 					<table align="left">
 					<tr>
@@ -27,7 +27,7 @@
 					<table align="left">
 					<tr>
        					<td valign="center"  width="300">
-					<@CommonQueryMacro.Group id="group1"  label="ÈÎÎñÒÆ½»" fieldStr="forwardTlrno"/>
+					<@CommonQueryMacro.Group id="group1"  label="ä»»åŠ¡ç§»äº¤" fieldStr="forwardTlrno"/>
 						<CENTER><@CommonQueryMacro.Button id= "btForwardTask"/></CENTER>
 						</td>
       				</tr>
@@ -37,5 +37,5 @@
 	<td valign="top"  valign="top" width="100">
 	</td>
 </tr>
-<#-- modify by lizh 2010/09/13 ´¦ÀíTLS-410 end -->
+<#-- modify by lizh 2010/09/13 å¤„ç†TLS-410 end -->
 </@CommonQueryMacro.page>

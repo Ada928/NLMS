@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="¹ú¼ÊºÚÃûµ¥¹ÜÀí">
+<@CommonQueryMacro.page title="å›½é™…é»‘åå•ç®¡ç†">
 <@CommonQueryMacro.CommonQuery id="InternationalBlackListDetail" init="true" submitMode="all"  navigate="false">
 	<table align="left" width="100%">
       	<tr valign="top">
   			<td valign="center">
-  				<@CommonQueryMacro.Group id="group1" label="¹ú¼ÊºÚÃûµ¥¹ÜÀíÏêÏ¸ÐÅÏ¢" 
+  				<@CommonQueryMacro.Group id="group1" label="å›½é™…é»‘åå•ç®¡ç†è¯¦ç»†ä¿¡æ¯" 
   					fieldStr="id,accountType,certificateType,certificateNumber,clientName,blacklistType,valid,validDate,lastModifyOperator" colNm=4/>
   			</td>
   		</tr>

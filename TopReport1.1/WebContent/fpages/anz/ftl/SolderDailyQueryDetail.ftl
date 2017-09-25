@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro >
-<@CommonQueryMacro.page title="¿Í»§¾­ÀíÈÕÏúÊÛ²úÆ·Ã÷Ï¸²éÑ¯">
+<@CommonQueryMacro.page title="å®¢æˆ·ç»ç†æ—¥é”€å”®äº§å“æ˜Žç»†æŸ¥è¯¢">
    <table align="left">
    <tr>
       <td>

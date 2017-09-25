@@ -4,7 +4,7 @@
 <#assign pswdLimit = statics["com.huateng.ebank.business.common.service.CommonService"].getInstance().getSysParamDef("PSWD", "LIMIT", "6")>
 <#assign pswdComplexity = statics["com.huateng.ebank.business.common.service.CommonService"].getInstance().getSysParamDef("PSWD", "COMPLEXITY", "1111")>
 <#assign type=RequestParameters["type"]?default("")>
-<@CommonQueryMacro.page title="²Ù×÷Ô±ÃÜÂëĞŞ¸Ä">
+<@CommonQueryMacro.page title="æ“ä½œå‘˜å¯†ç ä¿®æ”¹">
 <style>
 	.password-strength span{
 		height:15px;
@@ -17,7 +17,7 @@
 <table align="center" width="100%" >
 	<tr>
 		<td>
-			<@CommonQueryMacro.Group id="group1" label="²Ù×÷Ô±ÃÜÂëĞŞ¸Ä" fieldStr="oldPassWord,newPassWord,againNewPassWord" colNm=2/>
+			<@CommonQueryMacro.Group id="group1" label="æ“ä½œå‘˜å¯†ç ä¿®æ”¹" fieldStr="oldPassWord,newPassWord,againNewPassWord" colNm=2/>
 		</td>
 	</tr>
 	<tr>
@@ -34,29 +34,29 @@
 	function initCallGetter_post(){
 	<#if forceChange>
 		if (window.self == window.top) {
-			easyMsg.warn('ÄúµÄ³õÊ¼ÃÜÂëÎ´¸ü¸Ä»òÒÑ³¬¹ı¼ä¸ôÆÚ,ÇëÖØĞÂ¸ü¸ÄÃÜÂë£¡',{title:"¾¯¸æ"});
+			easyMsg.warn('æ‚¨çš„åˆå§‹å¯†ç æœªæ›´æ”¹æˆ–å·²è¶…è¿‡é—´éš”æœŸ,è¯·é‡æ–°æ›´æ”¹å¯†ç ï¼',{title:"è­¦å‘Š"});
 		}
 	</#if>
 		$('#editor_newPassWord').parent().append($('#strengthtshow')); 
 	}
 	function btSave_postSubmit(){
 		//changePwd_dataset.flushData(1);
-	    //alert("ÃÜÂëĞŞ¸Ä³É¹¦!");
+	    //alert("å¯†ç ä¿®æ”¹æˆåŠŸ!");
 	}
 	/* add by zhaozhiguo BMS-3153 begin */
-	//²âÊÔÄ³¸ö×Ö·ûÊÇÊôÓÚÄÄÒ»Àà. 
+	//æµ‹è¯•æŸä¸ªå­—ç¬¦æ˜¯å±äºå“ªä¸€ç±». 
 	function charMode(ch){ 
-		if (ch>=48 && ch <=57) {//Êı×Ö 
+		if (ch>=48 && ch <=57) {//æ•°å­— 
 			return 1; 
-		} else if (ch>=65 && ch <=90) {//´óĞ´×ÖÄ¸ 
+		} else if (ch>=65 && ch <=90) {//å¤§å†™å­—æ¯ 
 			return 2; 
-		} else if (ch>=97 && ch <=122) {//Ğ¡Ğ´×ÖÄ¸ 
+		} else if (ch>=97 && ch <=122) {//å°å†™å­—æ¯ 
 			return 4; 
-		} else {//ÌØÊâ×Ö·û 
+		} else {//ç‰¹æ®Šå­—ç¬¦ 
 			return 8; 
 		}
 	}
-	//¼ÆËã³öµ±Ç°ÃÜÂëµ±ÖĞÒ»¹²ÓĞ¶àÉÙÖÖÄ£Ê½ 
+	//è®¡ç®—å‡ºå½“å‰å¯†ç å½“ä¸­ä¸€å…±æœ‰å¤šå°‘ç§æ¨¡å¼ 
 	function bitTotal(num){ 
 		modes=0; 
 		for (i=0;i<4;i++){ 
@@ -65,9 +65,9 @@
 		} 
 		return modes; 
 	} 
-	//·µ»ØÃÜÂëµÄÇ¿¶È¼¶±ğ
+	//è¿”å›å¯†ç çš„å¼ºåº¦çº§åˆ«
 	function checkStrong(pwd){ 
-		if (pwd.length<${pswdLimit}) {//ÃÜÂëÌ«¶Ì 
+		if (pwd.length<${pswdLimit}) {//å¯†ç å¤ªçŸ­ 
 			return 0; 
 		}
 		modes=0; 
@@ -87,14 +87,14 @@
 		var pswdComplexity = parseInt('${pswdComplexity}',2);
 		var complex = getComplexity(pwd);
 		if(pswdComplexity&complex!=pswdComplexity) {
-			var msg = "±ØĞë°üº¬";
+			var msg = "å¿…é¡»åŒ…å«";
 			var num = 1;
 			do {
 				switch(pswdComplexity & num){
-					case 1: msg += "[Êı×Ö]";break;
-					case 2: msg += "[´óĞ´×ÖÄ¸]";break;
-					case 4: msg += "[Ğ¡Ğ´×ÖÄ¸]";break;
-					case 8: msg += "[ÌØÊâ×Ö·û]";break;
+					case 1: msg += "[æ•°å­—]";break;
+					case 2: msg += "[å¤§å†™å­—æ¯]";break;
+					case 4: msg += "[å°å†™å­—æ¯]";break;
+					case 8: msg += "[ç‰¹æ®Šå­—ç¬¦]";break;
 					default:break;
 				}
 				num <<= 1;
@@ -139,7 +139,7 @@
 		if (window.self == window.top) {
 			changePwd_dataset.setReadOnly(true);
 			btSave.disable(true);
-			alert("ÃÜÂë¸ü¸Ä³É¹¦,ÇëÖØĞÂµÇÂ½!");
+			alert("å¯†ç æ›´æ”¹æˆåŠŸ,è¯·é‡æ–°ç™»é™†!");
 			button.url="/custlogout.do?relogin=true";
 		}
 	}
@@ -149,13 +149,13 @@
 		if (newPasswd!=''&& checkStrong(newPasswd) < parseInt('${pswdStrength}')) {
 			var msg = '';
 			if ('${pswdStrength}' == '1') 
-				msg = 'ÖÁÉÙÊäÈë${pswdLimit}Î»×Ö·û';
+				msg = 'è‡³å°‘è¾“å…¥${pswdLimit}ä½å­—ç¬¦';
 			else if ('${pswdStrength}' == '2') 
-				msg = 'ÖÁÉÙÊäÈë${pswdLimit}Î»×Ö·û,ÇÒÖÁÉÙ°üº¬Á½ÖÖÀàĞÍµÄ×Ö·û';
+				msg = 'è‡³å°‘è¾“å…¥${pswdLimit}ä½å­—ç¬¦,ä¸”è‡³å°‘åŒ…å«ä¸¤ç§ç±»å‹çš„å­—ç¬¦';
 			else if ('${pswdStrength}' == '3') 
-				msg = 'ÖÁÉÙÊäÈë${pswdLimit}Î»×Ö·û,ÇÒÖÁÉÙ°üº¬ÈıÖÖÀàĞÍµÄ×Ö·û';
+				msg = 'è‡³å°‘è¾“å…¥${pswdLimit}ä½å­—ç¬¦,ä¸”è‡³å°‘åŒ…å«ä¸‰ç§ç±»å‹çš„å­—ç¬¦';
 			
-			alert("ÄúÊäÈëµÄÃÜÂëÇ¿¶ÈÌ«Èõ£¬ÇëÖØĞÂÊäÈë£¡("+msg+")");
+			alert("æ‚¨è¾“å…¥çš„å¯†ç å¼ºåº¦å¤ªå¼±ï¼Œè¯·é‡æ–°è¾“å…¥ï¼("+msg+")");
 			return false;
 		}
 		if(!checkComplexity(newPasswd)) {
@@ -164,7 +164,7 @@
 		
 		var newPasswdSure = changePwd_dataset.getValue("againNewPassWord");
 		if(newPasswd!=newPasswdSure){
-			alert("Á½´ÎÊäÈëµÄĞÂÃÜÂë²»ÏàÍ¬");
+			alert("ä¸¤æ¬¡è¾“å…¥çš„æ–°å¯†ç ä¸ç›¸åŒ");
 			return false;
 		}
 		return true;

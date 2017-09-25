@@ -35,7 +35,7 @@
 			<table width="90%">
 				<tr>
 					<td>
-						<@CommonQueryMacro.Group id ="group1" label="Êı¾İ´¦ÀíÍê³ÉÈ·ÈÏĞÅÏ¢" fieldStr="confirmStatus,subfileStatus,confirmRemark" colNm=4/>
+						<@CommonQueryMacro.Group id ="group1" label="æ•°æ®å¤„ç†å®Œæˆç¡®è®¤ä¿¡æ¯" fieldStr="confirmStatus,subfileStatus,confirmRemark" colNm=4/>
 					</td>
 				</tr>
 				 <tr>
@@ -66,7 +66,7 @@
 	function initCallGetter_post()
 	{
 		BOPForBiExecConfirmedEntry_interface_dataset.setValue("busiType","01");
-		BOPForBiExecConfirmedEntry_interface_dataset.setValue("busiTypeName","01-½ğºê¹¤³Ì");
+		BOPForBiExecConfirmedEntry_interface_dataset.setValue("busiTypeName","01-é‡‘å®å·¥ç¨‹");
 		if(BOPForBiExecConfirmedEntry_dataset.length == 0){
 			btConfirmed.disable(true);	
 		}
@@ -90,14 +90,14 @@
 	}
 		
 	function btConfirmed_postSubmit(){
-       alert('¹¤×÷Íê³ÉÈ·ÈÏ³É¹¦£¡');
+       alert('å·¥ä½œå®Œæˆç¡®è®¤æˆåŠŸï¼');
        BOPForBiExecConfirmedEntry_dataset.flushData();
  	   buttonStatus();
  	   
     }
     
     function btCancle_postSubmit(){
-       alert('È¡Ïû¹¤×÷Íê³ÉÈ·ÈÏ³É¹¦£¡');
+       alert('å–æ¶ˆå·¥ä½œå®Œæˆç¡®è®¤æˆåŠŸï¼');
        BOPForBiExecConfirmedEntry_dataset.flushData();
        buttonStatus();
     }

@@ -1,11 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="Êı¾İµ¼Èë">
+<@CommonQueryMacro.page title="æ•°æ®å¯¼å…¥">
 <@CommonQueryMacro.CommonQueryTab id="UpImportData" navigate="false" currentTab="import">   
 <@CommonQueryMacro.CommonQuery id="ImportFile" init="false" submitMode="all" navigate="false">
 <table width="800px">
 	<tr>
 		<td>
-			<@CommonQueryMacro.Interface id="interface" label="µ¼Èë¹¦ÄÜÊµÏÖ" btnNm="È·¶¨" colNm=8/>
+			<@CommonQueryMacro.Interface id="interface" label="å¯¼å…¥åŠŸèƒ½å®ç°" btnNm="ç¡®å®š" colNm=8/>
 		</td>
 	</tr>
 	<tr>
@@ -23,7 +23,7 @@
 		</td>
 	</tr>
 </table>
-<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btImport"/>&nbsp;<span id="message" >ÏÈµã»÷[È·¶¨],¼ì²éÎÄ¼şÁĞ±í</span></span>
+<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btImport"/>&nbsp;<span id="message" >å…ˆç‚¹å‡»[ç¡®å®š],æ£€æŸ¥æ–‡ä»¶åˆ—è¡¨</span></span>
 </@CommonQueryMacro.CommonQuery>
 </@CommonQueryMacro.CommonQueryTab>
 <script language="javascript"> 
@@ -55,7 +55,7 @@ function datatable1_progress_onRefresh(cell,value,record){
 }
 function ImportFile_dataset_flushDataPre(dataset) {
 	var chbox = $(":checkbox");
-	//reset [ÖØ¸´µ¼Èë] checkbox
+	//reset [é‡å¤å¯¼å…¥] checkbox
 	for(var i=0;i<chbox.length;i++)
 	{
 		chbox[i].checked=false;
@@ -66,7 +66,7 @@ function ImportFile_dataset_flushDataPost(dataset) {
 	
 	if(ImportFile_dataset.getValue('importing')) {
 		btImport.disable(true);
-		$('#message').html('ÕıÔÚµ¼ÈëÖĞ...');
+		$('#message').html('æ­£åœ¨å¯¼å…¥ä¸­...');
 	} 
 	var record = dataset.firstUnit;
 	while(record) {
@@ -88,7 +88,7 @@ function btImport_onClickCheck(button) {
 		rec = rec.nextUnit;
 	}
 	if(!f) {
-		alert('ÇëÑ¡ÔñÒªµ¼ÈëµÄÎÄ¼ş');
+		alert('è¯·é€‰æ‹©è¦å¯¼å…¥çš„æ–‡ä»¶');
 		return false;
 	}
 	//ImportFile_dataset.setValue('reImport', reImport.checked);
