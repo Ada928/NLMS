@@ -71,9 +71,7 @@
 					title="<%=info.getFuncname()%>" onmouseover="menudivover(this);"
 					onmouseout="menudivout(this);"
 					onclick="changeNavg('<%=info.getPagepath()%>', '<%=info.getId()%>', '<%=info.getFuncname()%>')">
-					<img src="<%=request.getContextPath() + "/"
-							+ info.getIconCls()%>"
-						addtr="navg" />
+					<%-- <img src="<%=request.getContextPath() + "/"+ info.getIconCls()%>" addtr="navg" /> --%>
 					<div addtr="navg"><%=info.getFuncname()%></div>
 				</div>
 				<% } %>
