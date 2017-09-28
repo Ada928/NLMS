@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/tags/application-tags" prefix="app"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
 <title>统一申报平台TopReport</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/templets/ui/themes/blue/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/templets/ui/themes/icon.css">
@@ -11,6 +12,13 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/templets/ui/js/uicore-min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/templets/ui/locale/lang-zh_CN.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/templets/ui/js/uiextend-min.js"></script>
+
+<script language="javascript" src="<%=request.getContextPath()%>/js/menu.js"></script>
+<script language="javascript" src="<%=request.getContextPath()%>/js/scrollbutton.js"></script>
+<script language="javascript" src="<%=request.getContextPath()%>/js/poslib.js"></script>
+
+<link href="<%=request.getContextPath()%>/css/menu.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/css/public.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 #li5 a {
 	background:
@@ -46,7 +54,23 @@
 				</td>
 			</tr>
 			<tr>
-				<td><%@include file="menu/easymenu.jsp"%></td>
+				<td>
+					<table width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td>
+								<script language="javascript">
+										Menu.prototype.mouseHoverDisabled = false;
+										Menu.prototype.cssFile = "<%=request.getContextPath()%>/css/menu.css";
+											
+										var menuMain = new MenuBar();
+										<%StringBuffer m = (StringBuffer) request.getSession().getAttribute("menu");%>
+										Menu_buildMenu(new Array(<%=m.toString()%>),menuMain);
+										menuMain.write();
+									</script>
+							</td>
+						</tr>
+					</table>
+				</td>
 				<td id="topMenu" style="display:none;white-space:nowrap;" nowrap="nowrap">
 					<ul class="small-tool">
 						<!-- <li id="li2">

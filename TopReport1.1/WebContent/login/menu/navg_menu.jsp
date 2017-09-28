@@ -10,6 +10,7 @@
 	String reqtype = globalInfo.getMenuCode();
 	List navgList = NavigationShowUtil.getUserNavgFuncList(globalInfo.getTlrno());
 %>
+<!-- 项目导航，已注释 -->
 <style type="text/css">
 <!--
 .navgdiv {
@@ -84,11 +85,9 @@
 </div>
 <script>
 	function changeNavg(url, id, title) {
-		//window.open(url + "?type=" + type, "_top");
 		var urlt = null;
 		urlt = url + "?type=" + id, "_top";
 		doWork(id, title, urlt);
-	//alert("asasd " + urlt);
 	}
 	function menudivover(obj) {
 		obj.style.border = "1px solid #aed0ea";
