@@ -62,7 +62,6 @@
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/pushlet.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/quartz-all-1.6.5.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/ReindeerMVC.jar"/>
-	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/slf4j-api-1.5.6.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/slf4j-log4j12-1.5.6.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/spring-mock.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/spring.jar"/>
