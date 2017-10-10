@@ -146,7 +146,14 @@
 		<appender-ref ref="ERROR" />
 	</logger>
 	
-	<logger name="com.he.server">
+	<logger name="com.cibfintech.cloud.server">
+		<level value="WARN" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="WARN" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	
+	<logger name="com.cibfintech.cloud.client">
 		<level value="WARN" />
 		<appender-ref ref="INFO" />
 		<appender-ref ref="WARN" />

@@ -52,6 +52,12 @@ public class PoliceBlackListService {
 		return pageQueryResult;
 	}
 
+	public List<NsPoliceBlackList> getBlackListByHql(String hql) throws CommonException {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		List<NsPoliceBlackList> list = rootDAO.queryByQL2List(hql);
+		return list;
+	}
+
 	/*
 	 * 查询
 	 * 

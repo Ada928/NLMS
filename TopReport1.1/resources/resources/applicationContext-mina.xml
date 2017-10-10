@@ -13,7 +13,7 @@
 
 	<bean id="ioAcceptor" class="org.apache.mina.transport.socket.nio.NioSocketAcceptor" init-method="bind"
 		destroy-method="unbind">
-		<property name="defaultLocalAddress" value="127.0.0.1:8888" />
+		<property name="defaultLocalAddress" value=":8888" />
 		<property name="filterChainBuilder" ref="filterChainBuilder" />
 		<property name="handler" ref="serverHandler" />
 		<property name="reuseAddress" value="true" />
@@ -32,30 +32,28 @@
 		</property>
 	</bean>
 
-
 	<!-- executorFilter多线程处理 -->
 	<bean id="executorFilter" class="org.apache.mina.filter.executor.ExecutorFilter" />
 	<bean id="mdcInjectionFilter" class="org.apache.mina.filter.logging.MdcInjectionFilter">
 		<constructor-arg value="remoteAddress" />
 	</bean>
-	
+
 	<bean id="loggingFilter" class="org.apache.mina.filter.logging.LoggingFilter" />
 
 	<bean id="codecFilter" class="org.apache.mina.filter.codec.ProtocolCodecFilter">
 		<constructor-arg>
+			<bean class="com.cibfintech.cloud.charset.MessageProtocolFactory" />
 			<!-- <bean class="org.apache.mina.filter.codec.textline.TextLineCodecFactory" /> -->
 			<!-- 处理对象流时候用ObjectSerializationCodecFactory -->
-			<bean class="org.apache.mina.filter.codec.serialization.ObjectSerializationCodecFactory" />
+			<!-- <bean class="org.apache.mina.filter.codec.serialization.ObjectSerializationCodecFactory" /> -->
 			<!-- <bean class="org.apache.mina.filter.codec.textline.TextLineCodecFactory" /> -->
-			<!-- <bean class="com.he.server.MyCodeFactory"/> -->
-			<!-- <bean class="com.he.server.websocket.WebSocketCodecFactory"></bean> -->
 		</constructor-arg>
 	</bean>
 
 	<!-- 心跳检测 -->
 	<bean id="keepAliveFilter" class="org.apache.mina.filter.keepalive.KeepAliveFilter">
 		<constructor-arg>
-			<bean class="com.he.server.MyKeepAliveMessageFactory"></bean>
+			<bean class="com.cibfintech.cloud.server.KeepAliveMessageFactoryImpl"></bean>
 		</constructor-arg>
 		<constructor-arg type="org.apache.mina.core.session.IdleStatus" value="BOTH_IDLE">
 
@@ -69,8 +67,15 @@
 	</bean>
 
 
-	<bean id="serverHandler" class="com.he.server.MyHandler" />
-	<!-- boss server -->
-	<!-- <bean id="bossSampleHandler" class="cn.org.handler.HandlerOne" /> -->
+	<bean id="serverHandler" class="com.cibfintech.cloud.server.ServerMessageHandler" />
+
+	<!-- session config 通过工厂方法注入 -->
+	<bean id="sessionConfig" factory-bean="ioAcceptor" factory-method="getSessionConfig">
+		<property name="writeTimeout" value="30" />
+		<property name="bothIdleTime" value="30" />
+		<property name="readerIdleTime" value="30" />
+		<property name="minReadBufferSize" value="512" />
+		<property name="maxReadBufferSize" value="10240" />
+	</bean>
 
 </beans>

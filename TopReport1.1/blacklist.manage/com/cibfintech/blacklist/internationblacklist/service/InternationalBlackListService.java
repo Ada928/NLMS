@@ -53,6 +53,12 @@ public class InternationalBlackListService {
 		return pageQueryResult;
 	}
 
+	public List<NsInternationalBlackList> getBlackListByHql(String hql) throws CommonException {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		List<NsInternationalBlackList> list = rootDAO.queryByQL2List(hql);
+		return list;
+	}
+
 	/*
 	 * 查询
 	 * 
