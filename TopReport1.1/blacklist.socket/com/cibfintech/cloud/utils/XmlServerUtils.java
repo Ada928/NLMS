@@ -84,12 +84,6 @@ public class XmlServerUtils {
 		String xml = JaxbUtil.convertToXml(msgReponse);
 		System.out.println(xml);
 
-		// XStream xstream = new XStream(new StaxDriver());// 不需要XPP3库开始使用Java6
-		// xstream.alias("MSGREPONSE", MsgReponse.class);// 为类名节点重命名
-		// XML序列化
-		// String xml = xstream.toXML(msgReponse);
-		// System.out.println(xml);
-		// return xml;
 		return xml;
 	}
 

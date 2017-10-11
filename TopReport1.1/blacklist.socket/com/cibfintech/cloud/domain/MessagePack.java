@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 /*
  * @see 自定义数据包
- * @author Herman.Xiong
- * @date 2014年6月11日 11:31:45
+ * @author yyxyz
+ * @date 2017年9月29日 11:31:45
  */
 public class MessagePack implements Serializable {
 	/*

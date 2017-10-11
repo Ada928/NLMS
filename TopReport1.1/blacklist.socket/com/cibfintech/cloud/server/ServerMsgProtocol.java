@@ -15,11 +15,11 @@ import com.cibfintech.cloud.charset.MessageProtocolFactory;
 
 /*
  * @see 服务器启动类,字符串消息测试类
- * @author Herman.Xiong
- * @date 2013年12月6日 09:23:31
+ * @author yyxyz
+ * @date 2017年9月26日 09:23:31
  * @file MinaServer.java
- * @package com.minaqq.server
- * @project MINA_QQ
+ * @package com.cibfintech.cloud.server
+ * @project blacklist
  * @version 1.0
  * @since jdk1.6,mina 2.0
  */

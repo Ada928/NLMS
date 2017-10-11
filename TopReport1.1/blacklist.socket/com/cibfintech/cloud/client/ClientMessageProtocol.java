@@ -14,8 +14,8 @@ import com.cibfintech.cloud.charset.MessageProtocolFactory;
 /*
  * @see 模拟客户端；
  * 用于连接服务端，并向服务端发送消息
- * @author Herman.Xiong
- * @date 2013年11月26日 11:27:50
+ * @author yyxyz
+ * @date 2017年9月26日 11:27:50
  * @version 1.0
  * @serial jdk 1.6
  */

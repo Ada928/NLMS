@@ -9,8 +9,8 @@ import com.cibfintech.cloud.server.ServerMsgProtocol;
 import com.cibfintech.cloud.utils.XmlServerUtils;
 
 /* @see 服务器端发送数据
- * @author Herman.Xiong
- * @date 2014年6月9日 10:38:59
+ * @author yyxyz
+ * @date 2017年9月29日 10:38:59
  */
 public class ServerSendMsgThread extends Thread {
 

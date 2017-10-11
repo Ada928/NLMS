@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="resource.bean.blacklist">
+    <class name="NsBlackListSocketQueryLog" table="NLMS_BLACKLIST_SOCK_QUERY_LOG">
+        <meta attribute="sync-DAO">false</meta>
+        <id name="id" type="string" column="LOG_ID"></id>
+        <property name="sysno" column="SYSNO" type="string" not-null="false" length="10" />
+        <property name="tranCode" column="TRANCODE" type="string" not-null="false" length="10" />
+        <property name="seqno" column="SEQNO" type="string" not-null="false" length="32" />
+        <property name="certificateType" column="CERTIFICATETYPE" type="string" not-null="false" length="4" />
+        <property name="certificateNumber" column="CERTIFICATENUMBER" type="string" not-null="false" length="20" />
+        <property name="accountCode" column="ACCOUNTCODE" type="string" not-null="false" length="20" />
+        <property name="createDate" column="CREATE_DATE" type="java.util.Date" not-null="false" length="6" />
+        <property name="filter1" column="FILTER1" type="string" not-null="false" length="20" />
+        <property name="filter2" column="FILTER2" type="string" not-null="false" length="20" />
+        <property name="filter3" column="FILTER3" type="string" not-null="false" length="20" />
+    </class>
+</hibernate-mapping>

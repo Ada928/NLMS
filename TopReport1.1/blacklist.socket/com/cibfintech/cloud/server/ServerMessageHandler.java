@@ -22,6 +22,7 @@ import resource.bean.blacklist.NsPoliceBlackList;
 import com.cibfintech.blacklist.bankblacklist.service.BankBlackListService;
 import com.cibfintech.blacklist.internationblacklist.service.InternationalBlackListService;
 import com.cibfintech.blacklist.policeblacklist.service.PoliceBlackListService;
+import com.cibfintech.blacklist.service.BlackListSocketQueryLogService;
 import com.cibfintech.cloud.domain.MessagePack;
 import com.cibfintech.cloud.domain.ReponseBlacklist;
 import com.cibfintech.cloud.domain.Request;
@@ -33,11 +34,11 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 
 /*
  * @see 处理服务器端消息
- * @author Herman.Xiong
- * @date 2012-6-26 下午01:12:34
+ * @author yyxyz
+ * @date 2017-9-26 下午01:12:34
  * @file ServerMessageHandler.java
- * @package com.minaqq.server
- * @project MINA_QQ
+ * @package com.cibfintech.cloud.server
+ * @project blacklist
  * @version 1.0
  * @since jdk1.6,mina 2.0
  */
@@ -138,11 +139,21 @@ public class ServerMessageHandler extends IoHandlerAdapter {
 			list.add(XmlServerUtils.groupBlacklist(new NsPoliceBlackList(), "11111", "from police, failue", body.getSeqNo()));
 		}
 
+		saveLog(request);
 		// 请求协议
 		mp.setMsgMethod(Integer.parseInt(header.getTranCode()));
 		mp.setMsgPack(XmlServerUtils.tranToXML(header, list));
 		mp.setMsgLength(mp.getMsgPack().getBytes().length);
 		session.write(mp);
+	}
+
+	// 写入查询日志
+	private void saveLog(Request request) throws CommonException {
+		RequestHeader header = request.getMsgHeader();
+		RequestBody body = request.getReqBody();
+		BlackListSocketQueryLogService service = BlackListSocketQueryLogService.getInstance();
+		service.saveBlackListSocketQueryLog(header.getSysNo(), header.getTranCode(), body.getSeqNo(), body.getAccountCode(), body.getCertificateType(),
+				body.getCertificateNumber());
 	}
 
 	public void messageSent(IoSession session, Object message) throws Exception {

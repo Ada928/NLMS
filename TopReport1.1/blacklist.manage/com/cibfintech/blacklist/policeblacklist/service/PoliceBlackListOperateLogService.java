@@ -8,7 +8,6 @@ package com.cibfintech.blacklist.policeblacklist.service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
@@ -18,6 +17,7 @@ import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
 import resource.dao.base.HQLDAO;
 
+import com.cibfintech.blacklist.util.GenerateID;
 import com.huateng.ebank.business.common.BaseDAOUtils;
 import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.common.GlobalInfo;
@@ -57,7 +57,7 @@ public class PoliceBlackListOperateLogService {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		GlobalInfo gi = GlobalInfo.getCurrentInstance();
 		NsPoliceBLOperateLog policeBLOperateLog = new NsPoliceBLOperateLog();
-		policeBLOperateLog.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
+		policeBLOperateLog.setId(String.valueOf(GenerateID.getId()));
 		policeBLOperateLog.setBrcode(gi.getBrcode());
 		policeBLOperateLog.setTlrno(gi.getTlrno());
 		policeBLOperateLog.setTlrIP(gi.getIp());
@@ -115,7 +115,7 @@ public class PoliceBlackListOperateLogService {
 	 * 
 	 * @param paramgroupId 参数段编号
 	 */
-	public List getAllBankBlackListOperateLog() throws CommonException {
+	public List getAllBlackListOperateLog() throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		List list = rootDAO.queryByQL2List("1=1");
 		for (int i = 0; i < list.size(); i++) {

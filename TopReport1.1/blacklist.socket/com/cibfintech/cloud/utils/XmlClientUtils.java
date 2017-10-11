@@ -40,28 +40,6 @@ public class XmlClientUtils {
 	}
 
 	public static void main(String[] args) {
-		// System.out.println(XmlClientUtils.getXml());
 		XmlClientUtils.testXStream();
-		// Person bean = new Person("张三", 19);
-		// // XStream xstream = new XStream();// 需要XPP3库
-		// // XStream xstream = new XStream(new DomDriver());// 不需要XPP3库
-		// XStream xstream = new XStream(new StaxDriver());// 不需要XPP3库开始使用Java6
-		// xstream.alias("人", Person.class);// 为类名节点重命名
-		// // XML序列化
-		// String xml = xstream.toXML(bean);
-		// System.out.println(xml);
-		// // XML反序列化
-		// bean = (Person) xstream.fromXML(xml);
-		// System.out.println(bean);
-	}
-}
-
-class Person {
-	private String name;
-	private int age;
-
-	public Person(String name, int age) {
-		this.name = name;
-		this.age = age;
 	}
 }

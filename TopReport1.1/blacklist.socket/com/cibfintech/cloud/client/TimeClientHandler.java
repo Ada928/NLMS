@@ -7,8 +7,8 @@ import org.apache.mina.core.session.IoSession;
 
 /*
  * @see 处理接收客户端消的息事件
- * @author Herman.Xiong
- * @date 2013年11月26日 11:23:32
+ * @author yyxyz
+ * @date 2017年9月29日 11:23:32
  * @version 1.0
  * @since jdk1.6
  */

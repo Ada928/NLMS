@@ -7,7 +7,7 @@ import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
  * @see 发送心跳包的内容
  * getResponse()---->isResponse();获取数据判断心跳事件（目的是判断是否触发心跳超时异常）
  * isRequest()----->getRequest(); 写回数据是心跳事件触发的数据（目的写回给服务器（客户端）心跳包）
- * @author Herman.Xiong
+ * @author yyxyz
  */
 public class KeepAliveMessageFactoryImpl implements KeepAliveMessageFactory {
 

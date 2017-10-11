@@ -6,12 +6,11 @@
  */
 package com.cibfintech.blacklist.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import resource.bean.blacklist.NsQueryDailyLogCount;
+import resource.bean.blacklist.NsBlackListSocketQueryLog;
 import resource.bean.report.SysTaskInfo;
 import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
@@ -20,6 +19,7 @@ import resource.dao.base.HQLDAO;
 import com.cibfintech.blacklist.util.GenerateID;
 import com.huateng.ebank.business.common.BaseDAOUtils;
 import com.huateng.ebank.business.common.ErrorCode;
+import com.huateng.ebank.business.common.GlobalInfo;
 import com.huateng.ebank.business.common.PageQueryCondition;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.exceptions.CommonException;
@@ -33,45 +33,48 @@ import com.huateng.ebank.framework.util.ExceptionUtil;
  *         To change the template for this generated type comment go to
  *         Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-public class QueryDailyLogCountService {
+public class BlackListSocketQueryLogService {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger.getLogger(QueryDailyLogCountService.class);
+	private static final Logger logger = Logger.getLogger(BlackListSocketQueryLogService.class);
 
 	/**
 	 * get instance.
 	 *
 	 * @return
 	 */
-	public synchronized static QueryDailyLogCountService getInstance() {
-		return (QueryDailyLogCountService) ApplicationContextUtils.getBean(QueryDailyLogCountService.class.getName());
+	public synchronized static BlackListSocketQueryLogService getInstance() {
+		return (BlackListSocketQueryLogService) ApplicationContextUtils.getBean(BlackListSocketQueryLogService.class.getName());
 	}
 
-	public QueryDailyLogCountService() {
+	public BlackListSocketQueryLogService() {
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	public void saveQueryDailyLogCount(String operateType, String brcode, String queryTable, String sumQueryRecord, Date countDay) throws CommonException {
+	public void saveBlackListSocketQueryLog(String sysno, String tranCode, String seqno, String accountCode, String certificateType, String certificateNumber)
+			throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
-		NsQueryDailyLogCount queryDailyLogCount = new NsQueryDailyLogCount();
-		queryDailyLogCount.setId(String.valueOf(GenerateID.getId()));
-		queryDailyLogCount.setBrcode(brcode);
-		queryDailyLogCount.setOperateType(operateType);
-		queryDailyLogCount.setQueryTable(queryTable);
-		queryDailyLogCount.setSumQueryRecord(sumQueryRecord);
-		queryDailyLogCount.setCountDay(countDay);
-		queryDailyLogCount.setCreateDate(DateUtil.getCurrentDate());
+		GlobalInfo gi = GlobalInfo.getCurrentInstance();
+		NsBlackListSocketQueryLog bean = new NsBlackListSocketQueryLog();
+		bean.setId(String.valueOf(GenerateID.getId()));
+		bean.setAccountCode(accountCode);
+		bean.setCertificateNumber(certificateNumber);
+		bean.setCertificateType(certificateType);
+		bean.setSysno(sysno);
+		bean.setSeqno(seqno);
+		bean.setTranCode(tranCode);
+		bean.setCreateDate(DateUtil.getCurrentDate());
 		try {
-			hqldao.getHibernateTemplate().save(queryDailyLogCount);
+			hqldao.getHibernateTemplate().save(bean);
 		} catch (Exception e) {
-			logger.error("update(QueryDailyLogCount)", e);
+			logger.error("update(saveBlackListSocketQueryLog)", e);
 			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public PageQueryResult pageQueryByHql(int pageSize, int pageIndex, String hql, List list) {
+	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String sb, List list) throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		PageQueryResult pageQueryResult = null;
 		PageQueryCondition queryCondition = new PageQueryCondition();
@@ -79,7 +82,7 @@ public class QueryDailyLogCountService {
 		try {
 			queryCondition.setPageIndex(pageIndex);
 			queryCondition.setPageSize(pageSize);
-			queryCondition.setQueryString(hql.toString());
+			queryCondition.setQueryString(sb.toString());
 			queryCondition.setObjArray(list.toArray());
 			pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
 		} catch (CommonException e) {
@@ -93,11 +96,11 @@ public class QueryDailyLogCountService {
 	 * 
 	 * @param paramgroupId 参数段编号
 	 */
-	public List getAllRole() throws CommonException {
+	public List getAllBlackListOperateLog() throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		List list = rootDAO.queryByQL2List("1=1");
 		for (int i = 0; i < list.size(); i++) {
-			NsQueryDailyLogCount bean = (NsQueryDailyLogCount) list.get(i);
+			NsBlackListSocketQueryLog bean = (NsBlackListSocketQueryLog) list.get(i);
 			list.set(i, bean);
 		}
 		return list;
@@ -108,7 +111,7 @@ public class QueryDailyLogCountService {
 	 * 
 	 * @param biNationregion
 	 */
-	public void removeEntity(NsQueryDailyLogCount bean) {
+	public void removeEntity(NsBlackListSocketQueryLog bean) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		try {
 			rootDAO.delete(bean);
@@ -124,7 +127,7 @@ public class QueryDailyLogCountService {
 	 * 
 	 * @param biNationregion
 	 */
-	public void modOrAddEntity(NsQueryDailyLogCount bean) {
+	public void modOrAddEntity(NsBlackListSocketQueryLog bean) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		try {
 			rootDAO.saveOrUpdate(bean);
@@ -135,10 +138,10 @@ public class QueryDailyLogCountService {
 		}
 	}
 
-	public void addEntity(NsQueryDailyLogCount bean) throws CommonException {
+	public void addEntity(NsBlackListSocketQueryLog bean) throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
-		if (isExists(bean.getId().toString())) {
-			ExceptionUtil.throwCommonException(" 角色信息重复");
+		if (isExists(bean.getId())) {
+			ExceptionUtil.throwCommonException(" 银行操作信息重复");
 		}
 		try {
 			rootDAO.save(bean);
@@ -151,7 +154,7 @@ public class QueryDailyLogCountService {
 	public boolean isExists(String id) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		try {
-			NsQueryDailyLogCount bean = (NsQueryDailyLogCount) rootDAO.query(NsQueryDailyLogCount.class, id);
+			NsBlackListSocketQueryLog bean = (NsBlackListSocketQueryLog) rootDAO.query(NsBlackListSocketQueryLog.class, id);
 			if (bean == null) {
 				return false;
 			}
@@ -161,7 +164,7 @@ public class QueryDailyLogCountService {
 		return true;
 	}
 
-	public void modEntity(NsQueryDailyLogCount bean) {
+	public void modEntity(NsBlackListSocketQueryLog bean) {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		try {
 			rootDAO.update(bean);
@@ -182,11 +185,11 @@ public class QueryDailyLogCountService {
 	}
 
 	// 通过id来获取实体类
-	public NsQueryDailyLogCount selectById(Integer id) {
+	public NsBlackListSocketQueryLog selectById(String id) {
 		BlackListDAO rootdao = BlackListDAOUtils.getBlackListDAO();
-		NsQueryDailyLogCount bean = null;
+		NsBlackListSocketQueryLog bean = null;
 		try {
-			bean = (NsQueryDailyLogCount) rootdao.query(NsQueryDailyLogCount.class, id);
+			bean = (NsBlackListSocketQueryLog) rootdao.query(NsBlackListSocketQueryLog.class, id);
 		} catch (CommonException e) {
 			e.printStackTrace();
 		}

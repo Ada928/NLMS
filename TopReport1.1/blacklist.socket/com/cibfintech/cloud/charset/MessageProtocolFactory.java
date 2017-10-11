@@ -9,8 +9,8 @@ import org.apache.mina.filter.codec.ProtocolEncoder;
 
 /*
  * @see 自定义协议
- * @author Herman.Xiong
- * @date 2014年6月11日 10:30:40
+ * @author yyxyz
+ * @date 2017年9月29日 10:30:40
  */
 public class MessageProtocolFactory implements ProtocolCodecFactory {
 	private static final Charset charset = Charset.forName("UTF-8");

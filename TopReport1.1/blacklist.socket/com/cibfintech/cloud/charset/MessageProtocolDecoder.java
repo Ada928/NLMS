@@ -12,8 +12,8 @@ import com.cibfintech.cloud.domain.MessagePack;
 
 /*
  * @see 协议解码
- * @author Herman.Xiong
- * @date 2014年6月11日 16:47:24
+ * @author yyxyz
+ * @date 2017年9月29日 16:47:24
  */
 public class MessageProtocolDecoder extends CumulativeProtocolDecoder {
 	private Charset charset = null;
