@@ -6,10 +6,11 @@
 <%@page import="java.util.List"%>
 <%@page import="com.huateng.ebank.business.common.service.BctlService"%>
 <%@page import="resource.bean.pub.Bctl"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html:html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 <link href="<%=request.getContextPath()%>/login/css/main.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath()%>/templets/ui/js/b.js"></script>
 <%

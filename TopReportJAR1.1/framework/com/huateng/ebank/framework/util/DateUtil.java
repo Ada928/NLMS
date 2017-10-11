@@ -1183,6 +1183,20 @@ public class DateUtil {
 		return simpleDateFormat.format(time);
 	}
 
+	/**
+	 * 由日期返回HHmmss格式的字符串
+	 * 
+	 * @param time
+	 * @return
+	 */
+	public static String timeToString(Date time) {
+		if (time == null)
+			return null;
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HHmmss");
+		return simpleDateFormat.format(time);
+	}
+
 	public static String convterDateFmt(String date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		try {

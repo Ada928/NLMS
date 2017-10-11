@@ -8,7 +8,6 @@ package com.cibfintech.blacklist.service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
@@ -18,6 +17,7 @@ import resource.blacklist.dao.BlackListDAO;
 import resource.blacklist.dao.BlackListDAOUtils;
 import resource.dao.base.HQLDAO;
 
+import com.cibfintech.blacklist.util.GenerateID;
 import com.huateng.ebank.business.common.BaseDAOUtils;
 import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.common.PageQueryCondition;
@@ -55,7 +55,7 @@ public class QueryDailyLogCountService {
 	public void saveQueryDailyLogCount(String operateType, String brcode, String queryTable, String sumQueryRecord, Date countDay) throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
 		NsQueryDailyLogCount queryDailyLogCount = new NsQueryDailyLogCount();
-		queryDailyLogCount.setId(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
+		queryDailyLogCount.setId(String.valueOf(GenerateID.getId()));
 		queryDailyLogCount.setBrcode(brcode);
 		queryDailyLogCount.setOperateType(operateType);
 		queryDailyLogCount.setQueryTable(queryTable);

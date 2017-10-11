@@ -27,6 +27,9 @@
 	<bean
 		id="com.cibfintech.blacklist.internationblacklist.service.InternationBlackListOperateLogService"
 		class="com.cibfintech.blacklist.internationblacklist.service.InternationBlackListOperateLogService" />
+	<bean
+		id="com.cibfintech.blacklist.service.BlackListSocketQueryLogService"
+		class="com.cibfintech.blacklist.service.BlackListSocketQueryLogService" />
 
 	<bean id="com.cibfintech.blacklist.service.QueryDailyLogCountService"
 		class="com.cibfintech.blacklist.service.QueryDailyLogCountService" />

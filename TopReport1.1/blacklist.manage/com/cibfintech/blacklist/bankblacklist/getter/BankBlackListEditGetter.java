@@ -102,7 +102,7 @@ public class BankBlackListEditGetter extends BaseGetter {
 			hql2.append(" and bblt.certificateNumber like '%").append(qCertificateNumber.trim()).append("%'");
 		}
 
-		HashMap<String, NsBankBlackList> blacklistMap = BankBlackListService.getInstance().getBankBankListByHql(hql2.toString());
+		HashMap<String, NsBankBlackList> blacklistMap = BankBlackListService.getInstance().getBankBlackListByHql(hql2.toString());
 
 		BankBlackListAuditStateService auditStateService = BankBlackListAuditStateService.getInstance();
 

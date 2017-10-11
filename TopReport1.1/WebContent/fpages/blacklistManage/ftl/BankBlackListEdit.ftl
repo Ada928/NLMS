@@ -43,7 +43,7 @@
 	function initCallGetter_post(dataset) {
 		BankBlackListEdit_dataset.setParameter("op", op);
 	}
-	
+
 	//定位一行记录
 	function locate(id) {
 		var record = BankBlackListEdit_dataset.find([ "id" ], [ id ]);
@@ -61,15 +61,15 @@
 			var select = record.getValue("select");
 			var tempHtml = "<center>";
 			//if(auditType == "1" || auditType == "2"){
-				tempHtml += "<a href=\"JavaScript:openModifyWindow('" + id
-						+ "')\">修改</a> ";
+			tempHtml += "<a href=\"JavaScript:openModifyWindow('" + id
+					+ "')\">修改</a> ";
 			//}
 			cell.innerHTML = tempHtml + "</center>";
 		} else {
 			cell.innerHTML = "";
 		}
 	}
-	
+
 	//展示对比功能的js
 	function datatable1_blacklistid_onRefresh(cell, value, record) {
 		if (record) {
@@ -84,7 +84,8 @@
 	function showDetail(id) {
 		//BankBlackListEdit_dataset.setParameter("blacklistid", id);
 		//btDetail.click();
-		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=edit&blacklistid="+id;
+		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=edit&blacklistid="
+				+ id;
 	}
 
 	//修改功能
@@ -111,7 +112,9 @@
 			alert("请至少选择一条黑名单记录！");
 			return false;
 		} else {
-			confirm("确定删除选中的黑名单？");
+			if (!confirm("确定删除选中的黑名单？")) {
+				return false;
+			}
 		}
 	}
 
@@ -130,7 +133,6 @@
 		BankBlackListEdit_dataset
 				.flushData(BankBlackListEdit_dataset.pageIndex);
 	}
-	
 
 	/* function doShare(id, select) {
 		locate(id);
@@ -167,6 +169,6 @@
 		//刷新当前页
 		flushCurrentPage();
 	}
- */
+	 */
 </script>
 </@CommonQueryMacro.page>

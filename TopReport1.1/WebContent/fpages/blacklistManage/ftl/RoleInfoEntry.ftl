@@ -53,15 +53,11 @@
 	function btStatus_onClickCheck(button) {
 		var status = RoleInfoEntry_dataset.getValue("status");
 		if (status == '0') {
-			if (confirm("确认将该岗位设置为有效?")) {
-				return true;
-			} else {
+			if (!confirm("确认将该岗位设置为有效?")) {
 				return false;
 			}
 		} else {
-			if (confirm("确认将该岗位设置为无效?")) {
-				return true;
-			} else {
+			if (!confirm("确认将该岗位设置为无效?")) {
 				return false;
 			}
 		}
@@ -108,15 +104,11 @@
     function btDel_onClickCheck(button) {
     	var delet = RoleInfoEntry_dataset.getValue("del");
 		if (delet == 'F') {
-			if (confirm("确认删除该岗位?")) {
-				return true;
-			} else {
+			if (!confirm("确认删除该岗位?")) {
 				return false;
 			}
 		} else {
-			if (confirm("确认恢复该岗位?")) {
-				return true;
-			} else {
+			if (!confirm("确认恢复该岗位?")) {
 				return false;
 			}
 		}

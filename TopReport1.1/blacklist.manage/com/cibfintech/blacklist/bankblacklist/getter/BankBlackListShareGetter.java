@@ -46,7 +46,6 @@ public class BankBlackListShareGetter extends BaseGetter {
 		String qShare = getCommQueryServletRequest().getParameter("qShareType");
 		qShare = qShare == null ? "" : qShare;
 		StringBuffer hql = new StringBuffer(" from NsBankBlackListAuditState po where 1=1");
-
 		hql.append(" order by po.auditType desc, po.auditState desc, po.editDate desc");
 
 		BankBlackListService service = BankBlackListService.getInstance();

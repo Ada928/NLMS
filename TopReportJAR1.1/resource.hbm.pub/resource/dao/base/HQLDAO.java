@@ -50,7 +50,8 @@ public class HQLDAO extends HibernateDaoSupport {
 	/**
 	 * 根据输入条件查询
 	 *
-	 * @param hql，对象查询语句
+	 * @param hql
+	 *            ，对象查询语句
 	 * @return Iterator，对象数组集合
 	 * @throws CommonException
 	 */
@@ -86,7 +87,8 @@ public class HQLDAO extends HibernateDaoSupport {
 	/**
 	 * 根据输入条件查询
 	 *
-	 * @param hql，对象查询语句
+	 * @param hql
+	 *            ，对象查询语句
 	 * @return List，对象数组集合
 	 * @throws CommonException
 	 */
@@ -120,7 +122,8 @@ public class HQLDAO extends HibernateDaoSupport {
 	/**
 	 * 根据输入条件查询
 	 *
-	 * @param hql，对象查询语句
+	 * @param hql
+	 *            ，对象查询语句
 	 * @return List，对象数组集合
 	 * @throws CommonException
 	 */
@@ -154,7 +157,8 @@ public class HQLDAO extends HibernateDaoSupport {
 	/**
 	 * 根据输入条件查询
 	 *
-	 * @param sql，SQL查询语句
+	 * @param sql
+	 *            ，SQL查询语句
 	 * @return Iterator，返回数组集合
 	 * @throws CommonException
 	 */
@@ -192,7 +196,8 @@ public class HQLDAO extends HibernateDaoSupport {
 	 * 根据输入条件查询
 	 * 
 	 * @author jianxue.zhang
-	 * @param sql，SQL查询语句
+	 * @param sql
+	 *            ，SQL查询语句
 	 * @return List，返回数组集合
 	 * @throws CommonException
 	 */
@@ -229,7 +234,8 @@ public class HQLDAO extends HibernateDaoSupport {
 	/**
 	 * 根据输入条件查询
 	 *
-	 * @param hql，对象查询语句
+	 * @param hql
+	 *            ，对象查询语句
 	 * @param objArg
 	 *            Object[] 值对象
 	 * @param typeArg
@@ -267,7 +273,8 @@ public class HQLDAO extends HibernateDaoSupport {
 	/**
 	 * 根据输入条件查询
 	 *
-	 * @param sql，SQL查询语句
+	 * @param sql
+	 *            ，SQL查询语句
 	 * @param objArg
 	 *            Object[] 值对象
 	 * @param typeArg
@@ -335,7 +342,8 @@ public class HQLDAO extends HibernateDaoSupport {
 	/**
 	 * 根据条件删除
 	 *
-	 * @param hql，对象查询语句
+	 * @param hql
+	 *            ，对象查询语句
 	 * @throws CommonException
 	 */
 	public Integer delete(final String hql) throws CommonException {
@@ -441,13 +449,14 @@ public class HQLDAO extends HibernateDaoSupport {
 		}
 		return null;
 	}
+
 	/** add by shen_antonio 20091030 jira:BMS-2140 begin . */
 
 	/**
 	 * @Title: 分页查询方法 @Description:
-	 * 使用count(*)获取总记录数，效率高，局限性对于union不支持，请使用pageQueryByQL @param @param
-	 * queryCondition @param @return @param @throws CommonException @return
-	 * PageQueryResult @author shenantonio @date 2009-10-30 下午02:46:10 @throws
+	 *         使用count(*)获取总记录数，效率高，局限性对于union不支持，请使用pageQueryByQL @param @param
+	 *         queryCondition @param @return @param @throws CommonException @return
+	 *         PageQueryResult @author shenantonio @date 2009-10-30 下午02:46:10 @throws
 	 */
 	public PageQueryResult pageQueryByQLWithCount(PageQueryCondition queryCondition) throws CommonException {
 		if (logger.isDebugEnabled()) {
@@ -472,6 +481,7 @@ public class HQLDAO extends HibernateDaoSupport {
 		}
 		return null;
 	}
+
 	/** add by shen_antonio 20091030 jira: BMS-2140 end . */
 
 	/**
@@ -506,7 +516,8 @@ public class HQLDAO extends HibernateDaoSupport {
 	/**
 	 * 根据输入条件查询
 	 *
-	 * @param hql，对象查询语句
+	 * @param hql
+	 *            ，对象查询语句
 	 * @param objArg
 	 *            Object[] 值对象
 	 * @param typeArg
@@ -638,6 +649,8 @@ class PageQueryCallback implements HibernateCallback {
 				}
 			}
 		}
+		// queryObject.setFirstResult((queryCondition.getPageIndex() - 1) *
+		// queryCondition.getPageSize()).setMaxResults(queryCondition.getPageSize());
 
 		ScrollableResults sr = null;
 		try {
