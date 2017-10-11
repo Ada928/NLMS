@@ -93,7 +93,7 @@
 		//刷新当前页
 		flushCurrentPage();
 	}
-
+	
 	function btCancelVerify_onClickCheck(button) {
 		var record1 = BankBlackListVerify_dataset.getFirstRecord();
 		BankBlackListVerify_dataset.setParameter("op", "verifyF");
@@ -112,7 +112,9 @@
 			alert("请至少选择一条黑名单记录！");
 			return false;
 		} else {
-			confirm("确定取消审核选中的黑名单？");
+			if (!confirm("确定取消审核选中的黑名单？")) {
+				return false;
+			}
 		}
 	}
 

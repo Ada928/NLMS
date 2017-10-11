@@ -55,7 +55,7 @@ public class BankBlackListService {
 		return pageQueryResult;
 	}
 
-	public HashMap<String, NsBankBlackList> getBankBankListByHql(String hql) throws CommonException {
+	public HashMap<String, NsBankBlackList> getBankBlackListByHql(String hql) throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		List list = rootDAO.queryByQL2List(hql);
 		HashMap<String, NsBankBlackList> map = new HashMap<String, NsBankBlackList>();
@@ -65,6 +65,12 @@ public class BankBlackListService {
 			map.put(bblt.getId(), bblt);
 		}
 		return map;
+	}
+
+	public List<NsBankBlackList> getBlackListByHql(String hql) throws CommonException {
+		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
+		List<NsBankBlackList> list = rootDAO.queryByQL2List(hql);
+		return list;
 	}
 
 	/*

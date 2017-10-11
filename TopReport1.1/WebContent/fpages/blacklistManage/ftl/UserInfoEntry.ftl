@@ -84,7 +84,7 @@
             alert("不能重置自己的密码");
         } else {
             if (!confirm("确认要重置该用户的密码吗?")) {
-                return;
+                return false;
             }
             locate(tlrno);
             btResetPwd.click();

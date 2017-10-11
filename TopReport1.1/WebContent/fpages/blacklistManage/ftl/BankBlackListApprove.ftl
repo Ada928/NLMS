@@ -100,6 +100,7 @@
 		flushCurrentPage();
 	}
 	
+	
 	function btCancelApprove_onClickCheck() {
 		var record1 = BankBlackListApprove_dataset.getFirstRecord();
 		BankBlackListApprove_dataset.setParameter("op", "approveF");
@@ -117,11 +118,13 @@
 		if (chk == 0) {
 			alert("请至少选择一条黑名单记录！");
 			return false;
+		} else {
+			if (!confirm("确定取消审批选中的黑名单？")) {
+				return false;
+			}
 		}
-		confirm("确定取消审批选中的黑名单？");
-		//return true;
 	}
-	
+
 	function btCancelApprove_postSubmit(button) {
 		alert("取消审批操作成功。");
 		button.url = "#";
@@ -131,7 +134,8 @@
 
 	//刷新当前页
 	function flushCurrentPage() {
-		BankBlackListApprove_dataset.flushData(BankBlackListApprove_dataset.pageIndex);
+		BankBlackListApprove_dataset
+				.flushData(BankBlackListApprove_dataset.pageIndex);
 	}
 </script>
 </@CommonQueryMacro.page>

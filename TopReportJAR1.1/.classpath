@@ -25,7 +25,7 @@
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/backport-util-concurrent-3.1.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/BasePackage.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/bcprov-jdk14-125.jar"/>
-	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/c3p0-0.9.1.2.jar"/>
+	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/c3p0-0.9.1.2.jar" sourcepath="C:/Users/yyxyz/AppData/Local/Temp/.org.sf.feeling.decompiler1507597222085/source/c3p0-0.9.1.2-sources.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/cglib-nodep-2.1_3.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/cjdp-common.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
@@ -62,7 +62,6 @@
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/pushlet.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/quartz-all-1.6.5.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/ReindeerMVC.jar"/>
-	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/slf4j-api-1.5.6.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/slf4j-log4j12-1.5.6.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/spring-mock.jar"/>
 	<classpathentry kind="lib" path="/TopReport1.1/WebContent/WEB-INF/lib/spring.jar"/>

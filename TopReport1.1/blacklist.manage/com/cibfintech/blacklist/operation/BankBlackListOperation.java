@@ -92,7 +92,7 @@ public class BankBlackListOperation extends BaseOperation {
 			// 插入或者更新
 			NsBankBlackList fromBean = (NsBankBlackList) context.getAttribute(IN_BANK_BLACK_LIST);
 			String param = (String) context.getAttribute(IN_PARAM_SAVE);
-			String blacklistID = String.valueOf(GenerateID.getId());
+			String blacklistID = fromBean.getCertificateNumber();
 			String tlrno = globalInfo.getTlrno();
 			String brcode = globalInfo.getBrcode();
 

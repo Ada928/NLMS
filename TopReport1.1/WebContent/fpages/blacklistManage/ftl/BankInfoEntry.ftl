@@ -65,15 +65,11 @@
 	function btDel_onClickCheck(button) {
 		var del = BankInfoEntry_dataset.getValue("del");
 		if (del == 'F') {
-			if (confirm("确认删除该条记录？")) {
-				return true;
-			} else {
+			if (!confirm("确认删除该条记录？")) {
 				return false;
 			}
 		} else {
-			if (confirm("确认恢复该条记录？")) {
-				return true;
-			} else {
+			if (!confirm("确认恢复该条记录？")) {
 				return false;
 			}
 		}
@@ -99,7 +95,7 @@
 		locate(id);
 		BankInfoEntry_dataset.insertRecord();
 	}
-
+	
 	//展示对比功能的js
 	function datatable1_brno_onRefresh(cell, value, record) {
 		if (record != null) {
@@ -112,26 +108,25 @@
 			cell.innerHTML = ""
 		}
 	}
+	
 	function showDetail(id, sta) {
 		locate(id);
 		btDetail.click();
 	}
+	
 	function btStatus_onClickCheck(button) {
 		var status = BankInfoEntry_dataset.getValue("status");
 		if (status == '0') {
-			if (confirm("确认将该机构设置为有效?")) {
-				return true;
-			} else {
+			if (!confirm("确认将该机构设置为有效?")) {
 				return false;
 			}
 		} else {
-			if (confirm("确认将该机构设置为无效?")) {
-				return true;
-			} else {
+			if (!confirm("确认将该机构设置为无效?")) {
 				return false;
 			}
 		}
 	}
+	
 	function btStatus_postSubmit(button) {
 		alert("设置成功");
 		flushCurrentPage();

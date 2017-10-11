@@ -23,6 +23,7 @@
 }
 </style>
 -->
+<!-- 导航栏目，已经注释 -->
 </head>
 <!--  gz 
 <body style="margin: 0; overflow: hidden ;background-color: #F8D0B7;" >
