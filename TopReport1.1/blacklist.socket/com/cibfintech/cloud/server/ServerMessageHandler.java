@@ -1,9 +1,7 @@
 package com.cibfintech.cloud.server;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -55,25 +53,15 @@ public class ServerMessageHandler extends IoHandlerAdapter {
 
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		MessagePack mp = (MessagePack) message;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		String datetime = sdf.format(new Date());
-		LOG.warn(datetime + " 服务器接收到客户端数据 messageReceived----------: " + mp.toString());
+		LOG.warn(" 服务器接收到客户端数据 messageReceived----------: " + mp.toString());
 
 		Request request = JaxbUtil.converyToJavaBean(mp.getMsgPack(), Request.class);
 		dealRequest(request, session);
-
-		// 拿到所有的客户端Session
-		// Collection<IoSession> sessions =
-		// session.getService().getManagedSessions().values(); // 向所有客户端发送数据
-		// for (IoSession sess : sessions) {
-		// sess.write(datetime + "\t" + mp);
-		// }
 
 	}
 
 	private void dealRequest(Request request, IoSession session) throws CommonException {
 		MessagePack mp = new MessagePack();
-		String xml = "";
 		List<ReponseBlacklist> list = new ArrayList<ReponseBlacklist>();
 		RequestHeader header = request.getMsgHeader();
 		RequestBody body = request.getReqBody();
@@ -139,12 +127,13 @@ public class ServerMessageHandler extends IoHandlerAdapter {
 			list.add(XmlServerUtils.groupBlacklist(new NsPoliceBlackList(), "11111", "from police, failue", body.getSeqNo()));
 		}
 
-		saveLog(request);
 		// 请求协议
 		mp.setMsgMethod(Integer.parseInt(header.getTranCode()));
 		mp.setMsgPack(XmlServerUtils.tranToXML(header, list));
 		mp.setMsgLength(mp.getMsgPack().getBytes().length);
 		session.write(mp);
+
+		saveLog(request);
 	}
 
 	// 写入查询日志
