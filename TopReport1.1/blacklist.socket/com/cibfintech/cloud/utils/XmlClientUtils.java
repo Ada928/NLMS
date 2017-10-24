@@ -16,7 +16,7 @@ public class XmlClientUtils {
 		sb.append("<reqBody>");
 		sb.append("<seqNo>HX2017092900000001</seqNo>");
 		sb.append("<certificateType>11</certificateType>");
-		sb.append("<certificateNumber>12345678901234</certificateNumber>");
+		sb.append("<certificateNumber>0653101197211020819</certificateNumber>");
 		sb.append("<accountCode></accountCode>");
 		sb.append("</reqBody>");
 

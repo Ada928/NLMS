@@ -129,8 +129,8 @@ public class ServerMessageHandler extends IoHandlerAdapter {
 
 		// 请求协议
 		mp.setMsgMethod(Integer.parseInt(header.getTranCode()));
-		mp.setMsgLength(mp.getMsgPack().getBytes().length);
 		mp.setMsgPack(XmlServerUtils.tranToXML(header, list));
+		mp.setMsgLength(mp.getMsgPack().getBytes().length);
 		session.write(mp);
 
 		saveLog(request);
