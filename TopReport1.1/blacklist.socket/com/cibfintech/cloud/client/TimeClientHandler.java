@@ -6,7 +6,7 @@ import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 
 /*
- * @see 处理接收客户端消的息事件
+ * @see 处理接收客户端消息的事件
  * @author yyxyz
  * @date 2017年9月29日 11:23:32
  * @version 1.0

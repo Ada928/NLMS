@@ -10,6 +10,7 @@ public class MessageClientTest {
 		ClientSendMsgThread csmt = new ClientSendMsgThread();
 		csmt.start();
 
+		
 		// MsgPack mp = new MsgPack(); // 请求协议
 		// mp.setMsgMethod(2000);
 		// mp.setMsgPack(XmlClientUtils.getXml());
