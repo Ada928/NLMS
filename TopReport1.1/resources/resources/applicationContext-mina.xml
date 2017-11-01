@@ -42,11 +42,10 @@
 
 	<bean id="codecFilter" class="org.apache.mina.filter.codec.ProtocolCodecFilter">
 		<constructor-arg>
-			<bean class="com.cibfintech.cloud.charset.MessageProtocolFactory" />
-			<!-- <bean class="org.apache.mina.filter.codec.textline.TextLineCodecFactory" /> -->
+			<!-- <bean class="com.cibfintech.cloud.charset.MessageProtocolFactory" /> -->
+			<bean class="org.apache.mina.filter.codec.textline.TextLineCodecFactory" />
 			<!-- 处理对象流时候用ObjectSerializationCodecFactory -->
 			<!-- <bean class="org.apache.mina.filter.codec.serialization.ObjectSerializationCodecFactory" /> -->
-			<!-- <bean class="org.apache.mina.filter.codec.textline.TextLineCodecFactory" /> -->
 		</constructor-arg>
 	</bean>
 

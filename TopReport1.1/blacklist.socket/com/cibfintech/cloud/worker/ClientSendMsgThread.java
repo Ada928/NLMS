@@ -21,7 +21,7 @@ public class ClientSendMsgThread extends Thread {
 					mp.setMsgMethod(1000);
 					mp.setMsgPack(XmlClientUtils.getXml());
 					mp.setMsgLength(mp.getMsgPack().getBytes().length);
-					ClientMessageProtocol.getIoSession().write(mp);
+					ClientMessageProtocol.getIoSession().write(mp.toString());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

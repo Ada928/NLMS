@@ -52,8 +52,17 @@ public class ServerMessageHandler extends IoHandlerAdapter {
 	}
 
 	public void messageReceived(IoSession session, Object message) throws Exception {
-		MessagePack mp = (MessagePack) message;
-		LOG.warn(" 服务器接收到客户端数据 messageReceived----------: " + mp.toString());
+		String msg = (String) message;
+		LOG.warn(" 服务器接收到客户端数据 messageReceived----------: " + msg);
+		MessagePack mp = new MessagePack();
+		String[] strs = msg.split(",");
+		mp.setMsgMethod(Integer.parseInt(strs[0].split(":")[1]));
+		mp.setMsgLength(Integer.parseInt(strs[1].split(":")[1]));
+		mp.setMsgPack(strs[2].split(":")[1]);
+
+		System.out.println(strs[0].split(":")[1]);
+		System.out.println(strs[1].split(":")[1]);
+		System.out.println(strs[2].split(":")[1]);
 
 		Request request = JaxbUtil.converyToJavaBean(mp.getMsgPack(), Request.class);
 		dealRequest(request, session);

@@ -5,11 +5,10 @@ import java.net.InetSocketAddress;
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
+import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.logging.LogLevel;
 import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
-
-import com.cibfintech.cloud.charset.MessageProtocolFactory;
 
 /*
  * @see 模拟客户端；
@@ -40,7 +39,9 @@ public class ClientMessageProtocol {
 	public static void clientStart() {
 		// 创建客户端连接器
 		NioSocketConnector connector = getConnector();
-		connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new MessageProtocolFactory()));
+		// connector.getFilterChain().addLast("codec", new
+		// ProtocolCodecFilter(new MessageProtocolFactory()));
+		connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new TextLineCodecFactory()));
 		LoggingFilter loggingFilter = new LoggingFilter();
 		loggingFilter.setMessageReceivedLogLevel(LogLevel.INFO);
 		loggingFilter.setMessageSentLogLevel(LogLevel.INFO);

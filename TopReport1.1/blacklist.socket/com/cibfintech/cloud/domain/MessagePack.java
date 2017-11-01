@@ -53,7 +53,7 @@ public class MessagePack implements Serializable {
 	}
 
 	public String toString() {
-		return "MsgPack [msgLength=" + msgLength + ", msgMethod=" + msgMethod + ", msgPack=" + msgPack + "]";
+		return "[msgMethod:" + msgMethod + ", msgLength:" + msgLength + ", msgPack:" + msgPack + "]";
 	}
 
 }
