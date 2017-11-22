@@ -39,6 +39,7 @@
         <property name="lastModifyDate" type="java.util.Date" column="last_modify_date" length="7" not-null="false" />
         <property name="lastModifyOperator" type="string" column="last_modify_operator" length="32" not-null="false" />
         <property name="remarks" type="string" column="remarks" length="2000" not-null="false" />
-
+        <property name="cardBkBookNo" type="string" column="card_BkBook_No" length="30" not-null="false" />
+		
     </class>
 </hibernate-mapping>

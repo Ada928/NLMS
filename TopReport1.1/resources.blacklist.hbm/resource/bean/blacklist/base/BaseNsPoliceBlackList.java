@@ -38,6 +38,7 @@ public class BaseNsPoliceBlackList implements Serializable {
 	public static String PROP_LAST_MODIFY_DATE = "lastModifyDate";
 	public static String PROP_LAST_MODIFY_OPERATOR = "lastModifyOperator";
 	public static String PROP_REMARKS = "remarks";
+	public static String PROP_CARD_BKBOOK_NO = "cardBkBookNo";
 
 	// Fields
 	private int hashCode = Integer.MIN_VALUE;
@@ -65,6 +66,7 @@ public class BaseNsPoliceBlackList implements Serializable {
 	private Date lastModifyDate;
 	private String lastModifyOperator;
 	private String remarks;
+	private String cardBkBookNo;
 
 	// Constructors
 
@@ -274,7 +276,15 @@ public class BaseNsPoliceBlackList implements Serializable {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	
+	public String getCardBkBookNo() {
+		return this.cardBkBookNo;
+	}
 
+	public void setCardBkBookNo(String cardBkBookNo) {
+		this.cardBkBookNo = cardBkBookNo;
+	}
+	
 	public boolean equals(Object obj) {
 		if (null == obj)
 			return false;

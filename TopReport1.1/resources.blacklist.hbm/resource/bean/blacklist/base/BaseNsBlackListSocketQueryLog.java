@@ -9,11 +9,15 @@ import resource.bean.blacklist.NsBlackListSocketQueryLog;
  * not modify this class because it will be overwritten if the configuration
  * file related to this class is modified.
  *
- * @hibernate.class table="TLR_LOGIN_LOG"
+ * @hibernate.class table="NLMS_BLACKLIST_SOCK_QUERY_LOG"
  */
 
 public abstract class BaseNsBlackListSocketQueryLog implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4323699609160768345L;
 	// constructors
 	public BaseNsBlackListSocketQueryLog() {
 		initialize();
@@ -46,7 +50,9 @@ public abstract class BaseNsBlackListSocketQueryLog implements Serializable {
 	private java.lang.String filter1;
 	private java.lang.String filter2;
 	private java.lang.String filter3;
-
+	private java.lang.String cardBkBookNo;
+	private java.lang.String clientName;
+	
 	/**
 	 * Return the unique identifier of this class
 	 * 
@@ -153,6 +159,24 @@ public abstract class BaseNsBlackListSocketQueryLog implements Serializable {
 
 	public void setCreateDate(java.util.Date createDate) {
 		this.createDate = createDate;
+	}
+	
+	
+	public java.lang.String getCardBkBookNo() {
+		return cardBkBookNo;
+	}
+
+	public void setCardBkBookNo(java.lang.String cardBkBookNo) {
+		this.cardBkBookNo = cardBkBookNo;
+	}
+	
+	
+	public java.lang.String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(java.lang.String clientName) {
+		this.clientName = clientName;
 	}
 
 	public boolean equals(Object obj) {

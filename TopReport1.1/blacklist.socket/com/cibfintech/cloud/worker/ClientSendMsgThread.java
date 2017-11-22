@@ -1,5 +1,7 @@
 package com.cibfintech.cloud.worker;
 
+import org.apache.mina.core.buffer.IoBuffer;
+
 import com.cibfintech.cloud.client.ClientMessageProtocol;
 import com.cibfintech.cloud.domain.MessagePack;
 import com.cibfintech.cloud.utils.XmlClientUtils;
@@ -16,12 +18,13 @@ public class ClientSendMsgThread extends Thread {
 				try {
 					// ClientMsgProtocol.getIoSession().write(new
 					// String("我是客户端".getBytes("UTF-8")));
-					MessagePack mp = new MessagePack();
-					// 请求协议
-					mp.setMsgMethod(1000);
-					mp.setMsgPack(XmlClientUtils.getXml());
-					mp.setMsgLength(mp.getMsgPack().getBytes().length);
-					ClientMessageProtocol.getIoSession().write(mp.toString());
+//					MessagePack mp = new MessagePack();
+//					// 请求协议
+//					mp.setMsgMethod(1000);
+//					mp.setMsgPack(XmlClientUtils.getXml());
+//					mp.setMsgLength(mp.getMsgPack().getBytes().length);
+					byte[] message = {'4', 'm', 'k', 'n', 'j'};
+					ClientMessageProtocol.getIoSession().write(IoBuffer.wrap(message));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

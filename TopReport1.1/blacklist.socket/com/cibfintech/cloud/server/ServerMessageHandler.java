@@ -1,6 +1,8 @@
 package com.cibfintech.cloud.server;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
@@ -52,20 +55,42 @@ public class ServerMessageHandler extends IoHandlerAdapter {
 	}
 
 	public void messageReceived(IoSession session, Object message) throws Exception {
-		String msg = (String) message;
-		LOG.warn(" 服务器接收到客户端数据 messageReceived----------: " + msg);
-		MessagePack mp = new MessagePack();
-		String[] strs = msg.split(",");
-		mp.setMsgMethod(Integer.parseInt(strs[0].split(":")[1]));
-		mp.setMsgLength(Integer.parseInt(strs[1].split(":")[1]));
-		mp.setMsgPack(strs[2].split(":")[1]);
+		if (message instanceof IoBuffer) {  
+		    System.out.println(true);
+		} else {
+			System.out.println(false);
+		}
+		
+		if(message instanceof Serializable) {
+			System.out.println(true);
+		}else {
+			System.out.println(false);
+		}
+		IoBuffer ib = (IoBuffer) message;
+		
+		byte[] msg = new byte[ib.limit()];
+		ib.get(msg);
+		String str = new String(msg,"UTF-8");
+		LOG.warn(" 服务器接收到客户端数据 messageReceived----------: " + str);
+		
+		
+//		MessagePack mp = new MessagePack();
+//		String[] strs = msg.split(",");
+//		mp.setMsgMethod(Integer.parseInt(strs[0].split(":")[1]));
+//		mp.setMsgLength(Integer.parseInt(strs[1].split(":")[1]));
+//		mp.setMsgPack(strs[2].split(":")[1]);
+//
+//		System.out.println(strs[0].split(":")[1]);
+//		System.out.println(strs[1].split(":")[1]);
+//		System.out.println(strs[2].split(":")[1]);
+//
+//		Request request = JaxbUtil.converyToJavaBean(mp.getMsgPack(), Request.class);
+//		dealRequest(request, session);
+		
+		
+		session.write(ib.flip());
 
-		System.out.println(strs[0].split(":")[1]);
-		System.out.println(strs[1].split(":")[1]);
-		System.out.println(strs[2].split(":")[1]);
-
-		Request request = JaxbUtil.converyToJavaBean(mp.getMsgPack(), Request.class);
-		dealRequest(request, session);
+		
 
 	}
 
@@ -155,7 +180,8 @@ public class ServerMessageHandler extends IoHandlerAdapter {
 	}
 
 	public void messageSent(IoSession session, Object message) throws Exception {
-		LOG.warn("messageSent: 服务端发送信息成功..." + message);
+		System.out.println(message);
+		LOG.warn("messageSent: 服务端发送信息成功..." + (String) message);
 		/*
 		 * System.out.println("服务器发送消息messageSent----------： "+ message);
 		 * SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");

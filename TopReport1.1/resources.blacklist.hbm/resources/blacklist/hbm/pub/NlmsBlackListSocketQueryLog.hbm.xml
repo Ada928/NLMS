@@ -17,5 +17,8 @@
         <property name="filter1" column="FILTER1" type="string" not-null="false" length="20" />
         <property name="filter2" column="FILTER2" type="string" not-null="false" length="20" />
         <property name="filter3" column="FILTER3" type="string" not-null="false" length="20" />
+        <property name="cardBkBookNo" column="card_BkBook_No" type="string" not-null="false" length="30" />
+        <property name="clientName" column="client_Name" type="string" not-null="false" length="100" />
+    	
     </class>
 </hibernate-mapping>

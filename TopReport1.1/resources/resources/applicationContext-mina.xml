@@ -24,7 +24,7 @@
 			<map>
 				<entry key="executor" value-ref="executorFilter" />
 				<entry key="mdcInjectionFilter" value-ref="mdcInjectionFilter" />
-				<entry key="codecFilter" value-ref="codecFilter" />
+				<!-- <entry key="codecFilter" value-ref="codecFilter" /> -->
 				<entry key="loggingFilter" value-ref="loggingFilter" />
 				<!-- 心跳filter -->
 				<entry key="keepAliveFilter" value-ref="keepAliveFilter" />
@@ -42,10 +42,13 @@
 
 	<bean id="codecFilter" class="org.apache.mina.filter.codec.ProtocolCodecFilter">
 		<constructor-arg>
-			<!-- <bean class="com.cibfintech.cloud.charset.MessageProtocolFactory" /> -->
-			<bean class="org.apache.mina.filter.codec.textline.TextLineCodecFactory" />
+			<bean class="com.cibfintech.cloud.charset.MessageProtocolFactory" />
+			<!-- <bean class="org.apache.mina.filter.codec.textline.TextLineCodecFactory" /> -->
 			<!-- 处理对象流时候用ObjectSerializationCodecFactory -->
 			<!-- <bean class="org.apache.mina.filter.codec.serialization.ObjectSerializationCodecFactory" /> -->
+			<!-- <bean class="com.cibfintech.cloud.charset.CmccSipcCodecFactory" /> -->
+			<!-- <bean class="com.cibfintech.cloud.charset.ByteArrayCodecFactory" /> -->
+			<!-- <bean class="com.cibfintech.cloud.charset.MyTextFactory" /> -->
 		</constructor-arg>
 	</bean>
 
@@ -66,7 +69,7 @@
 	</bean>
 
 
-	<bean id="serverHandler" class="com.cibfintech.cloud.server.ServerMessageHandler" />
+	<bean id="serverHandler" class="com.cibfintech.cloud.server.NewServerMessageHandler" />
 
 	<!-- session config 通过工厂方法注入 -->
 	<bean id="sessionConfig" factory-bean="ioAcceptor" factory-method="getSessionConfig">
