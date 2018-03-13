@@ -1,7 +1,6 @@
-package com.cibfintech.cloud.test;
+package com.cibfintech.cloud.worker;
 
 import com.cibfintech.cloud.server.ServerMsgProtocol;
-import com.cibfintech.cloud.worker.ServerSendMsgThread;
 
 public class MessageServerTest {
 	public static void main(String[] args) {

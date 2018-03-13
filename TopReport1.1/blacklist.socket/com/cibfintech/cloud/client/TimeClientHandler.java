@@ -19,16 +19,12 @@ public class TimeClientHandler extends IoHandlerAdapter {
 	/*
 	 * 接收客户端发送的消息
 	 */
-	// public void messageReceived(IoSession session, Object message) throws
-	// Exception {
-	// MsgPack mp = (MsgPack) message;
-	// System.out.println("收到服务端发来的消息：" + mp.toString());// 显示接收到的消息
-	// }
-
+	
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		// TODO Auto-generated method stub
 		// System.out.println("message :"+message);
+		
 		LOG.warn("客户端收到消息：" + message);
 		if (message.toString().equals("1111")) {
 			// 收到心跳包

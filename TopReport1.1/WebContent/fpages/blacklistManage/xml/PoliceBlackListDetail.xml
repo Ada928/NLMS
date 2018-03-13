@@ -34,7 +34,6 @@
 		<Field id="lastModifyOperator" desc="最后修改用户" edittype="text" datatype="string" readonly="true" xpath="/lastModifyOperator" />
 	</Fields>
 	<Operations>
-		<Button id="btClose" name="btClose" desc="返回" operation="submitform" url="/fpages/blacklistManage/ftl/PoliceBlacklist.ftl"
-			txn="" icon="icon-back" />
+		<Button id="btClose" name="btClose" desc="返回" operation="" url="#" txn="" icon="icon-back" />
 	</Operations>
 </CommQry>

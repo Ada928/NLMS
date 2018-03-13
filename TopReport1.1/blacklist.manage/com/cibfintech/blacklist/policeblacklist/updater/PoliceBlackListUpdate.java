@@ -22,7 +22,7 @@ import com.huateng.exception.AppException;
  */
 public class PoliceBlackListUpdate extends BaseUpdate {
 
-	private static final String DATASET_ID = "PoliceBlackListManage";
+	private static final String DATASET_ID = "PoliceBlacklistManage";
 
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean arg0, HttpServletRequest arg1, HttpServletResponse arg2) throws AppException {

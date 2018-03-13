@@ -39,6 +39,7 @@
         <Field id="reImport" desc="重新导入" edittype="text" datatype="boolean" xpath="" />
         <Field id="workDate" desc="工作日期" edittype="text" datatype="string" xpath="/workDate" />
         <Field id="importing" desc="是否导入中" edittype="checkbox" datatype="boolean" xpath="/importing" />
+        <Field id="importime" desc="近期导入时间" edittype="text" datatype="string" xpath="/importime" />
 
         <Field id="progress" desc="进度" edittype="text" datatype="string" xpath="/id" />
     </Fields>

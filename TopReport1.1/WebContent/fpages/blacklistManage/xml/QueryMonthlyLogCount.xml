@@ -3,7 +3,7 @@
 <CommQry title="日志查询" navigate="主页 &gt; 数据查询&gt; 每月黑名单查询统计" type="call" interface="true" pagesize="10" async="true"
 	databusid="" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.getter.QueryMonthlyLogCountGetter">
 	<Include id="BankParam" />
-	<PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-每月黑名单查询统计" />
+	<PageQryExp type="XLS" limit="true" encoding="GBK" url="/trans/qryExp.do" desc="批量下载-每月黑名单查询统计" />
 	<Fields>
 		<!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
 		<!-- primary : true-作为表单项记录上传 false-不作为表单项上传 -->
@@ -31,9 +31,9 @@
 			size="32" status="F" default="" xpath="/createDate" />
 	</Fields>
 	<Where>
-		<Option id="qbrcode" operation="EQ" size="" desc="所属银行" tip="机构号" type="string" translated="CQ:BctlAllSelect"
+		<Option id="qbrNo" operation="EQ" size="" desc="所属银行" tip="机构号" type="string" translated="CQ:BctlAllSelect"
 			fieldmap="qbrNo=brno;qbrNoName=brcodeTypeName" viewField="brcodeTypeName" dropdowntype="dynamic" init="true" require="false"
-			readOnly="" index="1" />
+			readOnly="false" index="1" />
 		<DateTextBox id="startDate" desc="开始日期" tip="开始日期" require="false" status="F" datatype="date" method="None"
 			size="150" width="" primary="false" index="2" type="String" />
 		<DateTextBox id="endDate" desc="结束日期" tip="结束日期" require="false" status="F" datatype="date" method="None"

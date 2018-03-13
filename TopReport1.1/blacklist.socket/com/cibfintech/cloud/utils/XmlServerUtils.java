@@ -1,8 +1,14 @@
 package com.cibfintech.cloud.utils;
 
-import java.util.ArrayList;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.mina.core.buffer.IoBuffer;
 
 import resource.bean.blacklist.NsBankBlackList;
 import resource.bean.blacklist.NsInternationalBlackList;
@@ -14,10 +20,12 @@ import com.cibfintech.cloud.domain.ReponseHeader;
 import com.cibfintech.cloud.domain.RequestHeader;
 import com.huateng.ebank.framework.util.DateUtil;
 
-public class XmlServerUtils {
+import nl.justobjects.pushlet.util.Log;
 
+public class XmlServerUtils {
+	private static Charset charset = Charset.forName("GBK");
 	public static String tranToXML() {
-		List<ReponseBlacklist> list = new ArrayList<ReponseBlacklist>();
+		/*List<ReponseBlacklist> list = new ArrayList<ReponseBlacklist>();
 		ReponseBlacklist msgRepBody = new ReponseBlacklist();
 		msgRepBody.setRspCode("000000");
 		msgRepBody.setRspMsg("success");
@@ -48,7 +56,8 @@ public class XmlServerUtils {
 		String xml = JaxbUtil.convertToXml(msgReponse);
 		System.out.println(xml);
 
-		return xml;
+		return xml;*/
+		return null;
 	}
 
 	public static String tranToXML(RequestHeader header, List list) {
@@ -66,7 +75,203 @@ public class XmlServerUtils {
 		String xml = JaxbUtil.convertToXml(msgReponse);
 		return xml;
 	}
+	//服务端发送数据包
+	public static String tranMsg(List list) {
+		/*ReponseHeader msHeader = new ReponseHeader();
+		msHeader.setSysNo(header.getSysNo());
+		msHeader.setTranCode(header.getTranCode());
+		msHeader.setTranDate(DateUtil.dateToNumber(new Date()));
+		msHeader.setTranTime(DateUtil.timeToString(new Date()));
 
+		Reponse msgReponse = new Reponse();
+
+		msgReponse.setMsgHeader(msHeader);
+		msgReponse.setReqBody(list);*/
+		
+		//String xml = JaxbUtil.convertToXml(msgReponse);
+		String s = list.toString();
+		return s;
+	}
+	
+	//该方法将查询的数据赋值给黑名单列表
+	public static Map<String, String> packagBlackList(Object obj,String mdlx,String reqtype){
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
+		//NewResponseBlackList repbl = new NewResponseBlackList();
+		Map<String, String> mp = new HashMap<String, String>();
+		if(obj instanceof NsBankBlackList){
+			NsBankBlackList blackList = (NsBankBlackList)obj;
+			mp.put(BlackListConstants.RES_CLITYPE, blackList.getAccountType()); //客户类别 公 C私I
+			mp.put(BlackListConstants.RES_CLINAME, blackList.getClientName()); //客户名称
+			mp.put(BlackListConstants.RES_ENGNAME, blackList.getClientEnglishName()); //客户英文名称
+			mp.put(BlackListConstants.RES_CETYPE, blackList.getCertificateType()); //证件类型
+			mp.put(BlackListConstants.RES_CERNO, blackList.getCertificateNumber()); //证件号码
+			
+			if(BlackListConstants.REQ_CARDNOFLAG.equals(reqtype)){
+				mp.put(BlackListConstants.RES_ACCNO, blackList.getCardBkBookNo()); //账号/卡号、折号
+			}else{
+				mp.put(BlackListConstants.RES_ACCNO, blackList.getAccountCode()); //账号/卡号、折号
+			}
+			
+			mp.put(BlackListConstants.RES_BLTYPE, blackList.getBlacklistType()+"0"); //名单种类（00:白 10：黑名单  20：灰名单）
+			mp.put(BlackListConstants.RES_AUTHORITY, mdlx); //名单类型（区别数据库类型 ,即是指B:商行、I:国际、P:公安部黑名单中的任意一个黑名单）
+			if(null != blackList.getLastModifyDate()){
+				mp.put(BlackListConstants.RES_MODIFYDATE, format.format(blackList.getLastModifyDate())); //变更时间
+			}
+			mp.put(BlackListConstants.RES_DISC, blackList.getRemarks()); //描述
+			 
+		}else if(obj instanceof NsInternationalBlackList){
+			NsInternationalBlackList blackList = (NsInternationalBlackList)obj;
+			mp.put(BlackListConstants.RES_CLITYPE, blackList.getAccountType()); //客户类别 公 C私I
+			mp.put(BlackListConstants.RES_CLINAME, blackList.getClientName()); //客户名称
+			mp.put(BlackListConstants.RES_ENGNAME, blackList.getClientEnglishName()); //客户英文名称
+			mp.put(BlackListConstants.RES_CETYPE, blackList.getCertificateType()); //证件类型
+			mp.put(BlackListConstants.RES_CERNO, blackList.getCertificateNumber()); //证件号码
+			//mp.put(BlackListConstants.RES_ACCNO, blackList.getAccountCode()); //客户类型
+			mp.put(BlackListConstants.RES_BLTYPE, blackList.getBlacklistType()+"0"); //名单种类（00:白 10：黑名单  20：灰名单）
+			mp.put(BlackListConstants.RES_AUTHORITY, mdlx); //名单类型（区别数据库类型 ,即是指B:商行、I:国际、P:公安部黑名单中的任意一个黑名单）
+			if(null != blackList.getLastModifyDate()){
+				mp.put(BlackListConstants.RES_MODIFYDATE, format.format(blackList.getLastModifyDate())); //变更时间
+			}
+			mp.put(BlackListConstants.RES_DISC, blackList.getRemarks()); //描述
+			
+		}else if(obj instanceof NsPoliceBlackList){
+			NsPoliceBlackList blackList = (NsPoliceBlackList)obj;
+			mp.put(BlackListConstants.RES_CLITYPE, blackList.getAccountType()); //客户类别 公 C私I
+			mp.put(BlackListConstants.RES_CLINAME, blackList.getClientName()); //客户名称
+			mp.put(BlackListConstants.RES_ENGNAME, blackList.getClientEnglishName()); //客户英文名称
+			mp.put(BlackListConstants.RES_CETYPE, blackList.getCertificateType()); //证件类型
+			mp.put(BlackListConstants.RES_CERNO, blackList.getCertificateNumber()); //证件号码
+			if(BlackListConstants.REQ_CARDNOFLAG.equals(reqtype)){
+				mp.put(BlackListConstants.RES_ACCNO, blackList.getCardBkBookNo()); //账号/卡号、折号
+			}else{
+				mp.put(BlackListConstants.RES_ACCNO, blackList.getAccountCode()); //账号/卡号、折号
+			}
+			mp.put(BlackListConstants.RES_BLTYPE, blackList.getBlacklistType()+"0"); //名单种类（00:白 10：黑名单  20：灰名单）
+			mp.put(BlackListConstants.RES_AUTHORITY, mdlx); //名单类型（区别数据库类型 ,即是指B:商行、I:国际、P:公安部黑名单中的任意一个黑名单）
+			if(null != blackList.getLastModifyDate()){
+				mp.put(BlackListConstants.RES_MODIFYDATE, format.format(blackList.getLastModifyDate())); //变更时间
+			}
+			mp.put(BlackListConstants.RES_DISC, blackList.getRemarks()); //描述
+			
+		}
+		return mp;
+	}
+	
+	//返回客户端信息处理方法
+	public static byte[] responseBlackList(List<Map<String, String>> mplist) throws UnsupportedEncodingException{
+		StringBuffer sbf = new StringBuffer();
+		//根据bkList判断黑(灰)名单是否存在
+		if(0 != mplist.size() && null != mplist){
+			//成功应答码
+			sbf.append(fillStr(BlackListConstants.RES_RESCODE, BlackListConstants.RES_RESCODE_LEN, " "));
+			//返回结果数
+			sbf.append(fillStr(String.valueOf(mplist.size()), BlackListConstants.RES_RESULT_LEN, " "));
+			
+			//根据循环体最大长度循环添加
+			int index = 0;
+			for(Map<String, String> li:mplist){
+					index++;
+					//判断属于哪种类型的黑灰名单
+					if("B".equals(li.get(BlackListConstants.RES_AUTHORITY).trim())){   			//商行黑（灰）名单
+						sbf.append(fillStr(li.get(BlackListConstants.RES_CLITYPE), BlackListConstants.RES_CLITYPE_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_CLINAME), BlackListConstants.RES_CLINAME_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_ENGNAME), BlackListConstants.RES_ENGNAME_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_CETYPE), BlackListConstants.RES_CETYPE_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_CERNO), BlackListConstants.RES_CERNO_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_ACCNO), BlackListConstants.RES_ACCNO_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_BLTYPE), BlackListConstants.RES_BLTYPE_LEN, " "));
+						sbf.append(fillStr(BlackListConstants.RES_AUTHORITY_B, BlackListConstants.RES_AUTHORITY_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_MODIFYDATE), BlackListConstants.RES_MODIFYDATE_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_DISC), BlackListConstants.RES_DISC_LEN, " "));
+					
+					}else if("I".equals(li.get(BlackListConstants.RES_AUTHORITY))){			//国际组织黑（灰）名单
+						sbf.append(fillStr(li.get(BlackListConstants.RES_CLITYPE), BlackListConstants.RES_CLITYPE_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_CLINAME), BlackListConstants.RES_CLINAME_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_ENGNAME), BlackListConstants.RES_ENGNAME_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_CETYPE), BlackListConstants.RES_CETYPE_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_CERNO), BlackListConstants.RES_CERNO_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_ACCNO), BlackListConstants.RES_ACCNO_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_BLTYPE), BlackListConstants.RES_BLTYPE_LEN, " "));
+						sbf.append(fillStr(BlackListConstants.RES_AUTHORITY_I, BlackListConstants.RES_AUTHORITY_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_MODIFYDATE), BlackListConstants.RES_MODIFYDATE_LEN, " "));
+						sbf.append(fillStr(li.get(BlackListConstants.RES_DISC), BlackListConstants.RES_DISC_LEN, " "));
+					
+					}else if("P".equals(li.get(BlackListConstants.RES_AUTHORITY))){			//公安部黑（灰）名单
+						sbf.append(fillStr(li.get(BlackListConstants.RES_CLITYPE), BlackListConstants.RES_CLITYPE_LEN, " "));
+						System.out.println("客户类别长度： "+fillStr(li.get(BlackListConstants.RES_CLITYPE), BlackListConstants.RES_CLITYPE_LEN, " ").getBytes().length);
+						sbf.append(fillStr(li.get(BlackListConstants.RES_CLINAME), BlackListConstants.RES_CLINAME_LEN, " "));
+						System.out.println("客户名称长度： "+fillStr(li.get(BlackListConstants.RES_CLINAME), BlackListConstants.RES_CLINAME_LEN, " ").getBytes().length);
+
+						sbf.append(fillStr(li.get(BlackListConstants.RES_ENGNAME), BlackListConstants.RES_ENGNAME_LEN, " "));
+						System.out.println("客户英文名称长度： "+fillStr(li.get(BlackListConstants.RES_ENGNAME), BlackListConstants.RES_ENGNAME_LEN, " ").getBytes().length);
+
+						sbf.append(fillStr(li.get(BlackListConstants.RES_CETYPE), BlackListConstants.RES_CETYPE_LEN, " "));
+						System.out.println("证件类型长度： "+fillStr(li.get(BlackListConstants.RES_CETYPE), BlackListConstants.RES_CETYPE_LEN, " ").getBytes().length);
+
+						sbf.append(fillStr(li.get(BlackListConstants.RES_CERNO), BlackListConstants.RES_CERNO_LEN, " "));
+						System.out.println("证件号码长度： "+fillStr(li.get(BlackListConstants.RES_CERNO), BlackListConstants.RES_CERNO_LEN, " ").getBytes().length);
+
+						sbf.append(fillStr(li.get(BlackListConstants.RES_ACCNO), BlackListConstants.RES_ACCNO_LEN, " "));
+						System.out.println("客户账号长度： "+fillStr(li.get(BlackListConstants.RES_ACCNO), BlackListConstants.RES_ACCNO_LEN, " ").getBytes().length);
+
+						sbf.append(fillStr(li.get(BlackListConstants.RES_BLTYPE), BlackListConstants.RES_BLTYPE_LEN, " "));
+						System.out.println("黑名单类型长度： "+fillStr(li.get(BlackListConstants.RES_BLTYPE), BlackListConstants.RES_BLTYPE_LEN, " ").getBytes().length);
+
+						sbf.append(fillStr(BlackListConstants.RES_AUTHORITY_P, BlackListConstants.RES_AUTHORITY_LEN, " "));
+						System.out.println("有权机构长度： "+fillStr(BlackListConstants.RES_AUTHORITY_P, BlackListConstants.RES_AUTHORITY_LEN, " ").getBytes().length);
+
+						sbf.append(fillStr(li.get(BlackListConstants.RES_MODIFYDATE), BlackListConstants.RES_MODIFYDATE_LEN, " "));
+						System.out.println("变更时间长度： "+fillStr(li.get(BlackListConstants.RES_MODIFYDATE), BlackListConstants.RES_MODIFYDATE_LEN, " ").getBytes().length);
+
+						sbf.append(fillStr(li.get(BlackListConstants.RES_DISC), BlackListConstants.RES_DISC_LEN, " "));
+						System.out.println("描述长度： "+fillStr(li.get(BlackListConstants.RES_DISC), BlackListConstants.RES_DISC_LEN, " ").getBytes().length);
+
+					}
+					//超出循环体最大长度退出循环
+					if(BlackListConstants.LOOP_LEN == index){
+						break;
+					}
+			}
+		}else{
+			//当前用户不是黑名单
+			//成功应答码
+			sbf.append(fillStr(BlackListConstants.RES_RESCODE, BlackListConstants.RES_RESCODE_LEN, " "));
+			//返回结果数
+			sbf.append(fillStr(String.valueOf(mplist.size()), BlackListConstants.RES_RESULT_LEN, " "));
+			
+			sbf.append(fillStr("", BlackListConstants.RES_CLITYPE_LEN, " "));
+			sbf.append(fillStr("", BlackListConstants.RES_CLINAME_LEN, " "));
+			sbf.append(fillStr("", BlackListConstants.RES_ENGNAME_LEN, " "));
+			sbf.append(fillStr("", BlackListConstants.RES_CETYPE_LEN, " "));
+			sbf.append(fillStr("", BlackListConstants.RES_CERNO_LEN, " "));
+			sbf.append(fillStr("", BlackListConstants.RES_ACCNO_LEN, " "));
+			sbf.append(fillStr("", BlackListConstants.RES_BLTYPE_LEN, " "));
+			sbf.append(fillStr("", BlackListConstants.RES_AUTHORITY_LEN, " "));
+			sbf.append(fillStr("", BlackListConstants.RES_MODIFYDATE_LEN, " "));
+			sbf.append(fillStr("", BlackListConstants.RES_DISC_LEN, " "));
+		
+		}
+		
+		Log.info("返回报文截取数据长度后内容----------：："+"["+sbf+"]");
+		//实际长度
+		//long acl= sbf.length();
+		long acl= sbf.toString().getBytes(charset).length;
+		Log.info("返回报文长度----------： 实际有效长度："+ acl);
+		StringBuffer buf = new StringBuffer();
+		if(acl <= BlackListConstants.MAXL_ENGTH){
+			buf.append(String.format("%4d", acl).replace(" ", "0"));
+		}else{
+			buf.append(String.valueOf(BlackListConstants.MAXL_ENGTH));
+		}
+		
+		buf.append(sbf.toString());
+		byte[] bt = new byte[BlackListConstants.MAXL_ENGTH];
+		bt = buf.toString().getBytes(charset);
+		
+		return bt;
+	}
+	
+	//old
 	public static ReponseBlacklist groupBlacklist(Object obj, String rspCode, String rspMsg, String seqNo) {
 
 		ReponseBlacklist msgRepBody = new ReponseBlacklist();
@@ -123,8 +328,167 @@ public class XmlServerUtils {
 
 		return msgRepBody;
 	}
-
+		//定长报文补位方法
+		public static String fillStr(String curStr,int len,String addStr){
+		    //第一步判断 不需要右补位的情况 直接返回原始字符串
+			if(curStr != null && !"".equals(curStr)){
+				if(curStr.length() == len){
+			        return curStr;
+			    }else if(curStr.length() > len){
+			    	Log.warn("输入字符串超出限定长度------------------"+curStr+"实际长度为： "+curStr.length());    //此处需要客户端 自定义(超长输入)异常。
+			    	return curStr.substring(0, len);
+			    }
+			}else{
+				curStr = "";             //将空或null统一处理为（空）
+			}
+		    
+		    StringBuffer bf=new StringBuffer(curStr);
+		    StringBuffer res=new StringBuffer();
+		    //取得字符串的长度，注意汉字占两个字节的问题  (此处根据具体接口文档报文输入类型决定char或byte)
+		    int length=0;
+		    for(int i=0;i<curStr.length();i++){
+		        //取得ascii编码 据此判断
+		        int ASCII=Character.codePointAt(curStr,i);
+		        if(ASCII>=0 && ASCII<=255){ 
+		            length++;
+		        }else{
+		            length += 2;
+		        }
+		    }
+		    //准确的字节长度拿到后 再据此补位 ;
+		    for(int j=0;j<len-length;j++){
+		        res=bf.append(addStr);
+		    }
+		    return res.toString();
+		}
+		
 	public static void main(String[] args) {
 		XmlServerUtils.tranToXML();
 	}
+	
+	/**
+	 * 对socket通讯报文异常类型报错返回
+	 * @param errMsg
+	 * @return
+	 */
+	public static IoBuffer responseExpBlackList(String errcode, String errMsg) throws UnsupportedEncodingException {
+		StringBuffer sbf = new StringBuffer();
+		//当前用户上送报文长度异常
+		int len = BlackListConstants.ERRCODE_LEN + BlackListConstants.ERRMSG_LEN;
+		sbf.append(String.valueOf(len));
+		sbf.append(fillStr(errcode, BlackListConstants.ERRCODE_LEN, " "));
+		sbf.append(fillStr(errMsg, BlackListConstants.ERRMSG_LEN, " "));
+		byte[] bt = sbf.toString().getBytes(charset);  
+		IoBuffer ioBuffer = IoBuffer.allocate(bt.length); 
+		ioBuffer.put(bt, 0, bt.length);   
+		ioBuffer.flip();
+		return ioBuffer;
+	}
+	
+	/**
+	 * 处理接受信息
+	 */
+	public static Map<String, String> getRequst(byte[] b){
+		
+		
+		//String trancode = msg.substring(0, BlackListConstants.REQ_TRANCODE_SUBLEN);
+		//String brcode = msg.substring(BlackListConstants.REQ_TRANCODE_SUBLEN, BlackListConstants.REQ_BRCODE_SUBLEN);
+		//String reqtype = msg.substring(BlackListConstants.REQ_BRCODE_SUBLEN, BlackListConstants.REQ_REQTYPE_SUBLEN);
+		//String req = msg.substring(BlackListConstants.REQ_REQTYPE_SUBLEN, BlackListConstants.REQ_REQMSG_SUBLEN);
+
+		String trancode = new String(b,BlackListConstants.REQ_TRANCODE_SUBLEN, BlackListConstants.REQ_TRANCODE_LEN, charset);
+		String brcode = new String(b,BlackListConstants.REQ_BRCODE_SUBLEN, BlackListConstants.REQ_BRCODE_LEN, charset);
+		String reqtype = new String(b,BlackListConstants.REQ_REQTYPE_SUBLEN,  BlackListConstants.REQ_REQTYPE_LEN, charset);
+		String req = new String(b,BlackListConstants.REQ_REQMSG_SUBLEN, BlackListConstants.REQ_REQMSG_LEN, charset);
+		
+		Map<String, String> clientMap = new HashMap<String, String>();
+		//请求功能码:trancode
+		clientMap.put(BlackListConstants.REQ_TRANCODE, trancode.trim());
+		//银行代码:brcode
+		clientMap.put(BlackListConstants.REQ_BRCODE, brcode.trim());
+		//信息类别:reqtype
+		clientMap.put(BlackListConstants.REQ_REQTYPE, reqtype.trim());
+		//证件类型：certype        0:根据证件查,1:根据账户查,2:根据中文姓名查,3:根据英文姓名查
+		//上送：证件类型+证件号码
+		if("0".equals(clientMap.get(BlackListConstants.REQ_REQTYPE))){
+			clientMap.put(BlackListConstants.REQ_CERTYPE,
+					req.substring(0, BlackListConstants.REQ_CERTYPE_LEN).trim());
+			
+			clientMap.put(BlackListConstants.REQ_CERNUMB, req.substring(BlackListConstants.REQ_CERTYPE_LEN, BlackListConstants.REQ_CERNUMB_LEN).trim());
+			//上送账户
+		}else if("1".equals(clientMap.get(BlackListConstants.REQ_REQTYPE))){
+			//根据账户
+			clientMap.put(BlackListConstants.REQ_ACCNUM, req.trim());
+			//根据中文名查
+		}else if("2".equals(clientMap.get(BlackListConstants.REQ_REQTYPE))){
+			clientMap.put(BlackListConstants.REQ_CLIENAME, req.trim());
+			//根据英文
+		}else if("3".equals(clientMap.get(BlackListConstants.REQ_REQTYPE))){
+			clientMap.put(BlackListConstants.REQ_ENNAME, req.trim());
+			//卡、折号
+		}else if("4".equals(clientMap.get(BlackListConstants.REQ_REQTYPE))){
+			clientMap.put(BlackListConstants.REQ_CARDNO, req.trim());
+		}
+		return clientMap;
+		
+	}
+	/**
+	 * 检查上送字段是否符合要求
+	 * @param msg
+	 */
+	public static String checkRequst(Map<String, String> mc) {
+		String errMsg = "";
+//		String tranCode = msg.substring(0, BlackListConstants.REQ_TRANCODE_SUBLEN).trim();
+//		String brCode = msg.substring(BlackListConstants.REQ_TRANCODE_SUBLEN, BlackListConstants.REQ_BRCODE_SUBLEN).trim();
+//		String msType = msg.substring(BlackListConstants.REQ_BRCODE_SUBLEN, BlackListConstants.REQ_REQTYPE_SUBLEN).trim();
+//		String qur = msg.substring(BlackListConstants.REQ_REQTYPE_SUBLEN, BlackListConstants.REQ_REQMSG_SUBLEN).trim();
+		String tranCode = mc.get(BlackListConstants.REQ_TRANCODE);
+		String brCode = mc.get(BlackListConstants.REQ_BRCODE);
+		String msType = mc.get(BlackListConstants.REQ_REQTYPE);
+		String qur = null;
+		if("0".equals(msType)){
+			qur = mc.get(BlackListConstants.REQ_CERNUMB);
+		}else if("1".equals(msType)){
+			qur = mc.get(BlackListConstants.REQ_ACCNUM);
+		}else if("2".equals(msType)){
+			qur = mc.get(BlackListConstants.REQ_CLIENAME);
+		}else if("3".equals(msType)){
+			qur = mc.get(BlackListConstants.REQ_ENNAME);
+		}else if("4".equals(msType)){
+			qur = mc.get(BlackListConstants.REQ_CARDNO);
+		}
+		
+		
+		Log.info("截取详细信息："+"tranCode:"+tranCode+"brCode:"+brCode+"msType:"+msType+"qur:"+qur);
+		if(tranCode != null &&  !"".equals(tranCode) && "0001".equals(tranCode)){  //功能码不为空且为"0001"
+			//银行代码
+			if(brCode != null && !"".equals(brCode)){//
+				
+				if(msType != null && !"".equals(msType)){
+					if("0".equals(msType) || "1".equals(msType) || "2".equals(msType) || "3".equals(msType)){
+						
+						if(null != qur && !"".equals(qur)){
+							errMsg = "";
+						}else{
+							errMsg = BlackListConstants.ERR_0008;    //查询信息不能为空
+						}
+						
+					}else{
+						errMsg = BlackListConstants.ERR_0007;    //信息类别错误
+					}
+				}else{
+					errMsg = "";
+				}
+				
+			}else{
+				errMsg = BlackListConstants.ERR_0004;
+			}
+			
+		}else{
+			errMsg = BlackListConstants.ERR_0003;
+		}
+		return errMsg;
+		
+	}
+	
 }

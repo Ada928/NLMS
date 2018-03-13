@@ -82,7 +82,7 @@ public class BankBlackListEditGetter extends BaseGetter {
 		hql.append(" and po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDING.value).append("')");
 		hql.append(" or( po.auditType='").append(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.EDIT.value).append("'");
 		hql.append(" and po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDED.value).append("')");
-		hql.append(" or po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.APED.value).append("')");
+		hql.append(" or po.auditState='").append(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.VRED.value).append("')");
 		if (!isSuperManager) {
 			hql.append(" and po.brcode='").append(globalinfo.getBrcode()).append("'");
 		}
@@ -114,8 +114,7 @@ public class BankBlackListEditGetter extends BaseGetter {
 			BankBlackListAuditStateView view = new BankBlackListAuditStateView();
 
 			NsBankBlackList blackList = blacklistMap.get(auditState.getBlacklistID());
-			if (null == blackList)
-				break;
+			
 			view.setId(auditState.getId());
 			view.setAuditState(auditState.getAuditState());
 			view.setAuditType(auditState.getAuditType());
@@ -127,11 +126,17 @@ public class BankBlackListEditGetter extends BaseGetter {
 			view.setEditDate(auditState.getEditDate());
 			view.setVerifyDate(auditState.getVerifyDate());
 			view.setApproveDate(auditState.getApproveDate());
-			view.setBlacklistType(blackList.getBlacklistType());
-			view.setCertificateNumber(blackList.getCertificateNumber());
-			view.setCertificateType(blackList.getCertificateType());
-			view.setClientName(blackList.getClientName());
-			view.setClientEnglishName(blackList.getClientEnglishName());
+			
+//			if (null == blackList)
+//				break;
+			//修改后展示全部编辑后的所有数据
+			if (null != blackList){
+				view.setBlacklistType(blackList.getBlacklistType());
+				view.setCertificateNumber(blackList.getCertificateNumber());
+				view.setCertificateType(blackList.getCertificateType());
+				view.setClientName(blackList.getClientName());
+				view.setClientEnglishName(blackList.getClientEnglishName());
+			}
 			auditStateViews.add(view);
 		}
 

@@ -23,6 +23,8 @@
 		timeToLiveSeconds="7200" timeToIdleSeconds="3600" overflowToDisk="true" />
 	<cache name="resource.bean.blacklist.NsPoliceBlackList" maxElementsInMemory="2000" eternal="false"
 		timeToLiveSeconds="7200" timeToIdleSeconds="3600" overflowToDisk="true" />
+	<cache name="resource.bean.blacklist.NsDowjonsBlackList" maxElementsInMemory="2000" eternal="false"
+		timeToLiveSeconds="7200" timeToIdleSeconds="3600" overflowToDisk="true" />
 	<cache name="resource.bean.pub.RoleInfo" maxElementsInMemory="2000" eternal="false" timeToLiveSeconds="7200"
 		timeToIdleSeconds="3600" overflowToDisk="true" />
 	<cache name="resource.bean.pub.TlrInfo" maxElementsInMemory="2000" eternal="false" timeToLiveSeconds="7200"

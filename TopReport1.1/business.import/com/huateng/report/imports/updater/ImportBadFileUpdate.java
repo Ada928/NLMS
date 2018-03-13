@@ -40,7 +40,7 @@ public class ImportBadFileUpdate extends BaseUpdate {
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("ImportBadFile");
 
 			ImportFileBean bean = null;
-			String workdate = DataFormat.dateToNumber(DateUtil.getTbsDay());
+			String workdate = DataFormat.dateToNumber(DateUtil.getCurrentDate());
 			while (updateResultBean.hasNext()) {
 				Map<String, String> map = updateResultBean.next();
 				bean = new ImportFileBean();

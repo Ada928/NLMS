@@ -75,9 +75,20 @@ public class BankBlackListOperation extends BaseOperation {
 					auditState.setEditUserID(globalInfo.getTlrno());
 					auditState.setEditDate(DateUtil.getCurrentDateWithTime());
 					auditStateService.modOrAddEntity(auditState);
+				}else if(del.equals("delT")){//编辑岗位删除操作
+					NsBankBlackListAuditState auditState = auditStateService.selectById(auditStateView.getId());
+					//auditState.setId(String.valueOf(GenerateID.getId()));
+					//auditState.setBlacklistID(auditStateView.getBlacklistID());
+					auditState.setAuditType(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.DELETE.value);
+					auditState.setAuditState(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.N.value);
+					auditState.setBrcode(globalInfo.getBrcode());
+					auditState.setEditUserID(globalInfo.getTlrno());
+					auditState.setEditDate(DateUtil.getCurrentDateWithTime());
+					auditStateService.modOrAddEntity(auditState);
 				}
 
 				NsBankBlackList bean = service.selectById(auditStateView.getBlacklistID());
+				bean.setDel("T");   //删除
 				bean.setApprove(SystemConstant.FALSE);
 				bean.setLastModifyOperator(GlobalInfo.getCurrentInstance().getTlrno());
 				bean.setLastModifyDate(DateUtil.getCurrentDate());
@@ -102,6 +113,16 @@ public class BankBlackListOperation extends BaseOperation {
 				auditState.setBlacklistID(blacklistID);
 				auditState.setAuditType(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.ADD.value);
 				auditState.setAuditState(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDED.value);
+				auditState.setBrcode(brcode);
+				auditState.setEditUserID(tlrno);
+				auditState.setEditDate(DateUtil.getCurrentDateWithTime());
+				auditStateService.modOrAddEntity(auditState);
+			}else if(param.equals("save")){
+				NsBankBlackListAuditState auditState = new NsBankBlackListAuditState();
+				auditState.setId(String.valueOf(GenerateID.getId()));
+				auditState.setBlacklistID(blacklistID);
+				auditState.setAuditType(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.ADD.value);
+				auditState.setAuditState(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDING.value);
 				auditState.setBrcode(brcode);
 				auditState.setEditUserID(tlrno);
 				auditState.setEditDate(DateUtil.getCurrentDateWithTime());

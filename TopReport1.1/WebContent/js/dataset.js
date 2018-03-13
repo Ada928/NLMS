@@ -703,15 +703,15 @@ function _whereQuery_pushField(nodeName,type,value)
 
 function _whereQuery_genNodeInDoc(doc)
 {
-	var package = null;
+	var packages = null;
 
 	if(this.fieldType=="or")
 	{
-		package = doc.createElement("or");
+		packages = doc.createElement("or");
 	}
 	else
 	{
-		package = doc.createElement("and");
+		packages = doc.createElement("and");
 	}
 	for(var i=0;i<this.fieldList.length;i++)
 	{
@@ -726,9 +726,9 @@ function _whereQuery_genNodeInDoc(doc)
 			element.setAttribute("name",this.fieldList[i].nodeName);
 			element.setAttribute(this.fieldList[i].type,this.fieldList[i].value);
 		}
-		package.appendChild(element);
+		packages.appendChild(element);
 	}
-	return package;
+	return packages;
 }
 
 function _whereQuery_replaceField(oldNodeName,newNodeName)

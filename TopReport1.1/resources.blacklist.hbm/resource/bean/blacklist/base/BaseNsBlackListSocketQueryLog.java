@@ -9,11 +9,15 @@ import resource.bean.blacklist.NsBlackListSocketQueryLog;
  * not modify this class because it will be overwritten if the configuration
  * file related to this class is modified.
  *
- * @hibernate.class table="TLR_LOGIN_LOG"
+ * @hibernate.class table="NLMS_BLACKLIST_SOCK_QUERY_LOG"
  */
 
 public abstract class BaseNsBlackListSocketQueryLog implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4323699609160768345L;
 	// constructors
 	public BaseNsBlackListSocketQueryLog() {
 		initialize();
@@ -46,7 +50,14 @@ public abstract class BaseNsBlackListSocketQueryLog implements Serializable {
 	private java.lang.String filter1;
 	private java.lang.String filter2;
 	private java.lang.String filter3;
-
+	private java.lang.String cardBkBookNo;
+	private java.lang.String clientName;
+	private java.lang.String clientEnglishName;
+	private java.lang.String bankCode;
+	private java.lang.String queryUser;
+	private java.lang.Integer resultCnt;
+	private java.lang.String resever;
+	
 	/**
 	 * Return the unique identifier of this class
 	 * 
@@ -153,6 +164,65 @@ public abstract class BaseNsBlackListSocketQueryLog implements Serializable {
 
 	public void setCreateDate(java.util.Date createDate) {
 		this.createDate = createDate;
+	}
+	
+	
+	public java.lang.String getCardBkBookNo() {
+		return cardBkBookNo;
+	}
+
+	public void setCardBkBookNo(java.lang.String cardBkBookNo) {
+		this.cardBkBookNo = cardBkBookNo;
+	}
+	
+	
+	public java.lang.String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(java.lang.String clientName) {
+		this.clientName = clientName;
+	}
+	
+	
+	public java.lang.String getClientEnglishName() {
+		return clientEnglishName;
+	}
+
+	public void setClientEnglishName(java.lang.String clientEnglishName) {
+		this.clientEnglishName = clientEnglishName;
+	}
+
+	public java.lang.String getBankCode() {
+		return bankCode;
+	}
+
+	public void setBankCode(java.lang.String bankCode) {
+		this.bankCode = bankCode;
+	}
+	
+	public java.lang.String getQueryUser() {
+		return queryUser;
+	}
+
+	public void setQueryUser(java.lang.String queryUser) {
+		this.queryUser = queryUser;
+	}
+
+	public java.lang.Integer getResultCnt() {
+		return resultCnt;
+	}
+
+	public void setResultCnt(java.lang.Integer resultCnt) {
+		this.resultCnt = resultCnt;
+	}
+
+	public java.lang.String getResever() {
+		return resever;
+	}
+
+	public void setResever(java.lang.String resever) {
+		this.resever = resever;
 	}
 
 	public boolean equals(Object obj) {

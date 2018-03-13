@@ -27,7 +27,7 @@
             <column name="SEPERATOR" length="10" />
         </property>
         <property name="importTime" type="string">
-            <column name="IMPORT_TIME" length="2" />
+            <column name="IMPORT_TIME" length="20" />
         </property>
         <property name="seqNo" type="integer">
             <column name="SEQ_NO" />

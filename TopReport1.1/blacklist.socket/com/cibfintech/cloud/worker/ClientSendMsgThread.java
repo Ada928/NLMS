@@ -1,8 +1,10 @@
 package com.cibfintech.cloud.worker;
 
 import com.cibfintech.cloud.client.ClientMessageProtocol;
+import com.cibfintech.cloud.domain.FlieMsgPack;
 import com.cibfintech.cloud.domain.MessagePack;
-import com.cibfintech.cloud.utils.XmlClientUtils;
+import com.cibfintech.cloud.test.XmlClientUtils;
+import com.cibfintech.cloud.upFile.SendMgs;
 
 /*
  * @see 模拟客户端发送数据
@@ -16,12 +18,13 @@ public class ClientSendMsgThread extends Thread {
 				try {
 					// ClientMsgProtocol.getIoSession().write(new
 					// String("我是客户端".getBytes("UTF-8")));
-					MessagePack mp = new MessagePack();
+					//FlieMsgPack mp = new FlieMsgPack();
 					// 请求协议
-					mp.setMsgMethod(1000);
+					/*mp.setMsgMethod(1000);
 					mp.setMsgPack(XmlClientUtils.getXml());
-					mp.setMsgLength(mp.getMsgPack().getBytes().length);
-					ClientMessageProtocol.getIoSession().write(mp.toString());
+					mp.setMsgLength(mp.getMsgPack().getBytes().length);*/
+					
+					ClientMessageProtocol.getIoSession().write("abc".getBytes("UTF-8"));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -35,4 +38,5 @@ public class ClientSendMsgThread extends Thread {
 			}
 		}
 	}
+	
 }

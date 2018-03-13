@@ -1,12 +1,14 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign op=RequestParameters["op"]?default("")>
 <@CommonQueryMacro.page title="商行黑名单編輯">
-<@CommonQueryMacro.CommonQuery id="BankBlackListManage" init="true">
+<script type="text/javascript" src="${contextPath}/js/certifict_ident.js"></script>
+
+<@CommonQueryMacro.CommonQuery id="BankBlackListManage" init="true" submitMode="current">
 <table align="center" width="100%">
 	<tr>
 		<td  align="left">
 				<@CommonQueryMacro.Group id ="bankBlackListManageGroup" label="银行黑名单信息" 
-				fieldStr="bankCode,bankName,accountType,blacklistType,certificateType,certificateNumber,clientName,"+
+				fieldStr="accountType,blacklistType,certificateType,certificateNumber,clientName,"+
 					"clientEnglishName,valid,validDate,blacklistedReason,unblacklistedReason" 
         	    colNm=4/>
 		</td>
@@ -22,30 +24,40 @@
 	</tr>
 </table>
 </@CommonQueryMacro.CommonQuery>
-
 <script language="JavaScript">
-	alert("hahha  " + _t1.pageSize);
-	alert("hehe " + _t1.pageIndex);
 
     function btSave_onClickCheck(button) {
+    	
         var id = BankBlackListManage_dataset.getValue("id");
         var certificateNumber = BankBlackListManage_dataset.getValue("certificateNumber");
         var certificateType = BankBlackListManage_dataset.getValue("certificateType");
+        var clientName = BankBlackListManage_dataset.getValue("clientName");
         BankBlackListManage_dataset.setParameter("opSave", "save");
-    
+        
         if (certificateType == null || "" == certificateType) {
             alert("证件类型不能为空");
             return false;
         }
+        
         if (certificateNumber == null || "" == certificateNumber) {
             alert("证件号不能为空");
             return false;
         }
-        if (certificateType == "11" || "18" > certificateNumber) {
-            alert("身份证号不能短于18位");
+        
+		if (certificateType == "11") {
+		  	Javascript:checkCard();
+		 	
+		 	//return false;
+			        	
+		}
+        
+        if (clientName == null || "" == clientName) {
+            alert("客户名字不能为空");
             return false;
         }
+        
         return true;
+        
     }
 
     //保存后刷新当前页
@@ -58,8 +70,9 @@
         var id = BankBlackListManage_dataset.getValue("id");
         var certificateNumber = BankBlackListManage_dataset.getValue("certificateNumber");
         var certificateType = BankBlackListManage_dataset.getValue("certificateType");
+        var clientName = BankBlackListManage_dataset.getValue("clientName");
+        
         BankBlackListManage_dataset.setParameter("opSave", "queryVerify");
-   
         if (certificateType == null || "" == certificateType) {
             alert("证件类型不能为空");
             return false;
@@ -68,8 +81,12 @@
             alert("证件号不能为空");
             return false;
         } 
-        if (certificateType == "11" || "18" > certificateNumber) {
+        if (certificateType == "11" && 18 > certificateNumber.length) {
             alert("身份证号不能短于18位");
+            return false;
+        }
+         if (clientName == null || "" == clientName) {
+            alert("客户名字不能为空");
             return false;
         }
         return true;

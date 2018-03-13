@@ -31,8 +31,9 @@ public class ServerSendMsgThread extends Thread {
 					// mp.setMsgPack("我是服务端");
 					String str = "";
 
-					str += XmlServerUtils.tranToXML();
-
+					//str += XmlServerUtils.tranToXML();
+					str += "开发中.......";
+					
 					mp.setMsgPack(str);
 					mp.setMsgLength(mp.getMsgPack().getBytes().length);
 					try {

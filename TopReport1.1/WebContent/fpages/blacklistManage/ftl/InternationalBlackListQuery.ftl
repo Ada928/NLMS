@@ -46,8 +46,10 @@
 	}
 
 	function showDetail(id) {
-		locate(id);
-		btDetail.click();
+		//locate(id);
+		//btDetail.click();
+		window.location = "${contextPath}/fpages/blacklistManage/ftl/InternationalBlackListDetail.ftl?op=detail&reType=query&id="+id;
+		
 	}
 </script>
 </@CommonQueryMacro.page>

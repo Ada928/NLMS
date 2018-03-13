@@ -3,10 +3,12 @@ package com.cibfintech.blacklist.operation;
 import java.io.IOException;
 
 import resource.bean.blacklist.NsBankBLOperateLog;
+import resource.bean.blacklist.NsPoliceBLOperateLog;
 import resource.bean.blacklist.NsPoliceBlackList;
 import resource.bean.report.SysTaskInfo;
 
 import com.cibfintech.blacklist.bankblacklist.service.BankBlackListOperateLogService;
+import com.cibfintech.blacklist.policeblacklist.service.PoliceBlackListOperateLogService;
 import com.cibfintech.blacklist.policeblacklist.service.PoliceBlackListService;
 import com.cibfintech.blacklist.util.GenerateID;
 import com.huateng.common.log.HtLog;
@@ -21,7 +23,7 @@ import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportTaskUtil;
 
 public class PoliceBlackListOperation extends BaseOperation {
-	public static final String ID = "BankBlackListOperation";
+	public static final String ID = "PoliceBlackListOperation";
 	public static final String CMD = "CMD";
 	public static final String IN_PARAM = "IN_PARAM";
 	public final static String CMD_ADD = "CMD_ADD";
@@ -122,8 +124,10 @@ public class PoliceBlackListOperation extends BaseOperation {
 
 	// 记录查询日志
 	private void recordOperateLog(GlobalInfo globalinfo, String operateType, String message) {
-		BankBlackListOperateLogService service = BankBlackListOperateLogService.getInstance();
-		NsBankBLOperateLog bean = new NsBankBLOperateLog();
+		//BankBlackListOperateLogService service = BankBlackListOperateLogService.getInstance();
+		//NsBankBLOperateLog bean = new NsBankBLOperateLog();
+		PoliceBlackListOperateLogService service = PoliceBlackListOperateLogService.getInstance();
+		NsPoliceBLOperateLog bean = new NsPoliceBLOperateLog();
 		bean.setBrcode(globalinfo.getBrcode());
 		bean.setId(String.valueOf(GenerateID.getId()));
 		bean.setQueryType("");

@@ -3,7 +3,7 @@
 <CommQry title="日志查询" navigate="主页 &gt; 数据查询&gt; 国际黑名单日志查询" type="call" interface="true" pagesize="10" async="true"
     databusid="" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.internationblacklist.getter.InternationBLOPLogQueryGetter">
     <Include id="BankParam" />
-    <PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-国际黑名单日志查询" />
+    <PageQryExp type="XLS" limit="true" encoding="GBK" url="/trans/qryExp.do" desc="批量下载-国际黑名单日志查询" />
     <Fields>
         <!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
         <!-- primary : true-作为表单项记录上传 false-不作为表单项上传 -->
@@ -37,8 +37,8 @@
             size="32" status="F" default="" xpath="/createDate" />
     </Fields>
     <Where>
-        <TextBox id="qtlrNo" type="String" operation="EQ" size="8" desc="操作员编号" tip="操作员编号" index="0" />
-        <Option id="qbrcode" operation="EQ" size="" desc="所属银行" tip="机构号" type="string" translated="CQ:BctlAllSelect"
+        <TextBox id="qtlrNo" type="String" operation="EQ" size="20" desc="操作员编号" tip="操作员编号" index="0" />
+        <Option id="qbrNo" operation="EQ" size="" desc="所属银行" tip="机构号" type="string" translated="CQ:BctlAllSelect"
             fieldmap="qbrNo=brno;qbrNoName=brcodeTypeName" viewField="brcodeTypeName" dropdowntype="dynamic" init="true"
             require="false" readOnly="" index="1" />
 

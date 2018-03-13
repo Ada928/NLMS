@@ -69,7 +69,7 @@ public class BankBlackListEntryGetter extends BaseGetter {
 		}
 
 		StringBuffer hql = new StringBuffer(" from NsBankBlackList bblt where 1=1");
-		StringBuffer message = new StringBuffer("国际黑名单的查询:");
+		StringBuffer message = new StringBuffer("商行黑名单的查询:");
 		List<Object> list = new ArrayList<Object>();
 		hql.append(" and bblt.del= ?");
 		list.add("F");

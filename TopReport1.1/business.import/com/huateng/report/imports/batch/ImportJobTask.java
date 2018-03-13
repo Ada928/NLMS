@@ -36,7 +36,7 @@ public class ImportJobTask {
 	 * @throws CommonException
 	 */
 	public void doBiz() throws CommonException {
-		String workdate = DataFormat.dateToNumber(DateUtil.getTbsDay());
+		String workdate = DataFormat.dateToNumber(DateUtil.getCurrentDate());
 
 		// 1：检查后台导数是否执行
 		StringBuffer checkSql = new StringBuffer();

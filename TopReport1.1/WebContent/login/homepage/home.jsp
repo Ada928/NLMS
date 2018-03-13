@@ -217,6 +217,29 @@
 					</td>
 				</table>
 			</td>--%>
+			<td class="tabletop" id="td_frame5" height="40%">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+							<tr>
+								<td class="tabletoptd1" nowrap="nowrap" valign="bottom" width="100%"><a class="tabletoptd1div">&nbsp;&nbsp;其他功能&nbsp;&nbsp;</a>
+								</td>
+							</tr>
+							<tr>
+								<td class="tabletoptd2" valign="top" bgcolor="#ffffff"><iframe id="filedownloadfrm" style="display: none;"></iframe>
+									<table cellpadding="5" cellspacing="5" style="line-height: 22px;">
+										<tr>
+											<td><a href="javascript:void(0)"
+													onclick="return SaveAs('<%=request.getContextPath()%>/downloadfile/Black_Templet.zip');" title='点击下载'>黑名单导入—模板下载</a></td>
+										</tr>
+										<%-- <tr>
+											<td><a href="javascript:void(0)"
+													onclick="return SaveAs('<%=request.getContextPath()%>/downloadfile/bop_64.zip');" title='点击下载'>相关文档</a></td>
+										</tr> --%>
+									</table></td>
+							</tr>
+						</table>
+					</td>
+				</table>
+			</td>
 		</tr>
 	</table>
 	<script type="text/javascript">

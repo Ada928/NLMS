@@ -35,7 +35,7 @@ public class CutoverWorkDateGetter extends BaseGetter {
 			List<CutoverWorkDateBean> list = new ArrayList<CutoverWorkDateBean>();
 			CutoverWorkDateBean cutoverWorkDateBean = new CutoverWorkDateBean();
 
-			Date currentdate = DateUtil.getTbsDay();
+			Date currentdate = DateUtil.getCurrentDate();
 			Date lastDate = DateUtil.getBhDate();
 			cutoverWorkDateBean.setLastDate(lastDate);
 			cutoverWorkDateBean.setCurrentDate(currentdate);

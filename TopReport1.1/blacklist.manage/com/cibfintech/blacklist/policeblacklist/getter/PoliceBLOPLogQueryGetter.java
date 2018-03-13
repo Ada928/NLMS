@@ -53,7 +53,7 @@ public class PoliceBLOPLogQueryGetter extends BaseGetter {
 		int pageSize = getResult().getPage().getEveryPage();
 
 		String qtlrNo = (String) getCommQueryServletRequest().getParameterMap().get("qtlrNo");
-		String qbrcode = (String) getCommQueryServletRequest().getParameterMap().get("qbrcode");
+		String qbrNo = (String) getCommQueryServletRequest().getParameterMap().get("qbrNo");
 		String qtlrIP = (String) getCommQueryServletRequest().getParameterMap().get("qtlrIP");
 		String startDate = (String) getCommQueryServletRequest().getParameterMap().get("startDate");
 		String endDate = (String) getCommQueryServletRequest().getParameterMap().get("endDate");
@@ -74,9 +74,9 @@ public class PoliceBLOPLogQueryGetter extends BaseGetter {
 			sb.append(" and  log.tlrIP= ?");
 			list.add(qtlrIP);
 		}
-		if (!DataFormat.isEmpty(qbrcode)) {
+		if (!DataFormat.isEmpty(qbrNo)) {
 			sb.append(" and log.brcode = ?");
-			list.add(qbrcode);
+			list.add(qbrNo);
 		}
 
 		if (!DataFormat.isEmpty(startDate)) {

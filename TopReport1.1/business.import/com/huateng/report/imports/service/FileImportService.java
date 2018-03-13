@@ -1,19 +1,27 @@
 package com.huateng.report.imports.service;
 
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateCallback;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import resource.bean.report.BiImportLog;
 import resource.bean.report.SubFileInfo;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
 
+import com.huateng.commquery.dao.ICommQueryDAO;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
 import com.huateng.ebank.framework.util.ExceptionUtil;
@@ -22,6 +30,9 @@ import com.huateng.report.imports.bean.ReportFeedBackBean;
 import com.huateng.report.imports.common.Constants;
 import com.huateng.report.utils.ReportEnum;
 import com.huateng.report.utils.ReportUtils;
+
+import east.utils.tools.ColsBean;
+import east.utils.tools.InputConf;
 
 public class FileImportService {
 	public synchronized static FileImportService getInstance() {
@@ -76,14 +87,16 @@ public class FileImportService {
 	 * @return
 	 * @throws CommonException
 	 */
-	public String getImportLogStatus(String fileName, String tableName, String workDate) throws CommonException {
+	public BiImportLog getImportLogStatus(String fileName, String tableName, String workDate) throws CommonException {
 		List list = ROOTDAOUtils.getROOTDAO().queryByQL2List("from BiImportLog where fileName ='" + fileName
 				+ "' and tableName='" + tableName + "' and workDate='" + workDate + "' order by beginTime desc");
 		if (list.isEmpty()) {
-			return Constants.IMPORT_STATUS_PROCESS;
+			//return Constants.IMPORT_STATUS_PROCESS;
+			return null;
 		} else {
 			BiImportLog log = (BiImportLog) list.get(0);
-			return log.getImportStatus();
+			//return log.getImportStatus();
+			return log;
 		}
 	}
 
@@ -160,12 +173,15 @@ public class FileImportService {
 		// List list = executeQuery("select count(*) from systables where
 		// tabname='"
 		// + tableName + "'");
+		//objList=(List<Object>)ROOTDAOUtils.getROOTDAO().getHibernateTemplate().find("select TABLE_NAME from  user_tables where TABLE_NAME='" + tableName + "'");
+		//System.out.println(objList.size()+"++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		List list = executeQuery("select count(*) from  user_tables where TABLE_NAME='" + tableName + "'");
 		if (list.isEmpty()) {
 			return false;
 		} else {
-			Number num = (Number) list.get(0);
-			return num.intValue() > 0;
+			//Number num = (Number) list.get(0);
+			//return num.intValue() > 0;
+			return list.size() > 0;
 		}
 	}
 
@@ -192,7 +208,17 @@ public class FileImportService {
 	public List executeQuery(final String sql) {
 		return (List) ROOTDAOUtils.getROOTDAO().getHibernateTemplate().execute(new HibernateCallback() {
 			public List doInHibernate(Session session) throws HibernateException, SQLException {
-				return session.createSQLQuery(sql).list();
+				List li = new ArrayList();
+				ResultSet y = session.connection().createStatement().executeQuery(sql);
+				int columns = y.getMetaData().getColumnCount();
+				while(y.next()){
+					for(int i=1;i<=columns;i++)
+				    {
+				     li.add(y.getString(i));
+				    }
+				}
+//				return session.createSQLQuery(sql).list();
+				return li;
 			}
 		});
 	}

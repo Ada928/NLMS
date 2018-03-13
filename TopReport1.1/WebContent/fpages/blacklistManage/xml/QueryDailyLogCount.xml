@@ -31,7 +31,7 @@
 			size="32" status="F" default="" xpath="/createDate" />
 	</Fields>
 	<Where>
-		<Option id="qbrcode" operation="EQ" size="" desc="所属银行" tip="机构号" type="string" translated="CQ:BctlAllSelect"
+		<Option id="qbrNo" operation="EQ" size="" desc="所属银行" tip="机构号" type="string" translated="CQ:BctlAllSelect"
 			fieldmap="qbrNo=brno;qbrNoName=brcodeTypeName" viewField="brcodeTypeName" dropdowntype="dynamic" init="true" require="false"
 			readOnly="" index="1" />
 		<DateTextBox id="startDate" desc="开始日期" tip="开始日期" require="false" status="F" datatype="date" method="None"

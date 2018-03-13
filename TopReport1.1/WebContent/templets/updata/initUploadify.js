@@ -13,7 +13,7 @@ function initUpLoadify(dataset, s, u) {
 						},
 						'simUploadLimit' : 1,
 						'sizeLimit' : 19871202,
-						'buttonText' : 'ÉÏ´«ÎÄ¼ş',
+						'buttonText' : 'æ–‡ä»¶ä¸Šä¼ ',
 						'queueSizeLimit' : 500,
 						'onSelect' : function(file) {
 							var id = file.name.split('.')[0]+file.name.split('.')[1];
@@ -22,10 +22,12 @@ function initUpLoadify(dataset, s, u) {
 						},
 						'onUploadComplete' : function(file) {
 							var id = file.name.split('.')[0]+file.name.split('.')[1];
-							// $('#'+id+'answer').html('ÉÏ´«³É¹¦');
-							$('#' + id + 'ishave').html('ÒÑ´æÔÚ');
+							// $('#'+id+'answer').html('ä¸Šä¼ æˆåŠŸ');
+							$('#' + id + 'ishave').html('å·²å­˜åœ¨');
 							$('#' + id + 'ishavehave').val('true');
-							// $('#'+id+'upstatus').html('½áÊøÉÏ´«');
+							// $('#'+id+'upstatus').html('ç»“æŸä¸Šä¼ ');
+							//ä¿®æ”¹20180124  ç”¨äºæ–‡ä»¶ä¸Šä¼ æ”¹é€ 
+							window.location.reload();
 						},
 						'onUploadError' : function(file, errorCode, errorMsg,errorString) {
 							   var id = file.name.split('.')[0]+file.name.split('.')[1];
@@ -36,7 +38,7 @@ function initUpLoadify(dataset, s, u) {
 						},
 						'onUploadStart' : function(file) {
 							var id = file.name.split('.')[0]+file.name.split('.')[1];
-							// $('#'+id+'upstatus').html('¿ªÊ¼ÉÏ´«');
+							// $('#'+id+'upstatus').html('å¼€å§‹ä¸Šä¼ ');
 						},
 						'onUploadProgress' : function(file, bytesUploaded,
 								bytesTotal, totalBytesUploaded, totalBytesTotal) {
@@ -57,7 +59,7 @@ function initUpLoadify(dataset, s, u) {
 					});
 }
 
-// ÓĞ´ıÓÅ»¯
+//æœ‰å¾…ä¼˜åŒ–
 function cancelUploadify(name, dataset, id) {
 	var record = dataset.getFirstRecord();
 	var upFileName = new Array();
@@ -72,17 +74,20 @@ function cancelUploadify(name, dataset, id) {
 			break;
 		}
 	}
-	if (flag) {
-		$("#uploadify").uploadify('cancel', '*');
-		alert('ÎÄ¼şÃûÎª:"' + name + '" µÄÎÄ¼ş£¬²»ÔÚÔÊĞíÉÏ´«µÄ±íÃûÖĞ£¬ÇëÑ¡Ôñ±íÖĞ´æÔÚµÄÎÄ¼şÃûÀ´ÉÏ´«£¡');
-		return;
-	}
+	//æ–‡ä»¶ä¸å­˜åœ¨ï¼Œåˆ›å»ºæ–‡ä»¶
+//	if (flag) {
+//		//submitForm(name);
+//		$("#uploadify").uploadify('cancel', '*');
+//		alert('æ–‡ä»¶åä¸º"' + name + '" çš„æ–‡ä»¶ï¼Œä¸åœ¨å…è®¸ä¸Šä¼ çš„è¡¨åä¸­ï¼Œè¯·é€‰æ‹©è¡¨ä¸­å­˜åœ¨çš„æ–‡ä»¶åä¸Šä¼ ï¼');
+//		return;
+//	}
 	var isUp = $("#isUp")[0].checked;
 	var ishave = $('#' + id + 'ishavehave').val();
 	if (!isUp) {
 		if (ishave == "true") {
 			$("#uploadify").uploadify('cancel', '*');
-			alert('ÎÄ¼şÃûÎª:"' + name + '" µÄÎÄ¼şÒÑ´æÔÚ£¬ÇëÎğÖØ¸´ÉÏ´«£¡');
+			alert('æ–‡ä»¶åä¸º:"' + name + '" çš„æ–‡ä»¶å·²å­˜åœ¨ï¼');
 		}
 	}
 }
+

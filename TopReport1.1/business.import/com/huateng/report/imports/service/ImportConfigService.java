@@ -52,23 +52,35 @@ public class ImportConfigService {
 		// 删除
 		for (Iterator it = delList.iterator(); it.hasNext();) {
 			BiImportFileConfig newwrd = (BiImportFileConfig) it.next();
-			String importidFileid = newwrd.getId();
+			//String importidFileid = newwrd.getId();
+			//String fieldName = newwrd.getFileName();
 			// List
 			// delimportList=rootDAO.queryByCondition("importFileId='"+importidFileid+"'",
 			// "BiImportFieldConfig");
-			List delimportList = rootDAO
-					.queryByCondition("from BiImportFieldConfig b where b.importFileId = '" + importidFileid + "'");
+			/*List delimportList = rootDAO
+					.queryByCondition("from BiImportFieldConfig b where b.fieldName = '" + fieldName + "'");
+					//.queryByCondition("from BiImportFieldConfig b where b.importFileId = '" + importidFileid + "'");
 			List delxmlList = rootDAO
 					.queryByCondition("from BiImportXmlConfig b where b.guid ='" + importidFileid + "'");
 			for (int i = 0; i < delimportList.size(); i++) {
 				BiImportFieldConfig delimport = (BiImportFieldConfig) delimportList.get(i);
 				rootDAO.delete(delimport);
+			}*/
+			
+			List delimportList = rootDAO
+					.queryByCondition("from BiImportFileConfig b where b.fileName = '" + newwrd.getFileName() + "'"+" and b.tableName = '"+ newwrd.getTableName() +"'");
+					//.queryByCondition("from BiImportFieldConfig b where b.importFileId = '" + importidFileid + "'");
+			/*List delxmlList = rootDAO
+					.queryByCondition("from BiImportXmlConfig b where b.guid ='" + importidFileid + "'");*/
+			for (int i = 0; i < delimportList.size(); i++) {
+				BiImportFileConfig delimport = (BiImportFileConfig) delimportList.get(i);
+				rootDAO.delete(delimport);
 			}
-			for (int i = 0; i < delxmlList.size(); i++) {
+			/*for (int i = 0; i < delxmlList.size(); i++) {
 				BiImportXmlConfig delxml = (BiImportXmlConfig) delxmlList.get(i);
 				rootDAO.delete(delxml);
-			}
-			rootDAO.delete(newwrd);
+			}*/
+			//rootDAO.delete(newwrd);
 		}
 	}
 }

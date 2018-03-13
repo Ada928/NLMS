@@ -52,7 +52,7 @@ public class QueryDailyLogCountGetter extends BaseGetter {
 		int pageIndex = getResult().getPage().getCurrentPage();
 		int pageSize = getResult().getPage().getEveryPage();
 
-		String qbrcode = (String) getCommQueryServletRequest().getParameterMap().get("qbrcode");
+		String qbrNo = (String) getCommQueryServletRequest().getParameterMap().get("qbrNo");
 		String startDate = (String) getCommQueryServletRequest().getParameterMap().get("startDate");
 		String endDate = (String) getCommQueryServletRequest().getParameterMap().get("endDate");
 		if (startDate != null && endDate != null) {
@@ -65,17 +65,17 @@ public class QueryDailyLogCountGetter extends BaseGetter {
 		List<Object> list = new ArrayList<Object>();
 		sb.append(" from NsQueryDailyLogCount cont where 1=1 ");
 
-		if (!DataFormat.isEmpty(qbrcode)) {
+		if (!DataFormat.isEmpty(qbrNo)) {
 			sb.append(" and cont.brcode = ? ");
-			list.add(qbrcode);
+			list.add(qbrNo);
 		}
 
 		if (!DataFormat.isEmpty(startDate)) {
-			sb.append(" and cont.countDate>=? ");
+			sb.append(" and cont.createDate>=? ");
 			list.add(DateUtil.stringToDate2(startDate));
 		}
 		if (!DataFormat.isEmpty(endDate)) {
-			sb.append(" and cont.countDate<? ");
+			sb.append(" and cont.createDate<? ");
 			list.add(DateUtil.getStartDateByDays(DateUtil.stringToDate2(endDate), -1));
 		}
 		sb.append(" order by cont.brcode, cont.createDate desc");

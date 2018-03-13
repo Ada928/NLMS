@@ -22,7 +22,7 @@
 							<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btDel" 
 									fieldStr="select,blacklistid,brcode,certificateType,certificateNumber,"+
 										"clientName,clientEnglishName,blacklistType,editUserID,verifyUserID,approveUserID,editDate,"+
-										"verifyDate,approveDate,auditType,auditState,opr"  
+										"verifyDate,approveDate,auditType,auditState,statedes,opr"  
 									width="100%" hasFrame="true"/><br/>
 						</td>
 					</tr>
@@ -51,7 +51,29 @@
 			BankBlackListEdit_dataset.setRecord(record);
 		}
 	}
-
+	
+	//系统刷新单元格
+	function datatable1_statedes_onRefresh(cell, value, record) {
+		if (record) {
+			var auditType = record.getValue("auditType");
+			var auditState = record.getValue("auditState");
+			var id = record.getValue("blacklistid");
+			var select = record.getValue("select");
+		
+			var tempHtml = "<center>";
+			if(auditType == "1" && auditState == "1"){
+				tempHtml += "已保存！可修改";
+			} else if(auditType == "2" && auditState == "1"){
+				tempHtml += "审核已取消！可修改";
+			}else{
+				tempHtml += "已提交！不可修改";
+			}
+			cell.innerHTML = tempHtml + "</center>";
+		} else {
+			cell.innerHTML = "";
+		}
+	}
+	
 	//系统刷新单元格
 	function datatable1_opr_onRefresh(cell, value, record) {
 		if (record) {
@@ -60,15 +82,19 @@
 			var id = record.getValue("blacklistid");
 			var select = record.getValue("select");
 			var tempHtml = "<center>";
-			//if(auditType == "1" || auditType == "2"){
+			if(auditType == "1" && auditState == "1"){
 			tempHtml += "<a href=\"JavaScript:openModifyWindow('" + id
-					+ "')\">修改</a> ";
-			//}
+					+ "')\">修改</a> " ;
+			}else if(auditType == "2" && auditState == "1"){
+				tempHtml += "<a href=\"JavaScript:openModifyWindow('" + id
+					+ "')\">修改</a> " ;
+			}
 			cell.innerHTML = tempHtml + "</center>";
 		} else {
 			cell.innerHTML = "";
 		}
 	}
+	
 
 	//展示对比功能的js
 	function datatable1_blacklistid_onRefresh(cell, value, record) {
@@ -80,11 +106,11 @@
 			cell.innerHTML = "";
 		}
 	}
-
+	
 	function showDetail(id) {
 		//BankBlackListEdit_dataset.setParameter("blacklistid", id);
 		//btDetail.click();
-		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=edit&blacklistid="
+		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=edit&blacklistid="
 				+ id;
 	}
 
@@ -93,21 +119,32 @@
 		BankBlackListEdit_dataset.setParameter("blacklistid", id);
 		btModify.click();
 	}
-
+	
+	
 	function btDel_onClickCheck(button) {
 		var record1 = BankBlackListEdit_dataset.getFirstRecord();
 		BankBlackListEdit_dataset.setParameter("op", "delT");
 		var chk = 0;
+		var chkSta = 0;
 		var bizArr = new Array();
 		while (record1) {
 			var temp = record1.getValue("select");
 			if (temp) {
 				bizArr[chk] = record1.getValue("id");
 				chk++;
+				if(record1.getValue("auditState") != "1"){
+					chkSta++;
+				}
+				
 			}
 			record1 = record1.getNextRecord();
 		}
-
+		
+		if(chkSta != 0){
+			alert(chkSta+"个已提交，不可删除！");
+			return false;
+		}
+		
 		if (chk == 0) {
 			alert("请至少选择一条黑名单记录！");
 			return false;
@@ -119,13 +156,14 @@
 	}
 
 	function btDel_postSubmit(button) {
-		alert("删除黑名单申请提交成功，请等待审核。");
+		alert("删除黑名单成功。");
 		button.url = "#";
 		flushCurrentPage();
 	}
-
+	
 	function btAdd_onClick(button) {
 		BankBlackListEdit_dataset.insertRecord();
+		showWin("新增黑名单信息","${contextPath}/fpages/blacklistManage/ftl/BankBlacklistManage.ftl?op=add","window","flushPage()",window);
 	}
 
 	//刷新当前页

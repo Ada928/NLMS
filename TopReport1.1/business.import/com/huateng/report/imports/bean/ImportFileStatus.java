@@ -8,7 +8,8 @@ public class ImportFileStatus implements java.io.Serializable {
 	private String upStatus;
 	private String progress;
 	private String answer;
-
+	private String importTime;
+	
 	public String getId() {
 		return id;
 	}
@@ -57,4 +58,13 @@ public class ImportFileStatus implements java.io.Serializable {
 		this.answer = answer;
 	}
 
+	public String getImportTime() {
+		return importTime;
+	}
+
+	public void setImportTime(String importTime) {
+		this.importTime = importTime;
+	}
+	
+	
 }

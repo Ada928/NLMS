@@ -80,7 +80,7 @@ public class BankBlackListService {
 	 */
 	public List<NsBankBlackList> getAllBankBlacklist() throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
-		List<NsBankBlackList> list = rootDAO.queryByQL2List("1=1");
+		List<NsBankBlackList> list = rootDAO.queryByQL2List(" from NsBankBlackList where 1=1");
 		for (int i = 0; i < list.size(); i++) {
 			NsBankBlackList bblt = (NsBankBlackList) list.get(i);
 			list.set(i, bblt);
@@ -119,7 +119,7 @@ public class BankBlackListService {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void addEntity(NsBankBlackList bankBlacklist) throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		if (isExists(bankBlacklist.getId())) {

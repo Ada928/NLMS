@@ -49,6 +49,8 @@ import com.huateng.report.imports.model.TOutValue;
 import com.huateng.report.imports.operation.ImportFileOP;
 import com.huateng.report.imports.service.FileImportService;
 
+import east.utils.tools.ColsBean;
+
 /**
  * 导入文件
  *
@@ -650,15 +652,20 @@ public class ImportFile {
 			mapParam.put("guid", curImpFileInfo.getGuid());
 			// 初始化所有字段列表
 			List<Map> rstList = FileImportService.getInstance().getFieldConfig(curImpFileInfo.getGuid());
-			List rstListTemp = FileImportService.getInstance().getColumnMeta(curImpFileInfo.getTableName());
+			List<ColsBean> rstListTemp = FileImportService.getInstance().getColumnMeta(curImpFileInfo.getTableName());
 			for (Object obj : rstList) {
 				BiImportFieldConfig rst = (BiImportFieldConfig) obj;
 				int fieldLenth = 0;
 				for (int i = 0; i < rstListTemp.size(); i++) {
-					Object[] rst2 = (Object[]) rstListTemp.get(i);
-					String colName = (String) rst2[0];
-					if (colName.equalsIgnoreCase(rst.getFieldName())) {
+					//Object[] rst2 = (Object[]) rstListTemp.get(i);
+					//String colName = (String) rst2[0];
+					
+					/*if (colName.equalsIgnoreCase(rst.getFieldName())) {
 						fieldLenth = Integer.parseInt(String.valueOf(rst2[1]));
+						break;
+					}*/
+					if (rstListTemp.get(i).getColumnName().equalsIgnoreCase(rst.getFieldName())) {
+						fieldLenth = Integer.parseInt(String.valueOf(rstListTemp.get(i).getData_length()));
 						break;
 					}
 				}

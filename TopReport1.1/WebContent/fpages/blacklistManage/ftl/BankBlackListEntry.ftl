@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
-<@CommonQueryMacro.page title="本行黑名单查询">
+<@CommonQueryMacro.page title="商行黑名单查询">
 <@CommonQueryMacro.CommonQuery id="BankBlackListEntry" init="true"  submitMode="selected"  navigate="false">
 <table align="center" width="100%">
    	<tr>
@@ -58,7 +58,7 @@
 	}
 
 	function showDetail(id) {
-		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=entry&blacklistid="+id;
+		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=entry&blacklistid="+id;
 	}
 
 	//刷新当前页

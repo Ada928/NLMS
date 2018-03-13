@@ -4,6 +4,7 @@ public class ColsBean {
 	private String tableName;
 	private String columnName;
 	private String columnId;
+	private String data_length;
 
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
@@ -28,4 +29,16 @@ public class ColsBean {
 	public String getColumnId() {
 		return columnId;
 	}
+
+	public String getData_length() {
+		return data_length;
+	}
+
+	public void setData_length(String data_length) {
+		this.data_length = data_length;
+	}
+
+	
+	
+	
 }

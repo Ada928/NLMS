@@ -6,11 +6,14 @@ import java.net.InetSocketAddress;
 import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
+import org.apache.mina.filter.codec.serialization.ObjectSerializationCodecFactory;
 import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.logging.LogLevel;
 import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.SocketAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
+
+import com.cibfintech.cloud.charset.MessageProtocolFactory;
 
 /*
  * @see 服务器启动类,字符串消息测试类
@@ -45,8 +48,8 @@ public class ServerMsgProtocol {
 	public static boolean serverStart() {
 		DefaultIoFilterChainBuilder filterChain = getAcceptor().getFilterChain();
 		// 添加编码过滤器 处理乱码、编码问题
-		// filterChain.addLast("codec", new ProtocolCodecFilter(new
-		// MessageProtocolFactory()));
+		//filterChain.addLast("codec", new ProtocolCodecFilter(new MessageProtocolFactory()));
+		// filterChain.addLast("codec", new ProtocolCodecFilter(new ObjectSerializationCodecFactory()));
 		filterChain.addLast("codec", new ProtocolCodecFilter(new TextLineCodecFactory()));
 		LoggingFilter loggingFilter = new LoggingFilter();
 		loggingFilter.setMessageReceivedLogLevel(LogLevel.INFO);
@@ -54,7 +57,8 @@ public class ServerMsgProtocol {
 		// 添加日志过滤器
 		filterChain.addLast("loger", loggingFilter);
 		// 设置核心消息业务处理器
-		getAcceptor().setHandler(new ServerMessageHandler());
+		//getAcceptor().setHandler(new ServerMessageHandler());
+		getAcceptor().setHandler(new NewServerMessageHandler());     //add by lnx 20171107
 		// KeepAliveMessageFactory heartBeatFactory = new
 		// KeepAliveMessageFactoryImpl();
 		// KeepAliveRequestTimeoutHandler heartBeatHandler = new

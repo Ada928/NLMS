@@ -43,7 +43,7 @@
 
 		<Field id="clientName" desc="客户名字" edittype="text" datatype="string" status="F" xpath="/clientName" />
 		
-		<Field id="clientEnglishName" desc="客户名字" edittype="text" datatype="string" status="F" xpath="/clientEnglishName" />
+		<Field id="clientEnglishName" desc="英文名字" edittype="text" datatype="string" status="F" xpath="/clientEnglishName" />
 
 		<Field id="editDate" desc="编辑日期" edittype="text" datatype="string" status="F" xpath="/editDate" />
 		

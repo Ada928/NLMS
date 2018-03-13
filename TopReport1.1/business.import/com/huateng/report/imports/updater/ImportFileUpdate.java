@@ -26,6 +26,7 @@ import com.huateng.report.imports.common.Constants;
 import com.huateng.report.imports.model.Constant;
 import com.huateng.report.imports.operation.ImportFileOP;
 
+
 public class ImportFileUpdate extends BaseUpdate {
 
 	private static Logger logger = Logger.getLogger(ImportFileUpdate.class.getName());
@@ -38,7 +39,6 @@ public class ImportFileUpdate extends BaseUpdate {
 		Constant pv = null;
 		try {
 			String isImporting = (String) getSessionObject(Constants.IS_IMPORTING);
-
 			// 是否正在导入
 			if (Constants.YES.equals(isImporting)) {
 				ExceptionUtil.throwCommonException("EIMP001");
@@ -49,7 +49,8 @@ public class ImportFileUpdate extends BaseUpdate {
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("ImportFile");
-
+			//UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("ImportFileToTable");
+			
 			ImportFileBean bean = null;
 			while (updateResultBean.hasNext()) {
 				Map<String, String> map = updateResultBean.next();
@@ -60,6 +61,7 @@ public class ImportFileUpdate extends BaseUpdate {
 					pv = new Constant();
 					progress.add(pv);
 					try {
+						
 						OperationContext oc = new OperationContext();
 						oc.setAttribute(ImportFileOP.CMD, ImportFileOP.DO_IMPORT);
 						oc.setAttribute(ImportFileOP.PARAM, bean);
@@ -86,4 +88,6 @@ public class ImportFileUpdate extends BaseUpdate {
 			pv.stopFlag = true;
 		}
 	}
+	
+	
 }

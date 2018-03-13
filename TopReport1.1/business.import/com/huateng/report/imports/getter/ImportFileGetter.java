@@ -17,6 +17,7 @@ import com.huateng.ebank.business.common.PageQueryCondition;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.business.management.common.DAOUtils;
 import com.huateng.ebank.framework.exceptions.CommonException;
+import com.huateng.ebank.framework.util.DateUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.report.imports.bean.ImportFileStatus;
@@ -38,9 +39,12 @@ public class ImportFileGetter extends BaseGetter {
 				Object[] object = (Object[]) it.next();
 				fileConfig = (BiImportFileConfig) object[0];
 				String name = fileConfig.getFileName();
-				fileStatus.setFileName(FileImportUtil.getFileNameFull(importTime, name));
+				//fileStatus.setFileName(FileImportUtil.getFileNameFull(importTime, name));
+				fileStatus.setFileName(FileImportUtil.getFileName(name));
 				fileStatus.setId(fileConfig.getId());
-				if (!FileImportUtil.isExist(importTime, fileStatus.getFileName())) {
+				fileStatus.setImportTime(fileConfig.getImportTime());
+				if (!FileImportUtil.isExist(DateUtil.formatDate8(fileConfig.getImportTime()), fileStatus.getFileName())) {
+					//if (!FileImportUtil.isExist(importTime, fileStatus.getFileName())) {
 					fileStatus.setIsHave("false");
 				} else {
 					fileStatus.setIsHave("true");

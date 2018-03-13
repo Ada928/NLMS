@@ -39,7 +39,7 @@
 									<table frame=void width="100%">
 								      	<tr>
 								      		<td valign="top">
-													<@CommonQueryMacro.DataTable id ="datatable1" fieldStr="roleId[160],roleName" hasFrame="true" height="120" width="100%" readonly="false"/>
+													<@CommonQueryMacro.DataTable id ="datatable1" fieldStr="id[160],roleName" hasFrame="true" height="120" width="100%" readonly="false"/>
 											</td>
 									 	</tr>
 									 </table>

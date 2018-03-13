@@ -41,7 +41,7 @@ public class BiExecConfirmedDetailGetter extends BaseGetter {
 		String brNo = (String) getCommQueryServletRequest().getParameterMap().get("brNo");
 		PageQueryResult queryResult = new PageQueryResult();
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
-		String hql = " from BiExecConfirm model where model.id.workDate='" + DateUtil.dateToNumber(DateUtil.getTbsDay())
+		String hql = " from BiExecConfirm model where model.id.workDate='" + DateUtil.dateToNumber(DateUtil.getCurrentDate())
 				+ "' and model.id.brNo ='" + brNo + "' order by model.id.apptype";
 		List<BiExecConfirm> biExecs = rootdao.queryByQL2List(hql);
 		queryResult.setQueryResult(biExecs);

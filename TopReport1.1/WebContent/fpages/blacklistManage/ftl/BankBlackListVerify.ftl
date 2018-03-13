@@ -59,7 +59,7 @@
 	function showDetail(id) {
 		//BankBlackListVerify_dataset.setParameter("blacklistid", id);
 		//btDetail.click();
-		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=verify&blacklistid="
+		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=verify&blacklistid="
 				+ id;
 	}
 

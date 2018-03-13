@@ -55,7 +55,7 @@
 		<param-name>sessionBetweenSessionTime</param-name>
 		<param-value>6000000</param-value>
 	</context-param>
-
+	
 	<filter>
 		<filter-name>transfilter</filter-name>
 		<filter-class>com.huateng.ebank.framework.web.TransFilter</filter-class>

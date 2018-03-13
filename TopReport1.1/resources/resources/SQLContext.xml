@@ -7,8 +7,18 @@
             <value>oracle.jdbc.driver.OracleDriver</value>
         </property>
         <!-- <property name="driverUrl"> <value>jdbc:jtds:sqlserver://130.252.15.39:1433/draft</value> </property> -->
-        <property name="jdbcUrl">
+        <!-- <property name="jdbcUrl">
             <value>jdbc:oracle:thin:@localhost:1521:ORCL</value>
+        </property>
+        <property name="user">
+            <value>System</value>
+        </property>
+        <property name="password">
+            <value>nx</value>
+        </property> -->
+         
+        <property name="jdbcUrl">
+            <value>jdbc:oracle:thin:@163.1.8.61:1521:east</value>
         </property>
         <property name="user">
             <value>report</value>
@@ -24,7 +34,7 @@
         </property>
         <property name="initialPoolSize">
             <value>10</value>
-        </property>
+        </property> 
         <property name="maxIdleTime">
             <value>60</value>
         </property>
@@ -34,6 +44,12 @@
         <property name="maxStatements">
             <value>200</value>
         </property>
+        <!-- <property name="checkoutTimeout">
+			<value>3000</value>
+		</property> -->
+        <!-- <property name="unreturnedConnectionTimeout">   
+			<value>3000</value>
+		</property> -->
         <property name="maxStatementsPerConnection">
             <value>5</value>
         </property>

@@ -1,5 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="" >
+<@CommonQueryMacro.page title="数据手工上传" >
     <link rel="stylesheet" type="text/css" href="${contextPath}/templets/updata/uploadify.css">  
    	<script language="javascript" src="${contextPath}/templets/easyui/jquery-1.7.2.min.js"></script>    
     <script type="text/javascript" src="${contextPath}/templets/updata/jquery.uploadify-3.1.min.js"></script>   
@@ -20,7 +20,7 @@
   </tr>
   <tr>
     <td>
-    <@CommonQueryMacro.DataTable id="uptable" fieldStr="fileName[100],isHave[70],progress[310]"  width="100%" hasFrame="true" height="300" readonly="true"/>
+    <@CommonQueryMacro.DataTable id="uptable" fieldStr="fileName[100],isHave[70],importTime,progress[310]"  width="100%" hasFrame="true" height="300" readonly="true"/>
     </td>
   </tr>
 </table>	
@@ -30,7 +30,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {	
 	       var swf='${contextPath}/templets/updata/uploadify.swf';
-	       var uploader='${contextPath}/scripts/uploadify?someKey="a"';	  
+	       var uploader='${contextPath}/scripts/uploadify?someKey="a"';
 		   initUpLoadify(getDatasetByID('UpData_dataset'),swf,uploader);
      });
      
@@ -74,7 +74,6 @@
                    cell.innerHTML='<div id="'+ id+ '" class="uploadify-queue-item" style="display:none;"><div style="float:left" class="uploadify-progress">'+
                      '<div class="uploadify-progress-bar"></div></div><div style="float:right"><span id="'+id+'span"></span></div></div>';   
                        
-                  
               }
              }
              

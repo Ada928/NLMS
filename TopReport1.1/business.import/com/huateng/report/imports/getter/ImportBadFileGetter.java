@@ -23,7 +23,7 @@ public class ImportBadFileGetter extends BaseGetter {
 		try {
 			// 拼装错误文件路径，格式如：/home/jgbs/source_data/20150228/error
 			String filePath = ReportUtils.getSysParamsValue(Constants.PARAM_DIR, Constants.PARAM_DIR_0001, "D:/bad");
-			String workdate = DataFormat.dateToNumber(DateUtil.getTbsDay());
+			String workdate = DataFormat.dateToNumber(DateUtil.getCurrentDate());
 			filePath = filePath.substring(0, filePath.lastIndexOf("/")) + "/source_data/" + workdate
 					+ filePath.substring(filePath.lastIndexOf("/"));
 			File dir = new File(filePath);

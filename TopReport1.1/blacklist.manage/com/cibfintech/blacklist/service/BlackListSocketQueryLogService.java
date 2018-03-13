@@ -50,8 +50,32 @@ public class BlackListSocketQueryLogService {
 
 	public BlackListSocketQueryLogService() {
 	}
-
-	@SuppressWarnings({ "unchecked", "deprecation" })
+	@SuppressWarnings({ "deprecation" })
+	public void saveBlackListSocketQueryLogs(String seqno, String accountCode,String certificateType, String certificateNumber, String clientName,String clientEnlishName, String bankCode,String ip)
+			throws CommonException {
+		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
+		//GlobalInfo gi = GlobalInfo.getCurrentInstance();
+		//插入表REPORT.NLMS_BLACKLIST_SOCK_QUERY_LOG
+		NsBlackListSocketQueryLog bean = new NsBlackListSocketQueryLog();
+		bean.setId(String.valueOf(GenerateID.getId()));
+		bean.setAccountCode(accountCode);
+		bean.setCertificateType(certificateType);
+		bean.setCertificateNumber(certificateNumber);
+		bean.setSeqno(seqno);
+		bean.setSysno(ip);     //请求方的IP
+		//bean.setCardBkBookNo(cardBkBookNo);
+		bean.setClientName(clientName);
+		bean.setClientEnglishName(clientEnlishName);
+		bean.setBankCode(bankCode);
+		bean.setCreateDate(DateUtil.getCurrentDate());
+		try {
+			hqldao.getHibernateTemplate().save(bean);
+		} catch (Exception e) {
+			logger.error("update(saveBlackListSocketQueryLog)", e);
+			ExceptionUtil.throwCommonException(e.getMessage(), ErrorCode.ERROR_CODE_TLR_INFO_INSERT, e);
+		}
+	}
+	@SuppressWarnings({ "deprecation", "unused" })
 	public void saveBlackListSocketQueryLog(String sysno, String tranCode, String seqno, String accountCode, String certificateType, String certificateNumber)
 			throws CommonException {
 		HQLDAO hqldao = BaseDAOUtils.getHQLDAO();
@@ -73,7 +97,7 @@ public class BlackListSocketQueryLogService {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public PageQueryResult pageQueryByHql(int pageIndex, int pageSize, String sb, List list) throws CommonException {
 		BlackListDAO rootDAO = BlackListDAOUtils.getBlackListDAO();
 		PageQueryResult pageQueryResult = null;

@@ -54,7 +54,7 @@
 			primary="true" type="记录状态" size="12" default="" xpath="/st" tip="记录状态" translated="DATA_DIC.3001" />
 	</Fields>
 	<Where>
-		<TextBox id="qroleName" type="String" dataType="" operation="EQ" size="8" desc="岗位名称" tip="岗位名称" method="genLikeP"
+		<TextBox id="qroleName" type="String" dataType="" operation="EQ" size="20" desc="岗位名称" tip="岗位名称" method="genLikeP"
 			index="1" function="" width="" default="" scale="" require="" readOnly="" />
 	</Where>
 	<Operations>

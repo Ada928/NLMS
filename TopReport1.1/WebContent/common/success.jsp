@@ -47,9 +47,9 @@ String type = request.getParameter("type");
     		var ct = <%=count%>;
     		var span = document.getElementById("countspane");
     		function backApprove(){
-    			<%--yyxyz 2017-09-13  修改成  --%>
+    			<!--yyxyz 2017-09-13  修改成  -->
     			window.location="<%=path %>/fpages/system/ftl/DirectorConfirm.ftl";
-				<%--window.location.href="<%=path %>/fpages/system/ftl/DirectorConfirm.ftl"; --%> 
+				<!--window.location.href="<%=path %>/fpages/system/ftl/DirectorConfirm.ftl"; --> 
    		}
     		var t = window.setInterval(function(){
     		try{

@@ -18,6 +18,7 @@ import com.huateng.report.imports.bean.ImportFileBean;
 import com.huateng.report.imports.common.Constants;
 import com.huateng.report.imports.common.FileImportUtil;
 import com.huateng.report.imports.logic.ImportFile;
+import com.huateng.report.imports.logic.ImportFileToTable;
 import com.huateng.report.imports.logic.ImportFileVar;
 import com.huateng.report.imports.model.Constant;
 import com.huateng.report.imports.model.SqlInfo;
@@ -219,12 +220,20 @@ public class ImportFileOP extends BaseOperation {
 		curImpFileInfo.setFileFullName(bean.getFileNameFull());
 
 		curImpFileInfo.setBeginTime(FileImportUtil.getCurTime());
-		ImportFile importFile = new ImportFile();
+		//ImportFile importFile = new ImportFile();
+		ImportFileToTable importFile = new ImportFileToTable();
 		boolean fileFlag = false;
 		try {
 			// 文件导入处理
 			fileFlag = importFile.importFile(curImpFileInfo, FileImportUtil.getFilePath(curImpFileInfo.getTradeDate()),
 					pv);
+			if(!fileFlag){
+				if ((bean.getImpStatus() != null && !bean.getImpStatus().equals("2")) && !bean.isReImport()) {
+					ExceptionUtil.throwCommonException("文件名:[" + pv.currentFile + "],导入状态:[失败],请检查导入文件!",
+							new Object[] { bean.getFileNameFull() });
+				}
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			ExceptionUtil.throwCommonException("EIMP003", new Object[] { bean.getFileNameFull() });

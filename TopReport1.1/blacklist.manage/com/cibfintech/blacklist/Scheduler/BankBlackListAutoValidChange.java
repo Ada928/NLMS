@@ -28,6 +28,7 @@ public class BankBlackListAutoValidChange {
 		BankBlackListAuditStateService bankBlackListAuditStateService = BankBlackListAuditStateService.getInstance();
 		List<NsBankBlackList> blacklist = blacklistService.getAllBankBlacklist();
 		for (NsBankBlackList bblt : blacklist) {
+			if(bblt.getValidDate() != null && !"".equals(bblt.getValidDate())){
 			if (date.getTime() > DateUtil.getNextDayWithTime(bblt.getValidDate()).getTime()) {
 				bblt.setApprove(SystemConstant.FALSE);
 				bblt.setShare(SystemConstant.FALSE);
@@ -37,15 +38,20 @@ public class BankBlackListAutoValidChange {
 				bblt.setValidDate(DateUtil.getDayAfter100Years());
 
 				List<NsBankBlackListAuditState> auditStates = bankBlackListAuditStateService
-						.getBankBankListAuditStateByHql(" from NsBankBlackListAuditState po where po.blacklistID = " + bblt.getId());
-				NsBankBlackListAuditState auditState = auditStates.get(0);
-				auditState.setEditUserID(SystemConstant.AUTO_OPERATER);
-				auditState.setAuditType(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.EDIT.value);
-				auditState.setAuditState(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDING.value);
-				auditState.setEditDate(new Date());
-
+						.getBankBankListAuditStateByHql(" from NsBankBlackListAuditState po where po.blacklistID = '" + bblt.getId()+"'");
+				if(auditStates != null && auditStates.size() != 0 ){           //判断非空 ,因为黑名单表数据和编辑表数据有差异
+					NsBankBlackListAuditState auditState = auditStates.get(0);      
+					auditState.setEditUserID(SystemConstant.AUTO_OPERATER);
+					auditState.setAuditType(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.EDIT.value);
+					auditState.setAuditState(ReportEnum.BANK_BLACKLIST_AUDIT_STATE.EDING.value);
+					auditState.setEditDate(new Date());
+					bankBlackListAuditStateService.modOrAddEntity(auditState);
+				}
+				
 				blacklistService.modOrAddEntity(bblt);
-				bankBlackListAuditStateService.modOrAddEntity(auditState);
+				
+			}
+			
 			}
 		}
 	}

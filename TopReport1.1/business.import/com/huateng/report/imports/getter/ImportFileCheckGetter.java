@@ -6,12 +6,14 @@ import java.util.List;
 import org.apache.commons.beanutils.BeanUtils;
 
 import resource.bean.report.BiImportFileConfig;
+import resource.bean.report.BiImportLog;
 import resource.report.dao.ROOTDAOUtils;
 
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
+import com.huateng.ebank.framework.util.DateUtil;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 import com.huateng.report.imports.bean.ImportFileBean;
@@ -32,21 +34,32 @@ public class ImportFileCheckGetter extends BaseGetter {
 			List list = new ArrayList();
 
 			ImportFileBean bean = null;
-			String workdate = FileImportUtil.getWorkDate(getCommQueryServletRequest().getParameter("qWorkDate"));
+			//String workdate = FileImportUtil.getWorkDate(getCommQueryServletRequest().getParameter("qWorkDate"));
 			for (int i = 0; i < rs.size(); i++) {
 				BiImportFileConfig bfc = (BiImportFileConfig) rs.get(i);
 				bean = new ImportFileBean();
 				BeanUtils.copyProperties(bean, bfc);
-
-				bean.setFileNameFull(FileImportUtil.getFileNameFull(workdate, bean.getFileName()));
+				
+				//获取导入日期
+				String workdate = DateUtil.formatDate8(bfc.getImportTime());
+				//bean.setFileNameFull(FileImportUtil.getFileNameFull(workdate, bean.getFileName()));
+				bean.setFileNameFull(FileImportUtil.getFileName(bean.getFileName()));
 				if (bean.getFileName() == null) {
 					bean.setExist(false);
 				} else {
 					bean.setExist(FileImportUtil.isExist(workdate, bean.getFileNameFull()));
 				}
 				bean.setWorkDate(workdate);
-				bean.setImpStatus(FileImportService.getInstance().getImportLogStatus(bean.getFileNameFull(),
-						bean.getTableName(), workdate));
+				BiImportLog bil = FileImportService.getInstance().getImportLogStatus(bean.getFileNameFull(),
+						bean.getTableName(), workdate);
+				if(null != bil){
+					bean.setImpStatus(bil.getImportStatus());
+					bean.setImportime(DateUtil.get19Date(bil.getBeginTime()));
+				}else{
+					bean.setImpStatus(Constants.IMPORT_STATUS_PROCESS);
+					bean.setImportime("");
+				}
+					
 				bean.setImporting(Constants.YES.equals(isImporting));
 				list.add(bean);
 			}

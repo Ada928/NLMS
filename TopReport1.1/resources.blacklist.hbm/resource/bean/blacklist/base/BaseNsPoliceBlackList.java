@@ -38,6 +38,11 @@ public class BaseNsPoliceBlackList implements Serializable {
 	public static String PROP_LAST_MODIFY_DATE = "lastModifyDate";
 	public static String PROP_LAST_MODIFY_OPERATOR = "lastModifyOperator";
 	public static String PROP_REMARKS = "remarks";
+	public static String PROP_CARD_BKBOOK_NO = "cardBkBookNo";
+	public static String PROP_MDLXBM = "mdlxbm";
+	public static String PROP_MDLXRY = "mdlxry";
+	public static String PROP_ZJZL = "zjzl";
+	public static String PROP_CZF = "czf";
 
 	// Fields
 	private int hashCode = Integer.MIN_VALUE;
@@ -65,6 +70,11 @@ public class BaseNsPoliceBlackList implements Serializable {
 	private Date lastModifyDate;
 	private String lastModifyOperator;
 	private String remarks;
+	private String cardBkBookNo;
+	private String mdlxbm;
+	private String mdlxry;
+	private String zjzl;
+	private String czf;
 
 	// Constructors
 
@@ -273,6 +283,46 @@ public class BaseNsPoliceBlackList implements Serializable {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+	
+	public String getCardBkBookNo() {
+		return this.cardBkBookNo;
+	}
+
+	public void setCardBkBookNo(String cardBkBookNo) {
+		this.cardBkBookNo = cardBkBookNo;
+	}
+	
+	public String getMdlxbm() {
+		return mdlxbm;
+	}
+
+	public void setMdlxbm(String mdlxbm) {
+		this.mdlxbm = mdlxbm;
+	}
+
+	public String getMdlxry() {
+		return mdlxry;
+	}
+
+	public void setMdlxry(String mdlxry) {
+		this.mdlxry = mdlxry;
+	}
+
+	public String getZjzl() {
+		return zjzl;
+	}
+
+	public void setZjzl(String zjzl) {
+		this.zjzl = zjzl;
+	}
+
+	public String getCzf() {
+		return czf;
+	}
+
+	public void setCzf(String czf) {
+		this.czf = czf;
 	}
 
 	public boolean equals(Object obj) {

@@ -7,7 +7,7 @@
 	txnlogflag="true" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.bankblacklist.getter.BankBlackListEntryGetter">
 
 	<Include id="BankParam" />
-	<PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="批量下载-商行黑名单列表" perfetch="15" />
+	<PageQryExp type="XLS" limit="true" encoding="GBK" url="/trans/qryExp.do" desc="批量下载-商行黑名单列表" perfetch="15" />
 
 	<Fields>
 		<Field id="id" desc="黑名单编号" edittype="text" datatype="string" status="F" xpath="/id" />
@@ -79,10 +79,10 @@
 	</Fields>
 
 	<Where>
-		<TextBox id="qClientName" desc="黑名单用户名" edittype="text" datatype="string" require="" index="0" />
+		<TextBox id="qClientName" desc="黑名单用户名" edittype="text" datatype="string" require="" size="20" index="0" />
 		<Option id="qCertificateType" default="11" desc="证件种类" type="certificateType" tip="" method="None" index="1"
 			translated="DATA_DIC.21" />
-		<TextBox id="qCertificateNumber" desc="证件号码" edittype="text" datatype="string" index="2" />
+		<TextBox id="qCertificateNumber" desc="证件号码" edittype="text" datatype="string" size="32" index="2" />
 		<Option id="qBlacklistType" default="2" desc="名单性质" type="blacklistType" tip="" method="None" index="3"
 			translated="LIST:0,白名单;1,灰名单;2,黑名单" />
 		<Option id="qApprove" default="" desc="是否审批通过" type="approve" tip="" method="None" index="4" translated="LIST:T,通过;F,未通过" />

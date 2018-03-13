@@ -15,7 +15,7 @@
 	</tr>
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" fieldStr="select[40],fileNameFull,tableName,exist,impStatus,progress[300]"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" fieldStr="select[40],fileNameFull,tableName,exist,importime,impStatus,progress[300]"  width="100%" hasFrame="true" height="300" readonly="true"/>
 		</td>
 	</tr>
 	<tr>
@@ -141,6 +141,7 @@ function progress() {
 				}
 				if (data.errorMessage) {
 					getRecordById(data.id).setValue2('impStatus',0);
+					alert(data.errorMessage);
 				} else {
 					getRecordById(data.id).setValue2('impStatus',1);
 				}

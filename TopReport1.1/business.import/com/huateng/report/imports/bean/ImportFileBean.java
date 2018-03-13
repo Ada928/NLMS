@@ -18,6 +18,8 @@ public class ImportFileBean extends BiImportFileConfig implements Serializable {
 	private String workDate;
 
 	private boolean importing;
+	
+	private String importime;
 
 	public boolean isReImport() {
 		return reImport;
@@ -75,4 +77,13 @@ public class ImportFileBean extends BiImportFileConfig implements Serializable {
 		this.importing = importing;
 	}
 
+	public String getImportime() {
+		return importime;
+	}
+
+	public void setImportime(String importime) {
+		this.importime = importime;
+	}
+	
+	
 }

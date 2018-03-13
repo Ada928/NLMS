@@ -44,7 +44,32 @@ public class FileImportUtil {
 		}
 		return filepath;
 	}
+	
+	/**
+	 * 获取不拼接的文件名
+	 * @param workdate
+	 * @param filename
+	 * @return
+	 */
+	
+	public static String getFileName( String filename) {
+		int ind = filename.lastIndexOf(".");
+		String filepath = null;
+		if (ind == -1) {
+			filepath = filename;
+		} else {
+			// modified by xuhong 2015-3-27添加拼接xls文件名 begin
+			if (filename.endsWith("xls")) {
+				filepath = filename.substring(0, ind) + filename.substring(ind);
+			} else {
+				filepath = filename.substring(0, ind - 4) + "." + filename.substring(ind - 4);
+			}
+			// modified by xuhong 2015-3-27添加拼接xls文件名 end
 
+		}
+		return filepath;
+	}
+	
 	// 工作日期的格式为 121030
 	public static String getFileNameFullWithout(String workdate, String filename) {
 		int ind = filename.lastIndexOf(".");

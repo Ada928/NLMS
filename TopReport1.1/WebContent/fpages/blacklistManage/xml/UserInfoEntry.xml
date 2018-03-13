@@ -6,7 +6,7 @@
 	btnNm="aaa" databusid="DEMO" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.userinfo.getter.UserInfoGetter">
 	<Include id="BankParam" />
 
-	<PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="数据导出-用户信息" />
+	<PageQryExp type="XLS" limit="true" encoding="GBK" url="/trans/qryExp.do" desc="数据导出-用户信息" />
 
 	<Fields>
 		<!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
@@ -72,9 +72,9 @@
 	</Fields>
 
 	<Where>
-		<TextBox id="qtlrno" type="String" dataType="" operation="EQ" size="8" desc="用户号" tip="用户号" method="genLikeP"
+		<TextBox id="qtlrno" type="String" dataType="" operation="EQ" size="20" desc="用户号" tip="用户号" method="genLikeP"
 			index="0" function="" width="" default="" scale="" require="" readOnly="" rules="" errmsg="用户号必须大于八位" />
-		<TextBox id="qtlrnoName" type="String" dataType="" operation="EQ" size="8" desc="用户名称" tip="用户名称" method="genLikeP"
+		<TextBox id="qtlrnoName" type="String" dataType="" operation="EQ" size="20" desc="用户名称" tip="用户名称" method="genLikeP"
 			index="1" function="" width="" default="" scale="" require="" readOnly="" />
 	</Where>
 

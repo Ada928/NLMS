@@ -16,6 +16,11 @@
         <action path="/pageqryexp/DownloadAction" type="com.huateng.ebank.business.pageqryexp.action.FileDownloadAction">
             <forward name="success" path="/common/success.jsp" />
         </action>
+		
+		<action path="/pageqryexp/FileInsertAction" type="com.huateng.ebank.business.pageqryexp.action.FileInsertAction">
+            <forward name="success" path="/common/success.jsp" />
+            <forward name="error" path="/common/error.jsp" />
+        </action>
     </action-mappings>
 </struts-config>
 

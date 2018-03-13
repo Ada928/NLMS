@@ -66,7 +66,7 @@
 	function showDetail(id) {
 		//BankBlackListApprove_dataset.setParameter("blacklistid", id);
 		//btDetail.click();
-		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=approve&blacklistid="+id;
+		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=approve&blacklistid="+id;
 	}
 
 	function btApprove_onClickCheck() {

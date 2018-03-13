@@ -44,7 +44,7 @@
 	function showDetail(id) {
 		//BankBlackListEdit_dataset.setParameter("blacklistid", id);
 		//btDetail.click();
-		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=shareAll&blacklistid="
+		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=shareAll&blacklistid="
 				+ id;
 	}
 </script>

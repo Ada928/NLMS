@@ -151,7 +151,7 @@
 	function showDetail(id) {
 		//BankBlackListShare_dataset.setParameter("blacklistid", id);
 		//btDetail.click();
-		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlacklistDetail.ftl?op=detail&reType=share&blacklistid="+id;
+		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=share&blacklistid="+id;
 	}
 
 	function btShare_onClickCheck() {

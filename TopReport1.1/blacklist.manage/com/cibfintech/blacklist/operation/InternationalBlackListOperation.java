@@ -3,10 +3,12 @@ package com.cibfintech.blacklist.operation;
 import java.io.IOException;
 
 import resource.bean.blacklist.NsBankBLOperateLog;
+import resource.bean.blacklist.NsInternationBLOperateLog;
 import resource.bean.blacklist.NsInternationalBlackList;
 import resource.bean.report.SysTaskInfo;
 
 import com.cibfintech.blacklist.bankblacklist.service.BankBlackListOperateLogService;
+import com.cibfintech.blacklist.internationblacklist.service.InternationBlackListOperateLogService;
 import com.cibfintech.blacklist.internationblacklist.service.InternationalBlackListService;
 import com.cibfintech.blacklist.util.GenerateID;
 import com.huateng.common.log.HtLog;
@@ -143,8 +145,10 @@ public class InternationalBlackListOperation extends BaseOperation {
 
 	// 记录查询日志
 	private void recordOperateLog(GlobalInfo globalinfo, String operateType, String message) {
-		BankBlackListOperateLogService service = BankBlackListOperateLogService.getInstance();
-		NsBankBLOperateLog bean = new NsBankBLOperateLog();
+		//BankBlackListOperateLogService service = BankBlackListOperateLogService.getInstance();
+		//NsBankBLOperateLog bean = new NsBankBLOperateLog();
+		InternationBlackListOperateLogService service = InternationBlackListOperateLogService.getInstance();
+		NsInternationBLOperateLog bean = new NsInternationBLOperateLog();
 		bean.setBrcode(globalinfo.getBrcode());
 		bean.setId(String.valueOf(GenerateID.getId()));
 		bean.setQueryType("");

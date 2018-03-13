@@ -76,9 +76,13 @@
 
     function showDetail(id) {
        //locate(id);
-       btDetail.click();
+       //btDetail.click();
+       window.location = "${contextPath}/fpages/blacklistManage/ftl/PoliceBlackListDetail.ftl?op=detail&reType=manage&id="+id;
+       
     }
-
+	
+	
+	
     function btAdd_onClick(id) {
 		//locate(id);
 		PoliceBlackList_dataset.insertRecord();
