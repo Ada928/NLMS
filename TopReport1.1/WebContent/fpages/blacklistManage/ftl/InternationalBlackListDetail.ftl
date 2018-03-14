@@ -20,11 +20,12 @@
  	
  	var reType = "${reType}";
  	function btClose_onClick(button){
- 		if(reType == "query"){
-			window.location = "${contextPath}/fpages/blacklistManage/ftl/InternationalBlackListQuery.ftl";
-		} else if(reType == "manage"){
-			window.location = "${contextPath}/fpages/blacklistManage/ftl/InternationalBlackList.ftl";
-		} 
+ 		closeWin();
+// 		if(reType == "query"){
+//			window.location = "${contextPath}/fpages/blacklistManage/ftl/InternationalBlackListQuery.ftl";
+//		} else if(reType == "manage"){
+//			window.location = "${contextPath}/fpages/blacklistManage/ftl/InternationalBlackList.ftl";
+//		} 
  	}
  	
 </script>

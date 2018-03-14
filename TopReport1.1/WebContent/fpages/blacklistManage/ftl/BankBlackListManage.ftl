@@ -63,6 +63,7 @@
     //保存后刷新当前页
     function btSave_postSubmit(button) {
     	alert("保存成功。");
+    	closeWin(true);
     }
     
     
@@ -91,10 +92,16 @@
         }
         return true;
     }
-
-    //保存后刷新当前页
+	
+	//取消
+	function btCancel_onClick(button){
+		closeWin();
+	}
+	
+    //提交后刷新当前页
     function btQueryVerify_postSubmit(button) {
     	alert("提交审核成功，请等待审核通过。");
+    	closeWin(true);
     }
 
 </script>

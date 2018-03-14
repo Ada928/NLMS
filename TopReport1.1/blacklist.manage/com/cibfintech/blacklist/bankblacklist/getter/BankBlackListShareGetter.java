@@ -1,6 +1,7 @@
 package com.cibfintech.blacklist.bankblacklist.getter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import resource.bean.blacklist.NsBankBlackList;
@@ -44,7 +45,7 @@ public class BankBlackListShareGetter extends BaseGetter {
 
 	protected PageQueryResult getData() throws Exception {
 		String qShare = getCommQueryServletRequest().getParameter("qShareType");
-		qShare = qShare == null ? "" : qShare;
+		//qShare = qShare == null ? "" : qShare;
 		StringBuffer hql = new StringBuffer(" from NsBankBlackListAuditState po where 1=1");
 		hql.append(" order by po.auditType desc, po.auditState desc, po.editDate desc");
 
@@ -52,29 +53,44 @@ public class BankBlackListShareGetter extends BaseGetter {
 		BankBlackListAuditStateService auditStateService = BankBlackListAuditStateService.getInstance();
 
 		List<NsBankBlackListAuditState> auditStates = auditStateService.getBankBankListAuditStateByHql(hql.toString());
+		
+		StringBuffer hql2 = new StringBuffer(" from NsBankBlackList bblt where 1=1");
+		hql2.append(" and bblt.del= 'F'");
+		//1:已分享  2：未分享
+		if("2".equals(qShare)){    
+			hql2.append(" and bblt.share= 'F'");
+		}else if("1".equals(qShare)){
+			hql2.append(" and bblt.share= 'T'");
+		}
+		HashMap<String, NsBankBlackList> blacklistMap = BankBlackListService.getInstance().getBankBlackListByHql(hql2.toString());
 
 		List<BankBlackListAuditStateView> auditStateViews = new ArrayList<BankBlackListAuditStateView>();
 		for (NsBankBlackListAuditState auditState : auditStates) {
 			BankBlackListAuditStateView view = new BankBlackListAuditStateView();
-			NsBankBlackList blackList = service.selectById(auditState.getBlacklistID());
-			view.setId(auditState.getId());
-			view.setAuditState(auditState.getAuditState());
-			view.setAuditType(auditState.getAuditType());
-			view.setBlacklistID(auditState.getBlacklistID());
-			view.setBrcode(auditState.getBrcode());
-			view.setEditUserID((auditState.getEditUserID()));
-			view.setVerifyUserID(auditState.getVerifyUserID());
-			view.setApproveUserID(auditState.getApproveUserID());
-			view.setEditDate(auditState.getEditDate());
-			view.setVerifyDate(auditState.getVerifyDate());
-			view.setApproveDate(auditState.getApproveDate());
-			view.setBlacklistType(blackList.getBlacklistType());
-			view.setCertificateNumber(blackList.getCertificateNumber());
-			view.setCertificateType(blackList.getCertificateType());
-			view.setClientName(blackList.getClientName());
-			view.setClientEnglishName(blackList.getClientEnglishName());
-
-			auditStateViews.add(view);
+			//NsBankBlackList blackList = service.selectById(auditState.getBlacklistID());
+			NsBankBlackList blackList = blacklistMap.get(auditState.getBlacklistID());
+			
+			if (null != blackList && !"".equals(blackList)){
+				view.setId(auditState.getId());
+				view.setAuditState(auditState.getAuditState());
+				view.setAuditType(auditState.getAuditType());
+				view.setBlacklistID(auditState.getBlacklistID());
+				view.setBrcode(auditState.getBrcode());
+				view.setEditUserID((auditState.getEditUserID()));
+				view.setVerifyUserID(auditState.getVerifyUserID());
+				view.setApproveUserID(auditState.getApproveUserID());
+				view.setEditDate(auditState.getEditDate());
+				view.setVerifyDate(auditState.getVerifyDate());
+				view.setApproveDate(auditState.getApproveDate());
+				view.setBlacklistType(blackList.getBlacklistType());
+				view.setCertificateNumber(blackList.getCertificateNumber());
+				view.setCertificateType(blackList.getCertificateType());
+				view.setClientName(blackList.getClientName());
+				view.setClientEnglishName(blackList.getClientEnglishName());
+	
+				auditStateViews.add(view);
+			}
+			
 		}
 
 		PageQueryResult pageQueryResult = new PageQueryResult();

@@ -207,7 +207,13 @@ public class BankBlackListOperation extends BaseOperation {
 				} else if (auditState.getAuditType().equals(ReportEnum.BANK_BLACKLIST_AUDIT_TYPE.INVALID.value)) {
 					bean.setValid(SystemConstant.FALSE);
 				}
-				bean.setApprove(SystemConstant.TRUE);
+				if (approve.equals("approveT")){
+					bean.setApprove(SystemConstant.TRUE);
+					
+				}else if (approve.equals("approveF")){
+					bean.setApprove(SystemConstant.FALSE);
+				}
+				
 				bean.setLastModifyOperator(globalInfo.getTlrno());
 				bean.setLastModifyDate(DateUtil.getCurrentDateWithTime());
 				service.modEntity(bean);

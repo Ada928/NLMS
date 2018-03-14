@@ -112,9 +112,10 @@ public class BankBlackListEditGetter extends BaseGetter {
 
 		for (NsBankBlackListAuditState auditState : auditStates) {
 			BankBlackListAuditStateView view = new BankBlackListAuditStateView();
-
+			
 			NsBankBlackList blackList = blacklistMap.get(auditState.getBlacklistID());
 			
+			if (null != blackList && !"".equals(blackList)){
 			view.setId(auditState.getId());
 			view.setAuditState(auditState.getAuditState());
 			view.setAuditType(auditState.getAuditType());
@@ -130,14 +131,16 @@ public class BankBlackListEditGetter extends BaseGetter {
 //			if (null == blackList)
 //				break;
 			//修改后展示全部编辑后的所有数据
-			if (null != blackList){
+				
 				view.setBlacklistType(blackList.getBlacklistType());
 				view.setCertificateNumber(blackList.getCertificateNumber());
 				view.setCertificateType(blackList.getCertificateType());
 				view.setClientName(blackList.getClientName());
 				view.setClientEnglishName(blackList.getClientEnglishName());
+				
+				auditStateViews.add(view);
 			}
-			auditStateViews.add(view);
+			
 		}
 
 		PageQueryResult pageQueryResult = new PageQueryResult();

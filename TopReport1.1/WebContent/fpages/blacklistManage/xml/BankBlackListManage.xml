@@ -80,14 +80,13 @@
 
 	<Operations>
 		<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
-			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListUpdate" url="/fpages/blacklistManage/ftl/BankBlackListEdit.ftl"
+			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListUpdate" url="#"
 			icon="icon-save" />
 		
 		<Button id="btQueryVerify" name="btQueryVerify" desc="编辑完成，提交审核" operation="asysubmit"
-			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListUpdate" url="/fpages/blacklistManage/ftl/BankBlackListEdit.ftl"
+			updateClass="com.cibfintech.blacklist.bankblacklist.updater.BankBlackListUpdate" url="#"
 			icon="icon-save" />
 
-		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform" url="/fpages/blacklistManage/ftl/BankBlackListEdit.ftl"
-			txn="" icon="icon-back" />
+		<Button id="btCancel" name="btCancel" desc="取消" operation="" url="" txn="" icon="icon-back" />
 	</Operations>
 </CommQry>

@@ -10,7 +10,7 @@
 				<table frame=void width="100%">
 					<tr>
 						<td colspan="2"><@CommonQueryMacro.DataTable id="datatable1" paginationbar="-"
-							fieldStr="select,blacklistid,brcode,certificateType,certificateNumber,"+
+							fieldStr="select,id,blacklistid,brcode,certificateType,certificateNumber,"+
 							"clientName,clientEnglishName,blacklistType,editUserID,verifyUserID,approveUserID,editDate,"+
 							"auditType,auditState,verifyDate,approveDate" width="100%" hasFrame="true"/><br />
 						</td>
@@ -50,17 +50,15 @@
 		if (record) {
 			var id = record.getValue("blacklistid");
 			cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "')\">"
-					+ value + "</a>";
+					+ "查看详细" + "</a>";
 		} else {
 			cell.innerHTML = "";
 		}
 	}
 
 	function showDetail(id) {
-		//BankBlackListVerify_dataset.setParameter("blacklistid", id);
-		//btDetail.click();
-		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=verify&blacklistid="
-				+ id;
+		showWin("黑名单详细信息","${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=verify&blacklistid="+ id,"window","flushCurrentPage()",window);
+		//window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=verify&blacklistid="+ id;
 	}
 
 	function btVerify_onClickCheck(button) {

@@ -20,8 +20,8 @@
 					<tr>
 						<td colspan="2">
 							<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btDel" 
-									fieldStr="select,blacklistid,brcode,certificateType,certificateNumber,"+
-										"clientName,clientEnglishName,blacklistType,editUserID,verifyUserID,approveUserID,editDate,"+
+									fieldStr="select,id,blacklistid,brcode,certificateType,certificateNumber,"+
+										"clientName,clientEnglishName,blacklistType,editDate,"+
 										"verifyDate,approveDate,auditType,auditState,statedes,opr"  
 									width="100%" hasFrame="true"/><br/>
 						</td>
@@ -39,7 +39,6 @@
 
 <script language="JavaScript">
 	var op ="${op}"; 
-	
 	function initCallGetter_post(dataset) {
 		BankBlackListEdit_dataset.setParameter("op", op);
 	}
@@ -64,7 +63,7 @@
 			if(auditType == "1" && auditState == "1"){
 				tempHtml += "已保存！可修改";
 			} else if(auditType == "2" && auditState == "1"){
-				tempHtml += "审核已取消！可修改";
+				tempHtml += "已打回！可修改";
 			}else{
 				tempHtml += "已提交！不可修改";
 			}
@@ -79,15 +78,14 @@
 		if (record) {
 			var auditType = record.getValue("auditType");
 			var auditState = record.getValue("auditState");
-			var id = record.getValue("blacklistid");
+			var id = record.getValue("id");
+			var blacklistid = record.getValue("blacklistid");
 			var select = record.getValue("select");
 			var tempHtml = "<center>";
 			if(auditType == "1" && auditState == "1"){
-			tempHtml += "<a href=\"JavaScript:openModifyWindow('" + id
-					+ "')\">修改</a> " ;
+			tempHtml += "<a href=\"JavaScript:openModifyWindow('"+id+"','"+blacklistid+"')\">修改</a> " ;
 			}else if(auditType == "2" && auditState == "1"){
-				tempHtml += "<a href=\"JavaScript:openModifyWindow('" + id
-					+ "')\">修改</a> " ;
+				tempHtml += "<a href=\"JavaScript:openModifyWindow('"+id+"','"+blacklistid+"')\">修改</a> " ;
 			}
 			cell.innerHTML = tempHtml + "</center>";
 		} else {
@@ -100,8 +98,11 @@
 	function datatable1_blacklistid_onRefresh(cell, value, record) {
 		if (record) {
 			var id = record.getValue("blacklistid");
-			cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "')\">"
-					+ value + "</a>";
+			if(id != null && "" != id){
+				cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "')\">"
+					+ "查看详细" + "</a>";
+			}
+			
 		} else {
 			cell.innerHTML = "";
 		}
@@ -109,15 +110,15 @@
 	
 	function showDetail(id) {
 		//BankBlackListEdit_dataset.setParameter("blacklistid", id);
-		//btDetail.click();
-		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=edit&blacklistid="
-				+ id;
+		showWin("黑名单信息详细","${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=edit&blacklistid="+ id,"window","flushCurrentPage()",window);
+		
 	}
 
 	//修改功能
-	function openModifyWindow(id) {
-		BankBlackListEdit_dataset.setParameter("blacklistid", id);
-		btModify.click();
+	function openModifyWindow(id,blacklistid) {
+		//BankBlackListEdit_dataset.setParameter("blacklistid", id);
+		showWin("黑名单信息修改","${contextPath}/fpages/blacklistManage/ftl/BankBlacklistManage.ftl?id="+ id +"&op=edit&blacklistid="+ blacklistid,"window","flushCurrentPage()",window);
+		
 	}
 	
 	
@@ -141,7 +142,7 @@
 		}
 		
 		if(chkSta != 0){
-			alert(chkSta+"个已提交，不可删除！");
+			alert("有"+chkSta+"条已提交，不可删除！");
 			return false;
 		}
 		
@@ -162,8 +163,9 @@
 	}
 	
 	function btAdd_onClick(button) {
-		BankBlackListEdit_dataset.insertRecord();
-		showWin("新增黑名单信息","${contextPath}/fpages/blacklistManage/ftl/BankBlacklistManage.ftl?op=add","window","flushPage()",window);
+		//BankBlackListEdit_dataset.insertRecord();
+		showWin("新增黑名单信息","${contextPath}/fpages/blacklistManage/ftl/BankBlacklistManage.ftl?op=add","window","flushCurrentPage()",window);
+		//flushCurrentPage();
 	}
 
 	//刷新当前页

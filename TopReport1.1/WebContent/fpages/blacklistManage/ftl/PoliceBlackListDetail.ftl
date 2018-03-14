@@ -21,11 +21,12 @@
 
 	var reType = "${reType}";
  	function btClose_onClick(button){
- 		if(reType == "query"){
-			window.location = "${contextPath}/fpages/blacklistManage/ftl/PoliceBlackListQuery.ftl";
-		} else if(reType == "manage"){
-			window.location = "${contextPath}/fpages/blacklistManage/ftl/PoliceBlackList.ftl";
-		} 
+ 		closeWin();
+// 		if(reType == "query"){
+//			window.location = "${contextPath}/fpages/blacklistManage/ftl/PoliceBlackListQuery.ftl";
+//		} else if(reType == "manage"){
+//			window.location = "${contextPath}/fpages/blacklistManage/ftl/PoliceBlackList.ftl";
+//		} 
  	}
  	
 </script>

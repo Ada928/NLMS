@@ -14,7 +14,7 @@
 
 		<Field id="id" desc="黑名单权限管理 ID" edittype="text" datatype="string" status="F" xpath="/id" />
 
-		<Field id="blacklistid" desc="黑名单 ID" edittype="text" datatype="string" status="F" xpath="/blacklistID" />
+		<Field id="blacklistid" desc="黑名单 详情" edittype="text" datatype="string" status="F" xpath="/blacklistID" />
 
 		<Field id="editUserID" desc="编辑用户 ID" edittype="text" datatype="string" status="N" xpath="/editUserID" />
 

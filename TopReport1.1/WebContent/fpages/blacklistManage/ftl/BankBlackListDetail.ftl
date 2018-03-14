@@ -24,19 +24,21 @@
 
  	var reType = "${reType}";
  	function btClose_onClick(button){
- 		if(reType == "entry"){
-			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListEntry.ftl";
-		} else if(reType == "approve"){
-			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListApprove.ftl";
-		} else if(reType == "verify"){
-			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListVerify.ftl";
-		} else if(reType == "edit"){
-			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListEdit.ftl";
-		} else if(reType == "share"){
-			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListShare.ftl";
-		} else if(reType == "shareAll"){
-			window.location = "${contextPath}/fpages/blacklistManage/ftl/ShareBankBlackListQuery.ftl";
-		}
+ 		closeWin();
+// 		if(reType == "entry"){
+//			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListEntry.ftl";
+//		} else if(reType == "approve"){
+//			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListApprove.ftl";
+//		} else if(reType == "verify"){
+//			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListVerify.ftl";
+//		} else if(reType == "edit"){
+//			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListEdit.ftl";
+//		} else if(reType == "share"){
+//			window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListShare.ftl";
+//		} else if(reType == "shareAll"){
+//			window.location = "${contextPath}/fpages/blacklistManage/ftl/ShareBankBlackListQuery.ftl";
+//		}
+
  	}
 
 </script>

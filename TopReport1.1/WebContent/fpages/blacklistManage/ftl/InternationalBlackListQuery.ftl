@@ -48,7 +48,9 @@
 	function showDetail(id) {
 		//locate(id);
 		//btDetail.click();
-		window.location = "${contextPath}/fpages/blacklistManage/ftl/InternationalBlackListDetail.ftl?op=detail&reType=query&id="+id;
+		showWin("国际黑名单信息详细","${contextPath}/fpages/blacklistManage/ftl/InternationalBlackListDetail.ftl?op=detail&reType=query&id="+ id,"window","flushCurrentPage()",window);
+		
+		//window.location = "${contextPath}/fpages/blacklistManage/ftl/InternationalBlackListDetail.ftl?op=detail&reType=query&id="+id;
 		
 	}
 </script>

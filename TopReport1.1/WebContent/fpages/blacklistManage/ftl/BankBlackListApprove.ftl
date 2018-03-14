@@ -13,7 +13,7 @@
 					<tr>
 						<td colspan="2">
 							<@CommonQueryMacro.DataTable id="datatable1" paginationbar="" 
-									fieldStr="select,blacklistid,brcode,certificateType,certificateNumber,"+
+									fieldStr="select,id,blacklistid,brcode,certificateType,certificateNumber,"+
 										"clientName,clientEnglishName,blacklistType,editUserID,verifyUserID,approveUserID,editDate,"+
 										"auditType,auditState,verifyDate,approveDate"  
 									width="100%" hasFrame="true"/><br/>
@@ -57,7 +57,7 @@
 	function datatable1_blacklistid_onRefresh(cell, value, record) {
 		if (record) {
 			var id = record.getValue("blacklistid");
-			cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "')\">" + value + "</a>";
+			cell.innerHTML = "<a href=\"Javascript:showDetail('" + id + "')\">" + "查看详细" + "</a>";
 		} else {
 			cell.innerHTML = "";
 		}
@@ -66,7 +66,9 @@
 	function showDetail(id) {
 		//BankBlackListApprove_dataset.setParameter("blacklistid", id);
 		//btDetail.click();
-		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=approve&blacklistid="+id;
+		showWin("黑名单信息详细","${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=approve&blacklistid="+ id,"window","flushCurrentPage()",window);
+		
+		//window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=approve&blacklistid="+id;
 	}
 
 	function btApprove_onClickCheck() {
