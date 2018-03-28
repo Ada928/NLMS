@@ -46,10 +46,10 @@
 
 	<Operations>
 		<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
-			updateClass="com.cibfintech.blacklist.policeblacklist.updater.PoliceBlackListUpdate" url="/fpages/blacklistManage/ftl/PoliceBlackList.ftl"
+			updateClass="com.cibfintech.blacklist.policeblacklist.updater.PoliceBlackListUpdate" url="#"
 			icon="icon-save" />
 
-		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform" url="/fpages/blacklistManage/ftl/PoliceBlackList.ftl"
+		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform" url="#"
 			txn="" icon="icon-back" />
 	</Operations>
 	<Sql>

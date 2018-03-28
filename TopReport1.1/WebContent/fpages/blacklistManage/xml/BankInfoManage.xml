@@ -48,10 +48,10 @@
 	</Where>
 	<Operations>
 		<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
-			updateClass="com.cibfintech.blacklist.bankinfo.updater.BankInfoUpdate" url="/fpages/blacklistManage/ftl/BankInfoEntry.ftl"
+			updateClass="com.cibfintech.blacklist.bankinfo.updater.BankInfoUpdate" url="#"
 			icon="icon-save" />
 
-		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform" url="/fpages/blacklistManage/ftl/BankInfoEntry.ftl"
+		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform" url="#"
 			txn="" icon="icon-back" />
 	</Operations>
 </CommQry>

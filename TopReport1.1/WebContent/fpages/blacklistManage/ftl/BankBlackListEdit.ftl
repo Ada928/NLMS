@@ -111,14 +111,12 @@
 	function showDetail(id) {
 		//BankBlackListEdit_dataset.setParameter("blacklistid", id);
 		showWin("黑名单信息详细","${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=edit&blacklistid="+ id,"window","flushCurrentPage()",window);
-		
 	}
 
 	//修改功能
 	function openModifyWindow(id,blacklistid) {
 		//BankBlackListEdit_dataset.setParameter("blacklistid", id);
-		showWin("黑名单信息修改","${contextPath}/fpages/blacklistManage/ftl/BankBlacklistManage.ftl?id="+ id +"&op=edit&blacklistid="+ blacklistid,"window","flushCurrentPage()",window);
-		
+		showWin("黑名单信息修改","${contextPath}/fpages/blacklistManage/ftl/BankBlackListManage.ftl?id="+ id +"&op=edit&blacklistid="+ blacklistid,"window","flushCurrentPage()",window);
 	}
 	
 	
@@ -164,7 +162,7 @@
 	
 	function btAdd_onClick(button) {
 		//BankBlackListEdit_dataset.insertRecord();
-		showWin("新增黑名单信息","${contextPath}/fpages/blacklistManage/ftl/BankBlacklistManage.ftl?op=add","window","flushCurrentPage()",window);
+		showWin("新增黑名单信息","${contextPath}/fpages/blacklistManage/ftl/BankBlackListManage.ftl?op=add","window","flushCurrentPage()",window);
 		//flushCurrentPage();
 	}
 
@@ -174,41 +172,6 @@
 				.flushData(BankBlackListEdit_dataset.pageIndex);
 	}
 
-	/* function doShare(id, select) {
-		locate(id);
-		if(!confirm("确定分享选中的黑名单？")){
-			return;
-		} else {
-			BankBlackListEdit_dataset.setParameter("op", "shareT");
-			btShare.click();
-		}
-		
-	}
-
-	function doCancelShare(id, select) {
-		locate(id);
-		if(!confirm("确定取消分享选中的黑名单？")){
-			return;
-		} else {
-			BankBlackListEdit_dataset.setParameter("op", "shareF");
-			btCancelShare.click();
-		}
-		
-	}
-
-	function btShare_postSubmit(button) {
-		alert("分享黑名单申请提交成功，请等待审核。");
-		button.url = "#";
-		//刷新当前页
-		flushCurrentPage();
-	}
-
-	function btCancelShare_postSubmit(button) {
-		alert("取消分享黑名单申请提交成功，请等待审核。");
-		button.url = "#";
-		//刷新当前页
-		flushCurrentPage();
-	}
-	 */
+	
 </script>
 </@CommonQueryMacro.page>

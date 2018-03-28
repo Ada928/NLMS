@@ -45,9 +45,10 @@
 	}
 
 	function btAdd_onClick() {
-		RoleInfoEntry_dataset.insertRecord();
-		RoleInfoEntry_dataset.setParameter("op", "add");
-		RoleInfoEntry_dataset.setParameter("id", "0");
+		//RoleInfoEntry_dataset.insertRecord();
+		//RoleInfoEntry_dataset.setParameter("op", "add");
+		//RoleInfoEntry_dataset.setParameter("id", "0");
+		showWin("新增岗位信息","${contextPath}/fpages/blacklistManage/ftl/RoleInfoManage.ftl?op=add","window","flushCurrentPage()",window);
 	}
 
 	function btStatus_onClickCheck(button) {
@@ -88,12 +89,14 @@
 	
 	function rolePrivShow(id) {
 		locate(id);
-		btRoleAuthorityManagement.click();
+		//btRoleAuthorityManagement.click();
+		showWin("岗位功能分配","${contextPath}/fpages/blacklistManage/ftl/RoleInfoManage.ftl?op=edit&id="+ id,"window","flushCurrentPage()",window);
 	}
 	
 	function btRoleUserShow(id) {
 		locate(id);
-		btShowUser.click();
+		//btShowUser.click();
+		showWin("查询人员信息","${contextPath}/fpages/blacklistManage/ftl/ShowRoleUser.ftl?id="+ id,"window","flushCurrentPage()",window);
 	}
 	
 	function doDel(id) {

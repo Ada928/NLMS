@@ -41,6 +41,11 @@
 	}
 
 	function checkValue() {
+		v_brcode=BankInfoManage_dataset.getValue("brcode");
+		if(v_brcode.length>5){
+			alert("字段【银行代码】不能超过5位");
+			return false;
+		}
 		v_postno = BankInfoManage_dataset.getValue("postno");
 		if (isNaN(v_postno)) {
 			alert("字段【邮政编码】必须为数字");
@@ -72,12 +77,14 @@
 	function btSave_postSubmit(button) {
 		alert("保存成功");
 		//button.url = "/fpages/blacklistManage/ftl/BankInfoEntry.ftl";
+		closeWin(true);
 		flushCurrentPage();
 	}
 	
 	function btCancel_onClickCheck(button) {
 		//unloadPageWindows("partWin");
 		//button.url = "/fpages/blacklistManage/ftl/BankInfoEntry.ftl";
+		closeWin(true);
 		flushCurrentPage();
 		//return false;
 	}

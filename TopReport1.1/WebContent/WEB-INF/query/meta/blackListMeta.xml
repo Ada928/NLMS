@@ -23,8 +23,6 @@
 	
 	<Query id="InternationalBlackList"
 		path="/fpages/blacklistManage/xml/InternationalBlackList.xml" />
-	<Query id="InternationalBlacklistManage2"
-		path="/fpages/blacklistManage/xml/InternationalBlackListManage2.xml" />
 	<Query id="InternationalBlacklistManage"
 		path="/fpages/blacklistManage/xml/InternationalBlackListManage.xml" />
 	<Query id="InternationalBlackListQuery"

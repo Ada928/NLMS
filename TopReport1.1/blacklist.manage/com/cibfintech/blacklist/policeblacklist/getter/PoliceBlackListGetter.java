@@ -53,6 +53,8 @@ public class PoliceBlackListGetter extends BaseGetter {
 		String qCertificateType = getCommQueryServletRequest().getParameter("qCertificateType");
 		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
 		String qOperateState = getCommQueryServletRequest().getParameter("qOperateState");
+		String qClientEnglishName = getCommQueryServletRequest().getParameter("qClientEnglishName");
+		String qClientName = getCommQueryServletRequest().getParameter("qClientName");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 
@@ -70,11 +72,18 @@ public class PoliceBlackListGetter extends BaseGetter {
 		if (StringUtils.isNotBlank(qCertificateNumber)) {
 			hql.append(" and pblt.certificateNumber like '%").append(qCertificateNumber.trim()).append("%'");
 		}
+		if (StringUtils.isNotBlank(qClientName)) {
+			hql.append(" and pblt.clientName like '%").append(qClientName.trim()).append("%'");
+		}
+		if (StringUtils.isNotBlank(qClientEnglishName)) {
+			hql.append(" and pblt.clientEnglishName like '%").append(qClientEnglishName.trim()).append("%'");
+		}
 		if (StringUtils.isNotBlank(qOperateState)) {
 			hql.append(" and pblt.operateState='").append(qOperateState.trim()).append("'");
-		} else {
+		} 
+		/*else {
 			hql.append(" and pblt.operateState<>'").append(ReportEnum.REPORT_ST1.N.value).append("'");
-		}
+		}*/
 
 		PageQueryResult pqr = PoliceBlackListService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString(), list);
 

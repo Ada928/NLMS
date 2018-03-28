@@ -58,7 +58,7 @@
 	}
 
 	function showDetail(id) {
-		showWin("黑名单信息详细","${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=entry&id="+ id,"window","flushCurrentPage()",window);
+		showWin("黑名单信息详细","${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=entry&blacklistid="+ id,"window","flushCurrentPage()",window);
 		//window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=entry&id="+id;
 	}
 

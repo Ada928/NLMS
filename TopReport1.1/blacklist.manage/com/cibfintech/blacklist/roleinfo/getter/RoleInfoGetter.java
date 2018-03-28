@@ -75,7 +75,7 @@ public class RoleInfoGetter extends BaseGetter {
 		}
 		if (!isSuperManager) {
 			hql.append(" and bblt.id <> ? ");
-			list.add("100");
+			list.add(100);
 		}
 		hql.append(" order by bblt.id");
 

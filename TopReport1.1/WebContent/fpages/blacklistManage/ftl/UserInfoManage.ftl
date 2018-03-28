@@ -60,7 +60,13 @@
 			UserInfoManage_dataset.setFieldReadOnly("brcode",true);
 		}
 	}
-
+	
+	
+	//取消
+	function btCancel_onClickCheck(){
+		closeWin(true);
+	}
+	
 	function btSave_onClickCheck() {
 		var tlrName = UserInfoManage_dataset.getValue("tlrName");
 		if (tlrName.length == 0) {
@@ -97,7 +103,8 @@
 	function btSave_postSubmit(button) { 
         var retParam = button.returnParam;
 		alert("保存成功 "+ retParam.SuccessInfo);
-		button.url = "/fpages/blacklistManage/ftl/UserInfoEntry.ftl";
+		//button.url = "/fpages/blacklistManage/ftl/UserInfoEntry.ftl";
+		closeWin(true);
 	}
 	
 	function flushCurrentPage() {

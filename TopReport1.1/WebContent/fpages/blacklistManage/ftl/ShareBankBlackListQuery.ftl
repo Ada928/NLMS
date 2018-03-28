@@ -44,8 +44,8 @@
 	function showDetail(id) {
 		//BankBlackListEdit_dataset.setParameter("blacklistid", id);
 		//btDetail.click();
-		window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=shareAll&blacklistid="
-				+ id;
+		showWin("黑名单信息详细","${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=shareAll&blacklistid="+ id,"window","flushCurrentPage()",window);
+		//window.location = "${contextPath}/fpages/blacklistManage/ftl/BankBlackListDetail.ftl?op=detail&reType=shareAll&blacklistid="+ id;
 	}
 </script>
 </@CommonQueryMacro.page>

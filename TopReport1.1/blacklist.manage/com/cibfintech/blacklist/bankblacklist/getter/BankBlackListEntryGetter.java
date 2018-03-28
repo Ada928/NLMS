@@ -51,6 +51,7 @@ public class BankBlackListEntryGetter extends BaseGetter {
 
 	protected PageQueryResult getData() throws Exception {
 		String qClientName = getCommQueryServletRequest().getParameter("qClientName");
+		String qClientEnglishName = getCommQueryServletRequest().getParameter("qClientEnglishName");
 		String qCertificateType = getCommQueryServletRequest().getParameter("qCertificateType");
 		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
 		String qBlacklistType = getCommQueryServletRequest().getParameter("qBlacklistType");
@@ -79,10 +80,15 @@ public class BankBlackListEntryGetter extends BaseGetter {
 			list.add("%" + qClientName.trim() + "%");
 			message.append("qClientName=").append(qClientName);
 		}
+		if (StringUtils.isNotBlank(qClientEnglishName)) {
+			hql.append(" and bblt.clientEnglishName like ?");
+			list.add("%" + qClientEnglishName.trim() + "%");
+			message.append("qClientEnglishName=").append(qClientEnglishName);
+		}
 		if (StringUtils.isNotBlank(qCertificateType)) {
 			hql.append(" and bblt.certificateType = ?");
 			list.add(qCertificateType.trim());
-			message.append("qClientName=").append(qClientName);
+			message.append("qCertificateType=").append(qClientName);
 		}
 		if (StringUtils.isNotBlank(qCertificateNumber)) {
 			hql.append(" and bblt.certificateNumber like ?");

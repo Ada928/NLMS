@@ -19,6 +19,7 @@
 
 <script language="javascript">
 	function btClose_onClickCheck(button) {
+		closeWin(true);
 		//window.history.go(-1);
 		 //window.history.back(-1);
 	}

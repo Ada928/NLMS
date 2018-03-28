@@ -57,10 +57,18 @@
         }
     }
     
+    //新增功能
+    function btAdd_onClickCheck(button) {
+		//locate(id);
+		//InternationalBlackList_dataset.insertRecord();
+		showWin("新增国际黑名单","${contextPath}/fpages/blacklistManage/ftl/InternationalBlacklistManage.ftl?op=add","window","flushCurrentPage()",window);
+	}
+	
 	//修改功能
     function openModifyWindow(id) {
         //locate(id);
-        btModify.click();  
+        //btModify.click();
+		showWin("新增国际黑名单","${contextPath}/fpages/blacklistManage/ftl/InternationalBlacklistManage.ftl?op=edit&id="+ id,"window","flushCurrentPage()",window);
     }
 
     //展示对比功能的js
@@ -77,8 +85,8 @@
     function showDetail(id, osta) {
 		//locate(id);
 		//btDetail.click();
-		window.location = "${contextPath}/fpages/blacklistManage/ftl/InternationalBlackListDetail.ftl?op=detail&reType=manage&id="+id;
-		
+		//window.location = "${contextPath}/fpages/blacklistManage/ftl/InternationalBlackListDetail.ftl?op=detail&reType=manage&id="+id;
+		showWin("新增国际黑名单","${contextPath}/fpages/blacklistManage/ftl/InternationalBlackListDetail.ftl?op=detail&reType=manage&id="+ id,"window","flushCurrentPage()",window);
     }
 
     function btSave_onClickCheck(button) {
@@ -100,25 +108,6 @@
         return true;
     }
    
-    function btAdd_onClick() {
-		locate(id);
-		InternationalBlackList_dataset.insertRecord();
-	}
-    
-    function btAdd_onClickCheck(button) {
-        var id = InternationalBlackList_dataset.getValue("id");
-        var certificateNumber = InternationalBlackList_dataset.getValue("certificateNumber");
-        if (id == null || "" == id) {
-            alert("黑名单不能为空");
-            return false;
-        }
-        if (certificateNumber == null || "" == certificateNumber) {
-            alert("证件号不能为空");
-            return false;
-        }
-        return true;
-    }
-
     function doDel(id) {
         locate(id);
         btDel.click();

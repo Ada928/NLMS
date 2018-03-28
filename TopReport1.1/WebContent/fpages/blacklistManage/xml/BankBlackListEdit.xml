@@ -57,10 +57,11 @@
 	</Fields>
 
 	<Where>
-		<TextBox id="qClientName" desc="黑名单用户名" edittype="text" datatype="string" require="" size="32" index="0" />
 		<Option id="qCertificateType" default="11" desc="证件种类" type="certificateType" tip="" method="None" index="1"
 			translated="DATA_DIC.21" />
 		<TextBox id="qCertificateNumber" desc="证件号码" edittype="text" datatype="string" size="32" index="2" />
+		<TextBox id="qClientName" desc="客户名字" edittype="text" datatype="string" require="" size="100" index="0" />
+		<TextBox id="qClientEnglishName" desc="客户英文名字" edittype="text" datatype="string" require="" size="240" index="0" />
 	</Where>
 
 	<Operations>

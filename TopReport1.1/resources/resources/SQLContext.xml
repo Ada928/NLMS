@@ -18,13 +18,13 @@
         </property> -->
          
         <property name="jdbcUrl">
-            <value>jdbc:oracle:thin:@localhost:1521:ORCL</value>
+            <value>jdbc:oracle:thin:@163.1.8.61:1521:east</value>
         </property>
         <property name="user">
             <value>REPORT</value>
         </property>
         <property name="password">
-            <value>REPORT</value>
+            <value>report</value>
         </property>
         <property name="minPoolSize">
             <value>5</value>

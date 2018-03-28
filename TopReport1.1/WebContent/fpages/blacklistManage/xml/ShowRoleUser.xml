@@ -26,7 +26,7 @@
 	</Where>
 	<Operations>
 		<!-- 岗位信息 -->
-		<Button id="btClose" name="btClose" desc="关闭" operation="syncsubmit" url="/fpages/blacklistManage/ftl/RoleInfoEntry.ftl"
+		<Button id="btClose" name="btClose" desc="关闭" operation="syncsubmit" url="#"
 			txn="" icon="icon-back" />
 	</Operations>
 </CommQry>

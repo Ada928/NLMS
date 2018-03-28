@@ -89,11 +89,13 @@
 	//修改功能
 	function openModifyWindow(id) {
 		locate(id);
-		btModify.click();
+		//btModify.click();
+		showWin("修改银行信息","${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl?op=edit&brcode="+ id,"window","flushCurrentPage()",window);
 	}
 	function btAdd_onClick() {
-		locate(id);
-		BankInfoEntry_dataset.insertRecord();
+		//locate(id);
+		//BankInfoEntry_dataset.insertRecord();
+		showWin("新增银行信息","${contextPath}/fpages/blacklistManage/ftl/BankInfoManage.ftl?op=add","window","flushCurrentPage()",window);
 	}
 	
 	//展示对比功能的js
@@ -111,7 +113,8 @@
 	
 	function showDetail(id, sta) {
 		locate(id);
-		btDetail.click();
+		//btDetail.click();
+		showWin("银行信息详情","${contextPath}/fpages/blacklistManage/ftl/BankInfoDetail.ftl?op=detail&reType=edit&brcode="+ id,"window","flushCurrentPage()",window);
 	}
 	
 	function btStatus_onClickCheck(button) {

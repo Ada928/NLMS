@@ -24,5 +24,9 @@
 
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript">
+
+	function btClose_onClickCheck(button){
+ 		closeWin();
+ 	}
 </script>
 </@CommonQueryMacro.page>

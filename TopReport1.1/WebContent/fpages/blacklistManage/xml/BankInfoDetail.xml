@@ -23,10 +23,10 @@
 			default="false" readonly="true" xpath="/teleno" tip="联系电话" />
 
 		<Field id="status" desc="有效标志" status="F" edittype="select" readonly="true" method="None" primary="false" type="String"
-			default="" xpath="/status" tip="有效标志" translated="LIST:T,有效;F,无效" />
+			default="" xpath="/status" tip="有效标志" translated="LIST:1,有效;0,无效" />
 	</Fields>
 	<Operations>
-		<Button id="btClose" name="btClose" desc="返回" operation="href" url="/fpages/blacklistManage/ftl/BankInfoEntry.ftl"
+		<Button id="btClose" name="btClose" desc="返回" operation="" url="#"
 			txn="" icon="icon-back" />
 	</Operations>
 </CommQry>

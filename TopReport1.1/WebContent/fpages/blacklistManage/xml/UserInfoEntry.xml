@@ -6,7 +6,7 @@
 	btnNm="aaa" databusid="DEMO" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.cibfintech.blacklist.userinfo.getter.UserInfoGetter">
 	<Include id="BankParam" />
 
-	<PageQryExp type="XLS" limit="true" encoding="GBK" url="/trans/qryExp.do" desc="数据导出-用户信息" />
+	<PageQryExp type="XLS" limit="true" encoding="UTF-8" url="/trans/qryExp.do" desc="数据导出-用户信息" />
 
 	<Fields>
 		<!-- status :F-基本信息中显示 N-不显示 D-详细信息中显示 A-基本、详细信息中都显示 -->
@@ -79,17 +79,17 @@
 	</Where>
 
 	<Operations>
-		<Button id="btAdd" name="btAdd" desc="新增" operation="href" url="/fpages/blacklistManage/ftl/UserInfoManage.ftl?op=add"
+		<Button id="btAdd" name="btAdd" desc="新增" operation="" url="#"
 			show="" group="" txn="" icon="icon-add" />
 
 		<Button id="btModify" name="btModify" desc="修改" operation="syncsubmit"
-			url="/fpages/blacklistManage/ftl/UserInfoManage.ftl?op=edit" txn="" />
+			url="#" txn="" />
 
 		<Button id="btDel" name="btDel" desc="删除" operation="asysubmit" updateClass="com.cibfintech.blacklist.userinfo.updater.UserInfoDEL"
 			url="#" txn="" />
 
-		<Button id="btDetail" name="btDetail" desc="详细信息" operation="syncsubmit"
-			url="/fpages/blacklistManage/ftl/UserInfoDetail.ftl?op=detail" txn="" />
+		<Button id="btDetail" name="btDetail" desc="详细信息" operation=""
+			url="#" txn="" />
 
 		<Button id="btResetPwd" name="btResetPwd" desc="重置密码"
 			updateClass="com.cibfintech.blacklist.userinfo.updater.UserInfoResetPwdUpdate" operation="asysubmit" url="#" show=""

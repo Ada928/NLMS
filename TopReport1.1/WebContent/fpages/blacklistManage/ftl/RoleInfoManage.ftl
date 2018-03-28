@@ -158,7 +158,8 @@
 	
 	function btSave_onClickCheck(button) {
 		save();
-		return true;
+		closeWin(true);
+		//return true;
 	}
 
 	function save() {
@@ -183,9 +184,11 @@
 
 	function btCancel_onClickCheck() {
 		if ('detail' == op) {
-			closeWind();
-		} else
-			btCancel.click();
+			closeWin();
+		} else{
+			//btCancel.click();
+			closeWin();
+		}
 	}
 </script>
 </@CommonQueryMacro.page>

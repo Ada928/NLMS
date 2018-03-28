@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import resource.bean.blacklist.NsBankBlackList;
 import resource.bean.blacklist.NsBankBlackListAuditState;
 
@@ -45,6 +47,10 @@ public class BankBlackListShareGetter extends BaseGetter {
 
 	protected PageQueryResult getData() throws Exception {
 		String qShare = getCommQueryServletRequest().getParameter("qShareType");
+		String qClientName = getCommQueryServletRequest().getParameter("qClientName");
+		String qClientEnglishName = getCommQueryServletRequest().getParameter("qClientEnglishName");
+		String qCertificateType = getCommQueryServletRequest().getParameter("qCertificateType");
+		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
 		//qShare = qShare == null ? "" : qShare;
 		StringBuffer hql = new StringBuffer(" from NsBankBlackListAuditState po where 1=1");
 		hql.append(" order by po.auditType desc, po.auditState desc, po.editDate desc");
@@ -61,6 +67,18 @@ public class BankBlackListShareGetter extends BaseGetter {
 			hql2.append(" and bblt.share= 'F'");
 		}else if("1".equals(qShare)){
 			hql2.append(" and bblt.share= 'T'");
+		}
+		if (StringUtils.isNotBlank(qClientName)) {
+			hql2.append(" and bblt.clientName like '%").append(qClientName.trim()).append("%'");
+		}
+		if (StringUtils.isNotBlank(qClientEnglishName)) {
+			hql2.append(" and bblt.clientEnglishName like '%").append(qClientEnglishName.trim()).append("%'");
+		}
+		if (StringUtils.isNotBlank(qCertificateType)) {
+			hql2.append(" and bblt.certificateType = '").append(qCertificateType.trim()).append("'");
+		}
+		if (StringUtils.isNotBlank(qCertificateNumber)) {
+			hql2.append(" and bblt.certificateNumber like '%").append(qCertificateNumber.trim()).append("%'");
 		}
 		HashMap<String, NsBankBlackList> blacklistMap = BankBlackListService.getInstance().getBankBlackListByHql(hql2.toString());
 

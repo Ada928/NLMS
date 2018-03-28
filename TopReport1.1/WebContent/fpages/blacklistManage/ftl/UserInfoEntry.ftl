@@ -68,14 +68,16 @@
     
     function btModifyShow(id) {
 		locate(id);
-		btModify.click();
+		//btModify.click();
+		showWin("修改用户信息","${contextPath}/fpages/blacklistManage/ftl/UserInfoManage.ftl?op=edit&tlrno="+ id,"window","flushCurrentPage()",window);
     }
     
 	function btAdd_onClick() {
-		locate(id);
-		UserInfoEntry_dataset.insertRecord();
-		UserInfoEntry_dataset.setParameter("op", "new");
-		UserInfoEntry_dataset.setParameter("id", "0");
+		//locate(id);
+		//UserInfoEntry_dataset.insertRecord();
+		//UserInfoEntry_dataset.setParameter("op", "new");
+		//UserInfoEntry_dataset.setParameter("id", "0");
+		showWin("新增用户信息","${contextPath}/fpages/blacklistManage/ftl/UserInfoManage.ftl?op=add","window","flushCurrentPage()",window);
 	}
 
     
@@ -142,7 +144,8 @@
 
     function showDetail(id) {
 		locate(id);
-		btDetail.click();
+		//btDetail.click();  
+		showWin("用户详细信息","${contextPath}/fpages/blacklistManage/ftl/UserInfoDetail.ftl?op=detail&tlrno="+ id,"window","flushCurrentPage()",window);
         //showWin("用户详细信息", "${contextPath}/fpages/blacklistManage/ftl/UserInfoDetail.ftl?op=detail&tlrno=" + id, "", "", window);
     }
 

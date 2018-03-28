@@ -52,6 +52,8 @@ public class InternationalBlackListGetter extends BaseGetter {
 		String qCertificateType = getCommQueryServletRequest().getParameter("qCertificateType");
 		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
 		String qOperateState = getCommQueryServletRequest().getParameter("qOperateState");
+		String qClientEnglishName = getCommQueryServletRequest().getParameter("qClientEnglishName");
+		String qClientName = getCommQueryServletRequest().getParameter("qClientName");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 
@@ -67,16 +69,25 @@ public class InternationalBlackListGetter extends BaseGetter {
 			list.add(qCertificateType);
 		}
 		if (StringUtils.isNotBlank(qCertificateNumber)) {
-			hql.append(" and iblt.certificateNumber like '%");
-			list.add("%" + qCertificateNumber + "%");
+			hql.append(" and iblt.certificateNumber like ?");
+			list.add("%" + qCertificateNumber.trim() + "%");
+		}
+		if (StringUtils.isNotBlank(qClientName)) {
+			hql.append(" and iblt.clientName like ?");
+			list.add("%" + qClientName.trim() + "%");
+		}
+		if (StringUtils.isNotBlank(qClientEnglishName)) {
+			hql.append(" and iblt.clientEnglishName like ?");
+			list.add("%" + qClientEnglishName.trim() + "%");
 		}
 		if (StringUtils.isNotBlank(qOperateState)) {
 			hql.append(" and iblt.operateState=?");
 			list.add(qOperateState);
-		} else {
+		} 
+		/*else {
 			// hql.append(" and iblt.operateState<>'").append(ReportEnum.REPORT_ST1.N.value).append("'");
-		}
-
+		}*/
+		
 		PageQueryResult pqr = InternationalBlackListService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString(), list);
 
 		String message = "国际黑名单的查询:partyId=" + partyId + "certificateType=" + qCertificateType + "certificateNumber=" + qCertificateNumber;

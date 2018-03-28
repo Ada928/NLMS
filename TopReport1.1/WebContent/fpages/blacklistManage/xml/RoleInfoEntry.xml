@@ -59,12 +59,12 @@
 	</Where>
 	<Operations>
 		<Button id="btRoleAuthorityManagement" name="btRoleAuthorityManagement" desc="设置岗位功能" operation="syncsubmit"
-			url="/fpages/blacklistManage/ftl/RoleInfoManage.ftl?op=edit" txn="" />
+			url="#" txn="" />
 
 		<Button id="btShowUser" name="btShowUser" desc="查询人员信息" operation="syncsubmit"
-			url="/fpages/blacklistManage/ftl/ShowRoleUser.ftl" txn="" /> <!---->
+			url="#" txn="" /> <!---->
 
-		<Button id="btAdd" name="btAdd" desc="新增岗位" operation="href" url="/fpages/blacklistManage/ftl/RoleInfoManage.ftl?op=add" txn=""
+		<Button id="btAdd" name="btAdd" desc="新增岗位" operation="" url="#" txn=""
 			icon="icon-add" />
 
 		<Button id="btDel" name="btDeleteRole" desc="删除" operation="asysubmit"

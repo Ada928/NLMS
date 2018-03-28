@@ -18,7 +18,7 @@
 		<Field id="status" desc="状态" status="N" readonly="true" translated="DATA_DIC.37" require="" edittype="select"
 			width="" method="None" primary="true" type="String" size="20" xpath="/status" default="" />
 
-		<Field id="effectDate" desc="生效日期" require="false" status="F" edittype="date" datatype="date" method="None"
+		<Field id="effectDate" desc="生效日期" require="false" status="F"  readonly="true" edittype="date" datatype="date" method="None"
 			width="" primary="false" type="String" size="20" xpath="/effectDate" default="" />
 
 		<Field id="expireDate" desc="失效日期" require="false" status="F" edittype="date" datatype="date" method="None"
@@ -33,7 +33,7 @@
 		<Field id="flag" desc="有效状态" status="N" readonly="true" translated="LIST:1,有效;0,无效" require="false" edittype="select"
 			width="" method="None" primary="true" type="String" size="20" xpath="/flag" default="" />
 
-		<Field id="lock" desc="锁定状态" require="" status="N" method="None" translated="LIST:T,已锁定;F,未锁定" edittype="select"
+		<Field id="lock" desc="锁定状态" require="" status="N"  readonly="true" method="None" translated="LIST:T,已锁定;F,未锁定" edittype="select"
 			width="" primary="false" type="String" size="20" xpath="/lock" default="" />
 
 		<Field id="isLockModify" desc="修改锁定状态" require="" status="F" method="None" translated="" edittype="select"
@@ -50,8 +50,7 @@
 	</Where>
 
 	<Operations>
-		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform" url="/fpages/blacklistManage/ftl/UserInfoEntry.ftl"
-			txn="" icon="icon-back" />
+		<Button id="btCancel" name="btCancel" desc="返回" operation="" url="#" txn="" icon="icon-back" />
 	</Operations>
 	<Sql></Sql>
 </CommQry>

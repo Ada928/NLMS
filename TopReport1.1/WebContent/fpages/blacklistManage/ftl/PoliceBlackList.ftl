@@ -60,7 +60,8 @@
 	//修改功能
     function openModifyWindow(id) {
         //locate(id);
-        btModify.click();
+        //btModify.click();
+        showWin("公安部黑名单修改","${contextPath}/fpages/blacklistManage/ftl/PoliceBlacklistManage.ftl?op=edit&id="+id,"window","flushCurrentPage()",window);
     }
 
     //展示对比功能的js
@@ -77,15 +78,16 @@
     function showDetail(id) {
        //locate(id);
        //btDetail.click();
-       window.location = "${contextPath}/fpages/blacklistManage/ftl/PoliceBlackListDetail.ftl?op=detail&reType=manage&id="+id;
-       
+       //window.location = "${contextPath}/fpages/blacklistManage/ftl/PoliceBlackListDetail.ftl?op=detail&reType=manage&id="+id;
+       showWin("公安部黑名单详细信息","${contextPath}/fpages/blacklistManage/ftl/PoliceBlackListDetail.ftl?op=detail&reType=manage&id="+id,"window","flushCurrentPage()",window);
     }
 	
 	
 	
     function btAdd_onClick(id) {
 		//locate(id);
-		PoliceBlackList_dataset.insertRecord();
+		//PoliceBlackList_dataset.insertRecord();
+		showWin("新增公安部黑名单信息","${contextPath}/fpages/blacklistManage/ftl/PoliceBlacklistManage.ftl?op=add","window","flushCurrentPage()",window);
     }
  
 

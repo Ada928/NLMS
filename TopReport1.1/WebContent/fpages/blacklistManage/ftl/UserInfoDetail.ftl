@@ -58,8 +58,9 @@
 		</tr>
 	</table>		
 <script language="javascript">
-	function btCancel_postSubmit(button) {
-		button.url = "/fpages/blacklistManage/ftl/UserInfoEntry.ftl";
+	function btCancel_onClickCheck(button) {
+		//button.url = "/fpages/blacklistManage/ftl/UserInfoEntry.ftl";
+		closeWin(true);
 	}
 </script>
 </@CommonQueryMacro.page>

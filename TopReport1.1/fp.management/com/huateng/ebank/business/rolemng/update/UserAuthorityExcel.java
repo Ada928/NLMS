@@ -96,10 +96,12 @@ public class UserAuthorityExcel extends HttpServlet {
 	}
 
 	void sort(Object[] o, List allFuncList, String space, List funcList) {
-		String idString = (String) o[0];
+//		String idString = (String) o[0];
+		String idString = String.valueOf(o[0]);
 		idString = idString.replace(" ", "");
 		BigDecimal id = new BigDecimal(idString);
-		String funcName = (String) o[1];
+//		String funcName = (String) o[1];
+		String funcName = String.valueOf(o[1]);
 		BigDecimal isDirectory = (BigDecimal) o[2];
 		BigDecimal pid = (BigDecimal) o[3];
 		funcList.add(space + funcName);

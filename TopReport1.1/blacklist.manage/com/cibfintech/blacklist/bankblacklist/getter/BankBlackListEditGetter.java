@@ -57,6 +57,7 @@ public class BankBlackListEditGetter extends BaseGetter {
 
 	protected PageQueryResult getData() throws Exception {
 		String qClientName = getCommQueryServletRequest().getParameter("qClientName");
+		String qClientEnglishName = getCommQueryServletRequest().getParameter("qClientEnglishName");
 		String qCertificateType = getCommQueryServletRequest().getParameter("qCertificateType");
 		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
 		// int pageSize = this.getResult().getPage().getEveryPage();
@@ -94,6 +95,9 @@ public class BankBlackListEditGetter extends BaseGetter {
 
 		if (StringUtils.isNotBlank(qClientName)) {
 			hql2.append(" and bblt.clientName like '%").append(qClientName.trim()).append("%'");
+		}
+		if (StringUtils.isNotBlank(qClientEnglishName)) {
+			hql2.append(" and bblt.clientEnglishName like '%").append(qClientEnglishName.trim()).append("%'");
 		}
 		if (StringUtils.isNotBlank(qCertificateType)) {
 			hql2.append(" and bblt.certificateType = '").append(qCertificateType.trim()).append("'");

@@ -56,11 +56,11 @@
 
 	<Operations>
 		<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
-			updateClass="com.cibfintech.blacklist.internationblacklist.updater.InternationalBlackListUpdate" url="/fpages/blacklistManage/ftl/InternationalBlacklist.ftl"
+			updateClass="com.cibfintech.blacklist.internationblacklist.updater.InternationalBlackListUpdate" url="#"
 			icon="icon-save" />
 
 		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform"
-			url="/fpages/blacklistManage/ftl/InternationalBlackList.ftl" txn="" icon="icon-back" />
+			url="#" txn="" icon="icon-back" />
 
 	</Operations>
 	<Sql>

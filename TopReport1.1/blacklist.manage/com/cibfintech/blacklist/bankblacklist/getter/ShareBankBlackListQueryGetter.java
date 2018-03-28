@@ -51,6 +51,8 @@ public class ShareBankBlackListQueryGetter extends BaseGetter {
 		String partyId = getCommQueryServletRequest().getParameter("qPartyId");
 		String qCertificateType = getCommQueryServletRequest().getParameter("qCertificateType");
 		String qCertificateNumber = getCommQueryServletRequest().getParameter("qCertificateNumber");
+		String qClientName = getCommQueryServletRequest().getParameter("qClientName");
+		String qClientEnglishName = getCommQueryServletRequest().getParameter("qClientEnglishName");
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		GlobalInfo globalinfo = GlobalInfo.getCurrentInstance();
@@ -69,7 +71,14 @@ public class ShareBankBlackListQueryGetter extends BaseGetter {
 			hql.append(" and bblt.certificateNumber like ?");
 			list.add("%" + qCertificateNumber.trim() + "%");
 		}
-
+		if (StringUtils.isNotBlank(qClientName)) {
+			hql.append(" and bblt.clientName like ?");
+			list.add("%" + qClientName.trim() + "%");
+		}
+		if (StringUtils.isNotBlank(qClientEnglishName)) {
+			hql.append(" and bblt.clientEnglishName like ?");
+			list.add("%" + qClientEnglishName.trim() + "%");
+		}
 		hql.append(" and bblt.share=?");
 		list.add("T");
 		hql.append(" and bblt.approve=?");

@@ -25,9 +25,9 @@
 		<Button id="btUnSelectAll" name="btUnSelectAll" desc="全不选" operation="" updateClass="" url="#" show="" group=""
 			txn="" />
 		<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
-			updateClass="com.cibfintech.blacklist.roleinfo.updater.RoleInfoUpdate" url="/fpages/blacklistManage/ftl/RoleInfoEntry.ftl"
+			updateClass="com.cibfintech.blacklist.roleinfo.updater.RoleInfoUpdate" url="#"
 			show="" group="" txn="" icon="icon-save" />
-		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform" url="/fpages/blacklistManage/ftl/RoleInfoEntry.ftl"
+		<Button id="btCancel" name="btCancel" desc="返回" operation="submitform" url="#"
 			txn="" icon="icon-back" />
 
 	</Operations>

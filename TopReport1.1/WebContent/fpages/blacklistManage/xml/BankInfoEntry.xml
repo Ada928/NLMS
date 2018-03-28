@@ -54,14 +54,14 @@
 			tip="机构名称" method="genLikeP" index="1" function="" default="" scale="" require="" readOnly="" rules="" errmsg="" />
 	</Where>
 	<Operations>
-		<Button id="btAdd" name="btAdd" desc="新增" operation="href" url="/fpages/blacklistManage/ftl/BankInfoManage.ftl?op=add"
+		<Button id="btAdd" name="btAdd" desc="新增" operation="" url="#"
 			show="" group="" txn="" icon="icon-add" />
 
-		<Button id="btModify" name="btModify" desc="修改" operation="syncsubmit"
-			url="/fpages/blacklistManage/ftl/BankInfoManage.ftl?op=edit" txn="" />
+		<Button id="btModify" name="btModify" desc="修改" operation=""
+			url="#" txn="" />
 
 		<Button id="btDetail" name="btDetail" desc="详细信息" operation="syncsubmit"
-			url="/fpages/blacklistManage/ftl/BankInfoDetail.ftl?op=detail" txn="" />
+			url="#" txn="" />
 
 		<Button id="btStatus" name="btStatus" desc="有效/无效" operation="asysubmit"
 			updateClass="com.cibfintech.blacklist.bankinfo.updater.BankInfoChgStatues" url="#" txn="" icon="icon-set" />
