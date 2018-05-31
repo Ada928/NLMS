@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "/WEB-INF/dtd/spring-beans-2.0.dtd">
+<beans>
+	<!-- 商户黑名单服务类 -->
+	<bean id="BankBlackListService"
+		class="com.cibfintech.blacklist.bankblacklist.service.BankBlackListService" />
+	<bean id="BankBlackListAuditStateService"
+		class="com.cibfintech.blacklist.bankblacklist.service.BankBlackListAuditStateService" />
+	<bean id="BankBlackListOperation"
+		class="com.cibfintech.blacklist.operation.BankBlackListOperation" />
+	<bean
+		id="com.cibfintech.blacklist.bankblacklist.service.BankBlackListOperateLogService"
+		class="com.cibfintech.blacklist.bankblacklist.service.BankBlackListOperateLogService" />
+
+	<bean id="PoliceBlackListService"
+		class="com.cibfintech.blacklist.policeblacklist.service.PoliceBlackListService" />
+	<bean id="PoliceBlackListOperation"
+		class="com.cibfintech.blacklist.operation.PoliceBlackListOperation" />
+	<bean
+		id="com.cibfintech.blacklist.policeblacklist.service.PoliceBlackListOperateLogService"
+		class="com.cibfintech.blacklist.policeblacklist.service.PoliceBlackListOperateLogService" />
+
+	<bean id="InternationalBlackListService"
+		class="com.cibfintech.blacklist.internationblacklist.service.InternationalBlackListService" />
+	<bean id="InternationalBlackListOperation"
+		class="com.cibfintech.blacklist.operation.InternationalBlackListOperation" />
+	<bean
+		id="com.cibfintech.blacklist.internationblacklist.service.InternationBlackListOperateLogService"
+		class="com.cibfintech.blacklist.internationblacklist.service.InternationBlackListOperateLogService" />
+	<bean
+		id="com.cibfintech.blacklist.service.BlackListSocketQueryLogService"
+		class="com.cibfintech.blacklist.service.BlackListSocketQueryLogService" />
+
+	<bean id="com.cibfintech.blacklist.service.QueryDailyLogCountService"
+		class="com.cibfintech.blacklist.service.QueryDailyLogCountService" />
+	<bean id="com.cibfintech.blacklist.service.QueryMonthlyLogCountService"
+		class="com.cibfintech.blacklist.service.QueryMonthlyLogCountService" />
+
+	<bean id="com.cibfintech.blacklist.bankinfo.service.BankInfoService"
+		class="com.cibfintech.blacklist.bankinfo.service.BankInfoService" />
+	<bean id="com.cibfintech.blacklist.bankinfo.service.BankOperateLogService"
+		class="com.cibfintech.blacklist.bankinfo.service.BankOperateLogService" />
+	<bean id="com.cibfintech.blacklist.bankinfo.service.BankTlrRelService"
+		class="com.cibfintech.blacklist.bankinfo.service.BankTlrRelService" />
+
+	<bean id="com.cibfintech.blacklist.roleinfo.service.RoleFuncRelService"
+		class="com.cibfintech.blacklist.roleinfo.service.RoleFuncRelService" />
+	<bean id="com.cibfintech.blacklist.roleinfo.service.RoleInfoService"
+		class="com.cibfintech.blacklist.roleinfo.service.RoleInfoService" />
+	<bean id="com.cibfintech.blacklist.roleinfo.service.RoleOperateLogService"
+		class="com.cibfintech.blacklist.roleinfo.service.RoleOperateLogService" />
+	<bean id="com.cibfintech.blacklist.roleinfo.service.RoleTlrRelService"
+		class="com.cibfintech.blacklist.roleinfo.service.RoleTlrRelService" />
+
+	<bean id="com.cibfintech.blacklist.userinfo.service.UserInfoService"
+		class="com.cibfintech.blacklist.userinfo.service.UserInfoService" />
+	<bean id="com.cibfintech.blacklist.userinfo.service.UserOperateLogService"
+		class="com.cibfintech.blacklist.userinfo.service.UserOperateLogService" />
+
+	<bean id="BankInfoOperation" class="com.cibfintech.blacklist.operation.BankInfoOperation" />
+	<bean id="RoleInfoOperation" class="com.cibfintech.blacklist.operation.RoleInfoOperation" />
+	<bean id="UserInfoOperation" class="com.cibfintech.blacklist.operation.UserInfoOperation" />
+</beans>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="resource.bean.blacklist">
+    <class name="NsInternationalBlackList" table="nlms_internationalblacklist">
+        <meta attribute="sync-DAO">false</meta>
+    	<cache usage="read-write"></cache>
+
+        <id name="id" type="string" column="blacklist_id" />
+        <property name="blacklistType" type="string" column="blacklist_type" length="1" />
+        <property name="sanCode" type="string" column="san_code" length="32" not-null="false" />
+        <property name="sanName" type="string" column="san_name" length="32" not-null="false" />
+        <property name="accountType" type="string" column="account_type" length="1" not-null="false" />  
+        <property name="certificateType" type="string" column="certificate_type" length="2" not-null="false" />
+        <property name="certificateNumber" type="string" column="certificate_number" length="64" not-null="false" />   
+        <property name="clientName" type="string" column="client_name" length="100" not-null="false"  />
+        <property name="clientEnglishName" type="string" column="client_english_name" length="240" not-null="false" />    
+        <property name="nationality" type="string" column="nationality" length="64" not-null="false" />
+        <property name="birthday" type="java.util.Date" column="birthday" length="7" not-null="false" />
+        <property name="birthCountry" type="string" column="birth_country" length="200" not-null="false" />
+        <property name="gender" type="string" column="gender" length="1" not-null="false" />     
+        <property name="lastOccupation" type="string" column="last_occupation" length="200" not-null="false" />
+        <property name="residenceCountry" type="string" column="residence_country" length="200" not-null="false" />     
+        <property name="politicians" type="string" column="is_politicians" length="1" not-null="false" />      
+        <property name="valid" type="string" column="is_valid" length="1" not-null="false" />
+        <property name="del" type="string" column="is_del" length="1" not-null="false" />
+        <property name="operateState" type="string" column="operate_state" length="2" not-null="false" />
+        <property name="validDate" type="java.util.Date" column="valid_date" length="7" not-null="false" />    
+        <property name="filler1" type="string" column="filler1" length="32" not-null="false" />
+        <property name="filler2" type="string" column="filler2" length="32" not-null="false" />
+        <property name="filler3" type="string" column="filler3" length="32" not-null="false" />
+        <property name="filler4" type="string" column="filler4" length="32" not-null="false" />
+        <property name="createDate" type="java.util.Date" column="create_date" length="7" not-null="false" />
+        <property name="lastModifyDate" type="java.util.Date" column="last_modify_date" length="7" not-null="false" />
+        <property name="lastModifyOperator" type="string" column="last_modify_operator" length="32" not-null="false" />
+        <property name="remarks" type="string" column="remarks" length="2000" not-null="false" />
+
+    </class>
+</hibernate-mapping>
