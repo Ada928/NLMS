@@ -64,5 +64,7 @@ public class AnalyConfRecordGetter extends BaseGetter {
 
 		return BiAnalyConfService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString());
 	}
+	
+	/*TEST*/
 
 }
