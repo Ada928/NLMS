@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MSG>
+	<head>
+		<jytbbh>201</jytbbh>		<!--  交易头版本号 ，长度 3-->
+		<jydm>201802010928</jydm>			<!--交易代码 ，4  -->
+		<dqdh></dqdh>			<!--  地区代号  2-->
+		<jgdh></jgdh>			<!-- 机构代号  3 -->
+		<jygy></jygy>			<!--   交易柜员号  4-->
+		<zddh></zddh>			<!--  终端代号 8-->
+		<syxtjylsbh></syxtjylsbh>	<!-- 上游系统系统交易流水编号30 -->
+		<syxtjybm></syxtjybm>		<!--  上游系统交易编码 8-->
+		<fqxtjylsbh></fqxtjylsbh>	<!--  发起系统交易流水编号 30-->
+		<fqxtyhdh></fqxtyhdh>		<!--   发起系统用户代号 10-->
+		<fqxtjybm></fqxtjybm>		<!--  发起系统交易编码 8-->
+		<ywth></ywth>				<!--  业务套号 16-->
+		<tysqgy></tysqgy>			<!--  统一授权柜员 4-->
+		<tysqmm></tysqmm>			<!--   统一授权密码 16-->
+		<fjqdzl></fjqdzl>			<!-- 附加渠道种类 3 -->
+		<fqxtfjxx></fqxtfjxx>			<!--  发起系统附加信息 32-->
+		<ywsldqdh></ywsldqdh>
+		<ywsljgdh></ywsljgdh>
+		<cpdh></cpdh>
+		<sccfcs></sccfcs>
+		<scwjbz></scwjbz>
+		<scwjm></scwjm>
+		<wjid></wjid>
+		<jkbb></jkbb>
+		<sfxgxx></sfxgxx>
+		<khmmjmfs></khmmjmfs>
+		<jytbl></jytbl>
+		<tyqqghy></tyqqghy>
+		
+	</head>
+		
+	<body>
+		<czbj></czbj>				<!--  操作标记 1-->
+		<wjm>0201.txt</wjm>				<!--   文件名30  -->
+		<wjjym></wjjym>			<!--  文件校验码	8-->
+	</body>
+	
+</MSG>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="resource.bean.blacklist">
+    <class name="NsBankBlackList" table="nlms_bankblacklist">
+        <meta attribute="sync-DAO">false</meta>
+    	<cache usage="read-write"></cache>
+
+        <id name="id" type="string" column="blacklist_id" />
+        <property name="bankCode" type="string" column="bank_code" length="32" not-null="false" />
+        <property name="accountType" type="string" column="account_type" length="1" not-null="false" />
+        <property name="accountCode" type="string" column="account_code" length="32" not-null="false" />
+        <property name="certificateType" type="string" column="certificate_type" length="2" />
+        <property name="certificateNumber" type="string" column="certificate_number" length="64" />
+        <property name="clientName" type="string" column="client_name" length="100" />
+        <property name="clientEnglishName" type="string" column="client_english_name" length="100" not-null="false" />
+        <property name="blacklistType" type="string" column="blacklist_type" length="1" />
+        <property name="share" type="string" column="is_share" length="1" not-null="false" />
+        <property name="del" type="string" column="is_del" length="1" not-null="false" />
+        <property name="approve" type="string" column="is_approve" length="1" not-null="false" />
+        <property name="valid" type="string" column="is_valid" length="1" not-null="false" />
+     <!--    <property name="shareState" type="string" column="share_state" length="2" not-null="false" />
+        <property name="validState" type="string" column="valid_state" length="2" not-null="false" />
+        <property name="delState" type="string" column="del_state" length="2" not-null="false" />
+        <property name="operateState" type="string" column="operate_state" length="2" not-null="false" /> -->
+        <property name="validDate" type="java.util.Date" column="valid_date" length="7" not-null="false" />
+        <property name="blacklistedDate" type="java.util.Date" column="blacklisted_date" length="7" not-null="false" />
+        <property name="blacklistedOperator" type="string" column="blacklisted_operator" length="20" not-null="false" />
+        <property name="blacklistedReason" type="string" column="blacklisted_reason" length="500" not-null="false" />
+        <property name="unblacklistedDate" type="java.util.Date" column="unblacklisted_date" length="7" not-null="false" />
+        <property name="unblacklistedOperator" type="string" column="unblacklisted_operator" length="20"
+            not-null="false" />
+        <property name="unblacklistedReason" type="string" column="unblacklisted_reason" length="500" not-null="false" />
+        <property name="filler1" type="string" column="filler1" length="32" not-null="false" />
+        <property name="filler2" type="string" column="filler2" length="32" not-null="false" />
+        <property name="filler3" type="string" column="filler3" length="32" not-null="false" />
+        <property name="createDate" type="java.util.Date" column="create_date" length="7" not-null="false" />
+        <property name="lastModifyDate" type="java.util.Date" column="last_modify_date" length="7" not-null="false" />
+        <property name="lastModifyOperator" type="string" column="last_modify_operator" length="32" not-null="false" />
+        <property name="remarks" type="string" column="remarks" length="2000" not-null="false" />
+        <property name="cardBkBookNo" type="string" column="card_BkBook_No" length="30" not-null="false" />
+		
+    </class>
+</hibernate-mapping>

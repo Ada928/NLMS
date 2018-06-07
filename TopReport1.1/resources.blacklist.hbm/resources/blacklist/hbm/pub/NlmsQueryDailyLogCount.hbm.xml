@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="resource.bean.blacklist">
+    <class name="NsQueryDailyLogCount" table="NLMS_QUERY_DAILY_LOG_COUNT">
+        <meta attribute="sync-DAO">false</meta>
+        <id name="id" type="string" column="LOG_ID"></id>
+        <property name="brcode" column="BRCODE" type="string" not-null="false" length="20" />
+        <property name="operateType" column="OPERATE_TYPE" type="string" not-null="false" length="2" />
+        <property name="queryTable" column="QUERY_Table" type="string" not-null="false" length="2" />
+        <property name="sumQueryRecord" column="SUM_QUERY_RECORD" type="string" not-null="false" length="20" />
+        <property name="countDay" column="COUNT_DAY" type="java.util.Date" not-null="false" length="7" />
+        <property name="createDate" column="CREATE_DATE" type="java.util.Date" not-null="false" length="7" />
+        <property name="filter1" column="FILTER1" type="string" not-null="false" length="20" />
+        <property name="filter2" column="FILTER2" type="string" not-null="false" length="20" />
+        <property name="filter3" column="FILTER3" type="string" not-null="false" length="20" />
+    </class>
+</hibernate-mapping>

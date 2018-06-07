@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="resource.bean.blacklist">
+    <class name="NsBankBlackListAuditState" table="NLMS_BANKBLACKLIST_AUDIT_STATE">
+        <meta attribute="sync-DAO">false</meta>
+        <id name="id" type="string" column="AUDIT_STATE_ID"></id>
+        <property name="blacklistID" column="BLACKLIST_ID" type="string" not-null="false" length="32" />
+        <property name="editUserID" column="EDIT_USER_ID" type="string" not-null="false" length="20" />
+        <property name="verifyUserID" column="VERIFY_USER_ID" type="string" not-null="false" length="20" />
+        <property name="approveUserID" column="APPROVE_USER_ID" type="string" not-null="false" length="20" />
+        <property name="brcode" column="BRCODE" type="string" not-null="false" length="5" />
+        <property name="auditType" column="AUDIT_TYPE" type="string" not-null="false" length="2" />
+        <property name="auditState" column="AUDIT_STATE" type="string" not-null="false" length="2" />
+        <property name="editDate" column="EDIT_DATE" type="java.util.Date" not-null="false" length="6" />
+        <property name="verifyDate" column="VERIFY_DATE" type="java.util.Date" not-null="false" length="6" />
+        <property name="approveDate" column="APPROVE_DATE" type="java.util.Date" not-null="false" length="6" />
+        <property name="filter1" column="FILTER1" type="string" not-null="false" length="20" />
+        <property name="filter2" column="FILTER2" type="string" not-null="false" length="20" />
+        <property name="filter3" column="FILTER3" type="string" not-null="false" length="20" />
+    </class>
+</hibernate-mapping> 
