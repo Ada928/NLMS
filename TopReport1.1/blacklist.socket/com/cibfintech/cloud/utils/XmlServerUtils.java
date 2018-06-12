@@ -350,7 +350,7 @@ public class XmlServerUtils {
 			if(brCode != null && !"".equals(brCode)){//
 				
 				if(msType != null && !"".equals(msType)){
-					if("0".equals(msType) || "1".equals(msType) || "2".equals(msType) || "3".equals(msType)){
+					if("0".equals(msType) || "1".equals(msType) || "2".equals(msType) || "3".equals(msType)||"4".equals(msType)){
 						
 						if(null != qur && !"".equals(qur)){
 							//若返回的errMsg="",则表示查询信息无误

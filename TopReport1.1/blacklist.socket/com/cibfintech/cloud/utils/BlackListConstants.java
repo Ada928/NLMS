@@ -37,7 +37,7 @@ public class BlackListConstants {
 	public static final String REQ_REQMSG = "reqMsg";
 	public static final int REQ_REQMSG_LEN = 240;
 	public static final int REQ_REQMSG_SUBLEN = 15;
-	//证件种类 ：certype    0:根据证件查,1:根据账户查,2:根据中文姓名查,3:根据英文姓名查
+	//证件种类 ：certype    0:根据证件查,1:根据账户查,2:根据中文姓名查,3:根据英文姓名查，4：根据卡号、折号查询
 	public static final String REQ_CERTYPE = "cerType";
 	public static final int REQ_CERTYPE_LEN = 1;
 	//证件号码：cernum
