@@ -32,7 +32,7 @@
 			type="String" default="false" xpath="/certificateType" readonly="true" tip="证件种类" translated="DATA_DIC.21" />
 
 		<Field id="blacklistType" desc="名单性质" status="F" edittype="select" require="false" method="None" primary=""
-			type="String" default="false" xpath="/blacklistType" readonly="true" tip="名单性质" translated="LIST:0,白名单;1,灰名单;2,黑名单" />
+			type="String" default="false" xpath="/blacklistType" readonly="true" tip="名单性质" translated="LIST:0,白名单;1,黑名单;2,灰名单" />
 
 		<Field id="share" desc="是否共享" status="F" edittype="select" require="false" method="None" primary="" type="String"
 			default="false" xpath="/share" readonly="true" tip="是否共享" translated="LIST:T,共享;F,不共享" />

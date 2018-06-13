@@ -33,7 +33,7 @@
 		
 		<Field id="blackListedOrganization" desc="发送机构(公安)" edittype="text" datatype="string" readonly="true" xpath="/blackListedOrganization" />
 		 
-		<Field id="blacklistType" desc="名单性质" status="N" readonly="true" translated="LIST:0,白名单;1,灰名单;2,黑名单" require="false"
+		<Field id="blacklistType" desc="名单性质" status="N" readonly="true" translated="LIST:0,白名单;1,黑名单;2,灰名单" require="false"
 			edittype="select"  method="None" primary="false" type="String" xpath="/blacklistType" />
 
 		<Field id="valid" desc="有效状态" status="N" readonly="true" translated="LIST:T,有效;F,无效" require="false"

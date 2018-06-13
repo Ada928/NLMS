@@ -34,7 +34,7 @@
 			default="false" xpath="/auditState" tip="审核状态" translated="DATA_DIC.3003" />
 
 		<Field id="blacklistType" desc="名单性质" status="F" edittype="select" require="false" method="None" primary=""
-			type="String" default="false" xpath="/blacklistType" tip="名单性质" translated="LIST:0,白名单;1,灰名单;2,黑名单" />
+			type="String" default="false" xpath="/blacklistType" tip="名单性质" translated="LIST:0,白名单;1,黑名单;2,灰名单" />
 
 		<Field id="certificateType" desc="证件种类" status="F" edittype="select" require="false" method="None" primary=""
 			type="String" default="false" xpath="/certificateType" tip="证件种类" translated="DATA_DIC.21" />

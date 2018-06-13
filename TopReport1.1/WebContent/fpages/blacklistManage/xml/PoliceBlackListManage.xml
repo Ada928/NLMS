@@ -11,9 +11,9 @@
 
 	<Fields>
 		<Field id="id" desc="黑名单编号" edittype="text" datatype="string" status="F" xpath="/id" />
-		<Field id="blacklistType" desc="名单性质" status="F" readonly="false" translated="LIST:0,白名单;1,灰名单;2,黑名单" require="false"
+		<Field id="blacklistType" desc="名单性质" status="F" readonly="false" translated="LIST:0,白名单;1,黑名单;2,灰名单" require="false"
 			edittype="select" method="None" primary="false" type="String" xpath="/blacklistType" />
-		<Field id="accountType" desc="账户类型" status="F" readonly="false" translated="LIST:I,对公客户;C,对私客户;" require="false"
+		<Field id="accountType" desc="账户类型" status="F" readonly="false" translated="LIST:C,对公客户;I,对私客户;" require="false"
 			edittype="select" method="None" primary="true" type="String" xpath="/accountType" />
 		
 		<Field id="accountCode" desc="账号" edittype="text" datatype="string" size="64" status="F" readonly="false" xpath="/accountCode" />

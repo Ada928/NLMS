@@ -31,7 +31,7 @@
 			type="String" default="false" xpath="/certificateType" tip="证件种类" translated="DATA_DIC.21" />
 
 		<Field id="blacklistType" desc="名单性质" status="F" edittype="select" require="false" method="None" primary=""
-			type="String" default="false" xpath="/blacklistType" tip="名单性质" translated="LIST:0,白名单;1,灰名单;2,黑名单" />
+			type="String" default="false" xpath="/blacklistType" tip="名单性质" translated="LIST:0,白名单;1,黑名单;2,灰名单" />
 
 		<Field id="share" desc="是否共享" status="F" edittype="select" require="false" method="None" primary="" type="String"
 			default="false" xpath="/share" tip="是否共享" translated="LIST:T,共享;F,不共享" />
@@ -92,7 +92,7 @@
 		<TextBox id="qCardBkBookNo" desc="卡/折号" edittype="text" datatype="string" require="" size="100" index="5" />
 	
 		<Option id="qBlacklistType" default="2" desc="名单性质" type="blacklistType" tip="" method="None" index="6"
-			translated="LIST:0,白名单;1,灰名单;2,黑名单" />
+			translated="LIST:0,白名单;1,黑名单;2,灰名单" />
 		<Option id="qApprove" default="" desc="是否审批通过" type="approve" tip="" method="None" index="7" translated="LIST:T,通过;F,未通过" />
 		
 	</Where>
